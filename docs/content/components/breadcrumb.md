@@ -52,7 +52,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import * as Breadcrumb from "$lib/components/ui/breadcrumb/index.js";
 </script>
+```
 
+```svelte
 <Breadcrumb.Root>
   <Breadcrumb.List>
     <Breadcrumb.Item>

@@ -61,7 +61,9 @@ Copy and paste the following code into your project.
   import * as InputGroup from "$lib/components/ui/input-group/index.js";
   import SearchIcon from "@lucide/svelte/icons/search";
 </script>
+```
 
+```svelte
 <InputGroup.Root>
   <InputGroup.Input placeholder="Search..." />
   <InputGroup.Addon>

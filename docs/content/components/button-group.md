@@ -52,7 +52,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import * as ButtonGroup from "$lib/components/ui/button-group/index.js";
 </script>
+```
 
+```svelte
 <ButtonGroup.Root>
   <Button>Button 1</Button>
   <Button>Button 2</Button>

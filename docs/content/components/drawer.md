@@ -65,7 +65,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import * as Drawer from "$lib/components/ui/drawer/index.js";
 </script>
+```
 
+```svelte
 <Drawer.Root>
   <Drawer.Trigger>Open</Drawer.Trigger>
   <Drawer.Content>

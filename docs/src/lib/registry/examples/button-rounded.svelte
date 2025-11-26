@@ -3,9 +3,8 @@
 	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
-<div class="flex flex-wrap items-center gap-2 md:flex-row">
-	<Button variant="outline">Button</Button>
-	<Button variant="outline" size="icon" aria-label="Submit">
+<div class="flex flex-col gap-8">
+	<Button variant="outline" size="icon" class="rounded-full">
 		<ArrowUpIcon />
 	</Button>
 </div>

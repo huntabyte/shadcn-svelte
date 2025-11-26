@@ -62,7 +62,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import * as Tooltip from "$lib/components/ui/tooltip/index.js";
 </script>
+```
 
+```svelte
 <Tooltip.Provider>
   <Tooltip.Root>
     <Tooltip.Trigger>Hover</Tooltip.Trigger>

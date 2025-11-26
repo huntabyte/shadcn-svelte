@@ -62,7 +62,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import { Toggle } from "$lib/components/ui/toggle/index.js";
 </script>
+```
 
+```svelte
 <Toggle>Toggle</Toggle>
 ```
 

@@ -62,6 +62,8 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import { Label } from "$lib/components/ui/label/index.js";
 </script>
+```
 
+```svelte
 <Label for="email">Your email address</Label>
 ```

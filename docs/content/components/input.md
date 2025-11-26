@@ -52,7 +52,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import { Input } from "$lib/components/ui/input/index.js";
 </script>
+```
 
+```svelte
 <Input />
 ```
 

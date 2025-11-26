@@ -66,7 +66,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import * as InputOTP from "$lib/components/ui/input-otp/index.js";
 </script>
+```
 
+```svelte
 <InputOTP.Root maxlength={6}>
   {#snippet children({ cells })}
     <InputOTP.Group>

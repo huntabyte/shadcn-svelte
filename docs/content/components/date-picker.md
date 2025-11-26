@@ -43,7 +43,9 @@ See installations instructions for the [Popover](/docs/components/popover#instal
 
   let value = $state<DateValue>();
 </script>
+```
 
+```svelte
 <Popover.Root>
   <Popover.Trigger>
     {#snippet child({ props })}

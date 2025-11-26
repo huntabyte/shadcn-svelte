@@ -62,7 +62,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import * as Pagination from "$lib/components/ui/pagination/index.js";
 </script>
+```
 
+```svelte
 <Pagination.Root count={100} perPage={10}>
   {#snippet children({ pages, currentPage })}
     <Pagination.Content>

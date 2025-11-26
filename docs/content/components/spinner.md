@@ -60,13 +60,15 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import { Spinner } from "$lib/components/ui/spinner/index.js";
 </script>
+```
 
+```svelte
 <Spinner />
 ```
 
 ## Customization
 
-You can replace the default spinner icon with any other icon by editing the Spinner component.
+You can replace the default spinner icon with any other icon by editing the `Spinner` component.
 
 <ComponentPreview name="spinner-custom-demo">
 

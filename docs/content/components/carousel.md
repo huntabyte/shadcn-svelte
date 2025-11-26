@@ -66,7 +66,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import * as Carousel from "$lib/components/ui/carousel/index.js";
 </script>
+```
 
+```svelte
 <Carousel.Root>
   <Carousel.Content>
     <Carousel.Item>...</Carousel.Item>

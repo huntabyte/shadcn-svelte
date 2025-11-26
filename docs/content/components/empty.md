@@ -53,7 +53,9 @@ Copy and paste the following code into your project.
   import * as Empty from "$lib/components/ui/empty/index.js";
   import FolderCodeIcon from "@tabler/icons-svelte/icons/folder-code";
 </script>
+```
 
+```svelte
 <Empty.Root>
   <Empty.Header>
     <Empty.Media variant="icon">

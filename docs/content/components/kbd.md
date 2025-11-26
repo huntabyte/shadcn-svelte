@@ -52,7 +52,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import * as Kbd from "$lib/components/ui/kbd/index.js";
 </script>
+```
 
+```svelte
 <Kbd.Root>B</Kbd.Root>
 ```
 

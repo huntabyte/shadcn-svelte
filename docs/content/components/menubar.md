@@ -60,7 +60,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import * as Menubar from "$lib/components/ui/menubar/index.js";
 </script>
+```
 
+```svelte
 <Menubar.Root>
   <Menubar.Menu>
     <Menubar.Trigger>File</Menubar.Trigger>

@@ -47,7 +47,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import * as NativeSelect from "$lib/registry/ui/native-select/index.js";
 </script>
+```
 
+```svelte
 <NativeSelect.Root>
   <NativeSelect.Option value="">Select a fruit</NativeSelect.Option>
   <NativeSelect.Option value="apple">Apple</NativeSelect.Option>

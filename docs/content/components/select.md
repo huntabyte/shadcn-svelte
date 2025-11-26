@@ -62,7 +62,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import * as Select from "$lib/components/ui/select/index.js";
 </script>
+```
 
+```svelte
 <Select.Root type="single">
   <Select.Trigger class="w-[180px]"></Select.Trigger>
   <Select.Content>

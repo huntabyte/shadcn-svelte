@@ -62,7 +62,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import * as Dialog from "$lib/components/ui/dialog/index.js";
 </script>
+```
 
+```svelte
 <Dialog.Root>
   <Dialog.Trigger>Open</Dialog.Trigger>
   <Dialog.Content>

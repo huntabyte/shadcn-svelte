@@ -56,7 +56,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import * as Item from "$lib/components/ui/item/index.js";
 </script>
+```
 
+```svelte
 <Item.Root>
   <Item.Header>Item Header</Item.Header>
   <Item.Media />

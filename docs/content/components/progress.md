@@ -62,6 +62,8 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import { Progress } from "$lib/components/ui/progress/index.js";
 </script>
+```
 
+```svelte
 <Progress value={33} />
 ```

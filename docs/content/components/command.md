@@ -63,7 +63,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import * as Command from "$lib/components/ui/command/index.js";
 </script>
+```
 
+```svelte
 <Command.Root>
   <Command.Input placeholder="Type a command or search..." />
   <Command.List>

@@ -62,7 +62,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import { ScrollArea } from "$lib/components/ui/scroll-area/index.js";
 </script>
+```
 
+```svelte
 <ScrollArea class="h-[200px] w-[350px] rounded-md border p-4">
   Jokester began sneaking into the castle in the middle of the night and
   leaving jokes all over the place: under the king's pillow, in his soup, even

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
+	import CircleFadingArrowUpIcon from "@lucide/svelte/icons/circle-fading-arrow-up";
 	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
-<Button variant="secondary" size="icon" class="size-8">
-	<ChevronRightIcon />
+<Button variant="outline" size="icon">
+	<CircleFadingArrowUpIcon />
 </Button>

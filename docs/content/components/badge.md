@@ -51,7 +51,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import { Badge } from "$lib/components/ui/badge/index.js";
 </script>
+```
 
+```svelte
 <Badge variant="outline">Badge</Badge>
 ```
 

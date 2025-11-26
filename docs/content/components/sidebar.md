@@ -147,7 +147,9 @@ A `Sidebar` component is composed of the following parts:
 
   let { children } = $props();
 </script>
+```
 
+```svelte
 <Sidebar.Provider>
   <AppSidebar />
   <main>

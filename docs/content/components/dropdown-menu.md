@@ -62,7 +62,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
 </script>
+```
 
+```svelte
 <DropdownMenu.Root>
   <DropdownMenu.Trigger>Open</DropdownMenu.Trigger>
   <DropdownMenu.Content>

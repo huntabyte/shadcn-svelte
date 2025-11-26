@@ -62,7 +62,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import * as Sheet from "$lib/components/ui/sheet/index.js";
 </script>
+```
 
+```svelte
 <Sheet.Root>
   <Sheet.Trigger>Open</Sheet.Trigger>
   <Sheet.Content>

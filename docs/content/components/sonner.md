@@ -106,6 +106,8 @@ Copy and paste the following code into your project.
   import { toast } from "svelte-sonner";
   import { Button } from "$lib/components/ui/button/index.js";
 </script>
+```
 
+```svelte
 <Button onclick={() => toast("Hello world")}>Show toast</Button>
 ```

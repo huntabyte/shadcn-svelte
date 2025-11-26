@@ -52,7 +52,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import * as Field from "$lib/components/ui/field/index.js";
 </script>
+```
 
+```svelte
 <Field.Set>
   <Field.Legend>Profile</Field.Legend>
   <Field.Description>This appears on invoices and emails.</Field.Description>

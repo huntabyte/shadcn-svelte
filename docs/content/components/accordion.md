@@ -71,7 +71,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import * as Accordion from "$lib/components/ui/accordion/index.js";
 </script>
+```
 
+```svelte
 <Accordion.Root type="single">
   <Accordion.Item value="item-1">
     <Accordion.Trigger>Is it accessible?</Accordion.Trigger>

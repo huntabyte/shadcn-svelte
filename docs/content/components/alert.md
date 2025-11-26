@@ -52,7 +52,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import * as Alert from "$lib/components/ui/alert/index.js";
 </script>
+```
 
+```svelte
 <Alert.Root>
   <Alert.Title>Heads up!</Alert.Title>
   <Alert.Description>

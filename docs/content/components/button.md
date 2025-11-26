@@ -17,7 +17,7 @@ links:
 	import InstallTabs from "$lib/components/install-tabs.svelte";
 	import Step from "$lib/components/step.svelte";
 
-	let { viewerData } = $props();
+	let { viewerData, links } = $props();
 </script>
 
 <ComponentPreview name="button-demo">
@@ -58,6 +58,110 @@ Copy and paste the following code into your project.
 <Button variant="outline">Button</Button>
 ```
 
+## Examples
+
+### Size
+
+<ComponentPreview name="button-size" class="mb-4" >
+
+<div></div>
+
+</ComponentPreview>
+
+### Default
+
+<ComponentPreview name="button-default" description="A primary button" class="mb-4">
+
+<div></div>
+
+</ComponentPreview>
+
+### Outline
+
+<ComponentPreview name="button-outline" description="A button using the outline variant." class="mb-4">
+  
+<div></div>
+
+</ComponentPreview>
+
+### Secondary
+
+<ComponentPreview name="button-secondary" description="A secondary button" class="mb-4">
+  
+<div></div>
+  
+</ComponentPreview>
+
+### Ghost
+
+<ComponentPreview name="button-ghost" description="A button using the ghost variant" class="mb-4">
+  
+<div></div>
+
+</ComponentPreview>
+
+### Destructive
+
+<ComponentPreview name="button-destructive" description="A destructive button" class="mb-4">
+
+<div></div>
+
+</ComponentPreview>
+
+### Link
+
+<ComponentPreview name="button-link" description="A button using the link variant." class="mb-4">
+
+<div></div>
+
+</ComponentPreview>
+
+### Icon
+
+<ComponentPreview name="button-icon" description="An icon button" class="mb-4">
+
+<div></div>
+
+</ComponentPreview>
+
+### With Icon
+
+The spacing between the icon and the text is automatically adjusted based on the size of the button. You do not need any margin on the icon.
+
+<ComponentPreview name="button-with-icon" description="A button with an icon" class="mb-4">
+
+<div></div>
+
+</ComponentPreview>
+
+### Rounded
+
+Use the `rounded-full` class to make the button rounded.
+
+<ComponentPreview name="button-rounded" class="mb-4" >
+
+<div></div>
+
+</ComponentPreview>
+
+### Spinner
+
+<ComponentPreview name="button-loading" description="A button with a loading state." class="mb-4">
+
+<div></div>
+
+</ComponentPreview>
+
+### Button Group
+
+To create a button group, use the `ButtonGroup` component. See the [Button Group](/docs/components/button-group) documentation for more details.
+
+<ComponentPreview name="button-group-demo" class="mb-4" >
+
+<div></div>
+
+</ComponentPreview>
+
 ### Link
 
 You can convert the `<button>` into an `<a>` element by simply passing an `href` as a prop.
@@ -82,92 +186,4 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 </a>
 ```
 
-## Examples
-
-### Primary
-
-<ComponentPreview name="button-demo">
-
-<div></div>
-
-</ComponentPreview>
-
----
-
-### Secondary
-
-<ComponentPreview name="button-secondary">
-
-<div></div>
-
-</ComponentPreview>
-
----
-
-### Destructive
-
-<ComponentPreview name="button-destructive">
-
-<div></div>
-
-</ComponentPreview>
-
----
-
-### Outline
-
-<ComponentPreview name="button-outline">
-
-<div></div>
-
-</ComponentPreview>
-
----
-
-### Ghost
-
-<ComponentPreview name="button-ghost">
-
-<div></div>
-
-</ComponentPreview>
-
----
-
-### Link
-
-<ComponentPreview name="button-link">
-
-<div></div>
-
-</ComponentPreview>
-
----
-
-### With Icon
-
-<ComponentPreview name="button-with-icon">
-
-<div></div>
-
-</ComponentPreview>
-
----
-
-### Icon
-
-<ComponentPreview name="button-icon">
-
-<div></div>
-
-</ComponentPreview>
-
----
-
-### Loading
-
-<ComponentPreview name="button-loading">
-
-<div></div>
-
-</ComponentPreview>
+### [API Reference](https://bits-ui.com/docs/components/button#api-reference)

@@ -62,7 +62,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import * as ContextMenu from "$lib/components/ui/context-menu/index.js";
 </script>
+```
 
+```svelte
 <ContextMenu.Root>
   <ContextMenu.Trigger>Right click</ContextMenu.Trigger>
   <ContextMenu.Content>

@@ -62,7 +62,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import * as Tabs from "$lib/components/ui/tabs/index.js";
 </script>
+```
 
+```svelte
 <Tabs.Root value="account" class="w-[400px]">
   <Tabs.List>
     <Tabs.Trigger value="account">Account</Tabs.Trigger>

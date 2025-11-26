@@ -62,7 +62,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import * as ToggleGroup from "$lib/components/ui/toggle-group/index.js";
 </script>
+```
 
+```svelte
 <ToggleGroup.Root type="single">
   <ToggleGroup.Item value="a">A</ToggleGroup.Item>
   <ToggleGroup.Item value="b">B</ToggleGroup.Item>

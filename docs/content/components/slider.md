@@ -63,7 +63,9 @@ Copy and paste the following code into your project.
   import { Slider } from "$lib/components/ui/slider/index.js";
   let value = $state(33);
 </script>
+```
 
+```svelte
 <Slider type="single" bind:value max={100} step={1} />
 ```
 

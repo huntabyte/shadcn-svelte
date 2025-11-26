@@ -73,7 +73,9 @@ See installation instructions for the [Popover](/docs/components/popover#install
     });
   }
 </script>
+```
 
+```svelte
 <Popover.Root bind:open>
   <Popover.Trigger bind:ref={triggerRef}>
     {#snippet child({ props })}

@@ -65,7 +65,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import * as Resizable from "$lib/components/ui/resizable/index.js";
 </script>
+```
 
+```svelte
 <Resizable.PaneGroup direction="horizontal">
   <Resizable.Pane>One</Resizable.Pane>
   <Resizable.Handle />

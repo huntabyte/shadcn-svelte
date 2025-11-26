@@ -62,7 +62,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import * as AlertDialog from "$lib/components/ui/alert-dialog/index.js";
 </script>
+```
 
+```svelte
 <AlertDialog.Root>
   <AlertDialog.Trigger>Open</AlertDialog.Trigger>
   <AlertDialog.Content>

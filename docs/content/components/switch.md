@@ -62,7 +62,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import { Switch } from "$lib/components/ui/switch/index.js";
 </script>
+```
 
+```svelte
 <Switch />
 ```
 

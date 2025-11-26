@@ -62,7 +62,9 @@ Copy and paste the following code into your project.
 <script lang="ts">
   import { Checkbox } from "$lib/components/ui/checkbox/index.js";
 </script>
+```
 
+```svelte
 <Checkbox />
 ```
 
