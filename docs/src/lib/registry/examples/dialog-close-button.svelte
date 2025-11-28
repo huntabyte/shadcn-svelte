@@ -17,7 +17,7 @@
 		<div class="flex items-center gap-2">
 			<div class="grid flex-1 gap-2">
 				<Label for="link" class="sr-only">Link</Label>
-				<Input id="link" defaultValue="https://ui.shadcn.com/docs/installation" readOnly />
+				<Input id="link" defaultValue="https://ui.shadcn.com/docs/installation" />
 			</div>
 		</div>
 		<Dialog.Footer class="sm:justify-start">

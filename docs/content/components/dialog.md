@@ -78,6 +78,7 @@ Copy and paste the following code into your project.
   </Dialog.Content>
 </Dialog.Root>
 ```
+
 ## Examples
 
 ### Custom close button
@@ -88,6 +89,7 @@ Copy and paste the following code into your project.
 
 </ComponentPreview>
 
+<!-- Need to convert to svelte component
 ## Notes
 
 To use the `Dialog` component from within a `Context Menu` or `Dropdown Menu`, you must encase the `Context Menu` or
@@ -121,3 +123,4 @@ To use the `Dialog` component from within a `Context Menu` or `Dropdown Menu`, y
   </DialogContent>
 </Dialog>
 ```
+-->
