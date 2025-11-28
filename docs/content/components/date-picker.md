@@ -78,6 +78,8 @@ See installations instructions for the [Popover](/docs/components/popover#instal
 
 ### Picker with Input
 
+<!--need to fix code not showing due to type-->
+
 <ComponentPreview name="calendar-28" description="A calendar with input and picker." >
 
 <div></div>
