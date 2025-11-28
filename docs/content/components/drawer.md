@@ -61,13 +61,13 @@ Copy and paste the following code into your project.
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import * as Drawer from "$lib/components/ui/drawer/index.js";
 </script>
 ```
 
-```svelte
+```svelte showLineNumbers
 <Drawer.Root>
   <Drawer.Trigger>Open</Drawer.Trigger>
   <Drawer.Content>

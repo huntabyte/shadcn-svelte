@@ -30,7 +30,7 @@ export function createFileTreeForRegistryItemFiles(
 	if (!files || !Array.isArray(files)) {
 		return [];
 	}
-	
+
 	const root: FileTree[] = [];
 
 	for (const file of files) {

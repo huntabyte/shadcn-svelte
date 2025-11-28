@@ -58,13 +58,13 @@ Copy and paste the following code into your project.
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
 </script>
 ```
 
-```svelte
+```svelte showLineNumbers
 <DropdownMenu.Root>
   <DropdownMenu.Trigger>Open</DropdownMenu.Trigger>
   <DropdownMenu.Content>
@@ -93,6 +93,24 @@ Copy and paste the following code into your project.
 ### Radio Group
 
 <ComponentPreview name="dropdown-menu-radio-group">
+
+<div></div>
+
+</ComponentPreview>
+
+### Dialog
+
+This example shows how to open a dialog from a dropdown menu.
+
+```svelte showLineNumbers
+<DropdownMenu.Root>
+  <DropdownMenu.Trigger class={buttonVariants({ variant: "outline" })}>
+    Actions
+  </DropdownMenu.Trigger>
+</DropdownMenu.Root>
+```
+
+<ComponentPreview name="dropdown-menu-dialog" >
 
 <div></div>
 
