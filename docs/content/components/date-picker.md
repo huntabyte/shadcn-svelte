@@ -24,7 +24,7 @@ See installations instructions for the [Popover](/docs/components/popover#instal
 
 ## Usage
 
-```svelte showLineNumbers
+```svelte showLineNumbers title="lib/components/example-date-picker.svelte"
 <script lang="ts">
   import CalendarIcon from "@lucide/svelte/icons/calendar";
   import {
@@ -68,33 +68,34 @@ See installations instructions for the [Popover](/docs/components/popover#instal
 
 ## Examples
 
-### Date Picker
+### Date of Birth Picker
 
-<ComponentPreview name="date-picker-demo">
-
-<div></div>
-
-</ComponentPreview>
-
-### Date Range Picker
-
-<ComponentPreview name="date-picker-with-range">
+<ComponentPreview name="calendar-22" description="A calendar with date of birth picker." >
 
 <div></div>
 
 </ComponentPreview>
 
-### With Presets
+### Picker with Input
 
-<ComponentPreview name="date-picker-with-presets">
+<ComponentPreview name="calendar-28" description="A calendar with input and picker." >
 
 <div></div>
 
 </ComponentPreview>
 
-### Form
+### Date and Time Picker
 
-<ComponentPreview name="date-picker-form">
+<ComponentPreview name="calendar-24" description="A calendar with date and time picker." >
+<div></div>
+
+</ComponentPreview>
+
+### Natural Language Picker
+
+This component uses the `chrono-node` library to parse natural language dates.
+
+<ComponentPreview name="calendar-29" description="A calendar with natural language picker.">
 
 <div></div>
 
