@@ -58,13 +58,13 @@ Copy and paste the following code into your project.
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import * as HoverCard from "$lib/components/ui/hover-card/index.js";
 </script>
 ```
 
-```svelte
+```svelte showLineNumbers
 <HoverCard.Root>
   <HoverCard.Trigger>Hover</HoverCard.Trigger>
   <HoverCard.Content>

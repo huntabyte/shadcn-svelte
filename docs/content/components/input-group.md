@@ -56,14 +56,14 @@ Copy and paste the following code into your project.
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import * as InputGroup from "$lib/components/ui/input-group/index.js";
   import SearchIcon from "@lucide/svelte/icons/search";
 </script>
 ```
 
-```svelte
+```svelte showLineNumbers
 <InputGroup.Root>
   <InputGroup.Input placeholder="Search..." />
   <InputGroup.Addon>

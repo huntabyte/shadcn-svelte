@@ -125,7 +125,7 @@ You can compose `<Breadcrumb.Item />` with a `<DropdownMenu />` to create a drop
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
 </script>
 
-...
+<!-- ... -->
 
 <Breadcrumb.Item>
   <DropdownMenu.Root>

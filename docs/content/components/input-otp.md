@@ -62,13 +62,13 @@ Copy and paste the following code into your project.
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import * as InputOTP from "$lib/components/ui/input-otp/index.js";
 </script>
 ```
 
-```svelte
+```svelte showLineNumbers
 <InputOTP.Root maxlength={6}>
   {#snippet children({ cells })}
     <InputOTP.Group>
@@ -119,7 +119,7 @@ You can use the `InputOTP.Separator` component to add a separator between the gr
 
 </ComponentPreview>
 
-```svelte showLineNumbers
+```svelte showLineNumbers {12}
 <script lang="ts">
   import * as InputOTP from "$lib/components/ui/input-otp/index.js";
 </script>
@@ -141,9 +141,9 @@ You can use the `InputOTP.Separator` component to add a separator between the gr
 </InputOTP.Root>
 ```
 
-### Invalid
+### Controlled
 
-<ComponentPreview name="input-otp-invalid">
+<ComponentPreview name="input-otp-controlled">
 
 <div></div>
 
