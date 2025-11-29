@@ -295,7 +295,7 @@ function getComponentSourceFileContent(src = "") {
 
 	const formattedSource = prettier.format(
 		readFileSync(filePath, "utf-8"),
-		codeBlockPrettierConfig
+		/** @type {any} */ (codeBlockPrettierConfig)
 	);
 
 	return formattedSource.trim();
