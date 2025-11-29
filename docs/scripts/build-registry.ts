@@ -1,4 +1,4 @@
-import template from "lodash.template";
+import lodash from "lodash";
 import fs from "node:fs";
 import path from "node:path";
 import prettier from "prettier";
@@ -28,6 +28,9 @@ if (!prettierConfig) throw new Error("Failed to resolve prettier config.");
 
 const REGISTRY_PATH = path.resolve("static", "registry");
 const THEMES_CSS_PATH = path.resolve("static");
+
+// Ensure lodash.template returns a callable TemplateExecutor
+const compileTemplate = lodash.template as unknown as (s: string) => (data: unknown) => string;
 
 function writeFileWithDirs(
 	filePath: string,
@@ -186,7 +189,7 @@ export const Index = {`;
 		const zincCssVars = generateBaseColorTemplate("zinc");
 
 		themeCSS.push(
-			template(THEME_STYLES_WITH_VARIABLES)({
+			compileTemplate(THEME_STYLES_WITH_VARIABLES)({
 				colors: {
 					...zincCssVars.cssVars,
 					...baseColorsOKLCH[baseColor as keyof typeof baseColorsOKLCH],

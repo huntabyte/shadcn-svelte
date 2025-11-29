@@ -62,7 +62,6 @@
 		"jsdom": "^27.2.0",
 		"layerchart": "2.0.0-next.43",
 		"little-date": "^1.2.1",
-		"lodash.template": "^4.5.0",
 		"magic-string": "^0.30.21",
 		"mdsx": "^0.0.7",
 		"mode-watcher": "^1.1.0",
@@ -97,5 +96,9 @@
 		"velite": "^0.3.0",
 		"vite": "catalog:",
 		"zod": "^4.1.13"
+	},
+	"dependencies": {
+		"@types/lodash": "^4.17.21",
+		"lodash": "^4.17.21"
 	}
 }
