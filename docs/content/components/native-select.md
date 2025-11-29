@@ -21,8 +21,8 @@ links:
 
 <Callout variant="info" icon={InfoIcon} class="!translate-y-[3px]" >
 
-  For a styled select component, see the [Select](/docs/components/select) component.
-  
+For a styled select component, see the [Select](/docs/components/select) component.
+
 </Callout>
 
 <ComponentPreview name="native-select-demo" />
