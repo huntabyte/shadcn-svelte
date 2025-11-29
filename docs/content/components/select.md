@@ -76,3 +76,21 @@ Copy and paste the component source files linked at the top of this page into yo
 <div></div>
 
 </ComponentPreview>
+
+---
+
+### Constraining Dropdown Width
+
+By default, the Select dropdown can expand wider than the trigger when options contain long text. To constrain the dropdown to match the trigger width (with content wrapping to multiple lines), add `max-w-min` to `Select.Content`:
+
+```svelte
+<Select.Root type="single">
+  <Select.Trigger class="w-[180px]">Select a model</Select.Trigger>
+  <Select.Content class="max-w-min">
+    <Select.Item value="v3">whisper-large-v3</Select.Item>
+    <Select.Item value="v3-turbo">
+      whisper-large-v3-turbo - Fast multilingual model with good accuracy
+    </Select.Item>
+  </Select.Content>
+</Select.Root>
+```
