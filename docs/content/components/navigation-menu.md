@@ -53,13 +53,13 @@ Copy and paste the following code into your project.
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import * as NavigationMenu from "$lib/components/ui/navigation-menu/index.js";
 </script>
 ```
 
-```svelte
+```svelte showLineNumbers
 <NavigationMenu.Root>
   <NavigationMenu.List>
     <NavigationMenu.Item>
