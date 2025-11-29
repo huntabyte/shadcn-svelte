@@ -20,7 +20,7 @@ links:
 
 The `Item` component is a straightforward flex container that can house nearly any type of content. Use it to display a title, description, and actions. Group it with the `ItemGroup` component to create a list of items.
 
-You can pretty much achieve the same result with the `div` element and some classes, but I've built this so many times that I decided to create a component for it. Now I use it all the time.
+You can pretty much achieve the same result with the `div` element and some classes, but **I've built this so many times** that I decided to create a component for it. Now I use it all the time.
 
 <ComponentPreview name="item-demo">
 
@@ -52,13 +52,13 @@ Copy and paste the following code into your project.
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import * as Item from "$lib/components/ui/item/index.js";
 </script>
 ```
 
-```svelte
+```svelte showLineNumbers
 <Item.Root>
   <Item.Header>Item Header</Item.Header>
   <Item.Media />

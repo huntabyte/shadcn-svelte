@@ -15,7 +15,15 @@ links:
 	let { viewerData } = $props();
     import Step from "$lib/components/step.svelte";
     import Steps from "$lib/components/steps.svelte";
+    import Callout from "$lib/components/callout.svelte";
+    import InfoIcon from "@lucide/svelte/icons/info";
 </script>
+
+<Callout variant="info" icon={InfoIcon} class="!translate-y-[3px]" >
+
+  For a styled select component, see the [Select](/docs/components/select) component.
+  
+</Callout>
 
 <ComponentPreview name="native-select-demo" />
 
@@ -49,7 +57,7 @@ Copy and paste the following code into your project.
 </script>
 ```
 
-```svelte
+```svelte showLineNumbers
 <NativeSelect.Root>
   <NativeSelect.Option value="">Select a fruit</NativeSelect.Option>
   <NativeSelect.Option value="apple">Apple</NativeSelect.Option>
@@ -66,7 +74,11 @@ Copy and paste the following code into your project.
 
 Organize options using `NativeSelect.OptGroup` for better categorization.
 
-<ComponentPreview name="native-select-groups" />
+<ComponentPreview name="native-select-groups" >
+
+<div></div>
+
+</ComponentPreview>
 
 ```svelte showLineNumbers
 <NativeSelect.Root>
@@ -88,13 +100,21 @@ Organize options using `NativeSelect.OptGroup` for better categorization.
 
 Disable individual options or the entire select component.
 
-<ComponentPreview name="native-select-disabled" />
+<ComponentPreview name="native-select-disabled" >
+
+<div></div>
+
+</ComponentPreview>
 
 ### Invalid State
 
 Show validation errors with the `aria-invalid` attribute and error styling.
 
-<ComponentPreview name="native-select-invalid" />
+<ComponentPreview name="native-select-invalid" >
+
+<div></div>
+
+</ComponentPreview>
 
 ```svelte showLineNumbers
 <NativeSelect.Root aria-invalid="true">
@@ -120,11 +140,11 @@ The `NativeSelect` component provides native HTML select functionality with cons
 - Use `aria-label` or `aria-labelledby` for additional context when needed.
 
 ```tsx showLineNumbers
-<NativeSelect aria-label="Choose your preferred language">
-  <NativeSelectOption value="en">English</NativeSelectOption>
-  <NativeSelectOption value="es">Spanish</NativeSelectOption>
-  <NativeSelectOption value="fr">French</NativeSelectOption>
-</NativeSelect>
+<NativeSelect.Root aria-label="Choose your preferred language">
+  <NativeSelect.Option value="en">English</NativeSelect.Option>
+  <NativeSelect.Option value="es">Spanish</NativeSelect.Option>
+  <NativeSelect.Option value="fr">French</NativeSelect.Option>
+</NativeSelect.Root>
 ```
 
 ## API Reference

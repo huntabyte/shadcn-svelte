@@ -56,13 +56,13 @@ Copy and paste the following code into your project.
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import * as Menubar from "$lib/components/ui/menubar/index.js";
 </script>
 ```
 
-```svelte
+```svelte showLineNumbers
 <Menubar.Root>
   <Menubar.Menu>
     <Menubar.Trigger>File</Menubar.Trigger>
