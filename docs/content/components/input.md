@@ -68,6 +68,14 @@ Copy and paste the following code into your project.
 
 </ComponentPreview>
 
+### File
+
+<ComponentPreview name="input-file">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Disabled
 
 <ComponentPreview name="input-disabled">
@@ -84,41 +92,9 @@ Copy and paste the following code into your project.
 
 </ComponentPreview>
 
-### With Text
-
-<ComponentPreview name="input-with-text">
-
-<div></div>
-
-</ComponentPreview>
-
 ### With Button
 
 <ComponentPreview name="input-with-button">
-
-<div></div>
-
-</ComponentPreview>
-
-### Invalid
-
-<ComponentPreview name="input-invalid">
-
-<div></div>
-
-</ComponentPreview>
-
-### File
-
-<ComponentPreview name="input-file">
-
-<div></div>
-
-</ComponentPreview>
-
-### Form
-
-<ComponentPreview name="form-demo">
 
 <div></div>
 
