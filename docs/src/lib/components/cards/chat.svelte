@@ -75,7 +75,7 @@
 				<Avatar.Fallback>OM</Avatar.Fallback>
 			</Avatar.Root>
 			<div class="flex flex-col gap-0.5">
-				<p class="text-sm font-medium leading-none">Sofia Davis</p>
+				<p class="text-sm leading-none font-medium">Sofia Davis</p>
 				<p class="text-muted-foreground text-xs">m@example.com</p>
 			</div>
 		</div>
@@ -149,7 +149,7 @@
 </Card.Root>
 <Dialog.Root bind:open>
 	<Dialog.Content class="gap-0 p-0 outline-none">
-		<Dialog.Header class="px-4 pb-4 pt-5">
+		<Dialog.Header class="px-4 pt-5 pb-4">
 			<Dialog.Title>New message</Dialog.Title>
 			<Dialog.Description>
 				Invite a user to this thread. This will create a new group message.
@@ -180,7 +180,7 @@
 								<Avatar.Fallback>{user.name[0]}</Avatar.Fallback>
 							</Avatar.Root>
 							<div class="ms-2">
-								<p class="text-sm font-medium leading-none">
+								<p class="text-sm leading-none font-medium">
 									{user.name}
 								</p>
 								<p class="text-muted-foreground text-sm">

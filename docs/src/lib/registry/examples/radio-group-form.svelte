@@ -32,7 +32,7 @@
 	<Form.Fieldset {form} name="type" class="space-y-3">
 		<Form.Legend>Notify me about...</Form.Legend>
 		<RadioGroup.Root bind:value={$formData.type} class="flex flex-col space-y-1" name="type">
-			<div class="flex items-center space-x-3 space-y-0">
+			<div class="flex items-center space-y-0 space-x-3">
 				<Form.Control>
 					{#snippet children({ props })}
 						<RadioGroup.Item value="all" {...props} />
@@ -40,7 +40,7 @@
 					{/snippet}
 				</Form.Control>
 			</div>
-			<div class="flex items-center space-x-3 space-y-0">
+			<div class="flex items-center space-y-0 space-x-3">
 				<Form.Control>
 					{#snippet children({ props })}
 						<RadioGroup.Item value="mentions" {...props} />
@@ -48,7 +48,7 @@
 					{/snippet}
 				</Form.Control>
 			</div>
-			<div class="flex items-center space-x-3 space-y-0">
+			<div class="flex items-center space-y-0 space-x-3">
 				<Form.Control>
 					{#snippet children({ props })}
 						<RadioGroup.Item value="none" {...props} />

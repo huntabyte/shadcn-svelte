@@ -260,7 +260,7 @@
 			<Select.Content align="end">
 				<Select.Group>
 					{#each THEMES as theme (theme.name)}
-						<Select.Item value={theme.name} class="data-selected:opacity-50 capitalize">
+						<Select.Item value={theme.name} class="capitalize data-selected:opacity-50">
 							{theme.name}
 						</Select.Item>
 					{/each}
@@ -297,7 +297,7 @@
 
 	<!-- Copy Code Button - Dialog for desktop -->
 	<Dialog.Root>
-		<Dialog.Trigger class={cn("sm:flex! hidden", "ms-auto")}>
+		<Dialog.Trigger class={cn("hidden sm:flex!", "ms-auto")}>
 			{#snippet child({ props })}
 				<Button size="sm" class="ms-auto" variant="secondary" {...props}>
 					<IconCopy />
@@ -306,7 +306,7 @@
 			{/snippet}
 		</Dialog.Trigger>
 		<Dialog.Content
-			class="rounded-xl border-none bg-clip-padding shadow-2xl outline-none ring-4 ring-neutral-200/80 md:max-w-2xl dark:bg-neutral-800 dark:ring-neutral-900"
+			class="rounded-xl border-none bg-clip-padding shadow-2xl ring-4 ring-neutral-200/80 outline-none md:max-w-2xl dark:bg-neutral-800 dark:ring-neutral-900"
 		>
 			<Dialog.Header>
 				<Dialog.Title class="capitalize">

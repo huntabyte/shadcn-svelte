@@ -56,7 +56,7 @@
 					</div>
 					<span class="sr-only">Toggle Menu</span>
 				</div>
-				<span class="flex h-8 items-center text-lg font-medium leading-none"> Menu </span>
+				<span class="flex h-8 items-center text-lg leading-none font-medium"> Menu </span>
 			</Button>
 		{/snippet}
 	</Popover.Trigger>

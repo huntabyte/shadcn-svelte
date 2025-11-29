@@ -61,7 +61,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 	<div class="flex min-w-0 flex-1 flex-col">
 		<div class="h-(--top-spacing) shrink-0"></div>
 		<div
-			class="mx-auto flex w-full min-w-0 max-w-2xl flex-1 flex-col gap-8 px-4 py-6 text-neutral-800 md:px-0 lg:py-8 dark:text-neutral-300"
+			class="mx-auto flex w-full max-w-2xl min-w-0 flex-1 flex-col gap-8 px-4 py-6 text-neutral-800 md:px-0 lg:py-8 dark:text-neutral-300"
 		>
 			<div class="flex flex-col gap-2">
 				<div class="flex flex-col gap-2">
@@ -101,7 +101,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 						</div>
 					</div>
 					{#if data.metadata.description}
-						<p class="text-muted-foreground text-balance text-[1.05rem] sm:text-base">
+						<p class="text-muted-foreground text-[1.05rem] text-balance sm:text-base">
 							{doc.description}
 						</p>
 					{/if}

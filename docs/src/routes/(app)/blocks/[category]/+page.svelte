@@ -24,7 +24,7 @@
 					name={block.name}
 					{component}
 					hideCode
-					class="**:[.preview]:h-auto **:[.preview]:p-4 **:[.preview>.p-6]:p-0 my-0"
+					class="my-0 **:[.preview]:h-auto **:[.preview]:p-4 **:[.preview>.p-6]:p-0"
 				/>
 			{/await}
 		</BlockViewer>

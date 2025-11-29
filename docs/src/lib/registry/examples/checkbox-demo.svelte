@@ -30,7 +30,7 @@
 			class="data-[state=checked]:border-blue-600 data-[state=checked]:bg-blue-600 data-[state=checked]:text-white dark:data-[state=checked]:border-blue-700 dark:data-[state=checked]:bg-blue-700"
 		/>
 		<div class="grid gap-1.5 font-normal">
-			<p class="text-sm font-medium leading-none">Enable notifications</p>
+			<p class="text-sm leading-none font-medium">Enable notifications</p>
 			<p class="text-muted-foreground text-sm">
 				You can enable or disable notifications at any time.
 			</p>

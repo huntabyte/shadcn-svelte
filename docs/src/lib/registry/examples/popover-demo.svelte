@@ -10,7 +10,7 @@
 	<Popover.Content class="w-80">
 		<div class="grid gap-4">
 			<div class="space-y-2">
-				<h4 class="font-medium leading-none">Dimensions</h4>
+				<h4 class="leading-none font-medium">Dimensions</h4>
 				<p class="text-muted-foreground text-sm">Set the dimensions for the layer.</p>
 			</div>
 			<div class="grid gap-2">

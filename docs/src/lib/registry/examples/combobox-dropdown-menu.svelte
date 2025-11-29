@@ -37,7 +37,7 @@
 <div
 	class="flex w-full flex-col items-start justify-between rounded-md border px-4 py-3 sm:flex-row sm:items-center"
 >
-	<p class="text-sm font-medium leading-none">
+	<p class="text-sm leading-none font-medium">
 		<span class="bg-primary text-primary-foreground me-2 rounded-lg px-2 py-1 text-xs">
 			{selectedLabel}
 		</span>

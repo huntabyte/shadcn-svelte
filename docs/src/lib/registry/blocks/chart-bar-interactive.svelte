@@ -139,7 +139,7 @@
 					<span class="text-muted-foreground text-xs">
 						{chartConfig[chart].label}
 					</span>
-					<span class="text-lg font-bold leading-none sm:text-3xl">
+					<span class="text-lg leading-none font-bold sm:text-3xl">
 						{total[key as keyof typeof total].toLocaleString()}
 					</span>
 				</button>

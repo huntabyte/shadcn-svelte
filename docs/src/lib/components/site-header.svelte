@@ -16,7 +16,7 @@
 <header class="bg-background sticky top-0 z-50 w-full">
 	<div class="container-wrapper 3xl:fixed:px-0 px-6">
 		<div
-			class="3xl:fixed:container h-(--header-height) **:data-[slot=separator]:h-4! flex items-center gap-2"
+			class="3xl:fixed:container flex h-(--header-height) items-center gap-2 **:data-[slot=separator]:h-4!"
 		>
 			<MobileNav class="flex lg:hidden" />
 			<Button href="/" variant="ghost" size="icon" class="hidden size-8 lg:flex">

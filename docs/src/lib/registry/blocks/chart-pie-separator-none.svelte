@@ -13,7 +13,7 @@
 		<!-- <Chart.Container class="mx-auto aspect-square max-h-[250px]"></Chart.Container> -->
 	</Card.Content>
 	<Card.Footer class="flex-col gap-2 text-sm">
-		<div class="flex items-center gap-2 font-medium leading-none">
+		<div class="flex items-center gap-2 leading-none font-medium">
 			Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
 		</div>
 		<div class="text-muted-foreground leading-none">

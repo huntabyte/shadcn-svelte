@@ -26,7 +26,7 @@
 				<div class="text-sm font-medium">Agent Tasks</div>
 			</div>
 			<Separator />
-			<div class="*:[p:not(:last-child)]:mb-2 p-4 text-sm">
+			<div class="p-4 text-sm *:[p:not(:last-child)]:mb-2">
 				<Textarea
 					placeholder="Describe your task in natural language."
 					class="mb-4 resize-none"

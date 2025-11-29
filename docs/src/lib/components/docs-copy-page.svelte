@@ -123,7 +123,7 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 		<Button
 			variant="secondary"
 			size="sm"
-			class="h-8 select-none shadow-none md:h-7 md:text-[0.8rem]"
+			class="h-8 shadow-none select-none md:h-7 md:text-[0.8rem]"
 			onclick={async () => await copyPage()}
 		>
 			{#if clipboard.copied}
@@ -151,7 +151,7 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 		</DropdownMenu.Root>
 		<Separator
 			orientation="vertical"
-			class="bg-foreground/10! h-8! sm:h-7! absolute end-8 top-0 z-0 peer-focus-visible:opacity-0 sm:end-7"
+			class="bg-foreground/10! absolute end-8 top-0 z-0 h-8! peer-focus-visible:opacity-0 sm:end-7 sm:h-7!"
 		/>
 		<Popover.Trigger class="flex sm:hidden">
 			{#snippet child({ props })}
@@ -159,7 +159,7 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 			{/snippet}
 		</Popover.Trigger>
 		<Popover.Content
-			class="bg-background/70 dark:bg-background/60 origin-center! w-52 rounded-lg p-1 shadow-sm backdrop-blur-sm"
+			class="bg-background/70 dark:bg-background/60 w-52 origin-center! rounded-lg p-1 shadow-sm backdrop-blur-sm"
 			align="start"
 			{customAnchor}
 		>

@@ -13,7 +13,7 @@
 {#if file}
 	<!-- svelte-ignore a11y_figcaption_parent -->
 	<figcaption
-		class="text-code-foreground [&_svg]:text-code-foreground hidden h-12 shrink-0 select-none items-center gap-2 border-b px-4 py-2 [&_svg]:size-4 [&_svg]:opacity-70"
+		class="text-code-foreground [&_svg]:text-code-foreground hidden h-12 shrink-0 items-center gap-2 border-b px-4 py-2 select-none [&_svg]:size-4 [&_svg]:opacity-70"
 		data-language={language}
 	>
 		<Icon />

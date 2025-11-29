@@ -6,7 +6,7 @@
 </script>
 
 <p
-	class={cn("text-foreground max-w-3xl text-balance text-base sm:text-lg", className)}
+	class={cn("text-foreground max-w-3xl text-base text-balance sm:text-lg", className)}
 	{...restProps}
 >
 	{@render children?.()}

@@ -62,12 +62,12 @@
 				<a
 					{href}
 					class={cn(
-						"hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors",
+						"hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none",
 						className
 					)}
 					{...restProps}
 				>
-					<div class="text-sm font-medium leading-none">{title}</div>
+					<div class="text-sm leading-none font-medium">{title}</div>
 					<p class="text-muted-foreground line-clamp-2 text-sm leading-snug">
 						{content}
 					</p>
@@ -85,11 +85,11 @@
 				<ul class="grid gap-2 p-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
 					<li class="row-span-3">
 						<NavigationMenu.Link
-							class="from-muted/50 to-muted bg-linear-to-b outline-hidden flex h-full w-full select-none flex-col justify-end rounded-md p-4 no-underline focus:shadow-md md:p-6"
+							class="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-4 no-underline outline-hidden select-none focus:shadow-md md:p-6"
 						>
 							{#snippet child({ props })}
 								<a {...props} href="/">
-									<div class="mb-2 mt-4 text-lg font-medium">shadcn-svelte</div>
+									<div class="mt-4 mb-2 text-lg font-medium">shadcn-svelte</div>
 									<p class="text-muted-foreground text-sm leading-tight">
 										Beautifully designed components built with Tailwind CSS.
 									</p>

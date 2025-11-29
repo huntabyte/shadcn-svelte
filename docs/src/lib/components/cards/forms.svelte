@@ -75,7 +75,7 @@
 							<div class="grid gap-1 font-normal">
 								<div class="font-medium">{plan.name}</div>
 								<div
-									class="text-muted-foreground text-balance text-xs leading-snug"
+									class="text-muted-foreground text-xs leading-snug text-balance"
 								>
 									{plan.description}
 								</div>

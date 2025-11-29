@@ -14,7 +14,7 @@
 
 {#if file}
 	<div
-		class="bg-code text-code-foreground md:h-(--height) me-3.5 flex overflow-hidden rounded-xl border group-data-[view=preview]/block-view-wrapper:hidden"
+		class="bg-code text-code-foreground me-3.5 flex overflow-hidden rounded-xl border group-data-[view=preview]/block-view-wrapper:hidden md:h-(--height)"
 	>
 		<div class="w-72">
 			<BlockViewerFileTree />

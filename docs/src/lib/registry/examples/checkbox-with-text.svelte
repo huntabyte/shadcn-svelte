@@ -8,7 +8,7 @@
 	<div class="grid gap-1.5 leading-none">
 		<Label
 			for="terms1"
-			class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+			class="text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
 		>
 			Accept terms and conditions
 		</Label>

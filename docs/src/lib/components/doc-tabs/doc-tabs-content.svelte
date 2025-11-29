@@ -8,7 +8,7 @@
 
 <Tabs.Content
 	class={cn(
-		"*:[figure]:first:mt-0 relative [&>.steps]:mt-6 [&_h3.font-heading]:text-base [&_h3.font-heading]:font-medium",
+		"relative [&_h3.font-heading]:text-base [&_h3.font-heading]:font-medium *:[figure]:first:mt-0 [&>.steps]:mt-6",
 		className
 	)}
 	{...restProps}

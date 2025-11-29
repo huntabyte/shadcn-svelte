@@ -19,7 +19,7 @@
 >
 	<Sidebar.Content class="no-scrollbar overflow-x-hidden px-2">
 		<div
-			class="from-background via-background/80 to-background/50 blur-xs bg-linear-to-b sticky -top-1 z-10 h-8 shrink-0"
+			class="from-background via-background/80 to-background/50 sticky -top-1 z-10 h-8 shrink-0 bg-linear-to-b blur-xs"
 		></div>
 		{#each navItems as item (item.title)}
 			<Sidebar.Group>
@@ -34,12 +34,12 @@
 									<Sidebar.MenuItem class="w-full">
 										<Sidebar.MenuButton
 											isActive={subItem.href === pathname}
-											class="data-[active=true]:bg-accent data-[active=true]:border-accent 3xl:fixed:w-full 3xl:fixed:max-w-48 relative h-[30px] w-fit overflow-visible border border-transparent text-[0.8rem] font-medium after:absolute after:-inset-y-1 after:inset-x-0 after:z-0 after:rounded-md"
+											class="data-[active=true]:bg-accent data-[active=true]:border-accent 3xl:fixed:w-full 3xl:fixed:max-w-48 relative h-[30px] w-fit overflow-visible border border-transparent text-[0.8rem] font-medium after:absolute after:inset-x-0 after:-inset-y-1 after:z-0 after:rounded-md"
 										>
 											{#snippet child({ props })}
 												<a href={subItem.href} {...props}>
 													<span
-														class="w-(--sidebar-width) absolute inset-0 flex bg-transparent"
+														class="absolute inset-0 flex w-(--sidebar-width) bg-transparent"
 													></span>
 													{subItem.title}
 													{#if subItem.indicator === "new"}
@@ -60,7 +60,7 @@
 			</Sidebar.Group>
 		{/each}
 		<div
-			class="from-background via-background/80 to-background/50 blur-xs bg-linear-to-t sticky -bottom-1 z-10 h-16 shrink-0"
+			class="from-background via-background/80 to-background/50 sticky -bottom-1 z-10 h-16 shrink-0 bg-linear-to-t blur-xs"
 		></div>
 	</Sidebar.Content>
 </Sidebar.Root>

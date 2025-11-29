@@ -62,7 +62,7 @@
 							<HoverCard.Trigger>
 								{#snippet child({ props })}
 									<span
-										class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+										class="text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
 										{...props}
 									>
 										Mode

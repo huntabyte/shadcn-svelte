@@ -48,12 +48,12 @@
 				app/globals.css
 			</figcaption>
 			<pre
-				class="no-scrollbar has-data-[slot=tabs]:p-0 has-data-highlighted-line:px-0 has-data-line-numbers:px-0 max-h-[300px] min-w-0 overflow-x-auto px-4 py-3.5 outline-none md:max-h-[450px]">
+				class="no-scrollbar max-h-[300px] min-w-0 overflow-x-auto px-4 py-3.5 outline-none has-data-highlighted-line:px-0 has-data-line-numbers:px-0 has-data-[slot=tabs]:p-0 md:max-h-[450px]">
 				<Button
 					data-slot="copy-button"
 					size="icon"
 					variant="ghost"
-					class="bg-code text-code-foreground absolute right-2 top-3 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
+					class="bg-code text-code-foreground absolute top-3 right-2 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
 					onclick={() => {
 						copyToClipboard(getThemeCodeOKLCH(activeThemeOKLCH, 0.65));
 					}}>
@@ -102,12 +102,12 @@
 				app/globals.css
 			</figcaption>
 			<pre
-				class="no-scrollbar has-data-[slot=tabs]:p-0 has-data-highlighted-line:px-0 has-data-line-numbers:px-0 max-h-[300px] min-w-0 overflow-x-auto px-4 py-3.5 outline-none md:max-h-[450px]">
+				class="no-scrollbar max-h-[300px] min-w-0 overflow-x-auto px-4 py-3.5 outline-none has-data-highlighted-line:px-0 has-data-line-numbers:px-0 has-data-[slot=tabs]:p-0 md:max-h-[450px]">
 				<Button
 					data-slot="copy-button"
 					size="icon"
 					variant="ghost"
-					class="bg-code text-code-foreground absolute right-2 top-3 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
+					class="bg-code text-code-foreground absolute top-3 right-2 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
 					onclick={() => {
 						copyToClipboard(getThemeCodeHSLV4(activeTheme, 0.65));
 					}}>
@@ -156,12 +156,12 @@
 				app/globals.css
 			</figcaption>
 			<pre
-				class="no-scrollbar has-data-[slot=tabs]:p-0 has-data-highlighted-line:px-0 has-data-line-numbers:px-0 max-h-[300px] min-w-0 overflow-x-auto px-4 py-3.5 outline-none md:max-h-[450px]">
+				class="no-scrollbar max-h-[300px] min-w-0 overflow-x-auto px-4 py-3.5 outline-none has-data-highlighted-line:px-0 has-data-line-numbers:px-0 has-data-[slot=tabs]:p-0 md:max-h-[450px]">
 				<Button
 					data-slot="copy-button"
 					size="icon"
 					variant="ghost"
-					class="bg-code text-code-foreground absolute right-2 top-3 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
+					class="bg-code text-code-foreground absolute top-3 right-2 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
 					onclick={() => {
 						copyToClipboard(getThemeCode(activeTheme, 0.5));
 					}}>

@@ -14,7 +14,7 @@
 		<div class="flex items-center justify-between gap-4">
 			<Label for="necessary" class="flex flex-col items-start">
 				<span>Strictly Necessary</span>
-				<span class="text-muted-foreground font-normal leading-snug">
+				<span class="text-muted-foreground leading-snug font-normal">
 					These cookies are essential in order to use the website and use its features.
 				</span>
 			</Label>
