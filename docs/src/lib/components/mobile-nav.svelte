@@ -4,6 +4,7 @@
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import type { HTMLAnchorAttributes } from "svelte/elements";
 	import { mainNavItems, sidebarNavItems } from "$lib/navigation.js";
+	import { NEW_COMPONENTS } from "$lib/navigation.js";
 
 	type MobileLinkProps = HTMLAnchorAttributes & {
 		content?: string;
@@ -20,10 +21,13 @@
 		onclick={() => {
 			open = false;
 		}}
-		class={cn("text-2xl font-medium", className)}
+		class={cn("flex items-center gap-2 text-2xl font-medium", className)}
 		{...props}
 	>
 		{content}
+		{#if href && NEW_COMPONENTS.has(href.replace("/docs/components/", ""))}
+			<span class="flex size-2 rounded-full bg-blue-500" title="New"></span>
+		{/if}
 	</a>
 {/snippet}
 
