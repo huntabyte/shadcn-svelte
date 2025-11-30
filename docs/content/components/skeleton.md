@@ -57,3 +57,13 @@ Copy and paste the following code into your project.
 ```svelte
 <Skeleton class="h-[20px] w-[100px] rounded-full" />
 ```
+
+## Examples
+
+## Card
+
+<ComponentPreview name="skeleton-card">
+
+<div></div>
+
+</ComponentPreview>

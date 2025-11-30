@@ -13,7 +13,7 @@ links:
 	import Steps from "$lib/components/steps.svelte";
 	import Step from "$lib/components/step.svelte";
 	import InstallTabs from "$lib/components/install-tabs.svelte";
-
+	import ComponentSource from "$lib/components/component-source.svelte";
 	let { viewerData } = $props();
 	import DocsFigure from "$lib/components/docs-figure.svelte";
 	import Callout from "$lib/components/callout.svelte";
@@ -147,9 +147,7 @@ A `Sidebar` component is composed of the following parts:
 
   let { children } = $props();
 </script>
-```
 
-```svelte
 <Sidebar.Provider>
   <AppSidebar />
   <main>
