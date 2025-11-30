@@ -58,12 +58,12 @@ Copy and paste the following code into your project.
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import { Separator } from "$lib/components/ui/separator/index.js";
 </script>
 ```
 
-```svelte
+```svelte showLineNumbers
 <Separator />
 ```
