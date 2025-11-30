@@ -20,7 +20,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="toggle-group-demo">
+<ComponentPreview name="toggle-group-spacing">
 
 <div></div>
 
@@ -74,14 +74,6 @@ Copy and paste the following code into your project.
 
 ## Examples
 
-### Default
-
-<ComponentPreview name="toggle-group-demo">
-
-<div></div>
-
-</ComponentPreview>
-
 ### Outline
 
 <ComponentPreview name="toggle-group-outline">
@@ -117,6 +109,16 @@ Copy and paste the following code into your project.
 ### Disabled
 
 <ComponentPreview name="toggle-group-disabled">
+
+<div></div>
+
+</ComponentPreview>
+
+### Spacing
+
+Use `spacing={2}` to add spacing between toggle group items.
+
+<ComponentPreview name="toggle-group-spacing">
 
 <div></div>
 
