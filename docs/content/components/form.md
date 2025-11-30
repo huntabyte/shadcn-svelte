@@ -17,7 +17,7 @@ links:
 
 <Callout title="We are not actively developing this component anymore." icon={InfoIcon}>
 
-The Form component is an abstraction over the `formsnap` & `sveltekit-superforms` libraries. Going forward, we recommend using the [`<Field />`](/docs/components/field) component to build forms. See the [Form](/docs/forms) documentation for more information.
+The Form component is an abstraction over the `formsnap` & `sveltekit-superforms` libraries. Going forward, we recommend using the [`<Field />`](/docs/components/field) component to build forms.
 
 </Callout>
 
