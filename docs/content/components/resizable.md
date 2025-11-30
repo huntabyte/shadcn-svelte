@@ -5,6 +5,7 @@ component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/resizable
   doc: https://www.paneforge.com
+  api: https://www.paneforge.com/docs/components/pane-group
 ---
 
 <script>
@@ -61,13 +62,13 @@ Copy and paste the following code into your project.
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import * as Resizable from "$lib/components/ui/resizable/index.js";
 </script>
 ```
 
-```svelte
+```svelte showLineNumbers
 <Resizable.PaneGroup direction="horizontal">
   <Resizable.Pane>One</Resizable.Pane>
   <Resizable.Handle />

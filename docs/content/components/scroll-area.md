@@ -58,13 +58,13 @@ Copy and paste the following code into your project.
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import { ScrollArea } from "$lib/components/ui/scroll-area/index.js";
 </script>
 ```
 
-```svelte
+```svelte showLineNumbers
 <ScrollArea class="h-[200px] w-[350px] rounded-md border p-4">
   Jokester began sneaking into the castle in the middle of the night and
   leaving jokes all over the place: under the king's pillow, in his soup, even
@@ -82,16 +82,6 @@ Copy and paste the following code into your project.
 Set the `orientation` prop to `"horizontal"` to enable horizontal scrolling.
 
 <ComponentPreview name="scroll-area-horizontal">
-
-<div></div>
-
-</ComponentPreview>
-
-### Horizontal and Vertical Scrolling
-
-Set the `orientation` prop to `"both"` to enable both horizontal and vertical scrolling.
-
-<ComponentPreview name="scroll-area-both">
 
 <div></div>
 

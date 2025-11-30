@@ -58,13 +58,13 @@ Copy and paste the following code into your project.
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import * as Select from "$lib/components/ui/select/index.js";
 </script>
 ```
 
-```svelte
+```svelte showLineNumbers
 <Select.Root type="single">
   <Select.Trigger class="w-[180px]"></Select.Trigger>
   <Select.Content>
@@ -77,9 +77,9 @@ Copy and paste the following code into your project.
 
 ## Examples
 
-### Form
+### Scrollable
 
-<ComponentPreview name="select-form">
+<ComponentPreview name="select-scrollable">
 
 <div></div>
 
