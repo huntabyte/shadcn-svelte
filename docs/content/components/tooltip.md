@@ -58,13 +58,13 @@ Copy and paste the following code into your project.
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import * as Tooltip from "$lib/components/ui/tooltip/index.js";
 </script>
 ```
 
-```svelte
+```svelte showLineNumbers
 <Tooltip.Provider>
   <Tooltip.Root>
     <Tooltip.Trigger>Hover</Tooltip.Trigger>
@@ -74,3 +74,13 @@ Copy and paste the following code into your project.
   </Tooltip.Root>
 </Tooltip.Provider>
 ```
+
+---
+
+## Changelog
+
+### 2025-12 Update tooltip colors
+
+We've updated the tooltip colors to use the foreground color for the background and the background color for the foreground.
+
+Replace `bg-primary text-primary-foreground` with `bg-foreground text-background` for `<Tooltip.Content />`.
