@@ -21,9 +21,11 @@
 	let {
 		colors,
 		blocks,
+		closeMobileMenu,
 	}: {
 		colors: ColorPalette[];
 		blocks?: { name: string; description: string; categories: string[] }[];
+		closeMobileMenu?: () => void;
 	} = $props();
 
 	let open = $state(false);
@@ -73,6 +75,19 @@
 		command();
 	}
 
+	function openCommandMenu() {
+		// Close mobile menu first if callback is provided
+		if (closeMobileMenu) {
+			closeMobileMenu();
+			// Wait for the mobile menu animation to start closing (100ms matches the transition duration)
+			setTimeout(() => {
+				open = true;
+			}, 0);
+		} else {
+			open = true;
+		}
+	}
+
 	function handleKeydown(e: KeyboardEvent) {
 		if ((e.key === "k" && (e.metaKey || e.ctrlKey)) || e.key === "/") {
 			if (
@@ -85,7 +100,11 @@
 			}
 
 			e.preventDefault();
-			open = !open;
+			if (open) {
+				open = false;
+			} else {
+				openCommandMenu();
+			}
 		}
 
 		if (open && e.key === "c" && (e.metaKey || e.ctrlKey)) {
@@ -117,7 +136,7 @@
 				class={cn(
 					"bg-surface text-foreground dark:bg-card relative h-8 w-full justify-start pl-3 font-medium shadow-none sm:pr-12 md:w-48 lg:w-56 xl:w-64"
 				)}
-				onclick={() => (open = true)}
+				onclick={() => openCommandMenu()}
 			>
 				<span class="hidden lg:inline-flex">Search documentation...</span>
 				<span class="inline-flex lg:hidden">Search...</span>

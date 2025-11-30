@@ -13,6 +13,13 @@
 	let { class: className, ...restProps }: ButtonProps = $props();
 
 	let open = $state(false);
+
+	// Expose a function to close the mobile menu
+	let closeMenu = () => {
+		open = false;
+	};
+
+	export { closeMenu };
 </script>
 
 {#snippet MobileLink({ href, content, class: className, ...props }: MobileLinkProps)}
