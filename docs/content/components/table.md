@@ -48,13 +48,13 @@ Copy and paste the following code into your project.
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import * as Table from "$lib/components/ui/table/index.js";
 </script>
 ```
 
-```svelte
+```svelte showLineNumbers
 <Table.Root>
   <Table.Caption>A list of your recent invoices.</Table.Caption>
   <Table.Header>
@@ -75,3 +75,11 @@ Copy and paste the following code into your project.
   </Table.Body>
 </Table.Root>
 ```
+
+## Data Table
+
+You can use the `<Table />` component to build more complex data tables. Combine it with [@tanstack/table](https://tanstack.com/table) to create tables with sorting, filtering and pagination.
+
+See the [Data Table](/docs/components/data-table) documentation for more information.
+
+You can also see an example of a data table in the [Tasks](/examples/tasks) demo.

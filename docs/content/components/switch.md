@@ -67,13 +67,3 @@ Copy and paste the following code into your project.
 ```svelte
 <Switch />
 ```
-
-## Examples
-
-### Form
-
-<ComponentPreview name="switch-form">
-
-<div></div>
-
-</ComponentPreview>
