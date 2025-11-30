@@ -58,13 +58,13 @@ Copy and paste the following code into your project.
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import * as Popover from "$lib/components/ui/popover/index.js";
 </script>
 ```
 
-```svelte
+```svelte showLineNumbers
 <Popover.Root>
   <Popover.Trigger>Open</Popover.Trigger>
   <Popover.Content>Place content for the popover here.</Popover.Content>

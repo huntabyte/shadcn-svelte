@@ -58,12 +58,12 @@ Copy and paste the following code into your project.
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import { Progress } from "$lib/components/ui/progress/index.js";
 </script>
 ```
 
-```svelte
+```svelte showLineNumbers
 <Progress value={33} />
 ```

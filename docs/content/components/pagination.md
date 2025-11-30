@@ -58,13 +58,13 @@ Copy and paste the following code into your project.
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import * as Pagination from "$lib/components/ui/pagination/index.js";
 </script>
 ```
 
-```svelte
+```svelte showLineNumbers
 <Pagination.Root count={100} perPage={10}>
   {#snippet children({ pages, currentPage })}
     <Pagination.Content>

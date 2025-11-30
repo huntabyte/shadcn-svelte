@@ -58,14 +58,14 @@ Copy and paste the following code into your project.
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import { Label } from "$lib/components/ui/label/index.js";
   import * as RadioGroup from "$lib/components/ui/radio-group/index.js";
 </script>
 ```
 
-```svelte
+```svelte showLineNumbers
 <RadioGroup.Root value="option-one">
   <div class="flex items-center space-x-2">
     <RadioGroup.Item value="option-one" id="option-one" />
@@ -77,13 +77,3 @@ Copy and paste the following code into your project.
   </div>
 </RadioGroup.Root>
 ```
-
-## Examples
-
-### Form
-
-<ComponentPreview name="radio-group-form">
-
-<div></div>
-
-</ComponentPreview>
