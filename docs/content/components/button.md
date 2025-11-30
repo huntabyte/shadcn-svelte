@@ -7,6 +7,8 @@ links:
 ---
 
 <script>
+  import Callout from "$lib/components/callout.svelte";
+  import InfoIcon from "@lucide/svelte/icons/info";
 	import ComponentPreview from "$lib/components/component-preview.svelte";
 	import ComponentSource from "$lib/components/component-source.svelte";
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
@@ -17,6 +19,14 @@ links:
 
 	let { viewerData, links } = $props();
 </script>
+
+<Callout variant="info" icon={InfoIcon}>
+
+**Updated:** We have updated the button component to add new sizes: `icon-sm` and `icon-lg`. See the
+[changelog](/docs/components/button#changelog) for more details. Follow the
+instructions to update your project.
+
+</Callout>
 
 <ComponentPreview name="button-demo" class="mb-4">
 
@@ -345,3 +355,24 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 ```
 
 ### [API Reference](https://bits-ui.com/docs/components/button#api-reference)
+
+## Changelog
+
+### 2025-09-24 New sizes
+
+We have added two new sizes to the button component: `icon-sm` and `icon-lg`. These sizes are used to create icon buttons. To add them, edit `button.tsx` and add the following code under `size` in `buttonVariants`:
+
+```ts showLineNumbers title="components/ui/button.svelte"
+export const buttonVariants = tv({
+  // ...
+  variants: {
+    // ...
+    size: {
+      // ...
+      icon: "size-9",
+      "icon-sm": "size-8",
+      "icon-lg": "size-10",
+    },
+  },
+});
+```
