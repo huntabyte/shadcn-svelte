@@ -99,11 +99,3 @@ Copy and paste the following code into your project.
 <div></div>
 
 </ComponentPreview>
-
-### Form
-
-<ComponentPreview name="textarea-form">
-
-<div></div>
-
-</ComponentPreview>

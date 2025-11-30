@@ -58,13 +58,13 @@ Copy and paste the following code into your project.
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import * as Tabs from "$lib/components/ui/tabs/index.js";
 </script>
 ```
 
-```svelte
+```svelte showLineNumbers
 <Tabs.Root value="account" class="w-[400px]">
   <Tabs.List>
     <Tabs.Trigger value="account">Account</Tabs.Trigger>
