@@ -47,7 +47,7 @@ export const init = new Command()
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
 	.option("-o, --overwrite", "overwrite existing files", false)
 	.option("--no-deps", "disable adding & installing dependencies")
-	.option("--force", "skip preflight checks and force initialization", false)
+	.option("-f, --force", "skip preflight checks and force initialization", false)
 	.addOption(
 		new Option("--base-color <name>", "the base color for the components").choices(
 			baseColors.map((color) => color.name)
