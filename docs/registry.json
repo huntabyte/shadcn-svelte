@@ -1307,7 +1307,15 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/pagination/pagination-next.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/pagination/pagination-prev-button.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/pagination/pagination-previous.svelte"
 				},
 				{
 					"type": "registry:file",
