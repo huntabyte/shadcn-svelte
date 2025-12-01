@@ -31,7 +31,9 @@ export function preflightInit(cwd: string, options: { force: boolean }) {
 
 	if (!options.force) throw result.error;
 
-	p.note(`${color.red(result.error.message)}\nContinuing initialization with ${color.bold("--force")}.`);
+	p.note(
+		`${color.red(result.error.message)}\nContinuing initialization with ${color.bold("--force")}.`
+	);
 }
 
 type CheckInitDependenciesResult =
