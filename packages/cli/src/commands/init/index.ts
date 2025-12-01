@@ -47,7 +47,7 @@ export const init = new Command()
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
 	.option("-o, --overwrite", "overwrite existing files", false)
 	.option("--no-deps", "disable adding & installing dependencies")
-	.option("-f, --force", "skip preflight checks and force initialization", false)
+	.option("-f, --force", "ignore preflight checks and continue", false)
 	.addOption(
 		new Option("--base-color <name>", "the base color for the components").choices(
 			baseColors.map((color) => color.name)
@@ -75,7 +75,11 @@ export const init = new Command()
 
 			let existingConfig = cliConfig.loadConfig(cwd);
 			if (existingConfig) {
-				existingConfig = checkPreconditions({ cwd, config: existingConfig });
+				existingConfig = checkPreconditions({
+					cwd,
+					config: existingConfig,
+					force: options.force,
+				});
 			}
 
 			const config = await promptForConfig(cwd, existingConfig, options);
