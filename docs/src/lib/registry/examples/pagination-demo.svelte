@@ -3,7 +3,7 @@
 </script>
 
 <Pagination.Root count={30} page={2}>
-	{#snippet children({ pages })}
+	{#snippet children({ pages, currentPage })}
 		<Pagination.Content>
 			<Pagination.Item>
 				<Pagination.Previous />
@@ -15,7 +15,7 @@
 					</Pagination.Item>
 				{:else}
 					<Pagination.Item>
-						<Pagination.Link {page} isActive={2 === page.value}>
+						<Pagination.Link {page} isActive={currentPage === page.value}>
 							{page.value}
 						</Pagination.Link>
 					</Pagination.Item>
