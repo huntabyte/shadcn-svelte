@@ -9,14 +9,14 @@
 </script>
 
 <ButtonGroup.Root>
-	<Button variant="outline">
+	<Button variant="outline" size="sm">
 		<Bot />
 		Copilot
 	</Button>
 	<Popover.Root>
 		<Popover.Trigger>
 			{#snippet child({ props })}
-				<Button {...props} variant="outline" size="icon" aria-label="Open Popover">
+				<Button {...props} variant="outline" size="icon-sm" aria-label="Open Popover">
 					<ChevronDown />
 				</Button>
 			{/snippet}

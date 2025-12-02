@@ -26,7 +26,7 @@
 <div class="flex flex-1 flex-col">
 	<PageHeader>
 		<Announcement />
-		<PageHeaderHeading>{title}</PageHeaderHeading>
+		<PageHeaderHeading class="max-w-4xl">{title}</PageHeaderHeading>
 		<PageHeaderDescription>{description}</PageHeaderDescription>
 		<PageActions>
 			<Button href="/docs/installation" size="sm">Get Started</Button>

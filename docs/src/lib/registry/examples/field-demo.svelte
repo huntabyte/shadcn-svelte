@@ -19,22 +19,30 @@
 				<Field.Group>
 					<Field.Field>
 						<Field.Label for="checkout-7j9-card-name-43j">Name on Card</Field.Label>
-						<Input id="checkout-7j9-card-name-43j" placeholder="Evil Rabbit" required />
-					</Field.Field>
-					<Field.Field>
-						<Field.Label for="checkout-7j9-card-number-uw1">Card Number</Field.Label>
-						<Input
-							id="checkout-7j9-card-number-uw1"
-							placeholder="1234 5678 9012 3456"
-							required
-						/>
-						<Field.Description>Enter your 16-digit card number</Field.Description>
+						<Input id="checkout-7j9-card-name-43j" placeholder="John Doe" required />
 					</Field.Field>
 					<div class="grid grid-cols-3 gap-4">
+						<Field.Field class="col-span-2">
+							<Field.Label for="checkout-7j9-card-number-uw1">
+								Card Number
+							</Field.Label>
+							<Input
+								id="checkout-7j9-card-number-uw1"
+								placeholder="1234 5678 9012 3456"
+								required
+							/>
+							<Field.Description>Enter your 16-digit number.</Field.Description>
+						</Field.Field>
+						<Field.Field class="col-span-1">
+							<Field.Label for="checkout-7j9-cvv">CVV</Field.Label>
+							<Input id="checkout-7j9-cvv" placeholder="123" required />
+						</Field.Field>
+					</div>
+					<div class="grid grid-cols-2 gap-4">
 						<Field.Field>
-							<Field.Label for="checkout-exp-month-ts6">Month</Field.Label>
+							<Field.Label for="checkout-7j9-exp-month-ts6">Month</Field.Label>
 							<Select.Root type="single" bind:value={month}>
-								<Select.Trigger id="checkout-exp-month-ts6">
+								<Select.Trigger id="checkout-7j9-exp-month-ts6">
 									<span>
 										{month || "MM"}
 									</span>
@@ -72,10 +80,6 @@
 									<Select.Item value="2029">2029</Select.Item>
 								</Select.Content>
 							</Select.Root>
-						</Field.Field>
-						<Field.Field>
-							<Field.Label for="checkout-7j9-cvv">CVV</Field.Label>
-							<Input id="checkout-7j9-cvv" placeholder="123" required />
 						</Field.Field>
 					</div>
 				</Field.Group>

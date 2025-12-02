@@ -29,9 +29,7 @@
 		</div>
 	</div>
 	<div class="flex flex-col gap-6 *:[div]:w-full *:[div]:max-w-full">
-		<div class="border-border rounded-lg border p-6">
-			<EmptyAvatarGroupDemo />
-		</div>
+		<EmptyAvatarGroupDemo />
 		<SpinnerBadgeDemo />
 		<ButtonGroupInputGroupDemo />
 		<FieldSliderDemo />
@@ -40,7 +38,7 @@
 	<div class="flex flex-col gap-6 *:[div]:w-full *:[div]:max-w-full">
 		<InputGroupButtonDemo />
 		<ItemDemo />
-		<FieldSeparator>Appearance Settings</FieldSeparator>
+		<FieldSeparator class="my-4">Appearance Settings</FieldSeparator>
 		<AppearanceSettings />
 	</div>
 	<div
@@ -54,8 +52,6 @@
 			<ButtonGroupPopoverDemo />
 		</div>
 		<FieldHear />
-		<div class="border-border rounded-lg border border-dashed p-6">
-			<SpinnerEmptyDemo />
-		</div>
+		<SpinnerEmptyDemo />
 	</div>
 </div>
