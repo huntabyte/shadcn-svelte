@@ -26,14 +26,14 @@
 	<Tooltip.Trigger
 		{...rp}
 		class={cn(
-			"bg-code absolute right-2 top-3 z-10 size-7 hover:opacity-100 focus-visible:opacity-100",
+			"bg-code absolute end-2 top-3 z-10 size-7 hover:opacity-100 focus-visible:opacity-100",
 			className
 		)}
 		onclick={() => clipboard.copy(text)}
 	>
 		{#snippet child({ props })}
 			<Button {...props} data-slot="copy-button" size="icon" {variant}>
-				<span class="sr-only">Copy</span>
+				<span class="sr-only" data-llm-ignore>Copy</span>
 				{#if clipboard.copied}
 					<CheckIcon />
 				{:else}

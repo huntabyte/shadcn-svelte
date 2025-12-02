@@ -91,13 +91,15 @@
 			accessorKey: "status",
 			header: "Status",
 			cell: ({ row }) => {
-				const statusSnippet = createRawSnippet<[string]>((getStatus) => {
-					const status = getStatus();
+				const statusSnippet = createRawSnippet<[{ status: string }]>((getStatus) => {
+					const { status } = getStatus();
 					return {
 						render: () => `<div class="capitalize">${status}</div>`,
 					};
 				});
-				return renderSnippet(statusSnippet, row.getValue("status"));
+				return renderSnippet(statusSnippet, {
+					status: row.original.status,
+				});
 			},
 		},
 		{
@@ -107,14 +109,16 @@
 					onclick: column.getToggleSortingHandler(),
 				}),
 			cell: ({ row }) => {
-				const emailSnippet = createRawSnippet<[string]>((getEmail) => {
-					const email = getEmail();
+				const emailSnippet = createRawSnippet<[{ email: string }]>((getEmail) => {
+					const { email } = getEmail();
 					return {
 						render: () => `<div class="lowercase">${email}</div>`,
 					};
 				});
 
-				return renderSnippet(emailSnippet, row.getValue("email"));
+				return renderSnippet(emailSnippet, {
+					email: row.original.email,
+				});
 			},
 		},
 		{
@@ -122,27 +126,27 @@
 			header: () => {
 				const amountHeaderSnippet = createRawSnippet(() => {
 					return {
-						render: () => `<div class="text-right">Amount</div>`,
+						render: () => `<div class="text-end">Amount</div>`,
 					};
 				});
-				return renderSnippet(amountHeaderSnippet, "");
+				return renderSnippet(amountHeaderSnippet);
 			},
 			cell: ({ row }) => {
-				const amountCellSnippet = createRawSnippet<[string]>((getAmount) => {
-					const amount = getAmount();
-					return {
-						render: () => `<div class="text-right font-medium">${amount}</div>`,
-					};
-				});
 				const formatter = new Intl.NumberFormat("en-US", {
 					style: "currency",
 					currency: "USD",
 				});
 
-				return renderSnippet(
-					amountCellSnippet,
-					formatter.format(Number.parseFloat(row.getValue("amount")))
-				);
+				const amountCellSnippet = createRawSnippet<[{ amount: number }]>((getAmount) => {
+					const { amount } = getAmount();
+					const formatted = formatter.format(amount);
+					return {
+						render: () => `<div class="text-end font-medium">${formatted}</div>`,
+					};
+				});
+				return renderSnippet(amountCellSnippet, {
+					amount: row.original.amount,
+				});
 			},
 		},
 		{
@@ -236,8 +240,8 @@
 		<DropdownMenu.Root>
 			<DropdownMenu.Trigger>
 				{#snippet child({ props })}
-					<Button {...props} variant="outline" class="ml-auto">
-						Columns <ChevronDownIcon class="ml-2 size-4" />
+					<Button {...props} variant="outline" class="ms-auto">
+						Columns <ChevronDownIcon class="ms-2 size-4" />
 					</Button>
 				{/snippet}
 			</DropdownMenu.Trigger>
@@ -261,7 +265,7 @@
 				{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
 					<Table.Row>
 						{#each headerGroup.headers as header (header.id)}
-							<Table.Head class="[&:has([role=checkbox])]:pl-3">
+							<Table.Head class="[&:has([role=checkbox])]:ps-3">
 								{#if !header.isPlaceholder}
 									<FlexRender
 										content={header.column.columnDef.header}
@@ -277,7 +281,7 @@
 				{#each table.getRowModel().rows as row (row.id)}
 					<Table.Row data-state={row.getIsSelected() && "selected"}>
 						{#each row.getVisibleCells() as cell (cell.id)}
-							<Table.Cell class="[&:has([role=checkbox])]:pl-3">
+							<Table.Cell class="[&:has([role=checkbox])]:ps-3">
 								<FlexRender
 									content={cell.column.columnDef.cell}
 									context={cell.getContext()}

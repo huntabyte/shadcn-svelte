@@ -3,7 +3,7 @@
 		{
 			id: "drag",
 			header: () => null,
-			cell: ({ row }) => renderSnippet(DragHandle, { id: row.original.id }),
+			cell: () => renderSnippet(DragHandle),
 		},
 		{
 			id: "select",
@@ -45,7 +45,7 @@
 			header: () =>
 				renderSnippet(
 					createRawSnippet(() => ({
-						render: () => '<div class="w-full text-right">Target</div>',
+						render: () => '<div class="w-full text-end">Target</div>',
 					}))
 				),
 			cell: ({ row }) => renderSnippet(DataTableTarget, { row }),
@@ -55,7 +55,7 @@
 			header: () =>
 				renderSnippet(
 					createRawSnippet(() => ({
-						render: () => '<div class="w-full text-right">Limit</div>',
+						render: () => '<div class="w-full text-end">Limit</div>',
 					}))
 				),
 			cell: ({ row }) => renderSnippet(DataTableLimit, { row }),
@@ -89,24 +89,8 @@
 		type VisibilityState,
 	} from "@tanstack/table-core";
 	import type { Schema } from "./schemas.js";
-	import {
-		useSensors,
-		MouseSensor,
-		TouchSensor,
-		KeyboardSensor,
-		useSensor,
-		type DragEndEvent,
-		type UniqueIdentifier,
-		DndContext,
-		closestCenter,
-	} from "@dnd-kit-svelte/core";
-	import {
-		arrayMove,
-		SortableContext,
-		useSortable,
-		verticalListSortingStrategy,
-	} from "@dnd-kit-svelte/sortable";
-	import { restrictToVerticalAxis } from "@dnd-kit-svelte/modifiers";
+	import type { Attachment } from "svelte/attachments";
+	import { RestrictToVerticalAxis } from "@dnd-kit/abstract/modifiers";
 	import { createSvelteTable } from "$lib/registry/ui/data-table/data-table.svelte.js";
 	import * as Tabs from "$lib/registry/ui/tabs/index.js";
 	import * as Table from "$lib/registry/ui/table/index.js";
@@ -137,7 +121,9 @@
 	import DataTableCellViewer from "./data-table-cell-viewer.svelte";
 	import { createRawSnippet } from "svelte";
 	import DataTableReviewer from "./data-table-reviewer.svelte";
-	import { CSS } from "@dnd-kit-svelte/utilities";
+	import { DragDropProvider } from "@dnd-kit-svelte/svelte";
+	import { move } from "@dnd-kit/helpers";
+	import { useSortable } from "@dnd-kit-svelte/svelte/sortable";
 
 	let { data }: { data: Schema[] } = $props();
 	let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
@@ -145,16 +131,6 @@
 	let columnFilters = $state<ColumnFiltersState>([]);
 	let rowSelection = $state<RowSelectionState>({});
 	let columnVisibility = $state<VisibilityState>({});
-
-	const sortableId = $props.id();
-
-	const sensors = useSensors(
-		useSensor(MouseSensor, {}),
-		useSensor(TouchSensor, {}),
-		useSensor(KeyboardSensor, {})
-	);
-
-	const dataIds: UniqueIdentifier[] = $derived(data.map((item) => item.id));
 
 	const table = createSvelteTable({
 		get data() {
@@ -222,15 +198,6 @@
 			}
 		},
 	});
-
-	function handleDragEnd(event: DragEndEvent) {
-		const { active, over } = event;
-		if (active && over && active.id !== over.id) {
-			const oldIndex = dataIds.indexOf(active.id);
-			const newIndex = dataIds.indexOf(over.id);
-			data = arrayMove(data, oldIndex, newIndex);
-		}
-	}
 
 	let views = [
 		{
@@ -318,12 +285,12 @@
 	</div>
 	<Tabs.Content value="outline" class="relative flex flex-col gap-4 overflow-auto px-4 lg:px-6">
 		<div class="overflow-hidden rounded-lg border">
-			<DndContext
-				collisionDetection={closestCenter}
-				modifiers={[restrictToVerticalAxis]}
-				onDragEnd={handleDragEnd}
-				{sensors}
-				id={sortableId}
+			<DragDropProvider
+				modifiers={[
+					// @ts-expect-error @dnd-kit/abstract types are botched atm
+					RestrictToVerticalAxis,
+				]}
+				onDragEnd={(e) => (data = move(data, e))}
 			>
 				<Table.Root>
 					<Table.Header class="bg-muted sticky top-0 z-10">
@@ -344,11 +311,9 @@
 					</Table.Header>
 					<Table.Body class="**:data-[slot=table-cell]:first:w-8">
 						{#if table.getRowModel().rows?.length}
-							<SortableContext items={dataIds} strategy={verticalListSortingStrategy}>
-								{#each table.getRowModel().rows as row (row.id)}
-									{@render DraggableRow({ row })}
-								{/each}
-							</SortableContext>
+							{#each table.getRowModel().rows as row, index (row.id)}
+								{@render DraggableRow({ row, index })}
+							{/each}
 						{:else}
 							<Table.Row>
 								<Table.Cell colspan={columns.length} class="h-24 text-center">
@@ -358,7 +323,7 @@
 						{/if}
 					</Table.Body>
 				</Table.Root>
-			</DndContext>
+			</DragDropProvider>
 		</div>
 		<div class="flex items-center justify-between px-4">
 			<div class="text-muted-foreground hidden flex-1 text-sm lg:flex">
@@ -391,7 +356,7 @@
 					Page {table.getState().pagination.pageIndex + 1} of
 					{table.getPageCount()}
 				</div>
-				<div class="ml-auto flex items-center gap-2 lg:ml-0">
+				<div class="ms-auto flex items-center gap-2 lg:ms-0">
 					<Button
 						variant="outline"
 						class="hidden h-8 w-8 p-0 lg:flex"
@@ -459,7 +424,7 @@
 	>
 		<Label for="{row.original.id}-limit" class="sr-only">Limit</Label>
 		<Input
-			class="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-16 border-transparent bg-transparent text-right shadow-none focus-visible:border dark:bg-transparent"
+			class="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-16 border-transparent bg-transparent text-end shadow-none focus-visible:border dark:bg-transparent"
 			value={row.original.limit}
 			id="{row.original.id}-limit"
 		/>
@@ -479,7 +444,7 @@
 	>
 		<Label for="{row.original.id}-target" class="sr-only">Target</Label>
 		<Input
-			class="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-16 border-transparent bg-transparent text-right shadow-none focus-visible:border dark:bg-transparent"
+			class="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-16 border-transparent bg-transparent text-end shadow-none focus-visible:border dark:bg-transparent"
 			value={row.original.target}
 			id="{row.original.id}-target"
 		/>
@@ -525,34 +490,33 @@
 	</DropdownMenu.Root>
 {/snippet}
 
-{#snippet DraggableRow({ row }: { row: Row<Schema> })}
-	{@const { transform, transition, node, isDragging } = useSortable({
-		id: () => row.original.id,
+{#snippet DraggableRow({ row, index }: { row: Row<Schema>; index: number })}
+	{@const { ref, isDragging, handleRef } = useSortable({
+		id: row.original.id,
+		index: () => index,
 	})}
 
 	<Table.Row
 		data-state={row.getIsSelected() && "selected"}
 		data-dragging={isDragging.current}
-		bind:ref={node.current}
 		class="relative z-0 data-[dragging=true]:z-10 data-[dragging=true]:opacity-80"
-		style="transition: {transition.current}; transform: {CSS.Transform.toString(
-			transform.current
-		)}"
+		{@attach ref}
 	>
 		{#each row.getVisibleCells() as cell (cell.id)}
 			<Table.Cell>
-				<FlexRender content={cell.column.columnDef.cell} context={cell.getContext()} />
+				<FlexRender
+					attach={handleRef}
+					content={cell.column.columnDef.cell}
+					context={cell.getContext()}
+				/>
 			</Table.Cell>
 		{/each}
 	</Table.Row>
 {/snippet}
 
-{#snippet DragHandle({ id }: { id: number })}
-	{@const { attributes, listeners } = useSortable({ id: () => id })}
-
+{#snippet DragHandle({ attach }: { attach: Attachment })}
 	<Button
-		{...attributes.current}
-		{...listeners.current}
+		{@attach attach}
 		variant="ghost"
 		size="icon"
 		class="text-muted-foreground size-7 hover:bg-transparent"

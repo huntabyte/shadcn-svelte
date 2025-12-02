@@ -48,7 +48,7 @@
 				>
 					<TerminalIcon class="text-code size-3" />
 				</div>
-				<Tabs.List class="rounded-none bg-transparent p-0">
+				<Tabs.List class="rounded-none bg-transparent p-0" data-llm-ignore>
 					{#each PACKAGE_MANAGERS as pm (pm)}
 						<Tabs.Trigger
 							value={pm}
@@ -61,7 +61,11 @@
 			</div>
 			<div class="no-scrollbar overflow-x-auto">
 				{#each PACKAGE_MANAGERS as pm (pm)}
-					<Tabs.Content value={pm} class="mt-0 px-4 py-3.5">
+					<Tabs.Content
+						value={pm}
+						class="mt-0 px-4 py-3.5"
+						data-llm-ignore={pm === "yarn" || pm === "yarn@berry" ? "" : undefined}
+					>
 						{#snippet child({ props })}
 							{@const { hidden, class: className, ...rest } = props}
 							<div
@@ -86,9 +90,9 @@
 						data-slot="copy-button"
 						size="icon"
 						variant="ghost"
-						class="absolute right-2 top-2 z-10 size-7 opacity-70 hover:opacity-100 focus-visible:opacity-100"
+						class="absolute end-2 top-2 z-10 size-7 opacity-70 hover:opacity-100 focus-visible:opacity-100"
 					>
-						<span class="sr-only">Copy</span>
+						<span class="sr-only" data-llm-ignore>Copy</span>
 						{#if clipboard.copied}
 							<CheckIcon />
 						{:else}

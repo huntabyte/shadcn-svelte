@@ -11,6 +11,7 @@
 	import ComponentCodeViewer from "$lib/components/component-code-viewer/component-code-viewer.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
 	import Ethical from "$lib/components/ethical.svelte";
+	import DocsCopyPage from "$lib/components/docs-copy-page.svelte";
 
 	let { data } = $props();
 
@@ -39,9 +40,11 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 <div
 	data-slot="docs"
 	class="flex flex-row-reverse items-stretch text-[1.05rem] sm:text-[15px] xl:w-full"
+	id="main-content"
 >
 	<div
-		class="sticky top-[calc(var(--header-height)+1px)] z-30 ml-auto hidden h-[calc(100svh-var(--header-height)-var(--footer-height))] w-72 flex-col gap-4 overflow-hidden overscroll-none pb-8 xl:flex"
+		class="sticky top-[calc(var(--header-height)+1px)] z-30 ms-auto hidden h-[calc(100svh-var(--footer-height)+2rem)] w-72 flex-col gap-4 overflow-hidden overscroll-none pb-8 xl:flex"
+		data-llm-ignore
 	>
 		<div class="h-(--top-spacing) shrink-0"></div>
 		{#if doc.toc.length}
@@ -70,12 +73,16 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 						>
 							{doc.title}
 						</h1>
-						<div class="flex items-center gap-2 pt-1.5">
+						<div
+							class="docs-nav bg-background/80 border-border/50 fixed inset-x-0 bottom-0 isolate z-50 flex items-center gap-2 border-t px-6 py-4 backdrop-blur-sm sm:static sm:z-0 sm:border-t-0 sm:bg-transparent sm:px-0 sm:pt-1.5 sm:backdrop-blur-none"
+							data-llm-ignore
+						>
+							<DocsCopyPage />
 							{#if neighbors.previous}
 								<Button
 									variant="secondary"
 									size="icon"
-									class="extend-touch-target size-8 shadow-none md:size-7"
+									class="extend-touch-target ms-auto size-8 shadow-none md:size-7"
 									href={neighbors.previous.href}
 								>
 									<ArrowLeftIcon />
@@ -110,7 +117,8 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 								target="_blank"
 								rel="noreferrer"
 							>
-								Docs <ExternalLinkIcon />
+								Docs
+								<ExternalLinkIcon aria-hidden="true" />
 							</Badge>
 						{/if}
 						{#if apiLink}
@@ -120,7 +128,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 								target="_blank"
 								rel="noreferrer"
 							>
-								API Reference <ExternalLinkIcon />
+								API Reference <ExternalLinkIcon aria-hidden="true" />
 							</Badge>
 						{/if}
 						{#if source}
@@ -135,7 +143,10 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 				<Markdown viewerData={data.viewerData} />
 			</div>
 		</div>
-		<div class="mx-auto flex h-16 w-full max-w-2xl items-center gap-2 px-4 md:px-0">
+		<div
+			class="mx-auto flex h-16 w-full max-w-2xl items-center gap-2 px-4 md:px-0"
+			data-llm-ignore
+		>
 			{#if neighbors.previous}
 				<Button
 					variant="secondary"
@@ -151,7 +162,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 				<Button
 					variant="secondary"
 					size="sm"
-					class="ml-auto shadow-none"
+					class="ms-auto shadow-none"
 					href={neighbors.next.href}
 				>
 					{neighbors.next.title}

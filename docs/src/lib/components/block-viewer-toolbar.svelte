@@ -31,7 +31,7 @@
 	const command = $derived(addCommand.command + " " + addCommand.args.join(" "));
 </script>
 
-<div class="hidden w-full items-center gap-2 pl-2 md:pr-6 lg:flex">
+<div class="hidden w-full items-center gap-2 ps-2 md:pe-6 lg:flex">
 	<Tabs.Root bind:value={ctx.view} class="hidden lg:flex">
 		<Tabs.List
 			class="grid h-8 grid-cols-2 items-center rounded-md p-1 *:data-[slot=tabs-trigger]:h-6 *:data-[slot=tabs-trigger]:rounded-sm *:data-[slot=tabs-trigger]:px-2 *:data-[slot=tabs-trigger]:text-xs"
@@ -43,11 +43,11 @@
 	<Separator orientation="vertical" class="mx-2 !h-4" />
 	<a
 		href="#{ctx.item.name}"
-		class="flex-1 text-center text-sm font-medium underline-offset-2 hover:underline md:flex-auto md:text-left"
+		class="flex-1 text-center text-sm font-medium underline-offset-2 hover:underline md:flex-auto md:text-start"
 	>
 		{ctx.item.description?.replace(/\.$/, "")}
 	</a>
-	<div class="ml-auto flex items-center gap-2">
+	<div class="ms-auto flex items-center gap-2">
 		<div class="h-8 items-center gap-1.5 rounded-md border p-1 shadow-none">
 			<ToggleGroup.Root
 				type="single"

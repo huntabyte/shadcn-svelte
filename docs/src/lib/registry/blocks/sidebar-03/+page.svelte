@@ -11,11 +11,11 @@
 		<header class="flex h-16 shrink-0 items-center gap-2 border-b">
 			<div class="flex items-center gap-2 px-3">
 				<Sidebar.Trigger />
-				<Separator orientation="vertical" class="mr-2 h-4" />
+				<Separator orientation="vertical" class="me-2 h-4" />
 				<Breadcrumb.Root>
 					<Breadcrumb.List>
 						<Breadcrumb.Item class="hidden md:block">
-							<Breadcrumb.Link href="#">Building Your Application</Breadcrumb.Link>
+							<Breadcrumb.Link href="##">Building Your Application</Breadcrumb.Link>
 						</Breadcrumb.Item>
 						<Breadcrumb.Separator class="hidden md:block" />
 						<Breadcrumb.Item>
@@ -31,7 +31,7 @@
 				<div class="bg-muted/50 aspect-video rounded-xl"></div>
 				<div class="bg-muted/50 aspect-video rounded-xl"></div>
 			</div>
-			<div class="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min"></div>
+			<div class="bg-muted/50 min-h-screen flex-1 rounded-xl md:min-h-min"></div>
 		</div>
 	</Sidebar.Inset>
 </Sidebar.Provider>

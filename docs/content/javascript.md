@@ -13,7 +13,7 @@ To opt-out of TypeScript, you can use the `typescript` flag in your `components.
 {
   "style": "default",
   "tailwind": {
-    "css": "src/app.css"
+    "css": "src/routes/layout.css"
   },
   "typescript": false,
   "aliases": {

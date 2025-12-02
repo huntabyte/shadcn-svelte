@@ -6,12 +6,12 @@
 	const ctx = ComponentCodeViewerContext.get();
 </script>
 
-<Sidebar.Provider class="flex !min-h-full select-none flex-col">
-	<Sidebar.Root collapsible="none" class="w-full flex-1">
+<Sidebar.Provider class="flex h-full !min-h-0 select-none flex-col">
+	<Sidebar.Root collapsible="none" class="h-full w-full flex-1">
 		<Sidebar.GroupLabel class="h-12 rounded-none border-b px-4 text-sm">
 			Files
 		</Sidebar.GroupLabel>
-		<Sidebar.Group class="p-0">
+		<Sidebar.Group class="overflow-y-auto p-0">
 			<Sidebar.GroupContent>
 				<Sidebar.Menu class="translate-x-0 gap-1.5">
 					{#if ctx.tree}

@@ -14,11 +14,11 @@
 		<Button class="size-8" variant="ghost" size="icon" onclick={sidebar.toggle}>
 			<SidebarIcon />
 		</Button>
-		<Separator orientation="vertical" class="mr-2 h-4" />
+		<Separator orientation="vertical" class="me-2 h-4" />
 		<Breadcrumb.Root class="hidden sm:block">
 			<Breadcrumb.List>
 				<Breadcrumb.Item>
-					<Breadcrumb.Link href="#">Building Your Application</Breadcrumb.Link>
+					<Breadcrumb.Link href="##">Building Your Application</Breadcrumb.Link>
 				</Breadcrumb.Item>
 				<Breadcrumb.Separator />
 				<Breadcrumb.Item>
@@ -26,6 +26,6 @@
 				</Breadcrumb.Item>
 			</Breadcrumb.List>
 		</Breadcrumb.Root>
-		<SearchForm class="w-full sm:ml-auto sm:w-auto" />
+		<SearchForm class="w-full sm:ms-auto sm:w-auto" />
 	</div>
 </header>

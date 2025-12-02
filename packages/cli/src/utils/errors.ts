@@ -11,13 +11,13 @@ export function handleError(error: unknown) {
 	}
 
 	if (error instanceof CLIError || error instanceof ConfigError) {
-		p.cancel(`[${error.name}]: ${error.message}`);
+		p.cancel(printError(error));
 		process.exit(1);
 	}
 
 	// unexpected error
 	if (error instanceof Error) {
-		p.cancel(error.stack);
+		p.cancel(printError(error));
 		process.exit(1);
 	}
 
@@ -25,8 +25,12 @@ export function handleError(error: unknown) {
 	process.exit(1);
 }
 
-export function error(msg: string) {
-	return new CLIError(msg);
+export function error(msg: string, cause?: unknown) {
+	return new CLIError(msg, { cause });
+}
+
+export function printError(error: Error): string {
+	return `${error.stack ?? error.message}${error.cause ? `\n   [cause]: ${error.cause instanceof Error ? printError(error.cause) : error.cause}` : ""}`;
 }
 
 export class CLIError extends Error {

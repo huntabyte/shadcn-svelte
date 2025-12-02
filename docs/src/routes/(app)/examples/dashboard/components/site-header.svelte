@@ -8,7 +8,7 @@
 >
 	<div class="flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-6">
 		<h1 class="text-base font-medium">Documents</h1>
-		<div class="ml-auto flex items-center gap-2">
+		<div class="ms-auto flex items-center gap-2">
 			<Button size="sm" class="hidden h-7 sm:flex">
 				<CirclePlusFilledIcon />
 				<span>Quick Create</span>

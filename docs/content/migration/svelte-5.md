@@ -43,7 +43,7 @@ Add the `registry` to the root object, and add `hooks`, `ui`, and `lib` keys und
   "$schema": "https://shadcn-svelte.com/schema.json",
   "style": "default",
   "tailwind": {
-    "css": "src/app.css",
+    "css": "src/routes/layout.css",
     "baseColor": "slate"
   },
   "aliases": {

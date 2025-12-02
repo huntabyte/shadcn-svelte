@@ -95,26 +95,26 @@
 			accessorKey: "status",
 			header: "Status",
 			cell: ({ row }) => {
-				const statusSnippet = createRawSnippet<[string]>((getStatus) => {
-					const status = getStatus();
+				const statusSnippet = createRawSnippet<[{ status: string }]>((getStatus) => {
+					const { status } = getStatus();
 					return {
 						render: () => `<div class="capitalize">${status}</div>`,
 					};
 				});
-				return renderSnippet(statusSnippet, row.getValue("status"));
+				return renderSnippet(statusSnippet, { status: row.original.status });
 			},
 		},
 		{
 			accessorKey: "email",
 			header: ({ column }) => renderSnippet(EmailHeader, { column }),
 			cell: ({ row }) => {
-				const emailSnippet = createRawSnippet<[string]>((getEmail) => {
-					const email = getEmail();
+				const emailSnippet = createRawSnippet<[{ email: string }]>((getEmail) => {
+					const { email } = getEmail();
 					return {
 						render: () => `<div class="lowercase">${email}</div>`,
 					};
 				});
-				return renderSnippet(emailSnippet, row.getValue("email"));
+				return renderSnippet(emailSnippet, { email: row.original.email });
 			},
 		},
 		{
@@ -122,21 +122,21 @@
 			header: () =>
 				renderSnippet(
 					createRawSnippet(() => ({
-						render: () => `<div class="text-right">Amount</div>`,
+						render: () => `<div class="text-end">Amount</div>`,
 					}))
 				),
 			cell: ({ row }) => {
-				const amountSnippet = createRawSnippet<[string]>((getAmount) => {
-					const amount = Number.parseFloat(getAmount());
+				const amountSnippet = createRawSnippet<[{ amount: number }]>((getAmount) => {
+					const { amount } = getAmount();
 					const formatted = new Intl.NumberFormat("en-US", {
 						style: "currency",
 						currency: "USD",
 					}).format(amount);
 					return {
-						render: () => `<div class="text-right font-medium">${formatted}</div>`,
+						render: () => `<div class="text-end font-medium">${formatted}</div>`,
 					};
 				});
-				return renderSnippet(amountSnippet, row.getValue("amount"));
+				return renderSnippet(amountSnippet, { amount: row.original.amount });
 			},
 		},
 		{
@@ -263,7 +263,7 @@
 						<Table.Row>
 							{#each headerGroup.headers as header (header.id)}
 								<Table.Head
-									class="data-[name=actions]:w-10 data-[name=amount]:w-24 data-[name=select]:w-10 data-[name=status]:w-24 [&:has([role=checkbox])]:pl-3"
+									class="data-[name=actions]:w-10 data-[name=amount]:w-24 data-[name=select]:w-10 data-[name=status]:w-24 [&:has([role=checkbox])]:ps-3"
 									data-name={header.id}
 								>
 									{#if !header.isPlaceholder}
@@ -283,7 +283,7 @@
 							<Table.Row data-state={row.getIsSelected() && "selected"}>
 								{#each row.getVisibleCells() as cell (cell.id)}
 									<Table.Cell
-										class="data-[name=actions]:w-10 data-[name=amount]:w-24 data-[name=select]:w-10 data-[name=status]:w-24 [&:has([role=checkbox])]:pl-3"
+										class="data-[name=actions]:w-10 data-[name=amount]:w-24 data-[name=select]:w-10 data-[name=status]:w-24 [&:has([role=checkbox])]:ps-3"
 										data-name={cell.column.id}
 									>
 										<FlexRender

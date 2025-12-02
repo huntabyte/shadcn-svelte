@@ -12,7 +12,6 @@
 	import ChartCopyButton from "./chart-copy-button.svelte";
 	import type { HTMLAttributes } from "svelte/elements";
 	import type { HighlightedBlock } from "../../routes/api/block/[block]/+server.js";
-	import { onMount } from "svelte";
 
 	let {
 		chart,
@@ -22,10 +21,18 @@
 
 	let code = $state("");
 
-	onMount(() => {
+	$effect(() => {
+		const file = chart?.files?.[0];
+		if (!file) {
+			code = "";
+			return;
+		}
+
+		const highlighted = file.highlightedContent ?? "";
+
 		const pre = document.createElement("pre");
-		pre.innerHTML = chart.files?.[0]?.highlightedContent ?? "";
-		code = pre.innerText;
+		pre.innerHTML = highlighted;
+		code = pre.textContent ?? "";
 	});
 </script>
 
@@ -51,11 +58,11 @@
 
 <div class={cn("flex items-center gap-2", className)}>
 	<div
-		class="text-muted-foreground flex items-center gap-1.5 pl-1 text-[13px] [&>svg]:h-[0.9rem] [&>svg]:w-[0.9rem]"
+		class="text-muted-foreground flex items-center gap-1.5 ps-1 text-[13px] [&>svg]:h-[0.9rem] [&>svg]:w-[0.9rem]"
 	>
 		{@render ChartTitle(chart)}
 	</div>
-	<div class="ml-auto flex items-center gap-2 [&>form]:flex">
+	<div class="ms-auto flex items-center gap-2 [&>form]:flex">
 		<ChartCopyButton
 			{code}
 			class="text-foreground hover:bg-muted dark:text-foreground h-6 w-6 rounded-[6px] bg-transparent shadow-none [&_svg]:h-3 [&_svg]:w-3"

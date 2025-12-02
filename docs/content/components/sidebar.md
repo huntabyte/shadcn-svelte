@@ -48,7 +48,7 @@ We now have a solid foundation to build on top of. Composable. Themeable. Custom
 
 We'll go over the colors later in the [theming section](/docs/components/sidebar#theming).
 
-```css title="src/app.css"
+```css title="src/routes/layout.css"
 :root {
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
@@ -89,7 +89,7 @@ Copy and paste the component source files linked at the top of this page into yo
 
 We'll go over the colors later in the [theming section](/docs/components/sidebar#theming).
 
-```css title="src/app.css"
+```css title="src/routes/layout.css"
 :root {
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
@@ -473,7 +473,7 @@ The following example adds a `<DropdownMenu>` to the `Sidebar.Header`.
             {#snippet child({ props })}
               <Sidebar.MenuButton {...props}>
                 Select Workspace
-                <ChevronDown class="ml-auto" />
+                <ChevronDown class="ms-auto" />
               </Sidebar.MenuButton>
             {/snippet}
           </DropdownMenu.Trigger>
@@ -522,7 +522,7 @@ The following example adds a `<DropdownMenu>` to the `Sidebar.Footer`.
                   class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
                 >
                   Username
-                  <ChevronUp class="ml-auto" />
+                  <ChevronUp class="ms-auto" />
                 </Sidebar.MenuButton>
               {/snippet}
             </DropdownMenu.Trigger>
@@ -614,7 +614,7 @@ To make a `Sidebar.Group` collapsible, wrap it in a `Collapsible`.
         <Collapsible.Trigger {...props}>
           Help
           <ChevronDown
-            class="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180"
+            class="ms-auto transition-transform group-data-[state=open]/collapsible:rotate-180"
           />
         </Collapsible.Trigger>
       {/snippet}
@@ -785,7 +785,7 @@ Here's an example of a `Sidebar.MenuAction` that renders a `DropdownMenu`.
 <Sidebar.MenuItem>
   <Sidebar.MenuButton>
     {#snippet child({ props })}
-      <a href="#" {...props}>
+      <a href="##" {...props}>
         <House />
         <span>Home</span>
       </a>

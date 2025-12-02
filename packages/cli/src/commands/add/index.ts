@@ -60,8 +60,8 @@ export const add = new Command()
 			await runAdd(cwd, updatedConfig, options);
 
 			p.outro(`${color.green("Success!")} Components added.`);
-		} catch (error) {
-			handleError(error);
+		} catch (e) {
+			handleError(e);
 		}
 	});
 

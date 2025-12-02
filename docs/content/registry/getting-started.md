@@ -80,7 +80,7 @@ registry
 
 **Important:** If you're placing your component in a custom directory, make sure it can be detected by Tailwind CSS.
 
-```css showLineNumbers title="src/app.css"
+```css showLineNumbers title="src/routes/layout.css"
 @source "./registry/@acmecorp/ui-lib";
 ```
 

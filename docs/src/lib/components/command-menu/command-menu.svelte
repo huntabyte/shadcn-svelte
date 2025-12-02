@@ -89,7 +89,7 @@
 			open = !open;
 		}
 
-		if (e.key === "c" && (e.metaKey || e.ctrlKey)) {
+		if (open && e.key === "c" && (e.metaKey || e.ctrlKey)) {
 			runCommand(() => {
 				if (selectedType === "color") {
 					clipboard.copy(copyPayload);
@@ -137,13 +137,13 @@
 				{...props}
 				variant="secondary"
 				class={cn(
-					"bg-surface text-surface-foreground/60 dark:bg-card relative h-8 w-full justify-start pl-2.5 font-normal shadow-none sm:pr-12 md:w-40 lg:w-56 xl:w-64"
+					"bg-surface text-surface-foreground/60 dark:bg-card relative h-8 w-full justify-start ps-2.5 font-normal shadow-none sm:pe-12 md:w-40 lg:w-56 xl:w-64"
 				)}
 				onclick={() => (open = true)}
 			>
 				<span class="hidden lg:inline-flex">Search documentation...</span>
 				<span class="inline-flex lg:hidden">Search...</span>
-				<div class="absolute right-1.5 top-1.5 hidden gap-1 sm:flex">
+				<div class="absolute end-1.5 top-1.5 hidden gap-1 sm:flex">
 					{@render CommandMenuKbd({ content: isMac.current ? "⌘" : "Ctrl" })}
 					{@render CommandMenuKbd({ content: "K", class: "aspect-square" })}
 				</div>
@@ -223,7 +223,7 @@
 								></div>
 								{color.class}
 								<span
-									class="text-muted-foreground ml-auto font-mono text-xs font-normal tabular-nums"
+									class="text-muted-foreground ms-auto font-mono text-xs font-normal tabular-nums"
 								>
 									{color.oklch}
 								</span>
@@ -255,7 +255,7 @@
 								<SquareDashedIcon />
 								{block.description}
 								<span
-									class="text-muted-foreground ml-auto font-mono text-xs font-normal tabular-nums"
+									class="text-muted-foreground ms-auto font-mono text-xs font-normal tabular-nums"
 								>
 									{block.name}
 								</span>

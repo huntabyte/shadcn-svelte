@@ -106,7 +106,7 @@
 					<DropdownMenu.Item
 						onSelect={() => (open = false)}
 						data-depth={item.depth}
-						class="data-[depth=1]:pl-6 data-[depth=2]:pl-8"
+						class="data-[depth=1]:ps-6 data-[depth=2]:ps-8"
 					>
 						{#snippet child({ props })}
 							<a href={item.url} {...props}>{item.title}</a>
@@ -121,7 +121,7 @@
 			{#each flattenedToc as item (item.url)}
 				<a
 					href={item.url}
-					class="text-muted-foreground hover:text-foreground data-[active=true]:text-foreground text-[0.8rem] no-underline transition-colors data-[depth=1]:pl-4 data-[depth=2]:pl-6"
+					class="text-muted-foreground hover:text-foreground data-[active=true]:text-foreground text-[0.8rem] no-underline transition-colors data-[depth=1]:ps-4 data-[depth=2]:ps-6"
 					data-active={item.url === `#${activeHeading.current}`}
 					data-depth={item.depth}
 				>

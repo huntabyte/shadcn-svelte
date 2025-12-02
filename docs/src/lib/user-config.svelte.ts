@@ -55,7 +55,7 @@ function parseCookie(cookie: string): Record<string, string> {
 	const cookieMap: Record<string, string> = {};
 	for (const cookie of cookies) {
 		const [key, value] = cookie.split("=");
-		cookieMap[key] = value;
+		cookieMap[key.trim()] = decodeURIComponent(value);
 	}
 	return cookieMap;
 }
@@ -80,7 +80,7 @@ export class UserConfig {
 
 	setConfig(config: Partial<UserConfigType>): void {
 		this.#config = { ...this.#config, ...config };
-		document.cookie = `${USER_CONFIG_COOKIE_NAME}=${JSON.stringify(this.#config)}; path=/; max-age=31536000; SameSite=Lax;`;
+		document.cookie = `${USER_CONFIG_COOKIE_NAME}=${encodeURIComponent(JSON.stringify(this.#config))}; path=/; max-age=31536000; SameSite=Lax;`;
 
 		if (config.layout) updateLayoutClass(this.#config.layout);
 	}

@@ -54,18 +54,18 @@
 			data-theme="github-dark github-light-default"
 		>
 			<Css class="fill-foreground" />
-			src/app.css
+			src/routes/layout.css
 		</figcaption>
 		<pre
 			class="no-scrollbar max-h-[300px] min-w-0 overflow-x-auto px-4 py-3.5 outline-none has-[[data-slot=tabs]]:p-0 has-[[data-highlighted-line]]:px-0 has-[[data-line-numbers]]:px-0 md:max-h-[450px]"><Button
 				data-slot="copy-button"
 				size="icon"
 				variant="ghost"
-				class="bg-code text-code-foreground absolute right-2 top-3 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
+				class="bg-code text-code-foreground absolute end-2 top-3 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
 				onclick={() => {
 					clipboard.copy(getThemeCodeOKLCH(activeThemeOKLCH, 0.65));
 				}}
-				><span class="sr-only">Copy</span>{#if clipboard.copied}<CheckIcon
+				><span class="sr-only" data-llm-ignore>Copy</span>{#if clipboard.copied}<CheckIcon
 					/>{:else}<ClipboardIcon />{/if}</Button
 			><code data-line-numbers data-language="css"
 				><span data-line class="line text-code-foreground">&nbsp;:root &#123;</span><span

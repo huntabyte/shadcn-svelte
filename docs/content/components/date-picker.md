@@ -50,18 +50,18 @@ See installations instructions for the [Popover](/docs/components/popover#instal
       <Button
         variant="outline"
         class={cn(
-          "w-[280px] justify-start text-left font-normal",
+          "w-[280px] justify-start text-start font-normal",
           !value && "text-muted-foreground"
         )}
         {...props}
       >
-        <CalendarIcon class="mr-2 size-4" />
+        <CalendarIcon class="me-2 size-4" />
         {value ? df.format(value.toDate(getLocalTimeZone())) : "Select a date"}
       </Button>
     {/snippet}
   </Popover.Trigger>
   <Popover.Content class="w-auto p-0">
-    <Calendar bind:value type="single" initialFocus />
+    <Calendar bind:value type="single" initialFocus captionLayout="dropdown" />
   </Popover.Content>
 </Popover.Root>
 ```

@@ -1,6 +1,6 @@
 {
 	"name": "shadcn-svelte",
-	"version": "1.0.6",
+	"version": "1.0.12",
 	"description": "Add components to your apps.",
 	"license": "MIT",
 	"author": {
@@ -64,7 +64,7 @@
 		"tinyexec": "^1.0.1",
 		"tsup": "^8.4.0",
 		"type-fest": "^4.41.0",
-		"typescript": "^5.8.3",
+		"typescript": "catalog:",
 		"vitest": "^3.2.3",
 		"zod": "^3.25.64"
 	}

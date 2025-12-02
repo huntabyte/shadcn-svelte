@@ -130,7 +130,11 @@ export async function getFileDependencies(opts: GetFileDepOpts) {
 			moduleAst = result.module;
 		}
 	} else if (filename.endsWith(".ts") || filename.endsWith(".js")) {
-		ast = tsParser.parse(source, { ecmaVersion: "latest", sourceType: "module" });
+		ast = tsParser.parse(source, {
+			ecmaVersion: "latest",
+			sourceType: "module",
+			sourceFile: filename,
+		});
 	} else {
 		// unknown file (e.g. `.env` or some config file)
 		return {};

@@ -1,5 +1,41 @@
 # shadcn-svelte
 
+## 1.0.12
+
+### Patch Changes
+
+- fix: ensure `layout.css` is detected during initialization ([#2412](https://github.com/huntabyte/shadcn-svelte/pull/2412))
+
+## 1.0.11
+
+### Patch Changes
+
+- fix: Ensure `filename` is provided when parsing ts code ([#2399](https://github.com/huntabyte/shadcn-svelte/pull/2399))
+
+## 1.0.10
+
+### Patch Changes
+
+- fix: Log `error.stack` and `error.cause` to disambiguate errors ([#2374](https://github.com/huntabyte/shadcn-svelte/pull/2374))
+
+## 1.0.9
+
+### Patch Changes
+
+- fix: improve error message when `svelte-kit` CLI cannot be found ([#2366](https://github.com/huntabyte/shadcn-svelte/pull/2366))
+
+## 1.0.8
+
+### Patch Changes
+
+- fix: prompt users before overwriting existing components when adding from external registry ([#2302](https://github.com/huntabyte/shadcn-svelte/pull/2302))
+
+## 1.0.7
+
+### Patch Changes
+
+- fix: Reorder `ALIASES` so that replacements run in a more sensical order ([#2262](https://github.com/huntabyte/shadcn-svelte/pull/2262))
+
 ## 1.0.6
 
 ### Patch Changes

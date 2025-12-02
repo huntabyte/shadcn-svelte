@@ -87,8 +87,8 @@
 </script>
 
 <Dialog.Root>
-	<Dialog.Trigger class={badgeVariants({ variant: "secondary" })}>
-		Component Source <CodeIcon />
+	<Dialog.Trigger class={badgeVariants({ variant: "secondary" })} data-llm-ignore>
+		Component Source <CodeIcon aria-hidden="true" />
 	</Dialog.Trigger>
 	<Dialog.Content
 		bind:ref={contentRef}

@@ -40,7 +40,7 @@
 		size="sm"
 		variant="secondary"
 		href="/blocks/sidebar"
-		class="mr-7 hidden shadow-none lg:flex"
+		class="me-7 hidden shadow-none lg:flex"
 	>
 		Browse all blocks
 	</Button>

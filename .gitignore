@@ -84,8 +84,6 @@ web_modules/
 # Output of 'npm pack'
 *.tgz
 
-# Yarn Integrity file
-.yarn-integrity
 
 # dotenv environment variable files
 .env
@@ -98,13 +96,6 @@ web_modules/
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
-# yarn v2
-.yarn/cache
-.yarn/unplugged
-.yarn/build-state.yml
-.yarn/install-state.gz
-.pnp.*
-generated-assets
 
 # JetBrains IDEs
 .idea/
@@ -115,7 +106,11 @@ docs/static/themes.css
 docs/static/schema/registry.json
 docs/static/schema/registry-item.json
 docs/src/__registry__
-
-
+docs/static/docs
+docs/static/llms.txt
+docs/static/docs.md
 
 registry-template/static/r
+repro/src/lib/hooks
+repro/src/lib/components/ui
+!repro/src/lib/components/ui/light-switch

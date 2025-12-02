@@ -49,8 +49,8 @@ export const build = new Command()
 			await runBuild({ cwd, output, registry });
 
 			p.outro(`${color.green("Success!")} Registry build completed.`);
-		} catch (error) {
-			handleError(error);
+		} catch (e) {
+			handleError(e);
 		}
 	});
 

@@ -37,7 +37,7 @@
 			</div>
 			<Button disabled={isLoading}>
 				{#if isLoading}
-					<SpinnerIcon class="mr-2 size-4 animate-spin" />
+					<SpinnerIcon class="me-2 size-4 animate-spin" />
 				{/if}
 				Sign In with Email
 			</Button>
@@ -53,9 +53,9 @@
 	</div>
 	<Button variant="outline" type="button" disabled={isLoading}>
 		{#if isLoading}
-			<SpinnerIcon class="mr-2 size-4 animate-spin" />
+			<SpinnerIcon class="me-2 size-4 animate-spin" />
 		{:else}
-			<GithubIcon class="mr-2 size-4" />
+			<GithubIcon class="me-2 size-4" />
 		{/if}
 		GitHub
 	</Button>

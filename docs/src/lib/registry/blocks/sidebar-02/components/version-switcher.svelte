@@ -29,7 +29,7 @@
 							<span class="font-medium">Documentation</span>
 							<span class="">v{selectedVersion}</span>
 						</div>
-						<ChevronsUpDownIcon class="ml-auto" />
+						<ChevronsUpDownIcon class="ms-auto" />
 					</Sidebar.MenuButton>
 				{/snippet}
 			</DropdownMenu.Trigger>
@@ -38,7 +38,7 @@
 					<DropdownMenu.Item onSelect={() => (selectedVersion = version)}>
 						v{version}
 						{#if version === selectedVersion}
-							<CheckIcon class="ml-auto" />
+							<CheckIcon class="ms-auto" />
 						{/if}
 					</DropdownMenu.Item>
 				{/each}

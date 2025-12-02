@@ -2,3 +2,11 @@ packages:
     - "packages/*"
     - "docs"
     - "registry-template"
+
+catalog:
+    "@sveltejs/kit": ^2.42.0
+    "@sveltejs/vite-plugin-svelte": ^6.2.0
+    "svelte": ^5.39.6
+    "svelte-check": ^4.3.2
+    typescript: ^5.9.2
+    vite: ^7.1.5

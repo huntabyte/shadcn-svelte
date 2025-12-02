@@ -18,14 +18,14 @@
 			<Label for="time-from">Start Time</Label>
 			<div class="relative flex w-full items-center gap-2">
 				<Clock2Icon
-					class="text-muted-foreground pointer-events-none absolute left-2.5 size-4 select-none"
+					class="text-muted-foreground pointer-events-none absolute start-2.5 size-4 select-none"
 				/>
 				<Input
 					id="time-from"
 					type="time"
 					step="1"
 					value="10:30:00"
-					class="appearance-none pl-8 [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
+					class="appearance-none ps-8 [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
 				/>
 			</div>
 		</div>
@@ -33,14 +33,14 @@
 			<Label for="time-to">End Time</Label>
 			<div class="relative flex w-full items-center gap-2">
 				<Clock2Icon
-					class="text-muted-foreground pointer-events-none absolute left-2.5 size-4 select-none"
+					class="text-muted-foreground pointer-events-none absolute start-2.5 size-4 select-none"
 				/>
 				<Input
 					id="time-to"
 					type="time"
 					step="1"
 					value="12:30:00"
-					class="appearance-none pl-8 [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
+					class="appearance-none ps-8 [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
 				/>
 			</div>
 		</div>

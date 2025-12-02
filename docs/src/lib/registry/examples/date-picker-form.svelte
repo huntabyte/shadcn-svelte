@@ -58,18 +58,19 @@
 						{...props}
 						class={cn(
 							buttonVariants({ variant: "outline" }),
-							"w-[280px] justify-start pl-4 text-left font-normal",
+							"w-[280px] justify-start ps-4 text-start font-normal",
 							!value && "text-muted-foreground"
 						)}
 					>
 						{value ? df.format(value.toDate(getLocalTimeZone())) : "Pick a date"}
-						<CalendarIcon class="ml-auto size-4 opacity-50" />
+						<CalendarIcon class="ms-auto size-4 opacity-50" />
 					</Popover.Trigger>
 					<Popover.Content class="w-auto p-0" side="top">
 						<Calendar
 							type="single"
 							value={value as DateValue}
 							bind:placeholder
+							captionLayout="dropdown"
 							minValue={new CalendarDate(1900, 1, 1)}
 							maxValue={today(getLocalTimeZone())}
 							calendarLabel="Date of birth"

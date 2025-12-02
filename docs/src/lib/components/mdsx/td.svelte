@@ -7,7 +7,7 @@
 
 <td
 	class={cn(
-		"px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right",
+		"whitespace-nowrap px-4 py-2 text-start [&[align=center]]:text-center [&[align=right]]:text-end",
 		className
 	)}
 	{...restProps}

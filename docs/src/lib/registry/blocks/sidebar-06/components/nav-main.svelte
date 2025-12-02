@@ -34,7 +34,7 @@
 								{...props}
 							>
 								{item.title}
-								<EllipsisIcon class="ml-auto" />
+								<EllipsisIcon class="ms-auto" />
 							</Sidebar.MenuButton>
 						{/snippet}
 					</DropdownMenu.Trigger>
