@@ -47,27 +47,16 @@
 		"eslint-plugin-svelte": "^3.13.0",
 		"globals": "^16.5.0",
 		"minimatch": "^10.1.1",
-		"prettier": "^3.6.2",
+		"prettier": "~3.6.2",
 		"prettier-plugin-svelte": "^3.4.0",
 		"prettier-plugin-tailwindcss": "^0.7.2",
 		"pretty-quick": "^4.2.2",
 		"svelte": "catalog:",
-		"typescript": "^5.9.3",
+		"typescript": "5.9.2",
 		"typescript-eslint": "^8.48.0",
 		"wrangler": "^4.20.0"
 	},
 	"pnpm": {
-		"supportedArchitectures": {
-			"os": [
-				"darwin",
-				"linux",
-				"win32"
-			],
-			"cpu": [
-				"x64",
-				"arm64"
-			]
-		},
 		"onlyBuiltDependencies": [
 			"@tailwindcss/oxide",
 			"esbuild",
@@ -82,7 +71,8 @@
 			"tar@=7.5.1": ">=7.5.2",
 			"js-yaml@>=4.0.0 <4.1.1": ">=4.1.1",
 			"glob@>=10.2.0 <10.5.0": ">=10.5.0",
-			"valibot@>=0.31.0 <1.2.0": ">=1.2.0"
+			"valibot@>=0.31.0 <1.2.0": ">=1.2.0",
+			"mdast-util-to-hast@>=13.0.0 <13.2.1": ">=13.2.1"
 		}
 	}
 }
