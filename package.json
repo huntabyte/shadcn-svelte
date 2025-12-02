@@ -54,7 +54,7 @@
 		"svelte": "catalog:",
 		"typescript": "5.9.3",
 		"typescript-eslint": "^8.48.0",
-		"wrangler": "^4.20.0"
+		"wrangler": "^4.51.0"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [
