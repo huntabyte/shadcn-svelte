@@ -8,8 +8,8 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
+	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 
 	const users = [
 		{
@@ -128,22 +128,20 @@
 			}}
 			class="relative w-full"
 		>
-			<Input
-				id="message"
-				placeholder="Type your message..."
-				class="flex-1 pe-10"
-				autocomplete="off"
-				bind:value={input}
-			/>
-			<Button
-				type="submit"
-				size="icon"
-				disabled={inputLength === 0}
-				class="absolute end-2 top-1/2 size-6 -translate-y-1/2 rounded-full"
-			>
-				<ArrowUpIcon class="size-3.5" />
-				<span class="sr-only">Send</span>
-			</Button>
+			<InputGroup.Root>
+				<InputGroup.Input
+					id="message"
+					placeholder="Type your message..."
+					autocomplete="off"
+					bind:value={input}
+				/>
+				<InputGroup.Addon align="inline-end">
+					<InputGroup.Button type="submit" size="icon-xs" class="rounded-full">
+						<ArrowUpIcon />
+						<span class="sr-only">Send</span>
+					</InputGroup.Button>
+				</InputGroup.Addon>
+			</InputGroup.Root>
 		</form>
 	</Card.Footer>
 </Card.Root>
