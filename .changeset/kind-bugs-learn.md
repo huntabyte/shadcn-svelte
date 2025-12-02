@@ -2,4 +2,4 @@
 "shadcn-svelte": patch
 ---
 
-feat: add `--force` flag to bypass initialization preflight checks
+feat: add `--skip-preflight` flag to bypass initialization preflight checks
