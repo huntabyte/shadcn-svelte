@@ -35,7 +35,9 @@ export function checkPreconditions<Config extends cliConfig.RawConfig>({
 
 	if (!skipPreflight) throw result.error;
 
-	p.note(`${color.red(result.error.message)}\nContinuing with ${color.bold("--skip-preflight")}.`);
+	p.note(
+		`${color.red(result.error.message)}\nContinuing with ${color.bold("--skip-preflight")}.`
+	);
 
 	return result.config;
 }

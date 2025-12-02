@@ -90,7 +90,9 @@ describe("checkPreconditions", () => {
 
 		const config = (await getConfig(mockCwd))!;
 
-		expect(() => checkPreconditions({ cwd: mockCwd, config, skipPreflight: false })).not.toThrow();
+		expect(() =>
+			checkPreconditions({ cwd: mockCwd, config, skipPreflight: false })
+		).not.toThrow();
 	});
 
 	it("should update legacy config for Tailwind v3 + Svelte v5", async () => {
@@ -159,9 +161,9 @@ describe("checkPreconditions", () => {
 			});
 
 			const config = (await getConfig(mockCwd))!;
-			expect(() => checkPreconditions({ cwd: mockCwd, config, skipPreflight: false })).toThrow(
-				"requires Tailwind CSS (v3 or v4) and Svelte v5"
-			);
+			expect(() =>
+				checkPreconditions({ cwd: mockCwd, config, skipPreflight: false })
+			).toThrow("requires Tailwind CSS (v3 or v4) and Svelte v5");
 		}
 	});
 });

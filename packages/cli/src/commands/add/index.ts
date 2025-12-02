@@ -57,7 +57,11 @@ export const add = new Command()
 				);
 			}
 
-			const updatedConfig = checkPreconditions({ config, cwd, skipPreflight: options.skipPreflight });
+			const updatedConfig = checkPreconditions({
+				config,
+				cwd,
+				skipPreflight: options.skipPreflight,
+			});
 
 			await runAdd(cwd, updatedConfig, options);
 
