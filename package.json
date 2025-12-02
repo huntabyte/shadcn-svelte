@@ -52,7 +52,7 @@
 		"prettier-plugin-tailwindcss": "^0.7.2",
 		"pretty-quick": "^4.2.2",
 		"svelte": "catalog:",
-		"typescript": "5.9.2",
+		"typescript": "5.9.3",
 		"typescript-eslint": "^8.48.0",
 		"wrangler": "^4.20.0"
 	},
