@@ -22,7 +22,7 @@ const updateOptionsSchema = z.object({
 	cwd: z.string(),
 	proxy: z.string().optional(),
 	yes: z.boolean(),
-	force: z.boolean(),
+	skipPreflight: z.boolean(),
 });
 
 type UpdateOptions = z.infer<typeof updateOptionsSchema>;
@@ -32,7 +32,7 @@ export const update = new Command()
 	.description("update components in your project")
 	.argument("[components...]", "name of components")
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
-	.option("-f, --force", "ignore preflight checks and continue", false)
+	.option("--skip-preflight", "ignore preflight checks and continue", false)
 	.option("-a, --all", "update all existing components", false)
 	.option("-y, --yes", "skip confirmation prompt", false)
 	.option("--proxy <proxy>", "fetch components from registry using a proxy", getEnvProxy())
@@ -58,7 +58,7 @@ export const update = new Command()
 				);
 			}
 
-			const updatedConfig = checkPreconditions({ config, cwd, force: options.force });
+			const updatedConfig = checkPreconditions({ config, cwd, skipPreflight: options.skipPreflight });
 			await runUpdate(cwd, updatedConfig, options);
 
 			p.note(

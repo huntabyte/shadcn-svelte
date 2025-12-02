@@ -23,7 +23,7 @@ const addOptionsSchema = z.object({
 	cwd: z.string(),
 	deps: z.boolean(),
 	proxy: z.string().optional(),
-	force: z.boolean(),
+	skipPreflight: z.boolean(),
 });
 
 type AddOptions = z.infer<typeof addOptionsSchema>;
@@ -34,7 +34,7 @@ export const add = new Command()
 	.argument("[components...]", "the components to add or a url to the component")
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
 	.option("--no-deps", "skips adding & installing package dependencies")
-	.option("-f, --force", "ignore preflight checks and continue", false)
+	.option("--skip-preflight", "ignore preflight checks and continue", false)
 	.option("-a, --all", "install all components to your project", false)
 	.option("-y, --yes", "skip confirmation prompt", false)
 	.option("-o, --overwrite", "overwrite existing files", false)
@@ -57,7 +57,7 @@ export const add = new Command()
 				);
 			}
 
-			const updatedConfig = checkPreconditions({ config, cwd, force: options.force });
+			const updatedConfig = checkPreconditions({ config, cwd, skipPreflight: options.skipPreflight });
 
 			await runAdd(cwd, updatedConfig, options);
 

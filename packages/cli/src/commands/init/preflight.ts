@@ -16,7 +16,7 @@ import { getDependencyPackageInfo, getProjectPackageInfo } from "../../utils/get
  *
  * @param cwd - The current working directory.
  */
-export function preflightInit(cwd: string, options: { force: boolean }) {
+export function preflightInit(cwd: string, options: { skipPreflight: boolean }) {
 	const sveltePkg = getDependencyPackageInfo(cwd, "svelte")?.pkg;
 	const tailwindPkg = getDependencyPackageInfo(cwd, "tailwindcss")?.pkg;
 
@@ -29,10 +29,10 @@ export function preflightInit(cwd: string, options: { force: boolean }) {
 	const result = checkInitDependencies({ svelte, tailwindcss });
 	if (result.ok) return;
 
-	if (!options.force) throw result.error;
+	if (!options.skipPreflight) throw result.error;
 
 	p.note(
-		`${color.red(result.error.message)}\nContinuing initialization with ${color.bold("--force")}.`
+		`${color.red(result.error.message)}\nContinuing initialization with ${color.bold("--skip-preflight")}.`
 	);
 }
 

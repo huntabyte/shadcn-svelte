@@ -11,14 +11,14 @@ import { SITE_BASE_URL, TW3_SITE_BASE_URL } from "../constants.js";
 type PreconditionOptions<Config extends cliConfig.RawConfig> = {
 	cwd: string;
 	config: Config;
-	force: boolean;
+	skipPreflight: boolean;
 };
 
 /** Checks preconditions and updates the config if necessary. */
 export function checkPreconditions<Config extends cliConfig.RawConfig>({
 	cwd,
 	config,
-	force,
+	skipPreflight,
 }: PreconditionOptions<Config>): Config {
 	const sveltePkg = getDependencyPackageInfo(cwd, "svelte")?.pkg;
 	const tailwindPkg = getDependencyPackageInfo(cwd, "tailwindcss")?.pkg;
@@ -33,9 +33,9 @@ export function checkPreconditions<Config extends cliConfig.RawConfig>({
 	const result = checkDependencies({ svelte, tailwindcss }, cwd, config);
 	if (result.ok) return result.config;
 
-	if (!force) throw result.error;
+	if (!skipPreflight) throw result.error;
 
-	p.note(`${color.red(result.error.message)}\nContinuing with ${color.bold("--force")}.`);
+	p.note(`${color.red(result.error.message)}\nContinuing with ${color.bold("--skip-preflight")}.`);
 
 	return result.config;
 }

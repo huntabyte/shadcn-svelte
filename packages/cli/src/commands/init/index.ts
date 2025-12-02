@@ -36,7 +36,7 @@ const initOptionsSchema = z.object({
 	deps: z.boolean(),
 	overwrite: z.boolean(),
 	proxy: z.string().optional(),
-	force: z.boolean(),
+	skipPreflight: z.boolean(),
 });
 
 type InitOptions = z.infer<typeof initOptionsSchema>;
@@ -47,7 +47,7 @@ export const init = new Command()
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
 	.option("-o, --overwrite", "overwrite existing files", false)
 	.option("--no-deps", "disable adding & installing dependencies")
-	.option("-f, --force", "ignore preflight checks and continue", false)
+	.option("--skip-preflight", "ignore preflight checks and continue", false)
 	.addOption(
 		new Option("--base-color <name>", "the base color for the components").choices(
 			baseColors.map((color) => color.name)
@@ -71,14 +71,14 @@ export const init = new Command()
 				throw error(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
 			}
 
-			preflightInit(cwd, { force: options.force });
+			preflightInit(cwd, { skipPreflight: options.skipPreflight });
 
 			let existingConfig = cliConfig.loadConfig(cwd);
 			if (existingConfig) {
 				existingConfig = checkPreconditions({
 					cwd,
 					config: existingConfig,
-					force: options.force,
+					skipPreflight: options.skipPreflight,
 				});
 			}
 
