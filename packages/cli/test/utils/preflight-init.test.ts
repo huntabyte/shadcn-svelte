@@ -27,7 +27,7 @@ describe("preflightInit", () => {
 			devDependencies: {},
 		});
 
-		expect(() => preflightInit("/test")).toThrow(
+		expect(() => preflightInit("/test", { skipPreflight: false })).toThrow(
 			`Initializing a project with Tailwind v3 is not supported.\n\n` +
 				`This CLI version requires Tailwind v4 and Svelte v5 for the ` +
 				`${highlight("init")} command.\n\n` +
@@ -49,7 +49,7 @@ describe("preflightInit", () => {
 			devDependencies: {},
 		});
 
-		expect(() => preflightInit("/test")).toThrow(
+		expect(() => preflightInit("/test", { skipPreflight: false })).toThrow(
 			`Initializing a project with Tailwind v3 and Svelte v4 is not supported.\n\n` +
 				`This CLI version requires Tailwind v4 and Svelte v5 for the ` +
 				`${highlight("init")} command.\n\n` +
@@ -66,7 +66,7 @@ describe("preflightInit", () => {
 			devDependencies: {},
 		});
 
-		expect(() => preflightInit("/test")).toThrow(
+		expect(() => preflightInit("/test", { skipPreflight: false })).toThrow(
 			`This CLI version requires Tailwind CSS v4 and Svelte v5 to initialize a project.\n`
 		);
 	});
@@ -80,7 +80,7 @@ describe("preflightInit", () => {
 			devDependencies: {},
 		});
 
-		expect(() => preflightInit("/test")).not.toThrow();
+		expect(() => preflightInit("/test", { skipPreflight: false })).not.toThrow();
 	});
 
 	it("should check both dependencies and devDependencies", () => {
@@ -93,7 +93,7 @@ describe("preflightInit", () => {
 			},
 		});
 
-		expect(() => preflightInit("/test")).not.toThrow();
+		expect(() => preflightInit("/test", { skipPreflight: false })).not.toThrow();
 	});
 
 	it("should handle missing dependencies", () => {
@@ -102,8 +102,17 @@ describe("preflightInit", () => {
 			devDependencies: {},
 		});
 
-		expect(() => preflightInit("/test")).toThrow(
+		expect(() => preflightInit("/test", { skipPreflight: false })).toThrow(
 			`This CLI version requires Tailwind CSS v4 and Svelte v5 to initialize a project.\n`
 		);
+	});
+
+	it("should continue with skip-preflight flag", () => {
+		vi.mocked(getProjectPackageInfo).mockReturnValue({
+			dependencies: {},
+			devDependencies: {},
+		});
+
+		expect(() => preflightInit("/test", { skipPreflight: true })).not.toThrow();
 	});
 });
