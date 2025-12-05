@@ -103,11 +103,19 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/alert-dialog/alert-dialog-portal.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/alert-dialog/alert-dialog-title.svelte"
 				},
 				{
 					"type": "registry:file",
 					"path": "src/lib/registry/ui/alert-dialog/alert-dialog-trigger.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/alert-dialog/alert-dialog.svelte"
 				},
 				{
 					"type": "registry:file",
@@ -502,6 +510,10 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/command/command-loading.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/command/command-separator.svelte"
 				},
 				{
@@ -549,6 +561,10 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/context-menu/context-menu-portal.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/context-menu/context-menu-radio-group.svelte"
 				},
 				{
@@ -573,7 +589,15 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/context-menu/context-menu-sub.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/context-menu/context-menu-trigger.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/context-menu/context-menu.svelte"
 				},
 				{
 					"type": "registry:file",
@@ -635,11 +659,19 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/dialog/dialog-portal.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/dialog/dialog-title.svelte"
 				},
 				{
 					"type": "registry:file",
 					"path": "src/lib/registry/ui/dialog/dialog-trigger.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/dialog/dialog.svelte"
 				},
 				{
 					"type": "registry:file",
@@ -679,6 +711,10 @@
 				{
 					"type": "registry:file",
 					"path": "src/lib/registry/ui/drawer/drawer-overlay.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/drawer/drawer-portal.svelte"
 				},
 				{
 					"type": "registry:file",
@@ -733,6 +769,10 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/dropdown-menu/dropdown-menu-portal.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/dropdown-menu/dropdown-menu-radio-group.svelte"
 				},
 				{
@@ -757,7 +797,15 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/dropdown-menu/dropdown-menu-sub.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/dropdown-menu/dropdown-menu-trigger.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/dropdown-menu/dropdown-menu.svelte"
 				},
 				{
 					"type": "registry:file",
@@ -905,7 +953,15 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/hover-card/hover-card-portal.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/hover-card/hover-card-trigger.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/hover-card/hover-card.svelte"
 				},
 				{
 					"type": "registry:file",
@@ -1110,6 +1166,18 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/menubar/menubar-menu.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/menubar/menubar-portal.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/menubar/menubar-radio-group.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/menubar/menubar-radio-item.svelte"
 				},
 				{
@@ -1127,6 +1195,10 @@
 				{
 					"type": "registry:file",
 					"path": "src/lib/registry/ui/menubar/menubar-sub-trigger.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/menubar/menubar-sub.svelte"
 				},
 				{
 					"type": "registry:file",
@@ -1254,11 +1326,23 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/popover/popover-close.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/popover/popover-content.svelte"
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/popover/popover-portal.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/popover/popover-trigger.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/popover/popover.svelte"
 				}
 			]
 		},
@@ -1316,6 +1400,14 @@
 				{
 					"type": "registry:file",
 					"path": "src/lib/registry/ui/range-calendar/range-calendar-day.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/range-calendar/range-calendar-grid-body.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/range-calendar/range-calendar-grid-head.svelte"
 				},
 				{
 					"type": "registry:file",
@@ -1440,6 +1532,10 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/select/select-portal.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/select/select-scroll-down-button.svelte"
 				},
 				{
@@ -1453,6 +1549,10 @@
 				{
 					"type": "registry:file",
 					"path": "src/lib/registry/ui/select/select-trigger.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/select/select.svelte"
 				}
 			]
 		},
@@ -1506,11 +1606,19 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/sheet/sheet-portal.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/sheet/sheet-title.svelte"
 				},
 				{
 					"type": "registry:file",
 					"path": "src/lib/registry/ui/sheet/sheet-trigger.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/sheet/sheet.svelte"
 				}
 			]
 		},
@@ -1842,7 +1950,19 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/tooltip/tooltip-portal.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/tooltip/tooltip-provider.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/tooltip/tooltip-trigger.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/tooltip/tooltip.svelte"
 				}
 			]
 		},
