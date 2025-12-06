@@ -7,6 +7,10 @@
 	import CircleIcon from "@lucide/svelte/icons/circle";
 	import CircleCheckIcon from "@lucide/svelte/icons/circle-check";
 
+	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
+
+	const isMobile = new IsMobile();
+
 	const components: { title: string; href: string; description: string }[] = [
 		{
 			title: "Alert Dialog",
@@ -58,12 +62,12 @@
 				<a
 					{href}
 					class={cn(
-						"hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors",
+						"hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none",
 						className
 					)}
 					{...restProps}
 				>
-					<div class="text-sm font-medium leading-none">{title}</div>
+					<div class="text-sm leading-none font-medium">{title}</div>
 					<p class="text-muted-foreground line-clamp-2 text-sm leading-snug">
 						{content}
 					</p>
@@ -73,19 +77,19 @@
 	</li>
 {/snippet}
 
-<NavigationMenu.Root viewport={false}>
-	<NavigationMenu.List>
+<NavigationMenu.Root viewport={isMobile.current}>
+	<NavigationMenu.List class="flex-wrap">
 		<NavigationMenu.Item>
 			<NavigationMenu.Trigger>Home</NavigationMenu.Trigger>
 			<NavigationMenu.Content>
 				<ul class="grid gap-2 p-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
 					<li class="row-span-3">
 						<NavigationMenu.Link
-							class="from-muted/50 to-muted bg-linear-to-b outline-hidden flex h-full w-full select-none flex-col justify-end rounded-md p-6 no-underline focus:shadow-md"
+							class="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-4 no-underline outline-hidden select-none focus:shadow-md md:p-6"
 						>
 							{#snippet child({ props })}
 								<a {...props} href="/">
-									<div class="mb-2 mt-4 text-lg font-medium">shadcn-svelte</div>
+									<div class="mt-4 mb-2 text-lg font-medium">shadcn-svelte</div>
 									<p class="text-muted-foreground text-sm leading-tight">
 										Beautifully designed components built with Tailwind CSS.
 									</p>
@@ -114,7 +118,9 @@
 		<NavigationMenu.Item>
 			<NavigationMenu.Trigger>Components</NavigationMenu.Trigger>
 			<NavigationMenu.Content>
-				<ul class="grid w-[400px] gap-2 p-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+				<ul
+					class="grid w-[300px] gap-2 p-2 sm:w-[400px] md:w-[500px] md:grid-cols-2 lg:w-[600px]"
+				>
 					{#each components as component, i (i)}
 						{@render ListItem({
 							href: component.href,
@@ -133,7 +139,7 @@
 				{/snippet}
 			</NavigationMenu.Link>
 		</NavigationMenu.Item>
-		<NavigationMenu.Item>
+		<NavigationMenu.Item class="hidden md:block">
 			<NavigationMenu.Trigger>List</NavigationMenu.Trigger>
 			<NavigationMenu.Content>
 				<ul class="grid w-[300px] gap-4 p-2">
@@ -156,7 +162,7 @@
 				</ul>
 			</NavigationMenu.Content>
 		</NavigationMenu.Item>
-		<NavigationMenu.Item>
+		<NavigationMenu.Item class="hidden md:block">
 			<NavigationMenu.Trigger>Simple</NavigationMenu.Trigger>
 			<NavigationMenu.Content>
 				<ul class="grid w-[200px] gap-4 p-2">
@@ -168,7 +174,7 @@
 				</ul>
 			</NavigationMenu.Content>
 		</NavigationMenu.Item>
-		<NavigationMenu.Item>
+		<NavigationMenu.Item class="hidden md:block">
 			<NavigationMenu.Trigger>With Icon</NavigationMenu.Trigger>
 
 			<NavigationMenu.Content>

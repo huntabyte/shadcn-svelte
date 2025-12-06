@@ -19,7 +19,7 @@
 		<DropdownMenu.Group>
 			<DropdownMenu.Label class="font-normal">
 				<div class="flex flex-col space-y-1">
-					<p class="text-sm font-medium leading-none">shadcn</p>
+					<p class="text-sm leading-none font-medium">shadcn</p>
 					<p class="text-muted-foreground text-xs leading-none">m@example.com</p>
 				</div>
 			</DropdownMenu.Label>

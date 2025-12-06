@@ -13,6 +13,8 @@ links:
 	import Steps from "$lib/components/steps.svelte";
 	import Step from "$lib/components/step.svelte";
 	import InstallTabs from "$lib/components/install-tabs.svelte";
+	import ComponentSource from "$lib/components/component-source.svelte";
+	let { viewerData } = $props();
 	import DocsFigure from "$lib/components/docs-figure.svelte";
 	import Callout from "$lib/components/callout.svelte";
 </script>
@@ -81,9 +83,12 @@ We'll go over the colors later in the [theming section](/docs/components/sidebar
 
 <Step>
 
-Copy and paste the component source files linked at the top of this page into your project.
+Copy and paste the following code into your project.
 
 </Step>
+{#if viewerData}
+	<ComponentSource item={viewerData} data-llm-ignore/>
+{/if}
 
 <Step>Add the following colors to your CSS file</Step>
 

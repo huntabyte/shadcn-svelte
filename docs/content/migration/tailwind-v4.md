@@ -118,7 +118,7 @@ The codemod will update your `app.css` file to look something like this, where i
 ```css showLineNumbers
 @import "tailwindcss";
 
-@config '../tailwind.config.ts';
+@config "../tailwind.config.ts";
 
 /*
   The default border color has changed to `currentcolor` in Tailwind CSS v4,

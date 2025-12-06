@@ -37,7 +37,7 @@
 							<Field.Label for={option.value} class="!w-fit">
 								<Field.Field
 									orientation="horizontal"
-									class="group-has-data-[state=checked]/field-label:!px-2 gap-1.5 overflow-hidden !px-3 !py-1.5 transition-all duration-100 ease-linear"
+									class="gap-1.5 overflow-hidden !px-3 !py-1.5 transition-all duration-100 ease-linear group-has-data-[state=checked]/field-label:!px-2"
 								>
 									<Checkbox
 										value={option.value}

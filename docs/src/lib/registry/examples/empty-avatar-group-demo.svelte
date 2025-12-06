@@ -5,7 +5,7 @@
 	import PlusIcon from "@lucide/svelte/icons/plus";
 </script>
 
-<Empty.Root>
+<Empty.Root class="flex-none border">
 	<Empty.Header>
 		<Empty.Media>
 			<div class="*:ring-background flex -space-x-2 *:size-12 *:ring-2 *:grayscale">

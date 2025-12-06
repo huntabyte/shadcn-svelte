@@ -75,10 +75,10 @@
 </script>
 
 <Card.Root class="@container/card w-full max-w-xl">
-	<Card.Header class="@md/card:grid flex flex-col border-b">
+	<Card.Header class="flex flex-col border-b @md/card:grid">
 		<Card.Title>Web Analytics</Card.Title>
 		<Card.Description>Showing total visitors for this month.</Card.Description>
-		<Card.Action class="@md/card:mt-0 mt-2">
+		<Card.Action class="mt-2 @md/card:mt-0">
 			<Popover.Root>
 				<Popover.Trigger>
 					{#snippet child({ props })}

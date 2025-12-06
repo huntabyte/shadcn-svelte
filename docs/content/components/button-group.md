@@ -8,10 +8,13 @@ links:
 
 <script>
 	import ComponentPreview from "$lib/components/component-preview.svelte";
+	import ComponentSource from "$lib/components/component-source.svelte";
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
 	import PMInstall from "$lib/components/pm-install.svelte";
 	import Steps from "$lib/components/steps.svelte";
 	import InstallTabs from "$lib/components/install-tabs.svelte";
+
+	let { viewerData } = $props();
 	import Step from "$lib/components/step.svelte";
 </script>
 
@@ -32,9 +35,12 @@ links:
 
 <Step>
 
-Copy and paste the component source files linked at the top of this page into your project.
+Copy and paste the following code into your project.
 
 </Step>
+{#if viewerData}
+	<ComponentSource item={viewerData} data-llm-ignore/>
+{/if}
 
 </Steps>
 {/snippet}
@@ -46,7 +52,9 @@ Copy and paste the component source files linked at the top of this page into yo
 <script lang="ts">
   import * as ButtonGroup from "$lib/components/ui/button-group/index.js";
 </script>
+```
 
+```svelte
 <ButtonGroup.Root>
   <Button>Button 1</Button>
   <Button>Button 2</Button>
@@ -59,7 +67,7 @@ Copy and paste the component source files linked at the top of this page into yo
 - Use `tabindex` to navigate between the buttons in the group.
 - Use `aria-label` or `aria-labelledby` to label the button group.
 
-```svelte
+```svelte showLineNumbers
 <ButtonGroup aria-label="Button group">
   <Button>Button 1</Button>
   <Button>Button 2</Button>

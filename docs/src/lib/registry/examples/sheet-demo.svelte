@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Sheet from "$lib/registry/ui/sheet/index.js";
 	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
@@ -25,7 +26,8 @@
 			</div>
 		</div>
 		<Sheet.Footer>
-			<Sheet.Close class={buttonVariants({ variant: "outline" })}>Save changes</Sheet.Close>
+			<Button type="submit">Save changes</Button>
+			<Sheet.Close class={buttonVariants({ variant: "outline" })}>Close</Sheet.Close>
 		</Sheet.Footer>
 	</Sheet.Content>
 </Sheet.Root>

@@ -3,7 +3,7 @@
 	import { Input } from "$lib/registry/ui/input/index.js";
 </script>
 
-<form class="flex w-full max-w-sm items-center space-x-2">
-	<Input type="email" placeholder="email" />
-	<Button type="submit">Subscribe</Button>
-</form>
+<div class="flex w-full max-w-sm items-center gap-2">
+	<Input type="email" placeholder="Email" />
+	<Button type="submit" variant="outline">Subscribe</Button>
+</div>

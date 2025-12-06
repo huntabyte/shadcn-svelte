@@ -8,10 +8,13 @@ links:
 
 <script>
 	import ComponentPreview from "$lib/components/component-preview.svelte";
+	import ComponentSource from "$lib/components/component-source.svelte";
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
 	import PMInstall from "$lib/components/pm-install.svelte";
 	import Steps from "$lib/components/steps.svelte";
 	import InstallTabs from "$lib/components/install-tabs.svelte";
+
+	let { viewerData } = $props();
 	import Step from "$lib/components/step.svelte";
 </script>
 
@@ -32,9 +35,12 @@ links:
 
 <Step>
 
-Copy and paste the component source files linked at the top of this page into your project.
+Copy and paste the following code into your project.
 
 </Step>
+{#if viewerData}
+	<ComponentSource item={viewerData} data-llm-ignore/>
+{/if}
 
 </Steps>
 {/snippet}
@@ -46,7 +52,9 @@ Copy and paste the component source files linked at the top of this page into yo
 <script lang="ts">
   import * as Kbd from "$lib/components/ui/kbd/index.js";
 </script>
+```
 
+```svelte
 <Kbd.Root>B</Kbd.Root>
 ```
 

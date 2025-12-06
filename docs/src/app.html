@@ -17,7 +17,7 @@
 			const userConfigCookie = cookieMap[USER_CONFIG_COOKIE_NAME];
 			if (userConfigCookie) {
 				try {
-					const userConfig = JSON.parse(userConfigCookie);
+					const userConfig = JSON.parse(decodeURIComponent(userConfigCookie));
 					if (userConfig.activeTheme) {
 						document.documentElement.classList.add(`theme-${userConfig.activeTheme}`);
 						document.documentElement.setAttribute("data-theme", userConfig.activeTheme);

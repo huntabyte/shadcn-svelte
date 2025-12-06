@@ -10,12 +10,15 @@ links:
 
 <script>
 	import ComponentPreview from "$lib/components/component-preview.svelte";
+	import ComponentSource from "$lib/components/component-source.svelte";
 	import Callout from "$lib/components/callout.svelte";
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
 	import PMInstall from "$lib/components/pm-install.svelte";
 	import Steps from "$lib/components/steps.svelte";
 	import Step from "$lib/components/step.svelte";
 	import InstallTabs from "$lib/components/install-tabs.svelte";
+
+	let { viewerData } = $props();
 </script>
 
 <ComponentPreview name="calendar-demo">
@@ -29,12 +32,6 @@ links:
 We have built a collection of 30+ calendar blocks that you can use to build your own calendar components.
 
 See call calendar blocks in the [Blocks Library](/blocks/calendar) page.
-
-## About
-
-The `<Calendar />` component is built on top of the [Bits UI Calendar](https://www.bits-ui.com/docs/components/calendar) component, which uses the [@internationalized/date](https://react-spectrum.adobe.com/internationalized/date/index.html) package to handle dates.
-
-If you're looking for a range calendar, check out the [Range Calendar](/docs/components/range-calendar) component.
 
 ## Installation
 
@@ -55,13 +52,22 @@ Install `bits-ui` and `@internationalized/date`:
 
 <Step>
 
-Copy and paste the component source files linked at the top of this page into your project.
+Copy and paste the following code into your project.
 
 </Step>
+{#if viewerData}
+	<ComponentSource item={viewerData} data-llm-ignore/>
+{/if}
 
 </Steps>
 {/snippet}
 </InstallTabs>
+
+## About
+
+The `<Calendar />` component is built on top of the [Bits UI Calendar](https://www.bits-ui.com/docs/components/calendar) component, which uses the [@internationalized/date](https://react-spectrum.adobe.com/internationalized/date/index.html) package to handle dates.
+
+If you're looking for a range calendar, check out the [Range Calendar](/docs/components/range-calendar) component.
 
 ## Date Picker
 

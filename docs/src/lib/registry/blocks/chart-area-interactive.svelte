@@ -1,5 +1,4 @@
 <script lang="ts">
-	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
@@ -147,7 +146,7 @@
 			<Card.Description>Showing total visitors for the last 3 months</Card.Description>
 		</div>
 		<Select.Root type="single" bind:value={timeRange}>
-			<Select.Trigger class="w-[160px] rounded-lg sm:ms-auto" aria-label="Select a value">
+			<Select.Trigger class="w-40 rounded-lg sm:ms-auto" aria-label="Select a value">
 				{selectedLabel}
 			</Select.Trigger>
 			<Select.Content class="rounded-xl">
@@ -158,7 +157,7 @@
 		</Select.Root>
 	</Card.Header>
 	<Card.Content>
-		<ChartContainer config={chartConfig} class="aspect-auto h-[250px] w-full">
+		<ChartContainer config={chartConfig} class="-ml-3 aspect-auto h-[250px] w-full">
 			<AreaChart
 				legend
 				data={filteredData}
@@ -249,16 +248,4 @@
 			</AreaChart>
 		</ChartContainer>
 	</Card.Content>
-	<Card.Footer>
-		<div class="flex w-full items-start gap-2 text-sm">
-			<div class="grid gap-2">
-				<div class="flex items-center gap-2 font-medium leading-none">
-					Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
-				</div>
-				<div class="text-muted-foreground flex items-center gap-2 leading-none">
-					January - June 2024
-				</div>
-			</div>
-		</div>
-	</Card.Footer>
 </Card.Root>

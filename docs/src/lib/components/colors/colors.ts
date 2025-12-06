@@ -1,9 +1,11 @@
 import { z } from "zod/v4";
 
 import { colorMapping, colors, type BaseColor } from "../../registry/registry-colors.js";
-import template from "lodash.template";
+import lodash from "lodash";
 import { BASE_STYLES, BASE_STYLES_WITH_VARIABLES } from "../../registry/templates.js";
 import { baseColorsV4 } from "../../registry/registry-base-colors.js";
+
+const template = lodash.template as unknown as (s: string) => (data: unknown) => string;
 
 const colorSchema = z.object({
 	name: z.string(),

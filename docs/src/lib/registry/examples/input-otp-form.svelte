@@ -33,6 +33,7 @@
 	<Form.Field {form} name="pin">
 		<Form.Control>
 			{#snippet children({ props })}
+				<Form.Label>One-Time Password</Form.Label>
 				<InputOTP.Root maxlength={6} {...props} bind:value={$formData.pin}>
 					{#snippet children({ cells })}
 						<InputOTP.Group>

@@ -1,37 +1,55 @@
 <script lang="ts">
-	import CheckIcon from "@lucide/svelte/icons/check";
 	import MinusIcon from "@lucide/svelte/icons/minus";
 	import PlusIcon from "@lucide/svelte/icons/plus";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as ButtonGroup from "$lib/registry/ui/button-group/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
 	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
 	import { Switch } from "$lib/registry/ui/switch/index.js";
-	import { UserConfigContext } from "$lib/user-config.svelte.js";
-	import { setTheme } from "mode-watcher";
 
-	const userConfig = UserConfigContext.get();
+	let gpuCount = $state(8);
 
-	const accents = [
-		{
-			name: "Blue",
-			value: "blue",
-		},
-		{
-			name: "Amber",
-			value: "amber",
-		},
-		{
-			name: "Green",
-			value: "green",
-		},
-		{
-			name: "Rose",
-			value: "rose",
-		},
-	];
+	function handleGpuCountChange(event: Event) {
+		const target = event.target as HTMLInputElement;
+		let inputValue = target.value;
+		const previousValue = gpuCount.toString();
+
+		// Remove any non-numeric characters
+		let cleanedValue = inputValue.replace(/[^0-9]/g, "");
+
+		// Prevent deletion of a single digit
+		if (cleanedValue === "" && previousValue.length === 1) {
+			target.value = previousValue;
+			return;
+		}
+
+		// Handle input cases
+		if (cleanedValue !== "") {
+			const numValue = parseInt(cleanedValue, 10);
+
+			// If we already have 2 digits and user is trying to type more, keep the original value
+			if (
+				previousValue.length === 2 &&
+				cleanedValue !== previousValue &&
+				cleanedValue.length === 3
+			) {
+				target.value = previousValue;
+				return;
+			}
+
+			// Ensure value is within valid range (1-99)
+			if (numValue < 1) {
+				cleanedValue = "1";
+			} else if (numValue > 99) {
+				cleanedValue = "99";
+			}
+
+			// Update both the input value and the state
+			target.value = cleanedValue;
+			gpuCount = parseInt(cleanedValue, 10);
+		}
+	}
 </script>
 
 <Field.Set>
@@ -71,58 +89,39 @@
 		<Field.Separator />
 		<Field.Field orientation="horizontal">
 			<Field.Content>
-				<Field.Title>Accent</Field.Title>
-				<Field.Description>Select the accent color.</Field.Description>
-			</Field.Content>
-			<Field.Set aria-label="Accent">
-				<RadioGroup.Root
-					class="flex flex-wrap gap-2"
-					bind:value={
-						() => userConfig.current.activeTheme,
-						(v) => {
-							userConfig.setConfig({ activeTheme: v ?? "default" });
-							setTheme(v ?? "default");
-						}
-					}
-				>
-					{#each accents as accent (accent.value)}
-						<Label
-							for={accent.value}
-							data-theme={accent.value}
-							class="flex size-6 items-center justify-center rounded-full data-[theme=amber]:bg-amber-600 data-[theme=blue]:bg-blue-700 data-[theme=green]:bg-green-600 data-[theme=rose]:bg-rose-600"
-						>
-							<RadioGroup.Item
-								id={accent.value}
-								value={accent.value}
-								aria-label={accent.name}
-								class="peer sr-only"
-							/>
-							<CheckIcon
-								class="hidden size-4 stroke-white peer-data-[state=checked]:block"
-							/>
-						</Label>
-					{/each}
-				</RadioGroup.Root>
-			</Field.Set>
-		</Field.Field>
-		<Field.Separator />
-		<Field.Field orientation="horizontal">
-			<Field.Content>
 				<Field.Label for="number-of-gpus-f6l">Number of GPUs</Field.Label>
 				<Field.Description>You can add more later.</Field.Description>
 			</Field.Content>
 			<ButtonGroup.Root>
 				<Input
 					id="number-of-gpus-f6l"
-					placeholder="8"
+					bind:value={gpuCount}
 					size={3}
 					class="h-8 !w-14 font-mono"
 					maxlength={3}
+					oninput={handleGpuCountChange}
+					type="text"
+					inputmode="numeric"
+					pattern="[0-9]*"
 				/>
-				<Button variant="outline" size="icon-sm" type="button" aria-label="Decrement">
+				<Button
+					onclick={() => gpuCount--}
+					variant="outline"
+					size="icon-sm"
+					type="button"
+					aria-label="Decrement"
+					disabled={gpuCount <= 1}
+				>
 					<MinusIcon />
 				</Button>
-				<Button variant="outline" size="icon-sm" type="button" aria-label="Increment">
+				<Button
+					onclick={() => gpuCount++}
+					variant="outline"
+					size="icon-sm"
+					type="button"
+					aria-label="Increment"
+					disabled={gpuCount >= 99}
+				>
 					<PlusIcon />
 				</Button>
 			</ButtonGroup.Root>
