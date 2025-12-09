@@ -58,20 +58,44 @@ Copy and paste the following code into your project.
 
 ## Usage
 
-```svelte showLineNumbers
+The `Tooltip.Provider` component should be placed once in your root layout, wrapping all content that will contain tooltips. This ensures that only one tooltip within the provider can be open at a time.
+
+```svelte title="src/routes/+layout.svelte" showLineNumbers
 <script lang="ts">
   import * as Tooltip from "$lib/components/ui/tooltip/index.js";
+
+  let { children } = $props();
 </script>
 ```
 
 ```svelte showLineNumbers
 <Tooltip.Provider>
-  <Tooltip.Root>
-    <Tooltip.Trigger>Hover</Tooltip.Trigger>
-    <Tooltip.Content>
-      <p>Add to library</p>
-    </Tooltip.Content>
-  </Tooltip.Root>
+  {@render children()}
+</Tooltip.Provider>
+```
+
+Then use tooltips anywhere in your app:
+
+```svelte
+<script lang="ts">
+  import * as Tooltip from "$lib/components/ui/tooltip/index.js";
+</script>
+
+<Tooltip.Root>
+  <Tooltip.Trigger>Hover</Tooltip.Trigger>
+  <Tooltip.Content>
+    <p>Add to library</p>
+  </Tooltip.Content>
+</Tooltip.Root>
+```
+
+### Nested Providers
+
+You can nest providers to create groups with different settings. Tooltips use the closest ancestor provider. This is useful when you want instant tooltips in specific areas:
+
+```svelte
+<Tooltip.Provider delayDuration={0}>
+  <!-- Tooltips here will open instantly -->
 </Tooltip.Provider>
 ```
 

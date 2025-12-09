@@ -1,5 +1,17 @@
 # shadcn-svelte
 
+## 1.1.0
+
+### Minor Changes
+
+- feat: add `--skip-preflight` flag to bypass initialization preflight checks ([#2437](https://github.com/huntabyte/shadcn-svelte/pull/2437))
+
+- feat: add `--no-deps` flag to `update` command ([#2436](https://github.com/huntabyte/shadcn-svelte/pull/2436))
+
+### Patch Changes
+
+- fix: Fix an issue where dev dependencies were not shown in `--no-deps` prompt ([#2436](https://github.com/huntabyte/shadcn-svelte/pull/2436))
+
 ## 1.0.12
 
 ### Patch Changes

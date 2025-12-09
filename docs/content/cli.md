@@ -38,7 +38,9 @@ Options:
   -c, --cwd <path>           the working directory (default: the current directory)
   -o, --overwrite            overwrite existing files (default: false)
   --no-deps                  disable adding & installing dependencies
-  --base-color <name>        the base color for the components (choices: "slate", "gray", "zinc", "neutral", "stone")
+  --skip-preflight           ignore preflight checks and continue (default: false)
+  --base-color <name>        the base color for the components (choices: "slate", "gray", "zinc",
+                             "neutral", "stone")
   --css <path>               path to the global CSS file
   --components-alias <path>  import alias for components
   --lib-alias <path>         import alias for lib
@@ -69,12 +71,13 @@ Arguments:
 
 Options:
   -c, --cwd <path>   the working directory (default: the current directory)
-  --no-deps          skips adding & installing package dependencies
-  -a, --all          install all components to your project (default: false)
-  -y, --yes          skip confirmation prompt (default: false)
-  -o, --overwrite    overwrite existing files (default: false)
-  --proxy <proxy>    fetch components from registry using a proxy
-  -h, --help         display help for command
+  --no-deps         skips adding & installing package dependencies
+  --skip-preflight  ignore preflight checks and continue (default: false)
+  -a, --all         install all components to your project (default: false)
+  -y, --yes         skip confirmation prompt (default: false)
+  -o, --overwrite   overwrite existing files (default: false)
+  --proxy <proxy>   fetch components from registry using a proxy
+  -h, --help        display help for command
 ```
 
 ---
