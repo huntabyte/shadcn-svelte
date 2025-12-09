@@ -110,7 +110,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 			item.devDependencies?.forEach((dep) => devDependencies.add(dep));
 		} else {
 			item.dependencies?.forEach((dep) => skippedDeps.add(dep));
-			item.devDependencies?.forEach((dep) => devDependencies.add(dep));
+			item.devDependencies?.forEach((dep) => skippedDeps.add(dep));
 		}
 
 		tasks.push({
