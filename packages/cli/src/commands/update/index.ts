@@ -22,6 +22,7 @@ const updateOptionsSchema = z.object({
 	cwd: z.string(),
 	proxy: z.string().optional(),
 	yes: z.boolean(),
+	skipPreflight: z.boolean(),
 	deps: z.boolean(),
 });
 
@@ -32,6 +33,7 @@ export const update = new Command()
 	.description("update components in your project")
 	.argument("[components...]", "name of components")
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
+	.option("--skip-preflight", "ignore preflight checks and continue", false)
 	.option("--no-deps", "skips adding & installing package dependencies")
 	.option("-a, --all", "update all existing components", false)
 	.option("-y, --yes", "skip confirmation prompt", false)
@@ -58,7 +60,11 @@ export const update = new Command()
 				);
 			}
 
-			const updatedConfig = checkPreconditions({ config, cwd });
+			const updatedConfig = checkPreconditions({
+				config,
+				cwd,
+				skipPreflight: options.skipPreflight,
+			});
 			await runUpdate(cwd, updatedConfig, options);
 
 			p.outro(`${color.green("Success!")} Component update completed.`);
