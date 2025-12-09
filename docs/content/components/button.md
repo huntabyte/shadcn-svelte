@@ -160,6 +160,8 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 ### Loading
 
+Use the [Spinner](/docs/components/spinner) component to indicate a loading state.
+
 <ComponentPreview name="button-loading">
 
 <div></div>
