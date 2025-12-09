@@ -44,7 +44,7 @@ export const userConfigSchema = z
 		layout: "full",
 		installationType: "cli",
 		packageManager: "npm",
-		colorFormat: "oklch",
+		colorFormat: "hsl",
 		activeTheme: "default",
 	});
 

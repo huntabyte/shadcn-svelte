@@ -29,7 +29,7 @@
 		"pnpm": ">=9",
 		"node": ">=20"
 	},
-	"packageManager": "pnpm@10.24.0",
+	"packageManager": "pnpm@10.25.0",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/huntabyte/shadcn-svelte.git"
@@ -41,10 +41,10 @@
 		"@eslint/compat": "^2.0.0",
 		"@eslint/js": "^9.39.1",
 		"@svitejs/changesets-changelog-github-compact": "^1.2.0",
-		"@types/node": "^24.10.1",
+		"@types/node": "^24.10.2",
 		"eslint": "^9.39.1",
 		"eslint-config-prettier": "^10.1.8",
-		"eslint-plugin-svelte": "^3.13.0",
+		"eslint-plugin-svelte": "^3.13.1",
 		"globals": "^16.5.0",
 		"minimatch": "^10.1.1",
 		"prettier": "~3.6.2",
@@ -53,8 +53,8 @@
 		"pretty-quick": "^4.2.2",
 		"svelte": "catalog:",
 		"typescript": "5.9.3",
-		"typescript-eslint": "^8.48.1",
-		"wrangler": "^4.51.0"
+		"typescript-eslint": "^8.49.0",
+		"wrangler": "^4.53.0"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [
