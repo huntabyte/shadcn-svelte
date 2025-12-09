@@ -23,6 +23,7 @@ const updateOptionsSchema = z.object({
 	proxy: z.string().optional(),
 	yes: z.boolean(),
 	skipPreflight: z.boolean(),
+	deps: z.boolean(),
 });
 
 type UpdateOptions = z.infer<typeof updateOptionsSchema>;
@@ -33,6 +34,7 @@ export const update = new Command()
 	.argument("[components...]", "name of components")
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
 	.option("--skip-preflight", "ignore preflight checks and continue", false)
+	.option("--no-deps", "skips adding & installing package dependencies")
 	.option("-a, --all", "update all existing components", false)
 	.option("-y, --yes", "skip confirmation prompt", false)
 	.option("--proxy <proxy>", "fetch components from registry using a proxy", getEnvProxy())
@@ -64,10 +66,6 @@ export const update = new Command()
 				skipPreflight: options.skipPreflight,
 			});
 			await runUpdate(cwd, updatedConfig, options);
-
-			p.note(
-				`This action ${color.underline("does not")} update your ${highlight("dependencies")} to their ${color.bold("latest")} versions.\n\nConsider updating them as well.`
-			);
 
 			p.outro(`${color.green("Success!")} Component update completed.`);
 		} catch (e) {
@@ -248,12 +246,19 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 
 	await p.tasks(tasks);
 
-	await installDependencies({
-		cwd,
-		dependencies: Array.from(dependencies),
-		devDependencies: Array.from(devDependencies),
-		prompt: true,
-	});
+	if (options.deps) {
+		await installDependencies({
+			cwd,
+			dependencies: Array.from(dependencies),
+			devDependencies: Array.from(devDependencies),
+			prompt: true,
+		});
+	} else if (dependencies.size > 0 || devDependencies.size > 0) {
+		const prettyList = prettifyList([...dependencies, ...devDependencies], 7);
+		p.log.warn(
+			`Components have been updated ${color.bold(color.red("without"))} the following ${highlight("dependencies")}:\n${color.gray(prettyList)}`
+		);
+	}
 
 	for (const [component, files] of Object.entries(componentsToRemove)) {
 		p.log.warn(

@@ -39,7 +39,7 @@ Copy and paste the component source files linked at the top of this page into yo
 
 ```svelte showLineNumbers
 <script lang="ts">
-  import * as NativeSelect from "$lib/registry/ui/native-select/index.js";
+  import * as NativeSelect from "$lib/components/ui/native-select/index.js";
 </script>
 
 <NativeSelect.Root>
