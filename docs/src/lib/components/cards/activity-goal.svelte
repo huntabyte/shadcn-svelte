@@ -101,7 +101,7 @@
 			</Button>
 		</div>
 		<div class="flex-1">
-			<Chart.Container config={chartConfig} class="aspect-auto h-[76px] w-full">
+			<Chart.Container config={chartConfig} class="aspect-auto h-14 w-full">
 				<BarChart
 					bind:context
 					data={data.map((d, i) => ({ goal: d.goal, index: i }))}
