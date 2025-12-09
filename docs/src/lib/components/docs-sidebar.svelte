@@ -44,7 +44,7 @@
 													{subItem.title}
 													{#if subItem.indicator === "new"}
 														<span
-															class="flex size-2 rounded-full bg-blue-500"
+															class="bg-svelte-orange flex size-2 rounded-full"
 															title="New"
 														></span>
 													{/if}

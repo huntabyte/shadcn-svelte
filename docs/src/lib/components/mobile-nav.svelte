@@ -33,7 +33,7 @@
 	>
 		{content}
 		{#if href && NEW_COMPONENTS.has(href.replace("/docs/components/", ""))}
-			<span class="flex size-2 rounded-full bg-blue-500" title="New"></span>
+			<span class="bg-svelte-orange flex size-2 rounded-full" title="New"></span>
 		{/if}
 	</a>
 {/snippet}

@@ -81,6 +81,7 @@
 
 :root {
 	--radius: 0.625rem;
+	--svelte-orange: oklch(0.6385 0.1991 34.99);
 	--background: oklch(1 0 0);
 	--foreground: oklch(0.145 0 0);
 	--card: oklch(1 0 0);
@@ -225,6 +226,10 @@
 
 @utility border-ghost {
 	@apply after:border-border relative after:absolute after:inset-0 after:border after:mix-blend-darken dark:after:mix-blend-lighten;
+}
+
+@utility bg-svelte-orange {
+	background-color: var(--svelte-orange);
 }
 
 @utility step {
