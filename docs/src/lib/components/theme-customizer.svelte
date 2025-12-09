@@ -279,7 +279,7 @@
 		<Drawer.Content class="h-auto">
 			<Drawer.Header>
 				<Drawer.Title class="capitalize">
-					{coercedActiveTheme === "neutral" ? "Default" : coercedActiveTheme}
+					{coercedActiveTheme === "neutral" ? "Neutral" : coercedActiveTheme}
 				</Drawer.Title>
 				<Drawer.Description>
 					Copy and paste the following code into your CSS file.
@@ -310,7 +310,7 @@
 		>
 			<Dialog.Header>
 				<Dialog.Title class="capitalize">
-					{coercedActiveTheme === "neutral" ? "Default" : coercedActiveTheme}
+					{coercedActiveTheme === "neutral" ? "Neutral" : coercedActiveTheme}
 				</Dialog.Title>
 				<Dialog.Description>
 					Copy and paste the following code into your CSS file.

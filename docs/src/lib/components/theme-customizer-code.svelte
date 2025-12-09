@@ -64,7 +64,7 @@
 						<CopyIcon />
 					{/if}
 				</Button>
-				<code data-line-numbers data-language="css">
+				<code data-line-numbers data-language="css" class="-my-10">
 					<span data-line class="line text-code-foreground">&nbsp;:root &#123;</span>
 					<span data-line class="line text-code-foreground">&nbsp;&nbsp;&nbsp;--radius: 0.65rem;</span>
 					{#each Object.entries(activeThemeOKLCH?.light || {}) as [key, value] (key)}
@@ -118,7 +118,7 @@
 						<CopyIcon />
 					{/if}
 				</Button>
-				<code data-line-numbers data-language="css">
+				<code data-line-numbers data-language="css" class="-my-10">
 					<span data-line class="line text-code-foreground">&nbsp;:root &#123;</span>
 					<span data-line class="line text-code-foreground">&nbsp;&nbsp;&nbsp;--radius: 0.65rem;</span>
 					{#each Object.entries(activeTheme?.cssVars.light || {}) as [key, value] (key)}
@@ -172,7 +172,7 @@
 						<CopyIcon />
 					{/if}
 				</Button>
-				<code data-line-numbers data-language="css">
+				<code data-line-numbers data-language="css" class="-my-10">
 					<span data-line class="line">@layer base &#123;</span>
 					<span data-line class="line">&nbsp;&nbsp;:root &#123;</span>
 					<span data-line class="line"
