@@ -35,7 +35,7 @@
 		// Overrides
 		//
 		// Stroke around dots/marks when hovering
-		"[&_.stroke-white]:stroke-transparent",
+		"[&_.lc-highlight-point]:stroke-transparent",
 		// override the default stroke color of lines
 		"[&_.lc-line]:stroke-border/50",
 
