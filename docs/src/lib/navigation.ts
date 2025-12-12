@@ -319,6 +319,10 @@ export const mainNavItems: NavItem[] = [
 		title: "Colors",
 		href: "/colors",
 	},
+	{
+		title: "Create",
+		href: "/create",
+	},
 ];
 
 export function getFullNavItems(): Array<SidebarNavItem & { index: number }> {
