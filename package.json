@@ -41,8 +41,8 @@
 		"@eslint/compat": "^2.0.0",
 		"@eslint/js": "^9.39.1",
 		"@svitejs/changesets-changelog-github-compact": "^1.2.0",
-		"@types/node": "^25.0.0",
-		"eslint": "^9.39.1",
+		"@types/node": "^25.0.1",
+		"eslint": "^9.39.2",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.13.1",
 		"globals": "^16.5.0",
@@ -54,7 +54,7 @@
 		"svelte": "catalog:",
 		"typescript": "5.9.3",
 		"typescript-eslint": "^8.49.0",
-		"wrangler": "^4.53.0"
+		"wrangler": "^4.54.0"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [

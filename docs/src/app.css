@@ -31,9 +31,9 @@
 @theme inline {
 	--breakpoint-3xl: 1600px;
 	--breakpoint-4xl: 2000px;
-	--font-sans: "Inter", sans-serif;
-	--font-mono: SFMono-Regular, "Geist Mono", monospace;
-	--font-geist: "Geist", sans-serif;
+	--font-sans: "Geist", sans-serif;
+	--font-mono: "Geist Mono", monospace;
+	--font-inter: "Inter", sans-serif;
 	--radius-sm: calc(var(--radius) - 4px);
 	--radius-md: calc(var(--radius) - 2px);
 	--radius-lg: var(--radius);
