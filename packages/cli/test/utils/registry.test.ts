@@ -136,8 +136,11 @@ describe("Registry Utilities", () => {
 	});
 
 	describe("resolveRegistryItems", () => {
+		const registryUrl = "https://shadcn-svelte.com/registry";
+
 		it("should resolve items from registry index", async () => {
 			const result = await resolveRegistryItems({
+				registryUrl,
 				registryIndex: mockRegistryIndex,
 				items: ["button"],
 			});
@@ -163,6 +166,7 @@ describe("Registry Utilities", () => {
 			vi.mocked(fetch).mockResolvedValueOnce(mockResponse as Response);
 
 			const result = await resolveRegistryItems({
+				registryUrl,
 				registryIndex: mockRegistryIndex,
 				items: ["https://remote.com/button.json"],
 			});
@@ -175,10 +179,33 @@ describe("Registry Utilities", () => {
 			vi.mocked(fetch).mockRejectedValueOnce(new Error("Network error"));
 			await expect(
 				resolveRegistryItems({
+					registryUrl,
 					registryIndex: mockRegistryIndex,
 					items: ["https://remote.com/button.json"],
 				})
 			).rejects.toThrow("Failed to fetch registry.");
+		});
+
+		it("should show registry URL in error message when item not found", async () => {
+			await expect(
+				resolveRegistryItems({
+					registryUrl: "https://custom-registry.com/registry",
+					registryIndex: mockRegistryIndex,
+					items: ["nonexistent-item"],
+				})
+			).rejects.toThrow(
+				/Registry item 'nonexistent-item' does not exist in the registry at 'https:\/\/custom-registry\.com\/registry'/
+			);
+		});
+
+		it("should suggest official registry URL when using custom registry", async () => {
+			await expect(
+				resolveRegistryItems({
+					registryUrl: "https://custom-registry.com/registry",
+					registryIndex: mockRegistryIndex,
+					items: ["nonexistent-item"],
+				})
+			).rejects.toThrow(/https:\/\/shadcn-svelte\.com\/registry/);
 		});
 	});
 
