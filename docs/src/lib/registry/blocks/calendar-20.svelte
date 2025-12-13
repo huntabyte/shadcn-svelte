@@ -23,7 +23,7 @@
 				type="single"
 				bind:value
 				isDateUnavailable={(date) => bookedDates.some((d) => d.compare(date) === 0)}
-				class="data-unavailable:line-through data-unavailable:opacity-100 bg-transparent p-0 [--cell-size:--spacing(10)] md:[--cell-size:--spacing(12)] [&_[data-outside-month]]:hidden"
+				class="data-unavailable:line-through data-unavailable:opacity-100 bg-transparent p-0 [--cell-size:--spacing(10)] md:[--cell-size:--spacing(12)] **:data-outside-month:invisible"
 				weekdayFormat="short"
 			/>
 		</div>
