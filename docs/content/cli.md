@@ -1,6 +1,6 @@
 ---
-title: CLI
-description: Use the CLI to add components to your project.
+title: shadcn-svelte
+description: Use the shadcn-svelte CLI to add components to your project.
 ---
 
 <script>
@@ -27,9 +27,9 @@ Configure the import alias for hooks: › $lib/hooks
 Configure the import alias for ui: › $lib/components/ui
 ```
 
-### Options
+**Options**
 
-```txt
+```bash
 Usage: shadcn-svelte init [options]
 
 initialize your project and install dependencies
@@ -51,32 +51,17 @@ Options:
   -h, --help                 display help for command
 ```
 
+---
+
 ## add
 
 Use the `add` command to add components and dependencies to your project.
 
 <PMExecute command="shadcn-svelte@latest add [component]" />
 
-You will be presented with a list of components to choose from:
+**Options**
 
-```txt
-Which components would you like to add? › Space to select. Return to submit.
-
-◯  accordion
-◯  alert
-◯  alert-dialog
-◯  aspect-ratio
-◯  avatar
-◯  badge
-◯  button
-◯  card
-◯  checkbox
-◯  collapsible
-```
-
-### Options
-
-```txt
+```bash
 Usage: shadcn-svelte add [options] [components...]
 
 add components to your project
@@ -95,6 +80,8 @@ Options:
   -h, --help        display help for command
 ```
 
+---
+
 ## registry build
 
 Use the `registry build` command to generate the registry JSON files.
@@ -103,9 +90,9 @@ Use the `registry build` command to generate the registry JSON files.
 
 This command reads the `registry.json` file and generates the registry JSON files into the `static/r` directory.
 
-### Options
+**Options**
 
-```txt
+```bash
 Usage: shadcn-svelte registry build [options] [registry]
 
 build components for a shadcn-svelte registry
@@ -118,6 +105,8 @@ Options:
   -o, --output <path>  destination directory for json files (default: ./static/r)
   -h, --help           display help for command
 ```
+
+---
 
 ## Outgoing Requests
 

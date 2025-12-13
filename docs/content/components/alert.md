@@ -8,10 +8,13 @@ links:
 
 <script>
 	import ComponentPreview from "$lib/components/component-preview.svelte";
+	import ComponentSource from "$lib/components/component-source.svelte";
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
 	import PMInstall from "$lib/components/pm-install.svelte";
 	import Steps from "$lib/components/steps.svelte";
 	import InstallTabs from "$lib/components/install-tabs.svelte";
+
+	let { viewerData } = $props();
 	import Step from "$lib/components/step.svelte";
 </script>
 
@@ -32,9 +35,12 @@ links:
 
 <Step>
 
-Copy and paste the component source files linked at the top of this page into your project.
+Copy and paste the following code into your project.
 
 </Step>
+{#if viewerData}
+	<ComponentSource item={viewerData} data-llm-ignore/>
+{/if}
 
 </Steps>
 {/snippet}
@@ -42,11 +48,13 @@ Copy and paste the component source files linked at the top of this page into yo
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import * as Alert from "$lib/components/ui/alert/index.js";
 </script>
+```
 
+```svelte showLineNumbers
 <Alert.Root>
   <Alert.Title>Heads up!</Alert.Title>
   <Alert.Description>
@@ -54,21 +62,3 @@ Copy and paste the component source files linked at the top of this page into yo
   </Alert.Description>
 </Alert.Root>
 ```
-
-## Examples
-
-### Default
-
-<ComponentPreview name="alert-demo">
-
-<div></div>
-
-</ComponentPreview>
-
-### Destructive
-
-<ComponentPreview name="alert-destructive">
-
-<div></div>
-
-</ComponentPreview>

@@ -1,14 +1,13 @@
 <script lang="ts">
 	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import ExternalLinkIcon from "@lucide/svelte/icons/external-link";
+	import ArrowUpRight from "@lucide/svelte/icons/arrow-up-right";
 	import ArrowLeftIcon from "@lucide/svelte/icons/arrow-left";
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
 	import DocsToc from "$lib/components/docs-toc.svelte";
 	import { findNeighbors } from "$lib/navigation.js";
 	import { page } from "$app/state";
 	import Cta from "$lib/components/cta.svelte";
-	import ComponentCodeViewer from "$lib/components/component-code-viewer/component-code-viewer.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
 	import Ethical from "$lib/components/ethical.svelte";
 	import DocsCopyPage from "$lib/components/docs-copy-page.svelte";
@@ -19,7 +18,6 @@
 	const doc = $derived(data.metadata);
 	const apiLink = $derived(doc.links?.api);
 	const docLink = $derived(doc.links?.doc);
-	const source = $derived(data.viewerData);
 
 	const neighbors = $derived(findNeighbors(page.url.pathname));
 </script>
@@ -63,7 +61,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 	<div class="flex min-w-0 flex-1 flex-col">
 		<div class="h-(--top-spacing) shrink-0"></div>
 		<div
-			class="mx-auto flex w-full min-w-0 max-w-2xl flex-1 flex-col gap-8 px-4 py-6 text-neutral-800 md:px-0 lg:py-8 dark:text-neutral-300"
+			class="mx-auto flex w-full max-w-2xl min-w-0 flex-1 flex-col gap-8 px-4 py-6 text-neutral-800 md:px-0 lg:py-8 dark:text-neutral-300"
 		>
 			<div class="flex flex-col gap-2">
 				<div class="flex flex-col gap-2">
@@ -103,12 +101,12 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 						</div>
 					</div>
 					{#if data.metadata.description}
-						<p class="text-muted-foreground text-balance text-[1.05rem] sm:text-base">
+						<p class="text-muted-foreground text-[1.05rem] text-balance sm:text-base">
 							{doc.description}
 						</p>
 					{/if}
 				</div>
-				{#if apiLink || source || docLink}
+				{#if apiLink || docLink}
 					<div class="flex items-center space-x-2 pt-4">
 						{#if docLink}
 							<Badge
@@ -118,7 +116,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 								rel="noreferrer"
 							>
 								Docs
-								<ExternalLinkIcon aria-hidden="true" />
+								<ArrowUpRight aria-hidden="true" />
 							</Badge>
 						{/if}
 						{#if apiLink}
@@ -128,13 +126,8 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 								target="_blank"
 								rel="noreferrer"
 							>
-								API Reference <ExternalLinkIcon aria-hidden="true" />
+								API Reference <ArrowUpRight aria-hidden="true" />
 							</Badge>
-						{/if}
-						{#if source}
-							{#key page.url.pathname}
-								<ComponentCodeViewer item={source} />
-							{/key}
 						{/if}
 					</div>
 				{/if}
@@ -144,7 +137,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 			</div>
 		</div>
 		<div
-			class="mx-auto flex h-16 w-full max-w-2xl items-center gap-2 px-4 md:px-0"
+			class="mx-auto hidden h-16 w-full max-w-2xl items-center gap-2 px-4 sm:flex md:px-0"
 			data-llm-ignore
 		>
 			{#if neighbors.previous}

@@ -226,7 +226,7 @@
 	});
 </script>
 
-<div class="w-full">
+<div class="-mb-8 w-full">
 	<div class="flex items-center py-4">
 		<Input
 			placeholder="Filter emails..."

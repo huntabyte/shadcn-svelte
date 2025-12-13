@@ -22,7 +22,7 @@
 	];
 </script>
 
-<ScrollArea class="w-96 whitespace-nowrap rounded-md border" orientation="horizontal">
+<ScrollArea class="w-96 rounded-md border whitespace-nowrap" orientation="horizontal">
 	<div class="flex w-max space-x-4 p-4">
 		{#each works as artwork (artwork.artist)}
 			<figure class="shrink-0">

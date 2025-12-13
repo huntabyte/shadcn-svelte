@@ -4,6 +4,7 @@
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import type { HTMLAnchorAttributes } from "svelte/elements";
 	import { mainNavItems, sidebarNavItems } from "$lib/navigation.js";
+	import { NEW_COMPONENTS } from "$lib/navigation.js";
 
 	type MobileLinkProps = HTMLAnchorAttributes & {
 		content?: string;
@@ -12,6 +13,13 @@
 	let { class: className, ...restProps }: ButtonProps = $props();
 
 	let open = $state(false);
+
+	// Expose a function to close the mobile menu
+	let closeMenu = () => {
+		open = false;
+	};
+
+	export { closeMenu };
 </script>
 
 {#snippet MobileLink({ href, content, class: className, ...props }: MobileLinkProps)}
@@ -20,10 +28,13 @@
 		onclick={() => {
 			open = false;
 		}}
-		class={cn("text-2xl font-medium", className)}
+		class={cn("flex items-center gap-2 text-2xl font-medium", className)}
 		{...props}
 	>
 		{content}
+		{#if href && NEW_COMPONENTS.has(href.replace("/docs/components/", ""))}
+			<span class="bg-svelte-orange flex size-2 rounded-full" title="New"></span>
+		{/if}
 	</a>
 {/snippet}
 
@@ -56,7 +67,7 @@
 					</div>
 					<span class="sr-only">Toggle Menu</span>
 				</div>
-				<span class="flex h-8 items-center text-lg font-medium leading-none"> Menu </span>
+				<span class="flex h-8 items-center text-lg leading-none font-medium"> Menu </span>
 			</Button>
 		{/snippet}
 	</Popover.Trigger>

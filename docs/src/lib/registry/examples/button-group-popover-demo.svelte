@@ -9,14 +9,14 @@
 </script>
 
 <ButtonGroup.Root>
-	<Button variant="outline">
+	<Button variant="outline" size="sm">
 		<Bot />
 		Copilot
 	</Button>
 	<Popover.Root>
 		<Popover.Trigger>
 			{#snippet child({ props })}
-				<Button {...props} variant="outline" size="icon" aria-label="Open Popover">
+				<Button {...props} variant="outline" size="icon-sm" aria-label="Open Popover">
 					<ChevronDown />
 				</Button>
 			{/snippet}
@@ -26,7 +26,7 @@
 				<div class="text-sm font-medium">Agent Tasks</div>
 			</div>
 			<Separator />
-			<div class="*:[p:not(:last-child)]:mb-2 p-4 text-sm">
+			<div class="p-4 text-sm *:[p:not(:last-child)]:mb-2">
 				<Textarea
 					placeholder="Describe your task in natural language."
 					class="mb-4 resize-none"

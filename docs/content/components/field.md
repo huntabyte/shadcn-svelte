@@ -8,10 +8,13 @@ links:
 
 <script>
 	import ComponentPreview from "$lib/components/component-preview.svelte";
+	import ComponentSource from "$lib/components/component-source.svelte";
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
 	import PMInstall from "$lib/components/pm-install.svelte";
 	import Steps from "$lib/components/steps.svelte";
 	import InstallTabs from "$lib/components/install-tabs.svelte";
+
+	let { viewerData } = $props();
 	import Step from "$lib/components/step.svelte";
 </script>
 
@@ -32,9 +35,12 @@ links:
 
 <Step>
 
-Copy and paste the component source files linked at the top of this page into your project.
+Copy and paste the following code into your project.
 
 </Step>
+{#if viewerData}
+	<ComponentSource item={viewerData} data-llm-ignore/>
+{/if}
 
 </Steps>
 {/snippet}
@@ -42,11 +48,13 @@ Copy and paste the component source files linked at the top of this page into yo
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import * as Field from "$lib/components/ui/field/index.js";
 </script>
+```
 
+```svelte showLineNumbers
 <Field.Set>
   <Field.Legend>Profile</Field.Legend>
   <Field.Description>This appears on invoices and emails.</Field.Description>
@@ -76,23 +84,23 @@ Copy and paste the component source files linked at the top of this page into yo
 The `Field` family is designed for composing accessible forms. A typical field is structured as follows:
 
 ```svelte
-<Field>
-  <FieldLabel for="input-id">Label</FieldLabel>
+<Field.Field>
+  <Field.Label for="input-id">Label</Field.Label>
   <!-- Input, Select, Switch, etc. -->
-  <FieldDescription>Optional helper text.</FieldDescription>
-  <FieldError>Validation message.</FieldError>
-</Field>
+  <Field.Description>Optional helper text.</Field.Description>
+  <Field.Error>Validation message.</Field.Error>
+</Field.Field>
 ```
 
-- `Field` is the core wrapper for a single field.
-- `FieldContent` is a flex column that groups label and description. Not required if you have no description.
-- Wrap related fields with `FieldGroup`, and use `FieldSet` with `FieldLegend` for semantic grouping.
+- `Field.Field` is the core wrapper for a single field.
+- `Field.Content` is a flex column that groups label and description. Not required if you have no description.
+- Wrap related fields with `Field.Group`, and use `Field.Set` with `Field.Legend` for semantic grouping.
 
 ## Examples
 
 ### Input
 
-<ComponentPreview name="field-input-demo">
+<ComponentPreview name="field-input">
 
 <div></div>
 
@@ -100,7 +108,7 @@ The `Field` family is designed for composing accessible forms. A typical field i
 
 ### Textarea
 
-<ComponentPreview name="field-textarea-demo">
+<ComponentPreview name="field-textarea">
 
 <div></div>
 
@@ -108,7 +116,7 @@ The `Field` family is designed for composing accessible forms. A typical field i
 
 ### Select
 
-<ComponentPreview name="field-select-demo">
+<ComponentPreview name="field-select">
 
 <div></div>
 
@@ -116,13 +124,13 @@ The `Field` family is designed for composing accessible forms. A typical field i
 
 ### Slider
 
-<ComponentPreview name="field-slider-demo">
+<ComponentPreview name="field-slider">
 
 <div></div>
 
 </ComponentPreview>
 
-### Field Set
+### Fieldset
 
 <ComponentPreview name="field-field-set-demo">
 
@@ -132,7 +140,7 @@ The `Field` family is designed for composing accessible forms. A typical field i
 
 ### Checkbox
 
-<ComponentPreview name="field-checkbox-demo">
+<ComponentPreview name="field-checkbox">
 
 <div></div>
 
@@ -140,7 +148,7 @@ The `Field` family is designed for composing accessible forms. A typical field i
 
 ### Radio
 
-<ComponentPreview name="field-radio-demo">
+<ComponentPreview name="field-radio">
 
 <div></div>
 
@@ -148,7 +156,7 @@ The `Field` family is designed for composing accessible forms. A typical field i
 
 ### Switch
 
-<ComponentPreview name="field-switch-demo">
+<ComponentPreview name="field-switch">
 
 <div></div>
 
@@ -166,7 +174,7 @@ Wrap `Field` components inside `FieldLabel` to create selectable field groups. T
 
 ### Field Group
 
-Stack `Field` components with `FieldGroup`. Add `FieldSeparator` to divide them.
+Stack `Field` components with `Field.Group`. Add `Field.Separator` to divide them.
 
 <ComponentPreview name="field-field-group-demo">
 
@@ -176,9 +184,9 @@ Stack `Field` components with `FieldGroup`. Add `FieldSeparator` to divide them.
 
 ### Responsive Layout
 
-- Vertical fields: Default orientation stacks label, control, and helper text—ideal for mobile-first layouts.
-- Horizontal fields: Set `orientation="horizontal"` on `Field` to align the label and control side-by-side. Pair with `FieldContent` to keep descriptions aligned.
-- Responsive fields: Set `orientation="responsive"` for automatic column layouts inside container-aware parents. Apply `@container/field-group` classes on `FieldGroup` to switch orientations at specific breakpoints.
+- **Vertical fields:** Default orientation stacks label, control, and helper text—ideal for mobile-first layouts.
+- **Horizontal fields:** Set `orientation="horizontal"` on `Field` to align the label and control side-by-side. Pair with `Field.Content` to keep descriptions aligned.
+- **Responsive fields:** Set `orientation="responsive"` for automatic column layouts inside container-aware parents. Apply `@container/field-group` classes on `Field.Group` to switch orientations at specific breakpoints.
 
 <ComponentPreview name="field-responsive-layout-demo">
 
@@ -203,6 +211,6 @@ Stack `Field` components with `FieldGroup`. Add `FieldSeparator` to divide them.
 
 ## Accessibility
 
-- `FieldSet` and `FieldLegend` keep related controls grouped for keyboard and assistive tech users.
-- `Field` outputs `role="group"` so nested controls inherit labeling from `FieldLabel` and `FieldLegend` when combined.
-- Apply `FieldSeparator` sparingly to ensure screen readers encounter clear section boundaries.
+- `Field.Set` and `Field.Legend` keep related controls grouped for keyboard and assistive tech users.
+- `Field` outputs `role="group"` so nested controls inherit labeling from `Field.Label` and `Field.Legend` when combined.
+- Apply `Field.Separator` sparingly to ensure screen readers encounter clear section boundaries.

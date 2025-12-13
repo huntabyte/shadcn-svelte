@@ -15,7 +15,7 @@
 	bind:value
 	data-slot="input-otp"
 	class={cn(
-		"has-disabled:opacity-50 flex items-center gap-2 [&_input]:disabled:cursor-not-allowed",
+		"flex items-center gap-2 has-disabled:opacity-50 [&_input]:disabled:cursor-not-allowed",
 		className
 	)}
 	{...restProps}

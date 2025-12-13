@@ -8,8 +8,8 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
+	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 
 	const users = [
 		{
@@ -75,7 +75,7 @@
 				<Avatar.Fallback>OM</Avatar.Fallback>
 			</Avatar.Root>
 			<div class="flex flex-col gap-0.5">
-				<p class="text-sm font-medium leading-none">Sofia Davis</p>
+				<p class="text-sm leading-none font-medium">Sofia Davis</p>
 				<p class="text-muted-foreground text-xs">m@example.com</p>
 			</div>
 		</div>
@@ -128,28 +128,26 @@
 			}}
 			class="relative w-full"
 		>
-			<Input
-				id="message"
-				placeholder="Type your message..."
-				class="flex-1 pe-10"
-				autocomplete="off"
-				bind:value={input}
-			/>
-			<Button
-				type="submit"
-				size="icon"
-				disabled={inputLength === 0}
-				class="absolute end-2 top-1/2 size-6 -translate-y-1/2 rounded-full"
-			>
-				<ArrowUpIcon class="size-3.5" />
-				<span class="sr-only">Send</span>
-			</Button>
+			<InputGroup.Root>
+				<InputGroup.Input
+					id="message"
+					placeholder="Type your message..."
+					autocomplete="off"
+					bind:value={input}
+				/>
+				<InputGroup.Addon align="inline-end">
+					<InputGroup.Button type="submit" size="icon-xs" class="rounded-full">
+						<ArrowUpIcon />
+						<span class="sr-only">Send</span>
+					</InputGroup.Button>
+				</InputGroup.Addon>
+			</InputGroup.Root>
 		</form>
 	</Card.Footer>
 </Card.Root>
 <Dialog.Root bind:open>
 	<Dialog.Content class="gap-0 p-0 outline-none">
-		<Dialog.Header class="px-4 pb-4 pt-5">
+		<Dialog.Header class="px-4 pt-5 pb-4">
 			<Dialog.Title>New message</Dialog.Title>
 			<Dialog.Description>
 				Invite a user to this thread. This will create a new group message.
@@ -180,7 +178,7 @@
 								<Avatar.Fallback>{user.name[0]}</Avatar.Fallback>
 							</Avatar.Root>
 							<div class="ms-2">
-								<p class="text-sm font-medium leading-none">
+								<p class="text-sm leading-none font-medium">
 									{user.name}
 								</p>
 								<p class="text-muted-foreground text-sm">

@@ -3,7 +3,7 @@
 	import { Spinner } from "$lib/registry/ui/spinner/index.js";
 </script>
 
-<Button disabled>
+<Button size="sm" variant="outline" disabled>
 	<Spinner />
-	Please wait
+	Submit
 </Button>

@@ -31,7 +31,7 @@
 	<Form.Field
 		{form}
 		name="mobile"
-		class="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4"
+		class="flex flex-row items-start space-y-0 space-x-3 rounded-md border p-4"
 	>
 		<Form.Control>
 			{#snippet children({ props })}

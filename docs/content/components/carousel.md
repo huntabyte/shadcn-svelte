@@ -10,11 +10,14 @@ links:
 
 <script>
 	import ComponentPreview from "$lib/components/component-preview.svelte";
+	import ComponentSource from "$lib/components/component-source.svelte";
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
 	import PMInstall from "$lib/components/pm-install.svelte";
 	import Steps from "$lib/components/steps.svelte";
 	import Step from "$lib/components/step.svelte";
 	import InstallTabs from "$lib/components/install-tabs.svelte";
+
+	let { viewerData } = $props();
 </script>
 
 <ComponentPreview name="carousel-demo">
@@ -46,9 +49,12 @@ Install `embla-carousel-svelte`:
 
 <Step>
 
-Copy and paste the component source files linked at the top of this page into your project.
+Copy and paste the following code into your project.
 
 </Step>
+{#if viewerData}
+	<ComponentSource item={viewerData} data-llm-ignore/>
+{/if}
 
 </Steps>
 {/snippet}
@@ -56,11 +62,13 @@ Copy and paste the component source files linked at the top of this page into yo
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import * as Carousel from "$lib/components/ui/carousel/index.js";
 </script>
+```
 
+```svelte showLineNumbers
 <Carousel.Root>
   <Carousel.Content>
     <Carousel.Item>...</Carousel.Item>
@@ -84,7 +92,7 @@ To set the size of the items, you can use the `basis` utility class on the `<Car
 
 </ComponentPreview>
 
-```svelte title="Example" showLineNumbers {4-6}
+```svelte showLineNumbers {4-6}
 <!-- 33% of the carousel width. -->
 <Carousel.Root>
   <Carousel.Content>
@@ -95,7 +103,7 @@ To set the size of the items, you can use the `basis` utility class on the `<Car
 </Carousel.Root>
 ```
 
-```svelte title="Responsive" showLineNumbers {4-6}
+```svelte showLineNumbers {4-6}
 <!-- 50% on small screens and 33% on larger screens. -->
 <Carousel.Root>
   <Carousel.Content>
@@ -116,7 +124,7 @@ To set the spacing between the items, we use a `ps-[VALUE]` utility on the `<Car
 
 </ComponentPreview>
 
-```svelte title="Example" showLineNumbers /-ms-4/ /ps-4/
+```svelte showLineNumbers /-ms-4/ /ps-4/
 <Carousel.Root>
   <Carousel.Content class="-ms-4">
     <Carousel.Item class="ps-4">...</Carousel.Item>
@@ -126,7 +134,7 @@ To set the spacing between the items, we use a `ps-[VALUE]` utility on the `<Car
 </Carousel.Root>
 ```
 
-```svelte title="Responsive" showLineNumbers /-ms-2/ /ps-2/ /md:-ms-4/ /md:ps-4/
+```svelte showLineNumbers /-ms-2/ /ps-2/ /md:-ms-4/ /md:ps-4/
 <Carousel.Root>
   <Carousel.Content class="-ms-2 md:-ms-4">
     <Carousel.Item class="ps-2 md:ps-4">...</Carousel.Item>

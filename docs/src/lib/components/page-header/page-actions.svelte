@@ -7,7 +7,7 @@
 
 <div
 	class={cn(
-		"**:data-[slot=button]:shadow-none flex w-full items-center justify-center gap-2 pt-2",
+		"flex w-full items-center justify-center gap-2 pt-2 **:data-[slot=button]:shadow-none",
 		className
 	)}
 	{...restProps}

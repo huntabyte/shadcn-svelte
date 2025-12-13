@@ -84,7 +84,7 @@
 				<span class="sr-only">Decrease</span>
 			</Button>
 			<div class="text-center">
-				<div class="text-4xl font-bold tabular-nums tracking-tighter">
+				<div class="text-4xl font-bold tracking-tighter tabular-nums">
 					{goal}
 				</div>
 				<div class="text-muted-foreground text-xs uppercase">Calories/day</div>
@@ -101,7 +101,7 @@
 			</Button>
 		</div>
 		<div class="flex-1">
-			<Chart.Container config={chartConfig} class="aspect-auto h-[76px] w-full">
+			<Chart.Container config={chartConfig} class="aspect-auto h-14 w-full">
 				<BarChart
 					bind:context
 					data={data.map((d, i) => ({ goal: d.goal, index: i }))}

@@ -1,5 +1,5 @@
 <div>
-	<h1 class="scroll-m-20 text-balance text-4xl font-extrabold tracking-tight">
+	<h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight text-balance">
 		Taxing Laughter: The Joke Tax Chronicles
 	</h1>
 	<p class="text-muted-foreground text-xl leading-7 [&:not(:first-child)]:mt-6">

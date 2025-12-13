@@ -3,7 +3,7 @@
 	import { RangeCalendar } from "$lib/registry/ui/range-calendar/index.js";
 	import { CalendarDate } from "@internationalized/date";
 
-	const start = new CalendarDate(2023, 5, 5);
+	const start = new CalendarDate(2025, 6, 5);
 </script>
 
 <Card.Root class="hidden max-w-[260px] p-0 sm:flex">

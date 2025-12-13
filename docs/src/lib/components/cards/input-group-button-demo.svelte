@@ -2,8 +2,8 @@
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import { Label } from "$lib/registry/ui/label/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import InfoIcon from "@lucide/svelte/icons/info";
-	import StarIcon from "@lucide/svelte/icons/star";
+	import InfoIcon from "@tabler/icons-svelte/icons/info-circle";
+	import IconStar from "@tabler/icons-svelte/icons/star";
 
 	let isFavorite = $state(false);
 </script>
@@ -43,7 +43,7 @@
 				size="icon-xs"
 				aria-label="Favorite"
 			>
-				<StarIcon
+				<IconStar
 					data-favorite={isFavorite}
 					class="data-[favorite=true]:fill-primary data-[favorite=true]:stroke-primary"
 				/>

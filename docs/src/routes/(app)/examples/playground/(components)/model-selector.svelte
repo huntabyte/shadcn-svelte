@@ -90,7 +90,7 @@
 				>
 					{#if peekedModel && hoverCardIsOpen}
 						<div class="grid gap-2">
-							<h4 class="font-medium leading-none">
+							<h4 class="leading-none font-medium">
 								{peekedModel.name}
 							</h4>
 							<div class="text-muted-foreground text-sm">
@@ -98,7 +98,7 @@
 							</div>
 							{#if peekedModel.strengths}
 								<div class="mt-4 grid gap-2">
-									<h5 class="text-sm font-medium leading-none">Strengths</h5>
+									<h5 class="text-sm leading-none font-medium">Strengths</h5>
 									<ul class="text-muted-foreground text-sm">
 										{peekedModel.strengths}
 									</ul>

@@ -5,7 +5,7 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 </script>
 
-<Card.Root class="w-full max-w-sm">
+<Card.Root class="-my-4 w-full max-w-sm">
 	<Card.Header>
 		<Card.Title>Login to your account</Card.Title>
 		<Card.Description>Enter your email below to login to your account</Card.Description>

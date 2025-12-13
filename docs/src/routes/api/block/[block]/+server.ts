@@ -1,23 +1,56 @@
 import path from "node:path";
 import { z } from "zod/v4";
 import { json } from "@sveltejs/kit";
-import { registryItemFileSchema, registryItemSchema } from "@shadcn-svelte/registry";
+import { registryItemSchema } from "@shadcn-svelte/registry";
 import { highlightCode } from "$lib/highlight-code.js";
 import { blockMeta } from "$lib/registry/registry-block-meta.js";
 import { transformBlockPath, transformImportPaths } from "$lib/registry/registry-utils.js";
 import type { RequestHandler } from "./$types.js";
 
-export type HighlightedBlock = z.output<typeof highlightedBlockSchema>;
+export interface HighlightedBlock {
+	name: string;
+	description?: string;
+	meta?: Record<string, unknown>;
+	type: string;
+	files: HighlightedFile[];
+}
 
-const highlightedBlockSchema = registryItemSchema
-	.pick({ name: true, description: true, meta: true, type: true })
-	.extend({
-		files: z.array(
-			registryItemFileSchema.omit({ content: true }).extend({
-				highlightedContent: z.string(),
-			})
-		),
-	});
+export interface HighlightedFile {
+	type:
+		| "registry:file"
+		| "registry:page"
+		| "registry:ui"
+		| "registry:component"
+		| "registry:lib"
+		| "registry:hook"
+		| "registry:theme"
+		| "registry:style";
+	target: string;
+	highlightedContent: string;
+}
+
+const highlightedBlockSchema = z.object({
+	name: z.string(),
+	description: z.string().optional(),
+	meta: z.record(z.string(), z.unknown()).optional(),
+	type: z.string(),
+	files: z.array(
+		z.object({
+			type: z.enum([
+				"registry:file",
+				"registry:page",
+				"registry:ui",
+				"registry:component",
+				"registry:lib",
+				"registry:hook",
+				"registry:theme",
+				"registry:style",
+			]),
+			target: z.string(),
+			highlightedContent: z.string(),
+		})
+	),
+});
 
 async function loadItem(block: string): Promise<HighlightedBlock> {
 	const { default: mod } = await import(`../../../../__registry__/json/${block}.json`);

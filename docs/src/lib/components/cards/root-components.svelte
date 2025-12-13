@@ -1,0 +1,57 @@
+<script lang="ts">
+	import {
+		FieldSliderDemo,
+		ButtonGroupInputGroupDemo,
+		SpinnerBadgeDemo,
+		InputGroupDemo,
+		EmptyAvatarGroupDemo,
+		FieldDemo,
+		ButtonGroupDemo,
+		SpinnerEmptyDemo,
+		ButtonGroupPopoverDemo,
+	} from "$lib/registry/examples/index.js";
+	import { FieldSeparator } from "$lib/registry/ui/field/index.js";
+	import AppearanceSettings from "./appearance-settings.svelte";
+	import FieldCheckbox from "./field-checkbox.svelte";
+	import FieldHear from "./field-hear.svelte";
+	import InputGroupButtonDemo from "./input-group-button-demo.svelte";
+	import ItemDemo from "./item-demo.svelte";
+	import Nested from "./nested.svelte";
+	import NotionPromptForm from "./notion-prompt-form.svelte";
+</script>
+
+<div
+	class="theme-container mx-auto grid gap-8 py-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-6 2xl:gap-8"
+>
+	<div class="flex flex-col gap-6 *:[div]:w-full *:[div]:max-w-full">
+		<div class="border-border rounded-lg border p-6">
+			<FieldDemo />
+		</div>
+	</div>
+	<div class="flex flex-col gap-6 *:[div]:w-full *:[div]:max-w-full">
+		<EmptyAvatarGroupDemo />
+		<SpinnerBadgeDemo />
+		<ButtonGroupInputGroupDemo />
+		<FieldSliderDemo />
+		<InputGroupDemo />
+	</div>
+	<div class="flex flex-col gap-6 *:[div]:w-full *:[div]:max-w-full">
+		<InputGroupButtonDemo />
+		<ItemDemo />
+		<FieldSeparator class="my-4">Appearance Settings</FieldSeparator>
+		<AppearanceSettings />
+	</div>
+	<div
+		class="order-first flex flex-col gap-6 lg:hidden xl:order-last xl:flex *:[div]:w-full *:[div]:max-w-full"
+	>
+		<NotionPromptForm />
+		<ButtonGroupDemo />
+		<FieldCheckbox />
+		<div class="flex justify-between gap-4">
+			<Nested />
+			<ButtonGroupPopoverDemo />
+		</div>
+		<FieldHear />
+		<SpinnerEmptyDemo />
+	</div>
+</div>

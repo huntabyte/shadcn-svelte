@@ -2,8 +2,8 @@
 	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
 	import { ComponentCodeViewerContext } from "./component-code-viewer.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import ClipboardIcon from "@lucide/svelte/icons/clipboard";
-	import CheckIcon from "@lucide/svelte/icons/check";
+	import CopyIcon from "@tabler/icons-svelte/icons/copy";
+	import CheckIcon from "@tabler/icons-svelte/icons/check";
 	import { cn } from "$lib/utils.js";
 	import type { ComponentProps } from "svelte";
 
@@ -27,7 +27,7 @@
 		{#if clipboard.copied}
 			<CheckIcon />
 		{:else}
-			<ClipboardIcon />
+			<CopyIcon />
 		{/if}
 	</Button>
 {/if}

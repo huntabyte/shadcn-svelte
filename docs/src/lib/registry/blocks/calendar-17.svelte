@@ -16,7 +16,7 @@
 			class="bg-transparent p-0 [--cell-size:--spacing(10.5)]"
 		/>
 	</Card.Content>
-	<Card.Footer class="*:[div]:w-full flex gap-2 border-t px-4 !pt-4">
+	<Card.Footer class="flex gap-2 border-t px-4 !pt-4 *:[div]:w-full">
 		<div>
 			<Label for="time-from" class="sr-only">Start Time</Label>
 			<Input

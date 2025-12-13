@@ -12,7 +12,7 @@
 </script>
 
 <button
-	class="text-(--text) group relative flex aspect-[3/1] w-full flex-1 cursor-pointer flex-col gap-2 sm:aspect-[2/3] sm:h-auto sm:w-auto [&>svg]:absolute [&>svg]:end-4 [&>svg]:top-4 [&>svg]:z-10 [&>svg]:h-3.5 [&>svg]:w-3.5 [&>svg]:opacity-0 [&>svg]:transition-opacity"
+	class="group relative flex aspect-[3/1] w-full flex-1 cursor-pointer flex-col gap-2 text-(--text) sm:aspect-[2/3] sm:h-auto sm:w-auto [&>svg]:absolute [&>svg]:end-4 [&>svg]:top-4 [&>svg]:z-10 [&>svg]:h-3.5 [&>svg]:w-3.5 [&>svg]:opacity-0 [&>svg]:transition-opacity"
 	data-last-copied={clipboard.lastCopied === color[userConfig.current.colorFormat]}
 	style="--bg: {color.oklch}; --text: {color.foreground};"
 	onclick={() => {
@@ -26,7 +26,7 @@
 		<ClipboardIcon class="group-hover:opacity-100" />
 	{/if}
 	<div
-		class="border-ghost after:border-input bg-(--bg) w-full flex-1 rounded-md after:rounded-lg md:rounded-lg"
+		class="border-ghost after:border-input w-full flex-1 rounded-md bg-(--bg) after:rounded-lg md:rounded-lg"
 	></div>
 	<div class="flex w-full flex-col items-center justify-center gap-1">
 		<span

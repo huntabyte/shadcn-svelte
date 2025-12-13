@@ -7,5 +7,5 @@
 
 <div class="flex w-full max-w-sm flex-col gap-1.5">
 	<Label for="email-{id}">Email</Label>
-	<Input type="email" id="email-{id}" placeholder="email" />
+	<Input type="email" id="email-{id}" placeholder="Email" />
 </div>

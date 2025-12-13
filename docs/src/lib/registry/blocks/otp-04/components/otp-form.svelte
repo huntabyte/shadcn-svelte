@@ -16,7 +16,7 @@
 				<Field.Group>
 					<Field.Field class="items-center text-center">
 						<h1 class="text-2xl font-bold">Enter verification code</h1>
-						<p class="text-muted-foreground text-balance text-sm">
+						<p class="text-muted-foreground text-sm text-balance">
 							We sent a 6-digit code to your email
 						</p>
 					</Field.Field>
