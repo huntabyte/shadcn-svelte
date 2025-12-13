@@ -1,6 +1,8 @@
 export const siteConfig = {
 	name: "shadcn-svelte",
-	url: "https://shadcn-svelte.com",
+	// TODO: Remove before merge and use the original URL
+	url: "https://theethergit-feat-add-og-imag.shadcn-svelte.pages.dev",
+	// url: "https://shadcn-svelte.com",
 	ogImage: {
 		url: "https://shadcn-svelte.com/opengraph-image.png",
 		width: "1200",
