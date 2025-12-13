@@ -5,6 +5,7 @@ import { isUrl, resolveURL } from "../utils.js";
 import { CLIError, error } from "../errors.js";
 import type { ResolvedConfig } from "../get-config.js";
 import { getEnvProxy } from "../get-env-proxy.js";
+import { OFFICIAL_REGISTRY_URL } from "../../constants.js";
 import * as schemas from "@shadcn-svelte/registry";
 
 export function getRegistryUrl(config: ResolvedConfig) {
@@ -45,6 +46,7 @@ export async function getRegistryBaseColor(baseUrl: string, baseColor: string) {
 }
 
 type ResolveRegistryItemsProps = {
+	registryUrl: string;
 	registryIndex: schemas.RegistryIndex;
 	items: string[];
 	parentUrl?: URL;
@@ -52,6 +54,7 @@ type ResolveRegistryItemsProps = {
 
 type ResolvedRegistryItem = schemas.RegistryItem | schemas.RegistryIndexItem;
 export async function resolveRegistryItems({
+	registryUrl,
 	registryIndex,
 	items,
 	parentUrl,
@@ -76,9 +79,18 @@ export async function resolveRegistryItems({
 				const [result] = await fetchRegistry([remoteUrl]);
 				resolvedItem = schemas.registryItemSchema.parse(result);
 			} else {
-				throw error(
-					`Registry item '${item}' does not exist in the registry, nor is it a valid URL or a relative path to a registry dependency.`
-				);
+				// diff error messages depending on whether we're resolving from the user's registry or a remote URL
+				if (parentUrl) {
+					throw error(
+						`Registry item '${item}' does not exist in the remote registry at '${parentUrl.origin}', nor is it a valid URL or relative path.`
+					);
+				}
+
+				let message = `Registry item '${item}' does not exist in the registry at '${registryUrl}'.`;
+				if (registryUrl !== OFFICIAL_REGISTRY_URL) {
+					message += `\n\nIf you're trying to use shadcn-svelte components, ensure your 'registry' property in components.json is set to '${OFFICIAL_REGISTRY_URL}'.`;
+				}
+				throw error(message);
 			}
 		}
 
@@ -86,7 +98,8 @@ export async function resolveRegistryItems({
 
 		if (resolvedItem.registryDependencies?.length) {
 			const registryDeps = await resolveRegistryItems({
-				registryIndex: registryIndex,
+				registryUrl,
+				registryIndex,
 				items: resolvedItem.registryDependencies,
 				parentUrl: remoteUrl,
 			});
