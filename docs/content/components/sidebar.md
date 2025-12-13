@@ -1052,4 +1052,4 @@ Here are some tips for styling the sidebar based on different states.
 </Sidebar.MenuItem>
 ```
 
-You can find more tips on using states for styling in this [Twitter thread](https://x.com/shadcn/status/1842329158879420864).
+You can find more tips on using states for styling in this [X thread](https://x.com/shadcn/status/1842329158879420864).

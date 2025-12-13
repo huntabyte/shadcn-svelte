@@ -21,7 +21,7 @@
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20251212.0",
+		"@cloudflare/workers-types": "^4.20251213.0",
 		"@dnd-kit-svelte/svelte": "^0.1.5",
 		"@dnd-kit/abstract": "^0.1.21",
 		"@dnd-kit/collision": "^0.1.21",
@@ -98,6 +98,8 @@
 		"zod": "^4.1.13"
 	},
 	"dependencies": {
+		"@hugeicons/core-free-icons": "^2.0.0",
+		"@hugeicons/svelte": "^1.0.2",
 		"@types/lodash": "^4.17.21",
 		"lodash": "^4.17.21"
 	}

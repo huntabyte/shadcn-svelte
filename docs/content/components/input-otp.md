@@ -28,7 +28,7 @@ links:
 
 ## About
 
-Input OTP is built on top of Bits UI's [PinInput](https://bits-ui.com/docs/components/pin-input) which is inspired by [@guilherme_rodz](https://twitter.com/guilherme_rodz)'s Input OTP component.
+Input OTP is built on top of Bits UI's [PinInput](https://bits-ui.com/docs/components/pin-input) which is inspired by [@guilherme_rodz](https://x.com/guilherme_rodz)'s Input OTP component.
 
 ## Installation
 

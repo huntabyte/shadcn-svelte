@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Logo from "./logo.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
 	import MainNav from "./main-nav.svelte";
 	import Separator from "$lib/registry/ui/separator/separator.svelte";
 	import GithubLink from "./github-link.svelte";
@@ -10,6 +10,8 @@
 	import CommandMenu from "./command-menu/command-menu.svelte";
 	import { getColors } from "$lib/colors.js";
 	import { mainNavItems } from "$lib/navigation.js";
+	import { PlusSignIcon } from "@hugeicons/core-free-icons";
+	import { HugeiconsIcon } from "@hugeicons/svelte";
 
 	const colors = getColors();
 
@@ -43,6 +45,28 @@
 				<LayoutToggle class="3xl:flex hidden" />
 				<Separator orientation="vertical" />
 				<ModeSwitcher />
+				<Separator orientation="vertical" class="mr-2" />
+
+				<a
+					href="/create"
+					class={buttonVariants({
+						size: "sm",
+
+						class: "hidden h-[31px] rounded-lg sm:flex",
+					})}
+				>
+					<HugeiconsIcon icon={PlusSignIcon} />New Project
+				</a>
+				<a
+					href="/create"
+					class={buttonVariants({
+						size: "sm",
+
+						class: "h-[31px] rounded-lg sm:hidden",
+					})}
+				>
+					<HugeiconsIcon icon={PlusSignIcon} />New
+				</a>
 			</div>
 		</div>
 	</div>

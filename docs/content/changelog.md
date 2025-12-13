@@ -123,7 +123,7 @@ We've added a new component to the project, [Carousel](/docs/components/carousel
 
 ### New Component: Drawer
 
-The Drawer is built on top of [vaul-svelte](https://vaul-svelte.com) and is a port of [vaul](https://vaul.emilkowalski.ski/), originally created by [Emil Kowalski](https://twitter.com/emilkowalski_) for React.
+The Drawer is built on top of [vaul-svelte](https://vaul-svelte.com) and is a port of [vaul](https://vaul.emilkowal.ski/), originally created by [Emil Kowalski](https://x.com/emilkowalski) for React.
 
 <ComponentPreview name="drawer-demo">
 
@@ -133,7 +133,7 @@ The Drawer is built on top of [vaul-svelte](https://vaul-svelte.com) and is a po
 
 ### New Component: Sonner
 
-The Sonner component is provided by [svelte-sonner](https://svelte-sonner.vercel.app/), which is a Svelte port of [Sonner](https://sonner.emilkowal.ski/), originally created by [Emil Kowalski](https://twitter.com/emilkowalski_) for React.
+The Sonner component is provided by [svelte-sonner](https://svelte-sonner.vercel.app/), which is a Svelte port of [Sonner](https://sonner.emilkowal.ski/), originally created by [Emil Kowalski](https://x.com/emilkowalski) for React.
 
 <ComponentPreview name="sonner-demo">
 

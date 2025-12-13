@@ -9,7 +9,7 @@ description: Powered by amazing open source projects.
 
 ## Credits
 
-- [shadcn](https://twitter.com/shadcn) - The brilliant mind behind the designs, methodology, and implementation of the original [shadcn/ui](https://ui.shadcn.com).
+- [shadcn](https://x.com/shadcn) - The brilliant mind behind the designs, methodology, and implementation of the original [shadcn/ui](https://ui.shadcn.com).
 - [Bits UI](https://bits-ui.com) - The headless components that power this project.
 - [Formsnap](https://formsnap.dev) - The form components that power this project.
 - [Paneforge](https://paneforge.com) - The resizable components that power this project.
@@ -20,4 +20,4 @@ description: Powered by amazing open source projects.
 
 ## License
 
-MIT © [shadcn](https://shadcn.com) & [huntabyte](https://twitter.com/huntabyte)
+MIT © [shadcn](https://shadcn.com) & [huntabyte](https://x.com/huntabyte)

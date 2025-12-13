@@ -9,10 +9,12 @@
 	import PageHeader from "$lib/components/page-header/page-header.svelte";
 	import PageNav from "$lib/components/page-nav.svelte";
 	import ThemeSelector from "$lib/components/theme-selector.svelte";
-	import Button from "$lib/registry/ui/button/button.svelte";
+	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
 	import RootComponents from "$lib/components/cards/root-components.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
+	import { PlusSignIcon } from "@hugeicons/core-free-icons";
+	import { HugeiconsIcon } from "@hugeicons/svelte";
 
 	const title = "The Foundation for your Design System";
 	const description =
@@ -29,8 +31,18 @@
 		<PageHeaderHeading class="max-w-4xl">{title}</PageHeaderHeading>
 		<PageHeaderDescription>{description}</PageHeaderDescription>
 		<PageActions>
-			<Button href="/docs/installation" size="sm">Get Started</Button>
-			<Button href="/docs/components" size="sm" variant="ghost">View Components</Button>
+			<a
+				href="/create"
+				class={buttonVariants({
+					size: "sm",
+					class: "h-[31px] rounded-lg ",
+				})}
+			>
+				<HugeiconsIcon icon={PlusSignIcon} />New Project
+			</a>
+			<Button href="/docs/components" size="sm" variant="ghost" class="rounded-lg"
+				>View Components</Button
+			>
 		</PageActions>
 	</PageHeader>
 	{#if !mobile.current}
