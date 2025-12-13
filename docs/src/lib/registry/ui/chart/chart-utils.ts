@@ -1,5 +1,5 @@
 import type { Tooltip } from "layerchart";
-import { getContext, setContext, type Component, type ComponentProps, type Snippet } from "svelte";
+import { createContext, type Component, type ComponentProps, type Snippet } from "svelte";
 
 export const THEMES = { light: "", dark: ".dark" } as const;
 
@@ -55,12 +55,4 @@ type ChartContextValue = {
 	config: ChartConfig;
 };
 
-const chartContextKey = Symbol("chart-context");
-
-export function setChartContext(value: ChartContextValue) {
-	return setContext(chartContextKey, value);
-}
-
-export function useChart() {
-	return getContext<ChartContextValue>(chartContextKey);
-}
+export const [useChart, setChartContext] = createContext<ChartContextValue>();
