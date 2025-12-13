@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.1.1
+
+### Patch Changes
+
+- Improve error message when registry item not found to include the configured registry URL and suggest using the official registry ([#2466](https://github.com/huntabyte/shadcn-svelte/pull/2466))
+
 ## 1.1.0
 
 ### Minor Changes
