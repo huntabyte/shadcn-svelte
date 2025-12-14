@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import { getContext, setContext } from "svelte";
-	import { type ToggleVariants } from "$lib/components/ui/toggle/index.js";
+	import { type ToggleVariants } from "$lib/registry/ui/toggle/index.js";
 
 	export type ToggleVariantsSignal = () => ToggleVariants;
 
