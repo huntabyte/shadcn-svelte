@@ -17,14 +17,14 @@
 	<!-- When sidebar is hidden, show Select at all screen sizes -->
 	{#if hideSidebar}
 		<div
-			class="text-code-foreground [&_svg]:text-code-foreground flex h-12 shrink-0 items-center gap-2 border-b px-4 py-2 select-none [&_svg]:size-4 [&_svg]:opacity-70"
+			class="text-code-foreground [&_svg]:text-code-foreground flex h-12 shrink-0 items-center gap-2 border-b px-2 py-2 select-none [&_svg]:size-4 [&_svg]:opacity-70"
 			data-language={language}
 		>
 			<Select.Root
 				type="single"
 				bind:value={() => ctx.activeFile ?? "", (v) => (ctx.activeFile = v)}
 			>
-				<Select.Trigger class="w-64 justify-start [&>svg]:ms-auto">
+				<Select.Trigger class="w-76 justify-start [&>svg]:ms-auto">
 					<Icon class="!ms-0" />
 					{file.target.split("/").pop()}
 				</Select.Trigger>
@@ -65,7 +65,7 @@
 					type="single"
 					bind:value={() => ctx.activeFile ?? "", (v) => (ctx.activeFile = v)}
 				>
-					<Select.Trigger class="w-64 justify-start [&>svg]:ms-auto">
+					<Select.Trigger class="w-76 justify-start [&>svg]:ms-auto">
 						<Icon class="!ms-0" />
 						{file.target.split("/").pop()}
 					</Select.Trigger>
