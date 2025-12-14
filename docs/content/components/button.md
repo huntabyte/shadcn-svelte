@@ -4,6 +4,7 @@ description: Displays a button or a component that looks like a button.
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/button
+  api: https://bits-ui.com/docs/components/button#api-reference
 ---
 
 <script>
@@ -353,8 +354,6 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
   Dashboard
 </a>
 ```
-
-### [API Reference](https://bits-ui.com/docs/components/button#api-reference)
 
 ## Changelog
 
