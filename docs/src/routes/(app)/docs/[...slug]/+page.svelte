@@ -8,6 +8,7 @@
 	import { findNeighbors } from "$lib/navigation.js";
 	import { page } from "$app/state";
 	import Cta from "$lib/components/cta.svelte";
+	import ComponentCodeViewer from "$lib/components/component-code-viewer/component-code-viewer.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
 	import Ethical from "$lib/components/ethical.svelte";
 	import DocsCopyPage from "$lib/components/docs-copy-page.svelte";
@@ -18,6 +19,7 @@
 	const doc = $derived(data.metadata);
 	const apiLink = $derived(doc.links?.api);
 	const docLink = $derived(doc.links?.doc);
+	const source = $derived(data.viewerData);
 
 	const neighbors = $derived(findNeighbors(page.url.pathname));
 </script>
@@ -106,7 +108,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 						</p>
 					{/if}
 				</div>
-				{#if apiLink || docLink}
+				{#if apiLink || docLink || source}
 					<div class="flex items-center space-x-2 pt-4">
 						{#if docLink}
 							<Badge
@@ -128,6 +130,11 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 							>
 								API Reference <ArrowUpRight aria-hidden="true" />
 							</Badge>
+						{/if}
+						{#if source}
+							{#key page.url.pathname}
+								<ComponentCodeViewer item={source} />
+							{/key}
 						{/if}
 					</div>
 				{/if}

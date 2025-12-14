@@ -13,26 +13,26 @@
 {#if file}
 	<!-- svelte-ignore a11y_figcaption_parent -->
 	<figcaption
-		class="text-code-foreground [&_svg]:text-code-foreground hidden h-12 shrink-0 items-center gap-2 border-b px-4 py-2 select-none [&_svg]:size-4 [&_svg]:opacity-70"
+		class="text-code-foreground [&_svg]:text-code-foreground hidden h-12 shrink-0 items-center gap-2 border-b px-4 py-2 select-none md:flex [&_svg]:size-4 [&_svg]:opacity-70"
 		data-language={language}
 	>
 		<Icon />
-		{file?.target.split("/").pop()}
+		{file.target.split("/").pop()}
 		<div class="ms-auto flex items-center gap-2">
 			<ComponentCodeViewerCopyCodeButton />
 		</div>
 	</figcaption>
 
 	<div
-		class="text-code-foreground [&_svg]:text-code-foreground flex h-12 shrink-0 items-center gap-2 border-b px-1 py-2 [&_svg]:size-4 [&_svg]:opacity-70"
+		class="text-code-foreground [&_svg]:text-code-foreground flex h-12 shrink-0 items-center gap-2 border-b px-2 py-2 md:hidden [&_svg]:size-4 [&_svg]:opacity-70"
 	>
 		<Select.Root
 			type="single"
 			bind:value={() => ctx.activeFile ?? "", (v) => (ctx.activeFile = v)}
 		>
-			<Select.Trigger class="w-76 justify-start [&>svg]:ml-auto">
-				<Icon class="ms-0!" />
-				{file?.target.split("/").pop()}
+			<Select.Trigger class="w-64 justify-start [&>svg]:ms-auto">
+				<Icon class="!ms-0" />
+				{file.target.split("/").pop()}
 			</Select.Trigger>
 			<Select.Content>
 				{#if ctx.tree}
