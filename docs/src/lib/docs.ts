@@ -25,7 +25,7 @@ function transformPath(path: string): string {
 	return path.replace("/content/", "").replace(".md", "").replace("/index", "").trim();
 }
 
-function getDocMetadata(slug: string): DocMetadata | undefined {
+export function getDocMetadata(slug: string): DocMetadata | undefined {
 	return allDocs.find((doc) => doc.path === slug);
 }
 

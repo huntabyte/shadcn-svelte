@@ -20,16 +20,16 @@
 	import { Textarea } from "$lib/registry/ui/textarea/index.js";
 	import * as HoverCard from "$lib/registry/ui/hover-card/index.js";
 	import Metadata from "$lib/components/metadata.svelte";
+	import { ogMetadata } from "./ogMetadata.js";
 
-	const title = "Playground";
-	const description = "The OpenAI Playground build using the components.";
+	const { title, url, description } = ogMetadata;
 </script>
 
 <Metadata
 	{title}
 	{description}
 	ogImage={{
-		url: `/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`,
+		url,
 	}}
 />
 

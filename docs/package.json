@@ -25,6 +25,7 @@
 		"@dnd-kit/abstract": "^0.1.21",
 		"@dnd-kit/collision": "^0.1.21",
 		"@dnd-kit/helpers": "^0.1.21",
+		"@ethercorps/sveltekit-og": "4.2.0",
 		"@internationalized/date": "^3.8.1",
 		"@lucide/svelte": "^0.544.0",
 		"@prettier/sync": "0.6.1",

@@ -6,19 +6,18 @@
 	import PageHeaderHeading from "$lib/components/page-header/page-header-heading.svelte";
 	import PageHeader from "$lib/components/page-header/page-header.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
+	import { ogMetadata } from "./ogMetadata.js";
 
 	let { children } = $props();
 
-	const title = "Pick a Color. Make it yours.";
-	const description =
-		"Try our hand-picked themes. Copy and paste them into your project. New theme editor coming soon.";
+	const { title, url, description } = ogMetadata;
 </script>
 
 <Metadata
 	{title}
 	{description}
 	ogImage={{
-		url: `/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`,
+		url,
 	}}
 />
 

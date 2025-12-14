@@ -9,18 +9,17 @@
 	import ChartsNav from "$lib/components/charts-nav.svelte";
 	import ThemeSelector from "$lib/components/theme-selector.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
+	import { ogMetadata } from "./ogMetadata.js";
 
 	let { children } = $props();
-	const title = "Beautiful Charts & Graphs";
-	const description =
-		"A collection of ready-to-use chart components built with LayerChart. From basic charts to rich data displays, copy and paste into your apps.";
+	const { title, url, description } = ogMetadata;
 </script>
 
 <Metadata
 	{title}
 	{description}
 	ogImage={{
-		url: `/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`,
+		url,
 	}}
 />
 
