@@ -53,6 +53,7 @@ export async function createHighlighter() {
 				import("@shikijs/langs/json"),
 				import("@shikijs/langs/bash"),
 				import("@shikijs/langs/astro"),
+				import("@shikijs/langs/diff"),
 			],
 			engine: jsEngine,
 		});
