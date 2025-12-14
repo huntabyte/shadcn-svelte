@@ -125,7 +125,7 @@ Copy and paste the following code into your project.
 
 We've updated the Sonner component to use icons from `lucide`. Update your `sonner.svelte` file to use the new icons.
 
-```svelte showLineNumbers title="components/ui/sonner.svelte" {2-6,19-34}
+```svelte showLineNumbers title="components/ui/sonner.svelte" {2-6,22-36}
 <script lang="ts">
   import CircleCheckIcon from "@lucide/svelte/icons/circle-check";
   import InfoIcon from "@lucide/svelte/icons/info";
