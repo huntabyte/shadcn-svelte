@@ -20,7 +20,10 @@
 </script>
 
 <script lang="ts">
-	let { item, allowSidebar = false }: Pick<ComponentCodeViewerContextType, "item" | "allowSidebar"> = $props();
+	let {
+		item,
+		allowSidebar = false,
+	}: Pick<ComponentCodeViewerContextType, "item" | "allowSidebar"> = $props();
 
 	const tree = $derived(createFileTreeForRegistryItemFiles(item.files));
 	const highlightedFiles = $derived(item.files);
