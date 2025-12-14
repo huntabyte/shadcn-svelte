@@ -41,10 +41,5 @@
 		"typescript-eslint": "^8.34.0",
 		"vite": "^6.3.5",
 		"zod": "^3.25.64"
-	},
-	"pnpm": {
-		"onlyBuiltDependencies": [
-			"esbuild"
-		]
 	}
 }

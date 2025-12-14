@@ -21,18 +21,18 @@
 		options: {
 			container: "[data-embla-container]",
 			slides: "[data-embla-slide]",
-			...emblaCtx.options,
-			axis: emblaCtx.orientation === "horizontal" ? "x" : "y",
+			...emblaCtx().options,
+			axis: emblaCtx().orientation === "horizontal" ? "x" : "y",
 		},
-		plugins: emblaCtx.plugins,
+		plugins: emblaCtx().plugins,
 	}}
-	onemblaInit={emblaCtx.onInit}
+	onemblaInit={emblaCtx().onInit}
 >
 	<div
 		bind:this={ref}
 		class={cn(
 			"flex",
-			emblaCtx.orientation === "horizontal" ? "-ms-4" : "-mt-4 flex-col",
+			emblaCtx().orientation === "horizontal" ? "-ms-4" : "-mt-4 flex-col",
 			className
 		)}
 		data-embla-container=""
