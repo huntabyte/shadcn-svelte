@@ -3,7 +3,7 @@
 	import type { WithoutChildren } from "bits-ui";
 	import { getEmblaContext } from "./context.js";
 	import { cn } from "$lib/utils.js";
-	import { Button, type Props } from "$lib/registry/ui/button/index.js";
+	import { Button, type Props } from "$lib/components/ui/button/index.js";
 
 	let {
 		ref = $bindable(null),
@@ -20,16 +20,16 @@
 	data-slot="carousel-previous"
 	{variant}
 	{size}
-	aria-disabled={!emblaCtx.canScrollPrev}
+	aria-disabled={!emblaCtx().canScrollPrev}
 	class={cn(
 		"absolute size-8 rounded-full",
-		emblaCtx.orientation === "horizontal"
+		emblaCtx().orientation === "horizontal"
 			? "-start-12 top-1/2 -translate-y-1/2"
 			: "-top-12 start-1/2 -translate-x-1/2 rotate-90",
 		className
 	)}
-	onclick={emblaCtx.scrollPrev}
-	onkeydown={emblaCtx.handleKeyDown}
+	onclick={emblaCtx().scrollPrev}
+	onkeydown={emblaCtx().handleKeyDown}
 	{...restProps}
 	bind:ref
 >

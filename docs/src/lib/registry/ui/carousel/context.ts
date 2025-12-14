@@ -45,7 +45,9 @@ export type EmblaContext = {
 	selectedIndex: number;
 };
 
-export function setEmblaContext(config: EmblaContext): EmblaContext {
+export type EmblaContextSignal = () => EmblaContext;
+
+export function setEmblaContext(config: EmblaContextSignal): EmblaContextSignal {
 	setContext(EMBLA_CAROUSEL_CONTEXT, config);
 	return config;
 }
