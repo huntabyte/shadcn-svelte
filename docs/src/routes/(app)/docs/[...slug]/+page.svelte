@@ -133,7 +133,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 						{/if}
 						{#if source}
 							{#key page.url.pathname}
-								<ComponentCodeViewer item={source} />
+								<ComponentCodeViewer item={source} allowSidebar={true} />
 							{/key}
 						{/if}
 					</div>

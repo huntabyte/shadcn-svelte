@@ -15,11 +15,12 @@
 		tree: ReturnType<typeof createFileTreeForRegistryItemFiles> | null;
 		highlightedFiles: HighlightedBlock["files"];
 		activeFileCodeToCopy: string;
+		allowSidebar?: boolean;
 	};
 </script>
 
 <script lang="ts">
-	let { item }: Pick<ComponentCodeViewerContextType, "item"> = $props();
+	let { item, allowSidebar = false }: Pick<ComponentCodeViewerContextType, "item" | "allowSidebar"> = $props();
 
 	const tree = $derived(createFileTreeForRegistryItemFiles(item.files));
 	const highlightedFiles = $derived(item.files);
@@ -70,6 +71,9 @@
 		},
 		set activeFileCodeToCopy(value) {
 			activeFileCodeToCopy = value;
+		},
+		get allowSidebar() {
+			return allowSidebar;
 		},
 	});
 

@@ -5,6 +5,7 @@
 
 	const ctx = ComponentCodeViewerContext.get();
 	const file = $derived(ctx.highlightedFiles.find((f) => f.target === ctx.activeFile));
+	const showFileTree = $derived(ctx.allowSidebar !== false);
 	let codeContainer = $state<HTMLElement | null>(null);
 
 	function handleKeydown(event: KeyboardEvent) {
@@ -28,9 +29,11 @@
 	<div
 		class="bg-code text-code-foreground flex h-(--height) overflow-hidden rounded-xl border group-data-[view=preview]/block-view-wrapper:hidden"
 	>
-		<div class="hidden w-72 md:block">
-			<ComponentCodeViewerFileTree />
-		</div>
+		{#if showFileTree}
+			<div class="hidden w-72 md:block">
+				<ComponentCodeViewerFileTree />
+			</div>
+		{/if}
 		<figure
 			data-rehype-pretty-code-figure
 			class="mt-0 flex min-w-0 flex-1 flex-col rounded-xl border-none"
