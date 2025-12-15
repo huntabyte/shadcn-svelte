@@ -13,7 +13,7 @@
 	<iframe
 		title={ctx.item.name}
 		src="/view/{ctx.item.name}"
-		height={ctx.item.meta?.iframeHeight ?? 930}
+		height={typeof ctx.item.meta?.iframeHeight === "number" ? ctx.item.meta.iframeHeight : 930}
 		class={cn("bg-background no-scrollbar relative z-20 w-full", className)}
 		loading="lazy"
 	></iframe>

@@ -24,7 +24,7 @@
 	<FieldGroup>
 		<div class="flex flex-col items-center gap-1 text-center">
 			<h1 class="text-2xl font-bold">Login to your account</h1>
-			<p class="text-muted-foreground text-balance text-sm">
+			<p class="text-muted-foreground text-sm text-balance">
 				Enter your email below to login to your account
 			</p>
 		</div>

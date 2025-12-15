@@ -267,7 +267,7 @@
 											selectedModel = model;
 										}
 									}}
-									class="*:[span:first-child]:end-2 *:[span:first-child]:start-auto ps-2"
+									class="ps-2 *:[span:first-child]:start-auto *:[span:first-child]:end-2"
 								>
 									{model.name}
 									{#if model.badge}

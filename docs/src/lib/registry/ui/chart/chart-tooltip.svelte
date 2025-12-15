@@ -33,7 +33,7 @@
 		hideIndicator?: boolean;
 		labelClassName?: string;
 		labelFormatter?: // eslint-disable-next-line @typescript-eslint/no-explicit-any
-		((value: any, payload: TooltipPayload[]) => string | number | Snippet) | null;
+			((value: any, payload: TooltipPayload[]) => string | number | Snippet) | null;
 		formatter?: Snippet<
 			[
 				{
@@ -120,7 +120,7 @@
 							<div
 								style="--color-bg: {indicatorColor}; --color-border: {indicatorColor};"
 								class={cn(
-									"border-(--color-border) bg-(--color-bg) shrink-0 rounded-[2px]",
+									"shrink-0 rounded-[2px] border-(--color-border) bg-(--color-bg)",
 									{
 										"size-2.5": indicator === "dot",
 										"h-full w-1": indicator === "line",

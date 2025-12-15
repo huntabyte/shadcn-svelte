@@ -226,14 +226,14 @@
 					{#each mails as mail (mail.email)}
 						<a
 							href="##"
-							class="hover:bg-sidebar-accent hover:text-sidebar-accent-foreground flex flex-col items-start gap-2 whitespace-nowrap border-b p-4 text-sm leading-tight last:border-b-0"
+							class="hover:bg-sidebar-accent hover:text-sidebar-accent-foreground flex flex-col items-start gap-2 border-b p-4 text-sm leading-tight whitespace-nowrap last:border-b-0"
 						>
 							<div class="flex w-full items-center gap-2">
 								<span>{mail.name}</span>
 								<span class="ms-auto text-xs">{mail.date}</span>
 							</div>
 							<span class="font-medium">{mail.subject}</span>
-							<span class="line-clamp-2 w-[260px] whitespace-break-spaces text-xs">
+							<span class="line-clamp-2 w-[260px] text-xs whitespace-break-spaces">
 								{mail.teaser}
 							</span>
 						</a>

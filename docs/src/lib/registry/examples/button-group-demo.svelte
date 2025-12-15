@@ -17,20 +17,20 @@
 
 <ButtonGroup.Root>
 	<ButtonGroup.Root class="hidden sm:flex">
-		<Button variant="outline" size="icon" aria-label="Go Back">
+		<Button variant="outline" size="icon-sm" aria-label="Go Back">
 			<ArrowLeft />
 		</Button>
 	</ButtonGroup.Root>
 	<ButtonGroup.Root>
-		<Button variant="outline">Archive</Button>
-		<Button variant="outline">Report</Button>
+		<Button size="sm" variant="outline">Archive</Button>
+		<Button size="sm" variant="outline">Report</Button>
 	</ButtonGroup.Root>
 	<ButtonGroup.Root>
-		<Button variant="outline">Snooze</Button>
+		<Button size="sm" variant="outline">Snooze</Button>
 		<DropdownMenu.Root>
 			<DropdownMenu.Trigger>
 				{#snippet child({ props })}
-					<Button {...props} variant="outline" size="icon" aria-label="More Options">
+					<Button {...props} variant="outline" size="icon-sm" aria-label="More Options">
 						<MoreHorizontal />
 					</Button>
 				{/snippet}

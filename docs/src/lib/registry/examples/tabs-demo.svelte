@@ -6,7 +6,7 @@
 	import { Label } from "$lib/registry/ui/label/index.js";
 </script>
 
-<div class="flex w-full max-w-sm flex-col gap-6">
+<div class="-mb-4 flex w-full max-w-sm flex-col gap-6">
 	<Tabs.Root value="account">
 		<Tabs.List>
 			<Tabs.Trigger value="account">Account</Tabs.Trigger>

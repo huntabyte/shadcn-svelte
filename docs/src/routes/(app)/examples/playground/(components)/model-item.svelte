@@ -42,7 +42,7 @@
 		<div
 			use:mutationObserverAction
 			{...props}
-			class="aria-selected:bg-primary aria-selected:text-primary-foreground relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
+			class="aria-selected:bg-primary aria-selected:text-primary-foreground relative flex cursor-default items-center rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
 		>
 			{model.name}
 			{#if isSelected}

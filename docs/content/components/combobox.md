@@ -6,6 +6,7 @@ component: true
 
 <script>
 	import ComponentPreview from "$lib/components/component-preview.svelte";
+	import CodeCollapsibleWrapper from "$lib/components/code-collapsible-wrapper.svelte";
 </script>
 
 <ComponentPreview name="combobox-demo">
@@ -22,7 +23,9 @@ See installation instructions for the [Popover](/docs/components/popover#install
 
 ## Usage
 
-```svelte
+<CodeCollapsibleWrapper >
+
+```svelte title="lib/components/example-combobox.svelte"
 <script lang="ts">
   import CheckIcon from "@lucide/svelte/icons/check";
   import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
@@ -119,6 +122,8 @@ See installation instructions for the [Popover](/docs/components/popover#install
 </Popover.Root>
 ```
 
+</CodeCollapsibleWrapper>
+
 ## Examples
 
 ### Combobox
@@ -145,13 +150,11 @@ See installation instructions for the [Popover](/docs/components/popover#install
 
 </ComponentPreview>
 
-### Form
+### Responsive
 
-Since the Combobox is built using the `<Popover />` and the `<Command />` components, we need to use the `<Form.Control />` component. `<Form.Control />` enables us to apply the right `aria-*` attributes to non-standard form elements, and adds a hidden input to ensure the form is submitted with the correct value.
+You can create a responsive combobox by using the `<Popover />` on desktop and the `<Drawer />` components on mobile.
 
-Note: You must be on version `0.5.0` or higher of `formsnap` for this to work correctly.
-
-<ComponentPreview name="combobox-form">
+<ComponentPreview name="combobox-responsive" >
 
 <div></div>
 

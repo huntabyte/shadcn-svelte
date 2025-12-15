@@ -32,7 +32,7 @@ We'll start with the basic `<Table />` component, and work our way up to a fully
 
 <Callout>
 
-<strong>Tip:</strong> If you find yourself using the same table in multiple places, you can always extract it into a reusable component.
+Tip: If you find yourself using the same table in multiple places, you can always extract it into a reusable component.
 
 </Callout>
 
@@ -120,7 +120,7 @@ Let's start by building a basic table.
 
 First, we'll define our columns.
 
-```ts showLineNumbers title="routes/payments/columns.ts"
+```ts showLineNumbers {1,12-25} title="routes/payments/columns.ts"
 import type { ColumnDef } from "@tanstack/table-core";
 
 // This type is used to define the shape of our data.
@@ -247,7 +247,7 @@ export async function load() {
 }
 ```
 
-```svelte showLineNumbers title="routes/payments/+page.svelte"
+```svelte showLineNumbers {8} title="routes/payments/+page.svelte"
 <script lang="ts">
   import DataTable from "./data-table.svelte";
   import { columns } from "./columns.js";

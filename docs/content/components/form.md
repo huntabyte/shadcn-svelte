@@ -7,11 +7,19 @@ links:
 ---
 
 <script>
+  import Callout from '$lib/components/callout.svelte'
 	import ComponentPreview from "$lib/components/component-preview.svelte";
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
 	import PMInstall from "$lib/components/pm-install.svelte";
 	import Steps from "$lib/components/steps.svelte";
+	import InfoIcon from "@lucide/svelte/icons/info"
 </script>
+
+<Callout title="We are not actively developing this component anymore." icon={InfoIcon}>
+
+The Form component is an abstraction over the `formsnap` & `sveltekit-superforms` libraries. Going forward, we recommend using the [`<Field />`](/docs/components/field) component to build forms.
+
+</Callout>
 
 Forms are tricky. They are one of the most common things you'll build in a web application, but also one of the most complex.
 

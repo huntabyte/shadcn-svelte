@@ -29,7 +29,7 @@
 		"pnpm": ">=9",
 		"node": ">=20"
 	},
-	"packageManager": "pnpm@10.12.1",
+	"packageManager": "pnpm@10.25.0",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/huntabyte/shadcn-svelte.git"
@@ -37,24 +37,24 @@
 	"license": "MIT",
 	"type": "module",
 	"devDependencies": {
-		"@changesets/cli": "^2.29.7",
-		"@eslint/compat": "^1.4.0",
-		"@eslint/js": "^9.36.0",
+		"@changesets/cli": "^2.29.8",
+		"@eslint/compat": "^2.0.0",
+		"@eslint/js": "^9.39.2",
 		"@svitejs/changesets-changelog-github-compact": "^1.2.0",
-		"@types/node": "^24.5.2",
-		"eslint": "^9.36.0",
+		"@types/node": "^25.0.2",
+		"eslint": "^9.39.2",
 		"eslint-config-prettier": "^10.1.8",
-		"eslint-plugin-svelte": "^3.12.4",
-		"globals": "^16.4.0",
-		"minimatch": "^10.0.3",
-		"prettier": "^3.6.2",
-		"prettier-plugin-svelte": "^3.4.0",
-		"prettier-plugin-tailwindcss": "^0.6.14",
+		"eslint-plugin-svelte": "^3.13.1",
+		"globals": "^16.5.0",
+		"minimatch": "^10.1.1",
+		"prettier": "~3.7.4",
+		"prettier-plugin-svelte": "^3.4.1",
+		"prettier-plugin-tailwindcss": "^0.7.2",
 		"pretty-quick": "^4.2.2",
 		"svelte": "catalog:",
-		"typescript": "catalog:",
-		"typescript-eslint": "^8.44.1",
-		"wrangler": "^4.20.0"
+		"typescript": "5.9.3",
+		"typescript-eslint": "^8.49.0",
+		"wrangler": "^4.54.0"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [
@@ -62,6 +62,17 @@
 			"esbuild",
 			"sharp",
 			"workerd"
-		]
+		],
+		"overrides": {
+			"cookie@<0.7.0": ">=0.7.0",
+			"brace-expansion@>=2.0.0 <=2.0.1": ">=2.0.2",
+			"vite@>=6.0.0 <=6.3.5": ">=6.3.6",
+			"vite@>=6.0.0 <=6.4.0": ">=6.4.1",
+			"tar@=7.5.1": ">=7.5.2",
+			"js-yaml@>=4.0.0 <4.1.1": ">=4.1.1",
+			"glob@>=10.2.0 <10.5.0": ">=10.5.0",
+			"valibot@>=0.31.0 <1.2.0": ">=1.2.0",
+			"mdast-util-to-hast@>=13.0.0 <13.2.1": ">=13.2.1"
+		}
 	}
 }

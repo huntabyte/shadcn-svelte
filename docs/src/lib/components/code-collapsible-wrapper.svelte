@@ -16,7 +16,7 @@
 
 <Collapsible.Root
 	bind:open
-	class={cn("group/collapsible relative md:-mx-4", className)}
+	class={cn("group/collapsible relative md:-mx-1", className)}
 	{...restProps}
 >
 	<Collapsible.Trigger>

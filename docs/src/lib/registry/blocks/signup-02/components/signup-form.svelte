@@ -12,7 +12,7 @@
 	<Field.Group>
 		<div class="flex flex-col items-center gap-1 text-center">
 			<h1 class="text-2xl font-bold">Create your account</h1>
-			<p class="text-muted-foreground text-balance text-sm">
+			<p class="text-muted-foreground text-sm text-balance">
 				Fill in the form below to create your account
 			</p>
 		</div>

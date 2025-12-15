@@ -1,7 +1,7 @@
 import { resolveCommand } from "package-manager-detector/commands";
 import type { Agent, Command, ResolvedCommand } from "package-manager-detector";
 
-export const PACKAGE_MANAGERS: Agent[] = ["pnpm", "npm", "bun", "yarn"] as const;
+export const PACKAGE_MANAGERS: Agent[] = ["pnpm", "npm", "yarn", "bun"] as const;
 export type PackageManager = (typeof PACKAGE_MANAGERS)[number];
 
 export type PackageManagerCommand = Command | "create";

@@ -10,11 +10,14 @@ links:
 
 <script>
 	import ComponentPreview from "$lib/components/component-preview.svelte";
+	import ComponentSource from "$lib/components/component-source.svelte";
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
 	import PMInstall from "$lib/components/pm-install.svelte";
 	import Steps from "$lib/components/steps.svelte";
 	import Step from "$lib/components/step.svelte";
 	import InstallTabs from "$lib/components/install-tabs.svelte";
+
+	let { viewerData } = $props();
 </script>
 
 <ComponentPreview name="tooltip-demo">
@@ -42,9 +45,12 @@ Install `bits-ui`:
 
 <Step>
 
-Copy and paste the component source files linked at the top of this page into your project.
+Copy and paste the following code into your project.
 
 </Step>
+{#if viewerData}
+	<ComponentSource item={viewerData} data-llm-ignore/>
+{/if}
 
 </Steps>
 {/snippet}
@@ -54,13 +60,15 @@ Copy and paste the component source files linked at the top of this page into yo
 
 The `Tooltip.Provider` component should be placed once in your root layout, wrapping all content that will contain tooltips. This ensures that only one tooltip within the provider can be open at a time.
 
-```svelte title="src/routes/+layout.svelte"
+```svelte title="src/routes/+layout.svelte" showLineNumbers
 <script lang="ts">
   import * as Tooltip from "$lib/components/ui/tooltip/index.js";
 
   let { children } = $props();
 </script>
+```
 
+```svelte showLineNumbers
 <Tooltip.Provider>
   {@render children()}
 </Tooltip.Provider>
@@ -90,3 +98,13 @@ You can nest providers to create groups with different settings. Tooltips use th
   <!-- Tooltips here will open instantly -->
 </Tooltip.Provider>
 ```
+
+---
+
+## Changelog
+
+### 2025-12 Update tooltip colors
+
+We've updated the tooltip colors to use the foreground color for the background and the background color for the foreground.
+
+Replace `bg-primary text-primary-foreground` with `bg-foreground text-background` for `<Tooltip.Content />`.

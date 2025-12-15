@@ -1,8 +1,8 @@
 <script lang="ts">
 	import AlertTriangle from "@lucide/svelte/icons/alert-triangle";
-	import Check from "@lucide/svelte/icons/check";
 	import ChevronDown from "@lucide/svelte/icons/chevron-down";
-	import Copy from "@lucide/svelte/icons/copy";
+	import CopyIcon from "@tabler/icons-svelte/icons/copy";
+	import CheckIcon from "@tabler/icons-svelte/icons/check";
 	import Share from "@lucide/svelte/icons/share";
 	import Trash from "@lucide/svelte/icons/trash";
 	import UserRoundX from "@lucide/svelte/icons/user-round-x";
@@ -29,7 +29,7 @@
 					Mute Conversation
 				</DropdownMenu.Item>
 				<DropdownMenu.Item>
-					<Check />
+					<CheckIcon />
 					Mark as Read
 				</DropdownMenu.Item>
 				<DropdownMenu.Item>
@@ -45,7 +45,7 @@
 					Share Conversation
 				</DropdownMenu.Item>
 				<DropdownMenu.Item>
-					<Copy />
+					<CopyIcon />
 					Copy Conversation
 				</DropdownMenu.Item>
 			</DropdownMenu.Group>

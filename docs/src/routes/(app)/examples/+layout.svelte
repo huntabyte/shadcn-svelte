@@ -26,10 +26,10 @@
 
 <PageHeader>
 	<Announcement />
-	<PageHeaderHeading>Build your Component Library</PageHeaderHeading>
+	<PageHeaderHeading>The Foundation for your Design System</PageHeaderHeading>
 	<PageHeaderDescription>
-		A set of beautifully-designed, accessible components and a code distribution platform. Open
-		Source. Open Code.
+		A set of beautifully designed components that you can customize, extend, and build on. Start
+		here then make it your own. Open Source. Open Code.
 	</PageHeaderDescription>
 	<PageActions>
 		<Button href="/docs" size="sm">Get Started</Button>

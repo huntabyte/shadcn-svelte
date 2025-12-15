@@ -11,7 +11,7 @@
 		className
 	)}
 >
-	<div class="text-balance text-base font-semibold leading-tight group-hover:underline">
+	<div class="text-base leading-tight font-semibold text-balance group-hover:underline">
 		Special sponsor
 	</div>
 	<div class="text-muted-foreground">We're looking for one partner to be featured here.</div>

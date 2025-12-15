@@ -230,7 +230,7 @@
 	<div class="flex items-center justify-between px-4 lg:px-6">
 		<Label for="view-selector" class="sr-only">View</Label>
 		<Select.Root type="single" bind:value={view}>
-			<Select.Trigger class="@4xl/main:hidden flex w-fit" size="sm" id="view-selector">
+			<Select.Trigger class="flex w-fit @4xl/main:hidden" size="sm" id="view-selector">
 				{viewLabel}
 			</Select.Trigger>
 			<Select.Content>
@@ -240,7 +240,7 @@
 			</Select.Content>
 		</Select.Root>
 		<Tabs.List
-			class="**:data-[slot=badge]:bg-muted-foreground/30 **:data-[slot=badge]:size-5 **:data-[slot=badge]:rounded-full **:data-[slot=badge]:px-1 @4xl/main:flex hidden"
+			class="**:data-[slot=badge]:bg-muted-foreground/30 hidden **:data-[slot=badge]:size-5 **:data-[slot=badge]:rounded-full **:data-[slot=badge]:px-1 @4xl/main:flex"
 		>
 			{#each views as view (view.id)}
 				<Tabs.Trigger value={view.id}>

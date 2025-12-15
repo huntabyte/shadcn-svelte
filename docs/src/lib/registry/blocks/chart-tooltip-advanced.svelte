@@ -80,7 +80,7 @@
 						{#snippet formatter({ name, index, value, item })}
 							<div
 								style="--color-bg: var(--color-{name.toLowerCase()})"
-								class="bg-(--color-bg) size-2.5 shrink-0 rounded-[2px]"
+								class="size-2.5 shrink-0 rounded-[2px] bg-(--color-bg)"
 							></div>
 							{chartConfig[name as keyof typeof chartConfig]?.label || name}
 							<div

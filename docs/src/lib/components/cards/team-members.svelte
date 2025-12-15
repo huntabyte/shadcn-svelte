@@ -5,6 +5,7 @@
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import * as Item from "$lib/registry/ui/item/index.js";
 
 	let members = $state([
 		{
@@ -16,13 +17,13 @@
 		{
 			name: "Jackson Lee",
 			email: "p@example.com",
-			role: "Member",
+			role: "Developer",
 			avatar: "/avatars/02.png",
 		},
 		{
 			name: "Isabella Nguyen",
 			email: "i@example.com",
-			role: "Member",
+			role: "Billing",
 			avatar: "/avatars/03.png",
 		},
 	]);
@@ -47,62 +48,64 @@
 	];
 </script>
 
-<Card.Root>
+<Card.Root class="gap-4">
 	<Card.Header>
 		<Card.Title>Team Members</Card.Title>
 		<Card.Description>Invite your team members to collaborate.</Card.Description>
 	</Card.Header>
-	<Card.Content class="grid gap-6">
+	<Card.Content>
 		{#each members as member (member.name)}
-			<div class="flex items-center justify-between gap-4">
-				<div class="flex items-center gap-4">
-					<Avatar.Root class="border">
-						<Avatar.Image src={member.avatar} alt="Image" />
-						<Avatar.Fallback>
-							{member.name
-								.split(" ")
-								.map((n) => n[0])
-								.join("")}
-						</Avatar.Fallback>
-					</Avatar.Root>
-					<div class="flex flex-col gap-0.5">
-						<p class="text-sm font-medium leading-none">{member.name}</p>
-						<p class="text-muted-foreground text-xs">{member.email}</p>
-					</div>
-				</div>
-				<Popover.Root>
-					<Popover.Trigger
-						class={buttonVariants({
-							variant: "outline",
-							size: "sm",
-							class: "ms-auto shadow-none",
-						})}
-					>
-						{member.role}
-						<ChevronDownIcon />
-					</Popover.Trigger>
-					<Popover.Content class="p-0" align="end">
-						<Command.Root>
-							<Command.Input placeholder="Select role..." />
-							<Command.List>
-								<Command.Empty>No roles found.</Command.Empty>
-								<Command.Group>
-									{#each roles as role (role.name)}
-										<Command.Item onSelect={() => (member.role = role.name)}>
-											<div class="flex flex-col">
-												<p class="text-sm font-medium">{role.name}</p>
-												<p class="text-muted-foreground">
-													{role.description}
-												</p>
-											</div>
-										</Command.Item>
-									{/each}
-								</Command.Group>
-							</Command.List>
-						</Command.Root>
-					</Popover.Content>
-				</Popover.Root>
-			</div>
+			<Item.Item size="sm" class="gap-4 px-0">
+				<Avatar.Root class="shrink-0 self-start border">
+					<Avatar.Image src={member.avatar} alt="Image" />
+					<Avatar.Fallback>
+						{member.name
+							.split(" ")
+							.map((n) => n[0])
+							.join("")}
+					</Avatar.Fallback>
+				</Avatar.Root>
+				<Item.Content>
+					<Item.Title>{member.name}</Item.Title>
+					<Item.Description>{member.email}</Item.Description>
+				</Item.Content>
+				<Item.Actions>
+					<Popover.Root>
+						<Popover.Trigger
+							class={buttonVariants({
+								variant: "outline",
+								size: "sm",
+								class: "ms-auto shadow-none",
+							})}
+						>
+							{member.role}
+							<ChevronDownIcon />
+						</Popover.Trigger>
+						<Popover.Content class="p-0" align="end">
+							<Command.Root>
+								<Command.Input placeholder="Select role..." />
+								<Command.List>
+									<Command.Empty>No roles found.</Command.Empty>
+									<Command.Group>
+										{#each roles as role (role.name)}
+											<Command.Item
+												onSelect={() => (member.role = role.name)}
+											>
+												<div class="flex flex-col">
+													<p class="text-sm font-medium">{role.name}</p>
+													<p class="text-muted-foreground">
+														{role.description}
+													</p>
+												</div>
+											</Command.Item>
+										{/each}
+									</Command.Group>
+								</Command.List>
+							</Command.Root>
+						</Popover.Content>
+					</Popover.Root>
+				</Item.Actions>
+			</Item.Item>
 		{/each}
 	</Card.Content>
 </Card.Root>

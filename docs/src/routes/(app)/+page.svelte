@@ -10,13 +10,13 @@
 	import PageNav from "$lib/components/page-nav.svelte";
 	import ThemeSelector from "$lib/components/theme-selector.svelte";
 	import Button from "$lib/registry/ui/button/button.svelte";
-	import CardsDemo from "$lib/components/cards/demo.svelte";
+	import RootComponents from "$lib/components/cards/root-components.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 
-	const title = "Build your Component Library";
+	const title = "The Foundation for your Design System";
 	const description =
-		"A set of beautifully-designed, accessible components and a code distribution platform. Open Source. Open Code.";
+		"A set of beautifully designed components that you can customize, extend, and build on. Start here then make it your own. Open Source. Open Code.";
 
 	const mobile = new IsMobile();
 </script>
@@ -26,11 +26,11 @@
 <div class="flex flex-1 flex-col">
 	<PageHeader>
 		<Announcement />
-		<PageHeaderHeading>{title}</PageHeaderHeading>
+		<PageHeaderHeading class="max-w-4xl">{title}</PageHeaderHeading>
 		<PageHeaderDescription>{description}</PageHeaderDescription>
 		<PageActions>
 			<Button href="/docs/installation" size="sm">Get Started</Button>
-			<Button href="/blocks" size="sm" variant="ghost">Browse Blocks</Button>
+			<Button href="/docs/components" size="sm" variant="ghost">View Components</Button>
 		</PageActions>
 	</PageHeader>
 	{#if !mobile.current}
@@ -45,15 +45,15 @@
 				class="border-border/50 -mx-4 w-[160vw] overflow-hidden rounded-lg border md:hidden md:w-[150vw]"
 			>
 				<enhanced:img
-					class="block object-cover dark:hidden"
-					src="../../../static/img/registry/dashboard-01-light-landing.png?w=716"
+					class="block dark:hidden"
+					src="../../../static/img/registry/dashboard-01-light.png"
 					alt="Dashboard"
 					fetchpriority={mobile.current ? "high" : undefined}
 					loading={mobile.current ? "eager" : "lazy"}
 				/>
 				<enhanced:img
-					class="hidden object-cover dark:block"
-					src="../../../static/img/registry/dashboard-01-dark-landing.png?w=716"
+					class="hidden dark:block"
+					src="../../../static/img/registry/dashboard-01-dark.png"
 					alt="Dashboard"
 					fetchpriority="high"
 					loading={mobile.current ? "eager" : "lazy"}
@@ -61,7 +61,7 @@
 			</section>
 			{#if !mobile.current}
 				<section class="theme-container hidden md:block">
-					<CardsDemo />
+					<RootComponents />
 				</section>
 			{/if}
 		</div>

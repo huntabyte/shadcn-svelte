@@ -35,7 +35,7 @@
 />
 <Toaster position="top-center" />
 
-<div class="bg-background relative z-10 flex min-h-svh flex-col">
+<div class="bg-background relative flex min-h-svh flex-col">
 	<SiteHeader />
 	<main class="flex flex-1 flex-col">
 		<Tooltip.Provider>

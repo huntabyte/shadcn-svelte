@@ -5,16 +5,18 @@ component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/sonner
   doc: https://svelte-sonner.vercel.app/
-  api: https://github.com/wobsoriano/svelte-sonner
 ---
 
 <script>
 	import ComponentPreview from "$lib/components/component-preview.svelte";
+	import ComponentSource from "$lib/components/component-source.svelte";
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
 	import PMInstall from "$lib/components/pm-install.svelte";
 	import Steps from "$lib/components/steps.svelte";
 	import Step from "$lib/components/step.svelte";
 	import InstallTabs from "$lib/components/install-tabs.svelte";
+
+	let { viewerData } = $props();
 </script>
 
 <ComponentPreview name="sonner-demo">
@@ -72,9 +74,12 @@ Install `svelte-sonner`:
 
 <Step>
 
-Copy and paste the component source files linked at the top of this page into your project.
+Copy and paste the following code into your project.
 
 </Step>
+{#if viewerData}
+	<ComponentSource item={viewerData} data-llm-ignore/>
+{/if}
 
 <Step>Add the Toaster component</Step>
 
@@ -100,6 +105,62 @@ Copy and paste the component source files linked at the top of this page into yo
   import { toast } from "svelte-sonner";
   import { Button } from "$lib/components/ui/button/index.js";
 </script>
+```
 
+```svelte
 <Button onclick={() => toast("Hello world")}>Show toast</Button>
+```
+
+## Examples
+
+<ComponentPreview name="sonner-types">
+
+<div></div>
+
+</ComponentPreview>
+
+## Changelog
+
+### 2025-12 Icons
+
+We've updated the Sonner component to use icons from `lucide`. Update your `sonner.svelte` file to use the new icons.
+
+```svelte showLineNumbers title="components/ui/sonner.svelte" {2-6,22-36}
+<script lang="ts">
+  import CircleCheckIcon from "@lucide/svelte/icons/circle-check";
+  import InfoIcon from "@lucide/svelte/icons/info";
+  import Loader2Icon from "@lucide/svelte/icons/loader-2";
+  import OctagonXIcon from "@lucide/svelte/icons/octagon-x";
+  import TriangleAlertIcon from "@lucide/svelte/icons/triangle-alert";
+
+  import {
+    Toaster as Sonner,
+    type ToasterProps as SonnerProps,
+  } from "svelte-sonner";
+  import { mode } from "mode-watcher";
+
+  let { ...restProps }: SonnerProps = $props();
+</script>
+
+<Sonner
+  theme={mode.current}
+  class="toaster group"
+  style="--normal-bg: var(--color-popover); --normal-text: var(--color-popover-foreground); --normal-border: var(--color-border);"
+  {...restProps}
+  >{#snippet loadingIcon()}
+    <Loader2Icon class="size-4 animate-spin" />
+  {/snippet}
+  {#snippet successIcon()}
+    <CircleCheckIcon class="size-4" />
+  {/snippet}
+  {#snippet errorIcon()}
+    <OctagonXIcon class="size-4" />
+  {/snippet}
+  {#snippet infoIcon()}
+    <InfoIcon class="size-4" />
+  {/snippet}
+  {#snippet warningIcon()}
+    <TriangleAlertIcon class="size-4" />
+  {/snippet}
+</Sonner>
 ```

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import ExternalLinkIcon from "@lucide/svelte/icons/external-link";
+	import ArrowUpRight from "@lucide/svelte/icons/arrow-up-right";
 	import ArrowLeftIcon from "@lucide/svelte/icons/arrow-left";
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
 	import DocsToc from "$lib/components/docs-toc.svelte";
@@ -63,7 +63,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 	<div class="flex min-w-0 flex-1 flex-col">
 		<div class="h-(--top-spacing) shrink-0"></div>
 		<div
-			class="mx-auto flex w-full min-w-0 max-w-2xl flex-1 flex-col gap-8 px-4 py-6 text-neutral-800 md:px-0 lg:py-8 dark:text-neutral-300"
+			class="mx-auto flex w-full max-w-2xl min-w-0 flex-1 flex-col gap-8 px-4 py-6 text-neutral-800 md:px-0 lg:py-8 dark:text-neutral-300"
 		>
 			<div class="flex flex-col gap-2">
 				<div class="flex flex-col gap-2">
@@ -103,12 +103,12 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 						</div>
 					</div>
 					{#if data.metadata.description}
-						<p class="text-muted-foreground text-balance text-[1.05rem] sm:text-base">
+						<p class="text-muted-foreground text-[1.05rem] text-balance sm:text-base">
 							{doc.description}
 						</p>
 					{/if}
 				</div>
-				{#if apiLink || source || docLink}
+				{#if apiLink || docLink || source}
 					<div class="flex items-center space-x-2 pt-4">
 						{#if docLink}
 							<Badge
@@ -118,7 +118,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 								rel="noreferrer"
 							>
 								Docs
-								<ExternalLinkIcon aria-hidden="true" />
+								<ArrowUpRight aria-hidden="true" />
 							</Badge>
 						{/if}
 						{#if apiLink}
@@ -128,12 +128,12 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 								target="_blank"
 								rel="noreferrer"
 							>
-								API Reference <ExternalLinkIcon aria-hidden="true" />
+								API Reference <ArrowUpRight aria-hidden="true" />
 							</Badge>
 						{/if}
 						{#if source}
 							{#key page.url.pathname}
-								<ComponentCodeViewer item={source} />
+								<ComponentCodeViewer item={source} allowSidebar={true} />
 							{/key}
 						{/if}
 					</div>
@@ -144,7 +144,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 			</div>
 		</div>
 		<div
-			class="mx-auto flex h-16 w-full max-w-2xl items-center gap-2 px-4 md:px-0"
+			class="mx-auto hidden h-16 w-full max-w-2xl items-center gap-2 px-4 sm:flex md:px-0"
 			data-llm-ignore
 		>
 			{#if neighbors.previous}

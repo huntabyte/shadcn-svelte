@@ -143,7 +143,7 @@
 	<Card.Header>
 		<Card.Title>Total Visitors</Card.Title>
 		<Card.Description>
-			<span class="@[540px]/card:block hidden"> Total for the last 3 months </span>
+			<span class="hidden @[540px]/card:block"> Total for the last 3 months </span>
 			<span class="@[540px]/card:hidden">Last 3 months</span>
 		</Card.Description>
 		<Card.Action>
@@ -151,7 +151,7 @@
 				type="single"
 				bind:value={timeRange}
 				variant="outline"
-				class="@[767px]/card:flex hidden *:data-[slot=toggle-group-item]:!px-4"
+				class="hidden *:data-[slot=toggle-group-item]:!px-4 @[767px]/card:flex"
 			>
 				<ToggleGroup.Item value="90d">Last 3 months</ToggleGroup.Item>
 				<ToggleGroup.Item value="30d">Last 30 days</ToggleGroup.Item>
@@ -160,7 +160,7 @@
 			<Select.Root type="single" bind:value={timeRange}>
 				<Select.Trigger
 					size="sm"
-					class="**:data-[slot=select-value]:block **:data-[slot=select-value]:truncate @[767px]/card:hidden flex w-40"
+					class="flex w-40 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate @[767px]/card:hidden"
 					aria-label="Select a value"
 				>
 					<span data-slot="select-value">

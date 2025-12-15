@@ -53,6 +53,7 @@ export async function createHighlighter() {
 				import("@shikijs/langs/json"),
 				import("@shikijs/langs/bash"),
 				import("@shikijs/langs/astro"),
+				import("@shikijs/langs/diff"),
 			],
 			engine: jsEngine,
 		});
@@ -295,7 +296,7 @@ function getComponentSourceFileContent(src = "") {
 
 	const formattedSource = prettier.format(
 		readFileSync(filePath, "utf-8"),
-		codeBlockPrettierConfig
+		/** @type {any} */ (codeBlockPrettierConfig)
 	);
 
 	return formattedSource.trim();
