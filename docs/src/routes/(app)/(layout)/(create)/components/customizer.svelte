@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Settings2Icon from "@lucide/svelte/icons/settings-2";
     import * as Field from "$lib/registry/ui/field/index.js";
+	import RadiusPicker from "./radius-picker.svelte";
 </script>
 
 <div
@@ -24,14 +25,13 @@
 	>
 		<Field.Group class="flex h-full flex-1 flex-row gap-2 md:flex-col md:gap-0">
 			<!-- <PresetPicker presets={PRESETS} {isMobile} {anchorRef} />
-			<BasePicker {isMobile} {anchorRef} />
 			<StylePicker styles={STYLES} {isMobile} {anchorRef} />
 			<BaseColorPicker {isMobile} {anchorRef} />
 			<ThemePicker themes={availableThemes} {isMobile} {anchorRef} />
 			<IconLibraryPicker {isMobile} {anchorRef} />
-			<FontPicker fonts={FONTS} {isMobile} {anchorRef} />
-			<RadiusPicker {isMobile} {anchorRef} />
-			<MenuColorPicker {isMobile} {anchorRef} />
+			<FontPicker fonts={FONTS} {isMobile} {anchorRef} /> -->
+			<RadiusPicker />
+			<!-- <MenuColorPicker {isMobile} {anchorRef} />
 			<MenuAccentPicker {isMobile} {anchorRef} />
 			<CustomizerControls className="mt-auto hidden w-full flex-col md:flex" /> -->
 		</Field.Group>

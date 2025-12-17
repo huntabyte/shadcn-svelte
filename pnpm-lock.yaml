@@ -122,6 +122,12 @@ importers:
       '@dnd-kit/helpers':
         specifier: ^0.1.21
         version: 0.1.21
+      '@hugeicons/core-free-icons':
+        specifier: ^3.0.0
+        version: 3.0.0
+      '@hugeicons/svelte':
+        specifier: ^1.0.2
+        version: 1.0.2(svelte@5.39.6)
       '@internationalized/date':
         specifier: ^3.10.0
         version: 3.10.0
@@ -1211,6 +1217,14 @@ packages:
 
   '@hapi/topo@6.0.2':
     resolution: {integrity: sha512-KR3rD5inZbGMrHmgPxsJ9dbi6zEK+C3ZwUwTa+eMwWLz7oijWUTWD2pMSNNYJAU6Qq+65NkxXjqHr/7LM2Xkqg==}
+
+  '@hugeicons/core-free-icons@3.0.0':
+    resolution: {integrity: sha512-ujB8fh7dVj506bvOcZwTLS/r8T/Ev6rCLvgpdwKPHAFdBuNTbyuppTFX7n1vWnmqvJzh//giN9dqjHjyu1o+5w==}
+
+  '@hugeicons/svelte@1.0.2':
+    resolution: {integrity: sha512-JBkirOE361SorXQwU8cFNDH+MVIn7OwBDfVrC+C9LAPtK0Yyt0CmjRwdlO4whlmKTtCPZy2dQ2XW46J826s2qg==}
+    peerDependencies:
+      svelte: ^5.0.0
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -6288,6 +6302,12 @@ snapshots:
   '@hapi/topo@6.0.2':
     dependencies:
       '@hapi/hoek': 11.0.7
+
+  '@hugeicons/core-free-icons@3.0.0': {}
+
+  '@hugeicons/svelte@1.0.2(svelte@5.39.6)':
+    dependencies:
+      svelte: 5.39.6
 
   '@humanfs/core@0.19.1': {}
 

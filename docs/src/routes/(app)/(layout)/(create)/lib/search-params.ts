@@ -6,7 +6,7 @@ export const CreateSearchParamsSchema = z.object({
 	theme: z.string().default("neutral"),
 	style: z.string().default("vega"),
 	font: z.string().default("inter"),
-	radius: z.string().default("0.5rem"),
+	radius: z.string().default("default"),
 	baseColor: z.string().default("neutral"),
 });
 
