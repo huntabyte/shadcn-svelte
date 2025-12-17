@@ -4,7 +4,7 @@
 	"description": "Add components to your apps.",
 	"license": "MIT",
 	"author": {
-		"name": "huntabyte & shadcn",
+		"name": "huntabyte & CokaKoala",
 		"url": "https://twitter.com/huntabyte"
 	},
 	"repository": {
@@ -14,6 +14,12 @@
 	},
 	"type": "module",
 	"bin": "./dist/index.js",
+	"exports": {
+		"./icons": {
+			"types": "./dist/icons/index.d.ts",
+			"default": "./dist/icons/index.js"
+		}
+	},
 	"files": [
 		"dist"
 	],

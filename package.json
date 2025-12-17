@@ -11,7 +11,7 @@
 		"build": "pnpm build:docs",
 		"build:cli": "pnpm -r -F \"./packages/**\" build",
 		"build:docs": "pnpm -F docs build",
-		"dev": "pnpm -F docs dev",
+		"dev": "concurrently -n packages,apps --kill-others=false -c \"blue,green\" \"pnpm -r -parallel -F './packages/**' dev\" \"wait-on packages/cli/dist/index.js && pnpm -r -parallel -F docs dev\"",
 		"dev:cli": "pnpm -F  \"./packages/**\" --parallel --reporter append-only --color dev",
 		"preview": "pnpm -F docs preview",
 		"test": "pnpm -F shadcn-svelte test",
@@ -42,6 +42,7 @@
 		"@eslint/js": "^9.39.2",
 		"@svitejs/changesets-changelog-github-compact": "^1.2.0",
 		"@types/node": "^25.0.2",
+		"concurrently": "^9.2.1",
 		"eslint": "^9.39.2",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.13.1",
@@ -54,6 +55,7 @@
 		"svelte": "catalog:",
 		"typescript": "5.9.3",
 		"typescript-eslint": "^8.49.0",
+		"wait-on": "^9.0.3",
 		"wrangler": "^4.54.0"
 	},
 	"pnpm": {

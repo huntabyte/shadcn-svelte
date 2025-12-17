@@ -3,8 +3,19 @@
 
 @import "./themes.css";
 
-@custom-variant dark (&:is(.dark *));
+@import "./lib/registry/styles/style-vega.css" layer(base);
+@import "./lib/registry/styles/style-nova.css" layer(base);
+@import "./lib/registry/styles/style-lyra.css" layer(base);
+@import "./lib/registry/styles/style-maia.css" layer(base);
+@import "./lib/registry/styles/style-mira.css" layer(base);
 
+@custom-variant style-vega (&:where(.style-vega *));
+@custom-variant style-nova (&:where(.style-nova *));
+@custom-variant style-lyra (&:where(.style-lyra *));
+@custom-variant style-maia (&:where(.style-maia *));
+@custom-variant style-mira (&:where(.style-mira *));
+
+@custom-variant dark (&:is(.dark *));
 @custom-variant fixed (&:is(.layout-fixed *));
 
 @font-face {
@@ -38,6 +49,9 @@
 	--radius-md: calc(var(--radius) - 2px);
 	--radius-lg: var(--radius);
 	--radius-xl: calc(var(--radius) + 4px);
+	--radius-2xl: calc(var(--radius) + 8px);
+	--radius-3xl: calc(var(--radius) + 12px);
+	--radius-4xl: calc(var(--radius) + 16px);
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
 	--color-card: var(--card);
@@ -53,6 +67,7 @@
 	--color-accent: var(--accent);
 	--color-accent-foreground: var(--accent-foreground);
 	--color-destructive: var(--destructive);
+	--color-destructive-foreground: var(--destructive-foreground);
 	--color-border: var(--border);
 	--color-input: var(--input);
 	--color-ring: var(--ring);
