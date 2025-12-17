@@ -1,11 +1,8 @@
 <script lang="ts">
 	import { watch } from "runed";
-	import SiteFooter from "$lib/components/site-footer.svelte";
-	import SiteHeader from "$lib/components/site-header.svelte";
 	import { UserConfig, UserConfigContext } from "$lib/user-config.svelte.js";
 	import { ModeWatcher, setTheme } from "mode-watcher";
 	import { Toaster } from "$lib/registry/ui/sonner/index.js";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 
 	let { children, data } = $props();
 
@@ -35,12 +32,4 @@
 />
 <Toaster position="top-center" />
 
-<div class="bg-background relative flex min-h-svh flex-col">
-	<SiteHeader />
-	<main class="flex flex-1 flex-col">
-		<Tooltip.Provider>
-			{@render children()}
-		</Tooltip.Provider>
-	</main>
-	<SiteFooter />
-</div>
+{@render children()}

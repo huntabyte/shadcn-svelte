@@ -46,14 +46,14 @@
 			>
 				<enhanced:img
 					class="block dark:hidden"
-					src="../../../static/img/registry/dashboard-01-light.png"
+					src="../../../../static/img/registry/dashboard-01-light.png"
 					alt="Dashboard"
 					fetchpriority={mobile.current ? "high" : undefined}
 					loading={mobile.current ? "eager" : "lazy"}
 				/>
 				<enhanced:img
 					class="hidden dark:block"
-					src="../../../static/img/registry/dashboard-01-dark.png"
+					src="../../../../static/img/registry/dashboard-01-dark.png"
 					alt="Dashboard"
 					fetchpriority="high"
 					loading={mobile.current ? "eager" : "lazy"}
