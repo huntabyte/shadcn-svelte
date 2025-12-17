@@ -8,7 +8,10 @@
 		RADII,
 		type DesignSystemConfig,
 	} from "$lib/registry/config.js";
-	import { styleToCSS } from "svelte-toolbelt";
+	import { browser } from "$app/environment";
+	import { watch } from "runed";
+
+	const uid = $props.id();
 
 	type Props = {
 		children: Snippet;
@@ -38,26 +41,53 @@
 		return buildRegistryTheme(config);
 	});
 
-	const style = $derived(
-		styleToCSS({
-			display: "contents",
+	watch([() => registryTheme, () => browser], ([registryTheme, browser]) => {
+		if (!browser) return;
+		if (!registryTheme) return;
+		const styleId = uid;
+		let styleElement = document.getElementById(styleId) as HTMLStyleElement | null;
 
-			// Theme
-			"--radius": radius,
+		if (!styleElement) {
+			styleElement = document.createElement("style");
+			styleElement.id = styleId;
+			document.head.appendChild(styleElement);
+		}
 
-			":root": {
-				...registryTheme?.cssVars?.light,
-				...registryTheme?.cssVars?.theme,
-			},
-			".dark": {
-				...registryTheme?.cssVars?.dark,
-			},
-		})
-	);
+		const { light: lightVars, dark: darkVars, theme: themeVars } = registryTheme.cssVars;
 
-	// TODO: fonts
+		let cssText = ":root {\n";
+		// Add theme vars (shared across light/dark).
+		if (themeVars) {
+			Object.entries(themeVars).forEach(([key, value]) => {
+				if (value) {
+					cssText += `  --${key}: ${value};\n`;
+				}
+			});
+		}
+		// Add light mode vars.
+		if (lightVars) {
+			Object.entries(lightVars).forEach(([key, value]) => {
+				if (value) {
+					cssText += `  --${key}: ${value};\n`;
+				}
+			});
+		}
+		cssText += "}\n\n";
+
+		cssText += ".dark {\n";
+		if (darkVars) {
+			Object.entries(darkVars).forEach(([key, value]) => {
+				if (value) {
+					cssText += `  --${key}: ${value};\n`;
+				}
+			});
+		}
+		cssText += "}\n";
+
+		styleElement.textContent = cssText;
+	});
 </script>
 
-<div {style} class={cn(`style-${params.style} base-color-${params.baseColor}`)}>
+<div class={cn(`style-${params.style} base-color-${params.baseColor}`)}>
 	{@render children?.()}
 </div>

@@ -28,8 +28,8 @@
 			</div>
 		</Picker.Trigger>
 		<Picker.Content
-			side={isMobile ? "top" : "right"}
-			align={isMobile ? "center" : "start"}
+			side={isMobile.current ? "top" : "right"}
+			align={isMobile.current ? "center" : "start"}
 			class="md:w-64"
 		>
 			<Picker.RadioGroup bind:value={params.style}>

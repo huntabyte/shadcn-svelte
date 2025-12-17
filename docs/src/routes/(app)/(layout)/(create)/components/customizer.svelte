@@ -3,6 +3,7 @@
     import * as Field from "$lib/registry/ui/field/index.js";
 	import RadiusPicker from "./radius-picker.svelte";
 	import StylePicker from "./style-picker.svelte";
+	import ThemePicker from "./theme-picker.svelte";
 </script>
 
 <div
@@ -28,10 +29,10 @@
 			<!-- <PresetPicker presets={PRESETS} {isMobile} {anchorRef} />
 			
 			<BaseColorPicker {isMobile} {anchorRef} />
-			<ThemePicker themes={availableThemes} {isMobile} {anchorRef} />
 			<IconLibraryPicker {isMobile} {anchorRef} />
 			<FontPicker fonts={FONTS} {isMobile} {anchorRef} /> -->
 			<StylePicker />
+			<ThemePicker />
 			<RadiusPicker />
 			<!-- <MenuColorPicker {isMobile} {anchorRef} />
 			<MenuAccentPicker {isMobile} {anchorRef} />
