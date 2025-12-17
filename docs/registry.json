@@ -52,6 +52,10 @@
 			"files": [
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/alert/alert-action.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/alert/alert-description.svelte"
 				},
 				{

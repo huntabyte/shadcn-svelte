@@ -12,4 +12,9 @@ export const examples: Example[] = [
         name: "accordion",
         type: "registry:example",
     },
+    {
+        title: "Alert",
+        name: "alert",
+        type: "registry:example",
+    },
 ];
