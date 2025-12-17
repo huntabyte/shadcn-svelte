@@ -1,0 +1,85 @@
+<script lang="ts">
+	import * as Picker from "./picker/index.js";
+	import { useCreateSearchParams } from "../lib/search-params.js";
+	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
+	import LockButton from "./lock-button.svelte";
+	import { BASE_COLORS, type BaseColorName } from "$lib/registry/config.js";
+	import { mode, setMode } from "mode-watcher";
+
+	const params = useCreateSearchParams();
+
+	const isMobile = new IsMobile();
+
+	const currentBaseColor = $derived(
+		BASE_COLORS.find((base) => base.name === params.baseColor) ?? BASE_COLORS[0]
+	);
+</script>
+
+<div class="group/picker relative">
+	<Picker.Root>
+		<Picker.Trigger>
+			<div class="flex flex-col justify-start text-left">
+				<div class="text-muted-foreground text-xs">Base Color</div>
+				<div class="text-foreground text-sm font-medium">
+					{currentBaseColor?.title}
+				</div>
+			</div>
+			<div
+				style="--color: 
+						{currentBaseColor?.cssVars?.[mode.current as 'light' | 'dark']?.['muted-foreground']}"
+				class="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 rounded-full bg-(--color) select-none"
+			></div>
+		</Picker.Trigger>
+		<Picker.Content
+			side={isMobile.current ? "top" : "right"}
+			align={isMobile.current ? "center" : "start"}
+		>
+			<Picker.RadioGroup
+				bind:value={params.baseColor}
+				onValueChange={(value) => {
+					if (value === "dark") {
+						setMode(mode.current === "dark" ? "light" : "dark");
+						return;
+					}
+					params.baseColor = value as BaseColorName;
+				}}
+			>
+				<Picker.Group>
+					{#each BASE_COLORS as baseColor (baseColor.name)}
+						<Picker.RadioItem value={baseColor.name}>
+							<div class="flex items-center gap-2">
+								{#if mode.current}
+									<div
+										style="--color: {baseColor.cssVars?.[
+											mode.current as 'light' | 'dark'
+										]?.['muted-foreground']};"
+										class="size-4 rounded-full bg-(--color)"
+									></div>
+								{/if}
+								{baseColor.title}
+							</div>
+						</Picker.RadioItem>
+					{/each}
+				</Picker.Group>
+				<Picker.Separator />
+				<Picker.Group>
+					<Picker.Item
+						onclick={() => {
+							setMode(mode.current === "dark" ? "light" : "dark");
+						}}
+					>
+						<div class="flex flex-col justify-start pointer-coarse:gap-1">
+							<div>
+								Switch to {mode.current === "dark" ? "Light" : "Dark"} Mode
+							</div>
+							<div class="text-muted-foreground text-xs pointer-coarse:text-sm">
+								Base colors are easier to see in dark mode.
+							</div>
+						</div>
+					</Picker.Item>
+				</Picker.Group>
+			</Picker.RadioGroup>
+		</Picker.Content>
+	</Picker.Root>
+	<LockButton prop="baseColor" class="absolute top-1/2 right-10 -translate-y-1/2" />
+</div>

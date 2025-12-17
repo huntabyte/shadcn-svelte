@@ -4,6 +4,7 @@
 	import RadiusPicker from "./radius-picker.svelte";
 	import StylePicker from "./style-picker.svelte";
 	import ThemePicker from "./theme-picker.svelte";
+	import BaseColorPicker from "./base-color-picker.svelte";
 </script>
 
 <div
@@ -27,11 +28,11 @@
 	>
 		<Field.Group class="flex h-full flex-1 flex-row gap-2 md:flex-col md:gap-0">
 			<!-- <PresetPicker presets={PRESETS} {isMobile} {anchorRef} />
-			
-			<BaseColorPicker {isMobile} {anchorRef} />
+		
 			<IconLibraryPicker {isMobile} {anchorRef} />
 			<FontPicker fonts={FONTS} {isMobile} {anchorRef} /> -->
 			<StylePicker />
+			<BaseColorPicker />
 			<ThemePicker />
 			<RadiusPicker />
 			<!-- <MenuColorPicker {isMobile} {anchorRef} />

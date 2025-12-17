@@ -44,26 +44,28 @@
 						{@const isBaseColor = BASE_COLORS.find(
 							(baseColor) => baseColor.name === theme.name
 						)}
-						<Picker.RadioItem value={theme.name}>
-							<div class="flex items-start gap-2">
-								{#if mode.current}
-									<div
-										style="--color: {theme.cssVars?.[
-											mode.current as 'light' | 'dark'
-										]?.[isBaseColor ? 'muted-foreground' : 'primary']};"
-										class="size-4 translate-y-1 rounded-full bg-(--color)"
-									></div>
-								{/if}
-								<div class="flex flex-col justify-start pointer-coarse:gap-1">
-									<div>{theme.title}</div>
-									<div
-										class="text-muted-foreground text-xs pointer-coarse:text-sm"
-									>
-										Match base color
+						{#if theme.name === params.baseColor}
+							<Picker.RadioItem value={theme.name}>
+								<div class="flex items-start gap-2">
+									{#if mode.current}
+										<div
+											style="--color: {theme.cssVars?.[
+												mode.current as 'light' | 'dark'
+											]?.[isBaseColor ? 'muted-foreground' : 'primary']};"
+											class="size-4 translate-y-1 rounded-full bg-(--color)"
+										></div>
+									{/if}
+									<div class="flex flex-col justify-start pointer-coarse:gap-1">
+										<div>{theme.title}</div>
+										<div
+											class="text-muted-foreground text-xs pointer-coarse:text-sm"
+										>
+											Match base color
+										</div>
 									</div>
 								</div>
-							</div>
-						</Picker.RadioItem>
+							</Picker.RadioItem>
+						{/if}
 					{/each}
 				</Picker.Group>
 				<Picker.Separator />
