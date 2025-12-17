@@ -84,6 +84,7 @@
 		"svelte": "catalog:",
 		"svelte-check": "catalog:",
 		"svelte-sonner": "^1.0.7",
+		"svelte-toolbelt": "^0.10.6",
 		"sveltekit-superforms": "^2.28.1",
 		"tailwind-merge": "^3.4.0",
 		"tailwind-variants": "^3.2.2",

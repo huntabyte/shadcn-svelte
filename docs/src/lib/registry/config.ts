@@ -44,7 +44,7 @@ export type MenuColorValue = MenuColor["value"];
 
 export const RADII = [
 	{ name: "default", label: "Default", value: "0.5rem" },
-	{ name: "none", label: "None", value: "0" },
+	{ name: "none", label: "None", value: "0rem" },
 	{ name: "small", label: "Small", value: "0.45rem" },
 	{ name: "medium", label: "Medium", value: "0.625rem" },
 	{ name: "large", label: "Large", value: "0.875rem" },
