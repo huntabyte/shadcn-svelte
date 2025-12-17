@@ -1,5 +1,9 @@
 <script lang="ts">
+	import DesignSystemProvider from '$lib/components/design-system-provider.svelte';
+
     let { children } = $props();
 </script>
 
-{@render children()}
+<DesignSystemProvider>
+    {@render children()}
+</DesignSystemProvider>
