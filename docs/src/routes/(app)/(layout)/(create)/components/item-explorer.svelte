@@ -47,7 +47,7 @@
 											></div>
 										{/if}
 										<Sidebar.MenuButton
-											onclick={() => params.set("item", item.name)}
+											onclick={() => params.update({ item: item.name })}
 											class="data-[active=true]:bg-accent data-[active=true]:border-accent 3xl:fixed:w-full 3xl:fixed:max-w-48 relative h-[26px] w-fit cursor-pointer overflow-visible border border-transparent text-[0.8rem] font-normal after:absolute after:-inset-y-1 after:inset-x-0 after:z-0 after:rounded-md"
 											data-active={item.name === params.item}
 											isActive={item.name === params.item}

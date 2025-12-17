@@ -2,7 +2,7 @@ import { useSearchParams } from "runed/kit";
 import { z } from "zod/v4";
 
 export const CreateSearchParamsSchema = z.object({
-	item: z.string().default("Home"),
+	item: z.string().default('accordion'),
 	theme: z.string().default("neutral"),
 	style: z.string().default("vega"),
 	font: z.string().default("inter"),

@@ -13,6 +13,7 @@
 	import WelcomeDialog from "../components/welcome-dialog.svelte";
 	import Preview from "../components/preview.svelte";
 	import Customizer from "../components/customizer.svelte";
+	import { examples } from "../examples/index.js";
 </script>
 
 <div data-slot="layout" class="section-soft relative z-10 flex min-h-svh flex-col">
@@ -66,7 +67,7 @@
 				data-slot="designer"
 				class="3xl:fixed:container flex w-full flex-1 flex-col gap-2 p-6 pb-4 pt-1 [--sidebar-width:--spacing(40)] sm:gap-2 sm:pt-2 md:flex-row md:pb-6 2xl:gap-6"
 			>
-				<ItemExplorer items={[]} />
+				<ItemExplorer items={examples} />
 				<Preview />
 				<Customizer />
 			</div>

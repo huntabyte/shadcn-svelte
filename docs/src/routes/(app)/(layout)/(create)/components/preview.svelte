@@ -13,7 +13,7 @@
 		class="ring-foreground/15 3xl:max-w-[1800px] relative z-0 mx-auto flex w-full flex-1 flex-col overflow-hidden rounded-2xl ring-1"
 	>
 		<div class="bg-muted dark:bg-muted/30 absolute inset-0 rounded-2xl"></div>
-		{#key `${params.item}-${iframeKey}`}
+		{#key `${iframeSrc}-${iframeKey}`}
 			<iframe src={iframeSrc} class="z-10 size-full flex-1" title="Preview"></iframe>
 		{/key}
 		<Badge class="absolute bottom-2 right-2 isolate z-10" variant="secondary">Preview</Badge>
