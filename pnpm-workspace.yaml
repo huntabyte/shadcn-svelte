@@ -10,3 +10,4 @@ catalog:
     svelte-check: ^4.3.4
     typescript: ^5.9.3
     vite: ^7.2.1
+    tsdown: ^0.18.0

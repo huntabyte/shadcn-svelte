@@ -13,11 +13,11 @@
 		"directory": "packages/cli"
 	},
 	"type": "module",
-	"bin": "./dist/index.js",
+	"bin": "./dist/index.mjs",
 	"exports": {
 		"./icons": {
-			"types": "./dist/icons/index.d.ts",
-			"default": "./dist/icons/index.js"
+			"types": "./dist/icons/index.d.mts",
+			"default": "./dist/icons/index.mjs"
 		}
 	},
 	"files": [
@@ -34,11 +34,11 @@
 		"radix-svelte"
 	],
 	"scripts": {
-		"dev": "tsup --watch --sourcemap",
-		"build": "tsup --minify",
+		"dev": "tsdown --watch --sourcemap",
+		"build": "tsdown --minify",
 		"check": "tsc --noEmit",
-		"start": "node dist/index.js",
-		"start:dev": "cross-env COMPONENTS_REGISTRY_URL=http://localhost:5173/registry node dist/index.js",
+		"start": "node dist/index.mjs",
+		"start:dev": "cross-env COMPONENTS_REGISTRY_URL=http://localhost:5173/registry node dist/index.mjs",
 		"start:proxy": "pnpm dlx straightforward@latest --port 9000",
 		"test": "pnpm -w build:registry-template && vitest"
 	},
@@ -68,7 +68,7 @@
 		"semver": "^7.7.1",
 		"sucrase": "^3.35.0",
 		"tinyexec": "^1.0.1",
-		"tsup": "^8.4.0",
+		"tsdown": "catalog:",
 		"type-fest": "^4.41.0",
 		"typescript": "catalog:",
 		"vitest": "^3.2.3",
