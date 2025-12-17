@@ -7,7 +7,7 @@
 	import AccordionWithDisabled from "./accordion-with-disabled.svelte";
 </script>
 
-<ExampleWrapper>
+<ExampleWrapper class="w-full max-w-4xl lg:grid-cols-1 2xl:max-w-4xl 2xl:grid-cols-1">
 	<AccordionBasic />
 	<AccordionMultiple />
 	<AccordionWithBorders />

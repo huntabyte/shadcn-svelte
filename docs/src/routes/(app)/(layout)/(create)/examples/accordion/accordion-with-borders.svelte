@@ -27,16 +27,23 @@
 </script>
 
 <Example title="With Borders">
-	<Accordion.Root type="single" class="style-lyra:gap-2 style-vega:gap-2 style-nova:gap-2 mx-auto max-w-lg">
+	<Accordion.Root
+		type="single"
+		class="style-lyra:gap-2 style-vega:gap-2 style-nova:gap-2 mx-auto flex max-w-lg flex-col"
+	>
 		{#each items as item (item.value)}
 			<Accordion.Item
 				value={item.value}
 				class="style-vega:border style-nova:border style-lyra:border style-vega:rounded-lg style-nova:rounded-lg"
 			>
-				<Accordion.Trigger class="style-nova:px-2.5 style-nova:text-sm style-vega:text-sm style-maia:text-sm style-mira:text-xs style-lyra:px-2 style-lyra:text-xs style-vega:px-4 font-medium">
+				<Accordion.Trigger
+					class="style-nova:px-2.5 style-nova:text-sm style-vega:text-sm style-maia:text-sm style-mira:text-xs style-lyra:px-2 style-lyra:text-xs style-vega:px-4 font-medium"
+				>
 					{item.trigger}
 				</Accordion.Trigger>
-				<Accordion.Content class="text-muted-foreground style-nova:px-2.5 style-nova:text-sm style-lyra:px-2 style-lyra:text-xs style-vega:px-4 style-maia:px-0 style-mira:px-0">
+				<Accordion.Content
+					class="text-muted-foreground style-nova:px-2.5 style-nova:text-sm style-lyra:px-2 style-lyra:text-xs style-vega:px-4 style-maia:px-0 style-mira:px-0"
+				>
 					{#if Array.isArray(item.content)}
 						{#each item.content as paragraph, i (i)}
 							<p>{paragraph}</p>
