@@ -1,4 +1,4 @@
-import { Context } from "runed";
+import { Context, PersistedState } from "runed";
 
 export type Lockable = {
 	style: boolean;
@@ -14,41 +14,42 @@ export type Lockable = {
 };
 
 class LockState {
-	#locks: Lockable = $state.raw({
-		style: false,
-		baseColor: false,
-		theme: false,
-		iconLibrary: false,
-		font: false,
-		item: false,
-		menuAccent: false,
-		menuColor: false,
-		radius: false,
-		template: false,
-	});
+	#locks: PersistedState<Lockable>;
 
-    constructor() {
-    }
+	constructor() {
+		this.#locks = new PersistedState<Lockable>("locks", {
+			style: false,
+			baseColor: false,
+			theme: false,
+			iconLibrary: false,
+			font: false,
+			item: false,
+			menuAccent: false,
+			menuColor: false,
+			radius: false,
+			template: false,
+		});
+	}
 
-    lock(key: keyof Lockable): void {
-        this.#locks = { ...this.#locks, [key]: true };
-    }
+	lock(key: keyof Lockable): void {
+		this.#locks.current = { ...this.#locks.current, [key]: true };
+	}
 
-    unlock(key: keyof Lockable): void {
-        this.#locks = { ...this.#locks, [key]: false };
-    }
+	unlock(key: keyof Lockable): void {
+		this.#locks.current = { ...this.#locks.current, [key]: false };
+	}
 
-    get locks(): Lockable {
-        return this.#locks;
-    }
+	get locks(): Lockable {
+		return this.#locks.current;
+	}
 }
 
 const ctx = new Context<LockState>("LocksContext");
 
 export function setupLocks(): void {
-    ctx.set(new LockState());
+	ctx.set(new LockState());
 }
 
 export function useLocks(): LockState {
-    return ctx.get();
+	return ctx.get();
 }
