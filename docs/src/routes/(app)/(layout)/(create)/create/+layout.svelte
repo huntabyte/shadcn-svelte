@@ -1,7 +1,7 @@
 <script lang="ts">
 	import LayoutToggle from "$lib/components/layout-toggle.svelte";
 	import ModeSwitcher from "$lib/components/mode-switcher.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
 	import SquareTerminal from "@lucide/svelte/icons/square-terminal";
 	import ShareIcon from "@lucide/svelte/icons/share";
@@ -13,8 +13,14 @@
 	import WelcomeDialog from "../components/welcome-dialog.svelte";
 	import Customizer from "../components/customizer.svelte";
 	import { examples } from "$lib/registry/examples/create/index.js";
+	import { page } from "$app/state";
+	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
+	import CheckIcon from "@lucide/svelte/icons/check";
+	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 
 	let { children } = $props();
+
+	const clipboard = new UseClipboard();
 </script>
 
 <div data-slot="layout" class="section-soft relative z-10 flex min-h-svh flex-col">
@@ -48,10 +54,24 @@
 					<Separator orientation="vertical" />
 					<ModeSwitcher />
 					<Separator orientation="vertical" />
-					<Button variant="outline" size="sm">
-						<ShareIcon />
-						Share
-					</Button>
+					<Tooltip.Provider disableCloseOnTriggerClick>
+						<Tooltip.Root>
+							<Tooltip.Trigger
+								class={buttonVariants({ variant: "outline", size: "sm" })}
+								onclick={() => clipboard.copy(page.url.toString())}
+							>
+								{#if clipboard.copied}
+									<CheckIcon />
+								{:else}
+									<ShareIcon />
+								{/if}
+								Share
+							</Tooltip.Trigger>
+							<Tooltip.Content>
+								{clipboard.copied ? "Copied link" : "Copy link"}
+							</Tooltip.Content>
+						</Tooltip.Root>
+					</Tooltip.Provider>
 					<Button href="/create" variant="default" size="sm">
 						<SquareTerminal />
 						Create Project
