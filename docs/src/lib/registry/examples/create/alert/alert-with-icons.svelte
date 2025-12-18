@@ -1,19 +1,29 @@
 <script lang="ts">
-	import Example from "../../components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import * as Alert from "$lib/registry/ui/alert/index.js";
-	import CircleAlertIcon from "@lucide/svelte/icons/circle-alert";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 </script>
 
 <Example title="With Icons">
 	<div class="mx-auto flex w-full max-w-lg flex-col gap-4">
 		<Alert.Root>
-			<CircleAlertIcon />
+			<IconPlaceholder
+				lucide="CircleAlertIcon"
+				tabler="IconExclamationCircle"
+				hugeicons="AlertCircleIcon"
+				phosphor="WarningCircleIcon"
+			/>
 			<Alert.Title>
 				Let&apos;s try one with icon, title and a <a href="#/">link</a>.
 			</Alert.Title>
 		</Alert.Root>
 		<Alert.Root>
-			<CircleAlertIcon />
+			<IconPlaceholder
+				lucide="CircleAlertIcon"
+				tabler="IconExclamationCircle"
+				hugeicons="AlertCircleIcon"
+				phosphor="WarningCircleIcon"
+			/>
 			<Alert.Description>
 				This one has an icon and a description only. No title.
 				<a href="#/">But it has a link</a> and a <a href="#/">second link</a>.
@@ -21,14 +31,24 @@
 		</Alert.Root>
 
 		<Alert.Root>
-			<CircleAlertIcon />
+			<IconPlaceholder
+				lucide="CircleAlertIcon"
+				tabler="IconExclamationCircle"
+				hugeicons="AlertCircleIcon"
+				phosphor="WarningCircleIcon"
+			/>
 			<Alert.Title>Success! Your changes have been saved</Alert.Title>
 			<Alert.Description>
 				This is an alert with icon, title and description.
 			</Alert.Description>
 		</Alert.Root>
 		<Alert.Root>
-			<CircleAlertIcon />
+			<IconPlaceholder
+				lucide="CircleAlertIcon"
+				tabler="IconExclamationCircle"
+				hugeicons="AlertCircleIcon"
+				phosphor="WarningCircleIcon"
+			/>
 			<Alert.Title>
 				This is a very long alert title that demonstrates how the component
 				handles extended text content and potentially wraps across multiple
@@ -36,7 +56,12 @@
 			</Alert.Title>
 		</Alert.Root>
 		<Alert.Root>
-			<CircleAlertIcon />
+			<IconPlaceholder
+				lucide="CircleAlertIcon"
+				tabler="IconExclamationCircle"
+				hugeicons="AlertCircleIcon"
+				phosphor="WarningCircleIcon"
+			/>
 			<Alert.Description>
 				This is a very long alert description that demonstrates how the
 				component handles extended text content and potentially wraps across
@@ -44,7 +69,12 @@
 			</Alert.Description>
 		</Alert.Root>
 		<Alert.Root>
-			<CircleAlertIcon />
+			<IconPlaceholder
+				lucide="CircleAlertIcon"
+				tabler="IconExclamationCircle"
+				hugeicons="AlertCircleIcon"
+				phosphor="WarningCircleIcon"
+			/>
 			<Alert.Title>
 				This is an extremely long alert title that spans multiple lines to
 				demonstrate how the component handles very lengthy headings while

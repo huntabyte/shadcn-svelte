@@ -4,16 +4,17 @@
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import LockButton from "./lock-button.svelte";
-	import {
-		iconLibraries,
-		type IconLibraryName,
-	} from "$lib/registry/config.js";
+	import { iconLibraries, type IconLibraryName } from "$lib/registry/config.js";
 	import { HugeiconsIcon } from "@hugeicons/svelte";
 	import type { Component } from "svelte";
 	import LucideLogo from "$lib/registry/icons/logos/lucide.svelte";
 	import TablerLogo from "$lib/registry/icons/logos/tabler.svelte";
 	import HugeiconsLogo from "$lib/registry/icons/logos/hugeicons.svelte";
 	import PhosphorLogo from "$lib/registry/icons/logos/phosphor.svelte";
+	import PhosphorSquareIcon from "phosphor-svelte/lib/Square";
+	import TablerSquareIcon from "@tabler/icons-svelte/icons/square";
+	import { SquareIcon as HugeiconsSquareIcon } from "@hugeicons/core-free-icons";
+	import LucideSquareIcon from "@lucide/svelte/icons/square";
 
 	const designSystem = useDesignSystem();
 	const isMobile = new IsMobile();
@@ -29,11 +30,9 @@
 		phosphor: PhosphorLogo,
 	} as const;
 
-	const CurrentLogo = $derived(
-		currentIconLibrary?.name ? logos[currentIconLibrary.name as keyof typeof logos] : null
-	);
+	const CurrentLogo = $derived(logos[currentIconLibrary.name as keyof typeof logos]);
 
-    // TODO: none of these icons will actually load until we use them in components
+	// TODO: none of these icons will actually load until we use them in components
 	const PREVIEW_ICONS = {
 		lucide: [
 			"CopyIcon",
@@ -114,9 +113,7 @@
 			<div
 				class="text-foreground *:[svg]:text-foreground! pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base select-none"
 			>
-				{#if CurrentLogo}
-					<CurrentLogo class="size-4" />
-				{/if}
+				<CurrentLogo class="size-4" />
 			</div>
 		</Picker.Trigger>
 		<Picker.Content
@@ -147,10 +144,7 @@
 			</Picker.RadioGroup>
 		</Picker.Content>
 	</Picker.Root>
-	<LockButton
-		prop="iconLibrary"
-		class="absolute top-1/2 right-10 -translate-y-1/2"
-	/>
+	<LockButton prop="iconLibrary" class="absolute top-1/2 right-10 -translate-y-1/2" />
 </div>
 
 {#snippet IconLibraryPreview(iconLibrary: IconLibraryName)}
@@ -172,20 +166,20 @@
 	{#await import("$lib/registry/icons/__lucide__.js")}
 		<div class="-mx-1 grid w-full grid-cols-7 gap-2">
 			{#each previewIcons as iconName (iconName)}
-				<div
-					class="bg-muted size-6 animate-pulse rounded"
-				></div>
+				<div class="bg-muted size-6 animate-pulse rounded"></div>
 			{/each}
 		</div>
 	{:then mod}
 		<div class="-mx-1 grid w-full grid-cols-7 gap-2">
 			{#each previewIcons as iconName (iconName)}
 				{@const Icon = (mod as unknown as Record<string, Component>)[iconName]}
-				{#if Icon}
-					<div class="flex size-6 items-center justify-center *:[svg]:size-5">
+				<div class="flex size-6 items-center justify-center *:[svg]:size-5">
+					{#if Icon}
 						<Icon />
-					</div>
-				{/if}
+					{:else}
+						<LucideSquareIcon />
+					{/if}
+				</div>
 			{/each}
 		</div>
 	{/await}
@@ -195,20 +189,20 @@
 	{#await import("$lib/registry/icons/__tabler__.js")}
 		<div class="-mx-1 grid w-full grid-cols-7 gap-2">
 			{#each previewIcons as iconName (iconName)}
-				<div
-					class="bg-muted size-6 animate-pulse rounded"
-				></div>
+				<div class="bg-muted size-6 animate-pulse rounded"></div>
 			{/each}
 		</div>
 	{:then mod}
 		<div class="-mx-1 grid w-full grid-cols-7 gap-2">
 			{#each previewIcons as iconName (iconName)}
 				{@const Icon = (mod as unknown as Record<string, Component>)[iconName]}
-				{#if Icon}
-					<div class="flex size-6 items-center justify-center *:[svg]:size-5">
+				<div class="flex size-6 items-center justify-center *:[svg]:size-5">
+					{#if Icon}
 						<Icon />
-					</div>
-				{/if}
+					{:else}
+						<TablerSquareIcon />
+					{/if}
+				</div>
 			{/each}
 		</div>
 	{/await}
@@ -218,20 +212,24 @@
 	{#await import("$lib/registry/icons/__hugeicons__.js")}
 		<div class="-mx-1 grid w-full grid-cols-7 gap-2">
 			{#each previewIcons as iconName (iconName)}
-				<div
-					class="bg-muted size-6 animate-pulse rounded"
-				></div>
+				<div class="bg-muted size-6 animate-pulse rounded"></div>
 			{/each}
 		</div>
 	{:then mod}
 		<div class="-mx-1 grid w-full grid-cols-7 gap-2">
 			{#each previewIcons as iconName (iconName)}
 				{@const Icon = (mod as Record<string, unknown>)[iconName]}
-				{#if Icon}
-					<div class="flex size-6 items-center justify-center">
+				<div class="flex size-6 items-center justify-center">
+					{#if Icon}
 						<HugeiconsIcon icon={Icon} strokeWidth={2} className="size-5" />
-					</div>
-				{/if}
+					{:else}
+						<HugeiconsIcon
+							icon={HugeiconsSquareIcon}
+							strokeWidth={2}
+							className="size-5"
+						/>
+					{/if}
+				</div>
 			{/each}
 		</div>
 	{/await}
@@ -241,20 +239,20 @@
 	{#await import("$lib/registry/icons/__phosphor__.js")}
 		<div class="-mx-1 grid w-full grid-cols-7 gap-2">
 			{#each previewIcons as iconName (iconName)}
-				<div
-					class="bg-muted size-6 animate-pulse rounded"
-				></div>
+				<div class="bg-muted size-6 animate-pulse rounded"></div>
 			{/each}
 		</div>
 	{:then mod}
 		<div class="-mx-1 grid w-full grid-cols-7 gap-2">
 			{#each previewIcons as iconName (iconName)}
 				{@const Icon = (mod as unknown as Record<string, Component>)[iconName]}
-				{#if Icon}
-					<div class="flex size-6 items-center justify-center *:[svg]:size-5">
+				<div class="flex size-6 items-center justify-center *:[svg]:size-5">
+					{#if Icon}
 						<Icon />
-					</div>
-				{/if}
+					{:else}
+						<PhosphorSquareIcon />
+					{/if}
+				</div>
 			{/each}
 		</div>
 	{/await}

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
 	import AlertBasic from "./alert-basic.svelte";
 	import AlertWithIcons from "./alert-with-icons.svelte";
 	import AlertDestructive from "./alert-destructive.svelte";

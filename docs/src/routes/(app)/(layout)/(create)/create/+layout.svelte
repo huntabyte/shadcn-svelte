@@ -12,7 +12,7 @@
 	import ItemExplorer from "../components/item-explorer.svelte";
 	import WelcomeDialog from "../components/welcome-dialog.svelte";
 	import Customizer from "../components/customizer.svelte";
-	import { examples } from "../examples/index.js";
+	import { examples } from "$lib/registry/examples/create/index.js";
 
 	let { children } = $props();
 </script>

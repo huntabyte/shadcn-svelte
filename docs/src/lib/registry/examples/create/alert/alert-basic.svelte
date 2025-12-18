@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Example from "../../components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import * as Alert from "$lib/registry/ui/alert/index.js";
 </script>
 
