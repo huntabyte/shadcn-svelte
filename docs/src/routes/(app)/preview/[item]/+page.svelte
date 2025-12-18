@@ -4,7 +4,7 @@
 	let { data } = $props();
 
 	const ComponentPromise = import(
-		`../../(layout)/(create)/examples/${data.example.name}/${data.example.name}.svelte`
+		`$lib/registry/examples/create/${data.example.name}/${data.example.name}.svelte`
 	);
 </script>
 

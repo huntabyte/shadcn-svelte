@@ -1,5 +1,5 @@
 import { error } from "@sveltejs/kit";
-import { examples } from "../../(layout)/(create)/examples/index.js";
+import { examples } from "$lib/registry/examples/create/index.js";
 
 export function load({ params }) {
 	const { item } = params;
