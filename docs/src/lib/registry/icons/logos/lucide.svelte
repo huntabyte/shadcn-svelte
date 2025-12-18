@@ -18,12 +18,6 @@
 	color="currentColor"
 	{...restProps}
 >
-	<path
-		stroke="currentColor"
-		d="M14 12a4 4 0 0 0-8 0 8 8 0 1 0 16 0 11.97 11.97 0 0 0-4-8.944"
-	/>
-	<path
-		stroke="currentColor"
-		d="M10 12a4 4 0 0 0 8 0 8 8 0 1 0-16 0 11.97 11.97 0 0 0 4.063 9"
-	/>
+	<path stroke="currentColor" d="M14 12a4 4 0 0 0-8 0 8 8 0 1 0 16 0 11.97 11.97 0 0 0-4-8.944" />
+	<path stroke="currentColor" d="M10 12a4 4 0 0 0 8 0 8 8 0 1 0-16 0 11.97 11.97 0 0 0 4.063 9" />
 </svg>

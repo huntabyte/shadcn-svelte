@@ -39,7 +39,7 @@
 		designSystem.radius = preset.radius;
 	}
 
-    const isMobile = new IsMobile();
+	const isMobile = new IsMobile();
 </script>
 
 <Picker.Root>
@@ -56,10 +56,7 @@
 		align={isMobile.current ? "center" : "start"}
 		class="md:w-72"
 	>
-		<Picker.RadioGroup
-			value={selectedPresetTitle}
-			onValueChange={handlePresetChange}
-		>
+		<Picker.RadioGroup value={selectedPresetTitle} onValueChange={handlePresetChange}>
 			<Picker.Group>
 				{#each PRESETS as preset (preset.title)}
 					{@const style = STYLES.find((s) => s.name === preset.style)}

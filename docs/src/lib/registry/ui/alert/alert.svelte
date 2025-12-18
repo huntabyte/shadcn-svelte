@@ -2,7 +2,7 @@
 	import { type VariantProps, tv } from "tailwind-variants";
 
 	export const alertVariants = tv({
-		base: "cn-alert w-full relative group/alert",
+		base: "cn-alert group/alert relative w-full",
 		variants: {
 			variant: {
 				default: "cn-alert-variant-default",

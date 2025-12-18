@@ -10,14 +10,14 @@
 		containerClass,
 		class: className,
 		children,
-        ...restProps
+		...restProps
 	}: HTMLAttributes<HTMLDivElement> & Props = $props();
 </script>
 
 <div
 	data-slot="example"
 	class={cn(
-		"mx-auto flex w-full min-w-0 max-w-lg flex-col gap-1 self-stretch lg:max-w-none",
+		"mx-auto flex w-full max-w-lg min-w-0 flex-col gap-1 self-stretch lg:max-w-none",
 		containerClass
 	)}
 	{...restProps}
@@ -28,7 +28,7 @@
 	<div
 		data-slot="example-content"
 		class={cn(
-			"bg-background text-foreground *:[div:not([class*='w-'])]:w-full flex min-w-0 flex-1 flex-col items-start gap-6 border border-dashed p-4 sm:p-6",
+			"bg-background text-foreground flex min-w-0 flex-1 flex-col items-start gap-6 border border-dashed p-4 sm:p-6 *:[div:not([class*='w-'])]:w-full",
 			className
 		)}
 	>

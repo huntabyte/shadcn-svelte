@@ -12,7 +12,7 @@
 
 	let { class: className }: Props = $props();
 
-    const designSystem = useDesignSystem();
+	const designSystem = useDesignSystem();
 </script>
 
 <div class={cn("items-center gap-0", className)}>

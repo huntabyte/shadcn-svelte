@@ -29,8 +29,8 @@
 			/>
 			<Alert.Title>The selected emails have been marked as spam.</Alert.Title>
 			<Alert.Description>
-				This is a very long alert title that demonstrates how the component
-				handles extended text content.
+				This is a very long alert title that demonstrates how the component handles extended
+				text content.
 			</Alert.Description>
 			<Alert.Action>
 				<Badge variant="secondary">Badge</Badge>

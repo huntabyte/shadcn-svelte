@@ -17,8 +17,7 @@
 		{
 			value: "item-3",
 			trigger: "Is it animated?",
-			content:
-				"Yes. It's animated by default, but you can disable it if you prefer.",
+			content: "Yes. It's animated by default, but you can disable it if you prefer.",
 		},
 	];
 </script>

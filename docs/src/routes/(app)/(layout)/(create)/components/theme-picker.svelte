@@ -10,7 +10,9 @@
 
 	const isMobile = new IsMobile();
 
-	const currentTheme = $derived(THEMES.find((theme) => theme.name === designSystem.theme) ?? THEMES[0]);
+	const currentTheme = $derived(
+		THEMES.find((theme) => theme.name === designSystem.theme) ?? THEMES[0]
+	);
 
 	const currentThemeIsBaseColor = $derived(
 		BASE_COLORS.find((baseColor) => baseColor.name === designSystem.theme)

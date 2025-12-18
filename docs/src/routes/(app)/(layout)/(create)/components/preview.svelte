@@ -3,13 +3,15 @@
 
 	type Props = {
 		item: string;
-	}
+	};
 
 	let { item }: Props = $props();
 
 	// if you are having issues with this restart your dev server
 	// for whatever reason vite cannot seem to detect newly created files imported dynamically
-	const ComponentPromise = $derived(import(`$lib/registry/examples/create/${item}/${item}.svelte`));
+	const ComponentPromise = $derived(
+		import(`$lib/registry/examples/create/${item}/${item}.svelte`)
+	);
 </script>
 
 <div data-slot="preview" class="relative -mx-1 flex flex-1 flex-col justify-center sm:mx-0">

@@ -9,7 +9,7 @@
 		"noEmit": true,
 		"verbatimModuleSyntax": true,
 		"erasableSyntaxOnly": true,
-		"noUncheckedIndexedAccess": true,
+		"noUncheckedIndexedAccess": true
 	},
 	"include": ["src"]
 }

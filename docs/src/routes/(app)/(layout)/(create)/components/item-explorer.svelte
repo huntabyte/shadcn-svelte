@@ -39,24 +39,25 @@
 									<Sidebar.MenuItem class="relative">
 										<div
 											class={cn(
-												"border-border/50 absolute -left-2 top-1/2 h-px w-2 border-t",
+												"border-border/50 absolute top-1/2 -left-2 h-px w-2 border-t",
 												index === group.items.length - 1 && "bg-sidebar"
 											)}
 										></div>
 										{#if index === group.items.length - 1}
 											<div
-												class="bg-sidebar absolute -bottom-1 -left-2.5 top-1/2 w-1"
+												class="bg-sidebar absolute top-1/2 -bottom-1 -left-2.5 w-1"
 											></div>
 										{/if}
 										<Sidebar.MenuButton
-											onclick={() => goto(`/create/${item.name}${page.url.search}`)}
-											class="data-[active=true]:bg-accent data-[active=true]:border-accent 3xl:fixed:w-full 3xl:fixed:max-w-48 relative h-[26px] w-fit cursor-pointer overflow-visible border border-transparent text-[0.8rem] font-normal after:absolute after:-inset-y-1 after:inset-x-0 after:z-0 after:rounded-md"
+											onclick={() =>
+												goto(`/create/${item.name}${page.url.search}`)}
+											class="data-[active=true]:bg-accent data-[active=true]:border-accent 3xl:fixed:w-full 3xl:fixed:max-w-48 relative h-[26px] w-fit cursor-pointer overflow-visible border border-transparent text-[0.8rem] font-normal after:absolute after:inset-x-0 after:-inset-y-1 after:z-0 after:rounded-md"
 											data-active={item.name === page.params.item}
 											isActive={item.name === page.params.item}
 										>
 											{item.title}
 											<span
-												class="w-(--sidebar-width) absolute inset-0 flex bg-transparent"
+												class="absolute inset-0 flex w-(--sidebar-width) bg-transparent"
 											></span>
 										</Sidebar.MenuButton>
 										<a

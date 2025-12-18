@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
 	import type { Snippet } from "svelte";
 	import {
 		buildRegistryTheme,
@@ -11,6 +10,7 @@
 	import { browser } from "$app/environment";
 	import { watch } from "runed";
 	import { setupDesignSystem } from "./design-system-provider-state.svelte.js";
+	import { cn } from "$lib/registry/lib/utils.js";
 
 	const uid = $props.id();
 
@@ -45,6 +45,30 @@
 	watch([() => registryTheme, () => browser], ([registryTheme, browser]) => {
 		if (!browser) return;
 		if (!registryTheme) return;
+
+		const body = document.body;
+
+		// Update style class in place (remove old, add new).
+		body.classList.forEach((className) => {
+			if (className.startsWith("style-")) {
+				body.classList.remove(className);
+			}
+		});
+		body.classList.add(`style-${designSystem.style}`);
+
+		// Update base color class in place.
+		body.classList.forEach((className) => {
+			if (className.startsWith("base-color-")) {
+				body.classList.remove(className);
+			}
+		});
+		body.classList.add(`base-color-${designSystem.baseColor}`);
+
+		const selectedFont =
+			fonts.find((font) => font.name.replace("font-", "") === designSystem.font)?.font
+				.family ?? fonts[0].font.family;
+		document.documentElement.style.setProperty("--font-sans", selectedFont);
+
 		const styleId = uid;
 		let styleElement = document.getElementById(styleId) as HTMLStyleElement | null;
 
@@ -57,8 +81,6 @@
 		const { light: lightVars, dark: darkVars, theme: themeVars } = registryTheme.cssVars;
 
 		let cssText = ":root {\n";
-		const selectedFont = fonts.find((font) => font.name.replace("font-", "") === designSystem.font)?.font.family ?? fonts[0].font.family
-		cssText += `  --font-sans: ${selectedFont};\n`;
 		// Add theme vars (shared across light/dark).
 		if (themeVars) {
 			Object.entries(themeVars).forEach(([key, value]) => {

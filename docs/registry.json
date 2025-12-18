@@ -103,6 +103,10 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/alert-dialog/alert-dialog-media.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/alert-dialog/alert-dialog-overlay.svelte"
 				},
 				{
@@ -4133,6 +4137,17 @@
 				{
 					"type": "registry:hook",
 					"path": "src/lib/registry/hooks/is-mobile.svelte.ts"
+				}
+			]
+		},
+		{
+			"name": "casing",
+			"type": "registry:lib",
+			"registryDependencies": [],
+			"files": [
+				{
+					"type": "registry:lib",
+					"path": "src/lib/registry/lib/casing.ts"
 				}
 			]
 		},

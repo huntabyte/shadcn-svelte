@@ -45,7 +45,10 @@
 									<Item.Title class="text-muted-foreground text-xs font-medium">
 										{font.title}
 									</Item.Title>
-									<Item.Description class="text-foreground" style="font-family: {font.font.family}">
+									<Item.Description
+										class="text-foreground"
+										style="font-family: {font.font.family}"
+									>
 										Designers love packing quirky glyphs into test phrases.
 									</Item.Description>
 								</Item.Content>

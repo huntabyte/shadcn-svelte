@@ -37,7 +37,7 @@
 		lucide: [
 			"CopyIcon",
 			"CircleAlertIcon",
-			"TrashIcon",
+			"Trash2Icon",
 			"ShareIcon",
 			"ShoppingBagIcon",
 			"MoreHorizontalIcon",

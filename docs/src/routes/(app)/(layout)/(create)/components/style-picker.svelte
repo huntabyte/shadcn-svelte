@@ -7,7 +7,9 @@
 
 	const designSystem = useDesignSystem();
 
-	const currentStyle = $derived(STYLES.find((style) => style.name === designSystem.style) ?? STYLES[0]);
+	const currentStyle = $derived(
+		STYLES.find((style) => style.name === designSystem.style) ?? STYLES[0]
+	);
 
 	const isMobile = new IsMobile();
 </script>

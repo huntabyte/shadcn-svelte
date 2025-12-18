@@ -10,9 +10,7 @@
 		</Alert.Root>
 		<Alert.Root>
 			<Alert.Title>Success! Your changes have been saved.</Alert.Title>
-			<Alert.Description>
-				This is an alert with title and description.
-			</Alert.Description>
+			<Alert.Description>This is an alert with title and description.</Alert.Description>
 		</Alert.Root>
 		<Alert.Root>
 			<Alert.Description>

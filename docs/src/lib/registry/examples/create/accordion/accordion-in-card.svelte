@@ -72,8 +72,8 @@
 							{/each}
 							{#if item.hasButton}
 								<p>
-									<a href="#/">Annual billing is available</a> with a 20% discount. All
-									plans include a 14-day free trial with no credit card required.
+									<a href="#/">Annual billing is available</a> with a 20% discount.
+									All plans include a 14-day free trial with no credit card required.
 								</p>
 								<Button size="sm">
 									View plans

@@ -35,7 +35,7 @@
 			</Button>
 			<MainNav items={mainNavItems} class="hidden lg:flex" />
 			<div class="ms-auto flex items-center gap-2 md:flex-1 md:justify-end">
-			<div class="hidden w-full flex-1 md:flex md:w-auto md:flex-none">
+				<div class="hidden w-full flex-1 md:flex md:w-auto md:flex-none">
 					<CommandMenu {colors} {closeMobileMenu} />
 				</div>
 				<Separator orientation="vertical" class="ms-2 hidden lg:block" />
@@ -45,7 +45,7 @@
 				<Separator orientation="vertical" />
 				<ModeSwitcher />
 				<Button href="/create" variant="default" size="sm">
-					<PlusIcon/>
+					<PlusIcon />
 					New Project
 				</Button>
 			</div>

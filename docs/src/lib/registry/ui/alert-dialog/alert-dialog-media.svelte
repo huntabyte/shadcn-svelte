@@ -12,8 +12,8 @@
 
 <div
 	bind:this={ref}
-	data-slot="alert-dialog-header"
-	class={cn("cn-alert-dialog-header", className)}
+	data-slot="alert-dialog-media"
+	class={cn("cn-alert-dialog-media", className)}
 	{...restProps}
 >
 	{@render children?.()}

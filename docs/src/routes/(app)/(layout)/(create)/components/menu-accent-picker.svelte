@@ -9,8 +9,7 @@
 	const isMobile = new IsMobile();
 
 	const currentAccent = $derived(
-		MENU_ACCENTS.find((accent) => accent.value === designSystem.menuAccent) ??
-			MENU_ACCENTS[0]
+		MENU_ACCENTS.find((accent) => accent.value === designSystem.menuAccent) ?? MENU_ACCENTS[0]
 	);
 </script>
 

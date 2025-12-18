@@ -8,7 +8,7 @@
 	);
 </script>
 
-	{#await ComponentPromise then { default: Component }}
-		<Component />
-	{/await}
+{#await ComponentPromise then { default: Component }}
+	<Component />
+{/await}
 <TailwindIndicator />

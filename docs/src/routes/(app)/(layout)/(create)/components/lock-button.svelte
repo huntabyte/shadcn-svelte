@@ -22,7 +22,7 @@
 		onclick={() => (isLocked ? designSystem.unlock(prop) : designSystem.lock(prop))}
 		data-locked={isLocked}
 		class={cn(
-			"pointer-coarse:hidden flex size-4 cursor-pointer items-center justify-center rounded opacity-0 transition-opacity focus-visible:opacity-100 group-focus-within/picker:opacity-100 group-hover/picker:opacity-100 data-[locked=true]:opacity-100",
+			"flex size-4 cursor-pointer items-center justify-center rounded opacity-0 transition-opacity group-focus-within/picker:opacity-100 group-hover/picker:opacity-100 focus-visible:opacity-100 data-[locked=true]:opacity-100 pointer-coarse:hidden",
 			className
 		)}
 		aria-label={isLocked ? "Unlock" : "Lock"}

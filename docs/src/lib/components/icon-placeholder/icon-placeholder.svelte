@@ -33,7 +33,7 @@
 </script>
 
 {#snippet placeholder()}
-	<SquareIcon class={className} {...restProps}/>
+	<SquareIcon class={className} {...restProps} />
 {/snippet}
 
 {#if designSystem.iconLibrary === "hugeicons"}

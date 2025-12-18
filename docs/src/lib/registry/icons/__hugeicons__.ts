@@ -2,3 +2,5 @@
 export { AlertCircleIcon } from '@hugeicons/core-free-icons'
 export { ArrowDown01Icon } from '@hugeicons/core-free-icons'
 export { ArrowUp01Icon } from '@hugeicons/core-free-icons'
+export { BluetoothIcon } from '@hugeicons/core-free-icons'
+export { Delete02Icon } from '@hugeicons/core-free-icons'

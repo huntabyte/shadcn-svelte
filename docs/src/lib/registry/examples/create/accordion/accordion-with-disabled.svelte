@@ -28,12 +28,15 @@
 </script>
 
 <Example title="With Disabled">
-	<Accordion.Root type="single" class="style-lyra:rounded-none style-vega:rounded-lg style-nova:rounded-lg style-maia:rounded-lg style-mira:rounded-lg mx-auto max-w-lg overflow-hidden border">
+	<Accordion.Root
+		type="single"
+		class="style-lyra:rounded-none style-vega:rounded-lg style-nova:rounded-lg style-maia:rounded-lg style-mira:rounded-lg mx-auto max-w-lg overflow-hidden border"
+	>
 		{#each items as item (item.value)}
 			<Accordion.Item
 				value={item.value}
 				disabled={item.disabled}
-				class="data-open:bg-muted/50 p-1"
+				class="data-[state=open]:bg-muted/50 p-1"
 			>
 				<Accordion.Trigger class="style-nova:px-2.5 style-lyra:px-2 style-vega:px-4">
 					{item.trigger}
