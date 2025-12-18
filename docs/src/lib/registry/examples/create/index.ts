@@ -22,4 +22,9 @@ export const examples: Example[] = [
 		name: "alert-dialog",
 		type: "registry:example",
 	},
+	{
+		title: "Aspect Ratio",
+		name: "aspect-ratio",
+		type: "registry:example",
+	},
 ];
