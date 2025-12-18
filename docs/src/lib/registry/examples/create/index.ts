@@ -42,4 +42,9 @@ export const examples: Example[] = [
 		name: "breadcrumb",
 		type: "registry:example",
 	},
+	{
+		title: "Button Group",
+		name: "button-group",
+		type: "registry:example",
+	},
 ];

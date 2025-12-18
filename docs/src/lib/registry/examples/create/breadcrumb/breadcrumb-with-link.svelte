@@ -8,7 +8,7 @@
 		<Breadcrumb.List>
 			<Breadcrumb.Item>
 				<Breadcrumb.Link>
-					{#snippet render({ props })}
+					{#snippet child({ props })}
 						<a href="#/" {...props}>Home</a>
 					{/snippet}
 				</Breadcrumb.Link>
@@ -20,7 +20,7 @@
 			<Breadcrumb.Separator />
 			<Breadcrumb.Item>
 				<Breadcrumb.Link>
-					{#snippet render({ props })}
+					{#snippet child({ props })}
 						<a href="#/" {...props}>Components</a>
 					{/snippet}
 				</Breadcrumb.Link>
