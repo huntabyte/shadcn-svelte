@@ -55,11 +55,19 @@
 			<Avatar.Fallback>CN</Avatar.Fallback>
 		</Avatar.Root>
 		<Avatar.Root size="lg">
-			<Avatar.Image src="https://github.com/maxleiter.png" alt="@maxleiter" class="grayscale" />
+			<Avatar.Image
+				src="https://github.com/maxleiter.png"
+				alt="@maxleiter"
+				class="grayscale"
+			/>
 			<Avatar.Fallback>LR</Avatar.Fallback>
 		</Avatar.Root>
 		<Avatar.Root size="lg">
-			<Avatar.Image src="https://github.com/evilrabbit.png" alt="@evilrabbit" class="grayscale" />
+			<Avatar.Image
+				src="https://github.com/evilrabbit.png"
+				alt="@evilrabbit"
+				class="grayscale"
+			/>
 			<Avatar.Fallback>ER</Avatar.Fallback>
 		</Avatar.Root>
 		<Avatar.GroupCount>

@@ -37,4 +37,9 @@ export const examples: Example[] = [
 		name: "badge",
 		type: "registry:example",
 	},
+	{
+		title: "Breadcrumb",
+		name: "breadcrumb",
+		type: "registry:example",
+	},
 ];
