@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { RADII } from "$lib/registry/config.js";
 	import * as Picker from "./picker/index.js";
-	import { useCreateSearchParams } from "../lib/search-params.js";
+	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import LockButton from "./lock-button.svelte";
 
-	const params = useCreateSearchParams();
+	const designSystem = useDesignSystem();
 
 	const currentRadius = $derived(
-		RADII.find((radius) => radius.name === params.radius) ?? RADII[0]
+		RADII.find((radius) => radius.name === designSystem.radius) ?? RADII[0]
 	);
 
 	const isMobile = new IsMobile();
@@ -36,7 +36,7 @@
 			side={isMobile.current ? "top" : "right"}
 			align={isMobile.current ? "center" : "start"}
 		>
-			<Picker.RadioGroup bind:value={params.radius}>
+			<Picker.RadioGroup bind:value={designSystem.radius}>
 				<Picker.Group>
 					{#each RADII as radius (radius.name)}
 						{#if radius.name === "default"}

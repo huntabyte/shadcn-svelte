@@ -2,12 +2,12 @@
 	import { STYLES } from "$lib/registry/config.js";
 	import LockButton from "./lock-button.svelte";
 	import * as Picker from "./picker/index.js";
-	import { useCreateSearchParams } from "../lib/search-params.js";
+	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 
-	const params = useCreateSearchParams();
+	const designSystem = useDesignSystem();
 
-	const currentStyle = $derived(STYLES.find((style) => style.name === params.style) ?? STYLES[0]);
+	const currentStyle = $derived(STYLES.find((style) => style.name === designSystem.style) ?? STYLES[0]);
 
 	const isMobile = new IsMobile();
 </script>
@@ -32,7 +32,7 @@
 			align={isMobile.current ? "center" : "start"}
 			class="md:w-64"
 		>
-			<Picker.RadioGroup bind:value={params.style}>
+			<Picker.RadioGroup bind:value={designSystem.style}>
 				<Picker.Group>
 					{#each STYLES as style, i (style.name)}
 						<Picker.RadioItem value={style.name}>

@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { Badge } from "$lib/registry/ui/badge/index.js";
-	import { useCreateSearchParams } from "../lib/search-params.js";
 
-	const params = useCreateSearchParams();
+	type Props = {
+		item: string;
+	}
 
-	// this prevents ComponentPromise from being reloaded every time ANY param changes
-	const item = $derived(params.item);
+	let { item }: Props = $props();
 
 	// if you are having issues with this restart your dev server
 	// for whatever reason vite cannot seem to detect newly created files imported dynamically

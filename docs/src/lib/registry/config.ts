@@ -63,7 +63,6 @@ export const designSystemConfigSchema = z
 			.default("neutral"),
 		theme: z.enum(THEMES.map((t) => t.name) as [ThemeName, ...ThemeName[]]),
 		font: z.enum(fontValues).default("inter"),
-		item: z.string().optional(),
 		menuAccent: z
 			.enum(MENU_ACCENTS.map((a) => a.value) as [MenuAccentValue, ...MenuAccentValue[]])
 			.default("subtle"),
@@ -73,7 +72,6 @@ export const designSystemConfigSchema = z
 		radius: z
 			.enum(RADII.map((r) => r.name) as [RadiusValue, ...RadiusValue[]])
 			.default("default"),
-		template: z.enum(["kit", "vite", "astro"]).default("kit").optional(),
 	})
 	.refine((data) => {
 		const availableThemes = getThemesForBaseColor(data.baseColor);
@@ -92,11 +90,9 @@ export const DEFAULT_CONFIG: DesignSystemConfig = {
 	theme: "neutral",
 	iconLibrary: "lucide",
 	font: "inter",
-	item: "Item",
 	menuAccent: "subtle",
 	menuColor: "default",
 	radius: "default",
-	template: "kit",
 };
 
 export type Preset = {

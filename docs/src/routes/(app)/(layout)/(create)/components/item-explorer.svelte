@@ -5,12 +5,14 @@
 	import type { RegistryItem } from "@shadcn-svelte/registry";
 	import { groupItemsByType } from "../lib/utils.js";
 	import { cn } from "$lib/utils.js";
-	import { useCreateSearchParams } from "../lib/search-params.js";
+	import { goto } from "$app/navigation";
+	import { page } from "$app/state";
+
 	type Props = {
 		items: Pick<RegistryItem, "name" | "title" | "type">[];
 	};
 	let { items }: Props = $props();
-	const params = useCreateSearchParams();
+
 	const groupedItems = $derived(groupItemsByType(items));
 </script>
 
@@ -47,10 +49,10 @@
 											></div>
 										{/if}
 										<Sidebar.MenuButton
-											onclick={() => params.update({ item: item.name })}
+											onclick={() => goto(`/create/${item.name}${page.url.search}`)}
 											class="data-[active=true]:bg-accent data-[active=true]:border-accent 3xl:fixed:w-full 3xl:fixed:max-w-48 relative h-[26px] w-fit cursor-pointer overflow-visible border border-transparent text-[0.8rem] font-normal after:absolute after:-inset-y-1 after:inset-x-0 after:z-0 after:rounded-md"
-											data-active={item.name === params.item}
-											isActive={item.name === params.item}
+											data-active={item.name === page.params.item}
+											isActive={item.name === page.params.item}
 										>
 											{item.title}
 											<span

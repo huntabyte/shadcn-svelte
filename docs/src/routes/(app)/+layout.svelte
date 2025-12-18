@@ -3,6 +3,7 @@
 	import { UserConfig, UserConfigContext } from "$lib/user-config.svelte.js";
 	import { ModeWatcher, setTheme } from "mode-watcher";
 	import { Toaster } from "$lib/registry/ui/sonner/index.js";
+	import { DesignSystemProvider } from "$lib/features/design-system/index.js";
 
 	let { children, data } = $props();
 
@@ -32,4 +33,6 @@
 />
 <Toaster position="top-center" />
 
-{@render children()}
+<DesignSystemProvider>
+	{@render children()}
+</DesignSystemProvider>

@@ -1,19 +1,19 @@
 <script lang="ts">
 	import * as Picker from "./picker/index.js";
-	import { useCreateSearchParams } from "../lib/search-params.js";
+	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import LockButton from "./lock-button.svelte";
 	import { mode } from "mode-watcher";
 	import { BASE_COLORS, THEMES } from "$lib/registry/config.js";
 
-	const params = useCreateSearchParams();
+	const designSystem = useDesignSystem();
 
 	const isMobile = new IsMobile();
 
-	const currentTheme = $derived(THEMES.find((theme) => theme.name === params.theme) ?? THEMES[0]);
+	const currentTheme = $derived(THEMES.find((theme) => theme.name === designSystem.theme) ?? THEMES[0]);
 
 	const currentThemeIsBaseColor = $derived(
-		BASE_COLORS.find((baseColor) => baseColor.name === params.theme)
+		BASE_COLORS.find((baseColor) => baseColor.name === designSystem.theme)
 	);
 </script>
 
@@ -38,13 +38,13 @@
 			align={isMobile.current ? "center" : "start"}
 			class="max-h-96"
 		>
-			<Picker.RadioGroup bind:value={params.theme}>
+			<Picker.RadioGroup bind:value={designSystem.theme}>
 				<Picker.Group>
 					{#each THEMES.filter( (theme) => BASE_COLORS.find((baseColor) => baseColor.name === theme.name) ) as theme (theme.name)}
 						{@const isBaseColor = BASE_COLORS.find(
 							(baseColor) => baseColor.name === theme.name
 						)}
-						{#if theme.name === params.baseColor}
+						{#if theme.name === designSystem.baseColor}
 							<Picker.RadioItem value={theme.name}>
 								<div class="flex items-start gap-2">
 									{#if mode.current}
