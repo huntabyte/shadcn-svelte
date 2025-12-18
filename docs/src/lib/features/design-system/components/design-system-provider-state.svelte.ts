@@ -1,11 +1,12 @@
+import { goto } from "$app/navigation";
 import { page } from "$app/state";
 import {
 	DEFAULT_CONFIG,
-	type DesignSystemConfig,
 	designSystemConfigSchema,
+	type DesignSystemConfig,
 } from "$lib/registry/config.js";
 import { Context, PersistedState } from "runed";
-import { useSearchParams, type ReturnUseSearchParams } from "runed/kit";
+import { SvelteURLSearchParams } from "svelte/reactivity";
 
 export interface IDesignSystemState extends DesignSystemConfig {
 	locks: Lockable;
@@ -29,7 +30,6 @@ export type Lockable = {
 class DesignSystemState implements IDesignSystemState {
 	system: PersistedState<DesignSystemConfig>;
 	#locks: PersistedState<Lockable>;
-	params: ReturnUseSearchParams<typeof designSystemConfigSchema>;
 	constructor() {
 		this.system = new PersistedState<DesignSystemConfig>("design-system", DEFAULT_CONFIG);
 		this.#locks = new PersistedState<Lockable>("locks", {
@@ -44,7 +44,6 @@ class DesignSystemState implements IDesignSystemState {
 			radius: false,
 			template: false,
 		});
-		this.params = useSearchParams(designSystemConfigSchema);
 	}
 
 	// locks
@@ -64,8 +63,9 @@ class DesignSystemState implements IDesignSystemState {
 	// properties
 
 	private getProperty<Key extends keyof DesignSystemConfig>(prop: Key): DesignSystemConfig[Key] {
-		const param = this.params[prop];
-		if (param) return param;
+		const param = page.url.searchParams.get(prop);
+		const validated = designSystemConfigSchema.shape[prop].safeParse(param);
+		if (param && validated.success) return param as DesignSystemConfig[Key];
 		return this.system.current[prop] ?? DEFAULT_CONFIG[prop];
 	}
 
@@ -75,10 +75,12 @@ class DesignSystemState implements IDesignSystemState {
 	) {
 		// set the search param if the page is /create or the param is already set
 		const setParam =
-			page.url.pathname === "/create" || page.url.searchParams.get(prop) !== null;
+			page.url.pathname.startsWith("/create") || page.url.searchParams.get(prop) !== null;
 
 		if (setParam) {
-			this.params.set(prop, value);
+			const searchParams = new SvelteURLSearchParams(page.url.searchParams);
+			searchParams.set(prop, value);
+			goto(page.url.pathname + "?" + searchParams.toString());
 		}
 
 		// persist to local storage either way
