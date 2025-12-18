@@ -2,5 +2,7 @@
 export { default as BluetoothIcon } from 'phosphor-svelte/lib/Bluetooth'
 export { default as CaretDownIcon } from 'phosphor-svelte/lib/CaretDown'
 export { default as CaretUpIcon } from 'phosphor-svelte/lib/CaretUp'
+export { default as CheckIcon } from 'phosphor-svelte/lib/Check'
+export { default as PlusIcon } from 'phosphor-svelte/lib/Plus'
 export { default as TrashIcon } from 'phosphor-svelte/lib/Trash'
 export { default as WarningCircleIcon } from 'phosphor-svelte/lib/WarningCircle'

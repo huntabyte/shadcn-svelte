@@ -27,4 +27,9 @@ export const examples: Example[] = [
 		name: "aspect-ratio",
 		type: "registry:example",
 	},
+	{
+		title: "Avatar",
+		name: "avatar",
+		type: "registry:example",
+	},
 ];

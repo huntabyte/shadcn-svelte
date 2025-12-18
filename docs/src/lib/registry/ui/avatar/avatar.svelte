@@ -5,15 +5,22 @@
 	let {
 		ref = $bindable(null),
 		loadingStatus = $bindable("loading"),
+		size = "default",
 		class: className,
 		...restProps
-	}: AvatarPrimitive.RootProps = $props();
+	}: AvatarPrimitive.RootProps & {
+		size?: "default" | "sm" | "lg";
+	} = $props();
 </script>
 
 <AvatarPrimitive.Root
 	bind:ref
 	bind:loadingStatus
 	data-slot="avatar"
-	class={cn("relative flex size-8 shrink-0 overflow-hidden rounded-full", className)}
+	data-size={size}
+	class={cn(
+		"cn-avatar after:border-border group/avatar relative flex shrink-0 select-none after:absolute after:inset-0 after:border after:mix-blend-darken dark:after:mix-blend-lighten",
+		className
+	)}
 	{...restProps}
 />

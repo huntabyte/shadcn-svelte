@@ -153,7 +153,19 @@
 			"files": [
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/avatar/avatar-badge.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/avatar/avatar-fallback.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/avatar/avatar-group-count.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/avatar/avatar-group.svelte"
 				},
 				{
 					"type": "registry:file",
