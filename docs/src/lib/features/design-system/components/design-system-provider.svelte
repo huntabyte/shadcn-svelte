@@ -4,6 +4,7 @@
 	import {
 		buildRegistryTheme,
 		DEFAULT_CONFIG,
+		fonts,
 		RADII,
 		type DesignSystemConfig,
 	} from "$lib/registry/config.js";
@@ -19,7 +20,7 @@
 
 	let { children }: Props = $props();
 
-    const designSystem = setupDesignSystem();
+	const designSystem = setupDesignSystem();
 
 	const radius = $derived(
 		RADII.find((radius) => radius.name === designSystem.radius)?.value ?? RADII[0].value
@@ -56,6 +57,8 @@
 		const { light: lightVars, dark: darkVars, theme: themeVars } = registryTheme.cssVars;
 
 		let cssText = ":root {\n";
+		const selectedFont = fonts.find((font) => font.name.replace("font-", "") === designSystem.font)?.font.family ?? fonts[0].font.family
+		cssText += `  --font-sans: ${selectedFont};\n`;
 		// Add theme vars (shared across light/dark).
 		if (themeVars) {
 			Object.entries(themeVars).forEach(([key, value]) => {
@@ -88,6 +91,10 @@
 	});
 </script>
 
-<div class={cn(`style-${designSystem.style} base-color-${designSystem.baseColor}`)}>
+<div
+	data-slot="design-system-provider"
+	style="display: contents;"
+	class={cn(`style-${designSystem.style} base-color-${designSystem.baseColor}`)}
+>
 	{@render children?.()}
 </div>

@@ -18,33 +18,11 @@
 @custom-variant dark (&:is(.dark *));
 @custom-variant fixed (&:is(.layout-fixed *));
 
-@font-face {
-	font-family: "Geist";
-	src: url("/fonts/Geist/geist.woff2") format("woff2");
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Geist Mono";
-	src: url("/fonts/Geist/geist-mono.woff2") format("woff2");
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Inter";
-	src: url("/fonts/Inter/inter.woff2") format("woff2");
-	font-style: normal;
-	font-display: swap;
-}
-
 @theme inline {
 	--breakpoint-3xl: 1600px;
 	--breakpoint-4xl: 2000px;
-	--font-sans: "Geist", sans-serif;
-	--font-mono: "Geist Mono", monospace;
-	--font-inter: "Inter", sans-serif;
+	--font-sans: var(--font-sans);
+	--font-mono: var(--font-mono);
 	--radius-sm: calc(var(--radius) - 4px);
 	--radius-md: calc(var(--radius) - 2px);
 	--radius-lg: var(--radius);
@@ -95,6 +73,8 @@
 }
 
 :root {
+	--font-sans: "Geist", sans-serif;
+	--font-mono: "Geist Mono", monospace;
 	--radius: 0.625rem;
 	--svelte-orange: oklch(0.6385 0.1991 34.99);
 	--background: oklch(1 0 0);

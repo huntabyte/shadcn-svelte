@@ -6,6 +6,8 @@
 	import ThemePicker from "./theme-picker.svelte";
 	import BaseColorPicker from "./base-color-picker.svelte";
 	import IconLibraryPicker from "./icon-library-picker.svelte";
+	import FontPicker from "./font-picker.svelte";
+	import CustomizerControls from "./customizer-controls.svelte";
 </script>
 
 <div
@@ -28,16 +30,16 @@
 		class="no-scrollbar h-14 overflow-x-auto overflow-y-hidden p-px md:h-full md:overflow-x-hidden md:overflow-y-auto"
 	>
 		<Field.Group class="flex h-full flex-1 flex-row gap-2 md:flex-col md:gap-0">
-			<!-- <PresetPicker presets={PRESETS} {isMobile} {anchorRef} />
-			<FontPicker fonts={FONTS} {isMobile} {anchorRef} /> -->
+			<!-- <PresetPicker presets={PRESETS} {isMobile} {anchorRef} /> -->
 			<StylePicker />
 			<BaseColorPicker />
 			<ThemePicker />
 			<IconLibraryPicker />
+			<FontPicker />
 			<RadiusPicker />
 			<!-- <MenuColorPicker {isMobile} {anchorRef} />
-			<MenuAccentPicker {isMobile} {anchorRef} />
-			<CustomizerControls className="mt-auto hidden w-full flex-col md:flex" /> -->
+			<MenuAccentPicker {isMobile} {anchorRef} /> -->
+			<CustomizerControls class="mt-auto hidden w-full flex-col md:flex" />
 		</Field.Group>
 	</div>
 </div>
