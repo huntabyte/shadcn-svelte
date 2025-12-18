@@ -32,4 +32,9 @@ export const examples: Example[] = [
 		name: "avatar",
 		type: "registry:example",
 	},
+	{
+		title: "Badge",
+		name: "badge",
+		type: "registry:example",
+	},
 ];

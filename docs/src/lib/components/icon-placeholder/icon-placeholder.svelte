@@ -25,6 +25,7 @@
 		phosphor: string;
 		class?: string;
 		"data-slot"?: string;
+		"data-icon"?: string;
 	};
 
 	let { hugeicons, lucide, tabler, phosphor, class: className, ...restProps }: Props = $props();
