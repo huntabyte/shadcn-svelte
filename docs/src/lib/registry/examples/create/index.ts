@@ -52,4 +52,9 @@ export const examples: Example[] = [
 		name: "button-group",
 		type: "registry:example",
 	},
+	{
+		title: "Calendar",
+		name: "calendar",
+		type: "registry:example",
+	},
 ];

@@ -12,7 +12,11 @@
 <CalendarPrimitive.Cell
 	bind:ref
 	class={cn(
-		"relative size-(--cell-size) p-0 text-center text-sm focus-within:z-20 [&:first-child[data-selected]_[data-bits-day]]:rounded-s-md [&:last-child[data-selected]_[data-bits-day]]:rounded-e-md",
+		"cn-calendar-day relative w-full rounded-(--cell-radius) h-full p-0 text-center aspect-square select-none group/day",
+		"focus-within:z-20",
+		"[&:last-child[data-selected=true]_button]:rounded-r-(--cell-radius)]",
+		"[&:nth-child(2)[data-selected=true]_button]:rounded-l-(--cell-radius)]",
+		"[&:first-child[data-selected=true]_button]:rounded-l-(--cell-radius)]",
 		className
 	)}
 	{...restProps}
