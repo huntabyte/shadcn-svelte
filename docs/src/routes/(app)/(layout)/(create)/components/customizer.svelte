@@ -8,6 +8,7 @@
 	import IconLibraryPicker from "./icon-library-picker.svelte";
 	import FontPicker from "./font-picker.svelte";
 	import CustomizerControls from "./customizer-controls.svelte";
+	import PresetPicker from "./preset-picker.svelte";
 </script>
 
 <div
@@ -30,7 +31,7 @@
 		class="no-scrollbar h-14 overflow-x-auto overflow-y-hidden p-px md:h-full md:overflow-x-hidden md:overflow-y-auto"
 	>
 		<Field.Group class="flex h-full flex-1 flex-row gap-2 md:flex-col md:gap-0">
-			<!-- <PresetPicker presets={PRESETS} {isMobile} {anchorRef} /> -->
+			<PresetPicker  />
 			<StylePicker />
 			<BaseColorPicker />
 			<ThemePicker />

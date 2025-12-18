@@ -27,6 +27,7 @@ export interface IDesignSystemState extends DesignSystemConfig {
 	unlock: (key: keyof Lockable) => void;
 	reset: () => void;
 	randomize: () => void;
+	update: (value: Partial<DesignSystemConfig>) => void;
 }
 
 export type Lockable = {
@@ -241,6 +242,27 @@ class DesignSystemState implements IDesignSystemState {
 			searchParams.set("iconLibrary", selectedIconLibrary);
 			searchParams.set("menuAccent", selectedMenuAccent);
 			searchParams.set("menuColor", selectedMenuColor);
+			goto(`${page.url.pathname}?${searchParams.toString()}${page.url.hash}`, {
+				replaceState: true,
+				noScroll: true,
+				keepFocus: true,
+			});
+		}
+	}
+
+	update(value: Partial<DesignSystemConfig>) {
+		this.system.current = { ...this.system.current, ...value };
+
+		if (page.url.pathname.startsWith("/create")) {
+			const searchParams = new SvelteURLSearchParams(page.url.searchParams);
+			searchParams.set("baseColor", this.baseColor);
+			searchParams.set("style", this.style);
+			searchParams.set("theme", this.theme);
+			searchParams.set("font", this.font);
+			searchParams.set("radius", this.radius);
+			searchParams.set("iconLibrary", this.iconLibrary);
+			searchParams.set("menuAccent", this.menuAccent);
+			searchParams.set("menuColor", this.menuColor);
 			goto(`${page.url.pathname}?${searchParams.toString()}${page.url.hash}`, {
 				replaceState: true,
 				noScroll: true,
