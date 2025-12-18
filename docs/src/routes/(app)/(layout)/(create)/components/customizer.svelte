@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Settings2Icon from "@lucide/svelte/icons/settings-2";
-    import * as Field from "$lib/registry/ui/field/index.js";
+	import * as Field from "$lib/registry/ui/field/index.js";
 	import RadiusPicker from "./radius-picker.svelte";
 	import StylePicker from "./style-picker.svelte";
 	import ThemePicker from "./theme-picker.svelte";
@@ -9,6 +9,7 @@
 	import FontPicker from "./font-picker.svelte";
 	import CustomizerControls from "./customizer-controls.svelte";
 	import PresetPicker from "./preset-picker.svelte";
+	import MenuColorPicker from "./menu-color-picker.svelte";
 </script>
 
 <div
@@ -19,7 +20,7 @@
 	>
 		<Settings2Icon class="size-4" />
 		<div class="relative flex flex-col gap-1 rounded-lg text-[13px]/snug">
-			<div class="flex items-center gap-1 text-balance font-medium">
+			<div class="flex items-center gap-1 font-medium text-balance">
 				Build your own shadcn-svelte
 			</div>
 			<div class="hidden md:flex">
@@ -31,14 +32,15 @@
 		class="no-scrollbar h-14 overflow-x-auto overflow-y-hidden p-px md:h-full md:overflow-x-hidden md:overflow-y-auto"
 	>
 		<Field.Group class="flex h-full flex-1 flex-row gap-2 md:flex-col md:gap-0">
-			<PresetPicker  />
+			<PresetPicker />
 			<StylePicker />
 			<BaseColorPicker />
 			<ThemePicker />
 			<IconLibraryPicker />
 			<FontPicker />
 			<RadiusPicker />
-			<!-- <MenuColorPicker {isMobile} {anchorRef} />
+			<MenuColorPicker />
+			<!-- 
 			<MenuAccentPicker {isMobile} {anchorRef} /> -->
 			<CustomizerControls class="mt-auto hidden w-full flex-col md:flex" />
 		</Field.Group>
