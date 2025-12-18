@@ -10,6 +10,7 @@
 	import CustomizerControls from "./customizer-controls.svelte";
 	import PresetPicker from "./preset-picker.svelte";
 	import MenuColorPicker from "./menu-color-picker.svelte";
+	import MenuAccentPicker from "./menu-accent-picker.svelte";
 </script>
 
 <div
@@ -40,8 +41,7 @@
 			<FontPicker />
 			<RadiusPicker />
 			<MenuColorPicker />
-			<!-- 
-			<MenuAccentPicker {isMobile} {anchorRef} /> -->
+			<MenuAccentPicker />
 			<CustomizerControls class="mt-auto hidden w-full flex-col md:flex" />
 		</Field.Group>
 	</div>
