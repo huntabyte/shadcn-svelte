@@ -9,7 +9,7 @@ export const iconLibraries = {
 	},
 	tabler: {
 		name: "tabler",
-		title: "Tabler Icons",
+		title: "Tabler",
 		packages: ["@tabler/icons-svelte"],
 		import: "import { ICON } from '@tabler/icons-svelte'",
 		usage: "<ICON />",
@@ -25,7 +25,7 @@ export const iconLibraries = {
 	},
 	phosphor: {
 		name: "phosphor",
-		title: "Phosphor Icons",
+		title: "Phosphor",
 		packages: ["phosphor-svelte"],
 		import: "import ICON from 'phosphor-svelte/lib/ICON'",
 		usage: "<ICON />",
