@@ -6,9 +6,7 @@
 	import { CalendarDate, getLocalTimeZone, today } from "@internationalized/date";
 
 	const currentDate = today(getLocalTimeZone());
-	let date = $state<CalendarDate | undefined>(
-		new CalendarDate(currentDate.year, 1, 12)
-	);
+	let date = $state<CalendarDate | undefined>(new CalendarDate(currentDate.year, 1, 12));
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	let currentMonth = $state<CalendarDate>(
 		new CalendarDate(currentDate.year, currentDate.month, 1)

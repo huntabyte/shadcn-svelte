@@ -1,7 +1,7 @@
 // Adapted from https://github.com/shadcn-ui/ui/tree/main/apps/v4/registry/config.ts
 
 import { iconLibraries, type IconLibrary, type IconLibraryName } from "shadcn-svelte/icons";
-import { z } from "zod/v4";
+import { z } from "zod";
 
 import { BASE_COLORS, type BaseColor } from "./base-colors.js";
 import { fonts } from "./fonts.js";
@@ -56,8 +56,10 @@ export type RadiusValue = Radius["name"];
 
 export const designSystemConfigSchema = z
 	.object({
-		style: z.enum(STYLES.map((s) => s.name) as [StyleName, ...StyleName[]]),
-		iconLibrary: z.enum(Object.keys(iconLibraries) as [IconLibraryName, ...IconLibraryName[]]),
+		style: z.enum(STYLES.map((s) => s.name) as [StyleName, ...StyleName[]]).default("vega"),
+		iconLibrary: z
+			.enum(Object.keys(iconLibraries) as [IconLibraryName, ...IconLibraryName[]])
+			.default("lucide"),
 		baseColor: z
 			.enum(BASE_COLORS.map((c) => c.name) as [BaseColorName, ...BaseColorName[]])
 			.default("neutral"),
@@ -165,6 +167,10 @@ export function getThemesForBaseColor(baseColorName: string) {
 		}
 		return !baseColorNames.includes(theme.name);
 	});
+}
+
+export function getFont(name: FontValue) {
+	return fonts.find((font) => font.name.replace("font-", "") === name);
 }
 
 export function getStyle(name: StyleName) {

@@ -29,7 +29,7 @@
 	bind:ref
 	class={cn(
 		buttonVariants({ variant }),
-		"cn-calendar-button-next size-(--cell-size) aria-disabled:opacity-50 p-0 select-none rtl:rotate-180",
+		"cn-calendar-button-next size-(--cell-size) p-0 select-none aria-disabled:opacity-50 rtl:rotate-180",
 		className
 	)}
 	children={children || Fallback}

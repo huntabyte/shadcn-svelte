@@ -2,7 +2,7 @@ import path from "node:path";
 import process from "node:process";
 import { existsSync, promises as fs } from "node:fs";
 import color from "picocolors";
-import { z } from "zod/v4";
+import { z } from "zod";
 import merge from "deepmerge";
 import { Command } from "commander";
 import { error, handleError } from "../../utils/errors.js";
@@ -180,7 +180,7 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 		tasks.push({
 			title: `Updating ${highlight(item.name)}`,
 			async task() {
-				for (const file of item.files) {
+				for (const file of item.files ?? []) {
 					let filePath = registry.resolveItemFilePath(config, item, file);
 
 					// Run transformers.
@@ -203,7 +203,7 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 				}
 
 				const itemDir = path.resolve(aliasDir, item.name);
-				if (item.files.length > 1) {
+				if (item.files && item.files?.length > 1) {
 					const remoteFiles = item.files.map((file) => {
 						const filepath = registry.resolveItemFilePath(config, item, file);
 						if (!config.typescript && filepath.endsWith(".ts")) {

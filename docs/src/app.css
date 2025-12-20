@@ -9,6 +9,19 @@
 @import "./lib/registry/styles/style-maia.css" layer(base);
 @import "./lib/registry/styles/style-mira.css" layer(base);
 
+@import "@fontsource-variable/geist/index.css";
+@import "@fontsource-variable/inter/index.css";
+@import "@fontsource-variable/noto-sans/index.css";
+@import "@fontsource-variable/nunito-sans/index.css";
+@import "@fontsource-variable/figtree/index.css";
+@import "@fontsource-variable/roboto/index.css";
+@import "@fontsource-variable/raleway/index.css";
+@import "@fontsource-variable/dm-sans/index.css";
+@import "@fontsource-variable/public-sans/index.css";
+@import "@fontsource-variable/outfit/index.css";
+@import "@fontsource-variable/jetbrains-mono/index.css";
+@import "@fontsource-variable/geist-mono/index.css";
+
 @custom-variant style-vega (&:where(.style-vega *));
 @custom-variant style-nova (&:where(.style-nova *));
 @custom-variant style-lyra (&:where(.style-lyra *));
@@ -73,8 +86,8 @@
 }
 
 :root {
-	--font-sans: "Geist", sans-serif;
-	--font-mono: "Geist Mono", monospace;
+	--font-sans: "Geist Variable", sans-serif;
+	--font-mono: "Geist Mono Variable", monospace;
 	--radius: 0.625rem;
 	--svelte-orange: oklch(0.6385 0.1991 34.99);
 	--background: oklch(1 0 0);
@@ -187,6 +200,76 @@
 	a:active,
 	button:active {
 		@apply opacity-60 md:opacity-100;
+	}
+}
+
+/* Custom variants */
+@custom-variant data-open {
+	&:where([data-state="open"]),
+	&:where([data-open]:not([data-open="false"])) {
+		@slot;
+	}
+}
+
+@custom-variant data-closed {
+	&:where([data-state="closed"]),
+	&:where([data-closed]:not([data-closed="false"])) {
+		@slot;
+	}
+}
+
+@custom-variant data-checked {
+	&:where([data-state="checked"]),
+	&:where([data-checked]:not([data-checked="false"])) {
+		@slot;
+	}
+}
+
+@custom-variant data-unchecked {
+	&:where([data-state="unchecked"]),
+	&:where([data-unchecked]:not([data-unchecked="false"])) {
+		@slot;
+	}
+}
+
+@custom-variant data-selected {
+	&:where([data-selected="true"]) {
+		@slot;
+	}
+}
+
+@custom-variant data-disabled {
+	&:where([data-disabled="true"]),
+	&:where([data-disabled]:not([data-disabled="false"])) {
+		@slot;
+	}
+}
+
+@custom-variant data-active {
+	&:where([data-state="active"]),
+	&:where([data-active]:not([data-active="false"])) {
+		@slot;
+	}
+}
+
+@custom-variant data-horizontal {
+	&:where([data-orientation="horizontal"]) {
+		@slot;
+	}
+}
+
+@custom-variant data-vertical {
+	&:where([data-orientation="vertical"]) {
+		@slot;
+	}
+}
+
+@utility no-scrollbar {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		display: none;
 	}
 }
 

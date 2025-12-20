@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import { z } from "zod/v4";
+	import { z } from "zod";
 
 	const formSchema = z.object({
 		dob: z.string().refine((v) => v, { message: "A date of birth is required." }),

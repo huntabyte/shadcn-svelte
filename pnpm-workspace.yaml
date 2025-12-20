@@ -11,3 +11,4 @@ catalog:
     typescript: ^5.9.3
     vite: ^7.2.1
     tsdown: ^0.18.0
+    zod: ^4.2.1

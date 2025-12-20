@@ -40,7 +40,9 @@
 							data-icon="inline-start"
 						/>
 						{#if date?.[0]}
-							{df.format(date[0].toDate(getLocalTimeZone()))} - {df.format(date[1].toDate(getLocalTimeZone()))}
+							{df.format(date[0].toDate(getLocalTimeZone()))} - {df.format(
+								date[1].toDate(getLocalTimeZone())
+							)}
 						{:else}
 							Pick a date
 						{/if}
@@ -48,11 +50,7 @@
 				{/snippet}
 			</Popover.Trigger>
 			<Popover.Content class="w-auto p-0" align="start">
-				<Calendar
-					type="multiple"
-					bind:value={date}
-					numberOfMonths={2}
-				/>
+				<Calendar type="multiple" bind:value={date} numberOfMonths={2} />
 			</Popover.Content>
 		</Popover.Root>
 	</Field.Field>

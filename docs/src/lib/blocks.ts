@@ -1,4 +1,4 @@
-import { z } from "zod/v4";
+import { z } from "zod";
 import { blocks } from "../__registry__/blocks.js";
 
 export type BlockName = (typeof blocks)[number];

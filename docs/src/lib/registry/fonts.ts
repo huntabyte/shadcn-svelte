@@ -1,16 +1,15 @@
-import { type RegistryItem } from "@shadcn-svelte/registry";
+import { type RegistryFont } from "@shadcn-svelte/registry";
 
 export const fonts = [
 	{
 		name: "font-geist-sans",
-		title: "Geist Sans",
+		title: "Geist",
 		type: "registry:font",
 		font: {
-			family: "'Geist', sans-serif",
-			provider: "google",
+			family: "'Geist Variable', sans-serif",
+			cssImport: '@import "@fontsource-variable/geist/index.css";',
 			variable: "--font-sans",
-			subsets: ["latin"],
-			import: "Geist",
+			dependencies: ["@fontsource-variable/geist"],
 		},
 	},
 	{
@@ -18,11 +17,10 @@ export const fonts = [
 		title: "Inter",
 		type: "registry:font",
 		font: {
-			family: "'Inter', sans-serif",
-			provider: "google",
+			family: "'Inter Variable', sans-serif",
+			cssImport: '@import "@fontsource-variable/inter/index.css";',
 			variable: "--font-sans",
-			subsets: ["latin"],
-			import: "Inter",
+			dependencies: ["@fontsource-variable/inter"],
 		},
 	},
 	{
@@ -30,10 +28,10 @@ export const fonts = [
 		title: "Noto Sans",
 		type: "registry:font",
 		font: {
-			family: "'Noto Sans', sans-serif",
-			provider: "google",
+			family: "'Noto Sans Variable', sans-serif",
+			cssImport: '@import "@fontsource-variable/noto-sans/index.css";',
 			variable: "--font-sans",
-			import: "Noto_Sans",
+			dependencies: ["@fontsource-variable/noto-sans"],
 		},
 	},
 	{
@@ -41,10 +39,10 @@ export const fonts = [
 		title: "Nunito Sans",
 		type: "registry:font",
 		font: {
-			family: "'Nunito Sans', sans-serif",
-			provider: "google",
+			family: "'Nunito Sans Variable', sans-serif",
+			cssImport: '@import "@fontsource-variable/nunito-sans/index.css";',
 			variable: "--font-sans",
-			import: "Nunito_Sans",
+			dependencies: ["@fontsource-variable/nunito-sans"],
 		},
 	},
 	{
@@ -52,11 +50,10 @@ export const fonts = [
 		title: "Figtree",
 		type: "registry:font",
 		font: {
-			family: "'Figtree', sans-serif",
-			provider: "google",
+			family: "'Figtree Variable', sans-serif",
+			cssImport: '@import "@fontsource-variable/figtree/index.css";',
 			variable: "--font-sans",
-			subsets: ["latin"],
-			import: "Figtree",
+			dependencies: ["@fontsource-variable/figtree"],
 		},
 	},
 	{
@@ -64,11 +61,10 @@ export const fonts = [
 		title: "Roboto",
 		type: "registry:font",
 		font: {
-			family: "'Roboto', sans-serif",
-			provider: "google",
+			family: "'Roboto Variable', sans-serif",
+			cssImport: '@import "@fontsource-variable/roboto/index.css";',
 			variable: "--font-sans",
-			subsets: ["latin"],
-			import: "Roboto",
+			dependencies: ["@fontsource-variable/roboto"],
 		},
 	},
 	{
@@ -76,11 +72,10 @@ export const fonts = [
 		title: "Raleway",
 		type: "registry:font",
 		font: {
-			family: "'Raleway', sans-serif",
-			provider: "google",
+			family: "'Raleway Variable', sans-serif",
+			cssImport: '@import "@fontsource-variable/raleway/index.css";',
 			variable: "--font-sans",
-			subsets: ["latin"],
-			import: "Raleway",
+			dependencies: ["@fontsource-variable/raleway"],
 		},
 	},
 	{
@@ -88,11 +83,10 @@ export const fonts = [
 		title: "DM Sans",
 		type: "registry:font",
 		font: {
-			family: "'DM Sans', sans-serif",
-			provider: "google",
+			family: "'DM Sans Variable', sans-serif",
+			cssImport: '@import "@fontsource-variable/dm-sans/index.css";',
 			variable: "--font-sans",
-			subsets: ["latin"],
-			import: "DM_Sans",
+			dependencies: ["@fontsource-variable/dm-sans"],
 		},
 	},
 	{
@@ -100,11 +94,10 @@ export const fonts = [
 		title: "Public Sans",
 		type: "registry:font",
 		font: {
-			family: "'Public Sans', sans-serif",
-			provider: "google",
+			family: "'Public Sans Variable', sans-serif",
+			cssImport: '@import "@fontsource-variable/public-sans/index.css";',
 			variable: "--font-sans",
-			subsets: ["latin"],
-			import: "Public_Sans",
+			dependencies: ["@fontsource-variable/public-sans"],
 		},
 	},
 	{
@@ -112,11 +105,10 @@ export const fonts = [
 		title: "Outfit",
 		type: "registry:font",
 		font: {
-			family: "'Outfit', sans-serif",
-			provider: "google",
+			family: "'Outfit Variable', sans-serif",
+			cssImport: '@import "@fontsource-variable/outfit/index.css";',
 			variable: "--font-sans",
-			subsets: ["latin"],
-			import: "Outfit",
+			dependencies: ["@fontsource-variable/outfit"],
 		},
 	},
 	{
@@ -124,11 +116,10 @@ export const fonts = [
 		title: "JetBrains Mono",
 		type: "registry:font",
 		font: {
-			family: "'JetBrains Mono', monospace",
-			provider: "google",
+			family: "'JetBrains Mono Variable', monospace",
+			cssImport: '@import "@fontsource-variable/jetbrains-mono/index.css";',
 			variable: "--font-sans",
-			subsets: ["latin"],
-			import: "JetBrains_Mono",
+			dependencies: ["@fontsource-variable/jetbrains-mono"],
 		},
 	},
 	{
@@ -136,11 +127,10 @@ export const fonts = [
 		title: "Geist Mono",
 		type: "registry:font",
 		font: {
-			family: "'Geist Mono', monospace",
-			provider: "google",
+			family: "'Geist Mono Variable', monospace",
+			cssImport: '@import "@fontsource-variable/geist-mono/index.css";',
 			variable: "--font-sans",
-			subsets: ["latin"],
-			import: "Geist_Mono",
+			dependencies: ["@fontsource-variable/geist-mono"],
 		},
 	},
-] satisfies RegistryItem[];
+] satisfies RegistryFont[];

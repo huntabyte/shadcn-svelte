@@ -37,6 +37,6 @@
 	},
 	"devDependencies": {
 		"tsdown": "catalog:",
-		"zod": "^4.1.12"
+		"zod": "catalog:"
 	}
 }

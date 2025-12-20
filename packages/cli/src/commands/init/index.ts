@@ -3,12 +3,11 @@ import { Command, Option } from "commander";
 import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
 import process from "node:process";
-import { z } from "zod/v4";
+import { z } from "zod";
 import * as p from "@clack/prompts";
 import type { TsConfigResult } from "get-tsconfig";
 import { detectConfigs } from "../../utils/auto-detect.js";
 import { error, handleError } from "../../utils/errors.js";
-import type { ResolvedConfig } from "../../utils/get-config.js";
 import * as cliConfig from "../../utils/get-config.js";
 import { cancel, intro, prettifyList } from "../../utils/prompt-helpers.js";
 import * as registry from "../../utils/registry/index.js";
@@ -18,9 +17,10 @@ import { SITE_BASE_URL } from "../../constants.js";
 import { preflightInit } from "./preflight.js";
 import { addRegistryItems } from "../../utils/add-registry-items.js";
 import { getEnvProxy } from "../../utils/get-env-proxy.js";
-import { highlight, stripTrailingSlash } from "../../utils/utils.js";
+import { highlight, parseUrl, stripTrailingSlash } from "../../utils/utils.js";
 import { installDependencies } from "../../utils/install-deps.js";
 import { checkPreconditions } from "../../utils/preconditions.js";
+import { createCssVars, createGlobalCssFile } from "../../utils/css.js";
 
 const baseColors = registry.getBaseColors();
 
@@ -44,6 +44,11 @@ type InitOptions = z.infer<typeof initOptionsSchema>;
 export const init = new Command()
 	.command("init")
 	.description("initialize your project and install dependencies")
+	.argument(
+		"[design-system-url]",
+		"the design system url to initialize your project with",
+		parseUrl
+	)
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
 	.option("-o, --overwrite", "overwrite existing files", false)
 	.option("--no-deps", "disable adding & installing dependencies")
@@ -53,6 +58,7 @@ export const init = new Command()
 			baseColors.map((color) => color.name)
 		)
 	)
+	.addOption(new Option("--design-system-url"))
 	.option("--css <path>", "path to the global CSS file")
 	.option("--components-alias <path>", "import alias for components")
 	.option("--lib-alias <path>", "import alias for lib")
@@ -60,7 +66,7 @@ export const init = new Command()
 	.option("--hooks-alias <path>", "import alias for hooks")
 	.option("--ui-alias <path>", "import alias for ui")
 	.option("--proxy <proxy>", "fetch items from registry using a proxy", getEnvProxy())
-	.action(async (opts) => {
+	.action(async (designSystemUrl, opts) => {
 		intro();
 		const options = initOptionsSchema.parse(opts);
 		const cwd = path.resolve(options.cwd);
@@ -69,6 +75,12 @@ export const init = new Command()
 			// Ensure target directory exists.
 			if (!existsSync(cwd)) {
 				throw error(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
+			}
+
+			if (designSystemUrl !== undefined && options.baseColor !== undefined) {
+				p.log.warn(
+					"You provided a design system url and the `--base-color` option. The `--base-color` option will be ignored."
+				);
 			}
 
 			preflightInit(cwd, { skipPreflight: options.skipPreflight });
@@ -82,7 +94,7 @@ export const init = new Command()
 				});
 			}
 
-			const config = await promptForConfig(cwd, existingConfig, options);
+			const config = await promptForConfig(cwd, designSystemUrl, existingConfig, options);
 
 			await runInit(cwd, config, options);
 
@@ -113,6 +125,7 @@ function validateOptions(cwd: string, options: InitOptions, tsconfig: TsConfigRe
 
 async function promptForConfig(
 	cwd: string,
+	designSystemUrl: URL,
 	existingConfig: cliConfig.RawConfig | undefined,
 	options: InitOptions
 ) {
@@ -155,18 +168,34 @@ async function promptForConfig(
 	validateOptions(cwd, options, tsconfig);
 
 	// Base Color
-	let tailwindBaseColor = baseColors.find((color) => color.name === options.baseColor)?.name;
-	if (tailwindBaseColor === undefined) {
-		const input = await p.select({
-			message: `Which ${highlight("base color")} would you like to use?`,
-			initialValue:
-				existingConfig?.tailwind.baseColor ?? cliConfig.DEFAULT_CONFIG.tailwind.baseColor,
-			options: baseColors.map((color) => ({ label: color.label, value: color.name })),
-		});
+	let designSystemChoices: cliConfig.DesignSystemConfig;
+	if (designSystemUrl === undefined) {
+		let selectedBaseColor = baseColors.find((color) => color.name === options.baseColor)?.name;
+		if (selectedBaseColor === undefined) {
+			const input = await p.select({
+				message: `Which ${highlight("base color")} would you like to use?`,
+				initialValue:
+					existingConfig?.tailwind.baseColor ??
+					cliConfig.DEFAULT_CONFIG.tailwind.baseColor,
+				options: baseColors.map((color) => ({ label: color.label, value: color.name })),
+			});
 
-		if (p.isCancel(input)) cancel();
+			if (p.isCancel(input)) cancel();
 
-		tailwindBaseColor = input;
+			selectedBaseColor = input as cliConfig.BaseColorName;
+		}
+
+		designSystemChoices = {
+			...cliConfig.DEFAULT_DESIGN_SYSTEM_CONFIG,
+			baseColor: selectedBaseColor,
+		};
+	} else {
+		const designSystem = await registry.getDesignSystem(designSystemUrl.toString());
+
+		designSystemChoices = {
+			...designSystem,
+			radius: designSystem.radius,
+		};
 	}
 
 	// Global CSS File
@@ -226,7 +255,7 @@ async function promptForConfig(
 		...config,
 		tailwind: {
 			css: globalCss,
-			baseColor: tailwindBaseColor,
+			baseColor: designSystemChoices.baseColor,
 		},
 		aliases: {
 			utils: utilsAlias,
@@ -234,6 +263,10 @@ async function promptForConfig(
 			components: componentAlias,
 			hooks: hooksAlias,
 			ui: uiAlias,
+		},
+		designSystem: {
+			...designSystemChoices,
+			baseColor: undefined,
 		},
 	});
 
@@ -248,7 +281,7 @@ function validateImportAlias(opts: Parameters<typeof resolveImportAlias>[0]) {
 	return `"${color.bold(opts.importPath)}" does not use an existing path alias defined in your ${color.bold(path.basename(opts.tsconfig.path))}. See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}`;
 }
 
-export async function runInit(cwd: string, config: ResolvedConfig, options: InitOptions) {
+export async function runInit(cwd: string, config: cliConfig.ResolvedConfig, options: InitOptions) {
 	if (options.proxy !== undefined) {
 		process.env.HTTP_PROXY = options.proxy;
 		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);
@@ -300,19 +333,31 @@ export async function runInit(cwd: string, config: ResolvedConfig, options: Init
 		overwrite: options.overwrite,
 	});
 
+	// add font dependencies
+	config.designSystem.fonts
+		.flatMap((font) => font.font.dependencies ?? [])
+		.forEach((dependency) => result.dependencies.add(dependency));
+
 	// update stylesheet
 	await p.tasks([
 		{
 			title: "Updating stylesheet",
 			async task() {
-				const baseColor = await registry.getRegistryBaseColor(
-					registryUrl,
-					config.tailwind.baseColor
-				);
+				const [baseColor, theme] = await Promise.all([
+					registry.getRegistryTheme(registryUrl, config.tailwind.baseColor),
+					registry.getRegistryTheme(registryUrl, config.designSystem.theme),
+				]);
+
+				const cssVars = createCssVars({
+					baseColor,
+					theme,
+					config,
+				});
+
 				const relative = path.relative(cwd, config.resolvedPaths.tailwindCss);
 				await fs.writeFile(
 					config.resolvedPaths.tailwindCss,
-					baseColor.cssVarsTemplate,
+					createGlobalCssFile(cssVars, config),
 					"utf8"
 				);
 				return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;

@@ -28,6 +28,7 @@ export interface IDesignSystemState extends DesignSystemConfig {
 	reset: () => void;
 	randomize: () => void;
 	update: (value: Partial<DesignSystemConfig>) => void;
+	shareUrl: string;
 }
 
 export type Lockable = {
@@ -269,6 +270,19 @@ class DesignSystemState implements IDesignSystemState {
 				keepFocus: true,
 			});
 		}
+	}
+
+	get shareUrl() {
+		const searchParams = new SvelteURLSearchParams();
+		searchParams.set("baseColor", this.baseColor);
+		searchParams.set("style", this.style);
+		searchParams.set("theme", this.theme);
+		searchParams.set("font", this.font);
+		searchParams.set("radius", this.radius);
+		searchParams.set("iconLibrary", this.iconLibrary);
+		searchParams.set("menuAccent", this.menuAccent);
+		searchParams.set("menuColor", this.menuColor);
+		return `${page.url.origin}/create?${searchParams.toString()}`;
 	}
 }
 

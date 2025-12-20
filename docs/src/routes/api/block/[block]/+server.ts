@@ -1,5 +1,5 @@
 import path from "node:path";
-import { z } from "zod/v4";
+import { z } from "zod";
 import { json } from "@sveltejs/kit";
 import { registryItemSchema } from "@shadcn-svelte/registry";
 import { highlightCode } from "$lib/highlight-code.js";

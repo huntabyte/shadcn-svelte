@@ -15,10 +15,7 @@
 	bind:this={ref}
 	data-slot="card"
 	data-size={size}
-	class={cn(
-		"cn-card group/card flex flex-col",
-		className
-	)}
+	class={cn("cn-card group/card flex flex-col", className)}
 	{...restProps}
 >
 	{@render children?.()}

@@ -12,13 +12,12 @@
 	}: WithoutChildrenOrChild<CalendarPrimitive.MonthSelectProps> = $props();
 </script>
 
-<span
-	class={cn(
-		"cn-calendar-dropdown-root relative rounded-(--cell-radius)",
-		className
-	)}
->
-	<CalendarPrimitive.MonthSelect bind:ref class="cn-calendar-dropdown absolute bg-popover inset-0 opacity-0" {...restProps}>
+<span class={cn("cn-calendar-dropdown-root relative rounded-(--cell-radius)", className)}>
+	<CalendarPrimitive.MonthSelect
+		bind:ref
+		class="cn-calendar-dropdown bg-popover absolute inset-0 opacity-0"
+		{...restProps}
+	>
 		{#snippet child({ props, monthItems, selectedMonthItem })}
 			<select {...props} {value} {onchange}>
 				{#each monthItems as monthItem (monthItem.value)}
@@ -33,7 +32,7 @@
 				{/each}
 			</select>
 			<span
-				class="cn-calendar-dropdowns w-full flex items-center text-sm font-medium justify-center h-(--cell-size) gap-1.5 [&>svg]:text-muted-foreground select-none [&>svg]:size-3.5"
+				class="cn-calendar-dropdowns [&>svg]:text-muted-foreground flex h-(--cell-size) w-full items-center justify-center gap-1.5 text-sm font-medium select-none [&>svg]:size-3.5"
 				aria-hidden="true"
 			>
 				{monthItems.find((item) => item.value === value)?.label || selectedMonthItem.label}

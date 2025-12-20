@@ -26,6 +26,18 @@
 		"@dnd-kit/abstract": "^0.1.21",
 		"@dnd-kit/collision": "^0.1.21",
 		"@dnd-kit/helpers": "^0.1.21",
+		"@fontsource-variable/dm-sans": "^5.2.8",
+		"@fontsource-variable/figtree": "^5.2.10",
+		"@fontsource-variable/geist": "^5.2.8",
+		"@fontsource-variable/geist-mono": "^5.2.7",
+		"@fontsource-variable/inter": "^5.2.8",
+		"@fontsource-variable/jetbrains-mono": "^5.2.8",
+		"@fontsource-variable/noto-sans": "^5.2.10",
+		"@fontsource-variable/nunito-sans": "^5.2.7",
+		"@fontsource-variable/outfit": "^5.2.8",
+		"@fontsource-variable/public-sans": "^5.2.7",
+		"@fontsource-variable/raleway": "^5.2.8",
+		"@fontsource-variable/roboto": "^5.2.9",
 		"@hugeicons/core-free-icons": "^3.0.0",
 		"@hugeicons/svelte": "^1.0.2",
 		"@internationalized/date": "^3.10.0",
@@ -99,7 +111,7 @@
 		"vaul-svelte": "1.0.0-next.7",
 		"velite": "^0.3.1",
 		"vite": "^7.2.7",
-		"zod": "^4.1.13"
+		"zod": "catalog:"
 	},
 	"dependencies": {
 		"@types/lodash": "^4.17.21",

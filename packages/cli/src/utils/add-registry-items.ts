@@ -53,7 +53,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 			selectedItems.add(regDep);
 		}
 
-		const itemExists = item.files.some((file) => {
+		const itemExists = item.files?.some((file) => {
 			const filePath = registry.resolveItemFilePath(opts.config, item, file);
 			return existsSync(filePath);
 		});
@@ -121,7 +121,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 					: `Adding ${highlight(item.name)}`,
 			// @ts-expect-error this is intentional since we don't want to return a string during `init`
 			async task() {
-				for (const file of item.files) {
+				for (const file of item.files ?? []) {
 					let filePath = registry.resolveItemFilePath(opts.config, item, file);
 
 					// run transformers
