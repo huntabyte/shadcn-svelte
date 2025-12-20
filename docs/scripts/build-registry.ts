@@ -26,6 +26,7 @@ import { generateBaseColorTemplate, getColorsData } from "../src/lib/components/
 const prettierConfig = await prettier.resolveConfig(import.meta.url);
 if (!prettierConfig) throw new Error("Failed to resolve prettier config.");
 
+const INTERNAL_REGISTRY_PATH = path.resolve("src", "lib", "registry");
 const REGISTRY_PATH = path.resolve("static", "registry");
 const THEMES_CSS_PATH = path.resolve("static");
 
@@ -212,6 +213,20 @@ export const Index = {`;
 	// ----------------------------------------------------------------------------
 
 	writeFileWithDirs(path.join(THEMES_CSS_PATH, `themes.css`), themeCSS.join("\n\n"), "utf-8");
+
+	// ----------------------------------------------------------------------------
+	// Build registry/styles/[style].css
+	// ----------------------------------------------------------------------------
+	const styles = fs
+		.readdirSync(path.join(INTERNAL_REGISTRY_PATH, "styles"))
+		.filter((file) => file.endsWith(".css"));
+	fs.mkdirSync(path.join(REGISTRY_PATH, "styles"), { recursive: true });
+	for (const style of styles) {
+		fs.copyFileSync(
+			path.join(INTERNAL_REGISTRY_PATH, "styles", style),
+			path.join(REGISTRY_PATH, "styles", style.replace("style-", ""))
+		);
+	}
 
 	// ----------------------------------------------------------------------------
 	// Build static/schema.json

@@ -7,21 +7,9 @@
 	import HugeiconsIcon from "./hugeicons-icon.svelte";
 
 	type Props = {
-		/**
-		 * Hugeicons icon in PascalCase
-		 */
 		hugeicons: string;
-		/**
-		 * Lucide icon in kebab-case
-		 */
 		lucide: string;
-		/**
-		 * Tabler icon in kebab-case
-		 */
 		tabler: string;
-		/**
-		 * Phosphor icon in PascalCase
-		 */
 		phosphor: string;
 		class?: string;
 		"data-slot"?: string;

@@ -42,6 +42,9 @@
 		"start:proxy": "pnpm dlx straightforward@latest --port 9000",
 		"test": "pnpm -w build:registry-template && vitest"
 	},
+	"peerDependencies": {
+		"svelte": "^5.0.0"
+	},
 	"dependencies": {
 		"commander": "^14.0.0",
 		"node-fetch-native": "^1.6.4",
@@ -61,6 +64,7 @@
 		"estree-walker": "^3.0.3",
 		"get-tsconfig": "^4.7.3",
 		"ignore": "^7.0.4",
+		"magic-string": "^0.30.21",
 		"memfs": "^4.17.2",
 		"package-manager-detector": "^1.2.0",
 		"picocolors": "^1.1.1",

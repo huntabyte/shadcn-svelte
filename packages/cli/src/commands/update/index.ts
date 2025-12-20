@@ -11,10 +11,17 @@ import { getEnvProxy } from "../../utils/get-env-proxy.js";
 import { cancel, intro, prettifyList } from "../../utils/prompt-helpers.js";
 import * as p from "@clack/prompts";
 import * as registry from "../../utils/registry/index.js";
-import { transformContent, transformCss } from "../../utils/transformers.js";
+import { transformCss } from "../../utils/transform-css.js";
 import { checkPreconditions } from "../../utils/preconditions.js";
 import { highlight } from "../../utils/utils.js";
 import { installDependencies } from "../../utils/install-deps.js";
+import {
+	transform,
+	transformImports,
+	transformIcons,
+	transformStripTypes,
+	createTransformInjectStyles,
+} from "../../utils/transformers/index.js";
 
 const updateOptionsSchema = z.object({
 	all: z.boolean(),
@@ -180,22 +187,35 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 		tasks.push({
 			title: `Updating ${highlight(item.name)}`,
 			async task() {
+				const registryStyle = await registry.getRegistryStyle(
+					registryUrl,
+					config.designSystem.style
+				);
+
 				for (const file of item.files ?? []) {
-					let filePath = registry.resolveItemFilePath(config, item, file);
+					const filePath = registry.resolveItemFilePath(config, item, file);
 
-					// Run transformers.
-					const content = await transformContent(file.content, filePath, config);
+					const {
+						content,
+						dependencies: transformDependencies,
+						devDependencies: transformDevDependencies,
+						filePath: transformFilePath,
+					} = await transform({ content: file.content, filePath, config }, [
+						transformImports,
+						transformIcons,
+						createTransformInjectStyles(registryStyle),
+						config.typescript && transformStripTypes,
+					]);
 
-					const dir = path.parse(filePath).dir;
+					transformDependencies?.forEach((dep) => dependencies.add(dep));
+					transformDevDependencies?.forEach((dep) => devDependencies.add(dep));
+
+					const dir = path.parse(transformFilePath).dir;
 					if (!existsSync(dir)) {
 						await fs.mkdir(dir, { recursive: true });
 					}
 
-					if (!config.typescript && filePath.endsWith(".ts")) {
-						filePath = filePath.replace(".ts", ".js");
-					}
-
-					await fs.writeFile(filePath, content, "utf8");
+					await fs.writeFile(transformFilePath, content, "utf8");
 				}
 
 				if (item.cssVars) {

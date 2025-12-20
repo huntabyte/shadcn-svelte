@@ -12,5 +12,26 @@
 		"lib": "$lib"
 	},
 	"typescript": true,
-	"registry": "https://shadcn-svelte.com/registry"
+	"registry": "http://localhost:5174/registry",
+	"designSystem": {
+		"style": "nova",
+		"iconLibrary": "tabler",
+		"theme": "zinc",
+		"menuAccent": "subtle",
+		"menuColor": "default",
+		"radius": "0.45rem",
+		"fonts": [
+			{
+				"name": "font-figtree",
+				"title": "Figtree",
+				"type": "registry:font",
+				"font": {
+					"family": "'Figtree Variable', sans-serif",
+					"cssImport": "@import \"@fontsource-variable/figtree/index.css\";",
+					"variable": "--font-sans",
+					"dependencies": ["@fontsource-variable/figtree"]
+				}
+			}
+		]
+	}
 }
