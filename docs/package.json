@@ -6,6 +6,7 @@
 	"scripts": {
 		"dev": "pnpm --reporter append-only --color \"/dev:/\"",
 		"dev:content": "velite dev --watch",
+		"dev:icons": "tsx scripts/build-icons.ts --watch",
 		"dev:svelte": "vite dev",
 		"build": "pnpm build:content && pnpm build:llm-placeholders && pnpm build:svelte && pnpm build:llms",
 		"build:content": "velite && tsx scripts/velite/velite-update-json.ts",
