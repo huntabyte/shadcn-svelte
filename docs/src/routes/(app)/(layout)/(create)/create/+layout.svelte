@@ -5,10 +5,9 @@
 	import { Separator } from "$lib/registry/ui/separator/index.js";
 	import ShareIcon from "@lucide/svelte/icons/share";
 	import ArrowLeftIcon from "@lucide/svelte/icons/arrow-left";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
-	import SearchIcon from "@lucide/svelte/icons/search";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import ItemExplorer from "../components/item-explorer.svelte";
+	import ItemPicker from "../components/item-picker.svelte";
 	import WelcomeDialog from "../components/welcome-dialog.svelte";
 	import Customizer from "../components/customizer.svelte";
 	import { examples } from "$lib/registry/examples/create/index.js";
@@ -42,12 +41,7 @@
 				<div
 					class="fixed inset-x-0 bottom-0 ml-auto flex flex-1 items-center gap-2 px-4.5 pb-4 sm:static sm:justify-end sm:p-0 lg:ml-0 xl:justify-center"
 				>
-					<InputGroup.Root>
-						<InputGroup.Input placeholder="Vercel" />
-						<InputGroup.Addon align="inline-end">
-							<SearchIcon />
-						</InputGroup.Addon>
-					</InputGroup.Root>
+					<ItemPicker items={examples} />
 				</div>
 				<div
 					class="ms-auto flex items-center gap-2 sm:ml-0 md:justify-end xl:ml-auto xl:w-1/3"

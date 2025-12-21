@@ -1,9 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-	transform,
-	transformImports,
-	transformStripTypes,
-} from "../../src/utils/transformers";
+import { transform, transformImports, transformStripTypes } from "../../src/utils/transformers";
 import { transformCss } from "../../src/utils/transform-css";
 import type { ResolvedConfig } from "../../src/utils/get-config";
 
@@ -97,7 +93,11 @@ describe("transformStripTypes", () => {
         return name;
       }
     `;
-		const result = await transformStripTypes({ content, filePath: "test.ts", config: mockConfig });
+		const result = await transformStripTypes({
+			content,
+			filePath: "test.ts",
+			config: mockConfig,
+		});
 		expect(result.content).not.toContain("interface Props");
 		expect(result.content).not.toContain(": Props");
 	});
@@ -112,7 +112,11 @@ describe("transformStripTypes", () => {
       </script>
       <div>{name}</div>
     `;
-		const result = await transformStripTypes({ content, filePath: "test.svelte", config: mockConfig });
+		const result = await transformStripTypes({
+			content,
+			filePath: "test.svelte",
+			config: mockConfig,
+		});
 		expect(result.content).not.toContain("interface Props");
 		expect(result.content).not.toContain(": string");
 	});
@@ -128,7 +132,11 @@ describe("transformStripTypes", () => {
         return name;
       }
     `;
-		const result = await transformStripTypes({ content, filePath: "test.ts", config: mockConfig });
+		const result = await transformStripTypes({
+			content,
+			filePath: "test.ts",
+			config: mockConfig,
+		});
 		expect(result.content).not.toMatch(/\n\s*\n\s*\n/);
 	});
 });
@@ -144,10 +152,9 @@ describe("transform", () => {
         return name;
       }
     `;
-		const result = await transform(
-			{ content, filePath: "test.ts", config: mockConfig },
-			[transformImports]
-		);
+		const result = await transform({ content, filePath: "test.ts", config: mockConfig }, [
+			transformImports,
+		]);
 		expect(result.content).toContain('import { Button } from "$lib/components/button"');
 		expect(result.content).toContain("interface Props");
 	});
@@ -163,10 +170,10 @@ describe("transform", () => {
       }
     `;
 		const config = { ...mockConfig, typescript: false };
-		const result = await transform(
-			{ content, filePath: "test.ts", config },
-			[transformImports, transformStripTypes]
-		);
+		const result = await transform({ content, filePath: "test.ts", config }, [
+			transformImports,
+			transformStripTypes,
+		]);
 		expect(result.content).not.toContain("interface Props");
 		expect(result.content).not.toContain(": Props");
 		expect(result.content).toContain("export function Component({ name })");
@@ -212,28 +219,44 @@ describe("transformImports with more custom paths", () => {
 	it("transforms component imports with custom paths", async () => {
 		const content = 'import { Button } from "$COMPONENTS$/button";';
 		const expected = 'import { Button } from "@components/button";';
-		const result = await transformImports({ content, filePath: "test.ts", config: customConfig });
+		const result = await transformImports({
+			content,
+			filePath: "test.ts",
+			config: customConfig,
+		});
 		expect(result.content).toBe(expected);
 	});
 
 	it("transforms UI imports with custom paths", async () => {
 		const content = 'import { Button } from "$UI$/button";';
 		const expected = 'import { Button } from "@ui/button";';
-		const result = await transformImports({ content, filePath: "test.ts", config: customConfig });
+		const result = await transformImports({
+			content,
+			filePath: "test.ts",
+			config: customConfig,
+		});
 		expect(result.content).toBe(expected);
 	});
 
 	it("transforms hook imports with custom paths", async () => {
 		const content = 'import { IsMobile } from "$HOOKS$/is-mobile.svelte.js";';
 		const expected = 'import { IsMobile } from "@hooks/is-mobile.svelte.js";';
-		const result = await transformImports({ content, filePath: "test.ts", config: customConfig });
+		const result = await transformImports({
+			content,
+			filePath: "test.ts",
+			config: customConfig,
+		});
 		expect(result.content).toBe(expected);
 	});
 
 	it("transforms utils imports with custom paths", async () => {
 		const content = 'import { cn } from "$UTILS$/index.js";';
 		const expected = 'import { cn } from "@lib/helpers/index.js";';
-		const result = await transformImports({ content, filePath: "test.ts", config: customConfig });
+		const result = await transformImports({
+			content,
+			filePath: "test.ts",
+			config: customConfig,
+		});
 		expect(result.content).toBe(expected);
 	});
 
@@ -248,7 +271,11 @@ describe("transformImports with more custom paths", () => {
       import { IsMobile } from "@hooks/is-mobile.svelte.js";
       import { cn } from "@lib/helpers";
     `;
-		const result = await transformImports({ content, filePath: "test.ts", config: customConfig });
+		const result = await transformImports({
+			content,
+			filePath: "test.ts",
+			config: customConfig,
+		});
 		expect(result.content).toBe(expected);
 	});
 });
