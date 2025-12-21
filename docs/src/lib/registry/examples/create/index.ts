@@ -57,4 +57,9 @@ export const examples: Example[] = [
 		name: "calendar",
 		type: "registry:example",
 	},
+	{
+		title: "Card",
+		name: "card",
+		type: "registry:example",
+	},
 ];
