@@ -107,8 +107,6 @@ const colorSchema = z.record(z.string(), z.string());
 export const registryBaseColorSchema = z.object({
 	inlineColors: z.object({ light: colorSchema, dark: colorSchema }),
 	cssVars: z.object({ light: colorSchema, dark: colorSchema }),
-	inlineColorsTemplate: z.string(),
-	cssVarsTemplate: z.string(),
 });
 
 export type CssVars = z.infer<typeof registryItemCssVarsSchema>;

@@ -16,7 +16,7 @@
 	"designSystem": {
 		"style": "nova",
 		"iconLibrary": "tabler",
-		"theme": "zinc",
+		"theme": "pink",
 		"menuAccent": "subtle",
 		"menuColor": "default",
 		"radius": "0.45rem",

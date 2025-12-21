@@ -187,6 +187,7 @@ async function promptForConfig(
 
 		designSystemChoices = {
 			...cliConfig.DEFAULT_DESIGN_SYSTEM_CONFIG,
+			...existingConfig?.designSystem,
 			baseColor: selectedBaseColor,
 		};
 	} else {

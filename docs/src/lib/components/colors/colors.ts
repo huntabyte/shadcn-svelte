@@ -123,17 +123,6 @@ export function generateBaseColorTemplate(baseColor: BaseColor) {
 	// Build css vars.
 	base.inlineColorsTemplate = template(BASE_STYLES)({});
 
-	// if (["stone", "slate", "gray", "zinc", "neutral"].includes(baseColor)) {
-	// 	base.cssVarsTemplate = template(BASE_STYLES_WITH_VARIABLES)({
-	// 		colors: baseColorsV4[baseColor as keyof typeof baseColorsV4],
-	// 	});
-	// 	base.cssVars = baseColorsV4[baseColor as keyof typeof baseColorsV4];
-	// } else {
-	// 	base.cssVarsTemplate = template(BASE_STYLES_WITH_VARIABLES)({
-	// 		colors: base.cssVars,
-	// 	});
-	// }
-
 	return base;
 }
 
