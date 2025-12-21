@@ -1,10 +1,10 @@
 import { describe, it, expect } from "vitest";
 import {
-	transformContent,
+	transform,
 	transformImports,
-	stripTypes,
-	transformCss,
+	transformStripTypes,
 } from "../../src/utils/transformers";
+import { transformCss } from "../../src/utils/transform-css";
 import type { ResolvedConfig } from "../../src/utils/get-config";
 
 const mockConfig: ResolvedConfig = {
@@ -28,37 +28,50 @@ const mockConfig: ResolvedConfig = {
 		ui: "./src/lib/components/ui",
 		lib: "./src/lib",
 	},
+	designSystem: {
+		style: "vega",
+		theme: "neutral",
+		iconLibrary: "lucide",
+		fonts: [],
+		menuAccent: "subtle",
+		menuColor: "default",
+		radius: "0.5rem",
+	},
 	sveltekit: true,
 	typescript: true,
 	registry: "https://shadcn-svelte.com/registry",
 };
 
 describe("transformImports", () => {
-	it("transforms component imports correctly", () => {
+	it("transforms component imports correctly", async () => {
 		const content = 'import { Button } from "$COMPONENTS$/button";';
 		const expected = 'import { Button } from "$lib/components/button";';
-		expect(transformImports(content, mockConfig)).toBe(expected);
+		const result = await transformImports({ content, filePath: "test.ts", config: mockConfig });
+		expect(result.content).toBe(expected);
 	});
 
-	it("transforms UI imports correctly", () => {
+	it("transforms UI imports correctly", async () => {
 		const content = 'import { Button } from "$UI$/button";';
 		const expected = 'import { Button } from "$lib/components/ui/button";';
-		expect(transformImports(content, mockConfig)).toBe(expected);
+		const result = await transformImports({ content, filePath: "test.ts", config: mockConfig });
+		expect(result.content).toBe(expected);
 	});
 
-	it("transforms hook imports correctly", () => {
+	it("transforms hook imports correctly", async () => {
 		const content = 'import { IsMobile } from "$HOOKS$/is-mobile.svelte.js";';
 		const expected = 'import { IsMobile } from "$lib/hooks/is-mobile.svelte.js";';
-		expect(transformImports(content, mockConfig)).toBe(expected);
+		const result = await transformImports({ content, filePath: "test.ts", config: mockConfig });
+		expect(result.content).toBe(expected);
 	});
 
-	it("transforms utils imports correctly", () => {
+	it("transforms utils imports correctly", async () => {
 		const content = 'import { cn } from "$UTILS$/index.js";';
 		const expected = 'import { cn } from "$lib/utils/index.js";';
-		expect(transformImports(content, mockConfig)).toBe(expected);
+		const result = await transformImports({ content, filePath: "test.ts", config: mockConfig });
+		expect(result.content).toBe(expected);
 	});
 
-	it("handles multiple imports in the same file", () => {
+	it("handles multiple imports in the same file", async () => {
 		const content = `
       import { Button } from "$COMPONENTS$/button";
       import { IsMobile } from "$HOOKS$/is-mobile.svelte.js";
@@ -69,11 +82,12 @@ describe("transformImports", () => {
       import { IsMobile } from "$lib/hooks/is-mobile.svelte.js";
       import { cn } from "$lib/utils";
     `;
-		expect(transformImports(content, mockConfig)).toBe(expected);
+		const result = await transformImports({ content, filePath: "test.ts", config: mockConfig });
+		expect(result.content).toBe(expected);
 	});
 });
 
-describe("stripTypes", () => {
+describe("transformStripTypes", () => {
 	it("strips types from TypeScript files", async () => {
 		const content = `
       interface Props {
@@ -83,9 +97,9 @@ describe("stripTypes", () => {
         return name;
       }
     `;
-		const result = await stripTypes(content, "test.ts");
-		expect(result).not.toContain("interface Props");
-		expect(result).not.toContain(": Props");
+		const result = await transformStripTypes({ content, filePath: "test.ts", config: mockConfig });
+		expect(result.content).not.toContain("interface Props");
+		expect(result.content).not.toContain(": Props");
 	});
 
 	it("strips types from Svelte files", async () => {
@@ -98,9 +112,9 @@ describe("stripTypes", () => {
       </script>
       <div>{name}</div>
     `;
-		const result = await stripTypes(content, "test.svelte");
-		expect(result).not.toContain("interface Props");
-		expect(result).not.toContain(": string");
+		const result = await transformStripTypes({ content, filePath: "test.svelte", config: mockConfig });
+		expect(result.content).not.toContain("interface Props");
+		expect(result.content).not.toContain(": string");
 	});
 
 	it("removes consecutive newlines", async () => {
@@ -114,12 +128,12 @@ describe("stripTypes", () => {
         return name;
       }
     `;
-		const result = await stripTypes(content, "test.ts");
-		expect(result).not.toMatch(/\n\s*\n\s*\n/);
+		const result = await transformStripTypes({ content, filePath: "test.ts", config: mockConfig });
+		expect(result.content).not.toMatch(/\n\s*\n\s*\n/);
 	});
 });
 
-describe("transformContent", () => {
+describe("transform", () => {
 	it("transforms content with TypeScript enabled", async () => {
 		const content = `
       import { Button } from "$COMPONENTS$/button";
@@ -130,9 +144,12 @@ describe("transformContent", () => {
         return name;
       }
     `;
-		const result = await transformContent(content, "test.ts", mockConfig);
-		expect(result).toContain('import { Button } from "$lib/components/button"');
-		expect(result).toContain("interface Props");
+		const result = await transform(
+			{ content, filePath: "test.ts", config: mockConfig },
+			[transformImports]
+		);
+		expect(result.content).toContain('import { Button } from "$lib/components/button"');
+		expect(result.content).toContain("interface Props");
 	});
 
 	it("transforms content with TypeScript disabled", async () => {
@@ -146,10 +163,13 @@ describe("transformContent", () => {
       }
     `;
 		const config = { ...mockConfig, typescript: false };
-		const result = await transformContent(content, "test.ts", config);
-		expect(result).not.toContain("interface Props");
-		expect(result).not.toContain(": Props");
-		expect(result).toContain("export function Component({ name })");
+		const result = await transform(
+			{ content, filePath: "test.ts", config },
+			[transformImports, transformStripTypes]
+		);
+		expect(result.content).not.toContain("interface Props");
+		expect(result.content).not.toContain(": Props");
+		expect(result.content).toContain("export function Component({ name })");
 	});
 });
 
@@ -175,36 +195,49 @@ describe("transformImports with more custom paths", () => {
 			ui: "./src/ui",
 			lib: "./src/lib",
 		},
+		designSystem: {
+			style: "vega",
+			theme: "neutral",
+			iconLibrary: "lucide",
+			fonts: [],
+			menuAccent: "subtle",
+			menuColor: "default",
+			radius: "0.5rem",
+		},
 		sveltekit: true,
 		typescript: true,
 		registry: "https://shadcn-svelte.com/registry",
 	};
 
-	it("transforms component imports with custom paths", () => {
+	it("transforms component imports with custom paths", async () => {
 		const content = 'import { Button } from "$COMPONENTS$/button";';
 		const expected = 'import { Button } from "@components/button";';
-		expect(transformImports(content, customConfig)).toBe(expected);
+		const result = await transformImports({ content, filePath: "test.ts", config: customConfig });
+		expect(result.content).toBe(expected);
 	});
 
-	it("transforms UI imports with custom paths", () => {
+	it("transforms UI imports with custom paths", async () => {
 		const content = 'import { Button } from "$UI$/button";';
 		const expected = 'import { Button } from "@ui/button";';
-		expect(transformImports(content, customConfig)).toBe(expected);
+		const result = await transformImports({ content, filePath: "test.ts", config: customConfig });
+		expect(result.content).toBe(expected);
 	});
 
-	it("transforms hook imports with custom paths", () => {
+	it("transforms hook imports with custom paths", async () => {
 		const content = 'import { IsMobile } from "$HOOKS$/is-mobile.svelte.js";';
 		const expected = 'import { IsMobile } from "@hooks/is-mobile.svelte.js";';
-		expect(transformImports(content, customConfig)).toBe(expected);
+		const result = await transformImports({ content, filePath: "test.ts", config: customConfig });
+		expect(result.content).toBe(expected);
 	});
 
-	it("transforms utils imports with custom paths", () => {
+	it("transforms utils imports with custom paths", async () => {
 		const content = 'import { cn } from "$UTILS$/index.js";';
 		const expected = 'import { cn } from "@lib/helpers/index.js";';
-		expect(transformImports(content, customConfig)).toBe(expected);
+		const result = await transformImports({ content, filePath: "test.ts", config: customConfig });
+		expect(result.content).toBe(expected);
 	});
 
-	it("handles multiple imports with custom paths", () => {
+	it("handles multiple imports with custom paths", async () => {
 		const content = `
       import { Button } from "$COMPONENTS$/button";
       import { IsMobile } from "$HOOKS$/is-mobile.svelte.js";
@@ -215,7 +248,8 @@ describe("transformImports with more custom paths", () => {
       import { IsMobile } from "@hooks/is-mobile.svelte.js";
       import { cn } from "@lib/helpers";
     `;
-		expect(transformImports(content, customConfig)).toBe(expected);
+		const result = await transformImports({ content, filePath: "test.ts", config: customConfig });
+		expect(result.content).toBe(expected);
 	});
 });
 

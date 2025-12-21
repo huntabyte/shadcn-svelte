@@ -97,11 +97,22 @@ describe("Registry Utilities", () => {
 		it("should return array of base colors", () => {
 			const colors = getBaseColors();
 			expect(colors).toEqual([
-				{ name: "slate", label: "Slate" },
-				{ name: "gray", label: "Gray" },
-				{ name: "zinc", label: "Zinc" },
-				{ name: "neutral", label: "Neutral" },
-				{ name: "stone", label: "Stone" },
+				{
+					label: "Neutral",
+					name: "neutral",
+				},
+				{
+					label: "Stone",
+					name: "stone",
+				},
+				{
+					label: "Zinc",
+					name: "zinc",
+				},
+				{
+					label: "Gray",
+					name: "gray",
+				},
 			]);
 		});
 	});
@@ -128,7 +139,7 @@ describe("Registry Utilities", () => {
 		it("should throw error on base color fetch failure", async () => {
 			vi.mocked(fetch).mockRejectedValueOnce(new Error("Network error"));
 			await expect(getRegistryTheme("https://example.com/registry", "slate")).rejects.toThrow(
-				"Failed to fetch base color from registry."
+				"Failed to fetch theme: slate from registry."
 			);
 		});
 	});

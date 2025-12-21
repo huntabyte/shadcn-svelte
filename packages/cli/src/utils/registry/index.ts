@@ -70,14 +70,14 @@ export async function getDesignSystem(designSystemUrl: string): Promise<DesignSy
 	}
 }
 
-export async function getRegistryTheme(baseUrl: string, baseColor: string) {
+export async function getRegistryTheme(baseUrl: string, theme: string) {
 	try {
-		const url = resolveURL(baseUrl, `colors/${baseColor}.json`);
+		const url = resolveURL(baseUrl, `colors/${theme}.json`);
 		const [result] = await fetchRegistry([url]);
 
 		return schemas.registryBaseColorSchema.parse(result);
 	} catch (e) {
-		throw error(`Failed to fetch base color: ${baseColor} from registry.`, e);
+		throw error(`Failed to fetch theme: ${theme} from registry.`, e);
 	}
 }
 
