@@ -83,6 +83,11 @@ export const examples: Example[] = [
 		type: "registry:example",
 	},
 	{
+		title: "Context Menu",
+		name: "context-menu",
+		type: "registry:example",
+	},
+	{
 		title: "Input",
 		name: "input",
 		type: "registry:example",

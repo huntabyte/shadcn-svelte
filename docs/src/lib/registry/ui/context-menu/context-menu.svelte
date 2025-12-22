@@ -4,4 +4,4 @@
 	let { open = $bindable(false), ...restProps }: ContextMenuPrimitive.RootProps = $props();
 </script>
 
-<ContextMenuPrimitive.Root bind:open {...restProps} />
+<ContextMenuPrimitive.Root data-slot="context-menu" bind:open {...restProps} />

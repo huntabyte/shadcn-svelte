@@ -41,6 +41,7 @@ export { IconList } from '@tabler/icons-svelte'
 export { IconMinimize } from '@tabler/icons-svelte'
 export { IconMinus } from '@tabler/icons-svelte'
 export { IconMoodSmile } from '@tabler/icons-svelte'
+export { IconPencil } from '@tabler/icons-svelte'
 export { IconPhoto } from '@tabler/icons-svelte'
 export { IconPlus } from '@tabler/icons-svelte'
 export { IconRosetteDiscountCheck } from '@tabler/icons-svelte'
@@ -57,4 +58,4 @@ export { IconVolume } from '@tabler/icons-svelte'
 export { IconZoomIn } from '@tabler/icons-svelte'
 export { IconZoomOut } from '@tabler/icons-svelte'
 
-export type TablerIconName = "IconAlertTriangle" | "IconArchive" | "IconArrowLeft" | "IconArrowRight" | "IconArrowUpRight" | "IconBell" | "IconBluetooth" | "IconBorderCorners" | "IconCalculator" | "IconCalendar" | "IconChartBar" | "IconChartLine" | "IconChartPie" | "IconCheck" | "IconChevronDown" | "IconChevronLeft" | "IconChevronRight" | "IconChevronUp" | "IconCircleArrowLeft" | "IconClipboard" | "IconClockHour2" | "IconCode" | "IconCopy" | "IconCreditCard" | "IconCut" | "IconDots" | "IconExclamationCircle" | "IconFile" | "IconFileText" | "IconFlipHorizontal" | "IconFlipVertical" | "IconFolder" | "IconFolderPlus" | "IconHeadphones" | "IconHelpCircle" | "IconHome" | "IconInbox" | "IconLayoutGrid" | "IconList" | "IconMinimize" | "IconMinus" | "IconMoodSmile" | "IconPhoto" | "IconPlus" | "IconRosetteDiscountCheck" | "IconRotateClockwise2" | "IconSearch" | "IconSelector" | "IconSettings" | "IconShare" | "IconTextCaption" | "IconTrash" | "IconUser" | "IconUserX" | "IconVolume" | "IconZoomIn" | "IconZoomOut";
+export type TablerIconName = "IconAlertTriangle" | "IconArchive" | "IconArrowLeft" | "IconArrowRight" | "IconArrowUpRight" | "IconBell" | "IconBluetooth" | "IconBorderCorners" | "IconCalculator" | "IconCalendar" | "IconChartBar" | "IconChartLine" | "IconChartPie" | "IconCheck" | "IconChevronDown" | "IconChevronLeft" | "IconChevronRight" | "IconChevronUp" | "IconCircleArrowLeft" | "IconClipboard" | "IconClockHour2" | "IconCode" | "IconCopy" | "IconCreditCard" | "IconCut" | "IconDots" | "IconExclamationCircle" | "IconFile" | "IconFileText" | "IconFlipHorizontal" | "IconFlipVertical" | "IconFolder" | "IconFolderPlus" | "IconHeadphones" | "IconHelpCircle" | "IconHome" | "IconInbox" | "IconLayoutGrid" | "IconList" | "IconMinimize" | "IconMinus" | "IconMoodSmile" | "IconPencil" | "IconPhoto" | "IconPlus" | "IconRosetteDiscountCheck" | "IconRotateClockwise2" | "IconSearch" | "IconSelector" | "IconSettings" | "IconShare" | "IconTextCaption" | "IconTrash" | "IconUser" | "IconUserX" | "IconVolume" | "IconZoomIn" | "IconZoomOut";
