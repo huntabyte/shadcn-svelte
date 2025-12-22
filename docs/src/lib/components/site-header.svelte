@@ -4,7 +4,6 @@
 	import MainNav from "./main-nav.svelte";
 	import Separator from "$lib/registry/ui/separator/separator.svelte";
 	import GithubLink from "./github-link.svelte";
-	import ModeSwitcher from "./mode-switcher.svelte";
 	import MobileNav from "./mobile-nav.svelte";
 	import LayoutToggle from "./layout-toggle.svelte";
 	import CommandMenu from "./command-menu/command-menu.svelte";

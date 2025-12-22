@@ -32,7 +32,10 @@
 <Tooltip.Provider>
 	<DropdownMenu.Root>
 		<DropdownMenu.Trigger
-			class={cn(buttonVariants({ variant: "ghost", size: "icon-sm" }), "hidden md:flex")}
+			class={cn(
+				buttonVariants({ variant: "ghost", size: "icon-sm" }),
+				"extend-touch-target hidden md:flex"
+			)}
 		>
 			<IconPlaceholder
 				lucide="SlidersHorizontalIcon"

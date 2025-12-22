@@ -52,7 +52,7 @@ async function scanIconUsage() {
 async function generateIconFiles(iconUsage: IconUsage) {
 	const outputDir = path.join(process.cwd(), REGISTRY_BASE, "icons");
 
-	console.log("✓ Generated icon files:");
+	const completedLibraries: { name: IconLibraryName; icons: string[] }[] = [];
 
 	for (const [lib, config] of Object.entries(iconLibraries)) {
 		const libraryName = lib as IconLibraryName;
@@ -70,6 +70,8 @@ export type ${typeName} = ${typeUnion};
 `;
 
 		const dirname = `__${libraryName}__`;
+		const iconDir = path.join(outputDir, dirname);
+		await fs.rm(iconDir, { recursive: true, force: true });
 
 		const iconFiles = icons.map((icon) => {
 			let iconWithoutSuffix = icon;
@@ -91,7 +93,7 @@ export type ${typeName} = ${typeUnion};
 			};
 		});
 
-		await fs.mkdir(path.join(outputDir, dirname), { recursive: true });
+		await fs.mkdir(iconDir, { recursive: true });
 		await fs.mkdir(outputDir, { recursive: true });
 		await fs.writeFile(path.join(outputDir, dirname, "index.ts"), indexFileContent);
 		for (const iconFile of iconFiles) {
@@ -101,7 +103,13 @@ export type ${typeName} = ${typeUnion};
 			);
 		}
 
-		console.log(`  - ${config.title}: ${icons.length} icons`);
+		completedLibraries.push({ name: libraryName, icons });
+	}
+
+	console.log("✓ Generated icon files:");
+
+	for (const library of completedLibraries) {
+		console.log(`  - ${library.name}: ${library.icons.length} icons`);
 	}
 }
 
@@ -119,7 +127,8 @@ if (isWatchMode) {
 
 	watch(SEARCH_DIR, { recursive: true }, (_, filename) => {
 		if (!filename?.endsWith(".svelte")) return;
-
+		if (filename.includes("registry/icons/__")) return;
+		if (filename.includes("components/icon-placeholder")) return;
 		main().catch((error) => {
 			console.error("❌ Icons build failed:", error);
 		});

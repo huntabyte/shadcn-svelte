@@ -36,7 +36,7 @@
 			</div>
 		</Picker.Trigger>
 		<Picker.Content
-			side={isMobile.current ? "top" : "right"}
+			side={isMobile.current ? "top" : submenu ? "left" : "right"}
 			align={isMobile.current ? "center" : "start"}
 			class="md:w-64"
 			{submenu}

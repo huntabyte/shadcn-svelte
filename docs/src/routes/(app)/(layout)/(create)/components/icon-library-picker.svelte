@@ -14,6 +14,10 @@
 	import TablerIcon from "$lib/components/icon-placeholder/tabler-icon.svelte";
 	import HugeiconsIcon from "$lib/components/icon-placeholder/hugeicons-icon.svelte";
 	import PhosphorIcon from "$lib/components/icon-placeholder/phosphor-icon.svelte";
+	import type { LucideIconName } from "$lib/registry/icons/__lucide__/index.js";
+	import type { TablerIconName } from "$lib/registry/icons/__tabler__/index.js";
+	import type { HugeIconsIconName } from "$lib/registry/icons/__hugeicons__/index.js";
+	import type { PhosphorIconName } from "$lib/registry/icons/__phosphor__/index.js";
 
 	type Props = {
 		submenu?: boolean;
@@ -54,7 +58,7 @@
 			"CheckIcon",
 			"ChevronDownIcon",
 			"ChevronRightIcon",
-		],
+		] satisfies LucideIconName[],
 		tabler: [
 			"IconCopy",
 			"IconExclamationCircle",
@@ -70,7 +74,7 @@
 			"IconCheck",
 			"IconChevronDown",
 			"IconChevronRight",
-		],
+		] satisfies TablerIconName[],
 		hugeicons: [
 			"Copy01Icon",
 			"AlertCircleIcon",
@@ -86,7 +90,7 @@
 			"Tick02Icon",
 			"ArrowDown01Icon",
 			"ArrowRight01Icon",
-		],
+		] satisfies HugeIconsIconName[],
 		phosphor: [
 			"CopyIcon",
 			"WarningCircleIcon",
@@ -102,8 +106,11 @@
 			"CheckIcon",
 			"CaretDownIcon",
 			"CaretRightIcon",
-		],
-	};
+		] satisfies PhosphorIconName[],
+	} as const satisfies Record<
+		IconLibraryName,
+		LucideIconName[] | TablerIconName[] | HugeIconsIconName[] | PhosphorIconName[]
+	>;
 </script>
 
 <div class="group/picker relative">
@@ -122,7 +129,7 @@
 			</div>
 		</Picker.Trigger>
 		<Picker.Content
-			side={isMobile.current ? "top" : "right"}
+			side={isMobile.current ? "top" : submenu ? "left" : "right"}
 			align={isMobile.current ? "center" : "start"}
 			{submenu}
 		>
@@ -158,13 +165,13 @@
 	{@const previewIcons = PREVIEW_ICONS[iconLibrary]}
 	{#if previewIcons}
 		{#if iconLibrary === "lucide"}
-			{@render IconLibraryPreviewLucide(previewIcons)}
+			{@render IconLibraryPreviewLucide(previewIcons as LucideIconName[])}
 		{:else if iconLibrary === "tabler"}
-			{@render IconLibraryPreviewTabler(previewIcons)}
+			{@render IconLibraryPreviewTabler(previewIcons as TablerIconName[])}
 		{:else if iconLibrary === "hugeicons"}
-			{@render IconLibraryPreviewHugeicons(previewIcons)}
+			{@render IconLibraryPreviewHugeicons(previewIcons as HugeIconsIconName[])}
 		{:else if iconLibrary === "phosphor"}
-			{@render IconLibraryPreviewPhosphor(previewIcons)}
+			{@render IconLibraryPreviewPhosphor(previewIcons as PhosphorIconName[])}
 		{/if}
 	{/if}
 {/snippet}
@@ -173,34 +180,50 @@
 	<LucideSquareIcon />
 {/snippet}
 
-{#snippet IconLibraryPreviewLucide(previewIcons: string[])}
+{#snippet IconLibraryPreviewLucide(previewIcons: LucideIconName[])}
 	<div class="-mx-1 grid w-full grid-cols-7 gap-2">
 		{#each previewIcons as iconName (iconName)}
-			<LucideIcon icon={iconName} placeholder={PlaceholderIcon} />
+			<LucideIcon icon={iconName}>
+				{#snippet placeholder()}
+					{@render PlaceholderIcon()}
+				{/snippet}
+			</LucideIcon>
 		{/each}
 	</div>
 {/snippet}
 
-{#snippet IconLibraryPreviewTabler(previewIcons: string[])}
+{#snippet IconLibraryPreviewTabler(previewIcons: TablerIconName[])}
 	<div class="-mx-1 grid w-full grid-cols-7 gap-2">
 		{#each previewIcons as iconName (iconName)}
-			<TablerIcon icon={iconName} placeholder={PlaceholderIcon} />
+			<TablerIcon icon={iconName}>
+				{#snippet placeholder()}
+					{@render PlaceholderIcon()}
+				{/snippet}
+			</TablerIcon>
 		{/each}
 	</div>
 {/snippet}
 
-{#snippet IconLibraryPreviewHugeicons(previewIcons: string[])}
+{#snippet IconLibraryPreviewHugeicons(previewIcons: HugeIconsIconName[])}
 	<div class="-mx-1 grid w-full grid-cols-7 gap-2">
 		{#each previewIcons as iconName (iconName)}
-			<HugeiconsIcon icon={iconName} placeholder={PlaceholderIcon} />
+			<HugeiconsIcon icon={iconName}>
+				{#snippet placeholder()}
+					{@render PlaceholderIcon()}
+				{/snippet}
+			</HugeiconsIcon>
 		{/each}
 	</div>
 {/snippet}
 
-{#snippet IconLibraryPreviewPhosphor(previewIcons: string[])}
+{#snippet IconLibraryPreviewPhosphor(previewIcons: PhosphorIconName[])}
 	<div class="-mx-1 grid w-full grid-cols-7 gap-2">
 		{#each previewIcons as iconName (iconName)}
-			<PhosphorIcon icon={iconName} placeholder={PlaceholderIcon} />
+			<PhosphorIcon icon={iconName}>
+				{#snippet placeholder()}
+					{@render PlaceholderIcon()}
+				{/snippet}
+			</PhosphorIcon>
 		{/each}
 	</div>
 {/snippet}

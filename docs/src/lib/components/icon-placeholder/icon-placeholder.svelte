@@ -26,16 +26,32 @@
 	const designSystem = useDesignSystem();
 </script>
 
-{#snippet placeholder()}
+{#snippet PlaceholderIcon()}
 	<SquareIcon class={className} {...restProps} />
 {/snippet}
 
 {#if designSystem.iconLibrary === "hugeicons"}
-	<HugeiconsIcon icon={hugeicons} {className} {placeholder} {...restProps} />
+	<HugeiconsIcon icon={hugeicons} {className}>
+		{#snippet placeholder()}
+			{@render PlaceholderIcon()}
+		{/snippet}
+	</HugeiconsIcon>
 {:else if designSystem.iconLibrary === "lucide"}
-	<LucideIcon icon={lucide} class={className} {placeholder} {...restProps} />
+	<LucideIcon icon={lucide} class={className}>
+		{#snippet placeholder()}
+			{@render PlaceholderIcon()}
+		{/snippet}
+	</LucideIcon>
 {:else if designSystem.iconLibrary === "tabler"}
-	<TablerIcon icon={tabler} class={className} {placeholder} {...restProps} />
+	<TablerIcon icon={tabler} class={className}>
+		{#snippet placeholder()}
+			{@render PlaceholderIcon()}
+		{/snippet}
+	</TablerIcon>
 {:else if designSystem.iconLibrary === "phosphor"}
-	<PhosphorIcon icon={phosphor} class={className} {placeholder} {...restProps} />
+	<PhosphorIcon icon={phosphor} class={className}>
+		{#snippet placeholder()}
+			{@render PlaceholderIcon()}
+		{/snippet}
+	</PhosphorIcon>
 {/if}

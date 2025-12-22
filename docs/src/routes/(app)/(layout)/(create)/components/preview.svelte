@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Badge } from "$lib/registry/ui/badge/index.js";
+	import { Spinner } from "$lib/registry/ui/spinner/index.js";
 
 	type Props = {
 		item: string;
@@ -25,7 +26,11 @@
 	<div
 		class="ring-foreground/15 3xl:max-w-[1800px] z-0 mx-auto flex max-h-[calc(100svh-var(--header-height)-2rem)] w-full flex-1 flex-col overflow-y-auto rounded-2xl ring-1"
 	>
-		{#await ComponentPromise then { default: Component }}
+		{#await ComponentPromise}
+			<div class="absolute inset-0 flex items-center justify-center">
+				<Spinner />
+			</div>
+		{:then { default: Component }}
 			<Component />
 		{/await}
 		<Badge class="absolute right-2 bottom-2 isolate z-10" variant="secondary">Preview</Badge>

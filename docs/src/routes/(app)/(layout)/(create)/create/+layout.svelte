@@ -25,7 +25,7 @@
 	const clipboard = new UseClipboard();
 
 	const designSystem = useDesignSystem();
-	
+
 	const isMac = useIsMac();
 	const cmdOrCtrl = $derived(isMac ? "⌘" : "Ctrl");
 </script>
