@@ -16,12 +16,19 @@
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import InitializeDialog from "../components/initialize-dialog.svelte";
+	import UndoIcon from "@lucide/svelte/icons/undo";
+	import RedoIcon from "@lucide/svelte/icons/redo";
+	import { useIsMac } from "$lib/hooks/use-is-mac.svelte.js";
 
 	let { children } = $props();
 
 	const clipboard = new UseClipboard();
 
 	const designSystem = useDesignSystem();
+
+	const isMac = useIsMac();
+
+	const cmdOrCtrl = isMac ? "⌘" : "Ctrl";
 </script>
 
 <div data-slot="layout" class="section-soft relative z-10 flex min-h-svh flex-col">
@@ -44,8 +51,33 @@
 					<ItemPicker items={examples} />
 				</div>
 				<div
-					class="ms-auto flex items-center gap-2 sm:ml-0 md:justify-end xl:ml-auto xl:w-1/3"
+					class="ms-auto flex items-center gap-2 sm:ms-2 md:justify-end xl:ms-auto xl:w-1/3"
 				>
+					<Separator orientation="vertical" class="hidden xl:block" />
+					<div class="hidden items-center gap-2 xl:flex">
+						<Tooltip.Provider>
+							<Tooltip.Root>
+								<Tooltip.Trigger
+									class={buttonVariants({ variant: "ghost", size: "icon-sm" })}
+									onclick={() => designSystem.undo()}
+									disabled={!designSystem.canUndo}
+								>
+									<UndoIcon class="size-4" />
+								</Tooltip.Trigger>
+								<Tooltip.Content>Undo {cmdOrCtrl} + z</Tooltip.Content>
+							</Tooltip.Root>
+							<Tooltip.Root>
+								<Tooltip.Trigger
+									class={buttonVariants({ variant: "ghost", size: "icon-sm" })}
+									onclick={() => designSystem.redo()}
+									disabled={!designSystem.canRedo}
+								>
+									<RedoIcon class="size-4" />
+								</Tooltip.Trigger>
+								<Tooltip.Content>Redo {cmdOrCtrl} + Z</Tooltip.Content>
+							</Tooltip.Root>
+						</Tooltip.Provider>
+					</div>
 					<LayoutToggle class="3xl:flex hidden" />
 					<Separator orientation="vertical" />
 					<ModeSwitcher />

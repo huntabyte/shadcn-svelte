@@ -32,6 +32,8 @@ export interface IDesignSystemState extends DesignSystemConfig {
 	shareUrl: string;
 	undo: () => void;
 	redo: () => void;
+	canUndo: boolean;
+	canRedo: boolean;
 }
 
 export type Lockable = {
@@ -81,6 +83,14 @@ class DesignSystemState implements IDesignSystemState {
 
 	redo() {
 		this.#history.redo();
+	}
+
+	get canUndo() {
+		return this.#history.canUndo;
+	}
+
+	get canRedo() {
+		return this.#history.canRedo;
 	}
 
 	// locks
