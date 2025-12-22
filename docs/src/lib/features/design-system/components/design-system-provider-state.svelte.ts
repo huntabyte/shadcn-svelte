@@ -82,17 +82,14 @@ class DesignSystemState implements IDesignSystemState {
 
 	// properties
 
-	private getProperty<Key extends keyof DesignSystemConfig>(prop: Key): DesignSystemConfig[Key] {
+	#getProperty<Key extends keyof DesignSystemConfig>(prop: Key): DesignSystemConfig[Key] {
 		const param = page.url.searchParams.get(prop);
 		const validated = designSystemConfigSchema.shape[prop].safeParse(param);
 		if (param && validated.success) return param as DesignSystemConfig[Key];
 		return this.system.current[prop] ?? DEFAULT_CONFIG[prop];
 	}
 
-	private setProperty<Key extends keyof DesignSystemConfig>(
-		prop: Key,
-		value: DesignSystemConfig[Key]
-	) {
+	#setProperty<Key extends keyof DesignSystemConfig>(prop: Key, value: DesignSystemConfig[Key]) {
 		// set the search param if the page is /create or the param is already set
 		const setParam =
 			page.url.pathname.startsWith("/create") || page.url.searchParams.get(prop) !== null;
@@ -112,67 +109,67 @@ class DesignSystemState implements IDesignSystemState {
 	}
 
 	get baseColor() {
-		return this.getProperty("baseColor");
+		return this.#getProperty("baseColor");
 	}
 
 	set baseColor(value: DesignSystemConfig["baseColor"]) {
-		this.setProperty("baseColor", value);
+		this.#setProperty("baseColor", value);
 	}
 
 	get font() {
-		return this.getProperty("font");
+		return this.#getProperty("font");
 	}
 
 	set font(value: DesignSystemConfig["font"]) {
-		this.setProperty("font", value);
+		this.#setProperty("font", value);
 	}
 
 	get iconLibrary() {
-		return this.getProperty("iconLibrary");
+		return this.#getProperty("iconLibrary");
 	}
 
 	set iconLibrary(value: DesignSystemConfig["iconLibrary"]) {
-		this.setProperty("iconLibrary", value);
+		this.#setProperty("iconLibrary", value);
 	}
 
 	get menuAccent() {
-		return this.getProperty("menuAccent");
+		return this.#getProperty("menuAccent");
 	}
 
 	set menuAccent(value: DesignSystemConfig["menuAccent"]) {
-		this.setProperty("menuAccent", value);
+		this.#setProperty("menuAccent", value);
 	}
 
 	get menuColor() {
-		return this.getProperty("menuColor");
+		return this.#getProperty("menuColor");
 	}
 
 	set menuColor(value: DesignSystemConfig["menuColor"]) {
-		this.setProperty("menuColor", value);
+		this.#setProperty("menuColor", value);
 	}
 
 	get radius() {
-		return this.getProperty("radius");
+		return this.#getProperty("radius");
 	}
 
 	set radius(value: DesignSystemConfig["radius"]) {
-		this.setProperty("radius", value);
+		this.#setProperty("radius", value);
 	}
 
 	get style() {
-		return this.getProperty("style");
+		return this.#getProperty("style");
 	}
 
 	set style(value: DesignSystemConfig["style"]) {
-		this.setProperty("style", value);
+		this.#setProperty("style", value);
 	}
 
 	get theme() {
-		return this.getProperty("theme");
+		return this.#getProperty("theme");
 	}
 
 	set theme(value: DesignSystemConfig["theme"]) {
-		this.setProperty("theme", value);
+		this.#setProperty("theme", value);
 	}
 
 	reset() {
