@@ -1,7 +1,7 @@
 import { goto } from "$app/navigation";
 import { page } from "$app/state";
 import {
-	BASE_COLORS,
+	BASE_THEMES,
 	DEFAULT_CONFIG,
 	designSystemConfigSchema,
 	fonts,
@@ -189,7 +189,7 @@ class DesignSystemState implements IDesignSystemState {
 		// Use current value if locked, otherwise randomize.
 		const selectedBaseColor = this.locks.baseColor
 			? this.baseColor
-			: randomItem(BASE_COLORS).name;
+			: randomItem(BASE_THEMES).name;
 		const selectedStyle = this.locks.style ? this.style : randomItem(STYLES).name;
 
 		const context: RandomizeContext = {

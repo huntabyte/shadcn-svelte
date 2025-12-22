@@ -1,6 +1,6 @@
 import { type RegistryItem } from "@shadcn-svelte/registry";
 
-export const THEMES: RegistryItem[] = [
+export const BASE_THEMES = [
 	{
 		name: "neutral",
 		title: "Neutral",
@@ -297,6 +297,10 @@ export const THEMES: RegistryItem[] = [
 			},
 		},
 	},
+] as const satisfies RegistryItem[];
+
+export const THEMES = [
+	...BASE_THEMES,
 	{
 		name: "amber",
 		title: "Amber",
@@ -862,3 +866,4 @@ export const THEMES: RegistryItem[] = [
 ] as const satisfies RegistryItem[];
 
 export type Theme = (typeof THEMES)[number];
+export type BaseTheme = (typeof BASE_THEMES)[number];

@@ -32,3 +32,5 @@ export { TextCheckIcon } from '@hugeicons/core-free-icons'
 export { Tick02Icon } from '@hugeicons/core-free-icons'
 export { UserRemove01Icon } from '@hugeicons/core-free-icons'
 export { VolumeOffIcon } from '@hugeicons/core-free-icons'
+
+export type HugeIconsIconName = "Add01Icon" | "AlertCircleIcon" | "ArrowDown01Icon" | "ArrowDownIcon" | "ArrowLeft01Icon" | "ArrowLeft02Icon" | "ArrowLeftIcon" | "ArrowRight01Icon" | "ArrowRight02Icon" | "ArrowRightIcon" | "ArrowUp01Icon" | "ArrowUpRightIcon" | "AudioWave01Icon" | "BluetoothIcon" | "CalendarIcon" | "CheckmarkBadge02Icon" | "CircleArrowLeft02Icon" | "Clock03Icon" | "Copy01Icon" | "Delete02Icon" | "FlipHorizontalIcon" | "FlipVerticalIcon" | "MinusSignIcon" | "MoreHorizontalCircle01Icon" | "Notification02Icon" | "PlusSignIcon" | "Rotate01Icon" | "Search01Icon" | "Share03Icon" | "TextCheckIcon" | "Tick02Icon" | "UserRemove01Icon" | "VolumeOffIcon";

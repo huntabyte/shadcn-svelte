@@ -3,22 +3,21 @@
 import { iconLibraries, type IconLibrary, type IconLibraryName } from "shadcn-svelte/icons";
 import { z } from "zod";
 
-import { BASE_COLORS, type BaseColor } from "./base-colors.js";
 import { fonts } from "./fonts.js";
 import { STYLES, type Style } from "./styles/index.js";
-import { THEMES, type Theme } from "./themes.js";
+import { BASE_THEMES, THEMES, type BaseTheme, type Theme } from "./themes.js";
 
 const SHADCN_VERSION = "latest";
 
 export { STYLES, type Style };
 export { THEMES, type Theme };
-export { BASE_COLORS, type BaseColor };
+export { BASE_THEMES, type BaseTheme };
 export { fonts };
 export { iconLibraries, type IconLibrary, type IconLibraryName };
 
 export type StyleName = Style["name"];
 export type ThemeName = Theme["name"];
-export type BaseColorName = BaseColor["name"];
+export type BaseColorName = BaseTheme["name"];
 
 // Derive font values from registry fonts (e.g., "font-inter" -> "inter").
 const fontValues = fonts.map((f) => f.name.replace("font-", "")) as [string, ...string[]];
@@ -56,14 +55,12 @@ export type RadiusValue = Radius["name"];
 
 export const designSystemConfigSchema = z
 	.object({
-		style: z.enum(STYLES.map((s) => s.name) as [StyleName, ...StyleName[]]).default("vega"),
+		style: z.enum(STYLES.map((s) => s.name)).default("vega"),
 		iconLibrary: z
 			.enum(Object.keys(iconLibraries) as [IconLibraryName, ...IconLibraryName[]])
 			.default("lucide"),
-		baseColor: z
-			.enum(BASE_COLORS.map((c) => c.name) as [BaseColorName, ...BaseColorName[]])
-			.default("neutral"),
-		theme: z.enum(THEMES.map((t) => t.name) as [ThemeName, ...ThemeName[]]),
+		baseColor: z.enum(BASE_THEMES.map((c) => c.name)).default("neutral"),
+		theme: z.enum(THEMES.map((t) => t.name)),
 		font: z.enum(fontValues).default("inter"),
 		menuAccent: z
 			.enum(MENU_ACCENTS.map((a) => a.value) as [MenuAccentValue, ...MenuAccentValue[]])
@@ -159,13 +156,13 @@ export const PRESETS: Preset[] = [
 ];
 
 export function getThemesForBaseColor(baseColorName: string) {
-	const baseColorNames = BASE_COLORS.map((bc) => bc.name);
+	const baseColorNames = BASE_THEMES.map((bc) => bc.name);
 
 	return THEMES.filter((theme) => {
 		if (theme.name === baseColorName) {
 			return true;
 		}
-		return !baseColorNames.includes(theme.name);
+		return !baseColorNames.includes(theme.name as (typeof baseColorNames)[number]);
 	});
 }
 
@@ -182,7 +179,7 @@ export function getTheme(name: ThemeName) {
 }
 
 export function getBaseColor(name: BaseColorName) {
-	return BASE_COLORS.find((color) => color.name === name);
+	return BASE_THEMES.find((color) => color.name === name);
 }
 
 export function getIconLibrary(name: IconLibraryName) {

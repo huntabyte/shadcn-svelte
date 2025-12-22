@@ -30,3 +30,5 @@ export { default as Trash2Icon } from '@lucide/svelte/icons/trash-2'
 export { default as TrashIcon } from '@lucide/svelte/icons/trash'
 export { default as UserRoundXIcon } from '@lucide/svelte/icons/user-round-x'
 export { default as VolumeX } from '@lucide/svelte/icons/volume-x'
+
+export type LucideIconName = "AlertTriangleIcon" | "ArrowLeftCircleIcon" | "ArrowLeftIcon" | "ArrowRightIcon" | "ArrowUpRightIcon" | "AudioLinesIcon" | "BadgeCheck" | "BluetoothIcon" | "CalendarIcon" | "CaptionsIcon" | "CheckIcon" | "ChevronDownIcon" | "ChevronLeftIcon" | "ChevronRightIcon" | "ChevronUpIcon" | "CircleAlertIcon" | "Clock2Icon" | "CopyIcon" | "FlipHorizontalIcon" | "FlipVerticalIcon" | "HeartIcon" | "MinusIcon" | "MoreHorizontalIcon" | "PlusIcon" | "RotateCwIcon" | "SearchIcon" | "ShareIcon" | "Trash2Icon" | "TrashIcon" | "UserRoundXIcon" | "VolumeX";

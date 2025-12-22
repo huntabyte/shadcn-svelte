@@ -5,12 +5,16 @@
 	import TablerIcon from "./tabler-icon.svelte";
 	import PhosphorIcon from "./phosphor-icon.svelte";
 	import HugeiconsIcon from "./hugeicons-icon.svelte";
+	import type { HugeIconsIconName } from "$lib/registry/icons/__hugeicons__.js";
+	import type { LucideIconName } from "$lib/registry/icons/__lucide__.js";
+	import type { TablerIconName } from "$lib/registry/icons/__tabler__.js";
+	import type { PhosphorIconName } from "$lib/registry/icons/__phosphor__.js";
 
 	type Props = {
-		hugeicons: string;
-		lucide: string;
-		tabler: string;
-		phosphor: string;
+		hugeicons: HugeIconsIconName;
+		lucide: LucideIconName;
+		tabler: TablerIconName;
+		phosphor: PhosphorIconName;
 		class?: string;
 		"data-slot"?: string;
 		"data-icon"?: string;

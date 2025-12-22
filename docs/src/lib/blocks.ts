@@ -8,8 +8,7 @@ export function isBlock(name: unknown): name is BlockName {
 }
 
 export const blockSchema = z.object({
-	// @ts-expect-error TODO: remove later in zod 4
-	name: z.enum<BlockName, BlockName[]>(blocks),
+	name: z.enum(blocks),
 	description: z.string(),
 	container: z
 		.object({

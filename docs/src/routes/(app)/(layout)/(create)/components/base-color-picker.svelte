@@ -3,7 +3,7 @@
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import LockButton from "./lock-button.svelte";
-	import { BASE_COLORS, type BaseColorName } from "$lib/registry/config.js";
+	import { BASE_THEMES, type BaseColorName } from "$lib/registry/config.js";
 	import { mode, setMode } from "mode-watcher";
 
 	const designSystem = useDesignSystem();
@@ -11,7 +11,7 @@
 	const isMobile = new IsMobile();
 
 	const currentBaseColor = $derived(
-		BASE_COLORS.find((base) => base.name === designSystem.baseColor) ?? BASE_COLORS[0]
+		BASE_THEMES.find((base) => base.name === designSystem.baseColor) ?? BASE_THEMES[0]
 	);
 </script>
 
@@ -45,7 +45,7 @@
 				}}
 			>
 				<Picker.Group>
-					{#each BASE_COLORS as baseColor (baseColor.name)}
+					{#each BASE_THEMES as baseColor (baseColor.name)}
 						<Picker.RadioItem value={baseColor.name}>
 							<div class="flex items-center gap-2">
 								{#if mode.current}

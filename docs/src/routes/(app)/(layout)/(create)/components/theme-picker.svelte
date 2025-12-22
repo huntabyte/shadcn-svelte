@@ -4,7 +4,7 @@
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import LockButton from "./lock-button.svelte";
 	import { mode } from "mode-watcher";
-	import { BASE_COLORS, THEMES } from "$lib/registry/config.js";
+	import { BASE_THEMES, THEMES } from "$lib/registry/config.js";
 
 	const designSystem = useDesignSystem();
 
@@ -15,7 +15,7 @@
 	);
 
 	const currentThemeIsBaseColor = $derived(
-		BASE_COLORS.find((baseColor) => baseColor.name === designSystem.theme)
+		BASE_THEMES.find((baseColor) => baseColor.name === designSystem.theme)
 	);
 </script>
 
@@ -42,8 +42,8 @@
 		>
 			<Picker.RadioGroup bind:value={designSystem.theme}>
 				<Picker.Group>
-					{#each THEMES.filter( (theme) => BASE_COLORS.find((baseColor) => baseColor.name === theme.name) ) as theme (theme.name)}
-						{@const isBaseColor = BASE_COLORS.find(
+					{#each THEMES.filter( (theme) => BASE_THEMES.find((baseColor) => baseColor.name === theme.name) ) as theme (theme.name)}
+						{@const isBaseColor = BASE_THEMES.find(
 							(baseColor) => baseColor.name === theme.name
 						)}
 						{#if theme.name === designSystem.baseColor}
@@ -72,7 +72,7 @@
 				</Picker.Group>
 				<Picker.Separator />
 				<Picker.Group>
-					{#each THEMES.filter((theme) => !BASE_COLORS.find((baseColor) => baseColor.name === theme.name)) as theme (theme.name)}
+					{#each THEMES.filter((theme) => !BASE_THEMES.find((baseColor) => baseColor.name === theme.name)) as theme (theme.name)}
 						<Picker.RadioItem value={theme.name}>
 							<div class="flex items-center gap-2">
 								{#if mode.current}

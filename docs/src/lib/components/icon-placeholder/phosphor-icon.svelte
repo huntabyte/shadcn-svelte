@@ -1,9 +1,10 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
 	import type { SVGAttributes } from "svelte/elements";
+	import type { PhosphorIconName } from "$lib/registry/icons/__phosphor__.js";
 
 	type Props = SVGAttributes<SVGSVGElement> & {
-		icon: string;
+		icon: PhosphorIconName;
 		placeholder: Snippet;
 	};
 
@@ -12,10 +13,12 @@
 	const IconPromise = $derived(
 		import("$lib/registry/icons/__phosphor__.js").then((mod) => mod[icon])
 	);
+
+	const rp = $derived(restProps as Record<string, unknown>);
 </script>
 
 {#await IconPromise}
 	{@render placeholder?.()}
 {:then Icon}
-	<Icon class={className} {...restProps} />
+	<Icon class={className} {...rp} />
 {/await}

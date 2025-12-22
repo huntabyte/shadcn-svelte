@@ -29,3 +29,5 @@ export { IconTextCaption } from '@tabler/icons-svelte'
 export { IconTrash } from '@tabler/icons-svelte'
 export { IconUserX } from '@tabler/icons-svelte'
 export { IconVolume } from '@tabler/icons-svelte'
+
+export type TablerIconName = "IconAlertTriangle" | "IconArrowLeft" | "IconArrowRight" | "IconArrowUpRight" | "IconBell" | "IconBluetooth" | "IconCalendar" | "IconCheck" | "IconChevronDown" | "IconChevronLeft" | "IconChevronRight" | "IconChevronUp" | "IconCircleArrowLeft" | "IconClockHour2" | "IconCopy" | "IconDots" | "IconExclamationCircle" | "IconFlipHorizontal" | "IconFlipVertical" | "IconHeadphones" | "IconMinus" | "IconPlus" | "IconRosetteDiscountCheck" | "IconRotateClockwise2" | "IconSearch" | "IconShare" | "IconTextCaption" | "IconTrash" | "IconUserX" | "IconVolume";
