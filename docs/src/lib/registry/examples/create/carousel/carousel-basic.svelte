@@ -11,7 +11,9 @@
 				<Carousel.Item>
 					<div class="p-1">
 						<Card.Root>
-							<Card.Content class="flex aspect-square items-center justify-center p-6">
+							<Card.Content
+								class="flex aspect-square items-center justify-center p-6"
+							>
 								<span class="text-4xl font-semibold">{index + 1}</span>
 							</Card.Content>
 						</Card.Root>
@@ -23,4 +25,3 @@
 		<Carousel.Next class="hidden sm:inline-flex" />
 	</Carousel.Root>
 </Example>
-

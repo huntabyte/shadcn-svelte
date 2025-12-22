@@ -10,4 +10,3 @@
 	<CarouselMultiple />
 	<CarouselWithGap />
 </ExampleWrapper>
-

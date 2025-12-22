@@ -67,4 +67,9 @@ export const examples: Example[] = [
 		name: "carousel",
 		type: "registry:example",
 	},
+	{
+		title: "Checkbox",
+		name: "checkbox",
+		type: "registry:example",
+	},
 ];
