@@ -2,6 +2,7 @@
 	import type { ComponentProps, Snippet } from "svelte";
 	import { HugeiconsIcon } from "@hugeicons/svelte";
 	import type { HugeIconsIconName } from "$lib/registry/icons/__hugeicons__.js";
+	import { hugeiconsIconLoader } from "./icon-loader.js";
 
 	type Props = Omit<ComponentProps<typeof HugeiconsIcon>, "icon"> & {
 		icon: HugeIconsIconName;
@@ -11,9 +12,7 @@
 
 	let { icon, placeholder, className, ...restProps }: Props = $props();
 
-	const IconPromise = $derived(
-		import("$lib/registry/icons/__hugeicons__.js").then((mod) => mod[icon])
-	);
+	const IconPromise = hugeiconsIconLoader(icon);
 </script>
 
 {#await IconPromise}

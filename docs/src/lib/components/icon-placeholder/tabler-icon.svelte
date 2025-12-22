@@ -3,6 +3,7 @@
 	import type { SVGAttributes } from "svelte/elements";
 	import type { TablerIconName } from "$lib/registry/icons/__tabler__.js";
 	import { cn } from "$lib/utils.js";
+	import { tablerIconLoader } from "./icon-loader.js";
 
 	type Props = SVGAttributes<SVGSVGElement> & {
 		icon: TablerIconName;
@@ -11,9 +12,7 @@
 
 	let { icon, placeholder, class: className, ...restProps }: Props = $props();
 
-	const IconPromise = $derived(
-		import("$lib/registry/icons/__tabler__.js").then((mod) => mod[icon])
-	);
+	const IconPromise = tablerIconLoader(icon);
 
 	const rp = $derived(restProps as Record<string, unknown>);
 </script>

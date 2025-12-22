@@ -2,6 +2,7 @@
 	import type { Snippet } from "svelte";
 	import type { SVGAttributes } from "svelte/elements";
 	import type { LucideIconName } from "$lib/registry/icons/__lucide__.js";
+	import { lucideIconLoader } from "./icon-loader.js";
 
 	type Props = SVGAttributes<SVGSVGElement> & {
 		icon: LucideIconName;
@@ -10,9 +11,7 @@
 
 	let { icon, placeholder, class: className, ...restProps }: Props = $props();
 
-	const IconPromise = $derived(
-		import("$lib/registry/icons/__lucide__.js").then((mod) => mod[icon])
-	);
+	const IconPromise = lucideIconLoader(icon);
 
 	const rp = $derived(restProps as Record<string, unknown>);
 </script>
