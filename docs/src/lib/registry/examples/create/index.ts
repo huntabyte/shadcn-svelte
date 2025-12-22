@@ -62,4 +62,9 @@ export const examples: Example[] = [
 		name: "card",
 		type: "registry:example",
 	},
+	{
+		title: "Carousel",
+		name: "carousel",
+		type: "registry:example",
+	},
 ];
