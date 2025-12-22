@@ -5,16 +5,15 @@
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import LockButton from "./lock-button.svelte";
 	import { iconLibraries, type IconLibraryName } from "$lib/registry/config.js";
-	import { HugeiconsIcon } from "@hugeicons/svelte";
-	import type { Component } from "svelte";
 	import LucideLogo from "$lib/registry/icons/logos/lucide.svelte";
 	import TablerLogo from "$lib/registry/icons/logos/tabler.svelte";
 	import HugeiconsLogo from "$lib/registry/icons/logos/hugeicons.svelte";
 	import PhosphorLogo from "$lib/registry/icons/logos/phosphor.svelte";
-	import PhosphorSquareIcon from "phosphor-svelte/lib/Square";
-	import TablerSquareIcon from "@tabler/icons-svelte/icons/square";
-	import { SquareIcon as HugeiconsSquareIcon } from "@hugeicons/core-free-icons";
 	import LucideSquareIcon from "@lucide/svelte/icons/square";
+	import LucideIcon from "$lib/components/icon-placeholder/lucide-icon.svelte";
+	import TablerIcon from "$lib/components/icon-placeholder/tabler-icon.svelte";
+	import HugeiconsIcon from "$lib/components/icon-placeholder/hugeicons-icon.svelte";
+	import PhosphorIcon from "$lib/components/icon-placeholder/phosphor-icon.svelte";
 
 	type Props = {
 		submenu?: boolean;
@@ -170,98 +169,38 @@
 	{/if}
 {/snippet}
 
+{#snippet PlaceholderIcon()}
+	<LucideSquareIcon />
+{/snippet}
+
 {#snippet IconLibraryPreviewLucide(previewIcons: string[])}
-	{#await import("$lib/registry/icons/__lucide__.js")}
-		<div class="-mx-1 grid w-full grid-cols-7 gap-2">
-			{#each previewIcons as iconName (iconName)}
-				<div class="bg-muted size-6 animate-pulse rounded"></div>
-			{/each}
-		</div>
-	{:then mod}
-		<div class="-mx-1 grid w-full grid-cols-7 gap-2">
-			{#each previewIcons as iconName (iconName)}
-				{@const Icon = (mod as unknown as Record<string, Component>)[iconName]}
-				<div class="flex size-6 items-center justify-center *:[svg]:size-5">
-					{#if Icon}
-						<Icon />
-					{:else}
-						<LucideSquareIcon />
-					{/if}
-				</div>
-			{/each}
-		</div>
-	{/await}
+	<div class="-mx-1 grid w-full grid-cols-7 gap-2">
+		{#each previewIcons as iconName (iconName)}
+			<LucideIcon icon={iconName} placeholder={PlaceholderIcon} />
+		{/each}
+	</div>
 {/snippet}
 
 {#snippet IconLibraryPreviewTabler(previewIcons: string[])}
-	{#await import("$lib/registry/icons/__tabler__.js")}
-		<div class="-mx-1 grid w-full grid-cols-7 gap-2">
-			{#each previewIcons as iconName (iconName)}
-				<div class="bg-muted size-6 animate-pulse rounded"></div>
-			{/each}
-		</div>
-	{:then mod}
-		<div class="-mx-1 grid w-full grid-cols-7 gap-2">
-			{#each previewIcons as iconName (iconName)}
-				{@const Icon = (mod as unknown as Record<string, Component>)[iconName]}
-				<div class="flex size-6 items-center justify-center *:[svg]:size-5">
-					{#if Icon}
-						<Icon />
-					{:else}
-						<TablerSquareIcon />
-					{/if}
-				</div>
-			{/each}
-		</div>
-	{/await}
+	<div class="-mx-1 grid w-full grid-cols-7 gap-2">
+		{#each previewIcons as iconName (iconName)}
+			<TablerIcon icon={iconName} placeholder={PlaceholderIcon} />
+		{/each}
+	</div>
 {/snippet}
 
 {#snippet IconLibraryPreviewHugeicons(previewIcons: string[])}
-	{#await import("$lib/registry/icons/__hugeicons__.js")}
-		<div class="-mx-1 grid w-full grid-cols-7 gap-2">
-			{#each previewIcons as iconName (iconName)}
-				<div class="bg-muted size-6 animate-pulse rounded"></div>
-			{/each}
-		</div>
-	{:then mod}
-		<div class="-mx-1 grid w-full grid-cols-7 gap-2">
-			{#each previewIcons as iconName (iconName)}
-				{@const Icon = (mod as Record<string, unknown>)[iconName]}
-				<div class="flex size-6 items-center justify-center">
-					{#if Icon}
-						<HugeiconsIcon icon={Icon} strokeWidth={2} className="size-5" />
-					{:else}
-						<HugeiconsIcon
-							icon={HugeiconsSquareIcon}
-							strokeWidth={2}
-							className="size-5"
-						/>
-					{/if}
-				</div>
-			{/each}
-		</div>
-	{/await}
+	<div class="-mx-1 grid w-full grid-cols-7 gap-2">
+		{#each previewIcons as iconName (iconName)}
+			<HugeiconsIcon icon={iconName} placeholder={PlaceholderIcon} />
+		{/each}
+	</div>
 {/snippet}
 
 {#snippet IconLibraryPreviewPhosphor(previewIcons: string[])}
-	{#await import("$lib/registry/icons/__phosphor__.js")}
-		<div class="-mx-1 grid w-full grid-cols-7 gap-2">
-			{#each previewIcons as iconName (iconName)}
-				<div class="bg-muted size-6 animate-pulse rounded"></div>
-			{/each}
-		</div>
-	{:then mod}
-		<div class="-mx-1 grid w-full grid-cols-7 gap-2">
-			{#each previewIcons as iconName (iconName)}
-				{@const Icon = (mod as unknown as Record<string, Component>)[iconName]}
-				<div class="flex size-6 items-center justify-center *:[svg]:size-5">
-					{#if Icon}
-						<Icon />
-					{:else}
-						<PhosphorSquareIcon />
-					{/if}
-				</div>
-			{/each}
-		</div>
-	{/await}
+	<div class="-mx-1 grid w-full grid-cols-7 gap-2">
+		{#each previewIcons as iconName (iconName)}
+			<PhosphorIcon icon={iconName} placeholder={PlaceholderIcon} />
+		{/each}
+	</div>
 {/snippet}

@@ -7,14 +7,19 @@ export const hugeiconsIconLoader = createIconLoader("hugeicons");
 export const phosphorIconLoader = createIconLoader("phosphor");
 
 export function createIconLoader(iconLibrary: IconLibraryName) {
-	const preloadedIcons = new Map<string, Component>();
+	const preloadedIcons = new Map<string, Component | null>();
 
 	return async (icon: string) => {
 		const preloadedIcon = preloadedIcons.get(icon);
-		if (preloadedIcon) return preloadedIcon;
+		if (preloadedIcon !== undefined) return preloadedIcon;
 
-		const mod = await import(`$lib/registry/icons/__${iconLibrary}__.ts`);
-
+		let mod: Record<string, Component>;
+		try {
+			mod = await import(`$lib/registry/icons/__${iconLibrary}__/${icon}.ts`);
+		} catch {
+			preloadedIcons.set(icon, null);
+			return null;
+		}
 		const Icon = mod[icon];
 		preloadedIcons.set(icon, Icon);
 

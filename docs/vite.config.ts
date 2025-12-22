@@ -37,6 +37,7 @@ export default defineConfig({
 			name: "registry-builder",
 			enforce: "pre",
 			async watchChange(id) {
+				if (minimatch(id, "**/icons/**")) return;
 				if (!minimatch(id, "**/src/lib/registry/**")) return;
 				this.info("Registry file updated. Rebuilding registry...");
 				await buildRegistry();

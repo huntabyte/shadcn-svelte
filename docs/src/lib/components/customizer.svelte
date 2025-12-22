@@ -32,7 +32,7 @@
 				tabler="IconAdjustmentsHorizontal"
 			/>
 		</DropdownMenu.Trigger>
-		<DropdownMenu.Content align="end" class="min-w-64">
+		<DropdownMenu.Content align="end" class="min-w-64" preventScroll={false}>
 			<Field.Group class="flex h-full flex-1 flex-row gap-2 md:flex-col md:gap-0">
 				<PresetPicker submenu />
 				<StylePicker submenu />

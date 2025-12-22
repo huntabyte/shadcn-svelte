@@ -143,6 +143,16 @@
 			e.preventDefault();
 			toggleMode();
 		}
+
+		// undo/redo on z/Z
+		if ((e.key === "z" || e.key === "Z") && (e.metaKey || e.ctrlKey)) {
+			e.preventDefault();
+			if (e.shiftKey) {
+				designSystem.redo();
+			} else {
+				designSystem.undo();
+			}
+		}
 	}
 </script>
 

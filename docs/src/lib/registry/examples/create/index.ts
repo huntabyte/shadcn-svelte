@@ -112,4 +112,9 @@ export const examples: Example[] = [
 		name: "native-select",
 		type: "registry:example",
 	},
+	{
+		title: "Textarea",
+		name: "textarea",
+		type: "registry:example",
+	},
 ];

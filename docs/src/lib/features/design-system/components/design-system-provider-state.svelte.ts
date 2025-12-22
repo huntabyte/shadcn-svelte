@@ -20,6 +20,7 @@ import {
 	RANDOMIZE_BIASES,
 	type RandomizeContext,
 } from "../../../../routes/(app)/(layout)/(create)/lib/randomize-biases.js";
+import { StateHistory } from "runed";
 
 export interface IDesignSystemState extends DesignSystemConfig {
 	locks: Lockable;
@@ -29,6 +30,8 @@ export interface IDesignSystemState extends DesignSystemConfig {
 	randomize: () => void;
 	update: (value: Partial<DesignSystemConfig>) => void;
 	shareUrl: string;
+	undo: () => void;
+	redo: () => void;
 }
 
 export type Lockable = {
@@ -45,6 +48,7 @@ export type Lockable = {
 };
 
 class DesignSystemState implements IDesignSystemState {
+	#history: StateHistory<DesignSystemConfig>;
 	system: PersistedState<DesignSystemConfig>;
 	#locks: PersistedState<Lockable>;
 	constructor() {
@@ -64,6 +68,19 @@ class DesignSystemState implements IDesignSystemState {
 
 		this.reset = this.reset.bind(this);
 		this.randomize = this.randomize.bind(this);
+
+		this.#history = new StateHistory(
+			() => this.system.current,
+			(value) => this.update(value)
+		);
+	}
+
+	undo() {
+		this.#history.undo();
+	}
+
+	redo() {
+		this.#history.redo();
 	}
 
 	// locks
@@ -245,7 +262,7 @@ class DesignSystemState implements IDesignSystemState {
 		context.menuAccent = selectedMenuAccent;
 		context.menuColor = selectedMenuColor;
 
-		this.system.current = {
+		this.update({
 			baseColor: selectedBaseColor,
 			style: selectedStyle,
 			theme: selectedTheme,
@@ -254,39 +271,23 @@ class DesignSystemState implements IDesignSystemState {
 			iconLibrary: selectedIconLibrary,
 			menuAccent: selectedMenuAccent,
 			menuColor: selectedMenuColor,
-		};
-
-		if (page.url.pathname.startsWith("/create")) {
-			const searchParams = new SvelteURLSearchParams(page.url.searchParams);
-			searchParams.set("baseColor", selectedBaseColor);
-			searchParams.set("style", selectedStyle);
-			searchParams.set("theme", selectedTheme);
-			searchParams.set("font", selectedFont);
-			searchParams.set("radius", selectedRadius);
-			searchParams.set("iconLibrary", selectedIconLibrary);
-			searchParams.set("menuAccent", selectedMenuAccent);
-			searchParams.set("menuColor", selectedMenuColor);
-			goto(`${page.url.pathname}?${searchParams.toString()}${page.url.hash}`, {
-				replaceState: true,
-				noScroll: true,
-				keepFocus: true,
-			});
-		}
+		});
 	}
 
 	update(value: Partial<DesignSystemConfig>) {
-		this.system.current = { ...this.system.current, ...value };
+		const internalValue = { ...this.system.current, ...value };
+		this.system.current = internalValue;
 
 		if (page.url.pathname.startsWith("/create")) {
 			const searchParams = new SvelteURLSearchParams(page.url.searchParams);
-			searchParams.set("baseColor", this.baseColor);
-			searchParams.set("style", this.style);
-			searchParams.set("theme", this.theme);
-			searchParams.set("font", this.font);
-			searchParams.set("radius", this.radius);
-			searchParams.set("iconLibrary", this.iconLibrary);
-			searchParams.set("menuAccent", this.menuAccent);
-			searchParams.set("menuColor", this.menuColor);
+			searchParams.set("baseColor", internalValue.baseColor);
+			searchParams.set("style", internalValue.style);
+			searchParams.set("theme", internalValue.theme);
+			searchParams.set("font", internalValue.font);
+			searchParams.set("radius", internalValue.radius);
+			searchParams.set("iconLibrary", internalValue.iconLibrary);
+			searchParams.set("menuAccent", internalValue.menuAccent);
+			searchParams.set("menuColor", internalValue.menuColor);
 			goto(`${page.url.pathname}?${searchParams.toString()}${page.url.hash}`, {
 				replaceState: true,
 				noScroll: true,

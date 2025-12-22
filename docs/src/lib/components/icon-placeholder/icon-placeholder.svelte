@@ -5,10 +5,10 @@
 	import TablerIcon from "./tabler-icon.svelte";
 	import PhosphorIcon from "./phosphor-icon.svelte";
 	import HugeiconsIcon from "./hugeicons-icon.svelte";
-	import type { HugeIconsIconName } from "$lib/registry/icons/__hugeicons__.js";
-	import type { LucideIconName } from "$lib/registry/icons/__lucide__.js";
-	import type { TablerIconName } from "$lib/registry/icons/__tabler__.js";
-	import type { PhosphorIconName } from "$lib/registry/icons/__phosphor__.js";
+	import type { HugeIconsIconName } from "$lib/registry/icons/__hugeicons__/index.js";
+	import type { LucideIconName } from "$lib/registry/icons/__lucide__/index.js";
+	import type { TablerIconName } from "$lib/registry/icons/__tabler__/index.js";
+	import type { PhosphorIconName } from "$lib/registry/icons/__phosphor__/index.js";
 
 	type Props = {
 		hugeicons: HugeIconsIconName;
