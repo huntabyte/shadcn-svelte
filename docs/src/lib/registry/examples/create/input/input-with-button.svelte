@@ -10,4 +10,3 @@
 		<Button.Root>Search</Button.Root>
 	</div>
 </Example>
-

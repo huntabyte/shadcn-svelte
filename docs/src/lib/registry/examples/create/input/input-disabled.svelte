@@ -10,4 +10,3 @@
 		<Input.Root id="input-demo-disabled" type="email" placeholder="Email" disabled />
 	</Field.Field>
 </Example>
-

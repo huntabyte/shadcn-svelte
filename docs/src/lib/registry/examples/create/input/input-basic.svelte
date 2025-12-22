@@ -6,4 +6,3 @@
 <Example title="Basic">
 	<Input.Root type="email" placeholder="Email" />
 </Example>
-

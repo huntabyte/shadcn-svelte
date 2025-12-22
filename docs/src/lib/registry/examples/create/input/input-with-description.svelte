@@ -8,9 +8,6 @@
 	<Field.Field>
 		<Field.Label for="input-demo-username">Username</Field.Label>
 		<Input.Root id="input-demo-username" type="text" placeholder="Enter your username" />
-		<Field.Description>
-			Choose a unique username for your account.
-		</Field.Description>
+		<Field.Description>Choose a unique username for your account.</Field.Description>
 	</Field.Field>
 </Example>
-

@@ -5,16 +5,16 @@
 	import * as Button from "$lib/registry/ui/button/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
 
-    const countryItems = [
-        { label: "United States", value: "us" },
-        { label: "United Kingdom", value: "uk" },
-        { label: "Canada", value: "ca" },
-    ];
+	const countryItems = [
+		{ label: "United States", value: "us" },
+		{ label: "United Kingdom", value: "uk" },
+		{ label: "Canada", value: "ca" },
+	];
 
-    let country = $state(countryItems[0].value);
-    const countryLabel = $derived(
-        countryItems.find((item) => item.value === country)?.label ?? "United States"
-    );
+	let country = $state(countryItems[0].value);
+	const countryLabel = $derived(
+		countryItems.find((item) => item.value === country)?.label ?? "United States"
+	);
 </script>
 
 <Example title="Form">
@@ -27,9 +27,7 @@
 			<Field.Field>
 				<Field.Label for="form-email">Email</Field.Label>
 				<Input.Root id="form-email" type="email" placeholder="john@example.com" />
-				<Field.Description>
-					We'll never share your email with anyone.
-				</Field.Description>
+				<Field.Description>We'll never share your email with anyone.</Field.Description>
 			</Field.Field>
 			<div class="grid grid-cols-2 gap-4">
 				<Field.Field>
@@ -55,12 +53,9 @@
 				<Input.Root id="form-address" type="text" placeholder="123 Main St" />
 			</Field.Field>
 			<Field.Field orientation="horizontal">
-				<Button.Root type="button" variant="outline">
-					Cancel
-				</Button.Root>
+				<Button.Root type="button" variant="outline">Cancel</Button.Root>
 				<Button.Root type="submit">Submit</Button.Root>
 			</Field.Field>
 		</Field.Group>
 	</form>
 </Example>
-

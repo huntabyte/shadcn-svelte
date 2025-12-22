@@ -12,6 +12,9 @@ export { default as CaretDownIcon } from 'phosphor-svelte/lib/CaretDown'
 export { default as CaretLeftIcon } from 'phosphor-svelte/lib/CaretLeft'
 export { default as CaretRightIcon } from 'phosphor-svelte/lib/CaretRight'
 export { default as CaretUpIcon } from 'phosphor-svelte/lib/CaretUp'
+export { default as ChartBarIcon } from 'phosphor-svelte/lib/ChartBar'
+export { default as ChartLineIcon } from 'phosphor-svelte/lib/ChartLine'
+export { default as ChartPieIcon } from 'phosphor-svelte/lib/ChartPie'
 export { default as CheckCircleIcon } from 'phosphor-svelte/lib/CheckCircle'
 export { default as CheckIcon } from 'phosphor-svelte/lib/Check'
 export { default as ClockIcon } from 'phosphor-svelte/lib/Clock'
@@ -34,4 +37,4 @@ export { default as UserMinusIcon } from 'phosphor-svelte/lib/UserMinus'
 export { default as WarningCircleIcon } from 'phosphor-svelte/lib/WarningCircle'
 export { default as WarningIcon } from 'phosphor-svelte/lib/Warning'
 
-export type PhosphorIconName = "ArrowCircleLeftIcon" | "ArrowClockwiseIcon" | "ArrowLeftIcon" | "ArrowRightIcon" | "ArrowUpRightIcon" | "ArrowsHorizontalIcon" | "ArrowsVerticalIcon" | "BluetoothIcon" | "CalendarBlankIcon" | "CaretDownIcon" | "CaretLeftIcon" | "CaretRightIcon" | "CaretUpIcon" | "CheckCircleIcon" | "CheckIcon" | "ClockIcon" | "CopyIcon" | "CornersInIcon" | "CornersOutIcon" | "DotsThreeIcon" | "FileIcon" | "FolderIcon" | "HeartIcon" | "MagnifyingGlassIcon" | "MicrophoneIcon" | "MinusIcon" | "PlusIcon" | "ShareIcon" | "SpeakerSlashIcon" | "TextTIcon" | "TrashIcon" | "UserMinusIcon" | "WarningCircleIcon" | "WarningIcon";
+export type PhosphorIconName = "ArrowCircleLeftIcon" | "ArrowClockwiseIcon" | "ArrowLeftIcon" | "ArrowRightIcon" | "ArrowUpRightIcon" | "ArrowsHorizontalIcon" | "ArrowsVerticalIcon" | "BluetoothIcon" | "CalendarBlankIcon" | "CaretDownIcon" | "CaretLeftIcon" | "CaretRightIcon" | "CaretUpIcon" | "ChartBarIcon" | "ChartLineIcon" | "ChartPieIcon" | "CheckCircleIcon" | "CheckIcon" | "ClockIcon" | "CopyIcon" | "CornersInIcon" | "CornersOutIcon" | "DotsThreeIcon" | "FileIcon" | "FolderIcon" | "HeartIcon" | "MagnifyingGlassIcon" | "MicrophoneIcon" | "MinusIcon" | "PlusIcon" | "ShareIcon" | "SpeakerSlashIcon" | "TextTIcon" | "TrashIcon" | "UserMinusIcon" | "WarningCircleIcon" | "WarningIcon";

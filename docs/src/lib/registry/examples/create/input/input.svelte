@@ -24,4 +24,3 @@
 	<InputWithNativeSelect />
 	<InputForm />
 </ExampleWrapper>
-

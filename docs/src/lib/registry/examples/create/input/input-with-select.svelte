@@ -3,16 +3,16 @@
 	import * as Input from "$lib/registry/ui/input/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
 
-    const currencyItems = [
-        { label: "USD", value: "usd" },
-        { label: "EUR", value: "eur" },
-        { label: "GBP", value: "gbp" },
-    ];
+	const currencyItems = [
+		{ label: "USD", value: "usd" },
+		{ label: "EUR", value: "eur" },
+		{ label: "GBP", value: "gbp" },
+	];
 
-    let currency = $state(currencyItems[0].value);
-    const currencyLabel = $derived(
-        currencyItems.find((item) => item.value === currency)?.label ?? "USD"
-    );
+	let currency = $state(currencyItems[0].value);
+	const currencyLabel = $derived(
+		currencyItems.find((item) => item.value === currency)?.label ?? "USD"
+	);
 </script>
 
 <Example title="With Select">
@@ -30,4 +30,3 @@
 		</Select.Root>
 	</div>
 </Example>
-

@@ -82,4 +82,9 @@ export const examples: Example[] = [
 		name: "input",
 		type: "registry:example",
 	},
+	{
+		title: "Select",
+		name: "select",
+		type: "registry:example",
+	},
 ];

@@ -10,4 +10,3 @@
 		<Input.Root id="input-demo-email" type="email" placeholder="name@example.com" />
 	</Field.Field>
 </Example>
-

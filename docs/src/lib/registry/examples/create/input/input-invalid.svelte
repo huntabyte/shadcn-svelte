@@ -6,4 +6,3 @@
 <Example title="Invalid">
 	<Input.Root type="text" placeholder="Error" aria-invalid="true" />
 </Example>
-

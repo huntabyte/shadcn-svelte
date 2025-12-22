@@ -16,6 +16,7 @@ export { ArrowUpRightIcon } from '@hugeicons/core-free-icons'
 export { AudioWave01Icon } from '@hugeicons/core-free-icons'
 export { BluetoothIcon } from '@hugeicons/core-free-icons'
 export { CalendarIcon } from '@hugeicons/core-free-icons'
+export { Chart03Icon } from '@hugeicons/core-free-icons'
 export { CheckmarkBadge02Icon } from '@hugeicons/core-free-icons'
 export { CircleArrowLeft02Icon } from '@hugeicons/core-free-icons'
 export { Clock03Icon } from '@hugeicons/core-free-icons'
@@ -34,7 +35,8 @@ export { Search01Icon } from '@hugeicons/core-free-icons'
 export { Share03Icon } from '@hugeicons/core-free-icons'
 export { TextCheckIcon } from '@hugeicons/core-free-icons'
 export { Tick02Icon } from '@hugeicons/core-free-icons'
+export { UnfoldMoreIcon } from '@hugeicons/core-free-icons'
 export { UserRemove01Icon } from '@hugeicons/core-free-icons'
 export { VolumeOffIcon } from '@hugeicons/core-free-icons'
 
-export type HugeIconsIconName = "Add01Icon" | "AlertCircleIcon" | "ArrowDown01Icon" | "ArrowDownIcon" | "ArrowExpandIcon" | "ArrowLeft01Icon" | "ArrowLeft02Icon" | "ArrowLeftIcon" | "ArrowRight01Icon" | "ArrowRight02Icon" | "ArrowRightIcon" | "ArrowShrinkIcon" | "ArrowUp01Icon" | "ArrowUpRightIcon" | "AudioWave01Icon" | "BluetoothIcon" | "CalendarIcon" | "CheckmarkBadge02Icon" | "CircleArrowLeft02Icon" | "Clock03Icon" | "Copy01Icon" | "Delete02Icon" | "File01Icon" | "FlipHorizontalIcon" | "FlipVerticalIcon" | "Folder01Icon" | "MinusSignIcon" | "MoreHorizontalCircle01Icon" | "Notification02Icon" | "PlusSignIcon" | "Rotate01Icon" | "Search01Icon" | "Share03Icon" | "TextCheckIcon" | "Tick02Icon" | "UserRemove01Icon" | "VolumeOffIcon";
+export type HugeIconsIconName = "Add01Icon" | "AlertCircleIcon" | "ArrowDown01Icon" | "ArrowDownIcon" | "ArrowExpandIcon" | "ArrowLeft01Icon" | "ArrowLeft02Icon" | "ArrowLeftIcon" | "ArrowRight01Icon" | "ArrowRight02Icon" | "ArrowRightIcon" | "ArrowShrinkIcon" | "ArrowUp01Icon" | "ArrowUpRightIcon" | "AudioWave01Icon" | "BluetoothIcon" | "CalendarIcon" | "Chart03Icon" | "CheckmarkBadge02Icon" | "CircleArrowLeft02Icon" | "Clock03Icon" | "Copy01Icon" | "Delete02Icon" | "File01Icon" | "FlipHorizontalIcon" | "FlipVerticalIcon" | "Folder01Icon" | "MinusSignIcon" | "MoreHorizontalCircle01Icon" | "Notification02Icon" | "PlusSignIcon" | "Rotate01Icon" | "Search01Icon" | "Share03Icon" | "TextCheckIcon" | "Tick02Icon" | "UnfoldMoreIcon" | "UserRemove01Icon" | "VolumeOffIcon";
