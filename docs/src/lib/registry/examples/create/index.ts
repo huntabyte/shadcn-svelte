@@ -87,4 +87,9 @@ export const examples: Example[] = [
 		name: "select",
 		type: "registry:example",
 	},
+	{
+		title: "Native Select",
+		name: "native-select",
+		type: "registry:example",
+	},
 ];
