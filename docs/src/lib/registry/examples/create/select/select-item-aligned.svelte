@@ -3,7 +3,6 @@
 	import * as Select from "$lib/registry/ui/select/index.js";
 
 	const items = [
-		{ label: "Select a fruit", value: null },
 		{ label: "Apple", value: "apple" },
 		{ label: "Banana", value: "banana" },
 		{ label: "Blueberry", value: "blueberry" },

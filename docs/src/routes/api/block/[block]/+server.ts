@@ -56,7 +56,7 @@ async function loadItem(block: string): Promise<HighlightedBlock> {
 	const { default: mod } = await import(`../../../../__registry__/json/${block}.json`);
 	const item = registryItemSchema.parse(mod);
 	const meta = blockMeta[item.name as keyof typeof blockMeta];
-	const files = item.files.map(async (file) => {
+	const files = item.files?.map(async (file) => {
 		const lang = path.extname(file.target).slice(1);
 
 		file.content = transformImportPaths(file.content);
@@ -72,7 +72,7 @@ async function loadItem(block: string): Promise<HighlightedBlock> {
 
 	return highlightedBlockSchema.parse({
 		...item,
-		files: await Promise.all(files),
+		files: files ? await Promise.all(files) : [],
 		description: meta?.description,
 		meta,
 	});

@@ -3,7 +3,6 @@
 	import * as Select from "$lib/registry/ui/select/index.js";
 
 	const items = [
-		{ label: "Select an item", value: null },
 		...Array.from({ length: 100 }).map((_, i) => ({
 			label: `Item ${i}`,
 			value: `item-${i}`,

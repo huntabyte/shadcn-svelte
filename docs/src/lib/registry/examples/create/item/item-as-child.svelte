@@ -10,7 +10,7 @@
 		<Item.Group>
 			<Item.Root>
 				{#snippet child({ props })}
-					<a href="#" {...props}>
+					<a href="#/" {...props}>
 						<Item.Content>
 							<Item.Title>Title Only (Link)</Item.Title>
 						</Item.Content>
@@ -19,7 +19,7 @@
 			</Item.Root>
 			<Item.Root>
 				{#snippet child({ props })}
-					<a href="#" {...props}>
+					<a href="#/" {...props}>
 						<Item.Content>
 							<Item.Title>Title + Description (Link)</Item.Title>
 							<Item.Description>
@@ -31,7 +31,7 @@
 			</Item.Root>
 			<Item.Root>
 				{#snippet child({ props })}
-					<a href="#" {...props}>
+					<a href="#/" {...props}>
 						<Item.Media variant="icon">
 							<IconPlaceholder
 								lucide="InboxIcon"
@@ -48,7 +48,7 @@
 			</Item.Root>
 			<Item.Root>
 				{#snippet child({ props })}
-					<a href="#" {...props}>
+					<a href="#/" {...props}>
 						<Item.Media variant="icon">
 							<IconPlaceholder
 								lucide="InboxIcon"
@@ -68,7 +68,7 @@
 			</Item.Root>
 			<Item.Root>
 				{#snippet child({ props })}
-					<a href="#" {...props}>
+					<a href="#/" {...props}>
 						<Item.Content>
 							<Item.Title>With Actions (Link)</Item.Title>
 							<Item.Description>

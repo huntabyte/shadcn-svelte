@@ -74,7 +74,7 @@ async function buildUIRegistry(
 		const source = fs.readFileSync(filepath, { encoding: "utf8" });
 
 		if (dirent.name === "meta.json") {
-			meta = registryItemSchema.partial().parse(JSON.parse(source));
+			meta = registryItemSchema.parse(JSON.parse(source));
 			continue;
 		}
 

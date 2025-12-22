@@ -5,7 +5,6 @@
 	import * as NativeSelect from "$lib/registry/ui/native-select/index.js";
 
 	const items = [
-		{ label: "Filter", value: null },
 		{ label: "All", value: "all" },
 		{ label: "Active", value: "active" },
 		{ label: "Inactive", value: "inactive" },

@@ -4,7 +4,6 @@
 	import * as Button from "$lib/registry/ui/button/index.js";
 
 	const items = [
-		{ label: "Select a fruit", value: null },
 		{ label: "Apple", value: "apple" },
 		{ label: "Banana", value: "banana" },
 		{ label: "Blueberry", value: "blueberry" },
