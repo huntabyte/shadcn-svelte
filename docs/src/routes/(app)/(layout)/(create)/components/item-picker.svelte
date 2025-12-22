@@ -75,10 +75,7 @@
 		align="center"
 	>
 		<Command.Root value={page.params.item}>
-			<Command.Input
-				placeholder="Search..."
-				class="bg-muted border-border h-8 rounded-lg border px-2 shadow-none"
-			/>
+			<Command.Input placeholder="Search..." />
 			<Command.List class="no-scrollbar scroll-my-1 pb-1">
 				<Command.Empty>No items found.</Command.Empty>
 				{#each groupedItems as group (group.type)}
