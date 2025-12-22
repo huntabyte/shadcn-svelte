@@ -113,7 +113,33 @@ class DesignSystemState implements IDesignSystemState {
 	}
 
 	set baseColor(value: DesignSystemConfig["baseColor"]) {
-		this.#setProperty("baseColor", value);
+		// if the theme is currently set to a base color, we need to update it to this value as well
+		const shouldUpdateTheme = BASE_THEMES.some((base) => base.name === this.theme);
+
+		// update localStorage first
+		if (shouldUpdateTheme) {
+			this.system.current.theme = value;
+		}
+		this.system.current.baseColor = value;
+
+		// then update URL params in a single goto to avoid race condition
+		const setParam =
+			page.url.pathname.startsWith("/create") ||
+			page.url.searchParams.get("baseColor") !== null ||
+			(shouldUpdateTheme && page.url.searchParams.get("theme") !== null);
+
+		if (setParam) {
+			const searchParams = new SvelteURLSearchParams(page.url.searchParams);
+			searchParams.set("baseColor", value);
+			if (shouldUpdateTheme) {
+				searchParams.set("theme", value);
+			}
+			goto(`${page.url.pathname}?${searchParams.toString()}${page.url.hash}`, {
+				replaceState: true,
+				noScroll: true,
+				keepFocus: true,
+			});
+		}
 	}
 
 	get font() {

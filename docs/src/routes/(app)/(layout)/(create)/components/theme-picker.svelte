@@ -4,7 +4,7 @@
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import LockButton from "./lock-button.svelte";
 	import { mode } from "mode-watcher";
-	import { BASE_THEMES, THEMES } from "$lib/registry/config.js";
+	import { BASE_THEMES, THEMES, type BaseTheme, type Theme } from "$lib/registry/config.js";
 
 	const designSystem = useDesignSystem();
 
@@ -14,9 +14,16 @@
 		THEMES.find((theme) => theme.name === designSystem.theme) ?? THEMES[0]
 	);
 
-	const currentThemeIsBaseColor = $derived(
-		BASE_THEMES.find((baseColor) => baseColor.name === designSystem.theme)
-	);
+	function isBaseColor(theme: Theme): theme is BaseTheme {
+		return BASE_THEMES.find((baseColor) => baseColor.name === theme.name) !== undefined;
+	}
+
+	function getColorForTheme(theme: Theme) {
+		if (isBaseColor(theme)) {
+			return theme.cssVars[mode.current ?? "light"]["muted-foreground"];
+		}
+		return theme.cssVars[mode.current ?? "light"]["primary"];
+	}
 </script>
 
 <div class="group/picker relative">
@@ -29,9 +36,7 @@
 				</div>
 			</div>
 			<div
-				style="--color: {currentTheme?.cssVars?.[mode.current ?? 'light']?.[
-					currentThemeIsBaseColor ? 'muted-foreground' : 'primary'
-				]};"
+				style="--color: {getColorForTheme(currentTheme)};"
 				class="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 rounded-full bg-(--color) select-none"
 			></div>
 		</Picker.Trigger>
@@ -43,17 +48,12 @@
 			<Picker.RadioGroup bind:value={designSystem.theme}>
 				<Picker.Group>
 					{#each THEMES.filter( (theme) => BASE_THEMES.find((baseColor) => baseColor.name === theme.name) ) as theme (theme.name)}
-						{@const isBaseColor = BASE_THEMES.find(
-							(baseColor) => baseColor.name === theme.name
-						)}
 						{#if theme.name === designSystem.baseColor}
-							<Picker.RadioItem value={theme.name}>
+							<Picker.RadioItem value={theme.name} closeOnSelect={false}>
 								<div class="flex items-start gap-2">
 									{#if mode.current}
 										<div
-											style="--color: {theme.cssVars?.[
-												mode.current as 'light' | 'dark'
-											]?.[isBaseColor ? 'muted-foreground' : 'primary']};"
+											style="--color: {getColorForTheme(theme)};"
 											class="size-4 translate-y-1 rounded-full bg-(--color)"
 										></div>
 									{/if}
@@ -73,13 +73,11 @@
 				<Picker.Separator />
 				<Picker.Group>
 					{#each THEMES.filter((theme) => !BASE_THEMES.find((baseColor) => baseColor.name === theme.name)) as theme (theme.name)}
-						<Picker.RadioItem value={theme.name}>
+						<Picker.RadioItem value={theme.name} closeOnSelect={false}>
 							<div class="flex items-center gap-2">
 								{#if mode.current}
 									<div
-										style="--color: {theme.cssVars?.[
-											mode.current as 'light' | 'dark'
-										]?.['primary']};"
+										style="--color: {theme.cssVars[mode.current]['primary']};"
 										class="size-4 rounded-full bg-(--color)"
 									></div>
 								{/if}

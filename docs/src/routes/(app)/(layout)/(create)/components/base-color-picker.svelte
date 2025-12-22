@@ -46,7 +46,7 @@
 			>
 				<Picker.Group>
 					{#each BASE_THEMES as baseColor (baseColor.name)}
-						<Picker.RadioItem value={baseColor.name}>
+						<Picker.RadioItem value={baseColor.name} closeOnSelect={false}>
 							<div class="flex items-center gap-2">
 								{#if mode.current}
 									<div
@@ -64,6 +64,7 @@
 				<Picker.Separator />
 				<Picker.Group>
 					<Picker.Item
+						closeOnSelect={false}
 						onclick={() => {
 							setMode(mode.current === "dark" ? "light" : "dark");
 						}}
