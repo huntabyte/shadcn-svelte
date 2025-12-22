@@ -72,4 +72,9 @@ export const examples: Example[] = [
 		name: "checkbox",
 		type: "registry:example",
 	},
+	{
+		title: "Collapsible",
+		name: "collapsible",
+		type: "registry:example",
+	},
 ];
