@@ -498,7 +498,7 @@
 		{
 			"name": "command",
 			"type": "registry:ui",
-			"registryDependencies": ["dialog"],
+			"registryDependencies": ["dialog", "input-group"],
 			"files": [
 				{
 					"type": "registry:file",

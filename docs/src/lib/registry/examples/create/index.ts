@@ -78,6 +78,11 @@ export const examples: Example[] = [
 		type: "registry:example",
 	},
 	{
+		title: "Command",
+		name: "command",
+		type: "registry:example",
+	},
+	{
 		title: "Input",
 		name: "input",
 		type: "registry:example",
