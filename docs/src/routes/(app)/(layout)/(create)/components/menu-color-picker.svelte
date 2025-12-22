@@ -61,7 +61,7 @@
 				<Picker.Group>
 					{#each MENU_OPTIONS as menu (menu.value)}
 						{@const Icon = menu.icon}
-						<Picker.RadioItem value={menu.value}>
+						<Picker.RadioItem value={menu.value} closeOnSelect={false}>
 							<div class="flex items-center gap-2">
 								<Icon />
 								{menu.label}

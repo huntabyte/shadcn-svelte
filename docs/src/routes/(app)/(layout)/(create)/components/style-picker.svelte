@@ -37,7 +37,7 @@
 			<Picker.RadioGroup bind:value={designSystem.style}>
 				<Picker.Group>
 					{#each STYLES as style, i (style.name)}
-						<Picker.RadioItem value={style.name}>
+						<Picker.RadioItem value={style.name} closeOnSelect={false}>
 							<div class="flex items-start gap-2">
 								<div
 									class="flex size-4 translate-y-0.5 items-center justify-center"

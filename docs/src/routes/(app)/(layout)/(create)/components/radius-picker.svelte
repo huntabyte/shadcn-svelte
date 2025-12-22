@@ -40,7 +40,7 @@
 				<Picker.Group>
 					{#each RADII as radius (radius.name)}
 						{#if radius.name === "default"}
-							<Picker.RadioItem value={radius.name}>
+							<Picker.RadioItem value={radius.name} closeOnSelect={false}>
 								<div class="flex flex-col justify-start pointer-coarse:gap-1">
 									<div>{radius.label}</div>
 									<div
@@ -52,7 +52,7 @@
 							</Picker.RadioItem>
 							<Picker.Separator />
 						{:else}
-							<Picker.RadioItem value={radius.name}>
+							<Picker.RadioItem value={radius.name} closeOnSelect={false}>
 								{radius.label}
 							</Picker.RadioItem>
 						{/if}

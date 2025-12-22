@@ -60,7 +60,7 @@
 			<Picker.Group>
 				{#each PRESETS as preset (preset.title)}
 					{@const style = STYLES.find((s) => s.name === preset.style)}
-					<Picker.RadioItem value={preset.title}>
+					<Picker.RadioItem value={preset.title} closeOnSelect={false}>
 						<div class="flex items-center gap-2">
 							{#if style?.icon}
 								<div class="flex size-4 shrink-0 items-center justify-center">

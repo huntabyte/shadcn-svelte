@@ -124,6 +124,7 @@
 				<Picker.Group>
 					{#each Object.values(iconLibraries) as iconLibrary, index (iconLibrary.name)}
 						<Picker.RadioItem
+							closeOnSelect={false}
 							value={iconLibrary.name}
 							class="pr-2 *:data-[slot=dropdown-menu-radio-item-indicator]:hidden"
 						>
