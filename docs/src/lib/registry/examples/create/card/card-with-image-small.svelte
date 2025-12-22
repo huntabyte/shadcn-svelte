@@ -34,4 +34,3 @@
 		</Card.Footer>
 	</Card.Root>
 </Example>
-

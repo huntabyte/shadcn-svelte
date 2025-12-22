@@ -8,21 +8,16 @@
 	<Card.Root size="sm" class="mx-auto w-full max-w-sm">
 		<Card.Header>
 			<Card.Title>Small Card</Card.Title>
-			<Card.Description>
-				This card uses the small size variant.
-			</Card.Description>
+			<Card.Description>This card uses the small size variant.</Card.Description>
 		</Card.Header>
 		<Card.Content>
 			<p>
-				The card component supports a size prop that can be set to
-				`sm` for a more compact appearance.
+				The card component supports a size prop that can be set to `sm` for a more compact
+				appearance.
 			</p>
 		</Card.Content>
 		<Card.Footer>
-			<Button.Root variant="outline" size="sm" class="w-full">
-				Action
-			</Button.Root>
+			<Button.Root variant="outline" size="sm" class="w-full">Action</Button.Root>
 		</Card.Footer>
 	</Card.Root>
 </Example>
-

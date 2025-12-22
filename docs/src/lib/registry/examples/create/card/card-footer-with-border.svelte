@@ -8,15 +8,12 @@
 	<Card.Root class="mx-auto w-full max-w-sm">
 		<Card.Content>
 			<p>
-				The footer has a border-t class applied, creating a visual
-				separation between the content and footer sections.
+				The footer has a border-t class applied, creating a visual separation between the
+				content and footer sections.
 			</p>
 		</Card.Content>
 		<Card.Footer class="border-t">
-			<Button.Root variant="outline" class="w-full">
-				Footer with Border
-			</Button.Root>
+			<Button.Root variant="outline" class="w-full">Footer with Border</Button.Root>
 		</Card.Footer>
 	</Card.Root>
 </Example>
-

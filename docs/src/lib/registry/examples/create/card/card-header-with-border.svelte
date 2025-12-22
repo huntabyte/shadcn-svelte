@@ -13,10 +13,9 @@
 		</Card.Header>
 		<Card.Content>
 			<p>
-				The header has a border-b class applied, creating a visual
-				separation between the header and content sections.
+				The header has a border-b class applied, creating a visual separation between the
+				header and content sections.
 			</p>
 		</Card.Content>
 	</Card.Root>
 </Example>
-

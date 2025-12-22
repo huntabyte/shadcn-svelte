@@ -10,9 +10,7 @@
 	<Card.Root class="mx-auto w-full max-w-sm">
 		<Card.Header>
 			<Card.Title>Meeting Notes</Card.Title>
-			<Card.Description>
-				Transcript from the meeting with the client.
-			</Card.Description>
+			<Card.Description>Transcript from the meeting with the client.</Card.Description>
 			<Card.Action>
 				<Button.Root variant="outline" size="sm">
 					<IconPlaceholder
@@ -27,10 +25,7 @@
 			</Card.Action>
 		</Card.Header>
 		<Card.Content>
-			<p>
-				Client requested dashboard redesign with focus on mobile
-				responsiveness.
-			</p>
+			<p>Client requested dashboard redesign with focus on mobile responsiveness.</p>
 			<ol class="mt-4 flex list-decimal flex-col gap-2 pl-6">
 				<li>New analytics widgets for daily/weekly metrics</li>
 				<li>Simplified navigation menu</li>
@@ -46,17 +41,11 @@
 					<Avatar.Fallback>CN</Avatar.Fallback>
 				</Avatar.Root>
 				<Avatar.Root>
-					<Avatar.Image
-						src="https://github.com/maxleiter.png"
-						alt="@maxleiter"
-					/>
+					<Avatar.Image src="https://github.com/maxleiter.png" alt="@maxleiter" />
 					<Avatar.Fallback>LR</Avatar.Fallback>
 				</Avatar.Root>
 				<Avatar.Root>
-					<Avatar.Image
-						src="https://github.com/evilrabbit.png"
-						alt="@evilrabbit"
-					/>
+					<Avatar.Image src="https://github.com/evilrabbit.png" alt="@evilrabbit" />
 					<Avatar.Fallback>ER</Avatar.Fallback>
 				</Avatar.Root>
 				<Avatar.GroupCount>+8</Avatar.GroupCount>
@@ -64,4 +53,3 @@
 		</Card.Footer>
 	</Card.Root>
 </Example>
-

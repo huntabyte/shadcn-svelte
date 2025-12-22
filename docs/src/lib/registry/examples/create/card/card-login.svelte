@@ -10,21 +10,14 @@
 	<Card.Root class="mx-auto w-full max-w-sm">
 		<Card.Header>
 			<Card.Title>Login to your account</Card.Title>
-			<Card.Description>
-				Enter your email below to login to your account
-			</Card.Description>
+			<Card.Description>Enter your email below to login to your account</Card.Description>
 		</Card.Header>
 		<Card.Content>
 			<form>
 				<Field.Group>
 					<Field.Field>
 						<Field.Label for="email">Email</Field.Label>
-						<Input.Root
-							id="email"
-							type="email"
-							placeholder="m@example.com"
-							required
-						/>
+						<Input.Root id="email" type="email" placeholder="m@example.com" required />
 					</Field.Field>
 					<Field.Field>
 						<div class="flex items-center">
@@ -42,19 +35,12 @@
 			</form>
 		</Card.Content>
 		<Card.Footer class="flex-col gap-2">
-			<Button.Root type="submit" class="w-full">
-				Login
-			</Button.Root>
-			<Button.Root variant="outline" class="w-full">
-				Login with Google
-			</Button.Root>
+			<Button.Root type="submit" class="w-full">Login</Button.Root>
+			<Button.Root variant="outline" class="w-full">Login with Google</Button.Root>
 			<div class="mt-4 text-center">
 				Don't have an account?
-				<a href="#/" class="underline underline-offset-4">
-					Sign up
-				</a>
+				<a href="#/" class="underline underline-offset-4"> Sign up </a>
 			</div>
 		</Card.Footer>
 	</Card.Root>
 </Example>
-
