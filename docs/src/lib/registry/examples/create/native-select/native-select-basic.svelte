@@ -9,10 +9,7 @@
 		<NativeSelect.Option value="apple">Apple</NativeSelect.Option>
 		<NativeSelect.Option value="banana">Banana</NativeSelect.Option>
 		<NativeSelect.Option value="blueberry">Blueberry</NativeSelect.Option>
-		<NativeSelect.Option value="grapes" disabled>
-			Grapes
-		</NativeSelect.Option>
+		<NativeSelect.Option value="grapes" disabled>Grapes</NativeSelect.Option>
 		<NativeSelect.Option value="pineapple">Pineapple</NativeSelect.Option>
 	</NativeSelect.Root>
 </Example>
-

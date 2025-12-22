@@ -25,6 +25,7 @@ export { default as FlipHorizontalIcon } from '@lucide/svelte/icons/flip-horizon
 export { default as FlipVerticalIcon } from '@lucide/svelte/icons/flip-vertical'
 export { default as FolderIcon } from '@lucide/svelte/icons/folder'
 export { default as HeartIcon } from '@lucide/svelte/icons/heart'
+export { default as InboxIcon } from '@lucide/svelte/icons/inbox'
 export { default as MaximizeIcon } from '@lucide/svelte/icons/maximize'
 export { default as MinimizeIcon } from '@lucide/svelte/icons/minimize'
 export { default as MinusIcon } from '@lucide/svelte/icons/minus'
@@ -38,4 +39,4 @@ export { default as TrashIcon } from '@lucide/svelte/icons/trash'
 export { default as UserRoundXIcon } from '@lucide/svelte/icons/user-round-x'
 export { default as VolumeX } from '@lucide/svelte/icons/volume-x'
 
-export type LucideIconName = "AlertTriangleIcon" | "ArrowLeftCircleIcon" | "ArrowLeftIcon" | "ArrowRightIcon" | "ArrowUpRightIcon" | "AudioLinesIcon" | "BadgeCheck" | "BluetoothIcon" | "CalendarIcon" | "CaptionsIcon" | "ChartBarIcon" | "ChartLineIcon" | "ChartPieIcon" | "CheckIcon" | "ChevronDownIcon" | "ChevronLeftIcon" | "ChevronRightIcon" | "ChevronUpIcon" | "CircleAlertIcon" | "Clock2Icon" | "CopyIcon" | "FileIcon" | "FlipHorizontalIcon" | "FlipVerticalIcon" | "FolderIcon" | "HeartIcon" | "MaximizeIcon" | "MinimizeIcon" | "MinusIcon" | "MoreHorizontalIcon" | "PlusIcon" | "RotateCwIcon" | "SearchIcon" | "ShareIcon" | "Trash2Icon" | "TrashIcon" | "UserRoundXIcon" | "VolumeX";
+export type LucideIconName = "AlertTriangleIcon" | "ArrowLeftCircleIcon" | "ArrowLeftIcon" | "ArrowRightIcon" | "ArrowUpRightIcon" | "AudioLinesIcon" | "BadgeCheck" | "BluetoothIcon" | "CalendarIcon" | "CaptionsIcon" | "ChartBarIcon" | "ChartLineIcon" | "ChartPieIcon" | "CheckIcon" | "ChevronDownIcon" | "ChevronLeftIcon" | "ChevronRightIcon" | "ChevronUpIcon" | "CircleAlertIcon" | "Clock2Icon" | "CopyIcon" | "FileIcon" | "FlipHorizontalIcon" | "FlipVerticalIcon" | "FolderIcon" | "HeartIcon" | "InboxIcon" | "MaximizeIcon" | "MinimizeIcon" | "MinusIcon" | "MoreHorizontalIcon" | "PlusIcon" | "RotateCwIcon" | "SearchIcon" | "ShareIcon" | "Trash2Icon" | "TrashIcon" | "UserRoundXIcon" | "VolumeX";

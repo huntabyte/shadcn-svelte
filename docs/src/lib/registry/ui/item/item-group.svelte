@@ -14,7 +14,7 @@
 	bind:this={ref}
 	role="list"
 	data-slot="item-group"
-	class={cn("group/item-group flex flex-col", className)}
+	class={cn("cn-item-group group/item-group flex w-full flex-col", className)}
 	{...restProps}
 >
 	{@render children?.()}

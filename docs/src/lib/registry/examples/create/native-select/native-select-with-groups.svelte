@@ -18,4 +18,3 @@
 		</NativeSelect.OptGroup>
 	</NativeSelect.Root>
 </Example>
-

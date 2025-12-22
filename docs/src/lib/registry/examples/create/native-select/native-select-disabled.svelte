@@ -11,4 +11,3 @@
 		<NativeSelect.Option value="blueberry">Blueberry</NativeSelect.Option>
 	</NativeSelect.Root>
 </Example>
-
