@@ -77,4 +77,9 @@ export const examples: Example[] = [
 		name: "collapsible",
 		type: "registry:example",
 	},
+	{
+		title: "Input",
+		name: "input",
+		type: "registry:example",
+	},
 ];
