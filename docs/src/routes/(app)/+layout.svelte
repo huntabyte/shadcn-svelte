@@ -9,10 +9,7 @@
 	UserConfigContext.set(new UserConfig(data.userConfig));
 </script>
 
-<ModeWatcher
-	defaultMode="system"
-	disableTransitions
-/>
+<ModeWatcher defaultMode="system" disableTransitions />
 <Toaster position="top-center" />
 
 <DesignSystemProvider>
