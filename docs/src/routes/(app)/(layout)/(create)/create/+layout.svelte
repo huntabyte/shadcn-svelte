@@ -25,10 +25,9 @@
 	const clipboard = new UseClipboard();
 
 	const designSystem = useDesignSystem();
-
+	
 	const isMac = useIsMac();
-
-	const cmdOrCtrl = isMac ? "⌘" : "Ctrl";
+	const cmdOrCtrl = $derived(isMac ? "⌘" : "Ctrl");
 </script>
 
 <div data-slot="layout" class="section-soft relative z-10 flex min-h-svh flex-col">

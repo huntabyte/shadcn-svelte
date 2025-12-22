@@ -18,6 +18,15 @@
 	import ModeSwitcher from "./mode-switcher.svelte";
 	import { setMode, mode } from "mode-watcher";
 	import * as Kbd from "$lib/registry/ui/kbd/index.js";
+	import UndoIcon from "@lucide/svelte/icons/undo";
+	import RedoIcon from "@lucide/svelte/icons/redo";
+	import { useDesignSystem } from "$lib/features/design-system/index.js";
+	import { useIsMac } from "$lib/hooks/use-is-mac.svelte.js";
+
+	const designSystem = useDesignSystem();
+
+	const isMac = useIsMac();
+	const cmdOrCtrl = $derived(isMac.current ? "⌘" : "Ctrl");
 </script>
 
 <Tooltip.Provider>
@@ -82,6 +91,39 @@
 						<span class="sr-only">Toggle theme</span>
 					</div>
 					<Kbd.Root class="bg-foreground/10 text-foreground hidden md:flex">D</Kbd.Root>
+				</DropdownMenu.Item>
+				<DropdownMenu.Separator />
+				<DropdownMenu.Item
+					closeOnSelect={false}
+					onclick={() => designSystem.undo()}
+					disabled={!designSystem.canUndo}
+					class="justify-between"
+				>
+					<div class="flex items-center gap-2">
+						<UndoIcon class="size-4" />
+						<span>Undo</span>
+					</div>
+					<Kbd.Group class="hidden md:flex">
+						<Kbd.Root class="bg-foreground/10 text-foreground">{cmdOrCtrl}</Kbd.Root>
+						<span>+</span>
+						<Kbd.Root class="bg-foreground/10 text-foreground">z</Kbd.Root>
+					</Kbd.Group>
+				</DropdownMenu.Item>
+				<DropdownMenu.Item
+					closeOnSelect={false}
+					onclick={() => designSystem.redo()}
+					disabled={!designSystem.canRedo}
+					class="justify-between"
+				>
+					<div class="flex items-center gap-2">
+						<RedoIcon class="size-4" />
+						<span>Redo</span>
+					</div>
+					<Kbd.Group class="hidden md:flex">
+						<Kbd.Root class="bg-foreground/10 text-foreground">{cmdOrCtrl}</Kbd.Root>
+						<span>+</span>
+						<Kbd.Root class="bg-foreground/10 text-foreground">Z</Kbd.Root>
+					</Kbd.Group>
 				</DropdownMenu.Item>
 			</Field.Group>
 		</DropdownMenu.Content>
