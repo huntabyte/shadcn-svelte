@@ -9,6 +9,12 @@
 	import MenuIconDefault from "./menu-icon-default.svelte";
 	import MenuIconInverted from "./menu-icon-inverted.svelte";
 
+	type Props = {
+		submenu?: boolean;
+	};
+
+	let { submenu = false }: Props = $props();
+
 	const designSystem = useDesignSystem();
 	const isMobile = new IsMobile();
 
@@ -34,8 +40,8 @@
 </script>
 
 <div class="group/picker relative">
-	<Picker.Root>
-		<Picker.Trigger disabled={isDisabled}>
+	<Picker.Root {submenu}>
+		<Picker.Trigger disabled={isDisabled} {submenu} class="data-disabled:opacity-50">
 			<div class="flex flex-col justify-start text-left">
 				<div class="text-muted-foreground text-xs">Menu Color</div>
 				<div class="text-foreground text-sm font-medium">
@@ -51,6 +57,7 @@
 		<Picker.Content
 			side={isMobile.current ? "top" : "right"}
 			align={isMobile.current ? "center" : "start"}
+			{submenu}
 		>
 			<Picker.RadioGroup
 				value={currentMenu?.value}

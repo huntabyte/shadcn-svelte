@@ -11,6 +11,7 @@
 	import { watch } from "runed";
 	import { setupDesignSystem } from "./design-system-provider-state.svelte.js";
 	import { cn } from "$lib/registry/lib/utils.js";
+	import { toggleMode } from "mode-watcher";
 
 	const uid = $props.id();
 
@@ -111,7 +112,41 @@
 
 		styleElement.textContent = cssText;
 	});
+
+	function handleKeyDown(e: KeyboardEvent) {
+		// randomize on r/R
+		if ((e.key === "r" || e.key === "R") && !e.metaKey && !e.ctrlKey) {
+			if (
+				(e.target instanceof HTMLElement && e.target.isContentEditable) ||
+				e.target instanceof HTMLInputElement ||
+				e.target instanceof HTMLTextAreaElement ||
+				e.target instanceof HTMLSelectElement
+			) {
+				return;
+			}
+
+			e.preventDefault();
+			designSystem.randomize();
+		}
+
+		// toggle theme on d/D
+		if ((e.key === "d" || e.key === "D") && !e.metaKey && !e.ctrlKey) {
+			if (
+				(e.target instanceof HTMLElement && e.target.isContentEditable) ||
+				e.target instanceof HTMLInputElement ||
+				e.target instanceof HTMLTextAreaElement ||
+				e.target instanceof HTMLSelectElement
+			) {
+				return;
+			}
+
+			e.preventDefault();
+			toggleMode();
+		}
+	}
 </script>
+
+<svelte:window onkeydown={handleKeyDown} />
 
 <div
 	data-slot="design-system-provider"

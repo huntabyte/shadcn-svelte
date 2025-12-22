@@ -6,6 +6,12 @@
 	import { mode } from "mode-watcher";
 	import { BASE_THEMES, THEMES, type BaseTheme, type Theme } from "$lib/registry/config.js";
 
+	type Props = {
+		submenu?: boolean;
+	};
+
+	let { submenu = false }: Props = $props();
+
 	const designSystem = useDesignSystem();
 
 	const isMobile = new IsMobile();
@@ -27,8 +33,8 @@
 </script>
 
 <div class="group/picker relative">
-	<Picker.Root>
-		<Picker.Trigger>
+	<Picker.Root {submenu}>
+		<Picker.Trigger {submenu}>
 			<div class="flex flex-col justify-start text-left">
 				<div class="text-muted-foreground text-xs">Theme</div>
 				<div class="text-foreground text-sm font-medium">
@@ -44,6 +50,7 @@
 			side={isMobile.current ? "top" : "right"}
 			align={isMobile.current ? "center" : "start"}
 			class="max-h-96"
+			{submenu}
 		>
 			<Picker.RadioGroup bind:value={designSystem.theme}>
 				<Picker.Group>

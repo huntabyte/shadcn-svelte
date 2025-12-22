@@ -6,6 +6,12 @@
 	import LockButton from "./lock-button.svelte";
 	import { fonts } from "$lib/registry/config.js";
 
+	type Props = {
+		submenu?: boolean;
+	};
+
+	let { submenu = false }: Props = $props();
+
 	const designSystem = useDesignSystem();
 
 	const isMobile = new IsMobile();
@@ -16,8 +22,8 @@
 </script>
 
 <div class="group/picker relative">
-	<Picker.Root>
-		<Picker.Trigger>
+	<Picker.Root {submenu}>
+		<Picker.Trigger {submenu}>
 			<div class="flex flex-col justify-start text-left">
 				<div class="text-muted-foreground text-xs">Font</div>
 				<div class="text-foreground text-sm font-medium">
@@ -35,11 +41,15 @@
 			side={isMobile.current ? "top" : "right"}
 			align={isMobile.current ? "center" : "start"}
 			class="max-h-80 md:w-72"
+			{submenu}
 		>
 			<Picker.RadioGroup bind:value={designSystem.font}>
 				<Picker.Group>
 					{#each fonts as font, index (font.name)}
-						<Picker.RadioItem value={font.name.replace("font-", "")}>
+						<Picker.RadioItem
+							value={font.name.replace("font-", "")}
+							closeOnSelect={false}
+						>
 							<Item.Root size="sm">
 								<Item.Content class="gap-1">
 									<Item.Title class="text-muted-foreground text-xs font-medium">

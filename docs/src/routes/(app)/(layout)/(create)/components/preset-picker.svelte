@@ -4,6 +4,12 @@
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import { PRESETS, STYLES } from "$lib/registry/config.js";
 
+	type Props = {
+		submenu?: boolean;
+	};
+
+	let { submenu = false }: Props = $props();
+
 	const designSystem = useDesignSystem();
 
 	const currentPreset = $derived(
@@ -42,8 +48,8 @@
 	const isMobile = new IsMobile();
 </script>
 
-<Picker.Root>
-	<Picker.Trigger>
+<Picker.Root {submenu}>
+	<Picker.Trigger {submenu}>
 		<div class="flex flex-col justify-start text-left">
 			<div class="text-muted-foreground text-xs">Preset</div>
 			<div class="text-foreground line-clamp-1 text-sm font-medium">
@@ -55,6 +61,7 @@
 		side={isMobile.current ? "top" : "right"}
 		align={isMobile.current ? "center" : "start"}
 		class="md:w-72"
+		{submenu}
 	>
 		<Picker.RadioGroup value={selectedPresetTitle} onValueChange={handlePresetChange}>
 			<Picker.Group>

@@ -5,6 +5,7 @@ import * as path from "path";
 import { iconLibraries, type IconLibraryName } from "shadcn-svelte/icons";
 import { pascalToKebab } from "$lib/registry/lib/casing.js";
 
+const SEARCH_BASE = "src/";
 const REGISTRY_BASE = "src/lib/registry";
 
 type IconUsage = Record<IconLibraryName, Set<string>>;
@@ -30,8 +31,8 @@ async function scanIconUsage() {
 		Object.keys(iconLibraries).map((key) => [key, new Set<string>()])
 	) as IconUsage;
 
-	const registryBasesDir = path.join(process.cwd(), REGISTRY_BASE);
-	const files = await findSvelteFiles(registryBasesDir);
+	const searchBasesDir = path.join(process.cwd(), SEARCH_BASE);
+	const files = await findSvelteFiles(searchBasesDir);
 
 	for (const file of files) {
 		const content = await fs.readFile(file, "utf-8");
@@ -104,11 +105,11 @@ async function main() {
 const isWatchMode = process.argv.includes("--watch");
 
 if (isWatchMode) {
-	const REGISTRY_DIR = path.join(process.cwd(), REGISTRY_BASE);
+	const SEARCH_DIR = path.join(process.cwd(), SEARCH_BASE);
 
 	await main();
 
-	watch(REGISTRY_DIR, { recursive: true }, (_, filename) => {
+	watch(SEARCH_DIR, { recursive: true }, (_, filename) => {
 		if (!filename?.endsWith(".svelte")) return;
 
 		main().catch((error) => {

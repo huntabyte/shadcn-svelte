@@ -5,6 +5,12 @@
 	import LockButton from "./lock-button.svelte";
 	import { MENU_ACCENTS, type MenuAccentValue } from "$lib/registry/config.js";
 
+	type Props = {
+		submenu?: boolean;
+	};
+
+	let { submenu = false }: Props = $props();
+
 	const designSystem = useDesignSystem();
 	const isMobile = new IsMobile();
 
@@ -14,8 +20,8 @@
 </script>
 
 <div class="group/picker relative">
-	<Picker.Root>
-		<Picker.Trigger>
+	<Picker.Root {submenu}>
+		<Picker.Trigger {submenu}>
 			<div class="flex flex-col justify-start text-left">
 				<div class="text-muted-foreground text-xs">Menu Accent</div>
 				<div class="text-foreground text-sm font-medium">
@@ -57,6 +63,7 @@
 		<Picker.Content
 			side={isMobile.current ? "top" : "right"}
 			align={isMobile.current ? "center" : "start"}
+			{submenu}
 		>
 			<Picker.RadioGroup
 				value={currentAccent.value}
@@ -66,7 +73,7 @@
 			>
 				<Picker.Group>
 					{#each MENU_ACCENTS as accent (accent.value)}
-						<Picker.RadioItem value={accent.value}>
+						<Picker.RadioItem value={accent.value} closeOnSelect={false}>
 							{accent.label}
 						</Picker.RadioItem>
 					{/each}

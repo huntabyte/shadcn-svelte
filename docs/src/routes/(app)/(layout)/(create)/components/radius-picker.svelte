@@ -5,6 +5,12 @@
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import LockButton from "./lock-button.svelte";
 
+	type Props = {
+		submenu?: boolean;
+	};
+
+	let { submenu = false }: Props = $props();
+
 	const designSystem = useDesignSystem();
 
 	const currentRadius = $derived(
@@ -15,8 +21,8 @@
 </script>
 
 <div class="group/picker relative">
-	<Picker.Root>
-		<Picker.Trigger>
+	<Picker.Root {submenu}>
+		<Picker.Trigger {submenu}>
 			<div class="flex flex-col justify-start text-left">
 				<div class="text-muted-foreground text-xs">Radius</div>
 				<div class="text-foreground text-sm font-medium">
@@ -35,6 +41,7 @@
 		<Picker.Content
 			side={isMobile.current ? "top" : "right"}
 			align={isMobile.current ? "center" : "start"}
+			{submenu}
 		>
 			<Picker.RadioGroup bind:value={designSystem.radius}>
 				<Picker.Group>

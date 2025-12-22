@@ -16,6 +16,12 @@
 	import { SquareIcon as HugeiconsSquareIcon } from "@hugeicons/core-free-icons";
 	import LucideSquareIcon from "@lucide/svelte/icons/square";
 
+	type Props = {
+		submenu?: boolean;
+	};
+
+	let { submenu = false }: Props = $props();
+
 	const designSystem = useDesignSystem();
 	const isMobile = new IsMobile();
 
@@ -102,8 +108,8 @@
 </script>
 
 <div class="group/picker relative">
-	<Picker.Root>
-		<Picker.Trigger>
+	<Picker.Root {submenu}>
+		<Picker.Trigger {submenu}>
 			<div class="flex flex-col justify-start text-left">
 				<div class="text-muted-foreground text-xs">Icon Library</div>
 				<div class="text-foreground text-sm font-medium">
@@ -119,6 +125,7 @@
 		<Picker.Content
 			side={isMobile.current ? "top" : "right"}
 			align={isMobile.current ? "center" : "start"}
+			{submenu}
 		>
 			<Picker.RadioGroup bind:value={designSystem.iconLibrary}>
 				<Picker.Group>

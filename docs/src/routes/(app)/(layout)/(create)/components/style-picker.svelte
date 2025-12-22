@@ -5,6 +5,12 @@
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 
+	type Props = {
+		submenu?: boolean;
+	};
+
+	let { submenu = false }: Props = $props();
+
 	const designSystem = useDesignSystem();
 
 	const currentStyle = $derived(
@@ -15,8 +21,8 @@
 </script>
 
 <div class="group/picker relative">
-	<Picker.Root>
-		<Picker.Trigger>
+	<Picker.Root {submenu}>
+		<Picker.Trigger {submenu}>
 			<div class="flex flex-col justify-start text-left">
 				<div class="text-muted-foreground text-xs">Style</div>
 				<div class="text-foreground text-sm font-medium">
@@ -33,6 +39,7 @@
 			side={isMobile.current ? "top" : "right"}
 			align={isMobile.current ? "center" : "start"}
 			class="md:w-64"
+			{submenu}
 		>
 			<Picker.RadioGroup bind:value={designSystem.style}>
 				<Picker.Group>

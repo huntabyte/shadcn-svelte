@@ -1,7 +1,19 @@
 <script lang="ts">
 	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
 
-	let { open = $bindable(false), ...restProps }: DropdownMenuPrimitive.RootProps = $props();
+	type Props =
+		| ({
+				submenu: true;
+		  } & DropdownMenuPrimitive.RootProps)
+		| ({
+				submenu: false;
+		  } & DropdownMenuPrimitive.SubProps);
+
+	let { open = $bindable(false), submenu, ...restProps }: Props = $props();
 </script>
 
-<DropdownMenuPrimitive.Root bind:open {...restProps} />
+{#if submenu}
+	<DropdownMenuPrimitive.Sub bind:open {...restProps} />
+{:else}
+	<DropdownMenuPrimitive.Root bind:open {...restProps} />
+{/if}
