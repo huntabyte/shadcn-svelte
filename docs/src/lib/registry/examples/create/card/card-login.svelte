@@ -30,7 +30,7 @@
 						<div class="flex items-center">
 							<Field.Label for="password">Password</Field.Label>
 							<a
-								href="#"
+								href="#/"
 								class="ml-auto inline-block underline-offset-4 hover:underline"
 							>
 								Forgot your password?
@@ -49,8 +49,8 @@
 				Login with Google
 			</Button.Root>
 			<div class="mt-4 text-center">
-				Don&apos;t have an account?{" "}
-				<a href="#" class="underline underline-offset-4">
+				Don't have an account?
+				<a href="#/" class="underline underline-offset-4">
 					Sign up
 				</a>
 			</div>

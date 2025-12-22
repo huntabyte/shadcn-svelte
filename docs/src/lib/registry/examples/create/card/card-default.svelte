@@ -15,7 +15,7 @@
 		<Card.Content>
 			<p>
 				The card component supports a size prop that defaults to
-				&quot;default&quot; for standard spacing and sizing.
+				`default` for standard spacing and sizing.
 			</p>
 		</Card.Content>
 		<Card.Footer>
