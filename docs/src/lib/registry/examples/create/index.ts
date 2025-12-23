@@ -163,6 +163,11 @@ export const examples: Example[] = [
 		type: "registry:example",
 	},
 	{
+		title: "Popover",
+		name: "popover",
+		type: "registry:example",
+	},
+	{
 		title: "Textarea",
 		name: "textarea",
 		type: "registry:example",
@@ -170,6 +175,11 @@ export const examples: Example[] = [
 	{
 		title: "Navigation Menu",
 		name: "navigation-menu",
+		type: "registry:example",
+	},
+	{
+		title: "Pagination",
+		name: "pagination",
 		type: "registry:example",
 	},
 ];

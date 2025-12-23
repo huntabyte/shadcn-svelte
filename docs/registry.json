@@ -1362,7 +1362,19 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/popover/popover-description.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/popover/popover-header.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/popover/popover-portal.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/popover/popover-title.svelte"
 				},
 				{
 					"type": "registry:file",
