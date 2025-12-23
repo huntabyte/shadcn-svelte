@@ -103,6 +103,11 @@ export const examples: Example[] = [
 		type: "registry:example",
 	},
 	{
+		title: "Hover Card",
+		name: "hover-card",
+		type: "registry:example",
+	},
+	{
 		title: "Empty",
 		name: "empty",
 		type: "registry:example",
@@ -120,6 +125,11 @@ export const examples: Example[] = [
 	{
 		title: "Input Group",
 		name: "input-group",
+		type: "registry:example",
+	},
+	{
+		title: "Input OTP",
+		name: "input-otp",
 		type: "registry:example",
 	},
 	{
