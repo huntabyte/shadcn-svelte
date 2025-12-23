@@ -1397,6 +1397,14 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/progress/progress-label.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/progress/progress-track.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/progress/progress.svelte"
 				}
 			]

@@ -168,6 +168,11 @@ export const examples: Example[] = [
 		type: "registry:example",
 	},
 	{
+		title: "Progress",
+		name: "progress",
+		type: "registry:example",
+	},
+	{
 		title: "Textarea",
 		name: "textarea",
 		type: "registry:example",
