@@ -148,6 +148,11 @@ export const examples: Example[] = [
 		type: "registry:example",
 	},
 	{
+		title: "Menubar",
+		name: "menubar",
+		type: "registry:example",
+	},
+	{
 		title: "Select",
 		name: "select",
 		type: "registry:example",
@@ -160,6 +165,11 @@ export const examples: Example[] = [
 	{
 		title: "Textarea",
 		name: "textarea",
+		type: "registry:example",
+	},
+	{
+		title: "Navigation Menu",
+		name: "navigation-menu",
 		type: "registry:example",
 	},
 ];
