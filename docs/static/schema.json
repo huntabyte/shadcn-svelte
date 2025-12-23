@@ -1,4 +1,83 @@
 {
-	"type": "string",
-	"$schema": "http://json-schema.org/draft-07/schema#"
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"type": "object",
+	"properties": {
+		"$schema": {
+			"type": "string"
+		},
+		"style": {
+			"type": "string"
+		},
+		"tailwind": {
+			"type": "object",
+			"properties": {
+				"css": {
+					"type": "string"
+				},
+				"baseColor": {
+					"type": "string"
+				},
+				"config": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"css",
+				"baseColor"
+			],
+			"additionalProperties": false
+		},
+		"aliases": {
+			"type": "object",
+			"properties": {
+				"components": {
+					"type": "string"
+				},
+				"utils": {
+					"type": "string"
+				},
+				"ui": {
+					"type": "string"
+				},
+				"hooks": {
+					"type": "string"
+				},
+				"lib": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"components",
+				"utils"
+			],
+			"additionalProperties": false
+		},
+		"registry": {
+			"type": "string"
+		},
+		"typescript": {
+			"anyOf": [
+				{
+					"type": "boolean"
+				},
+				{
+					"type": "object",
+					"properties": {
+						"config": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"config"
+					],
+					"additionalProperties": false
+				}
+			]
+		}
+	},
+	"required": [
+		"tailwind",
+		"aliases"
+	],
+	"additionalProperties": false
 }
