@@ -98,6 +98,11 @@ export const examples: Example[] = [
 		type: "registry:example",
 	},
 	{
+		title: "Dropdown Menu",
+		name: "dropdown-menu",
+		type: "registry:example",
+	},
+	{
 		title: "Input",
 		name: "input",
 		type: "registry:example",
