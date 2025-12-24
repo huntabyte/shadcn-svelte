@@ -203,6 +203,11 @@ export const examples: Example[] = [
 		type: "registry:example",
 	},
 	{
+		title: "Sonner",
+		name: "sonner",
+		type: "registry:example",
+	},
+	{
 		title: "Skeleton",
 		name: "skeleton",
 		type: "registry:example",
