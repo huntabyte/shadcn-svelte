@@ -183,6 +183,11 @@ export const examples: Example[] = [
 		type: "registry:example",
 	},
 	{
+		title: "Scroll Area",
+		name: "scroll-area",
+		type: "registry:example",
+	},
+	{
 		title: "Textarea",
 		name: "textarea",
 		type: "registry:example",
