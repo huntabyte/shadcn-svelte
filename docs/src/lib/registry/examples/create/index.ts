@@ -243,6 +243,11 @@ export const examples: Example[] = [
 		type: "registry:example",
 	},
 	{
+		title: "Toggle Group",
+		name: "toggle-group",
+		type: "registry:example",
+	},
+	{
 		title: "Navigation Menu",
 		name: "navigation-menu",
 		type: "registry:example",
