@@ -248,6 +248,11 @@ export const examples: Example[] = [
 		type: "registry:example",
 	},
 	{
+		title: "Tooltip",
+		name: "tooltip",
+		type: "registry:example",
+	},
+	{
 		title: "Navigation Menu",
 		name: "navigation-menu",
 		type: "registry:example",
