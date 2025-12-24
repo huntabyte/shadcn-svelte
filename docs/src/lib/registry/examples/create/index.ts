@@ -218,6 +218,11 @@ export const examples: Example[] = [
 		type: "registry:example",
 	},
 	{
+		title: "Switch",
+		name: "switch",
+		type: "registry:example",
+	},
+	{
 		title: "Textarea",
 		name: "textarea",
 		type: "registry:example",
