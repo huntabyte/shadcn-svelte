@@ -173,6 +173,11 @@ export const examples: Example[] = [
 		type: "registry:example",
 	},
 	{
+		title: "Radio Group",
+		name: "radio-group",
+		type: "registry:example",
+	},
+	{
 		title: "Textarea",
 		name: "textarea",
 		type: "registry:example",
