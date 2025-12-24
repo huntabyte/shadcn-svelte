@@ -188,6 +188,11 @@ export const examples: Example[] = [
 		type: "registry:example",
 	},
 	{
+		title: "Separator",
+		name: "separator",
+		type: "registry:example",
+	},
+	{
 		title: "Textarea",
 		name: "textarea",
 		type: "registry:example",
@@ -202,4 +207,4 @@ export const examples: Example[] = [
 		name: "pagination",
 		type: "registry:example",
 	},
-];
+].toSorted((a, b) => a.title.localeCompare(b.title)) as Example[];

@@ -23,5 +23,8 @@
 	{...restProps}
 >
 	{@render children?.()}
-	<ScrollAreaPrimitive.Thumb data-slot="scroll-area-thumb" class="cn-scroll-area-thumb bg-border relative flex-1" />
+	<ScrollAreaPrimitive.Thumb
+		data-slot="scroll-area-thumb"
+		class="cn-scroll-area-thumb bg-border relative flex-1"
+	/>
 </ScrollAreaPrimitive.Scrollbar>
