@@ -1622,7 +1622,7 @@
 		{
 			"name": "sheet",
 			"type": "registry:ui",
-			"registryDependencies": [],
+			"registryDependencies": ["button"],
 			"files": [
 				{
 					"type": "registry:file",
