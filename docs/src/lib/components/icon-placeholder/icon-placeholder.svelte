@@ -19,6 +19,8 @@
 		"data-slot"?: string;
 		"data-icon"?: string;
 		"aria-hidden"?: boolean;
+		"aria-label"?: string | null;
+		role?: string;
 	};
 
 	let { hugeicons, lucide, tabler, phosphor, class: className, ...restProps }: Props = $props();
