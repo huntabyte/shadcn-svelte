@@ -15,8 +15,8 @@
 			<Sheet.Header>
 				<Sheet.Title>No Close Button</Sheet.Title>
 				<Sheet.Description>
-					This sheet doesn't have a close button in the top-right corner. You can
-					only close it using the button below.
+					This sheet doesn't have a close button in the top-right corner. You can only
+					close it using the button below.
 				</Sheet.Description>
 			</Sheet.Header>
 		</Sheet.Content>

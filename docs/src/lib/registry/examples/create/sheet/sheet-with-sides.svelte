@@ -6,7 +6,7 @@
 
 <Example title="Sides">
 	<div class="flex flex-wrap gap-2">
-		{#each (["top", "right", "bottom", "left"] as const) as side (side)}
+		{#each ["top", "right", "bottom", "left"] as const as side (side)}
 			<Sheet.Root>
 				<Sheet.Trigger>
 					{#snippet child({ props })}
