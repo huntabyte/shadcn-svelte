@@ -6,11 +6,12 @@
 
 <Example title="Sides">
 	<div class="flex flex-wrap gap-2">
-		{#each (["top", "right", "bottom", "left"] as const) as side (side)}
+		{#each ["top", "right", "bottom", "left"] as const as side (side)}
 			<Tooltip.Root>
 				<Tooltip.Trigger>
 					{#snippet child({ props })}
-						<Button variant="outline" class="w-fit capitalize" {...props}>{side}</Button>
+						<Button variant="outline" class="w-fit capitalize" {...props}>{side}</Button
+						>
 					{/snippet}
 				</Tooltip.Trigger>
 				<Tooltip.Content {side}>

@@ -188,6 +188,11 @@ export const examples: Example[] = [
 		type: "registry:example",
 	},
 	{
+		title: "Sidebar",
+		name: "sidebar",
+		type: "registry:example",
+	},
+	{
 		title: "Separator",
 		name: "separator",
 		type: "registry:example",

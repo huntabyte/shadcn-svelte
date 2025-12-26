@@ -23,11 +23,14 @@
 	});
 </script>
 
-<div data-slot="preview" class="relative -mx-1 flex flex-1 flex-col justify-center sm:mx-0">
+<div
+	data-slot="preview"
+	class="relative ring-foreground/15 -mx-1 flex flex-1 flex-col justify-center overflow-hidden rounded-2xl sm:mx-0 ring-1"
+>
 	<div
 		class={cn(
-			'[--preview-height:calc(100svh-var(--header-height)-2rem)]',
-			"ring-foreground/15 3xl:max-w-[1800px] z-0 mx-auto flex max-h-(--preview-height) w-full flex-1 flex-col overflow-y-auto rounded-2xl ring-1",
+			"[--preview-height:calc(100svh-var(--header-height)-2rem)]",
+			"3xl:max-w-[1800px] z-0 mx-auto flex max-h-(--preview-height) w-full flex-1 flex-col overflow-y-auto"
 		)}
 	>
 		{#await ComponentPromise}
