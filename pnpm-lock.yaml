@@ -165,8 +165,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0
       '@hugeicons/svelte':
-        specifier: ^1.0.2
-        version: 1.0.2(svelte@5.46.0)
+        specifier: ^1.0.3
+        version: 1.0.3(svelte@5.46.0)
       '@internationalized/date':
         specifier: ^3.10.0
         version: 3.10.0
@@ -1308,8 +1308,8 @@ packages:
   '@hugeicons/core-free-icons@3.0.0':
     resolution: {integrity: sha512-ujB8fh7dVj506bvOcZwTLS/r8T/Ev6rCLvgpdwKPHAFdBuNTbyuppTFX7n1vWnmqvJzh//giN9dqjHjyu1o+5w==}
 
-  '@hugeicons/svelte@1.0.2':
-    resolution: {integrity: sha512-JBkirOE361SorXQwU8cFNDH+MVIn7OwBDfVrC+C9LAPtK0Yyt0CmjRwdlO4whlmKTtCPZy2dQ2XW46J826s2qg==}
+  '@hugeicons/svelte@1.0.3':
+    resolution: {integrity: sha512-ySOQvPskpbpgV9pJA7Yel7HXLqu1ydXRp9djPFewGmiW4SjQZjYL//5nQb6vAJB77NZCeuol7T/LS/9C8thP0Q==}
     peerDependencies:
       svelte: ^5.0.0
 
@@ -6414,7 +6414,7 @@ snapshots:
 
   '@hugeicons/core-free-icons@3.0.0': {}
 
-  '@hugeicons/svelte@1.0.2(svelte@5.46.0)':
+  '@hugeicons/svelte@1.0.3(svelte@5.46.0)':
     dependencies:
       svelte: 5.46.0
 

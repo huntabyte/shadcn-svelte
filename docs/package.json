@@ -41,7 +41,7 @@
 		"@fontsource-variable/raleway": "^5.2.8",
 		"@fontsource-variable/roboto": "^5.2.9",
 		"@hugeicons/core-free-icons": "^3.0.0",
-		"@hugeicons/svelte": "^1.0.2",
+		"@hugeicons/svelte": "^1.0.3",
 		"@internationalized/date": "^3.10.0",
 		"@lucide/svelte": "^0.561.0",
 		"@prettier/sync": "0.6.1",
