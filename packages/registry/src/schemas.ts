@@ -105,7 +105,6 @@ export const registryIndexSchema = z.array(registryIndexItemSchema);
 const colorSchema = z.record(z.string(), z.string());
 /** Schema for base color endpoints (e.g. `https://example.com/registry/colors/slate.json`) */
 export const registryBaseColorSchema = z.object({
-	inlineColors: z.object({ light: colorSchema, dark: colorSchema }),
 	cssVars: z.object({ light: colorSchema, dark: colorSchema }),
 });
 
