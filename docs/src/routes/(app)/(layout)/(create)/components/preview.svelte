@@ -25,7 +25,7 @@
 
 <div
 	data-slot="preview"
-	class="relative ring-foreground/15 -mx-1 flex flex-1 flex-col justify-center overflow-hidden rounded-2xl sm:mx-0 ring-1"
+	class="ring-foreground/15 relative -mx-1 flex flex-1 flex-col justify-center overflow-hidden rounded-2xl ring-1 sm:mx-0"
 >
 	<div
 		class={cn(

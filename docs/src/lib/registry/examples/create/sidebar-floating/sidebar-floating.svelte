@@ -1,12 +1,13 @@
 <script lang="ts">
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 
 	const data = {
-		versions: ["1.0.1", "1.1.0-alpha", "2.0.0-beta1"],
 		navMain: [
 			{
 				title: "Getting Started",
@@ -135,99 +136,101 @@
 			},
 		],
 	};
-
-	let selectedVersion = $state(data.versions[0]);
 </script>
 
-<Sidebar.Provider>
-	<Sidebar.Root>
+<Sidebar.Provider class="bg-background">
+	<Sidebar.Root variant="floating" class="absolute">
 		<Sidebar.Header>
 			<Sidebar.Menu>
-				<Sidebar.MenuItem>
-					<DropdownMenu.Root>
-						<DropdownMenu.Trigger>
+					<Sidebar.MenuItem>
+						<Sidebar.MenuButton size="lg">
 							{#snippet child({ props })}
-								<Sidebar.MenuButton
-									size="lg"
-									class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-									{...props}
-								>
-									<Item.Root class="p-0" size="xs">
-										<Item.Content>
-											<Item.Title class="text-sm">Documentation</Item.Title>
-											<Item.Description>v{selectedVersion}</Item.Description>
-										</Item.Content>
-										<Item.Actions>
-											<IconPlaceholder
-												lucide="ChevronsUpDownIcon"
-												tabler="IconSelector"
-												hugeicons="UnfoldMoreIcon"
-												phosphor="CaretUpDownIcon"
-											/>
-										</Item.Actions>
-									</Item.Root>
-								</Sidebar.MenuButton>
-							{/snippet}
-						</DropdownMenu.Trigger>
-						<DropdownMenu.Content>
-							{#each data.versions as version (version)}
-								<DropdownMenu.Item onSelect={() => (selectedVersion = version)}>
-									v{version}
-									{#if version === selectedVersion}
-										<IconPlaceholder
-											lucide="CheckIcon"
-											tabler="IconCheck"
-											hugeicons="Tick02Icon"
-											phosphor="CheckIcon"
-											class="ml-auto"
-										/>
-									{/if}
-								</DropdownMenu.Item>
-							{/each}
-						</DropdownMenu.Content>
-					</DropdownMenu.Root>
+								<a href="/" {...props}>
+								<Item.Root class="p-0" size="xs">
+									<Item.Content>
+										<Item.Title class="text-sm">Documentation</Item.Title>
+										<Item.Description>v1.0.0</Item.Description>
+									</Item.Content>
+								</Item.Root>
+							</a>
+						{/snippet}
+					</Sidebar.MenuButton>
 				</Sidebar.MenuItem>
 			</Sidebar.Menu>
-			<form>
-				<Sidebar.Group class="py-0">
-					<Sidebar.GroupContent class="relative">
-						<Label for="search" class="sr-only">Search</Label>
-						<Sidebar.Input id="search" placeholder="Search the docs..." class="pl-8" />
-						<IconPlaceholder
-							lucide="SearchIcon"
-							tabler="IconSearch"
-							hugeicons="SearchIcon"
-							phosphor="MagnifyingGlassIcon"
-							class="pointer-events-none absolute top-1/2 left-2 size-4 -translate-y-1/2 opacity-50 select-none"
-						/>
-					</Sidebar.GroupContent>
-				</Sidebar.Group>
-			</form>
 		</Sidebar.Header>
 		<Sidebar.Content>
-			{#each data.navMain as item (item.title)}
-				<Sidebar.Group>
-					<Sidebar.GroupLabel>{item.title}</Sidebar.GroupLabel>
-					<Sidebar.GroupContent>
-						<Sidebar.Menu>
-							{#each item.items as subItem (subItem.title)}
-								<Sidebar.MenuItem>
-									<Sidebar.MenuButton isActive={subItem.isActive}>
-										{#snippet child({ props })}
-											<a href={subItem.url} {...props}>{subItem.title}</a>
-										{/snippet}
-									</Sidebar.MenuButton>
-								</Sidebar.MenuItem>
-							{/each}
-						</Sidebar.Menu>
-					</Sidebar.GroupContent>
-				</Sidebar.Group>
-			{/each}
+			<Sidebar.Group>
+				<Sidebar.Menu>
+					{#each data.navMain as item (item.title)}
+						<DropdownMenu.Root>
+							<Sidebar.MenuItem>
+								<DropdownMenu.Trigger>
+									{#snippet child({ props })}
+										<Sidebar.MenuButton
+											class="data-popup-open:bg-sidebar-accent data-popup-open:text-sidebar-accent-foreground"
+											{...props}
+										>
+											{item.title}
+											<IconPlaceholder
+												lucide="MoreHorizontalIcon"
+												tabler="IconDots"
+												hugeicons="MoreHorizontalCircle01Icon"
+												phosphor="DotsThreeOutlineIcon"
+												class="ml-auto"
+											/>
+										</Sidebar.MenuButton>
+									{/snippet}
+								</DropdownMenu.Trigger>
+								{#if item.items?.length}
+									<DropdownMenu.Content side="right" align="start">
+										<DropdownMenu.Group>
+											{#each item.items as subItem (subItem.title)}
+												<DropdownMenu.Item>
+													{#snippet child({ props })}
+														<a href={subItem.url} {...props}
+															>{subItem.title}</a
+														>
+													{/snippet}
+												</DropdownMenu.Item>
+											{/each}
+										</DropdownMenu.Group>
+									</DropdownMenu.Content>
+								{/if}
+							</Sidebar.MenuItem>
+						</DropdownMenu.Root>
+					{/each}
+				</Sidebar.Menu>
+			</Sidebar.Group>
 		</Sidebar.Content>
+		<Sidebar.Footer>
+			<Sidebar.Group>
+				<Card.Root size="sm" class="-mx-2">
+					<Card.Header>
+						<Card.Title class="text-sm">Subscribe to our newsletter</Card.Title>
+						<Card.Description>
+							Opt-in to receive updates and news about the sidebar.
+						</Card.Description>
+					</Card.Header>
+					<Card.Content>
+						<form>
+							<Field.Field>
+								<Sidebar.Input type="email" placeholder="Email" />
+								<Button
+									class="bg-sidebar-primary text-sidebar-primary-foreground w-full"
+									size="sm"
+								>
+									Subscribe
+								</Button>
+							</Field.Field>
+						</form>
+					</Card.Content>
+				</Card.Root>
+			</Sidebar.Group>
+		</Sidebar.Footer>
 		<Sidebar.Rail />
 	</Sidebar.Root>
 	<Sidebar.Inset>
-		<header class="flex h-16 shrink-0 items-center gap-2 px-4">
+		<header class="flex h-16 shrink-0 items-center gap-2 border-b px-4">
 			<Sidebar.Trigger class="-ml-1" />
 		</header>
 		<div class="flex flex-1 flex-col gap-4 p-4">

@@ -193,6 +193,21 @@ export const examples: Example[] = [
 		type: "registry:example",
 	},
 	{
+		title: "Sidebar (Floating)",
+		name: "sidebar-floating",
+		type: "registry:example",
+	},
+	{
+		title: "Sidebar (Icon)",
+		name: "sidebar-icon",
+		type: "registry:example",
+	},
+	{
+		title: "Sidebar (Inset)",
+		name: "sidebar-inset",
+		type: "registry:example",
+	},
+	{
 		title: "Separator",
 		name: "separator",
 		type: "registry:example",
