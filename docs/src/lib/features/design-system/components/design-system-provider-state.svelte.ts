@@ -21,9 +21,6 @@ import {
 	type RandomizeContext,
 } from "../../../../routes/(app)/(layout)/(create)/lib/randomize-biases.js";
 import { StateHistory } from "runed";
-import { browser } from "$app/environment";
-import { onMount } from "svelte";
-import { SvelteMap } from "svelte/reactivity";
 
 export interface IDesignSystemState extends DesignSystemConfig {
 	locks: Lockable;
@@ -37,8 +34,6 @@ export interface IDesignSystemState extends DesignSystemConfig {
 	redo: () => void;
 	canUndo: boolean;
 	canRedo: boolean;
-	subscribe: (callback: EventHandler) => number;
-	unsubscribe: (id: number) => void;
 }
 
 export type Lockable = {
@@ -54,24 +49,11 @@ export type Lockable = {
 	template: boolean;
 };
 
-type DesignSystemStateOptions = {
-	listen: boolean;
-};
-
-export type Event = {
-	type: "design-system-update";
-	data: DesignSystemConfig;
-};
-
-export type EventHandler = (event: Event) => void;
-
 class DesignSystemState implements IDesignSystemState {
-	#nextId = 0;
-	#subscribers = new SvelteMap<number, EventHandler>();
 	#history: StateHistory<DesignSystemConfig>;
 	system: PersistedState<DesignSystemConfig>;
 	#locks: PersistedState<Lockable>;
-	constructor(options: DesignSystemStateOptions) {
+	constructor() {
 		this.system = new PersistedState<DesignSystemConfig>("design-system", DEFAULT_CONFIG);
 		this.#locks = new PersistedState<Lockable>("locks", {
 			style: false,
@@ -93,42 +75,6 @@ class DesignSystemState implements IDesignSystemState {
 			() => this.system.current,
 			(value) => this.update(value)
 		);
-
-		onMount(() => {
-			if (!options.listen || !browser) return;
-
-			const handleMessage = (event: MessageEvent) => {
-				if (event.data.type === "design-system-update") {
-					this.update(event.data.data);
-					console.log("design system updated", event.data.data);
-				}
-			};
-
-			window.addEventListener("message", handleMessage);
-
-			return () => {
-				window.removeEventListener("message", handleMessage);
-			};
-		});
-	}
-
-	subscribe(callback: EventHandler) {
-		const id = this.#nextId;
-		this.#subscribers.set(id, callback);
-		this.#nextId++;
-		return id;
-	}
-
-	unsubscribe(id: number) {
-		this.#subscribers.delete(id);
-	}
-
-	#emit(event: Event) {
-		this.#subscribers.forEach((callback) => callback(event));
-	}
-
-	#emitUpdate() {
-		this.#emit({ type: "design-system-update", data: $state.snapshot(this.system.current) });
 	}
 
 	undo() {
@@ -187,8 +133,6 @@ class DesignSystemState implements IDesignSystemState {
 
 		// persist to local storage either way
 		this.system.current[prop] = value;
-
-		this.#emitUpdate();
 	}
 
 	get baseColor() {
@@ -223,8 +167,6 @@ class DesignSystemState implements IDesignSystemState {
 				keepFocus: true,
 			});
 		}
-
-		this.#emitUpdate();
 	}
 
 	get font() {
@@ -291,8 +233,6 @@ class DesignSystemState implements IDesignSystemState {
 			noScroll: true,
 			keepFocus: true,
 		});
-
-		this.#emitUpdate();
 	}
 
 	randomize() {
@@ -366,8 +306,6 @@ class DesignSystemState implements IDesignSystemState {
 				keepFocus: true,
 			});
 		}
-
-		this.#emitUpdate();
 	}
 
 	get shareUrl() {
@@ -394,8 +332,8 @@ export function useDesignSystem(): IDesignSystemState {
 	return DesignSystemContext.get();
 }
 
-export function setupDesignSystem(options: DesignSystemStateOptions): IDesignSystemState {
-	return DesignSystemContext.set(new DesignSystemState(options));
+export function setupDesignSystem(): IDesignSystemState {
+	return DesignSystemContext.set(new DesignSystemState());
 }
 
 export { type DesignSystemState };

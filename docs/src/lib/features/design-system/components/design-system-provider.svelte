@@ -16,14 +16,12 @@
 	const uid = $props.id();
 
 	type Props = {
-		listen?: boolean;
 		children: Snippet;
 	};
 
-	let { children, listen = false }: Props = $props();
+	let { children }: Props = $props();
 
-	// svelte-ignore state_referenced_locally
-	const designSystem = setupDesignSystem({ listen });
+	const designSystem = setupDesignSystem();
 
 	const radius = $derived(
 		RADII.find((radius) => radius.name === designSystem.radius)?.value ?? RADII[0].value
