@@ -16,12 +16,14 @@
 	const uid = $props.id();
 
 	type Props = {
+		listen?: boolean;
 		children: Snippet;
 	};
 
-	let { children }: Props = $props();
+	let { children, listen = false }: Props = $props();
 
-	const designSystem = setupDesignSystem();
+	// svelte-ignore state_referenced_locally
+	const designSystem = setupDesignSystem({ listen });
 
 	const radius = $derived(
 		RADII.find((radius) => radius.name === designSystem.radius)?.value ?? RADII[0].value
@@ -111,6 +113,8 @@
 		cssText += "}\n";
 
 		styleElement.textContent = cssText;
+
+		console.log("design system updated");
 	});
 
 	function handleKeyDown(e: KeyboardEvent) {

@@ -4,7 +4,7 @@
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import LockButton from "./lock-button.svelte";
-	import { fonts } from "$lib/registry/config.js";
+	import { fonts, getFont } from "$lib/registry/config.js";
 
 	type Props = {
 		submenu?: boolean;
@@ -16,9 +16,7 @@
 
 	const isMobile = new IsMobile();
 
-	const currentFont = $derived(
-		fonts.find((font) => font.name.replace("font-", "") === designSystem.font) ?? fonts[0]
-	);
+	const currentFont = $derived(getFont(designSystem.font) ?? fonts[0]);
 </script>
 
 <div class="group/picker relative">

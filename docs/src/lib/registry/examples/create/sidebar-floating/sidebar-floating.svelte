@@ -142,10 +142,10 @@
 	<Sidebar.Root variant="floating" class="absolute">
 		<Sidebar.Header>
 			<Sidebar.Menu>
-					<Sidebar.MenuItem>
-						<Sidebar.MenuButton size="lg">
-							{#snippet child({ props })}
-								<a href="/" {...props}>
+				<Sidebar.MenuItem>
+					<Sidebar.MenuButton size="lg">
+						{#snippet child({ props })}
+							<a href="/" {...props}>
 								<Item.Root class="p-0" size="xs">
 									<Item.Content>
 										<Item.Title class="text-sm">Documentation</Item.Title>
@@ -239,7 +239,7 @@
 				<div class="bg-muted/50 aspect-video rounded-xl"></div>
 				<div class="bg-muted/50 aspect-video rounded-xl"></div>
 			</div>
-			<div class="bg-muted/50 min-h-(--preview-height) flex-1 rounded-xl md:min-h-min"></div>
+			<div class="bg-muted/50 min-h-screen flex-1 rounded-xl md:min-h-min"></div>
 		</div>
 	</Sidebar.Inset>
 </Sidebar.Provider>

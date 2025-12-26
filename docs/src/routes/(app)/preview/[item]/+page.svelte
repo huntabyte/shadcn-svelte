@@ -10,9 +10,7 @@
 	);
 </script>
 
-<div class="contents [--preview-height:100svh]">
-	{#await ComponentPromise then { default: Component }}
-		<Component />
-	{/await}
-</div>
+{#await ComponentPromise then { default: Component }}
+	<Component />
+{/await}
 <TailwindIndicator />

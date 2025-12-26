@@ -30,9 +30,9 @@
 @custom-variant fixed (&:is(.layout-fixed *));
 
 @theme inline {
+	--font-sans: var(--font-sans);
+	--font-mono: var(--font-mono);
 	--radius: 0.625rem;
-	--font-sans: "Geist Variable", sans-serif;
-	--font-mono: "Geist Mono Variable", monospace;
 	--svelte-orange: oklch(0.6385 0.1991 34.99);
 	--breakpoint-3xl: 1600px;
 	--breakpoint-4xl: 2000px;
@@ -86,6 +86,8 @@
 }
 
 :root {
+	--font-sans: "Geist Variable", sans-serif;
+	--font-mono: "Geist Mono Variable", monospace;
 	--background: oklch(1 0 0);
 	--foreground: oklch(0.145 0 0);
 	--card: oklch(1 0 0);

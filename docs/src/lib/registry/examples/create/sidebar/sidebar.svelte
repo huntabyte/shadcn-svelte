@@ -236,7 +236,7 @@
 				<div class="bg-muted/50 aspect-video rounded-xl"></div>
 				<div class="bg-muted/50 aspect-video rounded-xl"></div>
 			</div>
-			<div class="bg-muted/50 min-h-(--preview-height) flex-1 rounded-xl md:min-h-min"></div>
+			<div class="bg-muted/50 min-h-screen flex-1 rounded-xl md:min-h-min"></div>
 		</div>
 	</Sidebar.Inset>
 </Sidebar.Provider>

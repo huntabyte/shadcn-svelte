@@ -33,25 +33,25 @@
 {/snippet}
 
 {#if designSystem.iconLibrary === "hugeicons"}
-	<HugeiconsIcon icon={hugeicons} {className}>
+	<HugeiconsIcon icon={hugeicons} {className} {...restProps}>
 		{#snippet placeholder()}
 			{@render PlaceholderIcon()}
 		{/snippet}
 	</HugeiconsIcon>
 {:else if designSystem.iconLibrary === "lucide"}
-	<LucideIcon icon={lucide} class={className}>
+	<LucideIcon icon={lucide} class={className} {...restProps}>
 		{#snippet placeholder()}
 			{@render PlaceholderIcon()}
 		{/snippet}
 	</LucideIcon>
 {:else if designSystem.iconLibrary === "tabler"}
-	<TablerIcon icon={tabler} class={className}>
+	<TablerIcon icon={tabler} class={className} {...restProps}>
 		{#snippet placeholder()}
 			{@render PlaceholderIcon()}
 		{/snippet}
 	</TablerIcon>
 {:else if designSystem.iconLibrary === "phosphor"}
-	<PhosphorIcon icon={phosphor} class={className}>
+	<PhosphorIcon icon={phosphor} class={className} {...restProps}>
 		{#snippet placeholder()}
 			{@render PlaceholderIcon()}
 		{/snippet}
