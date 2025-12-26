@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { Spinner } from "$lib/registry/ui/spinner/index.js";
+	import { cn } from "$lib/utils.js";
 
 	type Props = {
 		item: string;
@@ -24,7 +25,10 @@
 
 <div data-slot="preview" class="relative -mx-1 flex flex-1 flex-col justify-center sm:mx-0">
 	<div
-		class="ring-foreground/15 3xl:max-w-[1800px] z-0 mx-auto flex max-h-[calc(100svh-var(--header-height)-2rem)] w-full flex-1 flex-col overflow-y-auto rounded-2xl ring-1"
+		class={cn(
+			'[--preview-height:calc(100svh-var(--header-height)-2rem)]',
+			"ring-foreground/15 3xl:max-w-[1800px] z-0 mx-auto flex max-h-(--preview-height) w-full flex-1 flex-col overflow-y-auto rounded-2xl ring-1",
+		)}
 	>
 		{#await ComponentPromise}
 			<div class="absolute inset-0 flex items-center justify-center">
