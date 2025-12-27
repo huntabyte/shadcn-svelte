@@ -9,7 +9,7 @@
 	<Resizable.PaneGroup
 		direction="horizontal"
 		class="min-h-[200px] rounded-lg border"
-		onLayout={(newSizes) => {
+		onLayoutChange={(newSizes) => {
 			sizes = newSizes;
 		}}
 	>

@@ -4,7 +4,7 @@
 </script>
 
 <Example title="Basic">
-	<Pagination.Root>
+	<Pagination.Root count={100}>
 		<Pagination.Content>
 			<Pagination.Item>
 				<Pagination.Previous href="#" />

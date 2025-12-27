@@ -5,7 +5,7 @@
 </script>
 
 <Example title="Icon Only">
-	<Tabs.Root defaultValue="home">
+	<Tabs.Root value="home">
 		<Tabs.List>
 			<Tabs.Trigger value="home">
 				<IconPlaceholder

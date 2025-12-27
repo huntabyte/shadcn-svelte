@@ -4,7 +4,7 @@
 </script>
 
 <Example title="Simple">
-	<Pagination.Root>
+	<Pagination.Root count={100}>
 		<Pagination.Content>
 			<Pagination.Item>
 				<Pagination.Link href="#">1</Pagination.Link>

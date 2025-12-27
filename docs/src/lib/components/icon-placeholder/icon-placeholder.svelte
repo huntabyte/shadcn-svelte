@@ -9,6 +9,9 @@
 	import type { LucideIconName } from "$lib/registry/icons/__lucide__/index.js";
 	import type { TablerIconName } from "$lib/registry/icons/__tabler__/index.js";
 	import type { PhosphorIconName } from "$lib/registry/icons/__phosphor__/index.js";
+	import type { SVGAttributes } from "svelte/elements";
+
+	type SvgProps = SVGAttributes<SVGSVGElement>;
 
 	type Props = {
 		hugeicons: HugeIconsIconName;
@@ -18,9 +21,9 @@
 		class?: string;
 		"data-slot"?: string;
 		"data-icon"?: string;
-		"aria-hidden"?: boolean;
-		"aria-label"?: string | null;
-		role?: string;
+		"aria-hidden"?: SvgProps["aria-hidden"];
+		"aria-label"?: SvgProps["aria-label"];
+		role?: SvgProps["role"];
 	};
 
 	let { hugeicons, lucide, tabler, phosphor, class: className, ...restProps }: Props = $props();

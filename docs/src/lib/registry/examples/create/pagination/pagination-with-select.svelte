@@ -26,7 +26,7 @@
 				</Select.Content>
 			</Select.Root>
 		</Field.Field>
-		<Pagination.Root class="mx-0 w-auto">
+		<Pagination.Root count={100} class="mx-0 w-auto">
 			<Pagination.Content>
 				<Pagination.Item>
 					<Pagination.Previous href="#" />
