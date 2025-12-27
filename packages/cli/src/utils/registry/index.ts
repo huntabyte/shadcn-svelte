@@ -113,7 +113,7 @@ export async function getRegistryStyle(
 	}
 }
 
-/** Parses a style CSS file and extracts the @apply styles for each class */
+/** Parses a style CSS file and extracts the `@apply` styles for each class */
 export function parseStyleCss(css: string): Record<string, string> {
 	const ast = parseCss(css);
 	const styles: Record<string, string> = {};

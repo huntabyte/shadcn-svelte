@@ -111,8 +111,6 @@
 		cssText += "}\n";
 
 		styleElement.textContent = cssText;
-
-		console.log("design system updated");
 	});
 
 	function handleKeyDown(e: KeyboardEvent) {
