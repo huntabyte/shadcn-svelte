@@ -26,13 +26,6 @@ const config = {
 			"$content/*": ".velite/*",
 		},
 	},
-	vitePlugin: {
-		inspector: {
-			toggleKeyCombo: "meta-shift",
-			showToggleButton: "always",
-			toggleButtonPos: "bottom-right",
-		},
-	},
 };
 
 export default config;

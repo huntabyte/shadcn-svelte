@@ -13,7 +13,7 @@
 <kbd
 	bind:this={ref}
 	data-slot="kbd-group"
-	class={cn("inline-flex items-center gap-1", className)}
+	class={cn("cn-kbd-group inline-flex items-center", className)}
 	{...restProps}
 >
 	{@render children?.()}

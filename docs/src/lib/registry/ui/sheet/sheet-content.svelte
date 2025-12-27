@@ -20,10 +20,11 @@
 
 <script lang="ts">
 	import { Dialog as SheetPrimitive } from "bits-ui";
-	import XIcon from "@lucide/svelte/icons/x";
 	import type { Snippet } from "svelte";
 	import SheetPortal from "./sheet-portal.svelte";
 	import SheetOverlay from "./sheet-overlay.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
 	import type { ComponentProps } from "svelte";
 
@@ -31,12 +32,14 @@
 		ref = $bindable(null),
 		class: className,
 		side = "right",
+		showCloseButton = true,
 		portalProps,
 		children,
 		...restProps
 	}: WithoutChildrenOrChild<SheetPrimitive.ContentProps> & {
 		portalProps?: WithoutChildrenOrChild<ComponentProps<typeof SheetPortal>>;
 		side?: Side;
+		showCloseButton?: boolean;
 		children: Snippet;
 	} = $props();
 </script>
@@ -46,15 +49,25 @@
 	<SheetPrimitive.Content
 		bind:ref
 		data-slot="sheet-content"
-		class={cn(sheetVariants({ side }), className)}
+		data-side={side}
+		class={cn("cn-sheet-content", sheetVariants({ side }), className)}
 		{...restProps}
 	>
 		{@render children?.()}
-		<SheetPrimitive.Close
-			class="ring-offset-background focus-visible:ring-ring absolute end-4 top-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:pointer-events-none"
-		>
-			<XIcon class="size-4" />
-			<span class="sr-only">Close</span>
-		</SheetPrimitive.Close>
+		{#if showCloseButton}
+			<SheetPrimitive.Close data-slot="sheet-close">
+				{#snippet child({ props })}
+					<Button variant="ghost" class="cn-sheet-close" size="icon-sm" {...props}>
+						<IconPlaceholder
+							lucide="XIcon"
+							tabler="IconX"
+							hugeicons="Cancel01Icon"
+							phosphor="XIcon"
+						/>
+						<span class="sr-only">Close</span>
+					</Button>
+				{/snippet}
+			</SheetPrimitive.Close>
+		{/if}
 	</SheetPrimitive.Content>
 </SheetPortal>

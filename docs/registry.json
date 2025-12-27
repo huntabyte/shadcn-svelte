@@ -52,6 +52,10 @@
 			"files": [
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/alert/alert-action.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/alert/alert-description.svelte"
 				},
 				{
@@ -96,6 +100,10 @@
 				{
 					"type": "registry:file",
 					"path": "src/lib/registry/ui/alert-dialog/alert-dialog-header.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/alert-dialog/alert-dialog-media.svelte"
 				},
 				{
 					"type": "registry:file",
@@ -145,7 +153,19 @@
 			"files": [
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/avatar/avatar-badge.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/avatar/avatar-fallback.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/avatar/avatar-group-count.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/avatar/avatar-group.svelte"
 				},
 				{
 					"type": "registry:file",
@@ -478,7 +498,7 @@
 		{
 			"name": "command",
 			"type": "registry:ui",
-			"registryDependencies": ["dialog"],
+			"registryDependencies": ["dialog", "input-group"],
 			"files": [
 				{
 					"type": "registry:file",
@@ -631,7 +651,7 @@
 		{
 			"name": "dialog",
 			"type": "registry:ui",
-			"registryDependencies": [],
+			"registryDependencies": ["button"],
 			"files": [
 				{
 					"type": "registry:file",
@@ -1342,7 +1362,19 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/popover/popover-description.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/popover/popover-header.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/popover/popover-portal.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/popover/popover-title.svelte"
 				},
 				{
 					"type": "registry:file",
@@ -1362,6 +1394,14 @@
 				{
 					"type": "registry:file",
 					"path": "src/lib/registry/ui/progress/index.ts"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/progress/progress-label.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/progress/progress-track.svelte"
 				},
 				{
 					"type": "registry:file",
@@ -1582,7 +1622,7 @@
 		{
 			"name": "sheet",
 			"type": "registry:ui",
-			"registryDependencies": [],
+			"registryDependencies": ["button"],
 			"files": [
 				{
 					"type": "registry:file",
@@ -4129,6 +4169,17 @@
 				{
 					"type": "registry:hook",
 					"path": "src/lib/registry/hooks/is-mobile.svelte.ts"
+				}
+			]
+		},
+		{
+			"name": "casing",
+			"type": "registry:lib",
+			"registryDependencies": [],
+			"files": [
+				{
+					"type": "registry:lib",
+					"path": "src/lib/registry/lib/casing.ts"
 				}
 			]
 		},

@@ -1,0 +1,208 @@
+<script lang="ts">
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+</script>
+
+<Example title="Icon Only">
+	<div class="flex flex-wrap items-center gap-2">
+		<Button size="icon-xs">
+			<IconPlaceholder
+				lucide="ArrowRightIcon"
+				tabler="IconArrowRight"
+				hugeicons="ArrowRight02Icon"
+				phosphor="ArrowRightIcon"
+			/>
+		</Button>
+		<Button size="icon-xs" variant="secondary">
+			<IconPlaceholder
+				lucide="ArrowRightIcon"
+				tabler="IconArrowRight"
+				hugeicons="ArrowRight02Icon"
+				phosphor="ArrowRightIcon"
+			/>
+		</Button>
+		<Button size="icon-xs" variant="outline">
+			<IconPlaceholder
+				lucide="ArrowRightIcon"
+				tabler="IconArrowRight"
+				hugeicons="ArrowRight02Icon"
+				phosphor="ArrowRightIcon"
+			/>
+		</Button>
+		<Button size="icon-xs" variant="ghost">
+			<IconPlaceholder
+				lucide="ArrowRightIcon"
+				tabler="IconArrowRight"
+				hugeicons="ArrowRight02Icon"
+				phosphor="ArrowRightIcon"
+			/>
+		</Button>
+		<Button size="icon-xs" variant="destructive">
+			<IconPlaceholder
+				lucide="ArrowRightIcon"
+				tabler="IconArrowRight"
+				hugeicons="ArrowRight02Icon"
+				phosphor="ArrowRightIcon"
+			/>
+		</Button>
+		<Button size="icon-xs" variant="link">
+			<IconPlaceholder
+				lucide="ArrowRightIcon"
+				tabler="IconArrowRight"
+				hugeicons="ArrowRight02Icon"
+				phosphor="ArrowRightIcon"
+			/>
+		</Button>
+	</div>
+	<div class="flex flex-wrap items-center gap-2">
+		<Button size="icon-sm">
+			<IconPlaceholder
+				lucide="ArrowRightIcon"
+				tabler="IconArrowRight"
+				hugeicons="ArrowRight02Icon"
+				phosphor="ArrowRightIcon"
+			/>
+		</Button>
+		<Button size="icon-sm" variant="secondary">
+			<IconPlaceholder
+				lucide="ArrowRightIcon"
+				tabler="IconArrowRight"
+				hugeicons="ArrowRight02Icon"
+				phosphor="ArrowRightIcon"
+			/>
+		</Button>
+		<Button size="icon-sm" variant="outline">
+			<IconPlaceholder
+				lucide="ArrowRightIcon"
+				tabler="IconArrowRight"
+				hugeicons="ArrowRight02Icon"
+				phosphor="ArrowRightIcon"
+			/>
+		</Button>
+		<Button size="icon-sm" variant="ghost">
+			<IconPlaceholder
+				lucide="ArrowRightIcon"
+				tabler="IconArrowRight"
+				hugeicons="ArrowRight02Icon"
+				phosphor="ArrowRightIcon"
+			/>
+		</Button>
+		<Button size="icon-sm" variant="destructive">
+			<IconPlaceholder
+				lucide="ArrowRightIcon"
+				tabler="IconArrowRight"
+				hugeicons="ArrowRight02Icon"
+				phosphor="ArrowRightIcon"
+			/>
+		</Button>
+		<Button size="icon-sm" variant="link">
+			<IconPlaceholder
+				lucide="ArrowRightIcon"
+				tabler="IconArrowRight"
+				hugeicons="ArrowRight02Icon"
+				phosphor="ArrowRightIcon"
+			/>
+		</Button>
+	</div>
+	<div class="flex flex-wrap items-center gap-2">
+		<Button size="icon">
+			<IconPlaceholder
+				lucide="ArrowRightIcon"
+				tabler="IconArrowRight"
+				hugeicons="ArrowRight02Icon"
+				phosphor="ArrowRightIcon"
+			/>
+		</Button>
+		<Button size="icon" variant="secondary">
+			<IconPlaceholder
+				lucide="ArrowRightIcon"
+				tabler="IconArrowRight"
+				hugeicons="ArrowRight02Icon"
+				phosphor="ArrowRightIcon"
+			/>
+		</Button>
+		<Button size="icon" variant="outline">
+			<IconPlaceholder
+				lucide="ArrowRightIcon"
+				tabler="IconArrowRight"
+				hugeicons="ArrowRight02Icon"
+				phosphor="ArrowRightIcon"
+			/>
+		</Button>
+		<Button size="icon" variant="ghost">
+			<IconPlaceholder
+				lucide="ArrowRightIcon"
+				tabler="IconArrowRight"
+				hugeicons="ArrowRight02Icon"
+				phosphor="ArrowRightIcon"
+			/>
+		</Button>
+		<Button size="icon" variant="destructive">
+			<IconPlaceholder
+				lucide="ArrowRightIcon"
+				tabler="IconArrowRight"
+				hugeicons="ArrowRight02Icon"
+				phosphor="ArrowRightIcon"
+			/>
+		</Button>
+		<Button size="icon" variant="link">
+			<IconPlaceholder
+				lucide="ArrowRightIcon"
+				tabler="IconArrowRight"
+				hugeicons="ArrowRight02Icon"
+				phosphor="ArrowRightIcon"
+			/>
+		</Button>
+	</div>
+	<div class="flex flex-wrap items-center gap-2">
+		<Button size="icon-lg">
+			<IconPlaceholder
+				lucide="ArrowRightIcon"
+				tabler="IconArrowRight"
+				hugeicons="ArrowRight02Icon"
+				phosphor="ArrowRightIcon"
+			/>
+		</Button>
+		<Button size="icon-lg" variant="secondary">
+			<IconPlaceholder
+				lucide="ArrowRightIcon"
+				tabler="IconArrowRight"
+				hugeicons="ArrowRight02Icon"
+				phosphor="ArrowRightIcon"
+			/>
+		</Button>
+		<Button size="icon-lg" variant="outline">
+			<IconPlaceholder
+				lucide="ArrowRightIcon"
+				tabler="IconArrowRight"
+				hugeicons="ArrowRight02Icon"
+				phosphor="ArrowRightIcon"
+			/>
+		</Button>
+		<Button size="icon-lg" variant="ghost">
+			<IconPlaceholder
+				lucide="ArrowRightIcon"
+				tabler="IconArrowRight"
+				hugeicons="ArrowRight02Icon"
+				phosphor="ArrowRightIcon"
+			/>
+		</Button>
+		<Button size="icon-lg" variant="destructive">
+			<IconPlaceholder
+				lucide="ArrowRightIcon"
+				tabler="IconArrowRight"
+				hugeicons="ArrowRight02Icon"
+				phosphor="ArrowRightIcon"
+			/>
+		</Button>
+		<Button size="icon-lg" variant="link">
+			<IconPlaceholder
+				lucide="ArrowRightIcon"
+				tabler="IconArrowRight"
+				hugeicons="ArrowRight02Icon"
+				phosphor="ArrowRightIcon"
+			/>
+		</Button>
+	</div>
+</Example>
