@@ -15,6 +15,7 @@ import {
 	transformStripTypes,
 	createTransformInjectStyles,
 } from "./transformers/index.js";
+import { findNeededAtRules, updateCustomAtRules } from "./updaters/update-custom-at-rules.js";
 
 const STYLE_TYPES = ["registry:style", "registry:theme"];
 
@@ -207,6 +208,25 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 
 					const modifiedCss = transformCss(cssSource, { css, cssVars });
 					await fs.writeFile(cssPath, modifiedCss, "utf8");
+
+					return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;
+				},
+			},
+		]);
+	}
+
+	const neededAtRules = await findNeededAtRules(opts.config);
+
+	if (neededAtRules.length > 0) {
+		const cssPath = opts.config.resolvedPaths.tailwindCss;
+		const relative = path.relative(cwd, cssPath);
+
+		await p.tasks([
+			{
+				title: "Updating stylesheet",
+				enabled: opts.overwrite,
+				async task() {
+					await updateCustomAtRules(cssPath, neededAtRules);
 
 					return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;
 				},
