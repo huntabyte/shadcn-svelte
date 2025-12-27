@@ -22,6 +22,10 @@ import {
 	transformStripTypes,
 	createTransformInjectStyles,
 } from "../../utils/transformers/index.js";
+import {
+	findNeededAtRules,
+	updateCustomAtRules,
+} from "../../utils/updaters/update-custom-at-rules.js";
 
 const updateOptionsSchema = z.object({
 	all: z.boolean(),
@@ -260,6 +264,22 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 				await fs.writeFile(cssPath, modifiedCss, "utf8");
 
 				const relative = path.relative(cwd, cssPath);
+				return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;
+			},
+		});
+	}
+
+	const neededAtRules = await findNeededAtRules(config);
+
+	if (neededAtRules.length > 0) {
+		const cssPath = config.resolvedPaths.tailwindCss;
+		const relative = path.relative(cwd, cssPath);
+
+		tasks.push({
+			title: "Updating stylesheet",
+			async task() {
+				await updateCustomAtRules(cssPath, neededAtRules);
+
 				return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;
 			},
 		});

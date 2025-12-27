@@ -120,7 +120,6 @@ describe("Registry Utilities", () => {
 	describe("getRegistryBaseColor", () => {
 		it("should fetch and parse base color", async () => {
 			const mockColorData = {
-				inlineColors: { light: {}, dark: {} },
 				cssVars: { light: {}, dark: {} },
 			};
 			const mockResponse = {

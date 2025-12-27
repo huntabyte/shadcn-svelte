@@ -125,7 +125,10 @@ export async function findNeededAtRules(config: cliConfig.ResolvedConfig): Promi
 	return neededAtRules;
 }
 
-export async function updateCustomAtRules(cssPath: string, neededAtRules: NeededAtRule[]): Promise<void> {
+export async function updateCustomAtRules(
+	cssPath: string,
+	neededAtRules: NeededAtRule[]
+): Promise<void> {
 	const cssSource = await fs.readFile(cssPath, "utf8");
 
 	const modifiedCss = `${cssSource.trim()}\n\n${neededAtRules.map((rule) => rule.code).join("\n\n")}`;
