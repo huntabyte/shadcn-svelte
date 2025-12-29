@@ -292,4 +292,9 @@ export const examples: Example[] = [
 		name: "pagination",
 		type: "registry:example",
 	},
+	{
+		title: "GitHub",
+		name: "github",
+		type: "registry:block",
+	},
 ].toSorted((a, b) => a.title.localeCompare(b.title)) as Example[];

@@ -14,7 +14,7 @@
 		<SquareTerminal />
 		Initialize Project
 	</Dialog.Trigger>
-	<Dialog.Content>
+	<Dialog.Content class="w-full max-w-lg!">
 		<Dialog.Header>
 			<Dialog.Title>Initialize Project</Dialog.Title>
 			<Dialog.Description>

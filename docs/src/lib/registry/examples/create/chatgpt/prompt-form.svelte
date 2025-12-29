@@ -27,7 +27,7 @@
 											size="icon-sm"
 											onclick={() => (dictateEnabled = !dictateEnabled)}
 											class="rounded-4xl"
-                                            {...props}
+											{...props}
 											{...triggerProps}
 										>
 											<IconPlaceholder
