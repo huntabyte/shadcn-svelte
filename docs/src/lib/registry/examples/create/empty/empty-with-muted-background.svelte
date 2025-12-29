@@ -16,7 +16,7 @@
 		<Empty.Content>
 			<Button>Try again</Button>
 			<Button variant="link" href="#/" class="text-muted-foreground">
-				Learn more{" "}
+				Learn more
 				<IconPlaceholder
 					lucide="ArrowUpRightIcon"
 					tabler="IconArrowUpRight"

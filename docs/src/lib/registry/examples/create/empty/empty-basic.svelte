@@ -20,7 +20,7 @@
 				<Button variant="outline">Import project</Button>
 			</div>
 			<Button variant="link" href="#/" class="text-muted-foreground">
-				Learn more{" "}
+				Learn more
 				<IconPlaceholder
 					lucide="ArrowUpRightIcon"
 					tabler="IconArrowUpRight"

@@ -9,7 +9,7 @@
 		<div class="flex items-center gap-2">
 			<Button variant="outline">Cancel</Button>
 			<Button>
-				Submit{" "}
+				Submit
 				<IconPlaceholder
 					lucide="ArrowRightIcon"
 					tabler="IconArrowRight"

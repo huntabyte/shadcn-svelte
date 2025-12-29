@@ -297,4 +297,9 @@ export const examples: Example[] = [
 		name: "github",
 		type: "registry:block",
 	},
+	{
+		title: "Vercel",
+		name: "vercel",
+		type: "registry:block",
+	},
 ].toSorted((a, b) => a.title.localeCompare(b.title)) as Example[];

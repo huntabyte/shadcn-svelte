@@ -7,7 +7,7 @@
 <Example title="Icon Right">
 	<div class="flex flex-wrap items-center gap-2">
 		<Button size="xs">
-			Default{" "}
+			Default
 			<IconPlaceholder
 				lucide="ArrowRightIcon"
 				tabler="IconArrowRight"
@@ -17,7 +17,7 @@
 			/>
 		</Button>
 		<Button size="xs" variant="secondary">
-			Secondary{" "}
+			Secondary
 			<IconPlaceholder
 				lucide="ArrowRightIcon"
 				tabler="IconArrowRight"
@@ -27,7 +27,7 @@
 			/>
 		</Button>
 		<Button size="xs" variant="outline">
-			Outline{" "}
+			Outline
 			<IconPlaceholder
 				lucide="ArrowRightIcon"
 				tabler="IconArrowRight"
@@ -37,7 +37,7 @@
 			/>
 		</Button>
 		<Button size="xs" variant="ghost">
-			Ghost{" "}
+			Ghost
 			<IconPlaceholder
 				lucide="ArrowRightIcon"
 				tabler="IconArrowRight"
@@ -47,7 +47,7 @@
 			/>
 		</Button>
 		<Button size="xs" variant="destructive">
-			Destructive{" "}
+			Destructive
 			<IconPlaceholder
 				lucide="ArrowRightIcon"
 				tabler="IconArrowRight"
@@ -57,7 +57,7 @@
 			/>
 		</Button>
 		<Button size="xs" variant="link">
-			Link{" "}
+			Link
 			<IconPlaceholder
 				lucide="ArrowRightIcon"
 				tabler="IconArrowRight"
@@ -79,7 +79,7 @@
 			/>
 		</Button>
 		<Button size="sm" variant="secondary">
-			Secondary{" "}
+			Secondary
 			<IconPlaceholder
 				lucide="ArrowRightIcon"
 				tabler="IconArrowRight"
@@ -89,7 +89,7 @@
 			/>
 		</Button>
 		<Button size="sm" variant="outline">
-			Outline{" "}
+			Outline
 			<IconPlaceholder
 				lucide="ArrowRightIcon"
 				tabler="IconArrowRight"
@@ -98,7 +98,7 @@
 			/>
 		</Button>
 		<Button size="sm" variant="ghost">
-			Ghost{" "}
+			Ghost
 			<IconPlaceholder
 				lucide="ArrowRightIcon"
 				tabler="IconArrowRight"
@@ -108,7 +108,7 @@
 			/>
 		</Button>
 		<Button size="sm" variant="destructive">
-			Destructive{" "}
+			Destructive
 			<IconPlaceholder
 				lucide="ArrowRightIcon"
 				tabler="IconArrowRight"
@@ -118,7 +118,7 @@
 			/>
 		</Button>
 		<Button size="sm" variant="link">
-			Link{" "}
+			Link
 			<IconPlaceholder
 				lucide="ArrowRightIcon"
 				tabler="IconArrowRight"
@@ -130,7 +130,7 @@
 	</div>
 	<div class="flex flex-wrap items-center gap-2">
 		<Button>
-			Default{" "}
+			Default
 			<IconPlaceholder
 				lucide="ArrowRightIcon"
 				tabler="IconArrowRight"
@@ -140,7 +140,7 @@
 			/>
 		</Button>
 		<Button variant="secondary">
-			Secondary{" "}
+			Secondary
 			<IconPlaceholder
 				lucide="ArrowRightIcon"
 				tabler="IconArrowRight"
@@ -150,7 +150,7 @@
 			/>
 		</Button>
 		<Button variant="outline">
-			Outline{" "}
+			Outline
 			<IconPlaceholder
 				lucide="ArrowRightIcon"
 				tabler="IconArrowRight"
@@ -160,7 +160,7 @@
 			/>
 		</Button>
 		<Button variant="ghost">
-			Ghost{" "}
+			Ghost
 			<IconPlaceholder
 				lucide="ArrowRightIcon"
 				tabler="IconArrowRight"
@@ -170,7 +170,7 @@
 			/>
 		</Button>
 		<Button variant="destructive">
-			Destructive{" "}
+			Destructive
 			<IconPlaceholder
 				lucide="ArrowRightIcon"
 				tabler="IconArrowRight"
@@ -180,7 +180,7 @@
 			/>
 		</Button>
 		<Button variant="link">
-			Link{" "}
+			Link
 			<IconPlaceholder
 				lucide="ArrowRightIcon"
 				tabler="IconArrowRight"
@@ -192,7 +192,7 @@
 	</div>
 	<div class="flex flex-wrap items-center gap-2">
 		<Button size="lg">
-			Default{" "}
+			Default
 			<IconPlaceholder
 				lucide="ArrowRightIcon"
 				tabler="IconArrowRight"
@@ -202,7 +202,7 @@
 			/>
 		</Button>
 		<Button size="lg" variant="secondary">
-			Secondary{" "}
+			Secondary
 			<IconPlaceholder
 				lucide="ArrowRightIcon"
 				tabler="IconArrowRight"
@@ -212,7 +212,7 @@
 			/>
 		</Button>
 		<Button size="lg" variant="outline">
-			Outline{" "}
+			Outline
 			<IconPlaceholder
 				lucide="ArrowRightIcon"
 				tabler="IconArrowRight"
@@ -222,7 +222,7 @@
 			/>
 		</Button>
 		<Button size="lg" variant="ghost">
-			Ghost{" "}
+			Ghost
 			<IconPlaceholder
 				lucide="ArrowRightIcon"
 				tabler="IconArrowRight"
@@ -232,7 +232,7 @@
 			/>
 		</Button>
 		<Button size="lg" variant="destructive">
-			Destructive{" "}
+			Destructive
 			<IconPlaceholder
 				lucide="ArrowRightIcon"
 				tabler="IconArrowRight"
@@ -242,7 +242,7 @@
 			/>
 		</Button>
 		<Button size="lg" variant="link">
-			Link{" "}
+			Link
 			<IconPlaceholder
 				lucide="ArrowRightIcon"
 				tabler="IconArrowRight"

@@ -180,7 +180,7 @@
 					</Empty.Root>
 					<Separator class="-mx-2 my-2 w-auto!" />
 					<div class="text-muted-foreground p-1.5 text-xs">
-						Codespace usage for this repository is paid for by{" "}
+						Codespace usage for this repository is paid for by
 						<span class="font-medium">shadcn</span>.
 					</div>
 				</Tabs.Content>
@@ -301,7 +301,7 @@
 										/>
 									</InputGroup.Root>
 									<Field.Description>
-										Work fast with our official CLI.{" "}
+										Work fast with our official CLI.
 										<a href="#learn-more">Learn more</a>
 									</Field.Description>
 								</Field.Field>

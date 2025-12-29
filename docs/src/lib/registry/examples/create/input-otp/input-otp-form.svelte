@@ -12,7 +12,7 @@
 		<Card.Header>
 			<Card.Title>Verify your login</Card.Title>
 			<Card.Description>
-				Enter the verification code we sent to your email address:{" "}
+				Enter the verification code we sent to your email address:
 				<span class="font-medium">m@example.com</span>.
 			</Card.Description>
 		</Card.Header>
@@ -60,7 +60,7 @@
 		<Card.Footer class="flex-col gap-2">
 			<Button.Root type="submit" class="w-full">Verify</Button.Root>
 			<div class="text-muted-foreground text-sm">
-				Having trouble signing in?{" "}
+				Having trouble signing in?
 				<a
 					href="#/"
 					class="hover:text-primary underline underline-offset-4 transition-colors"

@@ -40,7 +40,7 @@
 									<Field.Description>
 										Your contribution graph, achievements, and activity overview
 										will show your private contributions without revealing any
-										repository or organization information.{" "}
+										repository or organization information.
 										<a href="#read-more">Read more</a>.
 									</Field.Description>
 								</Field.Content>
