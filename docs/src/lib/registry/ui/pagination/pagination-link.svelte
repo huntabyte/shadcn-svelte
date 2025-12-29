@@ -1,39 +1,37 @@
 <script lang="ts">
-	import type { HTMLAnchorAttributes } from "svelte/elements";
-	import { cn, type WithElementRef } from "$lib/utils.js";
-	import { buttonVariants, type ButtonSize } from "../button/index.js";
-
-	type PaginationLinkProps = WithElementRef<Omit<HTMLAnchorAttributes, "href" | "type">> & {
-		isActive?: boolean;
-		size?: ButtonSize;
-		href: string;
-	};
-
+	import { Pagination as PaginationPrimitive } from "bits-ui";
+	import { cn } from "$lib/utils.js";
+	import { buttonVariants, type ButtonSize } from "$lib/registry/ui/button/index.js";
 	let {
 		ref = $bindable(null),
 		class: className,
-		isActive = false,
 		size = "icon",
-		href,
+		isActive,
+		page,
 		children,
 		...restProps
-	}: PaginationLinkProps = $props();
+	}: PaginationPrimitive.PageProps & {
+		size?: ButtonSize;
+		isActive: boolean;
+	} = $props();
 </script>
 
-<a
-	bind:this={ref}
-	{href}
+{#snippet Fallback()}
+	{page.value}
+{/snippet}
+
+<PaginationPrimitive.Page
+	bind:ref
+	{page}
+	aria-current={isActive ? "page" : undefined}
+	data-slot="pagination-link"
+	data-active={isActive}
 	data-size={size}
-	data-variant={isActive ? "outline" : "ghost"}
 	class={cn(
 		buttonVariants({ size, variant: isActive ? "outline" : "ghost" }),
 		"cn-pagination-link",
 		className
 	)}
-	aria-current={isActive ? "page" : undefined}
-	data-slot="pagination-link"
-	data-active={isActive}
+	children={children || Fallback}
 	{...restProps}
->
-	{@render children?.()}
-</a>
+/>

@@ -29,10 +29,10 @@
 		<Pagination.Root count={100} class="mx-0 w-auto">
 			<Pagination.Content>
 				<Pagination.Item>
-					<Pagination.Previous href="#" />
+					<Pagination.PrevButton />
 				</Pagination.Item>
 				<Pagination.Item>
-					<Pagination.Next href="#" />
+					<Pagination.NextButton />
 				</Pagination.Item>
 			</Pagination.Content>
 		</Pagination.Root>

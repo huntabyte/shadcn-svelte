@@ -6,7 +6,7 @@
 	{#snippet children({ pages, currentPage })}
 		<Pagination.Content>
 			<Pagination.Item>
-				<Pagination.Previous href="#/" />
+				<Pagination.PrevButton />
 			</Pagination.Item>
 			{#each pages as page (page.key)}
 				{#if page.type === "ellipsis"}
@@ -25,7 +25,7 @@
 				<Pagination.Ellipsis />
 			</Pagination.Item>
 			<Pagination.Item>
-				<Pagination.Next href="#/" />
+				<Pagination.NextButton />
 			</Pagination.Item>
 		</Pagination.Content>
 	{/snippet}

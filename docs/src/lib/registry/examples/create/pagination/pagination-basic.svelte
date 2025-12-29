@@ -4,26 +4,27 @@
 </script>
 
 <Example title="Basic">
-	<Pagination.Root count={100}>
-		<Pagination.Content>
-			<Pagination.Item>
-				<Pagination.Previous href="#" />
-			</Pagination.Item>
-			<Pagination.Item>
-				<Pagination.Link href="#">1</Pagination.Link>
-			</Pagination.Item>
-			<Pagination.Item>
-				<Pagination.Link href="#" isActive>2</Pagination.Link>
-			</Pagination.Item>
-			<Pagination.Item>
-				<Pagination.Link href="#">3</Pagination.Link>
-			</Pagination.Item>
-			<Pagination.Item>
-				<Pagination.Ellipsis />
-			</Pagination.Item>
-			<Pagination.Item>
-				<Pagination.Next href="#" />
-			</Pagination.Item>
-		</Pagination.Content>
+	<Pagination.Root count={30} perPage={10}>
+		{#snippet children({ pages, currentPage })}
+			<Pagination.Content>
+				<Pagination.Item>
+					<Pagination.PrevButton />
+				</Pagination.Item>
+				{#each pages as page (page.key)}
+					{#if page.type === "ellipsis"}
+						<Pagination.Item>
+							<Pagination.Ellipsis />
+						</Pagination.Item>
+					{:else}
+						<Pagination.Item>
+							<Pagination.Link {page} isActive={currentPage === page.value} />
+						</Pagination.Item>
+					{/if}
+				{/each}
+				<Pagination.Item>
+					<Pagination.NextButton />
+				</Pagination.Item>
+			</Pagination.Content>
+		{/snippet}
 	</Pagination.Root>
 </Example>
