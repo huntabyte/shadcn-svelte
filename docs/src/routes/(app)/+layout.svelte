@@ -6,6 +6,7 @@
 
 	let { children, data } = $props();
 
+	// svelte-ignore state_referenced_locally
 	UserConfigContext.set(new UserConfig(data.userConfig));
 </script>
 

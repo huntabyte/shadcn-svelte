@@ -36,7 +36,7 @@ export function GET({ request, url }) {
 
 	// redirect browser sessions to the default preview
 	if (accept.includes("text/html")) {
-		redirect(303, `/create/accordion${url.search}`);
+		redirect(303, `/create/home${url.search}`);
 	}
 
 	const designSystemConfig = {

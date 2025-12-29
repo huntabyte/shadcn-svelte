@@ -12,9 +12,6 @@
 <NavigationMenuPrimitive.Link
 	bind:ref
 	data-slot="navigation-menu-link"
-	class={cn(
-		"cn-navigation-menu-link",
-		className
-	)}
+	class={cn("cn-navigation-menu-link", className)}
 	{...restProps}
 />

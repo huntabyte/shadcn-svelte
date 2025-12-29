@@ -20,7 +20,7 @@
 				<NavigationMenu.Content>
 					<ul class="w-72">
 						<li>
-							<NavigationMenu.Link href="#">
+							<NavigationMenu.Link href="#/">
 								<div class="flex flex-col">
 									<div class="font-medium">Components</div>
 									<div class="text-muted-foreground">
@@ -28,7 +28,7 @@
 									</div>
 								</div>
 							</NavigationMenu.Link>
-							<NavigationMenu.Link href="#">
+							<NavigationMenu.Link href="#/">
 								<div class="flex flex-col">
 									<div class="font-medium">Documentation</div>
 									<div class="text-muted-foreground">
@@ -36,7 +36,7 @@
 									</div>
 								</div>
 							</NavigationMenu.Link>
-							<NavigationMenu.Link href="#">
+							<NavigationMenu.Link href="#/">
 								<div class="flex flex-col">
 									<div class="font-medium">Blog</div>
 									<div class="text-muted-foreground">
@@ -53,9 +53,9 @@
 				<NavigationMenu.Content>
 					<ul>
 						<li>
-							<NavigationMenu.Link href="#">Components</NavigationMenu.Link>
-							<NavigationMenu.Link href="#">Documentation</NavigationMenu.Link>
-							<NavigationMenu.Link href="#">Blocks</NavigationMenu.Link>
+							<NavigationMenu.Link href="#/">Components</NavigationMenu.Link>
+							<NavigationMenu.Link href="#/">Documentation</NavigationMenu.Link>
+							<NavigationMenu.Link href="#/">Blocks</NavigationMenu.Link>
 						</li>
 					</ul>
 				</NavigationMenu.Content>
@@ -65,15 +65,15 @@
 				<NavigationMenu.Content>
 					<ul class="grid w-[200px]">
 						<li>
-							<NavigationMenu.Link href="#" class="flex-row items-center gap-2">
+							<NavigationMenu.Link href="#/" class="flex-row items-center gap-2">
 								<CircleAlertIcon />
 								Backlog
 							</NavigationMenu.Link>
-							<NavigationMenu.Link href="#" class="flex-row items-center gap-2">
+							<NavigationMenu.Link href="#/" class="flex-row items-center gap-2">
 								<CircleAlertIcon />
 								To Do
 							</NavigationMenu.Link>
-							<NavigationMenu.Link href="#">
+							<NavigationMenu.Link href="#/">
 								<CircleAlertIcon />
 								Done
 							</NavigationMenu.Link>

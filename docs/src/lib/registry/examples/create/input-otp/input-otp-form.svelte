@@ -52,7 +52,7 @@
 						{/snippet}
 					</InputOTP.Root>
 					<Field.Description>
-						<a href="#">I no longer have access to this email address.</a>
+						<a href="#/">I no longer have access to this email address.</a>
 					</Field.Description>
 				</Field.Field>
 			</form>
@@ -62,7 +62,7 @@
 			<div class="text-muted-foreground text-sm">
 				Having trouble signing in?{" "}
 				<a
-					href="#"
+					href="#/"
 					class="hover:text-primary underline underline-offset-4 transition-colors"
 				>
 					Contact support

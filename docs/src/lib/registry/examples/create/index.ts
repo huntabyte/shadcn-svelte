@@ -8,6 +8,11 @@ type Example = {
 
 export const examples: Example[] = [
 	{
+		title: "Home",
+		name: "home",
+		type: "registry:block",
+	},
+	{
 		title: "Accordion",
 		name: "accordion",
 		type: "registry:example",

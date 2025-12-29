@@ -217,7 +217,7 @@
 									<Field.Label>Tasks</Field.Label>
 									<Field.Description>
 										Get notified when tasks you&apos;ve created have updates. <a
-											href="#">Manage tasks</a
+											href="#/">Manage tasks</a
 										>
 									</Field.Description>
 									<Field.Group data-slot="checkbox-group">
