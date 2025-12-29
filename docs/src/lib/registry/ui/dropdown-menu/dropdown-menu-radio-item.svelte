@@ -28,9 +28,9 @@
 			{#if checked}
 				<IconPlaceholder
 					lucide="CheckIcon"
-					tabler="IconCircle"
-					hugeicons="CircleIcon"
-					phosphor="CircleIcon"
+					tabler="IconCheck"
+					hugeicons="Tick02Icon"
+					phosphor="CheckIcon"
 				/>
 			{/if}
 		</span>

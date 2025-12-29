@@ -13,6 +13,11 @@ export const examples: Example[] = [
 		type: "registry:block",
 	},
 	{
+		title: "ChatGPT",
+		name: "chatgpt",
+		type: "registry:block",
+	},
+	{
 		title: "Accordion",
 		name: "accordion",
 		type: "registry:example",
