@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { Calendar as CalendarPrimitive } from "bits-ui";
+	import ChevronLeftIcon from "@lucide/svelte/icons/chevron-left";
 	import { buttonVariants, type ButtonVariant } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 
 	let {
 		ref = $bindable(null),
@@ -16,20 +16,14 @@
 </script>
 
 {#snippet Fallback()}
-	<IconPlaceholder
-		lucide="ChevronLeftIcon"
-		tabler="IconChevronLeft"
-		hugeicons="ArrowLeftIcon"
-		phosphor="CaretLeftIcon"
-		class="size-4"
-	/>
+	<ChevronLeftIcon class="size-4" />
 {/snippet}
 
 <CalendarPrimitive.PrevButton
 	bind:ref
 	class={cn(
 		buttonVariants({ variant }),
-		"cn-calendar-button-previous size-(--cell-size) p-0 select-none aria-disabled:opacity-50 rtl:rotate-180",
+		"size-(--cell-size) bg-transparent p-0 select-none disabled:opacity-50 rtl:rotate-180",
 		className
 	)}
 	children={children || Fallback}
