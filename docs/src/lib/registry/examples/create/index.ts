@@ -8,16 +8,6 @@ type Example = {
 
 export const examples: Example[] = [
 	{
-		title: "Home",
-		name: "home",
-		type: "registry:block",
-	},
-	{
-		title: "ChatGPT",
-		name: "chatgpt",
-		type: "registry:block",
-	},
-	{
 		title: "Accordion",
 		name: "accordion",
 		type: "registry:example",
@@ -113,11 +103,6 @@ export const examples: Example[] = [
 		type: "registry:example",
 	},
 	{
-		title: "Hover Card",
-		name: "hover-card",
-		type: "registry:example",
-	},
-	{
 		title: "Empty",
 		name: "empty",
 		type: "registry:example",
@@ -125,6 +110,11 @@ export const examples: Example[] = [
 	{
 		title: "Field",
 		name: "field",
+		type: "registry:example",
+	},
+	{
+		title: "Hover Card",
+		name: "hover-card",
 		type: "registry:example",
 	},
 	{
@@ -163,13 +153,18 @@ export const examples: Example[] = [
 		type: "registry:example",
 	},
 	{
-		title: "Select",
-		name: "select",
+		title: "Navigation Menu",
+		name: "navigation-menu",
 		type: "registry:example",
 	},
 	{
 		title: "Native Select",
 		name: "native-select",
+		type: "registry:example",
+	},
+	{
+		title: "Pagination",
+		name: "pagination",
 		type: "registry:example",
 	},
 	{
@@ -198,6 +193,21 @@ export const examples: Example[] = [
 		type: "registry:example",
 	},
 	{
+		title: "Select",
+		name: "select",
+		type: "registry:example",
+	},
+	{
+		title: "Separator",
+		name: "separator",
+		type: "registry:example",
+	},
+	{
+		title: "Sheet",
+		name: "sheet",
+		type: "registry:example",
+	},
+	{
 		title: "Sidebar",
 		name: "sidebar",
 		type: "registry:example",
@@ -218,13 +228,8 @@ export const examples: Example[] = [
 		type: "registry:example",
 	},
 	{
-		title: "Separator",
-		name: "separator",
-		type: "registry:example",
-	},
-	{
-		title: "Sheet",
-		name: "sheet",
+		title: "Skeleton",
+		name: "skeleton",
 		type: "registry:example",
 	},
 	{
@@ -235,11 +240,6 @@ export const examples: Example[] = [
 	{
 		title: "Sonner",
 		name: "sonner",
-		type: "registry:example",
-	},
-	{
-		title: "Skeleton",
-		name: "skeleton",
 		type: "registry:example",
 	},
 	{
@@ -283,14 +283,14 @@ export const examples: Example[] = [
 		type: "registry:example",
 	},
 	{
-		title: "Navigation Menu",
-		name: "navigation-menu",
-		type: "registry:example",
+		title: "Home",
+		name: "home",
+		type: "registry:block",
 	},
 	{
-		title: "Pagination",
-		name: "pagination",
-		type: "registry:example",
+		title: "ChatGPT",
+		name: "chatgpt",
+		type: "registry:block",
 	},
 	{
 		title: "GitHub",
@@ -302,4 +302,4 @@ export const examples: Example[] = [
 		name: "vercel",
 		type: "registry:block",
 	},
-].toSorted((a, b) => a.title.localeCompare(b.title)) as Example[];
+];
