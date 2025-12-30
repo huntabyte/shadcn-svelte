@@ -1,23 +1,22 @@
 <script lang="ts">
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
-	import { Calendar } from "$lib/registry/ui/calendar/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import {
-		CalendarDate,
-		DateFormatter,
-		getLocalTimeZone,
-		type DateValue,
-	} from "@internationalized/date";
+	import { CalendarDate, DateFormatter, getLocalTimeZone } from "@internationalized/date";
+	import { RangeCalendar } from "$lib/registry/ui/range-calendar/index.js";
+	import type { DateRange } from "bits-ui";
 
 	const df = new DateFormatter("en-US", {
 		dateStyle: "medium",
 	});
 
 	const currentDate = new CalendarDate(2022, 1, 20);
-	let date = $state<DateValue[] | undefined>([currentDate, currentDate.add({ days: 20 })]);
+	let date = $state<DateRange | undefined>({
+		start: currentDate,
+		end: currentDate.add({ days: 20 }),
+	});
 </script>
 
 <Example title="Date Picker Range">
@@ -39,9 +38,9 @@
 							phosphor="CalendarBlankIcon"
 							data-icon="inline-start"
 						/>
-						{#if date?.[0]}
-							{df.format(date[0].toDate(getLocalTimeZone()))} - {df.format(
-								date[1].toDate(getLocalTimeZone())
+						{#if date?.start && date?.end}
+							{df.format(date.start.toDate(getLocalTimeZone()))} - {df.format(
+								date.end.toDate(getLocalTimeZone())
 							)}
 						{:else}
 							Pick a date
@@ -50,7 +49,7 @@
 				{/snippet}
 			</Popover.Trigger>
 			<Popover.Content class="w-auto p-0" align="start">
-				<Calendar type="multiple" bind:value={date} numberOfMonths={2} />
+				<RangeCalendar bind:value={date} numberOfMonths={2} />
 			</Popover.Content>
 		</Popover.Root>
 	</Field.Field>

@@ -11,6 +11,7 @@
 	import DatePickerSimple from "./date-picker-simple.svelte";
 	import DataPickerWithDropdowns from "./date-picker-with-dropdowns.svelte";
 	import DatePickerWithRange from "./date-picker-with-range.svelte";
+	import CalendarCustomDays from "./calendar-custom-days.svelte";
 </script>
 
 <ExampleWrapper>
@@ -22,6 +23,7 @@
 	<CalendarRangeMultipleMonths />
 	<CalendarWithTime />
 	<CalendarWithPresets />
+	<CalendarCustomDays />
 	<DatePickerSimple />
 	<DataPickerWithDropdowns />
 	<DatePickerWithRange />
