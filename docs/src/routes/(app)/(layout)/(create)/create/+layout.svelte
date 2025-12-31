@@ -3,7 +3,6 @@
 	import ModeSwitcher from "$lib/components/mode-switcher.svelte";
 	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
-	import ShareIcon from "@lucide/svelte/icons/share";
 	import ArrowLeftIcon from "@lucide/svelte/icons/arrow-left";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import ItemExplorer from "../components/item-explorer.svelte";
@@ -11,24 +10,32 @@
 	import WelcomeDialog from "../components/welcome-dialog.svelte";
 	import Customizer from "../components/customizer.svelte";
 	import { examples } from "$lib/registry/examples/create/index.js";
-	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
-	import CheckIcon from "@lucide/svelte/icons/check";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import InitializeDialog from "../components/initialize-dialog.svelte";
 	import UndoIcon from "@lucide/svelte/icons/undo";
 	import RedoIcon from "@lucide/svelte/icons/redo";
 	import { useIsMac } from "$lib/hooks/use-is-mac.svelte.js";
+	import Share from "../components/share.svelte";
+	import Metadata from "$lib/components/metadata.svelte";
 
 	let { children } = $props();
-
-	const clipboard = new UseClipboard();
 
 	const designSystem = useDesignSystem();
 
 	const isMac = useIsMac();
 	const cmdOrCtrl = $derived(isMac ? "⌘" : "Ctrl");
 </script>
+
+<Metadata
+	title="New Project"
+	description="Build your own shadcn-svelte."
+	ogImage={{
+		url: `/create/og${new URL(designSystem.shareUrl).search}`,
+		width: "1200",
+		height: "630",
+	}}
+/>
 
 <div data-slot="layout" class="section-soft relative z-10 flex min-h-svh flex-col">
 	<header class="bg-background sticky top-0 z-50 w-full">
@@ -81,24 +88,7 @@
 					<Separator orientation="vertical" />
 					<ModeSwitcher />
 					<Separator orientation="vertical" />
-					<Tooltip.Provider disableCloseOnTriggerClick>
-						<Tooltip.Root>
-							<Tooltip.Trigger
-								class={buttonVariants({ variant: "outline", size: "sm" })}
-								onclick={() => clipboard.copy(designSystem.shareUrl)}
-							>
-								{#if clipboard.copied}
-									<CheckIcon />
-								{:else}
-									<ShareIcon />
-								{/if}
-								Share
-							</Tooltip.Trigger>
-							<Tooltip.Content>
-								{clipboard.copied ? "Copied link" : "Copy link"}
-							</Tooltip.Content>
-						</Tooltip.Root>
-					</Tooltip.Provider>
+					<Share />
 					<InitializeDialog />
 				</div>
 			</div>
