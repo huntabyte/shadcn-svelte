@@ -8,7 +8,7 @@
 
 <Example title="Sides">
 	<div class="flex flex-wrap gap-2">
-		{#each DRAWER_SIDES as side}
+		{#each DRAWER_SIDES as side (side)}
 			<Drawer.Root
 				direction={side === "bottom" ? undefined : (side as "top" | "right" | "left")}
 			>
@@ -25,7 +25,7 @@
 						<Drawer.Description>Set your daily activity goal.</Drawer.Description>
 					</Drawer.Header>
 					<div class="no-scrollbar overflow-y-auto px-4">
-						{#each Array.from({ length: 10 }) as _, index}
+						{#each Array.from({ length: 10 }) as _, i (i)}
 							<p
 								class="style-lyra:mb-2 style-lyra:leading-relaxed mb-4 leading-normal"
 							>

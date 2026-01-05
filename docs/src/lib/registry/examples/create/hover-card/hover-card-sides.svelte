@@ -8,7 +8,7 @@
 
 <Example title="Sides">
 	<div class="flex flex-wrap items-center justify-center gap-4">
-		{#each HOVER_CARD_SIDES as side}
+		{#each HOVER_CARD_SIDES as side (side)}
 			<HoverCard.Root openDelay={100} closeDelay={100}>
 				<HoverCard.Trigger>
 					{#snippet child({ props })}

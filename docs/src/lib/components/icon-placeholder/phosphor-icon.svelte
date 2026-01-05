@@ -11,7 +11,6 @@
 
 	let { icon, placeholder, class: className, ...restProps }: Props = $props();
 
-	// eslint-disable-next-line svelte/no-unused-svelte-ignore
 	// svelte-ignore state_referenced_locally
 	const IconPromise = phosphorIconLoader(icon);
 
