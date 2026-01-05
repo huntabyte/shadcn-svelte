@@ -14,7 +14,6 @@
 	{cell}
 	bind:ref
 	data-slot="input-otp-slot"
-	data-active={cell.isActive}
 	class={cn(
 		"cn-input-otp-slot relative flex items-center justify-center data-[active=true]:z-10",
 		className
