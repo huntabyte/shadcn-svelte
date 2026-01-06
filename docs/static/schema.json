@@ -6,18 +6,22 @@
 			"type": "string"
 		},
 		"style": {
+			"description": "DEPRECATED IN TAILWIND v4! The style for your components. This cannot be changed after initialization.",
 			"type": "string"
 		},
 		"tailwind": {
 			"type": "object",
 			"properties": {
 				"css": {
+					"description": "Path to the CSS file that imports Tailwind CSS into your project.",
 					"type": "string"
 				},
 				"baseColor": {
+					"description": "Used to generate the default color palette for your components. This cannot be changed after initialization.",
 					"type": "string"
 				},
 				"config": {
+					"description": "DEPRECATED IN TAILWIND v4! The path to your `tailwind.config.[js|ts]` file.",
 					"type": "string"
 				}
 			},
@@ -28,21 +32,27 @@
 			"additionalProperties": false
 		},
 		"aliases": {
+			"description": "The CLI uses these values and the `alias` config from your `svelte.config.js` file to place generated components in the correct location.",
 			"type": "object",
 			"properties": {
 				"components": {
+					"description": "Import alias for your components.",
 					"type": "string"
 				},
 				"utils": {
+					"description": "Import alias for your utility functions.",
 					"type": "string"
 				},
 				"ui": {
+					"description": "Import alias for your UI components. Defaults to `$lib/components/ui`.",
 					"type": "string"
 				},
 				"hooks": {
+					"description": "Import alias for your hooks. Defaults to `$lib/hooks`.",
 					"type": "string"
 				},
 				"lib": {
+					"description": "Import alias for your library, which is typically where you store your components, utils, hooks, etc. Defaults to `$lib`.",
 					"type": "string"
 				}
 			},
@@ -53,9 +63,11 @@
 			"additionalProperties": false
 		},
 		"registry": {
+			"description": "The registry URL tells the CLI where to fetch the shadcn-svelte components/registry from. You can pin this to a specific preview release or your own fork of the registry.",
 			"type": "string"
 		},
 		"typescript": {
+			"description": "Used to determine if Typescript is used for this project. When set to `false`, `.js` files will be installed instead. Defaults to `true`.",
 			"anyOf": [
 				{
 					"type": "boolean"
@@ -64,6 +76,7 @@
 					"type": "object",
 					"properties": {
 						"config": {
+							"description": "Path to the tsconfig/jsconfig file.",
 							"type": "string"
 						}
 					},

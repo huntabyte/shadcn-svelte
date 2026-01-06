@@ -1,19 +1,32 @@
 <script lang="ts">
 	import type { HTMLAttributes } from "svelte/elements";
 	import type { WithElementRef } from "$lib/utils.js";
-	import MinusIcon from "@lucide/svelte/icons/minus";
+	import { cn } from "$lib/utils.js";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 
 	let {
 		ref = $bindable(null),
+		class: className,
 		children,
 		...restProps
 	}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();
 </script>
 
-<div bind:this={ref} data-slot="input-otp-separator" role="separator" {...restProps}>
+<div
+	bind:this={ref}
+	data-slot="input-otp-separator"
+	role="separator"
+	class={cn("cn-input-otp-separator flex items-center", className)}
+	{...restProps}
+>
 	{#if children}
 		{@render children?.()}
 	{:else}
-		<MinusIcon />
+		<IconPlaceholder
+			lucide="MinusIcon"
+			tabler="IconMinus"
+			hugeicons="MinusSignIcon"
+			phosphor="MinusIcon"
+		/>
 	{/if}
 </div>

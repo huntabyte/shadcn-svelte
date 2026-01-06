@@ -19,7 +19,7 @@ vi.mock(import("@clack/prompts"), async (importOriginal) => {
 });
 
 it("init (config-full)", async () => {
-	vi.spyOn(registry, "getRegistryBaseColor").mockResolvedValue({
+	vi.spyOn(registry, "getRegistryTheme").mockResolvedValue({
 		inlineColors: {
 			light: {},
 			dark: {},
@@ -28,8 +28,6 @@ it("init (config-full)", async () => {
 			light: {},
 			dark: {},
 		},
-		inlineColorsTemplate: "@import 'tailwindcss';\n",
-		cssVarsTemplate: "@import 'tailwindcss';\n",
 	});
 
 	vi.spyOn(registry, "resolveRegistryItems").mockResolvedValue([
@@ -93,7 +91,12 @@ it("init (config-full)", async () => {
 	const config = await getConfig(targetDir);
 	if (!config) throw new Error("config is undefined");
 
-	await runInit(targetDir, config, { deps: true, cwd: targetDir, overwrite: true });
+	await runInit(targetDir, config, {
+		deps: true,
+		cwd: targetDir,
+		overwrite: true,
+		skipPreflight: false,
+	});
 
 	// mkDir mocks
 
