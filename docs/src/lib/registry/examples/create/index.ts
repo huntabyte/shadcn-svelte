@@ -293,8 +293,8 @@ export const examples: Example[] = [
 		type: "registry:block",
 	},
 	{
-		title: "ChatGPT",
-		name: "chatgpt",
+		title: "Elevenlabs",
+		name: "elevenlabs",
 		type: "registry:block",
 	},
 	{
@@ -305,6 +305,11 @@ export const examples: Example[] = [
 	{
 		title: "Vercel",
 		name: "vercel",
+		type: "registry:block",
+	},
+	{
+		title: "ChatGPT",
+		name: "chatgpt",
 		type: "registry:block",
 	},
 ];
