@@ -14,7 +14,7 @@ description: How to setup shadcn-svelte in a SvelteKit project.
 
 <Steps>
 
-### Add tailwind to your project
+### Add TailwindCSS to your project
 
 Use the SvelteKit CLI to create a new project with TailwindCSS
 
