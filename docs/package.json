@@ -63,7 +63,7 @@
 		"@types/lodash.template": "^4.5.3",
 		"@types/mdast": "^4.0.4",
 		"acorn": "^8.15.0",
-		"bits-ui": "^2.15.2",
+		"bits-ui": "^2.15.4",
 		"chrono-node": "^2.9.0",
 		"clsx": "^2.1.1",
 		"consola": "^3.4.2",
