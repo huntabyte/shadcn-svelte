@@ -80,13 +80,13 @@
 				renderComponent(Checkbox, {
 					checked: table.getIsAllPageRowsSelected(),
 					indeterminate: table.getIsSomeRowsSelected() && !table.getIsAllRowsSelected(),
-					onCheckedChange: (v) => table.toggleAllPageRowsSelected(!!v),
+					onCheckedChange: (v: boolean) => table.toggleAllPageRowsSelected(v),
 					"aria-label": "Select all",
 				}),
 			cell: ({ row }) =>
 				renderComponent(Checkbox, {
 					checked: row.getIsSelected(),
-					onCheckedChange: (v) => row.toggleSelected(!!v),
+					onCheckedChange: (v: boolean) => row.toggleSelected(v),
 				}),
 			enableSorting: false,
 			enableHiding: false,

@@ -3,7 +3,7 @@
 		{
 			id: "drag",
 			header: () => null,
-			cell: () => renderSnippet(DragHandle),
+			cell: () => renderSnippet(DragHandle, { attach: () => {} }),
 		},
 		{
 			id: "select",
@@ -12,13 +12,13 @@
 					checked: table.getIsAllPageRowsSelected(),
 					indeterminate:
 						table.getIsSomePageRowsSelected() && !table.getIsAllPageRowsSelected(),
-					onCheckedChange: (value) => table.toggleAllPageRowsSelected(!!value),
+					onCheckedChange: (value: boolean) => table.toggleAllPageRowsSelected(value),
 					"aria-label": "Select all",
 				}),
 			cell: ({ row }) =>
 				renderComponent(DataTableCheckbox, {
 					checked: row.getIsSelected(),
-					onCheckedChange: (value) => row.toggleSelected(!!value),
+					onCheckedChange: (value: boolean) => row.toggleSelected(value),
 					"aria-label": "Select row",
 				}),
 			enableSorting: false,
