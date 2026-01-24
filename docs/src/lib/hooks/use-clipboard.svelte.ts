@@ -65,8 +65,14 @@ export class UseClipboard {
 				textarea.style.opacity = "0";
 				document.body.appendChild(textarea);
 				textarea.select();
-				document.execCommand("copy");
-				document.body.removeChild(textarea);
+				try {
+					const success = document.execCommand("copy");
+					if (!success) {
+						throw new Error("Copy command failed");
+					}
+				} finally {
+					document.body.removeChild(textarea);
+				}
 			}
 
 			this.#copiedStatus = "success";
