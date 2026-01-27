@@ -48,51 +48,17 @@ export class UseClipboard {
 	 * @param text
 	 * @returns
 	 */
-	async copy(_text: string | number): Promise<"success" | "failure"> {
-		const text = typeof _text === "number" ? _text.toString() : _text;
+	async copy(text: string | number): Promise<"success" | "failure"> {
 		if (this.timeout) {
 			this.#copiedStatus = undefined;
 			clearTimeout(this.timeout);
 		}
 
-		try {
-			try {
-				await navigator.clipboard.writeText(text);
-			} catch {
-				const textarea = document.createElement("textarea");
-				textarea.value = text;
-				textarea.style.position = "fixed";
-				textarea.style.opacity = "0";
-				document.body.appendChild(textarea);
-				textarea.select();
-				try {
-					const success = document.execCommand("copy");
-					if (!success) {
-						throw new Error("Copy command failed");
-					}
-				} finally {
-					document.body.removeChild(textarea);
-				}
-			}
+		this.#copiedStatus = await copyText(text.toString());
 
-			this.#copiedStatus = "success";
-			this.#lastCopied = text;
-
-			if (this.reset) {
-				this.timeout = setTimeout(() => {
-					this.#copiedStatus = undefined;
-				}, this.delay);
-			}
-		} catch {
-			// an error can occur when not in the browser or if the user hasn't given clipboard access
-			this.#copiedStatus = "failure";
-
-			if (this.reset) {
-				this.timeout = setTimeout(() => {
-					this.#copiedStatus = undefined;
-				}, this.delay);
-			}
-		}
+		this.timeout = setTimeout(() => {
+			this.#copiedStatus = undefined;
+		}, this.delay);
 
 		return this.#copiedStatus;
 	}
@@ -113,5 +79,31 @@ export class UseClipboard {
 	 */
 	get lastCopied(): string | undefined {
 		return this.#lastCopied;
+	}
+}
+
+export async function copyText(text: string): Promise<"success" | "failure"> {
+	try {
+		if (navigator.clipboard && window.isSecureContext) {
+			await navigator.clipboard.writeText(text);
+			return "success";
+		}
+
+		// when navigator.clipboard is unavailable we fallback to this for wider browser compatibility
+		const textArea = document.createElement("textarea");
+		textArea.value = text;
+		textArea.style.position = "fixed";
+		textArea.style.top = "0";
+		textArea.style.left = "0";
+		document.body.appendChild(textArea);
+		textArea.select();
+
+		const successful = document.execCommand("copy");
+
+		document.body.removeChild(textArea);
+
+		return successful ? "success" : "failure";
+	} catch {
+		return "failure";
 	}
 }
