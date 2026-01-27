@@ -359,7 +359,7 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 ### 2025-09-24 New sizes
 
-We have added two new sizes to the button component: `icon-sm` and `icon-lg`. These sizes are used to create icon buttons. To add them, edit `button.tsx` and add the following code under `size` in `buttonVariants`:
+We have added two new sizes to the button component: `icon-sm` and `icon-lg`. These sizes are used to create icon buttons. To add them, edit `button.svelte` and add the following code under `size` in `buttonVariants`:
 
 ```ts showLineNumbers title="components/ui/button.svelte"
 export const buttonVariants = tv({
