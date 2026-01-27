@@ -17,7 +17,11 @@
 		className
 	)}
 >
-	<CalendarPrimitive.YearSelect bind:ref class="absolute inset-0 opacity-0" {...restProps}>
+	<CalendarPrimitive.YearSelect
+		bind:ref
+		class="dark:bg-popover dark:text-popover-foreground absolute inset-0 opacity-0"
+		{...restProps}
+	>
 		{#snippet child({ props, yearItems, selectedYearItem })}
 			<select {...props} {value}>
 				{#each yearItems as yearItem (yearItem.value)}

@@ -18,7 +18,11 @@
 		className
 	)}
 >
-	<CalendarPrimitive.MonthSelect bind:ref class="absolute inset-0 opacity-0" {...restProps}>
+	<CalendarPrimitive.MonthSelect
+		bind:ref
+		class="dark:bg-popover dark:text-popover-foreground absolute inset-0 opacity-0"
+		{...restProps}
+	>
 		{#snippet child({ props, monthItems, selectedMonthItem })}
 			<select {...props} {value} {onchange}>
 				{#each monthItems as monthItem (monthItem.value)}
