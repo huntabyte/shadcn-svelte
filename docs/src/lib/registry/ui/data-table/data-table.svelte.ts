@@ -54,14 +54,14 @@ export function createSvelteTable<TData extends RowData>(options: TableOptions<T
 
 	function updateOptions() {
 		table.setOptions(() => {
-	  		return mergeObjects(resolvedOptions, options, {
+			return mergeObjects(resolvedOptions, options, {
 				state: mergeObjects(state, options.state || {}),
 
 				onStateChange: (updater: Updater<TableState>) => {
-		  			if (updater instanceof Function) state = updater(state);
-		  			else state = mergeObjects(state, updater);
+					if (updater instanceof Function) state = updater(state);
+					else state = mergeObjects(state, updater);
 
-		  			options.onStateChange?.(updater);
+					options.onStateChange?.(updater);
 				},
 			});
 		});
