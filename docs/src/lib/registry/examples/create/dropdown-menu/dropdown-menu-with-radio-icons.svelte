@@ -24,6 +24,7 @@
 							tabler="IconCreditCard"
 							hugeicons="CreditCardIcon"
 							phosphor="CreditCardIcon"
+							remixicon="RiBankCardLine"
 						/>
 						Credit Card
 					</DropdownMenu.RadioItem>
@@ -33,6 +34,7 @@
 							tabler="IconWallet"
 							hugeicons="WalletIcon"
 							phosphor="WalletIcon"
+							remixicon="RiWalletLine"
 						/>
 						PayPal
 					</DropdownMenu.RadioItem>
@@ -42,6 +44,7 @@
 							tabler="IconBuildingBank"
 							hugeicons="BankIcon"
 							phosphor="BankIcon"
+							remixicon="RiBankLine"
 						/>
 						Bank Transfer
 					</DropdownMenu.RadioItem>

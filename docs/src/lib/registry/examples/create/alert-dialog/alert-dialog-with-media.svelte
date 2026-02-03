@@ -18,6 +18,7 @@
 						tabler="IconBluetooth"
 						hugeicons="BluetoothIcon"
 						phosphor="BluetoothIcon"
+						remixicon="RiBluetoothLine"
 					/>
 				</AlertDialog.Media>
 				<AlertDialog.Title>Are you absolutely sure?</AlertDialog.Title>

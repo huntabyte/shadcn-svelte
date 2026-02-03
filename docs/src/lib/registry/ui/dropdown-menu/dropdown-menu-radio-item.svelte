@@ -31,6 +31,7 @@
 					tabler="IconCheck"
 					hugeicons="Tick02Icon"
 					phosphor="CheckIcon"
+					remixicon="RiCheckLine"
 				/>
 			{/if}
 		</span>

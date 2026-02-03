@@ -41,6 +41,7 @@
 							tabler="IconPlus"
 							hugeicons="PlusSignIcon"
 							phosphor="PlusIcon"
+							remixicon="RiAddLine"
 						/>
 					</Avatar.GroupCount>
 				</Avatar.Group>
@@ -55,6 +56,7 @@
 					tabler="IconPlus"
 					hugeicons="PlusSignIcon"
 					phosphor="PlusIcon"
+					remixicon="RiAddLine"
 				/>
 				Invite Members
 			</Button>

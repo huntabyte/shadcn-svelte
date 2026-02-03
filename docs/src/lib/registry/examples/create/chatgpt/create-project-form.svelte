@@ -54,6 +54,7 @@
 									tabler="IconSettings"
 									hugeicons="Settings01Icon"
 									phosphor="GearIcon"
+									remixicon="RiSettingsLine"
 								/>
 								<span class="sr-only">Memory</span>
 							</Button>
@@ -124,6 +125,7 @@
 												tabler="IconFolder"
 												hugeicons="FolderIcon"
 												phosphor="FolderIcon"
+												remixicon="RiFolderLine"
 												class="text-(--color)"
 											/>
 										</InputGroup.Button>
@@ -177,6 +179,7 @@
 									tabler="IconCircleCheck"
 									hugeicons="CheckmarkCircle02Icon"
 									phosphor="CheckCircleIcon"
+									remixicon="RiCheckboxCircleLine"
 									data-icon="inline-start"
 									class="hidden group-data-[checked=true]/badge:inline"
 								/>
@@ -192,6 +195,7 @@
 							tabler="IconBulb"
 							hugeicons="BulbIcon"
 							phosphor="LightbulbIcon"
+							remixicon="RiLightbulbLine"
 						/>
 						<AlertDescription class="text-xs">
 							Projects keep chats, files, and custom instructions in one place. Use

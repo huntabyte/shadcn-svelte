@@ -19,6 +19,7 @@
 					tabler="IconUser"
 					hugeicons="UserIcon"
 					phosphor="UserIcon"
+					remixicon="RiUserLine"
 				/>
 				Profile
 			</DropdownMenu.Item>
@@ -28,6 +29,7 @@
 					tabler="IconCreditCard"
 					hugeicons="CreditCardIcon"
 					phosphor="CreditCardIcon"
+					remixicon="RiBankCardLine"
 				/>
 				Billing
 			</DropdownMenu.Item>
@@ -37,6 +39,7 @@
 					tabler="IconSettings"
 					hugeicons="SettingsIcon"
 					phosphor="GearIcon"
+					remixicon="RiSettingsLine"
 				/>
 				Settings
 			</DropdownMenu.Item>
@@ -47,6 +50,7 @@
 					tabler="IconLogout"
 					hugeicons="LogoutIcon"
 					phosphor="SignOutIcon"
+					remixicon="RiLogoutBoxLine"
 				/>
 				Log out
 			</DropdownMenu.Item>

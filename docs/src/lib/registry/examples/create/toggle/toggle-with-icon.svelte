@@ -12,6 +12,7 @@
 				tabler="IconBookmark"
 				hugeicons="BookmarkIcon"
 				phosphor="BookmarkIcon"
+				remixicon="RiBookmarkLine"
 				class="group-data-[state=on]/toggle:fill-accent-foreground"
 			/>
 		</Toggle>
@@ -21,6 +22,7 @@
 				tabler="IconBookmark"
 				hugeicons="BookmarkIcon"
 				phosphor="BookmarkIcon"
+				remixicon="RiBookmarkLine"
 				class="group-data-[state=on]/toggle:fill-accent-foreground"
 			/>
 			Bookmark

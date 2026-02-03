@@ -38,6 +38,7 @@
 					tabler="IconMinus"
 					hugeicons="MinusSignIcon"
 					phosphor="MinusIcon"
+					remixicon="RiSubtractLine"
 				/>
 			{:else if checked}
 				<IconPlaceholder
@@ -45,6 +46,7 @@
 					tabler="IconCheck"
 					hugeicons="Tick02Icon"
 					phosphor="CheckIcon"
+					remixicon="RiCheckLine"
 				/>
 			{/if}
 		</span>

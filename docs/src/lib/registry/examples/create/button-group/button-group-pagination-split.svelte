@@ -21,6 +21,7 @@
 					tabler="IconArrowLeft"
 					hugeicons="ArrowLeft01Icon"
 					phosphor="ArrowLeftIcon"
+					remixicon="RiArrowLeftLine"
 				/>
 			</Button>
 			<Button variant="outline" size="icon-xs">
@@ -29,6 +30,7 @@
 					tabler="IconArrowRight"
 					hugeicons="ArrowRight01Icon"
 					phosphor="ArrowRightIcon"
+					remixicon="RiArrowRightLine"
 				/>
 			</Button>
 		</ButtonGroup>

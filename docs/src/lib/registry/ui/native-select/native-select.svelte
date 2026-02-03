@@ -40,6 +40,7 @@
 		tabler="IconSelector"
 		hugeicons="UnfoldMoreIcon"
 		phosphor="CaretDownIcon"
+		remixicon="RiArrowDownSLine"
 		class="cn-native-select-icon pointer-events-none absolute select-none"
 		aria-hidden
 		data-slot="native-select-icon"

@@ -24,6 +24,7 @@
 						tabler="IconCircleDashed"
 						hugeicons="DashedLineCircleIcon"
 						phosphor="CircleDashedIcon"
+						remixicon="RiLoaderLine"
 					/>
 				</InputGroup.Addon>
 				<InputGroup.Addon align="inline-end">

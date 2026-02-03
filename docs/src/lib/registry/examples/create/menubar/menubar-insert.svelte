@@ -16,6 +16,7 @@
 							tabler="IconPhoto"
 							hugeicons="ImageIcon"
 							phosphor="ImageIcon"
+							remixicon="RiImageLine"
 						/>
 						Media
 					</Menubar.SubTrigger>
@@ -32,6 +33,7 @@
 						tabler="IconLink"
 						hugeicons="LinkIcon"
 						phosphor="LinkIcon"
+						remixicon="RiLinksLine"
 					/>
 					Link <Menubar.Shortcut>⌘K</Menubar.Shortcut>
 				</Menubar.Item>
@@ -41,6 +43,7 @@
 						tabler="IconTable"
 						hugeicons="TableIcon"
 						phosphor="TableIcon"
+						remixicon="RiTableLine"
 					/>
 					Table
 				</Menubar.Item>
@@ -55,6 +58,7 @@
 						tabler="IconSearch"
 						hugeicons="SearchIcon"
 						phosphor="MagnifyingGlassIcon"
+						remixicon="RiSearchLine"
 					/>
 					Find & Replace <Menubar.Shortcut>⌘F</Menubar.Shortcut>
 				</Menubar.Item>
@@ -64,6 +68,7 @@
 						tabler="IconCheck"
 						hugeicons="Tick02Icon"
 						phosphor="CheckIcon"
+						remixicon="RiCheckLine"
 					/>
 					Spell Check
 				</Menubar.Item>

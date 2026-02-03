@@ -260,6 +260,7 @@
 																tabler="IconInfoCircle"
 																hugeicons="AlertCircleIcon"
 																phosphor="InfoIcon"
+																remixicon="RiInformationLine"
 															/>
 														</InputGroup.Button>
 													{/snippet}

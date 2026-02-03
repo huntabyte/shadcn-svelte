@@ -24,6 +24,7 @@
 							tabler="IconArrowUp"
 							hugeicons="ArrowUp01Icon"
 							phosphor="ArrowUpIcon"
+							remixicon="RiArrowUpLine"
 						/>
 						Top
 					</DropdownMenu.RadioItem>
@@ -33,6 +34,7 @@
 							tabler="IconArrowDown"
 							hugeicons="ArrowDown01Icon"
 							phosphor="ArrowDownIcon"
+							remixicon="RiArrowDownLine"
 						/>
 						Bottom
 					</DropdownMenu.RadioItem>
@@ -42,6 +44,7 @@
 							tabler="IconArrowRight"
 							hugeicons="ArrowRight01Icon"
 							phosphor="ArrowRightIcon"
+							remixicon="RiArrowRightLine"
 						/>
 						Right
 					</DropdownMenu.RadioItem>

@@ -13,6 +13,7 @@
 					tabler="IconHome"
 					hugeicons="HomeIcon"
 					phosphor="HouseIcon"
+					remixicon="RiHomeLine"
 				/>
 			</Tabs.Trigger>
 			<Tabs.Trigger value="search">
@@ -21,6 +22,7 @@
 					tabler="IconSearch"
 					hugeicons="SearchIcon"
 					phosphor="MagnifyingGlassIcon"
+					remixicon="RiSearchLine"
 				/>
 			</Tabs.Trigger>
 			<Tabs.Trigger value="settings">
@@ -29,6 +31,7 @@
 					tabler="IconSettings"
 					hugeicons="SettingsIcon"
 					phosphor="GearIcon"
+					remixicon="RiSettingsLine"
 				/>
 			</Tabs.Trigger>
 		</Tabs.List>

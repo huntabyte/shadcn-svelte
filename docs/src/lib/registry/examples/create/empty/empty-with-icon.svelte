@@ -14,6 +14,7 @@
 					tabler="IconFolder"
 					hugeicons="Folder01Icon"
 					phosphor="FolderIcon"
+					remixicon="RiFolderLine"
 				/>
 			</Empty.Media>
 			<Empty.Title>Nothing to see here</Empty.Title>
@@ -30,6 +31,7 @@
 					tabler="IconPlus"
 					hugeicons="PlusSignIcon"
 					phosphor="PlusIcon"
+					remixicon="RiAddLine"
 					data-icon="inline-start"
 				/>
 				New Post

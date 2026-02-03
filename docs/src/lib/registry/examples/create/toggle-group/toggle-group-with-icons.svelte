@@ -16,6 +16,7 @@
 				tabler="IconStar"
 				hugeicons="StarIcon"
 				phosphor="StarIcon"
+				remixicon="RiStarLine"
 			/>
 			Star
 		</ToggleGroup.Item>
@@ -29,6 +30,7 @@
 				tabler="IconHeart"
 				hugeicons="FavouriteIcon"
 				phosphor="HeartIcon"
+				remixicon="RiHeartLine"
 			/>
 			Heart
 		</ToggleGroup.Item>
@@ -42,6 +44,7 @@
 				tabler="IconBookmark"
 				hugeicons="BookmarkIcon"
 				phosphor="BookmarkIcon"
+				remixicon="RiBookmarkLine"
 			/>
 			Bookmark
 		</ToggleGroup.Item>

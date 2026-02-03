@@ -12,6 +12,7 @@
 				tabler="IconArrowLeft"
 				hugeicons="ArrowLeft01Icon"
 				phosphor="ArrowLeftIcon"
+				remixicon="RiArrowLeftLine"
 			/>
 			Left
 		</Kbd.Root>
@@ -21,6 +22,7 @@
 				tabler="IconCircleDashed"
 				hugeicons="DashedLineCircleIcon"
 				phosphor="CircleDashedIcon"
+				remixicon="RiLoaderLine"
 			/>
 			Voice Enabled
 		</Kbd.Root>

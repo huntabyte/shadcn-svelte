@@ -12,6 +12,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 			/>
 		</Button>
 		<Button size="icon-xs" variant="secondary">
@@ -20,6 +21,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 			/>
 		</Button>
 		<Button size="icon-xs" variant="outline">
@@ -28,6 +30,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 			/>
 		</Button>
 		<Button size="icon-xs" variant="ghost">
@@ -36,6 +39,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 			/>
 		</Button>
 		<Button size="icon-xs" variant="destructive">
@@ -44,6 +48,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 			/>
 		</Button>
 		<Button size="icon-xs" variant="link">
@@ -52,6 +57,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 			/>
 		</Button>
 	</div>
@@ -62,6 +68,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 			/>
 		</Button>
 		<Button size="icon-sm" variant="secondary">
@@ -70,6 +77,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 			/>
 		</Button>
 		<Button size="icon-sm" variant="outline">
@@ -78,6 +86,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 			/>
 		</Button>
 		<Button size="icon-sm" variant="ghost">
@@ -86,6 +95,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 			/>
 		</Button>
 		<Button size="icon-sm" variant="destructive">
@@ -94,6 +104,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 			/>
 		</Button>
 		<Button size="icon-sm" variant="link">
@@ -102,6 +113,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 			/>
 		</Button>
 	</div>
@@ -112,6 +124,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 			/>
 		</Button>
 		<Button size="icon" variant="secondary">
@@ -120,6 +133,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 			/>
 		</Button>
 		<Button size="icon" variant="outline">
@@ -128,6 +142,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 			/>
 		</Button>
 		<Button size="icon" variant="ghost">
@@ -136,6 +151,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 			/>
 		</Button>
 		<Button size="icon" variant="destructive">
@@ -144,6 +160,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 			/>
 		</Button>
 		<Button size="icon" variant="link">
@@ -152,6 +169,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 			/>
 		</Button>
 	</div>
@@ -162,6 +180,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 			/>
 		</Button>
 		<Button size="icon-lg" variant="secondary">
@@ -170,6 +189,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 			/>
 		</Button>
 		<Button size="icon-lg" variant="outline">
@@ -178,6 +198,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 			/>
 		</Button>
 		<Button size="icon-lg" variant="ghost">
@@ -186,6 +207,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 			/>
 		</Button>
 		<Button size="icon-lg" variant="destructive">
@@ -194,6 +216,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 			/>
 		</Button>
 		<Button size="icon-lg" variant="link">
@@ -202,6 +225,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 			/>
 		</Button>
 	</div>

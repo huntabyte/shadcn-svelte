@@ -163,6 +163,7 @@
 												tabler="IconSelector"
 												hugeicons="UnfoldMoreIcon"
 												phosphor="CaretUpDownIcon"
+												remixicon="RiArrowUpDownLine"
 											/>
 										</Item.Actions>
 									</Item.Root>
@@ -179,6 +180,7 @@
 											tabler="IconCheck"
 											hugeicons="Tick02Icon"
 											phosphor="CheckIcon"
+											remixicon="RiCheckLine"
 											class="ml-auto"
 										/>
 									{/if}
@@ -198,6 +200,7 @@
 							tabler="IconSearch"
 							hugeicons="SearchIcon"
 							phosphor="MagnifyingGlassIcon"
+							remixicon="RiSearchLine"
 							class="pointer-events-none absolute top-1/2 left-2 size-4 -translate-y-1/2 opacity-50 select-none"
 						/>
 					</Sidebar.GroupContent>

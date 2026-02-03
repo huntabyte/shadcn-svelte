@@ -31,6 +31,7 @@
 			data-slot="accordion-trigger-icon"
 			hugeicons="ArrowDown01Icon"
 			phosphor="CaretDownIcon"
+			remixicon="RiArrowDownSLine"
 			class="cn-accordion-trigger-icon pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden"
 		/>
 		<IconPlaceholder
@@ -39,6 +40,7 @@
 			data-slot="accordion-trigger-icon"
 			hugeicons="ArrowUp01Icon"
 			phosphor="CaretUpIcon"
+			remixicon="RiArrowUpSLine"
 			class="cn-accordion-trigger-icon pointer-events-none hidden shrink-0 group-aria-expanded/accordion-trigger:inline"
 		/>
 	</AccordionPrimitive.Trigger>

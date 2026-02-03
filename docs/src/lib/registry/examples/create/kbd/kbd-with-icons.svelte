@@ -12,6 +12,7 @@
 				tabler="IconCircleDashed"
 				hugeicons="DashedLineCircleIcon"
 				phosphor="CircleDashedIcon"
+				remixicon="RiLoaderLine"
 			/>
 		</Kbd.Root>
 		<Kbd.Root>
@@ -20,6 +21,7 @@
 				tabler="IconArrowLeft"
 				hugeicons="ArrowLeft01Icon"
 				phosphor="ArrowLeftIcon"
+				remixicon="RiArrowLeftLine"
 			/>
 		</Kbd.Root>
 		<Kbd.Root>
@@ -28,6 +30,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight01Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 			/>
 		</Kbd.Root>
 	</Kbd.Group>

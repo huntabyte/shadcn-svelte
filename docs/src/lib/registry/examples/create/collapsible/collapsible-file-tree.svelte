@@ -101,6 +101,7 @@
 							tabler="IconChevronRight"
 							hugeicons="ArrowRight01Icon"
 							phosphor="CaretRightIcon"
+							remixicon="RiArrowRightSLine"
 							class="transition-transform group-data-[state=open]:rotate-90"
 						/>
 						<IconPlaceholder
@@ -108,6 +109,7 @@
 							tabler="IconFolder"
 							hugeicons="Folder01Icon"
 							phosphor="FolderIcon"
+							remixicon="RiFolderLine"
 						/>
 						{item.name}
 					</Button.Root>
@@ -128,6 +130,7 @@
 				tabler="IconFile"
 				hugeicons="File01Icon"
 				phosphor="FileIcon"
+				remixicon="RiFileLine"
 			/>
 			<span>{item.name}</span>
 		</Button.Root>

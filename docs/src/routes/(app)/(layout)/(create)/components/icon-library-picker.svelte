@@ -9,15 +9,18 @@
 	import TablerLogo from "$lib/registry/icons/logos/tabler.svelte";
 	import HugeiconsLogo from "$lib/registry/icons/logos/hugeicons.svelte";
 	import PhosphorLogo from "$lib/registry/icons/logos/phosphor.svelte";
+	import RemixiconLogo from "$lib/registry/icons/logos/remixicon.svelte";
 	import LucideSquareIcon from "@lucide/svelte/icons/square";
 	import LucideIcon from "$lib/components/icon-placeholder/lucide-icon.svelte";
 	import TablerIcon from "$lib/components/icon-placeholder/tabler-icon.svelte";
 	import HugeiconsIcon from "$lib/components/icon-placeholder/hugeicons-icon.svelte";
 	import PhosphorIcon from "$lib/components/icon-placeholder/phosphor-icon.svelte";
+	import RemixiconIcon from "$lib/components/icon-placeholder/remixicon-icon.svelte";
 	import type { LucideIconName } from "$lib/registry/icons/__lucide__/index.js";
 	import type { TablerIconName } from "$lib/registry/icons/__tabler__/index.js";
 	import type { HugeIconsIconName } from "$lib/registry/icons/__hugeicons__/index.js";
 	import type { PhosphorIconName } from "$lib/registry/icons/__phosphor__/index.js";
+	import type { RemixIconIconName } from "$lib/registry/icons/__remixicon__/index.js";
 
 	type Props = {
 		submenu?: boolean;
@@ -37,6 +40,7 @@
 		tabler: TablerLogo,
 		hugeicons: HugeiconsLogo,
 		phosphor: PhosphorLogo,
+		remixicon: RemixiconLogo,
 	} as const;
 
 	const CurrentLogo = $derived(logos[currentIconLibrary.name as keyof typeof logos]);
@@ -107,9 +111,29 @@
 			"CaretDownIcon",
 			"CaretRightIcon",
 		] satisfies PhosphorIconName[],
+		remixicon: [
+			"RiFileCopyLine",
+			"RiErrorWarningLine",
+			"RiDeleteBinLine",
+			"RiShareLine",
+			"RiShoppingBagLine",
+			"RiMoreLine",
+			"RiLoaderLine",
+			"RiAddLine",
+			"RiSubtractLine",
+			"RiArrowLeftLine",
+			"RiArrowRightLine",
+			"RiCheckLine",
+			"RiArrowDownSLine",
+			"RiArrowRightSLine",
+		] satisfies RemixIconIconName[],
 	} as const satisfies Record<
 		IconLibraryName,
-		LucideIconName[] | TablerIconName[] | HugeIconsIconName[] | PhosphorIconName[]
+		| LucideIconName[]
+		| TablerIconName[]
+		| HugeIconsIconName[]
+		| PhosphorIconName[]
+		| RemixIconIconName[]
 	>;
 </script>
 
@@ -172,6 +196,8 @@
 			{@render IconLibraryPreviewHugeicons(previewIcons as HugeIconsIconName[])}
 		{:else if iconLibrary === "phosphor"}
 			{@render IconLibraryPreviewPhosphor(previewIcons as PhosphorIconName[])}
+		{:else if iconLibrary === "remixicon"}
+			{@render IconLibraryPreviewRemixicon(previewIcons as RemixIconIconName[])}
 		{/if}
 	{/if}
 {/snippet}
@@ -224,6 +250,18 @@
 					{@render PlaceholderIcon()}
 				{/snippet}
 			</PhosphorIcon>
+		{/each}
+	</div>
+{/snippet}
+
+{#snippet IconLibraryPreviewRemixicon(previewIcons: RemixIconIconName[])}
+	<div class="-mx-1 grid w-full grid-cols-7 gap-2">
+		{#each previewIcons as iconName (iconName)}
+			<RemixiconIcon icon={iconName}>
+				{#snippet placeholder()}
+					{@render PlaceholderIcon()}
+				{/snippet}
+			</RemixiconIcon>
 		{/each}
 	</div>
 {/snippet}

@@ -14,6 +14,7 @@
 					tabler="IconSearch"
 					hugeicons="Search01Icon"
 					phosphor="MagnifyingGlassIcon"
+					remixicon="RiSearchLine"
 				/>
 			</Button>
 			<Button variant="outline" size="icon">
@@ -22,6 +23,7 @@
 					tabler="IconCopy"
 					hugeicons="Copy01Icon"
 					phosphor="CopyIcon"
+					remixicon="RiFileCopyLine"
 				/>
 			</Button>
 			<Button variant="outline" size="icon">
@@ -30,6 +32,7 @@
 					tabler="IconShare"
 					hugeicons="Share03Icon"
 					phosphor="ShareIcon"
+					remixicon="RiShareLine"
 				/>
 			</Button>
 		</ButtonGroup>
@@ -40,6 +43,7 @@
 					tabler="IconFlipHorizontal"
 					hugeicons="FlipHorizontalIcon"
 					phosphor="ArrowsHorizontalIcon"
+					remixicon="RiFlipHorizontalLine"
 				/>
 			</Button>
 			<Button variant="outline" size="icon">
@@ -48,6 +52,7 @@
 					tabler="IconFlipVertical"
 					hugeicons="FlipVerticalIcon"
 					phosphor="ArrowsVerticalIcon"
+					remixicon="RiFlipVerticalLine"
 				/>
 			</Button>
 			<Button variant="outline" size="icon">
@@ -56,6 +61,7 @@
 					tabler="IconRotateClockwise2"
 					hugeicons="Rotate01Icon"
 					phosphor="ArrowClockwiseIcon"
+					remixicon="RiRefreshLine"
 				/>
 			</Button>
 		</ButtonGroup>
@@ -66,6 +72,7 @@
 					tabler="IconTrash"
 					hugeicons="Delete02Icon"
 					phosphor="TrashIcon"
+					remixicon="RiDeleteBinLine"
 				/>
 			</Button>
 		</ButtonGroup>

@@ -57,6 +57,7 @@
 						tabler="IconInfoCircle"
 						hugeicons="AlertCircleIcon"
 						phosphor="InfoIcon"
+						remixicon="RiInformationLine"
 						class="text-muted-foreground ml-auto"
 					/>
 				</InputGroup.Addon>
@@ -82,6 +83,7 @@
 							tabler="IconArrowUp"
 							hugeicons="ArrowUpIcon"
 							phosphor="ArrowUpIcon"
+							remixicon="RiArrowUpLine"
 						/>
 						<span class="sr-only">Send</span>
 					</InputGroup.Button>
@@ -119,6 +121,7 @@
 							tabler="IconBrandJavascript"
 							hugeicons="CodeIcon"
 							phosphor="CodeIcon"
+							remixicon="RiCodeLine"
 						/>
 						script.js
 					</InputGroup.Text>
@@ -128,6 +131,7 @@
 							tabler="IconRefresh"
 							hugeicons="RefreshIcon"
 							phosphor="ArrowClockwiseIcon"
+							remixicon="RiRefreshLine"
 						/>
 					</InputGroup.Button>
 					<InputGroup.Button size="icon-xs" variant="ghost">
@@ -136,6 +140,7 @@
 							tabler="IconCopy"
 							hugeicons="CopyIcon"
 							phosphor="CopyIcon"
+							remixicon="RiFileCopyLine"
 						/>
 					</InputGroup.Button>
 				</InputGroup.Addon>

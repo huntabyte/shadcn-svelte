@@ -80,7 +80,13 @@ export type ${typeName} = ${typeUnion};
 					iconWithoutSuffix = icon.endsWith("Icon") ? icon.slice(0, -4) : icon;
 				}
 			}
-			const iconKebab = pascalToKebab(iconWithoutSuffix);
+			// For remixicon, strip the "Ri" prefix before converting to kebab-case
+			let iconKebab = pascalToKebab(iconWithoutSuffix);
+			if (libraryName === "remixicon" && icon.startsWith("Ri")) {
+				// Remove "Ri" prefix and convert to kebab-case
+				const withoutPrefix = icon.slice(2);
+				iconKebab = pascalToKebab(withoutPrefix);
+			}
 			const iconExport = iconLibraries[libraryName].export
 				.replaceAll("ICON_KEBAB", iconKebab)
 				.replaceAll("ICON_WO_SUFFIX", iconWithoutSuffix)

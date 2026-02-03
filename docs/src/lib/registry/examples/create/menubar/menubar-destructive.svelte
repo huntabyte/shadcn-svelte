@@ -15,6 +15,7 @@
 						tabler="IconFile"
 						hugeicons="FileIcon"
 						phosphor="FileIcon"
+						remixicon="RiFileLine"
 					/>
 					New File <Menubar.Shortcut>⌘N</Menubar.Shortcut>
 				</Menubar.Item>
@@ -24,6 +25,7 @@
 						tabler="IconFolder"
 						hugeicons="FolderIcon"
 						phosphor="FolderIcon"
+						remixicon="RiFolderLine"
 					/>
 					Open Folder
 				</Menubar.Item>
@@ -34,6 +36,7 @@
 						tabler="IconTrash"
 						hugeicons="DeleteIcon"
 						phosphor="TrashIcon"
+						remixicon="RiDeleteBinLine"
 					/>
 					Delete File <Menubar.Shortcut>⌘⌫</Menubar.Shortcut>
 				</Menubar.Item>
@@ -48,6 +51,7 @@
 						tabler="IconUser"
 						hugeicons="UserIcon"
 						phosphor="UserIcon"
+						remixicon="RiUserLine"
 					/>
 					Profile
 				</Menubar.Item>
@@ -57,6 +61,7 @@
 						tabler="IconSettings"
 						hugeicons="SettingsIcon"
 						phosphor="GearIcon"
+						remixicon="RiSettingsLine"
 					/>
 					Settings
 				</Menubar.Item>
@@ -67,6 +72,7 @@
 						tabler="IconLogout"
 						hugeicons="LogoutIcon"
 						phosphor="SignOutIcon"
+						remixicon="RiLogoutBoxLine"
 					/>
 					Sign out
 				</Menubar.Item>
@@ -77,6 +83,7 @@
 						tabler="IconTrash"
 						hugeicons="DeleteIcon"
 						phosphor="TrashIcon"
+						remixicon="RiDeleteBinLine"
 					/>
 					Delete
 				</Menubar.Item>

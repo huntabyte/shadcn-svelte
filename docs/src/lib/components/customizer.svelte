@@ -42,6 +42,7 @@
 				phosphor="SlidersHorizontalIcon"
 				hugeicons="SlidersHorizontalIcon"
 				tabler="IconAdjustmentsHorizontal"
+				remixicon="RiSettingsLine"
 			/>
 		</DropdownMenu.Trigger>
 		<DropdownMenu.Content align="end" class="min-w-64" preventScroll={false}>

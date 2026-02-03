@@ -21,6 +21,7 @@
 							tabler="IconUser"
 							hugeicons="UserIcon"
 							phosphor="UserIcon"
+							remixicon="RiUserLine"
 						/>
 						<span>Profile</span>
 						<Command.Shortcut>⌘P</Command.Shortcut>
@@ -31,6 +32,7 @@
 							tabler="IconCreditCard"
 							hugeicons="CreditCardIcon"
 							phosphor="CreditCardIcon"
+							remixicon="RiBankCardLine"
 						/>
 						<span>Billing</span>
 						<Command.Shortcut>⌘B</Command.Shortcut>
@@ -41,6 +43,7 @@
 							tabler="IconSettings"
 							hugeicons="SettingsIcon"
 							phosphor="GearIcon"
+							remixicon="RiSettingsLine"
 						/>
 						<span>Settings</span>
 						<Command.Shortcut>⌘S</Command.Shortcut>

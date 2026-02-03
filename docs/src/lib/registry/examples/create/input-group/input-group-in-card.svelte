@@ -29,6 +29,7 @@
 								tabler="IconMail"
 								hugeicons="MailIcon"
 								phosphor="EnvelopeIcon"
+								remixicon="RiMailLine"
 							/>
 						</InputGroup.Addon>
 					</InputGroup.Root>
@@ -46,6 +47,7 @@
 								tabler="IconExternalLink"
 								hugeicons="LinkSquare02Icon"
 								phosphor="ArrowSquareOutIcon"
+								remixicon="RiExternalLinkLine"
 							/>
 						</InputGroup.Addon>
 					</InputGroup.Root>

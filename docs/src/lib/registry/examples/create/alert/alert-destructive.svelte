@@ -12,6 +12,7 @@
 				tabler="IconExclamationCircle"
 				hugeicons="AlertCircleIcon"
 				phosphor="WarningCircleIcon"
+				remixicon="RiErrorWarningLine"
 			/>
 			<Alert.Title>Something went wrong!</Alert.Title>
 			<Alert.Description>Your session has expired. Please log in again.</Alert.Description>
@@ -22,6 +23,7 @@
 				tabler="IconExclamationCircle"
 				hugeicons="AlertCircleIcon"
 				phosphor="WarningCircleIcon"
+				remixicon="RiErrorWarningLine"
 			/>
 			<Alert.Title>Unable to process your payment.</Alert.Title>
 			<Alert.Description>

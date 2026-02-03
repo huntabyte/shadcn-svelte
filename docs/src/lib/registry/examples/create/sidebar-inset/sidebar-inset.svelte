@@ -13,6 +13,7 @@
 				tabler: "IconHome",
 				hugeicons: "Home01Icon",
 				phosphor: "HouseIcon",
+				remixicon: "RiHomeLine",
 				isActive: true,
 				items: [
 					{
@@ -32,6 +33,7 @@
 				tabler: "IconChartLine",
 				hugeicons: "ChartIcon",
 				phosphor: "ChartLineIcon",
+				remixicon: "RiLineChartLine",
 				items: [
 					{
 						title: "Reports",
@@ -50,6 +52,7 @@
 				tabler: "IconShoppingBag",
 				hugeicons: "ShoppingBag01Icon",
 				phosphor: "BagIcon",
+				remixicon: "RiShoppingBagLine",
 				items: [
 					{
 						title: "All Orders",
@@ -72,6 +75,7 @@
 				tabler: "IconShoppingCart",
 				hugeicons: "ShoppingCart01Icon",
 				phosphor: "ShoppingCartIcon",
+				remixicon: "RiShoppingCartLine",
 				items: [
 					{
 						title: "All Products",
@@ -90,6 +94,7 @@
 				tabler: "IconFile",
 				hugeicons: "File01Icon",
 				phosphor: "FileIcon",
+				remixicon: "RiFileLine",
 			},
 			{
 				title: "Customers",
@@ -98,6 +103,7 @@
 				tabler: "IconUser",
 				hugeicons: "UserIcon",
 				phosphor: "UserIcon",
+				remixicon: "RiUserLine",
 			},
 			{
 				title: "Settings",
@@ -106,6 +112,7 @@
 				tabler: "IconSettings",
 				hugeicons: "Settings05Icon",
 				phosphor: "GearIcon",
+				remixicon: "RiSettingsLine",
 			},
 		],
 		navSecondary: [
@@ -116,6 +123,7 @@
 				tabler: "IconLifebuoy",
 				hugeicons: "ChartRingIcon",
 				phosphor: "LifebuoyIcon",
+				remixicon: "RiLifebuoyLine",
 			},
 			{
 				title: "Feedback",
@@ -124,6 +132,7 @@
 				tabler: "IconSend",
 				hugeicons: "SentIcon",
 				phosphor: "PaperPlaneTiltIcon",
+				remixicon: "RiSendPlaneLine",
 			},
 		],
 	};
@@ -147,6 +156,7 @@
 													tabler={item.tabler as any}
 													hugeicons={item.hugeicons as any}
 													phosphor={item.phosphor as any}
+													remixicon={item.remixicon as any}
 												/>
 												<span>{item.title}</span>
 											</a>
@@ -164,6 +174,7 @@
 														tabler="IconChevronRight"
 														hugeicons="ArrowRight01Icon"
 														phosphor="CaretRightIcon"
+														remixicon="RiArrowRightSLine"
 													/>
 													<span class="sr-only">Toggle</span>
 												</Sidebar.MenuAction>
@@ -204,6 +215,7 @@
 												tabler={item.tabler as any}
 												hugeicons={item.hugeicons as any}
 												phosphor={item.phosphor as any}
+												remixicon={item.remixicon as any}
 											/>
 											<span>{item.title}</span>
 										</a>

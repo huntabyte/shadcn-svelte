@@ -91,6 +91,7 @@
 							tabler="IconMinus"
 							hugeicons="MinusSignIcon"
 							phosphor="MinusIcon"
+							remixicon="RiSubtractLine"
 						/>
 					</Button>
 					<Button
@@ -106,6 +107,7 @@
 							tabler="IconPlus"
 							hugeicons="PlusSignIcon"
 							phosphor="PlusIcon"
+							remixicon="RiAddLine"
 						/>
 					</Button>
 				</ButtonGroup.Root>

@@ -23,7 +23,7 @@
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20251213.0",
+		"@cloudflare/workers-types": "^4.20260203.0",
 		"@dnd-kit-svelte/svelte": "^0.1.5",
 		"@dnd-kit/abstract": "^0.1.21",
 		"@dnd-kit/collision": "^0.1.21",
@@ -91,6 +91,7 @@
 		"remark-code-import": "^1.2.0",
 		"remark-gfm": "^4.0.1",
 		"remark-stringify": "^11.0.0",
+		"remixicon-svelte": "^0.0.5",
 		"rimraf": "^6.1.2",
 		"rollup-plugin-visualizer": "^6.0.5",
 		"runed": "^0.37.0",

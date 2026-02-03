@@ -15,6 +15,7 @@
 					tabler="IconArrowRight"
 					hugeicons="ArrowRight02Icon"
 					phosphor="ArrowRightIcon"
+					remixicon="RiArrowRightLine"
 					data-icon="inline-end"
 				/>
 			</Button>
@@ -27,6 +28,7 @@
 					tabler="IconArrowRight"
 					hugeicons="ArrowRight02Icon"
 					phosphor="ArrowRightIcon"
+					remixicon="RiArrowRightLine"
 					data-icon="inline-end"
 				/>
 			</Button>

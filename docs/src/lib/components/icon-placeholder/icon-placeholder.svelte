@@ -5,10 +5,12 @@
 	import TablerIcon from "./tabler-icon.svelte";
 	import PhosphorIcon from "./phosphor-icon.svelte";
 	import HugeiconsIcon from "./hugeicons-icon.svelte";
+	import RemixiconIcon from "./remixicon-icon.svelte";
 	import type { HugeIconsIconName } from "$lib/registry/icons/__hugeicons__/index.js";
 	import type { LucideIconName } from "$lib/registry/icons/__lucide__/index.js";
 	import type { TablerIconName } from "$lib/registry/icons/__tabler__/index.js";
 	import type { PhosphorIconName } from "$lib/registry/icons/__phosphor__/index.js";
+	import type { RemixIconIconName } from "$lib/registry/icons/__remixicon__/index.js";
 	import type { SVGAttributes } from "svelte/elements";
 
 	type SvgProps = SVGAttributes<SVGSVGElement>;
@@ -18,6 +20,7 @@
 		lucide: LucideIconName;
 		tabler: TablerIconName;
 		phosphor: PhosphorIconName;
+		remixicon: RemixIconIconName;
 		class?: string;
 	};
 
@@ -26,6 +29,7 @@
 		lucide,
 		tabler,
 		phosphor,
+		remixicon,
 		class: className,
 		...restProps
 	}: Props & Omit<SvgProps, "class"> = $props();
@@ -61,4 +65,10 @@
 			{@render PlaceholderIcon()}
 		{/snippet}
 	</PhosphorIcon>
+{:else if designSystem.iconLibrary === "remixicon"}
+	<RemixiconIcon icon={remixicon} class={className} {...restProps as unknown as object}>
+		{#snippet placeholder()}
+			{@render PlaceholderIcon()}
+		{/snippet}
+	</RemixiconIcon>
 {/if}

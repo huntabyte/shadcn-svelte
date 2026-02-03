@@ -65,6 +65,7 @@
 									tabler="IconBluetooth"
 									hugeicons="BluetoothIcon"
 									phosphor="BluetoothIcon"
+									remixicon="RiBluetoothLine"
 								/>
 							</AlertDialog.Media>
 							<AlertDialog.Title>Allow accessory to connect?</AlertDialog.Title>

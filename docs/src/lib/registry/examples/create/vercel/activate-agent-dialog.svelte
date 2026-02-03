@@ -55,6 +55,7 @@
 									tabler="IconCircleCheckFilled"
 									hugeicons="CheckmarkCircle02Icon"
 									phosphor="CheckCircleIcon"
+									remixicon="RiCheckboxCircleLine"
 									class="fill-primary text-primary-foreground size-5"
 								/>
 							</Item.Media>
@@ -86,6 +87,7 @@
 						hugeicons="DollarCircleIcon"
 						tabler="IconCoin"
 						phosphor="CurrencyCircleDollarIcon"
+						remixicon="RiMoneyDollarCircleLine"
 					/>
 					<Alert.Description>
 						Pro teams get $100 in Vercel Agent trial credit for 2 weeks.

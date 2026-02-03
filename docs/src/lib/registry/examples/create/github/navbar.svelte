@@ -19,6 +19,7 @@
 							hugeicons="Menu09Icon"
 							tabler="IconMenu"
 							phosphor="ListIcon"
+							remixicon="RiMenuLine"
 						/>
 						<span class="sr-only">Open menu</span>
 					</Button>
@@ -35,6 +36,7 @@
 									tabler="IconX"
 									hugeicons="Cancel01Icon"
 									phosphor="XIcon"
+									remixicon="RiCloseLine"
 								/>
 								<span class="sr-only">Close</span>
 							</Button>
@@ -52,6 +54,7 @@
 											tabler="IconHome"
 											hugeicons="HomeIcon"
 											phosphor="HouseIcon"
+											remixicon="RiHomeLine"
 										/>
 									</Item.Media>
 									<Item.Content>
@@ -69,6 +72,7 @@
 											tabler="IconCircle"
 											hugeicons="CircleIcon"
 											phosphor="CircleIcon"
+											remixicon="RiCircleLine"
 										/>
 									</Item.Media>
 									<Item.Content>
@@ -86,6 +90,7 @@
 											tabler="IconGitBranch"
 											hugeicons="GitBranchIcon"
 											phosphor="GitBranchIcon"
+											remixicon="RiGitBranchLine"
 										/>
 									</Item.Media>
 									<Item.Content>
@@ -103,6 +108,7 @@
 											tabler="IconLayoutGrid"
 											hugeicons="GridIcon"
 											phosphor="GridFourIcon"
+											remixicon="RiGridLine"
 										/>
 									</Item.Media>
 									<Item.Content>
@@ -120,6 +126,7 @@
 											tabler="IconMail"
 											hugeicons="MailIcon"
 											phosphor="EnvelopeIcon"
+											remixicon="RiMailLine"
 										/>
 									</Item.Media>
 									<Item.Content>
@@ -137,6 +144,7 @@
 											tabler="IconServer"
 											hugeicons="ServerStackIcon"
 											phosphor="HardDrivesIcon"
+											remixicon="RiServerLine"
 										/>
 									</Item.Media>
 									<Item.Content>
@@ -154,6 +162,7 @@
 											tabler="IconRobot"
 											hugeicons="RoboticIcon"
 											phosphor="RobotIcon"
+											remixicon="RiRobotLine"
 										/>
 									</Item.Media>
 									<Item.Content>
@@ -171,6 +180,7 @@
 											tabler="IconSparkles"
 											hugeicons="SparklesIcon"
 											phosphor="SparkleIcon"
+											remixicon="RiSparklingLine"
 										/>
 									</Item.Media>
 									<Item.Content>
@@ -189,6 +199,7 @@
 											tabler="IconSearch"
 											hugeicons="SearchIcon"
 											phosphor="MagnifyingGlassIcon"
+											remixicon="RiSearchLine"
 										/>
 									</Item.Media>
 									<Item.Content>
@@ -206,6 +217,7 @@
 											tabler="IconShoppingBag"
 											hugeicons="ShoppingBasket01Icon"
 											phosphor="BagIcon"
+											remixicon="RiShoppingBagLine"
 										/>
 									</Item.Media>
 									<Item.Content>
@@ -223,6 +235,7 @@
 											tabler="IconLink"
 											hugeicons="LinkIcon"
 											phosphor="LinkIcon"
+											remixicon="RiLink"
 										/>
 									</Item.Media>
 									<Item.Content>
@@ -276,6 +289,7 @@
 							tabler="IconMoodSmile"
 							hugeicons="SmileIcon"
 							phosphor="SmileyIcon"
+							remixicon="RiEmotionLine"
 						/>
 						Set status
 					</DropdownMenu.Item>
@@ -285,6 +299,7 @@
 							tabler="IconExclamationCircle"
 							hugeicons="AlertCircleIcon"
 							phosphor="WarningCircleIcon"
+							remixicon="RiErrorWarningLine"
 						/>
 						Single sign-on
 					</DropdownMenu.Item>
@@ -297,6 +312,7 @@
 							tabler="IconUser"
 							hugeicons="UserIcon"
 							phosphor="UserIcon"
+							remixicon="RiUserLine"
 						/>
 						Profile
 					</DropdownMenu.Item>
@@ -306,6 +322,7 @@
 							tabler="IconFolder"
 							hugeicons="FolderIcon"
 							phosphor="FolderIcon"
+							remixicon="RiFolderLine"
 						/>
 						Repositories
 					</DropdownMenu.Item>
@@ -315,6 +332,7 @@
 							tabler="IconStar"
 							hugeicons="StarIcon"
 							phosphor="StarIcon"
+							remixicon="RiStarLine"
 						/>
 						Stars
 					</DropdownMenu.Item>
@@ -324,6 +342,7 @@
 							tabler="IconCode"
 							hugeicons="CodeIcon"
 							phosphor="CodeIcon"
+							remixicon="RiCodeLine"
 						/>
 						Gists
 					</DropdownMenu.Item>
@@ -333,6 +352,7 @@
 							tabler="IconFolder"
 							hugeicons="FolderIcon"
 							phosphor="FolderIcon"
+							remixicon="RiFolderLine"
 						/>
 						Organizations
 					</DropdownMenu.Item>
@@ -342,6 +362,7 @@
 							tabler="IconServer"
 							hugeicons="ServerStackIcon"
 							phosphor="HardDrivesIcon"
+							remixicon="RiServerLine"
 						/>
 						Enterprises
 					</DropdownMenu.Item>
@@ -351,6 +372,7 @@
 							tabler="IconHeart"
 							hugeicons="FavouriteIcon"
 							phosphor="HeartIcon"
+							remixicon="RiHeartLine"
 						/>
 						Sponsors
 					</DropdownMenu.Item>
@@ -363,6 +385,7 @@
 							tabler="IconSettings"
 							hugeicons="SettingsIcon"
 							phosphor="GearIcon"
+							remixicon="RiSettingsLine"
 						/>
 						Settings
 					</DropdownMenu.Item>
@@ -372,6 +395,7 @@
 							tabler="IconRobot"
 							hugeicons="RoboticIcon"
 							phosphor="RobotIcon"
+							remixicon="RiRobotLine"
 						/>
 						Copilot settings
 					</DropdownMenu.Item>
@@ -381,6 +405,7 @@
 							tabler="IconSparkles"
 							hugeicons="SparklesIcon"
 							phosphor="SparkleIcon"
+							remixicon="RiSparklingLine"
 						/>
 						Feature preview
 					</DropdownMenu.Item>
@@ -390,6 +415,7 @@
 							tabler="IconDeviceDesktop"
 							hugeicons="ComputerIcon"
 							phosphor="MonitorIcon"
+							remixicon="RiComputerLine"
 						/>
 						Appearance
 					</DropdownMenu.Item>
@@ -399,6 +425,7 @@
 							tabler="IconUser"
 							hugeicons="UserIcon"
 							phosphor="UserIcon"
+							remixicon="RiUserLine"
 						/>
 						Accessibility
 					</DropdownMenu.Item>
@@ -408,6 +435,7 @@
 							tabler="IconArrowUp"
 							hugeicons="ArrowUpIcon"
 							phosphor="ArrowUpIcon"
+							remixicon="RiArrowUpLine"
 						/>
 						Upgrade
 					</DropdownMenu.Item>
@@ -419,6 +447,7 @@
 						tabler="IconLogout"
 						hugeicons="LogoutIcon"
 						phosphor="SignOutIcon"
+						remixicon="RiLogoutBoxLine"
 					/>
 					Sign out
 				</DropdownMenu.Item>

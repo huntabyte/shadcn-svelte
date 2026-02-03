@@ -27,6 +27,7 @@
 					tabler="IconCircle"
 					hugeicons="CircleIcon"
 					phosphor="CircleIcon"
+					remixicon="RiCircleLine"
 					class="cn-radio-group-indicator-icon"
 				/>
 			{/if}

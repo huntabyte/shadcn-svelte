@@ -21,5 +21,6 @@
 		tabler="IconChevronDown"
 		hugeicons="ArrowDown01Icon"
 		phosphor="CaretDownIcon"
+		remixicon="RiArrowDownSLine"
 	/>
 </SelectPrimitive.ScrollDownButton>

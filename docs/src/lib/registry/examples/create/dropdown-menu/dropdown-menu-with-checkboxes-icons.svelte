@@ -31,6 +31,7 @@
 						tabler="IconMail"
 						hugeicons="MailIcon"
 						phosphor="EnvelopeIcon"
+						remixicon="RiMailLine"
 					/>
 					Email notifications
 				</DropdownMenu.CheckboxItem>
@@ -44,6 +45,7 @@
 						tabler="IconMessage"
 						hugeicons="MessageIcon"
 						phosphor="ChatCircleIcon"
+						remixicon="RiChat1Line"
 					/>
 					SMS notifications
 				</DropdownMenu.CheckboxItem>
@@ -57,6 +59,7 @@
 						tabler="IconBell"
 						hugeicons="NotificationIcon"
 						phosphor="BellIcon"
+						remixicon="RiNotificationLine"
 					/>
 					Push notifications
 				</DropdownMenu.CheckboxItem>

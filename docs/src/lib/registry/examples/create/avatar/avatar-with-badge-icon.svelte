@@ -15,6 +15,7 @@
 					tabler="IconPlus"
 					hugeicons="PlusSignIcon"
 					phosphor="PlusIcon"
+					remixicon="RiAddLine"
 				/>
 			</Avatar.Badge>
 		</Avatar.Root>
@@ -27,6 +28,7 @@
 					tabler="IconPlus"
 					hugeicons="PlusSignIcon"
 					phosphor="PlusIcon"
+					remixicon="RiAddLine"
 				/>
 			</Avatar.Badge>
 		</Avatar.Root>
@@ -39,6 +41,7 @@
 					tabler="IconPlus"
 					hugeicons="PlusSignIcon"
 					phosphor="PlusIcon"
+					remixicon="RiAddLine"
 				/>
 			</Avatar.Badge>
 		</Avatar.Root>
@@ -52,6 +55,7 @@
 					tabler="IconCheck"
 					hugeicons="Tick02Icon"
 					phosphor="CheckIcon"
+					remixicon="RiCheckLine"
 				/>
 			</Avatar.Badge>
 		</Avatar.Root>
@@ -63,6 +67,7 @@
 					tabler="IconCheck"
 					hugeicons="Tick02Icon"
 					phosphor="CheckIcon"
+					remixicon="RiCheckLine"
 				/>
 			</Avatar.Badge>
 		</Avatar.Root>
@@ -74,6 +79,7 @@
 					tabler="IconCheck"
 					hugeicons="Tick02Icon"
 					phosphor="CheckIcon"
+					remixicon="RiCheckLine"
 				/>
 			</Avatar.Badge>
 		</Avatar.Root>

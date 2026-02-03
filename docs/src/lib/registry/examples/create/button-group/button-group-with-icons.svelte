@@ -14,6 +14,7 @@
 					tabler="IconFlipHorizontal"
 					hugeicons="FlipHorizontalIcon"
 					phosphor="ArrowsHorizontalIcon"
+					remixicon="RiFlipHorizontalLine"
 				/>
 			</Button>
 			<Button variant="outline">
@@ -22,6 +23,7 @@
 					tabler="IconFlipVertical"
 					hugeicons="FlipVerticalIcon"
 					phosphor="ArrowsVerticalIcon"
+					remixicon="RiFlipVerticalLine"
 				/>
 			</Button>
 			<Button variant="outline">
@@ -30,6 +32,7 @@
 					tabler="IconRotateClockwise2"
 					hugeicons="Rotate01Icon"
 					phosphor="ArrowClockwiseIcon"
+					remixicon="RiRefreshLine"
 				/>
 			</Button>
 		</ButtonGroup>

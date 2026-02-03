@@ -35,6 +35,7 @@
 		tabler="IconLayoutSidebar"
 		hugeicons="SidebarLeftIcon"
 		phosphor="SidebarIcon"
+		remixicon="RiSideBarLine"
 	/>
 	<span class="sr-only">Toggle Sidebar</span>
 </Button>

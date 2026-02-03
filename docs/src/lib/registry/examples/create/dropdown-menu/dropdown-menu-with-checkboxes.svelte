@@ -25,6 +25,7 @@
 						tabler="IconLayout"
 						hugeicons="LayoutIcon"
 						phosphor="LayoutIcon"
+						remixicon="RiLayoutLine"
 					/>
 					Status Bar
 				</DropdownMenu.CheckboxItem>
@@ -34,6 +35,7 @@
 						tabler="IconActivity"
 						hugeicons="ActivityIcon"
 						phosphor="PulseIcon"
+						remixicon="RiPulseLine"
 					/>
 					Activity Bar
 				</DropdownMenu.CheckboxItem>
@@ -43,6 +45,7 @@
 						tabler="IconLayoutSidebar"
 						hugeicons="LayoutLeftIcon"
 						phosphor="SidebarIcon"
+						remixicon="RiSideBarLine"
 					/>
 					Panel
 				</DropdownMenu.CheckboxItem>

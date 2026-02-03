@@ -12,6 +12,7 @@
 				tabler="IconRosetteDiscountCheck"
 				hugeicons="CheckmarkBadge02Icon"
 				phosphor="CheckCircleIcon"
+				remixicon="RiCheckboxCircleLine"
 				data-icon="inline-start"
 			/>
 			Default
@@ -22,6 +23,7 @@
 				tabler="IconRosetteDiscountCheck"
 				hugeicons="CheckmarkBadge02Icon"
 				phosphor="CheckCircleIcon"
+				remixicon="RiCheckboxCircleLine"
 				data-icon="inline-start"
 			/>
 			Secondary
@@ -32,6 +34,7 @@
 				tabler="IconRosetteDiscountCheck"
 				hugeicons="CheckmarkBadge02Icon"
 				phosphor="CheckCircleIcon"
+				remixicon="RiCheckboxCircleLine"
 				data-icon="inline-start"
 			/>
 			Destructive
@@ -42,6 +45,7 @@
 				tabler="IconRosetteDiscountCheck"
 				hugeicons="CheckmarkBadge02Icon"
 				phosphor="CheckCircleIcon"
+				remixicon="RiCheckboxCircleLine"
 				data-icon="inline-start"
 			/>
 			Outline
@@ -52,6 +56,7 @@
 				tabler="IconRosetteDiscountCheck"
 				hugeicons="CheckmarkBadge02Icon"
 				phosphor="CheckCircleIcon"
+				remixicon="RiCheckboxCircleLine"
 				data-icon="inline-start"
 			/>
 			Ghost
@@ -62,6 +67,7 @@
 				tabler="IconRosetteDiscountCheck"
 				hugeicons="CheckmarkBadge02Icon"
 				phosphor="CheckCircleIcon"
+				remixicon="RiCheckboxCircleLine"
 				data-icon="inline-start"
 			/>
 			Link

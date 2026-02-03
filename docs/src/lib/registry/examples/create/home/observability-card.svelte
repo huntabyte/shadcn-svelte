@@ -30,6 +30,7 @@
 					tabler="IconPlus"
 					hugeicons="PlusSignIcon"
 					phosphor="PlusIcon"
+					remixicon="RiAddLine"
 					data-icon="inline-end"
 				/>
 			</Button>

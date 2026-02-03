@@ -42,6 +42,7 @@
 						tabler="IconFile"
 						hugeicons="FileIcon"
 						phosphor="FileIcon"
+						remixicon="RiFileLine"
 						class="size-5"
 					/>
 				</Item.Media>

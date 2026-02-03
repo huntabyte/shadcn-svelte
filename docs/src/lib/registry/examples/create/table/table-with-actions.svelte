@@ -29,6 +29,7 @@
 										tabler="IconDots"
 										hugeicons="MoreHorizontalCircle01Icon"
 										phosphor="DotsThreeOutlineIcon"
+										remixicon="RiMoreLine"
 									/>
 									<span class="sr-only">Open menu</span>
 								</Button>
@@ -56,6 +57,7 @@
 										tabler="IconDots"
 										hugeicons="MoreHorizontalCircle01Icon"
 										phosphor="DotsThreeOutlineIcon"
+										remixicon="RiMoreLine"
 									/>
 									<span class="sr-only">Open menu</span>
 								</Button>
@@ -83,6 +85,7 @@
 										tabler="IconDots"
 										hugeicons="MoreHorizontalCircle01Icon"
 										phosphor="DotsThreeOutlineIcon"
+										remixicon="RiMoreLine"
 									/>
 									<span class="sr-only">Open menu</span>
 								</Button>

@@ -19,6 +19,7 @@
 					tabler="IconPencil"
 					hugeicons="EditIcon"
 					phosphor="PencilIcon"
+					remixicon="RiPencilLine"
 				/>
 				Edit
 			</DropdownMenu.Item>
@@ -28,6 +29,7 @@
 					tabler="IconShare"
 					hugeicons="ShareIcon"
 					phosphor="ShareIcon"
+					remixicon="RiShareLine"
 				/>
 				Share
 			</DropdownMenu.Item>
@@ -38,6 +40,7 @@
 					tabler="IconArchive"
 					hugeicons="Archive02Icon"
 					phosphor="ArchiveIcon"
+					remixicon="RiArchiveLine"
 				/>
 				Archive
 			</DropdownMenu.Item>
@@ -47,6 +50,7 @@
 					tabler="IconTrash"
 					hugeicons="DeleteIcon"
 					phosphor="TrashIcon"
+					remixicon="RiDeleteBinLine"
 				/>
 				Delete
 			</DropdownMenu.Item>

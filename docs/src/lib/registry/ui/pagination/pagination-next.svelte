@@ -21,6 +21,7 @@
 		tabler="IconChevronRight"
 		hugeicons="ArrowRight01Icon"
 		phosphor="CaretRightIcon"
+		remixicon="RiArrowRightSLine"
 		data-icon="inline-end"
 	/>
 </PaginationLink>

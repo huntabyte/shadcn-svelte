@@ -14,6 +14,7 @@
 				tabler="IconExclamationCircle"
 				hugeicons="AlertCircleIcon"
 				phosphor="WarningCircleIcon"
+				remixicon="RiErrorWarningLine"
 			/>
 			<Alert.Title>The selected emails have been marked as spam.</Alert.Title>
 			<Alert.Action>
@@ -26,6 +27,7 @@
 				tabler="IconExclamationCircle"
 				hugeicons="AlertCircleIcon"
 				phosphor="WarningCircleIcon"
+				remixicon="RiErrorWarningLine"
 			/>
 			<Alert.Title>The selected emails have been marked as spam.</Alert.Title>
 			<Alert.Description>

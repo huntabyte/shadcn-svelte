@@ -12,6 +12,7 @@
 				tabler="IconExclamationCircle"
 				hugeicons="AlertCircleIcon"
 				phosphor="WarningCircleIcon"
+				remixicon="RiErrorWarningLine"
 			/>
 			<Alert.Title>
 				Let&apos;s try one with icon, title and a <a href="#/">link</a>.
@@ -23,6 +24,7 @@
 				tabler="IconExclamationCircle"
 				hugeicons="AlertCircleIcon"
 				phosphor="WarningCircleIcon"
+				remixicon="RiErrorWarningLine"
 			/>
 			<Alert.Description>
 				This one has an icon and a description only. No title.
@@ -36,6 +38,7 @@
 				tabler="IconExclamationCircle"
 				hugeicons="AlertCircleIcon"
 				phosphor="WarningCircleIcon"
+				remixicon="RiErrorWarningLine"
 			/>
 			<Alert.Title>Success! Your changes have been saved</Alert.Title>
 			<Alert.Description>
@@ -48,6 +51,7 @@
 				tabler="IconExclamationCircle"
 				hugeicons="AlertCircleIcon"
 				phosphor="WarningCircleIcon"
+				remixicon="RiErrorWarningLine"
 			/>
 			<Alert.Title>
 				This is a very long alert title that demonstrates how the component handles extended
@@ -60,6 +64,7 @@
 				tabler="IconExclamationCircle"
 				hugeicons="AlertCircleIcon"
 				phosphor="WarningCircleIcon"
+				remixicon="RiErrorWarningLine"
 			/>
 			<Alert.Description>
 				This is a very long alert description that demonstrates how the component handles
@@ -72,6 +77,7 @@
 				tabler="IconExclamationCircle"
 				hugeicons="AlertCircleIcon"
 				phosphor="WarningCircleIcon"
+				remixicon="RiErrorWarningLine"
 			/>
 			<Alert.Title>
 				This is an extremely long alert title that spans multiple lines to demonstrate how

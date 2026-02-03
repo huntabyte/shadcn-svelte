@@ -21,6 +21,7 @@
 							tabler="IconHome"
 							hugeicons="HomeIcon"
 							phosphor="HouseIcon"
+							remixicon="RiHomeLine"
 						/>
 						<span>Home</span>
 						<Command.Shortcut>⌘H</Command.Shortcut>
@@ -31,6 +32,7 @@
 							tabler="IconInbox"
 							hugeicons="InboxIcon"
 							phosphor="TrayIcon"
+							remixicon="RiInboxLine"
 						/>
 						<span>Inbox</span>
 						<Command.Shortcut>⌘I</Command.Shortcut>
@@ -41,6 +43,7 @@
 							tabler="IconFileText"
 							hugeicons="File02Icon"
 							phosphor="FileTextIcon"
+							remixicon="RiFileTextLine"
 						/>
 						<span>Documents</span>
 						<Command.Shortcut>⌘D</Command.Shortcut>
@@ -51,6 +54,7 @@
 							tabler="IconFolder"
 							hugeicons="FolderIcon"
 							phosphor="FolderIcon"
+							remixicon="RiFolderLine"
 						/>
 						<span>Folders</span>
 						<Command.Shortcut>⌘F</Command.Shortcut>
@@ -64,6 +68,7 @@
 							tabler="IconPlus"
 							hugeicons="PlusSignIcon"
 							phosphor="PlusIcon"
+							remixicon="RiAddLine"
 						/>
 						<span>New File</span>
 						<Command.Shortcut>⌘N</Command.Shortcut>
@@ -74,6 +79,7 @@
 							tabler="IconFolderPlus"
 							hugeicons="FolderAddIcon"
 							phosphor="FolderPlusIcon"
+							remixicon="RiFolderAddLine"
 						/>
 						<span>New Folder</span>
 						<Command.Shortcut>⇧⌘N</Command.Shortcut>
@@ -84,6 +90,7 @@
 							tabler="IconCopy"
 							hugeicons="CopyIcon"
 							phosphor="CopyIcon"
+							remixicon="RiFileCopyLine"
 						/>
 						<span>Copy</span>
 						<Command.Shortcut>⌘C</Command.Shortcut>
@@ -94,6 +101,7 @@
 							tabler="IconCut"
 							hugeicons="ScissorIcon"
 							phosphor="ScissorsIcon"
+							remixicon="RiScissorsLine"
 						/>
 						<span>Cut</span>
 						<Command.Shortcut>⌘X</Command.Shortcut>
@@ -104,6 +112,7 @@
 							tabler="IconClipboard"
 							hugeicons="ClipboardIcon"
 							phosphor="ClipboardIcon"
+							remixicon="RiClipboardLine"
 						/>
 						<span>Paste</span>
 						<Command.Shortcut>⌘V</Command.Shortcut>
@@ -114,6 +123,7 @@
 							tabler="IconTrash"
 							hugeicons="DeleteIcon"
 							phosphor="TrashIcon"
+							remixicon="RiDeleteBinLine"
 						/>
 						<span>Delete</span>
 						<Command.Shortcut>⌫</Command.Shortcut>
@@ -127,6 +137,7 @@
 							tabler="IconLayoutGrid"
 							hugeicons="GridIcon"
 							phosphor="GridFourIcon"
+							remixicon="RiGridLine"
 						/>
 						<span>Grid View</span>
 					</Command.Item>
@@ -136,6 +147,7 @@
 							tabler="IconList"
 							hugeicons="Menu05Icon"
 							phosphor="ListIcon"
+							remixicon="RiListUnordered"
 						/>
 						<span>List View</span>
 					</Command.Item>
@@ -145,6 +157,7 @@
 							tabler="IconZoomIn"
 							hugeicons="ZoomInAreaIcon"
 							phosphor="MagnifyingGlassPlusIcon"
+							remixicon="RiZoomInLine"
 						/>
 						<span>Zoom In</span>
 						<Command.Shortcut>⌘+</Command.Shortcut>
@@ -155,6 +168,7 @@
 							tabler="IconZoomOut"
 							hugeicons="ZoomOutAreaIcon"
 							phosphor="MagnifyingGlassMinusIcon"
+							remixicon="RiSearchEyeLine"
 						/>
 						<span>Zoom Out</span>
 						<Command.Shortcut>⌘-</Command.Shortcut>
@@ -168,6 +182,7 @@
 							tabler="IconUser"
 							hugeicons="UserIcon"
 							phosphor="UserIcon"
+							remixicon="RiUserLine"
 						/>
 						<span>Profile</span>
 						<Command.Shortcut>⌘P</Command.Shortcut>
@@ -178,6 +193,7 @@
 							tabler="IconCreditCard"
 							hugeicons="CreditCardIcon"
 							phosphor="CreditCardIcon"
+							remixicon="RiBankCardLine"
 						/>
 						<span>Billing</span>
 						<Command.Shortcut>⌘B</Command.Shortcut>
@@ -188,6 +204,7 @@
 							tabler="IconSettings"
 							hugeicons="SettingsIcon"
 							phosphor="GearIcon"
+							remixicon="RiSettingsLine"
 						/>
 						<span>Settings</span>
 						<Command.Shortcut>⌘S</Command.Shortcut>
@@ -198,6 +215,7 @@
 							tabler="IconBell"
 							hugeicons="NotificationIcon"
 							phosphor="BellIcon"
+							remixicon="RiNotificationLine"
 						/>
 						<span>Notifications</span>
 					</Command.Item>
@@ -207,6 +225,7 @@
 							tabler="IconHelpCircle"
 							hugeicons="HelpCircleIcon"
 							phosphor="QuestionIcon"
+							remixicon="RiQuestionLine"
 						/>
 						<span>Help & Support</span>
 					</Command.Item>
@@ -219,6 +238,7 @@
 							tabler="IconCalculator"
 							hugeicons="CalculatorIcon"
 							phosphor="CalculatorIcon"
+							remixicon="RiCalculatorLine"
 						/>
 						<span>Calculator</span>
 					</Command.Item>
@@ -228,6 +248,7 @@
 							tabler="IconCalendar"
 							hugeicons="CalendarIcon"
 							phosphor="CalendarBlankIcon"
+							remixicon="RiCalendarLine"
 						/>
 						<span>Calendar</span>
 					</Command.Item>
@@ -237,6 +258,7 @@
 							tabler="IconPhoto"
 							hugeicons="ImageIcon"
 							phosphor="ImageIcon"
+							remixicon="RiImageLine"
 						/>
 						<span>Image Editor</span>
 					</Command.Item>
@@ -246,6 +268,7 @@
 							tabler="IconCode"
 							hugeicons="CodeIcon"
 							phosphor="CodeIcon"
+							remixicon="RiCodeLine"
 						/>
 						<span>Code Editor</span>
 					</Command.Item>
