@@ -8,7 +8,7 @@
 	let { versions, defaultVersion }: { versions: string[]; defaultVersion: string } = $props();
 
 	// svelte-ignore state_referenced_locally
-		let selectedVersion = $state(defaultVersion);
+	let selectedVersion = $state(defaultVersion);
 </script>
 
 <Sidebar.Menu>

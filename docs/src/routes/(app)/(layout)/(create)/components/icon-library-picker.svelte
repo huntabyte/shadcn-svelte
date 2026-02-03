@@ -31,9 +31,7 @@
 	const designSystem = useDesignSystem();
 	const isMobile = new IsMobile();
 
-	const currentIconLibrary = $derived(
-		iconLibraries[designSystem.iconLibrary]
-	);
+	const currentIconLibrary = $derived(iconLibraries[designSystem.iconLibrary]);
 
 	const logos = {
 		lucide: LucideLogo,
