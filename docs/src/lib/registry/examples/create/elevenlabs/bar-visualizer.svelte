@@ -45,7 +45,7 @@
 	}: Props = $props();
 
 	// Volume bands state
-	let volumeBands = $state<number[]>(new Array(barCount).fill(0.2));
+	let volumeBands = $derived<number[]>(new Array(barCount).fill(0.2));
 	let highlightedIndices = $state<number[]>([]);
 
 	// Animation frame IDs for cleanup

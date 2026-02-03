@@ -34,6 +34,7 @@ export interface IDesignSystemState extends DesignSystemConfig {
 	redo: () => void;
 	canUndo: boolean;
 	canRedo: boolean;
+	iconLibrary: keyof typeof iconLibraries
 }
 
 export type Lockable = {
@@ -258,7 +259,7 @@ class DesignSystemState implements IDesignSystemState {
 		const selectedRadius = this.locks.radius ? this.radius : randomItem(availableRadii).name;
 		const selectedIconLibrary = this.locks.iconLibrary
 			? this.iconLibrary
-			: randomItem(Object.values(iconLibraries)).name;
+			: (randomItem(Object.values(iconLibraries)) as typeof iconLibraries[keyof typeof iconLibraries]).name;
 		const selectedMenuAccent = this.locks.menuAccent
 			? this.menuAccent
 			: randomItem(MENU_ACCENTS).value;

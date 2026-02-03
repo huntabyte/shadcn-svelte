@@ -69,7 +69,7 @@
 	let gradientCache: CanvasGradient | null = null;
 	let lastWidth = 0;
 
-	const heightStyle = typeof height === "number" ? `${height}px` : height;
+	const heightStyle = $derived(typeof height === "number" ? `${height}px` : height);
 
 	onMount(() => {
 		// Handle canvas resizing

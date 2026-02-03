@@ -32,7 +32,7 @@
 	const isMobile = new IsMobile();
 
 	const currentIconLibrary = $derived(
-		iconLibraries[designSystem.iconLibrary as keyof typeof iconLibraries]
+		iconLibraries[designSystem.iconLibrary]
 	);
 
 	const logos = {
@@ -43,7 +43,7 @@
 		remixicon: RemixiconLogo,
 	} as const;
 
-	const CurrentLogo = $derived(logos[currentIconLibrary.name as keyof typeof logos]);
+	const CurrentLogo = $derived(logos[currentIconLibrary.name]);
 
 	// TODO: none of these icons will actually load until we use them in components
 	const PREVIEW_ICONS = {

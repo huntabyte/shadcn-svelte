@@ -13,7 +13,7 @@ catalogs:
       specifier: ^5.49.1
       version: 5.49.1
     svelte-check:
-      specifier: ^4.3.5
+      specifier: ^4.3.6
       version: 4.3.6
     tsdown:
       specifier: ^0.18.0

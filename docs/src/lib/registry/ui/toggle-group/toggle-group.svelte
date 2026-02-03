@@ -39,10 +39,18 @@
 		} = $props();
 
 	setToggleGroupCtx({
-		variant,
-		size,
-		spacing,
-		orientation,
+		get variant() {
+			return variant;
+		},
+		get size() {
+			return size;
+		},
+		get spacing() {
+			return spacing;
+		},
+		get orientation() {
+			return orientation;
+		},
 	});
 </script>
 

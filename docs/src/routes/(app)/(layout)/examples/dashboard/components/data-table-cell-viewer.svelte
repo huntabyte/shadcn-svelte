@@ -38,9 +38,9 @@
 
 	let { item }: { item: Schema } = $props();
 
-	let type = $state(item.type);
-	let status = $state(item.status);
-	let reviewer = $state(item.reviewer);
+	let type = $derived(item.type);
+	let status = $derived(item.status);
+	let reviewer = $derived(item.reviewer);
 </script>
 
 <Drawer.Root direction={isMobile.current ? "bottom" : "right"}>

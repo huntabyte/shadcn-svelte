@@ -12,13 +12,13 @@
 
 	let { types, models }: { types: ModelType[]; models: Model[] } = $props();
 
-	let selectedModel = $state(models[0]);
+	let selectedModel = $derived(models[0]);
 	let peekedModel = $state<Model | undefined>();
 	let open = $state(false);
 
 	let value = $state("");
 
-	const selectedValue = models.find((f) => f.id === value)?.name ?? "Select a model...";
+	const selectedValue = $derived(models.find((f) => f.id === value)?.name ?? "Select a model...");
 
 	// We want to refocus the trigger button when the user selects
 	// an item from the list so users can continue navigating the
