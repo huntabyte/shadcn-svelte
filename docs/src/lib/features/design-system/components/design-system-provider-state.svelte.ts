@@ -130,8 +130,7 @@ class DesignSystemState implements IDesignSystemState {
 	#setProperty<Key extends keyof DesignSystemConfig>(prop: Key, value: DesignSystemConfig[Key]) {
 		// set the search param if the page is /create or the param is already set
 		const paramValue = this.#getSearchParam(prop);
-		const setParam =
-			page.url.pathname.startsWith("/create") || paramValue !== null;
+		const setParam = page.url.pathname.startsWith("/create") || paramValue !== null;
 
 		if (setParam) {
 			try {
