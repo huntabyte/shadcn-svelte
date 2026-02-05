@@ -5,12 +5,15 @@
 	import PMRun from "$lib/components/pm-run.svelte";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
+	import { cn } from "$lib/utils.js";
 
 	const designSystem = useDesignSystem();
 </script>
 
 <Dialog.Root>
-	<Dialog.Trigger class={buttonVariants({ variant: "default", size: "sm" })}>
+	<Dialog.Trigger
+		class={cn(buttonVariants({ variant: "default", size: "sm" }), "hidden md:flex")}
+	>
 		<SquareTerminal />
 		Initialize Project
 	</Dialog.Trigger>

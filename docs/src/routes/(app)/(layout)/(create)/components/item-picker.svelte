@@ -10,12 +10,15 @@
 	import { tick } from "svelte";
 	import type { RegistryItem } from "@shadcn-svelte/registry";
 	import { cn } from "$lib/utils.js";
+	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 
 	type Props = {
 		items: Pick<RegistryItem, "name" | "title" | "type">[];
 	};
 
 	let { items }: Props = $props();
+
+	const isMobile = new IsMobile();
 
 	let open = $state(false);
 	let triggerRef = $state<HTMLButtonElement>(null!);
@@ -49,7 +52,7 @@
 				{...props}
 				variant="outline"
 				size="sm"
-				class="bg-muted/50 sm:bg-background md:dark:bg-background border-foreground/10 dark:bg-muted/50 data-[state=open]:bg-muted dark:data-[state=open]:bg-muted/50 h-13.5 flex-1 touch-manipulation justify-between gap-2 rounded-xl pr-4 pl-2.5 text-left shadow-none select-none sm:h-8 sm:max-w-56 sm:rounded-lg sm:pr-2 xl:max-w-md"
+				class="bg-muted/50 sm:bg-background md:dark:bg-background border-foreground/10 dark:bg-muted/50 data-[state=open]:bg-muted dark:data-[state=open]:bg-muted/50 h-13.5 flex-1 touch-manipulation justify-between gap-2 rounded-xl pr-4 pl-2.5 text-left shadow-none select-none sm:h-8 sm:max-w-56 sm:rounded-lg sm:pr-2 xl:max-w-64"
 				role="combobox"
 				aria-expanded={open}
 			>
@@ -72,7 +75,7 @@
 			"**:data-[slot=command-input-wrapper]:rounded-lg **:data-[slot=command-input-wrapper]:border-b-0 [&_[data-slot=command-input-wrapper]]:p-1 [&_[data-slot=command-input-wrapper]_svg]:hidden"
 		)}
 		side="bottom"
-		align="center"
+		align={isMobile.current ? "center" : "end"}
 	>
 		<Command.Root value={page.params.item}>
 			<Command.Input placeholder="Search..." />

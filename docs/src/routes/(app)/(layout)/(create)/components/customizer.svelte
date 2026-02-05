@@ -42,7 +42,7 @@
 			<RadiusPicker />
 			<MenuColorPicker />
 			<MenuAccentPicker />
-			<CustomizerControls class="mt-auto hidden w-full flex-col md:flex" />
+			<CustomizerControls class="hidden w-full flex-col md:mt-auto md:flex" />
 		</Field.Group>
 	</div>
 </div>
