@@ -3153,10 +3153,10 @@
 				"input",
 				"separator",
 				"checkbox",
+				"badge",
 				"data-table",
 				"tabs",
 				"table",
-				"badge",
 				"avatar"
 			],
 			"files": [
@@ -3190,7 +3190,35 @@
 				},
 				{
 					"type": "registry:component",
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-drag-handle.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-header-limit.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-header-target.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-limit.svelte"
+				},
+				{
+					"type": "registry:component",
 					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-reviewer.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-status.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-target.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-type.svelte"
 				},
 				{
 					"type": "registry:component",

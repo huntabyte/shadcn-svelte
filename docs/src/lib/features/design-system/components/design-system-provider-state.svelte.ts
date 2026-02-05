@@ -110,8 +110,18 @@ class DesignSystemState implements IDesignSystemState {
 
 	// properties
 
+	// Helper to safely access searchParams during prerendering
+	#getSearchParam(key: string): string | null {
+		try {
+			return page.url.searchParams.get(key);
+		} catch {
+			// During prerendering, searchParams is not available
+			return null;
+		}
+	}
+
 	#getProperty<Key extends keyof DesignSystemConfig>(prop: Key): DesignSystemConfig[Key] {
-		const param = page.url.searchParams.get(prop);
+		const param = this.#getSearchParam(prop);
 		const validated = designSystemConfigSchema.shape[prop].safeParse(param);
 		if (param && validated.success) return param as DesignSystemConfig[Key];
 		return this.system.current[prop] ?? DEFAULT_CONFIG[prop];
@@ -119,17 +129,22 @@ class DesignSystemState implements IDesignSystemState {
 
 	#setProperty<Key extends keyof DesignSystemConfig>(prop: Key, value: DesignSystemConfig[Key]) {
 		// set the search param if the page is /create or the param is already set
+		const paramValue = this.#getSearchParam(prop);
 		const setParam =
-			page.url.pathname.startsWith("/create") || page.url.searchParams.get(prop) !== null;
+			page.url.pathname.startsWith("/create") || paramValue !== null;
 
 		if (setParam) {
-			const searchParams = new SvelteURLSearchParams(page.url.searchParams);
-			searchParams.set(prop, value);
-			goto(`${page.url.pathname}?${searchParams.toString()}${page.url.hash}`, {
-				replaceState: true,
-				noScroll: true,
-				keepFocus: true,
-			});
+			try {
+				const searchParams = new SvelteURLSearchParams(page.url.searchParams);
+				searchParams.set(prop, value);
+				goto(`${page.url.pathname}?${searchParams.toString()}${page.url.hash}`, {
+					replaceState: true,
+					noScroll: true,
+					keepFocus: true,
+				});
+			} catch {
+				// During prerendering, skip URL updates
+			}
 		}
 
 		// persist to local storage either way
@@ -151,22 +166,28 @@ class DesignSystemState implements IDesignSystemState {
 		this.system.current.baseColor = value;
 
 		// then update URL params in a single goto to avoid race condition
+		const baseColorParam = this.#getSearchParam("baseColor");
+		const themeParam = this.#getSearchParam("theme");
 		const setParam =
 			page.url.pathname.startsWith("/create") ||
-			page.url.searchParams.get("baseColor") !== null ||
-			(shouldUpdateTheme && page.url.searchParams.get("theme") !== null);
+			baseColorParam !== null ||
+			(shouldUpdateTheme && themeParam !== null);
 
 		if (setParam) {
-			const searchParams = new SvelteURLSearchParams(page.url.searchParams);
-			searchParams.set("baseColor", value);
-			if (shouldUpdateTheme) {
-				searchParams.set("theme", value);
+			try {
+				const searchParams = new SvelteURLSearchParams(page.url.searchParams);
+				searchParams.set("baseColor", value);
+				if (shouldUpdateTheme) {
+					searchParams.set("theme", value);
+				}
+				goto(`${page.url.pathname}?${searchParams.toString()}${page.url.hash}`, {
+					replaceState: true,
+					noScroll: true,
+					keepFocus: true,
+				});
+			} catch {
+				// During prerendering, skip URL updates
 			}
-			goto(`${page.url.pathname}?${searchParams.toString()}${page.url.hash}`, {
-				replaceState: true,
-				noScroll: true,
-				keepFocus: true,
-			});
 		}
 	}
 
@@ -296,20 +317,24 @@ class DesignSystemState implements IDesignSystemState {
 		this.system.current = internalValue;
 
 		if (page.url.pathname.startsWith("/create")) {
-			const searchParams = new SvelteURLSearchParams(page.url.searchParams);
-			searchParams.set("baseColor", internalValue.baseColor);
-			searchParams.set("style", internalValue.style);
-			searchParams.set("theme", internalValue.theme);
-			searchParams.set("font", internalValue.font);
-			searchParams.set("radius", internalValue.radius);
-			searchParams.set("iconLibrary", internalValue.iconLibrary);
-			searchParams.set("menuAccent", internalValue.menuAccent);
-			searchParams.set("menuColor", internalValue.menuColor);
-			goto(`${page.url.pathname}?${searchParams.toString()}${page.url.hash}`, {
-				replaceState: true,
-				noScroll: true,
-				keepFocus: true,
-			});
+			try {
+				const searchParams = new SvelteURLSearchParams(page.url.searchParams);
+				searchParams.set("baseColor", internalValue.baseColor);
+				searchParams.set("style", internalValue.style);
+				searchParams.set("theme", internalValue.theme);
+				searchParams.set("font", internalValue.font);
+				searchParams.set("radius", internalValue.radius);
+				searchParams.set("iconLibrary", internalValue.iconLibrary);
+				searchParams.set("menuAccent", internalValue.menuAccent);
+				searchParams.set("menuColor", internalValue.menuColor);
+				goto(`${page.url.pathname}?${searchParams.toString()}${page.url.hash}`, {
+					replaceState: true,
+					noScroll: true,
+					keepFocus: true,
+				});
+			} catch {
+				// During prerendering, skip URL updates
+			}
 		}
 	}
 
