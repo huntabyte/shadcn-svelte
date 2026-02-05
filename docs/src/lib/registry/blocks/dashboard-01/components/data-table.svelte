@@ -67,7 +67,7 @@
 		},
 		{
 			id: "actions",
-			cell: () => renderSnippet(DataTableActions),
+			cell: () => renderComponent(DataTableActions, {}),
 		},
 	];
 </script>
@@ -115,12 +115,12 @@
 	import ChevronsRightIcon from "@tabler/icons-svelte/icons/chevrons-right";
 	import CircleCheckFilledIcon from "@tabler/icons-svelte/icons/circle-check-filled";
 	import LoaderIcon from "@tabler/icons-svelte/icons/loader";
-	import DotsVerticalIcon from "@tabler/icons-svelte/icons/dots-vertical";
 	import { toast } from "svelte-sonner";
 	import DataTableCheckbox from "./data-table-checkbox.svelte";
 	import DataTableCellViewer from "./data-table-cell-viewer.svelte";
 	import { createRawSnippet } from "svelte";
 	import DataTableReviewer from "./data-table-reviewer.svelte";
+	import DataTableActions from "./data-table-actions.svelte";
 	import { DragDropProvider } from "@dnd-kit-svelte/svelte";
 	import { move } from "@dnd-kit/helpers";
 	import { useSortable } from "@dnd-kit-svelte/svelte/sortable";
@@ -468,26 +468,6 @@
 		{/if}
 		{row.original.status}
 	</Badge>
-{/snippet}
-
-{#snippet DataTableActions()}
-	<DropdownMenu.Root>
-		<DropdownMenu.Trigger class="data-[state=open]:bg-muted text-muted-foreground flex size-8">
-			{#snippet child({ props })}
-				<Button variant="ghost" size="icon" {...props}>
-					<DotsVerticalIcon />
-					<span class="sr-only">Open menu</span>
-				</Button>
-			{/snippet}
-		</DropdownMenu.Trigger>
-		<DropdownMenu.Content align="end" class="w-32">
-			<DropdownMenu.Item>Edit</DropdownMenu.Item>
-			<DropdownMenu.Item>Make a copy</DropdownMenu.Item>
-			<DropdownMenu.Item>Favorite</DropdownMenu.Item>
-			<DropdownMenu.Separator />
-			<DropdownMenu.Item variant="destructive">Delete</DropdownMenu.Item>
-		</DropdownMenu.Content>
-	</DropdownMenu.Root>
 {/snippet}
 
 {#snippet DraggableRow({ row, index }: { row: Row<Schema>; index: number })}

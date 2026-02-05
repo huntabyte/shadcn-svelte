@@ -3145,8 +3145,9 @@
 				"card",
 				"select",
 				"toggle-group",
-				"drawer",
+				"dropdown-menu",
 				"button",
+				"drawer",
 				"is-mobile",
 				"label",
 				"input",
@@ -3155,7 +3156,6 @@
 				"data-table",
 				"tabs",
 				"table",
-				"dropdown-menu",
 				"badge",
 				"avatar"
 			],
@@ -3175,6 +3175,10 @@
 				{
 					"type": "registry:component",
 					"path": "src/lib/registry/blocks/dashboard-01/components/chart-area-interactive.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-actions.svelte"
 				},
 				{
 					"type": "registry:component",
