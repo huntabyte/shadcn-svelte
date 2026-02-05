@@ -35,7 +35,6 @@
 		scrollTo,
 	});
 
-	// svelte-ignore state_referenced_locally
 	setEmblaContext(carouselState);
 
 	function scrollPrev() {
