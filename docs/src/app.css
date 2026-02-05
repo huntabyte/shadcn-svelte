@@ -1,43 +1,48 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@import "./themes.css";
+@import "./lib/registry/styles/style-vega.css" layer(base);
+@import "./lib/registry/styles/style-nova.css" layer(base);
+@import "./lib/registry/styles/style-lyra.css" layer(base);
+@import "./lib/registry/styles/style-maia.css" layer(base);
+@import "./lib/registry/styles/style-mira.css" layer(base);
+
+@import "@fontsource-variable/geist/index.css";
+@import "@fontsource-variable/inter/index.css";
+@import "@fontsource-variable/noto-sans/index.css";
+@import "@fontsource-variable/nunito-sans/index.css";
+@import "@fontsource-variable/figtree/index.css";
+@import "@fontsource-variable/roboto/index.css";
+@import "@fontsource-variable/raleway/index.css";
+@import "@fontsource-variable/dm-sans/index.css";
+@import "@fontsource-variable/public-sans/index.css";
+@import "@fontsource-variable/outfit/index.css";
+@import "@fontsource-variable/jetbrains-mono/index.css";
+@import "@fontsource-variable/geist-mono/index.css";
+
+@custom-variant style-vega (&:where(.style-vega *));
+@custom-variant style-nova (&:where(.style-nova *));
+@custom-variant style-lyra (&:where(.style-lyra *));
+@custom-variant style-maia (&:where(.style-maia *));
+@custom-variant style-mira (&:where(.style-mira *));
 
 @custom-variant dark (&:is(.dark *));
-
 @custom-variant fixed (&:is(.layout-fixed *));
 
-@font-face {
-	font-family: "Geist";
-	src: url("/fonts/Geist/geist.woff2") format("woff2");
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Geist Mono";
-	src: url("/fonts/Geist/geist-mono.woff2") format("woff2");
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Inter";
-	src: url("/fonts/Inter/inter.woff2") format("woff2");
-	font-style: normal;
-	font-display: swap;
-}
-
 @theme inline {
+	--font-sans: var(--font-sans);
+	--font-mono: var(--font-mono);
+	--radius: 0.625rem;
+	--svelte-orange: oklch(0.6385 0.1991 34.99);
 	--breakpoint-3xl: 1600px;
 	--breakpoint-4xl: 2000px;
-	--font-sans: "Geist", sans-serif;
-	--font-mono: "Geist Mono", monospace;
-	--font-inter: "Inter", sans-serif;
 	--radius-sm: calc(var(--radius) - 4px);
 	--radius-md: calc(var(--radius) - 2px);
 	--radius-lg: var(--radius);
 	--radius-xl: calc(var(--radius) + 4px);
+	--radius-2xl: calc(var(--radius) + 8px);
+	--radius-3xl: calc(var(--radius) + 12px);
+	--radius-4xl: calc(var(--radius) + 16px);
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
 	--color-card: var(--card);
@@ -53,6 +58,7 @@
 	--color-accent: var(--accent);
 	--color-accent-foreground: var(--accent-foreground);
 	--color-destructive: var(--destructive);
+	--color-destructive-foreground: var(--destructive-foreground);
 	--color-border: var(--border);
 	--color-input: var(--input);
 	--color-ring: var(--ring);
@@ -80,8 +86,8 @@
 }
 
 :root {
-	--radius: 0.625rem;
-	--svelte-orange: oklch(0.6385 0.1991 34.99);
+	--font-sans: "Geist Variable", sans-serif;
+	--font-mono: "Geist Mono Variable", monospace;
 	--background: oklch(1 0 0);
 	--foreground: oklch(0.145 0 0);
 	--card: oklch(1 0 0);
@@ -96,7 +102,7 @@
 	--muted-foreground: oklch(0.556 0 0);
 	--accent: oklch(0.97 0 0);
 	--accent-foreground: oklch(0.205 0 0);
-	--destructive: oklch(0.577 0.245 27.325);
+	--destructive: oklch(0.58 0.22 27);
 	--border: oklch(0.922 0 0);
 	--input: oklch(0.922 0 0);
 	--ring: oklch(0.708 0 0);
@@ -128,9 +134,9 @@
 	--foreground: oklch(0.985 0 0);
 	--card: oklch(0.205 0 0);
 	--card-foreground: oklch(0.985 0 0);
-	--popover: oklch(0.269 0 0);
+	--popover: oklch(0.205 0 0);
 	--popover-foreground: oklch(0.985 0 0);
-	--primary: oklch(0.922 0 0);
+	--primary: oklch(0.87 0 0);
 	--primary-foreground: oklch(0.205 0 0);
 	--secondary: oklch(0.269 0 0);
 	--secondary-foreground: oklch(0.985 0 0);
@@ -154,7 +160,7 @@
 	--sidebar-accent: oklch(0.269 0 0);
 	--sidebar-accent-foreground: oklch(0.985 0 0);
 	--sidebar-border: oklch(1 0 0 / 10%);
-	--sidebar-ring: oklch(0.439 0 0);
+	--sidebar-ring: oklch(0.556 0 0);
 	--surface: oklch(0.2 0 0);
 	--surface-foreground: oklch(0.708 0 0);
 	--code: var(--surface);
@@ -192,6 +198,76 @@
 	a:active,
 	button:active {
 		@apply opacity-60 md:opacity-100;
+	}
+}
+
+/* Custom variants */
+@custom-variant data-open {
+	&:where([data-state="open"]),
+	&:where([data-open]:not([data-open="false"])) {
+		@slot;
+	}
+}
+
+@custom-variant data-closed {
+	&:where([data-state="closed"]),
+	&:where([data-closed]:not([data-closed="false"])) {
+		@slot;
+	}
+}
+
+@custom-variant data-checked {
+	&:where([data-state="checked"]),
+	&:where([data-checked]:not([data-checked="false"])) {
+		@slot;
+	}
+}
+
+@custom-variant data-unchecked {
+	&:where([data-state="unchecked"]),
+	&:where([data-unchecked]:not([data-unchecked="false"])) {
+		@slot;
+	}
+}
+
+@custom-variant data-selected {
+	&:where([data-selected="true"]) {
+		@slot;
+	}
+}
+
+@custom-variant data-disabled {
+	&:where([data-disabled="true"]),
+	&:where([data-disabled]:not([data-disabled="false"])) {
+		@slot;
+	}
+}
+
+@custom-variant data-active {
+	&:where([data-state="active"]),
+	&:where([data-active]:not([data-active="false"])) {
+		@slot;
+	}
+}
+
+@custom-variant data-horizontal {
+	&:where([data-orientation="horizontal"]) {
+		@slot;
+	}
+}
+
+@custom-variant data-vertical {
+	&:where([data-orientation="vertical"]) {
+		@slot;
+	}
+}
+
+@utility no-scrollbar {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		display: none;
 	}
 }
 

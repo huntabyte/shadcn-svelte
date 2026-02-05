@@ -1,7 +1,7 @@
 <script lang="ts">
-	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 	import { cn, type WithElementRef } from "$lib/utils.js";
 	import type { HTMLLiAttributes } from "svelte/elements";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 
 	let {
 		ref = $bindable(null),
@@ -16,12 +16,18 @@
 	data-slot="breadcrumb-separator"
 	role="presentation"
 	aria-hidden="true"
-	class={cn("[&>svg]:size-3.5", className)}
+	class={cn("cn-breadcrumb-separator", className)}
 	{...restProps}
 >
 	{#if children}
 		{@render children?.()}
 	{:else}
-		<ChevronRightIcon />
+		<IconPlaceholder
+			lucide="ChevronRightIcon"
+			tabler="IconChevronRight"
+			hugeicons="ArrowRight01Icon"
+			phosphor="CaretRightIcon"
+			remixicon="RiArrowRightSLine"
+		/>
 	{/if}
 </li>

@@ -6,7 +6,9 @@ packages:
 catalog:
     "@sveltejs/kit": ^2.49.0
     "@sveltejs/vite-plugin-svelte": ^6.2.1
-    svelte: ^5.43.14
-    svelte-check: ^4.3.4
+    svelte: ^5.49.1
+    svelte-check: ^4.3.6
     typescript: ^5.9.3
     vite: ^7.2.1
+    tsdown: ^0.18.0
+    zod: ^4.2.1

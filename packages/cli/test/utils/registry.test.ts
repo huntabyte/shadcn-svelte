@@ -5,7 +5,7 @@ import {
 	getRegistryUrl,
 	getRegistryIndex,
 	getBaseColors,
-	getRegistryBaseColor,
+	getRegistryTheme,
 	resolveRegistryItems,
 	getItemAliasDir,
 	resolveItemFilePath,
@@ -97,11 +97,22 @@ describe("Registry Utilities", () => {
 		it("should return array of base colors", () => {
 			const colors = getBaseColors();
 			expect(colors).toEqual([
-				{ name: "slate", label: "Slate" },
-				{ name: "gray", label: "Gray" },
-				{ name: "zinc", label: "Zinc" },
-				{ name: "neutral", label: "Neutral" },
-				{ name: "stone", label: "Stone" },
+				{
+					label: "Neutral",
+					name: "neutral",
+				},
+				{
+					label: "Stone",
+					name: "stone",
+				},
+				{
+					label: "Zinc",
+					name: "zinc",
+				},
+				{
+					label: "Gray",
+					name: "gray",
+				},
 			]);
 		});
 	});
@@ -109,10 +120,7 @@ describe("Registry Utilities", () => {
 	describe("getRegistryBaseColor", () => {
 		it("should fetch and parse base color", async () => {
 			const mockColorData = {
-				inlineColors: { light: {}, dark: {} },
 				cssVars: { light: {}, dark: {} },
-				inlineColorsTemplate: "",
-				cssVarsTemplate: "",
 			};
 			const mockResponse = {
 				json: () => Promise.resolve(mockColorData),
@@ -122,16 +130,16 @@ describe("Registry Utilities", () => {
 			};
 			vi.mocked(fetch).mockResolvedValueOnce(mockResponse as Response);
 
-			const result = await getRegistryBaseColor("https://example.com/registry", "slate");
+			const result = await getRegistryTheme("https://example.com/registry", "slate");
 			expect(result).toEqual(mockColorData);
 			expect(fetch).toHaveBeenCalledWith(expect.any(URL), {});
 		});
 
 		it("should throw error on base color fetch failure", async () => {
 			vi.mocked(fetch).mockRejectedValueOnce(new Error("Network error"));
-			await expect(
-				getRegistryBaseColor("https://example.com/registry", "slate")
-			).rejects.toThrow("Failed to fetch base color from registry.");
+			await expect(getRegistryTheme("https://example.com/registry", "slate")).rejects.toThrow(
+				"Failed to fetch theme: slate from registry."
+			);
 		});
 	});
 
@@ -235,7 +243,7 @@ describe("Registry Utilities", () => {
 					},
 				],
 			};
-			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files[0]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![0]))).toBe(
 				"/path/to/cwd/src/components/button.svelte"
 			);
 		});
@@ -252,7 +260,7 @@ describe("Registry Utilities", () => {
 					},
 				],
 			};
-			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files[0]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![0]))).toBe(
 				"/path/to/cwd/ui/button/button.svelte"
 			);
 		});
@@ -263,7 +271,7 @@ describe("Registry Utilities", () => {
 				type: "registry:component",
 				files: [{ type: "registry:component", content: "", target: "button.svelte" }],
 			};
-			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files[0]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![0]))).toBe(
 				"/path/to/cwd/components/button.svelte"
 			);
 		});
@@ -278,13 +286,13 @@ describe("Registry Utilities", () => {
 					{ type: "registry:page", content: "", target: "login/+page.svelte" },
 				],
 			};
-			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files[0]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![0]))).toBe(
 				"/path/to/cwd/components/complex-button.svelte"
 			);
-			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files[1]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![1]))).toBe(
 				"/path/to/cwd/ui/button/button.svelte"
 			);
-			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files[2]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![2]))).toBe(
 				"/path/to/cwd/src/routes/login/+page.svelte"
 			);
 		});
@@ -302,7 +310,7 @@ describe("Registry Utilities", () => {
 					},
 				],
 			};
-			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files[0]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![0]))).toBe(
 				"/path/to/cwd/hooks/use-hook.svelte.ts"
 			);
 		});
@@ -320,7 +328,7 @@ describe("Registry Utilities", () => {
 					},
 				],
 			};
-			expect(toPosixPath(resolveItemFilePath(config, item, item.files[0]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(config, item, item.files![0]))).toBe(
 				"/path/to/cwd/utils.ts"
 			);
 
@@ -330,13 +338,13 @@ describe("Registry Utilities", () => {
 				utils: `${cwd}/some-other-path/shadcn-utils`,
 			};
 
-			expect(toPosixPath(resolveItemFilePath(config, item, item.files[0]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(config, item, item.files![0]))).toBe(
 				"/path/to/cwd/some-other-path/shadcn-utils.ts"
 			);
 
 			// includes a file extension
 			config.resolvedPaths.utils += ".ts";
-			expect(toPosixPath(resolveItemFilePath(config, item, item.files[0]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(config, item, item.files![0]))).toBe(
 				"/path/to/cwd/some-other-path/shadcn-utils.ts"
 			);
 		});

@@ -1,69 +1,31 @@
 <script lang="ts">
-	import { setTheme } from "mode-watcher";
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import type { HTMLAttributes } from "svelte/elements";
 	import { cn } from "$lib/utils.js";
 	import Label from "$lib/registry/ui/label/label.svelte";
-	import { UserConfigContext } from "$lib/user-config.svelte.js";
+	import { useDesignSystem } from "$lib/features/design-system/index.js";
+	import { THEMES } from "$lib/registry/themes.js";
 
 	let { class: className, ...restProps }: HTMLAttributes<HTMLElement> = $props();
 
-	const THEMES = [
-		{
-			name: "Blue",
-			value: "blue",
-		},
-		{
-			name: "Green",
-			value: "green",
-		},
-		{
-			name: "Neutral",
-			value: "neutral",
-		},
+	const designSystem = useDesignSystem();
 
-		{
-			name: "Rose",
-			value: "rose",
-		},
-		{
-			name: "Purple",
-			value: "purple",
-		},
-		{
-			name: "Orange",
-			value: "orange",
-		},
-		{
-			name: "Violet",
-			value: "violet",
-		},
-		{
-			name: "Yellow",
-			value: "yellow",
-		},
-	].sort((a, b) => a.name.localeCompare(b.name));
-
-	const userConfig = UserConfigContext.get();
+	const themesList = $derived(
+		THEMES.map((theme) => ({
+			name: theme.title,
+			value: theme.name,
+		})).sort((a, b) => a.name.localeCompare(b.name))
+	);
 
 	const label = $derived(
-		[...THEMES].find((t) => t.value === userConfig.current.activeTheme)?.name ?? "Neutral"
+		themesList.find((t) => t.value === designSystem.theme)?.name ?? "Neutral"
 	);
 </script>
 
 <div class={cn("flex items-center gap-2", className)} {...restProps}>
 	<Label for="theme-selector" class="sr-only">Theme</Label>
 
-	<Select.Root
-		type="single"
-		bind:value={
-			() => userConfig.current.activeTheme,
-			(v) => {
-				userConfig.setConfig({ activeTheme: v ?? "neutral" });
-				setTheme(v ?? "neutral");
-			}
-		}
-	>
+	<Select.Root type="single" bind:value={designSystem.theme}>
 		<Select.Trigger
 			size="sm"
 			class="bg-secondary text-secondary-foreground border-secondary justify-start shadow-none"
@@ -76,7 +38,7 @@
 		</Select.Trigger>
 		<Select.Content align="end">
 			<Select.Group>
-				{#each THEMES as theme (theme.value)}
+				{#each themesList as theme (theme.value)}
 					<Select.Item
 						value={theme.value}
 						label={theme.name}
