@@ -3,7 +3,6 @@
 		type ColumnDef,
 		type ColumnFiltersState,
 		type PaginationState,
-		type Row,
 		type RowSelectionState,
 		type SortingState,
 		type VisibilityState,
@@ -14,7 +13,6 @@
 		getFilteredRowModel,
 		getPaginationRowModel,
 		getSortedRowModel,
-		type Column,
 	} from "@tanstack/table-core";
 	import DataTableToolbar from "./data-table-toolbar.svelte";
 	import { createSvelteTable } from "$lib/registry/ui/data-table/data-table.svelte.js";
