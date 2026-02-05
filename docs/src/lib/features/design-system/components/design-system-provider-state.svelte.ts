@@ -115,7 +115,7 @@ class DesignSystemState implements IDesignSystemState {
 		try {
 			return page.url.searchParams.get(key);
 		} catch {
-			// During prerendering, searchParams is not available
+			// TODO: Fix prerendering - During prerendering, searchParams is not available
 			return null;
 		}
 	}
@@ -142,7 +142,7 @@ class DesignSystemState implements IDesignSystemState {
 					keepFocus: true,
 				});
 			} catch {
-				// During prerendering, skip URL updates
+				// TODO: Fix prerendering - During prerendering, skip URL updates
 			}
 		}
 
@@ -185,7 +185,7 @@ class DesignSystemState implements IDesignSystemState {
 					keepFocus: true,
 				});
 			} catch {
-				// During prerendering, skip URL updates
+				// TODO: Fix prerendering - During prerendering, skip URL updates
 			}
 		}
 	}
@@ -332,7 +332,7 @@ class DesignSystemState implements IDesignSystemState {
 					keepFocus: true,
 				});
 			} catch {
-				// During prerendering, skip URL updates
+				// TODO: Fix prerendering - During prerendering, skip URL updates
 			}
 		}
 	}
