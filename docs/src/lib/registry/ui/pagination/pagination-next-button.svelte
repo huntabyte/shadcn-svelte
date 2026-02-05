@@ -21,6 +21,11 @@
 	bind:ref
 	aria-label="Go to next page"
 	class={cn(buttonVariants({ variant: "ghost" }), "cn-pagination-next", className)}
-	children={children || Fallback}
 	{...restProps}
-/>
+>
+	{#if children}
+		{@render children?.()}
+	{:else}
+		{@render Fallback()}
+	{/if}
+</PaginationPrimitive.NextButton>

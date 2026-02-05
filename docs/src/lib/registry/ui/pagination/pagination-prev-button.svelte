@@ -21,6 +21,11 @@
 	bind:ref
 	aria-label="Go to previous page"
 	class={cn(buttonVariants({ variant: "ghost" }), "cn-pagination-previous", className)}
-	children={children || Fallback}
 	{...restProps}
-/>
+>
+	{#if children}
+		{@render children?.()}
+	{:else}
+		{@render Fallback()}
+	{/if}
+</PaginationPrimitive.PrevButton>

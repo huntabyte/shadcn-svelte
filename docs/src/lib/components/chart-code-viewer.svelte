@@ -65,7 +65,11 @@
 
 {#if !isDesktop.current}
 	<Drawer.Root>
-		<Drawer.Trigger child={Trigger} />
+		<Drawer.Trigger>
+			{#snippet child({ props })}
+				{@render Trigger({ props })}
+			{/snippet}
+		</Drawer.Trigger>
 		<Drawer.Content
 			class={cn(
 				"flex max-h-[80vh] flex-col sm:max-h-[90vh] [&>div.bg-muted]:shrink-0",
@@ -84,7 +88,11 @@
 	</Drawer.Root>
 {:else}
 	<Sheet.Root>
-		<Sheet.Trigger child={Trigger} />
+		<Sheet.Trigger>
+			{#snippet child({ props })}
+				{@render Trigger({ props })}
+			{/snippet}
+		</Sheet.Trigger>
 		<Sheet.Content
 			side="right"
 			class={cn(
