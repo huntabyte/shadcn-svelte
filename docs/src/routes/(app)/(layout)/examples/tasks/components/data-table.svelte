@@ -20,26 +20,21 @@
 	import { createSvelteTable } from "$lib/registry/ui/data-table/data-table.svelte.js";
 	import FlexRender from "$lib/registry/ui/data-table/flex-render.svelte";
 	import * as Table from "$lib/registry/ui/table/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { labels, priorities, statuses } from "../data/data.js";
-	import { taskSchema, type Task } from "../data/schemas.js";
+	import { type Task } from "../data/schemas.js";
 	import { renderComponent, renderSnippet } from "$lib/registry/ui/data-table/render-helpers.js";
 	import Checkbox from "$lib/registry/ui/checkbox/checkbox.svelte";
 	import { createRawSnippet } from "svelte";
-	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
+	import ColumnHeader from "./data-table-column-header.svelte";
+	import TitleCell from "./data-table-title-cell.svelte";
+	import StatusCell from "./data-table-status-cell.svelte";
+	import PriorityCell from "./data-table-priority-cell.svelte";
+	import RowActions from "./data-table-row-actions.svelte";
 	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 	import ChevronLeftIcon from "@lucide/svelte/icons/chevron-left";
 	import ChevronsLeftIcon from "@lucide/svelte/icons/chevrons-left";
 	import ChevronsRightIcon from "@lucide/svelte/icons/chevrons-right";
-	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
-	import ArrowDownIcon from "@lucide/svelte/icons/arrow-down";
-	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
-	import EyeOffIcon from "@lucide/svelte/icons/eye-off";
 	import * as Select from "$lib/registry/ui/select/index.js";
-	import type { HTMLAttributes } from "svelte/elements";
-	import { cn } from "$lib/utils.js";
 
 	let { data }: { data: Task[] } = $props();
 
@@ -72,7 +67,7 @@
 		{
 			accessorKey: "id",
 			header: ({ column }) => {
-				return renderSnippet(ColumnHeader, {
+				return renderComponent(ColumnHeader, {
 					column,
 					title: "Task",
 				});
@@ -94,9 +89,9 @@
 		},
 		{
 			accessorKey: "title",
-			header: ({ column }) => renderSnippet(ColumnHeader, { column, title: "Title" }),
+			header: ({ column }) => renderComponent(ColumnHeader, { column, title: "Title" }),
 			cell: ({ row }) => {
-				return renderSnippet(TitleCell, {
+				return renderComponent(TitleCell, {
 					labelValue: row.original.label,
 					value: row.original.title,
 				});
@@ -105,12 +100,12 @@
 		{
 			accessorKey: "status",
 			header: ({ column }) =>
-				renderSnippet(ColumnHeader, {
+				renderComponent(ColumnHeader, {
 					column,
 					title: "Status",
 				}),
 			cell: ({ row }) => {
-				return renderSnippet(StatusCell, {
+				return renderComponent(StatusCell, {
 					value: row.original.status,
 				});
 			},
@@ -121,13 +116,13 @@
 		{
 			accessorKey: "priority",
 			header: ({ column }) => {
-				return renderSnippet(ColumnHeader, {
+				return renderComponent(ColumnHeader, {
 					title: "Priority",
 					column,
 				});
 			},
 			cell: ({ row }) => {
-				return renderSnippet(PriorityCell, {
+				return renderComponent(PriorityCell, {
 					value: row.original.priority,
 				});
 			},
@@ -137,7 +132,7 @@
 		},
 		{
 			id: "actions",
-			cell: ({ row }) => renderSnippet(RowActions, { row }),
+			cell: ({ row }) => renderComponent(RowActions, { row }),
 		},
 	];
 
@@ -207,79 +202,6 @@
 		getFacetedUniqueValues: getFacetedUniqueValues(),
 	});
 </script>
-
-{#snippet StatusCell({ value }: { value: string })}
-	{@const status = statuses.find((status) => status.value === value)}
-	{#if status}
-		<div class="flex w-[100px] items-center">
-			<status.icon class="text-muted-foreground me-2 size-4" />
-			<span>{status.label}</span>
-		</div>
-	{/if}
-{/snippet}
-
-{#snippet TitleCell({ value, labelValue }: { value: string; labelValue: string })}
-	{@const label = labels.find((label) => label.value === labelValue)}
-	<div class="flex space-x-2">
-		{#if label}
-			<Badge variant="outline">{label.label}</Badge>
-		{/if}
-		<span class="max-w-[500px] truncate font-medium">
-			{value}
-		</span>
-	</div>
-{/snippet}
-
-{#snippet PriorityCell({ value }: { value: string })}
-	{@const priority = priorities.find((priority) => priority.value === value)}
-	{#if priority}
-		<div class="flex items-center">
-			<priority.icon class="text-muted-foreground me-2 size-4" />
-			<span>{priority.label}</span>
-		</div>
-	{/if}
-{/snippet}
-
-{#snippet RowActions({ row }: { row: Row<Task> })}
-	{@const task = taskSchema.parse(row.original)}
-	<DropdownMenu.Root>
-		<DropdownMenu.Trigger>
-			{#snippet child({ props })}
-				<Button
-					{...props}
-					variant="ghost"
-					class="data-[state=open]:bg-muted flex h-8 w-8 p-0"
-				>
-					<EllipsisIcon />
-					<span class="sr-only">Open Menu</span>
-				</Button>
-			{/snippet}
-		</DropdownMenu.Trigger>
-		<DropdownMenu.Content class="w-[160px]" align="end">
-			<DropdownMenu.Item>Edit</DropdownMenu.Item>
-			<DropdownMenu.Item>Make a copy</DropdownMenu.Item>
-			<DropdownMenu.Item>Favorite</DropdownMenu.Item>
-			<DropdownMenu.Separator />
-			<DropdownMenu.Sub>
-				<DropdownMenu.SubTrigger>Labels</DropdownMenu.SubTrigger>
-				<DropdownMenu.SubContent>
-					<DropdownMenu.RadioGroup value={task.label}>
-						{#each labels as label (label.value)}
-							<DropdownMenu.RadioItem value={label.value}>
-								{label.label}
-							</DropdownMenu.RadioItem>
-						{/each}
-					</DropdownMenu.RadioGroup>
-				</DropdownMenu.SubContent>
-			</DropdownMenu.Sub>
-			<DropdownMenu.Separator />
-			<DropdownMenu.Item>
-				Delete
-				<DropdownMenu.Shortcut>⌘⌫</DropdownMenu.Shortcut>
-			</DropdownMenu.Item>
-		</DropdownMenu.Content>
-	</DropdownMenu.Root>
-{/snippet}
 
 {#snippet Pagination({ table }: { table: TableType<Task> })}
 	<div class="flex items-center justify-between px-2">
@@ -354,60 +276,6 @@
 			</div>
 		</div>
 	</div>
-{/snippet}
-
-{#snippet ColumnHeader({
-	column,
-	title,
-	class: className,
-	...restProps
-}: { column: Column<Task>; title: string } & HTMLAttributes<HTMLDivElement>)}
-	{#if !column?.getCanSort()}
-		<div class={className} {...restProps}>
-			{title}
-		</div>
-	{:else}
-		<div class={cn("flex items-center", className)} {...restProps}>
-			<DropdownMenu.Root>
-				<DropdownMenu.Trigger>
-					{#snippet child({ props })}
-						<Button
-							{...props}
-							variant="ghost"
-							size="sm"
-							class="data-[state=open]:bg-accent -ms-3 h-8"
-						>
-							<span>
-								{title}
-							</span>
-							{#if column.getIsSorted() === "desc"}
-								<ArrowDownIcon />
-							{:else if column.getIsSorted() === "asc"}
-								<ArrowUpIcon />
-							{:else}
-								<ChevronsUpDownIcon />
-							{/if}
-						</Button>
-					{/snippet}
-				</DropdownMenu.Trigger>
-				<DropdownMenu.Content align="start">
-					<DropdownMenu.Item onclick={() => column.toggleSorting(false)}>
-						<ArrowUpIcon class="text-muted-foreground/70 me-2 size-3.5" />
-						Asc
-					</DropdownMenu.Item>
-					<DropdownMenu.Item onclick={() => column.toggleSorting(true)}>
-						<ArrowDownIcon class="text-muted-foreground/70 me-2 size-3.5" />
-						Desc
-					</DropdownMenu.Item>
-					<DropdownMenu.Separator />
-					<DropdownMenu.Item onclick={() => column.toggleVisibility(false)}>
-						<EyeOffIcon class="text-muted-foreground/70 me-2 size-3.5" />
-						Hide
-					</DropdownMenu.Item>
-				</DropdownMenu.Content>
-			</DropdownMenu.Root>
-		</div>
-	{/if}
 {/snippet}
 
 <div class="space-y-4">
