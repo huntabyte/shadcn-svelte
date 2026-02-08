@@ -1,0 +1,210 @@
+{
+  "outputDirectory": "docs/static/img",
+  "browser": {
+    "viewport": { "width": 1440, "height": 900 },
+    "deviceScaleFactor": 2,
+    "reducedMotion": "reduce"
+  },
+  "screenshots": [
+    {
+      "name": "registry/login-01",
+      "url": "http://localhost:5173/view/login-01",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/login-02",
+      "url": "http://localhost:5173/view/login-02",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/login-03",
+      "url": "http://localhost:5173/view/login-03",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/login-04",
+      "url": "http://localhost:5173/view/login-04",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/login-05",
+      "url": "http://localhost:5173/view/login-05",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/sidebar-01",
+      "url": "http://localhost:5173/view/sidebar-01",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/sidebar-02",
+      "url": "http://localhost:5173/view/sidebar-02",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/sidebar-03",
+      "url": "http://localhost:5173/view/sidebar-03",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/sidebar-04",
+      "url": "http://localhost:5173/view/sidebar-04",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/sidebar-05",
+      "url": "http://localhost:5173/view/sidebar-05",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/sidebar-06",
+      "url": "http://localhost:5173/view/sidebar-06",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/sidebar-07",
+      "url": "http://localhost:5173/view/sidebar-07",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/sidebar-08",
+      "url": "http://localhost:5173/view/sidebar-08",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/sidebar-09",
+      "url": "http://localhost:5173/view/sidebar-09",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/sidebar-10",
+      "url": "http://localhost:5173/view/sidebar-10",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/sidebar-11",
+      "url": "http://localhost:5173/view/sidebar-11",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/sidebar-12",
+      "url": "http://localhost:5173/view/sidebar-12",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/sidebar-13",
+      "url": "http://localhost:5173/view/sidebar-13",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/sidebar-14",
+      "url": "http://localhost:5173/view/sidebar-14",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/sidebar-15",
+      "url": "http://localhost:5173/view/sidebar-15",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/sidebar-16",
+      "url": "http://localhost:5173/view/sidebar-16",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/dashboard-01",
+      "url": "http://localhost:5173/view/dashboard-01",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/demo-sidebar",
+      "url": "http://localhost:5173/view/demo-sidebar",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/demo-sidebar-header",
+      "url": "http://localhost:5173/view/demo-sidebar-header",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/demo-sidebar-footer",
+      "url": "http://localhost:5173/view/demo-sidebar-footer",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/demo-sidebar-group",
+      "url": "http://localhost:5173/view/demo-sidebar-group",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/demo-sidebar-group-collapsible",
+      "url": "http://localhost:5173/view/demo-sidebar-group-collapsible",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/demo-sidebar-group-action",
+      "url": "http://localhost:5173/view/demo-sidebar-group-action",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/demo-sidebar-menu",
+      "url": "http://localhost:5173/view/demo-sidebar-menu",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/demo-sidebar-menu-action",
+      "url": "http://localhost:5173/view/demo-sidebar-menu-action",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/demo-sidebar-menu-sub",
+      "url": "http://localhost:5173/view/demo-sidebar-menu-sub",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/demo-sidebar-menu-collapsible",
+      "url": "http://localhost:5173/view/demo-sidebar-menu-collapsible",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/demo-sidebar-menu-badge",
+      "url": "http://localhost:5173/view/demo-sidebar-menu-badge",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/demo-sidebar-controlled",
+      "url": "http://localhost:5173/view/demo-sidebar-controlled",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "examples/dashboard",
+      "url": "http://localhost:5173/examples/dashboard",
+      "selector": ".bg-background.rounded-lg.border.bg-clip-padding",
+      "actions": [{ "type": "hide", "selectors": ["header", ".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "examples/tasks",
+      "url": "http://localhost:5173/examples/tasks",
+      "selector": ".bg-background.rounded-lg.border.bg-clip-padding",
+      "actions": [{ "type": "hide", "selectors": ["header", ".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "examples/playground",
+      "url": "http://localhost:5173/examples/playground",
+      "selector": ".bg-background.rounded-lg.border.bg-clip-padding",
+      "actions": [{ "type": "hide", "selectors": ["header", ".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "examples/authentication",
+      "url": "http://localhost:5173/examples/authentication",
+      "selector": ".bg-background.rounded-lg.border.bg-clip-padding",
+      "actions": [{ "type": "hide", "selectors": ["header", ".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "blocks/dashboard-1",
+      "url": "http://localhost:5173/blocks/dashboard",
+      "selector": "#dashboard-01",
+      "actions": [{ "type": "hide", "selectors": ["header", ".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    }
+  ]
+}
