@@ -1,5 +1,5 @@
 {
-  "outputDirectory": "docs/static/img",
+  "outputDirectory": "static/img",
   "browser": {
     "viewport": { "width": 1440, "height": 900 },
     "deviceScaleFactor": 2,

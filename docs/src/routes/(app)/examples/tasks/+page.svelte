@@ -1,12 +1,12 @@
 <script lang="ts">
 	import DataTable from "./components/data-table.svelte";
 	import UserNav from "./components/user-nav.svelte";
+	import { Heroshot } from "heroshot/sveltekit";
 	import { data } from "./data/tasks.js";
 </script>
 
 <div class="md:hidden">
-	<img src="/img/examples/tasks-light.png" alt="Tasks" class="block dark:hidden" />
-	<img src="/img/examples/tasks-dark.png" alt="Tasks" class="hidden dark:block" />
+	<Heroshot name="examples/tasks" alt="Tasks" />
 </div>
 <div class="hidden h-full flex-1 flex-col gap-8 p-8 md:flex">
 	<div class="flex items-center justify-between gap-2">

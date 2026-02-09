@@ -13,6 +13,7 @@
 	import RootComponents from "$lib/components/cards/root-components.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
+	import { Heroshot } from "heroshot/sveltekit";
 
 	const title = "The Foundation for your Design System";
 	const description =
@@ -44,20 +45,7 @@
 			<section
 				class="border-border/50 -mx-4 w-[160vw] overflow-hidden rounded-lg border md:hidden md:w-[150vw]"
 			>
-				<enhanced:img
-					class="block dark:hidden"
-					src="../../../static/img/registry/dashboard-01-light.png"
-					alt="Dashboard"
-					fetchpriority={mobile.current ? "high" : undefined}
-					loading={mobile.current ? "eager" : "lazy"}
-				/>
-				<enhanced:img
-					class="hidden dark:block"
-					src="../../../static/img/registry/dashboard-01-dark.png"
-					alt="Dashboard"
-					fetchpriority="high"
-					loading={mobile.current ? "eager" : "lazy"}
-				/>
+				<Heroshot name="registry/dashboard-01" alt="Dashboard" />
 			</section>
 			{#if !mobile.current}
 				<section class="theme-container hidden md:block">
