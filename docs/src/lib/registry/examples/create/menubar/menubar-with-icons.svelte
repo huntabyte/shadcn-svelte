@@ -15,6 +15,7 @@
 						tabler="IconFile"
 						hugeicons="FileIcon"
 						phosphor="FileIcon"
+						remixicon="RiFileLine"
 					/>
 					New File <Menubar.Shortcut>⌘N</Menubar.Shortcut>
 				</Menubar.Item>
@@ -24,6 +25,7 @@
 						tabler="IconFolder"
 						hugeicons="FolderIcon"
 						phosphor="FolderIcon"
+						remixicon="RiFolderLine"
 					/>
 					Open Folder
 				</Menubar.Item>
@@ -34,6 +36,7 @@
 						tabler="IconDeviceFloppy"
 						hugeicons="FloppyDiskIcon"
 						phosphor="FloppyDiskIcon"
+						remixicon="RiSaveLine"
 					/>
 					Save <Menubar.Shortcut>⌘S</Menubar.Shortcut>
 				</Menubar.Item>
@@ -49,6 +52,7 @@
 							tabler="IconCircleDashed"
 							hugeicons="DashedLineCircleIcon"
 							phosphor="CircleDashedIcon"
+							remixicon="RiLoaderLine"
 						/>
 						Settings
 					</Menubar.Item>
@@ -58,6 +62,7 @@
 							tabler="IconCircleDashed"
 							hugeicons="DashedLineCircleIcon"
 							phosphor="CircleDashedIcon"
+							remixicon="RiLoaderLine"
 						/>
 						Help
 					</Menubar.Item>
@@ -68,6 +73,7 @@
 							tabler="IconCircleDashed"
 							hugeicons="DashedLineCircleIcon"
 							phosphor="CircleDashedIcon"
+							remixicon="RiLoaderLine"
 						/>
 						Delete
 					</Menubar.Item>

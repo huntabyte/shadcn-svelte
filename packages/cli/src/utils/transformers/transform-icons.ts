@@ -96,6 +96,15 @@ export const transformIcons: Transformer = async ({ content, filePath, config })
 			for (const icon of icons) {
 				imports.push(`import { ${icon.name} } from '@tabler/icons-svelte';`);
 			}
+		} else if (iconLibrary.name === "remixicon") {
+			for (const icon of icons) {
+				// Strip "Ri" prefix and convert to kebab-case for import path
+				const withoutPrefix = icon.name.startsWith("Ri") ? icon.name.slice(2) : icon.name;
+				const normalizedName = pascalToKebab(withoutPrefix);
+				imports.push(
+					`import ${icon.name} from 'remixicon-svelte/icons/${normalizedName}';`
+				);
+			}
 		}
 
 		// @ts-expect-error wrong

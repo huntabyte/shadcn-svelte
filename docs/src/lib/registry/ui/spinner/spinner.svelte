@@ -16,6 +16,7 @@
 	tabler="IconLoader"
 	hugeicons="Loading03Icon"
 	phosphor="SpinnerIcon"
+	remixicon="RiLoaderLine"
 	{role}
 	aria-label={ariaLabel}
 	class={cn("size-4 animate-spin", className)}

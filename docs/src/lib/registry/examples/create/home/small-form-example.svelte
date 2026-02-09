@@ -66,6 +66,7 @@
 									tabler="IconDotsVertical"
 									hugeicons="MoreVerticalCircle01Icon"
 									phosphor="DotsThreeVerticalIcon"
+									remixicon="RiMore2Line"
 								/>
 								<span class="sr-only">More options</span>
 							</Button>
@@ -83,6 +84,7 @@
 									tabler="IconFile"
 									hugeicons="FileIcon"
 									phosphor="FileIcon"
+									remixicon="RiFileLine"
 								/>
 								New File
 								<DropdownMenu.Shortcut>⌘N</DropdownMenu.Shortcut>
@@ -93,6 +95,7 @@
 									tabler="IconFolder"
 									hugeicons="FolderIcon"
 									phosphor="FolderIcon"
+									remixicon="RiFolderLine"
 								/>
 								New Folder
 								<DropdownMenu.Shortcut>⇧⌘N</DropdownMenu.Shortcut>
@@ -104,6 +107,7 @@
 										tabler="IconFolderOpen"
 										hugeicons="FolderOpenIcon"
 										phosphor="FolderOpenIcon"
+										remixicon="RiFolderOpenLine"
 									/>
 									Open Recent
 								</DropdownMenu.SubTrigger>
@@ -117,6 +121,7 @@
 													tabler="IconFileCode"
 													hugeicons="CodeIcon"
 													phosphor="CodeIcon"
+													remixicon="RiFileCodeLine"
 												/>
 												Project Alpha
 											</DropdownMenu.Item>
@@ -126,6 +131,7 @@
 													tabler="IconFileCode"
 													hugeicons="CodeIcon"
 													phosphor="CodeIcon"
+													remixicon="RiFileCodeLine"
 												/>
 												Project Beta
 											</DropdownMenu.Item>
@@ -136,6 +142,7 @@
 														tabler="IconDots"
 														hugeicons="MoreHorizontalCircle01Icon"
 														phosphor="DotsThreeOutlineIcon"
+														remixicon="RiMoreLine"
 													/>
 													More Projects
 												</DropdownMenu.SubTrigger>
@@ -147,6 +154,7 @@
 																tabler="IconFileCode"
 																hugeicons="CodeIcon"
 																phosphor="CodeIcon"
+																remixicon="RiFileCodeLine"
 															/>
 															Project Gamma
 														</DropdownMenu.Item>
@@ -156,6 +164,7 @@
 																tabler="IconFileCode"
 																hugeicons="CodeIcon"
 																phosphor="CodeIcon"
+																remixicon="RiFileCodeLine"
 															/>
 															Project Delta
 														</DropdownMenu.Item>
@@ -171,6 +180,7 @@
 													tabler="IconFolderSearch"
 													hugeicons="SearchIcon"
 													phosphor="MagnifyingGlassIcon"
+													remixicon="RiSearchLine"
 												/>
 												Browse...
 											</DropdownMenu.Item>
@@ -185,6 +195,7 @@
 									tabler="IconDeviceFloppy"
 									hugeicons="FloppyDiskIcon"
 									phosphor="FloppyDiskIcon"
+									remixicon="RiSaveLine"
 								/>
 								Save
 								<DropdownMenu.Shortcut>⌘S</DropdownMenu.Shortcut>
@@ -195,6 +206,7 @@
 									tabler="IconDownload"
 									hugeicons="DownloadIcon"
 									phosphor="DownloadIcon"
+									remixicon="RiDownloadLine"
 								/>
 								Export
 								<DropdownMenu.Shortcut>⇧⌘E</DropdownMenu.Shortcut>
@@ -214,6 +226,7 @@
 									tabler="IconEye"
 									hugeicons="EyeIcon"
 									phosphor="EyeIcon"
+									remixicon="RiEyeLine"
 								/>
 								Show Sidebar
 							</DropdownMenu.CheckboxItem>
@@ -228,6 +241,7 @@
 									tabler="IconLayout"
 									hugeicons="LayoutIcon"
 									phosphor="LayoutIcon"
+									remixicon="RiLayoutLine"
 								/>
 								Show Status Bar
 							</DropdownMenu.CheckboxItem>
@@ -238,6 +252,7 @@
 										tabler="IconPalette"
 										hugeicons="PaintBoardIcon"
 										phosphor="PaletteIcon"
+										remixicon="RiPaletteLine"
 									/>
 									Theme
 								</DropdownMenu.SubTrigger>
@@ -257,6 +272,7 @@
 														tabler="IconSun"
 														hugeicons="SunIcon"
 														phosphor="SunIcon"
+														remixicon="RiSunLine"
 													/>
 													Light
 												</DropdownMenu.RadioItem>
@@ -266,6 +282,7 @@
 														tabler="IconMoon"
 														hugeicons="MoonIcon"
 														phosphor="MoonIcon"
+														remixicon="RiMoonLine"
 													/>
 													Dark
 												</DropdownMenu.RadioItem>
@@ -275,6 +292,7 @@
 														tabler="IconDeviceDesktop"
 														hugeicons="ComputerIcon"
 														phosphor="MonitorIcon"
+														remixicon="RiComputerLine"
 													/>
 													System
 												</DropdownMenu.RadioItem>
@@ -292,6 +310,7 @@
 									tabler="IconHelpCircle"
 									hugeicons="HelpCircleIcon"
 									phosphor="QuestionIcon"
+									remixicon="RiQuestionLine"
 								/>
 								Help & Support
 							</DropdownMenu.Item>
@@ -301,6 +320,7 @@
 									tabler="IconFileText"
 									hugeicons="File01Icon"
 									phosphor="FileTextIcon"
+									remixicon="RiFileTextLine"
 								/>
 								Documentation
 							</DropdownMenu.Item>
@@ -313,6 +333,7 @@
 									tabler="IconLogout"
 									hugeicons="LogoutIcon"
 									phosphor="SignOutIcon"
+									remixicon="RiLogoutBoxLine"
 								/>
 								Sign Out
 								<DropdownMenu.Shortcut>⇧⌘Q</DropdownMenu.Shortcut>
@@ -366,6 +387,7 @@
 									tabler="IconSelector"
 									hugeicons="UnfoldMoreIcon"
 									phosphor="CaretDownIcon"
+									remixicon="RiArrowDownSLine"
 								/>
 							</Popover.Trigger>
 							<Popover.Content class="w-(--bits-popover-anchor-width) p-0">

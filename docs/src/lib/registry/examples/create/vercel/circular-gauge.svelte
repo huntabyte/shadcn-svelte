@@ -1,9 +1,9 @@
 <script lang="ts">
 	let { percentage }: { percentage: number } = $props();
 
-	const normalizedPercentage = Math.min(Math.max(percentage, 0), 100);
-	const circumference = 2 * Math.PI * 42.5;
-	const strokePercent = (normalizedPercentage / 100) * circumference;
+	const normalizedPercentage = $derived(Math.min(Math.max(percentage, 0), 100));
+	const circumference = $derived(2 * Math.PI * 42.5);
+	const strokePercent = $derived((normalizedPercentage / 100) * circumference);
 </script>
 
 <svg

@@ -35,6 +35,7 @@
 												tabler="IconPlus"
 												hugeicons="PlusSignIcon"
 												phosphor="PlusIcon"
+												remixicon="RiAddLine"
 											/>
 										</InputGroup.Button>
 									{/snippet}
@@ -52,6 +53,7 @@
 										tabler="IconPaperclip"
 										hugeicons="AttachmentIcon"
 										phosphor="PaperclipIcon"
+										remixicon="RiAttachmentLine"
 									/>
 									Add photos & files
 								</DropdownMenu.Item>
@@ -61,6 +63,7 @@
 										tabler="IconSparkles"
 										hugeicons="SparklesIcon"
 										phosphor="SparkleIcon"
+										remixicon="RiSparklingLine"
 									/>
 									Deep research
 								</DropdownMenu.Item>
@@ -70,6 +73,7 @@
 										tabler="IconShoppingBag"
 										hugeicons="ShoppingBag01Icon"
 										phosphor="BagIcon"
+										remixicon="RiShoppingBagLine"
 									/>
 									Shopping research
 								</DropdownMenu.Item>
@@ -79,6 +83,7 @@
 										tabler="IconWand"
 										hugeicons="MagicWand05Icon"
 										phosphor="MagicWandIcon"
+										remixicon="RiMagicLine"
 									/>
 									Create image
 								</DropdownMenu.Item>
@@ -91,6 +96,7 @@
 													tabler="IconPointer"
 													hugeicons="Cursor01Icon"
 													phosphor="HandPointingIcon"
+													remixicon="RiCursorLine"
 												/>
 												Agent mode
 											</DropdownMenu.Item>
@@ -111,6 +117,7 @@
 										tabler="IconDots"
 										hugeicons="MoreHorizontalCircle01Icon"
 										phosphor="DotsThreeOutlineIcon"
+										remixicon="RiMoreLine"
 									/>
 									More
 								</DropdownMenu.SubTrigger>
@@ -123,6 +130,7 @@
 													tabler="IconShare"
 													hugeicons="Share03Icon"
 													phosphor="ShareIcon"
+													remixicon="RiShareLine"
 												/>
 												Add sources
 											</DropdownMenu.Item>
@@ -132,6 +140,7 @@
 													tabler="IconBook"
 													hugeicons="BookIcon"
 													phosphor="BookOpenIcon"
+													remixicon="RiBookOpenLine"
 												/>
 												Study and learn
 											</DropdownMenu.Item>
@@ -141,6 +150,7 @@
 													tabler="IconWorld"
 													hugeicons="GlobalIcon"
 													phosphor="GlobeIcon"
+													remixicon="RiGlobalLine"
 												/>
 												Web search
 											</DropdownMenu.Item>
@@ -150,6 +160,7 @@
 													tabler="IconPencil"
 													hugeicons="PenIcon"
 													phosphor="PencilIcon"
+													remixicon="RiPencilLine"
 												/>
 												Canvas
 											</DropdownMenu.Item>
@@ -175,6 +186,7 @@
 									tabler="IconMicrophone"
 									hugeicons="AudioWave01Icon"
 									phosphor="MicrophoneIcon"
+									remixicon="RiMicLine"
 								/>
 							</InputGroup.Button>
 						{/snippet}
@@ -187,6 +199,7 @@
 						tabler="IconArrowUp"
 						hugeicons="ArrowUp02Icon"
 						phosphor="ArrowUpIcon"
+						remixicon="RiArrowUpLine"
 					/>
 				</InputGroup.Button>
 			</InputGroup.Addon>

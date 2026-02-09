@@ -25,6 +25,7 @@
 					tabler="IconSearch"
 					hugeicons="Search01Icon"
 					phosphor="MagnifyingGlassIcon"
+					remixicon="RiSearchLine"
 				/>
 			</InputGroup.Addon>
 			<InputGroup.Addon align="inline-end">12 results</InputGroup.Addon>
@@ -49,6 +50,7 @@
 									tabler="IconInfoCircle"
 									hugeicons="AlertCircleIcon"
 									phosphor="InfoIcon"
+									remixicon="RiInformationLine"
 								/>
 							</InputGroup.Button>
 						{/snippet}
@@ -76,6 +78,7 @@
 										tabler="IconInfoCircle"
 										hugeicons="AlertCircleIcon"
 										phosphor="InfoIcon"
+										remixicon="RiInformationLine"
 									/>
 								</InputGroup.Button>
 							{/snippet}
@@ -102,6 +105,7 @@
 							tabler="IconStar"
 							hugeicons="StarIcon"
 							phosphor="StarIcon"
+							remixicon="RiStarLine"
 							data-favorite={isFavorite}
 							class="data-[favorite=true]:fill-primary data-[favorite=true]:stroke-primary"
 						/>
@@ -117,6 +121,7 @@
 						tabler="IconPlus"
 						hugeicons="PlusSignIcon"
 						phosphor="PlusIcon"
+						remixicon="RiAddLine"
 					/>
 				</Button>
 			</ButtonGroup.Root>
@@ -146,6 +151,7 @@
 											tabler="IconWaveSine"
 											hugeicons="AudioWave01Icon"
 											phosphor="MicrophoneIcon"
+											remixicon="RiMicLine"
 										/>
 									</InputGroup.Button>
 								{/snippet}
@@ -170,6 +176,7 @@
 						tabler="IconPlus"
 						hugeicons="PlusSignIcon"
 						phosphor="PlusIcon"
+						remixicon="RiAddLine"
 					/>
 				</InputGroup.Button>
 				<DropdownMenu.Root>
@@ -198,6 +205,7 @@
 						tabler="IconArrowUp"
 						hugeicons="ArrowUp01Icon"
 						phosphor="ArrowUpIcon"
+						remixicon="RiArrowUpLine"
 					/>
 					<span class="sr-only">Send</span>
 				</InputGroup.Button>

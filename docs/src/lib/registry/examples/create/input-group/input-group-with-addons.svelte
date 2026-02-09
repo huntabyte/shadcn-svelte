@@ -17,6 +17,7 @@
 						tabler="IconSearch"
 						hugeicons="SearchIcon"
 						phosphor="MagnifyingGlassIcon"
+						remixicon="RiSearchLine"
 						class="text-muted-foreground"
 					/>
 				</InputGroup.Addon>
@@ -32,6 +33,7 @@
 						tabler="IconEyeClosed"
 						hugeicons="ViewOffIcon"
 						phosphor="EyeSlashIcon"
+						remixicon="RiEyeOffLine"
 					/>
 				</InputGroup.Addon>
 			</InputGroup.Root>
@@ -46,6 +48,7 @@
 						tabler="IconMicrophone"
 						hugeicons="VoiceIcon"
 						phosphor="MicrophoneIcon"
+						remixicon="RiMicLine"
 						class="text-muted-foreground"
 					/>
 				</InputGroup.Addon>
@@ -55,6 +58,7 @@
 						tabler="IconPlayerRecordFilled"
 						hugeicons="RecordIcon"
 						phosphor="RecordIcon"
+						remixicon="RiRecordCircleLine"
 						class="animate-pulse text-red-500"
 					/>
 				</InputGroup.Addon>
@@ -71,6 +75,7 @@
 						tabler="IconInfoCircle"
 						hugeicons="AlertCircleIcon"
 						phosphor="InfoIcon"
+						remixicon="RiInformationLine"
 						class="text-muted-foreground ml-auto"
 					/>
 				</InputGroup.Addon>
@@ -87,6 +92,7 @@
 						tabler="IconInfoCircle"
 						hugeicons="AlertCircleIcon"
 						phosphor="InfoIcon"
+						remixicon="RiInformationLine"
 						class="text-muted-foreground ml-auto"
 					/>
 				</InputGroup.Addon>
@@ -102,6 +108,7 @@
 						tabler="IconStar"
 						hugeicons="StarIcon"
 						phosphor="StarIcon"
+						remixicon="RiStarLine"
 					/>
 					<InputGroup.Button size="icon-xs" onclick={() => {}}>
 						<IconPlaceholder
@@ -109,6 +116,7 @@
 							tabler="IconCopy"
 							hugeicons="CopyIcon"
 							phosphor="CopyIcon"
+							remixicon="RiFileCopyLine"
 						/>
 					</InputGroup.Button>
 				</InputGroup.Addon>
@@ -118,6 +126,7 @@
 						tabler="IconPlayerRecordFilled"
 						hugeicons="RecordIcon"
 						phosphor="RecordIcon"
+						remixicon="RiRecordCircleLine"
 						class="animate-pulse text-red-500"
 					/>
 				</InputGroup.Addon>
@@ -133,6 +142,7 @@
 						tabler="IconInfoCircle"
 						hugeicons="AlertCircleIcon"
 						phosphor="InfoIcon"
+						remixicon="RiInformationLine"
 					/>
 				</InputGroup.Addon>
 			</InputGroup.Root>

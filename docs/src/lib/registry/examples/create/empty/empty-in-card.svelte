@@ -14,6 +14,7 @@
 					tabler="IconFolder"
 					hugeicons="Folder01Icon"
 					phosphor="FolderIcon"
+					remixicon="RiFolderLine"
 				/>
 			</Empty.Media>
 			<Empty.Title>No projects yet</Empty.Title>
@@ -34,6 +35,7 @@
 					tabler="IconArrowUpRight"
 					hugeicons="ArrowUpRight01Icon"
 					phosphor="ArrowUpRightIcon"
+					remixicon="RiArrowRightUpLine"
 				/>
 			</Button>
 		</Empty.Content>

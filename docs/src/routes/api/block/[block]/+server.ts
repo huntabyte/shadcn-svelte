@@ -94,8 +94,16 @@ async function loadItem(
 }
 
 export const GET: RequestHandler = async ({ params, url }) => {
-	const style = url.searchParams.get("style");
-	const iconLibrary = url.searchParams.get("iconLibrary");
+	// Safely access searchParams during prerendering
+	let style: string | null = null;
+	let iconLibrary: string | null = null;
+	try {
+		style = url.searchParams.get("style");
+		iconLibrary = url.searchParams.get("iconLibrary");
+	} catch {
+		// TODO: Fix prerendering - During prerendering, searchParams is not available
+		// Use default values
+	}
 
 	const { block } = params;
 	const item = await loadItem(block, {

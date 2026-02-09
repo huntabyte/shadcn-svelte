@@ -176,6 +176,7 @@
 												tabler="IconDots"
 												hugeicons="MoreHorizontalCircle01Icon"
 												phosphor="DotsThreeOutlineIcon"
+												remixicon="RiMoreLine"
 												class="ml-auto"
 											/>
 										</Sidebar.MenuButton>

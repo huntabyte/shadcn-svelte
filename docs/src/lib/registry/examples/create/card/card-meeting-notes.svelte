@@ -18,7 +18,7 @@
 						tabler="IconTextCaption"
 						hugeicons="TextCheckIcon"
 						phosphor="TextTIcon"
-						data-icon="inline-start"
+						remixicon="RiClosedCaptioningLine"
 					/>
 					Transcribe
 				</Button.Root>

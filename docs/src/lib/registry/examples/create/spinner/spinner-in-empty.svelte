@@ -30,6 +30,7 @@
 					tabler="IconArrowRight"
 					hugeicons="ArrowRight02Icon"
 					phosphor="ArrowRightIcon"
+					remixicon="RiArrowRightLine"
 				/>
 			</Button>
 		</Empty.Content>

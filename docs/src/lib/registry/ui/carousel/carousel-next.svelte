@@ -39,6 +39,7 @@
 		tabler="IconChevronRight"
 		hugeicons="ArrowRight01Icon"
 		phosphor="CaretRightIcon"
+		remixicon="RiArrowRightSLine"
 	/>
 	<span class="sr-only">Next slide</span>
 </Button>

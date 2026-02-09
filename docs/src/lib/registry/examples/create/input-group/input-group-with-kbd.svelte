@@ -38,6 +38,7 @@
 						tabler="IconServerSpark"
 						hugeicons="SparklesIcon"
 						phosphor="SparkleIcon"
+						remixicon="RiSparklingLine"
 					/>
 				</InputGroup.Addon>
 				<InputGroup.Addon align="inline-end">
@@ -61,6 +62,7 @@
 							tabler="IconCheck"
 							hugeicons="Tick02Icon"
 							phosphor="CheckIcon"
+							remixicon="RiCheckLine"
 							class="size-3 text-white"
 						/>
 					</div>
@@ -77,6 +79,7 @@
 					tabler="IconSearch"
 					hugeicons="SearchIcon"
 					phosphor="MagnifyingGlassIcon"
+					remixicon="RiSearchLine"
 				/>
 			</InputGroup.Addon>
 			<InputGroup.Addon align="inline-end">12 results</InputGroup.Addon>
@@ -93,6 +96,7 @@
 					tabler="IconSearch"
 					hugeicons="SearchIcon"
 					phosphor="MagnifyingGlassIcon"
+					remixicon="RiSearchLine"
 				/>
 			</InputGroup.Addon>
 			<InputGroup.Addon align="inline-end">Disabled</InputGroup.Addon>
@@ -108,6 +112,7 @@
 							tabler="IconInfoCircle"
 							hugeicons="AlertCircleIcon"
 							phosphor="InfoIcon"
+							remixicon="RiInformationLine"
 						/>
 					</InputGroup.Addon>
 				</InputGroup.Root>
@@ -122,6 +127,7 @@
 							tabler="IconInfoCircle"
 							hugeicons="AlertCircleIcon"
 							phosphor="InfoIcon"
+							remixicon="RiInformationLine"
 						/>
 					</InputGroup.Addon>
 				</InputGroup.Root>

@@ -27,6 +27,7 @@
 										tabler="IconInfoCircle"
 										hugeicons="AlertCircleIcon"
 										phosphor="InfoIcon"
+										remixicon="RiInformationLine"
 									/>
 								</InputGroup.Button>
 							{/snippet}
@@ -55,6 +56,7 @@
 										tabler="IconChevronDown"
 										hugeicons="ArrowDownIcon"
 										phosphor="CaretDownIcon"
+										remixicon="RiArrowDownSLine"
 									/>
 								</InputGroup.Button>
 							{/snippet}
@@ -93,6 +95,7 @@
 										tabler="IconInfoCircle"
 										hugeicons="AlertCircleIcon"
 										phosphor="InfoIcon"
+										remixicon="RiInformationLine"
 									/>
 								</InputGroup.Button>
 							</InputGroup.Addon>
@@ -116,6 +119,7 @@
 							tabler="IconStar"
 							hugeicons="StarIcon"
 							phosphor="StarIcon"
+							remixicon="RiStarLine"
 						/>
 					</InputGroup.Button>
 				</InputGroup.Addon>
@@ -134,6 +138,7 @@
 							tabler="IconInfoCircle"
 							hugeicons="AlertCircleIcon"
 							phosphor="InfoIcon"
+							remixicon="RiInformationLine"
 						/>
 					</InputGroup.Addon>
 				</InputGroup.Root>

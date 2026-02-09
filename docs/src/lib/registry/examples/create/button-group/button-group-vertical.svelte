@@ -14,6 +14,7 @@
 					tabler="IconPlus"
 					hugeicons="PlusSignIcon"
 					phosphor="PlusIcon"
+					remixicon="RiAddLine"
 				/>
 			</Button>
 			<Button variant="outline" size="icon">
@@ -22,6 +23,7 @@
 					tabler="IconMinus"
 					hugeicons="MinusSignIcon"
 					phosphor="MinusIcon"
+					remixicon="RiSubtractLine"
 				/>
 			</Button>
 		</ButtonGroup>

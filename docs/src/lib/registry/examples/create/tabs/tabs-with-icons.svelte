@@ -13,6 +13,7 @@
 					tabler="IconAppWindow"
 					hugeicons="CursorInWindowIcon"
 					phosphor="AppWindowIcon"
+					remixicon="RiWindowLine"
 				/>
 				Preview
 			</Tabs.Trigger>
@@ -22,6 +23,7 @@
 					tabler="IconCode"
 					hugeicons="CodeIcon"
 					phosphor="CodeIcon"
+					remixicon="RiCodeLine"
 				/>
 				Code
 			</Tabs.Trigger>

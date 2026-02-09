@@ -12,6 +12,7 @@
 				tabler="IconItalic"
 				hugeicons="TextItalicIcon"
 				phosphor="TextItalicIcon"
+				remixicon="RiItalic"
 			/>
 			Italic
 		</Toggle>
@@ -21,6 +22,7 @@
 				tabler="IconBold"
 				hugeicons="TextBoldIcon"
 				phosphor="TextBIcon"
+				remixicon="RiBold"
 			/>
 			Bold
 		</Toggle>

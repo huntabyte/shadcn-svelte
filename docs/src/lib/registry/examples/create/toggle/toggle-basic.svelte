@@ -12,6 +12,7 @@
 				tabler="IconBold"
 				hugeicons="TextBoldIcon"
 				phosphor="TextBIcon"
+				remixicon="RiBold"
 			/>
 		</Toggle>
 		<Toggle aria-label="Toggle italic">
@@ -20,6 +21,7 @@
 				tabler="IconItalic"
 				hugeicons="TextItalicIcon"
 				phosphor="TextItalicIcon"
+				remixicon="RiItalic"
 			/>
 		</Toggle>
 		<Toggle aria-label="Toggle underline">
@@ -28,6 +30,7 @@
 				tabler="IconUnderline"
 				hugeicons="TextUnderlineIcon"
 				phosphor="TextUnderlineIcon"
+				remixicon="RiUnderline"
 			/>
 		</Toggle>
 	</div>

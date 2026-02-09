@@ -5,6 +5,7 @@ export const lucideIconLoader = createIconLoader("lucide");
 export const tablerIconLoader = createIconLoader("tabler");
 export const hugeiconsIconLoader = createIconLoader("hugeicons");
 export const phosphorIconLoader = createIconLoader("phosphor");
+export const remixiconIconLoader = createIconLoader("remixicon");
 
 export function createIconLoader(iconLibrary: IconLibraryName) {
 	const preloadedIcons = new Map<string, Component | null>();

@@ -36,6 +36,7 @@
 							tabler="IconCalendar"
 							hugeicons="CalendarIcon"
 							phosphor="CalendarBlankIcon"
+							remixicon="RiCalendarLine"
 							data-icon="inline-start"
 						/>
 						{#if date?.start && date?.end}

@@ -12,6 +12,7 @@
 				tabler="IconBold"
 				hugeicons="TextBoldIcon"
 				phosphor="TextBIcon"
+				remixicon="RiBold"
 			/>
 		</ToggleGroup.Item>
 		<ToggleGroup.Item value="italic" aria-label="Toggle italic">
@@ -20,6 +21,7 @@
 				tabler="IconItalic"
 				hugeicons="TextItalicIcon"
 				phosphor="TextItalicIcon"
+				remixicon="RiItalic"
 			/>
 		</ToggleGroup.Item>
 		<ToggleGroup.Item value="underline" aria-label="Toggle underline">
@@ -28,6 +30,7 @@
 				tabler="IconUnderline"
 				hugeicons="TextUnderlineIcon"
 				phosphor="TextUnderlineIcon"
+				remixicon="RiUnderline"
 			/>
 		</ToggleGroup.Item>
 	</ToggleGroup.Root>

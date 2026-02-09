@@ -13,6 +13,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Button>
@@ -23,6 +24,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Button>
@@ -33,6 +35,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Button>
@@ -43,6 +46,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Button>
@@ -53,6 +57,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Button>
@@ -63,6 +68,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Button>
@@ -75,6 +81,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Button>
@@ -85,6 +92,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Button>
@@ -95,6 +103,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 			/>
 		</Button>
 		<Button size="sm" variant="ghost">
@@ -104,6 +113,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Button>
@@ -114,6 +124,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Button>
@@ -124,6 +135,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Button>
@@ -136,6 +148,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Button>
@@ -146,6 +159,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Button>
@@ -156,6 +170,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Button>
@@ -166,6 +181,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Button>
@@ -176,6 +192,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Button>
@@ -186,6 +203,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Button>
@@ -198,6 +216,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Button>
@@ -208,6 +227,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Button>
@@ -218,6 +238,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Button>
@@ -228,6 +249,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Button>
@@ -238,6 +260,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Button>
@@ -248,6 +271,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Button>

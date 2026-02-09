@@ -30,6 +30,7 @@
 		tabler="IconSelector"
 		hugeicons="UnfoldMoreIcon"
 		phosphor="CaretDownIcon"
+		remixicon="RiArrowDownSLine"
 		class="cn-select-trigger-icon pointer-events-none"
 	/>
 </SelectPrimitive.Trigger>

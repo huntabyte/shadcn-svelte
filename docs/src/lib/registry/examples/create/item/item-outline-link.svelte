@@ -38,6 +38,7 @@
 								tabler="IconArchive"
 								hugeicons="Archive02Icon"
 								phosphor="ArchiveIcon"
+								remixicon="RiArchiveLine"
 							/>
 						</Item.Media>
 						<Item.Content>
@@ -55,6 +56,7 @@
 								tabler="IconArchive"
 								hugeicons="Archive02Icon"
 								phosphor="ArchiveIcon"
+								remixicon="RiArchiveLine"
 							/>
 						</Item.Media>
 						<Item.Content>

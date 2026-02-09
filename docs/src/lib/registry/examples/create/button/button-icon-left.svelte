@@ -12,6 +12,7 @@
 				hugeicons="CircleArrowLeft02Icon"
 				tabler="IconCircleArrowLeft"
 				phosphor="ArrowCircleLeftIcon"
+				remixicon="RiArrowLeftCircleLine"
 				data-icon="inline-start"
 			/>
 			Default
@@ -22,6 +23,7 @@
 				hugeicons="CircleArrowLeft02Icon"
 				tabler="IconCircleArrowLeft"
 				phosphor="ArrowCircleLeftIcon"
+				remixicon="RiArrowLeftCircleLine"
 				data-icon="inline-start"
 			/>
 			Secondary
@@ -32,6 +34,7 @@
 				hugeicons="CircleArrowLeft02Icon"
 				tabler="IconCircleArrowLeft"
 				phosphor="ArrowCircleLeftIcon"
+				remixicon="RiArrowLeftCircleLine"
 				data-icon="inline-start"
 			/>
 			Outline
@@ -42,6 +45,7 @@
 				hugeicons="CircleArrowLeft02Icon"
 				tabler="IconCircleArrowLeft"
 				phosphor="ArrowCircleLeftIcon"
+				remixicon="RiArrowLeftCircleLine"
 				data-icon="inline-start"
 			/>
 			Ghost
@@ -52,6 +56,7 @@
 				hugeicons="CircleArrowLeft02Icon"
 				tabler="IconCircleArrowLeft"
 				phosphor="ArrowCircleLeftIcon"
+				remixicon="RiArrowLeftCircleLine"
 				data-icon="inline-start"
 			/>
 			Destructive
@@ -62,6 +67,7 @@
 				hugeicons="CircleArrowLeft02Icon"
 				tabler="IconCircleArrowLeft"
 				phosphor="ArrowCircleLeftIcon"
+				remixicon="RiArrowLeftCircleLine"
 				data-icon="inline-start"
 			/>
 			Link
@@ -74,6 +80,7 @@
 				hugeicons="CircleArrowLeft02Icon"
 				tabler="IconCircleArrowLeft"
 				phosphor="ArrowCircleLeftIcon"
+				remixicon="RiArrowLeftCircleLine"
 				data-icon="inline-start"
 			/>
 			Default
@@ -84,6 +91,7 @@
 				hugeicons="CircleArrowLeft02Icon"
 				tabler="IconCircleArrowLeft"
 				phosphor="ArrowCircleLeftIcon"
+				remixicon="RiArrowLeftCircleLine"
 				data-icon="inline-start"
 			/>
 			Secondary
@@ -94,6 +102,7 @@
 				hugeicons="CircleArrowLeft02Icon"
 				tabler="IconCircleArrowLeft"
 				phosphor="ArrowCircleLeftIcon"
+				remixicon="RiArrowLeftCircleLine"
 				data-icon="inline-start"
 			/>
 			Outline
@@ -104,6 +113,7 @@
 				hugeicons="CircleArrowLeft02Icon"
 				tabler="IconCircleArrowLeft"
 				phosphor="ArrowCircleLeftIcon"
+				remixicon="RiArrowLeftCircleLine"
 				data-icon="inline-start"
 			/>
 			Ghost
@@ -114,6 +124,7 @@
 				hugeicons="CircleArrowLeft02Icon"
 				tabler="IconCircleArrowLeft"
 				phosphor="ArrowCircleLeftIcon"
+				remixicon="RiArrowLeftCircleLine"
 				data-icon="inline-start"
 			/>
 			Destructive
@@ -124,6 +135,7 @@
 				hugeicons="CircleArrowLeft02Icon"
 				tabler="IconCircleArrowLeft"
 				phosphor="ArrowCircleLeftIcon"
+				remixicon="RiArrowLeftCircleLine"
 				data-icon="inline-start"
 			/>
 			Link
@@ -136,6 +148,7 @@
 				hugeicons="CircleArrowLeft02Icon"
 				tabler="IconCircleArrowLeft"
 				phosphor="ArrowCircleLeftIcon"
+				remixicon="RiArrowLeftCircleLine"
 				data-icon="inline-start"
 			/>
 			Default
@@ -146,6 +159,7 @@
 				hugeicons="CircleArrowLeft02Icon"
 				tabler="IconCircleArrowLeft"
 				phosphor="ArrowCircleLeftIcon"
+				remixicon="RiArrowLeftCircleLine"
 				data-icon="inline-start"
 			/>
 			Secondary
@@ -156,6 +170,7 @@
 				hugeicons="CircleArrowLeft02Icon"
 				tabler="IconCircleArrowLeft"
 				phosphor="ArrowCircleLeftIcon"
+				remixicon="RiArrowLeftCircleLine"
 				data-icon="inline-start"
 			/>
 			Outline
@@ -166,6 +181,7 @@
 				hugeicons="CircleArrowLeft02Icon"
 				tabler="IconCircleArrowLeft"
 				phosphor="ArrowCircleLeftIcon"
+				remixicon="RiArrowLeftCircleLine"
 				data-icon="inline-start"
 			/>
 			Ghost
@@ -176,6 +192,7 @@
 				hugeicons="CircleArrowLeft02Icon"
 				tabler="IconCircleArrowLeft"
 				phosphor="ArrowCircleLeftIcon"
+				remixicon="RiArrowLeftCircleLine"
 				data-icon="inline-start"
 			/>
 			Destructive
@@ -186,6 +203,7 @@
 				hugeicons="CircleArrowLeft02Icon"
 				tabler="IconCircleArrowLeft"
 				phosphor="ArrowCircleLeftIcon"
+				remixicon="RiArrowLeftCircleLine"
 				data-icon="inline-start"
 			/>
 			Link
@@ -198,6 +216,7 @@
 				hugeicons="CircleArrowLeft02Icon"
 				tabler="IconCircleArrowLeft"
 				phosphor="ArrowCircleLeftIcon"
+				remixicon="RiArrowLeftCircleLine"
 				data-icon="inline-start"
 			/>
 			Default
@@ -208,6 +227,7 @@
 				hugeicons="CircleArrowLeft02Icon"
 				tabler="IconCircleArrowLeft"
 				phosphor="ArrowCircleLeftIcon"
+				remixicon="RiArrowLeftCircleLine"
 				data-icon="inline-start"
 			/>
 			Secondary
@@ -218,6 +238,7 @@
 				hugeicons="CircleArrowLeft02Icon"
 				tabler="IconCircleArrowLeft"
 				phosphor="ArrowCircleLeftIcon"
+				remixicon="RiArrowLeftCircleLine"
 				data-icon="inline-start"
 			/>
 			Outline
@@ -228,6 +249,7 @@
 				hugeicons="CircleArrowLeft02Icon"
 				tabler="IconCircleArrowLeft"
 				phosphor="ArrowCircleLeftIcon"
+				remixicon="RiArrowLeftCircleLine"
 				data-icon="inline-start"
 			/>
 			Ghost
@@ -238,6 +260,7 @@
 				hugeicons="CircleArrowLeft02Icon"
 				tabler="IconCircleArrowLeft"
 				phosphor="ArrowCircleLeftIcon"
+				remixicon="RiArrowLeftCircleLine"
 				data-icon="inline-start"
 			/>
 			Destructive
@@ -248,6 +271,7 @@
 				hugeicons="CircleArrowLeft02Icon"
 				tabler="IconCircleArrowLeft"
 				phosphor="ArrowCircleLeftIcon"
+				remixicon="RiArrowLeftCircleLine"
 				data-icon="inline-start"
 			/>
 			Link

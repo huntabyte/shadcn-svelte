@@ -19,6 +19,7 @@
 						tabler="IconCopy"
 						hugeicons="CopyIcon"
 						phosphor="CopyIcon"
+						remixicon="RiFileCopyLine"
 					/>
 					Copy
 				</ContextMenu.Item>
@@ -28,6 +29,7 @@
 						tabler="IconCut"
 						hugeicons="ScissorIcon"
 						phosphor="ScissorsIcon"
+						remixicon="RiScissorsLine"
 					/>
 					Cut
 				</ContextMenu.Item>
@@ -37,6 +39,7 @@
 						tabler="IconClipboard"
 						hugeicons="ClipboardIcon"
 						phosphor="ClipboardIcon"
+						remixicon="RiClipboardLine"
 					/>
 					Paste
 				</ContextMenu.Item>
@@ -49,6 +52,7 @@
 						tabler="IconTrash"
 						hugeicons="DeleteIcon"
 						phosphor="TrashIcon"
+						remixicon="RiDeleteBinLine"
 					/>
 					Delete
 				</ContextMenu.Item>

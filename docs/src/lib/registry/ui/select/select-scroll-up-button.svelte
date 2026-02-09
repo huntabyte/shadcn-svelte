@@ -21,5 +21,6 @@
 		tabler="IconChevronUp"
 		hugeicons="ArrowUp01Icon"
 		phosphor="CaretUpIcon"
+		remixicon="RiArrowUpSLine"
 	/>
 </SelectPrimitive.ScrollUpButton>

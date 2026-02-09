@@ -20,6 +20,7 @@
 						tabler="IconArrowLeft"
 						hugeicons="ArrowLeft01Icon"
 						phosphor="ArrowLeftIcon"
+						remixicon="RiArrowLeftLine"
 					/>
 				</Button>
 			</ButtonGroup.Root>
@@ -43,6 +44,7 @@
 									tabler="IconChevronDown"
 									hugeicons="ArrowDown01Icon"
 									phosphor="CaretDownIcon"
+									remixicon="RiArrowDownSLine"
 								/>
 							</Button>
 						{/snippet}
@@ -55,6 +57,7 @@
 									tabler="IconMailCheck"
 									hugeicons="MailValidation01Icon"
 									phosphor="EnvelopeIcon"
+									remixicon="RiMailCheckLine"
 								/>
 								Mark as Read
 							</DropdownMenu.Item>
@@ -64,6 +67,7 @@
 									tabler="IconArchive"
 									hugeicons="ArchiveIcon"
 									phosphor="ArchiveIcon"
+									remixicon="RiArchiveLine"
 								/>
 								Archive
 							</DropdownMenu.Item>
@@ -76,6 +80,7 @@
 									tabler="IconClock"
 									hugeicons="ClockIcon"
 									phosphor="ClockIcon"
+									remixicon="RiTimeLine"
 								/>
 								Snooze
 							</DropdownMenu.Item>
@@ -85,6 +90,7 @@
 									tabler="IconCalendarPlus"
 									hugeicons="CalendarAdd01Icon"
 									phosphor="CalendarPlusIcon"
+									remixicon="RiCalendarCheckLine"
 								/>
 								Add to Calendar
 							</DropdownMenu.Item>
@@ -94,6 +100,7 @@
 									tabler="IconFilterPlus"
 									hugeicons="AddToListIcon"
 									phosphor="ListPlusIcon"
+									remixicon="RiAddBoxLine"
 								/>
 								Add to List
 							</DropdownMenu.Item>
@@ -104,6 +111,7 @@
 										tabler="IconTag"
 										hugeicons="TagIcon"
 										phosphor="TagIcon"
+										remixicon="RiPriceTagLine"
 									/>
 									Label As...
 								</DropdownMenu.SubTrigger>
@@ -134,6 +142,7 @@
 									tabler="IconTrash"
 									hugeicons="Delete02Icon"
 									phosphor="TrashIcon"
+									remixicon="RiDeleteBinLine"
 								/>
 								Trash
 							</DropdownMenu.Item>
@@ -148,6 +157,7 @@
 						tabler="IconArrowLeft"
 						hugeicons="ArrowLeft01Icon"
 						phosphor="ArrowLeftIcon"
+						remixicon="RiArrowLeftLine"
 					/>
 				</Button>
 				<Button variant="outline" size="icon-sm" aria-label="Next">
@@ -156,6 +166,7 @@
 						tabler="IconArrowRight"
 						hugeicons="ArrowRight01Icon"
 						phosphor="ArrowRightIcon"
+						remixicon="RiArrowRightLine"
 					/>
 				</Button>
 			</ButtonGroup.Root>
@@ -180,6 +191,7 @@
 										tabler="IconChevronDown"
 										hugeicons="ArrowDown01Icon"
 										phosphor="CaretDownIcon"
+										remixicon="RiArrowDownSLine"
 									/>
 								</Button>
 							{/snippet}
@@ -193,6 +205,7 @@
 										tabler="IconVolume"
 										hugeicons="VolumeOffIcon"
 										phosphor="SpeakerSlashIcon"
+										remixicon="RiVolumeMuteLine"
 									/>
 									Mute Conversation
 								</DropdownMenu.Item>
@@ -202,6 +215,7 @@
 										tabler="IconCheck"
 										hugeicons="Tick02Icon"
 										phosphor="CheckIcon"
+										remixicon="RiCheckLine"
 									/>
 									Mark as Read
 								</DropdownMenu.Item>
@@ -211,6 +225,7 @@
 										tabler="IconUserX"
 										hugeicons="UserRemove01Icon"
 										phosphor="UserMinusIcon"
+										remixicon="RiUserMinusLine"
 									/>
 									Block User
 								</DropdownMenu.Item>
@@ -224,6 +239,7 @@
 										tabler="IconShare"
 										hugeicons="Share03Icon"
 										phosphor="ShareIcon"
+										remixicon="RiShareLine"
 									/>
 									Share Conversation
 								</DropdownMenu.Item>
@@ -233,6 +249,7 @@
 										tabler="IconCopy"
 										hugeicons="Copy01Icon"
 										phosphor="CopyIcon"
+										remixicon="RiFileCopyLine"
 									/>
 									Copy Conversation
 								</DropdownMenu.Item>
@@ -242,6 +259,7 @@
 										tabler="IconAlertTriangle"
 										hugeicons="AlertCircleIcon"
 										phosphor="WarningIcon"
+										remixicon="RiAlertLine"
 									/>
 									Report Conversation
 								</DropdownMenu.Item>
@@ -254,6 +272,7 @@
 										tabler="IconTrash"
 										hugeicons="Delete02Icon"
 										phosphor="TrashIcon"
+										remixicon="RiDeleteBinLine"
 									/>
 									Delete Conversation
 								</DropdownMenu.Item>
@@ -268,6 +287,7 @@
 							tabler="IconRobot"
 							hugeicons="BotIcon"
 							phosphor="RobotIcon"
+							remixicon="RiRobotLine"
 						/>
 						Copilot
 					</Button>
@@ -285,6 +305,7 @@
 										tabler="IconChevronDown"
 										hugeicons="ArrowDown01Icon"
 										phosphor="CaretDownIcon"
+										remixicon="RiArrowDownSLine"
 									/>
 								</Button>
 							{/snippet}

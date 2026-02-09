@@ -3,7 +3,6 @@
 	import ModeSwitcher from "$lib/components/mode-switcher.svelte";
 	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
-	import ArrowLeftIcon from "@lucide/svelte/icons/arrow-left";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import ItemExplorer from "../components/item-explorer.svelte";
 	import ItemPicker from "../components/item-picker.svelte";
@@ -18,6 +17,11 @@
 	import { useIsMac } from "$lib/hooks/use-is-mac.svelte.js";
 	import Share from "../components/share.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
+	import RandomButton from "../components/random-button.svelte";
+	import MobileNav from "$lib/components/mobile-nav.svelte";
+	import MainNav from "$lib/components/main-nav.svelte";
+	import { mainNavItems } from "$lib/navigation.js";
+	import Logo from "$lib/components/logo.svelte";
 
 	let { children } = $props();
 
@@ -38,28 +42,29 @@
 />
 
 <div data-slot="layout" class="section-soft relative z-10 flex min-h-svh flex-col">
-	<header class="bg-background sticky top-0 z-50 w-full">
+	<header class="sticky top-0 z-50 w-full">
 		<div class="container-wrapper 3xl:fixed:px-0 px-6">
 			<div
-				class="3xl:fixed:container flex h-(--header-height) items-center justify-evenly **:data-[slot=separator]:h-4!"
+				class="3xl:fixed:container flex h-(--header-height) items-center **:data-[slot=separator]:h-4!"
 			>
-				<div class="flex items-center gap-4 xl:w-1/3">
-					<Button href="/" variant="outline" size="sm">
-						<ArrowLeftIcon />
-						Back
+				<div class="flex h-(--header-height) items-center **:data-[slot=separator]:h-4!">
+					<MobileNav class="flex lg:hidden" />
+					<Button href="/" variant="ghost" size="icon" class="hidden size-8 lg:flex">
+						<Logo class="size-5" />
+						<span class="sr-only">shadcn-svelte</span>
 					</Button>
-					<Separator orientation="vertical" />
-					<span class="text-muted-foreground text-sm font-medium">New Project</span>
+					<MainNav items={mainNavItems} class="hidden lg:block" />
 				</div>
 				<div
-					class="fixed inset-x-0 bottom-0 ml-auto flex flex-1 items-center gap-2 px-4.5 pb-4 sm:static sm:justify-end sm:p-0 lg:ml-0 xl:justify-center"
+					class="fixed inset-x-0 bottom-0 ml-auto flex max-w-full flex-1 items-center justify-end gap-2 overflow-x-auto px-4.5 pb-4 sm:static sm:p-0 lg:ml-0"
 				>
 					<ItemPicker items={examples} />
+					<div class="flex items-center gap-2 sm:hidden">
+						<RandomButton />
+					</div>
+					<Separator orientation="vertical" class="mr-2 hidden sm:flex" />
 				</div>
-				<div
-					class="ms-auto flex items-center gap-2 sm:ms-2 md:justify-end xl:ms-auto xl:w-1/3"
-				>
-					<Separator orientation="vertical" class="hidden xl:block" />
+				<div class="ml-auto flex place-items-center gap-2 sm:ml-0 md:justify-end">
 					<div class="hidden items-center gap-2 xl:flex">
 						<Tooltip.Provider>
 							<Tooltip.Root>
@@ -84,10 +89,11 @@
 							</Tooltip.Root>
 						</Tooltip.Provider>
 					</div>
+					<Separator orientation="vertical" class="hidden xl:flex" />
 					<LayoutToggle class="3xl:flex hidden" />
-					<Separator orientation="vertical" />
+					<Separator orientation="vertical" class="3xl:flex hidden" />
 					<ModeSwitcher />
-					<Separator orientation="vertical" />
+					<Separator orientation="vertical" class="mr-0 -ml-2 sm:ml-0" />
 					<Share />
 					<InitializeDialog />
 				</div>

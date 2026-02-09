@@ -42,6 +42,7 @@
 							tabler="IconCopy"
 							hugeicons="CopyIcon"
 							phosphor="CopyIcon"
+							remixicon="RiFileCopyLine"
 						/>
 					</InputGroup.Button>
 				</InputGroup.Addon>
@@ -55,6 +56,7 @@
 							tabler="IconTrash"
 							hugeicons="DeleteIcon"
 							phosphor="TrashIcon"
+							remixicon="RiDeleteBinLine"
 						/>
 					</InputGroup.Button>
 				</InputGroup.Addon>

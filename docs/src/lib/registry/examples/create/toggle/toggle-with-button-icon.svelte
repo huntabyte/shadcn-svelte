@@ -14,6 +14,7 @@
 					tabler="IconBold"
 					hugeicons="TextBoldIcon"
 					phosphor="TextBIcon"
+					remixicon="RiBold"
 				/>
 			</Button>
 			<Toggle variant="outline" aria-label="Toggle sm icon" size="sm">
@@ -22,6 +23,7 @@
 					tabler="IconBold"
 					hugeicons="TextBoldIcon"
 					phosphor="TextBIcon"
+					remixicon="RiBold"
 				/>
 			</Toggle>
 		</div>
@@ -32,6 +34,7 @@
 					tabler="IconItalic"
 					hugeicons="TextItalicIcon"
 					phosphor="TextItalicIcon"
+					remixicon="RiItalic"
 				/>
 			</Button>
 			<Toggle variant="outline" aria-label="Toggle default icon" size="default">
@@ -40,6 +43,7 @@
 					tabler="IconItalic"
 					hugeicons="TextItalicIcon"
 					phosphor="TextItalicIcon"
+					remixicon="RiItalic"
 				/>
 			</Toggle>
 		</div>
@@ -50,6 +54,7 @@
 					tabler="IconUnderline"
 					hugeicons="TextUnderlineIcon"
 					phosphor="TextUnderlineIcon"
+					remixicon="RiUnderline"
 				/>
 			</Button>
 			<Toggle variant="outline" aria-label="Toggle lg icon" size="lg">
@@ -58,6 +63,7 @@
 					tabler="IconUnderline"
 					hugeicons="TextUnderlineIcon"
 					phosphor="TextUnderlineIcon"
+					remixicon="RiUnderline"
 				/>
 			</Toggle>
 		</div>

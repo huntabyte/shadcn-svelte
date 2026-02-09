@@ -52,6 +52,7 @@
 									tabler="IconPlus"
 									hugeicons="PlusSignIcon"
 									phosphor="PlusIcon"
+									remixicon="RiAddLine"
 								/>
 							</Button>
 						{/snippet}
@@ -92,6 +93,7 @@
 											tabler="IconX"
 											hugeicons="Cancel01Icon"
 											phosphor="XIcon"
+											remixicon="RiCloseLine"
 											class="size-3"
 										/>
 									</button>

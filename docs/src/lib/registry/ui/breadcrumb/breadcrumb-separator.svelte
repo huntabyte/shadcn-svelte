@@ -27,6 +27,7 @@
 			tabler="IconChevronRight"
 			hugeicons="ArrowRight01Icon"
 			phosphor="CaretRightIcon"
+			remixicon="RiArrowRightSLine"
 		/>
 	{/if}
 </li>

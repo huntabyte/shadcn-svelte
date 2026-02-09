@@ -21,6 +21,7 @@
 							tabler="IconCalendar"
 							hugeicons="CalendarIcon"
 							phosphor="CalendarBlankIcon"
+							remixicon="RiCalendarLine"
 						/>
 						<span>Calendar</span>
 					</Command.Item>
@@ -30,6 +31,7 @@
 							tabler="IconMoodSmile"
 							hugeicons="SmileIcon"
 							phosphor="SmileyIcon"
+							remixicon="RiEmotionLine"
 						/>
 						<span>Search Emoji</span>
 					</Command.Item>
@@ -39,6 +41,7 @@
 							tabler="IconCalculator"
 							hugeicons="CalculatorIcon"
 							phosphor="CalculatorIcon"
+							remixicon="RiCalculatorLine"
 						/>
 						<span>Calculator</span>
 					</Command.Item>
@@ -51,6 +54,7 @@
 							tabler="IconUser"
 							hugeicons="UserIcon"
 							phosphor="UserIcon"
+							remixicon="RiUserLine"
 						/>
 						<span>Profile</span>
 						<Command.Shortcut>⌘P</Command.Shortcut>
@@ -61,6 +65,7 @@
 							tabler="IconCreditCard"
 							hugeicons="CreditCardIcon"
 							phosphor="CreditCardIcon"
+							remixicon="RiBankCardLine"
 						/>
 						<span>Billing</span>
 						<Command.Shortcut>⌘B</Command.Shortcut>
@@ -71,6 +76,7 @@
 							tabler="IconSettings"
 							hugeicons="SettingsIcon"
 							phosphor="GearIcon"
+							remixicon="RiSettingsLine"
 						/>
 						<span>Settings</span>
 						<Command.Shortcut>⌘S</Command.Shortcut>

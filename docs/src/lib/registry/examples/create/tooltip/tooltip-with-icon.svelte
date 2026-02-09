@@ -15,6 +15,7 @@
 						tabler="IconInfoCircle"
 						hugeicons="AlertCircleIcon"
 						phosphor="InfoIcon"
+						remixicon="RiInformationLine"
 					/>
 					<span class="sr-only">Info</span>
 				</Button>

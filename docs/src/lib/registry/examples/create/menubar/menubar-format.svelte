@@ -15,6 +15,7 @@
 						tabler="IconBold"
 						hugeicons="TextBoldIcon"
 						phosphor="TextBIcon"
+						remixicon="RiBold"
 					/>
 					Bold <Menubar.Shortcut>⌘B</Menubar.Shortcut>
 				</Menubar.Item>
@@ -24,6 +25,7 @@
 						tabler="IconItalic"
 						hugeicons="TextItalicIcon"
 						phosphor="TextItalicIcon"
+						remixicon="RiItalic"
 					/>
 					Italic <Menubar.Shortcut>⌘I</Menubar.Shortcut>
 				</Menubar.Item>
@@ -33,6 +35,7 @@
 						tabler="IconUnderline"
 						hugeicons="TextUnderlineIcon"
 						phosphor="TextUnderlineIcon"
+						remixicon="RiUnderline"
 					/>
 					Underline <Menubar.Shortcut>⌘U</Menubar.Shortcut>
 				</Menubar.Item>

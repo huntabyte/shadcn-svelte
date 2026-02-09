@@ -13,6 +13,7 @@
 				tabler="IconBell"
 				hugeicons="Notification02Icon"
 				phosphor="HeartIcon"
+				remixicon="RiHeartLine"
 				data-icon="inline-start"
 			/>
 			Like

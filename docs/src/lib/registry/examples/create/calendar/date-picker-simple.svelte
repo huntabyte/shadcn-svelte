@@ -31,6 +31,7 @@
 							tabler="IconCalendar"
 							hugeicons="CalendarIcon"
 							phosphor="CalendarBlankIcon"
+							remixicon="RiCalendarLine"
 							data-icon="inline-start"
 						/>
 						{date ? df.format(date.toDate(getLocalTimeZone())) : "Pick a date"}

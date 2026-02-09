@@ -34,6 +34,7 @@
 					tabler="IconCheck"
 					hugeicons="Tick02Icon"
 					phosphor="CheckIcon"
+					remixicon="RiCheckLine"
 				/>
 			{:else if indeterminate}
 				<IconPlaceholder
@@ -41,6 +42,7 @@
 					tabler="IconMinus"
 					hugeicons="MinusSignIcon"
 					phosphor="MinusIcon"
+					remixicon="RiSubtractLine"
 				/>
 			{/if}
 		</div>

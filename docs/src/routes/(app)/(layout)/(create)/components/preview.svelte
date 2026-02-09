@@ -35,6 +35,7 @@
 				tabler="IconBorderCorners"
 				hugeicons="ArrowExpandIcon"
 				phosphor="CornersOutIcon"
+				remixicon="RiExpandDiagonalLine"
 			/>
 		</Button>
 		<iframe src="/preview/{item}" class="h-(--preview-height)" title={item}></iframe>

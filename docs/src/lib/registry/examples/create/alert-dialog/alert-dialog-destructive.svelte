@@ -20,6 +20,7 @@
 						tabler="IconTrash"
 						hugeicons="Delete02Icon"
 						phosphor="TrashIcon"
+						remixicon="RiDeleteBinLine"
 					/>
 				</AlertDialog.Media>
 				<AlertDialog.Title>Delete chat?</AlertDialog.Title>

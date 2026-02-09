@@ -73,6 +73,7 @@
 		tabler="IconChartLine"
 		hugeicons="Chart03Icon"
 		phosphor="ChartLineIcon"
+		remixicon="RiLineChartLine"
 	/>
 {/snippet}
 
@@ -82,6 +83,7 @@
 		tabler="IconChartBar"
 		hugeicons="Chart03Icon"
 		phosphor="ChartBarIcon"
+		remixicon="RiBarChartLine"
 	/>
 {/snippet}
 
@@ -91,5 +93,6 @@
 		tabler="IconChartPie"
 		hugeicons="Chart03Icon"
 		phosphor="ChartPieIcon"
+		remixicon="RiPieChartLine"
 	/>
 {/snippet}

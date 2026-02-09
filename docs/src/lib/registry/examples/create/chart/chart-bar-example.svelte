@@ -80,6 +80,7 @@
 					tabler="IconTrendingUp"
 					hugeicons="ChartUpIcon"
 					phosphor="TrendUpIcon"
+					remixicon="RiLineChartLine"
 					class="size-4"
 				/>
 			</div>

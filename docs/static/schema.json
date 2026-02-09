@@ -13,12 +13,12 @@
 			"type": "object",
 			"properties": {
 				"css": {
-					"description": "Path to the CSS file that imports Tailwind CSS into your project.",
-					"type": "string"
+					"type": "string",
+					"description": "Path to the CSS file that imports Tailwind CSS into your project."
 				},
 				"baseColor": {
-					"description": "Used to generate the default color palette for your components. This cannot be changed after initialization.",
-					"type": "string"
+					"type": "string",
+					"description": "Used to generate the default color palette for your components. This cannot be changed after initialization."
 				},
 				"config": {
 					"description": "DEPRECATED IN TAILWIND v4! The path to your `tailwind.config.[js|ts]` file.",
@@ -32,16 +32,15 @@
 			"additionalProperties": false
 		},
 		"aliases": {
-			"description": "The CLI uses these values and the `alias` config from your `svelte.config.js` file to place generated components in the correct location.",
 			"type": "object",
 			"properties": {
 				"components": {
-					"description": "Import alias for your components.",
-					"type": "string"
+					"type": "string",
+					"description": "Import alias for your components."
 				},
 				"utils": {
-					"description": "Import alias for your utility functions.",
-					"type": "string"
+					"type": "string",
+					"description": "Import alias for your utility functions."
 				},
 				"ui": {
 					"description": "Import alias for your UI components. Defaults to `$lib/components/ui`.",
@@ -60,7 +59,8 @@
 				"components",
 				"utils"
 			],
-			"additionalProperties": false
+			"additionalProperties": false,
+			"description": "The CLI uses these values and the `alias` config from your `svelte.config.js` file to place generated components in the correct location."
 		},
 		"registry": {
 			"description": "The registry URL tells the CLI where to fetch the shadcn-svelte components/registry from. You can pin this to a specific preview release or your own fork of the registry.",
@@ -76,8 +76,8 @@
 					"type": "object",
 					"properties": {
 						"config": {
-							"description": "Path to the tsconfig/jsconfig file.",
-							"type": "string"
+							"type": "string",
+							"description": "Path to the tsconfig/jsconfig file."
 						}
 					},
 					"required": [

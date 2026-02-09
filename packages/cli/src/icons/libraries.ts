@@ -23,6 +23,12 @@ export const iconLibraries = {
 		packages: ["phosphor-svelte"],
 		export: "export { default as ICON } from 'phosphor-svelte/lib/ICON_WO_SUFFIX'",
 	},
+	remixicon: {
+		name: "remixicon",
+		title: "Remix Icon",
+		packages: ["remixicon-svelte"],
+		export: "export { default as ICON } from 'remixicon-svelte/icons/ICON_KEBAB'",
+	},
 } as const;
 
 export type IconLibraries = typeof iconLibraries;

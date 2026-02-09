@@ -33,6 +33,7 @@
 							tabler="IconChevronDown"
 							hugeicons="ArrowDownIcon"
 							phosphor="CaretDownIcon"
+							remixicon="RiArrowDownSLine"
 							data-icon="inline-start"
 							class="ml-auto"
 						/>

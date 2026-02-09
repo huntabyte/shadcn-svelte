@@ -51,6 +51,7 @@
 						tabler="IconSearch"
 						hugeicons="SearchIcon"
 						phosphor="MagnifyingGlassIcon"
+						remixicon="RiSearchLine"
 					/>
 				</InputGroup.Button>
 			</InputGroup.Addon>
@@ -68,6 +69,7 @@
 							tabler="IconChevronDown"
 							hugeicons="ArrowDown01Icon"
 							phosphor="CaretDownIcon"
+							remixicon="RiArrowDownSLine"
 							data-icon="inline-end"
 						/>
 					</Button>
@@ -80,6 +82,7 @@
 						tabler="IconPlus"
 						hugeicons="PlusSignIcon"
 						phosphor="PlusIcon"
+						remixicon="RiAddLine"
 					/>
 					Create new file
 				</DropdownMenu.Item>
@@ -89,6 +92,7 @@
 						hugeicons="Upload01Icon"
 						tabler="IconUpload"
 						phosphor="UploadIcon"
+						remixicon="RiUploadLine"
 					/>
 					Upload files
 				</DropdownMenu.Item>
@@ -106,6 +110,7 @@
 										hugeicons="AiCloud01Icon"
 										tabler="IconCloudCog"
 										phosphor="CloudArrowUpIcon"
+										remixicon="RiCloudLine"
 									/>
 								</Button>
 							{/snippet}
@@ -137,6 +142,7 @@
 															hugeicons="GitBranchIcon"
 															tabler="IconGitBranch"
 															phosphor="GitBranchIcon"
+															remixicon="RiGitBranchLine"
 														/>
 													</InputGroup.Button>
 												{/snippet}
@@ -190,6 +196,7 @@
 															hugeicons="RoboticIcon"
 															tabler="IconRobot"
 															phosphor="RobotIcon"
+															remixicon="RiRobotLine"
 														/>
 													</InputGroup.Button>
 												{/snippet}
@@ -231,6 +238,7 @@
 												hugeicons="SentIcon"
 												tabler="IconSend"
 												phosphor="PaperPlaneTiltIcon"
+												remixicon="RiSendPlaneLine"
 											/>
 										</InputGroup.Button>
 									{/snippet}

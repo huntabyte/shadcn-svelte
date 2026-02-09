@@ -47,6 +47,7 @@
 									tabler="IconMinimize"
 									hugeicons="ArrowShrinkIcon"
 									phosphor="CornersInIcon"
+									remixicon="RiContractUpDownLine"
 								/>
 							{:else}
 								<IconPlaceholder
@@ -54,6 +55,7 @@
 									tabler="IconBorderCorners"
 									hugeicons="ArrowExpandIcon"
 									phosphor="CornersOutIcon"
+									remixicon="RiExpandUpDownLine"
 								/>
 							{/if}
 						</Button.Root>

@@ -20,6 +20,7 @@
 		tabler="IconChevronLeft"
 		hugeicons="ArrowLeft01Icon"
 		phosphor="CaretLeftIcon"
+		remixicon="RiArrowLeftSLine"
 		data-icon="inline-start"
 	/>
 	<span class="cn-pagination-previous-text hidden sm:block">Previous</span>

@@ -14,6 +14,7 @@
 				tabler="IconArrowDown"
 				hugeicons="ArrowDownIcon"
 				phosphor="ArrowDownIcon"
+				remixicon="RiArrowDownLine"
 			/>
 			Newest
 		</ToggleGroup.Item>
@@ -23,6 +24,7 @@
 				tabler="IconArrowUp"
 				hugeicons="ArrowUpIcon"
 				phosphor="ArrowUpIcon"
+				remixicon="RiArrowUpLine"
 			/>
 			Oldest
 		</ToggleGroup.Item>
@@ -32,6 +34,7 @@
 				tabler="IconTrendingUp"
 				hugeicons="TradeUpIcon"
 				phosphor="TrendUpIcon"
+				remixicon="RiLineChartLine"
 			/>
 			Popular
 		</ToggleGroup.Item>

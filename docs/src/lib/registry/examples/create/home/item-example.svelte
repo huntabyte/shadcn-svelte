@@ -27,6 +27,7 @@
 							tabler="IconShoppingBag"
 							hugeicons="ShoppingBasket01Icon"
 							phosphor="BagIcon"
+							remixicon="RiShoppingBagLine"
 						/>
 					</Item.Media>
 					<Item.Content>

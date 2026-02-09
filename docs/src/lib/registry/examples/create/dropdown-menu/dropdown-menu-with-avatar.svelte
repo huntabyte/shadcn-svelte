@@ -31,6 +31,7 @@
 							tabler="IconSelector"
 							hugeicons="UnfoldMoreIcon"
 							phosphor="CaretUpDownIcon"
+							remixicon="RiArrowUpDownLine"
 							class="text-muted-foreground ml-auto"
 						/>
 					</Button>
@@ -44,6 +45,7 @@
 							tabler="IconRosetteDiscountCheck"
 							hugeicons="CheckmarkBadgeIcon"
 							phosphor="CheckCircleIcon"
+							remixicon="RiCheckboxCircleLine"
 						/>
 						Account
 					</DropdownMenu.Item>
@@ -53,6 +55,7 @@
 							tabler="IconCreditCard"
 							hugeicons="CreditCardIcon"
 							phosphor="CreditCardIcon"
+							remixicon="RiBankCardLine"
 						/>
 						Billing
 					</DropdownMenu.Item>
@@ -62,6 +65,7 @@
 							tabler="IconBell"
 							hugeicons="NotificationIcon"
 							phosphor="BellIcon"
+							remixicon="RiNotificationLine"
 						/>
 						Notifications
 					</DropdownMenu.Item>
@@ -73,6 +77,7 @@
 						tabler="IconLogout"
 						hugeicons="LogoutIcon"
 						phosphor="SignOutIcon"
+						remixicon="RiLogoutBoxLine"
 					/>
 					Sign Out
 				</DropdownMenu.Item>
@@ -97,6 +102,7 @@
 							tabler="IconRosetteDiscountCheck"
 							hugeicons="CheckmarkBadgeIcon"
 							phosphor="CheckCircleIcon"
+							remixicon="RiCheckboxCircleLine"
 						/>
 						Account
 					</DropdownMenu.Item>
@@ -106,6 +112,7 @@
 							tabler="IconCreditCard"
 							hugeicons="CreditCardIcon"
 							phosphor="CreditCardIcon"
+							remixicon="RiBankCardLine"
 						/>
 						Billing
 					</DropdownMenu.Item>
@@ -115,6 +122,7 @@
 							tabler="IconBell"
 							hugeicons="NotificationIcon"
 							phosphor="BellIcon"
+							remixicon="RiNotificationLine"
 						/>
 						Notifications
 					</DropdownMenu.Item>
@@ -126,6 +134,7 @@
 						tabler="IconLogout"
 						hugeicons="LogoutIcon"
 						phosphor="SignOutIcon"
+						remixicon="RiLogoutBoxLine"
 					/>
 					Sign Out
 				</DropdownMenu.Item>

@@ -27,6 +27,7 @@
 			tabler="IconMinus"
 			hugeicons="MinusSignIcon"
 			phosphor="MinusIcon"
+			remixicon="RiSubtractLine"
 		/>
 	{/if}
 </div>

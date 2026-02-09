@@ -56,7 +56,7 @@
 		"typescript": "5.9.3",
 		"typescript-eslint": "^8.49.0",
 		"wait-on": "^9.0.3",
-		"wrangler": "^4.54.0"
+		"wrangler": "^4.59.1"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [

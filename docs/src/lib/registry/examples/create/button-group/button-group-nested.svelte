@@ -16,6 +16,7 @@
 					tabler="IconPlus"
 					hugeicons="PlusSignIcon"
 					phosphor="PlusIcon"
+					remixicon="RiAddLine"
 				/>
 			</Button>
 		</ButtonGroup>
@@ -31,6 +32,7 @@
 									tabler="IconHeadphones"
 									hugeicons="AudioWave01Icon"
 									phosphor="MicrophoneIcon"
+									remixicon="RiMicLine"
 								/>
 							</InputGroup.Addon>
 						{/snippet}

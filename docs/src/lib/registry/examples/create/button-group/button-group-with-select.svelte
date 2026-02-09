@@ -45,6 +45,7 @@
 					tabler="IconArrowRight"
 					hugeicons="ArrowRight01Icon"
 					phosphor="ArrowRightIcon"
+					remixicon="RiArrowRightLine"
 				/>
 			</Button>
 		</ButtonGroup>

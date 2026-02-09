@@ -13,6 +13,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Badge>
@@ -23,6 +24,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Badge>
@@ -33,6 +35,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Badge>
@@ -43,6 +46,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Badge>
@@ -53,6 +57,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Badge>
@@ -63,6 +68,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Badge>

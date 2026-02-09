@@ -40,6 +40,7 @@
 												tabler="IconPlus"
 												hugeicons="PlusSignIcon"
 												phosphor="PlusIcon"
+												remixicon="RiAddLine"
 											/>
 										</Button>
 									{/snippet}
@@ -64,6 +65,7 @@
 															tabler="IconDots"
 															hugeicons="MoreHorizontalCircle01Icon"
 															phosphor="DotsThreeOutlineIcon"
+															remixicon="RiMoreLine"
 														/>
 													</Button>
 												{/snippet}
@@ -82,6 +84,7 @@
 												tabler="IconPlus"
 												hugeicons="PlusSignIcon"
 												phosphor="PlusIcon"
+												remixicon="RiAddLine"
 											/>
 											New with options...
 										</DropdownMenu.Item>
@@ -91,6 +94,7 @@
 												tabler="IconBox"
 												hugeicons="CubeIcon"
 												phosphor="CubeIcon"
+												remixicon="RiBox1Line"
 											/>
 											Configure dev container
 										</DropdownMenu.Item>
@@ -100,6 +104,7 @@
 												tabler="IconBolt"
 												hugeicons="ZapIcon"
 												phosphor="LightningIcon"
+												remixicon="RiFlashlightLine"
 											/>
 											Set up prebuilds
 										</DropdownMenu.Item>
@@ -112,6 +117,7 @@
 												tabler="IconServer"
 												hugeicons="ServerStackIcon"
 												phosphor="HardDrivesIcon"
+												remixicon="RiServerLine"
 											/>
 											Manage codespaces
 										</DropdownMenu.Item>
@@ -121,6 +127,7 @@
 												tabler="IconShare2"
 												hugeicons="Share03Icon"
 												phosphor="ShareIcon"
+												remixicon="RiShareLine"
 											/>
 											Share deep link
 										</DropdownMenu.Item>
@@ -130,6 +137,7 @@
 												tabler="IconInfoCircle"
 												hugeicons="AlertCircleIcon"
 												phosphor="InfoIcon"
+												remixicon="RiInformationLine"
 											/>
 											What are codespaces?
 										</DropdownMenu.Item>
@@ -147,6 +155,7 @@
 									tabler="IconServer"
 									hugeicons="ServerStackIcon"
 									phosphor="HardDrivesIcon"
+									remixicon="RiServerLine"
 								/>
 							</Empty.Media>
 							<Empty.Title>No codespaces</Empty.Title>
@@ -193,6 +202,7 @@
 									tabler="IconTerminal"
 									hugeicons="ComputerTerminal01Icon"
 									phosphor="TerminalIcon"
+									remixicon="RiTerminalBoxLine"
 									class="size-4"
 								/>
 								Clone
@@ -208,6 +218,7 @@
 												tabler="IconInfoCircle"
 												hugeicons="AlertCircleIcon"
 												phosphor="InfoIcon"
+												remixicon="RiInformationLine"
 											/>
 										</Button>
 									{/snippet}
@@ -241,6 +252,7 @@
 													tabler="IconCopy"
 													hugeicons="Copy01Icon"
 													phosphor="CopyIcon"
+													remixicon="RiFileCopyLine"
 												/>
 											</InputGroup.Button>
 										</InputGroup.Addon>
@@ -264,6 +276,7 @@
 													tabler="IconCopy"
 													hugeicons="Copy01Icon"
 													phosphor="CopyIcon"
+													remixicon="RiFileCopyLine"
 												/>
 											</InputGroup.Button>
 										</InputGroup.Addon>
@@ -291,6 +304,7 @@
 													tabler="IconCopy"
 													hugeicons="Copy01Icon"
 													phosphor="CopyIcon"
+													remixicon="RiFileCopyLine"
 												/>
 											</InputGroup.Button>
 										</InputGroup.Addon>
@@ -316,6 +330,7 @@
 								tabler="IconDeviceDesktop"
 								hugeicons="ComputerIcon"
 								phosphor="MonitorIcon"
+								remixicon="RiComputerLine"
 								data-icon="inline-start"
 							/>
 							Open with GitHub Desktop
@@ -326,6 +341,7 @@
 								tabler="IconDownload"
 								hugeicons="DownloadIcon"
 								phosphor="DownloadIcon"
+								remixicon="RiDownloadLine"
 								data-icon="inline-start"
 							/>
 							Download ZIP

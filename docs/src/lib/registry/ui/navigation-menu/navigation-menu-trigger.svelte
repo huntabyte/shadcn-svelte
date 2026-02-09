@@ -30,6 +30,7 @@
 		tabler="IconChevronDown"
 		hugeicons="ArrowDown01Icon"
 		phosphor="CaretDownIcon"
+		remixicon="RiArrowDownSLine"
 		class="cn-navigation-menu-trigger-icon"
 		aria-hidden="true"
 	/>

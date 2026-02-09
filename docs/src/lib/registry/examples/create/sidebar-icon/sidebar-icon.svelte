@@ -35,6 +35,7 @@
 				tabler: "IconTerminal2",
 				hugeicons: "ComputerTerminalIcon",
 				phosphor: "TerminalIcon",
+				remixicon: "RiTerminalBoxLine",
 				isActive: true,
 				items: [
 					{
@@ -58,6 +59,7 @@
 				tabler: "IconRobot",
 				hugeicons: "RoboticIcon",
 				phosphor: "RobotIcon",
+				remixicon: "RiRobotLine",
 				items: [
 					{
 						title: "Genesis",
@@ -80,6 +82,7 @@
 				tabler: "IconBook",
 				hugeicons: "BookOpen02Icon",
 				phosphor: "BookOpenIcon",
+				remixicon: "RiBookOpenLine",
 				items: [
 					{
 						title: "Introduction",
@@ -106,6 +109,7 @@
 				tabler: "IconSettings",
 				hugeicons: "Settings05Icon",
 				phosphor: "GearIcon",
+				remixicon: "RiSettingsLine",
 				items: [
 					{
 						title: "General",
@@ -134,6 +138,7 @@
 				tabler: "IconFrame",
 				hugeicons: "CropIcon",
 				phosphor: "CropIcon",
+				remixicon: "RiCropLine",
 			},
 			{
 				name: "Sales & Marketing",
@@ -142,6 +147,7 @@
 				tabler: "IconChartPie",
 				hugeicons: "PieChartIcon",
 				phosphor: "ChartPieIcon",
+				remixicon: "RiPieChartLine",
 			},
 			{
 				name: "Travel",
@@ -150,6 +156,7 @@
 				tabler: "IconMap",
 				hugeicons: "MapsIcon",
 				phosphor: "MapTrifoldIcon",
+				remixicon: "RiMapLine",
 			},
 		],
 	};
@@ -209,6 +216,7 @@
 										tabler="IconSelector"
 										hugeicons="UnfoldMoreIcon"
 										phosphor="CaretUpDownIcon"
+										remixicon="RiArrowUpDownLine"
 									/>
 								</Sidebar.MenuButton>
 							{/snippet}
@@ -248,6 +256,7 @@
 													tabler={item.tabler as any}
 													hugeicons={item.hugeicons as any}
 													phosphor={item.phosphor as any}
+													remixicon={item.remixicon as any}
 												/>
 												<span>{item.title}</span>
 												<IconPlaceholder
@@ -255,6 +264,7 @@
 													tabler="IconChevronRight"
 													hugeicons="ArrowRight01Icon"
 													phosphor="CaretRightIcon"
+													remixicon="RiArrowRightSLine"
 													class="ml-auto transition-transform duration-100 group-data-[state=open]/collapsible:rotate-90"
 												/>
 											</Sidebar.MenuButton>
@@ -294,6 +304,7 @@
 											tabler={item.tabler as any}
 											hugeicons={item.hugeicons as any}
 											phosphor={item.phosphor as any}
+											remixicon={item.remixicon as any}
 										/>
 										{item.name}
 									</a>
@@ -328,6 +339,7 @@
 										tabler="IconSelector"
 										hugeicons="UnfoldMoreIcon"
 										phosphor="CaretUpDownIcon"
+										remixicon="RiArrowUpDownLine"
 									/>
 								</Sidebar.MenuButton>
 							{/snippet}

@@ -14,6 +14,7 @@
 					tabler="IconBold"
 					hugeicons="TextBoldIcon"
 					phosphor="TextBIcon"
+					remixicon="RiBold"
 					data-icon="inline-start"
 				/>
 				Button
@@ -24,6 +25,7 @@
 					tabler="IconBold"
 					hugeicons="TextBoldIcon"
 					phosphor="TextBIcon"
+					remixicon="RiBold"
 				/>
 				Toggle
 			</Toggle>
@@ -35,6 +37,7 @@
 					tabler="IconItalic"
 					hugeicons="TextItalicIcon"
 					phosphor="TextItalicIcon"
+					remixicon="RiItalic"
 					data-icon="inline-start"
 				/>
 				Button
@@ -45,6 +48,7 @@
 					tabler="IconItalic"
 					hugeicons="TextItalicIcon"
 					phosphor="TextItalicIcon"
+					remixicon="RiItalic"
 				/>
 				Toggle
 			</Toggle>
@@ -56,6 +60,7 @@
 					tabler="IconUnderline"
 					hugeicons="TextUnderlineIcon"
 					phosphor="TextUnderlineIcon"
+					remixicon="RiUnderline"
 					data-icon="inline-start"
 				/>
 				Button
@@ -66,6 +71,7 @@
 					tabler="IconUnderline"
 					hugeicons="TextUnderlineIcon"
 					phosphor="TextUnderlineIcon"
+					remixicon="RiUnderline"
 				/>
 				Toggle
 			</Toggle>

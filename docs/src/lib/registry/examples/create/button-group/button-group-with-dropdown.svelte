@@ -19,6 +19,7 @@
 								tabler="IconChevronDown"
 								hugeicons="ArrowDown01Icon"
 								phosphor="CaretDownIcon"
+								remixicon="RiArrowDownSLine"
 							/>
 						</Button>
 					{/snippet}
@@ -40,6 +41,7 @@
 								tabler="IconChevronDown"
 								hugeicons="ArrowDown01Icon"
 								phosphor="CaretDownIcon"
+								remixicon="RiArrowDownSLine"
 							/>
 						</Button>
 					{/snippet}
@@ -52,6 +54,7 @@
 								tabler="IconVolume"
 								hugeicons="VolumeOffIcon"
 								phosphor="SpeakerSlashIcon"
+								remixicon="RiVolumeMuteLine"
 							/>
 							Mute Conversation
 						</DropdownMenu.Item>
@@ -61,6 +64,7 @@
 								tabler="IconCheck"
 								hugeicons="Tick02Icon"
 								phosphor="CheckIcon"
+								remixicon="RiCheckLine"
 							/>
 							Mark as Read
 						</DropdownMenu.Item>
@@ -70,6 +74,7 @@
 								tabler="IconAlertTriangle"
 								hugeicons="AlertCircleIcon"
 								phosphor="WarningIcon"
+								remixicon="RiErrorWarningLine"
 							/>
 							Report Conversation
 						</DropdownMenu.Item>
@@ -79,6 +84,7 @@
 								tabler="IconUserX"
 								hugeicons="UserRemove01Icon"
 								phosphor="UserMinusIcon"
+								remixicon="RiUserUnfollowLine"
 							/>
 							Block User
 						</DropdownMenu.Item>
@@ -88,6 +94,7 @@
 								tabler="IconShare"
 								hugeicons="Share03Icon"
 								phosphor="ShareIcon"
+								remixicon="RiShareLine"
 							/>
 							Share Conversation
 						</DropdownMenu.Item>
@@ -97,6 +104,7 @@
 								tabler="IconCopy"
 								hugeicons="Copy01Icon"
 								phosphor="CopyIcon"
+								remixicon="RiFileCopyLine"
 							/>
 							Copy Conversation
 						</DropdownMenu.Item>
@@ -109,6 +117,7 @@
 								tabler="IconTrash"
 								hugeicons="Delete02Icon"
 								phosphor="TrashIcon"
+								remixicon="RiDeleteBinLine"
 							/>
 							Delete Conversation
 						</DropdownMenu.Item>

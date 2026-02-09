@@ -19,6 +19,7 @@
 				tabler="IconChevronDown"
 				hugeicons="ArrowDown01Icon"
 				phosphor="CaretDownIcon"
+				remixicon="RiArrowDownSLine"
 				class="text-muted-foreground size-4"
 			/>
 		</DropdownMenu.Trigger>

@@ -26,6 +26,7 @@
 					tabler="IconArrowUpRight"
 					hugeicons="ArrowUpRight01Icon"
 					phosphor="ArrowUpRightIcon"
+					remixicon="RiArrowRightUpLine"
 				/>
 			</Button>
 		</Empty.Content>

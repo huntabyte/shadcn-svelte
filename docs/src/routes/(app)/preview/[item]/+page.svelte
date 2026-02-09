@@ -25,6 +25,7 @@
 			tabler="IconMinimize"
 			hugeicons="ArrowShrinkIcon"
 			phosphor="CornersInIcon"
+			remixicon="RiExpandDiagonalLine"
 		/>
 	</Button>
 {/if}

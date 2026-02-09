@@ -30,6 +30,7 @@
 								tabler="IconClockHour2"
 								hugeicons="Clock03Icon"
 								phosphor="ClockIcon"
+								remixicon="RiTimeLine"
 								class="text-muted-foreground"
 							/>
 						</InputGroup.Addon>
@@ -51,6 +52,7 @@
 								tabler="IconClockHour2"
 								hugeicons="Clock03Icon"
 								phosphor="ClockIcon"
+								remixicon="RiTimeLine"
 								class="text-muted-foreground"
 							/>
 						</InputGroup.Addon>

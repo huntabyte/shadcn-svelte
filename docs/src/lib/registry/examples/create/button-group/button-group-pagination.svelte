@@ -13,6 +13,7 @@
 				tabler="IconArrowLeft"
 				hugeicons="ArrowLeft02Icon"
 				phosphor="ArrowLeftIcon"
+				remixicon="RiArrowLeftLine"
 				data-icon="inline-start"
 			/>
 			Previous
@@ -29,6 +30,7 @@
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"
 				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
 				data-icon="inline-end"
 			/>
 		</Button>

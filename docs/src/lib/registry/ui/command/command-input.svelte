@@ -30,6 +30,7 @@
 				tabler="IconSearch"
 				hugeicons="SearchIcon"
 				phosphor="MagnifyingGlassIcon"
+				remixicon="RiSearchLine"
 				class="cn-command-input-icon"
 			/>
 		</InputGroup.Addon>

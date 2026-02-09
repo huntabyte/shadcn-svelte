@@ -16,6 +16,7 @@
 						tabler="IconDeviceFloppy"
 						hugeicons="FloppyDiskIcon"
 						phosphor="FloppyDiskIcon"
+						remixicon="RiSaveLine"
 					/>
 				</Button>
 			{/snippet}

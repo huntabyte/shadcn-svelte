@@ -14,6 +14,7 @@
 					tabler="IconSearch"
 					hugeicons="Search01Icon"
 					phosphor="MagnifyingGlassIcon"
+					remixicon="RiSearchLine"
 				/>
 			</InputGroup.Addon>
 		</InputGroup.Root>

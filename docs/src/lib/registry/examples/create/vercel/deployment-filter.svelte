@@ -60,6 +60,7 @@
 							tabler="IconCalendar"
 							hugeicons="Calendar01Icon"
 							phosphor="CalendarIcon"
+							remixicon="RiCalendarLine"
 							data-icon="inline-start"
 							class="text-muted-foreground"
 						/>
@@ -88,6 +89,7 @@
 					tabler="IconSearch"
 					hugeicons="Search01Icon"
 					phosphor="MagnifyingGlassIcon"
+					remixicon="RiSearchLine"
 				/>
 			</InputGroup.Addon>
 			<InputGroup.Input placeholder="All Authors..." />
@@ -97,6 +99,7 @@
 					tabler="IconChevronDown"
 					hugeicons="ArrowDown01Icon"
 					phosphor="CaretDownIcon"
+					remixicon="RiArrowDownSLine"
 					class="text-muted-foreground"
 				/>
 			</InputGroup.Addon>
@@ -111,6 +114,7 @@
 							tabler="IconChevronDown"
 							hugeicons="ArrowDown01Icon"
 							phosphor="CaretDownIcon"
+							remixicon="RiArrowDownSLine"
 							data-icon="inline-end"
 							class="text-muted-foreground"
 						/>
@@ -129,6 +133,7 @@
 							tabler="IconCheck"
 							hugeicons="Tick02Icon"
 							phosphor="CheckIcon"
+							remixicon="RiCheckLine"
 							class="ml-auto opacity-0 group-data-[active=true]/dropdown-menu-item:opacity-100"
 						/>
 					</DropdownMenu.Item>
@@ -154,6 +159,7 @@
 							tabler="IconChevronDown"
 							hugeicons="ArrowDown01Icon"
 							phosphor="CaretDownIcon"
+							remixicon="RiArrowDownSLine"
 							data-icon="inline-end"
 							class="text-muted-foreground ml-auto"
 						/>
@@ -177,6 +183,7 @@
 							tabler="IconCheck"
 							hugeicons="Tick02Icon"
 							phosphor="CheckIcon"
+							remixicon="RiCheckLine"
 							class="ml-auto opacity-0 group-data-[active=true]/dropdown-menu-item:opacity-100"
 						/>
 					</DropdownMenu.Item>

@@ -43,6 +43,7 @@
 							tabler="IconX"
 							hugeicons="Cancel01Icon"
 							phosphor="XIcon"
+							remixicon="RiCloseLine"
 						/>
 						<span class="sr-only">Close</span>
 					</Button>
