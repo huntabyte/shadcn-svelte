@@ -4,6 +4,8 @@ import path from "node:path";
 import prettier from "prettier";
 import { rimraf } from "rimraf";
 import {
+	componentsJsonSchema,
+	registryItemSchema,
 	registrySchema,
 	type Registry,
 	type RegistryItem,
@@ -22,6 +24,7 @@ import { baseColors } from "../src/lib/registry/registry-colors.js";
 import { THEME_STYLES_WITH_VARIABLES } from "../src/lib/registry/templates.js";
 import { baseColorsOKLCH } from "../src/lib/registry/registry-base-colors.js";
 import { generateBaseColorTemplate, getColorsData } from "../src/lib/components/colors/colors.js";
+import { toJSONSchema } from "zod";
 
 const prettierConfig = await prettier.resolveConfig(import.meta.url);
 if (!prettierConfig) throw new Error("Failed to resolve prettier config.");
@@ -216,25 +219,22 @@ export const Index = {`;
 	// ----------------------------------------------------------------------------
 	// Build static/schema.json
 	// ----------------------------------------------------------------------------
-	// Skip schema generation for now due to Zod v4 compatibility issues
-	// const componentsJSON = zodToJsonSchema(componentsJsonSchema);
-	// writeFileWithDirs(
-	// 	path.resolve("static", "schema.json"),
-	// 	JSON.stringify(componentsJSON, null, "\t")
-	// );
+	const componentsJSON = toJSONSchema(componentsJsonSchema);
+	writeFileWithDirs(
+		path.resolve("static", "schema.json"),
+		JSON.stringify(componentsJSON, null, "\t")
+	);
 
-	// Skip schema generation for now due to Zod v4 compatibility issues
-	// const SCHEMA_DIR = path.resolve("static", "schema");
-	// writeFileWithDirs(
-	// 	path.resolve(SCHEMA_DIR, "registry.json"),
-	// 	JSON.stringify(zodToJsonSchema(registrySchema), null, "\t")
-	// );
+	const SCHEMA_DIR = path.resolve("static", "schema");
+	writeFileWithDirs(
+		path.resolve(SCHEMA_DIR, "registry.json"),
+		JSON.stringify(toJSONSchema(registrySchema), null, "\t")
+	);
 
-	// Skip schema generation for now due to Zod v4 compatibility issues
-	// writeFileWithDirs(
-	// 	path.resolve(SCHEMA_DIR, "registry-item.json"),
-	// 	JSON.stringify(zodToJsonSchema(registryItemSchema), null, "\t")
-	// );
+	writeFileWithDirs(
+		path.resolve(SCHEMA_DIR, "registry-item.json"),
+		JSON.stringify(toJSONSchema(registryItemSchema), null, "\t")
+	);
 }
 
 if (process.argv.includes("build-registry")) {
