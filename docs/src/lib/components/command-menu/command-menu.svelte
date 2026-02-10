@@ -159,7 +159,7 @@
 		</Dialog.Header>
 		<Command.Root class="rounded-none bg-transparent">
 			<Command.Input placeholder="Search documentation..." />
-			<Command.List class="no-scrollbar min-h-80 scroll-pt-2 scroll-pb-1.5">
+			<Command.List tabindex={-1} class="no-scrollbar min-h-80 scroll-pt-2 scroll-pb-1.5">
 				<Command.Empty class="text-muted-foreground py-12 text-center text-sm">
 					No results found.
 				</Command.Empty>
