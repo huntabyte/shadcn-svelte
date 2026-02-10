@@ -18,7 +18,7 @@
 	{value}
 	data-slot="select-item"
 	class={cn(
-		"cn-select-item focus:bg-accent data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground focus:text-accent-foreground relative flex w-full cursor-default items-center outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+		"cn-select-item focus:bg-accent data-highlighted:bg-accent data-highlighted:text-accent-foreground focus:text-accent-foreground relative flex w-full cursor-default items-center outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 		className
 	)}
 	{...restProps}
@@ -32,7 +32,7 @@
 					hugeicons="Tick02Icon"
 					phosphor="CheckIcon"
 					remixicon="RiCheckLine"
-					class="cn-select-item-indicator-icon pointer-events-none"
+					class="cn-select-item-indicator-icon"
 				/>
 			{/if}
 		</span>

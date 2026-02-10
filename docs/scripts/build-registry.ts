@@ -58,7 +58,7 @@ export async function build(): Promise<void> {
 	const initItem: RegistryItem = {
 		name: "init",
 		type: "registry:style",
-		devDependencies: ["tailwind-variants", "@lucide/svelte", "tw-animate-css"],
+		devDependencies: ["tailwind-variants", "tw-animate-css"],
 		registryDependencies: ["utils"],
 		files: [],
 	};

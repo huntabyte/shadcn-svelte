@@ -147,7 +147,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 							transformImports,
 							transformIcons,
 							createTransformInjectStyles(registryStyle),
-							opts.config.typescript && transformStripTypes,
+							!opts.config.typescript && transformStripTypes,
 						]
 					);
 
