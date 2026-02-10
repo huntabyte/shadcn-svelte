@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Calendar } from "$lib/registry/ui/calendar/index.js";
+	import { RangeCalendar } from "$lib/registry/ui/range-calendar/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
@@ -79,7 +79,7 @@
 				{/snippet}
 			</Popover.Trigger>
 			<Popover.Content class="w-auto p-0" align="start">
-				<Calendar type="multiple" bind:value={dateRange} numberOfMonths={2} />
+				<RangeCalendar bind:value={dateRange} numberOfMonths={2} />
 			</Popover.Content>
 		</Popover.Root>
 		<InputGroup.Root class="lg:ml-auto lg:max-w-72">
