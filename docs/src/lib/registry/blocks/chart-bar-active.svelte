@@ -86,7 +86,6 @@
 					{/each}
 				{/snippet}
 			</BarChart>
-			<!-- todo -->
 		</Chart.Container>
 	</Card.Content>
 	<Card.Footer>
