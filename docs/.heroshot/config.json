@@ -177,6 +177,221 @@
       "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
     },
     {
+      "name": "registry/signup-01",
+      "url": "http://localhost:5173/view/signup-01",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/signup-02",
+      "url": "http://localhost:5173/view/signup-02",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/signup-03",
+      "url": "http://localhost:5173/view/signup-03",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/signup-04",
+      "url": "http://localhost:5173/view/signup-04",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/signup-05",
+      "url": "http://localhost:5173/view/signup-05",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/otp-01",
+      "url": "http://localhost:5173/view/otp-01",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/otp-02",
+      "url": "http://localhost:5173/view/otp-02",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/otp-03",
+      "url": "http://localhost:5173/view/otp-03",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/otp-04",
+      "url": "http://localhost:5173/view/otp-04",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/otp-05",
+      "url": "http://localhost:5173/view/otp-05",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-01",
+      "url": "http://localhost:5173/view/calendar-01",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-02",
+      "url": "http://localhost:5173/view/calendar-02",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-03",
+      "url": "http://localhost:5173/view/calendar-03",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-04",
+      "url": "http://localhost:5173/view/calendar-04",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-05",
+      "url": "http://localhost:5173/view/calendar-05",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-06",
+      "url": "http://localhost:5173/view/calendar-06",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-07",
+      "url": "http://localhost:5173/view/calendar-07",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-08",
+      "url": "http://localhost:5173/view/calendar-08",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-09",
+      "url": "http://localhost:5173/view/calendar-09",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-10",
+      "url": "http://localhost:5173/view/calendar-10",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-11",
+      "url": "http://localhost:5173/view/calendar-11",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-12",
+      "url": "http://localhost:5173/view/calendar-12",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-13",
+      "url": "http://localhost:5173/view/calendar-13",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-14",
+      "url": "http://localhost:5173/view/calendar-14",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-15",
+      "url": "http://localhost:5173/view/calendar-15",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-16",
+      "url": "http://localhost:5173/view/calendar-16",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-17",
+      "url": "http://localhost:5173/view/calendar-17",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-18",
+      "url": "http://localhost:5173/view/calendar-18",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-19",
+      "url": "http://localhost:5173/view/calendar-19",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-20",
+      "url": "http://localhost:5173/view/calendar-20",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-21",
+      "url": "http://localhost:5173/view/calendar-21",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-22",
+      "url": "http://localhost:5173/view/calendar-22",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-23",
+      "url": "http://localhost:5173/view/calendar-23",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-24",
+      "url": "http://localhost:5173/view/calendar-24",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-25",
+      "url": "http://localhost:5173/view/calendar-25",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-26",
+      "url": "http://localhost:5173/view/calendar-26",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-27",
+      "url": "http://localhost:5173/view/calendar-27",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-28",
+      "url": "http://localhost:5173/view/calendar-28",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-29",
+      "url": "http://localhost:5173/view/calendar-29",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-30",
+      "url": "http://localhost:5173/view/calendar-30",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-31",
+      "url": "http://localhost:5173/view/calendar-31",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/calendar-32",
+      "url": "http://localhost:5173/view/calendar-32",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
+      "name": "registry/new-components-01",
+      "url": "http://localhost:5173/view/new-components-01",
+      "actions": [{ "type": "hide", "selectors": [".fixed.bottom-1", "#svelte-inspector-toggle"] }]
+    },
+    {
       "name": "examples/dashboard",
       "url": "http://localhost:5173/examples/dashboard",
       "selector": ".bg-background.rounded-lg.border.bg-clip-padding",
