@@ -99,6 +99,7 @@
 	},
 	"dependencies": {
 		"@types/lodash": "^4.17.21",
+		"heroshot": "^0.14.2",
 		"lodash": "^4.17.21"
 	}
 }

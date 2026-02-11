@@ -20,6 +20,7 @@
 	import { Textarea } from "$lib/registry/ui/textarea/index.js";
 	import * as HoverCard from "$lib/registry/ui/hover-card/index.js";
 	import Metadata from "$lib/components/metadata.svelte";
+	import { Heroshot } from "heroshot/sveltekit";
 
 	const title = "Playground";
 	const description = "The OpenAI Playground build using the components.";
@@ -34,8 +35,7 @@
 />
 
 <div class="md:hidden">
-	<img src="/img/examples/playground-light.png" alt="Playground" class="block dark:hidden" />
-	<img src="/img/examples/playground-dark.png" alt="Playground" class="hidden dark:block" />
+	<Heroshot name="examples/playground" alt="Playground" />
 </div>
 <div class="hidden h-full flex-col md:flex">
 	<div
