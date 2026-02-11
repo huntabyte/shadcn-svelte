@@ -1,11 +1,16 @@
-import { browser } from "$app/environment";
+import { browser } from "$app/environment"
 
 export function useIsMac(): { readonly current: boolean } {
-	const isMac = $derived(browser ? navigator.platform.includes("MAC") : false);
+  const isMac = $derived(browser
+    ? "userAgentData" in navigator
+      ? navigator.userAgentData?.platform.includes("macOS")
+      : navigator?.platform.includes("Mac")
+    : false
+  )
 
-	return {
-		get current(): boolean {
-			return isMac;
-		},
-	};
+  return {
+    get current(): boolean {
+      return isMac
+    },
+  }
 }
