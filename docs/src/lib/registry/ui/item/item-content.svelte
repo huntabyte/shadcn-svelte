@@ -13,7 +13,10 @@
 <div
 	bind:this={ref}
 	data-slot="item-content"
-	class={cn("flex flex-1 flex-col gap-1 [&+[data-slot=item-content]]:flex-none", className)}
+	class={cn(
+		"cn-item-content flex flex-1 flex-col [&+[data-slot=item-content]]:flex-none",
+		className
+	)}
 	{...restProps}
 >
 	{@render children?.()}

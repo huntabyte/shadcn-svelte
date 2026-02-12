@@ -4,7 +4,7 @@
 	"description": "Add components to your apps.",
 	"license": "MIT",
 	"author": {
-		"name": "huntabyte & shadcn",
+		"name": "huntabyte & CokaKoala",
 		"url": "https://twitter.com/huntabyte"
 	},
 	"repository": {
@@ -13,7 +13,13 @@
 		"directory": "packages/cli"
 	},
 	"type": "module",
-	"bin": "./dist/index.js",
+	"bin": "./dist/index.mjs",
+	"exports": {
+		"./icons": {
+			"types": "./dist/icons/index.d.mts",
+			"default": "./dist/icons/index.mjs"
+		}
+	},
 	"files": [
 		"dist"
 	],
@@ -28,13 +34,16 @@
 		"radix-svelte"
 	],
 	"scripts": {
-		"dev": "tsup --watch --sourcemap",
-		"build": "tsup --minify",
+		"dev": "tsdown --watch --sourcemap",
+		"build": "tsdown --minify",
 		"check": "tsc --noEmit",
-		"start": "node dist/index.js",
-		"start:dev": "cross-env COMPONENTS_REGISTRY_URL=http://localhost:5173/registry node dist/index.js",
+		"start": "node dist/index.mjs",
+		"start:dev": "cross-env COMPONENTS_REGISTRY_URL=http://localhost:5173/registry node dist/index.mjs",
 		"start:proxy": "pnpm dlx straightforward@latest --port 9000",
 		"test": "pnpm -w build:registry-template && vitest"
+	},
+	"peerDependencies": {
+		"svelte": "^5.0.0"
 	},
 	"dependencies": {
 		"commander": "^14.0.0",
@@ -55,6 +64,7 @@
 		"estree-walker": "^3.0.3",
 		"get-tsconfig": "^4.7.3",
 		"ignore": "^7.0.4",
+		"magic-string": "^0.30.21",
 		"memfs": "^4.17.2",
 		"package-manager-detector": "^1.2.0",
 		"picocolors": "^1.1.1",
@@ -62,10 +72,10 @@
 		"semver": "^7.7.1",
 		"sucrase": "^3.35.0",
 		"tinyexec": "^1.0.1",
-		"tsup": "^8.4.0",
+		"tsdown": "catalog:",
 		"type-fest": "^4.41.0",
 		"typescript": "catalog:",
 		"vitest": "^3.2.3",
-		"zod": "^3.25.64"
+		"zod": "catalog:"
 	}
 }

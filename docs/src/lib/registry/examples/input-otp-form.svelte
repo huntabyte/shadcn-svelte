@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import { z } from "zod/v4";
+	import { z } from "zod";
 	const formSchema = z.object({
 		pin: z.string().min(6, {
 			message: "Your one-time password must be at least 6 characters.",

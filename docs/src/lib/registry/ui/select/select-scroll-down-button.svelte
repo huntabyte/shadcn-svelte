@@ -1,7 +1,7 @@
 <script lang="ts">
-	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
 	import { Select as SelectPrimitive } from "bits-ui";
 	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 
 	let {
 		ref = $bindable(null),
@@ -13,8 +13,14 @@
 <SelectPrimitive.ScrollDownButton
 	bind:ref
 	data-slot="select-scroll-down-button"
-	class={cn("flex cursor-default items-center justify-center py-1", className)}
+	class={cn("cn-select-scroll-down-button bottom-0 w-full", className)}
 	{...restProps}
 >
-	<ChevronDownIcon class="size-4" />
+	<IconPlaceholder
+		lucide="ChevronDownIcon"
+		tabler="IconChevronDown"
+		hugeicons="ArrowDown01Icon"
+		phosphor="CaretDownIcon"
+		remixicon="RiArrowDownSLine"
+	/>
 </SelectPrimitive.ScrollDownButton>

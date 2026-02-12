@@ -157,9 +157,7 @@
 			<Dialog.Title>Search documentation...</Dialog.Title>
 			<Dialog.Description>Search for a command to run...</Dialog.Description>
 		</Dialog.Header>
-		<Command.Root
-			class="**:data-[slot=command-input-wrapper]:bg-input/50 **:data-[slot=command-input-wrapper]:border-input rounded-none bg-transparent **:data-[slot=command-input]:!h-9 **:data-[slot=command-input]:py-0 **:data-[slot=command-input-wrapper]:mb-0 **:data-[slot=command-input-wrapper]:!h-9 **:data-[slot=command-input-wrapper]:rounded-md **:data-[slot=command-input-wrapper]:border"
-		>
+		<Command.Root class="rounded-none bg-transparent">
 			<Command.Input placeholder="Search documentation..." />
 			<Command.List tabindex={-1} class="no-scrollbar min-h-80 scroll-pt-2 scroll-pb-1.5">
 				<Command.Empty class="text-muted-foreground py-12 text-center text-sm">

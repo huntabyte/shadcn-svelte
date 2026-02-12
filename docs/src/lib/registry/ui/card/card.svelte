@@ -6,17 +6,16 @@
 		ref = $bindable(null),
 		class: className,
 		children,
+		size = "default",
 		...restProps
-	}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();
+	}: WithElementRef<HTMLAttributes<HTMLDivElement>> & { size?: "default" | "sm" } = $props();
 </script>
 
 <div
 	bind:this={ref}
 	data-slot="card"
-	class={cn(
-		"bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
-		className
-	)}
+	data-size={size}
+	class={cn("cn-card group/card flex flex-col", className)}
 	{...restProps}
 >
 	{@render children?.()}

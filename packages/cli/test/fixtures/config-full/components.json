@@ -10,6 +10,27 @@
 		"hooks": "$lib/hooks",
 		"lib": "$lib"
 	},
+	"designSystem": {
+		"fonts": [
+			{
+				"font": {
+					"cssImport": "@import \"@fontsource-variable/inter/index.css\";",
+					"dependencies": ["@fontsource-variable/inter"],
+					"family": "'Inter Variable', sans-serif",
+					"variable": "--font-sans"
+				},
+				"name": "font-inter",
+				"title": "Inter",
+				"type": "registry:font"
+			}
+		],
+		"iconLibrary": "lucide",
+		"menuAccent": "subtle",
+		"menuColor": "default",
+		"radius": "0.5rem",
+		"style": "vega",
+		"theme": "neutral"
+	},
 	"typescript": true,
 	"registry": "https://shadcn-svelte.com/registry"
 }

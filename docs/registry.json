@@ -14,7 +14,7 @@
 		{
 			"name": "init",
 			"type": "registry:style",
-			"devDependencies": ["tailwind-variants", "@lucide/svelte", "tw-animate-css"],
+			"devDependencies": ["tailwind-variants", "tw-animate-css"],
 			"registryDependencies": ["utils"],
 			"files": []
 		},
@@ -50,6 +50,10 @@
 			"type": "registry:ui",
 			"registryDependencies": [],
 			"files": [
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/alert/alert-action.svelte"
+				},
 				{
 					"type": "registry:file",
 					"path": "src/lib/registry/ui/alert/alert-description.svelte"
@@ -99,6 +103,10 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/alert-dialog/alert-dialog-media.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/alert-dialog/alert-dialog-overlay.svelte"
 				},
 				{
@@ -145,7 +153,19 @@
 			"files": [
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/avatar/avatar-badge.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/avatar/avatar-fallback.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/avatar/avatar-group-count.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/avatar/avatar-group.svelte"
 				},
 				{
 					"type": "registry:file",
@@ -478,7 +498,7 @@
 		{
 			"name": "command",
 			"type": "registry:ui",
-			"registryDependencies": ["dialog"],
+			"registryDependencies": ["dialog", "input-group"],
 			"files": [
 				{
 					"type": "registry:file",
@@ -631,7 +651,7 @@
 		{
 			"name": "dialog",
 			"type": "registry:ui",
-			"registryDependencies": [],
+			"registryDependencies": ["button"],
 			"files": [
 				{
 					"type": "registry:file",
@@ -1342,7 +1362,19 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/popover/popover-description.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/popover/popover-header.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/popover/popover-portal.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/popover/popover-title.svelte"
 				},
 				{
 					"type": "registry:file",
@@ -1362,6 +1394,14 @@
 				{
 					"type": "registry:file",
 					"path": "src/lib/registry/ui/progress/index.ts"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/progress/progress-label.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/progress/progress-track.svelte"
 				},
 				{
 					"type": "registry:file",
@@ -1582,7 +1622,7 @@
 		{
 			"name": "sheet",
 			"type": "registry:ui",
-			"registryDependencies": [],
+			"registryDependencies": ["button"],
 			"files": [
 				{
 					"type": "registry:file",
@@ -3105,18 +3145,18 @@
 				"card",
 				"select",
 				"toggle-group",
-				"drawer",
+				"dropdown-menu",
 				"button",
+				"drawer",
 				"is-mobile",
 				"label",
 				"input",
 				"separator",
 				"checkbox",
+				"badge",
 				"data-table",
 				"tabs",
 				"table",
-				"dropdown-menu",
-				"badge",
 				"avatar"
 			],
 			"files": [
@@ -3138,6 +3178,10 @@
 				},
 				{
 					"type": "registry:component",
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-actions.svelte"
+				},
+				{
+					"type": "registry:component",
 					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-cell-viewer.svelte"
 				},
 				{
@@ -3146,7 +3190,35 @@
 				},
 				{
 					"type": "registry:component",
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-drag-handle.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-header-limit.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-header-target.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-limit.svelte"
+				},
+				{
+					"type": "registry:component",
 					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-reviewer.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-status.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-target.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-type.svelte"
 				},
 				{
 					"type": "registry:component",
@@ -4129,6 +4201,17 @@
 				{
 					"type": "registry:hook",
 					"path": "src/lib/registry/hooks/is-mobile.svelte.ts"
+				}
+			]
+		},
+		{
+			"name": "casing",
+			"type": "registry:lib",
+			"registryDependencies": [],
+			"files": [
+				{
+					"type": "registry:lib",
+					"path": "src/lib/registry/lib/casing.ts"
 				}
 			]
 		},

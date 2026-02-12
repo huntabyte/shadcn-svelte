@@ -1,4 +1,3 @@
-import lodash from "lodash";
 import fs from "node:fs";
 import path from "node:path";
 import prettier from "prettier";
@@ -20,20 +19,15 @@ interface BuildRegistryItem {
 	}>;
 }
 import { buildRegistry } from "./registry.js";
-import { baseColors } from "../src/lib/registry/registry-colors.js";
-import { THEME_STYLES_WITH_VARIABLES } from "../src/lib/registry/templates.js";
-import { baseColorsOKLCH } from "../src/lib/registry/registry-base-colors.js";
-import { generateBaseColorTemplate, getColorsData } from "../src/lib/components/colors/colors.js";
+import { THEMES } from "../src/lib/registry/themes.js";
+import { getColorsData } from "../src/lib/components/colors/colors.js";
 import { toJSONSchema } from "zod";
 
 const prettierConfig = await prettier.resolveConfig(import.meta.url);
 if (!prettierConfig) throw new Error("Failed to resolve prettier config.");
 
+const INTERNAL_REGISTRY_PATH = path.resolve("src", "lib", "registry");
 const REGISTRY_PATH = path.resolve("static", "registry");
-const THEMES_CSS_PATH = path.resolve("static");
-
-// Ensure lodash.template returns a callable TemplateExecutor
-const compileTemplate = lodash.template as unknown as (s: string) => (data: unknown) => string;
 
 function writeFileWithDirs(
 	filePath: string,
@@ -64,7 +58,7 @@ export async function build(): Promise<void> {
 	const initItem: RegistryItem = {
 		name: "init",
 		type: "registry:style",
-		devDependencies: ["tailwind-variants", "@lucide/svelte", "tw-animate-css"],
+		devDependencies: ["tailwind-variants", "tw-animate-css"],
 		registryDependencies: ["utils"],
 		files: [],
 	};
@@ -183,38 +177,30 @@ export const Index = {`;
 	);
 
 	// ----------------------------------------------------------------------------
-	// Build registry/colors/[base].json.
+	// Build registry/colors/[theme].json
 	// ----------------------------------------------------------------------------
 
-	const themeCSS = [];
-	for (const baseColor of baseColors) {
-		const base = generateBaseColorTemplate(baseColor);
-		const zincCssVars = generateBaseColorTemplate("zinc");
-
-		themeCSS.push(
-			compileTemplate(THEME_STYLES_WITH_VARIABLES)({
-				colors: {
-					...zincCssVars.cssVars,
-					...baseColorsOKLCH[baseColor as keyof typeof baseColorsOKLCH],
-				},
-				theme: baseColor,
-			})
+	for (const theme of THEMES) {
+		writeFileWithDirs(
+			path.join(REGISTRY_PATH, "colors", `${theme.name}.json`),
+			JSON.stringify(theme, null, "\t"),
+			"utf-8"
 		);
-
-		if (["zinc", "stone", "slate", "gray", "neutral"].includes(baseColor)) {
-			writeFileWithDirs(
-				path.join(REGISTRY_PATH, "colors", `${baseColor}.json`),
-				JSON.stringify(base, null, "\t"),
-				"utf-8"
-			);
-		}
 	}
 
 	// ----------------------------------------------------------------------------
-	// Build registry/themes.css
+	// Build registry/styles/[style].css
 	// ----------------------------------------------------------------------------
-
-	writeFileWithDirs(path.join(THEMES_CSS_PATH, `themes.css`), themeCSS.join("\n\n"), "utf-8");
+	const styles = fs
+		.readdirSync(path.join(INTERNAL_REGISTRY_PATH, "styles"))
+		.filter((file) => file.endsWith(".css"));
+	fs.mkdirSync(path.join(REGISTRY_PATH, "styles"), { recursive: true });
+	for (const style of styles) {
+		fs.copyFileSync(
+			path.join(INTERNAL_REGISTRY_PATH, "styles", style),
+			path.join(REGISTRY_PATH, "styles", style.replace("style-", ""))
+		);
+	}
 
 	// ----------------------------------------------------------------------------
 	// Build static/schema.json

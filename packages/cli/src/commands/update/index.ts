@@ -2,7 +2,7 @@ import path from "node:path";
 import process from "node:process";
 import { existsSync, promises as fs } from "node:fs";
 import color from "picocolors";
-import { z } from "zod/v4";
+import { z } from "zod";
 import merge from "deepmerge";
 import { Command } from "commander";
 import { error, handleError } from "../../utils/errors.js";
@@ -11,10 +11,21 @@ import { getEnvProxy } from "../../utils/get-env-proxy.js";
 import { cancel, intro, prettifyList } from "../../utils/prompt-helpers.js";
 import * as p from "@clack/prompts";
 import * as registry from "../../utils/registry/index.js";
-import { transformContent, transformCss } from "../../utils/transformers.js";
+import { transformCss } from "../../utils/transform-css.js";
 import { checkPreconditions } from "../../utils/preconditions.js";
 import { highlight } from "../../utils/utils.js";
 import { installDependencies } from "../../utils/install-deps.js";
+import {
+	transform,
+	transformImports,
+	transformIcons,
+	transformStripTypes,
+	createTransformInjectStyles,
+} from "../../utils/transformers/index.js";
+import {
+	findNeededAtRules,
+	updateCustomAtRules,
+} from "../../utils/updaters/update-custom-at-rules.js";
 
 const updateOptionsSchema = z.object({
 	all: z.boolean(),
@@ -180,22 +191,35 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 		tasks.push({
 			title: `Updating ${highlight(item.name)}`,
 			async task() {
-				for (const file of item.files) {
-					let filePath = registry.resolveItemFilePath(config, item, file);
+				const registryStyle = await registry.getRegistryStyle(
+					registryUrl,
+					config.designSystem.style
+				);
 
-					// Run transformers.
-					const content = await transformContent(file.content, filePath, config);
+				for (const file of item.files ?? []) {
+					const filePath = registry.resolveItemFilePath(config, item, file);
 
-					const dir = path.parse(filePath).dir;
+					const {
+						content,
+						dependencies: transformDependencies,
+						devDependencies: transformDevDependencies,
+						filePath: transformFilePath,
+					} = await transform({ content: file.content, filePath, config }, [
+						transformImports,
+						transformIcons,
+						createTransformInjectStyles(registryStyle),
+						config.typescript && transformStripTypes,
+					]);
+
+					transformDependencies?.forEach((dep) => dependencies.add(dep));
+					transformDevDependencies?.forEach((dep) => devDependencies.add(dep));
+
+					const dir = path.parse(transformFilePath).dir;
 					if (!existsSync(dir)) {
 						await fs.mkdir(dir, { recursive: true });
 					}
 
-					if (!config.typescript && filePath.endsWith(".ts")) {
-						filePath = filePath.replace(".ts", ".js");
-					}
-
-					await fs.writeFile(filePath, content, "utf8");
+					await fs.writeFile(transformFilePath, content, "utf8");
 				}
 
 				if (item.cssVars) {
@@ -203,7 +227,7 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 				}
 
 				const itemDir = path.resolve(aliasDir, item.name);
-				if (item.files.length > 1) {
+				if (item.files && item.files?.length > 1) {
 					const remoteFiles = item.files.map((file) => {
 						const filepath = registry.resolveItemFilePath(config, item, file);
 						if (!config.typescript && filepath.endsWith(".ts")) {
@@ -240,6 +264,22 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 				await fs.writeFile(cssPath, modifiedCss, "utf8");
 
 				const relative = path.relative(cwd, cssPath);
+				return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;
+			},
+		});
+	}
+
+	const neededAtRules = await findNeededAtRules(config);
+
+	if (neededAtRules.length > 0) {
+		const cssPath = config.resolvedPaths.tailwindCss;
+		const relative = path.relative(cwd, cssPath);
+
+		tasks.push({
+			title: "Updating stylesheet",
+			async task() {
+				await updateCustomAtRules(cssPath, neededAtRules);
+
 				return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;
 			},
 		});

@@ -174,7 +174,7 @@ We provide a `<Breadcrumb.Ellipsis />` component to show a collapsed state when 
 
 ### Link component
 
-To use a custom link component from your routing library, you can use the `asChild` prop on `<Breadcrumb.Link />`.
+To use a link just add the `href` prop to `<Breadcrumb.Link />`.
 
 <ComponentPreview name="breadcrumb-link">
 

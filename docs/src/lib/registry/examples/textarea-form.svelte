@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import { z } from "zod/v4";
+	import { z } from "zod";
 	const formSchema = z.object({
 		bio: z
 			.string()

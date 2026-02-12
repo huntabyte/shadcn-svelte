@@ -2,12 +2,84 @@ import color from "picocolors";
 import { getTsconfig } from "get-tsconfig";
 import fs from "node:fs";
 import path from "node:path";
-import { z } from "zod/v4";
+import { z } from "zod";
 import { highlight, stripTrailingSlash } from "./utils.js";
 import { SITE_BASE_URL } from "../constants.js";
 import { ConfigError, error } from "./errors.js";
 import { resolveImportAlias } from "./resolve-imports.js";
 import { isUsingSvelteKit, syncSvelteKit } from "./sveltekit.js";
+import { iconLibraries, type IconLibraryName } from "../icons/libraries.js";
+import { registryItemFontSchema, type RegistryFont } from "@shadcn-svelte/registry";
+
+export const DEFAULT_DESIGN_SYSTEM_CONFIG = {
+	style: "vega",
+	baseColor: "neutral",
+	theme: "neutral",
+	iconLibrary: "lucide",
+	fonts: [
+		{
+			name: "font-inter",
+			title: "Inter",
+			type: "registry:font",
+			font: {
+				family: "'Inter Variable', sans-serif",
+				cssImport: '@import "@fontsource-variable/inter/index.css";',
+				variable: "--font-sans",
+				dependencies: ["@fontsource-variable/inter"],
+			},
+		},
+	] satisfies RegistryFont[],
+	menuAccent: "subtle",
+	menuColor: "default",
+	radius: "0.5rem",
+} as const;
+
+export const STYLES = ["vega", "nova", "maia", "lyra", "mira"] as const;
+export type StyleName = (typeof STYLES)[number];
+export const BASE_COLORS = ["neutral", "stone", "zinc", "gray"] as const;
+export type BaseColorName = (typeof BASE_COLORS)[number];
+export const THEMES = [
+	"neutral",
+	"stone",
+	"zinc",
+	"gray",
+	"red",
+	"rose",
+	"pink",
+	"fuchsia",
+	"purple",
+	"violet",
+	"indigo",
+	"blue",
+	"sky",
+	"cyan",
+	"teal",
+	"emerald",
+	"green",
+	"lime",
+	"yellow",
+	"amber",
+	"orange",
+	"brown",
+] as const;
+export type ThemeName = (typeof THEMES)[number];
+export const MENU_ACCENTS = ["subtle", "bold"] as const;
+export type MenuAccent = (typeof MENU_ACCENTS)[number];
+export const MENU_COLORS = ["default", "inverted"] as const;
+export type MenuColor = (typeof MENU_COLORS)[number];
+
+export const designSystemConfigSchema = z.object({
+	style: z.enum(STYLES),
+	iconLibrary: z.enum(Object.keys(iconLibraries) as [IconLibraryName, ...IconLibraryName[]]),
+	baseColor: z.enum(BASE_COLORS),
+	theme: z.enum(THEMES),
+	fonts: z.array(registryItemFontSchema),
+	menuAccent: z.enum(MENU_ACCENTS),
+	menuColor: z.enum(MENU_COLORS),
+	radius: z.string(),
+});
+
+export type DesignSystemConfig = z.infer<typeof designSystemConfigSchema>;
 
 export const DEFAULT_CONFIG = {
 	$schema: `${SITE_BASE_URL}/schema.json`,
@@ -21,6 +93,15 @@ export const DEFAULT_CONFIG = {
 	tailwind: {
 		baseColor: "slate",
 		css: "src/app.css",
+	},
+	designSystem: {
+		style: DEFAULT_DESIGN_SYSTEM_CONFIG.style,
+		iconLibrary: DEFAULT_DESIGN_SYSTEM_CONFIG.iconLibrary,
+		theme: DEFAULT_DESIGN_SYSTEM_CONFIG.theme,
+		menuAccent: DEFAULT_DESIGN_SYSTEM_CONFIG.menuAccent,
+		menuColor: DEFAULT_DESIGN_SYSTEM_CONFIG.menuColor,
+		radius: DEFAULT_DESIGN_SYSTEM_CONFIG.radius,
+		fonts: DEFAULT_DESIGN_SYSTEM_CONFIG.fonts,
 	},
 	typescript: true,
 	registry: `${SITE_BASE_URL}/registry`,
@@ -76,6 +157,19 @@ const newConfigSchema = baseConfigSchema.extend({
 		lib: aliasSchema("lib").default(DEFAULT_CONFIG.aliases.lib),
 	}),
 	registry: z.string().default(DEFAULT_CONFIG.registry),
+	designSystem: z
+		.object({
+			style: z.enum(STYLES).default(DEFAULT_CONFIG.designSystem.style),
+			iconLibrary: z
+				.enum(Object.keys(iconLibraries) as [IconLibraryName, ...IconLibraryName[]])
+				.default(DEFAULT_CONFIG.designSystem.iconLibrary),
+			theme: z.enum(THEMES).default(DEFAULT_CONFIG.designSystem.theme),
+			menuAccent: z.enum(MENU_ACCENTS).default(DEFAULT_CONFIG.designSystem.menuAccent),
+			menuColor: z.enum(MENU_COLORS).default(DEFAULT_CONFIG.designSystem.menuColor),
+			radius: z.string().default(DEFAULT_CONFIG.designSystem.radius),
+			fonts: z.array(registryItemFontSchema).default(DEFAULT_CONFIG.designSystem.fonts),
+		})
+		.default(DEFAULT_CONFIG.designSystem),
 });
 
 export type RawConfig = z.infer<typeof rawConfigSchema>;

@@ -3,10 +3,17 @@ import { fetch } from "node-fetch-native";
 import { createProxy } from "node-fetch-native/proxy";
 import { isUrl, resolveURL } from "../utils.js";
 import { CLIError, error } from "../errors.js";
-import type { ResolvedConfig } from "../get-config.js";
+import {
+	BASE_COLORS,
+	type ResolvedConfig,
+	type DesignSystemConfig,
+	designSystemConfigSchema,
+	type StyleName,
+} from "../get-config.js";
 import { getEnvProxy } from "../get-env-proxy.js";
 import { OFFICIAL_REGISTRY_URL } from "../../constants.js";
 import * as schemas from "@shadcn-svelte/registry";
+import { parse as parseCss } from "postcss";
 
 export function getRegistryUrl(config: ResolvedConfig) {
 	const url = process.env.COMPONENTS_REGISTRY_URL ?? config.registry;
@@ -25,24 +32,114 @@ export async function getRegistryIndex(registryUrl: string) {
 }
 
 export function getBaseColors() {
-	return [
-		{ name: "slate", label: "Slate" },
-		{ name: "gray", label: "Gray" },
-		{ name: "zinc", label: "Zinc" },
-		{ name: "neutral", label: "Neutral" },
-		{ name: "stone", label: "Stone" },
-	];
+	return BASE_COLORS.map((color) => ({
+		name: color,
+		label: `${color.charAt(0).toUpperCase()}${color.slice(1)}`,
+	}));
 }
 
-export async function getRegistryBaseColor(baseUrl: string, baseColor: string) {
+export async function getDesignSystem(designSystemUrl: string): Promise<DesignSystemConfig> {
+	const proxyUrl = getEnvProxy();
+	const proxy = proxyUrl ? createProxy({ url: proxyUrl }) : {};
+
 	try {
-		const url = resolveURL(baseUrl, `colors/${baseColor}.json`);
+		const response = await fetch(designSystemUrl, {
+			method: "GET",
+			headers: {
+				accept: "application/json",
+			},
+			...proxy,
+		});
+
+		if (!response.ok) {
+			throw error(
+				`Failed to fetch design system from ${designSystemUrl}: ${response.status} ${response.statusText}`
+			);
+		}
+
+		const data = await response.json();
+
+		const result = designSystemConfigSchema.safeParse(data);
+		if (!result.success) {
+			throw error(`Invalid design system config: ${result.error.message}`);
+		}
+
+		return result.data;
+	} catch (e) {
+		throw error(`Failed to fetch design system from ${designSystemUrl}`, e);
+	}
+}
+
+export async function getRegistryTheme(baseUrl: string, theme: string) {
+	try {
+		const url = resolveURL(baseUrl, `colors/${theme}.json`);
 		const [result] = await fetchRegistry([url]);
 
 		return schemas.registryBaseColorSchema.parse(result);
 	} catch (e) {
-		throw error(`Failed to fetch base color from registry.`, e);
+		throw error(`Failed to fetch theme: ${theme} from registry.`, e);
 	}
+}
+
+export async function getRegistryStyle(
+	baseUrl: string,
+	style: StyleName
+): Promise<Record<string, string>> {
+	const proxyUrl = getEnvProxy();
+	const proxy = proxyUrl ? createProxy({ url: proxyUrl }) : {};
+
+	const url = resolveURL(baseUrl, `styles/${style}.css`);
+
+	try {
+		const response = await fetch(url, {
+			method: "GET",
+			headers: {
+				accept: "application/json",
+			},
+			...proxy,
+		});
+
+		if (!response.ok) {
+			throw error(
+				`Failed to fetch style from ${url}: ${response.status} ${response.statusText}`
+			);
+		}
+
+		const css = await response.text();
+
+		return parseStyleCss(css);
+	} catch (e) {
+		throw error(`Failed to fetch style from ${url}`, e);
+	}
+}
+
+/** Parses a style CSS file and extracts the `@apply` styles for each class */
+export function parseStyleCss(css: string): Record<string, string> {
+	const ast = parseCss(css);
+	const styles: Record<string, string> = {};
+
+	ast.walkRules((rule) => {
+		// Extract class name from selector (e.g., ".cn-accordion-item" -> "cn-accordion-item")
+		const selector = rule.selector;
+		if (!selector.startsWith(".cn-")) return;
+
+		const className = selector.slice(1); // Remove leading "."
+
+		// Find @apply rules within this rule
+		rule.walkAtRules("apply", (atRule) => {
+			const applyValue = atRule.params.trim();
+			if (applyValue) {
+				// If there are multiple @apply rules, concatenate them
+				if (styles[className]) {
+					styles[className] += ` ${applyValue}`;
+				} else {
+					styles[className] = applyValue;
+				}
+			}
+		});
+	});
+
+	return styles;
 }
 
 type ResolveRegistryItemsProps = {

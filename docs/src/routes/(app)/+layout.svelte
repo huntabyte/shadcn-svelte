@@ -1,46 +1,18 @@
 <script lang="ts">
-	import { watch } from "runed";
-	import SiteFooter from "$lib/components/site-footer.svelte";
-	import SiteHeader from "$lib/components/site-header.svelte";
 	import { UserConfig, UserConfigContext } from "$lib/user-config.svelte.js";
-	import { ModeWatcher, setTheme } from "mode-watcher";
+	import { ModeWatcher } from "mode-watcher";
 	import { Toaster } from "$lib/registry/ui/sonner/index.js";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
+	import { DesignSystemProvider } from "$lib/features/design-system/index.js";
 
 	let { children, data } = $props();
 
-	const userConfig = UserConfigContext.set(new UserConfig(data.userConfig));
-
-	const themeColors = { light: "#ffffff", dark: "#09090b" };
-	const modeClasses = $derived([
-		`layout-${userConfig.current.layout}`,
-		`theme-${userConfig.current.activeTheme}`,
-	]);
-
-	watch.pre(
-		() => userConfig.current.activeTheme,
-		() => {
-			setTheme(userConfig.current.activeTheme);
-		}
-	);
+	// svelte-ignore state_referenced_locally
+	UserConfigContext.set(new UserConfig(data.userConfig));
 </script>
 
-<ModeWatcher
-	defaultMode="system"
-	disableTransitions
-	defaultTheme={userConfig.current.activeTheme}
-	{themeColors}
-	darkClassNames={["dark", ...modeClasses]}
-	lightClassNames={["light", ...modeClasses]}
-/>
+<ModeWatcher defaultMode="system" disableTransitions />
 <Toaster position="top-center" />
 
-<div class="bg-background relative flex min-h-svh flex-col">
-	<SiteHeader />
-	<main class="flex flex-1 flex-col">
-		<Tooltip.Provider>
-			{@render children()}
-		</Tooltip.Provider>
-	</main>
-	<SiteFooter />
-</div>
+<DesignSystemProvider>
+	{@render children()}
+</DesignSystemProvider>

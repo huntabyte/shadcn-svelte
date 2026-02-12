@@ -9,6 +9,7 @@ import Header from "./alert-dialog-header.svelte";
 import Overlay from "./alert-dialog-overlay.svelte";
 import Content from "./alert-dialog-content.svelte";
 import Description from "./alert-dialog-description.svelte";
+import Media from "./alert-dialog-media.svelte";
 
 export {
 	Root,
@@ -22,6 +23,7 @@ export {
 	Overlay,
 	Content,
 	Description,
+	Media,
 	//
 	Root as AlertDialog,
 	Title as AlertDialogTitle,
@@ -34,4 +36,5 @@ export {
 	Overlay as AlertDialogOverlay,
 	Content as AlertDialogContent,
 	Description as AlertDialogDescription,
+	Media as AlertDialogMedia,
 };
