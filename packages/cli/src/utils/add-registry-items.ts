@@ -121,6 +121,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 					: `Adding ${highlight(item.name)}`,
 			// @ts-expect-error this is intentional since we don't want to return a string during `init`
 			async task() {
+				let firstFilePath: string | undefined;
 				for (const file of item.files) {
 					let filePath = registry.resolveItemFilePath(opts.config, item, file);
 
@@ -136,6 +137,11 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 						filePath = filePath.replace(".ts", ".js");
 					}
 					await fs.writeFile(filePath, content, "utf8");
+
+					// Track the first file path for display purposes
+					if (!firstFilePath) {
+						firstFilePath = filePath;
+					}
 				}
 
 				if (item.cssVars) {
@@ -148,6 +154,11 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 				if (item.name !== "init") {
 					if (STYLE_TYPES.includes(item.type)) {
 						const itemPath = path.relative(cwd, opts.config.resolvedPaths.tailwindCss);
+						return `${highlight(item.name)} installed at ${color.gray(itemPath)}`;
+					}
+					// Use the actual file path that was written
+					if (item.name === "utils" && firstFilePath) {
+						const itemPath = path.relative(cwd, firstFilePath);
 						return `${highlight(item.name)} installed at ${color.gray(itemPath)}`;
 					}
 					const aliasDir = registry.getItemAliasDir(opts.config, item.type);
