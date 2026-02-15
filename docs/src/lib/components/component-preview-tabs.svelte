@@ -12,13 +12,13 @@
 		example,
 		children,
 		name,
-		hideCode = false,
+		hideCodeBlock = false,
 		chromeLessOnMobile = false,
 		...restProps
 	}: HTMLAttributes<HTMLElement> & {
 		align?: "center" | "start" | "end";
 		previewClassName?: string;
-		hideCode?: boolean;
+		hideCodeBlock?: boolean;
 		chromeLessOnMobile?: boolean;
 		example?: Snippet;
 		component?: Component;
@@ -67,7 +67,7 @@
 				{@render ExampleFallback()}
 			{/if}
 		</div>
-		{#if !hideCode}
+		{#if !hideCodeBlock}
 			<div
 				data-slot="code"
 				data-mobile-code-visible={isCodeVisible}
