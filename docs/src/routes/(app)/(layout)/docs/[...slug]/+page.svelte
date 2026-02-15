@@ -68,9 +68,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 			<div class="flex flex-col gap-2">
 				<div class="flex flex-col gap-2">
 					<div class="flex items-start justify-between">
-						<h1
-							class="scroll-m-20 text-4xl font-semibold tracking-tight sm:text-3xl xl:text-4xl"
-						>
+						<h1 class="scroll-m-20 text-3xl font-semibold tracking-tight">
 							{doc.title}
 						</h1>
 					</div>
@@ -116,7 +114,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 			</div>
 		</div>
 		<div
-			class="mx-auto flex h-16 w-full max-w-2xl items-center gap-2 px-4 md:px-0"
+			class="mx-auto hidden h-16 w-full max-w-2xl items-center gap-2 px-4 sm:flex md:px-0"
 			data-llm-ignore
 		>
 			{#if neighbors.previous}

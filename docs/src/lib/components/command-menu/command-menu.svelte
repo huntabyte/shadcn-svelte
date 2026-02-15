@@ -140,9 +140,9 @@
 			>
 				<span class="hidden lg:inline-flex">Search documentation...</span>
 				<span class="inline-flex lg:hidden">Search...</span>
-				<div class="absolute end-1.5 top-1.5 hidden gap-1 sm:flex">
+				<!--<div class="absolute end-1.5 top-1.5 hidden gap-1 sm:flex">
 					<Kbd.Root>⌘K</Kbd.Root>
-				</div>
+				</div>-->
 			</Button>
 		{/snippet}
 	</Dialog.Trigger>
