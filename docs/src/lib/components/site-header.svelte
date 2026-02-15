@@ -26,7 +26,7 @@
 <header class="bg-background sticky top-0 z-50 w-full">
 	<div class="container-wrapper 3xl:fixed:px-0 px-6">
 		<div
-			class="3xl:fixed:container flex h-(--header-height) items-center gap-2 **:data-[slot=separator]:h-4!"
+			class="3xl:fixed:container flex h-(--header-height) items-center **:data-[slot=separator]:!h-4"
 		>
 			<MobileNav bind:this={mobileNavRef} class="flex lg:hidden" />
 			<Button href="/" variant="ghost" size="icon" class="hidden size-8 lg:flex">
@@ -44,6 +44,7 @@
 				<LayoutToggle class="3xl:flex hidden" />
 				<Separator orientation="vertical" />
 				<Customizer />
+				<Separator orientation="vertical" />
 				<Button href="/create" variant="default" size="sm">
 					<PlusIcon />
 					New Project

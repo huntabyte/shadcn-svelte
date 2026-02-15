@@ -23,7 +23,7 @@
 		class="via-border absolute top-12 right-2 bottom-0 hidden h-full w-px bg-gradient-to-b from-transparent to-transparent lg:flex"
 	></div>
 
-	<Sidebar.Content class="no-scrollbar overflow-x-hidden px-2">
+	<Sidebar.Content class="no-scrollbar mx-auto w-(--sidebar-menu-width) overflow-x-hidden px-2">
 		<div
 			class="from-background via-background/80 to-background/50 sticky -top-1 z-10 h-8 shrink-0 bg-linear-to-b blur-xs"
 		></div>
@@ -34,7 +34,7 @@
 				</Sidebar.GroupLabel>
 				<Sidebar.GroupContent>
 					{#if item.items.length}
-						<Sidebar.Menu class="gap-1">
+						<Sidebar.Menu class="gap-0.5">
 							{#each item.items as subItem (subItem.href)}
 								{#if subItem.items.length === 0}
 									<Sidebar.MenuItem class="w-full">
@@ -45,7 +45,7 @@
 											{#snippet child({ props })}
 												<a href={subItem.href} {...props}>
 													<span
-														class="absolute inset-0 flex w-(--sidebar-width) bg-transparent"
+														class="absolute inset-0 flex w-(--sidebar-menu-width) bg-transparent"
 													></span>
 													{subItem.title}
 													{#if subItem.indicator === "new"}

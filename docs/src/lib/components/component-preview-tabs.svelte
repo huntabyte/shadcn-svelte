@@ -71,7 +71,7 @@
 			<div
 				data-slot="code"
 				data-mobile-code-visible={isMobileCodeVisible}
-				class="relative overflow-hidden **:data-rehype-pretty-code-figure:m-0! **:data-rehype-pretty-code-figure:rounded-t-none **:data-rehype-pretty-code-figure:border-t [&_pre]:max-h-72"
+				class="relative overflow-hidden **:data-rehype-pretty-code-figure:m-0! **:data-rehype-pretty-code-figure:rounded-t-none **:data-rehype-pretty-code-figure:border-t [&_[data-rehype-pretty-code-figure]]:!m-0 [&_[data-rehype-pretty-code-figure]]:rounded-t-none [&_[data-rehype-pretty-code-figure]]:border-t [&_pre]:max-h-72"
 			>
 				{#if isMobileCodeVisible}
 					{@render children?.()}
@@ -87,7 +87,7 @@
 								type="button"
 								size="sm"
 								variant="outline"
-								class="bg-background text-foreground dark:bg-background dark:text-foreground hover:bg-muted dark:hover:bg-muted relative z-10"
+								class="bg-background text-foreground dark:bg-background dark:text-foreground hover:bg-muted dark:hover:bg-muted relative z-10 rounded-lg shadow-none"
 								onclick={() => (isMobileCodeVisible = true)}
 							>
 								View Code
