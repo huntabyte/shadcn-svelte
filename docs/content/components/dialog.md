@@ -89,40 +89,44 @@ Copy and paste the following code into your project.
 
 </ComponentPreview>
 
-<!-- Need to convert to svelte component
 ## Notes
 
 To use the `Dialog` component from within a `Context Menu` or `Dropdown Menu`, you must encase the `Context Menu` or
 `Dropdown Menu` component in the `Dialog` component.
 
-```tsx showLineNumbers title="components/example-dialog-context-menu.svelte" {1, 26}
-<Dialog>
-  <ContextMenu>
-    <ContextMenuTrigger>Right click</ContextMenuTrigger>
-    <ContextMenuContent>
-      <ContextMenuItem>Open</ContextMenuItem>
-      <ContextMenuItem>Download</ContextMenuItem>
-      <DialogTrigger>
+```svelte showLineNumbers title="components/example-dialog-context-menu.svelte" {1, 26}
+<script lang="ts">
+  import * as Dialog from "$lib/components/ui/dialog/index.js";
+  import * as ContextMenu from "$lib/components/ui/context-menu/index.js";
+  import { Button } from "$lib/components/ui/button/index.js";
+</script>
+
+<Dialog.Root>
+  <ContextMenu.Root>
+    <ContextMenu.Trigger>Right click</ContextMenu.Trigger>
+    <ContextMenu.Content>
+      <ContextMenu.Item>Open</ContextMenu.Item>
+      <ContextMenu.Item>Download</ContextMenu.Item>
+      <Dialog.Trigger>
         {#snippet child({ props })}
-          <ContextMenuItem {...props}>
+          <ContextMenu.Item {...props}>
             <span>Delete</span>
-          </ContextMenuItem>
+          </ContextMenu.Item>
         {/snippet}
-      </DialogTrigger>
-    </ContextMenuContent>
-  </ContextMenu>
-  <DialogContent>
-    <DialogHeader>
-      <DialogTitle>Are you absolutely sure?</DialogTitle>
-      <DialogDescription>
+      </Dialog.Trigger>
+    </ContextMenu.Content>
+  </ContextMenu.Root>
+  <Dialog.Content>
+    <Dialog.Header>
+      <Dialog.Title>Are you absolutely sure?</Dialog.Title>
+      <Dialog.Description>
         This action cannot be undone. Are you sure you want to permanently
         delete this file from our servers?
-      </DialogDescription>
-    </DialogHeader>
-    <DialogFooter>
+      </Dialog.Description>
+    </Dialog.Header>
+    <Dialog.Footer>
       <Button type="submit">Confirm</Button>
-    </DialogFooter>
-  </DialogContent>
-</Dialog>
+    </Dialog.Footer>
+  </Dialog.Content>
+</Dialog.Root>
 ```
--->

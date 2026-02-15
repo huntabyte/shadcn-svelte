@@ -74,6 +74,21 @@ Copy and paste the following code into your project.
 <Button variant="outline">Button</Button>
 ```
 
+## Cursor
+
+Tailwind v4 [switched](https://tailwindcss.com/docs/upgrade-guide#buttons-use-the-default-cursor) from `cursor: pointer` to `cursor: default` for the button component.
+
+If you want to keep the `cursor: pointer` behavior, add the following code to your CSS file:
+
+```css showLineNumbers title="app.css"
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+```
+
 ## Examples
 
 ### Size

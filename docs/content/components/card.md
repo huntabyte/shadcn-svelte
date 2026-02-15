@@ -59,6 +59,7 @@ Copy and paste the following code into your project.
   <Card.Header>
     <Card.Title>Card Title</Card.Title>
     <Card.Description>Card Description</Card.Description>
+    <Card.Action>Card Action</Card.Action>
   </Card.Header>
   <Card.Content>
     <p>Card Content</p>

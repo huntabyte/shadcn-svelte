@@ -9,7 +9,7 @@
 	import CommandMenu from "./command-menu/command-menu.svelte";
 	import { getColors } from "$lib/colors.js";
 	import { mainNavItems } from "$lib/navigation.js";
-	import PlusIcon from "@lucide/svelte/icons/plus";
+	import PlusIcon from "@tabler/icons-svelte/icons/plus";
 	import Customizer from "./customizer.svelte";
 
 	const colors = getColors();
