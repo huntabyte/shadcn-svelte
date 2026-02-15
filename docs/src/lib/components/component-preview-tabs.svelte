@@ -25,7 +25,7 @@
 		name: string;
 	} = $props();
 
-	let isCodeVisible = $state(false);
+	let isMobileCodeVisible = $state(false);
 </script>
 
 {#snippet ExampleFallback()}
@@ -70,10 +70,10 @@
 		{#if !hideCodeBlock}
 			<div
 				data-slot="code"
-				data-mobile-code-visible={isCodeVisible}
+				data-mobile-code-visible={isMobileCodeVisible}
 				class="relative overflow-hidden **:data-rehype-pretty-code-figure:m-0! **:data-rehype-pretty-code-figure:rounded-t-none **:data-rehype-pretty-code-figure:border-t [&_pre]:max-h-72"
 			>
-				{#if isCodeVisible}
+				{#if isMobileCodeVisible}
 					{@render children?.()}
 				{:else}
 					<div class="relative h-25">
@@ -88,7 +88,7 @@
 								size="sm"
 								variant="outline"
 								class="bg-background text-foreground dark:bg-background dark:text-foreground hover:bg-muted dark:hover:bg-muted relative z-10"
-								onclick={() => (isCodeVisible = true)}
+								onclick={() => (isMobileCodeVisible = true)}
 							>
 								View Code
 							</Button>
