@@ -2,10 +2,10 @@
 	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import SquareTerminal from "@lucide/svelte/icons/square-terminal";
-	import PMRun from "$lib/components/pm-run.svelte";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import { cn } from "$lib/utils.js";
+	import PMExecute from "$lib/components/pm-execute.svelte";
 
 	const designSystem = useDesignSystem();
 </script>
@@ -25,7 +25,7 @@
 			</Dialog.Description>
 		</Dialog.Header>
 		<Tooltip.Provider>
-			<PMRun command="shadcn-svelte init '{designSystem.shareUrl}'" />
+			<PMExecute command="shadcn-svelte init '{designSystem.shareUrl}'" />
 		</Tooltip.Provider>
 	</Dialog.Content>
 </Dialog.Root>

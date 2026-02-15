@@ -1,13 +1,14 @@
 <script lang="ts">
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Calendar } from "$lib/registry/ui/calendar/index.js";
+	import { RangeCalendar } from "$lib/registry/ui/range-calendar/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { DateFormatter, getLocalTimeZone, type DateValue } from "@internationalized/date";
+	import { DateFormatter, getLocalTimeZone } from "@internationalized/date";
 	import { SvelteSet } from "svelte/reactivity";
+	import type { DateRange } from "bits-ui";
 
 	const environments = [
 		"All Environments",
@@ -36,7 +37,7 @@
 
 	let selectedEnvironment = $state(environments[0]);
 	let selectedStatuses = $state<Set<string>>(new Set(statuses.slice(0, 5).map((s) => s.name)));
-	let dateRange = $state<DateValue[] | undefined>(undefined);
+	let dateRange = $state<DateRange | undefined>(undefined);
 
 	function toggleStatus(statusName: string) {
 		const next = new SvelteSet(selectedStatuses);
@@ -64,13 +65,13 @@
 							data-icon="inline-start"
 							class="text-muted-foreground"
 						/>
-						{#if dateRange?.[0]}
-							{#if dateRange[1]}
-								{dateFormatter.format(dateRange[0].toDate(getLocalTimeZone()))}
+						{#if dateRange?.start}
+							{#if dateRange?.end}
+								{dateFormatter.format(dateRange?.start.toDate(getLocalTimeZone()))}
 								-
-								{dateFormatter.format(dateRange[1].toDate(getLocalTimeZone()))}
+								{dateFormatter.format(dateRange?.end.toDate(getLocalTimeZone()))}
 							{:else}
-								{dateFormatter.format(dateRange[0].toDate(getLocalTimeZone()))}
+								{dateFormatter.format(dateRange?.start.toDate(getLocalTimeZone()))}
 							{/if}
 						{:else}
 							Select Date Range
@@ -79,7 +80,7 @@
 				{/snippet}
 			</Popover.Trigger>
 			<Popover.Content class="w-auto p-0" align="start">
-				<Calendar type="multiple" bind:value={dateRange} numberOfMonths={2} />
+				<RangeCalendar bind:value={dateRange} numberOfMonths={2} />
 			</Popover.Content>
 		</Popover.Root>
 		<InputGroup.Root class="lg:ml-auto lg:max-w-72">
