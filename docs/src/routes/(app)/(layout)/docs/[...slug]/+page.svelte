@@ -1,11 +1,14 @@
 <script lang="ts">
+	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
+	import ArrowUpRight from "@lucide/svelte/icons/arrow-up-right";
 	import ArrowLeftIcon from "@lucide/svelte/icons/arrow-left";
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
 	import DocsToc from "$lib/components/docs-toc.svelte";
 	import { findNeighbors } from "$lib/navigation.js";
 	import { page } from "$app/state";
 	import Cta from "$lib/components/cta.svelte";
+	import ComponentCodeViewer from "$lib/components/component-code-viewer/component-code-viewer.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
 	import Ethical from "$lib/components/ethical.svelte";
 	import DocsCopyPage from "$lib/components/docs-copy-page.svelte";
@@ -14,6 +17,9 @@
 
 	const Markdown = $derived(data.component);
 	const doc = $derived(data.metadata);
+	const apiLink = $derived(doc.links?.api);
+	const docLink = $derived(doc.links?.doc);
+	const source = $derived(data.viewerData);
 
 	const neighbors = $derived(findNeighbors(page.url.pathname));
 </script>
@@ -62,9 +68,36 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 			<div class="flex flex-col gap-2">
 				<div class="flex flex-col gap-2">
 					<div class="flex items-start justify-between">
-						<h1 class="scroll-m-20 text-3xl font-semibold tracking-tight">
+						<h1
+							class="scroll-m-20 text-4xl font-semibold tracking-tight sm:text-3xl xl:text-4xl"
+						>
 							{doc.title}
 						</h1>
+						<div class="docs-nav flex items-center gap-2" data-llm-ignore>
+							<DocsCopyPage />
+							{#if neighbors.previous}
+								<Button
+									variant="secondary"
+									size="icon"
+									class="extend-touch-target ms-auto size-8 shadow-none md:size-7"
+									href={neighbors.previous.href}
+								>
+									<ArrowLeftIcon />
+									<span class="sr-only">Previous</span>
+								</Button>
+							{/if}
+							{#if neighbors.next}
+								<Button
+									variant="secondary"
+									size="icon"
+									class="extend-touch-target size-8 shadow-none md:size-7"
+									href={neighbors.next.href}
+								>
+									<span class="sr-only">Next</span>
+									<ArrowRightIcon />
+								</Button>
+							{/if}
+						</div>
 					</div>
 					{#if data.metadata.description}
 						<p class="text-muted-foreground text-[1.05rem] text-balance sm:text-base">
@@ -76,6 +109,33 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 			<div class="w-full flex-1 *:data-[slot=alert]:first:mt-0">
 				<Markdown viewerData={data.viewerData} />
 			</div>
+		</div>
+		<div
+			class="mx-auto hidden h-16 w-full max-w-2xl items-center gap-2 px-4 sm:flex md:px-0"
+			data-llm-ignore
+		>
+			{#if neighbors.previous}
+				<Button
+					variant="secondary"
+					size="sm"
+					class="shadow-none"
+					href={neighbors.previous.href}
+				>
+					<ArrowLeftIcon />
+					{neighbors.previous.title}
+				</Button>
+			{/if}
+			{#if neighbors.next}
+				<Button
+					variant="secondary"
+					size="sm"
+					class="ms-auto shadow-none"
+					href={neighbors.next.href}
+				>
+					{neighbors.next.title}
+					<ArrowRightIcon />
+				</Button>
+			{/if}
 		</div>
 	</div>
 </div>

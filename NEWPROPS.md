@@ -5,23 +5,28 @@ This document tracks new props and features that exist in shadcn/ui but need to 
 ## Calendar Component
 
 ### Missing Prop: `timeZone`
+
 **Status**: Not yet implemented
 **Description**: The Calendar component in shadcn/ui accepts a `timeZone` prop to ensure dates are displayed and selected in the user's local timezone.
 
 **Implementation Details**:
+
 - shadcn/ui uses `react-day-picker` which supports this prop
 - shadcn-svelte uses `bits-ui` Calendar component which may have different API
 - Would need to check if bits-ui Calendar supports this prop
 
 **Example Usage (from shadcn/ui)**:
+
 ```tsx
 export function CalendarWithTimezone() {
-  const [date, setDate] = React.useState<Date | undefined>(undefined)
-  const [timeZone, setTimeZone] = React.useState<string | undefined>(undefined)
+  const [date, setDate] = React.useState<Date | undefined>(undefined);
+  const [timeZone, setTimeZone] = React.useState<string | undefined>(
+    undefined
+  );
 
   React.useEffect(() => {
-    setTimeZone(Intl.DateTimeFormat().resolvedOptions().timeZone)
-  }, [])
+    setTimeZone(Intl.DateTimeFormat().resolvedOptions().timeZone);
+  }, []);
 
   return (
     <Calendar
@@ -30,11 +35,12 @@ export function CalendarWithTimezone() {
       onSelect={setDate}
       timeZone={timeZone}
     />
-  )
+  );
 }
 ```
 
 **Action Required**:
+
 1. Check if `bits-ui` Calendar component supports `timeZone` prop
 2. If supported, add to shadcn-svelte calendar.svelte component
 3. Update documentation with example showing timezone usage
@@ -45,10 +51,12 @@ export function CalendarWithTimezone() {
 ## Button Component
 
 ### New Section: Cursor
+
 **Status**: ✅ Added to documentation
 **Description**: Added documentation about Tailwind v4 cursor behavior change from `cursor: pointer` to `cursor: default`.
 
 **Content Added**:
+
 ```css
 @layer base {
   button:not(:disabled),
@@ -63,6 +71,7 @@ export function CalendarWithTimezone() {
 ## Dialog Component
 
 ### Notes Section
+
 **Status**: ✅ Updated
 **Description**: Uncommented and converted Dialog Notes section about using Dialog within Context Menu or Dropdown Menu to Svelte.
 
@@ -73,6 +82,7 @@ export function CalendarWithTimezone() {
 ## Card Component
 
 ### New Prop: `CardAction`
+
 **Status**: ✅ Added to documentation
 **Description**: Added CardAction component to usage example in card.md
 

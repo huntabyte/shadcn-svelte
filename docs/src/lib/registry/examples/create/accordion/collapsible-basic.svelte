@@ -12,10 +12,7 @@
 				</span>
 			</Accordion.Trigger>
 			<Accordion.Content class="flex flex-col gap-4 text-balance">
-				<p>
-					Yes. It comes with default styles that match the other components'
-					aesthetic.
-				</p>
+				<p>Yes. It comes with default styles that match the other components' aesthetic.</p>
 			</Accordion.Content>
 		</Accordion.Item>
 		<Accordion.Item value="item-2">
@@ -25,10 +22,7 @@
 				</span>
 			</Accordion.Trigger>
 			<Accordion.Content class="flex flex-col gap-4 text-balance">
-				<p>
-					Yes. It's animated by default, but you can disable it if you
-					prefer.
-				</p>
+				<p>Yes. It's animated by default, but you can disable it if you prefer.</p>
 			</Accordion.Content>
 		</Accordion.Item>
 		<Accordion.Item value="item-3">
@@ -39,8 +33,8 @@
 			</Accordion.Trigger>
 			<Accordion.Content class="flex flex-col gap-4 text-balance">
 				<p>
-					Yes. It supports custom keyboard shortcuts. Check out the
-					component documentation for more details.
+					Yes. It supports custom keyboard shortcuts. Check out the component
+					documentation for more details.
 				</p>
 			</Accordion.Content>
 		</Accordion.Item>

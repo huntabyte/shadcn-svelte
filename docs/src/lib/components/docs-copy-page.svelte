@@ -122,12 +122,7 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 		target="_blank"
 		rel="noopener noreferrer"
 	>
-		<svg
-			class="size-4"
-			viewBox="0 0 910 934"
-			fill="none"
-			xmlns="http://www.w3.org/2000/svg"
-		>
+		<svg class="size-4" viewBox="0 0 910 934" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<path
 				d="M647.664 197.775C569.13 189.049 525.5 145.419 516.774 66.8849C508.048 145.419 464.418 189.049 385.884 197.775C464.418 206.501 508.048 250.131 516.774 328.665C525.5 250.131 569.13 206.501 647.664 197.775Z"
 				fill="currentColor"
@@ -182,7 +177,8 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 
 <Popover.Root>
 	<div
-		class="bg-secondary group/buttons relative flex rounded-lg *:data-[slot=button]:focus-visible:relative *:data-[slot=button]:focus-visible:z-10"
+		<div
+		class="bg-secondary group/buttons relative flex rounded-lg *:[[data-slot=button]]:focus-visible:relative *:[[data-slot=button]]:focus-visible:z-10"
 		data-llm-ignore
 	>
 		<div bind:this={customAnchor}></div>
