@@ -121,3 +121,7 @@ You can set or hide the handle by using the `withHandle` prop on the `ResizableH
   <Resizable.Pane>Two</Resizable.Pane>
 </Resizable.PaneGroup>
 ```
+
+## API Reference
+
+See the [Resizable API Reference](https://www.paneforge.com/docs/components/pane-group) for a full list of props.

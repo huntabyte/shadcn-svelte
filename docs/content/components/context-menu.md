@@ -75,3 +75,7 @@ Copy and paste the following code into your project.
   </ContextMenu.Content>
 </ContextMenu.Root>
 ```
+
+## API Reference
+
+See the [Context Menu API Reference](https://bits-ui.com/docs/components/context-menu#api-reference) for a full list of props.

@@ -63,3 +63,7 @@ Copy and paste the following code into your project.
 </Steps>
 {/snippet}
 </InstallTabs>
+
+## API Reference
+
+See the [Range Calendar API Reference](https://bits-ui.com/docs/components/range-calendar#api-reference) for a full list of props.

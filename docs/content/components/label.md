@@ -67,3 +67,7 @@ Copy and paste the following code into your project.
 ```svelte
 <Label for="email">Your email address</Label>
 ```
+
+## API Reference
+
+See the [Label API Reference](https://bits-ui.com/docs/components/label#api-reference) for a full list of props.

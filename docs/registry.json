@@ -700,6 +700,12 @@
 			]
 		},
 		{
+			"name": "direction",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": []
+		},
+		{
 			"name": "drawer",
 			"type": "registry:ui",
 			"registryDependencies": [],

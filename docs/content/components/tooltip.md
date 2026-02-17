@@ -108,3 +108,7 @@ You can nest providers to create groups with different settings. Tooltips use th
 We've updated the tooltip colors to use the foreground color for the background and the background color for the foreground.
 
 Replace `bg-primary text-primary-foreground` with `bg-foreground text-background` for `<Tooltip.Content />`.
+
+## API Reference
+
+See the [Tooltip API Reference](https://bits-ui.com/docs/components/tooltip#api-reference) for a full list of props.

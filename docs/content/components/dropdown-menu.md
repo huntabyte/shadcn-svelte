@@ -122,3 +122,7 @@ This example shows how to open a dialog from a dropdown menu.
 
 - Added `gap-2 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0` to the `<DropdownMenu.SubTrigger>` to automatically style icon inside the dropdown menu sub trigger.
 - Removed `size-4` from the icon inside the `<DropdownMenu.SubTrigger>` since it is now handled by the parent `<DropdownMenu.SubTrigger>`.
+
+## API Reference
+
+See the [Dropdown Menu API Reference](https://bits-ui.com/docs/components/dropdown-menu#api-reference) for a full list of props.

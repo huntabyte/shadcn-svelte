@@ -73,3 +73,7 @@ Copy and paste the following code into your project.
   </Collapsible.Content>
 </Collapsible.Root>
 ```
+
+## API Reference
+
+See the [Collapsible API Reference](https://bits-ui.com/docs/components/collapsible#api-reference) for a full list of props.

@@ -80,3 +80,7 @@ Copy and paste the following code into your project.
   </Menubar.Menu>
 </Menubar.Root>
 ```
+
+## API Reference
+
+See the [Menubar API Reference](https://bits-ui.com/docs/components/menubar#api-reference) for a full list of props.

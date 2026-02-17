@@ -84,3 +84,7 @@ Copy and paste the following code into your project.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+See the [Select API Reference](https://bits-ui.com/docs/components/select#api-reference) for a full list of props.

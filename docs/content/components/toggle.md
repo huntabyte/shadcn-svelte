@@ -117,3 +117,7 @@ Copy and paste the following code into your project.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+See the [Toggle API Reference](https://bits-ui.com/docs/components/toggle#api-reference) for a full list of props.

@@ -103,3 +103,7 @@ You can adjust the size of the sheet using CSS classes:
   </Sheet.Content>
 </Sheet.Root>
 ```
+
+## API Reference
+
+See the [Sheet API Reference](https://bits-ui.com/docs/components/dialog#api-reference) for a full list of props.

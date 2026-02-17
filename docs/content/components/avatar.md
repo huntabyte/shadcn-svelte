@@ -70,3 +70,7 @@ Copy and paste the following code into your project.
   <Avatar.Fallback>CN</Avatar.Fallback>
 </Avatar.Root>
 ```
+
+## API Reference
+
+See the [Avatar API Reference](https://bits-ui.com/docs/components/avatar#api-reference) for a full list of props.

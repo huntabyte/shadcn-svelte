@@ -132,3 +132,7 @@ After upgrading the `Calendar` component, you can add the new blocks with the fo
 <PMAddComp name="calendar-02" />
 
 This will add the latest version of the calendar blocks.
+
+## API Reference
+
+See the [Calendar API Reference](https://bits-ui.com/docs/components/calendar#api-reference) for a full list of props.

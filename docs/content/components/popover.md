@@ -70,3 +70,7 @@ Copy and paste the following code into your project.
   <Popover.Content>Place content for the popover here.</Popover.Content>
 </Popover.Root>
 ```
+
+## API Reference
+
+See the [Popover API Reference](https://bits-ui.com/docs/components/popover#api-reference) for a full list of props.

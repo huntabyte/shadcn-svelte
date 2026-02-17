@@ -77,3 +77,7 @@ Copy and paste the following code into your project.
   </div>
 </RadioGroup.Root>
 ```
+
+## API Reference
+
+See the [Radio Group API Reference](https://bits-ui.com/docs/components/radio-group#api-reference) for a full list of props.

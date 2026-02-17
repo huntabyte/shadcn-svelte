@@ -82,3 +82,7 @@ Copy and paste the following code into your project.
   </AlertDialog.Content>
 </AlertDialog.Root>
 ```
+
+## API Reference
+
+See the [Alert Dialog API Reference](https://bits-ui.com/docs/components/alert-dialog#api-reference) for a full list of props.

@@ -71,3 +71,7 @@ Copy and paste the following code into your project.
   </NavigationMenu.List>
 </NavigationMenu.Root>
 ```
+
+## API Reference
+
+See the [Navigation Menu API Reference](https://bits-ui.com/docs/components/navigation-menu#api-reference) for a full list of props.

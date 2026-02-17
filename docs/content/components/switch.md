@@ -67,3 +67,7 @@ Copy and paste the following code into your project.
 ```svelte
 <Switch />
 ```
+
+## API Reference
+
+See the [Switch API Reference](https://bits-ui.com/docs/components/switch#api-reference) for a full list of props.

@@ -61,6 +61,12 @@ const registry = defineCollection({
 	schema: docSchema,
 });
 
+const changelog = defineCollection({
+	name: "changelog",
+	pattern: "./changelog/**/*.md",
+	schema: docSchema,
+});
+
 export default defineConfig({
 	root: "./content",
 	collections: {
@@ -70,6 +76,7 @@ export default defineConfig({
 		installation,
 		darkMode,
 		registry,
+		changelog,
 	},
 	output: { assets: "static" },
 });

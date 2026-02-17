@@ -123,3 +123,7 @@ Use `spacing={2}` to add spacing between toggle group items.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+See the [Toggle Group API Reference](https://bits-ui.com/docs/components/toggle-group#api-reference) for a full list of props.

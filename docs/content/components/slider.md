@@ -68,3 +68,7 @@ Copy and paste the following code into your project.
 ```svelte
 <Slider type="single" bind:value max={100} step={1} />
 ```
+
+## API Reference
+
+See the [Slider API Reference](https://bits-ui.com/docs/components/slider#api-reference) for a full list of props.

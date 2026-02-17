@@ -16,7 +16,8 @@
 	class="sticky top-[calc(var(--header-height)+0.6rem)] z-30 hidden h-[calc(100svh-10rem)] overscroll-none bg-transparent [--sidebar-menu-width:--spacing(56)] lg:flex"
 	collapsible="none"
 	{...restProps}
-	><div
+	><div class="h-9"></div>
+	<div
 		class="from-background via-background/80 to-background/50 absolute top-8 z-10 h-8 w-(--sidebar-menu-width) shrink-0 bg-gradient-to-b blur-xs"
 	></div>
 	<div
@@ -25,7 +26,7 @@
 
 	<Sidebar.Content class="no-scrollbar mx-auto w-(--sidebar-menu-width) overflow-x-hidden px-2">
 		<div
-			class="from-background via-background/80 to-background/50 sticky -top-1 z-10 h-8 shrink-0 bg-linear-to-b blur-xs"
+			class="from-background via-background/80 to-background/50 sticky -top-1 z-10 h-8 shrink-0 bg-gradient-to-b blur-xs"
 		></div>
 		{#each navItems as item (item.title)}
 			<Sidebar.Group>

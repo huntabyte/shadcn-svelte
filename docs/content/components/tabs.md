@@ -76,3 +76,7 @@ Copy and paste the following code into your project.
   <Tabs.Content value="password">Change your password here.</Tabs.Content>
 </Tabs.Root>
 ```
+
+## API Reference
+
+See the [Tabs API Reference](https://bits-ui.com/docs/components/tabs#api-reference) for a full list of props.

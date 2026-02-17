@@ -91,3 +91,7 @@ Copy and paste the following code into your project.
   {/snippet}
 </Pagination.Root>
 ```
+
+## API Reference
+
+See the [Pagination API Reference](https://bits-ui.com/docs/components/pagination#api-reference) for a full list of props.

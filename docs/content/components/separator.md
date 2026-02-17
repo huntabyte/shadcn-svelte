@@ -67,3 +67,7 @@ Copy and paste the following code into your project.
 ```svelte showLineNumbers
 <Separator />
 ```
+
+## API Reference
+
+See the [Separator API Reference](https://bits-ui.com/docs/components/separator#api-reference) for a full list of props.

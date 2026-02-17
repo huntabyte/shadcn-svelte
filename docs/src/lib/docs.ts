@@ -5,6 +5,7 @@ import {
 	installation,
 	migration,
 	registry,
+	changelog,
 } from "$content/index.js";
 import { error } from "@sveltejs/kit";
 import type { Component } from "svelte";
@@ -16,6 +17,7 @@ const allDocs = [
 	...installation,
 	...darkMode,
 	...registry,
+	...changelog,
 ];
 
 type DocResolver = () => Promise<{ default: Component; metadata: components }>;

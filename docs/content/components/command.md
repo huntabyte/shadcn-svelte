@@ -136,3 +136,7 @@ You can use the `<Command />` component as a combobox. See the [Combobox](/docs/
 ### 2024-10-30 Classes for icons
 
 - Added `gap-2 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0` to the `<Command.Item>` component to automatically style the icons inside.
+
+## API Reference
+
+See the [Command API Reference](https://bits-ui.com/docs/components/command#api-reference) for a full list of props.

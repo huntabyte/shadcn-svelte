@@ -83,3 +83,7 @@ Copy and paste the following code into your project.
   </Accordion.Item>
 </Accordion.Root>
 ```
+
+## API Reference
+
+See the [Accordion API Reference](https://bits-ui.com/docs/components/accordion#api-reference) for a full list of props.

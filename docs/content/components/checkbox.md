@@ -67,3 +67,7 @@ Copy and paste the following code into your project.
 ```svelte
 <Checkbox />
 ```
+
+## API Reference
+
+See the [Checkbox API Reference](https://bits-ui.com/docs/components/checkbox#api-reference) for a full list of props.
