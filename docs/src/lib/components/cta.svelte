@@ -1,20 +1,29 @@
-<script lang="ts">
-	import { cn } from "$lib/utils.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-
-	let { class: className }: { class?: string } = $props();
-</script>
-
-<div
-	class={cn(
-		"bg-surface text-surface-foreground group relative flex flex-col gap-2 rounded-lg p-6 text-sm",
-		className
-	)}
+<a
+	href="https://github.com/EpicenterHQ/epicenter"
+	class="bg-muted/40 dark:bg-background border-foreground/5 hover:border-foreground/10 group relative block h-[150px] w-full overflow-hidden rounded-xl border transition-all select-none"
 >
-	<div class="text-base leading-tight font-semibold text-balance group-hover:underline">
-		Special sponsor
+	<div
+		class="absolute -top-12 -right-12 h-32 w-32 rounded-full bg-[#FFD4B2] opacity-10 blur-[50px] transition-opacity group-hover:opacity-20"
+	></div>
+	<div
+		class="absolute -bottom-12 -left-12 h-32 w-32 rounded-full bg-[#CBA6F7] opacity-10 blur-[50px] transition-opacity group-hover:opacity-20"
+	></div>
+
+	<div class="relative z-10 p-3.5">
+		<div class="mb-8 flex items-center justify-between">
+			<span class="text-muted-foreground text-[10px] font-medium tracking-wide uppercase"
+				>Special Sponsor</span
+			>
+			<div class="size-10 opacity-80 transition-opacity group-hover:opacity-100">
+				<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+					<circle cx="170" cy="170" r="100" fill="#cccccc" opacity="1" />
+					<circle cx="230" cy="230" r="100" fill="#ffffff" opacity="1" />
+				</svg>
+			</div>
+		</div>
+		<div class="space-y-1">
+			<h3 class="text-foreground text-lg font-semibold tracking-tight">Epicenter</h3>
+			<p class="text-foreground/85 text-xs leading-relaxed">Open source, local first apps</p>
+		</div>
 	</div>
-	<div class="text-muted-foreground">We're looking for one partner to be featured here.</div>
-	<div class="text-muted-foreground">Support the project and reach thousands of developers.</div>
-	<Button size="sm" class="mt-2 w-fit" href="mailto:sponsorship@huntabyte.com">Reach out</Button>
-</div>
+</a>
