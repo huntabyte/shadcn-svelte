@@ -12,15 +12,16 @@ Please refer to [shadcn/ui repo](https://github.com/shadcn-ui/ui) and the [shadc
 
 _note: `?` indicates that feature may have already been implemented but I am not sure, so check first._
 
-- [ ] [Combobox component](https://ui.shadcn.com/docs/components/radix/combobox) - new, completely replaces old implementation using popover + command
-- [ ] [RTL support](https://ui.shadcn.com/docs/rtl) & [Direction component](https://ui.shadcn.com/docs/components/radix/direction)
+- [blocked by Bits] [Combobox component](https://ui.shadcn.com/docs/components/radix/combobox) - new, completely replaces old implementation using popover + command
+- [blocked by Bits] [RTL support](https://ui.shadcn.com/docs/rtl) & [Direction component](https://ui.shadcn.com/docs/components/radix/direction)
 - [ ] Revise [Step components](../InstallationSteps.png) used in Manual install tab
 
-- [need to wait] Select component - item-aligned default, popper option
+- [blocked by Bits] Select component - item-aligned default, popper option
 - [ ] fix docs sidebar - top missing opaque div?
 - [ ] Changelog "More Updates" section - dont change content, check new format with links at bottom [here](https://ui.shadcn.com/docs/changelog)
-- [ ] Move API reference from top badge to separate section at bottom of each .md file, remove API reference, Docs, Component Source badge from `slug...` rendering
-- [ ] add Scira to copy page dropdown (refer to https://github.com/shadcn-ui/ui/blob/main/apps/v4/components/docs-copy-page.tsx)
+- [x] Move API reference from top badge to separate section at bottom of each .md file, remove API reference, Docs, Component Source badge from `slug...` rendering
+- [ ] fix new api doc links
+- [x] add Scira to copy page dropdown (refer to https://github.com/shadcn-ui/ui/blob/main/apps/v4/components/docs-copy-page.tsx)
 - [ ] fix max size of component previews so that they don't overflow, compare preview of `Aspect Ratio` component on both sites to verify (check original shadcn/ui repo!!)
 
 - [ ] evaluate difficulty of moving RangeCalendar into mode of Calendar component, leave a todo note (dont change!)
