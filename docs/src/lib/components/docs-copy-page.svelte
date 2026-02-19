@@ -177,7 +177,6 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 
 <Popover.Root>
 	<div
-		<div
 		class="bg-secondary group/buttons relative flex rounded-lg *:[[data-slot=button]]:focus-visible:relative *:[[data-slot=button]]:focus-visible:z-10"
 		data-llm-ignore
 	>
