@@ -90,6 +90,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 <Step>Add the following colors to your CSS file</Step>
 
 We'll go over the colors later in the [theming section](/docs/components/sidebar#theming).
