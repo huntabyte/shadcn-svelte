@@ -89,6 +89,30 @@ Copy and paste the following code into your project.
 
 </ComponentPreview>
 
+### No Close Button
+
+<ComponentPreview name="dialog-no-close-button">
+
+<div></div>
+
+</ComponentPreview>
+
+### Sticky Footer
+
+<ComponentPreview name="dialog-sticky-footer">
+
+<div></div>
+
+</ComponentPreview>
+
+### Scrollable Content
+
+<ComponentPreview name="dialog-scrollable">
+
+<div></div>
+
+</ComponentPreview>
+
 ## Notes
 
 To use the `Dialog` component from within a `Context Menu` or `Dropdown Menu`, you must encase the `Context Menu` or

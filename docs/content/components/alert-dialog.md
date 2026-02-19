@@ -83,6 +83,32 @@ Copy and paste the following code into your project.
 </AlertDialog.Root>
 ```
 
+## Examples
+
+### Destructive
+
+<ComponentPreview name="alert-dialog-destructive">
+
+<div></div>
+
+</ComponentPreview>
+
+### Small
+
+<ComponentPreview name="alert-dialog-small">
+
+<div></div>
+
+</ComponentPreview>
+
+### Media
+
+<ComponentPreview name="alert-dialog-media">
+
+<div></div>
+
+</ComponentPreview>
+
 ## API Reference
 
 See the [Alert Dialog API Reference](https://bits-ui.com/docs/components/alert-dialog#api-reference) for a full list of props.

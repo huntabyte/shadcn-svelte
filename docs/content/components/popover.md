@@ -71,6 +71,24 @@ Copy and paste the following code into your project.
 </Popover.Root>
 ```
 
+## Examples
+
+### Align
+
+<ComponentPreview name="popover-align">
+
+<div></div>
+
+</ComponentPreview>
+
+### With Form
+
+<ComponentPreview name="popover-form">
+
+<div></div>
+
+</ComponentPreview>
+
 ## API Reference
 
 See the [Popover API Reference](https://bits-ui.com/docs/components/popover#api-reference) for a full list of props.

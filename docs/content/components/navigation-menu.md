@@ -72,6 +72,20 @@ Copy and paste the following code into your project.
 </NavigationMenu.Root>
 ```
 
+## Link Component
+
+When using the `NavigationMenu.Link` component as a child of a SvelteKit `<a>` element or similar router link, use the `child` snippet to pass the link props through:
+
+```svelte showLineNumbers
+<NavigationMenu.Link>
+  {#snippet child({ props })}
+    <a href="/docs" {...props}>
+      Documentation
+    </a>
+  {/snippet}
+</NavigationMenu.Link>
+```
+
 ## API Reference
 
 See the [Navigation Menu API Reference](https://bits-ui.com/docs/components/navigation-menu#api-reference) for a full list of props.

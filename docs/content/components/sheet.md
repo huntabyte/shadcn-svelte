@@ -85,6 +85,20 @@ Copy and paste the following code into your project.
 
 Pass the `side` property to `<Sheet.Content />` to indicate the edge of the screen where the component will appear. The values can be `top`, `right`, `bottom` or `left`.
 
+<ComponentPreview name="sheet-side">
+
+<div></div>
+
+</ComponentPreview>
+
+### No Close Button
+
+<ComponentPreview name="sheet-no-close-button">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Size
 
 You can adjust the size of the sheet using CSS classes:

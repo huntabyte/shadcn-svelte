@@ -76,6 +76,64 @@ Copy and paste the following code into your project.
 </ContextMenu.Root>
 ```
 
+## Examples
+
+### Submenu
+
+<ComponentPreview name="context-menu-submenu">
+
+<div></div>
+
+</ComponentPreview>
+
+### Shortcuts
+
+<ComponentPreview name="context-menu-shortcuts">
+
+<div></div>
+
+</ComponentPreview>
+
+### Groups
+
+<ComponentPreview name="context-menu-groups">
+
+<div></div>
+
+</ComponentPreview>
+
+### Icons
+
+<ComponentPreview name="context-menu-icons">
+
+<div></div>
+
+</ComponentPreview>
+
+### Checkboxes
+
+<ComponentPreview name="context-menu-checkboxes">
+
+<div></div>
+
+</ComponentPreview>
+
+### Radio Group
+
+<ComponentPreview name="context-menu-radio-group">
+
+<div></div>
+
+</ComponentPreview>
+
+### Destructive
+
+<ComponentPreview name="context-menu-destructive">
+
+<div></div>
+
+</ComponentPreview>
+
 ## API Reference
 
 See the [Context Menu API Reference](https://bits-ui.com/docs/components/context-menu#api-reference) for a full list of props.

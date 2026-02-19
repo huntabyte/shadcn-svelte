@@ -68,6 +68,24 @@ Copy and paste the following code into your project.
 <Progress value={33} />
 ```
 
+## Examples
+
+### Label
+
+<ComponentPreview name="progress-label">
+
+<div></div>
+
+</ComponentPreview>
+
+### Controlled
+
+<ComponentPreview name="progress-controlled">
+
+<div></div>
+
+</ComponentPreview>
+
 ## API Reference
 
 See the [Progress API Reference](https://bits-ui.com/docs/components/progress#api-reference) for a full list of props.

@@ -99,6 +99,32 @@ You can nest providers to create groups with different settings. Tooltips use th
 </Tooltip.Provider>
 ```
 
+## Examples
+
+### Side
+
+<ComponentPreview name="tooltip-side">
+
+<div></div>
+
+</ComponentPreview>
+
+### With Keyboard Shortcut
+
+<ComponentPreview name="tooltip-keyboard-shortcut">
+
+<div></div>
+
+</ComponentPreview>
+
+### Disabled Button
+
+<ComponentPreview name="tooltip-disabled-button">
+
+<div></div>
+
+</ComponentPreview>
+
 ---
 
 ## Changelog

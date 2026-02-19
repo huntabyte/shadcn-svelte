@@ -84,6 +84,40 @@ Copy and paste the following code into your project.
 </Accordion.Root>
 ```
 
+## Examples
+
+### Multiple
+
+<ComponentPreview name="accordion-multiple">
+
+<div></div>
+
+</ComponentPreview>
+
+### Disabled
+
+<ComponentPreview name="accordion-disabled">
+
+<div></div>
+
+</ComponentPreview>
+
+### Borders
+
+<ComponentPreview name="accordion-borders">
+
+<div></div>
+
+</ComponentPreview>
+
+### Card
+
+<ComponentPreview name="accordion-card">
+
+<div></div>
+
+</ComponentPreview>
+
 ## API Reference
 
 See the [Accordion API Reference](https://bits-ui.com/docs/components/accordion#api-reference) for a full list of props.

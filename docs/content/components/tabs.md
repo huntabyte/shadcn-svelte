@@ -77,6 +77,40 @@ Copy and paste the following code into your project.
 </Tabs.Root>
 ```
 
+## Examples
+
+### Line
+
+<ComponentPreview name="tabs-line">
+
+<div></div>
+
+</ComponentPreview>
+
+### Vertical
+
+<ComponentPreview name="tabs-vertical">
+
+<div></div>
+
+</ComponentPreview>
+
+### Disabled
+
+<ComponentPreview name="tabs-disabled">
+
+<div></div>
+
+</ComponentPreview>
+
+### Icons
+
+<ComponentPreview name="tabs-icons">
+
+<div></div>
+
+</ComponentPreview>
+
 ## API Reference
 
 See the [Tabs API Reference](https://bits-ui.com/docs/components/tabs#api-reference) for a full list of props.

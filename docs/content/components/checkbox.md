@@ -68,6 +68,64 @@ Copy and paste the following code into your project.
 <Checkbox />
 ```
 
+## Examples
+
+### Disabled
+
+<ComponentPreview name="checkbox-disabled">
+
+<div></div>
+
+</ComponentPreview>
+
+### With Text
+
+<ComponentPreview name="checkbox-with-text">
+
+<div></div>
+
+</ComponentPreview>
+
+### Description
+
+<ComponentPreview name="checkbox-description">
+
+<div></div>
+
+</ComponentPreview>
+
+### Group
+
+<ComponentPreview name="checkbox-group">
+
+<div></div>
+
+</ComponentPreview>
+
+### Table
+
+<ComponentPreview name="checkbox-table">
+
+<div></div>
+
+</ComponentPreview>
+
+### Form (Multiple)
+
+<ComponentPreview name="checkbox-form-multiple">
+
+<div></div>
+
+</ComponentPreview>
+
+### Form (Single)
+
+<ComponentPreview name="checkbox-form-single">
+
+<div></div>
+
+</ComponentPreview>
+
 ## API Reference
 
 See the [Checkbox API Reference](https://bits-ui.com/docs/components/checkbox#api-reference) for a full list of props.

@@ -82,6 +82,54 @@ Copy and paste the following code into your project.
 
 ## Examples
 
+### Submenu
+
+<ComponentPreview name="dropdown-menu-submenu">
+
+<div></div>
+
+</ComponentPreview>
+
+### Shortcuts
+
+<ComponentPreview name="dropdown-menu-shortcuts">
+
+<div></div>
+
+</ComponentPreview>
+
+### Icons
+
+<ComponentPreview name="dropdown-menu-icons">
+
+<div></div>
+
+</ComponentPreview>
+
+### Destructive
+
+<ComponentPreview name="dropdown-menu-destructive">
+
+<div></div>
+
+</ComponentPreview>
+
+### Avatar
+
+<ComponentPreview name="dropdown-menu-avatar">
+
+<div></div>
+
+</ComponentPreview>
+
+### Complex
+
+<ComponentPreview name="dropdown-menu-complex">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Checkboxes
 
 <ComponentPreview name="dropdown-menu-checkboxes">

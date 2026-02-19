@@ -74,6 +74,24 @@ Copy and paste the following code into your project.
 </Collapsible.Root>
 ```
 
+## Examples
+
+### Settings Panel
+
+<ComponentPreview name="collapsible-settings">
+
+<div></div>
+
+</ComponentPreview>
+
+### File Tree
+
+<ComponentPreview name="collapsible-file-tree">
+
+<div></div>
+
+</ComponentPreview>
+
 ## API Reference
 
 See the [Collapsible API Reference](https://bits-ui.com/docs/components/collapsible#api-reference) for a full list of props.
