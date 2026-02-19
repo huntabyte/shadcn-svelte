@@ -7,9 +7,11 @@ description: Latest updates and announcements.
 	import Steps from '$lib/components/steps.svelte'
 	import Callout from '$lib/components/callout.svelte'
 	import ComponentPreview from '$lib/components/component-preview.svelte'
+	import ChangelogLinks from '$lib/components/changelog-links.svelte'
 </script>
 
 ## October 2025 - New Components
+
 For this round of components, I looked at what we build every day, the boring stuff we rebuild over and over, and made reusable abstractions you can actually use.
 
 - [Spinner](/docs/components/spinner): An indicator to show a loading state.
@@ -22,4 +24,4 @@ For this round of components, I looked at what we build every day, the boring st
 
 ## More Updates
 
-[June 2025Calendar Components](/docs/changelog/2025-06-calendar) [May 2025Tailwind v4](/docs/changelog/2025-05-tailwind-v4) [March 2024Introducing Blocks](/docs/changelog/2024-03-blocks) [February 2024New Component Resizable](/docs/changelog/2024-02-resizable) [January 2024New Components](/docs/changelog/2024-01-new-components) [December 2023Calendar](/docs/changelog/2023-12-calendar) [November 2023Toggle Group](/docs/changelog/2023-11-toggle-group) [October 2023Command and Combobox](/docs/changelog/2023-10-command-combobox)
+<ChangelogLinks />

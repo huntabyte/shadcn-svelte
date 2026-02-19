@@ -4,6 +4,7 @@
 	import ArrowUpRight from "@lucide/svelte/icons/arrow-up-right";
 	import ArrowLeftIcon from "@lucide/svelte/icons/arrow-left";
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
+	import RssIcon from "@lucide/svelte/icons/rss";
 	import DocsToc from "$lib/components/docs-toc.svelte";
 	import { findNeighbors } from "$lib/navigation.js";
 	import { page } from "$app/state";
@@ -22,6 +23,7 @@
 	const source = $derived(data.viewerData);
 
 	const neighbors = $derived(findNeighbors(page.url.pathname));
+	const isChangelog = $derived(page.url.pathname.startsWith("/docs/changelog"));
 </script>
 
 <Metadata
@@ -74,28 +76,42 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 							{doc.title}
 						</h1>
 						<div class="docs-nav flex items-center gap-2" data-llm-ignore>
-							<DocsCopyPage />
-							{#if neighbors.previous}
+							{#if isChangelog}
 								<Button
 									variant="secondary"
-									size="icon"
-									class="extend-touch-target ms-auto size-8 shadow-none md:size-7"
-									href={neighbors.previous.href}
+									size="sm"
+									class="h-8 shadow-none select-none md:h-7 md:text-[0.8rem]"
+									href="/rss.xml"
+									target="_blank"
+									rel="noopener noreferrer"
 								>
-									<ArrowLeftIcon />
-									<span class="sr-only">Previous</span>
+									<RssIcon />
+									RSS
 								</Button>
-							{/if}
-							{#if neighbors.next}
-								<Button
-									variant="secondary"
-									size="icon"
-									class="extend-touch-target size-8 shadow-none md:size-7"
-									href={neighbors.next.href}
-								>
-									<span class="sr-only">Next</span>
-									<ArrowRightIcon />
-								</Button>
+							{:else}
+								<DocsCopyPage />
+								{#if neighbors.previous}
+									<Button
+										variant="secondary"
+										size="icon"
+										class="extend-touch-target ms-auto size-8 shadow-none md:size-7"
+										href={neighbors.previous.href}
+									>
+										<ArrowLeftIcon />
+										<span class="sr-only">Previous</span>
+									</Button>
+								{/if}
+								{#if neighbors.next}
+									<Button
+										variant="secondary"
+										size="icon"
+										class="extend-touch-target size-8 shadow-none md:size-7"
+										href={neighbors.next.href}
+									>
+										<span class="sr-only">Next</span>
+										<ArrowRightIcon />
+									</Button>
+								{/if}
 							{/if}
 						</div>
 					</div>
@@ -110,6 +126,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 				<Markdown viewerData={data.viewerData} />
 			</div>
 		</div>
+		{#if !isChangelog}
 		<div
 			class="mx-auto hidden h-16 w-full max-w-2xl items-center gap-2 px-4 sm:flex md:px-0"
 			data-llm-ignore
@@ -137,5 +154,6 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 				</Button>
 			{/if}
 		</div>
+		{/if}
 	</div>
 </div>
