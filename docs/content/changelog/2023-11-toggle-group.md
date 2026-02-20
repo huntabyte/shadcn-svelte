@@ -1,7 +1,7 @@
 ---
 title: November 2023 - Toggle Group
 description: Toggle Group in shadcn-svelte.
-url: /docs/changelog/2023-11-toggle-group
+date: 2023-11-01
 ---
 
 ## November 2023

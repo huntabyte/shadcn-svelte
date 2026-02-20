@@ -1,7 +1,7 @@
 ---
 title: January 2024 - New Components
 description: New Components in shadcn-svelte.
-url: /docs/changelog/2024-01-new-components
+date: 2024-01-01
 ---
 
 ## January 2024

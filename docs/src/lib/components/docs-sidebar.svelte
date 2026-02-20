@@ -10,6 +10,25 @@
 	}: { navItems: SidebarNavItem[] } & ComponentProps<typeof Sidebar.Root> = $props();
 
 	const pathname = $derived(page.url.pathname);
+
+	function normalizePath(path: string): string {
+		if (path === "/") return path;
+		return path.endsWith("/") ? path.slice(0, -1) : path;
+	}
+
+	function isSidebarItemActive(itemHref: string | undefined, currentPathname: string): boolean {
+		if (!itemHref) return false;
+
+		const href = normalizePath(itemHref);
+		const path = normalizePath(currentPathname);
+		const isIntroductionRoute = href === "/docs";
+
+		if (isIntroductionRoute) {
+			return path === href;
+		}
+
+		return path === href || path.startsWith(`${href}/`);
+	}
 </script>
 
 <Sidebar.Root
@@ -40,7 +59,7 @@
 								{#if subItem.items.length === 0}
 									<Sidebar.MenuItem class="w-full">
 										<Sidebar.MenuButton
-											isActive={subItem.href === pathname}
+											isActive={isSidebarItemActive(subItem.href, pathname)}
 											class="data-[active=true]:bg-accent data-[active=true]:border-accent 3xl:fixed:w-full 3xl:fixed:max-w-48 relative h-[30px] w-fit overflow-visible border border-transparent text-[0.8rem] font-medium after:absolute after:inset-x-0 after:-inset-y-1 after:z-0 after:rounded-md"
 										>
 											{#snippet child({ props })}

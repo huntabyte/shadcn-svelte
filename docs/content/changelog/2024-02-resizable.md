@@ -1,7 +1,7 @@
 ---
 title: February 2024 - New Component Resizable
 description: New Component Resizable in shadcn-svelte.
-url: /docs/changelog/2024-02-resizable
+date: 2024-02-01
 ---
 
 ## February 2024

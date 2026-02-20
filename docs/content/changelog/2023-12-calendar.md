@@ -1,7 +1,7 @@
 ---
 title: December 2023 - Calendar Components
 description: Calendar Components in shadcn-svelte.
-url: /docs/changelog/2023-12-calendar
+date: 2023-12-01
 ---
 
 ## December 2023

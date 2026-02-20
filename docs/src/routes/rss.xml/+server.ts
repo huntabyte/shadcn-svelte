@@ -3,18 +3,31 @@ import { siteConfig } from "$lib/config.js";
 
 export const prerender = true;
 
+function getChangelogDate(entry: (typeof changelog)[number]): Date {
+	if (entry.date) {
+		const date = new Date(entry.date);
+		if (!Number.isNaN(date.getTime())) {
+			return date;
+		}
+	}
+
+	const match = entry.path.match(/(\d{4})-(\d{2})/);
+	if (match) {
+		return new Date(Number(match[1]), Number(match[2]) - 1, 1);
+	}
+
+	return new Date();
+}
+
 export function GET() {
-	// Sort descending by slug (YYYY-MM-* prefix gives us date order)
-	const entries = [...changelog].sort((a, b) => b.slug.localeCompare(a.slug));
+	const entries = [...changelog]
+		.filter((entry) => entry.path.startsWith("changelog/") && entry.path !== "changelog")
+		.sort((a, b) => getChangelogDate(b).getTime() - getChangelogDate(a).getTime());
 
 	const items = entries
 		.map((entry) => {
-			// Parse YYYY-MM from slug like "changelog/2025-06-calendar"
-			const match = entry.slug.match(/(\d{4})-(\d{2})/);
-			const pubDate = match
-				? new Date(Number(match[1]), Number(match[2]) - 1, 1).toUTCString()
-				: new Date().toUTCString();
-			const link = `${siteConfig.url}/docs/${entry.slug}`;
+			const pubDate = getChangelogDate(entry).toUTCString();
+			const link = `${siteConfig.url}/docs/${entry.path}`;
 			return `    <item>
       <title><![CDATA[${entry.title}]]></title>
       <link>${link}</link>

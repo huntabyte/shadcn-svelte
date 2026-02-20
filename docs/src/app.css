@@ -474,6 +474,15 @@
 	}
 }
 
+/* Placeholder utilities for future logical inline slide animations (RTL/LTR aware). */
+@utility slide-in-from-inline-start-2 {
+	--tw-inline-slide-start: 1;
+}
+
+@utility slide-in-from-inline-end-2 {
+	--tw-inline-slide-end: 1;
+}
+
 @layer components {
 	.dialog-ring {
 		@apply rounded-xl border-none bg-clip-padding shadow-2xl ring-4 ring-neutral-200/80 dark:bg-neutral-900 dark:ring-neutral-800;

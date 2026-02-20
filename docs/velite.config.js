@@ -5,6 +5,7 @@ const docSchema = s
 	.object({
 		title: s.string(),
 		description: s.string(),
+		date: s.string().optional(),
 		path: s.path(),
 		navLabel: s.string().optional(),
 		links: s

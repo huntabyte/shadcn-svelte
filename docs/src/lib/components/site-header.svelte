@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { dev } from "$app/environment";
 	import Logo from "./logo.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import MainNav from "./main-nav.svelte";
@@ -42,9 +43,11 @@
 				<GithubLink />
 				<Separator orientation="vertical" class="3xl:flex hidden" />
 				<LayoutToggle class="3xl:flex hidden" />
-				<Separator orientation="vertical" />
-				<Customizer />
-				<Separator orientation="vertical" />
+				{#if dev}
+					<Separator orientation="vertical" />
+					<Customizer />
+					<Separator orientation="vertical" />
+				{/if}
 				<Button href="/create" variant="default" size="sm">
 					<PlusIcon />
 					New Project

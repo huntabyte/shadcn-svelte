@@ -1,7 +1,7 @@
 ---
 title: June 2025 - Calendar Components
 description: New Calendar Components in shadcn-svelte.
-url: /docs/changelog/2025-06-calendar
+date: 2025-06-01
 ---
 
 ## June 2025

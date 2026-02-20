@@ -15,7 +15,10 @@
 </script>
 
 <Alert.Root
-	class={cn("bg-background text-foreground  w-auto border md:-mx-1", className)}
+	class={cn(
+		"bg-surface text-surface-foreground border-surface mt-6 w-auto rounded-xl md:-mx-1 **:[code]:border",
+		className
+	)}
 	{...restProps}
 >
 	{#if Icon}

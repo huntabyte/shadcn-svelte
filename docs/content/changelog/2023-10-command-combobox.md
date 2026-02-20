@@ -1,7 +1,7 @@
 ---
 title: October 2023 - Command and Combobox
 description: Command and Combobox in shadcn-svelte.
-url: /docs/changelog/2023-10-command-combobox
+date: 2023-10-01
 ---
 
 ## October 2023

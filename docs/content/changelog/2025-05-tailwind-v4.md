@@ -1,7 +1,7 @@
 ---
 title: May 2025 - Tailwind v4 Support
 description: Tailwind v4 Support in shadcn-svelte.
-url: /docs/changelog/2025-05-tailwind-v4
+date: 2025-05-01
 ---
 
 ## May 2025
