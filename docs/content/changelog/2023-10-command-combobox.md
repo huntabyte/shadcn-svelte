@@ -4,8 +4,6 @@ description: Command and Combobox in shadcn-svelte.
 date: 2023-10-01
 ---
 
-## October 2023
-
 We've added two new components to the library, [Command](/docs/components/command) & [Combobox](/docs/components/combobox). We've also made some updates to the `<Form.Label />` component that you'll want to be aware of.
 
 ### New Component: Command

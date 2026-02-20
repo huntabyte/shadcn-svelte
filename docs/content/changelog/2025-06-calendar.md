@@ -4,8 +4,6 @@ description: New Calendar Components in shadcn-svelte.
 date: 2025-06-01
 ---
 
-## June 2025
-
 ### New Calendar Components
 
 We've completely overhauled the `Calendar` and `RangeCalendar` components to support dropdowns for the month and year selectors, and have added 30+ Calendar blocks to help you get started building your own calendar components.

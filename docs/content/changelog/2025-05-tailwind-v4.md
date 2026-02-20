@@ -4,8 +4,6 @@ description: Tailwind v4 Support in shadcn-svelte.
 date: 2025-05-01
 ---
 
-## May 2025
-
 ### Tailwind v4 Support
 
 Tailwind v4 support has officially landed. You can see a full demo of the refreshed styles that come with it here: [https://v4.shadcn-svelte.com](https://v4.shadcn-svelte.com).

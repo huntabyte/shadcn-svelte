@@ -4,8 +4,6 @@ description: Spinner, Kbd, Button Group, Input Group, Field, Item, and Empty com
 date: 2025-10-01
 ---
 
-## October 2025
-
 For this round of components, I looked at what we build every day, the boring stuff we rebuild over and over, and made reusable abstractions you can actually use.
 
 - [Spinner](/docs/components/spinner): An indicator to show a loading state.

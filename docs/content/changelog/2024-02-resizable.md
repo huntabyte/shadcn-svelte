@@ -4,8 +4,6 @@ description: New Component Resizable in shadcn-svelte.
 date: 2024-02-01
 ---
 
-## February 2024
-
 ### New Component: Resizable
 
 We've added a new component to the project, [Resizable](/docs/components/resizable), which is built on top of [PaneForge](https://paneforge.com). PaneForge is still in an early stage, so be sure to raise any issues you find with the library on the [PaneForge GitHub](https://github.com/svecosystem/paneforge).
