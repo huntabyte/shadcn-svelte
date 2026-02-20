@@ -25,7 +25,7 @@ export type NavItemWithChildren = NavItem & {
 function generateSectionsNav(): SidebarNavItem[] {
 	const sectionsNavItems: SidebarNavItem[] = [
 		{
-			title: "Get Started",
+			title: "Introduction",
 			href: "/docs",
 			items: [],
 		},
@@ -49,6 +49,11 @@ function generateSectionsNav(): SidebarNavItem[] {
 			href: "/docs/forms",
 			items: [],
 			},*/,
+		{
+			title: "Formsnap",
+			href: "/docs/forms",
+			items: [],
+		},
 		{
 			title: "Changelog",
 			href: "/docs/changelog",
