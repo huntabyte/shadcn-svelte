@@ -23,7 +23,7 @@
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20260219.0",
+		"@cloudflare/workers-types": "^4.20260228.0",
 		"@dnd-kit-svelte/svelte": "^0.1.6",
 		"@dnd-kit/abstract": "^0.3.2",
 		"@dnd-kit/collision": "^0.3.2",
@@ -50,8 +50,8 @@
 		"@shikijs/themes": "^3.22.0",
 		"@sveltejs/acorn-typescript": "^1.0.9",
 		"@sveltejs/adapter-cloudflare": "^7.2.8",
-		"@sveltejs/enhanced-img": "^0.10.2",
-		"@sveltejs/kit": "^2.52.2",
+		"@sveltejs/enhanced-img": "^0.10.3",
+		"@sveltejs/kit": "^2.53.0",
 		"@sveltejs/vite-plugin-svelte": "catalog:",
 		"@tabler/icons-svelte": "^3.37.1",
 		"@tailwindcss/vite": "^4.2.0",
@@ -93,7 +93,7 @@
 		"remark-stringify": "^11.0.0",
 		"remixicon-svelte": "^0.0.5",
 		"rimraf": "^6.1.3",
-		"rollup-plugin-visualizer": "^6.0.8",
+		"rollup-plugin-visualizer": "^7.0.0",
 		"runed": "^0.37.1",
 		"shadcn-svelte": "workspace:*",
 		"shiki": "^3.22.0",
