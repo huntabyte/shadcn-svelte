@@ -35,7 +35,7 @@
 			>
 				<figcaption
 					class="text-foreground [&>svg]:text-foreground flex h-12 shrink-0 items-center gap-2 border-b py-2 ps-4 pe-2 [&>svg]:size-4 [&>svg]:opacity-70"
-					data-language="tsx"
+					data-language="svelte"
 				>
 					<Icon />
 					{chart.name}
