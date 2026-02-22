@@ -51,7 +51,7 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 			props.class as string
 		)}
 	>
-		<ChevronDownIcon class="rotate-180 sm:rotate-0" />
+		<ChevronDownIcon class="rotate-180" />
 	</Button>
 {/snippet}
 

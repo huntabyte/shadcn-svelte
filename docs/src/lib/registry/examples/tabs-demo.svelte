@@ -17,7 +17,7 @@
 				<Card.Header>
 					<Card.Title>Account</Card.Title>
 					<Card.Description>
-						Make changes to your account here. Click save when you&apos;re done.
+						Make changes to your account here. Click save when you're done.
 					</Card.Description>
 				</Card.Header>
 				<Card.Content class="grid gap-6">
@@ -40,7 +40,7 @@
 				<Card.Header>
 					<Card.Title>Password</Card.Title>
 					<Card.Description>
-						Change your password here. After saving, you&apos;ll be logged out.
+						Change your password here. After saving, you'll be logged out.
 					</Card.Description>
 				</Card.Header>
 				<Card.Content class="grid gap-6">

@@ -3,7 +3,7 @@
 	import * as Carousel from "$lib/registry/ui/carousel/index.js";
 </script>
 
-<Carousel.Root class="w-full max-w-xs">
+<Carousel.Root class="w-full max-w-[12rem] sm:max-w-xs">
 	<Carousel.Content>
 		{#each Array(5), i}
 			<Carousel.Item>

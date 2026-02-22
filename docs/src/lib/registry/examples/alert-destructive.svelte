@@ -6,5 +6,5 @@
 <Alert.Root variant="destructive">
 	<CircleAlertIcon class="size-4" />
 	<Alert.Title>Error</Alert.Title>
-	<Alert.Description>Your session has expired. Please login again.</Alert.Description>
+	<Alert.Description>Your session has expired. Please log in again.</Alert.Description>
 </Alert.Root>
