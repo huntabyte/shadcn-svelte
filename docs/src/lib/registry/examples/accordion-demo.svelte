@@ -2,7 +2,7 @@
 	import * as Accordion from "$lib/registry/ui/accordion/index.js";
 </script>
 
-<Accordion.Root type="single" collapsible class="w-full" value="item-1">
+<Accordion.Root type="single" class="w-full" value="item-1">
 	<Accordion.Item value="item-1">
 		<Accordion.Trigger>Product Information</Accordion.Trigger>
 		<Accordion.Content class="flex flex-col gap-4 text-balance">
@@ -34,8 +34,8 @@
 		<Accordion.Trigger>Return Policy</Accordion.Trigger>
 		<Accordion.Content class="flex flex-col gap-4 text-balance">
 			<p>
-				We stand behind our products with a comprehensive 30-day return policy. If
-				you're not completely satisfied, simply return the item in its original condition.
+				We stand behind our products with a comprehensive 30-day return policy. If you're
+				not completely satisfied, simply return the item in its original condition.
 			</p>
 			<p>
 				Our hassle-free return process includes free return shipping and full refunds
