@@ -2,13 +2,17 @@
 	import { Separator } from "$lib/registry/ui/separator/index.js";
 </script>
 
-<div class="flex max-w-sm flex-col gap-4 text-sm">
-	<div class="flex flex-col gap-1.5">
-		<div class="leading-none font-medium">shadcn/ui</div>
-		<div class="text-muted-foreground">The Foundation for your Design System</div>
+<div>
+	<div class="space-y-1">
+		<h4 class="text-sm font-medium leading-none">Bits UI Primitives</h4>
+		<p class="text-muted-foreground text-sm">An open-source UI component library.</p>
 	</div>
-	<Separator />
-	<div>
-		A set of beautifully designed components that you can customize, extend, and build on.
+	<Separator class="my-4" />
+	<div class="flex h-5 items-center space-x-4 text-sm">
+		<div>Blog</div>
+		<Separator orientation="vertical" />
+		<div>Docs</div>
+		<Separator orientation="vertical" />
+		<div>Source</div>
 	</div>
 </div>

@@ -11,9 +11,10 @@
 			<Button {...props} variant="outline">Open</Button>
 		{/snippet}
 	</DropdownMenu.Trigger>
-	<DropdownMenu.Content class="w-32">
+	<DropdownMenu.Content class="w-56">
 		<DropdownMenu.Group>
 			<DropdownMenu.Label>Panel Position</DropdownMenu.Label>
+			<DropdownMenu.Separator />
 			<DropdownMenu.RadioGroup bind:value={position}>
 				<DropdownMenu.RadioItem value="top">Top</DropdownMenu.RadioItem>
 				<DropdownMenu.RadioItem value="bottom">Bottom</DropdownMenu.RadioItem>
