@@ -47,11 +47,11 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 		variant="secondary"
 		size="sm"
 		class={cn(
-			"peer -ms-0.5 size-8 shadow-none md:size-7 md:text-[0.8rem]",
+			"peer -ml-0.5 size-8 shadow-none md:size-7 md:text-[0.8rem]",
 			props.class as string
 		)}
 	>
-		<ChevronDownIcon class="rotate-180" />
+		<ChevronDownIcon class="" />
 	</Button>
 {/snippet}
 
@@ -200,7 +200,7 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 					{@render Trigger({ props })}
 				{/snippet}
 			</DropdownMenu.Trigger>
-			<DropdownMenu.Content align="end" class="shadow-none">
+			<DropdownMenu.Content align="end" class="animate-none! rounded-lg shadow-none">
 				{#each Object.entries(menuItems) as [key, value] (key)}
 					<DropdownMenu.Item>
 						{#snippet child({ props })}
@@ -220,7 +220,7 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 			{/snippet}
 		</Popover.Trigger>
 		<Popover.Content
-			class="bg-background/70 dark:bg-background/60 w-52 origin-center! rounded-lg p-1 shadow-sm backdrop-blur-sm"
+			class="bg-background/70 dark:bg-background/60 w-52 !origin-center rounded-lg p-1 shadow-none backdrop-blur-sm"
 			align="start"
 			{customAnchor}
 		>

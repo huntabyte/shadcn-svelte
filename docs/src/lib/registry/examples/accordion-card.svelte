@@ -3,25 +3,28 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 </script>
 
-<Card.Root class="w-full sm:max-w-[70%]">
+<Card.Root class="w-full">
 	<Card.Content class="p-0">
 		<Accordion.Root type="single">
 			<Accordion.Item value="item-1" class="border-b-0 border-t px-6 first:border-t-0">
-				<Accordion.Trigger>Is it accessible?</Accordion.Trigger>
+				<Accordion.Trigger>What's included in the free plan?</Accordion.Trigger>
 				<Accordion.Content>
-					Yes. It adheres to the WAI-ARIA design pattern.
+					The free plan includes up to 3 projects, 5GB of storage, and access to core features.
+					Upgrade anytime to unlock unlimited projects and advanced tools.
 				</Accordion.Content>
 			</Accordion.Item>
 			<Accordion.Item value="item-2" class="border-b-0 border-t px-6">
-				<Accordion.Trigger>Is it styled?</Accordion.Trigger>
+				<Accordion.Trigger>How do I upgrade my subscription?</Accordion.Trigger>
 				<Accordion.Content>
-					Yes. It comes with default styles that match the other components' aesthetic.
+					Go to Settings → Billing and select a plan. Upgrades take effect immediately and are
+					prorated for the remainder of your billing cycle.
 				</Accordion.Content>
 			</Accordion.Item>
 			<Accordion.Item value="item-3" class="border-b-0 border-t px-6">
-				<Accordion.Trigger>Is it animated?</Accordion.Trigger>
+				<Accordion.Trigger>Can I cancel my subscription?</Accordion.Trigger>
 				<Accordion.Content>
-					Yes. It's animated by default, but you can disable it if you prefer.
+					Yes, you can cancel at any time from the Billing section. You'll retain access until the
+					end of your current billing period.
 				</Accordion.Content>
 			</Accordion.Item>
 		</Accordion.Root>

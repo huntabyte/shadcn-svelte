@@ -25,7 +25,7 @@ export { default as AccordionDisabled } from "./accordion-disabled.svelte";
 export { default as AccordionBorders } from "./accordion-borders.svelte";
 export { default as AccordionCard } from "./accordion-card.svelte";
 export { default as AlertAction } from "./alert-action.svelte";
-export { default as AlertCustomColors } from "./alert-custom-colors.svelte";
+export { default as AlertCustomColors } from "./alert-colors.svelte";
 export { default as AlertDialogDestructive } from "./alert-dialog-destructive.svelte";
 export { default as AlertDialogSmall } from "./alert-dialog-small.svelte";
 export { default as AlertDialogMedia } from "./alert-dialog-media.svelte";

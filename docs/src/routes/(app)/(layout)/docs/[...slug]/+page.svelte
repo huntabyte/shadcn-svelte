@@ -97,12 +97,10 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 			<div class="flex flex-col gap-2">
 				<div class="flex flex-col gap-2">
 					<div class="flex items-start justify-between">
-						<h1
-							class="scroll-m-20 text-4xl font-semibold tracking-tight sm:text-3xl xl:text-4xl"
-						>
+						<h1 class="scroll-m-20 text-3xl font-semibold tracking-tight">
 							{doc.title}
 						</h1>
-						<div class="docs-nav flex items-center gap-2" data-llm-ignore>
+						<div class="docs-nav flex items-center gap-1.5" data-llm-ignore>
 							{#if isChangelog}
 								<Button
 									variant="secondary"
@@ -115,8 +113,9 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 									<RssIcon />
 									RSS
 								</Button>
-							{:else}
-								<DocsCopyPage />
+							{:else}<div class="hidden sm:block">
+									<DocsCopyPage />
+								</div>
 								{#if neighbors.previous}
 									<Button
 										variant="secondary"

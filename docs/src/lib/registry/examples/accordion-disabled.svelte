@@ -2,23 +2,25 @@
 	import * as Accordion from "$lib/registry/ui/accordion/index.js";
 </script>
 
-<Accordion.Root type="single" class="w-full sm:max-w-[70%]">
+<Accordion.Root type="single" class="w-full">
 	<Accordion.Item value="item-1">
-		<Accordion.Trigger>Is it accessible?</Accordion.Trigger>
+		<Accordion.Trigger>How do I view my account history?</Accordion.Trigger>
 		<Accordion.Content>
-			Yes. It adheres to the WAI-ARIA design pattern.
+			You can view your complete account history by navigating to the History section in your
+			account settings.
 		</Accordion.Content>
 	</Accordion.Item>
 	<Accordion.Item value="item-2" disabled>
-		<Accordion.Trigger>Is it styled?</Accordion.Trigger>
+		<Accordion.Trigger>Can I update my email address?</Accordion.Trigger>
 		<Accordion.Content>
-			Yes. It comes with default styles that match the other components' aesthetic.
+			Yes, you can update your email address from the Profile section of your account settings.
 		</Accordion.Content>
 	</Accordion.Item>
 	<Accordion.Item value="item-3">
-		<Accordion.Trigger>Is it animated?</Accordion.Trigger>
+		<Accordion.Trigger>How do I delete my account?</Accordion.Trigger>
 		<Accordion.Content>
-			Yes. It's animated by default, but you can disable it if you prefer.
+			Account deletion can be requested from the Security section of your account settings. This
+			action is permanent and cannot be undone.
 		</Accordion.Content>
 	</Accordion.Item>
 </Accordion.Root>

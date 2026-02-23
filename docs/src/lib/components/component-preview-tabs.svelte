@@ -56,7 +56,7 @@
 			data-align={align}
 			data-chromeless={chromeLessOnMobile}
 			class={cn(
-				"preview flex min-h-48 w-full justify-center p-10 data-[align=center]:items-center data-[align=end]:items-end data-[align=start]:items-start data-[chromeless=true]:h-auto data-[chromeless=true]:p-0",
+				"preview flex w-full justify-center p-10 data-[align=center]:items-center data-[align=end]:items-end data-[align=start]:items-start data-[chromeless=true]:h-auto data-[chromeless=true]:p-0",
 				previewClassName
 			)}
 			data-llm-ignore

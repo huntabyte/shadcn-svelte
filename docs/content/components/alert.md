@@ -73,6 +73,8 @@ Update the import paths to match your project setup.
 
 ### Destructive
 
+Use `variant="destructive"` to create a destructive alert.
+
 <ComponentPreview name="alert-destructive">
 
 <div></div>
@@ -80,6 +82,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Action
+
+Use `Alert.Action` to add a button or other action element to the alert.
 
 <ComponentPreview name="alert-action">
 
@@ -89,7 +93,9 @@ Update the import paths to match your project setup.
 
 ### Custom Colors
 
-<ComponentPreview name="alert-custom-colors">
+You can customize the alert colors by adding custom classes such as `bg-amber-50 dark:bg-amber-950` to the `Alert.Root` component.
+
+<ComponentPreview name="alert-colors">
 
 <div></div>
 
