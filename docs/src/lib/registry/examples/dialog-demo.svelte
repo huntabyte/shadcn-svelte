@@ -6,9 +6,9 @@
 </script>
 
 <Dialog.Root>
-	<form>
-		<Dialog.Trigger class={buttonVariants({ variant: "outline" })}>Open Dialog</Dialog.Trigger>
-		<Dialog.Content class="sm:max-w-[425px]">
+	<Dialog.Trigger class={buttonVariants({ variant: "outline" })}>Open Dialog</Dialog.Trigger>
+	<Dialog.Content class="sm:max-w-[425px]">
+		<form> // 'form' element must be inside 'Dialog.Content' to avoid auto submit
 			<Dialog.Header>
 				<Dialog.Title>Edit profile</Dialog.Title>
 				<Dialog.Description>
@@ -29,6 +29,6 @@
 				<Dialog.Close class={buttonVariants({ variant: "outline" })}>Cancel</Dialog.Close>
 				<Button type="submit">Save changes</Button>
 			</Dialog.Footer>
-		</Dialog.Content>
-	</form>
+		</form>
+	</Dialog.Content>
 </Dialog.Root>
