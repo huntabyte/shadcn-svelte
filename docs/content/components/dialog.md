@@ -102,10 +102,12 @@ To use the `Dialog` component from within a `Context Menu` or `Dropdown Menu`, y
     <ContextMenuContent>
       <ContextMenuItem>Open</ContextMenuItem>
       <ContextMenuItem>Download</ContextMenuItem>
-      <DialogTrigger asChild>
-        <ContextMenuItem>
-          <span>Delete</span>
-        </ContextMenuItem>
+      <DialogTrigger>
+        {#snippet child({ props })}
+          <ContextMenuItem {...props}>
+            <span>Delete</span>
+          </ContextMenuItem>
+        {/snippet}
       </DialogTrigger>
     </ContextMenuContent>
   </ContextMenu>

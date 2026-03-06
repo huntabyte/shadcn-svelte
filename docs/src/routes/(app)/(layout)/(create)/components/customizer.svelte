@@ -1,0 +1,48 @@
+<script lang="ts">
+	import Settings2Icon from "@lucide/svelte/icons/settings-2";
+	import * as Field from "$lib/registry/ui/field/index.js";
+	import RadiusPicker from "./radius-picker.svelte";
+	import StylePicker from "./style-picker.svelte";
+	import ThemePicker from "./theme-picker.svelte";
+	import BaseColorPicker from "./base-color-picker.svelte";
+	import IconLibraryPicker from "./icon-library-picker.svelte";
+	import FontPicker from "./font-picker.svelte";
+	import CustomizerControls from "./customizer-controls.svelte";
+	import PresetPicker from "./preset-picker.svelte";
+	import MenuColorPicker from "./menu-color-picker.svelte";
+	import MenuAccentPicker from "./menu-accent-picker.svelte";
+</script>
+
+<div
+	class="no-scrollbar -mx-2.5 flex flex-col overflow-y-auto p-1 md:mx-0 md:h-[calc(100svh-var(--header-height)-2rem)] md:w-48 md:gap-0 md:py-0"
+>
+	<div
+		class="hidden items-center gap-2 px-[calc(--spacing(2.5))] pb-1 md:flex md:flex-col md:items-start"
+	>
+		<Settings2Icon class="size-4" />
+		<div class="relative flex flex-col gap-1 rounded-lg text-[13px]/snug">
+			<div class="flex items-center gap-1 font-medium text-balance">
+				Build your own shadcn-svelte
+			</div>
+			<div class="hidden md:flex">
+				When you're done, click Create Project to start a new project.
+			</div>
+		</div>
+	</div>
+	<div
+		class="no-scrollbar h-14 overflow-x-auto overflow-y-hidden p-px md:h-full md:overflow-x-hidden md:overflow-y-auto"
+	>
+		<Field.Group class="flex h-full flex-1 flex-row gap-2 md:flex-col md:gap-0">
+			<PresetPicker />
+			<StylePicker />
+			<BaseColorPicker />
+			<ThemePicker />
+			<IconLibraryPicker />
+			<FontPicker />
+			<RadiusPicker />
+			<MenuColorPicker />
+			<MenuAccentPicker />
+			<CustomizerControls class="hidden w-full flex-col md:mt-auto md:flex" />
+		</Field.Group>
+	</div>
+</div>

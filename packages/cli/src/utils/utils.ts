@@ -1,10 +1,19 @@
 import color from "picocolors";
-import { z } from "zod/v4";
+import { z } from "zod";
 import { error } from "./errors.js";
+import { InvalidArgumentError } from "commander";
 
 export function isUrl(path: string) {
 	const result = z.url().safeParse(path);
 	return result.success;
+}
+
+export function parseUrl(value: string): URL {
+	try {
+		return new URL(value);
+	} catch {
+		throw new InvalidArgumentError("Invalid URL format.");
+	}
 }
 
 export const highlight = (str: string) => color.bold(color.cyan(str));

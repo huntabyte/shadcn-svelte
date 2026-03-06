@@ -6,8 +6,15 @@ import * as p from "@clack/prompts";
 import * as registry from "./registry/index.js";
 import { highlight } from "./utils.js";
 import { cancel, prettifyList } from "./prompt-helpers.js";
-import { transformContent, transformCss } from "./transformers.js";
+import { transformCss } from "./transform-css.js";
 import type { ResolvedConfig } from "./get-config.js";
+import {
+	transform,
+	transformImports,
+	transformIcons,
+	transformStripTypes,
+	createTransformInjectStyles,
+} from "./transformers/index.js";
 
 const STYLE_TYPES = ["registry:style", "registry:theme"];
 
@@ -53,7 +60,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 			selectedItems.add(regDep);
 		}
 
-		const itemExists = item.files.some((file) => {
+		const itemExists = item.files?.some((file) => {
 			const filePath = registry.resolveItemFilePath(opts.config, item, file);
 			return existsSync(filePath);
 		});
@@ -121,21 +128,38 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 					: `Adding ${highlight(item.name)}`,
 			// @ts-expect-error this is intentional since we don't want to return a string during `init`
 			async task() {
-				for (const file of item.files) {
-					let filePath = registry.resolveItemFilePath(opts.config, item, file);
+				const registryStyle = await registry.getRegistryStyle(
+					registryUrl,
+					opts.config.designSystem.style
+				);
 
-					// run transformers
-					const content = await transformContent(file.content, filePath, opts.config);
+				for (const file of item.files ?? []) {
+					const filePath = registry.resolveItemFilePath(opts.config, item, file);
 
-					const dir = path.parse(filePath).dir;
+					const {
+						content,
+						dependencies: transformDependencies,
+						devDependencies: transformDevDependencies,
+						filePath: transformFilePath,
+					} = await transform(
+						{ content: file.content, filePath: filePath, config: opts.config },
+						[
+							transformImports,
+							transformIcons,
+							createTransformInjectStyles(registryStyle),
+							!opts.config.typescript && transformStripTypes,
+						]
+					);
+
+					transformDependencies?.forEach((dep) => dependencies.add(dep));
+					transformDevDependencies?.forEach((dep) => devDependencies.add(dep));
+
+					const dir = path.parse(transformFilePath).dir;
 					if (!existsSync(dir)) {
 						await fs.mkdir(dir, { recursive: true });
 					}
 
-					if (!opts.config.typescript && filePath.endsWith(".ts")) {
-						filePath = filePath.replace(".ts", ".js");
-					}
-					await fs.writeFile(filePath, content, "utf8");
+					await fs.writeFile(transformFilePath, content, "utf8");
 				}
 
 				if (item.cssVars) {
