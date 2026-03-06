@@ -2,6 +2,7 @@
 	import UserAuthForm from "./(components)/user-auth-form.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import Metadata from "$lib/components/metadata.svelte";
+	import { Heroshot } from "heroshot/sveltekit";
 
 	const title = "Authentication";
 	const description = "Authentication forms build using the components.";
@@ -16,16 +17,7 @@
 />
 
 <div class="md:hidden">
-	<img
-		src="/img/examples/authentication-light.png"
-		alt="Authentication"
-		class="block dark:hidden"
-	/>
-	<img
-		src="/img/examples/authentication-dark.png"
-		alt="Authentication"
-		class="hidden dark:block"
-	/>
+	<Heroshot name="examples/authentication" alt="Authentication" />
 </div>
 
 <div
