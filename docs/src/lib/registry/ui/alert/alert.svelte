@@ -35,9 +35,9 @@
 <div
 	bind:this={ref}
 	data-slot="alert"
+	role="alert"
 	class={cn(alertVariants({ variant }), className)}
 	{...restProps}
-	role="alert"
 >
 	{@render children?.()}
 </div>
