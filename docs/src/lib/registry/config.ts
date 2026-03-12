@@ -6,6 +6,7 @@ import { z } from "zod";
 import { fonts } from "./fonts.js";
 import { STYLES, type Style } from "./styles/index.js";
 import { BASE_THEMES, THEMES, type BaseTheme, type Theme } from "./themes.js";
+import { PRESET_BASE_COLORS, PRESET_FONTS } from "shadcn-svelte/preset";
 
 const SHADCN_VERSION = "latest";
 
@@ -19,10 +20,7 @@ export type StyleName = Style["name"];
 export type ThemeName = Theme["name"];
 export type BaseColorName = BaseTheme["name"];
 
-// Derive font values from registry fonts (e.g., "font-inter" -> "inter").
-const fontValues = fonts.map((f) => f.name.replace("font-", "")) as [string, ...string[]];
-
-export type FontValue = (typeof fontValues)[number];
+export type FontValue = (typeof PRESET_FONTS)[number];
 
 export const MENU_ACCENTS = [
 	{ value: "subtle", label: "Subtle" },
@@ -35,6 +33,8 @@ export type MenuAccentValue = MenuAccent["value"];
 export const MENU_COLORS = [
 	{ value: "default", label: "Default" },
 	{ value: "inverted", label: "Inverted" },
+	{ value: "default-translucent", label: "Default Translucent" },
+	{ value: "inverted-translucent", label: "Inverted Translucent" },
 ] as const;
 
 export type MenuColor = (typeof MENU_COLORS)[number];
@@ -59,9 +59,9 @@ export const designSystemConfigSchema = z
 		iconLibrary: z
 			.enum(Object.keys(iconLibraries) as [IconLibraryName, ...IconLibraryName[]])
 			.default("lucide"),
-		baseColor: z.enum(BASE_THEMES.map((c) => c.name)).default("neutral"),
+		baseColor: z.enum(PRESET_BASE_COLORS).default("neutral"),
 		theme: z.enum(THEMES.map((t) => t.name)),
-		font: z.enum(fontValues).default("inter"),
+		font: z.enum(PRESET_FONTS).default("inter"),
 		menuAccent: z
 			.enum(MENU_ACCENTS.map((a) => a.value) as [MenuAccentValue, ...MenuAccentValue[]])
 			.default("subtle"),
