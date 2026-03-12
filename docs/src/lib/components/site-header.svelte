@@ -11,6 +11,8 @@
 	import { mainNavItems } from "$lib/navigation.js";
 	import PlusIcon from "@lucide/svelte/icons/plus";
 	import Customizer from "./customizer.svelte";
+	import { page } from "$app/state";
+	import InitializeDialog from "../../routes/(app)/(layout)/(create)/components/initialize-dialog.svelte";
 
 	const colors = getColors();
 
@@ -43,11 +45,15 @@
 				<Separator orientation="vertical" class="3xl:flex hidden" />
 				<LayoutToggle class="3xl:flex hidden" />
 				<Separator orientation="vertical" />
-				<Customizer />
-				<Button href="/create" variant="default" size="sm">
-					<PlusIcon />
-					New Project
-				</Button>
+				{#if page.url.pathname.startsWith("/create")}
+					<InitializeDialog />
+				{:else}
+					<Customizer />
+					<Button href="/create" variant="default" size="sm">
+						<PlusIcon />
+						New Project
+					</Button>
+				{/if}
 			</div>
 		</div>
 	</div>

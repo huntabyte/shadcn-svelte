@@ -27,6 +27,7 @@ import {
 } from "shadcn-svelte/preset";
 
 export interface IDesignSystemState extends PresetConfig {
+	preset: string;
 	locks: Lockable;
 	lock: (key: keyof Lockable) => void;
 	unlock: (key: keyof Lockable) => void;
@@ -116,6 +117,10 @@ class DesignSystemState implements IDesignSystemState {
 
 	get canRedo() {
 		return this.#history.canRedo;
+	}
+
+	get preset() {
+		return this.#preset.current;
 	}
 
 	// locks

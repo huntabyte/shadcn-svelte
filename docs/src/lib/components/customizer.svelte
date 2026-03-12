@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { buttonVariants } from "$lib/registry/ui/button/button.svelte";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import IconPlaceholder from "./icon-placeholder/icon-placeholder.svelte";
 	import PresetPicker from "../../routes/(app)/(layout)/(create)/components/preset-picker.svelte";
