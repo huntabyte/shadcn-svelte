@@ -144,7 +144,7 @@ export function toBase62(num: number) {
 export function fromBase62(str: string) {
   let result = 0
   for (let i = 0; i < str.length; i++) {
-    const idx = BASE62.indexOf(str[i])
+    const idx = BASE62.indexOf(str[i]!)
     if (idx === -1) return -1
     result = result * 62 + idx
   }
@@ -187,7 +187,7 @@ export function decodePreset(code: string): PresetConfig | null {
   for (const field of PRESET_FIELDS) {
     const idx = Math.floor(bits / 2 ** offset) % 2 ** field.bits
     result[field.key] =
-      idx < field.values.length ? field.values[idx] : field.values[0]
+      idx < field.values.length ? field.values[idx]! : field.values[0]!
     offset += field.bits
   }
 
@@ -205,7 +205,7 @@ export function isPresetCode(value: string) {
   }
 
   for (let i = 1; i < value.length; i++) {
-    if (BASE62.indexOf(value[i]) === -1) {
+    if (BASE62.indexOf(value[i]!) === -1) {
       return false
     }
   }
