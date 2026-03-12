@@ -39,6 +39,7 @@
 		{...restProps}
 	>
 		<Sheet.Content
+			bind:ref
 			data-sidebar="sidebar"
 			data-slot="sidebar"
 			data-mobile="true"
