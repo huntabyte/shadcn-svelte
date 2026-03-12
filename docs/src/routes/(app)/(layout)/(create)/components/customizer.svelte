@@ -11,6 +11,7 @@
 	import MenuAccentPicker from "./menu-accent-picker.svelte";
 	import RandomButton from "./random-button.svelte";
 	import CopyPreset from "./copy-preset.svelte";
+	import MainMenu from "./main-menu.svelte";
 </script>
 
 <Card.Root
@@ -20,7 +21,7 @@
 	<Card.Header
 		class="hidden items-center justify-between gap-2 border-b group-data-reversed/layout:flex-row-reverse md:flex"
 	>
-		<!-- <MainMenu /> -->
+		<MainMenu />
 	</Card.Header>
 	<Card.Content
 		class="no-scrollbar min-h-0 flex-1 overflow-x-auto overflow-y-hidden md:overflow-y-auto"

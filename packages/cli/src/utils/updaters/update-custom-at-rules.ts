@@ -32,7 +32,7 @@ export const CUSTOM_AT_RULES = `/* Custom variants */
 }
 
 @custom-variant data-selected {
-  &:where([data-selected="true"]) {
+  &:where([data-selected]) {
     @slot;
   }
 }
