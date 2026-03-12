@@ -21,12 +21,9 @@
 	import UndoIcon from "@lucide/svelte/icons/undo";
 	import RedoIcon from "@lucide/svelte/icons/redo";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
-	import { useIsMac } from "$lib/hooks/use-is-mac.svelte.js";
+	import { cmdOrCtrl } from "$lib/hooks/use-is-mac.svelte.js";
 
 	const designSystem = useDesignSystem();
-
-	const isMac = useIsMac();
-	const cmdOrCtrl = $derived(isMac.current ? "⌘" : "Ctrl");
 </script>
 
 <Tooltip.Provider>
@@ -45,8 +42,8 @@
 				remixicon="RiSettingsLine"
 			/>
 		</DropdownMenu.Trigger>
-		<DropdownMenu.Content align="end" class="min-w-64" preventScroll={false}>
-			<Field.Group class="flex h-full flex-1 flex-row gap-2 md:flex-col md:gap-0">
+		<DropdownMenu.Content align="end" class="dark min-w-64 p-0" preventScroll={false}>
+			<DropdownMenu.Group>
 				<PresetPicker submenu />
 				<StylePicker submenu />
 				<BaseColorPicker submenu />
@@ -58,7 +55,9 @@
 				<MenuAccentPicker submenu />
 				<DropdownMenu.Separator />
 				<CustomizerControls submenu />
-				<DropdownMenu.Separator />
+			</DropdownMenu.Group>
+			<DropdownMenu.Separator />
+			<DropdownMenu.Group>
 				<DropdownMenu.Item
 					closeOnSelect={false}
 					onclick={() => {
@@ -96,7 +95,9 @@
 					</div>
 					<Kbd.Root class="bg-foreground/10 text-foreground hidden md:flex">D</Kbd.Root>
 				</DropdownMenu.Item>
-				<DropdownMenu.Separator />
+			</DropdownMenu.Group>
+			<DropdownMenu.Separator />
+			<DropdownMenu.Group>
 				<DropdownMenu.Item
 					closeOnSelect={false}
 					onclick={() => designSystem.undo()}
@@ -109,7 +110,6 @@
 					</div>
 					<Kbd.Group class="hidden md:flex">
 						<Kbd.Root class="bg-foreground/10 text-foreground">{cmdOrCtrl}</Kbd.Root>
-						<span>+</span>
 						<Kbd.Root class="bg-foreground/10 text-foreground">z</Kbd.Root>
 					</Kbd.Group>
 				</DropdownMenu.Item>
@@ -124,12 +124,12 @@
 						<span>Redo</span>
 					</div>
 					<Kbd.Group class="hidden md:flex">
+						<Kbd.Root class="bg-foreground/10 text-foreground">⇧</Kbd.Root>
 						<Kbd.Root class="bg-foreground/10 text-foreground">{cmdOrCtrl}</Kbd.Root>
-						<span>+</span>
 						<Kbd.Root class="bg-foreground/10 text-foreground">Z</Kbd.Root>
 					</Kbd.Group>
 				</DropdownMenu.Item>
-			</Field.Group>
+			</DropdownMenu.Group>
 		</DropdownMenu.Content>
 	</DropdownMenu.Root>
 </Tooltip.Provider>

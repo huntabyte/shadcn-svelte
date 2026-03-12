@@ -17,7 +17,14 @@ import {
 	type RandomizeContext,
 } from "../../../../routes/(app)/(layout)/(create)/lib/randomize-biases.js";
 import { StateHistory } from "runed";
-import { decodePreset, encodePreset, DEFAULT_PRESET_CONFIG, type PresetConfig, PRESET_BASE_COLORS, PRESET_FONTS } from 'shadcn-svelte/preset'
+import {
+	decodePreset,
+	encodePreset,
+	DEFAULT_PRESET_CONFIG,
+	type PresetConfig,
+	PRESET_BASE_COLORS,
+	PRESET_FONTS,
+} from "shadcn-svelte/preset";
 
 export interface IDesignSystemState extends PresetConfig {
 	locks: Lockable;
@@ -50,7 +57,10 @@ class DesignSystemState implements IDesignSystemState {
 	#preset: PersistedState<string>;
 	#locks: PersistedState<Lockable>;
 	constructor() {
-		this.#preset = new PersistedState<string>("design-system-preset", this.#getSearchParam("preset") ?? encodePreset(DEFAULT_PRESET_CONFIG));
+		this.#preset = new PersistedState<string>(
+			"design-system-preset",
+			this.#getSearchParam("preset") ?? encodePreset(DEFAULT_PRESET_CONFIG)
+		);
 		this.#locks = new PersistedState<Lockable>("locks", {
 			style: false,
 			baseColor: false,
@@ -70,7 +80,7 @@ class DesignSystemState implements IDesignSystemState {
 		this.#history = new StateHistory(
 			() => this.#preset.current,
 			(value) => {
-				this.#preset.current = value
+				this.#preset.current = value;
 			}
 		);
 	}
@@ -134,6 +144,13 @@ class DesignSystemState implements IDesignSystemState {
 		}
 	}
 
+	#update(system: Partial<PresetConfig>) {
+		this.system = {
+			...this.system,
+			...system,
+		};
+	}
+
 	get baseColor() {
 		return this.system.baseColor;
 	}
@@ -142,11 +159,10 @@ class DesignSystemState implements IDesignSystemState {
 		// if the theme is currently set to a base color, we need to update it to this value as well
 		const shouldUpdateTheme = BASE_THEMES.some((base) => base.name === this.theme);
 
-		this.system = {
-			...this.system,
+		this.#update({
 			theme: shouldUpdateTheme ? value : this.system.theme,
 			baseColor: value,
-		};
+		});
 	}
 
 	get font() {
@@ -154,7 +170,7 @@ class DesignSystemState implements IDesignSystemState {
 	}
 
 	set font(value: PresetConfig["font"]) {
-		this.system.font = value;
+		this.#update({ font: value });
 	}
 
 	get iconLibrary() {
@@ -162,7 +178,7 @@ class DesignSystemState implements IDesignSystemState {
 	}
 
 	set iconLibrary(value: PresetConfig["iconLibrary"]) {
-		this.system.iconLibrary = value;
+		this.#update({ iconLibrary: value });
 	}
 
 	get menuAccent() {
@@ -170,7 +186,7 @@ class DesignSystemState implements IDesignSystemState {
 	}
 
 	set menuAccent(value: PresetConfig["menuAccent"]) {
-		this.system.menuAccent = value;
+		this.#update({ menuAccent: value });
 	}
 
 	get menuColor() {
@@ -178,7 +194,7 @@ class DesignSystemState implements IDesignSystemState {
 	}
 
 	set menuColor(value: PresetConfig["menuColor"]) {
-		this.system.menuColor = value;
+		this.#update({ menuColor: value });
 	}
 
 	get radius() {
@@ -186,7 +202,7 @@ class DesignSystemState implements IDesignSystemState {
 	}
 
 	set radius(value: PresetConfig["radius"]) {
-		this.system.radius = value;
+		this.#update({ radius: value });
 	}
 
 	get style() {
@@ -194,7 +210,7 @@ class DesignSystemState implements IDesignSystemState {
 	}
 
 	set style(value: PresetConfig["style"]) {
-		this.system.style = value;
+		this.#update({ style: value });
 	}
 
 	get theme() {
@@ -202,7 +218,7 @@ class DesignSystemState implements IDesignSystemState {
 	}
 
 	set theme(value: PresetConfig["theme"]) {
-		this.system.theme = value;
+		this.#update({ theme: value });
 	}
 
 	reset() {
@@ -225,17 +241,15 @@ class DesignSystemState implements IDesignSystemState {
 		const availableRadii = applyBias(RADII, context, RANDOMIZE_BIASES.radius);
 
 		const selectedTheme = this.locks.theme ? this.theme : randomItem(availableThemes).name;
-		const selectedFont = this.locks.font
-			? this.font
-			: randomItem(PRESET_FONTS);
+		const selectedFont = this.locks.font ? this.font : randomItem(PRESET_FONTS);
 		const selectedRadius = this.locks.radius ? this.radius : randomItem(availableRadii).name;
 		const selectedIconLibrary = this.locks.iconLibrary
 			? this.iconLibrary
 			: (
-				randomItem(
-					Object.values(iconLibraries)
-				) as (typeof iconLibraries)[keyof typeof iconLibraries]
-			).name;
+					randomItem(
+						Object.values(iconLibraries)
+					) as (typeof iconLibraries)[keyof typeof iconLibraries]
+				).name;
 		const selectedMenuAccent = this.locks.menuAccent
 			? this.menuAccent
 			: randomItem(MENU_ACCENTS).value;

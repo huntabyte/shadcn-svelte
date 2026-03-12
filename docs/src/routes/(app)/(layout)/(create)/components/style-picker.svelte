@@ -39,6 +39,7 @@
 			side={isMobile.current ? "top" : submenu ? "left" : "right"}
 			align={isMobile.current ? "center" : "start"}
 			class="md:w-64"
+			sideOffset={submenu ? 5 : 20}
 			{submenu}
 		>
 			<Picker.RadioGroup bind:value={designSystem.style}>

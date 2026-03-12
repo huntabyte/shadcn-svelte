@@ -4,7 +4,7 @@
 
 	let {
 		ref = $bindable(null),
-		sideOffset = 4,
+		sideOffset = 20,
 		portalProps,
 		class: className,
 		submenu = false,
@@ -18,10 +18,10 @@
 {#if submenu}
 	<DropdownMenuPrimitive.SubContent
 		bind:ref
-		data-slot="dropdown-menu-content"
+		data-slot="dropdown-menu-sub-content"
 		{sideOffset}
 		class={cn(
-			"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 bg-popover text-popover-foreground cn-menu-target ring-foreground/10 no-scrollbar z-50 max-h-(--available-height) w-[calc(var(--available-width)-(--spacing(3.5)))] min-w-32 origin-(--transform-origin) overflow-x-hidden overflow-y-auto rounded-xl border-0 p-1 shadow-md ring-1 duration-100 outline-none data-[state=closed]:overflow-hidden md:w-52",
+			"bg-popover/90 text-popover-foreground ring-foreground/10 z-50 w-auto min-w-[96px] rounded-md p-1 shadow-lg ring-1 backdrop-blur-xs",
 			className
 		)}
 		{...restProps}
@@ -33,7 +33,7 @@
 			data-slot="dropdown-menu-content"
 			{sideOffset}
 			class={cn(
-				"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 bg-popover text-popover-foreground cn-menu-target ring-foreground/10 no-scrollbar z-50 max-h-(--available-height) w-[calc(var(--available-width)-(--spacing(3.5)))] min-w-32 origin-(--transform-origin) overflow-x-hidden overflow-y-auto rounded-xl border-0 p-1 shadow-md ring-1 duration-100 outline-none data-[state=closed]:overflow-hidden md:w-52",
+				"cn-menu-target no-scrollbar z-50 max-h-(--available-height) w-[calc(var(--available-width)-(--spacing(6)))] min-w-32 origin-(--transform-origin) translate-y-2 overflow-x-hidden overflow-y-auto rounded-xl border-0 bg-neutral-950/80 p-1.5 text-neutral-100 ring-1 ring-neutral-950/80 backdrop-blur-xl outline-none data-[state=closed]:overflow-hidden md:w-52 dark:bg-neutral-800/90 dark:ring-neutral-700/50",
 				className
 			)}
 			{...restProps}
