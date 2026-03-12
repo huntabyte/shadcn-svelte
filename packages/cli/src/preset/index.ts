@@ -20,4 +20,4 @@ export {
 	generateRandomConfig,
 	generateRandomPreset,
 	type PresetConfig,
-} from "./preset";
+} from "./preset.js";

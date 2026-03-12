@@ -18,7 +18,7 @@ import {
 	PRESET_THEMES,
 	toBase62,
 	type PresetConfig,
-} from "./preset";
+} from "../src/preset/preset.js";
 
 describe("base62", () => {
 	it("should round-trip numbers", () => {
