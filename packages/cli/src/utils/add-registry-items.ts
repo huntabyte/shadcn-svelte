@@ -7,7 +7,7 @@ import * as registry from "./registry/index.js";
 import { highlight } from "./utils.js";
 import { cancel, prettifyList } from "./prompt-helpers.js";
 import { transformCss } from "./transform-css.js";
-import type { ResolvedConfig } from "./get-config.js";
+import type { ResolvedConfig } from "./config/index.js";
 import {
 	transform,
 	transformImports,

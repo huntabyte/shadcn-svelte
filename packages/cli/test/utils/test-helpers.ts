@@ -1,5 +1,5 @@
 import { fileURLToPath } from "node:url";
-import { getConfig } from "../../src/utils/get-config";
+import { getConfig } from "../../src/utils/config/index";
 
 export function toPosixPath(p: string) {
 	return p.replace(/^[A-Z]:/, "").replace(/\\/g, "/");

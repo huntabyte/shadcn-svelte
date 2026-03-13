@@ -1,14 +1,10 @@
-import { pascalToKebab } from "../utils/casing.js";
+// !! BROWSER SAFE !!
 
-export const ICON_LIBRARIES = [
-	"lucide",
-	"tabler",
-	"hugeicons",
-	"phosphor",
-	"remixicon",
-] as const;
+import { PRESET_ICON_LIBRARIES } from "../preset/preset.js";
 
-export type IconLibraryName = (typeof ICON_LIBRARIES)[number];
+export const ICON_LIBRARIES = PRESET_ICON_LIBRARIES;
+
+export type IconLibraryName = (typeof PRESET_ICON_LIBRARIES)[number];
 export type IconLibraries = IconLibraryName;
 
 export type IconLibrary = {
@@ -83,4 +79,13 @@ function toPhosphorName(name: string): string {
 function toRemixKebab(name: string): string {
 	const withoutPrefix = name.startsWith("Ri") ? name.slice(2) : name;
 	return pascalToKebab(withoutPrefix);
+}
+
+function pascalToKebab(str: string): string {
+	return str
+		.replace(/([A-Z]+)([A-Z][a-z])/g, "$1-$2")
+		.replace(/([a-z])([A-Z])/g, "$1-$2")
+		.replace(/([a-zA-Z])(\d)/g, "$1-$2")
+		.replace(/(\d)([a-zA-Z])/g, "$1-$2")
+		.toLowerCase();
 }

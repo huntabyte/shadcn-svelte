@@ -11,7 +11,7 @@ import {
 	resolveItemFilePath,
 } from "../../src/utils/registry/index.js";
 import { toPosixPath } from "./test-helpers.js";
-import type { ResolvedConfig } from "../../src/utils/get-config.js";
+import type { ResolvedConfig } from "../../src/utils/config/index.js";
 import type { RegistryItem, RegistryIndex } from "@shadcn-svelte/registry";
 
 vi.mock("node-fetch-native", () => ({

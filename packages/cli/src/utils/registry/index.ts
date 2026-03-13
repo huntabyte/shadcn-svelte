@@ -3,15 +3,20 @@ import { fetch } from "node-fetch-native";
 import { createProxy } from "node-fetch-native/proxy";
 import { isUrl, resolveURL } from "../utils.js";
 import { CLIError, error } from "../errors.js";
-import { BASE_COLORS, type ResolvedConfig } from "../get-config.js";
+import { BASE_COLORS, type ResolvedConfig } from "../config/index.js";
 import { getEnvProxy } from "../get-env-proxy.js";
 import { OFFICIAL_REGISTRY_URL } from "../../constants.js";
 import * as schemas from "../../schema/index.js";
 import { parse as parseCss } from "postcss";
 
-export function getRegistryUrl(config: ResolvedConfig) {
+export function getRegistryUrl(config: { registry: string }) {
 	const url = process.env.COMPONENTS_REGISTRY_URL ?? config.registry;
 	return url;
+}
+
+export function getSiteUrl(config: { registry: string }) {
+	const registryUrl = getRegistryUrl(config);
+	return new URL(registryUrl).origin;
 }
 
 export async function getRegistryIndex(registryUrl: string) {

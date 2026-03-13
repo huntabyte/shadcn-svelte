@@ -74,6 +74,7 @@
 		"ignore": "^7.0.4",
 		"magic-string": "^0.30.21",
 		"memfs": "^4.17.2",
+		"open": "^11.0.0",
 		"package-manager-detector": "^1.2.0",
 		"picocolors": "^1.1.1",
 		"resolve.exports": "^2.0.3",

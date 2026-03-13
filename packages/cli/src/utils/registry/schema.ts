@@ -1,6 +1,7 @@
+// !! BROWSER SAFE !!
+
 import { z } from "zod";
-import { rawConfigSchema } from "../get-config.js";
-import { naiveDeepPartialify } from "../utils.js";
+import { rawConfigSchema } from "../config/schema.js";
 
 const registryItemFileType = [
 	"registry:lib",
@@ -308,3 +309,25 @@ export const componentsJsonSchema = z.object({
 			"Used to determine if Typescript is used for this project. When set to `false`, `.js` files will be installed instead. Defaults to `true`."
 		),
 });
+
+/**
+ * A highly naive implementation of deep partialification. Unfortunately the latest version of zod doesn't support this at this time. If there ever comes a time where it does let's replace this method ASAP.
+ *
+ * @see https://github.com/colinhacks/zod/issues/2854
+ *
+ * @param schema
+ * @returns
+ */
+export function naiveDeepPartialify(schema: z.ZodObject): z.ZodObject {
+	const newShape: Record<string, z.ZodType> = {};
+
+	Object.entries(schema.shape).forEach(([key, value]) => {
+		if (value instanceof z.ZodObject) {
+			newShape[key] = naiveDeepPartialify(value).optional();
+		} else {
+			newShape[key] = z.optional(value);
+		}
+	});
+
+	return z.object(newShape);
+}
