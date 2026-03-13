@@ -2,7 +2,6 @@ import semver from "semver";
 import * as p from "@clack/prompts";
 import { detectPM } from "./auto-detect.js";
 import { getProjectPackageInfo } from "./get-package-info.js";
-import { parseDependency } from "./utils.js";
 import { exec } from "tinyexec";
 import { resolveCommand } from "package-manager-detector";
 import { error } from "./errors.js";
@@ -76,4 +75,23 @@ export async function installDependencies({
 		p.cancel("Operation failed.");
 		process.exit(2);
 	}
+}
+
+export function parseDependency(dep: string) {
+	let name: string | undefined = dep;
+	let version: string | undefined = "latest";
+
+	if (dep.startsWith("@")) {
+		if (dep.includes("@", 1)) {
+			[, name, version] = dep.split(/(.*)(?:@)(.*)/);
+		}
+	} else {
+		if (dep.includes("@", 1)) {
+			[name, version] = dep.split("@");
+		}
+	}
+
+	if (!name || !version) throw error(`Failed to parse dependency: ${dep}`);
+
+	return { name, version };
 }

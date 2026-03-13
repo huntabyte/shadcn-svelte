@@ -13,7 +13,7 @@ import * as p from "@clack/prompts";
 import * as registry from "../../utils/registry/index.js";
 import { transformCss } from "../../utils/transform-css.js";
 import { checkPreconditions } from "../../utils/preconditions.js";
-import { highlight } from "../../utils/utils.js";
+import { highlight } from "../../utils/colors.js";
 import { installDependencies } from "../../utils/install-deps.js";
 import {
 	transform,
@@ -175,6 +175,7 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 	const dependencies = new Set<string>();
 	const devDependencies = new Set<string>();
 	let cssVars = {};
+	let css = {};
 	for (const item of payload) {
 		const aliasDir = registry.getItemAliasDir(config, item.type);
 
@@ -211,6 +212,9 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 					await fs.writeFile(transformFilePath, content, "utf8");
 				}
 
+				if (item.css) {
+					css = merge(css, item.css);
+				}
 				if (item.cssVars) {
 					cssVars = merge(cssVars, item.cssVars);
 				}
@@ -241,7 +245,7 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 		});
 	}
 
-	if (Object.keys(cssVars).length > 0) {
+	if (Object.keys(cssVars).length > 0 || Object.keys(css).length > 0) {
 		// Update the stylesheet
 		tasks.push({
 			title: "Updating stylesheet",
@@ -249,7 +253,7 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 				const cssPath = config.resolvedPaths.tailwindCss;
 				const cssSource = await fs.readFile(cssPath, "utf8");
 
-				const modifiedCss = transformCss(cssSource, cssVars);
+				const modifiedCss = transformCss(cssSource, { css, cssVars });
 				await fs.writeFile(cssPath, modifiedCss, "utf8");
 
 				const relative = path.relative(cwd, cssPath);

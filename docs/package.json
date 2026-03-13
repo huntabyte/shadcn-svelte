@@ -45,7 +45,6 @@
 		"@internationalized/date": "^3.10.0",
 		"@lucide/svelte": "^0.561.0",
 		"@prettier/sync": "0.6.1",
-		"@shadcn-svelte/registry": "workspace:*",
 		"@shikijs/langs": "^3.20.0",
 		"@shikijs/themes": "^3.20.0",
 		"@sveltejs/acorn-typescript": "^1.0.8",

@@ -11,7 +11,7 @@ import { cancel, intro, prettifyList } from "../../utils/prompt-helpers.js";
 import * as p from "@clack/prompts";
 import * as registry from "../../utils/registry/index.js";
 import { addRegistryItems } from "../../utils/add-registry-items.js";
-import { highlight } from "../../utils/utils.js";
+import { highlight } from "../../utils/colors.js";
 import { installDependencies } from "../../utils/install-deps.js";
 import { checkPreconditions } from "../../utils/preconditions.js";
 

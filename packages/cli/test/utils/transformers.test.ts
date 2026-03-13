@@ -1,5 +1,10 @@
 import { describe, it, expect } from "vitest";
-import { transform, transformIcons, transformImports, transformStripTypes } from "../../src/utils/transformers";
+import {
+	transform,
+	transformIcons,
+	transformImports,
+	transformStripTypes,
+} from "../../src/utils/transformers";
 import { transformCss } from "../../src/utils/transform-css";
 import type { ResolvedConfig } from "../../src/utils/config/index";
 
@@ -94,9 +99,9 @@ const restPropsInput = `
 
 describe("transformIcons", () => {
 	const getConfig = (iconLibrary: ResolvedConfig["iconLibrary"]): ResolvedConfig => ({
-			...mockConfig,
-			iconLibrary,
-		});
+		...mockConfig,
+		iconLibrary,
+	});
 
 	it("lucide: correctly adds 1 icon", async () => {
 		const result = await transformIcons({
@@ -105,13 +110,15 @@ describe("transformIcons", () => {
 			config: getConfig("lucide"),
 		});
 
-		expect(result.content).toBe(`
+		expect(result.content).toBe(
+			`
 <script lang="ts">
 	import ChevronDownIcon from '@lucide/svelte/icons/chevron-down';
 </script>
 
 <ChevronDownIcon class="cn-accordion-trigger-icon size-4" />
-`.trim());
+`.trim()
+		);
 		expect(result.devDependencies).toEqual(["@lucide/svelte"]);
 	});
 
@@ -122,7 +129,8 @@ describe("transformIcons", () => {
 			config: getConfig("lucide"),
 		});
 
-		expect(result.content).toBe(`
+		expect(result.content).toBe(
+			`
 <script lang="ts">
 	import ChevronDownIcon from '@lucide/svelte/icons/chevron-down';
 import ChevronUpIcon from '@lucide/svelte/icons/chevron-up';
@@ -132,7 +140,8 @@ import ChevronUpIcon from '@lucide/svelte/icons/chevron-up';
 	<ChevronDownIcon class="cn-accordion-trigger-icon group-aria-expanded:hidden" />
 	<ChevronUpIcon class="cn-accordion-trigger-icon hidden group-aria-expanded:inline" />
 </div>
-`.trim());
+`.trim()
+		);
 		expect(result.devDependencies).toEqual(["@lucide/svelte"]);
 	});
 
@@ -143,7 +152,8 @@ import ChevronUpIcon from '@lucide/svelte/icons/chevron-up';
 			config: getConfig("lucide"),
 		});
 
-		expect(result.content).toBe(`
+		expect(result.content).toBe(
+			`
 <script lang="ts">
 	import ChevronDownIcon from '@lucide/svelte/icons/chevron-down';
 
@@ -151,7 +161,8 @@ import ChevronUpIcon from '@lucide/svelte/icons/chevron-up';
 </script>
 
 <ChevronDownIcon class="cn-accordion-trigger-icon" data-slot="accordion-trigger-icon" {...restProps} />
-`.trim());
+`.trim()
+		);
 		expect(result.devDependencies).toEqual(["@lucide/svelte"]);
 	});
 
@@ -162,13 +173,15 @@ import ChevronUpIcon from '@lucide/svelte/icons/chevron-up';
 			config: getConfig("tabler"),
 		});
 
-		expect(result.content).toBe(`
+		expect(result.content).toBe(
+			`
 <script lang="ts">
 	import { IconChevronDown } from '@tabler/icons-svelte';
 </script>
 
 <IconChevronDown class="cn-accordion-trigger-icon size-4" />
-`.trim());
+`.trim()
+		);
 		expect(result.devDependencies).toEqual(["@tabler/icons-svelte"]);
 	});
 
@@ -179,7 +192,8 @@ import ChevronUpIcon from '@lucide/svelte/icons/chevron-up';
 			config: getConfig("tabler"),
 		});
 
-		expect(result.content).toBe(`
+		expect(result.content).toBe(
+			`
 <script lang="ts">
 	import { IconChevronDown } from '@tabler/icons-svelte';
 import { IconChevronUp } from '@tabler/icons-svelte';
@@ -189,7 +203,8 @@ import { IconChevronUp } from '@tabler/icons-svelte';
 	<IconChevronDown class="cn-accordion-trigger-icon group-aria-expanded:hidden" />
 	<IconChevronUp class="cn-accordion-trigger-icon hidden group-aria-expanded:inline" />
 </div>
-`.trim());
+`.trim()
+		);
 		expect(result.devDependencies).toEqual(["@tabler/icons-svelte"]);
 	});
 
@@ -200,7 +215,8 @@ import { IconChevronUp } from '@tabler/icons-svelte';
 			config: getConfig("tabler"),
 		});
 
-		expect(result.content).toBe(`
+		expect(result.content).toBe(
+			`
 <script lang="ts">
 	import { IconChevronDown } from '@tabler/icons-svelte';
 
@@ -208,7 +224,8 @@ import { IconChevronUp } from '@tabler/icons-svelte';
 </script>
 
 <IconChevronDown class="cn-accordion-trigger-icon" data-slot="accordion-trigger-icon" {...restProps} />
-`.trim());
+`.trim()
+		);
 		expect(result.devDependencies).toEqual(["@tabler/icons-svelte"]);
 	});
 
@@ -219,14 +236,16 @@ import { IconChevronUp } from '@tabler/icons-svelte';
 			config: getConfig("hugeicons"),
 		});
 
-		expect(result.content).toBe(`
+		expect(result.content).toBe(
+			`
 <script lang="ts">
 	import { HugeiconsIcon } from "@hugeicons/svelte"
 import { ArrowDown01Icon } from '@hugeicons/core-free-icons';
 </script>
 
 <HugeiconsIcon icon={ArrowDown01Icon} strokeWidth={2} class="cn-accordion-trigger-icon size-4" />
-`.trim());
+`.trim()
+		);
 		expect(result.devDependencies).toEqual(["@hugeicons/svelte", "@hugeicons/core-free-icons"]);
 	});
 
@@ -237,7 +256,8 @@ import { ArrowDown01Icon } from '@hugeicons/core-free-icons';
 			config: getConfig("hugeicons"),
 		});
 
-		expect(result.content).toBe(`
+		expect(result.content).toBe(
+			`
 <script lang="ts">
 	import { HugeiconsIcon } from "@hugeicons/svelte"
 import { ArrowDown01Icon } from '@hugeicons/core-free-icons';
@@ -248,7 +268,8 @@ import { ArrowUp01Icon } from '@hugeicons/core-free-icons';
 	<HugeiconsIcon icon={ArrowDown01Icon} strokeWidth={2} class="cn-accordion-trigger-icon group-aria-expanded:hidden" />
 	<HugeiconsIcon icon={ArrowUp01Icon} strokeWidth={2} class="cn-accordion-trigger-icon hidden group-aria-expanded:inline" />
 </div>
-`.trim());
+`.trim()
+		);
 		expect(result.devDependencies).toEqual(["@hugeicons/svelte", "@hugeicons/core-free-icons"]);
 	});
 
@@ -259,7 +280,8 @@ import { ArrowUp01Icon } from '@hugeicons/core-free-icons';
 			config: getConfig("hugeicons"),
 		});
 
-		expect(result.content).toBe(`
+		expect(result.content).toBe(
+			`
 <script lang="ts">
 	import { HugeiconsIcon } from "@hugeicons/svelte"
 import { ArrowDown01Icon } from '@hugeicons/core-free-icons';
@@ -268,7 +290,8 @@ import { ArrowDown01Icon } from '@hugeicons/core-free-icons';
 </script>
 
 <HugeiconsIcon icon={ArrowDown01Icon} strokeWidth={2} class="cn-accordion-trigger-icon" data-slot="accordion-trigger-icon" {...restProps} />
-`.trim());
+`.trim()
+		);
 		expect(result.devDependencies).toEqual(["@hugeicons/svelte", "@hugeicons/core-free-icons"]);
 	});
 
@@ -279,13 +302,15 @@ import { ArrowDown01Icon } from '@hugeicons/core-free-icons';
 			config: getConfig("phosphor"),
 		});
 
-		expect(result.content).toBe(`
+		expect(result.content).toBe(
+			`
 <script lang="ts">
 	import CaretDownIcon from 'phosphor-svelte/lib/CaretDown';
 </script>
 
 <CaretDownIcon class="cn-accordion-trigger-icon size-4" />
-`.trim());
+`.trim()
+		);
 		expect(result.devDependencies).toEqual(["phosphor-svelte"]);
 	});
 
@@ -296,7 +321,8 @@ import { ArrowDown01Icon } from '@hugeicons/core-free-icons';
 			config: getConfig("phosphor"),
 		});
 
-		expect(result.content).toBe(`
+		expect(result.content).toBe(
+			`
 <script lang="ts">
 	import CaretDownIcon from 'phosphor-svelte/lib/CaretDown';
 import CaretUpIcon from 'phosphor-svelte/lib/CaretUp';
@@ -306,7 +332,8 @@ import CaretUpIcon from 'phosphor-svelte/lib/CaretUp';
 	<CaretDownIcon class="cn-accordion-trigger-icon group-aria-expanded:hidden" />
 	<CaretUpIcon class="cn-accordion-trigger-icon hidden group-aria-expanded:inline" />
 </div>
-`.trim());
+`.trim()
+		);
 		expect(result.devDependencies).toEqual(["phosphor-svelte"]);
 	});
 
@@ -317,7 +344,8 @@ import CaretUpIcon from 'phosphor-svelte/lib/CaretUp';
 			config: getConfig("phosphor"),
 		});
 
-		expect(result.content).toBe(`
+		expect(result.content).toBe(
+			`
 <script lang="ts">
 	import CaretDownIcon from 'phosphor-svelte/lib/CaretDown';
 
@@ -325,7 +353,8 @@ import CaretUpIcon from 'phosphor-svelte/lib/CaretUp';
 </script>
 
 <CaretDownIcon class="cn-accordion-trigger-icon" data-slot="accordion-trigger-icon" {...restProps} />
-`.trim());
+`.trim()
+		);
 		expect(result.devDependencies).toEqual(["phosphor-svelte"]);
 	});
 
@@ -336,13 +365,15 @@ import CaretUpIcon from 'phosphor-svelte/lib/CaretUp';
 			config: getConfig("remixicon"),
 		});
 
-		expect(result.content).toBe(`
+		expect(result.content).toBe(
+			`
 <script lang="ts">
 	import RiArrowDownSLine from 'remixicon-svelte/icons/arrow-down-s-line';
 </script>
 
 <RiArrowDownSLine class="cn-accordion-trigger-icon size-4" />
-`.trim());
+`.trim()
+		);
 		expect(result.devDependencies).toEqual(["remixicon-svelte"]);
 	});
 
@@ -353,7 +384,8 @@ import CaretUpIcon from 'phosphor-svelte/lib/CaretUp';
 			config: getConfig("remixicon"),
 		});
 
-		expect(result.content).toBe(`
+		expect(result.content).toBe(
+			`
 <script lang="ts">
 	import RiArrowDownSLine from 'remixicon-svelte/icons/arrow-down-s-line';
 import RiArrowUpSLine from 'remixicon-svelte/icons/arrow-up-s-line';
@@ -363,7 +395,8 @@ import RiArrowUpSLine from 'remixicon-svelte/icons/arrow-up-s-line';
 	<RiArrowDownSLine class="cn-accordion-trigger-icon group-aria-expanded:hidden" />
 	<RiArrowUpSLine class="cn-accordion-trigger-icon hidden group-aria-expanded:inline" />
 </div>
-`.trim());
+`.trim()
+		);
 		expect(result.devDependencies).toEqual(["remixicon-svelte"]);
 	});
 
@@ -374,7 +407,8 @@ import RiArrowUpSLine from 'remixicon-svelte/icons/arrow-up-s-line';
 			config: getConfig("remixicon"),
 		});
 
-		expect(result.content).toBe(`
+		expect(result.content).toBe(
+			`
 <script lang="ts">
 	import RiArrowDownSLine from 'remixicon-svelte/icons/arrow-down-s-line';
 
@@ -382,7 +416,8 @@ import RiArrowUpSLine from 'remixicon-svelte/icons/arrow-up-s-line';
 </script>
 
 <RiArrowDownSLine class="cn-accordion-trigger-icon" data-slot="accordion-trigger-icon" {...restProps} />
-`.trim());
+`.trim()
+		);
 		expect(result.devDependencies).toEqual(["remixicon-svelte"]);
 	});
 });
@@ -1250,4 +1285,3 @@ describe("updateCss", () => {
 		`);
 	});
 });
-

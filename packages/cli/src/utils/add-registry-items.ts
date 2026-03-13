@@ -4,7 +4,7 @@ import color from "picocolors";
 import merge from "deepmerge";
 import * as p from "@clack/prompts";
 import * as registry from "./registry/index.js";
-import { highlight } from "./utils.js";
+import { highlight } from "./colors.js";
 import { cancel, prettifyList } from "./prompt-helpers.js";
 import { transformCss } from "./transform-css.js";
 import type { ResolvedConfig } from "./config/index.js";
@@ -14,6 +14,7 @@ import {
 	transformIcons,
 	transformStripTypes,
 } from "./transformers/index.js";
+import type { RegistryFont } from "./registry/schema.js";
 
 const STYLE_TYPES = ["registry:style", "registry:theme"];
 
@@ -33,6 +34,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 	const tasks: p.Task[] = [];
 	const cwd = opts.config.resolvedPaths.cwd;
 	const registryUrl = registry.getRegistryUrl(opts.config);
+	const fonts: (RegistryFont & { name: string })[] = [];
 	let cssVars = {};
 	let css = {};
 
@@ -118,6 +120,13 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 		} else {
 			item.dependencies?.forEach((dep) => skippedDeps.add(dep));
 			item.devDependencies?.forEach((dep) => skippedDeps.add(dep));
+		}
+
+		if (item.type === 'registry:font') {	
+			fonts.push({
+				name: item.name.replace('font-', ''),
+				...item.font,
+			});
 		}
 
 		tasks.push({

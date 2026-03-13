@@ -15,7 +15,7 @@ import { syncSvelteKit } from "../../utils/sveltekit.js";
 import { preflightInit } from "./preflight.js";
 import { addRegistryItems } from "../../utils/add-registry-items.js";
 import { getEnvProxy } from "../../utils/get-env-proxy.js";
-import { highlight } from "../../utils/utils.js";
+import { highlight } from "../../utils/colors.js";
 import { installDependencies } from "../../utils/install-deps.js";
 import { checkPreconditions } from "../../utils/preconditions.js";
 import { type PresetConfig, decodePreset, encodePreset } from "../../preset/index.js";
@@ -205,14 +205,15 @@ async function promptForConfig({
 		globalCss = input;
 	}
 
-	const { utilsAlias, libAlias, componentAlias, hooksAlias, uiAlias } = await cliConfig.promptForAliases({
-		...options,
-		tsconfig,
-		cwd,
-		existingConfig,
-	});
+	const { utilsAlias, libAlias, componentAlias, hooksAlias, uiAlias } =
+		await cliConfig.promptForAliases({
+			...options,
+			tsconfig,
+			cwd,
+			existingConfig,
+		});
 
-	const rawConfig = cliConfig.rawConfigSchema.parse({
+	const rawConfig = cliConfig.parseRawConfig({
 		...config,
 		tailwind: {
 			css: globalCss,

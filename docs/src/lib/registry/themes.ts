@@ -1,4 +1,4 @@
-import { type RegistryItem } from "@shadcn-svelte/registry";
+import { type RegistryItem } from "shadcn-svelte/schema";
 
 export const BASE_THEMES = [
 	{

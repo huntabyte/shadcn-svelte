@@ -403,8 +403,8 @@ importers:
         version: 5.43.14
     devDependencies:
       '@clack/prompts':
-        specifier: ^1.0.0-alpha.0
-        version: 1.0.0-alpha.0
+        specifier: ^1.1.0
+        version: 1.1.0
       '@shadcn-svelte/registry':
         specifier: workspace:*
         version: link:../registry
@@ -681,11 +681,11 @@ packages:
   '@changesets/write@0.4.0':
     resolution: {integrity: sha512-CdTLvIOPiCNuH71pyDu3rA+Q0n65cmAbXnwWH84rKGiFumFzkmHNT8KHTMEchcxN+Kl8I54xGUhJ7l3E7X396Q==}
 
-  '@clack/core@1.0.0-alpha.0':
-    resolution: {integrity: sha512-Cp/bPW/pMUCkJ7Lr8VFixvFrlnJ4tQPDHqfTNQ51z50qwX1fSIAstQLfel2NquVHqbfjyrUkBsal8OJRBPJVjw==}
+  '@clack/core@1.1.0':
+    resolution: {integrity: sha512-SVcm4Dqm2ukn64/8Gub2wnlA5nS2iWJyCkdNHcvNHPIeBTGojpdJ+9cZKwLfmqy7irD4N5qLteSilJlE0WLAtA==}
 
-  '@clack/prompts@1.0.0-alpha.0':
-    resolution: {integrity: sha512-Aem7r4U2A4jdOh0PIv51Ugi+4vDgzJjGVMnuPUNVVHDGhFHEO//u6F/JY6NsZQFtXrd7ZmfePSiipikr/e5wWg==}
+  '@clack/prompts@1.1.0':
+    resolution: {integrity: sha512-pkqbPGtohJAvm4Dphs2M8xE29ggupihHdy1x84HNojZuMtFsHiUlRvqD24tM2+XmI+61LlfNceM3Wr7U5QES5g==}
 
   '@cloudflare/kv-asset-handler@0.4.2':
     resolution: {integrity: sha512-SIOD2DxrRRwQ+jgzlXCqoEFiKOFqaPjhnNTGKXSRLvp1HiOvapLaFG2kEr9dYQTYe8rKrd9uvDUzmAITeNyaHQ==}
@@ -5825,15 +5825,13 @@ snapshots:
       human-id: 4.1.3
       prettier: 2.8.8
 
-  '@clack/core@1.0.0-alpha.0':
+  '@clack/core@1.1.0':
     dependencies:
-      picocolors: 1.1.1
       sisteransi: 1.0.5
 
-  '@clack/prompts@1.0.0-alpha.0':
+  '@clack/prompts@1.1.0':
     dependencies:
-      '@clack/core': 1.0.0-alpha.0
-      picocolors: 1.1.1
+      '@clack/core': 1.1.0
       sisteransi: 1.0.5
 
   '@cloudflare/kv-asset-handler@0.4.2': {}

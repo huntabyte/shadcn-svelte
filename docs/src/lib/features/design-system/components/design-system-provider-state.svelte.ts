@@ -22,7 +22,7 @@ import {
 	encodePreset,
 	DEFAULT_PRESET_CONFIG,
 	type PresetConfig,
-	PRESET_BASE_COLORS,
+	PRESET_BASE_COLOR_KEYS,
 	PRESET_FONTS,
 } from "shadcn-svelte/preset";
 
@@ -234,7 +234,7 @@ class DesignSystemState implements IDesignSystemState {
 		// Use current value if locked, otherwise randomize.
 		const selectedBaseColor = this.locks.baseColor
 			? this.baseColor
-			: randomItem(PRESET_BASE_COLORS);
+			: randomItem(PRESET_BASE_COLOR_KEYS);
 		const selectedStyle = this.locks.style ? this.style : randomItem(STYLES).name;
 
 		const context: RandomizeContext = {

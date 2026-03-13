@@ -4,7 +4,7 @@ import * as p from "@clack/prompts";
 import { getDependencyPackageInfo, getProjectPackageInfo } from "./get-package-info.js";
 import * as cliConfig from "./config/index.js";
 import { CLIError, error } from "./errors.js";
-import { highlight } from "./utils.js";
+import { highlight } from "./colors.js";
 import { SITE_BASE_URL, TW3_SITE_BASE_URL } from "../constants.js";
 
 // accepts either a `RawConfig` or `ResolvedConfig`

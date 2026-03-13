@@ -4225,6 +4225,225 @@
 					"path": "src/lib/registry/lib/utils.ts"
 				}
 			]
+		},
+		{
+			"name": "font-font-geist",
+			"type": "registry:font",
+			"registryDependencies": [],
+			"files": [],
+			"font": {
+				"family": "'Geist Variable', sans-serif",
+				"provider": "google",
+				"import": "Geist",
+				"variable": "--font-sans",
+				"subsets": ["latin"]
+			}
+		},
+		{
+			"name": "font-font-inter",
+			"type": "registry:font",
+			"registryDependencies": [],
+			"files": [],
+			"font": {
+				"family": "'Inter Variable', sans-serif",
+				"provider": "google",
+				"import": "Inter",
+				"variable": "--font-sans",
+				"subsets": ["latin"]
+			}
+		},
+		{
+			"name": "font-font-noto-sans",
+			"type": "registry:font",
+			"registryDependencies": [],
+			"files": [],
+			"font": {
+				"family": "'Noto Sans Variable', sans-serif",
+				"provider": "google",
+				"import": "Noto_Sans",
+				"variable": "--font-sans"
+			}
+		},
+		{
+			"name": "font-font-nunito-sans",
+			"type": "registry:font",
+			"registryDependencies": [],
+			"files": [],
+			"font": {
+				"family": "'Nunito Sans Variable', sans-serif",
+				"provider": "google",
+				"import": "Nunito_Sans",
+				"variable": "--font-sans"
+			}
+		},
+		{
+			"name": "font-font-figtree",
+			"type": "registry:font",
+			"registryDependencies": [],
+			"files": [],
+			"font": {
+				"family": "'Figtree Variable', sans-serif",
+				"provider": "google",
+				"import": "Figtree",
+				"variable": "--font-sans",
+				"subsets": ["latin"]
+			}
+		},
+		{
+			"name": "font-font-roboto",
+			"type": "registry:font",
+			"registryDependencies": [],
+			"files": [],
+			"font": {
+				"family": "'Roboto Variable', sans-serif",
+				"provider": "google",
+				"import": "Roboto",
+				"variable": "--font-sans",
+				"subsets": ["latin"]
+			}
+		},
+		{
+			"name": "font-font-raleway",
+			"type": "registry:font",
+			"registryDependencies": [],
+			"files": [],
+			"font": {
+				"family": "'Raleway Variable', sans-serif",
+				"provider": "google",
+				"import": "Raleway",
+				"variable": "--font-sans",
+				"subsets": ["latin"]
+			}
+		},
+		{
+			"name": "font-font-dm-sans",
+			"type": "registry:font",
+			"registryDependencies": [],
+			"files": [],
+			"font": {
+				"family": "'DM Sans Variable', sans-serif",
+				"provider": "google",
+				"import": "DM_Sans",
+				"variable": "--font-sans",
+				"subsets": ["latin"]
+			}
+		},
+		{
+			"name": "font-font-public-sans",
+			"type": "registry:font",
+			"registryDependencies": [],
+			"files": [],
+			"font": {
+				"family": "'Public Sans Variable', sans-serif",
+				"provider": "google",
+				"import": "Public_Sans",
+				"variable": "--font-sans",
+				"subsets": ["latin"]
+			}
+		},
+		{
+			"name": "font-font-outfit",
+			"type": "registry:font",
+			"registryDependencies": [],
+			"files": [],
+			"font": {
+				"family": "'Outfit Variable', sans-serif",
+				"provider": "google",
+				"import": "Outfit",
+				"variable": "--font-sans",
+				"subsets": ["latin"]
+			}
+		},
+		{
+			"name": "font-font-jetbrains-mono",
+			"type": "registry:font",
+			"registryDependencies": [],
+			"files": [],
+			"font": {
+				"family": "'JetBrains Mono Variable', monospace",
+				"provider": "google",
+				"import": "JetBrains_Mono",
+				"variable": "--font-mono",
+				"subsets": ["latin"]
+			}
+		},
+		{
+			"name": "font-font-geist-mono",
+			"type": "registry:font",
+			"registryDependencies": [],
+			"files": [],
+			"font": {
+				"family": "'Geist Mono Variable', monospace",
+				"provider": "google",
+				"import": "Geist_Mono",
+				"variable": "--font-mono",
+				"subsets": ["latin"]
+			}
+		},
+		{
+			"name": "font-font-noto-serif",
+			"type": "registry:font",
+			"registryDependencies": [],
+			"files": [],
+			"font": {
+				"family": "'Noto Serif Variable', serif",
+				"provider": "google",
+				"import": "Noto_Serif",
+				"variable": "--font-serif",
+				"subsets": ["latin"]
+			}
+		},
+		{
+			"name": "font-font-roboto-slab",
+			"type": "registry:font",
+			"registryDependencies": [],
+			"files": [],
+			"font": {
+				"family": "'Roboto Slab Variable', serif",
+				"provider": "google",
+				"import": "Roboto_Slab",
+				"variable": "--font-serif",
+				"subsets": ["latin"]
+			}
+		},
+		{
+			"name": "font-font-merriweather",
+			"type": "registry:font",
+			"registryDependencies": [],
+			"files": [],
+			"font": {
+				"family": "'Merriweather Variable', serif",
+				"provider": "google",
+				"import": "Merriweather",
+				"variable": "--font-serif",
+				"subsets": ["latin"]
+			}
+		},
+		{
+			"name": "font-font-lora",
+			"type": "registry:font",
+			"registryDependencies": [],
+			"files": [],
+			"font": {
+				"family": "'Lora Variable', serif",
+				"provider": "google",
+				"import": "Lora",
+				"variable": "--font-serif",
+				"subsets": ["latin"]
+			}
+		},
+		{
+			"name": "font-font-playfair-display",
+			"type": "registry:font",
+			"registryDependencies": [],
+			"files": [],
+			"font": {
+				"family": "'Playfair Display Variable', serif",
+				"provider": "google",
+				"import": "Playfair_Display",
+				"variable": "--font-serif",
+				"subsets": ["latin"]
+			}
 		}
 	]
 }

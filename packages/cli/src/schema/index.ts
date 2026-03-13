@@ -1,1 +1,1 @@
-export * from '../utils/registry/schema.js';
+export * from "../utils/registry/schema.js";

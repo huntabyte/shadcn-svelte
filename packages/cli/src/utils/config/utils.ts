@@ -3,14 +3,22 @@ import { getTsconfig, type TsConfigResult } from "get-tsconfig";
 import fs from "node:fs";
 import path from "node:path";
 import { z } from "zod";
-import { highlight } from "../utils.js";
+import { highlight } from "../colors.js";
 import { SITE_BASE_URL } from "../../constants.js";
 import { ConfigError, error } from "../errors.js";
 import { resolveImportAlias } from "../resolve-imports.js";
 import { isUsingSvelteKit, syncSvelteKit } from "../sveltekit.js";
 import * as p from "@clack/prompts";
 import { cancel } from "../prompt-helpers.js";
-import { DEFAULT_CONFIG, newConfigSchema, rawConfigSchema, resolvedConfigSchema, stripTrailingSlash, type RawConfig, type ResolvedConfig } from "./schema.js";
+import {
+	DEFAULT_CONFIG,
+	newConfigSchema,
+	rawConfigSchema,
+	resolvedConfigSchema,
+	stripTrailingSlash,
+	type RawConfig,
+	type ResolvedConfig,
+} from "./schema.js";
 
 export async function getConfig(cwd: string): Promise<ResolvedConfig | undefined> {
 	const config = loadConfig(cwd);
@@ -62,7 +70,7 @@ export function loadConfig(cwd: string): RawConfig | undefined {
 	try {
 		const configResult = fs.readFileSync(configPath, { encoding: "utf8" });
 		const config = JSON.parse(configResult);
-		return rawConfigSchema.parse(config);
+		return parseRawConfig(config);
 	} catch (e) {
 		if (!(e instanceof z.ZodError)) throw e;
 		const formatted = z.prettifyError(e);
@@ -70,6 +78,25 @@ export function loadConfig(cwd: string): RawConfig | undefined {
 			`Invalid configuration found in ${highlight(configPath)}.\n\n${formatted}`
 		);
 	}
+}
+
+export function parseRawConfig(config: unknown) {
+	const parsed = rawConfigSchema.parse(config);
+
+	// clean aliases
+	parsed.aliases = {
+		components: cleanAlias(parsed.aliases.components),
+		utils: cleanAlias(parsed.aliases.utils),
+		ui: cleanAlias(parsed.aliases.ui),
+		hooks: cleanAlias(parsed.aliases.hooks),
+		lib: cleanAlias(parsed.aliases.lib),
+	};
+
+	return parsed;
+}
+
+export function cleanAlias(alias: string) {
+	return stripTrailingSlash(alias.replace(/[\u{0080}-\u{FFFF}]/gu, ""));
 }
 
 export function validateImportAlias(opts: Parameters<typeof resolveImportAlias>[0]) {

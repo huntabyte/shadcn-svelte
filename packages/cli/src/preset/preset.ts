@@ -1,5 +1,8 @@
 // !! BROWSER SAFE !!
 
+import { iconLibraries } from "../icons/libraries.js";
+import { keys } from "../utils/utils.js";
+
 // Preset encoding/decoding utilities.
 // Bit-packs design system params into a single integer,
 // then encodes as base62 with a version prefix character.
@@ -13,50 +16,48 @@
 // Value arrays — order matters for backward compat. Never reorder, only append.
 export const PRESET_STYLES = ["nova", "vega", "maia", "lyra", "mira"] as const;
 
-export const PRESET_BASE_COLORS = [
-	"neutral",
-	"stone",
-	"zinc",
-	"mauve",
-	"olive",
-	"mist",
-	"taupe",
-] as const;
+export const PRESET_BASE_COLORS = {
+	neutral: { name: "Neutral", color: "#737373" },
+	stone: { name: "Stone", color: "#79716B" },
+	zinc: { name: "Zinc", color: "#71717B" },
+	mauve: { name: "Mauve", color: "#79697B" },
+	olive: { name: "Olive", color: "#7C7C67" },
+	mist: { name: "Mist", color: "#67787C" },
+	taupe: { name: "Taupe", color: "#7C6D67" },
+} as const;
 
-export const PRESET_THEMES = [
-	"neutral",
-	"stone",
-	"zinc",
-	"amber",
-	"blue",
-	"cyan",
-	"emerald",
-	"fuchsia",
-	"green",
-	"indigo",
-	"lime",
-	"orange",
-	"pink",
-	"purple",
-	"red",
-	"rose",
-	"sky",
-	"teal",
-	"violet",
-	"yellow",
-	"mauve",
-	"olive",
-	"mist",
-	"taupe",
-] as const;
+export const PRESET_BASE_COLOR_KEYS = keys(PRESET_BASE_COLORS);
 
-export const PRESET_ICON_LIBRARIES = [
-	"lucide",
-	"tabler",
-	"hugeicons",
-	"phosphor",
-	"remixicon",
-] as const;;
+export const PRESET_THEMES = {
+	neutral: { name: "Neutral", color: "#737373" },
+	stone: { name: "Stone", color: "#78716c" },
+	zinc: { name: "Zinc", color: "#71717a" },
+	amber: { name: "Amber", color: "#FD9A00" },
+	blue: { name: "Blue", color: "#2B7FFF" },
+	cyan: { name: "Cyan", color: "#00B8DB" },
+	emerald: { name: "Emerald", color: "#00BC7D" },
+	fuchsia: { name: "Fuchsia", color: "#E12AFB" },
+	green: { name: "Green", color: "#00C950" },
+	indigo: { name: "Indigo", color: "#615FFF" },
+	lime: { name: "Lime", color: "#7CCF00" },
+	orange: { name: "Orange", color: "#FF6900" },
+	pink: { name: "Pink", color: "#F6339A" },
+	purple: { name: "Purple", color: "#AD46FF" },
+	red: { name: "Red", color: "#FB2C36" },
+	rose: { name: "Rose", color: "#FF2056" },
+	sky: { name: "Sky", color: "#00A6F4" },
+	teal: { name: "Teal", color: "#00BBA7" },
+	violet: { name: "Violet", color: "#8E51FF" },
+	yellow: { name: "Yellow", color: "#EFB100" },
+	mauve: { name: "Mauve", color: "#79697b" },
+	olive: { name: "Olive", color: "#7c7c67" },
+	mist: { name: "Mist", color: "#67787c" },
+	taupe: { name: "Taupe", color: "#7c6d67" },
+} as const;
+
+export const PRESET_THEME_KEYS = keys(PRESET_THEMES);
+
+export const PRESET_ICON_LIBRARIES = keys(iconLibraries);
 
 export const PRESET_FONTS = [
 	"inter",
@@ -78,7 +79,15 @@ export const PRESET_FONTS = [
 	"roboto-slab",
 ] as const;
 
-export const PRESET_RADII = ["default", "none", "small", "medium", "large"] as const;
+export const PRESET_RADII = {
+	default: { name: "default", label: "Default", value: "0.5rem" },
+	none: { name: "none", label: "None", value: "0rem" },
+	small: { name: "small", label: "Small", value: "0.45rem" },
+	medium: { name: "medium", label: "Medium", value: "0.625rem" },
+	large: { name: "large", label: "Large", value: "0.875rem" },
+} as const;
+
+export const PRESET_RADII_KEYS = keys(PRESET_RADII);
 
 export const PRESET_MENU_ACCENTS = ["subtle", "bold"] as const;
 export const PRESET_MENU_COLORS = [
@@ -94,21 +103,21 @@ export const PRESET_MENU_COLORS = [
 const PRESET_FIELDS = [
 	{ key: "menuColor", values: PRESET_MENU_COLORS, bits: 3 },
 	{ key: "menuAccent", values: PRESET_MENU_ACCENTS, bits: 3 },
-	{ key: "radius", values: PRESET_RADII, bits: 4 },
+	{ key: "radius", values: PRESET_RADII_KEYS, bits: 4 },
 	{ key: "font", values: PRESET_FONTS, bits: 6 },
 	{ key: "iconLibrary", values: PRESET_ICON_LIBRARIES, bits: 6 },
-	{ key: "theme", values: PRESET_THEMES, bits: 6 },
-	{ key: "baseColor", values: PRESET_BASE_COLORS, bits: 6 },
+	{ key: "theme", values: PRESET_THEME_KEYS, bits: 6 },
+	{ key: "baseColor", values: PRESET_BASE_COLOR_KEYS, bits: 6 },
 	{ key: "style", values: PRESET_STYLES, bits: 6 },
 ] as const;
 
 export type PresetConfig = {
 	style: (typeof PRESET_STYLES)[number];
-	baseColor: (typeof PRESET_BASE_COLORS)[number];
-	theme: (typeof PRESET_THEMES)[number];
+	baseColor: (typeof PRESET_BASE_COLOR_KEYS)[number];
+	theme: (typeof PRESET_THEME_KEYS)[number];
 	iconLibrary: (typeof PRESET_ICON_LIBRARIES)[number];
 	font: (typeof PRESET_FONTS)[number];
-	radius: (typeof PRESET_RADII)[number];
+	radius: (typeof PRESET_RADII_KEYS)[number];
 	menuAccent: (typeof PRESET_MENU_ACCENTS)[number];
 	menuColor: (typeof PRESET_MENU_COLORS)[number];
 };

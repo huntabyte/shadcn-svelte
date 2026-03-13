@@ -240,6 +240,7 @@ export const registrySchema = z.object({
 			registryDependencies: registryDependenciesSchema,
 			cssVars: z.optional(registryItemCssVarsSchema),
 			css: z.optional(registryItemCssSchema),
+			font: z.optional(registryItemFontSchema),
 		})
 		.array()
 		.describe("Defines a custom component registry."),

@@ -1,21 +1,24 @@
-// !! BROWSER SAFE !!
+/**
+ * @module UserUtilities
+ * BROWSER SAFE
+ */
 
 import { z } from "zod";
 import { SITE_BASE_URL } from "../../constants.js";
 import {
 	PRESET_STYLES,
-	PRESET_BASE_COLORS,
-	PRESET_THEMES,
+	PRESET_BASE_COLOR_KEYS,
+	PRESET_THEME_KEYS,
 	PRESET_MENU_ACCENTS,
 	PRESET_MENU_COLORS,
 } from "../../preset/index.js";
-import { ICON_LIBRARIES } from "../../icons/libraries.js";
+import { PRESET_ICON_LIBRARIES } from "../../preset/preset.js";
 
 export const STYLES = PRESET_STYLES;
 export type StyleName = (typeof STYLES)[number];
-export const BASE_COLORS = PRESET_BASE_COLORS;
+export const BASE_COLORS = PRESET_BASE_COLOR_KEYS;
 export type BaseColorName = (typeof BASE_COLORS)[number];
-export const THEMES = PRESET_THEMES;
+export const THEMES = PRESET_THEME_KEYS;
 export type ThemeName = (typeof THEMES)[number];
 export const MENU_ACCENTS = PRESET_MENU_ACCENTS;
 export type MenuAccent = (typeof MENU_ACCENTS)[number];
@@ -45,12 +48,7 @@ export const DEFAULT_CONFIG = {
 
 export const stripTrailingSlash = (s: string) => (s.endsWith("/") ? s.slice(0, -1) : s);
 
-const aliasSchema = (alias: string) =>
-	z
-		.string(`Missing aliases.${alias} alias`)
-		.transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, ""))
-		// trailing slashes are stripped for an easier alias replacement during transformation
-		.transform((v) => stripTrailingSlash(v));
+const aliasSchema = (alias: string) => z.string(`Missing aliases.${alias} alias`);
 
 const baseConfigSchema = z.object({
 	$schema: z.string().optional(),
@@ -95,10 +93,10 @@ export const newConfigSchema = baseConfigSchema.extend({
 	}),
 	registry: z.string().default(DEFAULT_CONFIG.registry),
 	// design system
-	style: z.string().default("vega"),
-	iconLibrary: z.enum(ICON_LIBRARIES).default("lucide"),
-	menuColor: z.enum(MENU_COLORS).default("default"),
-	menuAccent: z.enum(MENU_ACCENTS).default("subtle"),
+	style: z.string().default(DEFAULT_CONFIG.style),
+	iconLibrary: z.enum(PRESET_ICON_LIBRARIES).default(DEFAULT_CONFIG.iconLibrary),
+	menuColor: z.enum(MENU_COLORS).default(DEFAULT_CONFIG.menuColor),
+	menuAccent: z.enum(MENU_ACCENTS).default(DEFAULT_CONFIG.menuAccent),
 });
 
 export type RawConfig = z.infer<typeof rawConfigSchema>;

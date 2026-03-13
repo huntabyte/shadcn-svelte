@@ -12,7 +12,7 @@ import {
 } from "../../src/utils/registry/index.js";
 import { toPosixPath } from "./test-helpers.js";
 import type { ResolvedConfig } from "../../src/utils/config/index.js";
-import type { RegistryItem, RegistryIndex } from "@shadcn-svelte/registry";
+import type { RegistryItem, RegistryIndex } from "shadcn-svelte/schema";
 
 vi.mock("node-fetch-native", () => ({
 	fetch: vi.fn(),

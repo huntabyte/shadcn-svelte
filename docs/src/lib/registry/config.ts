@@ -6,7 +6,7 @@ import { z } from "zod";
 import { fonts } from "./fonts.js";
 import { STYLES, type Style } from "./styles/index.js";
 import { BASE_THEMES, THEMES, type BaseTheme, type Theme } from "./themes.js";
-import { PRESET_BASE_COLORS, PRESET_FONTS, type PresetConfig } from "shadcn-svelte/preset";
+import { PRESET_BASE_COLOR_KEYS, PRESET_FONTS, type PresetConfig } from "shadcn-svelte/preset";
 
 export { STYLES, type Style };
 export { THEMES, type Theme };
@@ -57,7 +57,7 @@ export const designSystemConfigSchema = z
 		iconLibrary: z
 			.enum(Object.keys(iconLibraries) as [IconLibraryName, ...IconLibraryName[]])
 			.default("lucide"),
-		baseColor: z.enum(PRESET_BASE_COLORS).default("neutral"),
+		baseColor: z.enum(PRESET_BASE_COLOR_KEYS).default("neutral"),
 		theme: z.enum(THEMES.map((t) => t.name)),
 		font: z.enum(PRESET_FONTS).default("inter"),
 		menuAccent: z

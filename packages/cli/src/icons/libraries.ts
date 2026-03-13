@@ -1,14 +1,9 @@
 // !! BROWSER SAFE !!
 
-import { PRESET_ICON_LIBRARIES } from "../preset/preset.js";
-
-export const ICON_LIBRARIES = PRESET_ICON_LIBRARIES;
-
-export type IconLibraryName = (typeof PRESET_ICON_LIBRARIES)[number];
-export type IconLibraries = IconLibraryName;
+import { pascalToKebab } from "../utils/utils.js";
 
 export type IconLibrary = {
-	name: IconLibraryName;
+	name: string;
 	title: string;
 	packages: string[];
 	import: (icon: { name: string }) => string;
@@ -17,7 +12,7 @@ export type IconLibrary = {
 	getAdditionalImports?: () => string[];
 };
 
-export const iconLibraries: Record<IconLibraryName, IconLibrary> = {
+export const iconLibraries = {
 	lucide: {
 		name: "lucide",
 		title: "Lucide",
@@ -66,7 +61,7 @@ export const iconLibraries: Record<IconLibraryName, IconLibrary> = {
 		export: (icon) =>
 			`export { default as ${icon.name} } from 'remixicon-svelte/icons/${toRemixKebab(icon.name)}';`,
 	},
-};
+} as const satisfies Record<string, IconLibrary>;
 
 function toLucideKebab(name: string): string {
 	return pascalToKebab(name).replace("-icon", "");
@@ -79,13 +74,4 @@ function toPhosphorName(name: string): string {
 function toRemixKebab(name: string): string {
 	const withoutPrefix = name.startsWith("Ri") ? name.slice(2) : name;
 	return pascalToKebab(withoutPrefix);
-}
-
-function pascalToKebab(str: string): string {
-	return str
-		.replace(/([A-Z]+)([A-Z][a-z])/g, "$1-$2")
-		.replace(/([a-z])([A-Z])/g, "$1-$2")
-		.replace(/([a-zA-Z])(\d)/g, "$1-$2")
-		.replace(/(\d)([a-zA-Z])/g, "$1-$2")
-		.toLowerCase();
 }
