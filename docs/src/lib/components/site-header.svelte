@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { dev } from "$app/environment";
 	import Logo from "./logo.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import MainNav from "./main-nav.svelte";
@@ -10,8 +9,10 @@
 	import CommandMenu from "./command-menu/command-menu.svelte";
 	import { getColors } from "$lib/colors.js";
 	import { mainNavItems } from "$lib/navigation.js";
-	import PlusIcon from "@tabler/icons-svelte/icons/plus";
+	import PlusIcon from "@lucide/svelte/icons/plus";
 	import Customizer from "./customizer.svelte";
+	import { page } from "$app/state";
+	import InitializeDialog from "../../routes/(app)/(layout)/(create)/components/initialize-dialog.svelte";
 
 	const colors = getColors();
 
@@ -27,7 +28,7 @@
 <header class="bg-background sticky top-0 z-50 w-full">
 	<div class="container-wrapper 3xl:fixed:px-0 px-6">
 		<div
-			class="3xl:fixed:container flex h-(--header-height) items-center **:data-[slot=separator]:!h-4"
+			class="3xl:fixed:container flex h-(--header-height) items-center gap-2 **:data-[slot=separator]:h-4!"
 		>
 			<MobileNav bind:this={mobileNavRef} class="flex lg:hidden" />
 			<Button href="/" variant="ghost" size="icon" class="hidden size-8 lg:flex">
@@ -43,15 +44,16 @@
 				<GithubLink />
 				<Separator orientation="vertical" class="3xl:flex hidden" />
 				<LayoutToggle class="3xl:flex hidden" />
-				{#if dev}
-					<Separator orientation="vertical" />
+				<Separator orientation="vertical" />
+				{#if page.url.pathname.startsWith("/create")}
+					<InitializeDialog />
+				{:else}
 					<Customizer />
-					<Separator orientation="vertical" />
+					<Button href="/create" variant="default" size="sm">
+						<PlusIcon />
+						New Project
+					</Button>
 				{/if}
-				<Button href="/create" variant="default" size="sm">
-					<PlusIcon />
-					New Project
-				</Button>
 			</div>
 		</div>
 	</div>

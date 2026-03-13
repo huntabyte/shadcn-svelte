@@ -1,39 +1,32 @@
 <script lang="ts">
-	import Settings2Icon from "@lucide/svelte/icons/settings-2";
-	import * as Field from "$lib/registry/ui/field/index.js";
+	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as FieldGroup from "$lib/registry/ui/field/index.js";
 	import RadiusPicker from "./radius-picker.svelte";
 	import StylePicker from "./style-picker.svelte";
 	import ThemePicker from "./theme-picker.svelte";
 	import BaseColorPicker from "./base-color-picker.svelte";
 	import IconLibraryPicker from "./icon-library-picker.svelte";
 	import FontPicker from "./font-picker.svelte";
-	import CustomizerControls from "./customizer-controls.svelte";
-	import PresetPicker from "./preset-picker.svelte";
 	import MenuColorPicker from "./menu-color-picker.svelte";
 	import MenuAccentPicker from "./menu-accent-picker.svelte";
+	import RandomButton from "./random-button.svelte";
+	import CopyPreset from "./copy-preset.svelte";
+	import MainMenu from "./main-menu.svelte";
 </script>
 
-<div
-	class="no-scrollbar -mx-2.5 flex flex-col overflow-y-auto p-1 md:mx-0 md:h-[calc(100svh-var(--header-height)-2rem)] md:w-48 md:gap-0 md:py-0"
+<Card.Root
+	class="dark bg-card/90 top-24 right-12 isolate z-10 max-h-full min-h-0 w-full self-start rounded-2xl shadow-xl backdrop-blur-xl md:w-(--customizer-width)"
+	size="sm"
 >
-	<div
-		class="hidden items-center gap-2 px-[calc(--spacing(2.5))] pb-1 md:flex md:flex-col md:items-start"
+	<Card.Header
+		class="hidden items-center justify-between gap-2 border-b group-data-reversed/layout:flex-row-reverse md:flex"
 	>
-		<Settings2Icon class="size-4" />
-		<div class="relative flex flex-col gap-1 rounded-lg text-[13px]/snug">
-			<div class="flex items-center gap-1 font-medium text-balance">
-				Build your own shadcn-svelte
-			</div>
-			<div class="hidden md:flex">
-				When you're done, click Create Project to start a new project.
-			</div>
-		</div>
-	</div>
-	<div
-		class="no-scrollbar h-14 overflow-x-auto overflow-y-hidden p-px md:h-full md:overflow-x-hidden md:overflow-y-auto"
+		<MainMenu />
+	</Card.Header>
+	<Card.Content
+		class="no-scrollbar min-h-0 flex-1 overflow-x-auto overflow-y-hidden md:overflow-y-auto"
 	>
-		<Field.Group class="flex h-full flex-1 flex-row gap-2 md:flex-col md:gap-0">
-			<PresetPicker />
+		<FieldGroup.Group class="flex-row gap-2.5 py-px md:flex-col md:gap-3.25">
 			<StylePicker />
 			<BaseColorPicker />
 			<ThemePicker />
@@ -42,7 +35,11 @@
 			<RadiusPicker />
 			<MenuColorPicker />
 			<MenuAccentPicker />
-			<CustomizerControls class="hidden w-full flex-col md:mt-auto md:flex" />
-		</Field.Group>
-	</div>
-</div>
+		</FieldGroup.Group>
+	</Card.Content>
+	<Card.Footer class="flex min-w-0 gap-2 md:flex-col md:**:[button,a]:w-full">
+		<CopyPreset class="flex-1 md:flex-none" />
+		<RandomButton />
+		<!-- <ActionMenu {itemsByBase} /> -->
+	</Card.Footer>
+</Card.Root>

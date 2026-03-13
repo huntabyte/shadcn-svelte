@@ -2,16 +2,12 @@ import { goto } from "$app/navigation";
 import { page } from "$app/state";
 import {
 	BASE_THEMES,
-	DEFAULT_CONFIG,
-	designSystemConfigSchema,
-	fonts,
 	getThemesForBaseColor,
 	iconLibraries,
 	MENU_ACCENTS,
 	MENU_COLORS,
 	RADII,
 	STYLES,
-	type DesignSystemConfig,
 } from "$lib/registry/config.js";
 import { Context, PersistedState } from "runed";
 import { SvelteURLSearchParams } from "svelte/reactivity";
@@ -21,20 +17,27 @@ import {
 	type RandomizeContext,
 } from "../../../../routes/(app)/(layout)/(create)/lib/randomize-biases.js";
 import { StateHistory } from "runed";
+import {
+	decodePreset,
+	encodePreset,
+	DEFAULT_PRESET_CONFIG,
+	type PresetConfig,
+	PRESET_BASE_COLORS,
+	PRESET_FONTS,
+} from "shadcn-svelte/preset";
 
-export interface IDesignSystemState extends DesignSystemConfig {
+export interface IDesignSystemState extends PresetConfig {
+	preset: string;
 	locks: Lockable;
 	lock: (key: keyof Lockable) => void;
 	unlock: (key: keyof Lockable) => void;
 	reset: () => void;
 	randomize: () => void;
-	update: (value: Partial<DesignSystemConfig>) => void;
 	shareUrl: string;
 	undo: () => void;
 	redo: () => void;
 	canUndo: boolean;
 	canRedo: boolean;
-	iconLibrary: keyof typeof iconLibraries;
 }
 
 export type Lockable = {
@@ -51,11 +54,14 @@ export type Lockable = {
 };
 
 class DesignSystemState implements IDesignSystemState {
-	#history: StateHistory<DesignSystemConfig>;
-	system: PersistedState<DesignSystemConfig>;
+	#history: StateHistory<string>;
+	#preset: PersistedState<string>;
 	#locks: PersistedState<Lockable>;
 	constructor() {
-		this.system = new PersistedState<DesignSystemConfig>("design-system", DEFAULT_CONFIG);
+		this.#preset = new PersistedState<string>(
+			"design-system-preset",
+			this.#getSearchParam("preset") ?? encodePreset(DEFAULT_PRESET_CONFIG)
+		);
 		this.#locks = new PersistedState<Lockable>("locks", {
 			style: false,
 			baseColor: false,
@@ -73,9 +79,28 @@ class DesignSystemState implements IDesignSystemState {
 		this.randomize = this.randomize.bind(this);
 
 		this.#history = new StateHistory(
-			() => this.system.current,
-			(value) => this.update(value)
+			() => this.#preset.current,
+			(value) => {
+				this.#preset.current = value;
+			}
 		);
+	}
+
+	private get system(): PresetConfig {
+		const preset = decodePreset(this.#preset.current);
+		if (!preset) return DEFAULT_PRESET_CONFIG;
+		return preset;
+	}
+
+	private set system(value: PresetConfig) {
+		this.#preset.current = encodePreset(value);
+		const searchParams = new SvelteURLSearchParams(page.url.searchParams);
+		searchParams.set("preset", this.#preset.current);
+		goto(`${page.url.pathname}?${searchParams.toString()}${page.url.hash}`, {
+			replaceState: true,
+			noScroll: true,
+			keepFocus: true,
+		});
 	}
 
 	undo() {
@@ -92,6 +117,10 @@ class DesignSystemState implements IDesignSystemState {
 
 	get canRedo() {
 		return this.#history.canRedo;
+	}
+
+	get preset() {
+		return this.#preset.current;
 	}
 
 	// locks
@@ -120,147 +149,92 @@ class DesignSystemState implements IDesignSystemState {
 		}
 	}
 
-	#getProperty<Key extends keyof DesignSystemConfig>(prop: Key): DesignSystemConfig[Key] {
-		const param = this.#getSearchParam(prop);
-		const validated = designSystemConfigSchema.shape[prop].safeParse(param);
-		if (param && validated.success) return param as DesignSystemConfig[Key];
-		return this.system.current[prop] ?? DEFAULT_CONFIG[prop];
-	}
-
-	#setProperty<Key extends keyof DesignSystemConfig>(prop: Key, value: DesignSystemConfig[Key]) {
-		// set the search param if the page is /create or the param is already set
-		const paramValue = this.#getSearchParam(prop);
-		const setParam = page.url.pathname.startsWith("/create") || paramValue !== null;
-
-		if (setParam) {
-			try {
-				const searchParams = new SvelteURLSearchParams(page.url.searchParams);
-				searchParams.set(prop, value);
-				goto(`${page.url.pathname}?${searchParams.toString()}${page.url.hash}`, {
-					replaceState: true,
-					noScroll: true,
-					keepFocus: true,
-				});
-			} catch {
-				// TODO: Fix prerendering - During prerendering, skip URL updates
-			}
-		}
-
-		// persist to local storage either way
-		this.system.current[prop] = value;
+	#update(system: Partial<PresetConfig>) {
+		this.system = {
+			...this.system,
+			...system,
+		};
 	}
 
 	get baseColor() {
-		return this.#getProperty("baseColor");
+		return this.system.baseColor;
 	}
 
-	set baseColor(value: DesignSystemConfig["baseColor"]) {
+	set baseColor(value: PresetConfig["baseColor"]) {
 		// if the theme is currently set to a base color, we need to update it to this value as well
 		const shouldUpdateTheme = BASE_THEMES.some((base) => base.name === this.theme);
 
-		// update localStorage first
-		if (shouldUpdateTheme) {
-			this.system.current.theme = value;
-		}
-		this.system.current.baseColor = value;
-
-		// then update URL params in a single goto to avoid race condition
-		const baseColorParam = this.#getSearchParam("baseColor");
-		const themeParam = this.#getSearchParam("theme");
-		const setParam =
-			page.url.pathname.startsWith("/create") ||
-			baseColorParam !== null ||
-			(shouldUpdateTheme && themeParam !== null);
-
-		if (setParam) {
-			try {
-				const searchParams = new SvelteURLSearchParams(page.url.searchParams);
-				searchParams.set("baseColor", value);
-				if (shouldUpdateTheme) {
-					searchParams.set("theme", value);
-				}
-				goto(`${page.url.pathname}?${searchParams.toString()}${page.url.hash}`, {
-					replaceState: true,
-					noScroll: true,
-					keepFocus: true,
-				});
-			} catch {
-				// TODO: Fix prerendering - During prerendering, skip URL updates
-			}
-		}
+		this.#update({
+			theme: shouldUpdateTheme ? value : this.system.theme,
+			baseColor: value,
+		});
 	}
 
 	get font() {
-		return this.#getProperty("font");
+		return this.system.font;
 	}
 
-	set font(value: DesignSystemConfig["font"]) {
-		this.#setProperty("font", value);
+	set font(value: PresetConfig["font"]) {
+		this.#update({ font: value });
 	}
 
 	get iconLibrary() {
-		return this.#getProperty("iconLibrary");
+		return this.system.iconLibrary;
 	}
 
-	set iconLibrary(value: DesignSystemConfig["iconLibrary"]) {
-		this.#setProperty("iconLibrary", value);
+	set iconLibrary(value: PresetConfig["iconLibrary"]) {
+		this.#update({ iconLibrary: value });
 	}
 
 	get menuAccent() {
-		return this.#getProperty("menuAccent");
+		return this.system.menuAccent;
 	}
 
-	set menuAccent(value: DesignSystemConfig["menuAccent"]) {
-		this.#setProperty("menuAccent", value);
+	set menuAccent(value: PresetConfig["menuAccent"]) {
+		this.#update({ menuAccent: value });
 	}
 
 	get menuColor() {
-		return this.#getProperty("menuColor");
+		return this.system.menuColor;
 	}
 
-	set menuColor(value: DesignSystemConfig["menuColor"]) {
-		this.#setProperty("menuColor", value);
+	set menuColor(value: PresetConfig["menuColor"]) {
+		this.#update({ menuColor: value });
 	}
 
 	get radius() {
-		return this.#getProperty("radius");
+		return this.system.radius;
 	}
 
-	set radius(value: DesignSystemConfig["radius"]) {
-		this.#setProperty("radius", value);
+	set radius(value: PresetConfig["radius"]) {
+		this.#update({ radius: value });
 	}
 
 	get style() {
-		return this.#getProperty("style");
+		return this.system.style;
 	}
 
-	set style(value: DesignSystemConfig["style"]) {
-		this.#setProperty("style", value);
+	set style(value: PresetConfig["style"]) {
+		this.#update({ style: value });
 	}
 
 	get theme() {
-		return this.#getProperty("theme");
+		return this.system.theme;
 	}
 
-	set theme(value: DesignSystemConfig["theme"]) {
-		this.#setProperty("theme", value);
+	set theme(value: PresetConfig["theme"]) {
+		this.#update({ theme: value });
 	}
 
 	reset() {
-		this.system.current = DEFAULT_CONFIG;
-		// remove search
-		goto(`${page.url.pathname}${page.url.hash}`, {
-			replaceState: true,
-			noScroll: true,
-			keepFocus: true,
-		});
+		this.system = DEFAULT_PRESET_CONFIG;
 	}
 
 	randomize() {
 		// Use current value if locked, otherwise randomize.
 		const selectedBaseColor = this.locks.baseColor
 			? this.baseColor
-			: randomItem(BASE_THEMES).name;
+			: randomItem(PRESET_BASE_COLORS);
 		const selectedStyle = this.locks.style ? this.style : randomItem(STYLES).name;
 
 		const context: RandomizeContext = {
@@ -269,13 +243,10 @@ class DesignSystemState implements IDesignSystemState {
 		};
 
 		const availableThemes = getThemesForBaseColor(selectedBaseColor);
-		const availableFonts = applyBias(fonts, context, RANDOMIZE_BIASES.fonts);
 		const availableRadii = applyBias(RADII, context, RANDOMIZE_BIASES.radius);
 
 		const selectedTheme = this.locks.theme ? this.theme : randomItem(availableThemes).name;
-		const selectedFont = this.locks.font
-			? this.font
-			: randomItem(availableFonts).name.replace("font-", "");
+		const selectedFont = this.locks.font ? this.font : randomItem(PRESET_FONTS);
 		const selectedRadius = this.locks.radius ? this.radius : randomItem(availableRadii).name;
 		const selectedIconLibrary = this.locks.iconLibrary
 			? this.iconLibrary
@@ -299,7 +270,7 @@ class DesignSystemState implements IDesignSystemState {
 		context.menuAccent = selectedMenuAccent;
 		context.menuColor = selectedMenuColor;
 
-		this.update({
+		this.system = {
 			baseColor: selectedBaseColor,
 			style: selectedStyle,
 			theme: selectedTheme,
@@ -308,46 +279,11 @@ class DesignSystemState implements IDesignSystemState {
 			iconLibrary: selectedIconLibrary,
 			menuAccent: selectedMenuAccent,
 			menuColor: selectedMenuColor,
-		});
-	}
-
-	update(value: Partial<DesignSystemConfig>) {
-		const internalValue = { ...this.system.current, ...value };
-		this.system.current = internalValue;
-
-		if (page.url.pathname.startsWith("/create")) {
-			try {
-				const searchParams = new SvelteURLSearchParams(page.url.searchParams);
-				searchParams.set("baseColor", internalValue.baseColor);
-				searchParams.set("style", internalValue.style);
-				searchParams.set("theme", internalValue.theme);
-				searchParams.set("font", internalValue.font);
-				searchParams.set("radius", internalValue.radius);
-				searchParams.set("iconLibrary", internalValue.iconLibrary);
-				searchParams.set("menuAccent", internalValue.menuAccent);
-				searchParams.set("menuColor", internalValue.menuColor);
-				goto(`${page.url.pathname}?${searchParams.toString()}${page.url.hash}`, {
-					replaceState: true,
-					noScroll: true,
-					keepFocus: true,
-				});
-			} catch {
-				// TODO: Fix prerendering - During prerendering, skip URL updates
-			}
-		}
+		};
 	}
 
 	get shareUrl() {
-		const searchParams = new SvelteURLSearchParams();
-		searchParams.set("baseColor", this.baseColor);
-		searchParams.set("style", this.style);
-		searchParams.set("theme", this.theme);
-		searchParams.set("font", this.font);
-		searchParams.set("radius", this.radius);
-		searchParams.set("iconLibrary", this.iconLibrary);
-		searchParams.set("menuAccent", this.menuAccent);
-		searchParams.set("menuColor", this.menuColor);
-		return `${page.url.origin}/create?${searchParams.toString()}`;
+		return `${page.url.origin}/create?preset=${this.#preset.current}`;
 	}
 }
 

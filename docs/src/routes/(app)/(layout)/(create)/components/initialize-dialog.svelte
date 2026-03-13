@@ -21,11 +21,11 @@
 		<Dialog.Header>
 			<Dialog.Title>Initialize Project</Dialog.Title>
 			<Dialog.Description>
-				Run the following command to initialize your project with the current design system.
+				Run the following command to initialize your project with the current preset.
 			</Dialog.Description>
 		</Dialog.Header>
 		<Tooltip.Provider>
-			<PMExecute command="shadcn-svelte init '{designSystem.shareUrl}'" />
+			<PMExecute command="shadcn-svelte init --preset {designSystem.preset}" />
 		</Tooltip.Provider>
 	</Dialog.Content>
 </Dialog.Root>

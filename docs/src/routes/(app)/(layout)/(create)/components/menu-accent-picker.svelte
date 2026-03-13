@@ -63,6 +63,7 @@
 		<Picker.Content
 			side={isMobile.current ? "top" : submenu ? "left" : "right"}
 			align={isMobile.current ? "center" : "start"}
+			sideOffset={submenu ? 5 : 20}
 			{submenu}
 		>
 			<Picker.RadioGroup

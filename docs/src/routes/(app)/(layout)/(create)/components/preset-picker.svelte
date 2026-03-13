@@ -61,6 +61,7 @@
 		side={isMobile.current ? "top" : submenu ? "left" : "right"}
 		align={isMobile.current ? "center" : "start"}
 		class="md:w-72"
+		sideOffset={submenu ? 5 : 20}
 		{submenu}
 	>
 		<Picker.RadioGroup value={selectedPresetTitle} onValueChange={handlePresetChange}>

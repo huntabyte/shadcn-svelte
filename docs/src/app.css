@@ -246,7 +246,7 @@
 }
 
 @custom-variant data-selected {
-	&:where([data-selected="true"]) {
+	&:where([data-selected]) {
 		@slot;
 	}
 }

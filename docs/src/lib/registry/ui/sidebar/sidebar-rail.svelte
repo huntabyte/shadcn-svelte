@@ -18,7 +18,7 @@
 	data-sidebar="rail"
 	data-slot="sidebar-rail"
 	aria-label="Toggle Sidebar"
-	tabIndex={-1}
+	tabindex={-1}
 	onclick={sidebar.toggle}
 	title="Toggle Sidebar"
 	class={cn(

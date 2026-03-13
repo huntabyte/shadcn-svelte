@@ -11,5 +11,5 @@
 		"erasableSyntaxOnly": true,
 		"noUncheckedIndexedAccess": true
 	},
-	"include": ["src"]
+	"include": ["src", "test/preset.test.ts"]
 }
