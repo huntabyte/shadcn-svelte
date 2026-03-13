@@ -11,8 +11,8 @@ import {
 	resolveItemFilePath,
 } from "../../src/utils/registry/index.js";
 import { toPosixPath } from "./test-helpers.js";
-import type { ResolvedConfig } from "../../src/utils/get-config.js";
-import type { RegistryItem, RegistryIndex } from "@shadcn-svelte/registry";
+import type { ResolvedConfig } from "../../src/utils/config/index.js";
+import type { RegistryItem, RegistryIndex } from "../../src/utils/registry/schema.js";
 
 vi.mock("node-fetch-native", () => ({
 	fetch: vi.fn(),
@@ -97,22 +97,13 @@ describe("Registry Utilities", () => {
 		it("should return array of base colors", () => {
 			const colors = getBaseColors();
 			expect(colors).toEqual([
-				{
-					label: "Neutral",
-					name: "neutral",
-				},
-				{
-					label: "Stone",
-					name: "stone",
-				},
-				{
-					label: "Zinc",
-					name: "zinc",
-				},
-				{
-					label: "Gray",
-					name: "gray",
-				},
+				{ label: "Neutral", name: "neutral" },
+				{ label: "Stone", name: "stone" },
+				{ label: "Zinc", name: "zinc" },
+				{ label: "Mauve", name: "mauve" },
+				{ label: "Olive", name: "olive" },
+				{ label: "Mist", name: "mist" },
+				{ label: "Taupe", name: "taupe" },
 			]);
 		});
 	});

@@ -22,6 +22,10 @@
 		"./preset": {
 			"types": "./dist/preset/index.d.mts",
 			"default": "./dist/preset/index.mjs"
+		},
+		"./schema": {
+			"types": "./dist/schema/index.d.mts",
+			"default": "./dist/schema/index.mjs"
 		}
 	},
 	"files": [
@@ -55,8 +59,7 @@
 		"postcss": "^8.5.5"
 	},
 	"devDependencies": {
-		"@clack/prompts": "^1.0.0-alpha.0",
-		"@shadcn-svelte/registry": "workspace:*",
+		"@clack/prompts": "^1.1.0",
 		"@svecosystem/strip-types": "^0.0.4",
 		"@sveltejs/acorn-typescript": "^1.0.5",
 		"@types/node": "^20.19.0",
@@ -70,6 +73,7 @@
 		"ignore": "^7.0.4",
 		"magic-string": "^0.30.21",
 		"memfs": "^4.17.2",
+		"open": "^11.0.0",
 		"package-manager-detector": "^1.2.0",
 		"picocolors": "^1.1.1",
 		"resolve.exports": "^2.0.3",

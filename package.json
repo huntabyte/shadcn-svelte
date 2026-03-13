@@ -37,26 +37,26 @@
 	"license": "MIT",
 	"type": "module",
 	"devDependencies": {
-		"@changesets/cli": "^2.29.8",
-		"@eslint/compat": "^2.0.2",
+		"@changesets/cli": "^2.30.0",
+		"@eslint/compat": "^2.0.3",
 		"@eslint/js": "^10.0.1",
 		"@svitejs/changesets-changelog-github-compact": "^1.2.0",
-		"@types/node": "^25.3.0",
+		"@types/node": "^25.5.0",
 		"concurrently": "^9.2.1",
-		"eslint": "^10.0.1",
+		"eslint": "^10.0.3",
 		"eslint-config-prettier": "^10.1.8",
-		"eslint-plugin-svelte": "^3.15.0",
-		"globals": "^17.3.0",
-		"minimatch": "^10.2.2",
+		"eslint-plugin-svelte": "^3.15.2",
+		"globals": "^17.4.0",
+		"minimatch": "^10.2.4",
 		"prettier": "~3.8.1",
-		"prettier-plugin-svelte": "^3.5.0",
+		"prettier-plugin-svelte": "^3.5.1",
 		"prettier-plugin-tailwindcss": "^0.7.2",
 		"pretty-quick": "^4.2.2",
 		"svelte": "catalog:",
 		"typescript": "5.9.3",
-		"typescript-eslint": "^8.56.0",
+		"typescript-eslint": "^8.57.0",
 		"wait-on": "^9.0.4",
-		"wrangler": "^4.67.0"
+		"wrangler": "^4.73.0"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [
@@ -93,7 +93,10 @@
 			"tar@<=7.5.10": ">=7.5.11",
 			"svelte@<=5.53.4": ">=5.53.5",
 			"devalue@<5.6.4": ">=5.6.4",
-			"devalue@<=5.6.3": ">=5.6.4"
+			"devalue@<=5.6.3": ">=5.6.4",
+			"flatted@<3.4.0": ">=3.4.0",
+			"undici@>=7.0.0 <7.24.0": ">=7.24.0",
+			"undici@>=7.17.0 <7.24.0": ">=7.24.0"
 		}
 	}
 }

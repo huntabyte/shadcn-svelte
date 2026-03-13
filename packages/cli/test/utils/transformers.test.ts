@@ -1,7 +1,12 @@
 import { describe, it, expect } from "vitest";
-import { transform, transformImports, transformStripTypes } from "../../src/utils/transformers";
+import {
+	transform,
+	transformIcons,
+	transformImports,
+	transformStripTypes,
+} from "../../src/utils/transformers";
 import { transformCss } from "../../src/utils/transform-css";
-import type { ResolvedConfig } from "../../src/utils/get-config";
+import type { ResolvedConfig } from "../../src/utils/config/index";
 
 const mockConfig: ResolvedConfig = {
 	tailwind: {
@@ -24,19 +29,398 @@ const mockConfig: ResolvedConfig = {
 		ui: "./src/lib/components/ui",
 		lib: "./src/lib",
 	},
-	designSystem: {
-		style: "vega",
-		theme: "neutral",
-		iconLibrary: "lucide",
-		fonts: [],
-		menuAccent: "subtle",
-		menuColor: "default",
-		radius: "0.5rem",
-	},
+	style: "vega",
+	iconLibrary: "lucide",
+	menuAccent: "subtle",
+	menuColor: "default",
 	sveltekit: true,
 	typescript: true,
 	registry: "https://shadcn-svelte.com/registry",
 };
+
+const singleIconInput = `
+<script lang="ts">
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+</script>
+
+<IconPlaceholder
+	lucide="ChevronDownIcon"
+	tabler="IconChevronDown"
+	hugeicons="ArrowDown01Icon"
+	phosphor="CaretDownIcon"
+	remixicon="RiArrowDownSLine"
+	class="cn-accordion-trigger-icon size-4"
+/>
+`.trim();
+
+const multipleIconsInput = `
+<script lang="ts">
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+</script>
+
+<div>
+	<IconPlaceholder
+		lucide="ChevronDownIcon"
+		tabler="IconChevronDown"
+		hugeicons="ArrowDown01Icon"
+		phosphor="CaretDownIcon"
+		remixicon="RiArrowDownSLine"
+		class="cn-accordion-trigger-icon group-aria-expanded:hidden"
+	/>
+	<IconPlaceholder
+		lucide="ChevronUpIcon"
+		tabler="IconChevronUp"
+		hugeicons="ArrowUp01Icon"
+		phosphor="CaretUpIcon"
+		remixicon="RiArrowUpSLine"
+		class="cn-accordion-trigger-icon hidden group-aria-expanded:inline"
+	/>
+</div>
+`.trim();
+
+const restPropsInput = `
+<script lang="ts">
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+
+	let { ...restProps } = $props();
+</script>
+
+<IconPlaceholder
+	lucide="ChevronDownIcon"
+	tabler="IconChevronDown"
+	hugeicons="ArrowDown01Icon"
+	phosphor="CaretDownIcon"
+	remixicon="RiArrowDownSLine"
+	class="cn-accordion-trigger-icon"
+	data-slot="accordion-trigger-icon"
+	{...restProps}
+/>
+`.trim();
+
+describe("transformIcons", () => {
+	const getConfig = (iconLibrary: ResolvedConfig["iconLibrary"]): ResolvedConfig => ({
+		...mockConfig,
+		iconLibrary,
+	});
+
+	it("lucide: correctly adds 1 icon", async () => {
+		const result = await transformIcons({
+			content: singleIconInput,
+			filePath: "accordion-trigger.svelte",
+			config: getConfig("lucide"),
+		});
+
+		expect(result.content).toBe(
+			`
+<script lang="ts">
+	import ChevronDownIcon from '@lucide/svelte/icons/chevron-down';
+</script>
+
+<ChevronDownIcon class="cn-accordion-trigger-icon size-4" />
+`.trim()
+		);
+		expect(result.devDependencies).toEqual(["@lucide/svelte"]);
+	});
+
+	it("lucide: correctly adds multiple icons", async () => {
+		const result = await transformIcons({
+			content: multipleIconsInput,
+			filePath: "accordion-trigger.svelte",
+			config: getConfig("lucide"),
+		});
+
+		expect(result.content).toBe(
+			`
+<script lang="ts">
+	import ChevronDownIcon from '@lucide/svelte/icons/chevron-down';
+import ChevronUpIcon from '@lucide/svelte/icons/chevron-up';
+</script>
+
+<div>
+	<ChevronDownIcon class="cn-accordion-trigger-icon group-aria-expanded:hidden" />
+	<ChevronUpIcon class="cn-accordion-trigger-icon hidden group-aria-expanded:inline" />
+</div>
+`.trim()
+		);
+		expect(result.devDependencies).toEqual(["@lucide/svelte"]);
+	});
+
+	it("lucide: correctly adds restProps", async () => {
+		const result = await transformIcons({
+			content: restPropsInput,
+			filePath: "accordion-trigger.svelte",
+			config: getConfig("lucide"),
+		});
+
+		expect(result.content).toBe(
+			`
+<script lang="ts">
+	import ChevronDownIcon from '@lucide/svelte/icons/chevron-down';
+
+	let { ...restProps } = $props();
+</script>
+
+<ChevronDownIcon class="cn-accordion-trigger-icon" data-slot="accordion-trigger-icon" {...restProps} />
+`.trim()
+		);
+		expect(result.devDependencies).toEqual(["@lucide/svelte"]);
+	});
+
+	it("tabler: correctly adds 1 icon", async () => {
+		const result = await transformIcons({
+			content: singleIconInput,
+			filePath: "accordion-trigger.svelte",
+			config: getConfig("tabler"),
+		});
+
+		expect(result.content).toBe(
+			`
+<script lang="ts">
+	import { IconChevronDown } from '@tabler/icons-svelte';
+</script>
+
+<IconChevronDown class="cn-accordion-trigger-icon size-4" />
+`.trim()
+		);
+		expect(result.devDependencies).toEqual(["@tabler/icons-svelte"]);
+	});
+
+	it("tabler: correctly adds multiple icons", async () => {
+		const result = await transformIcons({
+			content: multipleIconsInput,
+			filePath: "accordion-trigger.svelte",
+			config: getConfig("tabler"),
+		});
+
+		expect(result.content).toBe(
+			`
+<script lang="ts">
+	import { IconChevronDown } from '@tabler/icons-svelte';
+import { IconChevronUp } from '@tabler/icons-svelte';
+</script>
+
+<div>
+	<IconChevronDown class="cn-accordion-trigger-icon group-aria-expanded:hidden" />
+	<IconChevronUp class="cn-accordion-trigger-icon hidden group-aria-expanded:inline" />
+</div>
+`.trim()
+		);
+		expect(result.devDependencies).toEqual(["@tabler/icons-svelte"]);
+	});
+
+	it("tabler: correctly adds restProps", async () => {
+		const result = await transformIcons({
+			content: restPropsInput,
+			filePath: "accordion-trigger.svelte",
+			config: getConfig("tabler"),
+		});
+
+		expect(result.content).toBe(
+			`
+<script lang="ts">
+	import { IconChevronDown } from '@tabler/icons-svelte';
+
+	let { ...restProps } = $props();
+</script>
+
+<IconChevronDown class="cn-accordion-trigger-icon" data-slot="accordion-trigger-icon" {...restProps} />
+`.trim()
+		);
+		expect(result.devDependencies).toEqual(["@tabler/icons-svelte"]);
+	});
+
+	it("hugeicons: correctly adds 1 icon", async () => {
+		const result = await transformIcons({
+			content: singleIconInput,
+			filePath: "accordion-trigger.svelte",
+			config: getConfig("hugeicons"),
+		});
+
+		expect(result.content).toBe(
+			`
+<script lang="ts">
+	import { HugeiconsIcon } from "@hugeicons/svelte"
+import { ArrowDown01Icon } from '@hugeicons/core-free-icons';
+</script>
+
+<HugeiconsIcon icon={ArrowDown01Icon} strokeWidth={2} class="cn-accordion-trigger-icon size-4" />
+`.trim()
+		);
+		expect(result.devDependencies).toEqual(["@hugeicons/svelte", "@hugeicons/core-free-icons"]);
+	});
+
+	it("hugeicons: correctly adds multiple icons", async () => {
+		const result = await transformIcons({
+			content: multipleIconsInput,
+			filePath: "accordion-trigger.svelte",
+			config: getConfig("hugeicons"),
+		});
+
+		expect(result.content).toBe(
+			`
+<script lang="ts">
+	import { HugeiconsIcon } from "@hugeicons/svelte"
+import { ArrowDown01Icon } from '@hugeicons/core-free-icons';
+import { ArrowUp01Icon } from '@hugeicons/core-free-icons';
+</script>
+
+<div>
+	<HugeiconsIcon icon={ArrowDown01Icon} strokeWidth={2} class="cn-accordion-trigger-icon group-aria-expanded:hidden" />
+	<HugeiconsIcon icon={ArrowUp01Icon} strokeWidth={2} class="cn-accordion-trigger-icon hidden group-aria-expanded:inline" />
+</div>
+`.trim()
+		);
+		expect(result.devDependencies).toEqual(["@hugeicons/svelte", "@hugeicons/core-free-icons"]);
+	});
+
+	it("hugeicons: correctly adds restProps", async () => {
+		const result = await transformIcons({
+			content: restPropsInput,
+			filePath: "accordion-trigger.svelte",
+			config: getConfig("hugeicons"),
+		});
+
+		expect(result.content).toBe(
+			`
+<script lang="ts">
+	import { HugeiconsIcon } from "@hugeicons/svelte"
+import { ArrowDown01Icon } from '@hugeicons/core-free-icons';
+
+	let { ...restProps } = $props();
+</script>
+
+<HugeiconsIcon icon={ArrowDown01Icon} strokeWidth={2} class="cn-accordion-trigger-icon" data-slot="accordion-trigger-icon" {...restProps} />
+`.trim()
+		);
+		expect(result.devDependencies).toEqual(["@hugeicons/svelte", "@hugeicons/core-free-icons"]);
+	});
+
+	it("phosphor: correctly adds 1 icon", async () => {
+		const result = await transformIcons({
+			content: singleIconInput,
+			filePath: "accordion-trigger.svelte",
+			config: getConfig("phosphor"),
+		});
+
+		expect(result.content).toBe(
+			`
+<script lang="ts">
+	import CaretDownIcon from 'phosphor-svelte/lib/CaretDown';
+</script>
+
+<CaretDownIcon class="cn-accordion-trigger-icon size-4" />
+`.trim()
+		);
+		expect(result.devDependencies).toEqual(["phosphor-svelte"]);
+	});
+
+	it("phosphor: correctly adds multiple icons", async () => {
+		const result = await transformIcons({
+			content: multipleIconsInput,
+			filePath: "accordion-trigger.svelte",
+			config: getConfig("phosphor"),
+		});
+
+		expect(result.content).toBe(
+			`
+<script lang="ts">
+	import CaretDownIcon from 'phosphor-svelte/lib/CaretDown';
+import CaretUpIcon from 'phosphor-svelte/lib/CaretUp';
+</script>
+
+<div>
+	<CaretDownIcon class="cn-accordion-trigger-icon group-aria-expanded:hidden" />
+	<CaretUpIcon class="cn-accordion-trigger-icon hidden group-aria-expanded:inline" />
+</div>
+`.trim()
+		);
+		expect(result.devDependencies).toEqual(["phosphor-svelte"]);
+	});
+
+	it("phosphor: correctly adds restProps", async () => {
+		const result = await transformIcons({
+			content: restPropsInput,
+			filePath: "accordion-trigger.svelte",
+			config: getConfig("phosphor"),
+		});
+
+		expect(result.content).toBe(
+			`
+<script lang="ts">
+	import CaretDownIcon from 'phosphor-svelte/lib/CaretDown';
+
+	let { ...restProps } = $props();
+</script>
+
+<CaretDownIcon class="cn-accordion-trigger-icon" data-slot="accordion-trigger-icon" {...restProps} />
+`.trim()
+		);
+		expect(result.devDependencies).toEqual(["phosphor-svelte"]);
+	});
+
+	it("remixicon: correctly adds 1 icon", async () => {
+		const result = await transformIcons({
+			content: singleIconInput,
+			filePath: "accordion-trigger.svelte",
+			config: getConfig("remixicon"),
+		});
+
+		expect(result.content).toBe(
+			`
+<script lang="ts">
+	import RiArrowDownSLine from 'remixicon-svelte/icons/arrow-down-s-line';
+</script>
+
+<RiArrowDownSLine class="cn-accordion-trigger-icon size-4" />
+`.trim()
+		);
+		expect(result.devDependencies).toEqual(["remixicon-svelte"]);
+	});
+
+	it("remixicon: correctly adds multiple icons", async () => {
+		const result = await transformIcons({
+			content: multipleIconsInput,
+			filePath: "accordion-trigger.svelte",
+			config: getConfig("remixicon"),
+		});
+
+		expect(result.content).toBe(
+			`
+<script lang="ts">
+	import RiArrowDownSLine from 'remixicon-svelte/icons/arrow-down-s-line';
+import RiArrowUpSLine from 'remixicon-svelte/icons/arrow-up-s-line';
+</script>
+
+<div>
+	<RiArrowDownSLine class="cn-accordion-trigger-icon group-aria-expanded:hidden" />
+	<RiArrowUpSLine class="cn-accordion-trigger-icon hidden group-aria-expanded:inline" />
+</div>
+`.trim()
+		);
+		expect(result.devDependencies).toEqual(["remixicon-svelte"]);
+	});
+
+	it("remixicon: correctly adds restProps", async () => {
+		const result = await transformIcons({
+			content: restPropsInput,
+			filePath: "accordion-trigger.svelte",
+			config: getConfig("remixicon"),
+		});
+
+		expect(result.content).toBe(
+			`
+<script lang="ts">
+	import RiArrowDownSLine from 'remixicon-svelte/icons/arrow-down-s-line';
+
+	let { ...restProps } = $props();
+</script>
+
+<RiArrowDownSLine class="cn-accordion-trigger-icon" data-slot="accordion-trigger-icon" {...restProps} />
+`.trim()
+		);
+		expect(result.devDependencies).toEqual(["remixicon-svelte"]);
+	});
+});
 
 describe("transformImports", () => {
 	it("transforms component imports correctly", async () => {
@@ -202,15 +586,10 @@ describe("transformImports with more custom paths", () => {
 			ui: "./src/ui",
 			lib: "./src/lib",
 		},
-		designSystem: {
-			style: "vega",
-			theme: "neutral",
-			iconLibrary: "lucide",
-			fonts: [],
-			menuAccent: "subtle",
-			menuColor: "default",
-			radius: "0.5rem",
-		},
+		style: "vega",
+		iconLibrary: "lucide",
+		menuAccent: "subtle",
+		menuColor: "default",
 		sveltekit: true,
 		typescript: true,
 		registry: "https://shadcn-svelte.com/registry",

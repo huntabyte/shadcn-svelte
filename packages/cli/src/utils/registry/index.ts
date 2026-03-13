@@ -3,21 +3,20 @@ import { fetch } from "node-fetch-native";
 import { createProxy } from "node-fetch-native/proxy";
 import { isUrl, resolveURL } from "../utils.js";
 import { CLIError, error } from "../errors.js";
-import {
-	BASE_COLORS,
-	type ResolvedConfig,
-	type DesignSystemConfig,
-	designSystemConfigSchema,
-	type StyleName,
-} from "../get-config.js";
+import { BASE_COLORS, type ResolvedConfig } from "../config/index.js";
 import { getEnvProxy } from "../get-env-proxy.js";
 import { OFFICIAL_REGISTRY_URL } from "../../constants.js";
-import * as schemas from "@shadcn-svelte/registry";
+import * as schemas from "../../schema/index.js";
 import { parse as parseCss } from "postcss";
 
-export function getRegistryUrl(config: ResolvedConfig) {
+export function getRegistryUrl(config: { registry: string }) {
 	const url = process.env.COMPONENTS_REGISTRY_URL ?? config.registry;
 	return url;
+}
+
+export function getSiteUrl(config: { registry: string }) {
+	const registryUrl = getRegistryUrl(config);
+	return new URL(registryUrl).origin;
 }
 
 export async function getRegistryIndex(registryUrl: string) {
@@ -38,38 +37,6 @@ export function getBaseColors() {
 	}));
 }
 
-export async function getDesignSystem(designSystemUrl: string): Promise<DesignSystemConfig> {
-	const proxyUrl = getEnvProxy();
-	const proxy = proxyUrl ? createProxy({ url: proxyUrl }) : {};
-
-	try {
-		const response = await fetch(designSystemUrl, {
-			method: "GET",
-			headers: {
-				accept: "application/json",
-			},
-			...proxy,
-		});
-
-		if (!response.ok) {
-			throw error(
-				`Failed to fetch design system from ${designSystemUrl}: ${response.status} ${response.statusText}`
-			);
-		}
-
-		const data = await response.json();
-
-		const result = designSystemConfigSchema.safeParse(data);
-		if (!result.success) {
-			throw error(`Invalid design system config: ${result.error.message}`);
-		}
-
-		return result.data;
-	} catch (e) {
-		throw error(`Failed to fetch design system from ${designSystemUrl}`, e);
-	}
-}
-
 export async function getRegistryTheme(baseUrl: string, theme: string) {
 	try {
 		const url = resolveURL(baseUrl, `colors/${theme}.json`);
@@ -78,38 +45,6 @@ export async function getRegistryTheme(baseUrl: string, theme: string) {
 		return schemas.registryBaseColorSchema.parse(result);
 	} catch (e) {
 		throw error(`Failed to fetch theme: ${theme} from registry.`, e);
-	}
-}
-
-export async function getRegistryStyle(
-	baseUrl: string,
-	style: StyleName
-): Promise<Record<string, string>> {
-	const proxyUrl = getEnvProxy();
-	const proxy = proxyUrl ? createProxy({ url: proxyUrl }) : {};
-
-	const url = resolveURL(baseUrl, `styles/${style}.css`);
-
-	try {
-		const response = await fetch(url, {
-			method: "GET",
-			headers: {
-				accept: "application/json",
-			},
-			...proxy,
-		});
-
-		if (!response.ok) {
-			throw error(
-				`Failed to fetch style from ${url}: ${response.status} ${response.statusText}`
-			);
-		}
-
-		const css = await response.text();
-
-		return parseStyleCss(css);
-	} catch (e) {
-		throw error(`Failed to fetch style from ${url}`, e);
 	}
 }
 

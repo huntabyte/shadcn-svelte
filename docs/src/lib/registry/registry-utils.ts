@@ -1,4 +1,4 @@
-import type { RegistryItemFile } from "@shadcn-svelte/registry";
+import type { RegistryItemFile } from "shadcn-svelte/schema";
 import { iconLibraries, type IconLibraryName } from "./config.js";
 import type { StyleName } from "./config.js";
 import { parse as parseSvelte } from "svelte/compiler";

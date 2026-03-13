@@ -6,26 +6,22 @@ import { z } from "zod";
 import merge from "deepmerge";
 import { Command } from "commander";
 import { error, handleError } from "../../utils/errors.js";
-import * as cliConfig from "../../utils/get-config.js";
+import * as cliConfig from "../../utils/config/index.js";
 import { getEnvProxy } from "../../utils/get-env-proxy.js";
 import { cancel, intro, prettifyList } from "../../utils/prompt-helpers.js";
 import * as p from "@clack/prompts";
 import * as registry from "../../utils/registry/index.js";
 import { transformCss } from "../../utils/transform-css.js";
+import { setupFonts, type Font } from "../../utils/fonts.js";
 import { checkPreconditions } from "../../utils/preconditions.js";
-import { highlight } from "../../utils/utils.js";
+import { highlight } from "../../utils/colors.js";
 import { installDependencies } from "../../utils/install-deps.js";
 import {
 	transform,
 	transformImports,
 	transformIcons,
 	transformStripTypes,
-	createTransformInjectStyles,
 } from "../../utils/transformers/index.js";
-import {
-	findNeededAtRules,
-	updateCustomAtRules,
-} from "../../utils/updaters/update-custom-at-rules.js";
 
 const updateOptionsSchema = z.object({
 	all: z.boolean(),
@@ -179,7 +175,9 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 	const componentsToRemove: Record<string, string[]> = {};
 	const dependencies = new Set<string>();
 	const devDependencies = new Set<string>();
+	const fonts: Font[] = [];
 	let cssVars = {};
+	let css = {};
 	for (const item of payload) {
 		const aliasDir = registry.getItemAliasDir(config, item.type);
 
@@ -187,15 +185,17 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 		item.dependencies?.forEach((dep) => dependencies.add(dep));
 		item.devDependencies?.forEach((dep) => devDependencies.add(dep));
 
+		if (item.type === 'registry:font') {
+			fonts.push({
+				name: item.name,
+				...item.font,
+			});
+		}
+
 		// Update Components
 		tasks.push({
 			title: `Updating ${highlight(item.name)}`,
 			async task() {
-				const registryStyle = await registry.getRegistryStyle(
-					registryUrl,
-					config.designSystem.style
-				);
-
 				for (const file of item.files ?? []) {
 					const filePath = registry.resolveItemFilePath(config, item, file);
 
@@ -207,7 +207,6 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 					} = await transform({ content: file.content, filePath, config }, [
 						transformImports,
 						transformIcons,
-						createTransformInjectStyles(registryStyle),
 						config.typescript && transformStripTypes,
 					]);
 
@@ -222,6 +221,9 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 					await fs.writeFile(transformFilePath, content, "utf8");
 				}
 
+				if (item.css) {
+					css = merge(css, item.css);
+				}
 				if (item.cssVars) {
 					cssVars = merge(cssVars, item.cssVars);
 				}
@@ -252,7 +254,13 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 		});
 	}
 
-	if (Object.keys(cssVars).length > 0) {
+	const { css: fontsCss, cssVars: fontsCssVars, dependencies: fontsDependencies } = setupFonts(fonts)
+
+	css = merge(css, fontsCss)
+	cssVars = merge(cssVars, fontsCssVars)
+	fontsDependencies.forEach((dep) => devDependencies.add(dep))
+
+	if (Object.keys(cssVars).length > 0 || Object.keys(css).length > 0) {
 		// Update the stylesheet
 		tasks.push({
 			title: "Updating stylesheet",
@@ -260,26 +268,10 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 				const cssPath = config.resolvedPaths.tailwindCss;
 				const cssSource = await fs.readFile(cssPath, "utf8");
 
-				const modifiedCss = transformCss(cssSource, cssVars);
+				const modifiedCss = transformCss(cssSource, { css, cssVars });
 				await fs.writeFile(cssPath, modifiedCss, "utf8");
 
 				const relative = path.relative(cwd, cssPath);
-				return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;
-			},
-		});
-	}
-
-	const neededAtRules = await findNeededAtRules(config);
-
-	if (neededAtRules.length > 0) {
-		const cssPath = config.resolvedPaths.tailwindCss;
-		const relative = path.relative(cwd, cssPath);
-
-		tasks.push({
-			title: "Updating stylesheet",
-			async task() {
-				await updateCustomAtRules(cssPath, neededAtRules);
-
 				return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;
 			},
 		});

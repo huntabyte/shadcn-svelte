@@ -8,14 +8,14 @@ import {
 	generateRandomPreset,
 	isPresetCode,
 	isValidPreset,
-	PRESET_BASE_COLORS,
+	PRESET_BASE_COLOR_KEYS,
 	PRESET_FONTS,
 	PRESET_ICON_LIBRARIES,
 	PRESET_MENU_ACCENTS,
 	PRESET_MENU_COLORS,
 	PRESET_RADII,
 	PRESET_STYLES,
-	PRESET_THEMES,
+	PRESET_THEME_KEYS,
 	toBase62,
 	type PresetConfig,
 } from "../src/preset/preset.js";
@@ -87,7 +87,7 @@ describe("encodePreset / decodePreset", () => {
 	});
 
 	it("should round-trip all themes", () => {
-		for (const theme of PRESET_THEMES) {
+		for (const theme of PRESET_THEME_KEYS) {
 			const code = encodePreset({ theme });
 			const decoded = decodePreset(code);
 			expect(decoded!.theme).toBe(theme);
@@ -119,7 +119,7 @@ describe("encodePreset / decodePreset", () => {
 	});
 
 	it("should round-trip all base colors", () => {
-		for (const baseColor of PRESET_BASE_COLORS) {
+		for (const baseColor of PRESET_BASE_COLOR_KEYS) {
 			const code = encodePreset({ baseColor });
 			const decoded = decodePreset(code);
 			expect(decoded!.baseColor).toBe(baseColor);

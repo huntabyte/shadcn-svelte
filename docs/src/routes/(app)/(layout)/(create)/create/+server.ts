@@ -10,7 +10,7 @@ import {
 	type StyleName,
 	type ThemeName,
 } from "$lib/registry/config.js";
-import type { RegistryFont } from "@shadcn-svelte/registry";
+import type { RegistryFont } from "shadcn-svelte/schema";
 import { error, json, redirect } from "@sveltejs/kit";
 
 export type DesignSystemResponse = {

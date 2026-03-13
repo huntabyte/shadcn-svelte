@@ -3,7 +3,6 @@ import * as fs from "fs/promises";
 import { watch } from "fs";
 import * as path from "path";
 import { iconLibraries, type IconLibraryName } from "shadcn-svelte/icons";
-import { pascalToKebab } from "$lib/registry/lib/casing.js";
 
 const SEARCH_BASE = "src/";
 const REGISTRY_BASE = "src/lib/registry";
@@ -74,24 +73,7 @@ export type ${typeName} = ${typeUnion};
 		await fs.rm(iconDir, { recursive: true, force: true });
 
 		const iconFiles = icons.map((icon) => {
-			let iconWithoutSuffix = icon;
-			if (libraryName === "lucide" || libraryName === "phosphor") {
-				if (icon !== "Icon") {
-					iconWithoutSuffix = icon.endsWith("Icon") ? icon.slice(0, -4) : icon;
-				}
-			}
-			// For remixicon, strip the "Ri" prefix before converting to kebab-case
-			let iconKebab = pascalToKebab(iconWithoutSuffix);
-			if (libraryName === "remixicon" && icon.startsWith("Ri")) {
-				// Remove "Ri" prefix and convert to kebab-case
-				const withoutPrefix = icon.slice(2);
-				iconKebab = pascalToKebab(withoutPrefix);
-			}
-			const iconExport = iconLibraries[libraryName].export
-				.replaceAll("ICON_KEBAB", iconKebab)
-				.replaceAll("ICON_WO_SUFFIX", iconWithoutSuffix)
-				// we use the original icon name for ICON
-				.replaceAll("ICON", icon);
+			const iconExport = iconLibraries[libraryName].export({ name: icon });
 
 			return {
 				name: icon,

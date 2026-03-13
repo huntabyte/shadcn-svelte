@@ -4,7 +4,7 @@ import { exec } from "tinyexec";
 import { afterEach, expect, it, vi } from "vitest";
 import { runInit } from "../../src/commands/init";
 import * as registry from "../../src/utils/registry";
-import { getConfig } from "../../src/utils/get-config";
+import { getConfig } from "../../src/utils/config/index";
 
 vi.mock("fs/promises", () => ({ writeFile: vi.fn(), mkdir: vi.fn(), readFile: vi.fn() }));
 

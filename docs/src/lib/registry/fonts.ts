@@ -1,15 +1,18 @@
-import { type RegistryFont } from "@shadcn-svelte/registry";
+// sync with https://github.com/shadcn-ui/ui/tree/main/apps/v4/registry/fonts.ts
+
+import { type RegistryItem } from "shadcn-svelte/schema";
 
 export const fonts = [
 	{
-		name: "font-geist-sans",
+		name: "font-geist",
 		title: "Geist",
 		type: "registry:font",
 		font: {
 			family: "'Geist Variable', sans-serif",
-			cssImport: '@import "@fontsource-variable/geist/index.css";',
+			provider: "google",
 			variable: "--font-sans",
-			dependencies: ["@fontsource-variable/geist"],
+			subsets: ["latin"],
+			import: "Geist",
 		},
 	},
 	{
@@ -18,9 +21,10 @@ export const fonts = [
 		type: "registry:font",
 		font: {
 			family: "'Inter Variable', sans-serif",
-			cssImport: '@import "@fontsource-variable/inter/index.css";',
+			provider: "google",
 			variable: "--font-sans",
-			dependencies: ["@fontsource-variable/inter"],
+			subsets: ["latin"],
+			import: "Inter",
 		},
 	},
 	{
@@ -29,9 +33,9 @@ export const fonts = [
 		type: "registry:font",
 		font: {
 			family: "'Noto Sans Variable', sans-serif",
-			cssImport: '@import "@fontsource-variable/noto-sans/index.css";',
+			provider: "google",
 			variable: "--font-sans",
-			dependencies: ["@fontsource-variable/noto-sans"],
+			import: "Noto_Sans",
 		},
 	},
 	{
@@ -40,9 +44,9 @@ export const fonts = [
 		type: "registry:font",
 		font: {
 			family: "'Nunito Sans Variable', sans-serif",
-			cssImport: '@import "@fontsource-variable/nunito-sans/index.css";',
+			provider: "google",
 			variable: "--font-sans",
-			dependencies: ["@fontsource-variable/nunito-sans"],
+			import: "Nunito_Sans",
 		},
 	},
 	{
@@ -51,9 +55,10 @@ export const fonts = [
 		type: "registry:font",
 		font: {
 			family: "'Figtree Variable', sans-serif",
-			cssImport: '@import "@fontsource-variable/figtree/index.css";',
+			provider: "google",
 			variable: "--font-sans",
-			dependencies: ["@fontsource-variable/figtree"],
+			subsets: ["latin"],
+			import: "Figtree",
 		},
 	},
 	{
@@ -62,9 +67,10 @@ export const fonts = [
 		type: "registry:font",
 		font: {
 			family: "'Roboto Variable', sans-serif",
-			cssImport: '@import "@fontsource-variable/roboto/index.css";',
+			provider: "google",
 			variable: "--font-sans",
-			dependencies: ["@fontsource-variable/roboto"],
+			subsets: ["latin"],
+			import: "Roboto",
 		},
 	},
 	{
@@ -73,9 +79,10 @@ export const fonts = [
 		type: "registry:font",
 		font: {
 			family: "'Raleway Variable', sans-serif",
-			cssImport: '@import "@fontsource-variable/raleway/index.css";',
+			provider: "google",
 			variable: "--font-sans",
-			dependencies: ["@fontsource-variable/raleway"],
+			subsets: ["latin"],
+			import: "Raleway",
 		},
 	},
 	{
@@ -84,9 +91,10 @@ export const fonts = [
 		type: "registry:font",
 		font: {
 			family: "'DM Sans Variable', sans-serif",
-			cssImport: '@import "@fontsource-variable/dm-sans/index.css";',
+			provider: "google",
 			variable: "--font-sans",
-			dependencies: ["@fontsource-variable/dm-sans"],
+			subsets: ["latin"],
+			import: "DM_Sans",
 		},
 	},
 	{
@@ -95,9 +103,10 @@ export const fonts = [
 		type: "registry:font",
 		font: {
 			family: "'Public Sans Variable', sans-serif",
-			cssImport: '@import "@fontsource-variable/public-sans/index.css";',
+			provider: "google",
 			variable: "--font-sans",
-			dependencies: ["@fontsource-variable/public-sans"],
+			subsets: ["latin"],
+			import: "Public_Sans",
 		},
 	},
 	{
@@ -106,9 +115,10 @@ export const fonts = [
 		type: "registry:font",
 		font: {
 			family: "'Outfit Variable', sans-serif",
-			cssImport: '@import "@fontsource-variable/outfit/index.css";',
+			provider: "google",
 			variable: "--font-sans",
-			dependencies: ["@fontsource-variable/outfit"],
+			subsets: ["latin"],
+			import: "Outfit",
 		},
 	},
 	{
@@ -117,9 +127,10 @@ export const fonts = [
 		type: "registry:font",
 		font: {
 			family: "'JetBrains Mono Variable', monospace",
-			cssImport: '@import "@fontsource-variable/jetbrains-mono/index.css";',
-			variable: "--font-sans",
-			dependencies: ["@fontsource-variable/jetbrains-mono"],
+			provider: "google",
+			variable: "--font-mono",
+			subsets: ["latin"],
+			import: "JetBrains_Mono",
 		},
 	},
 	{
@@ -128,9 +139,70 @@ export const fonts = [
 		type: "registry:font",
 		font: {
 			family: "'Geist Mono Variable', monospace",
-			cssImport: '@import "@fontsource-variable/geist-mono/index.css";',
-			variable: "--font-sans",
-			dependencies: ["@fontsource-variable/geist-mono"],
+			provider: "google",
+			variable: "--font-mono",
+			subsets: ["latin"],
+			import: "Geist_Mono",
 		},
 	},
-] satisfies RegistryFont[];
+	{
+		name: "font-noto-serif",
+		title: "Noto Serif",
+		type: "registry:font",
+		font: {
+			family: "'Noto Serif Variable', serif",
+			provider: "google",
+			variable: "--font-serif",
+			subsets: ["latin"],
+			import: "Noto_Serif",
+		},
+	},
+	{
+		name: "font-roboto-slab",
+		title: "Roboto Slab",
+		type: "registry:font",
+		font: {
+			family: "'Roboto Slab Variable', serif",
+			provider: "google",
+			variable: "--font-serif",
+			subsets: ["latin"],
+			import: "Roboto_Slab",
+		},
+	},
+	{
+		name: "font-merriweather",
+		title: "Merriweather",
+		type: "registry:font",
+		font: {
+			family: "'Merriweather Variable', serif",
+			provider: "google",
+			variable: "--font-serif",
+			subsets: ["latin"],
+			import: "Merriweather",
+		},
+	},
+	{
+		name: "font-lora",
+		title: "Lora",
+		type: "registry:font",
+		font: {
+			family: "'Lora Variable', serif",
+			provider: "google",
+			variable: "--font-serif",
+			subsets: ["latin"],
+			import: "Lora",
+		},
+	},
+	{
+		name: "font-playfair-display",
+		title: "Playfair Display",
+		type: "registry:font",
+		font: {
+			family: "'Playfair Display Variable', serif",
+			provider: "google",
+			variable: "--font-serif",
+			subsets: ["latin"],
+			import: "Playfair_Display",
+		},
+	},
+] satisfies RegistryItem[];

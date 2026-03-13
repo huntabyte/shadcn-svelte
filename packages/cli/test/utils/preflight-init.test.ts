@@ -2,14 +2,14 @@ import color from "picocolors";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { preflightInit } from "../../src/commands/init/preflight.js";
 import { SITE_BASE_URL, TW3_SITE_BASE_URL } from "../../src/constants";
-import { highlight } from "../../src/utils/utils";
+import { highlight } from "../../src/utils/colors";
 import {
 	getProjectPackageInfo,
 	getDependencyPackageInfo,
 } from "../../src/utils/get-package-info.js";
 
 vi.mock("../../src/utils/get-package-info.js");
-vi.mock("../../src/utils/utils");
+vi.mock("../../src/utils/colors");
 
 describe("preflightInit", () => {
 	beforeEach(() => {

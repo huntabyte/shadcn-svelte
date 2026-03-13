@@ -1,7 +1,7 @@
 import path from "node:path";
 import { z } from "zod";
 import { json } from "@sveltejs/kit";
-import { registryItemSchema } from "@shadcn-svelte/registry";
+import { registryItemSchema } from "shadcn-svelte/schema";
 import { highlightCode } from "$lib/highlight-code.js";
 import { blockMeta } from "$lib/registry/registry-block-meta.js";
 import {

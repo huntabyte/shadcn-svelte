@@ -9,7 +9,7 @@ import {
 	type Registry,
 	type RegistryItem,
 	type RegistryItemType,
-} from "@shadcn-svelte/registry";
+} from "shadcn-svelte/schema";
 
 interface BuildRegistryItem {
 	name: string;
@@ -92,6 +92,7 @@ export async function build(): Promise<void> {
 		"registry:style",
 		"registry:lib",
 		"registry:block",
+		"registry:font",
 	];
 	const filteredItems = result.items.filter((item) => ITEM_TYPES.includes(item.type));
 	const registryJsonPath = path.resolve("registry.json");

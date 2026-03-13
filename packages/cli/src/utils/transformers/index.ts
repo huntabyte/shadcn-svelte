@@ -1,4 +1,4 @@
-import type { ResolvedConfig } from "../get-config.js";
+import type { ResolvedConfig } from "../config/index.js";
 
 export type TransformOptions = {
 	content: string;
@@ -49,4 +49,3 @@ export async function transform(
 export { transformStripTypes } from "./transform-strip-types.js";
 export { transformIcons } from "./transform-icons.js";
 export { transformImports } from "./transform-imports.js";
-export { createTransformInjectStyles } from "./transform-inject-styles.js";

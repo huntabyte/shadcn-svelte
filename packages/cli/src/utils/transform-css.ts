@@ -1,5 +1,5 @@
 import { parse as parseCss } from "postcss";
-import type { CssSchema, CssVars } from "@shadcn-svelte/registry";
+import type { CssSchema, CssVars } from "./registry/schema.js";
 import { updateCss, updateCssVars, updateTailwindPlugins } from "./updaters/index.js";
 
 type TransformCssOptions = {

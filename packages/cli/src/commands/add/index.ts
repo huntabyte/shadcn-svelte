@@ -5,19 +5,15 @@ import color from "picocolors";
 import { z } from "zod";
 import { Command } from "commander";
 import { ConfigError, error, handleError } from "../../utils/errors.js";
-import * as cliConfig from "../../utils/get-config.js";
+import * as cliConfig from "../../utils/config/index.js";
 import { getEnvProxy } from "../../utils/get-env-proxy.js";
 import { cancel, intro, prettifyList } from "../../utils/prompt-helpers.js";
 import * as p from "@clack/prompts";
 import * as registry from "../../utils/registry/index.js";
 import { addRegistryItems } from "../../utils/add-registry-items.js";
-import { highlight } from "../../utils/utils.js";
+import { highlight } from "../../utils/colors.js";
 import { installDependencies } from "../../utils/install-deps.js";
 import { checkPreconditions } from "../../utils/preconditions.js";
-import {
-	findNeededAtRules,
-	updateCustomAtRules,
-} from "../../utils/updaters/update-custom-at-rules.js";
 
 const addOptionsSchema = z.object({
 	components: z.string().array().optional(),
@@ -129,24 +125,6 @@ async function runAdd(cwd: string, config: cliConfig.ResolvedConfig, options: Ad
 		overwrite: options.overwrite,
 		selectedItems: Array.from(selectedComponents),
 	});
-
-	const neededAtRules = await findNeededAtRules(config);
-
-	if (neededAtRules.length > 0) {
-		const cssPath = config.resolvedPaths.tailwindCss;
-		const relative = path.relative(cwd, cssPath);
-
-		await p.tasks([
-			{
-				title: "Updating stylesheet",
-				async task() {
-					await updateCustomAtRules(cssPath, neededAtRules);
-
-					return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;
-				},
-			},
-		]);
-	}
 
 	if (options.deps) {
 		await installDependencies({
