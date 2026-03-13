@@ -10,7 +10,6 @@ import {
 	type StyleName,
 	type ThemeName,
 } from "$lib/registry/config.js";
-import type { RegistryFont } from "shadcn-svelte/schema";
 import { error, json, redirect } from "@sveltejs/kit";
 
 export type DesignSystemResponse = {
@@ -21,7 +20,7 @@ export type DesignSystemResponse = {
 	/**
 	 * Needs to be the name of the font that will be used for the font provider
 	 */
-	fonts: RegistryFont[];
+	fonts: [ReturnType<typeof getFont>];
 	menuAccent: MenuAccentValue;
 	menuColor: MenuColorValue;
 	radius: `${number}rem`;

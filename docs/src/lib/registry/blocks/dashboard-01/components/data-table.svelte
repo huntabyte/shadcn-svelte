@@ -276,7 +276,8 @@
 					// @ts-expect-error @dnd-kit/abstract types are botched atm
 					RestrictToVerticalAxis,
 				]}
-				onDragEnd={(e) => (data = move(data, e))}
+				// @ts-expect-error @dnd-kit/geometry version conflict
+			onDragEnd={(e) => (data = move(data, e))}
 			>
 				<Table.Root>
 					<Table.Header class="bg-muted sticky top-0 z-10">

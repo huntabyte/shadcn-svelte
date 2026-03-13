@@ -63,6 +63,8 @@ export const iconLibraries = {
 	},
 } as const satisfies Record<string, IconLibrary>;
 
+export type IconLibraryName = keyof typeof iconLibraries;
+
 function toLucideKebab(name: string): string {
 	return pascalToKebab(name).replace("-icon", "");
 }
