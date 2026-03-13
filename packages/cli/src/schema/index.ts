@@ -1,0 +1,1 @@
+export * from '../utils/registry/schema.js';

@@ -13,7 +13,6 @@ import {
 	transformImports,
 	transformIcons,
 	transformStripTypes,
-	createTransformInjectStyles,
 } from "./transformers/index.js";
 
 const STYLE_TYPES = ["registry:style", "registry:theme"];
@@ -128,11 +127,6 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 					: `Adding ${highlight(item.name)}`,
 			// @ts-expect-error this is intentional since we don't want to return a string during `init`
 			async task() {
-				const registryStyle = await registry.getRegistryStyle(
-					registryUrl,
-					opts.config.designSystem.style
-				);
-
 				for (const file of item.files ?? []) {
 					const filePath = registry.resolveItemFilePath(opts.config, item, file);
 
@@ -146,7 +140,6 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 						[
 							transformImports,
 							transformIcons,
-							createTransformInjectStyles(registryStyle),
 							!opts.config.typescript && transformStripTypes,
 						]
 					);

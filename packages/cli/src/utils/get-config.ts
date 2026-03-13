@@ -1,5 +1,5 @@
 import color from "picocolors";
-import { getTsconfig } from "get-tsconfig";
+import { getTsconfig, type TsConfigResult } from "get-tsconfig";
 import fs from "node:fs";
 import path from "node:path";
 import { z } from "zod";
@@ -8,78 +8,27 @@ import { SITE_BASE_URL } from "../constants.js";
 import { ConfigError, error } from "./errors.js";
 import { resolveImportAlias } from "./resolve-imports.js";
 import { isUsingSvelteKit, syncSvelteKit } from "./sveltekit.js";
-import { iconLibraries, type IconLibraryName } from "../icons/libraries.js";
-import { registryItemFontSchema, type RegistryFont } from "@shadcn-svelte/registry";
+import {
+	PRESET_STYLES,
+	PRESET_BASE_COLORS,
+	PRESET_THEMES,
+	PRESET_MENU_ACCENTS,
+	PRESET_MENU_COLORS,
+} from "../preset/index.js";
+import * as p from "@clack/prompts";
+import { cancel } from "./prompt-helpers.js";
+import { ICON_LIBRARIES } from "../icons/libraries.js";
 
-export const DEFAULT_DESIGN_SYSTEM_CONFIG = {
-	style: "vega",
-	baseColor: "neutral",
-	theme: "neutral",
-	iconLibrary: "lucide",
-	fonts: [
-		{
-			name: "font-inter",
-			title: "Inter",
-			type: "registry:font",
-			font: {
-				family: "'Inter Variable', sans-serif",
-				cssImport: '@import "@fontsource-variable/inter/index.css";',
-				variable: "--font-sans",
-				dependencies: ["@fontsource-variable/inter"],
-			},
-		},
-	] satisfies RegistryFont[],
-	menuAccent: "subtle",
-	menuColor: "default",
-	radius: "0.5rem",
-} as const;
-
-export const STYLES = ["vega", "nova", "maia", "lyra", "mira"] as const;
+export const STYLES = PRESET_STYLES;
 export type StyleName = (typeof STYLES)[number];
-export const BASE_COLORS = ["neutral", "stone", "zinc", "gray"] as const;
+export const BASE_COLORS = PRESET_BASE_COLORS;
 export type BaseColorName = (typeof BASE_COLORS)[number];
-export const THEMES = [
-	"neutral",
-	"stone",
-	"zinc",
-	"gray",
-	"red",
-	"rose",
-	"pink",
-	"fuchsia",
-	"purple",
-	"violet",
-	"indigo",
-	"blue",
-	"sky",
-	"cyan",
-	"teal",
-	"emerald",
-	"green",
-	"lime",
-	"yellow",
-	"amber",
-	"orange",
-	"brown",
-] as const;
+export const THEMES = PRESET_THEMES;
 export type ThemeName = (typeof THEMES)[number];
-export const MENU_ACCENTS = ["subtle", "bold"] as const;
+export const MENU_ACCENTS = PRESET_MENU_ACCENTS;
 export type MenuAccent = (typeof MENU_ACCENTS)[number];
-export const MENU_COLORS = ["default", "inverted"] as const;
+export const MENU_COLORS = PRESET_MENU_COLORS;
 export type MenuColor = (typeof MENU_COLORS)[number];
-
-export const designSystemConfigSchema = z.object({
-	style: z.enum(STYLES),
-	iconLibrary: z.enum(Object.keys(iconLibraries) as [IconLibraryName, ...IconLibraryName[]]),
-	baseColor: z.enum(BASE_COLORS),
-	theme: z.enum(THEMES),
-	fonts: z.array(registryItemFontSchema),
-	menuAccent: z.enum(MENU_ACCENTS),
-	menuColor: z.enum(MENU_COLORS),
-	radius: z.string(),
-});
-
-export type DesignSystemConfig = z.infer<typeof designSystemConfigSchema>;
 
 export const DEFAULT_CONFIG = {
 	$schema: `${SITE_BASE_URL}/schema.json`,
@@ -94,17 +43,12 @@ export const DEFAULT_CONFIG = {
 		baseColor: "slate",
 		css: "src/app.css",
 	},
-	designSystem: {
-		style: DEFAULT_DESIGN_SYSTEM_CONFIG.style,
-		iconLibrary: DEFAULT_DESIGN_SYSTEM_CONFIG.iconLibrary,
-		theme: DEFAULT_DESIGN_SYSTEM_CONFIG.theme,
-		menuAccent: DEFAULT_DESIGN_SYSTEM_CONFIG.menuAccent,
-		menuColor: DEFAULT_DESIGN_SYSTEM_CONFIG.menuColor,
-		radius: DEFAULT_DESIGN_SYSTEM_CONFIG.radius,
-		fonts: DEFAULT_DESIGN_SYSTEM_CONFIG.fonts,
-	},
 	typescript: true,
 	registry: `${SITE_BASE_URL}/registry`,
+	style: "vega",
+	iconLibrary: "lucide",
+	menuColor: "default",
+	menuAccent: "subtle",
 } as const;
 
 const aliasSchema = (alias: string) =>
@@ -120,7 +64,6 @@ const baseConfigSchema = z.object({
 		{
 			css: z.string(`Missing tailwind.${color.bold("css")} path`),
 			baseColor: z.string(`Missing tailwind.${color.bold("baseColor")} field`),
-			// cssVariables: z.boolean().default(true)
 		},
 		`Missing ${color.bold("tailwind")} object`
 	),
@@ -157,19 +100,11 @@ const newConfigSchema = baseConfigSchema.extend({
 		lib: aliasSchema("lib").default(DEFAULT_CONFIG.aliases.lib),
 	}),
 	registry: z.string().default(DEFAULT_CONFIG.registry),
-	designSystem: z
-		.object({
-			style: z.enum(STYLES).default(DEFAULT_CONFIG.designSystem.style),
-			iconLibrary: z
-				.enum(Object.keys(iconLibraries) as [IconLibraryName, ...IconLibraryName[]])
-				.default(DEFAULT_CONFIG.designSystem.iconLibrary),
-			theme: z.enum(THEMES).default(DEFAULT_CONFIG.designSystem.theme),
-			menuAccent: z.enum(MENU_ACCENTS).default(DEFAULT_CONFIG.designSystem.menuAccent),
-			menuColor: z.enum(MENU_COLORS).default(DEFAULT_CONFIG.designSystem.menuColor),
-			radius: z.string().default(DEFAULT_CONFIG.designSystem.radius),
-			fonts: z.array(registryItemFontSchema).default(DEFAULT_CONFIG.designSystem.fonts),
-		})
-		.default(DEFAULT_CONFIG.designSystem),
+	// design system
+	style: z.string().default("vega"),
+	iconLibrary: z.enum(ICON_LIBRARIES).default("lucide"),
+	menuColor: z.enum(MENU_COLORS).default("default"),
+	menuAccent: z.enum(MENU_ACCENTS).default("subtle"),
 });
 
 export type RawConfig = z.infer<typeof rawConfigSchema>;
@@ -255,6 +190,65 @@ export function loadConfig(cwd: string): RawConfig | undefined {
 			`Invalid configuration found in ${highlight(configPath)}.\n\n${formatted}`
 		);
 	}
+}
+
+export function validateImportAlias(opts: Parameters<typeof resolveImportAlias>[0]) {
+	const resolvedPath = resolveImportAlias(opts);
+	if (resolvedPath !== undefined) return;
+
+	return `"${color.bold(opts.importPath)}" does not use an existing path alias defined in your ${color.bold(path.basename(opts.tsconfig.path))}. See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}`;
+}
+
+type PromptForAliasesOptions = {
+	tsconfig: TsConfigResult;
+	cwd: string;
+	componentsAlias?: string | undefined;
+	existingConfig: RawConfig | undefined;
+	utilsAlias?: string | undefined;
+	libAlias?: string | undefined;
+	hooksAlias?: string | undefined;
+	uiAlias?: string | undefined;
+};
+export async function promptForAliases(options: PromptForAliasesOptions) {
+	const libAlias = await promptAlias("lib", "$lib", options);
+	const componentAlias = await promptAlias("components", `${libAlias}/components`, options);
+	const uiAlias = await promptAlias("ui", `${componentAlias}/ui`, options);
+	const utilsAlias = await promptAlias("utils", `${libAlias}/utils`, options);
+	const hooksAlias = await promptAlias("hooks", `${libAlias}/hooks`, options);
+
+	return {
+		libAlias,
+		componentAlias,
+		uiAlias,
+		utilsAlias,
+		hooksAlias,
+	};
+}
+
+async function promptAlias(
+	alias: keyof RawConfig["aliases"],
+	initial: string,
+	options: PromptForAliasesOptions
+) {
+	let path = options[`${alias}Alias`];
+	if (path === undefined) {
+		const input = await p.text({
+			message: `Configure the import alias for ${highlight(alias)}:`,
+			initialValue: options.existingConfig?.aliases[alias] ?? initial,
+			placeholder: DEFAULT_CONFIG.aliases[alias],
+			validate: (value) =>
+				validateImportAlias({
+					cwd: options.cwd,
+					tsconfig: options.tsconfig,
+					importPath: value,
+				}),
+		});
+
+		if (p.isCancel(input)) cancel();
+
+		path = stripTrailingSlash(input);
+	}
+	return path;
 }
 
 export function writeConfig(cwd: string, config: RawConfig): void {

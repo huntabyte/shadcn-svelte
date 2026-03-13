@@ -64,3 +64,25 @@ export function toArray<T>(set: Set<T>): Array<T> | undefined {
 	}
 	return undefined;
 }
+
+/**
+ * A highly naive implementation of deep partialification. Unfortunately the latest version of zod doesn't support this at this time. If there ever comes a time where it does let's replace this method ASAP.
+ *
+ * @see https://github.com/colinhacks/zod/issues/2854
+ *
+ * @param schema
+ * @returns
+ */
+export function naiveDeepPartialify(schema: z.ZodObject): z.ZodObject {
+	const newShape: Record<string, z.ZodType> = {};
+
+	Object.entries(schema.shape).forEach(([key, value]) => {
+		if (value instanceof z.ZodObject) {
+			newShape[key] = naiveDeepPartialify(value).optional();
+		} else {
+			newShape[key] = z.optional(value);
+		}
+	});
+
+	return z.object(newShape);
+}

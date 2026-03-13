@@ -1,7 +1,6 @@
 // Browser-safe re-export of preset utilities.
 // Use `shadcn/preset` for client-side code.
 export {
-	PRESET_BASES,
 	PRESET_STYLES,
 	PRESET_BASE_COLORS,
 	PRESET_THEMES,

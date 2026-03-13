@@ -9,9 +9,9 @@
 //   3. Only append new fields to the end of PRESET_FIELDS.
 //   4. Stay under 53 bits total (JS safe integer limit).
 
-// Value arrays — order matters for backward compat. Never reorder, only append.
-export const PRESET_BASES = ["radix", "base"] as const;
+import { ICON_LIBRARIES } from "../icons/libraries.js";
 
+// Value arrays — order matters for backward compat. Never reorder, only append.
 export const PRESET_STYLES = ["nova", "vega", "maia", "lyra", "mira"] as const;
 
 export const PRESET_BASE_COLORS = [
@@ -51,13 +51,7 @@ export const PRESET_THEMES = [
 	"taupe",
 ] as const;
 
-export const PRESET_ICON_LIBRARIES = [
-	"lucide",
-	"hugeicons",
-	"tabler",
-	"phosphor",
-	"remixicon",
-] as const;
+export const PRESET_ICON_LIBRARIES = ICON_LIBRARIES;
 
 export const PRESET_FONTS = [
 	"inter",

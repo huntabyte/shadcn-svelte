@@ -27,12 +27,10 @@ isProject: false
 
 ### Missing items (to add)
 
-
 | Item        | Type             | Upstream Source                                 | Action             |
 | ----------- | ---------------- | ----------------------------------------------- | ------------------ |
 | **demo**    | registry:example | `registry/bases/radix/examples/demo.tsx`        | Create new example |
 | **preview** | registry:block   | `registry/bases/radix/blocks/preview/index.tsx` | Create new block   |
-
 
 ### Existing items (57 examples)
 
@@ -87,7 +85,7 @@ All 57 component examples exist with the correct file structure (`{name}/{name}.
 
 For each component example, compare:
 
-- Layout classes (`flex`, `grid`, `gap`, `max-w-`*, etc.)
+- Layout classes (`flex`, `grid`, `gap`, `max-w-`\*, etc.)
 - Variant usage (e.g., button variants, badge variants)
 - Spacing and typography
 - Example structure (ExampleWrapper, sub-example composition)
@@ -113,7 +111,7 @@ flowchart TD
         API --> Filter[Filter by type + exclude]
         Filter --> Menu[ActionMenu items]
     end
-    
+
     subgraph ours [shadcn-svelte]
         IndexStatic[examples/create/index.ts]
         IndexStatic --> ActionMenu[action-menu.svelte]
@@ -123,12 +121,9 @@ flowchart TD
     end
 ```
 
-
-
 ---
 
 ## File Structure Summary
-
 
 | Path                                                                   | Purpose                               |
 | ---------------------------------------------------------------------- | ------------------------------------- |
@@ -136,5 +131,3 @@ flowchart TD
 | `docs/src/lib/registry/examples/create/demo/demo.svelte`               | New – style overview + form composite |
 | `docs/src/lib/registry/examples/create/preview/preview.svelte`         | New – grid of design cards            |
 | `docs/src/lib/registry/examples/create/{component}/{component}.svelte` | Verify styles (57 files)              |
-
-

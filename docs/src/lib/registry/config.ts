@@ -6,9 +6,7 @@ import { z } from "zod";
 import { fonts } from "./fonts.js";
 import { STYLES, type Style } from "./styles/index.js";
 import { BASE_THEMES, THEMES, type BaseTheme, type Theme } from "./themes.js";
-import { PRESET_BASE_COLORS, PRESET_FONTS } from "shadcn-svelte/preset";
-
-const SHADCN_VERSION = "latest";
+import { PRESET_BASE_COLORS, PRESET_FONTS, type PresetConfig } from "shadcn-svelte/preset";
 
 export { STYLES, type Style };
 export { THEMES, type Theme };
@@ -212,10 +210,10 @@ export function buildRegistryTheme(config: DesignSystemConfig) {
 		lightVars["accent-foreground"] = lightVars["primary-foreground"];
 		darkVars.accent = darkVars.primary;
 		darkVars["accent-foreground"] = darkVars["primary-foreground"];
-		lightVars["sidebar-accent"] = lightVars.primary;
-		lightVars["sidebar-accent-foreground"] = lightVars["primary-foreground"];
-		darkVars["sidebar-accent"] = darkVars.primary;
-		darkVars["sidebar-accent-foreground"] = darkVars["primary-foreground"];
+		// lightVars["sidebar-accent"] = lightVars.primary
+		// lightVars["sidebar-accent-foreground"] = lightVars["primary-foreground"]
+		// darkVars["sidebar-accent"] = darkVars.primary
+		// darkVars["sidebar-accent-foreground"] = darkVars["primary-foreground"]
 	}
 
 	// Apply radius transformation.
@@ -238,7 +236,7 @@ export function buildRegistryTheme(config: DesignSystemConfig) {
 }
 
 // Builds a registry:base item from a design system config.
-export function buildRegistryBase(config: DesignSystemConfig) {
+export function buildRegistryBase(config: PresetConfig) {
 	const iconLibraryItem = getIconLibrary(config.iconLibrary);
 
 	if (!iconLibraryItem) {
@@ -247,9 +245,8 @@ export function buildRegistryBase(config: DesignSystemConfig) {
 
 	const registryTheme = buildRegistryTheme(config);
 
-	// Build dependencies.
+	// Dependencies added on init
 	const dependencies = [
-		`shadcn@${SHADCN_VERSION}`,
 		"tailwind-variants",
 		"clsx",
 		"tailwind-merge",
@@ -281,10 +278,69 @@ export function buildRegistryBase(config: DesignSystemConfig) {
 		cssVars: registryTheme.cssVars,
 		css: {
 			'@import "tw-animate-css"': {},
-			'@import "shadcn-svelte/tailwind.css"': {},
 			"@layer base": {
 				"*": { "@apply border-border outline-ring/50": {} },
 				body: { "@apply bg-background text-foreground": {} },
+			},
+
+			// these are the styles that `@import "shadcn/tailwind.css"` adds
+			// but that seems like the wrong solution so for the time being we'll add them on init
+			"@custom-variant data-open": {
+				'&:where([data-state="open"]), &:where([data-open]:not([data-open="false"]))': {
+					"@slot": "",
+				},
+			},
+			"@custom-variant data-closed": {
+				'&:where([data-state="closed"]), &:where([data-closed]:not([data-closed="false"]))':
+					{
+						"@slot": "",
+					},
+			},
+			"@custom-variant data-checked": {
+				'&:where([data-state="checked"]), &:where([data-checked]:not([data-checked="false"]))':
+					{
+						"@slot": "",
+					},
+			},
+			"@custom-variant data-unchecked": {
+				'&:where([data-state="unchecked"]), &:where([data-unchecked]:not([data-unchecked="false"]))':
+					{
+						"@slot": "",
+					},
+			},
+			"@custom-variant data-selected": {
+				"&:where([data-selected])": {
+					"@slot": "",
+				},
+			},
+			"@custom-variant data-disabled": {
+				'&:where([data-disabled="true"]), &:where([data-disabled]:not([data-disabled="false"]))':
+					{
+						"@slot": "",
+					},
+			},
+			"@custom-variant data-active": {
+				'&:where([data-state="active"]), &:where([data-active]:not([data-active="false"]))':
+					{
+						"@slot": "",
+					},
+			},
+			"@custom-variant data-horizontal": {
+				'&:where([data-orientation="horizontal"])': {
+					"@slot": "",
+				},
+			},
+			"@custom-variant data-vertical": {
+				'&:where([data-orientation="vertical"])': {
+					"@slot": "",
+				},
+			},
+			"@utility no-scrollbar": {
+				"-ms-overflow-style": "none",
+				"scrollbar-width": "none",
+				"&::-webkit-scrollbar": {
+					display: "none",
+				},
 			},
 		},
 	};
