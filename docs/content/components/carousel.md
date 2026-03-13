@@ -223,7 +223,7 @@ Use reactive state and the `setApi` callback to get an instance of the carousel 
 
 ## Events
 
-You can listen to events using the api instance from `bind:api`.
+You can listen to events using the api instance from `setApi`.
 
 ```svelte showLineNumbers {2,5,7-13,16}
 <script lang="ts">
