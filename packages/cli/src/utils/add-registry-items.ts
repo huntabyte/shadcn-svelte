@@ -14,7 +14,7 @@ import {
 	transformIcons,
 	transformStripTypes,
 } from "./transformers/index.js";
-import type { RegistryFont } from "./registry/schema.js";
+import { setupFonts, type Font } from "./fonts.js";
 
 const STYLE_TYPES = ["registry:style", "registry:theme"];
 
@@ -34,7 +34,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 	const tasks: p.Task[] = [];
 	const cwd = opts.config.resolvedPaths.cwd;
 	const registryUrl = registry.getRegistryUrl(opts.config);
-	const fonts: (RegistryFont & { name: string })[] = [];
+	const fonts: Font[] = [];
 	let cssVars = {};
 	let css = {};
 
@@ -124,7 +124,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 
 		if (item.type === 'registry:font') {	
 			fonts.push({
-				name: item.name.replace('font-', ''),
+				name: item.name,
 				...item.font,
 			});
 		}
@@ -185,6 +185,12 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 	}
 
 	await p.tasks(tasks);
+	
+	const { css: fontsCss, cssVars: fontsCssVars, dependencies: fontsDependencies } = setupFonts(fonts)
+
+	css = merge(css, fontsCss)
+	cssVars = merge(cssVars, fontsCssVars)
+	fontsDependencies.forEach((dep) => devDependencies.add(dep))
 
 	if (Object.keys(cssVars).length || Object.keys(css).length) {
 		const cssPath = opts.config.resolvedPaths.tailwindCss;

@@ -12,6 +12,7 @@ import { cancel, intro, prettifyList } from "../../utils/prompt-helpers.js";
 import * as p from "@clack/prompts";
 import * as registry from "../../utils/registry/index.js";
 import { transformCss } from "../../utils/transform-css.js";
+import { setupFonts, type Font } from "../../utils/fonts.js";
 import { checkPreconditions } from "../../utils/preconditions.js";
 import { highlight } from "../../utils/colors.js";
 import { installDependencies } from "../../utils/install-deps.js";
@@ -174,6 +175,7 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 	const componentsToRemove: Record<string, string[]> = {};
 	const dependencies = new Set<string>();
 	const devDependencies = new Set<string>();
+	const fonts: Font[] = [];
 	let cssVars = {};
 	let css = {};
 	for (const item of payload) {
@@ -182,6 +184,13 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 		// Add dependencies to the install list
 		item.dependencies?.forEach((dep) => dependencies.add(dep));
 		item.devDependencies?.forEach((dep) => devDependencies.add(dep));
+
+		if (item.type === 'registry:font') {
+			fonts.push({
+				name: item.name,
+				...item.font,
+			});
+		}
 
 		// Update Components
 		tasks.push({
@@ -244,6 +253,12 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 			},
 		});
 	}
+
+	const { css: fontsCss, cssVars: fontsCssVars, dependencies: fontsDependencies } = setupFonts(fonts)
+
+	css = merge(css, fontsCss)
+	cssVars = merge(cssVars, fontsCssVars)
+	fontsDependencies.forEach((dep) => devDependencies.add(dep))
 
 	if (Object.keys(cssVars).length > 0 || Object.keys(css).length > 0) {
 		// Update the stylesheet

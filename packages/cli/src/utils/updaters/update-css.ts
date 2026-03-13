@@ -1,5 +1,5 @@
 import postcss, { AtRule, Declaration, Root, Rule } from "postcss";
-import type { CssSchema } from "shadcn-svelte/schema";
+import type { CssSchema } from "../registry/schema.js";
 import { error } from "../errors.js";
 
 export function updateCss(root: Root, css: CssSchema): void {
