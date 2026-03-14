@@ -26,7 +26,7 @@
 		<div class="flex items-center gap-4 border-b px-4 py-3 last:border-b-0">
 			<Checkbox bind:checked={item.checked} aria-label="Select row" />
 			<span class="flex-1 text-sm">{item.label}</span>
-			<span class="text-sm text-muted-foreground">{item.amount}</span>
+			<span class="text-muted-foreground text-sm">{item.amount}</span>
 		</div>
 	{/each}
 </div>

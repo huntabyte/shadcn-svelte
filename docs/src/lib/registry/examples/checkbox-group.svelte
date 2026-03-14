@@ -13,7 +13,7 @@
 </script>
 
 <div class="flex flex-col space-y-3">
-	<p class="text-sm font-medium leading-none">Sidebar</p>
+	<p class="text-sm leading-none font-medium">Sidebar</p>
 	{#each items as item (item.id)}
 		<div class="flex items-center space-x-2">
 			<Checkbox id={item.id} />

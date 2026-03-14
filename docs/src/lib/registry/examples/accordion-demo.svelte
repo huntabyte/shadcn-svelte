@@ -13,8 +13,8 @@
 	<Accordion.Item value="item-2">
 		<Accordion.Trigger>Can I change my subscription plan?</Accordion.Trigger>
 		<Accordion.Content>
-			Yes, you can upgrade or downgrade your plan at any time. Changes take effect at the start of
-			your next billing cycle.
+			Yes, you can upgrade or downgrade your plan at any time. Changes take effect at the
+			start of your next billing cycle.
 		</Accordion.Content>
 	</Accordion.Item>
 	<Accordion.Item value="item-3">

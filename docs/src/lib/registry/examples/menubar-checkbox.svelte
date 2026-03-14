@@ -16,9 +16,7 @@
 			<Menubar.CheckboxItem bind:checked={showStatusBar}>
 				Show Status Bar
 			</Menubar.CheckboxItem>
-			<Menubar.CheckboxItem bind:checked={showSidebar}>
-				Show Sidebar
-			</Menubar.CheckboxItem>
+			<Menubar.CheckboxItem bind:checked={showSidebar}>Show Sidebar</Menubar.CheckboxItem>
 		</Menubar.Content>
 	</Menubar.Menu>
 </Menubar.Root>

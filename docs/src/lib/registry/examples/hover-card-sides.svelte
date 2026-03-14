@@ -10,7 +10,7 @@
 	{#each sides as side (side)}
 		<HoverCard.Root>
 			<HoverCard.Trigger
-				class="rounded-sm text-sm underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-8 capitalize"
+				class="rounded-sm text-sm capitalize underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-8"
 			>
 				{side}
 			</HoverCard.Trigger>

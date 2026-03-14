@@ -278,7 +278,8 @@
 
 					{#each filteredColors as colorPalette (colorPalette.name)}
 						<Command.Group
-							heading={colorPalette.name.charAt(0).toUpperCase() + colorPalette.name.slice(1)}
+							heading={colorPalette.name.charAt(0).toUpperCase() +
+								colorPalette.name.slice(1)}
 							class="!p-0 [&_[data-command-group-heading]]:!p-3"
 						>
 							{#each colorPalette.colors as color (color.hex)}

@@ -6,7 +6,10 @@
 <DropdownMenu.Root>
 	<DropdownMenu.Trigger>
 		{#snippet child({ props })}
-			<button {...props} class="rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring">
+			<button
+				{...props}
+				class="focus-visible:outline-ring rounded-full focus-visible:outline-2 focus-visible:outline-offset-2"
+			>
 				<Avatar.Root>
 					<Avatar.Image src="https://github.com/shadcn.png" alt="@shadcn" />
 					<Avatar.Fallback>CN</Avatar.Fallback>

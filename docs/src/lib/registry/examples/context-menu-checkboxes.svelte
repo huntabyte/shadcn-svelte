@@ -21,8 +21,6 @@
 		<ContextMenu.CheckboxItem bind:checked={showFullURLs}>
 			Show Full URLs
 		</ContextMenu.CheckboxItem>
-		<ContextMenu.CheckboxItem bind:checked={showHistory}>
-			Show History
-		</ContextMenu.CheckboxItem>
+		<ContextMenu.CheckboxItem bind:checked={showHistory}>Show History</ContextMenu.CheckboxItem>
 	</ContextMenu.Content>
 </ContextMenu.Root>

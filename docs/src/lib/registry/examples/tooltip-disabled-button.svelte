@@ -8,7 +8,10 @@
 			{#snippet child({ props })}
 				<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 				<span tabindex="0" {...props}>
-					<button disabled class="inline-flex h-9 cursor-not-allowed items-center justify-center rounded-md border border-input bg-background px-3 py-2 text-sm font-medium opacity-50 shadow-sm">
+					<button
+						disabled
+						class="border-input bg-background inline-flex h-9 cursor-not-allowed items-center justify-center rounded-md border px-3 py-2 text-sm font-medium opacity-50 shadow-sm"
+					>
 						Disabled button
 					</button>
 				</span>

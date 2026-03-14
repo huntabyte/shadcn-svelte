@@ -8,7 +8,9 @@
 		<RadioGroup.Item value="free" id="free" class="mt-1" />
 		<div class="grid gap-0.5">
 			<Label for="free" class="font-medium">Free plan</Label>
-			<p class="text-muted-foreground text-sm">Perfect for hobby projects and side experiments.</p>
+			<p class="text-muted-foreground text-sm">
+				Perfect for hobby projects and side experiments.
+			</p>
 		</div>
 	</div>
 	<div class="flex items-start space-x-2">
@@ -22,7 +24,9 @@
 		<RadioGroup.Item value="enterprise" id="enterprise" class="mt-1" />
 		<div class="grid gap-0.5">
 			<Label for="enterprise" class="font-medium">Enterprise plan</Label>
-			<p class="text-muted-foreground text-sm">Dedicated support for large-scale applications.</p>
+			<p class="text-muted-foreground text-sm">
+				Dedicated support for large-scale applications.
+			</p>
 		</div>
 	</div>
 </RadioGroup.Root>

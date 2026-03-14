@@ -185,7 +185,7 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 		item.dependencies?.forEach((dep) => dependencies.add(dep));
 		item.devDependencies?.forEach((dep) => devDependencies.add(dep));
 
-		if (item.type === 'registry:font') {
+		if (item.type === "registry:font") {
 			fonts.push({
 				name: item.name,
 				...item.font,
@@ -254,11 +254,15 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 		});
 	}
 
-	const { css: fontsCss, cssVars: fontsCssVars, dependencies: fontsDependencies } = setupFonts(fonts)
+	const {
+		css: fontsCss,
+		cssVars: fontsCssVars,
+		dependencies: fontsDependencies,
+	} = setupFonts(fonts);
 
-	css = merge(css, fontsCss)
-	cssVars = merge(cssVars, fontsCssVars)
-	fontsDependencies.forEach((dep) => devDependencies.add(dep))
+	css = merge(css, fontsCss);
+	cssVars = merge(cssVars, fontsCssVars);
+	fontsDependencies.forEach((dep) => devDependencies.add(dep));
 
 	if (Object.keys(cssVars).length > 0 || Object.keys(css).length > 0) {
 		// Update the stylesheet

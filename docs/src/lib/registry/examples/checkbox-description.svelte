@@ -6,7 +6,10 @@
 <div class="items-top flex space-x-2">
 	<Checkbox id="terms" />
 	<div class="grid gap-1.5 leading-none">
-		<Label for="terms" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+		<Label
+			for="terms"
+			class="text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+		>
 			Accept terms and conditions
 		</Label>
 		<p class="text-muted-foreground text-sm">

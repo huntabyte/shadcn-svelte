@@ -21,12 +21,12 @@
 		</Tabs.Trigger>
 	</Tabs.List>
 	<Tabs.Content value="account">
-		<p class="text-muted-foreground text-sm py-4">Account settings and preferences.</p>
+		<p class="text-muted-foreground py-4 text-sm">Account settings and preferences.</p>
 	</Tabs.Content>
 	<Tabs.Content value="password">
-		<p class="text-muted-foreground text-sm py-4">Password and security settings.</p>
+		<p class="text-muted-foreground py-4 text-sm">Password and security settings.</p>
 	</Tabs.Content>
 	<Tabs.Content value="settings">
-		<p class="text-muted-foreground text-sm py-4">General application settings.</p>
+		<p class="text-muted-foreground py-4 text-sm">General application settings.</p>
 	</Tabs.Content>
 </Tabs.Root>

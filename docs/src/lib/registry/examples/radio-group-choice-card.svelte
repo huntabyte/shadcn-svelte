@@ -5,19 +5,18 @@
 	let plan = $state("startup");
 </script>
 
-<RadioGroup.Root bind:value={plan} class="grid grid-cols-1 gap-3 sm:grid-cols-3 max-w-xl">
-	{#each [
-		{ value: "free", title: "Free", price: "$0", description: "For individuals" },
-		{ value: "startup", title: "Startup", price: "$9", description: "For small teams" },
-		{ value: "enterprise", title: "Enterprise", price: "$29", description: "For large orgs" }
-	] as option (option.value)}
+<RadioGroup.Root bind:value={plan} class="grid max-w-xl grid-cols-1 gap-3 sm:grid-cols-3">
+	{#each [{ value: "free", title: "Free", price: "$0", description: "For individuals" }, { value: "startup", title: "Startup", price: "$9", description: "For small teams" }, { value: "enterprise", title: "Enterprise", price: "$29", description: "For large orgs" }] as option (option.value)}
 		<Label
 			for={option.value}
-			class="flex cursor-pointer flex-col gap-1 rounded-lg border p-4 hover:bg-accent [&:has([data-state=checked])]:border-primary"
+			class="hover:bg-accent [&:has([data-state=checked])]:border-primary flex cursor-pointer flex-col gap-1 rounded-lg border p-4"
 		>
 			<div class="flex items-center justify-between">
 				<RadioGroup.Item value={option.value} id={option.value} />
-				<span class="font-semibold">{option.price}<span class="text-muted-foreground font-normal text-xs">/mo</span></span>
+				<span class="font-semibold"
+					>{option.price}<span class="text-muted-foreground text-xs font-normal">/mo</span
+					></span
+				>
 			</div>
 			<span class="font-medium">{option.title}</span>
 			<span class="text-muted-foreground text-xs">{option.description}</span>

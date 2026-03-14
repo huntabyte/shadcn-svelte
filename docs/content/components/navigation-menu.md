@@ -86,9 +86,7 @@ When using the `NavigationMenu.Link` component as a child of a SvelteKit `<a>` e
 ```svelte showLineNumbers
 <NavigationMenu.Link>
   {#snippet child({ props })}
-    <a href="/docs" {...props}>
-      Documentation
-    </a>
+    <a href="/docs" {...props}> Documentation </a>
   {/snippet}
 </NavigationMenu.Link>
 ```

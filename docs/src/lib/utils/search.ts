@@ -1,4 +1,4 @@
-import FlexSearch from "flexsearch";
+import { Index, type Id } from "flexsearch";
 
 export type SearchContent = {
 	title: string;
@@ -15,17 +15,17 @@ export type SearchResult = SearchContent & {
 	highlights?: string[];
 };
 
-let titleIndex: FlexSearch.Index;
-let contentIndex: FlexSearch.Index;
+let titleIndex: Index;
+let contentIndex: Index;
 let content: SearchContent[] = [];
 
 export function createContentIndex(data: SearchContent[]) {
-	titleIndex = new FlexSearch.Index({
+	titleIndex = new Index({
 		tokenize: "forward",
 		resolution: 9,
 	});
 
-	contentIndex = new FlexSearch.Index({
+	contentIndex = new Index({
 		tokenize: "forward",
 		resolution: 5,
 	});
@@ -87,7 +87,7 @@ export function searchContentIndex(query: string): SearchResult[] {
 	const titleResults = titleIndex.search(query, { limit: 20 });
 	const contentResults = contentIndex.search(query, { limit: 20 });
 
-	const resultMap = new Map<FlexSearch.Id, { score: number; source: string }>();
+	const resultMap = new Map<Id, { score: number; source: string }>();
 
 	for (const id of titleResults) {
 		resultMap.set(id, { score: 10, source: "title" });

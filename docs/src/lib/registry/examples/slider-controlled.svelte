@@ -4,7 +4,7 @@
 	let value = $state(50);
 </script>
 
-<div class="flex flex-col gap-4 w-[70%]">
+<div class="flex w-[70%] flex-col gap-4">
 	<div class="flex justify-between text-sm">
 		<span>Volume</span>
 		<span class="font-medium tabular-nums">{value}%</span>

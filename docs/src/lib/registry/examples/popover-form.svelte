@@ -11,7 +11,7 @@
 	<Popover.Content class="w-80">
 		<div class="grid gap-4">
 			<div class="space-y-2">
-				<h4 class="font-medium leading-none">Profile</h4>
+				<h4 class="leading-none font-medium">Profile</h4>
 				<p class="text-muted-foreground text-sm">Update your profile information.</p>
 			</div>
 			<div class="grid gap-2">

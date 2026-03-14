@@ -4,16 +4,22 @@
 	let value = $state("");
 
 	const items = [
-		{ group: "Fruits", items: [
-			{ value: "apple", label: "Apple" },
-			{ value: "banana", label: "Banana" },
-			{ value: "mango", label: "Mango" },
-		]},
-		{ group: "Vegetables", items: [
-			{ value: "carrot", label: "Carrot" },
-			{ value: "broccoli", label: "Broccoli" },
-			{ value: "spinach", label: "Spinach" },
-		]},
+		{
+			group: "Fruits",
+			items: [
+				{ value: "apple", label: "Apple" },
+				{ value: "banana", label: "Banana" },
+				{ value: "mango", label: "Mango" },
+			],
+		},
+		{
+			group: "Vegetables",
+			items: [
+				{ value: "carrot", label: "Carrot" },
+				{ value: "broccoli", label: "Broccoli" },
+				{ value: "spinach", label: "Spinach" },
+			],
+		},
 	];
 
 	const triggerContent = $derived(

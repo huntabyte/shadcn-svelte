@@ -4,10 +4,7 @@ import { globby } from "globby";
 import removeMd from "remove-markdown";
 
 const CONTENT_DIR = path.resolve(import.meta.dirname, "../content");
-const OUTPUT_PATH = path.resolve(
-	import.meta.dirname,
-	"../src/routes/api/search.json/search.json"
-);
+const OUTPUT_PATH = path.resolve(import.meta.dirname, "../src/routes/api/search.json/search.json");
 
 type SearchEntry = {
 	title: string;

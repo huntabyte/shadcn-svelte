@@ -5,7 +5,7 @@
 </script>
 
 <div>
-	<h4 class="text-sm font-medium leading-none">Frameworks</h4>
+	<h4 class="text-sm leading-none font-medium">Frameworks</h4>
 	<Separator class="my-4" />
 	<div class="flex h-5 items-center space-x-4 text-sm">
 		{#each tags as tag, i (tag)}

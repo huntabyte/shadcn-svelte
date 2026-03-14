@@ -7,7 +7,9 @@
 <Dialog.Root>
 	<Dialog.Trigger class={buttonVariants({ variant: "outline" })}>Open Dialog</Dialog.Trigger>
 	<Dialog.Content class="flex flex-col gap-0 p-0 sm:max-w-lg">
-		<Dialog.Header class="contents space-y-0 *:data-[slot=dialog-description]:order-last *:data-[slot=dialog-description]:text-muted-foreground *:data-[slot=dialog-title]:font-semibold">
+		<Dialog.Header
+			class="*:data-[slot=dialog-description]:text-muted-foreground contents space-y-0 *:data-[slot=dialog-description]:order-last *:data-[slot=dialog-title]:font-semibold"
+		>
 			<Dialog.Title class="order-first border-b px-6 py-4 text-base">
 				Confirm action
 			</Dialog.Title>
@@ -18,7 +20,7 @@
 			</Dialog.Description>
 			<div class="mt-4 space-y-3 text-sm">
 				<p>Please review the following items that will be deleted:</p>
-				<ul class="list-disc pl-4 space-y-1 text-muted-foreground">
+				<ul class="text-muted-foreground list-disc space-y-1 pl-4">
 					<li>Project configuration files</li>
 					<li>Associated media uploads</li>
 					<li>Connected API integrations</li>

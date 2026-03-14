@@ -15,7 +15,9 @@
 		<Avatar.Image src="https://github.com/evilrabbit.png" alt="@evilrabbit" />
 		<Avatar.Fallback>ER</Avatar.Fallback>
 	</Avatar.Root>
-	<Avatar.GroupCount class="bg-muted text-muted-foreground size-8 rounded-full text-xs font-medium">
+	<Avatar.GroupCount
+		class="bg-muted text-muted-foreground size-8 rounded-full text-xs font-medium"
+	>
 		+3
 	</Avatar.GroupCount>
 </Avatar.Group>

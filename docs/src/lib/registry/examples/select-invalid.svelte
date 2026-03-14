@@ -2,7 +2,7 @@
 	import * as Select from "$lib/registry/ui/select/index.js";
 </script>
 
-<div class="flex flex-col gap-2 w-[180px]">
+<div class="flex w-[180px] flex-col gap-2">
 	<Select.Root type="single">
 		<Select.Trigger aria-invalid="true" class="aria-[invalid=true]:border-destructive">
 			Select a fruit

@@ -5,10 +5,10 @@
 	const alignments = ["start", "center", "end"] as const;
 </script>
 
-<div class="flex gap-4 flex-wrap">
+<div class="flex flex-wrap gap-4">
 	{#each alignments as align (align)}
 		<Popover.Root>
-			<Popover.Trigger class={buttonVariants({ variant: "outline" })} >
+			<Popover.Trigger class={buttonVariants({ variant: "outline" })}>
 				Align {align}
 			</Popover.Trigger>
 			<Popover.Content {align} class="w-60">

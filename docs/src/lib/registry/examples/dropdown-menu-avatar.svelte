@@ -11,7 +11,7 @@
 		{#snippet child({ props })}
 			<button
 				{...props}
-				class="rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+				class="focus-visible:outline-ring rounded-full focus-visible:outline-2 focus-visible:outline-offset-2"
 			>
 				<Avatar.Root>
 					<Avatar.Image src="https://github.com/shadcn.png" alt="@shadcn" />
@@ -23,8 +23,8 @@
 	<DropdownMenu.Content class="w-56" align="end">
 		<DropdownMenu.Label class="font-normal">
 			<div class="flex flex-col space-y-1">
-				<p class="text-sm font-medium leading-none">shadcn</p>
-				<p class="text-xs leading-none text-muted-foreground">m@example.com</p>
+				<p class="text-sm leading-none font-medium">shadcn</p>
+				<p class="text-muted-foreground text-xs leading-none">m@example.com</p>
 			</div>
 		</DropdownMenu.Label>
 		<DropdownMenu.Separator />

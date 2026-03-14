@@ -9,7 +9,7 @@
 <div class="flex w-[60%] flex-col gap-6">
 	<div class="flex flex-col gap-2">
 		<Label>Progress: {value}%</Label>
-		<Progress value={value} max={100} />
+		<Progress {value} max={100} />
 	</div>
 	<div class="flex flex-col gap-2">
 		<Label>Adjust value</Label>
