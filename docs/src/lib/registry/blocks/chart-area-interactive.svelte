@@ -139,7 +139,7 @@
 	} satisfies Chart.ChartConfig;
 </script>
 
-<Card.Root>
+<Card.Root class="py-0">
 	<Card.Header class="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
 		<div class="grid flex-1 gap-1 text-center sm:text-start">
 			<Card.Title>Area Chart - Interactive</Card.Title>
