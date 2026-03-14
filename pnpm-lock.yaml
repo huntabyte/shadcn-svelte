@@ -279,6 +279,9 @@ importers:
       estree-walker:
         specifier: ^3.0.3
         version: 3.0.3
+      flexsearch:
+        specifier: ^0.7.43
+        version: 0.7.43
       formsnap:
         specifier: ^2.0.1
         version: 2.0.1(svelte@5.53.11)(sveltekit-superforms@2.30.0(@sveltejs/kit@2.55.0(@sveltejs/vite-plugin-svelte@7.0.0(svelte@5.53.11)(vite@8.0.0(@types/node@25.5.0)(esbuild@0.27.4)(jiti@2.6.1)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2)))(svelte@5.53.11)(typescript@5.9.3)(vite@8.0.0(@types/node@25.5.0)(esbuild@0.27.4)(jiti@2.6.1)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2)))(@types/json-schema@7.0.15)(svelte@5.53.11)(typescript@5.9.3))
@@ -339,6 +342,9 @@ importers:
       remixicon-svelte:
         specifier: ^0.0.5
         version: 0.0.5(svelte@5.53.11)
+      remove-markdown:
+        specifier: ^0.6.3
+        version: 0.6.3
       rimraf:
         specifier: ^6.1.3
         version: 6.1.3
@@ -3659,6 +3665,9 @@ packages:
   flatted@3.4.1:
     resolution: {integrity: sha512-IxfVbRFVlV8V/yRaGzk0UVIcsKKHMSfYw66T/u4nTwlWteQePsxe//LjudR1AMX4tZW3WFCh3Zqa/sjlqpbURQ==}
 
+  flexsearch@0.7.43:
+    resolution: {integrity: sha512-c5o/+Um8aqCSOXGcZoqZOm+NqtVwNsvVpWv6lfmSclU954O3wvQKxxK8zj74fPaSJbXpSLTs4PRhh+wnoCXnKg==}
+
   follow-redirects@1.15.11:
     resolution: {integrity: sha512-deG2P0JfjrTxl50XGCDyfI97ZGVCxIpfKYmfyrQ54n5FO/0gfIES8C/Psl6kWVDolizcaaxZJnTS0QSMxvnsBQ==}
     engines: {node: '>=4.0'}
@@ -5057,6 +5066,9 @@ packages:
     resolution: {integrity: sha512-a7tnkBeA6P/ItRc2Q/jOgF+Xoh6Fj7hKrr/E6ZUCmOM4XBFi+mBDR95hqdRHWVf2s8sK85ycGXg+AAFZv87s+Q==}
     peerDependencies:
       svelte: '>=5.53.5'
+
+  remove-markdown@0.6.3:
+    resolution: {integrity: sha512-Qvp2p0Q1irE7AaJO7QemJe04HdObHylJrG+q4hszvPlYp7q4EvfINpEIaIEFdB+3XTDp1h6fiyT60ae00gmRow==}
 
   require-directory@2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
@@ -8988,6 +9000,8 @@ snapshots:
 
   flatted@3.4.1: {}
 
+  flexsearch@0.7.43: {}
+
   follow-redirects@1.15.11: {}
 
   form-data@4.0.5:
@@ -10645,6 +10659,8 @@ snapshots:
   remixicon-svelte@0.0.5(svelte@5.53.11):
     dependencies:
       svelte: 5.53.11
+
+  remove-markdown@0.6.3: {}
 
   require-directory@2.1.1: {}
 
