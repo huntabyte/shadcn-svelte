@@ -3,7 +3,7 @@
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { ChartClipPath, LineChart, Spline } from "layerchart";
-	import { ease } from "$lib/registry/ui/chart/easing.js";
+	import { defaultClipMotion } from "$lib/registry/ui/chart/easing.js";
 	import { curveNatural } from "d3-shape";
 	import { scaleBand } from "d3-scale";
 
@@ -50,9 +50,7 @@
 				{#snippet marks({ visibleSeries, getSplineProps })}
 					<ChartClipPath
 						initialWidth={0}
-						motion={{
-							width: { type: "tween", duration: 1500, easing: ease },
-						}}
+						motion={defaultClipMotion}
 					>
 						{#each visibleSeries as s, i (s.key)}
 							<Spline {...getSplineProps(s, i)} />

@@ -4,7 +4,7 @@
 	import { scaleBand } from "d3-scale";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
-	import { cubicInOut } from "svelte/easing";
+	import { defaultBarMotion } from "$lib/registry/ui/chart/easing.js";
 
 	const chartData = [
 		{ browser: "chrome", visitors: 275, color: "var(--color-chrome)" },
@@ -50,10 +50,7 @@
 						rounded: "all",
 						initialWidth: 0,
 						initialX: 0,
-						motion: {
-							x: { type: "tween", duration: 500, easing: cubicInOut },
-							width: { type: "tween", duration: 500, easing: cubicInOut },
-						},
+						motion: defaultBarMotion,
 					},
 					highlight: { area: { fill: "none" } },
 					yAxis: {

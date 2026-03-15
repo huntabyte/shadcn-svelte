@@ -4,7 +4,7 @@
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
-	import { cubicInOut } from "svelte/easing";
+	import { defaultBarMotion } from "$lib/registry/ui/chart/easing.js";
 
 	const chartData = [
 		{ month: "January", desktop: 186 },
@@ -44,12 +44,7 @@
 						// use the height of the chart to animate the bars
 						initialY: context?.height,
 						initialHeight: 0,
-						motion: {
-							x: { type: "tween", duration: 500, easing: cubicInOut },
-							width: { type: "tween", duration: 500, easing: cubicInOut },
-							height: { type: "tween", duration: 500, easing: cubicInOut },
-							y: { type: "tween", duration: 500, easing: cubicInOut },
-						},
+						motion: defaultBarMotion,
 					},
 					highlight: { area: { fill: "none" } },
 					xAxis: { format: (d) => d.slice(0, 3) },

@@ -4,7 +4,7 @@
 	import { scaleBand } from "d3-scale";
 	import { Bar, BarChart, type ChartContextValue } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
-	import { cubicInOut } from "svelte/easing";
+	import { defaultBarMotion } from "$lib/registry/ui/chart/easing.js";
 
 	const chartData = [
 		{ browser: "chrome", visitors: 187, color: "var(--color-chrome)" },
@@ -50,10 +50,7 @@
 						rounded: "all", // use the height of the chart to animate the bars
 						initialY: context?.height,
 						initialHeight: 0,
-						motion: {
-							y: { type: "tween", duration: 500, easing: cubicInOut },
-							height: { type: "tween", duration: 500, easing: cubicInOut },
-						},
+						motion: defaultBarMotion,
 					},
 					xAxis: {
 						format: (d) => chartConfig[d as keyof typeof chartConfig].label,

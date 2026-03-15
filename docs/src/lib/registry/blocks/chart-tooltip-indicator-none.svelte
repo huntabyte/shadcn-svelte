@@ -3,7 +3,7 @@
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import { scaleBand } from "d3-scale";
 	import { BarChart, type ChartContextValue } from "layerchart";
-	import { ease } from "$lib/registry/ui/chart/easing.js";
+	import { defaultBarMotion } from "$lib/registry/ui/chart/easing.js";
 	import { onMount } from "svelte";
 
 	const chartData = [
@@ -75,14 +75,9 @@
 				props={{
 					bars: {
 						stroke: "none",
-						initialY: context?.height ?? 400,
+						initialY: context?.height,
 						initialHeight: 0,
-						motion: {
-							x: { type: "tween", duration: 1500, easing: ease },
-							width: { type: "tween", duration: 1500, easing: ease },
-							y: { type: "tween", duration: 1500, easing: ease },
-							height: { type: "tween", duration: 1500, easing: ease },
-						},
+						motion: defaultBarMotion,
 					},
 					xAxis: {
 						format: (d) =>

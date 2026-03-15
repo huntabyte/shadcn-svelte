@@ -47,3 +47,22 @@ function createCubicBezier(
  * Gentle acceleration then strong deceleration — matches Recharts' default.
  */
 export const ease = createCubicBezier(0.25, 0.1, 0.25, 1.0);
+
+/** Default motion config for splines, pies, arcs (1500ms) */
+export const defaultMotion = { type: "tween", duration: 1500, easing: ease } as const;
+
+/** Default motion config for bar charts (500ms per property) */
+export const defaultBarMotion = {
+	x: { type: "tween", duration: 500, easing: ease },
+	width: { type: "tween", duration: 500, easing: ease },
+	y: { type: "tween", duration: 500, easing: ease },
+	height: { type: "tween", duration: 500, easing: ease },
+} as const;
+
+/** Default motion config for ChartClipPath width animation */
+export const defaultClipMotion = {
+	width: { type: "tween", duration: 1500, easing: ease },
+} as const;
+
+/** Default tweened options for radar chart scale animation */
+export const defaultRadarScale = { duration: 1500, easing: ease } as const;

@@ -3,7 +3,7 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { scaleUtc } from "d3-scale";
 	import { BarChart, type ChartContextValue, Highlight } from "layerchart";
-	import { cubicInOut } from "svelte/easing";
+	import { defaultBarMotion } from "$lib/registry/ui/chart/easing.js";
 
 	const chartData = [
 		{ date: new Date("2024-04-01"), desktop: 222, mobile: 150 },
@@ -161,10 +161,7 @@
 						// use the height of the chart to animate the bars
 						initialY: context?.height,
 						initialHeight: 0,
-						motion: {
-							y: { type: "tween", duration: 500, easing: cubicInOut },
-							height: { type: "tween", duration: 500, easing: cubicInOut },
-						},
+						motion: defaultBarMotion,
 					},
 					highlight: { area: { fill: "none" } },
 					xAxis: {

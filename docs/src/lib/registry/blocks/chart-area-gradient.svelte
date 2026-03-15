@@ -5,7 +5,7 @@
 	import { curveNatural } from "d3-shape";
 	import { Area, AreaChart, ChartClipPath, LinearGradient } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
-	import { ease } from "$lib/registry/ui/chart/easing.js";
+	import { defaultClipMotion } from "$lib/registry/ui/chart/easing.js";
 
 	const chartData = [
 		{ date: new Date("2024-01-01"), desktop: 186, mobile: 80 },
@@ -72,9 +72,7 @@
 				{#snippet marks({ series, getAreaProps })}
 					<ChartClipPath
 						initialWidth={0}
-						motion={{
-							width: { type: "tween", duration: 1500, easing: ease },
-						}}
+						motion={defaultClipMotion}
 					>
 						{#each series as s, i (s.key)}
 							<LinearGradient

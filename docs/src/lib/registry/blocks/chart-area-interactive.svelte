@@ -6,7 +6,7 @@
 	import { Area, AreaChart, ChartClipPath } from "layerchart";
 	import { curveNatural } from "d3-shape";
 	import ChartContainer from "../ui/chart/chart-container.svelte";
-	import { ease } from "$lib/registry/ui/chart/easing.js";
+	import { defaultClipMotion } from "$lib/registry/ui/chart/easing.js";
 
 	const chartData = [
 		{ date: new Date("2024-04-01"), desktop: 222, mobile: 150 },
@@ -220,9 +220,7 @@
 					</defs>
 					<ChartClipPath
 						initialWidth={0}
-						motion={{
-							width: { type: "tween", duration: 1500, easing: ease },
-						}}
+						motion={defaultClipMotion}
 					>
 						{#each series as s, i (s.key)}
 							<Area

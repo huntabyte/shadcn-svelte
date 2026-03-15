@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { PieChart } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
-	import { ease } from "$lib/registry/ui/chart/easing.js";
+	import { defaultMotion } from "$lib/registry/ui/chart/easing.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 
@@ -42,7 +42,7 @@
 				cRange={chartData.map((d) => d.color)}
 				props={{
 					pie: {
-						motion: { type: "tween", duration: 1500, easing: ease },
+						motion: defaultMotion,
 					},
 				}}
 				legend

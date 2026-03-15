@@ -3,7 +3,7 @@
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { curveLinearClosed } from "d3-shape";
 	import { scaleBand } from "d3-scale";
-	import { ease } from "$lib/registry/ui/chart/easing.js";
+	import { defaultRadarScale } from "$lib/registry/ui/chart/easing.js";
 	import { tweened } from "svelte/motion";
 	import { onMount } from "svelte";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
@@ -23,7 +23,7 @@
 		mobile: { label: "Mobile", color: "var(--chart-2)" },
 	} satisfies Chart.ChartConfig;
 
-	const scale = tweened(0, { duration: 1500, easing: ease });
+	const scale = tweened(0, defaultRadarScale);
 	onMount(() => scale.set(1));
 </script>
 

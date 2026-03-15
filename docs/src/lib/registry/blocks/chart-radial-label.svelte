@@ -3,7 +3,7 @@
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import { Arc, ArcChart, Text } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
-	import { ease } from "$lib/registry/ui/chart/easing.js";
+	import { defaultMotion } from "$lib/registry/ui/chart/easing.js";
 
 	const chartData = [
 		{ browser: "other", visitors: 90, color: "var(--color-other)" },
@@ -45,7 +45,7 @@
 					label: d.browser,
 				}))}
 				props={{
-					arc: { track: { fill: "var(--muted)" }, motion: { type: "tween", duration: 1500, easing: ease } },
+					arc: { track: { fill: "var(--muted)" }, motion: defaultMotion },
 					tooltip: { context: { hideDelay: 350 } },
 				}}
 			>

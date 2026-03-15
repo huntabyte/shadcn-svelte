@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Arc, PieChart, Text } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
-	import { ease } from "$lib/registry/ui/chart/easing.js";
+	import { defaultMotion } from "$lib/registry/ui/chart/easing.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
@@ -86,7 +86,7 @@
 							const monthOrder = ["january", "february", "march", "april", "may"];
 							return monthOrder.indexOf(a.month) - monthOrder.indexOf(b.month);
 						},
-						motion: { type: "tween", duration: 1500, easing: ease },
+						motion: defaultMotion,
 					},
 				}}
 				innerRadius={60}

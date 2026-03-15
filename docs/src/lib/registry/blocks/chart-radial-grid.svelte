@@ -48,7 +48,7 @@
 					data: [d],
 				}))}
 				props={{
-					arc: { track: { fill: "var(--muted)" } },
+					arc: { track: { fill: "var(--muted)", fillOpacity: 1 } },
 					tooltip: { context: { hideDelay: 350 } },
 				}}
 			>

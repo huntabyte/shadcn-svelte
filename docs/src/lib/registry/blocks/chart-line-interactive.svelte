@@ -3,7 +3,7 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { scaleUtc } from "d3-scale";
 	import { ChartClipPath, LineChart, Spline } from "layerchart";
-	import { ease } from "$lib/registry/ui/chart/easing.js";
+	import { defaultClipMotion } from "$lib/registry/ui/chart/easing.js";
 	import { curveNatural } from "d3-shape";
 
 	const chartData = [
@@ -153,6 +153,7 @@
 				x="date"
 				xScale={scaleUtc()}
 				axis="x"
+				padding={{ top: 10 }}
 				series={activeSeries}
 				props={{
 					spline: { curve: curveNatural, strokeWidth: 2 },
@@ -170,9 +171,7 @@
 				{#snippet marks({ visibleSeries, getSplineProps })}
 					<ChartClipPath
 						initialWidth={0}
-						motion={{
-							width: { type: "tween", duration: 1500, easing: ease },
-						}}
+						motion={defaultClipMotion}
 					>
 						{#each visibleSeries as s, i (s.key)}
 							<Spline {...getSplineProps(s, i)} />

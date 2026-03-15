@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { ChartClipPath, LineChart, Points, Spline } from "layerchart";
-	import { ease } from "$lib/registry/ui/chart/easing.js";
+	import { defaultClipMotion } from "$lib/registry/ui/chart/easing.js";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import GitCommitVerticalIcon from "@lucide/svelte/icons/git-commit-vertical";
 	import { scaleUtc } from "d3-scale";
@@ -57,9 +57,7 @@
 				{#snippet marks({ visibleSeries, getSplineProps })}
 					<ChartClipPath
 						initialWidth={0}
-						motion={{
-							width: { type: "tween", duration: 1500, easing: ease },
-						}}
+						motion={defaultClipMotion}
 					>
 						{#each visibleSeries as s, i (s.key)}
 							<Spline {...getSplineProps(s, i)} />
