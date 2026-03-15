@@ -6,6 +6,7 @@
 	import DataTable from "./components/data-table.svelte";
 	import SectionCards from "./components/section-cards.svelte";
 	import SiteHeader from "./components/site-header.svelte";
+	import { Heroshot } from "heroshot/sveltekit";
 	import { data } from "./data.js";
 
 	const title = "Dashboard";
@@ -21,20 +22,7 @@
 />
 
 <div class="md:hidden">
-	<img
-		src="/img/examples/dashboard-light.png"
-		width={1280}
-		height={843}
-		alt="Dashboard"
-		class="block dark:hidden"
-	/>
-	<img
-		src="/img/examples/dashboard-dark.png"
-		width={1280}
-		height={843}
-		alt="Dashboard"
-		class="hidden dark:block"
-	/>
+	<Heroshot name="examples/dashboard" alt="Dashboard" />
 </div>
 <Sidebar.Provider
 	class="hidden md:flex"

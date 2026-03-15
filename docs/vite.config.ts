@@ -9,6 +9,7 @@ import { sveltekit } from "@sveltejs/kit/vite";
 import { build } from "./scripts/build-registry.js";
 import { visualizer } from "rollup-plugin-visualizer";
 import { enhancedImages } from "@sveltejs/enhanced-img";
+import { heroshot } from "heroshot/plugins/vite";
 import packageJson from "./package.json" with { type: "json" };
 
 // don't build when we're running `vite preview`
@@ -33,6 +34,7 @@ export default defineConfig({
 		tailwindcss(),
 		enhancedImages(),
 		sveltekit(),
+		heroshot(),
 		{
 			name: "registry-builder",
 			enforce: "pre",
