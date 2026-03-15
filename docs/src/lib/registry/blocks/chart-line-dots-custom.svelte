@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { LineChart, Points } from "layerchart";
+	import { ChartClipPath, LineChart, Points, Spline } from "layerchart";
+	import { ease } from "$lib/registry/ui/chart/easing.js";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import GitCommitVerticalIcon from "@lucide/svelte/icons/git-commit-vertical";
 	import { scaleUtc } from "d3-scale";
@@ -41,7 +42,7 @@
 					},
 				]}
 				props={{
-					spline: { curve: curveNatural, motion: "tween", strokeWidth: 2 },
+					spline: { curve: curveNatural, strokeWidth: 2 },
 					highlight: {
 						points: {
 							motion: "none",
@@ -53,6 +54,18 @@
 					},
 				}}
 			>
+				{#snippet marks({ visibleSeries, getSplineProps })}
+					<ChartClipPath
+						initialWidth={0}
+						motion={{
+							width: { type: "tween", duration: 1500, easing: ease },
+						}}
+					>
+						{#each visibleSeries as s, i (s.key)}
+							<Spline {...getSplineProps(s, i)} />
+						{/each}
+					</ChartClipPath>
+				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel />
 				{/snippet}

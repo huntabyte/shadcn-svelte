@@ -453,6 +453,10 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/chart/easing.ts"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/chart/index.ts"
 				}
 			]

@@ -53,7 +53,7 @@ import ChartRadarLegend from "$lib/registry/blocks/chart-radar-legend.svelte";
 import ChartRadarLinesOnly from "$lib/registry/blocks/chart-radar-lines-only.svelte";
 import ChartRadarMultiple from "$lib/registry/blocks/chart-radar-multiple.svelte";
 import ChartRadarRadius from "$lib/registry/blocks/chart-radar-radius.svelte";
-// import ChartRadialGrid from "$lib/registry/blocks/chart-radial-grid.svelte";
+import ChartRadialGrid from "$lib/registry/blocks/chart-radial-grid.svelte";
 import ChartRadialLabel from "$lib/registry/blocks/chart-radial-label.svelte";
 import ChartRadialShape from "$lib/registry/blocks/chart-radial-shape.svelte";
 import ChartRadialSimple from "$lib/registry/blocks/chart-radial-simple.svelte";
@@ -170,7 +170,7 @@ export const charts: ChartGroups = {
 	radial: [
 		{ id: "chart-radial-simple", component: ChartRadialSimple },
 		{ id: "chart-radial-label", component: ChartRadialLabel },
-		// { id: "chart-radial-grid", component: ChartRadialGrid },
+		{ id: "chart-radial-grid", component: ChartRadialGrid },
 		{ id: "chart-radial-text", component: ChartRadialText },
 		{ id: "chart-radial-shape", component: ChartRadialShape },
 		{ id: "chart-radial-stacked", component: ChartRadialStacked },

@@ -3,7 +3,7 @@
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import { scaleBand } from "d3-scale";
 	import { BarChart, type ChartContextValue } from "layerchart";
-	import { cubicInOut } from "svelte/easing";
+	import { ease } from "$lib/registry/ui/chart/easing.js";
 	import FootprintsIcon from "@lucide/svelte/icons/footprints";
 	import WavesIcon from "@lucide/svelte/icons/waves";
 
@@ -60,8 +60,8 @@
 						initialY: context?.height ?? 400,
 						initialHeight: 0,
 						motion: {
-							y: { type: "tween", duration: 500, easing: cubicInOut },
-							height: { type: "tween", duration: 500, easing: cubicInOut },
+							y: { type: "tween", duration: 1500, easing: ease },
+							height: { type: "tween", duration: 1500, easing: ease },
 						},
 					},
 					xAxis: {
