@@ -3,6 +3,7 @@
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { Arc, PieChart } from "layerchart";
+	import { cubicInOut } from "svelte/easing";
 
 	const chartData = [
 		{ browser: "chrome", visitors: 275, color: "var(--color-chrome)" },
@@ -53,7 +54,7 @@
 				c="color"
 				innerRadius={60}
 				props={{
-					pie: { motion: "tween" },
+					pie: { motion: { type: "tween", duration: 750, easing: cubicInOut } },
 					arc: {
 						strokeWidth: 5,
 					},

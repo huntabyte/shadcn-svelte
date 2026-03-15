@@ -57,7 +57,7 @@
 				props={{
 					bars: {
 						stroke: "none",
-						initialY: context?.height,
+						initialY: context?.height ?? 400,
 						initialHeight: 0,
 						motion: {
 							y: { type: "tween", duration: 500, easing: cubicInOut },

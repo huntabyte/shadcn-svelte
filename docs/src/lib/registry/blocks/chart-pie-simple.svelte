@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { PieChart } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
+	import { cubicInOut } from "svelte/easing";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 
@@ -37,7 +38,7 @@
 				c="color"
 				props={{
 					pie: {
-						motion: "tween",
+						motion: { type: "tween", duration: 750, easing: cubicInOut },
 					},
 				}}
 			>

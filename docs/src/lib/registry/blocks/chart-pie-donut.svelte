@@ -3,6 +3,7 @@
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { PieChart } from "layerchart";
+	import { cubicInOut } from "svelte/easing";
 
 	const chartData = [
 		{ browser: "chrome", visitors: 275, color: "var(--color-chrome)" },
@@ -36,7 +37,7 @@
 				c="color"
 				innerRadius={60}
 				padding={29}
-				props={{ pie: { motion: "tween" } }}
+				props={{ pie: { motion: { type: "tween", duration: 750, easing: cubicInOut } } }}
 			>
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel />
