@@ -12,6 +12,7 @@
 	import Ethical from "$lib/components/ethical.svelte";
 	import DocsCopyPage from "$lib/components/docs-copy-page.svelte";
 	import CtaMobile from "$lib/components/cta-mobile.svelte";
+	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 
 	let { data } = $props();
 
@@ -149,9 +150,9 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 					{/if}
 				</div>
 			</div>
-			<div class="mt-4">
+			{#if IsMobile}
 				<CtaMobile />
-			</div>
+			{/if}
 			{#if isChangelogIndex}
 				<div class="w-full flex-1 pb-16 sm:pb-0">
 					{#each latestPages as changelogPage (changelogPage.href)}
