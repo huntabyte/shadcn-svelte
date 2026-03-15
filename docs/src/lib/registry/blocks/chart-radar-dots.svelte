@@ -75,7 +75,7 @@
 				}}
 			>
 				{#snippet marks({ visibleSeries, getSplineProps, getPointsProps })}
-					<g style="transform: scale({$scale}); transform-origin: 50% 50%;">
+					<g style="transform: scale({$scale}); transform-origin: 0 0;">
 						{#each visibleSeries as s, i (s.key)}
 							<Spline {...getSplineProps(s, i)} />
 							<Points {...getPointsProps(s, i)} />

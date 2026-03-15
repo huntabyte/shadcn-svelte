@@ -4,6 +4,7 @@
 	import { scaleBand } from "d3-scale";
 	import { BarChart, type ChartContextValue } from "layerchart";
 	import { ease } from "$lib/registry/ui/chart/easing.js";
+	import { onMount } from "svelte";
 	import FootprintsIcon from "@lucide/svelte/icons/footprints";
 	import WavesIcon from "@lucide/svelte/icons/waves";
 
@@ -22,6 +23,25 @@
 	} satisfies Chart.ChartConfig;
 
 	let context = $state<ChartContextValue>();
+	let containerRef = $state<HTMLDivElement | null>(null);
+
+	onMount(() => {
+		setTimeout(() => {
+			if (!containerRef) return;
+			const rects = containerRef.querySelectorAll(".lc-tooltip-rect");
+			const target = rects[1];
+			if (target) {
+				const bounds = target.getBoundingClientRect();
+				target.dispatchEvent(
+					new PointerEvent("pointerenter", {
+						clientX: bounds.left + bounds.width / 2,
+						clientY: bounds.top + bounds.height / 2,
+						bubbles: true,
+					})
+				);
+			}
+		}, 1600);
+	});
 </script>
 
 <Card.Root>
@@ -30,7 +50,7 @@
 		<Card.Description>Tooltip with icons.</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<Chart.Container config={chartConfig}>
+		<Chart.Container bind:ref={containerRef} config={chartConfig}>
 			<BarChart
 				bind:context
 				data={chartData}
@@ -60,6 +80,8 @@
 						initialY: context?.height ?? 400,
 						initialHeight: 0,
 						motion: {
+							x: { type: "tween", duration: 1500, easing: ease },
+							width: { type: "tween", duration: 1500, easing: ease },
 							y: { type: "tween", duration: 1500, easing: ease },
 							height: { type: "tween", duration: 1500, easing: ease },
 						},

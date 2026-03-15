@@ -9504,6 +9504,582 @@
     "pageTitle": "Svelte"
   },
   {
+    "title": "Create project",
+    "description": "",
+    "content": "Create project",
+    "href": "/docs/installation/astro#create-project",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "Astro"
+  },
+  {
+    "title": "Start by creating a new Astro project:",
+    "description": "",
+    "content": "Start by creating a new Astro project:",
+    "href": "/docs/installation/astro#create-project",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "Astro"
+  },
+  {
+    "title": "Configure your Astro project",
+    "description": "",
+    "content": "Configure your Astro project",
+    "href": "/docs/installation/astro#configure-your-astro-project",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "Astro"
+  },
+  {
+    "title": "You will be asked a few questions to configure your project: Where should we create your new project? ./your-app-name Ho…",
+    "description": "",
+    "content": "You will be asked a few questions to configure your project: Where should we create your new project? ./your-app-name How would you like to start your new project? Choose a starter template (or Empty) Install dependencies? Yes Initialize a new git repository? (optional) Yes/No",
+    "href": "/docs/installation/astro#configure-your-astro-project",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "Astro"
+  },
+  {
+    "title": "Add Svelte to your project",
+    "description": "",
+    "content": "Add Svelte to your project",
+    "href": "/docs/installation/astro#add-svelte-to-your-project",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "Astro"
+  },
+  {
+    "title": "Install Svelte using the Astro CLI: Answer Yes to all the question prompted by the CLI when installing Svelte.",
+    "description": "",
+    "content": "Install Svelte using the Astro CLI: Answer Yes to all the question prompted by the CLI when installing Svelte.",
+    "href": "/docs/installation/astro#add-svelte-to-your-project",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "Astro"
+  },
+  {
+    "title": "Add TailwindCSS to your project",
+    "description": "",
+    "content": "Add TailwindCSS to your project",
+    "href": "/docs/installation/astro#add-tailwindcss-to-your-project",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "Astro"
+  },
+  {
+    "title": "Add Tailwind CSS using the Astro CLI: Answer Yes to all the question prompted by the CLI when installing TailwindCSS.",
+    "description": "",
+    "content": "Add Tailwind CSS using the Astro CLI: Answer Yes to all the question prompted by the CLI when installing TailwindCSS.",
+    "href": "/docs/installation/astro#add-tailwindcss-to-your-project",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "Astro"
+  },
+  {
+    "title": "Import the global CSS file",
+    "description": "",
+    "content": "Import the global CSS file",
+    "href": "/docs/installation/astro#import-the-global-css-file",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "Astro"
+  },
+  {
+    "title": "Import the global.css file in the src/pages/index.astro file: import \"../styles/global.css\";",
+    "description": "",
+    "content": "Import the global.css file in the src/pages/index.astro file: import \"../styles/global.css\";",
+    "href": "/docs/installation/astro#import-the-global-css-file",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "Astro"
+  },
+  {
+    "title": "Setup path aliases",
+    "description": "",
+    "content": "Setup path aliases",
+    "href": "/docs/installation/astro#setup-path-aliases",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "Astro"
+  },
+  {
+    "title": "Add the following code to the tsconfig.json file to resolve paths: { \"compilerOptions\": { // ... \"baseUrl\": \".\", \"paths\"…",
+    "description": "",
+    "content": "Add the following code to the tsconfig.json file to resolve paths: { \"compilerOptions\": { // ... \"baseUrl\": \".\", \"paths\": { \"$lib\": \"./src/lib\"], \"$lib/\": [\"./src/lib/\"] } // ... } } If needed, adapt the path aliases to your specific needs ([learn more about it).",
+    "href": "/docs/installation/astro#setup-path-aliases",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "Astro"
+  },
+  {
+    "title": "Run the CLI",
+    "description": "",
+    "content": "Run the CLI",
+    "href": "/docs/installation/astro#run-the-cli",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "Astro"
+  },
+  {
+    "title": "Run the shadcn-svelte init command to setup your project:",
+    "description": "",
+    "content": "Run the shadcn-svelte init command to setup your project:",
+    "href": "/docs/installation/astro#run-the-cli",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "Astro"
+  },
+  {
+    "title": "Configure components.json",
+    "description": "",
+    "content": "Configure components.json",
+    "href": "/docs/installation/astro#configure-componentsjson",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "Astro"
+  },
+  {
+    "title": "You will be asked a few questions to configure components.json: Which base color would you like to use? › Slate Where is…",
+    "description": "",
+    "content": "You will be asked a few questions to configure components.json: Which base color would you like to use? › Slate Where is your global CSS file? (this file will be overwritten) › src/styles/global.css Configure the import alias for lib: › $lib Configure the import alias for components: › $lib/components Configure the import alias for utils: › $lib/utils Configure the import alias for hooks: › $lib/hooks Configure the import alias for ui: › $lib/components/ui",
+    "href": "/docs/installation/astro#configure-componentsjson",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "Astro"
+  },
+  {
+    "title": "That's it",
+    "description": "",
+    "content": "That's it",
+    "href": "/docs/installation/astro#thats-it",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "Astro"
+  },
+  {
+    "title": "You can now start adding components to your project. The command above will add the Button component to your project. Yo…",
+    "description": "",
+    "content": "You can now start adding components to your project. The command above will add the Button component to your project. You can then import it like this: import { Button } from \"$lib/components/ui/button/index.js\"; Astro Hello World Remember to use the client directives inside .astro files when dealing with interactive components (learn more about it).",
+    "href": "/docs/installation/astro#thats-it",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "Astro"
+  },
+  {
+    "title": "Installation",
+    "description": "How to install dependencies and structure your app.",
+    "content": "Starting a new project? Use shadcn/create to scaffold a complete app with custom themes, components, and presets. Works with Next.js, Vite, and TanStack Start. -->",
+    "href": "/docs/installation",
+    "category": "Installation",
+    "type": "page",
+    "pageTitle": "Installation"
+  },
+  {
+    "title": "Guides",
+    "description": "",
+    "content": "Guides",
+    "href": "/docs/installation#guides",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "Installation"
+  },
+  {
+    "title": "Imports",
+    "description": "",
+    "content": "Imports",
+    "href": "/docs/installation#imports",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "Installation"
+  },
+  {
+    "title": "Unlike the original shadcn/ui for React, where the full components can exist in a single file, components in this port a…",
+    "description": "",
+    "content": "Unlike the original shadcn/ui for React, where the full components can exist in a single file, components in this port are split into multiple files. This is because Svelte doesn't support defining multiple components in a single file, so utilizing the CLI to add components will be the optimal approach. The CLI will create a folder for each component, which will sometimes just contain a single Svelte file, and in other times, multiple files. Within each folder, there will be an index.ts file that exports the component(s), so you can import them from a single file. For example, the Accordion component is split into four .svelte files: accordion.svelte accordion-content.svelte accordion-item.svelte accordion-trigger.svelte They can then be imported from the accordion/index.ts file like so: import * as Accordion from '$lib/components/ui/accordion\" // or import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from \"$lib/components/ui/accordion\" Regardless of the import approach you take, the components will be tree-shaken by Rollup, so you don't have to worry about unused components being bundled into your app.",
+    "href": "/docs/installation#imports",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "Installation"
+  },
+  {
+    "title": "VSCode extension",
+    "description": "",
+    "content": "VSCode extension",
+    "href": "/docs/installation#vscode-extension",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "Installation"
+  },
+  {
+    "title": "Install the shadcn-svelte VSCode extension by @selemondev in Visual Studio Code to easily add Shadcn Svelte components t…",
+    "description": "",
+    "content": "Install the shadcn-svelte VSCode extension by @selemondev in Visual Studio Code to easily add Shadcn Svelte components to your project. This extension offers a range of features: Ability to initialize the shadcn-svelte CLI Add components to your project Navigate to a specific component's documentation page directly from your IDE Handy snippets for quick component imports and markup",
+    "href": "/docs/installation#vscode-extension",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "Installation"
+  },
+  {
+    "title": "JetBrains IDEs extension",
+    "description": "",
+    "content": "JetBrains IDEs extension",
+    "href": "/docs/installation#jetbrains-ides-extension",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "Installation"
+  },
+  {
+    "title": "Install the shadcn/ui Components Manager JetBrains extension by @WarningImHack3r in any JetBrains IDE (IntelliJ IDEA, We…",
+    "description": "",
+    "content": "Install the shadcn/ui Components Manager JetBrains extension by @WarningImHack3r in any JetBrains IDE (IntelliJ IDEA, WebStorm...) to easily manage shadcn components within your project. This extension offers a range of features, including: Automatically detect shadcn/ui components in your project Instantly add, remove, and update them with a single click Supports all shadcn/ui implementations: Svelte, React, Vue, and Solid Easily search for remote or existing components",
+    "href": "/docs/installation#jetbrains-ides-extension",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "Installation"
+  },
+  {
+    "title": "Add Tailwind",
+    "description": "",
+    "content": "Add Tailwind",
+    "href": "/docs/installation/manual#add-tailwind",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "Manual Installation"
+  },
+  {
+    "title": "Use the sv CLI to add Tailwind CSS to your project.",
+    "description": "",
+    "content": "Use the sv CLI to add Tailwind CSS to your project.",
+    "href": "/docs/installation/manual#add-tailwind",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "Manual Installation"
+  },
+  {
+    "title": "Add dependencies",
+    "description": "",
+    "content": "Add dependencies",
+    "href": "/docs/installation/manual#add-dependencies",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "Manual Installation"
+  },
+  {
+    "title": "Add the following dependencies to your project:",
+    "description": "",
+    "content": "Add the following dependencies to your project:",
+    "href": "/docs/installation/manual#add-dependencies",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "Manual Installation"
+  },
+  {
+    "title": "Add icon library",
+    "description": "",
+    "content": "Add icon library",
+    "href": "/docs/installation/manual#add-icon-library",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "Manual Installation"
+  },
+  {
+    "title": "Install @lucide/svelte:",
+    "description": "",
+    "content": "Install @lucide/svelte:",
+    "href": "/docs/installation/manual#add-icon-library",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "Manual Installation"
+  },
+  {
+    "title": "Configure path aliases",
+    "description": "",
+    "content": "Configure path aliases",
+    "href": "/docs/installation/manual#configure-path-aliases",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "Manual Installation"
+  },
+  {
+    "title": "If you are using SvelteKit and are not using the default alias $lib, you'll need to update your svelte.config.js file to…",
+    "description": "",
+    "content": "If you are using SvelteKit and are not using the default alias $lib, you'll need to update your svelte.config.js file to include those aliases. const config = { // ... other config kit: { // ... other config alias: { \"@/\": \"./path/to/lib/\", }, }, }; If you are not using SvelteKit, then you'll need to update your path aliases in your tsconfig.json and vite.config.ts. { \"compilerOptions\": { // ... other options \"paths\": { \"$lib\": [\"./src/lib\"], \"$lib/\": [\"./src/lib/\"] } } } import path from \"path\"; export default defineConfig({ // ... other options resolve: { alias: { $lib: path.resolve(\"./src/lib\"), }, }, });",
+    "href": "/docs/installation/manual#configure-path-aliases",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "Manual Installation"
+  },
+  {
+    "title": "Configure styles",
+    "description": "",
+    "content": "Configure styles",
+    "href": "/docs/installation/manual#configure-styles",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "Manual Installation"
+  },
+  {
+    "title": "Add the following to your global CSS file. You can learn more about using CSS variables for theming in the theming secti…",
+    "description": "",
+    "content": "Add the following to your global CSS file. You can learn more about using CSS variables for theming in the theming section. @import \"tailwindcss\"; @import \"tw-animate-css\"; @custom-variant dark (&:is(.dark *)); :root { --radius: 0.625rem; --background: oklch(1 0 0); --foreground: oklch(0.145 0 0); --card: oklch(1 0 0); --card-foreground: oklch(0.145 0 0); --popover: oklch(1 0 0); --popover-foreground: oklch(0.145 0 0); --primary: oklch(0.205 0 0); --primary-foreground: oklch(0.985 0 0); --secondary: oklch(0.97 0 0); --secondary-foreground: oklch(0.205 0 0); --muted: oklch(0.97 0 0); --muted-foreground: oklch(0.556 0 0); --accent: oklch(0.97 0 0); --accent-foreground: oklch(0.205 0 0); --destructive: oklch(0.577 0.245 27.325); --border: oklch(0.922 0 0); --input: oklch(0.922 0 0); --ring: oklch(0.708 0 0); --chart-1: oklch(0.646 0.222 41.116); --chart-2: oklch(0.6 0.118 184.704); --chart-3: oklch(0.398 0.07 227.392); --chart-4: oklch(0.828 0.189 84.429); --chart-5: oklch(0.769 0.188 70.08); --sidebar: oklch(0.985 0 0); --sidebar-foreground: oklch(0.145 0 0); --sidebar-primary: oklch(0.205 0 0); --sidebar-primary-foreground: oklch(0.985 0 0); --sidebar-accent: oklch(0.97 0 0); --sidebar-accent-foreground: oklch(0.205 0 0); --sidebar-border: oklch(0.922 0 0); --sidebar-ring: oklch(0.708 0 0); } .dark { --background: oklch(0.145 0 0); --foreground: oklch(0.985 0 0); --card: oklch(0.205 0 0); --card-foreground: oklch(0.985 0 0); --popover: oklch(0.269 0 0); --popover-foreground: oklch(0.985 0 0); --primary: oklch(0.922 0 0); --primary-foreground: oklch(0.205 0 0); --secondary: oklch(0.269 0 0); --secondary-foreground: oklch(0.985 0 0); --muted: oklch(0.269 0 0); --muted-foreground: oklch(0.708 0 0); --accent: oklch(0.371 0 0); --accent-foreground: oklch(0.985 0 0); --destructive: oklch(0.704 0.191 22.216); --border: oklch(1 0 0 / 10%); --input: oklch(1 0 0 / 15%); --ring: oklch(0.556 0 0); --chart-1: oklch(0.488 0.243 264.376); --chart-2: oklch(0.696 0.17 162.48); --chart-3: oklch(0.769 0.188 70.08); --chart-4: oklch(0.627 0.265 303.9); --chart-5: oklch(0.645 0.246 16.439); --sidebar: oklch(0.205 0 0); --sidebar-foreground: oklch(0.985 0 0); --sidebar-primary: oklch(0.488 0.243 264.376); --sidebar-primary-foreground: oklch(0.985 0 0); --sidebar-accent: oklch(0.269 0 0); --sidebar-accent-foreground: oklch(0.985 0 0); --sidebar-border: oklch(1 0 0 / 10%); --sidebar-ring: oklch(0.439 0 0); } @theme inline { --radius-sm: calc(var(--radius) - 4px); --radius-md: calc(var(--radius) - 2px); --radius-lg: var(--radius); --radius-xl: calc(var(--radius) + 4px); --color-background: var(--background); --color-foreground: var(--foreground); --color-card: var(--card); --color-card-foreground: var(--card-foreground); --color-popover: var(--popover); --color-popover-foreground: var(--popover-foreground); --color-primary: var(--primary); --color-primary-foreground: var(--primary-foreground); --color-secondary: var(--secondary); --color-secondary-foreground: var(--secondary-foreground); --color-muted: var(--muted); --color-muted-foreground: var(--muted-foreground); --color-accent: var(--accent); --color-accent-foreground: var(--accent-foreground); --color-destructive: var(--destructive); --color-border: var(--border); --color-input: var(--input); --color-ring: var(--ring); --color-chart-1: var(--chart-1); --color-chart-2: var(--chart-2); --color-chart-3: var(--chart-3); --color-chart-4: var(--chart-4); --color-chart-5: var(--chart-5); --color-sidebar: var(--sidebar); --color-sidebar-foreground: var(--sidebar-foreground); --color-sidebar-primary: var(--sidebar-primary); --color-sidebar-primary-foreground: var(--sidebar-primary-foreground); --color-sidebar-accent: var(--sidebar-accent); --color-sidebar-accent-foreground: var(--sidebar-accent-foreground); --color-sidebar-border: var(--sidebar-border); --color-sidebar-ring: var(--sidebar-ring); } @layer base { { @apply border-border outline-ring/50; } body { @apply bg-background text-foreground; } } Feel free to add or modify as needed to suit your project.",
+    "href": "/docs/installation/manual#configure-styles",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "Manual Installation"
+  },
+  {
+    "title": "Configure utils",
+    "description": "",
+    "content": "Configure utils",
+    "href": "/docs/installation/manual#configure-utils",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "Manual Installation"
+  },
+  {
+    "title": "You'll want to create a cn helper to make it easier to conditionally add and merge Tailwind CSS classes. import { type C…",
+    "description": "",
+    "content": "You'll want to create a cn helper to make it easier to conditionally add and merge Tailwind CSS classes. import { type ClassValue, clsx } from \"clsx\"; import { twMerge } from \"tailwind-merge\"; export function cn(...inputs: ClassValue[]) { return twMerge(clsx(inputs)); }",
+    "href": "/docs/installation/manual#configure-utils",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "Manual Installation"
+  },
+  {
+    "title": "Import styles to your app",
+    "description": "",
+    "content": "Import styles to your app",
+    "href": "/docs/installation/manual#import-styles-to-your-app",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "Manual Installation"
+  },
+  {
+    "title": "Create src/routes/+layout.svelte and import the styles: {@render children?.()}",
+    "description": "",
+    "content": "Create src/routes/+layout.svelte and import the styles: {@render children?.()}",
+    "href": "/docs/installation/manual#import-styles-to-your-app",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "Manual Installation"
+  },
+  {
+    "title": "That's it",
+    "description": "",
+    "content": "That's it",
+    "href": "/docs/installation/manual#thats-it",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "Manual Installation"
+  },
+  {
+    "title": "You can now start adding components to your project.",
+    "description": "",
+    "content": "You can now start adding components to your project.",
+    "href": "/docs/installation/manual#thats-it",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "Manual Installation"
+  },
+  {
+    "title": "Create project",
+    "description": "",
+    "content": "Create project",
+    "href": "/docs/installation/sveltekit#create-project",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "SvelteKit"
+  },
+  {
+    "title": "Use the SvelteKit CLI to create a new project with TailwindCSS",
+    "description": "",
+    "content": "Use the SvelteKit CLI to create a new project with TailwindCSS",
+    "href": "/docs/installation/sveltekit#create-project",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "SvelteKit"
+  },
+  {
+    "title": "Setup path aliases",
+    "description": "",
+    "content": "Setup path aliases",
+    "href": "/docs/installation/sveltekit#setup-path-aliases",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "SvelteKit"
+  },
+  {
+    "title": "If you are not using the default alias $lib, you'll need to update your svelte.config.js file to include those aliases. …",
+    "description": "",
+    "content": "If you are not using the default alias $lib, you'll need to update your svelte.config.js file to include those aliases. const config = { // ... other config kit: { // ... other config alias: { \"@/\": \"./path/to/lib/\", }, }, };",
+    "href": "/docs/installation/sveltekit#setup-path-aliases",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "SvelteKit"
+  },
+  {
+    "title": "Run the CLI",
+    "description": "",
+    "content": "Run the CLI",
+    "href": "/docs/installation/sveltekit#run-the-cli",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "SvelteKit"
+  },
+  {
+    "title": "Configure components.json",
+    "description": "",
+    "content": "Configure components.json",
+    "href": "/docs/installation/sveltekit#configure-componentsjson",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "SvelteKit"
+  },
+  {
+    "title": "You will be asked a few questions to configure components.json: Which base color would you like to use? › Slate Where is…",
+    "description": "",
+    "content": "You will be asked a few questions to configure components.json: Which base color would you like to use? › Slate Where is your global CSS file? (this file will be overwritten) › src/routes/layout.css Configure the import alias for lib: › $lib Configure the import alias for components: › $lib/components Configure the import alias for utils: › $lib/utils Configure the import alias for hooks: › $lib/hooks Configure the import alias for ui: › $lib/components/ui",
+    "href": "/docs/installation/sveltekit#configure-componentsjson",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "SvelteKit"
+  },
+  {
+    "title": "That's it",
+    "description": "",
+    "content": "That's it",
+    "href": "/docs/installation/sveltekit#thats-it",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "SvelteKit"
+  },
+  {
+    "title": "You can now start adding components to your project. The command above will add the Button component to your project. Yo…",
+    "description": "",
+    "content": "You can now start adding components to your project. The command above will add the Button component to your project. You can then import it like this: Click me",
+    "href": "/docs/installation/sveltekit#thats-it",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "SvelteKit"
+  },
+  {
+    "title": "Add TailwindCSS",
+    "description": "",
+    "content": "Add TailwindCSS",
+    "href": "/docs/installation/vite#add-tailwindcss",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "Vite"
+  },
+  {
+    "title": "Use the Svelte CLI to add Tailwind CSS to your project.",
+    "description": "",
+    "content": "Use the Svelte CLI to add Tailwind CSS to your project.",
+    "href": "/docs/installation/vite#add-tailwindcss",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "Vite"
+  },
+  {
+    "title": "Edit tsconfig.json file",
+    "description": "",
+    "content": "Edit tsconfig.json file",
+    "href": "/docs/installation/vite#edit-tsconfigjson-file",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "Vite"
+  },
+  {
+    "title": "The current version of Vite splits TypeScript configuration into three files, two of which need to be edited. Add the ba…",
+    "description": "",
+    "content": "The current version of Vite splits TypeScript configuration into three files, two of which need to be edited. Add the baseUrl and paths properties to the compilerOptions section of the tsconfig.json and tsconfig.app.json files: { \"files\": [], \"references\": [ { \"path\": \"./tsconfig.app.json\" }, { \"path\": \"./tsconfig.node.json\" } ], \"compilerOptions\": { \"baseUrl\": \".\", \"paths\": { \"$lib\": [\"./src/lib\"], \"$lib/\": [\"./src/lib/\"] } } }",
+    "href": "/docs/installation/vite#edit-tsconfigjson-file",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "Vite"
+  },
+  {
+    "title": "Edit tsconfig.app.json file",
+    "description": "",
+    "content": "Edit tsconfig.app.json file",
+    "href": "/docs/installation/vite#edit-tsconfigappjson-file",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "Vite"
+  },
+  {
+    "title": "Add the following code to the tsconfig.app.json file to resolve paths, for your IDE: { \"compilerOptions\": { // ... \"base…",
+    "description": "",
+    "content": "Add the following code to the tsconfig.app.json file to resolve paths, for your IDE: { \"compilerOptions\": { // ... \"baseUrl\": \".\", \"paths\": { \"$lib\": [\"./src/lib\"], \"$lib/\": [\"./src/lib/\"] } } }",
+    "href": "/docs/installation/vite#edit-tsconfigappjson-file",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "Vite"
+  },
+  {
+    "title": "Update vite.config.ts",
+    "description": "",
+    "content": "Update vite.config.ts",
+    "href": "/docs/installation/vite#update-viteconfigts",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "Vite"
+  },
+  {
+    "title": "Add the following code to the vite.config.ts so your app can resolve paths without error: import path from \"path\"; expor…",
+    "description": "",
+    "content": "Add the following code to the vite.config.ts so your app can resolve paths without error: import path from \"path\"; export default defineConfig({ // ... other options resolve: { alias: { $lib: path.resolve(\"./src/lib\"), }, }, });",
+    "href": "/docs/installation/vite#update-viteconfigts",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "Vite"
+  },
+  {
+    "title": "Run the CLI",
+    "description": "",
+    "content": "Run the CLI",
+    "href": "/docs/installation/vite#run-the-cli",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "Vite"
+  },
+  {
+    "title": "Configure components.json",
+    "description": "",
+    "content": "Configure components.json",
+    "href": "/docs/installation/vite#configure-componentsjson",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "Vite"
+  },
+  {
+    "title": "You will be asked a few questions to configure components.json: Which base color would you like to use? › Slate Where is…",
+    "description": "",
+    "content": "You will be asked a few questions to configure components.json: Which base color would you like to use? › Slate Where is your global CSS file? (this file will be overwritten) › src/routes/layout.css Configure the import alias for lib: › $lib Configure the import alias for components: › $lib/components Configure the import alias for utils: › $lib/utils Configure the import alias for hooks: › $lib/hooks Configure the import alias for ui: › $lib/components/ui",
+    "href": "/docs/installation/vite#configure-componentsjson",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "Vite"
+  },
+  {
+    "title": "That's it",
+    "description": "",
+    "content": "That's it",
+    "href": "/docs/installation/vite#thats-it",
+    "category": "Installation",
+    "type": "heading",
+    "pageTitle": "Vite"
+  },
+  {
+    "title": "You can now start adding components to your project. The command above will add the Button component to your project. Yo…",
+    "description": "",
+    "content": "You can now start adding components to your project. The command above will add the Button component to your project. You can then import it like this: Click me",
+    "href": "/docs/installation/vite#thats-it",
+    "category": "Installation",
+    "type": "text",
+    "pageTitle": "Vite"
+  },
+  {
     "title": "Migration",
     "description": "Learn how to update your project to the latest version of shadcn-svelte.",
     "content": "The latest version of shadcn-svelte expects you to be using Svelte v5 and Tailwind v4. The following guides will help you update your project to the latest version. Svelte v5 Tailwind v4",
@@ -10195,582 +10771,6 @@
     "category": "Migration",
     "type": "text",
     "pageTitle": "Tailwind v4"
-  },
-  {
-    "title": "Create project",
-    "description": "",
-    "content": "Create project",
-    "href": "/docs/installation/astro#create-project",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "Astro"
-  },
-  {
-    "title": "Start by creating a new Astro project:",
-    "description": "",
-    "content": "Start by creating a new Astro project:",
-    "href": "/docs/installation/astro#create-project",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "Astro"
-  },
-  {
-    "title": "Configure your Astro project",
-    "description": "",
-    "content": "Configure your Astro project",
-    "href": "/docs/installation/astro#configure-your-astro-project",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "Astro"
-  },
-  {
-    "title": "You will be asked a few questions to configure your project: Where should we create your new project? ./your-app-name Ho…",
-    "description": "",
-    "content": "You will be asked a few questions to configure your project: Where should we create your new project? ./your-app-name How would you like to start your new project? Choose a starter template (or Empty) Install dependencies? Yes Initialize a new git repository? (optional) Yes/No",
-    "href": "/docs/installation/astro#configure-your-astro-project",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "Astro"
-  },
-  {
-    "title": "Add Svelte to your project",
-    "description": "",
-    "content": "Add Svelte to your project",
-    "href": "/docs/installation/astro#add-svelte-to-your-project",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "Astro"
-  },
-  {
-    "title": "Install Svelte using the Astro CLI: Answer Yes to all the question prompted by the CLI when installing Svelte.",
-    "description": "",
-    "content": "Install Svelte using the Astro CLI: Answer Yes to all the question prompted by the CLI when installing Svelte.",
-    "href": "/docs/installation/astro#add-svelte-to-your-project",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "Astro"
-  },
-  {
-    "title": "Add TailwindCSS to your project",
-    "description": "",
-    "content": "Add TailwindCSS to your project",
-    "href": "/docs/installation/astro#add-tailwindcss-to-your-project",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "Astro"
-  },
-  {
-    "title": "Add Tailwind CSS using the Astro CLI: Answer Yes to all the question prompted by the CLI when installing TailwindCSS.",
-    "description": "",
-    "content": "Add Tailwind CSS using the Astro CLI: Answer Yes to all the question prompted by the CLI when installing TailwindCSS.",
-    "href": "/docs/installation/astro#add-tailwindcss-to-your-project",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "Astro"
-  },
-  {
-    "title": "Import the global CSS file",
-    "description": "",
-    "content": "Import the global CSS file",
-    "href": "/docs/installation/astro#import-the-global-css-file",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "Astro"
-  },
-  {
-    "title": "Import the global.css file in the src/pages/index.astro file: import \"../styles/global.css\";",
-    "description": "",
-    "content": "Import the global.css file in the src/pages/index.astro file: import \"../styles/global.css\";",
-    "href": "/docs/installation/astro#import-the-global-css-file",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "Astro"
-  },
-  {
-    "title": "Setup path aliases",
-    "description": "",
-    "content": "Setup path aliases",
-    "href": "/docs/installation/astro#setup-path-aliases",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "Astro"
-  },
-  {
-    "title": "Add the following code to the tsconfig.json file to resolve paths: { \"compilerOptions\": { // ... \"baseUrl\": \".\", \"paths\"…",
-    "description": "",
-    "content": "Add the following code to the tsconfig.json file to resolve paths: { \"compilerOptions\": { // ... \"baseUrl\": \".\", \"paths\": { \"$lib\": \"./src/lib\"], \"$lib/\": [\"./src/lib/\"] } // ... } } If needed, adapt the path aliases to your specific needs ([learn more about it).",
-    "href": "/docs/installation/astro#setup-path-aliases",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "Astro"
-  },
-  {
-    "title": "Run the CLI",
-    "description": "",
-    "content": "Run the CLI",
-    "href": "/docs/installation/astro#run-the-cli",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "Astro"
-  },
-  {
-    "title": "Run the shadcn-svelte init command to setup your project:",
-    "description": "",
-    "content": "Run the shadcn-svelte init command to setup your project:",
-    "href": "/docs/installation/astro#run-the-cli",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "Astro"
-  },
-  {
-    "title": "Configure components.json",
-    "description": "",
-    "content": "Configure components.json",
-    "href": "/docs/installation/astro#configure-componentsjson",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "Astro"
-  },
-  {
-    "title": "You will be asked a few questions to configure components.json: Which base color would you like to use? › Slate Where is…",
-    "description": "",
-    "content": "You will be asked a few questions to configure components.json: Which base color would you like to use? › Slate Where is your global CSS file? (this file will be overwritten) › src/styles/global.css Configure the import alias for lib: › $lib Configure the import alias for components: › $lib/components Configure the import alias for utils: › $lib/utils Configure the import alias for hooks: › $lib/hooks Configure the import alias for ui: › $lib/components/ui",
-    "href": "/docs/installation/astro#configure-componentsjson",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "Astro"
-  },
-  {
-    "title": "That's it",
-    "description": "",
-    "content": "That's it",
-    "href": "/docs/installation/astro#thats-it",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "Astro"
-  },
-  {
-    "title": "You can now start adding components to your project. The command above will add the Button component to your project. Yo…",
-    "description": "",
-    "content": "You can now start adding components to your project. The command above will add the Button component to your project. You can then import it like this: import { Button } from \"$lib/components/ui/button/index.js\"; Astro Hello World Remember to use the client directives inside .astro files when dealing with interactive components (learn more about it).",
-    "href": "/docs/installation/astro#thats-it",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "Astro"
-  },
-  {
-    "title": "Installation",
-    "description": "How to install dependencies and structure your app.",
-    "content": "Starting a new project? Use shadcn/create to scaffold a complete app with custom themes, components, and presets. Works with Next.js, Vite, and TanStack Start. -->",
-    "href": "/docs/installation",
-    "category": "Installation",
-    "type": "page",
-    "pageTitle": "Installation"
-  },
-  {
-    "title": "Guides",
-    "description": "",
-    "content": "Guides",
-    "href": "/docs/installation#guides",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "Installation"
-  },
-  {
-    "title": "Imports",
-    "description": "",
-    "content": "Imports",
-    "href": "/docs/installation#imports",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "Installation"
-  },
-  {
-    "title": "Unlike the original shadcn/ui for React, where the full components can exist in a single file, components in this port a…",
-    "description": "",
-    "content": "Unlike the original shadcn/ui for React, where the full components can exist in a single file, components in this port are split into multiple files. This is because Svelte doesn't support defining multiple components in a single file, so utilizing the CLI to add components will be the optimal approach. The CLI will create a folder for each component, which will sometimes just contain a single Svelte file, and in other times, multiple files. Within each folder, there will be an index.ts file that exports the component(s), so you can import them from a single file. For example, the Accordion component is split into four .svelte files: accordion.svelte accordion-content.svelte accordion-item.svelte accordion-trigger.svelte They can then be imported from the accordion/index.ts file like so: import * as Accordion from '$lib/components/ui/accordion\" // or import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from \"$lib/components/ui/accordion\" Regardless of the import approach you take, the components will be tree-shaken by Rollup, so you don't have to worry about unused components being bundled into your app.",
-    "href": "/docs/installation#imports",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "Installation"
-  },
-  {
-    "title": "VSCode extension",
-    "description": "",
-    "content": "VSCode extension",
-    "href": "/docs/installation#vscode-extension",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "Installation"
-  },
-  {
-    "title": "Install the shadcn-svelte VSCode extension by @selemondev in Visual Studio Code to easily add Shadcn Svelte components t…",
-    "description": "",
-    "content": "Install the shadcn-svelte VSCode extension by @selemondev in Visual Studio Code to easily add Shadcn Svelte components to your project. This extension offers a range of features: Ability to initialize the shadcn-svelte CLI Add components to your project Navigate to a specific component's documentation page directly from your IDE Handy snippets for quick component imports and markup",
-    "href": "/docs/installation#vscode-extension",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "Installation"
-  },
-  {
-    "title": "JetBrains IDEs extension",
-    "description": "",
-    "content": "JetBrains IDEs extension",
-    "href": "/docs/installation#jetbrains-ides-extension",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "Installation"
-  },
-  {
-    "title": "Install the shadcn/ui Components Manager JetBrains extension by @WarningImHack3r in any JetBrains IDE (IntelliJ IDEA, We…",
-    "description": "",
-    "content": "Install the shadcn/ui Components Manager JetBrains extension by @WarningImHack3r in any JetBrains IDE (IntelliJ IDEA, WebStorm...) to easily manage shadcn components within your project. This extension offers a range of features, including: Automatically detect shadcn/ui components in your project Instantly add, remove, and update them with a single click Supports all shadcn/ui implementations: Svelte, React, Vue, and Solid Easily search for remote or existing components",
-    "href": "/docs/installation#jetbrains-ides-extension",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "Installation"
-  },
-  {
-    "title": "Add Tailwind",
-    "description": "",
-    "content": "Add Tailwind",
-    "href": "/docs/installation/manual#add-tailwind",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "Manual Installation"
-  },
-  {
-    "title": "Use the sv CLI to add Tailwind CSS to your project.",
-    "description": "",
-    "content": "Use the sv CLI to add Tailwind CSS to your project.",
-    "href": "/docs/installation/manual#add-tailwind",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "Manual Installation"
-  },
-  {
-    "title": "Add dependencies",
-    "description": "",
-    "content": "Add dependencies",
-    "href": "/docs/installation/manual#add-dependencies",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "Manual Installation"
-  },
-  {
-    "title": "Add the following dependencies to your project:",
-    "description": "",
-    "content": "Add the following dependencies to your project:",
-    "href": "/docs/installation/manual#add-dependencies",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "Manual Installation"
-  },
-  {
-    "title": "Add icon library",
-    "description": "",
-    "content": "Add icon library",
-    "href": "/docs/installation/manual#add-icon-library",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "Manual Installation"
-  },
-  {
-    "title": "Install @lucide/svelte:",
-    "description": "",
-    "content": "Install @lucide/svelte:",
-    "href": "/docs/installation/manual#add-icon-library",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "Manual Installation"
-  },
-  {
-    "title": "Configure path aliases",
-    "description": "",
-    "content": "Configure path aliases",
-    "href": "/docs/installation/manual#configure-path-aliases",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "Manual Installation"
-  },
-  {
-    "title": "If you are using SvelteKit and are not using the default alias $lib, you'll need to update your svelte.config.js file to…",
-    "description": "",
-    "content": "If you are using SvelteKit and are not using the default alias $lib, you'll need to update your svelte.config.js file to include those aliases. const config = { // ... other config kit: { // ... other config alias: { \"@/\": \"./path/to/lib/\", }, }, }; If you are not using SvelteKit, then you'll need to update your path aliases in your tsconfig.json and vite.config.ts. { \"compilerOptions\": { // ... other options \"paths\": { \"$lib\": [\"./src/lib\"], \"$lib/\": [\"./src/lib/\"] } } } import path from \"path\"; export default defineConfig({ // ... other options resolve: { alias: { $lib: path.resolve(\"./src/lib\"), }, }, });",
-    "href": "/docs/installation/manual#configure-path-aliases",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "Manual Installation"
-  },
-  {
-    "title": "Configure styles",
-    "description": "",
-    "content": "Configure styles",
-    "href": "/docs/installation/manual#configure-styles",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "Manual Installation"
-  },
-  {
-    "title": "Add the following to your global CSS file. You can learn more about using CSS variables for theming in the theming secti…",
-    "description": "",
-    "content": "Add the following to your global CSS file. You can learn more about using CSS variables for theming in the theming section. @import \"tailwindcss\"; @import \"tw-animate-css\"; @custom-variant dark (&:is(.dark *)); :root { --radius: 0.625rem; --background: oklch(1 0 0); --foreground: oklch(0.145 0 0); --card: oklch(1 0 0); --card-foreground: oklch(0.145 0 0); --popover: oklch(1 0 0); --popover-foreground: oklch(0.145 0 0); --primary: oklch(0.205 0 0); --primary-foreground: oklch(0.985 0 0); --secondary: oklch(0.97 0 0); --secondary-foreground: oklch(0.205 0 0); --muted: oklch(0.97 0 0); --muted-foreground: oklch(0.556 0 0); --accent: oklch(0.97 0 0); --accent-foreground: oklch(0.205 0 0); --destructive: oklch(0.577 0.245 27.325); --border: oklch(0.922 0 0); --input: oklch(0.922 0 0); --ring: oklch(0.708 0 0); --chart-1: oklch(0.646 0.222 41.116); --chart-2: oklch(0.6 0.118 184.704); --chart-3: oklch(0.398 0.07 227.392); --chart-4: oklch(0.828 0.189 84.429); --chart-5: oklch(0.769 0.188 70.08); --sidebar: oklch(0.985 0 0); --sidebar-foreground: oklch(0.145 0 0); --sidebar-primary: oklch(0.205 0 0); --sidebar-primary-foreground: oklch(0.985 0 0); --sidebar-accent: oklch(0.97 0 0); --sidebar-accent-foreground: oklch(0.205 0 0); --sidebar-border: oklch(0.922 0 0); --sidebar-ring: oklch(0.708 0 0); } .dark { --background: oklch(0.145 0 0); --foreground: oklch(0.985 0 0); --card: oklch(0.205 0 0); --card-foreground: oklch(0.985 0 0); --popover: oklch(0.269 0 0); --popover-foreground: oklch(0.985 0 0); --primary: oklch(0.922 0 0); --primary-foreground: oklch(0.205 0 0); --secondary: oklch(0.269 0 0); --secondary-foreground: oklch(0.985 0 0); --muted: oklch(0.269 0 0); --muted-foreground: oklch(0.708 0 0); --accent: oklch(0.371 0 0); --accent-foreground: oklch(0.985 0 0); --destructive: oklch(0.704 0.191 22.216); --border: oklch(1 0 0 / 10%); --input: oklch(1 0 0 / 15%); --ring: oklch(0.556 0 0); --chart-1: oklch(0.488 0.243 264.376); --chart-2: oklch(0.696 0.17 162.48); --chart-3: oklch(0.769 0.188 70.08); --chart-4: oklch(0.627 0.265 303.9); --chart-5: oklch(0.645 0.246 16.439); --sidebar: oklch(0.205 0 0); --sidebar-foreground: oklch(0.985 0 0); --sidebar-primary: oklch(0.488 0.243 264.376); --sidebar-primary-foreground: oklch(0.985 0 0); --sidebar-accent: oklch(0.269 0 0); --sidebar-accent-foreground: oklch(0.985 0 0); --sidebar-border: oklch(1 0 0 / 10%); --sidebar-ring: oklch(0.439 0 0); } @theme inline { --radius-sm: calc(var(--radius) - 4px); --radius-md: calc(var(--radius) - 2px); --radius-lg: var(--radius); --radius-xl: calc(var(--radius) + 4px); --color-background: var(--background); --color-foreground: var(--foreground); --color-card: var(--card); --color-card-foreground: var(--card-foreground); --color-popover: var(--popover); --color-popover-foreground: var(--popover-foreground); --color-primary: var(--primary); --color-primary-foreground: var(--primary-foreground); --color-secondary: var(--secondary); --color-secondary-foreground: var(--secondary-foreground); --color-muted: var(--muted); --color-muted-foreground: var(--muted-foreground); --color-accent: var(--accent); --color-accent-foreground: var(--accent-foreground); --color-destructive: var(--destructive); --color-border: var(--border); --color-input: var(--input); --color-ring: var(--ring); --color-chart-1: var(--chart-1); --color-chart-2: var(--chart-2); --color-chart-3: var(--chart-3); --color-chart-4: var(--chart-4); --color-chart-5: var(--chart-5); --color-sidebar: var(--sidebar); --color-sidebar-foreground: var(--sidebar-foreground); --color-sidebar-primary: var(--sidebar-primary); --color-sidebar-primary-foreground: var(--sidebar-primary-foreground); --color-sidebar-accent: var(--sidebar-accent); --color-sidebar-accent-foreground: var(--sidebar-accent-foreground); --color-sidebar-border: var(--sidebar-border); --color-sidebar-ring: var(--sidebar-ring); } @layer base { { @apply border-border outline-ring/50; } body { @apply bg-background text-foreground; } } Feel free to add or modify as needed to suit your project.",
-    "href": "/docs/installation/manual#configure-styles",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "Manual Installation"
-  },
-  {
-    "title": "Configure utils",
-    "description": "",
-    "content": "Configure utils",
-    "href": "/docs/installation/manual#configure-utils",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "Manual Installation"
-  },
-  {
-    "title": "You'll want to create a cn helper to make it easier to conditionally add and merge Tailwind CSS classes. import { type C…",
-    "description": "",
-    "content": "You'll want to create a cn helper to make it easier to conditionally add and merge Tailwind CSS classes. import { type ClassValue, clsx } from \"clsx\"; import { twMerge } from \"tailwind-merge\"; export function cn(...inputs: ClassValue[]) { return twMerge(clsx(inputs)); }",
-    "href": "/docs/installation/manual#configure-utils",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "Manual Installation"
-  },
-  {
-    "title": "Import styles to your app",
-    "description": "",
-    "content": "Import styles to your app",
-    "href": "/docs/installation/manual#import-styles-to-your-app",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "Manual Installation"
-  },
-  {
-    "title": "Create src/routes/+layout.svelte and import the styles: {@render children?.()}",
-    "description": "",
-    "content": "Create src/routes/+layout.svelte and import the styles: {@render children?.()}",
-    "href": "/docs/installation/manual#import-styles-to-your-app",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "Manual Installation"
-  },
-  {
-    "title": "That's it",
-    "description": "",
-    "content": "That's it",
-    "href": "/docs/installation/manual#thats-it",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "Manual Installation"
-  },
-  {
-    "title": "You can now start adding components to your project.",
-    "description": "",
-    "content": "You can now start adding components to your project.",
-    "href": "/docs/installation/manual#thats-it",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "Manual Installation"
-  },
-  {
-    "title": "Create project",
-    "description": "",
-    "content": "Create project",
-    "href": "/docs/installation/sveltekit#create-project",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "SvelteKit"
-  },
-  {
-    "title": "Use the SvelteKit CLI to create a new project with TailwindCSS",
-    "description": "",
-    "content": "Use the SvelteKit CLI to create a new project with TailwindCSS",
-    "href": "/docs/installation/sveltekit#create-project",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "SvelteKit"
-  },
-  {
-    "title": "Setup path aliases",
-    "description": "",
-    "content": "Setup path aliases",
-    "href": "/docs/installation/sveltekit#setup-path-aliases",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "SvelteKit"
-  },
-  {
-    "title": "If you are not using the default alias $lib, you'll need to update your svelte.config.js file to include those aliases. …",
-    "description": "",
-    "content": "If you are not using the default alias $lib, you'll need to update your svelte.config.js file to include those aliases. const config = { // ... other config kit: { // ... other config alias: { \"@/\": \"./path/to/lib/\", }, }, };",
-    "href": "/docs/installation/sveltekit#setup-path-aliases",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "SvelteKit"
-  },
-  {
-    "title": "Run the CLI",
-    "description": "",
-    "content": "Run the CLI",
-    "href": "/docs/installation/sveltekit#run-the-cli",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "SvelteKit"
-  },
-  {
-    "title": "Configure components.json",
-    "description": "",
-    "content": "Configure components.json",
-    "href": "/docs/installation/sveltekit#configure-componentsjson",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "SvelteKit"
-  },
-  {
-    "title": "You will be asked a few questions to configure components.json: Which base color would you like to use? › Slate Where is…",
-    "description": "",
-    "content": "You will be asked a few questions to configure components.json: Which base color would you like to use? › Slate Where is your global CSS file? (this file will be overwritten) › src/routes/layout.css Configure the import alias for lib: › $lib Configure the import alias for components: › $lib/components Configure the import alias for utils: › $lib/utils Configure the import alias for hooks: › $lib/hooks Configure the import alias for ui: › $lib/components/ui",
-    "href": "/docs/installation/sveltekit#configure-componentsjson",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "SvelteKit"
-  },
-  {
-    "title": "That's it",
-    "description": "",
-    "content": "That's it",
-    "href": "/docs/installation/sveltekit#thats-it",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "SvelteKit"
-  },
-  {
-    "title": "You can now start adding components to your project. The command above will add the Button component to your project. Yo…",
-    "description": "",
-    "content": "You can now start adding components to your project. The command above will add the Button component to your project. You can then import it like this: Click me",
-    "href": "/docs/installation/sveltekit#thats-it",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "SvelteKit"
-  },
-  {
-    "title": "Add TailwindCSS",
-    "description": "",
-    "content": "Add TailwindCSS",
-    "href": "/docs/installation/vite#add-tailwindcss",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "Vite"
-  },
-  {
-    "title": "Use the Svelte CLI to add Tailwind CSS to your project.",
-    "description": "",
-    "content": "Use the Svelte CLI to add Tailwind CSS to your project.",
-    "href": "/docs/installation/vite#add-tailwindcss",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "Vite"
-  },
-  {
-    "title": "Edit tsconfig.json file",
-    "description": "",
-    "content": "Edit tsconfig.json file",
-    "href": "/docs/installation/vite#edit-tsconfigjson-file",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "Vite"
-  },
-  {
-    "title": "The current version of Vite splits TypeScript configuration into three files, two of which need to be edited. Add the ba…",
-    "description": "",
-    "content": "The current version of Vite splits TypeScript configuration into three files, two of which need to be edited. Add the baseUrl and paths properties to the compilerOptions section of the tsconfig.json and tsconfig.app.json files: { \"files\": [], \"references\": [ { \"path\": \"./tsconfig.app.json\" }, { \"path\": \"./tsconfig.node.json\" } ], \"compilerOptions\": { \"baseUrl\": \".\", \"paths\": { \"$lib\": [\"./src/lib\"], \"$lib/\": [\"./src/lib/\"] } } }",
-    "href": "/docs/installation/vite#edit-tsconfigjson-file",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "Vite"
-  },
-  {
-    "title": "Edit tsconfig.app.json file",
-    "description": "",
-    "content": "Edit tsconfig.app.json file",
-    "href": "/docs/installation/vite#edit-tsconfigappjson-file",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "Vite"
-  },
-  {
-    "title": "Add the following code to the tsconfig.app.json file to resolve paths, for your IDE: { \"compilerOptions\": { // ... \"base…",
-    "description": "",
-    "content": "Add the following code to the tsconfig.app.json file to resolve paths, for your IDE: { \"compilerOptions\": { // ... \"baseUrl\": \".\", \"paths\": { \"$lib\": [\"./src/lib\"], \"$lib/\": [\"./src/lib/\"] } } }",
-    "href": "/docs/installation/vite#edit-tsconfigappjson-file",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "Vite"
-  },
-  {
-    "title": "Update vite.config.ts",
-    "description": "",
-    "content": "Update vite.config.ts",
-    "href": "/docs/installation/vite#update-viteconfigts",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "Vite"
-  },
-  {
-    "title": "Add the following code to the vite.config.ts so your app can resolve paths without error: import path from \"path\"; expor…",
-    "description": "",
-    "content": "Add the following code to the vite.config.ts so your app can resolve paths without error: import path from \"path\"; export default defineConfig({ // ... other options resolve: { alias: { $lib: path.resolve(\"./src/lib\"), }, }, });",
-    "href": "/docs/installation/vite#update-viteconfigts",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "Vite"
-  },
-  {
-    "title": "Run the CLI",
-    "description": "",
-    "content": "Run the CLI",
-    "href": "/docs/installation/vite#run-the-cli",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "Vite"
-  },
-  {
-    "title": "Configure components.json",
-    "description": "",
-    "content": "Configure components.json",
-    "href": "/docs/installation/vite#configure-componentsjson",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "Vite"
-  },
-  {
-    "title": "You will be asked a few questions to configure components.json: Which base color would you like to use? › Slate Where is…",
-    "description": "",
-    "content": "You will be asked a few questions to configure components.json: Which base color would you like to use? › Slate Where is your global CSS file? (this file will be overwritten) › src/routes/layout.css Configure the import alias for lib: › $lib Configure the import alias for components: › $lib/components Configure the import alias for utils: › $lib/utils Configure the import alias for hooks: › $lib/hooks Configure the import alias for ui: › $lib/components/ui",
-    "href": "/docs/installation/vite#configure-componentsjson",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "Vite"
-  },
-  {
-    "title": "That's it",
-    "description": "",
-    "content": "That's it",
-    "href": "/docs/installation/vite#thats-it",
-    "category": "Installation",
-    "type": "heading",
-    "pageTitle": "Vite"
-  },
-  {
-    "title": "You can now start adding components to your project. The command above will add the Button component to your project. Yo…",
-    "description": "",
-    "content": "You can now start adding components to your project. The command above will add the Button component to your project. You can then import it like this: Click me",
-    "href": "/docs/installation/vite#thats-it",
-    "category": "Installation",
-    "type": "text",
-    "pageTitle": "Vite"
   },
   {
     "title": "registry:style",
