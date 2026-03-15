@@ -4,7 +4,8 @@ import * as acorn from "acorn";
 import { tsPlugin } from "@sveltejs/acorn-typescript";
 import { walk, type Node } from "estree-walker";
 import * as svelte from "svelte/compiler";
-import { registryItemSchema, type Registry } from "@shadcn-svelte/registry";
+import { registryItemSchema, type Registry } from "shadcn-svelte/schema";
+import { fonts } from "../src/lib/registry/fonts.js";
 
 const REGISTRY_DEPENDENCY = "$lib/";
 const UTILS_PATH = "$lib/utils.js";
@@ -16,7 +17,6 @@ type RegistryItemFiles = Registry["items"][number]["files"];
 
 export async function buildRegistry(): Promise<RegistryItems> {
 	const registryRootPath = path.resolve("src", "lib", "registry");
-	const items: RegistryItems = [];
 
 	const paths = {
 		ui: path.resolve(registryRootPath, "ui"),
@@ -24,19 +24,19 @@ export async function buildRegistry(): Promise<RegistryItems> {
 		blocks: path.resolve(registryRootPath, "blocks"),
 		hooks: path.resolve(registryRootPath, "hooks"),
 		lib: path.resolve(registryRootPath, "lib"),
+		fonts: path.resolve(registryRootPath, "fonts.ts"),
 	};
 
-	const resolvedItems = await Promise.all([
-		crawlUI(paths.ui),
-		crawlExamples(paths.examples),
-		crawlBlocks(paths.blocks),
-		crawlHooks(paths.hooks),
-		crawlLib(paths.lib),
-	]);
-
-	resolvedItems.forEach((i) => items.push(...i));
-
-	return items;
+	return (
+		await Promise.all([
+			crawlUI(paths.ui),
+			crawlExamples(paths.examples),
+			crawlBlocks(paths.blocks),
+			crawlHooks(paths.hooks),
+			crawlLib(paths.lib),
+			assembleFonts(),
+		])
+	).flat();
 }
 
 async function crawlUI(rootPath: string): Promise<RegistryItems> {
@@ -74,7 +74,7 @@ async function buildUIRegistry(
 		const source = fs.readFileSync(filepath, { encoding: "utf8" });
 
 		if (dirent.name === "meta.json") {
-			meta = registryItemSchema.partial().parse(JSON.parse(source));
+			meta = registryItemSchema.parse(JSON.parse(source));
 			continue;
 		}
 
@@ -213,6 +213,22 @@ async function crawlLib(rootPath: string): Promise<RegistryItems> {
 			type: "registry:lib",
 			files: [{ path: relativePath, type: "registry:lib" }],
 			registryDependencies: Array.from(registryDependencies),
+		});
+	}
+
+	return items;
+}
+
+async function assembleFonts(): Promise<RegistryItems> {
+	const items: RegistryItems = [];
+
+	for (const font of fonts) {
+		items.push({
+			name: `font-${font.name}`,
+			type: "registry:font",
+			font: font.font,
+			files: [],
+			registryDependencies: [],
 		});
 	}
 

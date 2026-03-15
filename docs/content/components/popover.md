@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -70,3 +76,25 @@ Copy and paste the following code into your project.
   <Popover.Content>Place content for the popover here.</Popover.Content>
 </Popover.Root>
 ```
+
+## Examples
+
+### Align
+
+<ComponentPreview name="popover-align">
+
+<div></div>
+
+</ComponentPreview>
+
+### With Form
+
+<ComponentPreview name="popover-form">
+
+<div></div>
+
+</ComponentPreview>
+
+## API Reference
+
+See the [Popover API Reference](https://bits-ui.com/docs/components/popover#api-reference) for a full list of props.

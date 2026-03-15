@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -81,6 +87,54 @@ Copy and paste the following code into your project.
 ```
 
 ## Examples
+
+### Submenu
+
+<ComponentPreview name="dropdown-menu-submenu">
+
+<div></div>
+
+</ComponentPreview>
+
+### Shortcuts
+
+<ComponentPreview name="dropdown-menu-shortcuts">
+
+<div></div>
+
+</ComponentPreview>
+
+### Icons
+
+<ComponentPreview name="dropdown-menu-icons">
+
+<div></div>
+
+</ComponentPreview>
+
+### Destructive
+
+<ComponentPreview name="dropdown-menu-destructive">
+
+<div></div>
+
+</ComponentPreview>
+
+### Avatar
+
+<ComponentPreview name="dropdown-menu-avatar">
+
+<div></div>
+
+</ComponentPreview>
+
+### Complex
+
+<ComponentPreview name="dropdown-menu-complex">
+
+<div></div>
+
+</ComponentPreview>
 
 ### Checkboxes
 
@@ -122,3 +176,7 @@ This example shows how to open a dialog from a dropdown menu.
 
 - Added `gap-2 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0` to the `<DropdownMenu.SubTrigger>` to automatically style icon inside the dropdown menu sub trigger.
 - Removed `size-4` from the icon inside the `<DropdownMenu.SubTrigger>` since it is now handled by the parent `<DropdownMenu.SubTrigger>`.
+
+## API Reference
+
+See the [Dropdown Menu API Reference](https://bits-ui.com/docs/components/dropdown-menu#api-reference) for a full list of props.

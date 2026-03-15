@@ -3,6 +3,7 @@
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { PieChart, Text } from "layerchart";
+	import { ease } from "$lib/registry/ui/chart/easing.js";
 
 	const chartData = [
 		{ browser: "chrome", visitors: 275, color: "var(--color-chrome)" },
@@ -38,7 +39,7 @@
 				c="color"
 				innerRadius={60}
 				padding={28}
-				props={{ pie: { motion: "tween" } }}
+				props={{ pie: { motion: { type: "tween", duration: 1500, easing: ease } } }}
 			>
 				{#snippet aboveMarks()}
 					<Text

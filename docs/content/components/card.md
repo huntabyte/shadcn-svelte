@@ -42,6 +42,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -59,6 +65,7 @@ Copy and paste the following code into your project.
   <Card.Header>
     <Card.Title>Card Title</Card.Title>
     <Card.Description>Card Description</Card.Description>
+    <Card.Action>Card Action</Card.Action>
   </Card.Header>
   <Card.Content>
     <p>Card Content</p>

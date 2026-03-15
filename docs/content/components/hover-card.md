@@ -51,6 +51,13 @@ Copy and paste the following code into your project.
 {#if viewerData}
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
+
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 
 {/snippet}
@@ -72,3 +79,17 @@ Copy and paste the following code into your project.
   </HoverCard.Content>
 </HoverCard.Root>
 ```
+
+## Examples
+
+### Sides
+
+<ComponentPreview name="hover-card-sides">
+
+<div></div>
+
+</ComponentPreview>
+
+## API Reference
+
+See the [Hover Card API Reference](https://bits-ui.com/docs/components/link-preview#api-reference) for a full list of props.

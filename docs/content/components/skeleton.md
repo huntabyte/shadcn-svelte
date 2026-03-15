@@ -42,6 +42,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -60,9 +66,41 @@ Copy and paste the following code into your project.
 
 ## Examples
 
-## Card
+### Card
 
 <ComponentPreview name="skeleton-card">
+
+<div></div>
+
+</ComponentPreview>
+
+### Avatar
+
+<ComponentPreview name="skeleton-avatar">
+
+<div></div>
+
+</ComponentPreview>
+
+### Text
+
+<ComponentPreview name="skeleton-text">
+
+<div></div>
+
+</ComponentPreview>
+
+### Form
+
+<ComponentPreview name="skeleton-form">
+
+<div></div>
+
+</ComponentPreview>
+
+### Table
+
+<ComponentPreview name="skeleton-table">
 
 <div></div>
 

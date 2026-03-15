@@ -6,7 +6,7 @@
 	import { Area, AreaChart, ChartClipPath } from "layerchart";
 	import { curveNatural } from "d3-shape";
 	import ChartContainer from "../ui/chart/chart-container.svelte";
-	import { cubicInOut } from "svelte/easing";
+	import { ease } from "$lib/registry/ui/chart/easing.js";
 
 	const chartData = [
 		{ date: new Date("2024-04-01"), desktop: 222, mobile: 150 },
@@ -139,7 +139,7 @@
 	} satisfies Chart.ChartConfig;
 </script>
 
-<Card.Root>
+<Card.Root class="py-0">
 	<Card.Header class="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
 		<div class="grid flex-1 gap-1 text-center sm:text-start">
 			<Card.Title>Area Chart - Interactive</Card.Title>
@@ -181,7 +181,6 @@
 						curve: curveNatural,
 						"fill-opacity": 0.4,
 						line: { class: "stroke-1" },
-						motion: "tween",
 					},
 					xAxis: {
 						ticks: timeRange === "7d" ? 7 : undefined,
@@ -222,7 +221,7 @@
 					<ChartClipPath
 						initialWidth={0}
 						motion={{
-							width: { type: "tween", duration: 1000, easing: cubicInOut },
+							width: { type: "tween", duration: 1500, easing: ease },
 						}}
 					>
 						{#each series as s, i (s.key)}

@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -67,3 +73,33 @@ Copy and paste the following code into your project.
 ```svelte showLineNumbers
 <Separator />
 ```
+
+## Examples
+
+### Vertical
+
+<ComponentPreview name="separator-vertical">
+
+<div></div>
+
+</ComponentPreview>
+
+### Menu
+
+<ComponentPreview name="separator-menu">
+
+<div></div>
+
+</ComponentPreview>
+
+### List
+
+<ComponentPreview name="separator-list">
+
+<div></div>
+
+</ComponentPreview>
+
+## API Reference
+
+See the [Separator API Reference](https://bits-ui.com/docs/components/separator#api-reference) for a full list of props.

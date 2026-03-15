@@ -81,6 +81,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 <Step>Add the Toaster component</Step>
 
 ```svelte showLineNumbers title="+layout.svelte" {2,6}

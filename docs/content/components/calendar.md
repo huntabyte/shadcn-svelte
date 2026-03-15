@@ -59,6 +59,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -132,3 +138,7 @@ After upgrading the `Calendar` component, you can add the new blocks with the fo
 <PMAddComp name="calendar-02" />
 
 This will add the latest version of the calendar blocks.
+
+## API Reference
+
+See the [Calendar API Reference](https://bits-ui.com/docs/components/calendar#api-reference) for a full list of props.

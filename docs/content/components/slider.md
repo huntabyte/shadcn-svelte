@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -68,3 +74,49 @@ Copy and paste the following code into your project.
 ```svelte
 <Slider type="single" bind:value max={100} step={1} />
 ```
+
+## Examples
+
+### Range
+
+<ComponentPreview name="slider-range">
+
+<div></div>
+
+</ComponentPreview>
+
+### Multiple Thumbs
+
+<ComponentPreview name="slider-multiple">
+
+<div></div>
+
+</ComponentPreview>
+
+### Vertical
+
+<ComponentPreview name="slider-vertical">
+
+<div></div>
+
+</ComponentPreview>
+
+### Controlled
+
+<ComponentPreview name="slider-controlled">
+
+<div></div>
+
+</ComponentPreview>
+
+### Disabled
+
+<ComponentPreview name="slider-disabled">
+
+<div></div>
+
+</ComponentPreview>
+
+## API Reference
+
+See the [Slider API Reference](https://bits-ui.com/docs/components/slider#api-reference) for a full list of props.

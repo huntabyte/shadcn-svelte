@@ -6,7 +6,17 @@ description: How to install dependencies and structure your app.
 <script>
 	import InstallCards from '$lib/components/install-cards.svelte'
 	import SvelteWhite from '$lib/components/svelte-white.svelte'
+	import Callout from '$lib/components/callout.svelte'
+	import PMCreate from '$lib/components/pm-create.svelte'
 </script>
+
+<Callout class="mb-6 border-emerald-600 bg-emerald-100 dark:border-emerald-400 dark:bg-emerald-900">
+
+**Starting a new project?** Use [shadcn/create](/create) to scaffold a complete app with custom themes, components, and presets. Works with Next.js, Vite, and TanStack Start.
+
+</Callout>
+
+<!--<PMCreate command=""/>-->
 
 ## Guides
 

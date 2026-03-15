@@ -3,7 +3,8 @@
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import { scaleBand } from "d3-scale";
 	import { BarChart, type ChartContextValue } from "layerchart";
-	import { cubicInOut } from "svelte/easing";
+	import { ease } from "$lib/registry/ui/chart/easing.js";
+	import { onMount } from "svelte";
 
 	const chartData = [
 		{ date: "2024-07-15", running: 450, swimming: 300 },
@@ -20,6 +21,25 @@
 	} satisfies Chart.ChartConfig;
 
 	let context = $state<ChartContextValue>();
+	let containerRef = $state<HTMLDivElement | null>(null);
+
+	onMount(() => {
+		setTimeout(() => {
+			if (!containerRef) return;
+			const rects = containerRef.querySelectorAll(".lc-tooltip-rect");
+			const target = rects[1];
+			if (target) {
+				const bounds = target.getBoundingClientRect();
+				target.dispatchEvent(
+					new PointerEvent("pointerenter", {
+						clientX: bounds.left + bounds.width / 2,
+						clientY: bounds.top + bounds.height / 2,
+						bubbles: true,
+					})
+				);
+			}
+		}, 1600);
+	});
 </script>
 
 <Card.Root>
@@ -28,7 +48,7 @@
 		<Card.Description>Tooltip with custom formatter and total.</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<Chart.Container config={chartConfig}>
+		<Chart.Container bind:ref={containerRef} config={chartConfig}>
 			<BarChart
 				bind:context
 				data={chartData}
@@ -55,11 +75,13 @@
 				props={{
 					bars: {
 						stroke: "none",
-						initialY: context?.height,
+						initialY: context?.height ?? 400,
 						initialHeight: 0,
 						motion: {
-							y: { type: "tween", duration: 500, easing: cubicInOut },
-							height: { type: "tween", duration: 500, easing: cubicInOut },
+							x: { type: "tween", duration: 1500, easing: ease },
+							width: { type: "tween", duration: 1500, easing: ease },
+							y: { type: "tween", duration: 1500, easing: ease },
+							height: { type: "tween", duration: 1500, easing: ease },
 						},
 					},
 					xAxis: {

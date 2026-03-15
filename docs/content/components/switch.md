@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -67,3 +73,41 @@ Copy and paste the following code into your project.
 ```svelte
 <Switch />
 ```
+
+## Examples
+
+### Description
+
+<ComponentPreview name="switch-description">
+
+<div></div>
+
+</ComponentPreview>
+
+### Disabled
+
+<ComponentPreview name="switch-disabled">
+
+<div></div>
+
+</ComponentPreview>
+
+### Invalid
+
+<ComponentPreview name="switch-invalid">
+
+<div></div>
+
+</ComponentPreview>
+
+### Size
+
+<ComponentPreview name="switch-size">
+
+<div></div>
+
+</ComponentPreview>
+
+## API Reference
+
+See the [Switch API Reference](https://bits-ui.com/docs/components/switch#api-reference) for a full list of props.

@@ -3,30 +3,31 @@ import { Command, Option } from "commander";
 import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
 import process from "node:process";
-import { z } from "zod/v4";
+import { z } from "zod";
 import * as p from "@clack/prompts";
 import type { TsConfigResult } from "get-tsconfig";
 import { detectConfigs } from "../../utils/auto-detect.js";
 import { error, handleError } from "../../utils/errors.js";
-import type { ResolvedConfig } from "../../utils/get-config.js";
-import * as cliConfig from "../../utils/get-config.js";
+import * as cliConfig from "../../utils/config/index.js";
 import { cancel, intro, prettifyList } from "../../utils/prompt-helpers.js";
 import * as registry from "../../utils/registry/index.js";
-import { resolveImportAlias } from "../../utils/resolve-imports.js";
 import { syncSvelteKit } from "../../utils/sveltekit.js";
-import { SITE_BASE_URL } from "../../constants.js";
 import { preflightInit } from "./preflight.js";
 import { addRegistryItems } from "../../utils/add-registry-items.js";
 import { getEnvProxy } from "../../utils/get-env-proxy.js";
-import { highlight, stripTrailingSlash } from "../../utils/utils.js";
+import { highlight } from "../../utils/colors.js";
 import { installDependencies } from "../../utils/install-deps.js";
 import { checkPreconditions } from "../../utils/preconditions.js";
+import { type PresetConfig, decodePreset, encodePreset } from "../../preset/index.js";
+import { promptForPreset } from "../../preset/presets.js";
 
 const baseColors = registry.getBaseColors();
 
 const initOptionsSchema = z.object({
 	cwd: z.string(),
 	baseColor: z.string().optional(),
+	// TODO: Add additional options for the preset
+	preset: z.string().optional(),
 	css: z.string().optional(),
 	componentsAlias: z.string().optional(),
 	utilsAlias: z.string().optional(),
@@ -44,6 +45,7 @@ type InitOptions = z.infer<typeof initOptionsSchema>;
 export const init = new Command()
 	.command("init")
 	.description("initialize your project and install dependencies")
+	.option("--preset <preset>", "the preset to use")
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
 	.option("-o, --overwrite", "overwrite existing files", false)
 	.option("--no-deps", "disable adding & installing dependencies")
@@ -53,6 +55,7 @@ export const init = new Command()
 			baseColors.map((color) => color.name)
 		)
 	)
+	.addOption(new Option("--design-system-url"))
 	.option("--css <path>", "path to the global CSS file")
 	.option("--components-alias <path>", "import alias for components")
 	.option("--lib-alias <path>", "import alias for lib")
@@ -71,6 +74,14 @@ export const init = new Command()
 				throw error(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
 			}
 
+			let presetConfig: PresetConfig | null = null;
+			if (options.preset !== undefined) {
+				presetConfig = decodePreset(options.preset);
+				if (presetConfig === null) {
+					p.log.warn(`${color.dim(`--preset ${options.preset}`)} is not a valid preset.`);
+				}
+			}
+
 			preflightInit(cwd, { skipPreflight: options.skipPreflight });
 
 			let existingConfig = cliConfig.loadConfig(cwd);
@@ -82,9 +93,14 @@ export const init = new Command()
 				});
 			}
 
-			const config = await promptForConfig(cwd, existingConfig, options);
+			const { resolvedConfig, decidedPresets } = await promptForConfig({
+				cwd,
+				presetConfig,
+				existingConfig,
+				options,
+			});
 
-			await runInit(cwd, config, options);
+			await runInit({ cwd, config: resolvedConfig, decidedPresets, options });
 
 			p.outro(`${color.green("Success!")} Project initialization completed.`);
 		} catch (e) {
@@ -104,18 +120,24 @@ function validateOptions(cwd: string, options: InitOptions, tsconfig: TsConfigRe
 	for (const [alias, path] of Object.entries(options)) {
 		if (!alias.endsWith("Alias")) continue;
 		const importPath = path as string;
-		const validationResult = validateImportAlias({ cwd, importPath, tsconfig });
+		const validationResult = cliConfig.validateImportAlias({ cwd, importPath, tsconfig });
 		if (validationResult) {
 			throw error(validationResult);
 		}
 	}
 }
 
-async function promptForConfig(
-	cwd: string,
-	existingConfig: cliConfig.RawConfig | undefined,
-	options: InitOptions
-) {
+async function promptForConfig({
+	cwd,
+	presetConfig,
+	existingConfig,
+	options,
+}: {
+	cwd: string;
+	presetConfig: PresetConfig | null;
+	existingConfig: cliConfig.RawConfig | undefined;
+	options: InitOptions;
+}) {
 	const config: cliConfig.RawConfig = existingConfig ?? structuredClone(cliConfig.DEFAULT_CONFIG);
 
 	// if it's a SvelteKit project, run sync so that the aliases are always up to date
@@ -154,19 +176,12 @@ async function promptForConfig(
 	// Validation for any paths provided by flags
 	validateOptions(cwd, options, tsconfig);
 
-	// Base Color
-	let tailwindBaseColor = baseColors.find((color) => color.name === options.baseColor)?.name;
-	if (tailwindBaseColor === undefined) {
-		const input = await p.select({
-			message: `Which ${highlight("base color")} would you like to use?`,
-			initialValue:
-				existingConfig?.tailwind.baseColor ?? cliConfig.DEFAULT_CONFIG.tailwind.baseColor,
-			options: baseColors.map((color) => ({ label: color.label, value: color.name })),
-		});
-
-		if (p.isCancel(input)) cancel();
-
-		tailwindBaseColor = input;
+	// Design system
+	let decidedPresets: PresetConfig | null = null;
+	if (presetConfig) {
+		decidedPresets = presetConfig;
+	} else {
+		decidedPresets = await promptForPreset(existingConfig);
 	}
 
 	// Global CSS File
@@ -190,43 +205,19 @@ async function promptForConfig(
 		globalCss = input;
 	}
 
-	const promptAlias = async (alias: keyof cliConfig.RawConfig["aliases"], initial: string) => {
-		let path = options[`${alias}Alias`];
-		if (path === undefined) {
-			const input = await p.text({
-				message: `Configure the import alias for ${highlight(alias)}:`,
-				initialValue: existingConfig?.aliases[alias] ?? initial,
-				placeholder: cliConfig.DEFAULT_CONFIG.aliases[alias],
-				validate: (value) => validateImportAlias({ cwd, tsconfig, importPath: value }),
-			});
+	const { utilsAlias, libAlias, componentAlias, hooksAlias, uiAlias } =
+		await cliConfig.promptForAliases({
+			...options,
+			tsconfig,
+			cwd,
+			existingConfig,
+		});
 
-			if (p.isCancel(input)) cancel();
-
-			path = stripTrailingSlash(input);
-		}
-		return path;
-	};
-
-	// Lib Alias
-	const libAlias = await promptAlias("lib", "$lib");
-
-	// Components Alias
-	const componentAlias = await promptAlias("components", `${libAlias}/components`);
-
-	// UI Alias
-	const uiAlias = await promptAlias("ui", `${componentAlias}/ui`);
-
-	// Utils Alias
-	const utilsAlias = await promptAlias("utils", `${libAlias}/utils`);
-
-	// Hooks Alias
-	const hooksAlias = await promptAlias("hooks", `${libAlias}/hooks`);
-
-	const rawConfig = cliConfig.rawConfigSchema.parse({
+	const rawConfig = cliConfig.parseRawConfig({
 		...config,
 		tailwind: {
 			css: globalCss,
-			baseColor: tailwindBaseColor,
+			baseColor: decidedPresets.baseColor,
 		},
 		aliases: {
 			utils: utilsAlias,
@@ -235,25 +226,33 @@ async function promptForConfig(
 			hooks: hooksAlias,
 			ui: uiAlias,
 		},
+		style: decidedPresets.style,
+		iconLibrary: decidedPresets.iconLibrary,
+		menuColor: decidedPresets.menuColor,
+		menuAccent: decidedPresets.menuAccent,
 	});
 
-	const configPaths = await cliConfig.resolveConfig(cwd, rawConfig);
-	return configPaths;
+	return {
+		resolvedConfig: await cliConfig.resolveConfig(cwd, rawConfig),
+		decidedPresets,
+	};
 }
 
-function validateImportAlias(opts: Parameters<typeof resolveImportAlias>[0]) {
-	const resolvedPath = resolveImportAlias(opts);
-	if (resolvedPath !== undefined) return;
-
-	return `"${color.bold(opts.importPath)}" does not use an existing path alias defined in your ${color.bold(path.basename(opts.tsconfig.path))}. See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}`;
-}
-
-export async function runInit(cwd: string, config: ResolvedConfig, options: InitOptions) {
+export async function runInit({
+	cwd,
+	config,
+	decidedPresets,
+	options,
+}: {
+	cwd: string;
+	config: cliConfig.ResolvedConfig;
+	decidedPresets: PresetConfig;
+	options: InitOptions;
+}) {
 	if (options.proxy !== undefined) {
 		process.env.HTTP_PROXY = options.proxy;
 		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);
 	}
-	const registryUrl = registry.getRegistryUrl(config);
 
 	const tasks: p.Task[] = [];
 
@@ -293,32 +292,17 @@ export async function runInit(cwd: string, config: ResolvedConfig, options: Init
 
 	await p.tasks(tasks);
 
+	// we create a registry base item using the encoded preset at the /init endpoint in the docs
+	const registryUrl = registry.getRegistryUrl(config);
+	const encodedPreset = encodePreset(decidedPresets);
+	const presetUrl = new URL(`/init?preset=${encodedPreset}`, registryUrl).toString();
+
 	const result = await addRegistryItems({
-		selectedItems: ["init"],
+		selectedItems: [presetUrl],
 		config,
 		deps: options.deps,
 		overwrite: options.overwrite,
 	});
-
-	// update stylesheet
-	await p.tasks([
-		{
-			title: "Updating stylesheet",
-			async task() {
-				const baseColor = await registry.getRegistryBaseColor(
-					registryUrl,
-					config.tailwind.baseColor
-				);
-				const relative = path.relative(cwd, config.resolvedPaths.tailwindCss);
-				await fs.writeFile(
-					config.resolvedPaths.tailwindCss,
-					baseColor.cssVarsTemplate,
-					"utf8"
-				);
-				return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;
-			},
-		},
-	]);
 
 	if (options.deps) {
 		await installDependencies({

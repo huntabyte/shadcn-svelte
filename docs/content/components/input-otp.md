@@ -56,6 +56,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -156,3 +162,7 @@ You can use the `InputOTP.Separator` component to add a separator between the gr
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+See the [Input OTP API Reference](https://bits-ui.com/docs/components/pin-input#api-reference) for a full list of props.

@@ -3,9 +3,9 @@
 	import { dev, browser } from "$app/environment";
 
 	beforeNavigate((navigation) => {
-		const isDocIndex = navigation.from?.route.id === "/(app)/docs";
+		const isDocIndex = navigation.from?.route.id === "/(app)/(layout)/docs";
 		if (isDocIndex) return;
-		const goingToDocIndex = navigation.to?.route.id === "/(app)/docs";
+		const goingToDocIndex = navigation.to?.route.id === "/(app)/(layout)/docs";
 		if (goingToDocIndex) return;
 		refreshEthicalAds();
 	});

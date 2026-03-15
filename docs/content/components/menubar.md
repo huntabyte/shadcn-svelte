@@ -50,6 +50,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -80,3 +86,41 @@ Copy and paste the following code into your project.
   </Menubar.Menu>
 </Menubar.Root>
 ```
+
+## Examples
+
+### Checkbox
+
+<ComponentPreview name="menubar-checkbox">
+
+<div></div>
+
+</ComponentPreview>
+
+### Radio
+
+<ComponentPreview name="menubar-radio">
+
+<div></div>
+
+</ComponentPreview>
+
+### Submenu
+
+<ComponentPreview name="menubar-submenu">
+
+<div></div>
+
+</ComponentPreview>
+
+### With Icons
+
+<ComponentPreview name="menubar-icons">
+
+<div></div>
+
+</ComponentPreview>
+
+## API Reference
+
+See the [Menubar API Reference](https://bits-ui.com/docs/components/menubar#api-reference) for a full list of props.

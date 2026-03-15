@@ -56,6 +56,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -278,3 +284,7 @@ You can use the `plugins` prop to add plugins to the carousel.
 </ComponentPreview>
 
 See the [Embla Carousel docs](https://www.embla-carousel.com/api/plugins/) for more information on using plugins.
+
+## API Reference
+
+See the [Carousel API Reference](https://www.embla-carousel.com/api) for a full list of props.

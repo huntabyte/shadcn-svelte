@@ -3,6 +3,7 @@
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { curveLinearClosed } from "d3-shape";
 	import { scaleBand } from "d3-scale";
+	import { ease } from "$lib/registry/ui/chart/easing.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 
@@ -47,7 +48,7 @@
 						fill: "var(--color-desktop)",
 						fillOpacity: 0.6,
 						stroke: "0",
-						motion: "tween",
+						motion: { type: "tween", duration: 1500, easing: ease },
 					},
 					xAxis: {
 						tickLength: 0,

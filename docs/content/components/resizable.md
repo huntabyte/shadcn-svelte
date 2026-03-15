@@ -56,6 +56,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -121,3 +127,7 @@ You can set or hide the handle by using the `withHandle` prop on the `ResizableH
   <Resizable.Pane>Two</Resizable.Pane>
 </Resizable.PaneGroup>
 ```
+
+## API Reference
+
+See the [Resizable API Reference](https://www.paneforge.com/docs/components/pane-group) for a full list of props.

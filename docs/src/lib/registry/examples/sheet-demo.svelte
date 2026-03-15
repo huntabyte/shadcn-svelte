@@ -8,7 +8,7 @@
 
 <Sheet.Root>
 	<Sheet.Trigger class={buttonVariants({ variant: "outline" })}>Open</Sheet.Trigger>
-	<Sheet.Content side="right">
+	<Sheet.Content>
 		<Sheet.Header>
 			<Sheet.Title>Edit profile</Sheet.Title>
 			<Sheet.Description>
@@ -17,12 +17,12 @@
 		</Sheet.Header>
 		<div class="grid flex-1 auto-rows-min gap-6 px-4">
 			<div class="grid gap-3">
-				<Label for="name" class="text-end">Name</Label>
-				<Input id="name" value="Pedro Duarte" />
+				<Label for="sheet-demo-name">Name</Label>
+				<Input id="sheet-demo-name" value="Pedro Duarte" />
 			</div>
 			<div class="grid gap-3">
-				<Label for="username" class="text-end">Username</Label>
-				<Input id="username" value="@peduarte" />
+				<Label for="sheet-demo-username">Username</Label>
+				<Input id="sheet-demo-username" value="@peduarte" />
 			</div>
 		</div>
 		<Sheet.Footer>

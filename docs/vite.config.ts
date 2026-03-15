@@ -37,10 +37,17 @@ export default defineConfig({
 			name: "registry-builder",
 			enforce: "pre",
 			async watchChange(id) {
+				if (minimatch(id, "**/icons/**")) return;
 				if (!minimatch(id, "**/src/lib/registry/**")) return;
 				this.info("Registry file updated. Rebuilding registry...");
-				await buildRegistry();
-				this.info("Registry built.");
+				try {
+					await buildRegistry();
+					this.info("Registry built.");
+				} catch (error) {
+					this.warn(
+						`Registry build failed with error: ${error}\n Continuing with previous build.`
+					);
+				}
 			},
 		},
 	],
@@ -53,8 +60,10 @@ export default defineConfig({
 		// minify: false,
 		rollupOptions: {
 			output: {
-				manualChunks: {
-					icons: ["@lucide/svelte", "@tabler/icons-svelte"],
+				manualChunks(id) {
+					if (id.includes("@lucide/svelte") || id.includes("@tabler/icons-svelte")) {
+						return "icons";
+					}
 				},
 			},
 		},

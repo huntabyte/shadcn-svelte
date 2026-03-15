@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -84,3 +90,39 @@ Copy and paste the following code into your project.
 <div></div>
 
 </ComponentPreview>
+
+### Form
+
+<ComponentPreview name="select-form">
+
+<div></div>
+
+</ComponentPreview>
+
+### Groups
+
+<ComponentPreview name="select-groups">
+
+<div></div>
+
+</ComponentPreview>
+
+### Disabled
+
+<ComponentPreview name="select-disabled">
+
+<div></div>
+
+</ComponentPreview>
+
+### Invalid
+
+<ComponentPreview name="select-invalid">
+
+<div></div>
+
+</ComponentPreview>
+
+## API Reference
+
+See the [Select API Reference](https://bits-ui.com/docs/components/select#api-reference) for a full list of props.

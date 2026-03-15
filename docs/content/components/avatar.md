@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -70,3 +76,57 @@ Copy and paste the following code into your project.
   <Avatar.Fallback>CN</Avatar.Fallback>
 </Avatar.Root>
 ```
+
+## Examples
+
+### Badge
+
+<ComponentPreview name="avatar-badge">
+
+<div></div>
+
+</ComponentPreview>
+
+### Badge with Icon
+
+<ComponentPreview name="avatar-badge-icon">
+
+<div></div>
+
+</ComponentPreview>
+
+### Group
+
+<ComponentPreview name="avatar-group">
+
+<div></div>
+
+</ComponentPreview>
+
+### Group Count
+
+<ComponentPreview name="avatar-group-count">
+
+<div></div>
+
+</ComponentPreview>
+
+### Sizes
+
+<ComponentPreview name="avatar-sizes">
+
+<div></div>
+
+</ComponentPreview>
+
+### Dropdown
+
+<ComponentPreview name="avatar-dropdown">
+
+<div></div>
+
+</ComponentPreview>
+
+## API Reference
+
+See the [Avatar API Reference](https://bits-ui.com/docs/components/avatar#api-reference) for a full list of props.

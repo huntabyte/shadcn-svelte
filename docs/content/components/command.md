@@ -53,6 +53,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -136,3 +142,7 @@ You can use the `<Command />` component as a combobox. See the [Combobox](/docs/
 ### 2024-10-30 Classes for icons
 
 - Added `gap-2 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0` to the `<Command.Item>` component to automatically style the icons inside.
+
+## API Reference
+
+See the [Command API Reference](https://bits-ui.com/docs/components/command#api-reference) for a full list of props.

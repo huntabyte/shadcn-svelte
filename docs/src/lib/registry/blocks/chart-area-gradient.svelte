@@ -3,8 +3,9 @@
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import { scaleUtc } from "d3-scale";
 	import { curveNatural } from "d3-shape";
-	import { Area, AreaChart, LinearGradient } from "layerchart";
+	import { Area, AreaChart, ChartClipPath, LinearGradient } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
+	import { ease } from "$lib/registry/ui/chart/easing.js";
 
 	const chartData = [
 		{ date: new Date("2024-01-01"), desktop: 186, mobile: 80 },
@@ -51,7 +52,6 @@
 						curve: curveNatural,
 						"fill-opacity": 0.4,
 						line: { class: "stroke-1" },
-						motion: "tween",
 					},
 					xAxis: {
 						format: (v: Date) => v.toLocaleDateString("en-US", { month: "short" }),
@@ -70,19 +70,26 @@
 					/>
 				{/snippet}
 				{#snippet marks({ series, getAreaProps })}
-					{#each series as s, i (s.key)}
-						<LinearGradient
-							stops={[
-								s.color ?? "",
-								"color-mix(in lch, " + s.color + " 10%, transparent)",
-							]}
-							vertical
-						>
-							{#snippet children({ gradient })}
-								<Area {...getAreaProps(s, i)} fill={gradient} />
-							{/snippet}
-						</LinearGradient>
-					{/each}
+					<ChartClipPath
+						initialWidth={0}
+						motion={{
+							width: { type: "tween", duration: 1500, easing: ease },
+						}}
+					>
+						{#each series as s, i (s.key)}
+							<LinearGradient
+								stops={[
+									s.color ?? "",
+									"color-mix(in lch, " + s.color + " 10%, transparent)",
+								]}
+								vertical
+							>
+								{#snippet children({ gradient })}
+									<Area {...getAreaProps(s, i)} fill={gradient} />
+								{/snippet}
+							</LinearGradient>
+						{/each}
+					</ChartClipPath>
 				{/snippet}
 			</AreaChart>
 		</Chart.Container>

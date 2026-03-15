@@ -24,7 +24,7 @@
 {#snippet Content()}
 	<div class="flex min-h-0 flex-1 flex-col gap-0">
 		<div
-			class="chart-wrapper theme-container hidden sm:block [&_[data-chart]]:mx-auto [&_[data-chart]]:max-h-[35vh] [&>div]:rounded-none [&>div]:border-0 [&>div]:border-b [&>div]:shadow-none"
+			class="chart-wrapper theme-container hidden **:data-chart:mx-auto **:data-chart:max-h-[35vh] sm:block [&>div]:rounded-none [&>div]:border-0 [&>div]:border-b [&>div]:shadow-none"
 		>
 			{@render children?.()}
 		</div>
@@ -35,7 +35,7 @@
 			>
 				<figcaption
 					class="text-foreground [&>svg]:text-foreground flex h-12 shrink-0 items-center gap-2 border-b py-2 ps-4 pe-2 [&>svg]:size-4 [&>svg]:opacity-70"
-					data-language="tsx"
+					data-language="svelte"
 				>
 					<Icon />
 					{chart.name}
@@ -65,7 +65,11 @@
 
 {#if !isDesktop.current}
 	<Drawer.Root>
-		<Drawer.Trigger child={Trigger} />
+		<Drawer.Trigger>
+			{#snippet child({ props })}
+				{@render Trigger({ props })}
+			{/snippet}
+		</Drawer.Trigger>
 		<Drawer.Content
 			class={cn(
 				"flex max-h-[80vh] flex-col sm:max-h-[90vh] [&>div.bg-muted]:shrink-0",
@@ -84,7 +88,11 @@
 	</Drawer.Root>
 {:else}
 	<Sheet.Root>
-		<Sheet.Trigger child={Trigger} />
+		<Sheet.Trigger>
+			{#snippet child({ props })}
+				{@render Trigger({ props })}
+			{/snippet}
+		</Sheet.Trigger>
 		<Sheet.Content
 			side="right"
 			class={cn(

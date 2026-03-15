@@ -60,6 +60,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -72,6 +78,21 @@ Copy and paste the following code into your project.
 </script>
 
 <Button variant="outline">Button</Button>
+```
+
+## Cursor
+
+Tailwind v4 [switched](https://tailwindcss.com/docs/upgrade-guide#buttons-use-the-default-cursor) from `cursor: pointer` to `cursor: default` for the button component.
+
+If you want to keep the `cursor: pointer` behavior, add the following code to your CSS file:
+
+```css showLineNumbers title="app.css"
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
 ```
 
 ## Examples
@@ -375,3 +396,7 @@ export const buttonVariants = tv({
   },
 });
 ```
+
+## API Reference
+
+See the [Button API Reference](https://bits-ui.com/docs/components/button#api-reference) for a full list of props.

@@ -41,6 +41,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -68,3 +74,55 @@ You can use the `badgeVariants` helper to create a link that looks like a badge.
 
 <a href="/dashboard" class={badgeVariants({ variant: "outline" })}>Badge</a>
 ```
+
+## Examples
+
+### Variants
+
+<ComponentPreview name="badge-demo">
+
+<div></div>
+
+</ComponentPreview>
+
+<ComponentPreview name="badge-destructive">
+
+<div></div>
+
+</ComponentPreview>
+
+<ComponentPreview name="badge-outline">
+
+<div></div>
+
+</ComponentPreview>
+
+<ComponentPreview name="badge-secondary">
+
+<div></div>
+
+</ComponentPreview>
+
+### With Icon
+
+<ComponentPreview name="badge-with-icon">
+
+<div></div>
+
+</ComponentPreview>
+
+### With Spinner
+
+<ComponentPreview name="badge-with-spinner">
+
+<div></div>
+
+</ComponentPreview>
+
+### Custom Colors
+
+<ComponentPreview name="badge-custom-colors">
+
+<div></div>
+
+</ComponentPreview>

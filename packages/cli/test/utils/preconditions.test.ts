@@ -1,7 +1,7 @@
 import { describe, expect, it, vi, beforeEach } from "vitest";
 import { TW3_SITE_BASE_URL } from "../../src/constants.js";
 import { checkPreconditions } from "../../src/utils/preconditions.js";
-import { getConfig, writeConfig } from "../../src/utils/get-config.js";
+import { getConfig, writeConfig } from "../../src/utils/config/index.js";
 import {
 	getProjectPackageInfo,
 	getDependencyPackageInfo,
@@ -60,9 +60,9 @@ const configLegacyUpdated = {
 vi.mock("../../src/utils/get-package-info.js");
 vi.mock("../../src/utils/utils.js");
 
-vi.mock("../../src/utils/get-config.js", async () => ({
-	...(await vi.importActual<typeof import("../../src/utils/get-config.js")>(
-		"../../src/utils/get-config.js"
+vi.mock("../../src/utils/config/index.js", async () => ({
+	...(await vi.importActual<typeof import("../../src/utils/config/index.js")>(
+		"../../src/utils/config/index.js"
 	)),
 	writeConfig: vi.fn(),
 	getConfig: vi.fn(),

@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -91,3 +97,7 @@ Copy and paste the following code into your project.
   {/snippet}
 </Pagination.Root>
 ```
+
+## API Reference
+
+See the [Pagination API Reference](https://bits-ui.com/docs/components/pagination#api-reference) for a full list of props.
