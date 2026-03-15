@@ -3,7 +3,7 @@
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { curveLinearClosed } from "d3-shape";
 	import { scaleBand } from "d3-scale";
-	import { cubicInOut } from "svelte/easing";
+	import { ease } from "$lib/registry/ui/chart/easing.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 
@@ -50,7 +50,7 @@
 					},
 				]}
 				props={{
-					spline: { curve: curveLinearClosed, motion: { type: "tween", duration: 750, easing: cubicInOut } },
+					spline: { curve: curveLinearClosed, motion: { type: "tween", duration: 1500, easing: ease } },
 					grid: { radialY: "linear", x: false },
 					yAxis: { format: () => "" },
 					tooltip: { context: { mode: "voronoi" } },

@@ -3,7 +3,7 @@
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { curveLinearClosed } from "d3-shape";
 	import { scaleBand } from "d3-scale";
-	import { cubicInOut } from "svelte/easing";
+	import { ease } from "$lib/registry/ui/chart/easing.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 
@@ -58,7 +58,7 @@
 					spline: {
 						curve: curveLinearClosed,
 						stroke: "0",
-						motion: { type: "tween", duration: 750, easing: cubicInOut },
+						motion: { type: "tween", duration: 1500, easing: ease },
 					},
 					xAxis: {
 						tickLength: 0,

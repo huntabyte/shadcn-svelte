@@ -1,6 +1,6 @@
 <script lang="ts">
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
-	import { cubicInOut } from "svelte/easing";
+	import { ease } from "$lib/registry/ui/chart/easing.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { PieChart, Text } from "layerchart";
@@ -31,7 +31,7 @@
 				innerRadius={76}
 				padding={29}
 				range={[-90, 90]}
-				props={{ pie: { sort: null, motion: { type: "tween", duration: 750, easing: cubicInOut } } }}
+				props={{ pie: { sort: null, motion: { type: "tween", duration: 1500, easing: ease } } }}
 				cornerRadius={4}
 			>
 				{#snippet aboveMarks()}
