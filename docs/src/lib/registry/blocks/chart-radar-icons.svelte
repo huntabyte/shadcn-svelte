@@ -5,6 +5,7 @@
 	import ArrowUpFromLineIcon from "@lucide/svelte/icons/arrow-up-from-line";
 	import { curveLinearClosed } from "d3-shape";
 	import { scaleBand } from "d3-scale";
+	import { cubicInOut } from "svelte/easing";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 
@@ -60,7 +61,7 @@
 					spline: {
 						curve: curveLinearClosed,
 						stroke: "0",
-						motion: "tween",
+						motion: { type: "tween", duration: 750, easing: cubicInOut },
 					},
 					xAxis: {
 						tickLength: -8,

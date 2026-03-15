@@ -3,6 +3,7 @@
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import { ArcChart } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
+	import { cubicInOut } from "svelte/easing";
 
 	const chartData = [
 		{ browser: "other", visitors: 90, color: "var(--color-other)" },
@@ -43,7 +44,7 @@
 					data: [d],
 				}))}
 				props={{
-					arc: { track: { fill: "var(--muted)" }, motion: "tween" },
+					arc: { track: { fill: "var(--muted)" }, motion: { type: "tween", duration: 750, easing: cubicInOut } },
 					tooltip: { context: { hideDelay: 350 } },
 				}}
 			>
