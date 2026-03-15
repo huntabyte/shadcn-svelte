@@ -81,7 +81,6 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 		{:else if doc.toc.length}
 			<div class="no-scrollbar overflow-y-auto px-8">
 				<DocsToc toc={{ items: doc.toc }} />
-				<div class="h-12"></div>
 			</div>
 		{/if}
 		<div class="flex flex-1 flex-col gap-12 px-6">
