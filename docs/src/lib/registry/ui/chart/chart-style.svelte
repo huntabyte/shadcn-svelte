@@ -11,7 +11,7 @@
 		if (!colorConfig || !colorConfig.length) return;
 
 		const themeContents = [];
-		for (let [_theme, prefix] of Object.entries(THEMES)) {
+		for (const [_theme, prefix] of Object.entries(THEMES)) {
 			let content = `${prefix} [data-chart=${id}] {\n`;
 			const color = colorConfig.map(([key, itemConfig]) => {
 				const theme = _theme as keyof typeof itemConfig.theme;
