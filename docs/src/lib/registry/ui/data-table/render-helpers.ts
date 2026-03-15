@@ -1,4 +1,4 @@
-import type { Component, ComponentProps, Snippet } from "svelte";
+import type { Component, Snippet } from "svelte";
 
 /**
  * A helper class to make it easy to identify Svelte components in
@@ -16,13 +16,13 @@ import type { Component, ComponentProps, Snippet } from "svelte";
  * {/if}
  * ```
  */
-export class RenderComponentConfig<TComponent extends Component> {
-	component: TComponent;
-	props: ComponentProps<TComponent> | Record<string, never>;
-	constructor(
-		component: TComponent,
-		props: ComponentProps<TComponent> | Record<string, never> = {}
-	) {
+export class RenderComponentConfig<
+	TProps extends Record<string, unknown>,
+	TComponent extends Component<TProps>,
+> {
+	component;
+	props;
+	constructor(component: TComponent, props: TProps) {
 		this.component = component;
 		this.props = props;
 	}
@@ -75,10 +75,19 @@ export class RenderSnippetConfig<TProps> {
  * @see {@link https://tanstack.com/table/latest/docs/guide/column-defs}
  */
 export function renderComponent<
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	T extends Component<any>,
-	Props extends ComponentProps<T>,
->(component: T, props: Props = {} as Props) {
+	TProps extends Record<string, never>,
+	TComponent extends Component<TProps>,
+>(component: TComponent): RenderComponentConfig<TProps, TComponent>;
+
+export function renderComponent<
+	TProps extends Record<string, unknown>,
+	TComponent extends Component<TProps>,
+>(component: TComponent, props: TProps): RenderComponentConfig<TProps, TComponent>;
+
+export function renderComponent<
+	TProps extends Record<string, unknown>,
+	TComponent extends Component<TProps>,
+>(component: TComponent, props: TProps = {} as TProps) {
 	return new RenderComponentConfig(component, props);
 }
 
@@ -106,6 +115,15 @@ export function renderComponent<
  * ```
  * @see {@link https://tanstack.com/table/latest/docs/guide/column-defs}
  */
+export function renderSnippet<TProps extends Record<string, never>>(
+	snippet: Snippet<[TProps]>
+): RenderSnippetConfig<TProps>;
+
+export function renderSnippet<TProps extends Record<string, unknown>>(
+	snippet: Snippet<[TProps]>,
+	props: TProps
+): RenderSnippetConfig<TProps>;
+
 export function renderSnippet<TProps>(snippet: Snippet<[TProps]>, params: TProps = {} as TProps) {
 	return new RenderSnippetConfig(snippet, params);
 }
