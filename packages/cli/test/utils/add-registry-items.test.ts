@@ -3,7 +3,7 @@ import * as p from "@clack/prompts";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import * as registry from "../../src/utils/registry/index.js";
 import { addRegistryItems } from "../../src/utils/add-registry-items.js";
-import type { ResolvedConfig } from "../../src/utils/get-config";
+import type { ResolvedConfig } from "../../src/utils/config/index";
 
 vi.mock("node:fs", () => ({
 	existsSync: vi.fn(),
@@ -69,6 +69,15 @@ describe("addRegistryItems", () => {
 		typescript: true,
 		registry: "https://example.com/registry",
 		sveltekit: true,
+		designSystem: {
+			style: "vega",
+			theme: "neutral",
+			iconLibrary: "lucide",
+			fonts: [],
+			menuAccent: "subtle",
+			menuColor: "default",
+			radius: "0.5rem",
+		},
 	} satisfies ResolvedConfig;
 
 	beforeEach(() => {

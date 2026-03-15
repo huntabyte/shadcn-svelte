@@ -1,14 +1,24 @@
 <script lang="ts">
 	import { cn } from "$lib/utils.js";
-	import Loader2Icon from "@lucide/svelte/icons/loader-2";
-	import type { ComponentProps } from "svelte";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import type { SVGAttributes } from "svelte/elements";
 
-	let { class: className, ...restProps }: ComponentProps<typeof Loader2Icon> = $props();
+	let {
+		class: className,
+		role = "status",
+		"aria-label": ariaLabel = "Loading",
+		...restProps
+	}: SVGAttributes<SVGSVGElement> = $props();
 </script>
 
-<Loader2Icon
-	role="status"
-	aria-label="Loading"
+<IconPlaceholder
+	lucide="Loader2Icon"
+	tabler="IconLoader"
+	hugeicons="Loading03Icon"
+	phosphor="SpinnerIcon"
+	remixicon="RiLoaderLine"
+	{role}
+	aria-label={ariaLabel}
 	class={cn("size-4 animate-spin", className)}
 	{...restProps}
 />

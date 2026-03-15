@@ -2,7 +2,7 @@ import * as p from "@clack/prompts";
 import color from "picocolors";
 import * as semver from "semver";
 import { CLIError, error } from "../../utils/errors.js";
-import { highlight } from "../../utils/utils.js";
+import { highlight } from "../../utils/colors.js";
 import { TW3_SITE_BASE_URL, SITE_BASE_URL } from "../../constants.js";
 import { getDependencyPackageInfo, getProjectPackageInfo } from "../../utils/get-package-info.js";
 

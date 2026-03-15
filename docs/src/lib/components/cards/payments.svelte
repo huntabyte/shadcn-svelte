@@ -8,23 +8,18 @@
 </script>
 
 <script lang="ts">
-	import ArrowUpDownIcon from "@lucide/svelte/icons/arrow-up-down";
-	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Table from "$lib/registry/ui/table/index.js";
 	import {
 		getCoreRowModel,
 		getFilteredRowModel,
 		getPaginationRowModel,
 		getSortedRowModel,
-		type Column,
 		type ColumnDef,
 		type ColumnFiltersState,
 		type PaginationState,
-		type Row,
 		type RowSelectionState,
 		type SortingState,
 		type VisibilityState,
@@ -33,6 +28,8 @@
 	import { createRawSnippet } from "svelte";
 	import { createSvelteTable } from "$lib/registry/ui/data-table/data-table.svelte.js";
 	import { FlexRender } from "$lib/registry/ui/data-table/index.js";
+	import EmailHeader from "./payments-email-header.svelte";
+	import ActionsCell from "./payments-actions-cell.svelte";
 
 	const data: Payment[] = [
 		{
@@ -106,7 +103,7 @@
 		},
 		{
 			accessorKey: "email",
-			header: ({ column }) => renderSnippet(EmailHeader, { column }),
+			header: ({ column }) => renderComponent(EmailHeader, { column }),
 			cell: ({ row }) => {
 				const emailSnippet = createRawSnippet<[{ email: string }]>((getEmail) => {
 					const { email } = getEmail();
@@ -142,7 +139,7 @@
 		{
 			id: "actions",
 			enableHiding: false,
-			cell: ({ row }) => renderSnippet(ActionsCell, { row }),
+			cell: ({ row }) => renderComponent(ActionsCell, { row }),
 		},
 	];
 
@@ -215,37 +212,6 @@
 		},
 	});
 </script>
-
-{#snippet ActionsCell({ row }: { row: Row<Payment> })}
-	{@const payment = row.original}
-
-	<DropdownMenu.Root>
-		<DropdownMenu.Trigger>
-			{#snippet child({ props })}
-				<Button variant="ghost" class="size-8 p-0" {...props}>
-					<span class="sr-only">Open menu</span>
-					<EllipsisIcon />
-				</Button>
-			{/snippet}
-		</DropdownMenu.Trigger>
-		<DropdownMenu.Content align="end">
-			<DropdownMenu.Label>Actions</DropdownMenu.Label>
-			<DropdownMenu.Item onclick={() => navigator.clipboard.writeText(payment.id)}>
-				Copy payment ID
-			</DropdownMenu.Item>
-			<DropdownMenu.Separator />
-			<DropdownMenu.Item>View customer</DropdownMenu.Item>
-			<DropdownMenu.Item>View payment details</DropdownMenu.Item>
-		</DropdownMenu.Content>
-	</DropdownMenu.Root>
-{/snippet}
-
-{#snippet EmailHeader({ column }: { column: Column<Payment> })}
-	<Button variant="ghost" onclick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-		Email
-		<ArrowUpDownIcon />
-	</Button>
-{/snippet}
 
 <Card.Root>
 	<Card.Header>

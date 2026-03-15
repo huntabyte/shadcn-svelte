@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import { z } from "zod/v4";
+	import { z } from "zod";
 	const formSchema = z.object({
 		marketing_emails: z.boolean().default(false),
 		security_emails: z.boolean().default(true),
