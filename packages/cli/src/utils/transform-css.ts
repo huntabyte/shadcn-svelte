@@ -7,6 +7,8 @@ type TransformCssOptions = {
 	css?: CssSchema;
 	/** Array of plugin names to update */
 	plugins?: string[];
+	/** When true, overwrite existing CSS variables. When false (default), only add new ones. */
+	overwriteCssVars?: boolean;
 };
 
 export function transformCss(source: string, options?: TransformCssOptions): string {
@@ -25,7 +27,11 @@ export function transformCss(source: string, options?: TransformCssOptions): str
 	}
 
 	// update CSS variables/themes
-	if (opts.cssVars) updateCssVars(ast, opts.cssVars);
+	if (opts.cssVars) {
+		updateCssVars(ast, opts.cssVars, {
+			overwriteCssVars: opts.overwriteCssVars,
+		});
+	}
 
 	if (opts.css) updateCss(ast, opts.css);
 
