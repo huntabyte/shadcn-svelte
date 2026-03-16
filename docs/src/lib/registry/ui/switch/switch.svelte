@@ -26,6 +26,6 @@
 >
 	<SwitchPrimitive.Thumb
 		data-slot="switch-thumb"
-		class="cn-switch-thumb pointer-events-none block ring-0 transition-transform"
+		class="cn-switch-thumb pointer-events-none block ring-0 transition-transform rtl:data-[state=checked]:translate-x-[calc(-100%)]"
 	/>
 </SwitchPrimitive.Root>
