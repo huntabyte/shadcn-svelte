@@ -155,7 +155,7 @@ async function promptForConfig({
 				// initialValue: "tsconfig.json",
 				placeholder: "tsconfig.json",
 				validate: (value) => {
-					const tsconfigPath = path.resolve(cwd, value);
+					const tsconfigPath = path.resolve(cwd, value ?? '');
 					if (value && existsSync(tsconfigPath)) {
 						return;
 					}

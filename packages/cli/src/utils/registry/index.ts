@@ -9,9 +9,14 @@ import { OFFICIAL_REGISTRY_URL } from "../../constants.js";
 import * as schemas from "../../schema/index.js";
 import { parse as parseCss } from "postcss";
 
-export function getRegistryUrl(config: { registry: string }) {
-	const url = process.env.COMPONENTS_REGISTRY_URL ?? config.registry;
-	return url;
+export function getRegistryUrl(config: { registry: string, style?: string }) {
+	// so old URL's will still work
+	if (process.env.COMPONENTS_REGISTRY_URL) {
+		return process.env.COMPONENTS_REGISTRY_URL;
+	}
+	const url = process.env.REGISTRY_URL ?? config.registry;
+
+	return new URL(url + `/styles/${config.style ?? "vega"}`).toString();
 }
 
 export function getSiteUrl(config: { registry: string }) {

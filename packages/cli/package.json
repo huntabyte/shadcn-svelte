@@ -46,7 +46,7 @@
 		"build": "tsdown --minify",
 		"check": "tsc --noEmit",
 		"start": "node dist/index.mjs",
-		"start:dev": "cross-env COMPONENTS_REGISTRY_URL=http://localhost:5173/registry node dist/index.mjs",
+		"start:dev": "cross-env REGISTRY_URL=http://localhost:5173/registry node dist/index.mjs",
 		"start:proxy": "pnpm dlx straightforward@latest --port 9000",
 		"test": "pnpm -w build:registry-template && vitest"
 	},

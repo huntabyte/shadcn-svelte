@@ -91,11 +91,25 @@ it("init (config-full)", async () => {
 	const config = await getConfig(targetDir);
 	if (!config) throw new Error("config is undefined");
 
-	await runInit(targetDir, config, {
-		deps: true,
+	await runInit({
 		cwd: targetDir,
-		overwrite: true,
-		skipPreflight: false,
+		config,
+		decidedPresets: {
+			style: "vega",
+			theme: "neutral",
+			font: "inter",
+			radius: "default",
+			baseColor: "zinc",
+			iconLibrary: "lucide",
+			menuColor: "default",
+			menuAccent: "subtle",
+		},
+		options: {
+			cwd: targetDir,
+			deps: true,
+			overwrite: true,
+			skipPreflight: false,
+		},
 	});
 
 	// mkDir mocks
