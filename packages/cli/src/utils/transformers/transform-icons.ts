@@ -72,7 +72,7 @@ export const transformIcons: Transformer = async ({ content, filePath, config })
 		}
 
 		// @ts-expect-error wrong
-		src.overwrite(placeholderImportNode.start, placeholderImportNode.end, imports.join("\n"));
+		src.overwrite(placeholderImportNode.start, placeholderImportNode.end, imports.join("\n\t"));
 	}
 
 	return {
