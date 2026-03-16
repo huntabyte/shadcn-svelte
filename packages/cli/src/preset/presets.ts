@@ -156,7 +156,7 @@ async function customize(existingConfig: cliConfig.RawConfig | undefined): Promi
 			preset = preset.slice(flag.length);
 		}
 		return preset;
-	}
+	};
 
 	const code = await p.text({
 		message:

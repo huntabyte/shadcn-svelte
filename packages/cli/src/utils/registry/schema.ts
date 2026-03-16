@@ -175,6 +175,7 @@ export const registryItemFontSchema = z.object({
 	weight: z.array(z.string()).optional(),
 	subsets: z.array(z.string()).optional(),
 	selector: z.string().optional(),
+	dependency: z.string().optional(),
 });
 
 export type RegistryFont = z.infer<typeof registryItemFontSchema>;

@@ -67,7 +67,9 @@ describe("Registry Utilities", () => {
 
 		it("should return environment variable with style if set", () => {
 			process.env.REGISTRY_URL = "https://custom.registry.com";
-			expect(getRegistryUrl({ registry: "https://example.com/registry", style: "vega" })).toBe("https://custom.registry.com/styles/vega");
+			expect(
+				getRegistryUrl({ registry: "https://example.com/registry", style: "vega" })
+			).toBe("https://custom.registry.com/styles/vega");
 			delete process.env.REGISTRY_URL;
 		});
 
@@ -76,7 +78,9 @@ describe("Registry Utilities", () => {
 		});
 
 		it("should return config registry URL with style if no env var", () => {
-			expect(getRegistryUrl({ registry: "https://example.com/registry", style: "nova" })).toBe("https://example.com/registry/styles/nova");
+			expect(
+				getRegistryUrl({ registry: "https://example.com/registry", style: "nova" })
+			).toBe("https://example.com/registry/styles/nova");
 		});
 	});
 

@@ -132,7 +132,9 @@ it("init (config-full)", async () => {
 	const mkdirCalls = mockMkdir.mock.calls.map((call) => call[0]);
 	expect(mkdirCalls.some((p) => String(p).includes(path.join("src", "lib")))).toBe(true);
 	expect(mkdirCalls.some((p) => String(p).includes(path.join("src", "lib", "hooks")))).toBe(true);
-	expect(mkdirCalls.some((p) => String(p).includes(path.join("src", "lib", "components")))).toBe(true);
+	expect(mkdirCalls.some((p) => String(p).includes(path.join("src", "lib", "components")))).toBe(
+		true
+	);
 
 	expect(mockWriteFileSync).toHaveBeenNthCalledWith(
 		1,

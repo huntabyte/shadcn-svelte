@@ -122,7 +122,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 			item.devDependencies?.forEach((dep) => skippedDeps.add(dep));
 		}
 
-		if (item.type === 'registry:font') {	
+		if (item.type === "registry:font") {
 			fonts.push({
 				name: item.name,
 				...item.font,
@@ -185,12 +185,16 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 	}
 
 	await p.tasks(tasks);
-	
-	const { css: fontsCss, cssVars: fontsCssVars, dependencies: fontsDependencies } = setupFonts(fonts)
 
-	css = merge(css, fontsCss)
-	cssVars = merge(cssVars, fontsCssVars)
-	fontsDependencies.forEach((dep) => devDependencies.add(dep))
+	const {
+		css: fontsCss,
+		cssVars: fontsCssVars,
+		dependencies: fontsDependencies,
+	} = setupFonts(fonts);
+
+	css = merge(css, fontsCss);
+	cssVars = merge(cssVars, fontsCssVars);
+	fontsDependencies.forEach((dep) => devDependencies.add(dep));
 
 	if (Object.keys(cssVars).length || Object.keys(css).length) {
 		const cssPath = opts.config.resolvedPaths.tailwindCss;

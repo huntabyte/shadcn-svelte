@@ -49,10 +49,12 @@ export async function build(): Promise<void> {
 	validateRegistry(registry);
 
 	// build registry styles
-	await Promise.all(PRESET_STYLES.map(async (style) => {
-		await buildRegistryJson(registry, style);
-		await runRegistryBuild(style);
-	}));
+	await Promise.all(
+		PRESET_STYLES.map(async (style) => {
+			await buildRegistryJson(registry, style);
+			await runRegistryBuild(style);
+		})
+	);
 
 	// ----------------------------------------------------------------------------
 	// Build __registry__/blocks.ts
@@ -190,7 +192,10 @@ function validateRegistry(registry: Awaited<ReturnType<typeof buildRegistry>>) {
 	}
 }
 
-async function buildRegistryJson(registry: Awaited<ReturnType<typeof buildRegistry>>, style: PresetConfig['style']) {
+async function buildRegistryJson(
+	registry: Awaited<ReturnType<typeof buildRegistry>>,
+	style: PresetConfig["style"]
+) {
 	// ----------------------------------------------------------------------------
 	// Build `registry.json` file.
 	// ----------------------------------------------------------------------------
@@ -233,10 +238,13 @@ async function buildRegistryJson(registry: Awaited<ReturnType<typeof buildRegist
 	fs.writeFileSync(registryJsonPath, formatted, "utf8");
 }
 
-async function runRegistryBuild(style: PresetConfig['style']) {
-	execSync(`pnpm shadcn-svelte registry build registry-${style}.json --output static/registry/${style}`, {
-		stdio: ["pipe", "pipe", "inherit"],
-	});
+async function runRegistryBuild(style: PresetConfig["style"]) {
+	execSync(
+		`pnpm shadcn-svelte registry build registry-${style}.json --output static/registry/styles/${style}`,
+		{
+			stdio: ["pipe", "pipe", "inherit"],
+		}
+	);
 	fs.rmSync(`registry-${style}.json`);
 }
 
