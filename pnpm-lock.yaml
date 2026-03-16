@@ -176,9 +176,6 @@ importers:
       '@prettier/sync':
         specifier: 0.6.1
         version: 0.6.1(prettier@3.7.4)
-      '@shadcn-svelte/registry':
-        specifier: workspace:*
-        version: link:../packages/registry
       '@shikijs/langs':
         specifier: ^3.20.0
         version: 3.20.0
@@ -401,13 +398,13 @@ importers:
       svelte:
         specifier: ^5.0.0
         version: 5.43.14
+      tailwind-merge:
+        specifier: ^3.0.0
+        version: 3.4.0
     devDependencies:
       '@clack/prompts':
         specifier: ^1.1.0
         version: 1.1.0
-      '@shadcn-svelte/registry':
-        specifier: workspace:*
-        version: link:../registry
       '@svecosystem/strip-types':
         specifier: ^0.0.4
         version: 0.0.4

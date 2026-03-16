@@ -56,7 +56,8 @@
 	"dependencies": {
 		"commander": "^14.0.0",
 		"node-fetch-native": "^1.6.4",
-		"postcss": "^8.5.5"
+		"postcss": "^8.5.5",
+		"tailwind-merge": "^3.0.0"
 	},
 	"devDependencies": {
 		"@clack/prompts": "^1.1.0",
