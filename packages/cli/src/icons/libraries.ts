@@ -2,6 +2,8 @@
 
 import { pascalToKebab } from "../utils/utils.js";
 
+export type IconLibraryName = keyof typeof iconLibraries;
+
 export type IconLibrary = {
 	name: string;
 	title: string;
