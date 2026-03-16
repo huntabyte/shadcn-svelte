@@ -147,13 +147,13 @@ async function promptAlias(
 				validateImportAlias({
 					cwd: options.cwd,
 					tsconfig: options.tsconfig,
-					importPath: value,
+					importPath: value ?? "",
 				}),
 		});
 
 		if (p.isCancel(input)) cancel();
 
-		path = stripTrailingSlash(input);
+		path = stripTrailingSlash(input as string);
 	}
 	return path;
 }

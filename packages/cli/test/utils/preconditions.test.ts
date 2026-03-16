@@ -58,7 +58,6 @@ const configLegacyUpdated = {
 };
 
 vi.mock("../../src/utils/get-package-info.js");
-vi.mock("../../src/utils/utils.js");
 
 vi.mock("../../src/utils/config/index.js", async () => ({
 	...(await vi.importActual<typeof import("../../src/utils/config/index.js")>(
