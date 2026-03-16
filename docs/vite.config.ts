@@ -1,7 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { execSync } from "node:child_process";
 import { minimatch } from "minimatch";
 import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
@@ -73,9 +72,6 @@ export default defineConfig({
 
 async function buildRegistry() {
 	await build();
-	execSync("pnpm shadcn-svelte registry build --output static/registry", {
-		stdio: ["pipe", "pipe", "inherit"],
-	});
 	fs.cpSync(path.resolve("static", "registry"), path.resolve("src", "__registry__", "json"), {
 		recursive: true,
 	});
