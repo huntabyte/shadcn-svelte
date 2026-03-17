@@ -1,7 +1,8 @@
 import path from "node:path";
 import { vol } from "memfs";
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { getCLIPackageInfo, getProjectPackageInfo } from "../../src/utils/get-package-info";
+import { getCLIPackageInfo } from "../../src/utils/get-package-info";
+import * as project from "../../src/utils/project.js";
 
 vi.mock("node:path");
 vi.mock("node:url");
@@ -41,7 +42,7 @@ describe("getCLIPackageInfo", () => {
 	});
 });
 
-describe("getProjectPackageInfo", () => {
+describe("project.getPackageInfo", () => {
 	it("reads and parses project package.json", () => {
 		const mockPackageJson = { name: "project-package", version: "1.0.0" };
 
@@ -53,7 +54,7 @@ describe("getProjectPackageInfo", () => {
 		);
 		vi.mocked(path.resolve).mockReturnValue("/tmp/package.json");
 
-		const result = getProjectPackageInfo("/tmp");
+		const result = project.getPackageInfo("/tmp");
 		expect(result).toEqual(mockPackageJson);
 		expect(path.resolve).toHaveBeenCalledWith("/tmp", "package.json");
 	});
@@ -67,6 +68,6 @@ describe("getProjectPackageInfo", () => {
 		);
 		vi.mocked(path.resolve).mockReturnValue("/tmp/package.json");
 
-		expect(() => getProjectPackageInfo("/tmp")).toThrow();
+		expect(() => project.getPackageInfo("/tmp")).toThrow();
 	});
 });

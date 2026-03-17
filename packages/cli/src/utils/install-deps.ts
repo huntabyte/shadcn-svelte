@@ -1,7 +1,7 @@
 import semver from "semver";
 import * as p from "@clack/prompts";
 import { detectPM } from "./auto-detect.js";
-import { getProjectPackageInfo } from "./get-package-info.js";
+import * as project from "./project.js";
 import { exec } from "tinyexec";
 import { resolveCommand } from "package-manager-detector";
 import { error } from "./errors.js";
@@ -23,7 +23,7 @@ export async function installDependencies({
 
 	// Deno requires the `npm:` specifier
 	const pkgSpecifier = pm === "deno" ? "npm:" : "";
-	const pkg = getProjectPackageInfo(cwd);
+	const pkg = project.getPackageInfo(cwd);
 	const projectDeps = { ...pkg.dependencies, ...pkg.devDependencies };
 
 	const validateDep = (dep: string) => {

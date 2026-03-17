@@ -22,6 +22,7 @@ import {
 	transformIcons,
 	transformStripTypes,
 } from "../../utils/transformers/index.js";
+import * as project from "../../utils/project.js";
 
 const updateOptionsSchema = z.object({
 	all: z.boolean(),
@@ -91,32 +92,8 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 	const registryUrl = registry.getRegistryUrl(config);
 	const registryIndex = await registry.getRegistryIndex(registryUrl);
 
-	const dirs = {
-		ui: config.resolvedPaths.ui,
-		components: config.resolvedPaths.components,
-		hooks: config.resolvedPaths.hooks,
-	};
-
 	// Retrieve existing items in the user's project
-	const existingComponents: typeof registryIndex = [];
-	for (const dir of Object.values(dirs)) {
-		if (!existsSync(dir)) continue;
-
-		const files = await fs.readdir(dir, { withFileTypes: true });
-		for (const file of files) {
-			if (file.isDirectory()) {
-				const item = registryIndex.find((item) => item.name === file.name);
-				// is a valid shadcn item
-				if (item) existingComponents.push(item);
-			}
-		}
-	}
-
-	// Always offer to update the `utils`
-	const utilsItem = registryIndex.find((item) => item.name === "utils");
-	if (utilsItem) {
-		existingComponents.push(utilsItem);
-	}
+	const existingComponents = await project.getComponents({ registryIndex, config });
 
 	// If the user specifies component args
 	let selectedComponents = options.all ? existingComponents : [];

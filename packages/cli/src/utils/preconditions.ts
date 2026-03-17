@@ -1,7 +1,8 @@
 import * as semver from "semver";
 import color from "picocolors";
 import * as p from "@clack/prompts";
-import { getDependencyPackageInfo, getProjectPackageInfo } from "./get-package-info.js";
+import { getDependencyPackageInfo } from "./get-package-info.js";
+import * as project from "./project.js";
 import * as cliConfig from "./config/index.js";
 import { CLIError, error } from "./errors.js";
 import { highlight } from "./colors.js";
@@ -24,7 +25,7 @@ export function checkPreconditions<Config extends cliConfig.RawConfig>({
 	const tailwindPkg = getDependencyPackageInfo(cwd, "tailwindcss")?.pkg;
 
 	// covers the case where `npm install` hasn't been executed yet
-	const pkg = getProjectPackageInfo(cwd);
+	const pkg = project.getPackageInfo(cwd);
 	const fallback = { ...pkg.dependencies, ...pkg.devDependencies };
 
 	const svelte = sveltePkg?.version ?? fallback["svelte"];

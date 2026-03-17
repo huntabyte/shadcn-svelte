@@ -11,7 +11,7 @@ import { error, handleError } from "../../utils/errors.js";
 import * as cliConfig from "../../utils/config/index.js";
 import { cancel, intro, prettifyList } from "../../utils/prompt-helpers.js";
 import * as registry from "../../utils/registry/index.js";
-import { syncSvelteKit } from "../../utils/sveltekit.js";
+import * as project from "../../utils/project.js";
 import { preflightInit } from "./preflight.js";
 import { addRegistryItems } from "../../utils/add-registry-items.js";
 import { getEnvProxy } from "../../utils/get-env-proxy.js";
@@ -141,7 +141,7 @@ async function promptForConfig({
 	const config: cliConfig.RawConfig = existingConfig ?? structuredClone(cliConfig.DEFAULT_CONFIG);
 
 	// if it's a SvelteKit project, run sync so that the aliases are always up to date
-	await syncSvelteKit(cwd);
+	await project.syncSvelteKit(cwd);
 
 	const { cssPath, tsconfigPath } = detectConfigs(cwd, { relative: true });
 
