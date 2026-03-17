@@ -3,11 +3,10 @@ import { beforeEach, describe, it, expect, vi } from "vitest";
 import type { TsConfigResult } from "get-tsconfig";
 import { toPosixPath } from "./test-helpers.js";
 import { resolveImportAlias } from "../../src/utils/resolve-imports.js";
-import {
-	getDependencyPackageInfo,
-} from "../../src/utils/get-package-info.js";
+import { getDependencyPackageInfo } from "../../src/utils/get-package-info.js";
 import * as project from "../../src/utils/project.js";
 
+vi.mock("../../src/utils/project.js");
 vi.mock("../../src/utils/get-package-info.js");
 
 beforeEach(() => {

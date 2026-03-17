@@ -3,11 +3,10 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { preflightInit } from "../../src/commands/init/preflight.js";
 import { SITE_BASE_URL, TW3_SITE_BASE_URL } from "../../src/constants";
 import { highlight } from "../../src/utils/colors";
-import {
-	getDependencyPackageInfo,
-} from "../../src/utils/get-package-info.js";
+import { getDependencyPackageInfo } from "../../src/utils/get-package-info.js";
 import * as project from "../../src/utils/project.js";
 
+vi.mock("../../src/utils/project.js");
 vi.mock("../../src/utils/get-package-info.js");
 vi.mock("../../src/utils/colors");
 

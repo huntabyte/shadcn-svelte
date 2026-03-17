@@ -52,19 +52,19 @@ export async function build(): Promise<void> {
 
 	// build registry styles (each style gets its own temp dir with cn-* classes resolved)
 	for (const style of PRESET_STYLES) {
-			const styleTempDir = path.join(STYLE_TEMP_BASE, style);
-			try {
-				fs.mkdirSync(styleTempDir, { recursive: true });
-				const styleRegistry = await rewriteRegistryForStyle(registry, style, styleTempDir);
-				await buildRegistryJson(styleRegistry, style);
-				await runRegistryBuild(style);
-			} finally {
-				rimraf.sync(styleTempDir);
-				const registryJsonPath = path.resolve(`registry-${style}.json`);
-				if (fs.existsSync(registryJsonPath)) {
-					fs.rmSync(registryJsonPath);
-				}
+		const styleTempDir = path.join(STYLE_TEMP_BASE, style);
+		try {
+			fs.mkdirSync(styleTempDir, { recursive: true });
+			const styleRegistry = await rewriteRegistryForStyle(registry, style, styleTempDir);
+			await buildRegistryJson(styleRegistry, style);
+			await runRegistryBuild(style);
+		} finally {
+			rimraf.sync(styleTempDir);
+			const registryJsonPath = path.resolve(`registry-${style}.json`);
+			if (fs.existsSync(registryJsonPath)) {
+				fs.rmSync(registryJsonPath);
 			}
+		}
 	}
 	rimraf.sync(STYLE_TEMP_BASE);
 
@@ -224,11 +224,7 @@ async function rewriteRegistryForStyle(
 	style: PresetConfig["style"],
 	styleTempDir: string
 ): Promise<Awaited<ReturnType<typeof buildRegistry>>> {
-	const styleCssPath = path.resolve(
-		INTERNAL_REGISTRY_PATH,
-		"styles",
-		`style-${style}.css`
-	);
+	const styleCssPath = path.resolve(INTERNAL_REGISTRY_PATH, "styles", `style-${style}.css`);
 	const styleCss = fs.readFileSync(styleCssPath, "utf8");
 	const styleMap = parseStyleCss(styleCss);
 
@@ -240,7 +236,7 @@ async function rewriteRegistryForStyle(
 			continue;
 		}
 
-		const styleFiles: (typeof item.files) = [];
+		const styleFiles: typeof item.files = [];
 
 		for (const file of item.files) {
 			const srcPath = path.resolve(file.path);

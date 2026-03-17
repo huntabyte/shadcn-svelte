@@ -69,15 +69,10 @@ describe("addRegistryItems", () => {
 		typescript: true,
 		registry: "https://example.com/registry",
 		sveltekit: true,
-		designSystem: {
-			style: "vega",
-			theme: "neutral",
-			iconLibrary: "lucide",
-			fonts: [],
-			menuAccent: "subtle",
-			menuColor: "default",
-			radius: "0.5rem",
-		},
+		style: "vega",
+		iconLibrary: "lucide",
+		menuColor: "default",
+		menuAccent: "subtle",
 	} satisfies ResolvedConfig;
 
 	beforeEach(() => {

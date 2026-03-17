@@ -1,9 +1,4 @@
-import postcss, {
-	Declaration,
-	type AtRule,
-	type Root,
-	type Rule,
-} from "postcss";
+import postcss, { Declaration, type AtRule, type Root, type Rule } from "postcss";
 import type { CssVars } from "../registry/schema.js";
 
 const DARK_SELECTOR = ".dark";
@@ -28,15 +23,9 @@ export function updateCssVars(
 	// Add @custom-variant for dark when dark vars exist (only for v4 structure)
 	const hasV4Structure =
 		ast.nodes?.some(
-			(n) =>
-				n.type === "atrule" &&
-				(n.name === "import" || n.name === "theme")
+			(n) => n.type === "atrule" && (n.name === "import" || n.name === "theme")
 		) ?? false;
-	if (
-		hasV4Structure &&
-		cssVars.dark &&
-		Object.keys(cssVars.dark).length > 0
-	) {
+	if (hasV4Structure && cssVars.dark && Object.keys(cssVars.dark).length > 0) {
 		addCustomVariant(ast);
 	}
 
@@ -81,14 +70,12 @@ export function updateCssVars(
 
 function addCustomVariant(ast: Root): void {
 	const customVariant = ast.nodes?.find(
-		(node): node is AtRule =>
-			node.type === "atrule" && node.name === "custom-variant"
+		(node): node is AtRule => node.type === "atrule" && node.name === "custom-variant"
 	);
 
 	if (!customVariant) {
 		const importNodes = ast.nodes?.filter(
-			(node): node is AtRule =>
-				node.type === "atrule" && node.name === "import"
+			(node): node is AtRule => node.type === "atrule" && node.name === "import"
 		);
 
 		const variantNode = postcss.atRule({
@@ -149,11 +136,7 @@ function ensureRootRule(
 	applyVarsToRule(ruleNode, vars, overwrite);
 }
 
-function updateThemeVars(
-	ast: Root,
-	vars: Record<string, string>,
-	overwrite: boolean
-): void {
+function updateThemeVars(ast: Root, vars: Record<string, string>, overwrite: boolean): void {
 	const themeNode = upsertThemeNode(ast);
 
 	for (const [key, value] of Object.entries(vars)) {
@@ -161,8 +144,7 @@ function updateThemeVars(
 		const newDecl = postcss.decl({ prop, value, raws: { semicolon: true } });
 
 		const existingDecl = themeNode.nodes?.find(
-			(node): node is Declaration =>
-				node.type === "decl" && node.prop === prop
+			(node): node is Declaration => node.type === "decl" && node.prop === prop
 		);
 
 		if (overwrite) {
@@ -187,14 +169,11 @@ function updateThemePlugin(ast: Root, cssVars: CssVars): void {
 	const themeNode = upsertThemeNode(ast);
 
 	const themeVarNodes = themeNode.nodes?.filter(
-		(node): node is Declaration =>
-			node.type === "decl" && node.prop.startsWith("--")
+		(node): node is Declaration => node.type === "decl" && node.prop.startsWith("--")
 	);
 
 	for (const variable of variables) {
-		const value = Object.values(cssVars).find((vars) => vars?.[variable])?.[
-			variable
-		];
+		const value = Object.values(cssVars).find((vars) => vars?.[variable])?.[variable];
 
 		if (!value) continue;
 
@@ -246,15 +225,11 @@ function updateThemePlugin(ast: Root, cssVars: CssVars): void {
 			raws: { semicolon: true },
 		});
 		const existingDecl = themeNode.nodes?.find(
-			(node): node is Declaration =>
-				node.type === "decl" && node.prop === cssVarNode.prop
+			(node): node is Declaration => node.type === "decl" && node.prop === cssVarNode.prop
 		);
 		if (!existingDecl) {
 			if (themeVarNodes && themeVarNodes.length > 0) {
-				themeNode.insertAfter(
-					themeVarNodes[themeVarNodes.length - 1]!,
-					cssVarNode
-				);
+				themeNode.insertAfter(themeVarNodes[themeVarNodes.length - 1]!, cssVarNode);
 			} else {
 				themeNode.append(cssVarNode);
 			}
@@ -294,10 +269,7 @@ export function isLocalHSLValue(value: string): boolean {
 	}
 
 	const chunks = value.split(" ");
-	return (
-		chunks.length === 3 &&
-		chunks.slice(1, 3).every((chunk) => chunk.includes("%"))
-	);
+	return chunks.length === 3 && chunks.slice(1, 3).every((chunk) => chunk.includes("%"));
 }
 
 export function isColorValue(value: string): boolean {

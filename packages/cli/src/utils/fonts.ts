@@ -34,7 +34,7 @@ export function setupFonts(fonts: Font[]): {
 		groups.get(selector)!.push(cls);
 	}
 
-  css["@layer base"] ??= {}
+	css["@layer base"] ??= {};
 
 	for (const [selector, classes] of Array.from(groups.entries())) {
 		const fontClasses = classes.join(" ");

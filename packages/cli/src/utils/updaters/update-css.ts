@@ -27,9 +27,7 @@ export function updateCss(root: Root, css: CssSchema): void {
 				// Check if this import already exists.
 				const existingImport = root.nodes?.find(
 					(node): node is AtRule =>
-						node.type === "atrule" &&
-						node.name === "import" &&
-						node.params === params
+						node.type === "atrule" && node.name === "import" && node.params === params
 				);
 
 				if (!existingImport) {
@@ -41,8 +39,7 @@ export function updateCss(root: Root, css: CssSchema): void {
 
 					// Find the last import to insert after, or insert at beginning.
 					const importNodes = root.nodes?.filter(
-						(node): node is AtRule =>
-							node.type === "atrule" && node.name === "import"
+						(node): node is AtRule => node.type === "atrule" && node.name === "import"
 					);
 
 					if (importNodes && importNodes.length > 0) {
@@ -95,13 +92,11 @@ export function updateCss(root: Root, css: CssSchema): void {
 
 					// Find the last import or plugin node to insert after
 					const importNodes = root.nodes?.filter(
-						(node): node is AtRule =>
-							node.type === "atrule" && node.name === "import"
+						(node): node is AtRule => node.type === "atrule" && node.name === "import"
 					);
 
 					const pluginNodes = root.nodes?.filter(
-						(node): node is AtRule =>
-							node.type === "atrule" && node.name === "plugin"
+						(node): node is AtRule => node.type === "atrule" && node.name === "plugin"
 					);
 
 					if (pluginNodes && pluginNodes.length > 0) {
@@ -113,44 +108,27 @@ export function updateCss(root: Root, css: CssSchema): void {
 						const lastImport = importNodes[importNodes.length - 1]!;
 						root.insertAfter(lastImport, pluginRule);
 						// Add a break comment before the first plugin to create spacing
-						root.insertBefore(
-							pluginRule,
-							postcss.comment({ text: "---break---" })
-						);
+						root.insertBefore(pluginRule, postcss.comment({ text: "---break---" }));
 						// Add a break comment after the plugin for spacing from other content
-						root.insertAfter(
-							pluginRule,
-							postcss.comment({ text: "---break---" })
-						);
+						root.insertAfter(pluginRule, postcss.comment({ text: "---break---" }));
 					} else {
 						// If no imports or plugins, insert at the beginning
 						root.prepend(pluginRule);
 						// Add a break comment before the first plugin for spacing
-						root.insertBefore(
-							pluginRule,
-							postcss.comment({ text: "---break---" })
-						);
+						root.insertBefore(pluginRule, postcss.comment({ text: "---break---" }));
 						// Add a break comment after the plugin for spacing from other content
-						root.insertAfter(
-							pluginRule,
-							postcss.comment({ text: "---break---" })
-						);
+						root.insertAfter(pluginRule, postcss.comment({ text: "---break---" }));
 					}
 				}
 				continue;
 			}
 
 			// Check if this is any at-rule with no body (empty object).
-			if (
-				typeof properties === "object" &&
-				Object.keys(properties).length === 0
-			) {
+			if (typeof properties === "object" && Object.keys(properties).length === 0) {
 				// Handle any at-rule with no body (e.g., @apply, @tailwind, etc.).
 				const atRule = root.nodes?.find(
 					(node): node is AtRule =>
-						node.type === "atrule" &&
-						node.name === name &&
-						node.params === params
+						node.type === "atrule" && node.name === name && node.params === params
 				);
 
 				if (!atRule) {
@@ -161,10 +139,7 @@ export function updateCss(root: Root, css: CssSchema): void {
 					});
 
 					root.append(newAtRule);
-					root.insertBefore(
-						newAtRule,
-						postcss.comment({ text: "---break---" })
-					);
+					root.insertBefore(newAtRule, postcss.comment({ text: "---break---" }));
 				}
 				continue;
 			}
@@ -173,9 +148,7 @@ export function updateCss(root: Root, css: CssSchema): void {
 			if (name === "keyframes") {
 				let themeInline = root.nodes?.find(
 					(node): node is AtRule =>
-						node.type === "atrule" &&
-						node.name === "theme" &&
-						node.params === "inline"
+						node.type === "atrule" && node.name === "theme" && node.params === "inline"
 				) as AtRule | undefined;
 
 				if (!themeInline) {
@@ -185,10 +158,7 @@ export function updateCss(root: Root, css: CssSchema): void {
 						raws: { semicolon: true, between: " ", before: "\n" },
 					});
 					root.append(themeInline);
-					root.insertBefore(
-						themeInline,
-						postcss.comment({ text: "---break---" })
-					);
+					root.insertBefore(themeInline, postcss.comment({ text: "---break---" }));
 				}
 
 				// Check if a keyframe with the same name already exists
@@ -238,9 +208,7 @@ export function updateCss(root: Root, css: CssSchema): void {
 			if (name === "utility") {
 				const utilityAtRule = root.nodes?.find(
 					(node): node is AtRule =>
-						node.type === "atrule" &&
-						node.name === name &&
-						node.params === params
+						node.type === "atrule" && node.name === name && node.params === params
 				) as AtRule | undefined;
 
 				if (!utilityAtRule) {
@@ -251,10 +219,7 @@ export function updateCss(root: Root, css: CssSchema): void {
 					});
 
 					root.append(atRule);
-					root.insertBefore(
-						atRule,
-						postcss.comment({ text: "---break---" })
-					);
+					root.insertBefore(atRule, postcss.comment({ text: "---break---" }));
 
 					// Add declarations with their values preserved.
 					if (typeof properties === "object") {
@@ -276,9 +241,9 @@ export function updateCss(root: Root, css: CssSchema): void {
 								Object.keys(value as Record<string, unknown>).length === 0
 							) {
 								// Handle at-rules with no body (e.g., @apply).
-				const atRuleMatch = prop.match(/@([a-zA-Z-]+)\s*(.*)/);
-				if (atRuleMatch) {
-					const [, atRuleName = "", atRuleParams = ""] = atRuleMatch;
+								const atRuleMatch = prop.match(/@([a-zA-Z-]+)\s*(.*)/);
+								if (atRuleMatch) {
+									const [, atRuleName = "", atRuleParams = ""] = atRuleMatch;
 									const existingAtRule = atRule.nodes?.find(
 										(node): node is AtRule =>
 											node.type === "atrule" &&
@@ -457,11 +422,7 @@ function processAtRule(
 	}
 }
 
-function processRule(
-	parent: Root | AtRule,
-	selector: string,
-	properties: CssSchema[string]
-) {
+function processRule(parent: Root | AtRule, selector: string, properties: CssSchema[string]) {
 	let rule = parent.nodes?.find(
 		(node): node is Rule => node.type === "rule" && node.selector === selector
 	) as Rule | undefined;
@@ -508,10 +469,7 @@ function processRule(
 									node.type === "atrule" && node.name === "apply"
 							);
 							if (existingApply) {
-								existingApply.params = twMerge(
-									existingApply.params,
-									atRuleParams
-								);
+								existingApply.params = twMerge(existingApply.params, atRuleParams);
 								continue;
 							}
 						}
@@ -538,8 +496,7 @@ function processRule(
 
 				// Replace existing property or add new one.
 				const existingDecl = rule.nodes?.find(
-					(node): node is Declaration =>
-						node.type === "decl" && node.prop === prop
+					(node): node is Declaration => node.type === "decl" && node.prop === prop
 				);
 
 				existingDecl ? existingDecl.replaceWith(decl) : rule.append(decl);

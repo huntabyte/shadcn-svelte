@@ -8,34 +8,40 @@ import { CLIError } from "./errors.js";
 import type * as cliConfig from "./config/schema.js";
 import type * as registry from "./registry/index.js";
 
-export async function getComponents({ registryIndex, config }: { registryIndex: Awaited<ReturnType<typeof registry.getRegistryIndex>>, config: cliConfig.ResolvedConfig }) {
-    const dirs = {
-        ui: config.resolvedPaths.ui,
-        components: config.resolvedPaths.components,
-        hooks: config.resolvedPaths.hooks,
-    };
+export async function getComponents({
+	registryIndex,
+	config,
+}: {
+	registryIndex: Awaited<ReturnType<typeof registry.getRegistryIndex>>;
+	config: cliConfig.ResolvedConfig;
+}) {
+	const dirs = {
+		ui: config.resolvedPaths.ui,
+		components: config.resolvedPaths.components,
+		hooks: config.resolvedPaths.hooks,
+	};
 
-    const existingComponents: typeof registryIndex = [];
-    for (const dir of Object.values(dirs)) {
-        if (!existsSync(dir)) continue;
+	const existingComponents: typeof registryIndex = [];
+	for (const dir of Object.values(dirs)) {
+		if (!existsSync(dir)) continue;
 
-        const files = await fs.readdir(dir, { withFileTypes: true });
-        for (const file of files) {
-            if (file.isDirectory()) {
-                const item = registryIndex.find((item) => item.name === file.name);
-                // is a valid shadcn item
-                if (item) existingComponents.push(item);
-            }
-        }
-    }
+		const files = await fs.readdir(dir, { withFileTypes: true });
+		for (const file of files) {
+			if (file.isDirectory()) {
+				const item = registryIndex.find((item) => item.name === file.name);
+				// is a valid shadcn item
+				if (item) existingComponents.push(item);
+			}
+		}
+	}
 
-    // Always offer to update the `utils`
-    const utilsItem = registryIndex.find((item) => item.name === "utils");
-    if (utilsItem) {
-        existingComponents.push(utilsItem);
-    }
+	// Always offer to update the `utils`
+	const utilsItem = registryIndex.find((item) => item.name === "utils");
+	if (utilsItem) {
+		existingComponents.push(utilsItem);
+	}
 
-    return existingComponents;
+	return existingComponents;
 }
 
 // if it's a SvelteKit project, run `svelte-kit sync` if the `.svelte-kit` dir is missing
