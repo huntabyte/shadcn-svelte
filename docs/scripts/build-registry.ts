@@ -349,8 +349,10 @@ function runRegistryBuild(style: PresetConfig["style"]) {
 	const cwd = process.cwd();
 	const registryJsonPath = path.resolve(cwd, `registry-${style}.json`);
 	const outputPath = path.resolve(cwd, "static", "registry", "styles", style);
+	const workspaceCliPath = path.resolve(cwd, "..", "packages", "cli", "dist", "index.mjs");
+
 	execSync(
-		`pnpm exec shadcn-svelte registry build "${registryJsonPath}" --output "${outputPath}" -c "${cwd}"`,
+		`node "${workspaceCliPath}" registry build "${registryJsonPath}" --output "${outputPath}" -c "${cwd}"`,
 		{
 			cwd,
 			stdio: ["pipe", "pipe", "inherit"],
