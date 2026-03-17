@@ -310,7 +310,9 @@ export async function runInit({
 			config,
 		});
 
-		selectedItems = existingComponents.filter((component) => component.name !== "utils").map((component) => component.name);
+		selectedItems = existingComponents
+			.filter((component) => component.name !== "utils")
+			.map((component) => component.name);
 
 		if (selectedItems.length > 0 && !overwrite) {
 			p.log.warn(
