@@ -9,9 +9,14 @@ import { OFFICIAL_REGISTRY_URL } from "../../constants.js";
 import * as schemas from "../../schema/index.js";
 import { parse as parseCss } from "postcss";
 
-export function getRegistryUrl(config: { registry: string }) {
-	const url = process.env.COMPONENTS_REGISTRY_URL ?? config.registry;
-	return url;
+export function getRegistryUrl(config: { registry: string; style?: string }) {
+	// so old URL's will still work
+	if (process.env.COMPONENTS_REGISTRY_URL) {
+		return process.env.COMPONENTS_REGISTRY_URL;
+	}
+	const url = process.env.REGISTRY_URL ?? config.registry;
+
+	return new URL(url + `/styles/${config.style ?? "vega"}`).toString();
 }
 
 export function getSiteUrl(config: { registry: string }) {
@@ -197,6 +202,8 @@ export function getItemAliasDir(config: ResolvedConfig, type: schemas.RegistryIt
 	if (type === "registry:lib") return config.resolvedPaths.lib;
 	if (type === "registry:hook") return config.resolvedPaths.hooks;
 	if (type === "registry:file") return config.resolvedPaths.cwd;
+	if (type === "registry:font") return config.resolvedPaths.cwd;
+	if (type === "registry:base") return config.resolvedPaths.cwd;
 
 	if (type === "registry:style" || type === "registry:theme") {
 		return path.basename(config.resolvedPaths.tailwindCss);

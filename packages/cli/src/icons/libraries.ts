@@ -2,6 +2,8 @@
 
 import { pascalToKebab } from "../utils/utils.js";
 
+export type IconLibraryName = keyof typeof iconLibraries;
+
 export type IconLibrary = {
 	name: string;
 	title: string;
@@ -62,8 +64,6 @@ export const iconLibraries = {
 			`export { default as ${icon.name} } from 'remixicon-svelte/icons/${toRemixKebab(icon.name)}';`,
 	},
 } as const satisfies Record<string, IconLibrary>;
-
-export type IconLibraryName = keyof typeof iconLibraries;
 
 function toLucideKebab(name: string): string {
 	return pascalToKebab(name).replace("-icon", "");

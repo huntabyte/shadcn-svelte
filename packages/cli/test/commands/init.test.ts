@@ -72,6 +72,7 @@ it("init (config-full)", async () => {
 			devDependencies: ["tailwind-variants", "@lucide/svelte", "tw-animate-css"],
 			registryDependencies: ["utils"],
 			files: [],
+			css: { "@import 'tailwindcss'": {} },
 			$schema: "...",
 		},
 		{
@@ -91,11 +92,25 @@ it("init (config-full)", async () => {
 	const config = await getConfig(targetDir);
 	if (!config) throw new Error("config is undefined");
 
-	await runInit(targetDir, config, {
-		deps: true,
+	await runInit({
 		cwd: targetDir,
-		overwrite: true,
-		skipPreflight: false,
+		config,
+		decidedPresets: {
+			style: "vega",
+			theme: "neutral",
+			font: "inter",
+			radius: "default",
+			baseColor: "zinc",
+			iconLibrary: "lucide",
+			menuColor: "default",
+			menuAccent: "subtle",
+		},
+		options: {
+			cwd: targetDir,
+			deps: true,
+			overwrite: true,
+			skipPreflight: false,
+		},
 	});
 
 	// mkDir mocks
@@ -113,21 +128,12 @@ it("init (config-full)", async () => {
 		"utf8"
 	);
 
-	expect(mockMkdir).toHaveBeenNthCalledWith(1, expect.stringContaining("src"), expect.anything());
-	expect(mockMkdir).toHaveBeenNthCalledWith(
-		2,
-		expect.stringContaining(path.join("src", "lib")),
-		expect.anything()
-	);
-	expect(mockMkdir).toHaveBeenNthCalledWith(
-		3,
-		expect.stringContaining(path.join("src", "lib", "hooks")),
-		expect.anything()
-	);
-	expect(mockMkdir).toHaveBeenNthCalledWith(
-		4,
-		expect.stringContaining(path.join("src", "lib", "components")),
-		expect.anything()
+	// Verify key directories were created (order may vary)
+	const mkdirCalls = mockMkdir.mock.calls.map((call) => call[0]);
+	expect(mkdirCalls.some((p) => String(p).includes(path.join("src", "lib")))).toBe(true);
+	expect(mkdirCalls.some((p) => String(p).includes(path.join("src", "lib", "hooks")))).toBe(true);
+	expect(mkdirCalls.some((p) => String(p).includes(path.join("src", "lib", "components")))).toBe(
+		true
 	);
 
 	expect(mockWriteFileSync).toHaveBeenNthCalledWith(

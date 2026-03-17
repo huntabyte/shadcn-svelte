@@ -133,7 +133,7 @@ describe("transformIcons", () => {
 			`
 <script lang="ts">
 	import ChevronDownIcon from '@lucide/svelte/icons/chevron-down';
-import ChevronUpIcon from '@lucide/svelte/icons/chevron-up';
+	import ChevronUpIcon from '@lucide/svelte/icons/chevron-up';
 </script>
 
 <div>
@@ -196,7 +196,7 @@ import ChevronUpIcon from '@lucide/svelte/icons/chevron-up';
 			`
 <script lang="ts">
 	import { IconChevronDown } from '@tabler/icons-svelte';
-import { IconChevronUp } from '@tabler/icons-svelte';
+	import { IconChevronUp } from '@tabler/icons-svelte';
 </script>
 
 <div>
@@ -240,7 +240,7 @@ import { IconChevronUp } from '@tabler/icons-svelte';
 			`
 <script lang="ts">
 	import { HugeiconsIcon } from "@hugeicons/svelte"
-import { ArrowDown01Icon } from '@hugeicons/core-free-icons';
+	import { ArrowDown01Icon } from '@hugeicons/core-free-icons';
 </script>
 
 <HugeiconsIcon icon={ArrowDown01Icon} strokeWidth={2} class="cn-accordion-trigger-icon size-4" />
@@ -260,8 +260,8 @@ import { ArrowDown01Icon } from '@hugeicons/core-free-icons';
 			`
 <script lang="ts">
 	import { HugeiconsIcon } from "@hugeicons/svelte"
-import { ArrowDown01Icon } from '@hugeicons/core-free-icons';
-import { ArrowUp01Icon } from '@hugeicons/core-free-icons';
+	import { ArrowDown01Icon } from '@hugeicons/core-free-icons';
+	import { ArrowUp01Icon } from '@hugeicons/core-free-icons';
 </script>
 
 <div>
@@ -284,7 +284,7 @@ import { ArrowUp01Icon } from '@hugeicons/core-free-icons';
 			`
 <script lang="ts">
 	import { HugeiconsIcon } from "@hugeicons/svelte"
-import { ArrowDown01Icon } from '@hugeicons/core-free-icons';
+	import { ArrowDown01Icon } from '@hugeicons/core-free-icons';
 
 	let { ...restProps } = $props();
 </script>
@@ -325,7 +325,7 @@ import { ArrowDown01Icon } from '@hugeicons/core-free-icons';
 			`
 <script lang="ts">
 	import CaretDownIcon from 'phosphor-svelte/lib/CaretDown';
-import CaretUpIcon from 'phosphor-svelte/lib/CaretUp';
+	import CaretUpIcon from 'phosphor-svelte/lib/CaretUp';
 </script>
 
 <div>
@@ -388,7 +388,7 @@ import CaretUpIcon from 'phosphor-svelte/lib/CaretUp';
 			`
 <script lang="ts">
 	import RiArrowDownSLine from 'remixicon-svelte/icons/arrow-down-s-line';
-import RiArrowUpSLine from 'remixicon-svelte/icons/arrow-up-s-line';
+	import RiArrowUpSLine from 'remixicon-svelte/icons/arrow-up-s-line';
 </script>
 
 <div>
@@ -825,6 +825,8 @@ describe("updateCssVars", () => {
 				--primary: new;
 				--unrelated: value;
 			}
+
+			@custom-variant dark (&:is(.dark *));
 			.dark {
 				--secondary: new;
 				--unrelated: value;
@@ -832,6 +834,8 @@ describe("updateCssVars", () => {
 			@theme {
 				--tertiary: new;
 				--unrelated: value;
+				--secondary: var(--secondary);
+				--primary: var(--primary);
 			}"
 		`);
 	});

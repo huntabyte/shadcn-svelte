@@ -46,7 +46,7 @@
 		"build": "tsdown --minify",
 		"check": "tsc --noEmit",
 		"start": "node dist/index.mjs",
-		"start:dev": "cross-env COMPONENTS_REGISTRY_URL=http://localhost:5173/registry node dist/index.mjs",
+		"start:dev": "cross-env REGISTRY_URL=http://localhost:5173/registry node dist/index.mjs",
 		"start:proxy": "pnpm dlx straightforward@latest --port 9000",
 		"test": "pnpm -w build:registry-template && vitest"
 	},
@@ -56,7 +56,8 @@
 	"dependencies": {
 		"commander": "^14.0.0",
 		"node-fetch-native": "^1.6.4",
-		"postcss": "^8.5.5"
+		"postcss": "^8.5.5",
+		"tailwind-merge": "^3.0.0"
 	},
 	"devDependencies": {
 		"@clack/prompts": "^1.1.0",

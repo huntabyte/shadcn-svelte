@@ -13,7 +13,7 @@ import {
 	PRESET_ICON_LIBRARIES,
 	PRESET_MENU_ACCENTS,
 	PRESET_MENU_COLORS,
-	PRESET_RADII,
+	PRESET_RADII_KEYS,
 	PRESET_STYLES,
 	PRESET_THEME_KEYS,
 	toBase62,
@@ -111,7 +111,7 @@ describe("encodePreset / decodePreset", () => {
 	});
 
 	it("should round-trip all radii", () => {
-		for (const radius of PRESET_RADII) {
+		for (const radius of PRESET_RADII_KEYS) {
 			const code = encodePreset({ radius });
 			const decoded = decodePreset(code);
 			expect(decoded!.radius).toBe(radius);

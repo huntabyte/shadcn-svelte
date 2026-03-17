@@ -163,9 +163,9 @@ async function customize(existingConfig: cliConfig.RawConfig | undefined): Promi
 			"When you're done, paste the code back here and we'll use it to configure your project.",
 		placeholder: "Click on the `--preset <code>` button and paste the code here",
 		validate: (v) => {
-			v = cleanPreset(v);
+			const cleaned = cleanPreset(v ?? "");
 
-			if (isValidPreset(v)) {
+			if (isValidPreset(cleaned)) {
 				return;
 			}
 
@@ -175,8 +175,8 @@ async function customize(existingConfig: cliConfig.RawConfig | undefined): Promi
 
 	if (p.isCancel(code)) cancel();
 
-	// we already validated the preset code so we can safely asset it's not null
-	return decodePreset(cleanPreset(code))!;
+	// we already validated the preset code so we can safely assert it's not null
+	return decodePreset(cleanPreset(code as string))!;
 }
 
 async function presets(existingConfig: cliConfig.RawConfig | undefined) {

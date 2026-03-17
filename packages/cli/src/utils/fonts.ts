@@ -17,7 +17,7 @@ export function setupFonts(fonts: Font[]): {
 
 	for (const font of fonts) {
 		const fontName = font.name.replace("font-", "");
-		const fontSourceDependency = `@fontsource-variable/${fontName}`;
+		const fontSourceDependency = font.dependency ?? `@fontsource-variable/${fontName}`;
 		dependencies.push(fontSourceDependency);
 		css[`@import "${fontSourceDependency}"`] = {};
 		cssVars.theme ??= {};
@@ -33,6 +33,8 @@ export function setupFonts(fonts: Font[]): {
 		}
 		groups.get(selector)!.push(cls);
 	}
+
+  css["@layer base"] ??= {}
 
 	for (const [selector, classes] of Array.from(groups.entries())) {
 		const fontClasses = classes.join(" ");

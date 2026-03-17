@@ -224,7 +224,7 @@ async function assembleFonts(): Promise<RegistryItems> {
 
 	for (const font of fonts) {
 		items.push({
-			name: `font-${font.name}`,
+			name: `font-${font.name.replace("font-", "")}`,
 			type: "registry:font",
 			font: font.font,
 			files: [],

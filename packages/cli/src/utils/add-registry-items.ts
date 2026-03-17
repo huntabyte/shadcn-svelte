@@ -203,7 +203,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 		if (!opts.overwrite) {
 			const overwrite = await p.confirm({
 				message: `A new ${highlight("style")} is ready to be installed. Existing CSS variables may be ${color.bold(color.red("overwritten"))} in ${highlight(relative)}. Continue?`,
-				initialValue: false,
+				initialValue: true,
 			});
 			if (p.isCancel(overwrite)) cancel();
 

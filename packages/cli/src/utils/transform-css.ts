@@ -7,6 +7,8 @@ type TransformCssOptions = {
 	css?: CssSchema;
 	/** Array of plugin names to update */
 	plugins?: string[];
+	/** When true, overwrite existing CSS variables. When false (default), only add new ones. */
+	overwriteCssVars?: boolean;
 };
 
 export function transformCss(source: string, options?: TransformCssOptions): string {
@@ -25,11 +27,29 @@ export function transformCss(source: string, options?: TransformCssOptions): str
 	}
 
 	// update CSS variables/themes
-	if (opts.cssVars) updateCssVars(ast, opts.cssVars);
+	if (opts.cssVars) {
+		updateCssVars(ast, opts.cssVars, {
+			overwriteCssVars: opts.overwriteCssVars,
+		});
+	}
 
 	if (opts.css) updateCss(ast, opts.css);
 
 	let output = ast.toString();
+
+	// PostCSS doesn't add semicolons to at-rules without bodies when they're the last node.
+	// We need to manually ensure they have semicolons.
+	if (ast.nodes && ast.nodes.length > 0) {
+		const lastNode = ast.nodes[ast.nodes.length - 1]!;
+		if (
+			lastNode.type === "atrule" &&
+			!lastNode.nodes &&
+			!output.trimEnd().endsWith(";")
+		) {
+			output = output.trimEnd() + ";";
+		}
+	}
+
 	output = output.replace(/\/\* ---break--- \*\//g, "");
 	output = output.replace(/(\n\s*\n)+/g, "\n\n");
 	output = output.trimEnd();

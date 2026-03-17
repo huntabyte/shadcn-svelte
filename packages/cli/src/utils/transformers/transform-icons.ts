@@ -2,7 +2,7 @@ import type { Transformer, TransformerResult } from "./index.js";
 import { parse as parseSvelte } from "svelte/compiler";
 import { walk, type Node } from "estree-walker";
 import MagicString from "magic-string";
-import { iconLibraries } from "../../icons/libraries.js";
+import { iconLibraries, type IconLibrary } from "../../icons/libraries.js";
 import type { ImportDeclaration } from "acorn";
 import { error } from "../errors.js";
 
@@ -66,13 +66,13 @@ export const transformIcons: Transformer = async ({ content, filePath, config })
 
 	// replace IconPlaceholder default import with the actual icon imports
 	if (placeholderImportNode) {
-		const imports: string[] = iconLibrary.getAdditionalImports?.() ?? [];
+		const imports: string[] = (iconLibrary as IconLibrary).getAdditionalImports?.() ?? [];
 		for (const icon of icons) {
 			imports.push(iconLibrary.import(icon));
 		}
 
 		// @ts-expect-error wrong
-		src.overwrite(placeholderImportNode.start, placeholderImportNode.end, imports.join("\n"));
+		src.overwrite(placeholderImportNode.start, placeholderImportNode.end, imports.join("\n\t"));
 	}
 
 	return {
