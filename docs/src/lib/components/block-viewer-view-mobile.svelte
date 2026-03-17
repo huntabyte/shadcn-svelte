@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
 	import { BlockViewerContext } from "./block-viewer.svelte";
+	import { Heroshot } from "heroshot/sveltekit";
 
 	const ctx = BlockViewerContext.get();
 	let { children }: { children?: Snippet } = $props();
@@ -19,21 +20,10 @@
 		{@render children?.()}
 	{:else}
 		<div class="overflow-hidden rounded-xl border">
-			<img
-				src="/img/registry/{ctx.item.name}-light.png"
+			<Heroshot
+				name={`registry/${ctx.item.name}`}
 				alt={ctx.item.name}
-				data-block={ctx.item.name}
-				width={1440}
-				height={900}
-				class="object-cover dark:hidden"
-			/>
-			<img
-				src="/img/registry/{ctx.item.name}-dark.png"
-				alt={ctx.item.name}
-				data-block={ctx.item.name}
-				width={1440}
-				height={900}
-				class="hidden object-cover dark:block"
+				class="object-cover"
 			/>
 		</div>
 	{/if}
