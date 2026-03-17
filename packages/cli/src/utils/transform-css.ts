@@ -41,11 +41,7 @@ export function transformCss(source: string, options?: TransformCssOptions): str
 	// We need to manually ensure they have semicolons.
 	if (ast.nodes && ast.nodes.length > 0) {
 		const lastNode = ast.nodes[ast.nodes.length - 1]!;
-		if (
-			lastNode.type === "atrule" &&
-			!lastNode.nodes &&
-			!output.trimEnd().endsWith(";")
-		) {
+		if (lastNode.type === "atrule" && !lastNode.nodes && !output.trimEnd().endsWith(";")) {
 			output = output.trimEnd() + ";";
 		}
 	}

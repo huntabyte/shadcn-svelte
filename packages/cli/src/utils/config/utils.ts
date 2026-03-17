@@ -7,7 +7,7 @@ import { highlight } from "../colors.js";
 import { SITE_BASE_URL } from "../../constants.js";
 import { ConfigError, error } from "../errors.js";
 import { resolveImportAlias } from "../resolve-imports.js";
-import { isUsingSvelteKit, syncSvelteKit } from "../sveltekit.js";
+import * as project from "../project.js";
 import * as p from "@clack/prompts";
 import { cancel } from "../prompt-helpers.js";
 import {
@@ -29,7 +29,7 @@ export async function getConfig(cwd: string): Promise<ResolvedConfig | undefined
 
 export async function resolveConfig(cwd: string, config: RawConfig): Promise<ResolvedConfig> {
 	// if it's a SvelteKit project, run sync so that the aliases are always up to date
-	await syncSvelteKit(cwd);
+	await project.syncSvelteKit(cwd);
 
 	const tsconfig = resolveTSConfig(cwd, config);
 
@@ -58,7 +58,7 @@ export async function resolveConfig(cwd: string, config: RawConfig): Promise<Res
 		resolvedPaths[alias] = path.normalize(resolvedPath);
 	}
 
-	const sveltekit = isUsingSvelteKit(cwd);
+	const sveltekit = project.isUsingSvelteKit(cwd);
 
 	return resolvedConfigSchema.parse({ ...config, sveltekit, resolvedPaths });
 }

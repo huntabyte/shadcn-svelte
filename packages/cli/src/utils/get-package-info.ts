@@ -15,12 +15,7 @@ function getPackageFilePath(filePath: string) {
 	return path.resolve(distPath, filePath);
 }
 
-export function getProjectPackageInfo(cwd: string) {
-	const packageJsonPath = path.resolve(cwd, "package.json");
-	return readJSONSync(packageJsonPath) as PackageJson;
-}
-
-function readJSONSync(path: string): unknown {
+export function readJSONSync(path: string): unknown {
 	const content = fs.readFileSync(path, { encoding: "utf8" });
 	return JSON.parse(content);
 }

@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import { execSync } from "node:child_process";
 import path from "node:path";
+import postcss from "postcss";
 import prettier from "prettier";
 import { rimraf } from "rimraf";
 import {
@@ -29,6 +30,7 @@ if (!prettierConfig) throw new Error("Failed to resolve prettier config.");
 
 const INTERNAL_REGISTRY_PATH = path.resolve("src", "lib", "registry");
 const REGISTRY_PATH = path.resolve("static", "registry");
+const STYLE_TEMP_BASE = path.join(REGISTRY_PATH, "temp", "style");
 
 function writeFileWithDirs(
 	filePath: string,
@@ -43,22 +45,49 @@ function writeFileWithDirs(
 	fs.writeFileSync(filePath, data, options);
 }
 
-export async function build(): Promise<void> {
-	const registry = await buildRegistry();
+function log(message: string) {
+	console.log(`[registry]: ${message}`);
+}
 
+export async function build(): Promise<void> {
+	log("📦 Starting...");
+
+	log("🔍 Crawling registry (UI, examples, blocks, hooks, lib, fonts)...");
+	const registry = await buildRegistry();
+	log(`✨ Found ${registry.length} registry items`);
+
+	log("✅ Validating registry...");
 	validateRegistry(registry);
 
-	// build registry styles
+	// build registry styles (each style gets its own temp dir with cn-* classes resolved)
+	log("🎨 Building registry styles...");
 	await Promise.all(
 		PRESET_STYLES.map(async (style) => {
-			await buildRegistryJson(registry, style);
-			await runRegistryBuild(style);
+			log(`  📐 Processing style: ${style}`);
+			const styleTempDir = path.join(STYLE_TEMP_BASE, style);
+			try {
+				fs.mkdirSync(styleTempDir, { recursive: true });
+				const styleRegistry = await rewriteRegistryForStyle(registry, style, styleTempDir);
+				await buildRegistryJson(styleRegistry, style);
+				await runRegistryBuild(style);
+			} finally {
+				rimraf.sync(styleTempDir);
+				const registryJsonPath = path.resolve(`registry-${style}.json`);
+				if (fs.existsSync(registryJsonPath)) {
+					fs.rmSync(registryJsonPath);
+				}
+			}
+			log(`✅ Style ${style} built`);
 		})
 	);
+	log("✅ Registry styles built");
+	log("🧹 Cleaning up style temp directory...");
+	rimraf.sync(STYLE_TEMP_BASE);
 
 	// ----------------------------------------------------------------------------
 	// Build __registry__/blocks.ts
 	// ----------------------------------------------------------------------------
+	log("🧩 Building __registry__/blocks.ts...");
 	rimraf.sync(path.resolve("src", "__registry__"));
 
 	let blocksIndex = `
@@ -112,11 +141,10 @@ export const Index = {`;
 	rimraf.sync(registryPath);
 	writeFileWithDirs(registryPath, index);
 
-	// TODO: remove this?
-
 	// ----------------------------------------------------------------------------
 	// Build registry/colors/index.json.
 	// ----------------------------------------------------------------------------
+	log("🎨 Building registry/colors...");
 	const colorsTargetPath = path.join(REGISTRY_PATH, "colors");
 	rimraf.sync(colorsTargetPath);
 	if (!fs.existsSync(colorsTargetPath)) {
@@ -131,8 +159,6 @@ export const Index = {`;
 		"utf-8"
 	);
 
-	// TODO: remove this?
-
 	// ----------------------------------------------------------------------------
 	// Build registry/colors/[theme].json
 	// ----------------------------------------------------------------------------
@@ -146,22 +172,9 @@ export const Index = {`;
 	}
 
 	// ----------------------------------------------------------------------------
-	// Build registry/styles/[style].css
-	// ----------------------------------------------------------------------------
-	const styles = fs
-		.readdirSync(path.join(INTERNAL_REGISTRY_PATH, "styles"))
-		.filter((file) => file.endsWith(".css"));
-	fs.mkdirSync(path.join(REGISTRY_PATH, "styles"), { recursive: true });
-	for (const style of styles) {
-		fs.copyFileSync(
-			path.join(INTERNAL_REGISTRY_PATH, "styles", style),
-			path.join(REGISTRY_PATH, "styles", style.replace("style-", ""))
-		);
-	}
-
-	// ----------------------------------------------------------------------------
 	// Build static/schema.json
 	// ----------------------------------------------------------------------------
+	log("📋 Writing schema files...");
 	const componentsJSON = toJSONSchema(componentsJsonSchema);
 	writeFileWithDirs(
 		path.resolve("static", "schema.json"),
@@ -178,6 +191,100 @@ export const Index = {`;
 		path.resolve(SCHEMA_DIR, "registry-item.json"),
 		JSON.stringify(toJSONSchema(registryItemSchema), null, "\t")
 	);
+
+	log("🎉 Done!");
+}
+
+const CN_CLASS_SELECTOR = /^\.(cn-[\w-]+)$/;
+
+/**
+ * Parse style-<style>.css and extract .cn-* class rules with their @apply values.
+ * Returns a map of cn-class-name -> tailwind utility classes string.
+ */
+function parseStyleCss(css: string): Record<string, string> {
+	const styles: Record<string, string> = {};
+	const root = postcss.parse(css);
+
+	root.walkRules((rule) => {
+		for (const selector of rule.selectors) {
+			const match = selector.trim().match(CN_CLASS_SELECTOR);
+			if (!match) continue;
+
+			const className = match[1];
+			const applyValues: string[] = [];
+
+			rule.walkAtRules("apply", (atRule) => {
+				applyValues.push(atRule.params.trim());
+			});
+
+			if (applyValues.length > 0) {
+				styles[className] = applyValues.join(" ");
+			}
+		}
+	});
+
+	return styles;
+}
+
+function transformContentWithStyle(content: string, styleMap: Record<string, string>): string {
+	// Replace longer class names first to avoid "cn-foo" matching inside "cn-foo-bar"
+	// Use negative lookahead (?![-\\w]) so we only match whole class names, not substrings
+	const entries = Object.entries(styleMap).sort(([a], [b]) => b.length - a.length);
+	for (const [className, classes] of entries) {
+		const escaped = className.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+		const regex = new RegExp(escaped + "(?![\\w-])", "g");
+		content = content.replace(regex, classes);
+	}
+	return content;
+}
+
+const TEXT_EXTENSIONS = new Set([".svelte", ".ts", ".svelte.ts"]);
+
+async function rewriteRegistryForStyle(
+	registry: Awaited<ReturnType<typeof buildRegistry>>,
+	style: PresetConfig["style"],
+	styleTempDir: string
+): Promise<Awaited<ReturnType<typeof buildRegistry>>> {
+	const styleCssPath = path.resolve(INTERNAL_REGISTRY_PATH, "styles", `style-${style}.css`);
+	const styleCss = fs.readFileSync(styleCssPath, "utf8");
+	const styleMap = parseStyleCss(styleCss);
+
+	const styleItems: Awaited<ReturnType<typeof buildRegistry>> = [];
+
+	for (const item of registry) {
+		if (!item.files?.length) {
+			styleItems.push(item);
+			continue;
+		}
+
+		const styleFiles: typeof item.files = [];
+
+		for (const file of item.files) {
+			const srcPath = path.resolve(file.path);
+			const tempPath = path.join(styleTempDir, file.path);
+			const tempDir = path.dirname(tempPath);
+
+			fs.mkdirSync(tempDir, { recursive: true });
+
+			const ext = path.extname(file.path);
+			if (TEXT_EXTENSIONS.has(ext)) {
+				let content = fs.readFileSync(srcPath, "utf8");
+				content = transformContentWithStyle(content, styleMap);
+				fs.writeFileSync(tempPath, content, "utf8");
+			} else {
+				fs.copyFileSync(srcPath, tempPath);
+			}
+
+			styleFiles.push({
+				...file,
+				path: path.relative(process.cwd(), tempPath),
+			});
+		}
+
+		styleItems.push({ ...item, files: styleFiles });
+	}
+
+	return styleItems;
 }
 
 function validateRegistry(registry: Awaited<ReturnType<typeof buildRegistry>>) {
@@ -238,14 +345,19 @@ async function buildRegistryJson(
 	fs.writeFileSync(registryJsonPath, formatted, "utf8");
 }
 
-async function runRegistryBuild(style: PresetConfig["style"]) {
+function runRegistryBuild(style: PresetConfig["style"]) {
+	const cwd = process.cwd();
+	const registryJsonPath = path.resolve(cwd, `registry-${style}.json`);
+	const outputPath = path.resolve(cwd, "static", "registry", "styles", style);
+	const workspaceCliPath = path.resolve(cwd, "..", "packages", "cli", "dist", "index.mjs");
+
 	execSync(
-		`pnpm shadcn-svelte registry build registry-${style}.json --output static/registry/styles/${style}`,
+		`node "${workspaceCliPath}" registry build "${registryJsonPath}" --output "${outputPath}" -c "${cwd}"`,
 		{
+			cwd,
 			stdio: ["pipe", "pipe", "inherit"],
 		}
 	);
-	fs.rmSync(`registry-${style}.json`);
 }
 
 if (process.argv.includes("build-registry")) {
