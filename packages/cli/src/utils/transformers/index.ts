@@ -49,3 +49,4 @@ export async function transform(
 export { transformStripTypes } from "./transform-strip-types.js";
 export { transformIcons } from "./transform-icons.js";
 export { transformImports } from "./transform-imports.js";
+export { transformMenu } from "./transform-menu.js";

@@ -12,6 +12,7 @@ import {
 	transform,
 	transformImports,
 	transformIcons,
+	transformMenu,
 	transformStripTypes,
 } from "./transformers/index.js";
 import { setupFonts, type Font } from "./fonts.js";
@@ -149,6 +150,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 						[
 							transformImports,
 							transformIcons,
+							transformMenu,
 							!opts.config.typescript && transformStripTypes,
 						]
 					);
