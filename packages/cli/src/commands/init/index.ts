@@ -11,7 +11,6 @@ import { error, handleError } from "../../utils/errors.js";
 import * as cliConfig from "../../utils/config/index.js";
 import { cancel, intro, prettifyList } from "../../utils/prompt-helpers.js";
 import * as registry from "../../utils/registry/index.js";
-import * as project from "../../utils/project.js";
 import { preflightInit } from "./preflight.js";
 import { addRegistryItems } from "../../utils/add-registry-items.js";
 import { getEnvProxy } from "../../utils/get-env-proxy.js";
@@ -20,6 +19,7 @@ import { installDependencies } from "../../utils/install-deps.js";
 import { checkPreconditions } from "../../utils/preconditions.js";
 import { type PresetConfig, decodePreset, encodePreset } from "../../preset/index.js";
 import { promptForPreset } from "../../preset/presets.js";
+import * as project from "../../utils/project.js";
 
 const baseColors = registry.getBaseColors();
 
@@ -93,14 +93,14 @@ export const init = new Command()
 				});
 			}
 
-			const { resolvedConfig, decidedPresets } = await promptForConfig({
+			const { resolvedConfig, decidedPresets, styleChanged } = await promptForConfig({
 				cwd,
 				presetConfig,
 				existingConfig,
 				options,
 			});
 
-			await runInit({ cwd, config: resolvedConfig, decidedPresets, options });
+			await runInit({ cwd, config: resolvedConfig, decidedPresets, options, styleChanged });
 
 			p.outro(`${color.green("Success!")} Project initialization completed.`);
 		} catch (e) {
@@ -235,6 +235,7 @@ async function promptForConfig({
 	return {
 		resolvedConfig: await cliConfig.resolveConfig(cwd, rawConfig),
 		decidedPresets,
+		styleChanged: existingConfig ? existingConfig.style !== decidedPresets.style : false,
 	};
 }
 
@@ -243,11 +244,13 @@ export async function runInit({
 	config,
 	decidedPresets,
 	options,
+	styleChanged,
 }: {
 	cwd: string;
 	config: cliConfig.ResolvedConfig;
 	decidedPresets: PresetConfig;
 	options: InitOptions;
+	styleChanged: boolean;
 }) {
 	if (options.proxy !== undefined) {
 		process.env.HTTP_PROXY = options.proxy;
@@ -297,11 +300,33 @@ export async function runInit({
 	const encodedPreset = encodePreset(decidedPresets);
 	const presetUrl = new URL(`/init?preset=${encodedPreset}`, registryUrl).toString();
 
+	let selectedItems: string[] = [];
+	let overwrite = options.overwrite;
+	// if the style has changed then we want to ask the user if they want to reinstall existing components to update their styles
+	if (styleChanged) {
+		const registryIndex = await registry.getRegistryIndex(registryUrl);
+		const existingComponents = await project.getComponents({
+			registryIndex,
+			config,
+		});
+
+		selectedItems = existingComponents.filter((component) => component.name !== "utils").map((component) => component.name);
+
+		if (selectedItems.length > 0 && !overwrite) {
+			const choice = await p.confirm({
+				message: `The registry style has changed. Would you like to update your components?`,
+				initialValue: true,
+			});
+			if (p.isCancel(choice)) cancel();
+			overwrite = choice;
+		}
+	}
+
 	const result = await addRegistryItems({
-		selectedItems: [presetUrl],
+		selectedItems: [presetUrl, ...selectedItems],
 		config,
 		deps: options.deps,
-		overwrite: options.overwrite,
+		overwrite,
 	});
 
 	if (options.deps) {

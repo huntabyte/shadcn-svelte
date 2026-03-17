@@ -350,7 +350,7 @@ function runRegistryBuild(style: PresetConfig["style"]) {
 	const registryJsonPath = path.resolve(cwd, `registry-${style}.json`);
 	const outputPath = path.resolve(cwd, "static", "registry", "styles", style);
 	execSync(
-		`pnpm shadcn-svelte registry build "${registryJsonPath}" --output "${outputPath}" -c "${cwd}"`,
+		`pnpm exec shadcn-svelte registry build "${registryJsonPath}" --output "${outputPath}" -c "${cwd}"`,
 		{
 			cwd,
 			stdio: ["pipe", "pipe", "inherit"],

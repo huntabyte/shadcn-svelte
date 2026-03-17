@@ -93,10 +93,10 @@ export const newConfigSchema = baseConfigSchema.extend({
 	}),
 	registry: z.string().default(DEFAULT_CONFIG.registry),
 	// design system
-	style: z.string().default(DEFAULT_CONFIG.style),
-	iconLibrary: z.enum(PRESET_ICON_LIBRARIES).default(DEFAULT_CONFIG.iconLibrary),
-	menuColor: z.enum(MENU_COLORS).default(DEFAULT_CONFIG.menuColor),
-	menuAccent: z.enum(MENU_ACCENTS).default(DEFAULT_CONFIG.menuAccent),
+	style: z.string().optional(),
+	iconLibrary: z.enum(PRESET_ICON_LIBRARIES).optional(),
+	menuColor: z.enum(MENU_COLORS).optional(),
+	menuAccent: z.enum(MENU_ACCENTS).optional(),
 });
 
 export type RawConfig = z.infer<typeof rawConfigSchema>;
@@ -122,4 +122,8 @@ export const resolvedConfigSchema = rawConfigSchema.extend({
 		ui: z.string(),
 		lib: z.string(),
 	}),
+	style: z.string().default(DEFAULT_CONFIG.style),
+	iconLibrary: z.enum(PRESET_ICON_LIBRARIES).default(DEFAULT_CONFIG.iconLibrary),
+	menuColor: z.enum(MENU_COLORS).default(DEFAULT_CONFIG.menuColor),
+	menuAccent: z.enum(MENU_ACCENTS).default(DEFAULT_CONFIG.menuAccent),
 });
