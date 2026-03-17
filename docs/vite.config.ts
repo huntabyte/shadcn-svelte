@@ -1,7 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { minimatch } from "minimatch";
 import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
@@ -32,23 +31,6 @@ export default defineConfig({
 		tailwindcss(),
 		enhancedImages(),
 		sveltekit(),
-		{
-			name: "registry-builder",
-			enforce: "pre",
-			async watchChange(id) {
-				if (minimatch(id, "**/icons/**")) return;
-				if (!minimatch(id, "**/src/lib/registry/**")) return;
-				this.info("Registry file updated. Rebuilding registry...");
-				try {
-					await buildRegistry();
-					this.info("Registry built.");
-				} catch (error) {
-					this.warn(
-						`Registry build failed with error: ${error}\n Continuing with previous build.`
-					);
-				}
-			},
-		},
 	],
 	server: {
 		fs: {
