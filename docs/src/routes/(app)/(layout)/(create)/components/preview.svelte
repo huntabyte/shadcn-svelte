@@ -16,12 +16,12 @@
 
 <div
 	data-slot="preview"
-	class="ring-foreground/15 relative -mx-1 flex flex-1 flex-col justify-center overflow-hidden rounded-2xl ring-1 sm:mx-0"
+	class="border-border relative -mx-1 flex flex-1 flex-col justify-center overflow-hidden rounded-2xl border sm:mx-0"
 >
 	<div
 		class={cn(
 			"[--preview-height:calc(100svh-var(--header-height)-2rem-150px)] md:[--preview-height:calc(100svh-var(--header-height)-2rem)]",
-			"3xl:max-w-[1800px] z-0 mx-auto flex max-h-(--preview-height) w-full flex-1 flex-col overflow-y-auto"
+			"z-0 mx-auto flex max-h-(--preview-height) w-full flex-1 flex-col overflow-y-auto"
 		)}
 	>
 		<Button

@@ -12,34 +12,46 @@
 	import RandomButton from "./random-button.svelte";
 	import CopyPreset from "./copy-preset.svelte";
 	import MainMenu from "./main-menu.svelte";
+	import Cta from "$lib/components/cta.svelte";
+	import Ethical from "$lib/components/ethical.svelte";
 </script>
 
-<Card.Root
-	class="dark bg-card/90 top-24 right-12 isolate z-10 max-h-full min-h-0 w-full self-start rounded-2xl shadow-xl backdrop-blur-xl md:w-(--customizer-width)"
-	size="sm"
+<div
+	class="top-24 right-12 isolate z-10 flex min-h-0 w-full flex-col gap-2 self-start md:w-(--customizer-width)"
 >
-	<Card.Header
-		class="hidden items-center justify-between gap-2 border-b group-data-reversed/layout:flex-row-reverse md:flex"
+	<Card.Root
+		class="dark bg-card/90 max-h-full min-h-0 w-full rounded-2xl shadow-xl backdrop-blur-xl"
+		size="sm"
 	>
-		<MainMenu />
-	</Card.Header>
-	<Card.Content
-		class="no-scrollbar min-h-0 flex-1 overflow-x-auto overflow-y-hidden md:overflow-y-auto"
-	>
-		<FieldGroup.Group class="flex-row gap-2.5 py-px md:flex-col md:gap-3.25">
-			<StylePicker />
-			<BaseColorPicker />
-			<ThemePicker />
-			<IconLibraryPicker />
-			<FontPicker />
-			<RadiusPicker />
-			<MenuColorPicker />
-			<MenuAccentPicker />
-		</FieldGroup.Group>
-	</Card.Content>
-	<Card.Footer class="flex min-w-0 gap-2 md:flex-col md:**:[button,a]:w-full">
-		<CopyPreset class="flex-1 md:flex-none" />
-		<RandomButton />
-		<!-- <ActionMenu {itemsByBase} /> -->
-	</Card.Footer>
-</Card.Root>
+		<Card.Header
+			class="hidden items-center justify-between gap-2 border-b group-data-reversed/layout:flex-row-reverse md:flex"
+		>
+			<MainMenu />
+		</Card.Header>
+		<Card.Content
+			class="no-scrollbar min-h-0 flex-1 overflow-x-auto overflow-y-hidden md:overflow-y-auto"
+		>
+			<FieldGroup.Group class="flex-row gap-2.5 py-px md:flex-col md:gap-3.25">
+				<StylePicker />
+				<BaseColorPicker />
+				<ThemePicker />
+				<IconLibraryPicker />
+				<FontPicker />
+				<RadiusPicker />
+				<MenuColorPicker />
+				<MenuAccentPicker />
+			</FieldGroup.Group>
+		</Card.Content>
+		<Card.Footer class="flex min-w-0 gap-2 md:flex-col md:**:[button,a]:w-full">
+			<CopyPreset class="flex-1 md:flex-none" />
+			<RandomButton />
+			<!-- <ActionMenu {itemsByBase} /> -->
+		</Card.Footer>
+	</Card.Root>
+	<div class="flex w-full flex-1 flex-col gap-12">
+		<Cta />
+	</div>
+	<div class="flex flex-col gap-12">
+		<Ethical />
+	</div>
+</div>
