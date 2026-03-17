@@ -83,6 +83,7 @@
 		"package-manager-detector": "^1.6.0",
 		"paneforge": "^1.0.2",
 		"phosphor-svelte": "^3.0.1",
+		"postcss": "^8.4.49",
 		"rehype-parse": "^9.0.1",
 		"rehype-pretty-code": "^0.14.1",
 		"rehype-remark": "^10.0.1",
