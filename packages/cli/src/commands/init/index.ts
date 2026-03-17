@@ -313,8 +313,12 @@ export async function runInit({
 		selectedItems = existingComponents.filter((component) => component.name !== "utils").map((component) => component.name);
 
 		if (selectedItems.length > 0 && !overwrite) {
+			p.log.warn(
+				`The registry style has changed to ${color.bold(color.yellow(decidedPresets.style))}.`
+			);
+
 			const choice = await p.confirm({
-				message: `The registry style has changed. Would you like to update your components?`,
+				message: `Would you like to ${color.bold(color.red("overwrite"))} your existing components?`,
 				initialValue: true,
 			});
 			if (p.isCancel(choice)) cancel();
