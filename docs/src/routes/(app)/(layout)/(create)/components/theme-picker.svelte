@@ -49,7 +49,7 @@
 		<Picker.Content
 			side={isMobile.current ? "top" : submenu ? "left" : "right"}
 			align={isMobile.current ? "center" : "start"}
-			class="max-h-96"
+			class="max-h-96 overflow-y-auto"
 			sideOffset={submenu ? 5 : 20}
 			{submenu}
 		>
