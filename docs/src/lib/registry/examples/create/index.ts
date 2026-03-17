@@ -8,6 +8,11 @@ type Example = {
 
 export const examples: Example[] = [
 	{
+		title: "Preview",
+		name: "preview",
+		type: "registry:example",
+	},
+	{
 		title: "Accordion",
 		name: "accordion",
 		type: "registry:example",
@@ -100,11 +105,6 @@ export const examples: Example[] = [
 	{
 		title: "Demo",
 		name: "demo",
-		type: "registry:example",
-	},
-	{
-		title: "Preview",
-		name: "preview",
 		type: "registry:example",
 	},
 	{

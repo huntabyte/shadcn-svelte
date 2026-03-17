@@ -3,10 +3,12 @@
 	import * as AlertDialog from "$lib/registry/ui/alert-dialog/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+
+	let open = $state(false);
 </script>
 
 <Example title="Destructive" class="items-center">
-	<AlertDialog.Root>
+	<AlertDialog.Root bind:open>
 		<AlertDialog.Trigger>
 			<Button variant="destructive">Delete Chat</Button>
 		</AlertDialog.Trigger>
@@ -31,7 +33,9 @@
 			</AlertDialog.Header>
 			<AlertDialog.Footer>
 				<AlertDialog.Cancel variant="ghost">Cancel</AlertDialog.Cancel>
-				<AlertDialog.Action variant="destructive">Delete</AlertDialog.Action>
+				<AlertDialog.Action variant="destructive" onclick={() => (open = false)}
+					>Delete</AlertDialog.Action
+				>
 			</AlertDialog.Footer>
 		</AlertDialog.Content>
 	</AlertDialog.Root>

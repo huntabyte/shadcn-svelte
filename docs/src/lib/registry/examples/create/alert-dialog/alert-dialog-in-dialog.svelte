@@ -3,6 +3,8 @@
 	import * as AlertDialog from "$lib/registry/ui/alert-dialog/index.js";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
+
+	let alertOpen = $state(false);
 </script>
 
 <Example title="In Dialog" class="items-center">
@@ -18,7 +20,7 @@
 				</Dialog.Description>
 			</Dialog.Header>
 			<Dialog.Footer>
-				<AlertDialog.Root>
+				<AlertDialog.Root bind:open={alertOpen}>
 					<AlertDialog.Trigger>
 						<Button>Open Alert Dialog</Button>
 					</AlertDialog.Trigger>
@@ -32,7 +34,9 @@
 						</AlertDialog.Header>
 						<AlertDialog.Footer>
 							<AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
-							<AlertDialog.Action>Continue</AlertDialog.Action>
+							<AlertDialog.Action onclick={() => (alertOpen = false)}
+								>Continue</AlertDialog.Action
+							>
 						</AlertDialog.Footer>
 					</AlertDialog.Content>
 				</AlertDialog.Root>
