@@ -36,7 +36,7 @@
 				{label}
 			</span>
 		</Select.Trigger>
-		<Select.Content align="end">
+		<Select.Content align="end" class="max-h-80">
 			<Select.Group>
 				{#each themesList as theme (theme.value)}
 					<Select.Item

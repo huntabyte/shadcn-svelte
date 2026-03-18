@@ -5,7 +5,7 @@
 	import * as Picker from "./picker/index.js";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { setMode, mode } from "mode-watcher";
-	import { cmdOrCtrl } from "$lib/hooks/use-is-mac.svelte.js";
+	import { useIsMac } from "$lib/hooks/use-is-mac.svelte.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { ActionMenuCtx } from "./action-menu.svelte";
 
@@ -15,6 +15,7 @@
 
 	let { class: className }: Props = $props();
 
+	const isMac = useIsMac();
 	const designSystem = useDesignSystem();
 	const actionMenuCtx = ActionMenuCtx.get();
 
@@ -45,7 +46,7 @@
 		<Picker.Group>
 			<Picker.Item onSelect={() => (actionMenuCtx.open = true)}>
 				Navigate...
-				<Picker.Shortcut>{cmdOrCtrl === "⌘" ? "⌘P" : "Ctrl+P"}</Picker.Shortcut>
+				<Picker.Shortcut>{isMac.current ? "⌘P" : "Ctrl+P"}</Picker.Shortcut>
 			</Picker.Item>
 			<Picker.Item onSelect={() => designSystem.randomize()}>
 				Shuffle
@@ -60,11 +61,11 @@
 		<Picker.Group>
 			<Picker.Item onSelect={() => designSystem.undo()} disabled={!designSystem.canUndo}>
 				Undo
-				<Picker.Shortcut>{cmdOrCtrl === "⌘" ? "⌘Z" : "Ctrl+Z"}</Picker.Shortcut>
+				<Picker.Shortcut>{isMac.current ? "⌘Z" : "Ctrl+Z"}</Picker.Shortcut>
 			</Picker.Item>
 			<Picker.Item onSelect={() => designSystem.redo()} disabled={!designSystem.canRedo}>
 				Redo
-				<Picker.Shortcut>{cmdOrCtrl === "⌘" ? "⇧⌘Z" : "Ctrl+Shift+Z"}</Picker.Shortcut>
+				<Picker.Shortcut>{isMac.current ? "⇧⌘Z" : "Ctrl+Shift+Z"}</Picker.Shortcut>
 			</Picker.Item>
 			<Picker.Separator />
 			<Picker.Item onSelect={() => designSystem.reset()}>Reset</Picker.Item>
