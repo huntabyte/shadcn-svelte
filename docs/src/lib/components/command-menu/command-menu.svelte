@@ -59,9 +59,15 @@
 	);
 
 	// Strip anchor from href for deduplication (per-section results have #anchors)
-	const deduplicatedSearchResults = $derived(
-		searchResults.filter((r) => !sidebarMatchHrefs.has(r.href.split("#")[0]))
-	);
+	const deduplicatedSearchResults = $derived.by(() => {
+		const seen = new Set<string>();
+		return searchResults.filter((r) => {
+			if (sidebarMatchHrefs.has(r.href.split("#")[0])) return false;
+			if (seen.has(r.href)) return false;
+			seen.add(r.href);
+			return true;
+		});
+	});
 
 	const filteredColors = $derived.by(() => {
 		if (!searchQuery.trim()) return [];
