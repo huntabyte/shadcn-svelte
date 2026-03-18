@@ -6,14 +6,18 @@
 	let {
 		ref = $bindable(null),
 		class: className,
+		inset,
 		children: childrenProp,
 		...restProps
-	}: WithoutChild<MenubarPrimitive.RadioItemProps> = $props();
+	}: WithoutChild<MenubarPrimitive.RadioItemProps> & {
+		inset?: boolean;
+	} = $props();
 </script>
 
 <MenubarPrimitive.RadioItem
 	bind:ref
 	data-slot="menubar-radio-item"
+	data-inset={inset}
 	class={cn(
 		"cn-menubar-radio-item relative flex cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
 		className
