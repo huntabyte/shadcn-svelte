@@ -14,7 +14,8 @@
 	];
 	let selectedValue = $state<string | undefined>(undefined);
 	const selectedLabel = $derived(
-		[...fruits, ...vegetables].find((item) => item.value === selectedValue)?.label ?? "Select a fruit"
+		[...fruits, ...vegetables].find((item) => item.value === selectedValue)?.label ??
+			"Select a fruit"
 	);
 </script>
 

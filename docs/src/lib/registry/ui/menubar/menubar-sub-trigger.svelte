@@ -18,7 +18,10 @@
 	bind:ref
 	data-slot="menubar-sub-trigger"
 	data-inset={inset}
-	class={cn("cn-menubar-sub-trigger flex cursor-default items-center outline-none select-none", className)}
+	class={cn(
+		"cn-menubar-sub-trigger flex cursor-default items-center outline-none select-none",
+		className
+	)}
 	{...restProps}
 >
 	{@render children?.()}

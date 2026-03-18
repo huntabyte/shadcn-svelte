@@ -24,7 +24,9 @@
 		<Select.Content>
 			<Select.Group>
 				{#each items as item (item.value)}
-					<Select.Item value={item.value} disabled={item.disabled}>{item.label}</Select.Item>
+					<Select.Item value={item.value} disabled={item.disabled}
+						>{item.label}</Select.Item
+					>
 				{/each}
 			</Select.Group>
 		</Select.Content>

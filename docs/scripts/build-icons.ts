@@ -88,14 +88,14 @@ export type ${typeName} = ${typeUnion};
 		await fs.mkdir(outputDir, { recursive: true });
 		await fs.writeFile(path.join(iconOutputDir, "index.ts"), indexFileContent);
 		for (const iconFile of iconFiles) {
-			await fs.writeFile(
-				iconFile.path,
-				iconFile.content
-			);
+			await fs.writeFile(iconFile.path, iconFile.content);
 		}
 
 		// clean unused icon files
-		const iconFileSet = new Set(['index.ts', ...iconFiles.map((iconFile) => iconFile.fileName)]);
+		const iconFileSet = new Set([
+			"index.ts",
+			...iconFiles.map((iconFile) => iconFile.fileName),
+		]);
 		for (const existingIconFile of await fs.readdir(iconOutputDir)) {
 			if (!iconFileSet.has(existingIconFile)) {
 				await fs.rm(path.join(iconOutputDir, existingIconFile));
