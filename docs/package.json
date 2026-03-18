@@ -16,6 +16,7 @@
 		"build:icons": "tsx scripts/build-icons.ts",
 		"build:llms": "tsx scripts/build-llms.ts",
 		"build:llm-placeholders": "tsx scripts/build-llm-placeholders.ts",
+		"pull:styles": "tsx scripts/pull-styles.ts",
 		"replace:velite": "tsx scripts/velite/velite-watch-output.ts",
 		"sync": "pnpm build:registry && pnpm build:content && svelte-kit sync",
 		"preview": "vite preview",
