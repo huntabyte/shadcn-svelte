@@ -4,7 +4,8 @@ import { walk, type Node } from "estree-walker";
 import { tsPlugin } from "@sveltejs/acorn-typescript";
 import type { PackageJson } from "type-fest";
 import { toArray } from "../../utils/utils.js";
-import { getProjectPackageInfo, getDependencyPackageInfo } from "../../utils/get-package-info.js";
+import * as project from "../../utils/project.js";
+import { getDependencyPackageInfo } from "../../utils/get-package-info.js";
 
 export type ResolvedDependencies = {
 	/** `<Dep@Version, Peers[]>` */
@@ -21,7 +22,7 @@ export type ProjectDependencies = {
 const tsParser = acorn.Parser.extend(tsPlugin());
 
 export function resolveProjectDeps(cwd: string): ProjectDependencies {
-	const pkg = getProjectPackageInfo(cwd);
+	const pkg = project.getPackageInfo(cwd);
 
 	// Record<Dependency, [...PeerDependencies]>
 	const dependencies = resolvePeerDeps(pkg.dependencies, cwd);

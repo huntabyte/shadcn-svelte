@@ -2,15 +2,16 @@ import path from "node:path";
 import process from "node:process";
 import { existsSync, promises as fs } from "node:fs";
 import color from "picocolors";
-import { z } from "zod/v4";
+import { z } from "zod";
 import { Command } from "commander";
-import * as schema from "@shadcn-svelte/registry";
+import * as schema from "../../utils/registry/schema.js";
 import * as p from "@clack/prompts";
-import { intro } from "../../utils/prompt-helpers.js";
-import { error, handleError } from "../../utils/errors.js";
-import { parseDependency, toArray } from "../../utils/utils.js";
+import { intro, handleError } from "../../utils/prompt-helpers.js";
+import { error } from "../../utils/errors.js";
+import { toArray } from "../../utils/utils.js";
 import { ALIAS_DEFAULTS, ALIASES, SITE_BASE_URL } from "../../constants.js";
 import { getFileDependencies, resolveProjectDeps } from "./deps-resolver.js";
+import { parseDependency } from "../../utils/install-deps.js";
 
 // TODO: perhaps a `--mini` flag to remove spacing?
 const SPACER = "\t";
@@ -156,8 +157,11 @@ async function runBuild(options: BuildOptions) {
 						if (!item.dependencies)
 							fileDeps.dependencies?.forEach((dep) => {
 								// type def packages should be inserted into dev deps
-								if (dep.startsWith("@types/")) devDependencies.add(dep);
-								else dependencies.add(dep);
+								if (dep.startsWith("@types/")) {
+									devDependencies.add(dep);
+								} else {
+									dependencies.add(dep);
+								}
 							});
 						if (!item.devDependencies)
 							fileDeps.devDependencies?.forEach((dep) => devDependencies.add(dep));

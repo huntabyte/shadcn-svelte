@@ -1,6 +1,7 @@
-import lodash from "lodash";
 import fs from "node:fs";
+import { execSync } from "node:child_process";
 import path from "node:path";
+import postcss from "postcss";
 import prettier from "prettier";
 import { rimraf } from "rimraf";
 import {
@@ -8,9 +9,9 @@ import {
 	registryItemSchema,
 	registrySchema,
 	type Registry,
-	type RegistryItem,
 	type RegistryItemType,
-} from "@shadcn-svelte/registry";
+} from "shadcn-svelte/schema";
+import { PRESET_STYLES, type PresetConfig } from "shadcn-svelte/preset";
 
 interface BuildRegistryItem {
 	name: string;
@@ -20,20 +21,16 @@ interface BuildRegistryItem {
 	}>;
 }
 import { buildRegistry } from "./registry.js";
-import { baseColors } from "../src/lib/registry/registry-colors.js";
-import { THEME_STYLES_WITH_VARIABLES } from "../src/lib/registry/templates.js";
-import { baseColorsOKLCH } from "../src/lib/registry/registry-base-colors.js";
-import { generateBaseColorTemplate, getColorsData } from "../src/lib/components/colors/colors.js";
+import { THEMES } from "../src/lib/registry/themes.js";
+import { getColorsData } from "../src/lib/components/colors/colors.js";
 import { toJSONSchema } from "zod";
 
 const prettierConfig = await prettier.resolveConfig(import.meta.url);
 if (!prettierConfig) throw new Error("Failed to resolve prettier config.");
 
+const INTERNAL_REGISTRY_PATH = path.resolve("src", "lib", "registry");
 const REGISTRY_PATH = path.resolve("static", "registry");
-const THEMES_CSS_PATH = path.resolve("static");
-
-// Ensure lodash.template returns a callable TemplateExecutor
-const compileTemplate = lodash.template as unknown as (s: string) => (data: unknown) => string;
+const STYLE_TEMP_BASE = path.join(REGISTRY_PATH, "temp", "style");
 
 function writeFileWithDirs(
 	filePath: string,
@@ -48,70 +45,49 @@ function writeFileWithDirs(
 	fs.writeFileSync(filePath, data, options);
 }
 
+function log(message: string) {
+	console.log(`[registry]: ${message}`);
+}
+
 export async function build(): Promise<void> {
+	log("📦 Starting...");
+
+	log("🔍 Crawling registry (UI, examples, blocks, hooks, lib, fonts)...");
 	const registry = await buildRegistry();
+	log(`✨ Found ${registry.length} registry items`);
 
-	const selfReferenced = registry.filter(
-		(item) => item.registryDependencies?.includes(item.name) ?? false
+	log("✅ Validating registry...");
+	validateRegistry(registry);
+
+	// build registry styles (each style gets its own temp dir with cn-* classes resolved)
+	log("🎨 Building registry styles...");
+	await Promise.all(
+		PRESET_STYLES.map(async (style) => {
+			log(`  📐 Processing style: ${style}`);
+			const styleTempDir = path.join(STYLE_TEMP_BASE, style);
+			try {
+				fs.mkdirSync(styleTempDir, { recursive: true });
+				const styleRegistry = await rewriteRegistryForStyle(registry, style, styleTempDir);
+				await buildRegistryJson(styleRegistry, style);
+				await runRegistryBuild(style);
+			} finally {
+				rimraf.sync(styleTempDir);
+				const registryJsonPath = path.resolve(`registry-${style}.json`);
+				if (fs.existsSync(registryJsonPath)) {
+					fs.rmSync(registryJsonPath);
+				}
+			}
+			log(`✅ Style ${style} built`);
+		})
 	);
-	const selfReferenceError = selfReferenced
-		.map((item) => `Registry item '${item.name}' depends on itself`)
-		.join("\n");
-	if (selfReferenceError) {
-		throw new Error(selfReferenceError);
-	}
-
-	const initItem: RegistryItem = {
-		name: "init",
-		type: "registry:style",
-		devDependencies: ["tailwind-variants", "@lucide/svelte", "tw-animate-css"],
-		registryDependencies: ["utils"],
-		files: [],
-	};
-
-	// ----------------------------------------------------------------------------
-	// Build `registry.json` file.
-	// ----------------------------------------------------------------------------
-	const result = registrySchema.parse(
-		{
-			$schema: "./static/schema/registry.json",
-			name: "shadcn-svelte",
-			homepage: "https://shadcn-svelte.com",
-			aliases: {
-				lib: "$lib/registry/lib",
-				ui: "$lib/registry/ui",
-				components: "./components",
-				hooks: "$lib/registry/hooks",
-				utils: "$lib/utils",
-			},
-			// TODO: remove when moving from `next` to `latest`
-			overrideDependencies: ["vaul-svelte@next"],
-			items: [initItem, ...registry],
-		} as Registry,
-		// maintains the schema defined property order
-		{ jitless: true }
-	);
-
-	const ITEM_TYPES: RegistryItemType[] = [
-		"registry:ui",
-		"registry:hook",
-		"registry:style",
-		"registry:lib",
-		"registry:block",
-	];
-	const filteredItems = result.items.filter((item) => ITEM_TYPES.includes(item.type));
-	const registryJsonPath = path.resolve("registry.json");
-
-	const registryJson = JSON.stringify({ ...result, items: filteredItems }, null, "\t");
-	const formatted = await prettier.format(registryJson, {
-		...prettierConfig,
-		filepath: registryJsonPath,
-	});
-	fs.writeFileSync(registryJsonPath, formatted, "utf8");
+	log("✅ Registry styles built");
+	log("🧹 Cleaning up style temp directory...");
+	rimraf.sync(STYLE_TEMP_BASE);
 
 	// ----------------------------------------------------------------------------
 	// Build __registry__/blocks.ts
 	// ----------------------------------------------------------------------------
+	log("🧩 Building __registry__/blocks.ts...");
 	rimraf.sync(path.resolve("src", "__registry__"));
 
 	let blocksIndex = `
@@ -119,7 +95,7 @@ export async function build(): Promise<void> {
 // Do not edit this file directly.
 export const blocks = [
 `; // Creates block index files
-	for (const block of result.items) {
+	for (const block of registry) {
 		if (block.type !== "registry:block" || block.name.startsWith("chart-")) continue;
 
 		blocksIndex += `"${block.name}",`;
@@ -141,7 +117,7 @@ export const Index = {`;
 	// the `lib/registry/examples` dir, or... do something else?
 	const CALENDAR_EXAMPLES = ["02", "13", "22", "24", "29"].map((n) => `calendar-${n}`);
 
-	for (const item of result.items as BuildRegistryItem[]) {
+	for (const item of registry as BuildRegistryItem[]) {
 		if (item.type !== "registry:example" && !CALENDAR_EXAMPLES.includes(item.name)) {
 			continue;
 		}
@@ -168,6 +144,7 @@ export const Index = {`;
 	// ----------------------------------------------------------------------------
 	// Build registry/colors/index.json.
 	// ----------------------------------------------------------------------------
+	log("🎨 Building registry/colors...");
 	const colorsTargetPath = path.join(REGISTRY_PATH, "colors");
 	rimraf.sync(colorsTargetPath);
 	if (!fs.existsSync(colorsTargetPath)) {
@@ -183,42 +160,21 @@ export const Index = {`;
 	);
 
 	// ----------------------------------------------------------------------------
-	// Build registry/colors/[base].json.
+	// Build registry/colors/[theme].json
 	// ----------------------------------------------------------------------------
 
-	const themeCSS = [];
-	for (const baseColor of baseColors) {
-		const base = generateBaseColorTemplate(baseColor);
-		const zincCssVars = generateBaseColorTemplate("zinc");
-
-		themeCSS.push(
-			compileTemplate(THEME_STYLES_WITH_VARIABLES)({
-				colors: {
-					...zincCssVars.cssVars,
-					...baseColorsOKLCH[baseColor as keyof typeof baseColorsOKLCH],
-				},
-				theme: baseColor,
-			})
+	for (const theme of THEMES) {
+		writeFileWithDirs(
+			path.join(REGISTRY_PATH, "colors", `${theme.name}.json`),
+			JSON.stringify(theme, null, "\t"),
+			"utf-8"
 		);
-
-		if (["zinc", "stone", "slate", "gray", "neutral"].includes(baseColor)) {
-			writeFileWithDirs(
-				path.join(REGISTRY_PATH, "colors", `${baseColor}.json`),
-				JSON.stringify(base, null, "\t"),
-				"utf-8"
-			);
-		}
 	}
-
-	// ----------------------------------------------------------------------------
-	// Build registry/themes.css
-	// ----------------------------------------------------------------------------
-
-	writeFileWithDirs(path.join(THEMES_CSS_PATH, `themes.css`), themeCSS.join("\n\n"), "utf-8");
 
 	// ----------------------------------------------------------------------------
 	// Build static/schema.json
 	// ----------------------------------------------------------------------------
+	log("📋 Writing schema files...");
 	const componentsJSON = toJSONSchema(componentsJsonSchema);
 	writeFileWithDirs(
 		path.resolve("static", "schema.json"),
@@ -234,6 +190,176 @@ export const Index = {`;
 	writeFileWithDirs(
 		path.resolve(SCHEMA_DIR, "registry-item.json"),
 		JSON.stringify(toJSONSchema(registryItemSchema), null, "\t")
+	);
+
+	log("🎉 Done!");
+}
+
+const CN_CLASS_SELECTOR = /^\.(cn-[\w-]+)$/;
+
+/**
+ * Parse style-<style>.css and extract .cn-* class rules with their @apply values.
+ * Returns a map of cn-class-name -> tailwind utility classes string.
+ */
+function parseStyleCss(css: string): Record<string, string> {
+	const styles: Record<string, string> = {};
+	const root = postcss.parse(css);
+
+	root.walkRules((rule) => {
+		for (const selector of rule.selectors) {
+			const match = selector.trim().match(CN_CLASS_SELECTOR);
+			if (!match) continue;
+
+			const className = match[1];
+			const applyValues: string[] = [];
+
+			rule.walkAtRules("apply", (atRule) => {
+				applyValues.push(atRule.params.trim());
+			});
+
+			if (applyValues.length > 0) {
+				styles[className] = applyValues.join(" ");
+			}
+		}
+	});
+
+	return styles;
+}
+
+function transformContentWithStyle(content: string, styleMap: Record<string, string>): string {
+	// Replace longer class names first to avoid "cn-foo" matching inside "cn-foo-bar"
+	// Use negative lookahead (?![-\\w]) so we only match whole class names, not substrings
+	const entries = Object.entries(styleMap).sort(([a], [b]) => b.length - a.length);
+	for (const [className, classes] of entries) {
+		// don't replace cn-menu-translucent or cn-menu-target
+		// they anchor the menu styles for transform-menu
+		if (["cn-menu-translucent", "cn-menu-target"].includes(className)) continue;
+		const escaped = className.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+		const regex = new RegExp(escaped + "(?![\\w-])", "g");
+		content = content.replace(regex, classes);
+	}
+	return content;
+}
+
+const TEXT_EXTENSIONS = new Set([".svelte", ".ts", ".svelte.ts"]);
+
+async function rewriteRegistryForStyle(
+	registry: Awaited<ReturnType<typeof buildRegistry>>,
+	style: PresetConfig["style"],
+	styleTempDir: string
+): Promise<Awaited<ReturnType<typeof buildRegistry>>> {
+	const styleCssPath = path.resolve(INTERNAL_REGISTRY_PATH, "styles", `style-${style}.css`);
+	const styleCss = fs.readFileSync(styleCssPath, "utf8");
+	const styleMap = parseStyleCss(styleCss);
+
+	const styleItems: Awaited<ReturnType<typeof buildRegistry>> = [];
+
+	for (const item of registry) {
+		if (!item.files?.length) {
+			styleItems.push(item);
+			continue;
+		}
+
+		const styleFiles: typeof item.files = [];
+
+		for (const file of item.files) {
+			const srcPath = path.resolve(file.path);
+			const tempPath = path.join(styleTempDir, file.path);
+			const tempDir = path.dirname(tempPath);
+
+			fs.mkdirSync(tempDir, { recursive: true });
+
+			const ext = path.extname(file.path);
+			if (TEXT_EXTENSIONS.has(ext)) {
+				let content = fs.readFileSync(srcPath, "utf8");
+				content = transformContentWithStyle(content, styleMap);
+				fs.writeFileSync(tempPath, content, "utf8");
+			} else {
+				fs.copyFileSync(srcPath, tempPath);
+			}
+
+			styleFiles.push({
+				...file,
+				path: path.relative(process.cwd(), tempPath),
+			});
+		}
+
+		styleItems.push({ ...item, files: styleFiles });
+	}
+
+	return styleItems;
+}
+
+function validateRegistry(registry: Awaited<ReturnType<typeof buildRegistry>>) {
+	const selfReferenced = registry.filter(
+		(item) => item.registryDependencies?.includes(item.name) ?? false
+	);
+	const selfReferenceError = selfReferenced
+		.map((item) => `Registry item '${item.name}' depends on itself`)
+		.join("\n");
+	if (selfReferenceError) {
+		throw new Error(selfReferenceError);
+	}
+}
+
+async function buildRegistryJson(
+	registry: Awaited<ReturnType<typeof buildRegistry>>,
+	style: PresetConfig["style"]
+) {
+	// ----------------------------------------------------------------------------
+	// Build `registry.json` file.
+	// ----------------------------------------------------------------------------
+	const result = registrySchema.parse(
+		{
+			$schema: "./static/schema/registry.json",
+			name: `shadcn-svelte/${style}`,
+			homepage: "https://shadcn-svelte.com",
+			aliases: {
+				lib: "$lib/registry/lib",
+				ui: "$lib/registry/ui",
+				components: "./components",
+				hooks: "$lib/registry/hooks",
+				utils: "$lib/utils",
+			},
+			// TODO: remove when moving from `next` to `latest`
+			overrideDependencies: ["vaul-svelte@next"],
+			items: registry,
+		} as Registry,
+		// maintains the schema defined property order
+		{ jitless: true }
+	);
+
+	const ITEM_TYPES: RegistryItemType[] = [
+		"registry:ui",
+		"registry:hook",
+		"registry:style",
+		"registry:lib",
+		"registry:block",
+		"registry:font",
+	];
+	const filteredItems = result.items.filter((item) => ITEM_TYPES.includes(item.type));
+	const registryJsonPath = path.resolve(`registry-${style}.json`);
+
+	const registryJson = JSON.stringify({ ...result, items: filteredItems }, null, "\t");
+	const formatted = await prettier.format(registryJson, {
+		...prettierConfig,
+		filepath: registryJsonPath,
+	});
+	fs.writeFileSync(registryJsonPath, formatted, "utf8");
+}
+
+function runRegistryBuild(style: PresetConfig["style"]) {
+	const cwd = process.cwd();
+	const registryJsonPath = path.resolve(cwd, `registry-${style}.json`);
+	const outputPath = path.resolve(cwd, "static", "registry", "styles", style);
+	const workspaceCliPath = path.resolve(cwd, "..", "packages", "cli", "dist", "index.mjs");
+
+	execSync(
+		`node "${workspaceCliPath}" registry build "${registryJsonPath}" --output "${outputPath}" -c "${cwd}"`,
+		{
+			cwd,
+			stdio: ["pipe", "pipe", "inherit"],
+		}
 	);
 }
 

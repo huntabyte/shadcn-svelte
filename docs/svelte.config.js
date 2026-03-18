@@ -26,13 +26,6 @@ const config = {
 			"$content/*": ".velite/*",
 		},
 	},
-	vitePlugin: {
-		inspector: {
-			toggleKeyCombo: "meta-shift",
-			showToggleButton: "always",
-			toggleButtonPos: "bottom-right",
-		},
-	},
 };
 
 export default config;
@@ -68,7 +61,7 @@ function componentPreviews() {
 			const importIndex = content.search("import ComponentPreview");
 			for (const name of components) {
 				const identifier = camelize(name);
-				let importStatement = "";
+				let importStatement;
 				if (name.startsWith("chart") && !name.includes("demo")) {
 					importStatement = `import ${identifier} from "$lib/registry/blocks/${name}.svelte";`;
 				} else if (name.includes("sidebar") || name.includes("Sidebar")) {

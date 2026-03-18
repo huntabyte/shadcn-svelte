@@ -437,6 +437,9 @@ The `useSidebar` function is used to hook into the sidebar context. It returns a
 ```svelte showLineNumbers
 <script lang="ts">
   import { useSidebar } from "$lib/components/ui/sidebar/index.js";
+  const sidebar = useSidebar();
+
+  // ...
 
   sidebar.state;
   sidebar.isMobile;

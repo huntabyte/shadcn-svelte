@@ -2,9 +2,10 @@ import * as p from "@clack/prompts";
 import color from "picocolors";
 import * as semver from "semver";
 import { CLIError, error } from "../../utils/errors.js";
-import { highlight } from "../../utils/utils.js";
+import { highlight } from "../../utils/colors.js";
 import { TW3_SITE_BASE_URL, SITE_BASE_URL } from "../../constants.js";
-import { getDependencyPackageInfo, getProjectPackageInfo } from "../../utils/get-package-info.js";
+import { getDependencyPackageInfo } from "../../utils/get-package-info.js";
+import * as project from "../../utils/project.js";
 
 /**
  * Runs preflight checks for the `init` command.
@@ -20,7 +21,7 @@ export function preflightInit(cwd: string, options: { skipPreflight: boolean }) 
 	const sveltePkg = getDependencyPackageInfo(cwd, "svelte")?.pkg;
 	const tailwindPkg = getDependencyPackageInfo(cwd, "tailwindcss")?.pkg;
 
-	const pkg = getProjectPackageInfo(cwd);
+	const pkg = project.getPackageInfo(cwd);
 	const deps = { ...pkg.dependencies, ...pkg.devDependencies };
 
 	const svelte = sveltePkg?.version ?? deps["svelte"];

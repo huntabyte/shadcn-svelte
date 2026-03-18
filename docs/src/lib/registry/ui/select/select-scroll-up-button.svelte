@@ -1,7 +1,7 @@
 <script lang="ts">
-	import ChevronUpIcon from "@lucide/svelte/icons/chevron-up";
 	import { Select as SelectPrimitive } from "bits-ui";
 	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 
 	let {
 		ref = $bindable(null),
@@ -13,8 +13,14 @@
 <SelectPrimitive.ScrollUpButton
 	bind:ref
 	data-slot="select-scroll-up-button"
-	class={cn("flex cursor-default items-center justify-center py-1", className)}
+	class={cn("cn-select-scroll-up-button top-0 w-full", className)}
 	{...restProps}
 >
-	<ChevronUpIcon class="size-4" />
+	<IconPlaceholder
+		lucide="ChevronUpIcon"
+		tabler="IconChevronUp"
+		hugeicons="ArrowUp01Icon"
+		phosphor="CaretUpIcon"
+		remixicon="RiArrowUpSLine"
+	/>
 </SelectPrimitive.ScrollUpButton>

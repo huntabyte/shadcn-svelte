@@ -7,7 +7,9 @@
 
 <Dialog.Root>
 	<form>
-		<Dialog.Trigger class={buttonVariants({ variant: "outline" })}>Open Dialog</Dialog.Trigger>
+		<Dialog.Trigger type="button" class={buttonVariants({ variant: "outline" })}>
+			Open Dialog
+		</Dialog.Trigger>
 		<Dialog.Content class="sm:max-w-[425px]">
 			<Dialog.Header>
 				<Dialog.Title>Edit profile</Dialog.Title>
@@ -26,7 +28,9 @@
 				</div>
 			</div>
 			<Dialog.Footer>
-				<Dialog.Close class={buttonVariants({ variant: "outline" })}>Cancel</Dialog.Close>
+				<Dialog.Close type="button" class={buttonVariants({ variant: "outline" })}>
+					Cancel
+				</Dialog.Close>
 				<Button type="submit">Save changes</Button>
 			</Dialog.Footer>
 		</Dialog.Content>

@@ -3,14 +3,25 @@ import { fetch } from "node-fetch-native";
 import { createProxy } from "node-fetch-native/proxy";
 import { isUrl, resolveURL } from "../utils.js";
 import { CLIError, error } from "../errors.js";
-import type { ResolvedConfig } from "../get-config.js";
+import { BASE_COLORS, type ResolvedConfig } from "../config/index.js";
 import { getEnvProxy } from "../get-env-proxy.js";
 import { OFFICIAL_REGISTRY_URL } from "../../constants.js";
-import * as schemas from "@shadcn-svelte/registry";
+import * as schemas from "../../schema/index.js";
+import { parse as parseCss } from "postcss";
 
-export function getRegistryUrl(config: ResolvedConfig) {
-	const url = process.env.COMPONENTS_REGISTRY_URL ?? config.registry;
-	return url;
+export function getRegistryUrl(config: { registry: string; style?: string }) {
+	// so old URL's will still work
+	if (process.env.COMPONENTS_REGISTRY_URL) {
+		return process.env.COMPONENTS_REGISTRY_URL;
+	}
+	const url = process.env.REGISTRY_URL ?? config.registry;
+
+	return new URL(url + `/styles/${config.style ?? "vega"}`).toString();
+}
+
+export function getSiteUrl(config: { registry: string }) {
+	const registryUrl = getRegistryUrl(config);
+	return new URL(registryUrl).origin;
 }
 
 export async function getRegistryIndex(registryUrl: string) {
@@ -25,24 +36,50 @@ export async function getRegistryIndex(registryUrl: string) {
 }
 
 export function getBaseColors() {
-	return [
-		{ name: "slate", label: "Slate" },
-		{ name: "gray", label: "Gray" },
-		{ name: "zinc", label: "Zinc" },
-		{ name: "neutral", label: "Neutral" },
-		{ name: "stone", label: "Stone" },
-	];
+	return BASE_COLORS.map((color) => ({
+		name: color,
+		label: `${color.charAt(0).toUpperCase()}${color.slice(1)}`,
+	}));
 }
 
-export async function getRegistryBaseColor(baseUrl: string, baseColor: string) {
+export async function getRegistryTheme(baseUrl: string, theme: string) {
 	try {
-		const url = resolveURL(baseUrl, `colors/${baseColor}.json`);
+		const url = resolveURL(baseUrl, `colors/${theme}.json`);
 		const [result] = await fetchRegistry([url]);
 
 		return schemas.registryBaseColorSchema.parse(result);
 	} catch (e) {
-		throw error(`Failed to fetch base color from registry.`, e);
+		throw error(`Failed to fetch theme: ${theme} from registry.`, e);
 	}
+}
+
+/** Parses a style CSS file and extracts the `@apply` styles for each class */
+export function parseStyleCss(css: string): Record<string, string> {
+	const ast = parseCss(css);
+	const styles: Record<string, string> = {};
+
+	ast.walkRules((rule) => {
+		// Extract class name from selector (e.g., ".cn-accordion-item" -> "cn-accordion-item")
+		const selector = rule.selector;
+		if (!selector.startsWith(".cn-")) return;
+
+		const className = selector.slice(1); // Remove leading "."
+
+		// Find @apply rules within this rule
+		rule.walkAtRules("apply", (atRule) => {
+			const applyValue = atRule.params.trim();
+			if (applyValue) {
+				// If there are multiple @apply rules, concatenate them
+				if (styles[className]) {
+					styles[className] += ` ${applyValue}`;
+				} else {
+					styles[className] = applyValue;
+				}
+			}
+		});
+	});
+
+	return styles;
 }
 
 type ResolveRegistryItemsProps = {
@@ -165,6 +202,8 @@ export function getItemAliasDir(config: ResolvedConfig, type: schemas.RegistryIt
 	if (type === "registry:lib") return config.resolvedPaths.lib;
 	if (type === "registry:hook") return config.resolvedPaths.hooks;
 	if (type === "registry:file") return config.resolvedPaths.cwd;
+	if (type === "registry:font") return config.resolvedPaths.cwd;
+	if (type === "registry:base") return config.resolvedPaths.cwd;
 
 	if (type === "registry:style" || type === "registry:theme") {
 		return path.basename(config.resolvedPaths.tailwindCss);

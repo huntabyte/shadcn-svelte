@@ -11,13 +11,13 @@
 		"build": "pnpm build:docs",
 		"build:cli": "pnpm -r -F \"./packages/**\" build",
 		"build:docs": "pnpm -F docs build",
-		"dev": "pnpm -F docs dev",
+		"dev": "concurrently -n packages,apps --kill-others=false -c \"blue,green\" \"pnpm -r -parallel -F './packages/**' dev\" \"wait-on packages/cli/dist/index.mjs && pnpm -r -parallel -F docs dev\"",
 		"dev:cli": "pnpm -F  \"./packages/**\" --parallel --reporter append-only --color dev",
 		"preview": "pnpm -F docs preview",
 		"test": "pnpm -F shadcn-svelte test",
 		"build:registry-template": "pnpm build:cli && pnpm -F registry-template build:registry",
 		"check": "pnpm -F docs check && pnpm -F \"./packages/**\" check",
-		"lint": "prettier --check . && eslint .",
+		"lint": "prettier --check . && eslint . --no-config-lookup --config eslint.config.js",
 		"format": "prettier --write .",
 		"preinstall": "npx only-allow pnpm",
 		"postinstall": "pnpm build:cli && pnpm -r sync",
@@ -29,7 +29,7 @@
 		"pnpm": ">=9",
 		"node": ">=20"
 	},
-	"packageManager": "pnpm@10.25.0",
+	"packageManager": "pnpm@10.32.1",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/huntabyte/shadcn-svelte.git"
@@ -37,24 +37,26 @@
 	"license": "MIT",
 	"type": "module",
 	"devDependencies": {
-		"@changesets/cli": "^2.29.8",
-		"@eslint/compat": "^2.0.0",
-		"@eslint/js": "^9.39.2",
+		"@changesets/cli": "^2.30.0",
+		"@eslint/compat": "^2.0.3",
+		"@eslint/js": "^10.0.1",
 		"@svitejs/changesets-changelog-github-compact": "^1.2.0",
-		"@types/node": "^25.0.2",
-		"eslint": "^9.39.2",
+		"@types/node": "^25.5.0",
+		"concurrently": "^9.2.1",
+		"eslint": "^10.0.3",
 		"eslint-config-prettier": "^10.1.8",
-		"eslint-plugin-svelte": "^3.13.1",
-		"globals": "^16.5.0",
-		"minimatch": "^10.1.1",
-		"prettier": "~3.7.4",
-		"prettier-plugin-svelte": "^3.4.1",
+		"eslint-plugin-svelte": "^3.15.2",
+		"globals": "^17.4.0",
+		"minimatch": "^10.2.4",
+		"prettier": "~3.8.1",
+		"prettier-plugin-svelte": "^3.5.1",
 		"prettier-plugin-tailwindcss": "^0.7.2",
 		"pretty-quick": "^4.2.2",
-		"svelte": "catalog:",
+		"svelte": "^5.54.0",
 		"typescript": "5.9.3",
-		"typescript-eslint": "^8.49.0",
-		"wrangler": "^4.59.1"
+		"typescript-eslint": "^8.57.1",
+		"wait-on": "^9.0.4",
+		"wrangler": "^4.75.0"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [
@@ -64,15 +66,12 @@
 			"workerd"
 		],
 		"overrides": {
-			"cookie@<0.7.0": ">=0.7.0",
 			"brace-expansion@>=2.0.0 <=2.0.1": ">=2.0.2",
-			"vite@>=6.0.0 <=6.3.5": ">=6.3.6",
-			"vite@>=6.0.0 <=6.4.0": ">=6.4.1",
-			"tar@=7.5.1": ">=7.5.2",
-			"js-yaml@>=4.0.0 <4.1.1": ">=4.1.1",
+			"cookie@<0.7.0": ">=0.7.0",
 			"glob@>=10.2.0 <10.5.0": ">=10.5.0",
-			"valibot@>=0.31.0 <1.2.0": ">=1.2.0",
-			"mdast-util-to-hast@>=13.0.0 <13.2.1": ">=13.2.1"
+			"js-yaml@>=4.0.0 <4.1.1": ">=4.1.1",
+			"mdast-util-to-hast@>=13.0.0 <13.2.1": ">=13.2.1",
+			"tar@=7.5.1": ">=7.5.11"
 		}
 	}
 }

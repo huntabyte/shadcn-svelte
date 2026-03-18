@@ -124,7 +124,7 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 			variant="secondary"
 			size="sm"
 			class="h-8 shadow-none select-none md:h-7 md:text-[0.8rem]"
-			onclick={async () => await copyPage()}
+			onclick={copyPage}
 		>
 			{#if clipboard.copied}
 				<CheckIcon />

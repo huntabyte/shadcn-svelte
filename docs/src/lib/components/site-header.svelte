@@ -4,12 +4,16 @@
 	import MainNav from "./main-nav.svelte";
 	import Separator from "$lib/registry/ui/separator/separator.svelte";
 	import GithubLink from "./github-link.svelte";
-	import ModeSwitcher from "./mode-switcher.svelte";
 	import MobileNav from "./mobile-nav.svelte";
 	import LayoutToggle from "./layout-toggle.svelte";
 	import CommandMenu from "./command-menu/command-menu.svelte";
 	import { getColors } from "$lib/colors.js";
 	import { mainNavItems } from "$lib/navigation.js";
+	import PlusIcon from "@lucide/svelte/icons/plus";
+	import Customizer from "./customizer.svelte";
+	import { page } from "$app/state";
+	import InitializeDialog from "../../routes/(app)/(layout)/(create)/components/initialize-dialog.svelte";
+	import ModeSwitcher from "./mode-switcher.svelte";
 
 	const colors = getColors();
 
@@ -42,7 +46,17 @@
 				<Separator orientation="vertical" class="3xl:flex hidden" />
 				<LayoutToggle class="3xl:flex hidden" />
 				<Separator orientation="vertical" />
-				<ModeSwitcher />
+				{#if page.url.pathname.startsWith("/create")}
+					<ModeSwitcher class="md:hidden" />
+					<Separator orientation="vertical" />
+					<InitializeDialog />
+				{:else}
+					<Customizer />
+					<Button href="/create" variant="default" size="sm">
+						<PlusIcon />
+						New Project
+					</Button>
+				{/if}
 			</div>
 		</div>
 	</div>

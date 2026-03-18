@@ -12,6 +12,6 @@
 <AlertDialogPrimitive.Title
 	bind:ref
 	data-slot="alert-dialog-title"
-	class={cn("text-lg font-semibold", className)}
+	class={cn("cn-alert-dialog-title", className)}
 	{...restProps}
 />

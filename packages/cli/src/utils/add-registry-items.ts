@@ -4,10 +4,18 @@ import color from "picocolors";
 import merge from "deepmerge";
 import * as p from "@clack/prompts";
 import * as registry from "./registry/index.js";
-import { highlight } from "./utils.js";
+import { highlight } from "./colors.js";
 import { cancel, prettifyList } from "./prompt-helpers.js";
-import { transformContent, transformCss } from "./transformers.js";
-import type { ResolvedConfig } from "./get-config.js";
+import { transformCss } from "./transform-css.js";
+import type { ResolvedConfig } from "./config/index.js";
+import {
+	transform,
+	transformImports,
+	transformIcons,
+	transformMenu,
+	transformStripTypes,
+} from "./transformers/index.js";
+import { setupFonts, type Font } from "./fonts.js";
 
 const STYLE_TYPES = ["registry:style", "registry:theme"];
 
@@ -27,6 +35,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 	const tasks: p.Task[] = [];
 	const cwd = opts.config.resolvedPaths.cwd;
 	const registryUrl = registry.getRegistryUrl(opts.config);
+	const fonts: Font[] = [];
 	let cssVars = {};
 	let css = {};
 
@@ -53,7 +62,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 			selectedItems.add(regDep);
 		}
 
-		const itemExists = item.files.some((file) => {
+		const itemExists = item.files?.some((file) => {
 			const filePath = registry.resolveItemFilePath(opts.config, item, file);
 			return existsSync(filePath);
 		});
@@ -114,6 +123,13 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 			item.devDependencies?.forEach((dep) => skippedDeps.add(dep));
 		}
 
+		if (item.type === "registry:font") {
+			fonts.push({
+				name: item.name,
+				...item.font,
+			});
+		}
+
 		tasks.push({
 			title:
 				item.name === "init"
@@ -121,21 +137,33 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 					: `Adding ${highlight(item.name)}`,
 			// @ts-expect-error this is intentional since we don't want to return a string during `init`
 			async task() {
-				for (const file of item.files) {
-					let filePath = registry.resolveItemFilePath(opts.config, item, file);
+				for (const file of item.files ?? []) {
+					const filePath = registry.resolveItemFilePath(opts.config, item, file);
 
-					// run transformers
-					const content = await transformContent(file.content, filePath, opts.config);
+					const {
+						content,
+						dependencies: transformDependencies,
+						devDependencies: transformDevDependencies,
+						filePath: transformFilePath,
+					} = await transform(
+						{ content: file.content, filePath: filePath, config: opts.config },
+						[
+							transformImports,
+							transformIcons,
+							transformMenu,
+							!opts.config.typescript && transformStripTypes,
+						]
+					);
 
-					const dir = path.parse(filePath).dir;
+					transformDependencies?.forEach((dep) => dependencies.add(dep));
+					transformDevDependencies?.forEach((dep) => devDependencies.add(dep));
+
+					const dir = path.parse(transformFilePath).dir;
 					if (!existsSync(dir)) {
 						await fs.mkdir(dir, { recursive: true });
 					}
 
-					if (!opts.config.typescript && filePath.endsWith(".ts")) {
-						filePath = filePath.replace(".ts", ".js");
-					}
-					await fs.writeFile(filePath, content, "utf8");
+					await fs.writeFile(transformFilePath, content, "utf8");
 				}
 
 				if (item.cssVars) {
@@ -160,6 +188,16 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 
 	await p.tasks(tasks);
 
+	const {
+		css: fontsCss,
+		cssVars: fontsCssVars,
+		dependencies: fontsDependencies,
+	} = setupFonts(fonts);
+
+	css = merge(css, fontsCss);
+	cssVars = merge(cssVars, fontsCssVars);
+	fontsDependencies.forEach((dep) => devDependencies.add(dep));
+
 	if (Object.keys(cssVars).length || Object.keys(css).length) {
 		const cssPath = opts.config.resolvedPaths.tailwindCss;
 		const relative = path.relative(cwd, cssPath);
@@ -167,7 +205,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 		if (!opts.overwrite) {
 			const overwrite = await p.confirm({
 				message: `A new ${highlight("style")} is ready to be installed. Existing CSS variables may be ${color.bold(color.red("overwritten"))} in ${highlight(relative)}. Continue?`,
-				initialValue: false,
+				initialValue: true,
 			});
 			if (p.isCancel(overwrite)) cancel();
 

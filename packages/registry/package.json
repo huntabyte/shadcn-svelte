@@ -13,21 +13,21 @@
 		"directory": "packages/registry"
 	},
 	"type": "module",
-	"main": "dist/index.js",
-	"types": "dist/index.d.ts",
+	"main": "dist/index.mjs",
+	"types": "dist/index.d.mts",
 	"private": false,
 	"files": [
 		"dist/**"
 	],
 	"exports": {
 		".": {
-			"types": "./dist/index.d.ts",
-			"default": "./dist/index.js"
+			"types": "./dist/index.d.mts",
+			"default": "./dist/index.mjs"
 		}
 	},
 	"scripts": {
-		"dev": "tsup --watch --sourcemap",
-		"build": "tsup",
+		"dev": "tsdown --watch --sourcemap",
+		"build": "tsdown",
 		"check": "tsc --noEmit",
 		"release": "changeset version",
 		"test": "vitest"
@@ -36,7 +36,7 @@
 		"zod": "^4.0.0"
 	},
 	"devDependencies": {
-		"tsup": "^8.4.0",
-		"zod": "^4.1.12"
+		"tsdown": "catalog:",
+		"zod": "catalog:"
 	}
 }

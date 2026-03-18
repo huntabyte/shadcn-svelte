@@ -61,7 +61,7 @@ Copy and paste the following code into your project.
   <Field.Group>
     <Field.Field>
       <Field.Label for="name">Full name</Field.Label>
-      <Input id="name" autoComplete="off" placeholder="Evil Rabbit" />
+      <Input id="name" autocomplete="off" placeholder="Evil Rabbit" />
       <Field.Description
         >This appears on invoices and emails.</Field.Description
       >
