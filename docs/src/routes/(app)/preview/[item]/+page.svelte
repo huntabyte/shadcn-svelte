@@ -3,13 +3,21 @@
 	import TailwindIndicator from "$lib/components/tailwind-indicator.svelte";
 	import Button from "$lib/registry/ui/button/button.svelte";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import type { Component } from "svelte";
 
 	let { data } = $props();
 
-	const ComponentPromise = import(
-		// eslint-disable-next-line svelte/no-unused-svelte-ignore
-		// svelte-ignore state_referenced_locally
-		`$lib/registry/examples/create/${data.example.name}/${data.example.name}.svelte`
+	const createExampleComponents = import.meta.glob(
+		"/src/lib/registry/examples/create/*/*.svelte"
+	);
+	const exampleComponentPath = $derived(
+		`/src/lib/registry/examples/create/${data.example.name}/${data.example.name}.svelte`
+	);
+	const loadExampleComponent = $derived(createExampleComponents[exampleComponentPath]);
+	const ComponentPromise = $derived(
+		loadExampleComponent
+			? (loadExampleComponent() as Promise<{ default: Component }>)
+			: Promise.reject(new Error(`Missing preview component: ${exampleComponentPath}`))
 	);
 </script>
 
