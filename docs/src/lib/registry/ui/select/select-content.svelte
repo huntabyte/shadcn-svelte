@@ -27,7 +27,7 @@
 		{preventScroll}
 		data-slot="select-content"
 		class={cn(
-			"cn-select-content cn-menu-target cn-menu-translucent relative isolate z-50 overflow-x-hidden overflow-y-auto",
+			"cn-select-content cn-select-content-logical cn-menu-target cn-menu-translucent relative isolate z-50 overflow-x-hidden overflow-y-auto",
 			className
 		)}
 		{...restProps}

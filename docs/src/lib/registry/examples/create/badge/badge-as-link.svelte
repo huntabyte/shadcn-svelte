@@ -39,7 +39,29 @@
 				data-icon="inline-end"
 			/>
 		</Badge>
+		<Badge variant="outline" href="#/">
+			Link
+			<IconPlaceholder
+				lucide="ArrowUpRightIcon"
+				tabler="IconArrowUpRight"
+				hugeicons="ArrowUpRightIcon"
+				phosphor="ArrowUpRightIcon"
+				remixicon="RiArrowRightUpLine"
+				data-icon="inline-end"
+			/>
+		</Badge>
 		<Badge variant="ghost" href="#/">
+			Link
+			<IconPlaceholder
+				lucide="ArrowUpRightIcon"
+				tabler="IconArrowUpRight"
+				hugeicons="ArrowRight02Icon"
+				phosphor="ArrowUpRightIcon"
+				remixicon="RiArrowRightUpLine"
+				data-icon="inline-end"
+			/>
+		</Badge>
+		<Badge variant="link" href="#/">
 			Link
 			<IconPlaceholder
 				lucide="ArrowUpRightIcon"

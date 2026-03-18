@@ -39,13 +39,38 @@ export default defineConfig({
 	},
 	build: {
 		// minify: false,
-		rollupOptions: {
+		rolldownOptions: {
 			output: {
-				manualChunks: {
-					icons: ["@lucide/svelte", "@tabler/icons-svelte"],
-				},
+			  codeSplitting: {
+				groups: [
+				  {
+					test: /node_modules\/@lucide\/svelte/,
+					name: 'lucide-icons',
+				  },
+				  {
+					test: /node_modules\/@tabler\/icons-svelte/,
+					name: 'tabler-icons',
+				  },
+				  {
+					test: /node_modules\/@hugeicons\/svelte/,
+					name: 'hugeicons',
+				  },
+				  {
+					test: /node_modules\/@hugeicons\/core-free-icons/,
+					name: 'hugeicons-core-free-icons',
+				  },
+				  {
+					test: /node_modules\/phosphor-svelte/,
+					name: 'phosphor-icons',
+				  },
+				  {
+					test: /node_modules\/remixicon-svelte/,
+					name: 'remixicon-icons',
+				  },
+				],
+			  },
 			},
-		},
+		  },
 	},
 	ssr: {
 		noExternal: Object.keys(packageJson.devDependencies),

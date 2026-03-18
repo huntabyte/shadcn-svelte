@@ -37,26 +37,26 @@
 	"license": "MIT",
 	"type": "module",
 	"devDependencies": {
-		"@changesets/cli": "^2.29.8",
-		"@eslint/compat": "^2.0.0",
-		"@eslint/js": "^9.39.2",
+		"@changesets/cli": "^2.30.0",
+		"@eslint/compat": "^2.0.3",
+		"@eslint/js": "^10.0.1",
 		"@svitejs/changesets-changelog-github-compact": "^1.2.0",
-		"@types/node": "^25.0.2",
+		"@types/node": "^25.5.0",
 		"concurrently": "^9.2.1",
-		"eslint": "^9.39.2",
+		"eslint": "^10.0.3",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.15.2",
-		"globals": "^16.5.0",
-		"minimatch": "^10.1.1",
-		"prettier": "~3.7.4",
+		"globals": "^17.4.0",
+		"minimatch": "^10.2.4",
+		"prettier": "~3.8.1",
 		"prettier-plugin-svelte": "^3.5.1",
 		"prettier-plugin-tailwindcss": "^0.7.2",
 		"pretty-quick": "^4.2.2",
-		"svelte": "catalog:",
+		"svelte": "^5.54.0",
 		"typescript": "5.9.3",
-		"typescript-eslint": "^8.49.0",
-		"wait-on": "^9.0.3",
-		"wrangler": "^4.59.1"
+		"typescript-eslint": "^8.57.1",
+		"wait-on": "^9.0.4",
+		"wrangler": "^4.75.0"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [
@@ -73,7 +73,6 @@
 			"tar@=7.5.1": ">=7.5.2",
 			"js-yaml@>=4.0.0 <4.1.1": ">=4.1.1",
 			"glob@>=10.2.0 <10.5.0": ">=10.5.0",
-			"valibot@>=0.31.0 <1.2.0": ">=1.2.0",
 			"mdast-util-to-hast@>=13.0.0 <13.2.1": ">=13.2.1"
 		}
 	}

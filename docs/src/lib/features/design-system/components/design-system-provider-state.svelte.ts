@@ -227,16 +227,7 @@ class DesignSystemState implements IDesignSystemState {
 	}
 
 	reset() {
-		this.system = {
-			style: "vega",
-			baseColor: "neutral",
-			theme: "neutral",
-			iconLibrary: "lucide",
-			font: "geist",
-			menuAccent: "subtle",
-			menuColor: "default",
-			radius: "default",
-		};
+		this.system = DEFAULT_PRESET_CONFIG;
 	}
 
 	randomize() {
