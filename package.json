@@ -29,7 +29,7 @@
 		"pnpm": ">=9",
 		"node": ">=20"
 	},
-	"packageManager": "pnpm@10.25.0",
+	"packageManager": "pnpm@10.32.1",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/huntabyte/shadcn-svelte.git"
@@ -66,14 +66,12 @@
 			"workerd"
 		],
 		"overrides": {
-			"cookie@<0.7.0": ">=0.7.0",
 			"brace-expansion@>=2.0.0 <=2.0.1": ">=2.0.2",
-			"vite@>=6.0.0 <=6.3.5": ">=6.3.6",
-			"vite@>=6.0.0 <=6.4.0": ">=6.4.1",
-			"tar@=7.5.1": ">=7.5.2",
-			"js-yaml@>=4.0.0 <4.1.1": ">=4.1.1",
+			"cookie@<0.7.0": ">=0.7.0",
 			"glob@>=10.2.0 <10.5.0": ">=10.5.0",
-			"mdast-util-to-hast@>=13.0.0 <13.2.1": ">=13.2.1"
+			"js-yaml@>=4.0.0 <4.1.1": ">=4.1.1",
+			"mdast-util-to-hast@>=13.0.0 <13.2.1": ">=13.2.1",
+			"tar@=7.5.1": ">=7.5.11"
 		}
 	}
 }
