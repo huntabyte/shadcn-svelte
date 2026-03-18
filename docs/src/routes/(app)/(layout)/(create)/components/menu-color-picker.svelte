@@ -85,9 +85,13 @@
 <div class="group/picker relative">
 	<Picker.Root {submenu}>
 		<Picker.Trigger {submenu}>
-			<div class="flex flex-col justify-start text-left">
+			<div
+				class="flex min-w-0 flex-1 flex-col justify-start overflow-hidden pr-8 text-left md:pr-7"
+			>
 				<div class="text-muted-foreground text-xs">Menu</div>
-				<div class="text-foreground text-sm font-medium">
+				<div
+					class="text-foreground overflow-hidden text-sm font-medium text-ellipsis whitespace-nowrap"
+				>
 					{currentMenu.label}
 				</div>
 			</div>

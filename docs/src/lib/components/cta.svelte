@@ -9,8 +9,8 @@
 		class="absolute -bottom-12 -left-12 h-32 w-32 rounded-full bg-[#CBA6F7] opacity-10 blur-[50px] transition-opacity group-hover:opacity-20"
 	></div>
 
-	<div class="relative z-10 p-3.5">
-		<div class="mb-8 flex items-center justify-between">
+	<div class="relative z-10 flex h-full flex-col justify-between p-3.5">
+		<div class="flex items-center justify-between">
 			<span class="text-muted-foreground text-[10px] font-medium tracking-wide uppercase"
 				>Special Sponsor</span
 			>
@@ -21,7 +21,7 @@
 				</svg>
 			</div>
 		</div>
-		<div class="space-y-1">
+		<div>
 			<h3 class="text-foreground text-lg font-semibold tracking-tight">Epicenter</h3>
 			<p class="text-foreground/85 text-xs leading-relaxed">Open source, local first apps</p>
 		</div>

@@ -48,10 +48,10 @@
 			<!-- <ActionMenu {itemsByBase} /> -->
 		</Card.Footer>
 	</Card.Root>
-	<div class="flex w-full flex-1 flex-col gap-12">
+	<div class="hidden w-full flex-1 flex-col gap-12 md:flex">
 		<Cta />
 	</div>
-	<div class="flex flex-col gap-12">
+	<div class="hidden flex-col gap-12 md:flex">
 		<Ethical />
 	</div>
 </div>
