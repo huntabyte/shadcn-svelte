@@ -61,14 +61,14 @@ get along, so we shut typescript up by casting `value` to `never`.
 <ToggleGroupPrimitive.Root
 	bind:value={value as never}
 	bind:ref
+	{orientation}
 	data-slot="toggle-group"
 	data-variant={variant}
 	data-size={size}
 	data-spacing={spacing}
-	data-orientation={orientation}
 	style={`--gap: ${spacing}`}
 	class={cn(
-		"cn-toggle-group group/toggle-group flex w-fit flex-row items-center gap-[--spacing(var(--gap))] data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-stretch",
+		"cn-toggle-group group/toggle-group flex w-fit flex-row items-center gap-[--spacing(var(--gap))] data-vertical:flex-col data-vertical:items-stretch",
 		className
 	)}
 	{...restProps}
