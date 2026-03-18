@@ -11,10 +11,10 @@
 	let selectedValueSm = $state<string | undefined>(undefined);
 	let selectedValueDefault = $state<string | undefined>(undefined);
 	const selectedLabelSm = $derived(
-		items.find((item) => item.value === selectedValueSm)?.label ?? "Select a fruit"
+		items.find((item) => item.value === selectedValueSm)?.label ?? "Small size"
 	);
 	const selectedLabelDefault = $derived(
-		items.find((item) => item.value === selectedValueDefault)?.label ?? "Select a fruit"
+		items.find((item) => item.value === selectedValueDefault)?.label ?? "Default size"
 	);
 </script>
 

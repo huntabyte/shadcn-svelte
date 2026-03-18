@@ -4,36 +4,25 @@
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 
 	const items = $derived([
-		{
-			label: "Line",
-			value: "line",
-			icon: chartLineIcon,
-		},
-		{
-			label: "Bar",
-			value: "bar",
-			icon: chartBarIcon,
-		},
-		{
-			label: "Pie",
-			value: "pie",
-			icon: chartPieIcon,
-		},
+		{ label: "Line", value: "line", icon: chartLineIcon },
+		{ label: "Bar", value: "bar", icon: chartBarIcon },
+		{ label: "Pie", value: "pie", icon: chartPieIcon },
 	]);
 
-	let selectedValue = $state<string | undefined>(undefined);
-	const selectedItem = $derived(items.find((item) => item.value === selectedValue));
-	const selectedLabel = $derived(selectedItem?.label ?? "Chart Type");
+	let selectedValueSm = $state<string | undefined>(undefined);
+	let selectedValueDefault = $state<string | undefined>(undefined);
+	const selectedItemSm = $derived(items.find((item) => item.value === selectedValueSm));
+	const selectedItemDefault = $derived(items.find((item) => item.value === selectedValueDefault));
 </script>
 
 <Example title="With Icons">
 	<div class="flex flex-col gap-4">
-		<Select.Root type="single" bind:value={selectedValue}>
+		<Select.Root type="single" bind:value={selectedValueSm}>
 			<Select.Trigger size="sm">
-				{#if selectedItem}
-					{@render selectedItem.icon()}
+				{#if selectedItemSm}
+					{@render selectedItemSm.icon()}
 				{/if}
-				{selectedLabel}
+				{selectedItemSm?.label ?? "Chart Type"}
 			</Select.Trigger>
 			<Select.Content>
 				<Select.Group>
@@ -46,12 +35,12 @@
 				</Select.Group>
 			</Select.Content>
 		</Select.Root>
-		<Select.Root type="single" bind:value={selectedValue}>
+		<Select.Root type="single" bind:value={selectedValueDefault}>
 			<Select.Trigger size="default">
-				{#if selectedItem}
-					{@render selectedItem.icon()}
+				{#if selectedItemDefault}
+					{@render selectedItemDefault.icon()}
 				{/if}
-				{selectedLabel}
+				{selectedItemDefault?.label ?? "Chart Type"}
 			</Select.Trigger>
 			<Select.Content>
 				<Select.Group>
