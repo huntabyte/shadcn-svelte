@@ -100,7 +100,7 @@
 					id="number-of-gpus-f6l"
 					placeholder="8"
 					size={3}
-					class="h-8 !w-14 font-mono"
+					class="w-14! font-mono"
 					maxlength={3}
 				/>
 				<Button variant="outline" size="icon-sm" type="button">

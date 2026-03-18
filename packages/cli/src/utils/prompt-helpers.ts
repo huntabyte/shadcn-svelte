@@ -1,14 +1,13 @@
 import process from "node:process";
 import color from "picocolors";
 import * as p from "@clack/prompts";
+import { bgHex } from "./colors.js";
 import { getCLIPackageInfo } from "./get-package-info.js";
-
-// TODO (43081j): remove once picocolors supports RGB
-const backgroundOrange = (str: string) => `\x1b[48;2;255;85;0m${str}\x1b[0m`;
+import { CLIError, ConfigError } from "./errors.js";
 
 export function intro() {
 	const packageInfo = getCLIPackageInfo();
-	const title = backgroundOrange(color.black(" shadcn-svelte "));
+	const title = bgHex("#FF5500")(color.black(" shadcn-svelte "));
 	const version = color.gray(` v${packageInfo.version} `);
 	p.intro(title + version);
 
@@ -39,4 +38,32 @@ export function prettifyList(arr: string[], max: number = 9): string {
 export function getPadding(lines: string[]) {
 	const lengths = lines.map((s) => s.length);
 	return Math.max(...lengths);
+}
+
+export function handleError(error: unknown) {
+	// provide a newline gap
+	p.log.message();
+
+	if (typeof error === "string") {
+		p.cancel(error);
+		process.exit(1);
+	}
+
+	if (error instanceof CLIError || error instanceof ConfigError) {
+		p.cancel(printError(error));
+		process.exit(1);
+	}
+
+	// unexpected error
+	if (error instanceof Error) {
+		p.cancel(printError(error));
+		process.exit(1);
+	}
+
+	p.cancel("Something went wrong. Please try again.");
+	process.exit(1);
+}
+
+function printError(error: Error): string {
+	return `${error.stack ?? error.message}${error.cause ? `\n   [cause]: ${error.cause instanceof Error ? printError(error.cause) : error.cause}` : ""}`;
 }

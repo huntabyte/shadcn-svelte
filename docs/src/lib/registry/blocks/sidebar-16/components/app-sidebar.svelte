@@ -146,7 +146,11 @@
 	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();
 </script>
 
-<Sidebar.Root class="top-(--header-height) h-[calc(100svh-var(--header-height))]!" {...restProps}>
+<Sidebar.Root
+	bind:ref
+	class="top-(--header-height) h-[calc(100svh-var(--header-height))]!"
+	{...restProps}
+>
 	<Sidebar.Header>
 		<Sidebar.Menu>
 			<Sidebar.MenuItem>

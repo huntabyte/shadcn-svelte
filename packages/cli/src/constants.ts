@@ -1,3 +1,5 @@
+// !! BROWSER SAFE !!
+
 export const SITE_BASE_URL = "https://shadcn-svelte.com";
 export const TW3_SITE_BASE_URL = "https://tw3.shadcn-svelte.com";
 export const OFFICIAL_REGISTRY_URL = `${SITE_BASE_URL}/registry`;

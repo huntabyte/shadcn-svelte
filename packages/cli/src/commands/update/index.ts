@@ -2,19 +2,28 @@ import path from "node:path";
 import process from "node:process";
 import { existsSync, promises as fs } from "node:fs";
 import color from "picocolors";
-import { z } from "zod/v4";
+import { z } from "zod";
 import merge from "deepmerge";
 import { Command } from "commander";
-import { error, handleError } from "../../utils/errors.js";
-import * as cliConfig from "../../utils/get-config.js";
+import { error } from "../../utils/errors.js";
+import * as cliConfig from "../../utils/config/index.js";
 import { getEnvProxy } from "../../utils/get-env-proxy.js";
-import { cancel, intro, prettifyList } from "../../utils/prompt-helpers.js";
+import { cancel, intro, prettifyList, handleError } from "../../utils/prompt-helpers.js";
 import * as p from "@clack/prompts";
 import * as registry from "../../utils/registry/index.js";
-import { transformContent, transformCss } from "../../utils/transformers.js";
+import { transformCss } from "../../utils/transform-css.js";
+import { setupFonts, type Font } from "../../utils/fonts.js";
 import { checkPreconditions } from "../../utils/preconditions.js";
-import { highlight } from "../../utils/utils.js";
+import { highlight } from "../../utils/colors.js";
 import { installDependencies } from "../../utils/install-deps.js";
+import {
+	transform,
+	transformImports,
+	transformIcons,
+	transformMenu,
+	transformStripTypes,
+} from "../../utils/transformers/index.js";
+import * as project from "../../utils/project.js";
 
 const updateOptionsSchema = z.object({
 	all: z.boolean(),
@@ -84,32 +93,8 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 	const registryUrl = registry.getRegistryUrl(config);
 	const registryIndex = await registry.getRegistryIndex(registryUrl);
 
-	const dirs = {
-		ui: config.resolvedPaths.ui,
-		components: config.resolvedPaths.components,
-		hooks: config.resolvedPaths.hooks,
-	};
-
 	// Retrieve existing items in the user's project
-	const existingComponents: typeof registryIndex = [];
-	for (const dir of Object.values(dirs)) {
-		if (!existsSync(dir)) continue;
-
-		const files = await fs.readdir(dir, { withFileTypes: true });
-		for (const file of files) {
-			if (file.isDirectory()) {
-				const item = registryIndex.find((item) => item.name === file.name);
-				// is a valid shadcn item
-				if (item) existingComponents.push(item);
-			}
-		}
-	}
-
-	// Always offer to update the `utils`
-	const utilsItem = registryIndex.find((item) => item.name === "utils");
-	if (utilsItem) {
-		existingComponents.push(utilsItem);
-	}
+	const existingComponents = await project.getComponents({ registryIndex, config });
 
 	// If the user specifies component args
 	let selectedComponents = options.all ? existingComponents : [];
@@ -168,7 +153,9 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 	const componentsToRemove: Record<string, string[]> = {};
 	const dependencies = new Set<string>();
 	const devDependencies = new Set<string>();
+	const fonts: Font[] = [];
 	let cssVars = {};
+	let css = {};
 	for (const item of payload) {
 		const aliasDir = registry.getItemAliasDir(config, item.type);
 
@@ -176,34 +163,52 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 		item.dependencies?.forEach((dep) => dependencies.add(dep));
 		item.devDependencies?.forEach((dep) => devDependencies.add(dep));
 
+		if (item.type === "registry:font") {
+			fonts.push({
+				name: item.name,
+				...item.font,
+			});
+		}
+
 		// Update Components
 		tasks.push({
 			title: `Updating ${highlight(item.name)}`,
 			async task() {
-				for (const file of item.files) {
-					let filePath = registry.resolveItemFilePath(config, item, file);
+				for (const file of item.files ?? []) {
+					const filePath = registry.resolveItemFilePath(config, item, file);
 
-					// Run transformers.
-					const content = await transformContent(file.content, filePath, config);
+					const {
+						content,
+						dependencies: transformDependencies,
+						devDependencies: transformDevDependencies,
+						filePath: transformFilePath,
+					} = await transform({ content: file.content, filePath, config }, [
+						transformImports,
+						transformIcons,
+						transformMenu,
+						config.typescript && transformStripTypes,
+					]);
 
-					const dir = path.parse(filePath).dir;
+					transformDependencies?.forEach((dep) => dependencies.add(dep));
+					transformDevDependencies?.forEach((dep) => devDependencies.add(dep));
+
+					const dir = path.parse(transformFilePath).dir;
 					if (!existsSync(dir)) {
 						await fs.mkdir(dir, { recursive: true });
 					}
 
-					if (!config.typescript && filePath.endsWith(".ts")) {
-						filePath = filePath.replace(".ts", ".js");
-					}
-
-					await fs.writeFile(filePath, content, "utf8");
+					await fs.writeFile(transformFilePath, content, "utf8");
 				}
 
+				if (item.css) {
+					css = merge(css, item.css);
+				}
 				if (item.cssVars) {
 					cssVars = merge(cssVars, item.cssVars);
 				}
 
 				const itemDir = path.resolve(aliasDir, item.name);
-				if (item.files.length > 1) {
+				if (item.files && item.files?.length > 1) {
 					const remoteFiles = item.files.map((file) => {
 						const filepath = registry.resolveItemFilePath(config, item, file);
 						if (!config.typescript && filepath.endsWith(".ts")) {
@@ -228,7 +233,17 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 		});
 	}
 
-	if (Object.keys(cssVars).length > 0) {
+	const {
+		css: fontsCss,
+		cssVars: fontsCssVars,
+		dependencies: fontsDependencies,
+	} = setupFonts(fonts);
+
+	css = merge(css, fontsCss);
+	cssVars = merge(cssVars, fontsCssVars);
+	fontsDependencies.forEach((dep) => devDependencies.add(dep));
+
+	if (Object.keys(cssVars).length > 0 || Object.keys(css).length > 0) {
 		// Update the stylesheet
 		tasks.push({
 			title: "Updating stylesheet",
@@ -236,7 +251,7 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 				const cssPath = config.resolvedPaths.tailwindCss;
 				const cssSource = await fs.readFile(cssPath, "utf8");
 
-				const modifiedCss = transformCss(cssSource, cssVars);
+				const modifiedCss = transformCss(cssSource, { css, cssVars });
 				await fs.writeFile(cssPath, modifiedCss, "utf8");
 
 				const relative = path.relative(cwd, cssPath);

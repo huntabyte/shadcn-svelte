@@ -1,11 +1,9 @@
 import { describe, expect, it, vi, beforeEach } from "vitest";
 import { TW3_SITE_BASE_URL } from "../../src/constants.js";
 import { checkPreconditions } from "../../src/utils/preconditions.js";
-import { getConfig, writeConfig } from "../../src/utils/get-config.js";
-import {
-	getProjectPackageInfo,
-	getDependencyPackageInfo,
-} from "../../src/utils/get-package-info.js";
+import { getConfig, writeConfig } from "../../src/utils/config/index.js";
+import { getDependencyPackageInfo } from "../../src/utils/get-package-info.js";
+import * as project from "../../src/utils/project.js";
 
 const resolvedPaths = {
 	cwd: "n/a",
@@ -58,11 +56,11 @@ const configLegacyUpdated = {
 };
 
 vi.mock("../../src/utils/get-package-info.js");
-vi.mock("../../src/utils/utils.js");
+vi.mock("../../src/utils/project.js");
 
-vi.mock("../../src/utils/get-config.js", async () => ({
-	...(await vi.importActual<typeof import("../../src/utils/get-config.js")>(
-		"../../src/utils/get-config.js"
+vi.mock("../../src/utils/config/index.js", async () => ({
+	...(await vi.importActual<typeof import("../../src/utils/config/index.js")>(
+		"../../src/utils/config/index.js"
 	)),
 	writeConfig: vi.fn(),
 	getConfig: vi.fn(),
@@ -80,7 +78,7 @@ describe("checkPreconditions", () => {
 		// @ts-expect-error - we're mocking the config
 		vi.mocked(getConfig).mockResolvedValue(configFull);
 
-		vi.mocked(getProjectPackageInfo).mockReturnValue({
+		vi.mocked(project.getPackageInfo).mockReturnValue({
 			dependencies: {
 				tailwindcss: "4.0.0",
 				svelte: "5.0.0",
@@ -98,7 +96,7 @@ describe("checkPreconditions", () => {
 	it("should update legacy config for Tailwind v3 + Svelte v5", async () => {
 		// @ts-expect-error - we're mocking the config
 		vi.mocked(getConfig).mockResolvedValue(configLegacy);
-		vi.mocked(getProjectPackageInfo).mockReturnValue({
+		vi.mocked(project.getPackageInfo).mockReturnValue({
 			dependencies: {
 				tailwindcss: "3.0.0",
 				svelte: "5.0.0",
@@ -130,7 +128,7 @@ describe("checkPreconditions", () => {
 			},
 			path: "test/path",
 		});
-		vi.mocked(getProjectPackageInfo).mockReturnValue({
+		vi.mocked(project.getPackageInfo).mockReturnValue({
 			dependencies: {
 				tailwindcss: "3.0.0",
 				svelte: "5.0.0",
@@ -155,7 +153,7 @@ describe("checkPreconditions", () => {
 		for (const deps of testCases) {
 			// @ts-expect-error - we're mocking the config
 			vi.mocked(getConfig).mockResolvedValue({ ...configFull, resolvedPaths });
-			vi.mocked(getProjectPackageInfo).mockReturnValue({
+			vi.mocked(project.getPackageInfo).mockReturnValue({
 				dependencies: deps,
 				devDependencies: {},
 			});

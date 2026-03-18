@@ -1,8 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { execSync } from "node:child_process";
-import { minimatch } from "minimatch";
 import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
@@ -33,16 +31,6 @@ export default defineConfig({
 		tailwindcss(),
 		enhancedImages(),
 		sveltekit(),
-		{
-			name: "registry-builder",
-			enforce: "pre",
-			async watchChange(id) {
-				if (!minimatch(id, "**/src/lib/registry/**")) return;
-				this.info("Registry file updated. Rebuilding registry...");
-				await buildRegistry();
-				this.info("Registry built.");
-			},
-		},
 	],
 	server: {
 		fs: {
@@ -51,10 +39,35 @@ export default defineConfig({
 	},
 	build: {
 		// minify: false,
-		rollupOptions: {
+		rolldownOptions: {
 			output: {
-				manualChunks: {
-					icons: ["@lucide/svelte", "@tabler/icons-svelte"],
+				codeSplitting: {
+					groups: [
+						{
+							test: /node_modules\/@lucide\/svelte/,
+							name: "lucide-icons",
+						},
+						{
+							test: /node_modules\/@tabler\/icons-svelte/,
+							name: "tabler-icons",
+						},
+						{
+							test: /node_modules\/@hugeicons\/svelte/,
+							name: "hugeicons",
+						},
+						{
+							test: /node_modules\/@hugeicons\/core-free-icons/,
+							name: "hugeicons-core-free-icons",
+						},
+						{
+							test: /node_modules\/phosphor-svelte/,
+							name: "phosphor-icons",
+						},
+						{
+							test: /node_modules\/remixicon-svelte/,
+							name: "remixicon-icons",
+						},
+					],
 				},
 			},
 		},
@@ -66,9 +79,6 @@ export default defineConfig({
 
 async function buildRegistry() {
 	await build();
-	execSync("pnpm shadcn-svelte registry build --output static/registry", {
-		stdio: ["pipe", "pipe", "inherit"],
-	});
 	fs.cpSync(path.resolve("static", "registry"), path.resolve("src", "__registry__", "json"), {
 		recursive: true,
 	});

@@ -2,14 +2,13 @@ import color from "picocolors";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { preflightInit } from "../../src/commands/init/preflight.js";
 import { SITE_BASE_URL, TW3_SITE_BASE_URL } from "../../src/constants";
-import { highlight } from "../../src/utils/utils";
-import {
-	getProjectPackageInfo,
-	getDependencyPackageInfo,
-} from "../../src/utils/get-package-info.js";
+import { highlight } from "../../src/utils/colors";
+import { getDependencyPackageInfo } from "../../src/utils/get-package-info.js";
+import * as project from "../../src/utils/project.js";
 
+vi.mock("../../src/utils/project.js");
 vi.mock("../../src/utils/get-package-info.js");
-vi.mock("../../src/utils/utils");
+vi.mock("../../src/utils/colors");
 
 describe("preflightInit", () => {
 	beforeEach(() => {
@@ -19,7 +18,7 @@ describe("preflightInit", () => {
 	});
 
 	it("should throw error for Tailwind v3 + Svelte v5", () => {
-		vi.mocked(getProjectPackageInfo).mockReturnValue({
+		vi.mocked(project.getPackageInfo).mockReturnValue({
 			dependencies: {
 				tailwindcss: "3.0.0",
 				svelte: "5.0.0",
@@ -41,7 +40,7 @@ describe("preflightInit", () => {
 	});
 
 	it("should throw error for Tailwind v3 + Svelte v4", () => {
-		vi.mocked(getProjectPackageInfo).mockReturnValue({
+		vi.mocked(project.getPackageInfo).mockReturnValue({
 			dependencies: {
 				tailwindcss: "3.0.0",
 				svelte: "4.0.0",
@@ -58,7 +57,7 @@ describe("preflightInit", () => {
 	});
 
 	it("should throw error for Tailwind v4 + Svelte v4", () => {
-		vi.mocked(getProjectPackageInfo).mockReturnValue({
+		vi.mocked(project.getPackageInfo).mockReturnValue({
 			dependencies: {
 				tailwindcss: "4.0.0",
 				svelte: "4.0.0",
@@ -72,7 +71,7 @@ describe("preflightInit", () => {
 	});
 
 	it("should pass for Tailwind v4 + Svelte v5", () => {
-		vi.mocked(getProjectPackageInfo).mockReturnValue({
+		vi.mocked(project.getPackageInfo).mockReturnValue({
 			dependencies: {
 				tailwindcss: "4.0.0",
 				svelte: "5.0.0",
@@ -84,7 +83,7 @@ describe("preflightInit", () => {
 	});
 
 	it("should check both dependencies and devDependencies", () => {
-		vi.mocked(getProjectPackageInfo).mockReturnValue({
+		vi.mocked(project.getPackageInfo).mockReturnValue({
 			dependencies: {
 				tailwindcss: "4.0.0",
 			},
@@ -97,7 +96,7 @@ describe("preflightInit", () => {
 	});
 
 	it("should handle missing dependencies", () => {
-		vi.mocked(getProjectPackageInfo).mockReturnValue({
+		vi.mocked(project.getPackageInfo).mockReturnValue({
 			dependencies: {},
 			devDependencies: {},
 		});
@@ -108,7 +107,7 @@ describe("preflightInit", () => {
 	});
 
 	it("should continue with skip-preflight flag", () => {
-		vi.mocked(getProjectPackageInfo).mockReturnValue({
+		vi.mocked(project.getPackageInfo).mockReturnValue({
 			dependencies: {},
 			devDependencies: {},
 		});

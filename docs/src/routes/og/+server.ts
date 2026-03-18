@@ -1,7 +1,8 @@
 import { redirect } from "@sveltejs/kit";
+import { OG_IMAGE_BASE_URL } from "./og.js";
 
 export function GET({ url }) {
-	const destination = "https://og.shadcn-svelte.com/og";
+	const destination = new URL("/og", OG_IMAGE_BASE_URL);
 	// append the query params to the destination
 	const destinationWithParams = new URL(destination);
 	destinationWithParams.search = url.search;

@@ -11,7 +11,7 @@ export function getCommand(
 	type: PackageManagerCommand,
 	command: string | string[]
 ): ResolvedCommand {
-	let args = [];
+	let args;
 	if (typeof command === "string") {
 		args = command.split(" ");
 	} else {

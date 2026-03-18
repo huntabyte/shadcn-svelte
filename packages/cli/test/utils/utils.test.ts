@@ -1,7 +1,10 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { ALIAS_DEFAULTS, ALIASES } from "../../src/constants";
-import { parseDependency, resolveURL } from "../../src/utils/utils";
+import { resolveURL } from "../../src/utils/utils";
 import { transformAliases, transformLocal } from "../../src/commands/registry/build";
+import { z } from "zod";
+import { naiveDeepPartialify } from "../../src/utils/registry/schema.js";
+import { parseDependency } from "../../src/utils/install-deps.js";
 
 describe("resolveURL", () => {
 	it("Correctly resolves the relative url path", () => {
@@ -190,5 +193,51 @@ describe("transformAliases", () => {
 		expect(out).toBe(`import X from "${placeholder}/thing.js"`);
 		// ensure preset remains untouched
 		expect(aliases[key]).toBe(preset);
+	});
+});
+
+describe("naiveDeepPartialify", () => {
+	it("should convert a zod object to a zod object with all fields optional", () => {
+		const schema = z.object({
+			a: z.string(),
+			b: z.number(),
+			c: z.boolean(),
+		});
+
+		const partialSchema = naiveDeepPartialify(schema);
+
+		const parsed = partialSchema.safeParse({});
+
+		expect(parsed.success).toBe(true);
+	});
+
+	it("should allow nested objects to be optional", () => {
+		const schema = z.object({
+			a: z.object({
+				b: z.string(),
+			}),
+		});
+
+		const partialSchema = naiveDeepPartialify(schema);
+
+		const parsed = partialSchema.safeParse({});
+
+		expect(parsed.success).toBe(true);
+	});
+
+	it("should allow nested objects properties to be optional", () => {
+		const schema = z.object({
+			a: z.object({
+				b: z.string(),
+			}),
+		});
+
+		const partialSchema = naiveDeepPartialify(schema);
+
+		const parsed = partialSchema.safeParse({
+			a: {},
+		});
+
+		expect(parsed.success).toBe(true);
 	});
 });

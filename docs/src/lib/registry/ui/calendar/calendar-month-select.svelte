@@ -20,7 +20,7 @@
 >
 	<CalendarPrimitive.MonthSelect
 		bind:ref
-		class="dark:bg-popover dark:text-popover-foreground absolute inset-0 opacity-0"
+		class="bg-background dark:bg-popover dark:text-popover-foreground absolute inset-0 opacity-0"
 		{...restProps}
 	>
 		{#snippet child({ props, monthItems, selectedMonthItem })}
@@ -37,7 +37,7 @@
 				{/each}
 			</select>
 			<span
-				class="[&>svg]:text-muted-foreground flex h-8 items-center gap-1 rounded-md ps-2 pe-1 text-sm font-medium select-none [&>svg]:size-3.5"
+				class="[&>svg]:text-muted-foreground flex h-(--cell-size) items-center gap-1 rounded-md ps-2 pe-1 text-sm font-medium select-none [&>svg]:size-3.5"
 				aria-hidden="true"
 			>
 				{monthItems.find((item) => item.value === value)?.label || selectedMonthItem.label}

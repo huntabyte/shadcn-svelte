@@ -8,7 +8,7 @@
 <Empty.Root class="flex-none border">
 	<Empty.Header>
 		<Empty.Media>
-			<div class="*:ring-background flex -space-x-2 *:size-12 *:ring-2 *:grayscale">
+			<Avatar.Group class="grayscale">
 				<Avatar.Root>
 					<Avatar.Image src="https://github.com/shadcn.png" alt="@shadcn" />
 					<Avatar.Fallback>CN</Avatar.Fallback>
@@ -21,7 +21,7 @@
 					<Avatar.Image src="https://github.com/evilrabbit.png" alt="@evilrabbit" />
 					<Avatar.Fallback>ER</Avatar.Fallback>
 				</Avatar.Root>
-			</div>
+			</Avatar.Group>
 		</Empty.Media>
 		<Empty.Title>No Team Members</Empty.Title>
 		<Empty.Description>Invite your team to collaborate on this project.</Empty.Description>
