@@ -5,7 +5,7 @@ export function useIsMac(): {
 	readonly cmdOrCtrl: string;
 	readonly optionOrAlt: string;
 } {
-	const isMac = $derived(checkIsMac());
+	const isMac = $derived(browser ? navigator.userAgent.includes("Mac") : false);
 
 	return {
 		get current(): boolean {
@@ -18,11 +18,4 @@ export function useIsMac(): {
 			return isMac ? "⌥" : "Alt";
 		},
 	};
-}
-
-function checkIsMac() {
-	if (browser) {
-		return navigator.userAgent.includes("Mac");
-	}
-	return false;
 }
