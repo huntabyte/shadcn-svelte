@@ -1,17 +1,14 @@
-import { z } from "zod";
+import { z } from "zod/v4";
 
 const registryItemFileType = [
-	"registry:lib",
-	"registry:block",
-	"registry:component",
-	"registry:ui",
-	"registry:hook",
-	"registry:page",
 	"registry:file",
+	"registry:page",
+	"registry:ui",
+	"registry:component",
+	"registry:lib",
+	"registry:hook",
 	"registry:theme",
 	"registry:style",
-	"registry:item",
-	"registry:font",
 ] as const;
 
 const registryItemComplexType = ["registry:block"] as const;
@@ -105,7 +102,10 @@ export const registryIndexSchema = z.array(registryIndexItemSchema);
 const colorSchema = z.record(z.string(), z.string());
 /** Schema for base color endpoints (e.g. `https://example.com/registry/colors/slate.json`) */
 export const registryBaseColorSchema = z.object({
+	inlineColors: z.object({ light: colorSchema, dark: colorSchema }),
 	cssVars: z.object({ light: colorSchema, dark: colorSchema }),
+	inlineColorsTemplate: z.string(),
+	cssVarsTemplate: z.string(),
 });
 
 export type CssVars = z.infer<typeof registryItemCssVarsSchema>;
@@ -144,7 +144,9 @@ const registryItemCssSchema: z.ZodType<CssSchema, CssSchema> = z
 		"CSS definitions to be added to the project's CSS file. Supports at-rules, selectors, nested rules, utilities, layers, and more."
 	);
 
-export const registryItemCommonSchema = z.object({
+export type RegistryItem = z.infer<typeof registryItemSchema>;
+/** Schema for registry item endpoints (e.g. `https://example.com/registry/item.json`) */
+export const registryItemSchema = z.object({
 	$schema: z.string().optional(),
 	...baseIndexItemSchema.shape,
 	docs: z
@@ -159,31 +161,8 @@ export const registryItemCommonSchema = z.object({
 	css: z.optional(registryItemCssSchema),
 	cssVars: z.optional(registryItemCssVarsSchema),
 
-	files: z.array(registryItemFileSchema).optional(),
+	files: z.array(registryItemFileSchema).default([]),
 });
-
-/** Font metadata schema for registry:font items. */
-export const registryItemFontSchema = registryItemCommonSchema.extend({
-	type: z.literal("registry:font"),
-	font: z.object({
-		family: z.string(),
-		cssImport: z.string(),
-		variable: z.string(),
-		dependencies: z.array(z.string()).optional(),
-	}),
-});
-
-export type RegistryFont = z.infer<typeof registryItemFontSchema>;
-
-export type RegistryItem = z.infer<typeof registryItemSchema>;
-
-/** Schema for registry item endpoints (e.g. `https://example.com/registry/item.json`) */
-export const registryItemSchema = z.discriminatedUnion("type", [
-	registryItemFontSchema,
-	registryItemCommonSchema.extend({
-		type: registryItemTypeSchema.exclude(["registry:font"]),
-	}),
-]);
 
 export type Registry = z.infer<typeof registrySchema>;
 
