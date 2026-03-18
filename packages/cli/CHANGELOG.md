@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.2.0
+
+### Minor Changes
+
+- feat: New project initialization options ([#2471](https://github.com/huntabyte/shadcn-svelte/pull/2471))
+
 ## 1.1.1
 
 ### Patch Changes
