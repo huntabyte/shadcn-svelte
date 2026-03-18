@@ -1,11 +1,12 @@
 <script lang="ts">
-	/* eslint-disable @typescript-eslint/no-explicit-any */
 	import * as Avatar from "$lib/registry/ui/avatar/index.js";
 	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { buttonVariants } from "$lib/registry/ui/button/button.svelte";
+	import { cn } from "$lib/utils.js";
 
 	const data = {
 		user: {
@@ -31,11 +32,7 @@
 			{
 				title: "Playground",
 				url: "#",
-				lucide: "TerminalSquareIcon",
-				tabler: "IconTerminal2",
-				hugeicons: "ComputerTerminalIcon",
-				phosphor: "TerminalIcon",
-				remixicon: "RiTerminalBoxLine",
+				icon: iconPlayground,
 				isActive: true,
 				items: [
 					{
@@ -55,11 +52,7 @@
 			{
 				title: "Models",
 				url: "#",
-				lucide: "BotIcon",
-				tabler: "IconRobot",
-				hugeicons: "RoboticIcon",
-				phosphor: "RobotIcon",
-				remixicon: "RiRobotLine",
+				icon: iconModels,
 				items: [
 					{
 						title: "Genesis",
@@ -78,11 +71,7 @@
 			{
 				title: "Documentation",
 				url: "#",
-				lucide: "BookOpen",
-				tabler: "IconBook",
-				hugeicons: "BookOpen02Icon",
-				phosphor: "BookOpenIcon",
-				remixicon: "RiBookOpenLine",
+				icon: iconDocumentation,
 				items: [
 					{
 						title: "Introduction",
@@ -105,11 +94,7 @@
 			{
 				title: "Settings",
 				url: "#",
-				lucide: "Settings2Icon",
-				tabler: "IconSettings",
-				hugeicons: "Settings05Icon",
-				phosphor: "GearIcon",
-				remixicon: "RiSettingsLine",
+				icon: iconSettings,
 				items: [
 					{
 						title: "General",
@@ -134,29 +119,17 @@
 			{
 				name: "Design Engineering",
 				url: "#",
-				lucide: "FrameIcon",
-				tabler: "IconFrame",
-				hugeicons: "CropIcon",
-				phosphor: "CropIcon",
-				remixicon: "RiCropLine",
+				icon: iconDesignEngineering,
 			},
 			{
 				name: "Sales & Marketing",
 				url: "#",
-				lucide: "PieChartIcon",
-				tabler: "IconChartPie",
-				hugeicons: "PieChartIcon",
-				phosphor: "ChartPieIcon",
-				remixicon: "RiPieChartLine",
+				icon: iconSalesMarketing,
 			},
 			{
 				name: "Travel",
 				url: "#",
-				lucide: "MapIcon",
-				tabler: "IconMap",
-				hugeicons: "MapsIcon",
-				phosphor: "MapTrifoldIcon",
-				remixicon: "RiMapLine",
+				icon: iconTravel,
 			},
 		],
 	};
@@ -177,7 +150,7 @@
 									class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
 									{...props}
 								>
-									<span class="flex size-8 items-center justify-center">
+									<div class={cn(buttonVariants({ size: "icon-sm" }), "size-8")}>
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
 											viewBox="0 0 256 256"
@@ -206,7 +179,7 @@
 												stroke-width="32"
 											></line>
 										</svg>
-									</span>
+									</div>
 									<div class="grid flex-1 text-left text-sm leading-tight">
 										<span class="truncate font-medium">{activeTeam.name}</span>
 										<span class="truncate text-xs">{activeTeam.plan}</span>
@@ -251,13 +224,7 @@
 												tooltipContent={item.title}
 												{...props}
 											>
-												<IconPlaceholder
-													lucide={item.lucide as any}
-													tabler={item.tabler as any}
-													hugeicons={item.hugeicons as any}
-													phosphor={item.phosphor as any}
-													remixicon={item.remixicon as any}
-												/>
+												{@render item.icon?.()}
 												<span>{item.title}</span>
 												<IconPlaceholder
 													lucide="ChevronRightIcon"
@@ -299,13 +266,7 @@
 							<Sidebar.MenuButton>
 								{#snippet child({ props })}
 									<a href={item.url} {...props}>
-										<IconPlaceholder
-											lucide={item.lucide as any}
-											tabler={item.tabler as any}
-											hugeicons={item.hugeicons as any}
-											phosphor={item.phosphor as any}
-											remixicon={item.remixicon as any}
-										/>
+										{@render item.icon?.()}
 										{item.name}
 									</a>
 								{/snippet}
@@ -399,3 +360,67 @@
 		</div>
 	</Sidebar.Inset>
 </Sidebar.Provider>
+
+{#snippet iconPlayground()}
+	<IconPlaceholder
+		lucide="TerminalSquareIcon"
+		tabler="IconTerminal2"
+		hugeicons="ComputerTerminalIcon"
+		phosphor="TerminalIcon"
+		remixicon="RiTerminalBoxLine"
+	/>
+{/snippet}
+{#snippet iconModels()}
+	<IconPlaceholder
+		lucide="BotIcon"
+		tabler="IconRobot"
+		hugeicons="RoboticIcon"
+		phosphor="RobotIcon"
+		remixicon="RiRobotLine"
+	/>
+{/snippet}
+{#snippet iconDocumentation()}
+	<IconPlaceholder
+		lucide="BookOpen"
+		tabler="IconBook"
+		hugeicons="BookOpen02Icon"
+		phosphor="BookOpenIcon"
+		remixicon="RiBookOpenLine"
+	/>
+{/snippet}
+{#snippet iconSettings()}
+	<IconPlaceholder
+		lucide="Settings2Icon"
+		tabler="IconSettings"
+		hugeicons="Settings05Icon"
+		phosphor="GearIcon"
+		remixicon="RiSettingsLine"
+	/>
+{/snippet}
+{#snippet iconDesignEngineering()}
+	<IconPlaceholder
+		lucide="FrameIcon"
+		tabler="IconFrame"
+		hugeicons="CropIcon"
+		phosphor="CropIcon"
+		remixicon="RiCropLine"
+	/>
+{/snippet}
+{#snippet iconSalesMarketing()}
+	<IconPlaceholder
+		lucide="PieChartIcon"
+		tabler="IconChartPie"
+		hugeicons="PieChartIcon"
+		phosphor="ChartPieIcon"
+		remixicon="RiPieChartLine"
+	/>
+{/snippet}
+{#snippet iconTravel()}
+	<IconPlaceholder
+		lucide="MapIcon"
+		tabler="IconMap"
+		hugeicons="MapsIcon"
+		phosphor="MapTrifoldIcon"
+		remixicon="RiMapLine"
+	/>
+{/snippet}
