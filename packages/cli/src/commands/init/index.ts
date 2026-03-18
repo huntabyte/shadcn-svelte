@@ -227,10 +227,20 @@ async function promptForConfig({
 		menuAccent: decidedPresets.menuAccent,
 	});
 
+	let styleChanged;
+	if (existingConfig) {
+		styleChanged =
+			existingConfig.style !== decidedPresets.style ||
+			existingConfig.menuColor !== decidedPresets.menuColor ||
+			existingConfig.menuAccent !== decidedPresets.menuAccent;
+	} else {
+		styleChanged = false;
+	}
+
 	return {
 		resolvedConfig: await cliConfig.resolveConfig(cwd, rawConfig),
 		decidedPresets,
-		styleChanged: existingConfig ? existingConfig.style !== decidedPresets.style : false,
+		styleChanged,
 	};
 }
 

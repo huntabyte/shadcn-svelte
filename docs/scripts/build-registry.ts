@@ -231,6 +231,9 @@ function transformContentWithStyle(content: string, styleMap: Record<string, str
 	// Use negative lookahead (?![-\\w]) so we only match whole class names, not substrings
 	const entries = Object.entries(styleMap).sort(([a], [b]) => b.length - a.length);
 	for (const [className, classes] of entries) {
+		// don't replace cn-menu-translucent or cn-menu-target
+		// they anchor the menu styles for transform-menu
+		if (["cn-menu-translucent", "cn-menu-target"].includes(className)) continue;
 		const escaped = className.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 		const regex = new RegExp(escaped + "(?![\\w-])", "g");
 		content = content.replace(regex, classes);
