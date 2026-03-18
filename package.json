@@ -54,9 +54,9 @@
 		"pretty-quick": "^4.2.2",
 		"svelte": "catalog:",
 		"typescript": "5.9.3",
-		"typescript-eslint": "^8.57.0",
+		"typescript-eslint": "^8.57.1",
 		"wait-on": "^9.0.4",
-		"wrangler": "^4.73.0"
+		"wrangler": "^4.75.0"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [

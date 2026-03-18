@@ -24,7 +24,7 @@
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20260313.1",
+		"@cloudflare/workers-types": "^4.20260317.1",
 		"@dnd-kit-svelte/svelte": "^0.1.6",
 		"@dnd-kit/abstract": "^0.3.2",
 		"@dnd-kit/collision": "^0.3.2",
@@ -77,7 +77,7 @@
 		"formsnap": "^2.0.1",
 		"globby": "^16.1.1",
 		"hast-util-to-html": "^9.0.5",
-		"jsdom": "^28.1.0",
+		"jsdom": "^29.0.0",
 		"layerchart": "2.0.0-next.46",
 		"little-date": "^1.2.1",
 		"magic-string": "^0.30.21",
@@ -86,7 +86,7 @@
 		"package-manager-detector": "^1.6.0",
 		"paneforge": "^1.0.2",
 		"phosphor-svelte": "^3.1.0",
-		"postcss": "^8.4.49",
+		"postcss": "^8.5.8",
 		"rehype-parse": "^9.0.1",
 		"rehype-pretty-code": "^0.14.3",
 		"rehype-remark": "^10.0.1",
