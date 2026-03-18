@@ -149,7 +149,7 @@
 	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();
 </script>
 
-<Sidebar.Root variant="floating" {...restProps}>
+<Sidebar.Root bind:ref variant="floating" {...restProps}>
 	<Sidebar.Header>
 		<Sidebar.Menu>
 			<Sidebar.MenuItem>

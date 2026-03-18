@@ -13,6 +13,7 @@
 </script>
 
 <ResizablePrimitive.PaneGroup
+	bind:ref
 	bind:this={paneGroup}
 	data-slot="resizable-pane-group"
 	class={cn(

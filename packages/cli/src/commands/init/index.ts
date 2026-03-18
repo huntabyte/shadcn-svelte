@@ -177,12 +177,7 @@ async function promptForConfig({
 	validateOptions(cwd, options, tsconfig);
 
 	// Design system
-	let decidedPresets: PresetConfig | null = null;
-	if (presetConfig) {
-		decidedPresets = presetConfig;
-	} else {
-		decidedPresets = await promptForPreset(existingConfig);
-	}
+	const decidedPresets = presetConfig ?? (await promptForPreset(existingConfig));
 
 	// Global CSS File
 	let globalCss = options.css;
