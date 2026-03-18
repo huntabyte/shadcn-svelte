@@ -2,7 +2,7 @@
 	import { cn } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 	type Props = {
-		title: string;
+		title?: string;
 		containerClass?: string;
 	};
 	let {
@@ -22,13 +22,15 @@
 	)}
 	{...restProps}
 >
-	<div class="text-muted-foreground px-1.5 py-2 text-xs font-medium">
-		{title}
-	</div>
+	{#if title}
+		<div class="text-muted-foreground px-1.5 py-2 text-xs font-medium">
+			{title}
+		</div>
+	{/if}
 	<div
 		data-slot="example-content"
 		class={cn(
-			"bg-background text-foreground flex min-w-0 flex-1 flex-col items-start gap-6 border border-dashed p-4 sm:p-6 *:[div:not([class*='w-'])]:w-full",
+			"bg-card text-foreground flex min-w-0 flex-1 flex-col items-start gap-6 rounded-xl p-12 *:[div:not([class*='w-'])]:w-full",
 			className
 		)}
 	>

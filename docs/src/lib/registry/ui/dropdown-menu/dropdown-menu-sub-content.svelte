@@ -12,6 +12,6 @@
 <DropdownMenuPrimitive.SubContent
 	bind:ref
 	data-slot="dropdown-menu-sub-content"
-	class={cn("cn-dropdown-menu-sub-content w-auto", className)}
+	class={cn("cn-dropdown-menu-sub-content cn-menu-target cn-menu-translucent w-auto", className)}
 	{...restProps}
 />

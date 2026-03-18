@@ -3,6 +3,7 @@ import {
 	transform,
 	transformIcons,
 	transformImports,
+	transformMenu,
 	transformStripTypes,
 } from "../../src/utils/transformers";
 import { transformCss } from "../../src/utils/transform-css";
@@ -419,6 +420,205 @@ describe("transformIcons", () => {
 `.trim()
 		);
 		expect(result.devDependencies).toEqual(["remixicon-svelte"]);
+	});
+});
+
+describe("transformMenu", () => {
+	describe("menuColor is inverted", () => {
+		it("replaces cn-menu-target with dark in string literal", async () => {
+			const content = `
+<script lang="ts">
+	let { class: className } = $props();
+</script>
+
+<div class="cn-menu-target p-4">Content</div>
+`.trim();
+			const result = await transformMenu({
+				content,
+				filePath: "test.svelte",
+				config: { ...mockConfig, menuColor: "inverted" },
+			});
+			expect(result.content).toContain('class="dark p-4"');
+		});
+
+		it("replaces cn-menu-target with dark in cn() call", async () => {
+			const content = `
+<script lang="ts">
+	import { cn } from "$lib/utils.js";
+	let { class: className } = $props();
+</script>
+
+<div class={cn("cn-menu-target", "p-4")}>Content</div>
+`.trim();
+			const result = await transformMenu({
+				content,
+				filePath: "test.svelte",
+				config: { ...mockConfig, menuColor: "inverted" },
+			});
+			expect(result.content).toContain('cn("dark", "p-4")');
+		});
+	});
+
+	describe("menuColor is default or not set", () => {
+		it("removes cn-menu-target from string literal", async () => {
+			const content = `
+<script lang="ts">
+	let { class: className } = $props();
+</script>
+
+<div class="cn-menu-target p-4">Content</div>
+`.trim();
+			const result = await transformMenu({
+				content,
+				filePath: "test.svelte",
+				config: { ...mockConfig, menuColor: "default" },
+			});
+			expect(result.content).toContain('class="p-4"');
+		});
+
+		it("removes cn-menu-target when menuColor is not set", async () => {
+			const content = `
+<script lang="ts">
+	let { class: className } = $props();
+</script>
+
+<div class="cn-menu-target p-4">Content</div>
+`.trim();
+			const result = await transformMenu({
+				content,
+				filePath: "test.svelte",
+				config: mockConfig,
+			});
+			expect(result.content).toContain('class="p-4"');
+		});
+
+		it("removes cn-menu-target from cn() call and cleans up empty string", async () => {
+			const content = `
+<script lang="ts">
+	import { cn } from "$lib/utils.js";
+	let { class: className } = $props();
+</script>
+
+<div class={cn("cn-menu-target", "p-4")}>Content</div>
+`.trim();
+			const result = await transformMenu({
+				content,
+				filePath: "test.svelte",
+				config: { ...mockConfig, menuColor: "default" },
+			});
+			expect(result.content).toContain('cn("p-4")');
+		});
+
+		it("cleans up cn-menu-target at the end of cn() call", async () => {
+			const content = `
+<script lang="ts">
+	import { cn } from "$lib/utils.js";
+	let { class: className } = $props();
+</script>
+
+<div class={cn("p-4", "cn-menu-target")}>Content</div>
+`.trim();
+			const result = await transformMenu({
+				content,
+				filePath: "test.svelte",
+				config: { ...mockConfig, menuColor: "default" },
+			});
+			expect(result.content).toContain('cn("p-4")');
+		});
+	});
+
+	it("does not modify class without cn-menu-target or cn-menu-translucent", async () => {
+		const content = `
+<script lang="ts">
+	let { class: className } = $props();
+</script>
+
+<div class="p-4 mt-2">Content</div>
+`.trim();
+		const result = await transformMenu({
+			content,
+			filePath: "test.svelte",
+			config: { ...mockConfig, menuColor: "inverted" },
+		});
+		expect(result.content).toBe(content);
+	});
+
+	describe("menuColor is default-translucent", () => {
+		it("inlines cn-menu-translucent styles", async () => {
+			const content = `
+<script lang="ts">
+	let { class: className } = $props();
+</script>
+
+<div class="cn-menu-target cn-menu-translucent p-4">Content</div>
+`.trim();
+			const result = await transformMenu({
+				content,
+				filePath: "test.svelte",
+				config: { ...mockConfig, menuColor: "default-translucent" },
+			});
+			expect(result.content).toContain("animate-none!");
+			expect(result.content).toContain("bg-popover/70");
+			expect(result.content).not.toContain("cn-menu-translucent");
+			expect(result.content).not.toContain("cn-menu-target");
+		});
+	});
+
+	describe("menuColor is inverted-translucent", () => {
+		it("replaces cn-menu-target with dark and inlines cn-menu-translucent", async () => {
+			const content = `
+<script lang="ts">
+	let { class: className } = $props();
+</script>
+
+<div class="cn-menu-target cn-menu-translucent p-4">Content</div>
+`.trim();
+			const result = await transformMenu({
+				content,
+				filePath: "test.svelte",
+				config: { ...mockConfig, menuColor: "inverted-translucent" },
+			});
+			expect(result.content).toContain("dark");
+			expect(result.content).toContain("animate-none!");
+			expect(result.content).not.toContain("cn-menu-translucent");
+			expect(result.content).not.toContain("cn-menu-target");
+		});
+	});
+
+	describe("menuColor is inverted removes cn-menu-translucent", () => {
+		it("replaces cn-menu-target with dark and removes cn-menu-translucent", async () => {
+			const content = `
+<script lang="ts">
+	let { class: className } = $props();
+</script>
+
+<div class="cn-menu-target cn-menu-translucent p-4">Content</div>
+`.trim();
+			const result = await transformMenu({
+				content,
+				filePath: "test.svelte",
+				config: { ...mockConfig, menuColor: "inverted" },
+			});
+			expect(result.content).toContain('class="dark p-4"');
+		});
+	});
+
+	describe("menuColor is default removes cn-menu-translucent", () => {
+		it("removes both cn-menu-target and cn-menu-translucent", async () => {
+			const content = `
+<script lang="ts">
+	let { class: className } = $props();
+</script>
+
+<div class="cn-menu-target cn-menu-translucent p-4">Content</div>
+`.trim();
+			const result = await transformMenu({
+				content,
+				filePath: "test.svelte",
+				config: { ...mockConfig, menuColor: "default" },
+			});
+			expect(result.content).toContain('class="p-4"');
+		});
 	});
 });
 

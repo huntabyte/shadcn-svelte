@@ -1,3 +1,5 @@
+// !! BROWSER SAFE !!
+
 import type { Transformer, TransformerResult } from "./index.js";
 import { parse as parseSvelte } from "svelte/compiler";
 import { walk, type Node } from "estree-walker";

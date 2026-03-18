@@ -27,7 +27,7 @@
 		{side}
 		{sideOffset}
 		class={cn(
-			"cn-menubar-content cn-menu-target z-50 origin-(--bits-menubar-content-transform-origin)",
+			"cn-menubar-content cn-menu-target cn-menu-translucent z-50 origin-(--bits-menubar-content-transform-origin)",
 			className
 		)}
 		{...restProps}

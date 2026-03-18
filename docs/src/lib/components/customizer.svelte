@@ -3,7 +3,6 @@
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import IconPlaceholder from "./icon-placeholder/icon-placeholder.svelte";
-	import PresetPicker from "../../routes/(app)/(layout)/(create)/components/preset-picker.svelte";
 	import StylePicker from "../../routes/(app)/(layout)/(create)/components/style-picker.svelte";
 	import BaseColorPicker from "../../routes/(app)/(layout)/(create)/components/base-color-picker.svelte";
 	import ThemePicker from "../../routes/(app)/(layout)/(create)/components/theme-picker.svelte";
@@ -43,7 +42,6 @@
 		</DropdownMenu.Trigger>
 		<DropdownMenu.Content align="end" class="dark min-w-64 p-0" preventScroll={false}>
 			<DropdownMenu.Group>
-				<PresetPicker submenu />
 				<StylePicker submenu />
 				<BaseColorPicker submenu />
 				<ThemePicker submenu />

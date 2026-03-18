@@ -20,7 +20,7 @@
 		bind:ref
 		data-slot="context-menu-content"
 		class={cn(
-			"cn-context-menu-content cn-menu-target z-50 overflow-x-hidden overflow-y-auto outline-none",
+			"cn-context-menu-content cn-menu-target cn-menu-translucent z-50 overflow-x-hidden overflow-y-auto outline-none",
 			className
 		)}
 		{...restProps}

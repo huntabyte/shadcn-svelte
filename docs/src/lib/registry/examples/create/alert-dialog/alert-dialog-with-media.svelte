@@ -3,10 +3,12 @@
 	import * as AlertDialog from "$lib/registry/ui/alert-dialog/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+
+	let open = $state(false);
 </script>
 
 <Example title="With Media" class="items-center">
-	<AlertDialog.Root>
+	<AlertDialog.Root bind:open>
 		<AlertDialog.Trigger>
 			<Button variant="outline">Default (Media)</Button>
 		</AlertDialog.Trigger>
@@ -28,7 +30,7 @@
 			</AlertDialog.Header>
 			<AlertDialog.Footer>
 				<AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
-				<AlertDialog.Action>Continue</AlertDialog.Action>
+				<AlertDialog.Action onclick={() => (open = false)}>Continue</AlertDialog.Action>
 			</AlertDialog.Footer>
 		</AlertDialog.Content>
 	</AlertDialog.Root>

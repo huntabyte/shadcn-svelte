@@ -8,6 +8,11 @@ type Example = {
 
 export const examples: Example[] = [
 	{
+		title: "Preview",
+		name: "preview",
+		type: "registry:example",
+	},
+	{
 		title: "Accordion",
 		name: "accordion",
 		type: "registry:example",
@@ -95,6 +100,11 @@ export const examples: Example[] = [
 	{
 		title: "Context Menu",
 		name: "context-menu",
+		type: "registry:example",
+	},
+	{
+		title: "Demo",
+		name: "demo",
 		type: "registry:example",
 	},
 	{
@@ -292,29 +302,29 @@ export const examples: Example[] = [
 		name: "tooltip",
 		type: "registry:example",
 	},
-	{
-		title: "Home",
-		name: "home",
-		type: "registry:block",
-	},
-	{
-		title: "Elevenlabs",
-		name: "elevenlabs",
-		type: "registry:block",
-	},
-	{
-		title: "GitHub",
-		name: "github",
-		type: "registry:block",
-	},
-	{
-		title: "Vercel",
-		name: "vercel",
-		type: "registry:block",
-	},
-	{
-		title: "ChatGPT",
-		name: "chatgpt",
-		type: "registry:block",
-	},
+	// {
+	// 	title: "Home",
+	// 	name: "home",
+	// 	type: "registry:block",
+	// },
+	// {
+	// 	title: "Elevenlabs",
+	// 	name: "elevenlabs",
+	// 	type: "registry:block",
+	// },
+	// {
+	// 	title: "GitHub",
+	// 	name: "github",
+	// 	type: "registry:block",
+	// },
+	// {
+	// 	title: "Vercel",
+	// 	name: "vercel",
+	// 	type: "registry:block",
+	// },
+	// {
+	// 	title: "ChatGPT",
+	// 	name: "chatgpt",
+	// 	type: "registry:block",
+	// },
 ];

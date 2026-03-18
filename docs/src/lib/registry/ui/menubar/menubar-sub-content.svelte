@@ -12,6 +12,6 @@
 <MenubarPrimitive.SubContent
 	bind:ref
 	data-slot="menubar-sub-content"
-	class={cn("cn-menubar-sub-content", className)}
+	class={cn("cn-menubar-sub-content cn-menu-target cn-menu-translucent", className)}
 	{...restProps}
 />

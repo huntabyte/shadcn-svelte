@@ -20,6 +20,7 @@ import {
 	transform,
 	transformImports,
 	transformIcons,
+	transformMenu,
 	transformStripTypes,
 } from "../../utils/transformers/index.js";
 import * as project from "../../utils/project.js";
@@ -184,6 +185,7 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 					} = await transform({ content: file.content, filePath, config }, [
 						transformImports,
 						transformIcons,
+						transformMenu,
 						config.typescript && transformStripTypes,
 					]);
 

@@ -12,6 +12,6 @@
 <ContextMenuPrimitive.SubContent
 	bind:ref
 	data-slot="context-menu-sub-content"
-	class={cn("cn-context-menu-sub-content", className)}
+	class={cn("cn-context-menu-sub-content cn-menu-target cn-menu-translucent", className)}
 	{...restProps}
 />

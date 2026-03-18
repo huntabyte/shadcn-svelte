@@ -12,9 +12,11 @@ import {
 import type { RequestHandler } from "./$types.js";
 import {
 	DEFAULT_CONFIG,
+	MENU_COLORS,
 	getIconLibrary,
 	getStyle,
 	type IconLibraryName,
+	type MenuColorValue,
 	type StyleName,
 } from "$lib/registry/config.js";
 
@@ -65,9 +67,19 @@ const highlightedBlockSchema = z.object({
 
 async function loadItem(
 	block: string,
-	{ designSystem }: { designSystem: { style: StyleName; iconLibrary: IconLibraryName } }
+	{
+		designSystem,
+	}: {
+		designSystem: {
+			style: StyleName;
+			iconLibrary: IconLibraryName;
+			menuColor?: MenuColorValue;
+		};
+	}
 ): Promise<HighlightedBlock> {
-	const { default: mod } = await import(`../../../../__registry__/json/${block}.json`);
+	const { default: mod } = await import(
+		`../../../../__registry__/json/styles/${designSystem.style}/${block}.json`
+	);
 	const item = registryItemSchema.parse(mod);
 	const meta = blockMeta[item.name as keyof typeof blockMeta];
 	const files = item.files?.map(async (file) => {
@@ -93,13 +105,17 @@ async function loadItem(
 	});
 }
 
+const menuColorValues = MENU_COLORS.map((m) => m.value);
+
 export const GET: RequestHandler = async ({ params, url }) => {
 	// Safely access searchParams during prerendering
 	let style: string | null = null;
 	let iconLibrary: string | null = null;
+	let menuColor: string | null = null;
 	try {
 		style = url.searchParams.get("style");
 		iconLibrary = url.searchParams.get("iconLibrary");
+		menuColor = url.searchParams.get("menuColor");
 	} catch {
 		// TODO: Fix prerendering - During prerendering, searchParams is not available
 		// Use default values
@@ -112,6 +128,9 @@ export const GET: RequestHandler = async ({ params, url }) => {
 			iconLibrary:
 				getIconLibrary((iconLibrary ?? "") as IconLibraryName)?.name ??
 				DEFAULT_CONFIG.iconLibrary,
+			menuColor: menuColorValues.includes((menuColor ?? "") as MenuColorValue)
+				? (menuColor as MenuColorValue)
+				: DEFAULT_CONFIG.menuColor,
 		},
 	});
 	return json(item);

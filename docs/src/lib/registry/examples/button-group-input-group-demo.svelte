@@ -15,7 +15,7 @@
 			<Plus />
 		</Button>
 	</ButtonGroup.Root>
-	<ButtonGroup.Root>
+	<ButtonGroup.Root class="flex-1">
 		<InputGroup.Root>
 			<InputGroup.Input
 				placeholder={voiceEnabled ? "Record and send audio..." : "Send a message..."}

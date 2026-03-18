@@ -1,7 +1,4 @@
-/**
- * @module UserUtilities
- * BROWSER SAFE
- */
+// !! BROWSER SAFE !!
 
 import { z } from "zod";
 import { SITE_BASE_URL } from "../../constants.js";
