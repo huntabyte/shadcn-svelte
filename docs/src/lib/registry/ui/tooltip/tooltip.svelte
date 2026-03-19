@@ -3,13 +3,8 @@
 	import TooltipProvider from "./tooltip-provider.svelte";
 
 	let { open = $bindable(false), ...restProps }: TooltipPrimitive.RootProps = $props();
-
-	const rootProps = $derived({
-		...restProps,
-		"data-slot": "tooltip",
-	} as TooltipPrimitive.RootProps & { "data-slot": string });
 </script>
 
 <TooltipProvider>
-	<TooltipPrimitive.Root bind:open {...rootProps} />
+	<TooltipPrimitive.Root bind:open {...restProps} />
 </TooltipProvider>
