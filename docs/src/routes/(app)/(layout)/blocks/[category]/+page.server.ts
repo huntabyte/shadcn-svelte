@@ -2,12 +2,12 @@ import path from "node:path";
 import { registryCategories } from "$lib/registry/registry-categories.js";
 import type { EntryGenerator, PageServerLoad } from "./$types.js";
 
-const sidebars = import.meta.glob("/src/__registry__/json/sidebar-*.json");
-const dashboards = import.meta.glob("/src/__registry__/json/dashboard-*.json");
-const logins = import.meta.glob("/src/__registry__/json/login-*.json");
-const calendars = import.meta.glob("/src/__registry__/json/calendar-*.json");
-const otps = import.meta.glob("/src/__registry__/json/otp-*.json");
-const signUps = import.meta.glob("/src/__registry__/json/signup-*.json");
+const sidebars = import.meta.glob("/src/__registry__/json/styles/nova/sidebar-*.json");
+const dashboards = import.meta.glob("/src/__registry__/json/styles/nova/dashboard-*.json");
+const logins = import.meta.glob("/src/__registry__/json/styles/nova/login-*.json");
+const calendars = import.meta.glob("/src/__registry__/json/styles/nova/calendar-*.json");
+const otps = import.meta.glob("/src/__registry__/json/styles/nova/otp-*.json");
+const signUps = import.meta.glob("/src/__registry__/json/styles/nova/signup-*.json");
 
 export const prerender = true;
 
