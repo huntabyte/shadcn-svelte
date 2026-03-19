@@ -311,10 +311,10 @@ export const mainNavItems: NavItem[] = [
 		title: "Charts",
 		href: "/charts/area",
 	},
-	{
-		title: "Themes",
-		href: "/themes",
-	},
+	// {
+	// 	title: "Themes",
+	// 	href: "/themes",
+	// },
 	{
 		title: "Colors",
 		href: "/colors",
