@@ -186,7 +186,7 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 						transformImports,
 						transformIcons,
 						transformMenu,
-						config.typescript && transformStripTypes,
+						!config.typescript && transformStripTypes,
 					]);
 
 					transformDependencies?.forEach((dep) => dependencies.add(dep));
