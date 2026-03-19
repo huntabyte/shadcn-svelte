@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.2.1
+
+### Patch Changes
+
+- fix: Ensure type stripping is only activated when in js mode ([#2574](https://github.com/huntabyte/shadcn-svelte/pull/2574))
+
 ## 1.2.0
 
 ### Minor Changes
