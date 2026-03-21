@@ -1,5 +1,4 @@
-/** Attempts to determine if a user is on a Mac using `navigator.userAgent`. */
-export const isMac = navigator.userAgent.includes("Mac");
+import { browser } from "$app/environment";
 
 export function useIsMac(): {
 	readonly current: boolean;

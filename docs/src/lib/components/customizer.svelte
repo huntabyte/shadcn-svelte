@@ -19,8 +19,9 @@
 	import UndoIcon from "@lucide/svelte/icons/undo";
 	import RedoIcon from "@lucide/svelte/icons/redo";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
-	import { cmdOrCtrl } from "$lib/hooks/use-is-mac.svelte.js";
+	import { useIsMac } from "$lib/hooks/use-is-mac.svelte.js";
 
+	const isMac = useIsMac();
 	const designSystem = useDesignSystem();
 </script>
 
@@ -106,7 +107,9 @@
 						<span>Undo</span>
 					</div>
 					<Kbd.Group class="hidden md:flex">
-						<Kbd.Root class="bg-foreground/10 text-foreground">{cmdOrCtrl}</Kbd.Root>
+						<Kbd.Root class="bg-foreground/10 text-foreground"
+							>{isMac.cmdOrCtrl}</Kbd.Root
+						>
 						<Kbd.Root class="bg-foreground/10 text-foreground">z</Kbd.Root>
 					</Kbd.Group>
 				</DropdownMenu.Item>
@@ -122,7 +125,9 @@
 					</div>
 					<Kbd.Group class="hidden md:flex">
 						<Kbd.Root class="bg-foreground/10 text-foreground">⇧</Kbd.Root>
-						<Kbd.Root class="bg-foreground/10 text-foreground">{cmdOrCtrl}</Kbd.Root>
+						<Kbd.Root class="bg-foreground/10 text-foreground"
+							>{isMac.cmdOrCtrl}</Kbd.Root
+						>
 						<Kbd.Root class="bg-foreground/10 text-foreground">Z</Kbd.Root>
 					</Kbd.Group>
 				</DropdownMenu.Item>

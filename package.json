@@ -43,7 +43,7 @@
 		"@svitejs/changesets-changelog-github-compact": "^1.2.0",
 		"@types/node": "^25.5.0",
 		"concurrently": "^9.2.1",
-		"eslint": "^10.0.3",
+		"eslint": "^10.1.0",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.15.2",
 		"globals": "^17.4.0",
@@ -56,7 +56,7 @@
 		"typescript": "5.9.3",
 		"typescript-eslint": "^8.57.1",
 		"wait-on": "^9.0.4",
-		"wrangler": "^4.75.0"
+		"wrangler": "^4.76.0"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [
@@ -92,7 +92,8 @@
 			"devalue@<=5.6.3": ">=5.6.4",
 			"flatted@<3.4.0": ">=3.4.0",
 			"undici@>=7.0.0 <7.24.0": ">=7.24.0",
-			"undici@>=7.17.0 <7.24.0": ">=7.24.0"
+			"undici@>=7.17.0 <7.24.0": ">=7.24.0",
+			"ajv@<6.14.0": ">=6.14.0"
 		}
 	}
 }
