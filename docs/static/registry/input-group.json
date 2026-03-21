@@ -1,0 +1,50 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "input-group",
+	"type": "registry:ui",
+	"devDependencies": [
+		"tailwind-variants@^3.2.2"
+	],
+	"registryDependencies": [
+		"button",
+		"input",
+		"textarea"
+	],
+	"files": [
+		{
+			"content": "import Root from \"./input-group.svelte\";\nimport Addon from \"./input-group-addon.svelte\";\nimport Button from \"./input-group-button.svelte\";\nimport Input from \"./input-group-input.svelte\";\nimport Text from \"./input-group-text.svelte\";\nimport Textarea from \"./input-group-textarea.svelte\";\n\nexport {\n\tRoot,\n\tAddon,\n\tButton,\n\tInput,\n\tText,\n\tTextarea,\n\t//\n\tRoot as InputGroup,\n\tAddon as InputGroupAddon,\n\tButton as InputGroupButton,\n\tInput as InputGroupInput,\n\tText as InputGroupText,\n\tTextarea as InputGroupTextarea,\n};\n",
+			"type": "registry:file",
+			"target": "input-group/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\" module>\n\timport { tv, type VariantProps } from \"tailwind-variants\";\n\texport const inputGroupAddonVariants = tv({\n\t\tbase: \"text-muted-foreground flex h-auto cursor-text items-center justify-center gap-2 py-1.5 text-sm font-medium select-none group-data-[disabled=true]/input-group:opacity-50 [&>kbd]:rounded-[calc(var(--radius)-5px)] [&>svg:not([class*='size-'])]:size-4\",\n\t\tvariants: {\n\t\t\talign: {\n\t\t\t\t\"inline-start\":\n\t\t\t\t\t\"order-first ps-3 has-[>button]:ms-[-0.45rem] has-[>kbd]:ms-[-0.35rem]\",\n\t\t\t\t\"inline-end\":\n\t\t\t\t\t\"order-last pe-3 has-[>button]:me-[-0.45rem] has-[>kbd]:me-[-0.35rem]\",\n\t\t\t\t\"block-start\":\n\t\t\t\t\t\"order-first w-full justify-start px-3 pt-3 group-has-[>input]/input-group:pt-2.5 [.border-b]:pb-3\",\n\t\t\t\t\"block-end\":\n\t\t\t\t\t\"order-last w-full justify-start px-3 pb-3 group-has-[>input]/input-group:pb-2.5 [.border-t]:pt-3\",\n\t\t\t},\n\t\t},\n\t\tdefaultVariants: {\n\t\t\talign: \"inline-start\",\n\t\t},\n\t});\n\n\texport type InputGroupAddonAlign = VariantProps<typeof inputGroupAddonVariants>[\"align\"];\n</script>\n\n<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\talign = \"inline-start\",\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {\n\t\talign?: InputGroupAddonAlign;\n\t} = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\trole=\"group\"\n\tdata-slot=\"input-group-addon\"\n\tdata-align={align}\n\tclass={cn(inputGroupAddonVariants({ align }), className)}\n\tonclick={(e) => {\n\t\tif ((e.target as HTMLElement).closest(\"button\")) {\n\t\t\treturn;\n\t\t}\n\t\te.currentTarget.parentElement?.querySelector(\"input\")?.focus();\n\t}}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "input-group/input-group-addon.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\" module>\n\timport { tv, type VariantProps } from \"tailwind-variants\";\n\n\tconst inputGroupButtonVariants = tv({\n\t\tbase: \"flex items-center gap-2 text-sm shadow-none\",\n\t\tvariants: {\n\t\t\tsize: {\n\t\t\t\txs: \"h-6 gap-1 rounded-[calc(var(--radius)-5px)] px-2 has-[>svg]:px-2 [&>svg:not([class*='size-'])]:size-3.5\",\n\t\t\t\tsm: \"h-8 gap-1.5 rounded-md px-2.5 has-[>svg]:px-2.5\",\n\t\t\t\t\"icon-xs\": \"size-6 rounded-[calc(var(--radius)-5px)] p-0 has-[>svg]:p-0\",\n\t\t\t\t\"icon-sm\": \"size-8 p-0 has-[>svg]:p-0\",\n\t\t\t},\n\t\t},\n\t\tdefaultVariants: {\n\t\t\tsize: \"xs\",\n\t\t},\n\t});\n\n\texport type InputGroupButtonSize = VariantProps<typeof inputGroupButtonVariants>[\"size\"];\n</script>\n\n<script lang=\"ts\">\n\timport { cn } from \"$UTILS$.js\";\n\timport type { ComponentProps } from \"svelte\";\n\timport { Button } from \"$UI$/button/index.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\ttype = \"button\",\n\t\tvariant = \"ghost\",\n\t\tsize = \"xs\",\n\t\t...restProps\n\t}: Omit<ComponentProps<typeof Button>, \"href\" | \"size\"> & {\n\t\tsize?: InputGroupButtonSize;\n\t} = $props();\n</script>\n\n<Button\n\tbind:ref\n\t{type}\n\tdata-size={size}\n\t{variant}\n\tclass={cn(inputGroupButtonVariants({ size }), className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</Button>\n",
+			"type": "registry:file",
+			"target": "input-group/input-group-button.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn } from \"$UTILS$.js\";\n\timport type { ComponentProps } from \"svelte\";\n\timport { Input } from \"$UI$/input/index.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\tclass: className,\n\t\t...props\n\t}: ComponentProps<typeof Input> = $props();\n</script>\n\n<Input\n\tbind:ref\n\tdata-slot=\"input-group-control\"\n\tclass={cn(\n\t\t\"flex-1 rounded-none border-0 bg-transparent shadow-none focus-visible:ring-0 dark:bg-transparent\",\n\t\tclassName\n\t)}\n\tbind:value\n\t{...props}\n/>\n",
+			"type": "registry:file",
+			"target": "input-group/input-group-input.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLSpanElement>> = $props();\n</script>\n\n<span\n\tbind:this={ref}\n\tclass={cn(\n\t\t\"text-muted-foreground flex items-center gap-2 text-sm [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</span>\n",
+			"type": "registry:file",
+			"target": "input-group/input-group-text.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn } from \"$UTILS$.js\";\n\timport { Textarea } from \"$UI$/textarea/index.js\";\n\timport type { ComponentProps } from \"svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\tclass: className,\n\t\t...props\n\t}: ComponentProps<typeof Textarea> = $props();\n</script>\n\n<Textarea\n\tbind:ref\n\tdata-slot=\"input-group-control\"\n\tclass={cn(\n\t\t\"flex-1 resize-none rounded-none border-0 bg-transparent py-3 shadow-none focus-visible:ring-0 dark:bg-transparent\",\n\t\tclassName\n\t)}\n\tbind:value\n\t{...props}\n/>\n",
+			"type": "registry:file",
+			"target": "input-group/input-group-textarea.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...props\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"input-group\"\n\trole=\"group\"\n\tclass={cn(\n\t\t\"group/input-group border-input dark:bg-input/30 relative flex w-full items-center rounded-md border shadow-xs transition-[color,box-shadow] outline-none\",\n\t\t\"h-9 has-[>textarea]:h-auto\",\n\n\t\t// Variants based on alignment.\n\t\t\"has-[>[data-align=inline-start]]:[&>input]:ps-2\",\n\t\t\"has-[>[data-align=inline-end]]:[&>input]:pe-2\",\n\t\t\"has-[>[data-align=block-start]]:h-auto has-[>[data-align=block-start]]:flex-col has-[>[data-align=block-start]]:[&>input]:pb-3\",\n\t\t\"has-[>[data-align=block-end]]:h-auto has-[>[data-align=block-end]]:flex-col has-[>[data-align=block-end]]:[&>input]:pt-3\",\n\n\t\t// Focus state.\n\t\t\"has-[[data-slot=input-group-control]:focus-visible]:border-ring has-[[data-slot=input-group-control]:focus-visible]:ring-ring/50 has-[[data-slot=input-group-control]:focus-visible]:ring-[3px]\",\n\n\t\t// Error state.\n\t\t\"has-[[data-slot][aria-invalid=true]]:ring-destructive/20 has-[[data-slot][aria-invalid=true]]:border-destructive dark:has-[[data-slot][aria-invalid=true]]:ring-destructive/40\",\n\n\t\tclassName\n\t)}\n\t{...props}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "input-group/input-group.svelte"
+		}
+	]
+}

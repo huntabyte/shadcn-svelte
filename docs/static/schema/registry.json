@@ -1,0 +1,287 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"type": "object",
+	"properties": {
+		"$schema": {
+			"type": "string"
+		},
+		"name": {
+			"type": "string",
+			"description": "The name of the registry."
+		},
+		"homepage": {
+			"type": "string",
+			"description": "The homepage of the registry."
+		},
+		"overrideDependencies": {
+			"description": "An array of NPM dependencies that should have their versions overridden during registry `build`.",
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
+		},
+		"aliases": {
+			"description": "Defines which internal import paths should be transformed during registry `build`.",
+			"type": "object",
+			"properties": {
+				"lib": {
+					"type": "string"
+				},
+				"ui": {
+					"type": "string"
+				},
+				"components": {
+					"type": "string"
+				},
+				"utils": {
+					"type": "string"
+				},
+				"hooks": {
+					"type": "string"
+				}
+			},
+			"additionalProperties": false
+		},
+		"items": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"name": {
+						"type": "string",
+						"description": "The name of the item. Used to identify the item in the registry. It should be unique for your registry."
+					},
+					"title": {
+						"description": "The human-readable title for your registry item. Keep it short and descriptive.",
+						"type": "string"
+					},
+					"type": {
+						"type": "string",
+						"enum": [
+							"registry:lib",
+							"registry:block",
+							"registry:component",
+							"registry:ui",
+							"registry:hook",
+							"registry:page",
+							"registry:file",
+							"registry:theme",
+							"registry:style",
+							"registry:item",
+							"registry:base",
+							"registry:font",
+							"registry:example",
+							"registry:internal"
+						],
+						"description": "The type of the item. Used to determine the type and target path of the item when resolved for a project."
+					},
+					"author": {
+						"description": "The author of the item. Recommended format: username <url>",
+						"type": "string",
+						"minLength": 2
+					},
+					"description": {
+						"description": "The description of the item. Used to provide a brief overview of the item.",
+						"type": "string"
+					},
+					"dependencies": {
+						"description": "An array of NPM dependencies required by the registry item.",
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"devDependencies": {
+						"description": "An array of NPM dev dependencies required by the registry item.",
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"registryDependencies": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"description": "An array of registry items that this item depends on. Use the name of the item to reference shadcn/ui components and urls to reference other registries."
+					},
+					"meta": {
+						"description": "Additional metadata for the registry item. This is an object with any key value pairs.",
+						"type": "object",
+						"propertyNames": {
+							"type": "string"
+						},
+						"additionalProperties": {}
+					},
+					"files": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"content": {
+									"type": "string",
+									"description": "The content of the file."
+								},
+								"type": {
+									"type": "string",
+									"enum": [
+										"registry:lib",
+										"registry:block",
+										"registry:component",
+										"registry:ui",
+										"registry:hook",
+										"registry:page",
+										"registry:file",
+										"registry:theme",
+										"registry:style",
+										"registry:item",
+										"registry:base",
+										"registry:font"
+									],
+									"description": "The type of the file. Used to resolve the file's path for a project."
+								},
+								"target": {
+									"type": "string",
+									"description": "The target path of the file. This is where the file will be installed."
+								},
+								"path": {
+									"type": "string",
+									"description": "The path to the file relative to the registry root."
+								}
+							},
+							"required": [
+								"type",
+								"path"
+							],
+							"additionalProperties": false
+						},
+						"description": "An array of files that instructs the `build` command on how to locate and parse the registry files."
+					},
+					"cssVars": {
+						"type": "object",
+						"properties": {
+							"theme": {
+								"description": "CSS variables for the @theme directive. For Tailwind v4 projects only. Use tailwind for older projects.",
+								"type": "object",
+								"propertyNames": {
+									"type": "string"
+								},
+								"additionalProperties": {
+									"type": "string"
+								}
+							},
+							"light": {
+								"description": "CSS variables for the light theme.",
+								"type": "object",
+								"propertyNames": {
+									"type": "string"
+								},
+								"additionalProperties": {
+									"type": "string"
+								}
+							},
+							"dark": {
+								"description": "CSS variables for the dark theme.",
+								"type": "object",
+								"propertyNames": {
+									"type": "string"
+								},
+								"additionalProperties": {
+									"type": "string"
+								}
+							}
+						},
+						"additionalProperties": false,
+						"description": "The css variables for the registry item. This will be merged with the project's css variables."
+					},
+					"css": {
+						"$ref": "#/$defs/__schema0"
+					},
+					"font": {
+						"type": "object",
+						"properties": {
+							"family": {
+								"type": "string"
+							},
+							"provider": {
+								"type": "string",
+								"const": "google"
+							},
+							"import": {
+								"type": "string"
+							},
+							"variable": {
+								"type": "string"
+							},
+							"weight": {
+								"type": "array",
+								"items": {
+									"type": "string"
+								}
+							},
+							"subsets": {
+								"type": "array",
+								"items": {
+									"type": "string"
+								}
+							},
+							"selector": {
+								"type": "string"
+							},
+							"dependency": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"family",
+							"provider",
+							"import",
+							"variable"
+						],
+						"additionalProperties": false
+					}
+				},
+				"required": [
+					"name",
+					"type",
+					"registryDependencies",
+					"files"
+				],
+				"additionalProperties": false
+			},
+			"description": "Defines a custom component registry."
+		}
+	},
+	"required": [
+		"name",
+		"homepage",
+		"items"
+	],
+	"additionalProperties": false,
+	"$defs": {
+		"__schema0": {
+			"type": "object",
+			"propertyNames": {
+				"type": "string",
+				"description": "Direct CSS string (e.g., 'font-family: sans-serif; line-height: 1.5;')"
+			},
+			"additionalProperties": {
+				"$ref": "#/$defs/__schema1"
+			},
+			"description": "CSS definitions to be added to the project's CSS file. Supports at-rules, selectors, nested rules, utilities, layers, and more."
+		},
+		"__schema1": {
+			"description": "CSS properties or nested selectors",
+			"anyOf": [
+				{
+					"type": "string",
+					"description": "CSS property value (e.g., 'blue', 'var(--color-primary)')"
+				},
+				{
+					"description": "CSS property value for nested rule",
+					"$ref": "#/$defs/__schema0"
+				}
+			]
+		}
+	}
+}

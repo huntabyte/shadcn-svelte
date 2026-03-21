@@ -1,0 +1,33 @@
+{
+	"name": "orange",
+	"title": "Orange",
+	"type": "registry:theme",
+	"cssVars": {
+		"light": {
+			"primary": "oklch(0.553 0.195 38.402)",
+			"primary-foreground": "oklch(0.98 0.016 73.684)",
+			"secondary": "oklch(0.967 0.001 286.375)",
+			"secondary-foreground": "oklch(0.21 0.006 285.885)",
+			"chart-1": "oklch(0.837 0.128 66.29)",
+			"chart-2": "oklch(0.705 0.213 47.604)",
+			"chart-3": "oklch(0.646 0.222 41.116)",
+			"chart-4": "oklch(0.553 0.195 38.402)",
+			"chart-5": "oklch(0.47 0.157 37.304)",
+			"sidebar-primary": "oklch(0.646 0.222 41.116)",
+			"sidebar-primary-foreground": "oklch(0.98 0.016 73.684)"
+		},
+		"dark": {
+			"primary": "oklch(0.47 0.157 37.304)",
+			"primary-foreground": "oklch(0.98 0.016 73.684)",
+			"secondary": "oklch(0.274 0.006 286.033)",
+			"secondary-foreground": "oklch(0.985 0 0)",
+			"chart-1": "oklch(0.837 0.128 66.29)",
+			"chart-2": "oklch(0.705 0.213 47.604)",
+			"chart-3": "oklch(0.646 0.222 41.116)",
+			"chart-4": "oklch(0.553 0.195 38.402)",
+			"chart-5": "oklch(0.47 0.157 37.304)",
+			"sidebar-primary": "oklch(0.705 0.213 47.604)",
+			"sidebar-primary-foreground": "oklch(0.98 0.016 73.684)"
+		}
+	}
+}

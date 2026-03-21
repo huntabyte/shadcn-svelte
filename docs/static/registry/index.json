@@ -1,0 +1,1854 @@
+[
+	{
+		"name": "init",
+		"type": "registry:style",
+		"devDependencies": [
+			"tailwind-variants",
+			"@lucide/svelte",
+			"tw-animate-css"
+		],
+		"registryDependencies": [
+			"utils"
+		],
+		"relativeUrl": "init.json"
+	},
+	{
+		"name": "accordion",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "accordion.json"
+	},
+	{
+		"name": "alert",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "alert.json"
+	},
+	{
+		"name": "alert-dialog",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"button"
+		],
+		"relativeUrl": "alert-dialog.json"
+	},
+	{
+		"name": "aspect-ratio",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "aspect-ratio.json"
+	},
+	{
+		"name": "avatar",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "avatar.json"
+	},
+	{
+		"name": "badge",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "badge.json"
+	},
+	{
+		"name": "breadcrumb",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "breadcrumb.json"
+	},
+	{
+		"name": "button",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "button.json"
+	},
+	{
+		"name": "button-group",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"separator"
+		],
+		"relativeUrl": "button-group.json"
+	},
+	{
+		"name": "calendar",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"button"
+		],
+		"relativeUrl": "calendar.json"
+	},
+	{
+		"name": "card",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "card.json"
+	},
+	{
+		"name": "carousel",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"button"
+		],
+		"relativeUrl": "carousel.json"
+	},
+	{
+		"name": "chart",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "chart.json"
+	},
+	{
+		"name": "checkbox",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "checkbox.json"
+	},
+	{
+		"name": "collapsible",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "collapsible.json"
+	},
+	{
+		"name": "command",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"dialog"
+		],
+		"relativeUrl": "command.json"
+	},
+	{
+		"name": "context-menu",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "context-menu.json"
+	},
+	{
+		"name": "data-table",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "data-table.json"
+	},
+	{
+		"name": "dialog",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "dialog.json"
+	},
+	{
+		"name": "drawer",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "drawer.json"
+	},
+	{
+		"name": "dropdown-menu",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "dropdown-menu.json"
+	},
+	{
+		"name": "empty",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "empty.json"
+	},
+	{
+		"name": "field",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"label",
+			"separator"
+		],
+		"relativeUrl": "field.json"
+	},
+	{
+		"name": "form",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"button",
+			"label"
+		],
+		"relativeUrl": "form.json"
+	},
+	{
+		"name": "hover-card",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "hover-card.json"
+	},
+	{
+		"name": "input",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "input.json"
+	},
+	{
+		"name": "input-group",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"button",
+			"input",
+			"textarea"
+		],
+		"relativeUrl": "input-group.json"
+	},
+	{
+		"name": "input-otp",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "input-otp.json"
+	},
+	{
+		"name": "item",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"separator"
+		],
+		"relativeUrl": "item.json"
+	},
+	{
+		"name": "kbd",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "kbd.json"
+	},
+	{
+		"name": "label",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "label.json"
+	},
+	{
+		"name": "menubar",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "menubar.json"
+	},
+	{
+		"name": "native-select",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "native-select.json"
+	},
+	{
+		"name": "navigation-menu",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "navigation-menu.json"
+	},
+	{
+		"name": "pagination",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"button"
+		],
+		"relativeUrl": "pagination.json"
+	},
+	{
+		"name": "popover",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "popover.json"
+	},
+	{
+		"name": "progress",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "progress.json"
+	},
+	{
+		"name": "radio-group",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "radio-group.json"
+	},
+	{
+		"name": "range-calendar",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"button"
+		],
+		"relativeUrl": "range-calendar.json"
+	},
+	{
+		"name": "resizable",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "resizable.json"
+	},
+	{
+		"name": "scroll-area",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "scroll-area.json"
+	},
+	{
+		"name": "select",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"separator"
+		],
+		"relativeUrl": "select.json"
+	},
+	{
+		"name": "separator",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "separator.json"
+	},
+	{
+		"name": "sheet",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "sheet.json"
+	},
+	{
+		"name": "sidebar",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"is-mobile",
+			"input",
+			"tooltip",
+			"skeleton",
+			"separator",
+			"button",
+			"sheet"
+		],
+		"relativeUrl": "sidebar.json"
+	},
+	{
+		"name": "skeleton",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "skeleton.json"
+	},
+	{
+		"name": "slider",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "slider.json"
+	},
+	{
+		"name": "sonner",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "sonner.json"
+	},
+	{
+		"name": "spinner",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "spinner.json"
+	},
+	{
+		"name": "switch",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "switch.json"
+	},
+	{
+		"name": "table",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "table.json"
+	},
+	{
+		"name": "tabs",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "tabs.json"
+	},
+	{
+		"name": "textarea",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "textarea.json"
+	},
+	{
+		"name": "toggle",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "toggle.json"
+	},
+	{
+		"name": "toggle-group",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"toggle"
+		],
+		"relativeUrl": "toggle-group.json"
+	},
+	{
+		"name": "tooltip",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "tooltip.json"
+	},
+	{
+		"name": "calendar-01",
+		"type": "registry:block",
+		"registryDependencies": [
+			"calendar"
+		],
+		"relativeUrl": "calendar-01.json"
+	},
+	{
+		"name": "calendar-02",
+		"type": "registry:block",
+		"registryDependencies": [
+			"calendar"
+		],
+		"relativeUrl": "calendar-02.json"
+	},
+	{
+		"name": "calendar-03",
+		"type": "registry:block",
+		"registryDependencies": [
+			"calendar"
+		],
+		"relativeUrl": "calendar-03.json"
+	},
+	{
+		"name": "calendar-04",
+		"type": "registry:block",
+		"registryDependencies": [
+			"range-calendar"
+		],
+		"relativeUrl": "calendar-04.json"
+	},
+	{
+		"name": "calendar-05",
+		"type": "registry:block",
+		"registryDependencies": [
+			"range-calendar"
+		],
+		"relativeUrl": "calendar-05.json"
+	},
+	{
+		"name": "calendar-06",
+		"type": "registry:block",
+		"registryDependencies": [
+			"range-calendar"
+		],
+		"relativeUrl": "calendar-06.json"
+	},
+	{
+		"name": "calendar-07",
+		"type": "registry:block",
+		"registryDependencies": [
+			"range-calendar"
+		],
+		"relativeUrl": "calendar-07.json"
+	},
+	{
+		"name": "calendar-08",
+		"type": "registry:block",
+		"registryDependencies": [
+			"calendar"
+		],
+		"relativeUrl": "calendar-08.json"
+	},
+	{
+		"name": "calendar-09",
+		"type": "registry:block",
+		"registryDependencies": [
+			"range-calendar"
+		],
+		"relativeUrl": "calendar-09.json"
+	},
+	{
+		"name": "calendar-10",
+		"type": "registry:block",
+		"registryDependencies": [
+			"calendar",
+			"card",
+			"button"
+		],
+		"relativeUrl": "calendar-10.json"
+	},
+	{
+		"name": "calendar-11",
+		"type": "registry:block",
+		"registryDependencies": [
+			"range-calendar"
+		],
+		"relativeUrl": "calendar-11.json"
+	},
+	{
+		"name": "calendar-12",
+		"type": "registry:block",
+		"registryDependencies": [
+			"card",
+			"select"
+		],
+		"relativeUrl": "calendar-12.json"
+	},
+	{
+		"name": "calendar-13",
+		"type": "registry:block",
+		"registryDependencies": [
+			"calendar",
+			"select",
+			"label"
+		],
+		"relativeUrl": "calendar-13.json"
+	},
+	{
+		"name": "calendar-14",
+		"type": "registry:block",
+		"registryDependencies": [
+			"calendar"
+		],
+		"relativeUrl": "calendar-14.json"
+	},
+	{
+		"name": "calendar-15",
+		"type": "registry:block",
+		"registryDependencies": [],
+		"relativeUrl": "calendar-15.json"
+	},
+	{
+		"name": "calendar-16",
+		"type": "registry:block",
+		"registryDependencies": [
+			"calendar",
+			"card",
+			"label",
+			"input"
+		],
+		"relativeUrl": "calendar-16.json"
+	},
+	{
+		"name": "calendar-17",
+		"type": "registry:block",
+		"registryDependencies": [
+			"calendar",
+			"card",
+			"label",
+			"input"
+		],
+		"relativeUrl": "calendar-17.json"
+	},
+	{
+		"name": "calendar-18",
+		"type": "registry:block",
+		"registryDependencies": [
+			"calendar"
+		],
+		"relativeUrl": "calendar-18.json"
+	},
+	{
+		"name": "calendar-19",
+		"type": "registry:block",
+		"registryDependencies": [
+			"calendar",
+			"button",
+			"card"
+		],
+		"relativeUrl": "calendar-19.json"
+	},
+	{
+		"name": "calendar-20",
+		"type": "registry:block",
+		"registryDependencies": [
+			"button",
+			"card",
+			"calendar"
+		],
+		"relativeUrl": "calendar-20.json"
+	},
+	{
+		"name": "calendar-21",
+		"type": "registry:block",
+		"registryDependencies": [
+			"range-calendar"
+		],
+		"relativeUrl": "calendar-21.json"
+	},
+	{
+		"name": "calendar-22",
+		"type": "registry:block",
+		"registryDependencies": [
+			"calendar",
+			"popover",
+			"button",
+			"label"
+		],
+		"relativeUrl": "calendar-22.json"
+	},
+	{
+		"name": "calendar-23",
+		"type": "registry:block",
+		"registryDependencies": [
+			"range-calendar",
+			"popover",
+			"button",
+			"label"
+		],
+		"relativeUrl": "calendar-23.json"
+	},
+	{
+		"name": "calendar-24",
+		"type": "registry:block",
+		"registryDependencies": [
+			"calendar",
+			"popover",
+			"button",
+			"label",
+			"input"
+		],
+		"relativeUrl": "calendar-24.json"
+	},
+	{
+		"name": "calendar-25",
+		"type": "registry:block",
+		"registryDependencies": [
+			"calendar",
+			"popover",
+			"button",
+			"label",
+			"input"
+		],
+		"relativeUrl": "calendar-25.json"
+	},
+	{
+		"name": "calendar-26",
+		"type": "registry:block",
+		"registryDependencies": [
+			"calendar",
+			"popover",
+			"button",
+			"label",
+			"input"
+		],
+		"relativeUrl": "calendar-26.json"
+	},
+	{
+		"name": "calendar-27",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card",
+			"popover",
+			"button",
+			"range-calendar"
+		],
+		"relativeUrl": "calendar-27.json"
+	},
+	{
+		"name": "calendar-28",
+		"type": "registry:block",
+		"registryDependencies": [
+			"calendar",
+			"input",
+			"label",
+			"popover",
+			"button"
+		],
+		"relativeUrl": "calendar-28.json"
+	},
+	{
+		"name": "calendar-29",
+		"type": "registry:block",
+		"registryDependencies": [
+			"label",
+			"popover",
+			"button",
+			"calendar",
+			"input"
+		],
+		"relativeUrl": "calendar-29.json"
+	},
+	{
+		"name": "calendar-30",
+		"type": "registry:block",
+		"registryDependencies": [
+			"popover",
+			"button",
+			"range-calendar",
+			"label"
+		],
+		"relativeUrl": "calendar-30.json"
+	},
+	{
+		"name": "calendar-31",
+		"type": "registry:block",
+		"registryDependencies": [
+			"button",
+			"calendar",
+			"card"
+		],
+		"relativeUrl": "calendar-31.json"
+	},
+	{
+		"name": "calendar-32",
+		"type": "registry:block",
+		"registryDependencies": [
+			"button",
+			"calendar",
+			"drawer",
+			"label"
+		],
+		"relativeUrl": "calendar-32.json"
+	},
+	{
+		"name": "chart-area-axes",
+		"type": "registry:block",
+		"registryDependencies": [
+			"card",
+			"chart"
+		],
+		"relativeUrl": "chart-area-axes.json"
+	},
+	{
+		"name": "chart-area-default",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-area-default.json"
+	},
+	{
+		"name": "chart-area-gradient",
+		"type": "registry:block",
+		"registryDependencies": [
+			"card",
+			"chart"
+		],
+		"relativeUrl": "chart-area-gradient.json"
+	},
+	{
+		"name": "chart-area-icons",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-area-icons.json"
+	},
+	{
+		"name": "chart-area-interactive",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card",
+			"select"
+		],
+		"relativeUrl": "chart-area-interactive.json"
+	},
+	{
+		"name": "chart-area-legend",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-area-legend.json"
+	},
+	{
+		"name": "chart-area-linear",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-area-linear.json"
+	},
+	{
+		"name": "chart-area-stacked-expand",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-area-stacked-expand.json"
+	},
+	{
+		"name": "chart-area-stacked",
+		"type": "registry:block",
+		"registryDependencies": [
+			"card",
+			"chart"
+		],
+		"relativeUrl": "chart-area-stacked.json"
+	},
+	{
+		"name": "chart-area-step",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-area-step.json"
+	},
+	{
+		"name": "chart-bar-active",
+		"type": "registry:block",
+		"registryDependencies": [
+			"card",
+			"chart"
+		],
+		"relativeUrl": "chart-bar-active.json"
+	},
+	{
+		"name": "chart-bar-default",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-bar-default.json"
+	},
+	{
+		"name": "chart-bar-horizontal",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-bar-horizontal.json"
+	},
+	{
+		"name": "chart-bar-interactive",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-bar-interactive.json"
+	},
+	{
+		"name": "chart-bar-label-custom",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-bar-label-custom.json"
+	},
+	{
+		"name": "chart-bar-label",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-bar-label.json"
+	},
+	{
+		"name": "chart-bar-mixed",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-bar-mixed.json"
+	},
+	{
+		"name": "chart-bar-multiple",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-bar-multiple.json"
+	},
+	{
+		"name": "chart-bar-negative",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-bar-negative.json"
+	},
+	{
+		"name": "chart-bar-stacked",
+		"type": "registry:block",
+		"registryDependencies": [
+			"card",
+			"chart"
+		],
+		"relativeUrl": "chart-bar-stacked.json"
+	},
+	{
+		"name": "chart-line-default",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-line-default.json"
+	},
+	{
+		"name": "chart-line-dots-colors",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-line-dots-colors.json"
+	},
+	{
+		"name": "chart-line-dots-custom",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-line-dots-custom.json"
+	},
+	{
+		"name": "chart-line-dots",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-line-dots.json"
+	},
+	{
+		"name": "chart-line-interactive",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-line-interactive.json"
+	},
+	{
+		"name": "chart-line-label-custom",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-line-label-custom.json"
+	},
+	{
+		"name": "chart-line-label",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-line-label.json"
+	},
+	{
+		"name": "chart-line-linear",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-line-linear.json"
+	},
+	{
+		"name": "chart-line-multiple",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-line-multiple.json"
+	},
+	{
+		"name": "chart-line-step",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-line-step.json"
+	},
+	{
+		"name": "chart-pie-donut-active",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-pie-donut-active.json"
+	},
+	{
+		"name": "chart-pie-donut-text",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-pie-donut-text.json"
+	},
+	{
+		"name": "chart-pie-donut",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-pie-donut.json"
+	},
+	{
+		"name": "chart-pie-interactive",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card",
+			"select"
+		],
+		"relativeUrl": "chart-pie-interactive.json"
+	},
+	{
+		"name": "chart-pie-label-custom",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-pie-label-custom.json"
+	},
+	{
+		"name": "chart-pie-label-list",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-pie-label-list.json"
+	},
+	{
+		"name": "chart-pie-label",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-pie-label.json"
+	},
+	{
+		"name": "chart-pie-legend",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-pie-legend.json"
+	},
+	{
+		"name": "chart-pie-separator-none",
+		"type": "registry:block",
+		"registryDependencies": [
+			"card"
+		],
+		"relativeUrl": "chart-pie-separator-none.json"
+	},
+	{
+		"name": "chart-pie-simple",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-pie-simple.json"
+	},
+	{
+		"name": "chart-pie-stacked",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-pie-stacked.json"
+	},
+	{
+		"name": "chart-radar-default",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-radar-default.json"
+	},
+	{
+		"name": "chart-radar-dots",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-radar-dots.json"
+	},
+	{
+		"name": "chart-radar-grid-circle-fill",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-radar-grid-circle-fill.json"
+	},
+	{
+		"name": "chart-radar-grid-circle-no-lines",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-radar-grid-circle-no-lines.json"
+	},
+	{
+		"name": "chart-radar-grid-circle",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-radar-grid-circle.json"
+	},
+	{
+		"name": "chart-radar-grid-custom",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-radar-grid-custom.json"
+	},
+	{
+		"name": "chart-radar-grid-fill",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-radar-grid-fill.json"
+	},
+	{
+		"name": "chart-radar-grid-none",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-radar-grid-none.json"
+	},
+	{
+		"name": "chart-radar-icons",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-radar-icons.json"
+	},
+	{
+		"name": "chart-radar-label-custom",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-radar-label-custom.json"
+	},
+	{
+		"name": "chart-radar-legend",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-radar-legend.json"
+	},
+	{
+		"name": "chart-radar-lines-only",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-radar-lines-only.json"
+	},
+	{
+		"name": "chart-radar-multiple",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-radar-multiple.json"
+	},
+	{
+		"name": "chart-radar-radius",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-radar-radius.json"
+	},
+	{
+		"name": "chart-radial-grid",
+		"type": "registry:block",
+		"registryDependencies": [
+			"card",
+			"chart"
+		],
+		"relativeUrl": "chart-radial-grid.json"
+	},
+	{
+		"name": "chart-radial-label",
+		"type": "registry:block",
+		"registryDependencies": [
+			"card",
+			"chart"
+		],
+		"relativeUrl": "chart-radial-label.json"
+	},
+	{
+		"name": "chart-radial-shape",
+		"type": "registry:block",
+		"registryDependencies": [
+			"card",
+			"chart"
+		],
+		"relativeUrl": "chart-radial-shape.json"
+	},
+	{
+		"name": "chart-radial-simple",
+		"type": "registry:block",
+		"registryDependencies": [
+			"card",
+			"chart"
+		],
+		"relativeUrl": "chart-radial-simple.json"
+	},
+	{
+		"name": "chart-radial-stacked",
+		"type": "registry:block",
+		"registryDependencies": [
+			"chart",
+			"card"
+		],
+		"relativeUrl": "chart-radial-stacked.json"
+	},
+	{
+		"name": "chart-radial-text",
+		"type": "registry:block",
+		"registryDependencies": [
+			"card",
+			"chart"
+		],
+		"relativeUrl": "chart-radial-text.json"
+	},
+	{
+		"name": "chart-tooltip-advanced",
+		"type": "registry:block",
+		"registryDependencies": [
+			"card",
+			"chart"
+		],
+		"relativeUrl": "chart-tooltip-advanced.json"
+	},
+	{
+		"name": "chart-tooltip-default",
+		"type": "registry:block",
+		"registryDependencies": [
+			"card",
+			"chart"
+		],
+		"relativeUrl": "chart-tooltip-default.json"
+	},
+	{
+		"name": "chart-tooltip-formatter",
+		"type": "registry:block",
+		"registryDependencies": [
+			"card",
+			"chart"
+		],
+		"relativeUrl": "chart-tooltip-formatter.json"
+	},
+	{
+		"name": "chart-tooltip-icons",
+		"type": "registry:block",
+		"registryDependencies": [
+			"card",
+			"chart"
+		],
+		"relativeUrl": "chart-tooltip-icons.json"
+	},
+	{
+		"name": "chart-tooltip-indicator-line",
+		"type": "registry:block",
+		"registryDependencies": [
+			"card",
+			"chart"
+		],
+		"relativeUrl": "chart-tooltip-indicator-line.json"
+	},
+	{
+		"name": "chart-tooltip-indicator-none",
+		"type": "registry:block",
+		"registryDependencies": [
+			"card",
+			"chart"
+		],
+		"relativeUrl": "chart-tooltip-indicator-none.json"
+	},
+	{
+		"name": "chart-tooltip-label-custom",
+		"type": "registry:block",
+		"registryDependencies": [
+			"card",
+			"chart"
+		],
+		"relativeUrl": "chart-tooltip-label-custom.json"
+	},
+	{
+		"name": "chart-tooltip-label-formatter",
+		"type": "registry:block",
+		"registryDependencies": [
+			"card",
+			"chart"
+		],
+		"relativeUrl": "chart-tooltip-label-formatter.json"
+	},
+	{
+		"name": "chart-tooltip-label-none",
+		"type": "registry:block",
+		"registryDependencies": [
+			"card",
+			"chart"
+		],
+		"relativeUrl": "chart-tooltip-label-none.json"
+	},
+	{
+		"name": "dashboard-01",
+		"type": "registry:block",
+		"registryDependencies": [
+			"sidebar",
+			"chart",
+			"card",
+			"select",
+			"toggle-group",
+			"drawer",
+			"button",
+			"is-mobile",
+			"label",
+			"input",
+			"separator",
+			"checkbox",
+			"data-table",
+			"tabs",
+			"table",
+			"dropdown-menu",
+			"badge",
+			"avatar"
+		],
+		"relativeUrl": "dashboard-01.json"
+	},
+	{
+		"name": "demo-sidebar-controlled",
+		"type": "registry:block",
+		"registryDependencies": [
+			"sidebar",
+			"button"
+		],
+		"relativeUrl": "demo-sidebar-controlled.json"
+	},
+	{
+		"name": "demo-sidebar-footer",
+		"type": "registry:block",
+		"registryDependencies": [
+			"sidebar",
+			"dropdown-menu"
+		],
+		"relativeUrl": "demo-sidebar-footer.json"
+	},
+	{
+		"name": "demo-sidebar-group-action",
+		"type": "registry:block",
+		"registryDependencies": [
+			"sidebar",
+			"sonner"
+		],
+		"relativeUrl": "demo-sidebar-group-action.json"
+	},
+	{
+		"name": "demo-sidebar-group-collapsible",
+		"type": "registry:block",
+		"registryDependencies": [
+			"sidebar",
+			"collapsible"
+		],
+		"relativeUrl": "demo-sidebar-group-collapsible.json"
+	},
+	{
+		"name": "demo-sidebar-group",
+		"type": "registry:block",
+		"registryDependencies": [
+			"sidebar"
+		],
+		"relativeUrl": "demo-sidebar-group.json"
+	},
+	{
+		"name": "demo-sidebar-header",
+		"type": "registry:block",
+		"registryDependencies": [
+			"sidebar",
+			"dropdown-menu"
+		],
+		"relativeUrl": "demo-sidebar-header.json"
+	},
+	{
+		"name": "demo-sidebar-menu-action",
+		"type": "registry:block",
+		"registryDependencies": [
+			"sidebar",
+			"dropdown-menu"
+		],
+		"relativeUrl": "demo-sidebar-menu-action.json"
+	},
+	{
+		"name": "demo-sidebar-menu-badge",
+		"type": "registry:block",
+		"registryDependencies": [
+			"sidebar"
+		],
+		"relativeUrl": "demo-sidebar-menu-badge.json"
+	},
+	{
+		"name": "demo-sidebar-menu-collapsible",
+		"type": "registry:block",
+		"registryDependencies": [
+			"sidebar",
+			"collapsible"
+		],
+		"relativeUrl": "demo-sidebar-menu-collapsible.json"
+	},
+	{
+		"name": "demo-sidebar-menu-sub",
+		"type": "registry:block",
+		"registryDependencies": [
+			"sidebar"
+		],
+		"relativeUrl": "demo-sidebar-menu-sub.json"
+	},
+	{
+		"name": "demo-sidebar-menu",
+		"type": "registry:block",
+		"registryDependencies": [
+			"sidebar"
+		],
+		"relativeUrl": "demo-sidebar-menu.json"
+	},
+	{
+		"name": "demo-sidebar",
+		"type": "registry:block",
+		"registryDependencies": [
+			"sidebar"
+		],
+		"relativeUrl": "demo-sidebar.json"
+	},
+	{
+		"name": "login-01",
+		"type": "registry:block",
+		"registryDependencies": [
+			"button",
+			"card",
+			"input",
+			"field"
+		],
+		"relativeUrl": "login-01.json"
+	},
+	{
+		"name": "login-02",
+		"type": "registry:block",
+		"registryDependencies": [
+			"field",
+			"input",
+			"button"
+		],
+		"relativeUrl": "login-02.json"
+	},
+	{
+		"name": "login-03",
+		"type": "registry:block",
+		"registryDependencies": [
+			"button",
+			"card",
+			"field",
+			"input"
+		],
+		"relativeUrl": "login-03.json"
+	},
+	{
+		"name": "login-04",
+		"type": "registry:block",
+		"registryDependencies": [
+			"card",
+			"field",
+			"input",
+			"button"
+		],
+		"relativeUrl": "login-04.json"
+	},
+	{
+		"name": "login-05",
+		"type": "registry:block",
+		"registryDependencies": [
+			"field",
+			"input",
+			"button"
+		],
+		"relativeUrl": "login-05.json"
+	},
+	{
+		"name": "new-components-01",
+		"type": "registry:block",
+		"registryDependencies": [
+			"checkbox",
+			"field",
+			"tooltip",
+			"button",
+			"button-group",
+			"input",
+			"label",
+			"radio-group",
+			"switch",
+			"dropdown-menu",
+			"input-group",
+			"popover",
+			"separator",
+			"textarea",
+			"empty",
+			"avatar",
+			"kbd",
+			"select",
+			"slider",
+			"item",
+			"badge",
+			"command",
+			"spinner"
+		],
+		"relativeUrl": "new-components-01.json"
+	},
+	{
+		"name": "otp-01",
+		"type": "registry:block",
+		"registryDependencies": [
+			"button",
+			"card",
+			"field",
+			"input-otp"
+		],
+		"relativeUrl": "otp-01.json"
+	},
+	{
+		"name": "otp-02",
+		"type": "registry:block",
+		"registryDependencies": [
+			"button",
+			"field",
+			"input-otp"
+		],
+		"relativeUrl": "otp-02.json"
+	},
+	{
+		"name": "otp-03",
+		"type": "registry:block",
+		"registryDependencies": [
+			"button",
+			"card",
+			"field",
+			"input-otp"
+		],
+		"relativeUrl": "otp-03.json"
+	},
+	{
+		"name": "otp-04",
+		"type": "registry:block",
+		"registryDependencies": [
+			"button",
+			"card",
+			"field",
+			"input-otp"
+		],
+		"relativeUrl": "otp-04.json"
+	},
+	{
+		"name": "otp-05",
+		"type": "registry:block",
+		"registryDependencies": [
+			"button",
+			"field",
+			"input-otp"
+		],
+		"relativeUrl": "otp-05.json"
+	},
+	{
+		"name": "sidebar-01",
+		"type": "registry:block",
+		"registryDependencies": [
+			"breadcrumb",
+			"separator",
+			"sidebar",
+			"label",
+			"dropdown-menu"
+		],
+		"relativeUrl": "sidebar-01.json"
+	},
+	{
+		"name": "sidebar-02",
+		"type": "registry:block",
+		"registryDependencies": [
+			"breadcrumb",
+			"separator",
+			"sidebar",
+			"collapsible",
+			"label",
+			"dropdown-menu"
+		],
+		"relativeUrl": "sidebar-02.json"
+	},
+	{
+		"name": "sidebar-03",
+		"type": "registry:block",
+		"registryDependencies": [
+			"breadcrumb",
+			"separator",
+			"sidebar"
+		],
+		"relativeUrl": "sidebar-03.json"
+	},
+	{
+		"name": "sidebar-04",
+		"type": "registry:block",
+		"registryDependencies": [
+			"breadcrumb",
+			"separator",
+			"sidebar"
+		],
+		"relativeUrl": "sidebar-04.json"
+	},
+	{
+		"name": "sidebar-05",
+		"type": "registry:block",
+		"registryDependencies": [
+			"breadcrumb",
+			"separator",
+			"sidebar",
+			"collapsible",
+			"label"
+		],
+		"relativeUrl": "sidebar-05.json"
+	},
+	{
+		"name": "sidebar-06",
+		"type": "registry:block",
+		"registryDependencies": [
+			"breadcrumb",
+			"separator",
+			"sidebar",
+			"dropdown-menu",
+			"button",
+			"card"
+		],
+		"relativeUrl": "sidebar-06.json"
+	},
+	{
+		"name": "sidebar-07",
+		"type": "registry:block",
+		"registryDependencies": [
+			"breadcrumb",
+			"separator",
+			"sidebar",
+			"collapsible",
+			"dropdown-menu",
+			"avatar"
+		],
+		"relativeUrl": "sidebar-07.json"
+	},
+	{
+		"name": "sidebar-08",
+		"type": "registry:block",
+		"registryDependencies": [
+			"breadcrumb",
+			"separator",
+			"sidebar",
+			"collapsible",
+			"dropdown-menu",
+			"avatar"
+		],
+		"relativeUrl": "sidebar-08.json"
+	},
+	{
+		"name": "sidebar-09",
+		"type": "registry:block",
+		"registryDependencies": [
+			"breadcrumb",
+			"separator",
+			"sidebar",
+			"label",
+			"switch",
+			"avatar",
+			"dropdown-menu"
+		],
+		"relativeUrl": "sidebar-09.json"
+	},
+	{
+		"name": "sidebar-10",
+		"type": "registry:block",
+		"registryDependencies": [
+			"breadcrumb",
+			"separator",
+			"sidebar",
+			"button",
+			"popover",
+			"dropdown-menu",
+			"collapsible"
+		],
+		"relativeUrl": "sidebar-10.json"
+	},
+	{
+		"name": "sidebar-11",
+		"type": "registry:block",
+		"registryDependencies": [
+			"breadcrumb",
+			"separator",
+			"sidebar",
+			"collapsible"
+		],
+		"relativeUrl": "sidebar-11.json"
+	},
+	{
+		"name": "sidebar-12",
+		"type": "registry:block",
+		"registryDependencies": [
+			"breadcrumb",
+			"separator",
+			"sidebar",
+			"collapsible",
+			"calendar",
+			"avatar",
+			"dropdown-menu"
+		],
+		"relativeUrl": "sidebar-12.json"
+	},
+	{
+		"name": "sidebar-13",
+		"type": "registry:block",
+		"registryDependencies": [
+			"breadcrumb",
+			"button",
+			"dialog",
+			"sidebar"
+		],
+		"relativeUrl": "sidebar-13.json"
+	},
+	{
+		"name": "sidebar-14",
+		"type": "registry:block",
+		"registryDependencies": [
+			"breadcrumb",
+			"sidebar"
+		],
+		"relativeUrl": "sidebar-14.json"
+	},
+	{
+		"name": "sidebar-15",
+		"type": "registry:block",
+		"registryDependencies": [
+			"breadcrumb",
+			"separator",
+			"sidebar",
+			"collapsible",
+			"calendar",
+			"dropdown-menu",
+			"avatar"
+		],
+		"relativeUrl": "sidebar-15.json"
+	},
+	{
+		"name": "sidebar-16",
+		"type": "registry:block",
+		"registryDependencies": [
+			"sidebar",
+			"collapsible",
+			"dropdown-menu",
+			"avatar",
+			"label",
+			"breadcrumb",
+			"button",
+			"separator"
+		],
+		"relativeUrl": "sidebar-16.json"
+	},
+	{
+		"name": "signup-01",
+		"type": "registry:block",
+		"registryDependencies": [
+			"button",
+			"card",
+			"field",
+			"input"
+		],
+		"relativeUrl": "signup-01.json"
+	},
+	{
+		"name": "signup-02",
+		"type": "registry:block",
+		"registryDependencies": [
+			"button",
+			"field",
+			"input"
+		],
+		"relativeUrl": "signup-02.json"
+	},
+	{
+		"name": "signup-03",
+		"type": "registry:block",
+		"registryDependencies": [
+			"button",
+			"card",
+			"field",
+			"input"
+		],
+		"relativeUrl": "signup-03.json"
+	},
+	{
+		"name": "signup-04",
+		"type": "registry:block",
+		"registryDependencies": [
+			"button",
+			"card",
+			"field",
+			"input"
+		],
+		"relativeUrl": "signup-04.json"
+	},
+	{
+		"name": "signup-05",
+		"type": "registry:block",
+		"registryDependencies": [
+			"button",
+			"field",
+			"input"
+		],
+		"relativeUrl": "signup-05.json"
+	},
+	{
+		"name": "is-mobile",
+		"type": "registry:hook",
+		"registryDependencies": [],
+		"relativeUrl": "is-mobile.json"
+	},
+	{
+		"name": "utils",
+		"type": "registry:lib",
+		"registryDependencies": [],
+		"relativeUrl": "utils.json"
+	}
+]

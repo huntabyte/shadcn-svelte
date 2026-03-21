@@ -1,0 +1,23 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "login-01",
+	"type": "registry:block",
+	"registryDependencies": [
+		"button",
+		"card",
+		"input",
+		"field"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport LoginForm from \"$COMPONENTS$/login-form.svelte\";\n</script>\n\n<div class=\"flex h-screen w-full items-center justify-center px-4\">\n\t<LoginForm />\n</div>\n",
+			"type": "registry:page",
+			"target": "login-01/+page.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Button } from \"$UI$/button/index.js\";\n\timport * as Card from \"$UI$/card/index.js\";\n\timport { Input } from \"$UI$/input/index.js\";\n\timport {\n\t\tFieldGroup,\n\t\tField,\n\t\tFieldLabel,\n\t\tFieldDescription,\n\t} from \"$UI$/field/index.js\";\n\n\tconst id = $props.id();\n</script>\n\n<Card.Root class=\"mx-auto w-full max-w-sm\">\n\t<Card.Header>\n\t\t<Card.Title class=\"text-2xl\">Login</Card.Title>\n\t\t<Card.Description>Enter your email below to login to your account</Card.Description>\n\t</Card.Header>\n\t<Card.Content>\n\t\t<form>\n\t\t\t<FieldGroup>\n\t\t\t\t<Field>\n\t\t\t\t\t<FieldLabel for=\"email-{id}\">Email</FieldLabel>\n\t\t\t\t\t<Input id=\"email-{id}\" type=\"email\" placeholder=\"m@example.com\" required />\n\t\t\t\t</Field>\n\t\t\t\t<Field>\n\t\t\t\t\t<div class=\"flex items-center\">\n\t\t\t\t\t\t<FieldLabel for=\"password-{id}\">Password</FieldLabel>\n\t\t\t\t\t\t<a href=\"##\" class=\"ms-auto inline-block text-sm underline\">\n\t\t\t\t\t\t\tForgot your password?\n\t\t\t\t\t\t</a>\n\t\t\t\t\t</div>\n\t\t\t\t\t<Input id=\"password-{id}\" type=\"password\" required />\n\t\t\t\t</Field>\n\t\t\t\t<Field>\n\t\t\t\t\t<Button type=\"submit\" class=\"w-full\">Login</Button>\n\t\t\t\t\t<Button variant=\"outline\" class=\"w-full\">\n\t\t\t\t\t\t<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n\t\t\t\t\t\t\t<path\n\t\t\t\t\t\t\t\td=\"M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z\"\n\t\t\t\t\t\t\t\tfill=\"currentColor\"\n\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t</svg>\n\t\t\t\t\t\tLogin with Google\n\t\t\t\t\t</Button>\n\t\t\t\t\t<FieldDescription class=\"text-center\">\n\t\t\t\t\t\tDon't have an account? <a href=\"##\">Sign up</a>\n\t\t\t\t\t</FieldDescription>\n\t\t\t\t</Field>\n\t\t\t</FieldGroup>\n\t\t</form>\n\t</Card.Content>\n</Card.Root>\n",
+			"type": "registry:component",
+			"target": "login-form.svelte"
+		}
+	]
+}
