@@ -1,0 +1,22 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "sonner",
+	"type": "registry:ui",
+	"devDependencies": [
+		"@lucide/svelte@^0.561.0",
+		"svelte-sonner@^1.0.7",
+		"mode-watcher@^1.1.0"
+	],
+	"files": [
+		{
+			"content": "export { default as Toaster } from \"./sonner.svelte\";\n",
+			"type": "registry:file",
+			"target": "sonner/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport CircleCheckIcon from \"@lucide/svelte/icons/circle-check\";\n\timport InfoIcon from \"@lucide/svelte/icons/info\";\n\timport Loader2Icon from \"@lucide/svelte/icons/loader-2\";\n\timport OctagonXIcon from \"@lucide/svelte/icons/octagon-x\";\n\timport TriangleAlertIcon from \"@lucide/svelte/icons/triangle-alert\";\n\n\timport { Toaster as Sonner, type ToasterProps as SonnerProps } from \"svelte-sonner\";\n\timport { mode } from \"mode-watcher\";\n\n\tlet { ...restProps }: SonnerProps = $props();\n</script>\n\n<Sonner\n\ttheme={mode.current}\n\tclass=\"toaster group\"\n\tstyle=\"--normal-bg: var(--color-popover); --normal-text: var(--color-popover-foreground); --normal-border: var(--color-border);\"\n\t{...restProps}\n\t>{#snippet loadingIcon()}\n\t\t<Loader2Icon class=\"size-4 animate-spin\" />\n\t{/snippet}\n\t{#snippet successIcon()}\n\t\t<CircleCheckIcon class=\"size-4\" />\n\t{/snippet}\n\t{#snippet errorIcon()}\n\t\t<OctagonXIcon class=\"size-4\" />\n\t{/snippet}\n\t{#snippet infoIcon()}\n\t\t<InfoIcon class=\"size-4\" />\n\t{/snippet}\n\t{#snippet warningIcon()}\n\t\t<TriangleAlertIcon class=\"size-4\" />\n\t{/snippet}\n</Sonner>\n",
+			"type": "registry:file",
+			"target": "sonner/sonner.svelte"
+		}
+	]
+}

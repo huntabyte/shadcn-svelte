@@ -1,0 +1,21 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "separator",
+	"type": "registry:ui",
+	"devDependencies": [
+		"bits-ui@^2.16.3",
+		"@internationalized/date@^3.12.0"
+	],
+	"files": [
+		{
+			"content": "import Root from \"./separator.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Separator,\n};\n",
+			"type": "registry:file",
+			"target": "separator/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Separator as SeparatorPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t\"data-slot\": dataSlot = \"separator\",\n\t\t...restProps\n\t}: SeparatorPrimitive.RootProps = $props();\n</script>\n\n<SeparatorPrimitive.Root\n\tbind:ref\n\tdata-slot={dataSlot}\n\tclass={cn(\n\t\t\"bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-px\",\n\t\t// this is different in shadcn/ui but self-stretch breaks things for us\n\t\t\"data-[orientation=vertical]:h-full\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "separator/separator.svelte"
+		}
+	]
+}

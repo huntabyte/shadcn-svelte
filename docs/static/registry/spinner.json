@@ -1,0 +1,20 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "spinner",
+	"type": "registry:ui",
+	"devDependencies": [
+		"@lucide/svelte@^0.561.0"
+	],
+	"files": [
+		{
+			"content": "export { default as Spinner } from \"./spinner.svelte\";\n",
+			"type": "registry:file",
+			"target": "spinner/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn } from \"$UTILS$.js\";\n\timport Loader2Icon from \"@lucide/svelte/icons/loader-2\";\n\timport type { ComponentProps } from \"svelte\";\n\n\tlet { class: className, ...restProps }: ComponentProps<typeof Loader2Icon> = $props();\n</script>\n\n<Loader2Icon\n\trole=\"status\"\n\taria-label=\"Loading\"\n\tclass={cn(\"size-4 animate-spin\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "spinner/spinner.svelte"
+		}
+	]
+}

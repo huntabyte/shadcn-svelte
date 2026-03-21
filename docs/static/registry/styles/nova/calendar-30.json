@@ -1,0 +1,24 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "calendar-30",
+	"type": "registry:block",
+	"devDependencies": [
+		"@lucide/svelte@^0.577.0",
+		"bits-ui@^2.16.3",
+		"@internationalized/date@^3.12.0",
+		"little-date@^1.2.1"
+	],
+	"registryDependencies": [
+		"popover",
+		"button",
+		"range-calendar",
+		"label"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport * as Popover from \"$UI$/popover/index.js\";\n\timport { Button } from \"$UI$/button/index.js\";\n\timport RangeCalendar from \"$UI$/range-calendar/range-calendar.svelte\";\n\timport { Label } from \"$UI$/label/index.js\";\n\timport ChevronDownIcon from \"@lucide/svelte/icons/chevron-down\";\n\timport type { DateRange } from \"bits-ui\";\n\timport { CalendarDate, getLocalTimeZone, type DateValue } from \"@internationalized/date\";\n\timport { formatDateRange } from \"little-date\";\n\n\tconst id = $props.id();\n\n\tlet value = $state<DateRange | undefined>({\n\t\tstart: new CalendarDate(2025, 6, 4),\n\t\tend: new CalendarDate(2025, 6, 10),\n\t});\n\n\tfunction formatRange(start: DateValue, end: DateValue) {\n\t\treturn formatDateRange(start.toDate(getLocalTimeZone()), end.toDate(getLocalTimeZone()), {\n\t\t\tincludeTime: false,\n\t\t});\n\t}\n</script>\n\n<div class=\"flex flex-col gap-3\">\n\t<Label for=\"{id}-dates\" class=\"px-1\">Select your stay</Label>\n\t<Popover.Root>\n\t\t<Popover.Trigger id=\"{id}-dates\">\n\t\t\t{#snippet child({ props })}\n\t\t\t\t<Button {...props} variant=\"outline\" class=\"w-56 justify-between font-normal\">\n\t\t\t\t\t{#if value?.start && value?.end}\n\t\t\t\t\t\t{formatRange(value.start, value.end)}\n\t\t\t\t\t{:else}\n\t\t\t\t\t\tSelect date\n\t\t\t\t\t{/if}\n\t\t\t\t\t<ChevronDownIcon />\n\t\t\t\t</Button>\n\t\t\t{/snippet}\n\t\t</Popover.Trigger>\n\t\t<Popover.Content class=\"w-auto overflow-hidden p-0\" align=\"start\">\n\t\t\t<RangeCalendar bind:value captionLayout=\"dropdown\" />\n\t\t</Popover.Content>\n\t</Popover.Root>\n</div>\n",
+			"type": "registry:component",
+			"target": "calendar-30.svelte"
+		}
+	]
+}

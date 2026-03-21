@@ -1,0 +1,19 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "calendar-21",
+	"type": "registry:block",
+	"devDependencies": [
+		"@internationalized/date@^3.12.0",
+		"bits-ui@^2.16.3"
+	],
+	"registryDependencies": [
+		"range-calendar"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport RangeCalendar from \"$UI$/range-calendar/range-calendar.svelte\";\n\timport RangeCalendarDay from \"$UI$/range-calendar/range-calendar-day.svelte\";\n\timport { CalendarDate, isWeekend } from \"@internationalized/date\";\n\timport type { DateRange } from \"bits-ui\";\n\n\tlet value = $state<DateRange | undefined>({\n\t\tstart: new CalendarDate(2025, 6, 12),\n\t\tend: new CalendarDate(2025, 6, 17),\n\t});\n</script>\n\n<RangeCalendar\n\tbind:value\n\tclass=\"rounded-lg border shadow-sm [--cell-size:--spacing(11)] md:[--cell-size:--spacing(13)]\"\n\tmonthFormat=\"long\"\n\tcaptionLayout=\"dropdown\"\n>\n\t{#snippet day({ day, outsideMonth })}\n\t\t{@const dayIsWeekend = isWeekend(day, \"en-US\")}\n\t\t<RangeCalendarDay class=\"flex flex-col items-center\">\n\t\t\t{day.day}\n\t\t\t{#if !outsideMonth}\n\t\t\t\t<span>\n\t\t\t\t\t{dayIsWeekend ? \"$220\" : \"$100\"}\n\t\t\t\t</span>\n\t\t\t{/if}\n\t\t</RangeCalendarDay>\n\t{/snippet}\n</RangeCalendar>\n",
+			"type": "registry:component",
+			"target": "calendar-21.svelte"
+		}
+	]
+}

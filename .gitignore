@@ -102,6 +102,9 @@ web_modules/
 
 .velite
 docs/static/registry
+!docs/static/registry/
+!docs/static/registry/*.json
+docs/static/registry/colors/
 docs/static/themes.css
 docs/static/schema/registry.json
 docs/static/schema/registry-item.json
