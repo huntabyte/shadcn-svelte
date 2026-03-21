@@ -1,0 +1,33 @@
+{
+	"name": "indigo",
+	"title": "Indigo",
+	"type": "registry:theme",
+	"cssVars": {
+		"light": {
+			"primary": "oklch(0.457 0.24 277.023)",
+			"primary-foreground": "oklch(0.962 0.018 272.314)",
+			"secondary": "oklch(0.967 0.001 286.375)",
+			"secondary-foreground": "oklch(0.21 0.006 285.885)",
+			"chart-1": "oklch(0.785 0.115 274.713)",
+			"chart-2": "oklch(0.585 0.233 277.117)",
+			"chart-3": "oklch(0.511 0.262 276.966)",
+			"chart-4": "oklch(0.457 0.24 277.023)",
+			"chart-5": "oklch(0.398 0.195 277.366)",
+			"sidebar-primary": "oklch(0.511 0.262 276.966)",
+			"sidebar-primary-foreground": "oklch(0.962 0.018 272.314)"
+		},
+		"dark": {
+			"primary": "oklch(0.398 0.195 277.366)",
+			"primary-foreground": "oklch(0.962 0.018 272.314)",
+			"secondary": "oklch(0.274 0.006 286.033)",
+			"secondary-foreground": "oklch(0.985 0 0)",
+			"chart-1": "oklch(0.785 0.115 274.713)",
+			"chart-2": "oklch(0.585 0.233 277.117)",
+			"chart-3": "oklch(0.511 0.262 276.966)",
+			"chart-4": "oklch(0.457 0.24 277.023)",
+			"chart-5": "oklch(0.398 0.195 277.366)",
+			"sidebar-primary": "oklch(0.585 0.233 277.117)",
+			"sidebar-primary-foreground": "oklch(0.962 0.018 272.314)"
+		}
+	}
+}

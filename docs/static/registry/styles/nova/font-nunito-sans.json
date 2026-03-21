@@ -1,0 +1,13 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "font-nunito-sans",
+	"type": "registry:font",
+	"files": [],
+	"font": {
+		"family": "'Nunito Sans Variable', sans-serif",
+		"provider": "google",
+		"import": "Nunito_Sans",
+		"variable": "--font-sans",
+		"dependency": "@fontsource-variable/nunito-sans"
+	}
+}

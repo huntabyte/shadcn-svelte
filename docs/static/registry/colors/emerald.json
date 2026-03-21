@@ -1,0 +1,33 @@
+{
+	"name": "emerald",
+	"title": "Emerald",
+	"type": "registry:theme",
+	"cssVars": {
+		"light": {
+			"primary": "oklch(0.508 0.118 165.612)",
+			"primary-foreground": "oklch(0.979 0.021 166.113)",
+			"secondary": "oklch(0.967 0.001 286.375)",
+			"secondary-foreground": "oklch(0.21 0.006 285.885)",
+			"chart-1": "oklch(0.845 0.143 164.978)",
+			"chart-2": "oklch(0.696 0.17 162.48)",
+			"chart-3": "oklch(0.596 0.145 163.225)",
+			"chart-4": "oklch(0.508 0.118 165.612)",
+			"chart-5": "oklch(0.432 0.095 166.913)",
+			"sidebar-primary": "oklch(0.596 0.145 163.225)",
+			"sidebar-primary-foreground": "oklch(0.979 0.021 166.113)"
+		},
+		"dark": {
+			"primary": "oklch(0.432 0.095 166.913)",
+			"primary-foreground": "oklch(0.979 0.021 166.113)",
+			"secondary": "oklch(0.274 0.006 286.033)",
+			"secondary-foreground": "oklch(0.985 0 0)",
+			"chart-1": "oklch(0.845 0.143 164.978)",
+			"chart-2": "oklch(0.696 0.17 162.48)",
+			"chart-3": "oklch(0.596 0.145 163.225)",
+			"chart-4": "oklch(0.508 0.118 165.612)",
+			"chart-5": "oklch(0.432 0.095 166.913)",
+			"sidebar-primary": "oklch(0.696 0.17 162.48)",
+			"sidebar-primary-foreground": "oklch(0.262 0.051 172.552)"
+		}
+	}
+}

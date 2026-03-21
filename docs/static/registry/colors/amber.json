@@ -1,0 +1,33 @@
+{
+	"name": "amber",
+	"title": "Amber",
+	"type": "registry:theme",
+	"cssVars": {
+		"light": {
+			"primary": "oklch(0.555 0.163 48.998)",
+			"primary-foreground": "oklch(0.987 0.022 95.277)",
+			"secondary": "oklch(0.967 0.001 286.375)",
+			"secondary-foreground": "oklch(0.21 0.006 285.885)",
+			"chart-1": "oklch(0.879 0.169 91.605)",
+			"chart-2": "oklch(0.769 0.188 70.08)",
+			"chart-3": "oklch(0.666 0.179 58.318)",
+			"chart-4": "oklch(0.555 0.163 48.998)",
+			"chart-5": "oklch(0.473 0.137 46.201)",
+			"sidebar-primary": "oklch(0.666 0.179 58.318)",
+			"sidebar-primary-foreground": "oklch(0.987 0.022 95.277)"
+		},
+		"dark": {
+			"primary": "oklch(0.473 0.137 46.201)",
+			"primary-foreground": "oklch(0.987 0.022 95.277)",
+			"secondary": "oklch(0.274 0.006 286.033)",
+			"secondary-foreground": "oklch(0.985 0 0)",
+			"chart-1": "oklch(0.879 0.169 91.605)",
+			"chart-2": "oklch(0.769 0.188 70.08)",
+			"chart-3": "oklch(0.666 0.179 58.318)",
+			"chart-4": "oklch(0.555 0.163 48.998)",
+			"chart-5": "oklch(0.473 0.137 46.201)",
+			"sidebar-primary": "oklch(0.769 0.188 70.08)",
+			"sidebar-primary-foreground": "oklch(0.279 0.077 45.635)"
+		}
+	}
+}

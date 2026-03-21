@@ -1,0 +1,22 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "calendar-32",
+	"type": "registry:block",
+	"devDependencies": [
+		"@internationalized/date@^3.12.0",
+		"@lucide/svelte@^0.577.0"
+	],
+	"registryDependencies": [
+		"button",
+		"calendar",
+		"drawer",
+		"label"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport { getLocalTimeZone, type DateValue } from \"@internationalized/date\";\n\timport CalendarPlusIcon from \"@lucide/svelte/icons/calendar-plus\";\n\timport { Button } from \"$UI$/button/index.js\";\n\timport Calendar from \"$UI$/calendar/calendar.svelte\";\n\timport * as Drawer from \"$UI$/drawer/index.js\";\n\timport { Label } from \"$UI$/label/index.js\";\n\n\tlet open = $state(false);\n\tlet value = $state<DateValue | undefined>();\n\tconst id = $props.id();\n\n\tconst triggerLabel = $derived.by(() => {\n\t\tif (value) return value.toDate(getLocalTimeZone()).toLocaleDateString();\n\t\treturn \"Select date\";\n\t});\n</script>\n\n<div class=\"flex flex-col gap-3\">\n\t<Label for=\"{id}-date\" class=\"px-1\">Date of birth</Label>\n\t<Drawer.Root bind:open>\n\t\t<Drawer.Trigger id=\"{id}-date\">\n\t\t\t{#snippet child({ props })}\n\t\t\t\t<Button {...props} variant=\"outline\" class=\"w-48 justify-between font-normal\">\n\t\t\t\t\t{triggerLabel}\n\t\t\t\t\t<CalendarPlusIcon />\n\t\t\t\t</Button>\n\t\t\t{/snippet}\n\t\t</Drawer.Trigger>\n\t\t<Drawer.Content class=\"w-auto overflow-hidden p-0\">\n\t\t\t<Drawer.Header class=\"sr-only\">\n\t\t\t\t<Drawer.Title>Select date</Drawer.Title>\n\t\t\t\t<Drawer.Description>Set your date of birth</Drawer.Description>\n\t\t\t</Drawer.Header>\n\t\t\t<Calendar\n\t\t\t\ttype=\"single\"\n\t\t\t\tbind:value\n\t\t\t\tcaptionLayout=\"dropdown\"\n\t\t\t\tonValueChange={(v) => {\n\t\t\t\t\tif (v) {\n\t\t\t\t\t\topen = false;\n\t\t\t\t\t}\n\t\t\t\t}}\n\t\t\t\tclass=\"mx-auto [--cell-size:clamp(0px,calc(100vw/7.5),52px)]\"\n\t\t\t/>\n\t\t</Drawer.Content>\n\t</Drawer.Root>\n\t<div class=\"text-muted-foreground px-1 text-sm\">This example works best on mobile.</div>\n</div>\n",
+			"type": "registry:component",
+			"target": "calendar-32.svelte"
+		}
+	]
+}

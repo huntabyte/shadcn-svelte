@@ -1,0 +1,20 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "calendar-19",
+	"type": "registry:block",
+	"devDependencies": [
+		"@internationalized/date@^3.12.0"
+	],
+	"registryDependencies": [
+		"calendar",
+		"button",
+		"card"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport Calendar from \"$UI$/calendar/calendar.svelte\";\n\timport { CalendarDate, getLocalTimeZone, today } from \"@internationalized/date\";\n\timport { Button } from \"$UI$/button/index.js\";\n\timport * as Card from \"$UI$/card/index.js\";\n\n\tlet todayDate = today(getLocalTimeZone());\n\tlet value = $state<CalendarDate | undefined>(new CalendarDate(2025, 6, 12));\n</script>\n\n<Card.Root class=\"max-w-[300px] py-4\">\n\t<Card.Content class=\"px-4\">\n\t\t<Calendar\n\t\t\ttype=\"single\"\n\t\t\tbind:value\n\t\t\tclass=\"bg-transparent p-0 [--cell-size:--spacing(9.5)]\"\n\t\t/>\n\t</Card.Content>\n\t<Card.Footer class=\"flex flex-wrap gap-2 border-t px-4 !pt-4\">\n\t\t{#each [{ label: \"Today\", value: 0 }, { label: \"Tomorrow\", value: 1 }, { label: \"In 3 days\", value: 3 }, { label: \"In a week\", value: 7 }, { label: \"In 2 weeks\", value: 14 }] as preset (preset.value)}\n\t\t\t<Button\n\t\t\t\tvariant=\"outline\"\n\t\t\t\tsize=\"sm\"\n\t\t\t\tclass=\"flex-1\"\n\t\t\t\tonclick={() => {\n\t\t\t\t\tvalue = todayDate?.add({ days: preset.value });\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\t{preset.label}\n\t\t\t</Button>\n\t\t{/each}\n\t</Card.Footer>\n</Card.Root>\n",
+			"type": "registry:component",
+			"target": "calendar-19.svelte"
+		}
+	]
+}

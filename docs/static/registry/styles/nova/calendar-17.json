@@ -1,0 +1,21 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "calendar-17",
+	"type": "registry:block",
+	"devDependencies": [
+		"@internationalized/date@^3.12.0"
+	],
+	"registryDependencies": [
+		"calendar",
+		"card",
+		"label",
+		"input"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport Calendar from \"$UI$/calendar/calendar.svelte\";\n\timport { CalendarDate } from \"@internationalized/date\";\n\timport * as Card from \"$UI$/card/index.js\";\n\timport { Label } from \"$UI$/label/index.js\";\n\timport { Input } from \"$UI$/input/index.js\";\n\n\tlet value = $state<CalendarDate | undefined>(new CalendarDate(2025, 6, 12));\n</script>\n\n<Card.Root class=\"w-fit py-4\">\n\t<Card.Content class=\"px-4\">\n\t\t<Calendar\n\t\t\ttype=\"single\"\n\t\t\tbind:value\n\t\t\tclass=\"bg-transparent p-0 [--cell-size:--spacing(10.5)]\"\n\t\t/>\n\t</Card.Content>\n\t<Card.Footer class=\"flex gap-2 border-t px-4 !pt-4 *:[div]:w-full\">\n\t\t<div>\n\t\t\t<Label for=\"time-from\" class=\"sr-only\">Start Time</Label>\n\t\t\t<Input\n\t\t\t\tid=\"time-from\"\n\t\t\t\ttype=\"time\"\n\t\t\t\tstep=\"1\"\n\t\t\t\tvalue=\"10:30:00\"\n\t\t\t\tclass=\"appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none\"\n\t\t\t/>\n\t\t</div>\n\t\t<span>-</span>\n\t\t<div>\n\t\t\t<Label for=\"time-to\" class=\"sr-only\">End Time</Label>\n\t\t\t<Input\n\t\t\t\tid=\"time-to\"\n\t\t\t\ttype=\"time\"\n\t\t\t\tstep=\"1\"\n\t\t\t\tvalue=\"12:30:00\"\n\t\t\t\tclass=\"appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none\"\n\t\t\t/>\n\t\t</div>\n\t</Card.Footer>\n</Card.Root>\n",
+			"type": "registry:component",
+			"target": "calendar-17.svelte"
+		}
+	]
+}

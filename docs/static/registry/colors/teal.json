@@ -1,0 +1,33 @@
+{
+	"name": "teal",
+	"title": "Teal",
+	"type": "registry:theme",
+	"cssVars": {
+		"light": {
+			"primary": "oklch(0.511 0.096 186.391)",
+			"primary-foreground": "oklch(0.984 0.014 180.72)",
+			"secondary": "oklch(0.967 0.001 286.375)",
+			"secondary-foreground": "oklch(0.21 0.006 285.885)",
+			"chart-1": "oklch(0.855 0.138 181.071)",
+			"chart-2": "oklch(0.704 0.14 182.503)",
+			"chart-3": "oklch(0.6 0.118 184.704)",
+			"chart-4": "oklch(0.511 0.096 186.391)",
+			"chart-5": "oklch(0.437 0.078 188.216)",
+			"sidebar-primary": "oklch(0.6 0.118 184.704)",
+			"sidebar-primary-foreground": "oklch(0.984 0.014 180.72)"
+		},
+		"dark": {
+			"primary": "oklch(0.437 0.078 188.216)",
+			"primary-foreground": "oklch(0.984 0.014 180.72)",
+			"secondary": "oklch(0.274 0.006 286.033)",
+			"secondary-foreground": "oklch(0.985 0 0)",
+			"chart-1": "oklch(0.855 0.138 181.071)",
+			"chart-2": "oklch(0.704 0.14 182.503)",
+			"chart-3": "oklch(0.6 0.118 184.704)",
+			"chart-4": "oklch(0.511 0.096 186.391)",
+			"chart-5": "oklch(0.437 0.078 188.216)",
+			"sidebar-primary": "oklch(0.704 0.14 182.503)",
+			"sidebar-primary-foreground": "oklch(0.277 0.046 192.524)"
+		}
+	}
+}

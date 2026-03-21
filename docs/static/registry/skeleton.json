@@ -1,0 +1,17 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "skeleton",
+	"type": "registry:ui",
+	"files": [
+		{
+			"content": "import Root from \"./skeleton.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Skeleton,\n};\n",
+			"type": "registry:file",
+			"target": "skeleton/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef, type WithoutChildren } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildren<WithElementRef<HTMLAttributes<HTMLDivElement>>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"skeleton\"\n\tclass={cn(\"bg-accent animate-pulse rounded-md\", className)}\n\t{...restProps}\n></div>\n",
+			"type": "registry:file",
+			"target": "skeleton/skeleton.svelte"
+		}
+	]
+}
