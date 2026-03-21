@@ -6,7 +6,7 @@
 		{ label: "Apple", value: "apple" },
 		{ label: "Banana", value: "banana" },
 		{ label: "Blueberry", value: "blueberry" },
-		{ label: "Grapes", value: "grapes" },
+		{ label: "Grapes", value: "grapes", disabled: true },
 		{ label: "Pineapple", value: "pineapple" },
 	];
 
@@ -24,7 +24,9 @@
 		<Select.Content>
 			<Select.Group>
 				{#each items as item (item.value)}
-					<Select.Item value={item.value}>{item.label}</Select.Item>
+					<Select.Item value={item.value} disabled={item.disabled}
+						>{item.label}</Select.Item
+					>
 				{/each}
 			</Select.Group>
 		</Select.Content>

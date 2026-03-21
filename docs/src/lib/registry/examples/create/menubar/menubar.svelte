@@ -10,17 +10,5 @@
 	import MenubarInsert from "./menubar-insert.svelte";
 	import MenubarDestructive from "./menubar-destructive.svelte";
 	import MenubarInDialog from "./menubar-in-dialog.svelte";
-</script>
-
-<ExampleWrapper>
-	<MenubarBasic />
-	<MenubarWithSubmenu />
-	<MenubarWithCheckboxes />
-	<MenubarWithRadio />
-	<MenubarWithIcons />
-	<MenubarWithShortcuts />
-	<MenubarFormat />
-	<MenubarInsert />
-	<MenubarDestructive />
-	<MenubarInDialog />
+	<MenubarWithInset />
 </ExampleWrapper>

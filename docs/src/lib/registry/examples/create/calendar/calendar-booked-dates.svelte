@@ -7,7 +7,7 @@
 	const currentDate = today(getLocalTimeZone());
 	const bookedDates = Array.from(
 		{ length: 15 },
-		(_, i) => new CalendarDate(currentDate.year, 1, 12 + i)
+		(_, i) => new CalendarDate(currentDate.year, currentDate.month, 12 + i)
 	);
 </script>
 

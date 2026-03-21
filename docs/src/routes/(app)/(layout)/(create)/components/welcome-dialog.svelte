@@ -29,7 +29,7 @@
 				Available for SvelteKit, Vite, and Astro.
 			</Dialog.Description>
 		</Dialog.Header>
-		<Dialog.Footer class="p-4 pt-0">
+		<Dialog.Footer class="m-0">
 			<Dialog.Close>
 				{#snippet child({ props })}
 					<Button class="w-full rounded-lg shadow-none" {...props}>Get Started</Button>

@@ -99,6 +99,7 @@
 		<Button size="sm" variant="outline">
 			Outline
 			<IconPlaceholder
+				data-icon="inline-end"
 				lucide="ArrowRightIcon"
 				tabler="IconArrowRight"
 				hugeicons="ArrowRight02Icon"

@@ -1,21 +1,5 @@
 <script lang="ts" module>
-	import { tv, type VariantProps } from "tailwind-variants";
-	export const sheetVariants = tv({
-		base: "bg-background data-[state=open]:animate-in data-[state=closed]:animate-out fixed z-50 flex flex-col gap-4 shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500",
-		variants: {
-			side: {
-				top: "data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top inset-x-0 top-0 h-auto border-b",
-				bottom: "data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto border-t",
-				left: "data-[state=closed]:slide-out-to-start data-[state=open]:slide-in-from-start rtl:data-[state=closed]:slide-out-to-end rtl:data-[state=open]:slide-in-from-end inset-y-0 start-0 h-full w-3/4 border-e sm:max-w-sm",
-				right: "data-[state=closed]:slide-out-to-end data-[state=open]:slide-in-from-end rtl:data-[state=closed]:slide-out-to-start rtl:data-[state=open]:slide-in-from-start inset-y-0 end-0 h-full w-3/4 border-s sm:max-w-sm",
-			},
-		},
-		defaultVariants: {
-			side: "right",
-		},
-	});
-
-	export type Side = VariantProps<typeof sheetVariants>["side"];
+	export type Side = "top" | "right" | "bottom" | "left";
 </script>
 
 <script lang="ts">
@@ -50,7 +34,10 @@
 		bind:ref
 		data-slot="sheet-content"
 		data-side={side}
-		class={cn("cn-sheet-content", sheetVariants({ side }), className)}
+		class={cn(
+			"cn-sheet-content data-open:animate-in data-open:fade-in-0 data-[side=bottom]:data-open:slide-in-from-bottom-10 data-[side=left]:data-open:slide-in-from-left-10 data-[side=right]:data-open:slide-in-from-right-10 data-[side=top]:data-open:slide-in-from-top-10 data-closed:animate-out data-closed:fade-out-0 data-[side=bottom]:data-closed:slide-out-to-bottom-10 data-[side=left]:data-closed:slide-out-to-left-10 data-[side=right]:data-closed:slide-out-to-right-10 data-[side=top]:data-closed:slide-out-to-top-10",
+			className
+		)}
 		{...restProps}
 	>
 		{@render children?.()}

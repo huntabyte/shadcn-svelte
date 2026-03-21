@@ -13,6 +13,7 @@
 	import Customizer from "./customizer.svelte";
 	import { page } from "$app/state";
 	import InitializeDialog from "../../routes/(app)/(layout)/(create)/components/initialize-dialog.svelte";
+	import ModeSwitcher from "./mode-switcher.svelte";
 
 	const colors = getColors();
 
@@ -46,6 +47,8 @@
 				<LayoutToggle class="3xl:flex hidden" />
 				<Separator orientation="vertical" />
 				{#if page.url.pathname.startsWith("/create")}
+					<ModeSwitcher class="md:hidden" />
+					<Separator orientation="vertical" />
 					<InitializeDialog />
 				{:else}
 					<Customizer />

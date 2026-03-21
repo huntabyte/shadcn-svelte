@@ -7,6 +7,7 @@
 </script>
 
 <ExampleWrapper>
+	<CommandInline />
 	<CommandBasic />
 	<CommandWithShortcuts />
 	<CommandWithGroups />

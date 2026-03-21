@@ -9,6 +9,7 @@
 	import FieldSliderFields from "./field-slider-fields.svelte";
 	import FieldNativeSelectFields from "./field-native-select-fields.svelte";
 	import FieldInputOTPFields from "./field-input-otp-fields.svelte";
+	import FieldHorizontalFields from "./field-horizontal-fields.svelte";
 </script>
 
 <ExampleWrapper>
@@ -21,4 +22,5 @@
 	<FieldSliderFields />
 	<FieldNativeSelectFields />
 	<FieldInputOTPFields />
+	<FieldHorizontalFields />
 </ExampleWrapper>

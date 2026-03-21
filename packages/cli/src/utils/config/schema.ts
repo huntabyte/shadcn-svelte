@@ -37,7 +37,7 @@ export const DEFAULT_CONFIG = {
 	},
 	typescript: true,
 	registry: `${SITE_BASE_URL}/registry`,
-	style: "vega",
+	style: "nova",
 	iconLibrary: "lucide",
 	menuColor: "default",
 	menuAccent: "subtle",

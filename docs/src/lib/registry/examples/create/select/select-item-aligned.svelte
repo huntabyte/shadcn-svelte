@@ -16,7 +16,7 @@
 	);
 </script>
 
-<Example title="Item Aligned">
+<Example title="Popper">
 	<Select.Root type="single" bind:value={selectedValue}>
 		<Select.Trigger>
 			{selectedLabel}

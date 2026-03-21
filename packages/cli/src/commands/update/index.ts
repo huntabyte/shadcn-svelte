@@ -6,10 +6,9 @@ import { z } from "zod";
 import merge from "deepmerge";
 import { Command } from "commander";
 import { error } from "../../utils/errors.js";
-import { handleError } from "../../utils/handle-error.js";
 import * as cliConfig from "../../utils/config/index.js";
 import { getEnvProxy } from "../../utils/get-env-proxy.js";
-import { cancel, intro, prettifyList } from "../../utils/prompt-helpers.js";
+import { cancel, intro, prettifyList, handleError } from "../../utils/prompt-helpers.js";
 import * as p from "@clack/prompts";
 import * as registry from "../../utils/registry/index.js";
 import { transformCss } from "../../utils/transform-css.js";
@@ -187,7 +186,7 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 						transformImports,
 						transformIcons,
 						transformMenu,
-						config.typescript && transformStripTypes,
+						!config.typescript && transformStripTypes,
 					]);
 
 					transformDependencies?.forEach((dep) => dependencies.add(dep));

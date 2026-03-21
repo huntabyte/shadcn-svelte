@@ -113,6 +113,83 @@
 		styleElement.textContent = cssText;
 	});
 
+	let menuObserver: MutationObserver | null = null;
+	let menuFrameId = 0;
+
+	watch([() => designSystem.menuColor, () => browser], ([menuColor, browser]) => {
+		if (menuObserver) {
+			menuObserver.disconnect();
+			menuObserver = null;
+		}
+		if (menuFrameId) {
+			window.cancelAnimationFrame(menuFrameId);
+			menuFrameId = 0;
+		}
+
+		if (!browser) return;
+		if (!menuColor) return;
+
+		const isInvertedMenu = menuColor === "inverted" || menuColor === "inverted-translucent";
+		const isTranslucentMenu =
+			menuColor === "default-translucent" || menuColor === "inverted-translucent";
+
+		const updateMenuElements = () => {
+			const allElements = document.querySelectorAll<HTMLElement>(
+				".cn-menu-target, [data-menu-translucent]"
+			);
+
+			if (allElements.length === 0) return;
+
+			allElements.forEach((element) => {
+				element.style.transition = "none";
+			});
+
+			allElements.forEach((element) => {
+				if (element.classList.contains("cn-menu-target")) {
+					if (isInvertedMenu) {
+						element.classList.add("dark");
+					} else {
+						element.classList.remove("dark");
+					}
+				}
+
+				if (isTranslucentMenu) {
+					element.classList.add("cn-menu-translucent");
+					element.removeAttribute("data-menu-translucent");
+				} else if (element.classList.contains("cn-menu-translucent")) {
+					element.classList.remove("cn-menu-translucent");
+					element.setAttribute("data-menu-translucent", "");
+				}
+			});
+
+			void document.body.offsetHeight;
+
+			allElements.forEach((element) => {
+				element.style.transition = "";
+			});
+		};
+
+		const scheduleMenuUpdate = () => {
+			if (menuFrameId) return;
+
+			menuFrameId = window.requestAnimationFrame(() => {
+				menuFrameId = 0;
+				updateMenuElements();
+			});
+		};
+
+		updateMenuElements();
+
+		menuObserver = new MutationObserver(() => {
+			scheduleMenuUpdate();
+		});
+
+		menuObserver.observe(document.body, {
+			childList: true,
+			subtree: true,
+		});
+	});
+
 	function handleKeyDown(e: KeyboardEvent) {
 		// randomize on r/R
 		if ((e.key === "r" || e.key === "R") && !e.metaKey && !e.ctrlKey) {

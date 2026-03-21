@@ -12,7 +12,7 @@
 		</Card.Header>
 		<Card.Content>
 			<p>
-				The card component supports a size prop that defaults to `default` for standard
+				The card component supports a size prop that defaults to "default" for standard
 				spacing and sizing.
 			</p>
 		</Card.Content>

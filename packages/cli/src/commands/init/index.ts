@@ -8,9 +8,8 @@ import * as p from "@clack/prompts";
 import type { TsConfigResult } from "get-tsconfig";
 import { detectConfigs } from "../../utils/auto-detect.js";
 import { error } from "../../utils/errors.js";
-import { handleError } from "../../utils/handle-error.js";
 import * as cliConfig from "../../utils/config/index.js";
-import { cancel, intro, prettifyList } from "../../utils/prompt-helpers.js";
+import { cancel, intro, prettifyList, handleError } from "../../utils/prompt-helpers.js";
 import * as registry from "../../utils/registry/index.js";
 import { preflightInit } from "./preflight.js";
 import { addRegistryItems } from "../../utils/add-registry-items.js";
@@ -178,12 +177,7 @@ async function promptForConfig({
 	validateOptions(cwd, options, tsconfig);
 
 	// Design system
-	let decidedPresets: PresetConfig | null = null;
-	if (presetConfig) {
-		decidedPresets = presetConfig;
-	} else {
-		decidedPresets = await promptForPreset(existingConfig);
-	}
+	const decidedPresets = presetConfig ?? (await promptForPreset(existingConfig));
 
 	// Global CSS File
 	let globalCss = options.css;
@@ -233,10 +227,20 @@ async function promptForConfig({
 		menuAccent: decidedPresets.menuAccent,
 	});
 
+	let styleChanged;
+	if (existingConfig) {
+		styleChanged =
+			existingConfig.style !== decidedPresets.style ||
+			existingConfig.menuColor !== decidedPresets.menuColor ||
+			existingConfig.menuAccent !== decidedPresets.menuAccent;
+	} else {
+		styleChanged = false;
+	}
+
 	return {
 		resolvedConfig: await cliConfig.resolveConfig(cwd, rawConfig),
 		decidedPresets,
-		styleChanged: existingConfig ? existingConfig.style !== decidedPresets.style : false,
+		styleChanged,
 	};
 }
 

@@ -1,14 +1,6 @@
 <script lang="ts">
 	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
-	import ItemDefaultVariant from "./item-default-variant.svelte";
-	import ItemOutlineVariant from "./item-outline-variant.svelte";
-	import ItemMutedVariant from "./item-muted-variant.svelte";
-	import ItemSmallSize from "./item-small-size.svelte";
-	import ItemOutlineSmall from "./item-outline-small.svelte";
-	import ItemMutedSmall from "./item-muted-small.svelte";
-	import ItemExtraSmallSize from "./item-extra-small-size.svelte";
-	import ItemOutlineExtraSmall from "./item-outline-extra-small.svelte";
-	import ItemMutedExtraSmall from "./item-muted-extra-small.svelte";
+	import ItemVariants from "./item-variants.svelte";
 	import ItemAsChild from "./item-as-child.svelte";
 	import ItemOutlineLink from "./item-outline-link.svelte";
 	import ItemMutedLink from "./item-muted-link.svelte";
@@ -27,15 +19,7 @@
 </script>
 
 <ExampleWrapper>
-	<ItemDefaultVariant />
-	<ItemOutlineVariant />
-	<ItemMutedVariant />
-	<ItemSmallSize />
-	<ItemOutlineSmall />
-	<ItemMutedSmall />
-	<ItemExtraSmallSize />
-	<ItemOutlineExtraSmall />
-	<ItemMutedExtraSmall />
+	<ItemVariants />
 	<ItemAsChild />
 	<ItemOutlineLink />
 	<ItemMutedLink />

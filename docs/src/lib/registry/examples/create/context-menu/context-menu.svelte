@@ -10,6 +10,7 @@
 	import ContextMenuWithRadio from "./context-menu-with-radio.svelte";
 	import ContextMenuWithDestructive from "./context-menu-with-destructive.svelte";
 	import ContextMenuInDialog from "./context-menu-in-dialog.svelte";
+	import ContextMenuWithInset from "./context-menu-with-inset.svelte";
 </script>
 
 <ExampleWrapper>
@@ -23,4 +24,5 @@
 	<ContextMenuWithRadio />
 	<ContextMenuWithDestructive />
 	<ContextMenuInDialog />
+	<ContextMenuWithInset />
 </ExampleWrapper>

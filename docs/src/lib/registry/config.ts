@@ -246,7 +246,7 @@ export function buildRegistryBase(config: PresetConfig) {
 	const registryTheme = buildRegistryTheme(config);
 
 	// Dependencies added on init
-	const dependencies = [
+	const devDependencies = [
 		"tailwind-variants",
 		"clsx",
 		"tailwind-merge",
@@ -273,7 +273,7 @@ export function buildRegistryBase(config: PresetConfig) {
 				baseColor: config.baseColor,
 			},
 		},
-		dependencies,
+		devDependencies,
 		registryDependencies,
 		cssVars: registryTheme.cssVars,
 		css: {

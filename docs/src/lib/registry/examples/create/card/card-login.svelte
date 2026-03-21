@@ -37,7 +37,7 @@
 		<Card.Footer class="flex-col gap-2">
 			<Button.Root type="submit" class="w-full">Login</Button.Root>
 			<Button.Root variant="outline" class="w-full">Login with Google</Button.Root>
-			<div class="mt-4 text-center">
+			<div class="style-nova:mt-2 mt-4 text-center">
 				Don't have an account?
 				<a href="#/" class="underline underline-offset-4"> Sign up </a>
 			</div>

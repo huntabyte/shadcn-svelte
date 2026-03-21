@@ -12,11 +12,10 @@
 		{ label: "Broccoli", value: "broccoli" },
 		{ label: "Spinach", value: "spinach" },
 	];
-	const allItems = [{ label: "Select a fruit", value: null }, ...fruits, ...vegetables];
-
 	let selectedValue = $state<string | undefined>(undefined);
 	const selectedLabel = $derived(
-		allItems.find((item) => item.value === selectedValue)?.label ?? "Select a fruit"
+		[...fruits, ...vegetables].find((item) => item.value === selectedValue)?.label ??
+			"Select a fruit"
 	);
 </script>
 

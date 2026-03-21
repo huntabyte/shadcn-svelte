@@ -4,7 +4,7 @@
 </script>
 
 <Example title="Simple">
-	<Pagination.Root count={50} perPage={10}>
+	<Pagination.Root page={2} count={50} perPage={10}>
 		{#snippet children({ pages, currentPage })}
 			<Pagination.Content>
 				{#each pages as page (page.key)}

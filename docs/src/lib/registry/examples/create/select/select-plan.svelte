@@ -36,13 +36,13 @@
 		</Select.Trigger>
 		<Select.Content>
 			<Select.Group>
-				{#each plans as plan (plan.name)}
-					<Select.Item value={plan.name}>
+				{#each plans as p (p.name)}
+					<Select.Item value={p.name}>
 						<Item.Root size="xs" class="w-full p-0">
 							<Item.Content class="gap-0">
-								<Item.Title>{plan.name}</Item.Title>
+								<Item.Title>{p.name}</Item.Title>
 								<Item.Description class="text-xs">
-									{plan.description}
+									{p.description}
 								</Item.Description>
 							</Item.Content>
 						</Item.Root>

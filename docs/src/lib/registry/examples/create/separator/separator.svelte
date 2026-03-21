@@ -6,7 +6,7 @@
 	import SeparatorInList from "./separator-in-list.svelte";
 </script>
 
-<ExampleWrapper class="w-full max-w-4xl lg:grid-cols-1 2xl:max-w-4xl 2xl:grid-cols-1">
+<ExampleWrapper>
 	<SeparatorHorizontal />
 	<SeparatorVertical />
 	<SeparatorVerticalMenu />

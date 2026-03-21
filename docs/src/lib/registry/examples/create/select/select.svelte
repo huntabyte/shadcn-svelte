@@ -4,7 +4,6 @@
 	import SelectWithIcons from "./select-with-icons.svelte";
 	import SelectWithGroups from "./select-with-groups.svelte";
 	import SelectLargeList from "./select-large-list.svelte";
-	import SelectMultiple from "./select-multiple.svelte";
 	import SelectSizes from "./select-sizes.svelte";
 	import SelectPlan from "./select-plan.svelte";
 	import SelectWithButton from "./select-with-button.svelte";
@@ -21,7 +20,6 @@
 	<SelectWithIcons />
 	<SelectWithGroups />
 	<SelectLargeList />
-	<SelectMultiple />
 	<SelectSizes />
 	<SelectPlan />
 	<SelectWithButton />

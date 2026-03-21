@@ -14,6 +14,7 @@
 	import ToggleGroupVerticalOutline from "./toggle-group-vertical-outline.svelte";
 	import ToggleGroupVerticalOutlineWithIcons from "./toggle-group-vertical-outline-with-icons.svelte";
 	import ToggleGroupVerticalWithSpacing from "./toggle-group-vertical-with-spacing.svelte";
+	import ToggleGroupFontWeightSelector from "./toggle-group-font-weight-selector.svelte";
 </script>
 
 <ExampleWrapper>
@@ -31,4 +32,5 @@
 	<ToggleGroupVerticalOutline />
 	<ToggleGroupVerticalOutlineWithIcons />
 	<ToggleGroupVerticalWithSpacing />
+	<ToggleGroupFontWeightSelector />
 </ExampleWrapper>

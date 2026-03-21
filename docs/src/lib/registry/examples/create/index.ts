@@ -103,11 +103,6 @@ export const examples: Example[] = [
 		type: "registry:example",
 	},
 	{
-		title: "Demo",
-		name: "demo",
-		type: "registry:example",
-	},
-	{
 		title: "Dialog",
 		name: "dialog",
 		type: "registry:example",
@@ -233,11 +228,6 @@ export const examples: Example[] = [
 		type: "registry:example",
 	},
 	{
-		title: "Sidebar (Floating)",
-		name: "sidebar-floating",
-		type: "registry:example",
-	},
-	{
 		title: "Sidebar (Icon)",
 		name: "sidebar-icon",
 		type: "registry:example",
@@ -245,6 +235,11 @@ export const examples: Example[] = [
 	{
 		title: "Sidebar (Inset)",
 		name: "sidebar-inset",
+		type: "registry:example",
+	},
+	{
+		title: "Sidebar (Floating)",
+		name: "sidebar-floating",
 		type: "registry:example",
 	},
 	{
@@ -300,6 +295,11 @@ export const examples: Example[] = [
 	{
 		title: "Tooltip",
 		name: "tooltip",
+		type: "registry:example",
+	},
+	{
+		title: "Demo",
+		name: "demo",
 		type: "registry:example",
 	},
 	// {
