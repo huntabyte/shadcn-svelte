@@ -3,7 +3,7 @@ import type { PageServerLoad, EntryGenerator } from "./$types.js";
 
 const chartTypes = ["area", "bar", "line", "pie", "radar", "radial", "tooltip"] as const;
 
-const charts = import.meta.glob("/src/__registry__/json/chart-*.json");
+const charts = import.meta.glob("/src/__registry__/json/styles/nova/chart-*.json");
 export const prerender = true;
 
 export const entries: EntryGenerator = () => {
