@@ -211,7 +211,7 @@ describe("getConfig", () => {
 
 	it("handles legacy tailwind v3 configs", async () => {
 		expect(await getConf("legacy/post-init-default")).toEqual({
-			style: "default",
+			style: "nova",
 			tailwind: {
 				css: "src/app.css",
 				baseColor: "zinc",

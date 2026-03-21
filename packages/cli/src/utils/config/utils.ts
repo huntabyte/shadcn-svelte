@@ -19,6 +19,7 @@ import {
 	type RawConfig,
 	type ResolvedConfig,
 } from "./schema.js";
+import { DEFAULT_PRESET_CONFIG, PRESET_STYLES } from "../../preset/preset.js";
 
 export async function getConfig(cwd: string): Promise<ResolvedConfig | undefined> {
 	const config = loadConfig(cwd);
@@ -59,6 +60,13 @@ export async function resolveConfig(cwd: string, config: RawConfig): Promise<Res
 	}
 
 	const sveltekit = project.isUsingSvelteKit(cwd);
+
+	if (config.style && !PRESET_STYLES.includes(config.style as never)) {
+		p.log.warn(
+			`Unsupported style found in ${highlight("components.json")}: ${highlight(config.style)}. Using ${highlight(DEFAULT_PRESET_CONFIG.style)} instead.`
+		);
+		config.style = DEFAULT_PRESET_CONFIG.style;
+	}
 
 	return resolvedConfigSchema.parse({ ...config, sveltekit, resolvedPaths });
 }
