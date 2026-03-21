@@ -1,0 +1,33 @@
+{
+	"name": "violet",
+	"title": "Violet",
+	"type": "registry:theme",
+	"cssVars": {
+		"light": {
+			"primary": "oklch(0.491 0.27 292.581)",
+			"primary-foreground": "oklch(0.969 0.016 293.756)",
+			"secondary": "oklch(0.967 0.001 286.375)",
+			"secondary-foreground": "oklch(0.21 0.006 285.885)",
+			"chart-1": "oklch(0.811 0.111 293.571)",
+			"chart-2": "oklch(0.606 0.25 292.717)",
+			"chart-3": "oklch(0.541 0.281 293.009)",
+			"chart-4": "oklch(0.491 0.27 292.581)",
+			"chart-5": "oklch(0.432 0.232 292.759)",
+			"sidebar-primary": "oklch(0.541 0.281 293.009)",
+			"sidebar-primary-foreground": "oklch(0.969 0.016 293.756)"
+		},
+		"dark": {
+			"primary": "oklch(0.432 0.232 292.759)",
+			"primary-foreground": "oklch(0.969 0.016 293.756)",
+			"secondary": "oklch(0.274 0.006 286.033)",
+			"secondary-foreground": "oklch(0.985 0 0)",
+			"chart-1": "oklch(0.811 0.111 293.571)",
+			"chart-2": "oklch(0.606 0.25 292.717)",
+			"chart-3": "oklch(0.541 0.281 293.009)",
+			"chart-4": "oklch(0.491 0.27 292.581)",
+			"chart-5": "oklch(0.432 0.232 292.759)",
+			"sidebar-primary": "oklch(0.606 0.25 292.717)",
+			"sidebar-primary-foreground": "oklch(0.969 0.016 293.756)"
+		}
+	}
+}
