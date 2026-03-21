@@ -134,7 +134,7 @@
 				{...props}
 				variant="secondary"
 				class={cn(
-					"bg-surface text-foreground dark:bg-card relative h-8 w-full justify-start pl-3 font-medium shadow-none sm:pr-12 md:w-48 lg:w-56 xl:w-64"
+					"bg-surface text-foreground dark:bg-card relative h-8 w-full justify-start ps-3 font-medium shadow-none sm:pe-12 md:w-48 lg:w-56 xl:w-64"
 				)}
 				onclick={() => openCommandMenu()}
 			>
@@ -192,7 +192,7 @@
 										class="border-muted-foreground aspect-square size-4 rounded-full border border-dashed"
 									></div>
 								{:else}
-									<ArrowRightIcon />
+									<ArrowRightIcon class="cn-rtl-flip" />
 								{/if}
 								{item.title}
 							</CommandMenuItem>

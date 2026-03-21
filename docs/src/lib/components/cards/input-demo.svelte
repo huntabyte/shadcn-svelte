@@ -27,7 +27,7 @@
 					<Item.Title>Your profile has been verified.</Item.Title>
 				</Item.Content>
 				<Item.Actions>
-					<ChevronRightIcon class="size-4" />
+					<ChevronRightIcon class="cn-rtl-flip size-4" />
 				</Item.Actions>
 			</a>
 		{/snippet}

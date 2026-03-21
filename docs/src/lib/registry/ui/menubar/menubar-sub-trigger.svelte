@@ -31,6 +31,6 @@
 		hugeicons="ArrowRight01Icon"
 		phosphor="CaretRightIcon"
 		remixicon="RiArrowRightSLine"
-		class="cn-rtl-flip ml-auto size-4"
+		class="cn-rtl-flip ms-auto size-4"
 	/>
 </MenubarPrimitive.SubTrigger>

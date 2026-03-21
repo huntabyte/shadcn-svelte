@@ -17,7 +17,7 @@
 </script>
 
 <div
-	class="top-24 right-12 isolate z-10 flex min-h-0 w-full flex-col gap-2 self-start md:w-(--customizer-width)"
+	class="end-12 top-24 isolate z-10 flex min-h-0 w-full flex-col gap-2 self-start md:w-(--customizer-width)"
 >
 	<Card.Root
 		class="dark bg-card/90 max-h-full min-h-0 w-full rounded-2xl shadow-xl backdrop-blur-xl"

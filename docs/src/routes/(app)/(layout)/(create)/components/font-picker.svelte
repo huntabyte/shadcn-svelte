@@ -22,14 +22,14 @@
 <div class="group/picker relative">
 	<Picker.Root {submenu}>
 		<Picker.Trigger {submenu}>
-			<div class="flex flex-col justify-start text-left">
+			<div class="flex flex-col justify-start text-start">
 				<div class="text-muted-foreground text-xs">Font</div>
 				<div class="text-foreground text-sm font-medium">
 					{currentFont?.title}
 				</div>
 			</div>
 			<div
-				class="text-foreground pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base select-none"
+				class="text-foreground pointer-events-none absolute end-4 top-1/2 flex size-4 -translate-y-1/2 items-center justify-center text-base select-none"
 				style="font-family: {currentFont?.font.family}"
 			>
 				Aa
@@ -71,5 +71,5 @@
 			</Picker.RadioGroup>
 		</Picker.Content>
 	</Picker.Root>
-	<LockButton prop="font" class="absolute top-1/2 right-10 -translate-y-1/2" />
+	<LockButton prop="font" class="absolute end-10 top-1/2 -translate-y-1/2" />
 </div>

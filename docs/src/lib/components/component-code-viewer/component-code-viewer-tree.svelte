@@ -25,7 +25,7 @@
 			class="hover:bg-muted-foreground/15 focus:bg-muted-foreground/15 focus-visible:bg-muted-foreground/15 active:bg-muted-foreground/15 data-[active=true]:bg-muted-foreground/15 flex min-w-0 items-center rounded-none ps-(--index)"
 			data-index={index}
 		>
-			<ChevronRightIcon class="invisible shrink-0" />
+			<ChevronRightIcon class="cn-rtl-flip invisible shrink-0" />
 			<FileIcon class="size-4 shrink-0" />
 			<span class="truncate pe-2">{item.name}</span>
 		</Sidebar.MenuButton>
@@ -42,7 +42,7 @@
 			>
 				{#snippet child({ props })}
 					<Sidebar.MenuButton {...props}>
-						<ChevronRightIcon class="transition-transform" />
+						<ChevronRightIcon class="cn-rtl-flip transition-transform" />
 						<FolderIcon />
 						{`ui/${item.name}`}
 					</Sidebar.MenuButton>

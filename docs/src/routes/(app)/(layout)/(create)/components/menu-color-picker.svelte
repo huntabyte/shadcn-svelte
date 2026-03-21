@@ -86,7 +86,7 @@
 	<Picker.Root {submenu}>
 		<Picker.Trigger {submenu}>
 			<div
-				class="flex min-w-0 flex-1 flex-col justify-start overflow-hidden pr-8 text-left md:pr-7"
+				class="flex min-w-0 flex-1 flex-col justify-start overflow-hidden pe-8 text-start md:pe-7"
 			>
 				<div class="text-muted-foreground text-xs">Menu</div>
 				<div
@@ -96,7 +96,7 @@
 				</div>
 			</div>
 			<div
-				class="text-foreground pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base select-none md:right-2.5"
+				class="text-foreground pointer-events-none absolute end-4 top-1/2 flex size-4 -translate-y-1/2 items-center justify-center text-base select-none md:end-2.5"
 			>
 				<MenuIcon class="size-4" strokeWidth={2} />
 			</div>
@@ -142,5 +142,5 @@
 			</Picker.Group>
 		</Picker.Content>
 	</Picker.Root>
-	<LockButton prop="menuColor" class="absolute top-1/2 right-8 -translate-y-1/2" />
+	<LockButton prop="menuColor" class="absolute end-8 top-1/2 -translate-y-1/2" />
 </div>

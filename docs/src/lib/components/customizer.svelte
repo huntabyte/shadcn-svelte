@@ -61,9 +61,9 @@
 					onclick={() => {
 						setMode(mode.current === "dark" ? "light" : "dark");
 					}}
-					class="border-foreground/10 bg-muted/50 h-[calc(--spacing(13.5))] w-[140px] touch-manipulation justify-between rounded-xl border select-none focus-visible:border-transparent focus-visible:ring-1 sm:rounded-lg md:w-full md:rounded-lg md:border-transparent md:bg-transparent md:pr-3.5! md:pl-2!"
+					class="border-foreground/10 bg-muted/50 h-[calc(--spacing(13.5))] w-[140px] touch-manipulation justify-between rounded-xl border select-none focus-visible:border-transparent focus-visible:ring-1 sm:rounded-lg md:w-full md:rounded-lg md:border-transparent md:bg-transparent md:ps-2! md:pe-3.5!"
 				>
-					<div class="flex flex-col justify-start text-left">
+					<div class="flex flex-col justify-start text-start">
 						<div class="text-muted-foreground text-xs">Mode</div>
 						<div class="text-foreground text-sm font-medium">
 							Switch to {mode.current === "dark" ? "Light" : "Dark"} Mode

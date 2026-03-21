@@ -27,6 +27,7 @@
 </script>
 
 <script lang="ts">
+	import { resolveInlineSide, useDirection } from "$lib/localization.svelte.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import { cn, type WithElementRef, type WithoutChildrenOrChild } from "$lib/utils.js";
 	import { mergeProps } from "bits-ui";
@@ -55,6 +56,8 @@
 	} = $props();
 
 	const sidebar = useSidebar();
+	const direction = useDirection();
+	const tooltipSide = $derived(resolveInlineSide(direction.current, "end"));
 
 	const buttonProps = $derived({
 		class: cn(sidebarMenuButtonVariants({ variant, size }), className),
@@ -87,7 +90,7 @@
 			{/snippet}
 		</Tooltip.Trigger>
 		<Tooltip.Content
-			side="right"
+			side={tooltipSide}
 			align="center"
 			hidden={sidebar.state !== "collapsed" || sidebar.isMobile}
 			{...tooltipContentProps}

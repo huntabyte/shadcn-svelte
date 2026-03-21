@@ -86,7 +86,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 									class="extend-touch-target ms-auto size-8 shadow-none md:size-7"
 									href={neighbors.previous.href}
 								>
-									<ArrowLeftIcon />
+									<ArrowLeftIcon class="cn-rtl-flip" />
 									<span class="sr-only">Previous</span>
 								</Button>
 							{/if}
@@ -98,7 +98,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 									href={neighbors.next.href}
 								>
 									<span class="sr-only">Next</span>
-									<ArrowRightIcon />
+									<ArrowRightIcon class="cn-rtl-flip" />
 								</Button>
 							{/if}
 						</div>
@@ -110,7 +110,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 					{/if}
 				</div>
 				{#if apiLink || docLink || source}
-					<div class="flex items-center space-x-2 pt-4">
+					<div class="flex items-center gap-2 pt-4">
 						{#if docLink}
 							<Badge
 								href={docLink}
@@ -158,7 +158,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 					class="shadow-none"
 					href={neighbors.previous.href}
 				>
-					<ArrowLeftIcon />
+					<ArrowLeftIcon class="cn-rtl-flip" />
 					{neighbors.previous.title}
 				</Button>
 			{/if}
@@ -170,7 +170,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 					href={neighbors.next.href}
 				>
 					{neighbors.next.title}
-					<ArrowRightIcon />
+					<ArrowRightIcon class="cn-rtl-flip" />
 				</Button>
 			{/if}
 		</div>

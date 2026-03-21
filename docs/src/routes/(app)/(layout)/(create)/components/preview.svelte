@@ -26,7 +26,7 @@
 	>
 		<Button
 			href="/preview/{item}{new URL(designSystem.shareUrl).search}&fromPreview=true"
-			class="absolute top-2 right-2 isolate z-10"
+			class="absolute end-2 top-2 isolate z-10"
 			variant="ghost"
 			size="icon-sm"
 		>
@@ -39,6 +39,6 @@
 			/>
 		</Button>
 		<iframe src="/preview/{item}" class="h-(--preview-height)" title={item}></iframe>
-		<Badge class="absolute right-2 bottom-2 isolate z-10" variant="secondary">Preview</Badge>
+		<Badge class="absolute end-2 bottom-2 isolate z-10" variant="secondary">Preview</Badge>
 	</div>
 </div>

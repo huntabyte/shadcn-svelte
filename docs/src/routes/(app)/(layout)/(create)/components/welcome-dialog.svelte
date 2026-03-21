@@ -20,12 +20,12 @@
 			</div>
 		</div>
 		<Dialog.Header class="gap-1 p-4">
-			<Dialog.Title class="text-left text-base">Build your own shadcn-svelte</Dialog.Title>
-			<Dialog.Description class="text-foreground text-left leading-relaxed">
+			<Dialog.Title class="text-start text-base">Build your own shadcn-svelte</Dialog.Title>
+			<Dialog.Description class="text-foreground text-start leading-relaxed">
 				Customize everything from the ground up. Pick your component library, font, color
 				scheme, and more.
 			</Dialog.Description>
-			<Dialog.Description class="text-foreground mt-2 text-left leading-relaxed font-medium">
+			<Dialog.Description class="text-foreground mt-2 text-start leading-relaxed font-medium">
 				Available for SvelteKit, Vite, and Astro.
 			</Dialog.Description>
 		</Dialog.Header>

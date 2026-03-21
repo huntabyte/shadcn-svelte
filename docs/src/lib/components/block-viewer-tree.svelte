@@ -25,7 +25,7 @@
 			class="hover:bg-muted-foreground/15 focus:bg-muted-foreground/15 focus-visible:bg-muted-foreground/15 active:bg-muted-foreground/15 data-[active=true]:bg-muted-foreground/15 rounded-none ps-(--index) whitespace-nowrap"
 			data-index={index}
 		>
-			<ChevronRightIcon class="invisible" />
+			<ChevronRightIcon class="cn-rtl-flip invisible" />
 			<FileIcon class="size-4" />
 			{item.name}
 		</Sidebar.MenuButton>
@@ -42,7 +42,7 @@
 			>
 				{#snippet child({ props })}
 					<Sidebar.MenuButton {...props}>
-						<ChevronRightIcon class="transition-transform" />
+						<ChevronRightIcon class="cn-rtl-flip transition-transform" />
 						<FolderIcon />
 						{item.name === "components" ? "lib/components" : item.name}
 					</Sidebar.MenuButton>

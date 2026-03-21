@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { useDirection } from "$lib/localization.svelte.js";
 	import {
 		type CarouselAPI,
 		type CarouselProps,
@@ -36,6 +37,7 @@
 	});
 
 	setEmblaContext(carouselState);
+	const direction = useDirection();
 
 	function scrollPrev() {
 		carouselState.api?.scrollPrev();
@@ -57,12 +59,18 @@
 	}
 
 	function handleKeyDown(e: KeyboardEvent) {
+		if (orientation !== "horizontal") {
+			return;
+		}
+
+		const isRtl = direction.current === "rtl";
+
 		if (e.key === "ArrowLeft") {
 			e.preventDefault();
-			scrollPrev();
+			isRtl ? scrollNext() : scrollPrev();
 		} else if (e.key === "ArrowRight") {
 			e.preventDefault();
-			scrollNext();
+			isRtl ? scrollPrev() : scrollNext();
 		}
 	}
 

@@ -14,7 +14,7 @@
 	bind:this={ref}
 	data-slot="dropdown-menu-shortcut"
 	class={cn(
-		"ml-auto text-xs tracking-widest text-neutral-400 group-focus/dropdown-menu-item:text-neutral-100",
+		"ms-auto text-xs tracking-widest text-neutral-400 group-focus/dropdown-menu-item:text-neutral-100",
 		className
 	)}
 	{...restProps}

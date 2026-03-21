@@ -1,5 +1,6 @@
 <script lang="ts">
 	import * as Sheet from "$lib/registry/ui/sheet/index.js";
+	import { resolveInlineSide, useDirection } from "$lib/localization.svelte.js";
 	import { cn, type WithElementRef } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 	import { SIDEBAR_WIDTH_MOBILE } from "./constants.js";
@@ -7,19 +8,21 @@
 
 	let {
 		ref = $bindable(null),
-		side = "left",
+		side = "start",
 		variant = "sidebar",
 		collapsible = "offcanvas",
 		class: className,
 		children,
 		...restProps
 	}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {
-		side?: "left" | "right";
+		side?: "start" | "end" | "left" | "right";
 		variant?: "sidebar" | "floating" | "inset";
 		collapsible?: "offcanvas" | "icon" | "none";
 	} = $props();
 
 	const sidebar = useSidebar();
+	const direction = useDirection();
+	const resolvedSide = $derived(resolveInlineSide(direction.current, side) as "left" | "right");
 </script>
 
 {#if collapsible === "none"}
@@ -48,7 +51,7 @@
 				className
 			)}
 			style="--sidebar-width: {SIDEBAR_WIDTH_MOBILE};"
-			{side}
+			side={resolvedSide}
 		>
 			<Sheet.Header class="sr-only">
 				<Sheet.Title>Sidebar</Sheet.Title>
@@ -66,7 +69,7 @@
 		data-state={sidebar.state}
 		data-collapsible={sidebar.state === "collapsed" ? collapsible : ""}
 		data-variant={variant}
-		data-side={side}
+		data-side={resolvedSide}
 		data-slot="sidebar"
 	>
 		<!-- This is what handles the sidebar gap on desktop -->
@@ -85,7 +88,7 @@
 			data-slot="sidebar-container"
 			class={cn(
 				"fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear md:flex",
-				side === "left"
+				resolvedSide === "left"
 					? "start-0 group-data-[collapsible=offcanvas]:start-[calc(var(--sidebar-width)*-1)]"
 					: "end-0 group-data-[collapsible=offcanvas]:end-[calc(var(--sidebar-width)*-1)]",
 				// Adjust the padding for floating and inset variants.

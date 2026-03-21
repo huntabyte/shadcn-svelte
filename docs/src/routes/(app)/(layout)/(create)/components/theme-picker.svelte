@@ -35,7 +35,7 @@
 <div class="group/picker relative">
 	<Picker.Root {submenu}>
 		<Picker.Trigger {submenu}>
-			<div class="flex flex-col justify-start text-left">
+			<div class="flex flex-col justify-start text-start">
 				<div class="text-muted-foreground text-xs">Theme</div>
 				<div class="text-foreground text-sm font-medium">
 					{currentTheme?.title}
@@ -43,7 +43,7 @@
 			</div>
 			<div
 				style="--color: {getColorForTheme(currentTheme)};"
-				class="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 rounded-full bg-(--color) select-none"
+				class="pointer-events-none absolute end-4 top-1/2 size-4 -translate-y-1/2 rounded-full bg-(--color) select-none"
 			></div>
 		</Picker.Trigger>
 		<Picker.Content
@@ -97,5 +97,5 @@
 			</Picker.RadioGroup>
 		</Picker.Content>
 	</Picker.Root>
-	<LockButton prop="theme" class="absolute top-1/2 right-10 -translate-y-1/2" />
+	<LockButton prop="theme" class="absolute end-10 top-1/2 -translate-y-1/2" />
 </div>

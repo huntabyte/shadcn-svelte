@@ -37,6 +37,7 @@
 		hugeicons="SidebarLeftIcon"
 		phosphor="SidebarIcon"
 		remixicon="RiSideBarLine"
+		class="cn-rtl-flip"
 	/>
 	<span class="sr-only">Toggle Sidebar</span>
 </Button>

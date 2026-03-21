@@ -53,7 +53,7 @@
 					data-slot="copy-button"
 					size="icon"
 					variant="ghost"
-					class="bg-code text-code-foreground absolute top-3 right-2 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
+					class="bg-code text-code-foreground absolute end-2 top-3 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
 					onclick={() => {
 						copyToClipboard(getThemeCodeOKLCH(activeThemeOKLCH, 0.65));
 					}}>
@@ -107,7 +107,7 @@
 					data-slot="copy-button"
 					size="icon"
 					variant="ghost"
-					class="bg-code text-code-foreground absolute top-3 right-2 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
+					class="bg-code text-code-foreground absolute end-2 top-3 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
 					onclick={() => {
 						copyToClipboard(getThemeCodeHSLV4(activeTheme, 0.65));
 					}}>
@@ -161,7 +161,7 @@
 					data-slot="copy-button"
 					size="icon"
 					variant="ghost"
-					class="bg-code text-code-foreground absolute top-3 right-2 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
+					class="bg-code text-code-foreground absolute end-2 top-3 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
 					onclick={() => {
 						copyToClipboard(getThemeCode(activeTheme, 0.5));
 					}}>

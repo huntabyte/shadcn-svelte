@@ -42,7 +42,7 @@
 			class="size-5"
 		/>
 	</Picker.Trigger>
-	<Picker.Content side="right" align="start" alignOffset={-8}>
+	<Picker.Content side="end" align="start" alignOffset={-8}>
 		<Picker.Group>
 			<Picker.Item onSelect={() => (actionMenuCtx.open = true)}>
 				Navigate...

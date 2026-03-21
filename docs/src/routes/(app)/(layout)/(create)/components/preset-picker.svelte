@@ -50,7 +50,7 @@
 
 <Picker.Root {submenu}>
 	<Picker.Trigger {submenu}>
-		<div class="flex flex-col justify-start text-left">
+		<div class="flex flex-col justify-start text-start">
 			<div class="text-muted-foreground text-xs">Preset</div>
 			<div class="text-foreground line-clamp-1 text-sm font-medium">
 				{currentPreset?.description ?? "Custom"}

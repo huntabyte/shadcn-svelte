@@ -94,7 +94,7 @@
 			{/snippet}
 		</Sheet.Trigger>
 		<Sheet.Content
-			side="right"
+			side="end"
 			class={cn(
 				"flex flex-col gap-0 border-s-0 p-0 sm:max-w-sm md:w-[700px] md:max-w-[700px] dark:border-s",
 				className

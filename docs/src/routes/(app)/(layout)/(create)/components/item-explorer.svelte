@@ -28,24 +28,24 @@
 						class="flex w-full items-center gap-1 py-1.5 text-[0.8rem] font-medium [&[data-state=open]>svg]:rotate-90"
 					>
 						<ChevronRightIcon
-							class="text-muted-foreground size-3.5 transition-transform"
+							class="cn-rtl-flip text-muted-foreground size-3.5 transition-transform"
 						/>
 						<span>{group.title}</span>
 					</Collapsible.Trigger>
 					<Collapsible.Content>
 						<Sidebar.GroupContent>
-							<Sidebar.Menu class="border-border/50 relative ml-1.5 border-l pl-2">
+							<Sidebar.Menu class="border-border/50 relative ms-1.5 border-s ps-2">
 								{#each group.items as item, index (item.name)}
 									<Sidebar.MenuItem class="relative">
 										<div
 											class={cn(
-												"border-border/50 absolute top-1/2 -left-2 h-px w-2 border-t",
+												"border-border/50 absolute -start-2 top-1/2 h-px w-2 border-t",
 												index === group.items.length - 1 && "bg-sidebar"
 											)}
 										></div>
 										{#if index === group.items.length - 1}
 											<div
-												class="bg-sidebar absolute top-1/2 -bottom-1 -left-2.5 w-1"
+												class="bg-sidebar absolute -start-2.5 top-1/2 -bottom-1 w-1"
 											></div>
 										{/if}
 										<Sidebar.MenuButton

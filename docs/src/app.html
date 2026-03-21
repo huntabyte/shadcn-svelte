@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="%lang%" dir="%dir%">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.ico" />
@@ -18,6 +18,12 @@
 			if (userConfigCookie) {
 				try {
 					const userConfig = JSON.parse(decodeURIComponent(userConfigCookie));
+					if (userConfig.languageTag) {
+						document.documentElement.lang = userConfig.languageTag;
+					}
+					if (userConfig.direction) {
+						document.documentElement.dir = userConfig.direction;
+					}
 					if (userConfig.activeTheme) {
 						document.documentElement.classList.add(`theme-${userConfig.activeTheme}`);
 						document.documentElement.setAttribute("data-theme", userConfig.activeTheme);
