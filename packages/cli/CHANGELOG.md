@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.2.2
+
+### Patch Changes
+
+- fix: Warn users when they are using an unsupported registry style and default to `nova` ([#2579](https://github.com/huntabyte/shadcn-svelte/pull/2579))
+
 ## 1.2.1
 
 ### Patch Changes
