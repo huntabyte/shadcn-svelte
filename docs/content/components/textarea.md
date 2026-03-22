@@ -105,3 +105,11 @@ Update the import paths to match your project setup.
 <div></div>
 
 </ComponentPreview>
+
+### Form
+
+<ComponentPreview name="textarea-form">
+
+<div></div>
+
+</ComponentPreview>

@@ -108,6 +108,14 @@ Update the import paths to match your project setup.
 
 </ComponentPreview>
 
+### Form
+
+<ComponentPreview name="switch-form">
+
+<div></div>
+
+</ComponentPreview>
+
 ## API Reference
 
 See the [Switch API Reference](https://bits-ui.com/docs/components/switch#api-reference) for a full list of props.

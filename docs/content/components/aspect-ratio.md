@@ -78,6 +78,24 @@ Update the import paths to match your project setup.
 </div>
 ```
 
+## Examples
+
+### Portrait
+
+<ComponentPreview name="aspect-ratio-portrait">
+
+<div></div>
+
+</ComponentPreview>
+
+### Square
+
+<ComponentPreview name="aspect-ratio-square">
+
+<div></div>
+
+</ComponentPreview>
+
 ## API Reference
 
 See the [Aspect Ratio API Reference](https://bits-ui.com/docs/components/aspect-ratio#api-reference) for a full list of props.

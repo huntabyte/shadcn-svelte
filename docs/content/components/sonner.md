@@ -119,7 +119,17 @@ Update the import paths to match your project setup.
 
 ## Examples
 
+### Types
+
 <ComponentPreview name="sonner-types">
+
+<div></div>
+
+</ComponentPreview>
+
+### Position
+
+<ComponentPreview name="sonner-position">
 
 <div></div>
 

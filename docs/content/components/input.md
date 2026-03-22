@@ -98,6 +98,22 @@ Update the import paths to match your project setup.
 
 </ComponentPreview>
 
+### With Text
+
+<ComponentPreview name="input-with-text">
+
+<div></div>
+
+</ComponentPreview>
+
+### Invalid
+
+<ComponentPreview name="input-invalid">
+
+<div></div>
+
+</ComponentPreview>
+
 ### With Button
 
 <ComponentPreview name="input-with-button">

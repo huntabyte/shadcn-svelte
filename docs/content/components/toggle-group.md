@@ -20,7 +20,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="toggle-group-spacing">
+<ComponentPreview name="toggle-group-demo">
 
 <div></div>
 

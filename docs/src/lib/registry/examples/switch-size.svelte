@@ -1,8 +1,15 @@
 <script lang="ts">
-	import Construction from "@lucide/svelte/icons/construction";
+	import { Label } from "$lib/registry/ui/label/index.js";
+	import { Switch } from "$lib/registry/ui/switch/index.js";
 </script>
 
-<div class="flex h-full flex-col items-center justify-center gap-4">
-	<Construction class="size-10" />
-	<span>This block is under construction. Check back soon!</span>
+<div class="flex flex-col gap-4">
+	<div class="flex items-center space-x-2">
+		<Switch id="switch-sm" size="sm" />
+		<Label for="switch-sm">Small</Label>
+	</div>
+	<div class="flex items-center space-x-2">
+		<Switch id="switch-default" />
+		<Label for="switch-default">Default</Label>
+	</div>
 </div>

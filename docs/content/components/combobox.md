@@ -159,3 +159,11 @@ You can create a responsive combobox by using the `<Popover />` on desktop and t
 <div></div>
 
 </ComponentPreview>
+
+### Form
+
+<ComponentPreview name="combobox-form">
+
+<div></div>
+
+</ComponentPreview>

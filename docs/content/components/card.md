@@ -78,7 +78,9 @@ Update the import paths to match your project setup.
 
 ## Examples
 
-<ComponentPreview name="card-demo">
+### With Form
+
+<ComponentPreview name="card-with-form">
 
 <div></div>
 

@@ -115,6 +115,14 @@ Update the import paths to match your project setup.
 
 </ComponentPreview>
 
+### Small with Media
+
+<ComponentPreview name="alert-dialog-small-media">
+
+<div></div>
+
+</ComponentPreview>
+
 ## API Reference
 
 See the [Alert Dialog API Reference](https://bits-ui.com/docs/components/alert-dialog#api-reference) for a full list of props.
