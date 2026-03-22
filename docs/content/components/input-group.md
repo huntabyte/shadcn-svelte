@@ -111,21 +111,11 @@ Add buttons to perform actions within the input group.
 
 </ComponentPreview>
 
-### Tooltip
+### Dropdown
 
-Add tooltips to provide additional context or help.
+Pair input groups with dropdown menus for complex interactions.
 
-<ComponentPreview name="input-group-tooltip-demo">
-
-<div></div>
-
-</ComponentPreview>
-
-### Textarea
-
-Input groups also work with textarea components. Use `block-start` or `block-end` for alignment.
-
-<ComponentPreview name="input-group-textarea-demo">
+<ComponentPreview name="input-group-dropdown-demo">
 
 <div></div>
 
@@ -141,31 +131,11 @@ Show loading indicators while processing input.
 
 </ComponentPreview>
 
-### Label
+### Textarea
 
-Add labels within input groups to improve accessibility.
+Input groups also work with textarea components. Use `block-start` or `block-end` for alignment.
 
-<ComponentPreview name="input-group-label-demo">
-
-<div></div>
-
-</ComponentPreview>
-
-### Dropdown
-
-Pair input groups with dropdown menus for complex interactions.
-
-<ComponentPreview name="input-group-dropdown-demo">
-
-<div></div>
-
-</ComponentPreview>
-
-### Button Group
-
-Wrap input groups with button groups to create prefixes and suffixes.
-
-<ComponentPreview name="input-group-button-group-demo">
+<ComponentPreview name="input-group-textarea-demo">
 
 <div></div>
 
@@ -178,6 +148,36 @@ Add the `data-slot="input-group-control"` attribute to your custom input for aut
 No style is applied to the custom input. Apply your own styles using the `class` prop.
 
 <ComponentPreview name="input-group-custom-input-demo">
+
+<div></div>
+
+</ComponentPreview>
+
+### Tooltip
+
+Add tooltips to provide additional context or help.
+
+<ComponentPreview name="input-group-tooltip-demo">
+
+<div></div>
+
+</ComponentPreview>
+
+### Label
+
+Add labels within input groups to improve accessibility.
+
+<ComponentPreview name="input-group-label-demo">
+
+<div></div>
+
+</ComponentPreview>
+
+### Button Group
+
+Wrap input groups with button groups to create prefixes and suffixes.
+
+<ComponentPreview name="input-group-button-group-demo">
 
 <div></div>
 

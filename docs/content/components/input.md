@@ -66,30 +66,6 @@ Update the import paths to match your project setup.
 
 ## Examples
 
-### Default
-
-<ComponentPreview name="input-demo">
-
-<div></div>
-
-</ComponentPreview>
-
-### File
-
-<ComponentPreview name="input-file">
-
-<div></div>
-
-</ComponentPreview>
-
-### Disabled
-
-<ComponentPreview name="input-disabled">
-
-<div></div>
-
-</ComponentPreview>
-
 ### With Label
 
 <ComponentPreview name="input-with-label">
@@ -106,9 +82,25 @@ Update the import paths to match your project setup.
 
 </ComponentPreview>
 
+### Disabled
+
+<ComponentPreview name="input-disabled">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Invalid
 
 <ComponentPreview name="input-invalid">
+
+<div></div>
+
+</ComponentPreview>
+
+### File
+
+<ComponentPreview name="input-file">
 
 <div></div>
 

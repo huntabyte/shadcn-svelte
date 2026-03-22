@@ -83,25 +83,17 @@ Update the import paths to match your project setup.
 
 ## Examples
 
-### Scrollable
-
-<ComponentPreview name="select-scrollable">
-
-<div></div>
-
-</ComponentPreview>
-
-### Form
-
-<ComponentPreview name="select-form">
-
-<div></div>
-
-</ComponentPreview>
-
 ### Groups
 
 <ComponentPreview name="select-groups">
+
+<div></div>
+
+</ComponentPreview>
+
+### Scrollable
+
+<ComponentPreview name="select-scrollable">
 
 <div></div>
 
@@ -118,6 +110,14 @@ Update the import paths to match your project setup.
 ### Invalid
 
 <ComponentPreview name="select-invalid">
+
+<div></div>
+
+</ComponentPreview>
+
+### Form
+
+<ComponentPreview name="select-form">
 
 <div></div>
 

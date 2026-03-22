@@ -76,14 +76,6 @@ Update the import paths to match your project setup.
 
 ## Examples
 
-### Default
-
-<ComponentPreview name="toggle-demo">
-
-<div></div>
-
-</ComponentPreview>
-
 ### Outline
 
 <ComponentPreview name="toggle-outline">

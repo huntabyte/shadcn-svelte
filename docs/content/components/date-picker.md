@@ -10,7 +10,7 @@ links:
 	import ComponentPreview from "$lib/components/component-preview.svelte";
 </script>
 
-<ComponentPreview name="calendar-22">
+<ComponentPreview name="date-picker-demo">
 
 <div></div>
 
@@ -67,6 +67,14 @@ See installations instructions for the [Popover](/docs/components/popover#instal
 ```
 
 ## Examples
+
+### Range Picker
+
+<ComponentPreview name="date-picker-with-range">
+
+<div></div>
+
+</ComponentPreview>
 
 ### Date of Birth Picker
 

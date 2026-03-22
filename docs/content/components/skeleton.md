@@ -66,17 +66,17 @@ Update the import paths to match your project setup.
 
 ## Examples
 
-### Card
+### Avatar
 
-<ComponentPreview name="skeleton-card">
+<ComponentPreview name="skeleton-avatar">
 
 <div></div>
 
 </ComponentPreview>
 
-### Avatar
+### Card
 
-<ComponentPreview name="skeleton-avatar">
+<ComponentPreview name="skeleton-card">
 
 <div></div>
 

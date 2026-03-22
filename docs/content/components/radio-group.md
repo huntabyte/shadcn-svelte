@@ -86,14 +86,6 @@ Update the import paths to match your project setup.
 
 ## Examples
 
-### Form
-
-<ComponentPreview name="radio-group-form">
-
-<div></div>
-
-</ComponentPreview>
-
 ### Description
 
 <ComponentPreview name="radio-group-description">
@@ -129,6 +121,14 @@ Update the import paths to match your project setup.
 ### Invalid
 
 <ComponentPreview name="radio-group-invalid">
+
+<div></div>
+
+</ComponentPreview>
+
+### Form
+
+<ComponentPreview name="radio-group-form">
 
 <div></div>
 

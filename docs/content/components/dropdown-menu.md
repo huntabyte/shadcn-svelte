@@ -112,6 +112,22 @@ Update the import paths to match your project setup.
 
 </ComponentPreview>
 
+### Checkboxes
+
+<ComponentPreview name="dropdown-menu-checkboxes">
+
+<div></div>
+
+</ComponentPreview>
+
+### Radio Group
+
+<ComponentPreview name="dropdown-menu-radio-group">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Destructive
 
 <ComponentPreview name="dropdown-menu-destructive">
@@ -131,22 +147,6 @@ Update the import paths to match your project setup.
 ### Complex
 
 <ComponentPreview name="dropdown-menu-complex">
-
-<div></div>
-
-</ComponentPreview>
-
-### Checkboxes
-
-<ComponentPreview name="dropdown-menu-checkboxes">
-
-<div></div>
-
-</ComponentPreview>
-
-### Radio Group
-
-<ComponentPreview name="dropdown-menu-radio-group">
 
 <div></div>
 

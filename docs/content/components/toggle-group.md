@@ -88,14 +88,6 @@ Update the import paths to match your project setup.
 
 </ComponentPreview>
 
-### Single
-
-<ComponentPreview name="toggle-group-single">
-
-<div></div>
-
-</ComponentPreview>
-
 ### Small
 
 <ComponentPreview name="toggle-group-sm">
@@ -107,14 +99,6 @@ Update the import paths to match your project setup.
 ### Large
 
 <ComponentPreview name="toggle-group-lg">
-
-<div></div>
-
-</ComponentPreview>
-
-### Disabled
-
-<ComponentPreview name="toggle-group-disabled">
 
 <div></div>
 
@@ -133,6 +117,22 @@ Use `spacing={2}` to add spacing between toggle group items.
 ### Vertical
 
 <ComponentPreview name="toggle-group-vertical">
+
+<div></div>
+
+</ComponentPreview>
+
+### Disabled
+
+<ComponentPreview name="toggle-group-disabled">
+
+<div></div>
+
+</ComponentPreview>
+
+### Single
+
+<ComponentPreview name="toggle-group-single">
 
 <div></div>
 
