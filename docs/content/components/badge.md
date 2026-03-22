@@ -63,41 +63,11 @@ Update the import paths to match your project setup.
 <Badge variant="outline">Badge</Badge>
 ```
 
-### Link
-
-You can use the `badgeVariants` helper to create a link that looks like a badge.
-
-```svelte
-<script lang="ts">
-  import { badgeVariants } from "$lib/components/ui/badge/index.js";
-</script>
-
-<a href="/dashboard" class={badgeVariants({ variant: "outline" })}>Badge</a>
-```
-
 ## Examples
 
 ### Variants
 
-<ComponentPreview name="badge-demo">
-
-<div></div>
-
-</ComponentPreview>
-
-<ComponentPreview name="badge-destructive">
-
-<div></div>
-
-</ComponentPreview>
-
-<ComponentPreview name="badge-outline">
-
-<div></div>
-
-</ComponentPreview>
-
-<ComponentPreview name="badge-secondary">
+<ComponentPreview name="badge-variants">
 
 <div></div>
 
@@ -114,6 +84,14 @@ You can use the `badgeVariants` helper to create a link that looks like a badge.
 ### With Spinner
 
 <ComponentPreview name="badge-with-spinner">
+
+<div></div>
+
+</ComponentPreview>
+
+### Link
+
+<ComponentPreview name="badge-link">
 
 <div></div>
 

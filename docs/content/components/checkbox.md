@@ -76,14 +76,6 @@ Update the import paths to match your project setup.
 
 ## Examples
 
-### Disabled
-
-<ComponentPreview name="checkbox-disabled">
-
-<div></div>
-
-</ComponentPreview>
-
 ### With Text
 
 <ComponentPreview name="checkbox-with-text">
@@ -95,6 +87,14 @@ Update the import paths to match your project setup.
 ### Description
 
 <ComponentPreview name="checkbox-description">
+
+<div></div>
+
+</ComponentPreview>
+
+### Disabled
+
+<ComponentPreview name="checkbox-disabled">
 
 <div></div>
 

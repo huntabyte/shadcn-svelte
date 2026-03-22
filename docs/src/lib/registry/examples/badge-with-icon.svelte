@@ -1,19 +1,16 @@
 <script lang="ts">
-	import CheckIcon from "@lucide/svelte/icons/check";
+	import BadgeCheckIcon from "@lucide/svelte/icons/badge-check";
+	import BookmarkIcon from "@lucide/svelte/icons/bookmark";
 	import { Badge } from "$lib/registry/ui/badge/index.js";
 </script>
 
 <div class="flex flex-wrap gap-2">
-	<Badge>
-		<CheckIcon />
+	<Badge variant="secondary">
+		<BadgeCheckIcon />
 		Verified
 	</Badge>
-	<Badge variant="secondary">
-		<CheckIcon />
-		Completed
-	</Badge>
 	<Badge variant="outline">
-		<CheckIcon />
-		Approved
+		Bookmark
+		<BookmarkIcon />
 	</Badge>
 </div>

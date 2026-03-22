@@ -111,6 +111,14 @@ Update the import paths to match your project setup.
 
 </ComponentPreview>
 
+### Group with Icon
+
+<ComponentPreview name="avatar-group-icon">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Sizes
 
 <ComponentPreview name="avatar-sizes">

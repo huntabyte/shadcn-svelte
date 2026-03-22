@@ -21,13 +21,6 @@ links:
 	let { viewerData, links } = $props();
 </script>
 
-<Callout variant="info" icon={InfoIcon}>
-
-**Updated:** We have updated the button component to add new sizes: `icon-sm` and `icon-lg`. See the
-[changelog](/docs/components/button#changelog) for more details. Follow the
-instructions to update your project.
-
-</Callout>
 
 <ComponentPreview name="button-demo" class="mb-4">
 
@@ -106,6 +99,12 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 </ComponentPreview>
 
 ```svelte
+<!-- Extra Small -->
+<Button size="xs" variant="outline">Extra Small</Button>
+<Button size="icon-xs" aria-label="Submit" variant="outline">
+  <ArrowUpRightIcon />
+</Button>
+
 <!-- Small -->
 <Button size="sm" variant="outline">Small</Button>
 <Button size="icon-sm" aria-label="Submit" variant="outline">

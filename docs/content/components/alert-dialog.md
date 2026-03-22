@@ -91,14 +91,6 @@ Update the import paths to match your project setup.
 
 ## Examples
 
-### Destructive
-
-<ComponentPreview name="alert-dialog-destructive">
-
-<div></div>
-
-</ComponentPreview>
-
 ### Small
 
 <ComponentPreview name="alert-dialog-small">
@@ -118,6 +110,14 @@ Update the import paths to match your project setup.
 ### Small with Media
 
 <ComponentPreview name="alert-dialog-small-media">
+
+<div></div>
+
+</ComponentPreview>
+
+### Destructive
+
+<ComponentPreview name="alert-dialog-destructive">
 
 <div></div>
 

@@ -4,16 +4,12 @@
 </script>
 
 <div class="flex flex-wrap gap-2">
-	<Badge>
+	<Badge variant="destructive">
 		<Spinner />
-		Syncing
+		Deleting
 	</Badge>
 	<Badge variant="secondary">
+		Generating
 		<Spinner />
-		Loading
-	</Badge>
-	<Badge variant="outline">
-		<Spinner />
-		Processing
 	</Badge>
 </div>

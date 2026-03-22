@@ -85,3 +85,11 @@ Update the import paths to match your project setup.
 <div></div>
 
 </ComponentPreview>
+
+### Small
+
+<ComponentPreview name="card-small">
+
+<div></div>
+
+</ComponentPreview>
