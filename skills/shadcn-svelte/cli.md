@@ -1,103 +1,96 @@
 # shadcn-svelte CLI Reference
 
-Configuration is read from `components.json`.
+The shadcn-svelte CLI manages component installation and configuration through `components.json`.
 
-> Use the project's package runner for commands: `npx shadcn-svelte@latest`, `pnpm dlx shadcn-svelte@latest`, or `bunx --bun shadcn-svelte@latest`.
+> Always use the project's package runner: `npx shadcn-svelte@latest`, `pnpm dlx shadcn-svelte@latest`, or `bunx --bun shadcn-svelte@latest`.
 
-> Only use commands and flags verified below. Do not borrow upstream `shadcn` commands such as `info`, `docs`, `search`, `view`, or diff-preview flags.
+## Key Commands
 
-## Commands
+### Init
 
-### `init`
-
-Initializes `shadcn-svelte` in an existing project.
+Sets up shadcn-svelte in an existing project. Prompts for base color, global CSS file, and import aliases.
 
 ```bash
 shadcn-svelte init [options]
 ```
 
-What it does:
+**What it does:**
 
-- prompts for base color
-- prompts for the global CSS file
-- prompts for aliases for `lib`, `components`, `ui`, `utils`, and `hooks`
-- writes or updates `components.json`
-- configures CSS variables and supporting files
-- installs dependencies unless `--no-deps` is used
+- Prompts for base color, global CSS file path, and aliases (`lib`, `components`, `ui`, `utils`, `hooks`)
+- Writes or updates `components.json`
+- Configures CSS variables and supporting files
+- Installs dependencies unless `--no-deps` is used
 
-Verified flags:
+**Options:**
 
-- `-c, --cwd <path>`
-- `-o, --overwrite`
-- `--no-deps`
-- `--skip-preflight`
-- `--base-color <name>`
-- `--css <path>`
-- `--components-alias <path>`
-- `--lib-alias <path>`
-- `--utils-alias <path>`
-- `--hooks-alias <path>`
-- `--ui-alias <path>`
-- `--proxy <proxy>`
+| Flag | Description |
+|------|-------------|
+| `-c, --cwd <path>` | Working directory |
+| `-o, --overwrite` | Overwrite existing files |
+| `--no-deps` | Skip dependency installation |
+| `--skip-preflight` | Skip preflight checks |
+| `--base-color <name>` | Base color preset |
+| `--css <path>` | Global CSS file path |
+| `--components-alias <path>` | Components import alias |
+| `--lib-alias <path>` | Lib import alias |
+| `--utils-alias <path>` | Utils import alias |
+| `--hooks-alias <path>` | Hooks import alias |
+| `--ui-alias <path>` | UI import alias |
+| `--proxy <proxy>` | HTTP proxy |
 
-### `add`
+### Add
 
-Adds components to the current project from the configured registry.
+Installs components from the configured registry.
 
 ```bash
 shadcn-svelte add [components...] [options]
 ```
 
-What it does:
+**What it does:**
 
-- adds one or more components by name
-- can install all available components with `--all`
-- can fetch a component from a URL
-- installs dependencies unless `--no-deps` is used
+- Adds one or more components by name
+- Can install all available components with `--all`
+- Can fetch a component from a URL
+- Installs dependencies unless `--no-deps` is used
 
-Verified flags:
+**Options:**
 
-- `-c, --cwd <path>`
-- `--no-deps`
-- `--skip-preflight`
-- `-a, --all`
-- `-y, --yes`
-- `-o, --overwrite`
-- `--proxy <proxy>`
+| Flag | Description |
+|------|-------------|
+| `-c, --cwd <path>` | Working directory |
+| `--no-deps` | Skip dependency installation |
+| `--skip-preflight` | Skip preflight checks |
+| `-a, --all` | Install all components |
+| `-y, --yes` | Skip confirmation prompts |
+| `-o, --overwrite` | Overwrite existing files |
+| `--proxy <proxy>` | HTTP proxy |
 
-Do not claim support for upstream preview workflows such as `--dry-run`, `--diff`, or `--view`.
+### Registry Build
 
-### `registry build`
-
-Builds a distributable registry from a `registry.json` file.
+Generates distributable registry JSON files from a `registry.json` file.
 
 ```bash
 shadcn-svelte registry build [registry] [options]
 ```
 
-Verified flags:
+**Options:**
 
-- `-c, --cwd <path>`
-- `-o, --output <path>`
+| Flag | Description |
+|------|-------------|
+| `-c, --cwd <path>` | Working directory |
+| `-o, --output <path>` | Output directory |
 
-Use this only when the user is working on a registry, not for routine app consumption.
+Use this only when building a custom component registry, not for routine app usage.
 
-## Non-Equivalent Upstream Features
+## Important: Non-Equivalent Upstream Features
 
-The following upstream `shadcn` guidance does not have a verified public local equivalent:
+The following upstream `shadcn` features do **not** have a verified equivalent in `shadcn-svelte`:
 
-- `info`
-- `docs`
-- `search`
-- `view`
-- presets and preset switching
-- `add --dry-run`
-- `add --diff`
-- `add --view`
+- `info` — inspect local files directly (`components.json`, `package.json`, `svelte.config.*`)
+- `docs` — read `docs/content/components/<name>.md` directly
+- `search` — check installed component folders under the configured `ui` alias
+- `view` — read component source files directly
+- Presets and preset switching
+- `add --dry-run`, `add --diff`, `add --view`
 
-If the user needs project context, inspect local files directly:
-
-- `components.json`
-- `package.json`
-- `svelte.config.*`
-- installed component folders under the configured `ui` alias
+Do not suggest these commands. Use local file inspection as the alternative.

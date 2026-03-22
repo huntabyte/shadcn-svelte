@@ -2,48 +2,44 @@
 
 See [../customization.md](../customization.md) for CSS variable setup and theme extension.
 
-## Prefer semantic tokens
+## Semantic Colors
 
-Use semantic utilities backed by CSS variables:
+Use theme tokens instead of raw Tailwind colors:
 
-- `bg-background`
-- `text-foreground`
-- `bg-primary`
-- `text-primary-foreground`
-- `text-muted-foreground`
-- `border-border`
+- `bg-primary`, `text-primary-foreground` — not `bg-blue-500`
+- `text-muted-foreground` — not `text-gray-500`
+- `text-destructive` — not `text-red-500`
+- `bg-background`, `text-foreground` — not `bg-white` / `text-black`
 
-Avoid hardcoding raw Tailwind palette colors when an existing token fits the use case.
+Use `Badge` variants or semantic tokens for status indicators rather than raw color values.
 
-## Use built-in variants first
+## Built-in Variants
 
-Before overriding classes, check whether the local component already exposes the desired variant or size. This is especially important for components like `Button`.
+Prefer component variants like `variant="outline"` over manual className styling. Check whether the local component already exposes the desired variant or size before overriding.
 
-## Use the local class prop shape
+## className for Layout Only
 
-In `shadcn-svelte`, components may expose `class`, `className`, or both through their wrappers. Follow the local docs or installed source for the specific component instead of assuming React-style `className`.
+Reserve the `class` prop for spacing and layout (margins, padding, widths). Use variants or semantic tokens for appearance changes.
 
-## Prefer `gap-*` over manual spacing hacks
+> In shadcn-svelte, components may expose `class`, `className`, or both. Follow the local docs or installed source for each component.
 
-Use layout primitives and `gap-*` utilities instead of ad hoc margin chains when composing component groups.
+## Spacing
 
-## Prefer concise utilities
+Replace `space-x-*` and `space-y-*` with `gap-*` and flexbox.
 
-Use `size-*` when width and height are equal, and use `truncate` when the standard one-line truncation behavior is desired.
+## Concise Utilities
 
-## Let overlay components own stacking
+- Use `size-10` instead of `w-10 h-10` when dimensions match
+- Use `truncate` instead of manual `overflow-hidden text-ellipsis whitespace-nowrap`
 
-Avoid adding manual z-index overrides to overlay components such as:
+## Dark Mode
 
-- `Dialog`
-- `Sheet`
-- `Drawer`
-- `Popover`
-- `Tooltip`
-- `HoverCard`
+Let semantic tokens handle light/dark automatically via CSS variables. Avoid manual `dark:` color overrides.
 
-Inspect the local component source first if stacking looks wrong.
+## Conditional Classes
 
-## Use `cn()` when editing generated component source
+Use the `cn()` utility (from `$lib/utils`) for merging conditional class names instead of template literals with ternaries.
 
-The generated component source commonly relies on the local `cn()` utility. When changing conditional classes inside installed components, follow that existing pattern instead of rewriting class concatenation manually.
+## Overlay Stacking
+
+Dialog, Sheet, Drawer, Popover, Tooltip, and HoverCard manage their own z-index. Don't add manual values — inspect the local component source first if stacking looks wrong.

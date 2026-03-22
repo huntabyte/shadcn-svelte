@@ -1,16 +1,22 @@
 # Customization & Theming
 
-`shadcn-svelte` uses semantic CSS variable tokens and generated component source that lives in the user's project.
+This guide covers how to customize shadcn-svelte components through CSS variables, Tailwind configuration, and component composition.
 
 ## How It Works
 
-1. Theme values live in the global CSS file referenced by `components.json.tailwind.css`.
-2. Those values are mapped into Tailwind tokens with `@theme inline`.
-3. Components consume semantic classes such as `bg-primary`, `text-muted-foreground`, and `border-border`.
+The system works in three layers:
 
-## Theme Tokens
+1. **CSS variables** defined in `:root` (light) and `.dark` (dark mode) in the global CSS file referenced by `components.json`
+2. **Tailwind utilities** map them via `@theme inline` to classes like `bg-primary` and `text-muted-foreground`
+3. **Components** reference those semantic utility classes
 
-These conventions are verified locally:
+Changing a variable automatically updates all dependent components.
+
+## Color System
+
+Colors follow a `name` / `name-foreground` naming convention. Base variables apply to backgrounds, while `-foreground` variants handle text and icons. All use OKLCH format: `oklch(lightness chroma hue)`.
+
+**Verified tokens:**
 
 - `--background` / `--foreground`
 - `--card` / `--card-foreground`
@@ -27,13 +33,22 @@ These conventions are verified locally:
 - `--sidebar-*`
 - `--radius`
 
+## Customization Hierarchy
+
+Prefer these approaches in order:
+
+1. **Built-in variants** — Use component props like `variant="outline"` or `size="sm"`
+2. **Tailwind className** — Apply utility classes via the component's `class` prop for layout adjustments
+3. **Add new variants** — Modify the generated component source to add custom variants
+4. **Wrapper components** — Compose primitives into domain-specific components
+
 ## Dark Mode
 
-Use class-based dark mode and the project's existing CSS setup. Do not import React-specific provider guidance from upstream `shadcn/ui`.
+Use class-based dark mode with a `.dark` class on the root element. For SvelteKit projects, use the project's existing theme toggle approach (typically a store or cookie-based class toggle). Do not import React-specific patterns like `next-themes`.
 
 ## Adding Custom Colors
 
-Add custom CSS variables in the configured global stylesheet, then register them via `@theme inline` so Tailwind utility classes can reference them.
+Define new CSS variables in the global stylesheet, then register them with Tailwind v4 using `@theme inline`:
 
 ```css
 :root {
@@ -52,19 +67,14 @@ Add custom CSS variables in the configured global stylesheet, then register them
 }
 ```
 
+Never create a separate CSS file for custom colors — add them to the existing global stylesheet.
+
 ## Editing Components
 
-Prefer these approaches in order:
+When customizing, inspect the installed component folder before advising. In shadcn-svelte, a component often spans multiple `.svelte` files plus an `index.ts` barrel.
 
-1. Use the built-in variant or prop API already exposed by the local component.
-2. Use semantic utility classes with the component's `class` or `className` prop when the docs or source already support it.
-3. Edit the generated component source in the user's project.
-4. Compose wrapper components around the generated UI primitives.
+**Important local differences:**
 
-When customizing, inspect the installed component folder before advising. In `shadcn-svelte`, a component often spans multiple `.svelte` files plus an `index.ts` barrel.
-
-## Important Local Differences
-
-- Do not tell users to switch presets. No verified local preset workflow exists.
-- Do not tell users to preview upstream changes with CLI diff flags. No verified public equivalent exists.
-- Keep examples in Svelte syntax, not JSX.
+- No preset switching workflow exists — do not suggest preset commands
+- No CLI diff/preview flags exist — inspect source directly
+- Keep all examples in Svelte syntax, not JSX

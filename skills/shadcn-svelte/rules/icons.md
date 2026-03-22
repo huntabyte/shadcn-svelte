@@ -1,28 +1,49 @@
 # Icons
 
-Prefer the icon library documented by the local component docs and manual install guides.
+## 1. Use the Project's Icon Library
 
-## Default local assumption
-
-When local docs show an icon package explicitly, use that package. The current docs repeatedly reference `@lucide/svelte`.
-
-Do not import `lucide-react`.
-
-## Buttons already handle icon spacing
-
-Local button docs state that the spacing between an icon and text is handled automatically. Do not add manual margin classes unless the user asks for a custom layout.
+Always import from the project's configured icon library. The shadcn-svelte docs and components use `@lucide/svelte`:
 
 ```svelte
+<script lang="ts">
+  import GitBranch from "@lucide/svelte/icons/git-branch";
+</script>
+```
+
+Do not import from `lucide-react` or assume any other package.
+
+## 2. Component-Managed Sizing
+
+Don't add `size-4`, `w-4 h-4`, or other sizing classes to icons inside `Button`, `DropdownMenu.Item`, `Alert`, `Sidebar*`, or other shadcn-svelte components. Components handle icon sizing through their own CSS.
+
+```svelte
+<!-- correct -->
 <Button variant="outline" size="sm">
-  <IconGitBranch />
+  <GitBranch />
+  New Branch
+</Button>
+
+<!-- wrong — don't add sizing classes -->
+<Button variant="outline" size="sm">
+  <GitBranch class="size-4" />
   New Branch
 </Button>
 ```
 
-## Avoid redundant sizing classes inside styled components
+## 3. Pass Icons as Components
 
-The local button implementation already styles nested `svg` elements. Avoid adding icon sizing utilities inside buttons unless there is a specific custom requirement.
+Use the actual icon component, not string keys:
 
-## Verify component-specific icon behavior in source
+```svelte
+<!-- correct -->
+<MyComponent icon={GitBranch} />
 
-If icon alignment or styling matters, inspect the installed component source before changing icon classes. The local `button.svelte` implementation is a good example of component-owned icon sizing behavior.
+<!-- wrong -->
+<MyComponent icon="git-branch" />
+```
+
+This provides better type safety and clarity.
+
+## When in Doubt
+
+Inspect the installed component source. The local `button.svelte` implementation is a good example of component-owned icon sizing behavior.

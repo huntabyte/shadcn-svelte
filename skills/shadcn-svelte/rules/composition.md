@@ -1,12 +1,21 @@
 # Component Composition
 
-These rules are verified against the local docs and component barrels. Keep Svelte composition aligned with the documented `shadcn-svelte` structure.
+## Structural Rules
 
-## Prefer the documented component family structure
+- Items must always be wrapped in their corresponding Group component (e.g., `Select.Item` inside `Select.Group`, `Tabs.Trigger` inside `Tabs.List`)
+- `Dialog`, `Sheet`, and `Drawer` require accessible titles — use `Dialog.Title`, `Sheet.Title`, etc. Hide with `sr-only` class if needed visually
+- `Avatar` components always need `Avatar.Fallback` for accessibility and error handling
+- Cards should use full composition: `Card.Header`, `Card.Title`, `Card.Content`, `Card.Footer` — not everything dumped in `Card.Content`
 
-Many components are namespaced families with `Root` and subcomponents:
+## Namespace Import Pattern
+
+Many components use namespace families with `Root` and subcomponents:
 
 ```svelte
+<script lang="ts">
+  import * as Dialog from "$lib/components/ui/dialog/index.js";
+</script>
+
 <Dialog.Root>
   <Dialog.Trigger>Open</Dialog.Trigger>
   <Dialog.Content>
@@ -18,41 +27,41 @@ Many components are namespaced families with `Root` and subcomponents:
 </Dialog.Root>
 ```
 
-Do not rewrite this into upstream React JSX patterns.
+Do not rewrite this into React JSX patterns.
 
-## Group item-based components correctly
+## Component Selection
 
-When the local component family provides a grouping primitive, keep items inside it.
+Replace custom markup with built-in alternatives:
 
-Verified local examples include:
+| Instead of | Use |
+|------------|-----|
+| Custom callout div | `Alert` |
+| Empty state div | `Empty` |
+| `<hr>` or border div | `Separator` |
+| Custom loading animation | `Skeleton` |
+| Styled span for status | `Badge` |
+| Custom toast system | `sonner` |
 
-- `Select.Group` around `Select.Item`
-- `Tabs.List` around `Tabs.Trigger`
-- `Field.Group` around related `Field.Field` blocks
+## Overlay Selection
 
-## Dialog, Sheet, and Drawer need titles
+| Use case | Component |
+|----------|-----------|
+| Focused task (confirm, edit) | `Dialog` |
+| Destructive confirmation | `AlertDialog` |
+| Side panel content | `Sheet` |
+| Mobile-first bottom panel | `Drawer` |
 
-Keep `Title` and `Description` in overlay headers unless the installed source clearly supports an intentional alternative.
+## Loading States
 
-## Use shipped components instead of custom markup
+Buttons don't have built-in loading props. Compose `Spinner` with `disabled` attribute:
 
-Prefer the local component when a documented equivalent exists:
+```svelte
+<Button disabled>
+  <Spinner />
+  Saving...
+</Button>
+```
 
-- use `Alert` for callouts
-- use `Empty` for empty states
-- use `Separator` instead of ad hoc rules
-- use `Skeleton` for loading placeholders
-- use `Badge` for small status chips
-- use `sonner` for toast notifications
+## When Unsure
 
-## Avatar needs a fallback
-
-When using `Avatar`, include `Avatar.Fallback` unless there is a strong reason not to.
-
-## Tabs use the full family
-
-Keep `Tabs.Trigger` inside `Tabs.List` and pair it with `Tabs.Content`.
-
-## Inspect the barrel when unsure
-
-If composition is unclear, inspect the component's `index.ts` barrel. The barrel defines the supported local family members and named export aliases.
+Inspect the component's `index.ts` barrel. It defines the supported family members and named export aliases.
