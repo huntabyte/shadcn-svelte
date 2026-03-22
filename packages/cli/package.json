@@ -15,6 +15,10 @@
 	"type": "module",
 	"bin": "./dist/index.mjs",
 	"exports": {
+		"./mcp": {
+			"types": "./dist/mcp/index.d.mts",
+			"default": "./dist/mcp/index.mjs"
+		},
 		"./icons": {
 			"types": "./dist/icons/index.d.mts",
 			"default": "./dist/icons/index.mjs"
@@ -74,6 +78,7 @@
 		"svelte": "^5.0.0"
 	},
 	"dependencies": {
+		"@modelcontextprotocol/sdk": "^1.27.1",
 		"commander": "^14.0.0",
 		"node-fetch-native": "^1.6.4",
 		"postcss": "^8.5.5",
