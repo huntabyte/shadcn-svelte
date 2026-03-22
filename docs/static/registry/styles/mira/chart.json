@@ -3,7 +3,7 @@
 	"name": "chart",
 	"type": "registry:ui",
 	"devDependencies": [
-		"layerchart@2.0.0-next.43"
+		"layerchart@2.0.0-next.46"
 	],
 	"files": [
 		{
@@ -27,7 +27,12 @@
 			"target": "chart/chart-utils.ts"
 		},
 		{
-			"content": "import ChartContainer from \"./chart-container.svelte\";\nimport ChartTooltip from \"./chart-tooltip.svelte\";\n\nexport { getPayloadConfigFromPayload, type ChartConfig } from \"./chart-utils.js\";\n\nexport { ChartContainer, ChartTooltip, ChartContainer as Container, ChartTooltip as Tooltip };\n",
+			"content": "/**\n * Creates a cubic-bezier easing function matching the CSS cubic-bezier() specification.\n * Uses Newton-Raphson iteration to solve for the parametric t value.\n */\nfunction createCubicBezier(\n\tx1: number,\n\ty1: number,\n\tx2: number,\n\ty2: number\n): (t: number) => number {\n\tfunction A(a1: number, a2: number) {\n\t\treturn 1.0 - 3.0 * a2 + 3.0 * a1;\n\t}\n\tfunction B(a1: number, a2: number) {\n\t\treturn 3.0 * a2 - 6.0 * a1;\n\t}\n\tfunction C(a1: number) {\n\t\treturn 3.0 * a1;\n\t}\n\n\tfunction calcBezier(t: number, a1: number, a2: number) {\n\t\treturn ((A(a1, a2) * t + B(a1, a2)) * t + C(a1)) * t;\n\t}\n\n\tfunction getSlope(t: number, a1: number, a2: number) {\n\t\treturn 3.0 * A(a1, a2) * t * t + 2.0 * B(a1, a2) * t + C(a1);\n\t}\n\n\treturn function (x: number): number {\n\t\tif (x === 0 || x === 1) return x;\n\n\t\t// Newton-Raphson iteration to find t for given x\n\t\tlet t = x;\n\t\tfor (let i = 0; i < 8; i++) {\n\t\t\tconst slope = getSlope(t, x1, x2);\n\t\t\tif (slope === 0.0) break;\n\t\t\tconst currentX = calcBezier(t, x1, x2) - x;\n\t\t\tt -= currentX / slope;\n\t\t}\n\n\t\treturn calcBezier(t, y1, y2);\n\t};\n}\n\n/**\n * CSS `ease` easing function: cubic-bezier(0.25, 0.1, 0.25, 1.0)\n * Gentle acceleration then strong deceleration — matches Recharts' default.\n */\nexport const ease = createCubicBezier(0.25, 0.1, 0.25, 1.0);\n\n/** Default motion config for splines, pies, arcs (1500ms) */\nexport const defaultMotion = { type: \"tween\", duration: 1500, easing: ease } as const;\n\n/** Default motion config for bar charts (500ms per property) */\nexport const defaultBarMotion = {\n\tx: { type: \"tween\", duration: 500, easing: ease },\n\twidth: { type: \"tween\", duration: 500, easing: ease },\n\ty: { type: \"tween\", duration: 500, easing: ease },\n\theight: { type: \"tween\", duration: 500, easing: ease },\n} as const;\n\n/** Default motion config for ChartClipPath width animation */\nexport const defaultClipMotion = {\n\twidth: { type: \"tween\", duration: 1500, easing: ease },\n} as const;\n\n/** Default tweened options for radar chart scale animation */\nexport const defaultRadarScale = { duration: 1500, easing: ease } as const;\n",
+			"type": "registry:file",
+			"target": "chart/easing.ts"
+		},
+		{
+			"content": "import ChartContainer from \"./chart-container.svelte\";\nimport ChartTooltip from \"./chart-tooltip.svelte\";\n\nexport { getPayloadConfigFromPayload, type ChartConfig } from \"./chart-utils.js\";\nexport {\n\tease,\n\tdefaultMotion,\n\tdefaultBarMotion,\n\tdefaultClipMotion,\n\tdefaultRadarScale,\n} from \"./easing.js\";\n\nexport { ChartContainer, ChartTooltip, ChartContainer as Container, ChartTooltip as Tooltip };\n",
 			"type": "registry:file",
 			"target": "chart/index.ts"
 		}

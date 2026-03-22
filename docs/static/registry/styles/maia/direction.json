@@ -1,0 +1,6 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "direction",
+	"type": "registry:ui",
+	"files": []
+}

@@ -127,6 +127,12 @@
 		"relativeUrl": "dialog.json"
 	},
 	{
+		"name": "direction",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "direction.json"
+	},
+	{
 		"name": "drawer",
 		"type": "registry:ui",
 		"registryDependencies": [],
