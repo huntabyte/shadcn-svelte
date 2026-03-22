@@ -94,27 +94,6 @@ Update the import paths to match your project setup.
 
 ## Examples
 
-### Pattern
-
-Use the `pattern` prop to define a custom pattern for the OTP input.
-
-<ComponentPreview name="input-otp-pattern">
-
-<div></div>
-
-</ComponentPreview>
-
-```svelte showLineNumbers {3,6}
-<script lang="ts">
-  import * as InputOTP from "$lib/components/ui/input-otp/index.js";
-  import { REGEXP_ONLY_DIGITS_AND_CHARS } from "bits-ui";
-</script>
-
-<InputOTP.Root maxlength={6} pattern={REGEXP_ONLY_DIGITS_AND_CHARS}>
-  <!-- ... -->
-</InputOTP.Root>
-```
-
 ### Separator
 
 You can use the `InputOTP.Separator` component to add a separator between the groups of cells.
@@ -125,27 +104,13 @@ You can use the `InputOTP.Separator` component to add a separator between the gr
 
 </ComponentPreview>
 
-```svelte showLineNumbers {12}
-<script lang="ts">
-  import * as InputOTP from "$lib/components/ui/input-otp/index.js";
-</script>
+### Disabled
 
-<InputOTP.Root maxlength={4}>
-  {#snippet children({ cells })}
-    <InputOTP.Group>
-      {#each cells.slice(0, 2) as cell}
-        <InputOTP.Slot {cell} />
-      {/each}
-    </InputOTP.Group>
-    <InputOTP.Separator />
-    <InputOTP.Group>
-      {#each cells.slice(2, 4) as cell}
-        <InputOTP.Slot {cell} />
-      {/each}
-    </InputOTP.Group>
-  {/snippet}
-</InputOTP.Root>
-```
+<ComponentPreview name="input-otp-disabled">
+
+<div></div>
+
+</ComponentPreview>
 
 ### Controlled
 
@@ -158,6 +123,24 @@ You can use the `InputOTP.Separator` component to add a separator between the gr
 ### Invalid
 
 <ComponentPreview name="input-otp-invalid">
+
+<div></div>
+
+</ComponentPreview>
+
+### Four Digits
+
+<ComponentPreview name="input-otp-four-digits">
+
+<div></div>
+
+</ComponentPreview>
+
+### Alphanumeric
+
+Use the `pattern` prop to define a custom pattern for the OTP input.
+
+<ComponentPreview name="input-otp-pattern">
 
 <div></div>
 

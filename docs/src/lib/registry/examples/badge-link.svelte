@@ -5,5 +5,5 @@
 
 <Badge href="#link">
 	Open Link
-	<ArrowUpRightIcon />
+	<ArrowUpRightIcon data-icon="inline-end" />
 </Badge>

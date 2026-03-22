@@ -6,11 +6,11 @@
 
 <div class="flex flex-wrap gap-2">
 	<Badge variant="secondary">
-		<BadgeCheckIcon />
+		<BadgeCheckIcon data-icon="inline-start" />
 		Verified
 	</Badge>
 	<Badge variant="outline">
 		Bookmark
-		<BookmarkIcon />
+		<BookmarkIcon data-icon="inline-end" />
 	</Badge>
 </div>

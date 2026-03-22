@@ -5,11 +5,11 @@
 
 <div class="flex flex-wrap gap-2">
 	<Badge variant="destructive">
-		<Spinner />
+		<Spinner data-icon="inline-start" />
 		Deleting
 	</Badge>
 	<Badge variant="secondary">
 		Generating
-		<Spinner />
+		<Spinner data-icon="inline-end" />
 	</Badge>
 </div>

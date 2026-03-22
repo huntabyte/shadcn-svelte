@@ -1,8 +1,9 @@
 <script lang="ts">
 	import * as InputOTP from "$lib/registry/ui/input-otp/index.js";
+	import { REGEXP_ONLY_DIGITS } from "bits-ui";
 </script>
 
-<InputOTP.Root maxlength={6}>
+<InputOTP.Root maxlength={4} pattern={REGEXP_ONLY_DIGITS}>
 	{#snippet children({ cells })}
 		<InputOTP.Group>
 			{#each cells as cell (cell)}

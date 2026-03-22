@@ -111,6 +111,16 @@ Add buttons to perform actions within the input group.
 
 </ComponentPreview>
 
+### Kbd
+
+Display keyboard shortcuts within the input group.
+
+<ComponentPreview name="input-group-kbd-demo">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Dropdown
 
 Pair input groups with dropdown menus for complex interactions.
