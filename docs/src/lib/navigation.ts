@@ -80,7 +80,10 @@ function generateSectionsNav(): SidebarNavItem[] {
 		},
 	];
 
-	return sectionsNavItems;
+	return sectionsNavItems.map((item) => ({
+		...item,
+		indicator: NEW_COMPONENTS.has(item.title) ? "new" : undefined,
+	}));
 }
 
 function generateGetStartedNav(): SidebarNavItem[] {
