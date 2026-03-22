@@ -1,0 +1,15 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "calendar-15",
+	"type": "registry:block",
+	"devDependencies": [
+		"@lucide/svelte@^0.577.0"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport Construction from \"@lucide/svelte/icons/construction\";\n</script>\n\n<div class=\"flex h-full flex-col items-center justify-center gap-4\">\n\t<Construction class=\"size-10\" />\n\t<span>This block is under construction. Check back soon!</span>\n</div>\n",
+			"type": "registry:component",
+			"target": "calendar-15.svelte"
+		}
+	]
+}

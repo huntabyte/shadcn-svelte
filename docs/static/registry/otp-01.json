@@ -1,0 +1,23 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "otp-01",
+	"type": "registry:block",
+	"registryDependencies": [
+		"button",
+		"card",
+		"field",
+		"input-otp"
+	],
+	"files": [
+		{
+			"content": "<script>\n\timport OTPForm from \"$COMPONENTS$/otp-form.svelte\";\n</script>\n\n<div class=\"flex min-h-svh w-full items-center justify-center p-6 md:p-10\">\n\t<div class=\"w-full max-w-xs\">\n\t\t<OTPForm />\n\t</div>\n</div>\n",
+			"type": "registry:page",
+			"target": "otp-01/+page.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Button } from \"$UI$/button/index.js\";\n\timport * as Card from \"$UI$/card/index.js\";\n\timport * as Field from \"$UI$/field/index.js\";\n\timport * as InputOTP from \"$UI$/input-otp/index.js\";\n\timport type { ComponentProps } from \"svelte\";\n\n\tlet { ...props }: ComponentProps<typeof Card.Root> = $props();\n</script>\n\n<Card.Root {...props}>\n\t<Card.Header>\n\t\t<Card.Title>Enter verification code</Card.Title>\n\t\t<Card.Description>We sent a 6-digit code to your email.</Card.Description>\n\t</Card.Header>\n\t<Card.Content>\n\t\t<form>\n\t\t\t<Field.Group>\n\t\t\t\t<Field.Field>\n\t\t\t\t\t<Field.Label for=\"otp\">Verification code</Field.Label>\n\t\t\t\t\t<InputOTP.Root maxlength={6} id=\"otp\" required>\n\t\t\t\t\t\t{#snippet children({ cells })}\n\t\t\t\t\t\t\t<InputOTP.Group\n\t\t\t\t\t\t\t\tclass=\"gap-2.5 *:data-[slot=input-otp-slot]:rounded-md *:data-[slot=input-otp-slot]:border\"\n\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t{#each cells as cell (cell)}\n\t\t\t\t\t\t\t\t\t<InputOTP.Slot {cell} />\n\t\t\t\t\t\t\t\t{/each}\n\t\t\t\t\t\t\t</InputOTP.Group>\n\t\t\t\t\t\t{/snippet}\n\t\t\t\t\t</InputOTP.Root>\n\t\t\t\t\t<Field.Description>\n\t\t\t\t\t\tEnter the 6-digit code sent to your email.\n\t\t\t\t\t</Field.Description>\n\t\t\t\t</Field.Field>\n\t\t\t\t<Field.Group>\n\t\t\t\t\t<Button type=\"submit\">Verify</Button>\n\t\t\t\t\t<Field.Description class=\"text-center\">\n\t\t\t\t\t\tDidn't receive the code? <a href=\"#/\">Resend</a>\n\t\t\t\t\t</Field.Description>\n\t\t\t\t</Field.Group>\n\t\t\t</Field.Group>\n\t\t</form>\n\t</Card.Content>\n</Card.Root>\n",
+			"type": "registry:component",
+			"target": "otp-form.svelte"
+		}
+	]
+}

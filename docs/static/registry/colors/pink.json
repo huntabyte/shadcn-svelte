@@ -1,0 +1,33 @@
+{
+	"name": "pink",
+	"title": "Pink",
+	"type": "registry:theme",
+	"cssVars": {
+		"light": {
+			"primary": "oklch(0.525 0.223 3.958)",
+			"primary-foreground": "oklch(0.971 0.014 343.198)",
+			"secondary": "oklch(0.967 0.001 286.375)",
+			"secondary-foreground": "oklch(0.21 0.006 285.885)",
+			"chart-1": "oklch(0.823 0.12 346.018)",
+			"chart-2": "oklch(0.656 0.241 354.308)",
+			"chart-3": "oklch(0.592 0.249 0.584)",
+			"chart-4": "oklch(0.525 0.223 3.958)",
+			"chart-5": "oklch(0.459 0.187 3.815)",
+			"sidebar-primary": "oklch(0.592 0.249 0.584)",
+			"sidebar-primary-foreground": "oklch(0.971 0.014 343.198)"
+		},
+		"dark": {
+			"primary": "oklch(0.459 0.187 3.815)",
+			"primary-foreground": "oklch(0.971 0.014 343.198)",
+			"secondary": "oklch(0.274 0.006 286.033)",
+			"secondary-foreground": "oklch(0.985 0 0)",
+			"chart-1": "oklch(0.823 0.12 346.018)",
+			"chart-2": "oklch(0.656 0.241 354.308)",
+			"chart-3": "oklch(0.592 0.249 0.584)",
+			"chart-4": "oklch(0.525 0.223 3.958)",
+			"chart-5": "oklch(0.459 0.187 3.815)",
+			"sidebar-primary": "oklch(0.656 0.241 354.308)",
+			"sidebar-primary-foreground": "oklch(0.971 0.014 343.198)"
+		}
+	}
+}

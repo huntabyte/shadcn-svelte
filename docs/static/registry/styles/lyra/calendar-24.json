@@ -1,0 +1,23 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "calendar-24",
+	"type": "registry:block",
+	"devDependencies": [
+		"@lucide/svelte@^0.577.0",
+		"@internationalized/date@^3.12.0"
+	],
+	"registryDependencies": [
+		"calendar",
+		"popover",
+		"button",
+		"label",
+		"input"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport Calendar from \"$UI$/calendar/calendar.svelte\";\n\timport * as Popover from \"$UI$/popover/index.js\";\n\timport { Button } from \"$UI$/button/index.js\";\n\timport { Label } from \"$UI$/label/index.js\";\n\timport { Input } from \"$UI$/input/index.js\";\n\timport ChevronDownIcon from \"@lucide/svelte/icons/chevron-down\";\n\timport { getLocalTimeZone } from \"@internationalized/date\";\n\timport type { CalendarDate } from \"@internationalized/date\";\n\n\tconst id = $props.id();\n\n\tlet open = $state(false);\n\tlet value = $state<CalendarDate | undefined>();\n</script>\n\n<div class=\"flex gap-4\">\n\t<div class=\"flex flex-col gap-3\">\n\t\t<Label for=\"{id}-date\" class=\"px-1\">Date</Label>\n\t\t<Popover.Root bind:open>\n\t\t\t<Popover.Trigger id=\"{id}-date\">\n\t\t\t\t{#snippet child({ props })}\n\t\t\t\t\t<Button {...props} variant=\"outline\" class=\"w-32 justify-between font-normal\">\n\t\t\t\t\t\t{value\n\t\t\t\t\t\t\t? value.toDate(getLocalTimeZone()).toLocaleDateString()\n\t\t\t\t\t\t\t: \"Select date\"}\n\t\t\t\t\t\t<ChevronDownIcon />\n\t\t\t\t\t</Button>\n\t\t\t\t{/snippet}\n\t\t\t</Popover.Trigger>\n\t\t\t<Popover.Content class=\"w-auto overflow-hidden p-0\" align=\"start\">\n\t\t\t\t<Calendar\n\t\t\t\t\ttype=\"single\"\n\t\t\t\t\tbind:value\n\t\t\t\t\tonValueChange={() => {\n\t\t\t\t\t\topen = false;\n\t\t\t\t\t}}\n\t\t\t\t\tcaptionLayout=\"dropdown\"\n\t\t\t\t/>\n\t\t\t</Popover.Content>\n\t\t</Popover.Root>\n\t</div>\n\t<div class=\"flex flex-col gap-3\">\n\t\t<Label for=\"{id}-time\" class=\"px-1\">Time</Label>\n\t\t<Input\n\t\t\ttype=\"time\"\n\t\t\tid=\"{id}-time\"\n\t\t\tstep=\"1\"\n\t\t\tvalue=\"10:30:00\"\n\t\t\tclass=\"bg-background appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none\"\n\t\t/>\n\t</div>\n</div>\n",
+			"type": "registry:component",
+			"target": "calendar-24.svelte"
+		}
+	]
+}

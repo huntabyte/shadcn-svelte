@@ -1,0 +1,33 @@
+{
+	"name": "lime",
+	"title": "Lime",
+	"type": "registry:theme",
+	"cssVars": {
+		"light": {
+			"primary": "oklch(0.532 0.157 131.589)",
+			"primary-foreground": "oklch(0.986 0.031 120.757)",
+			"secondary": "oklch(0.967 0.001 286.375)",
+			"secondary-foreground": "oklch(0.21 0.006 285.885)",
+			"chart-1": "oklch(0.897 0.196 126.665)",
+			"chart-2": "oklch(0.768 0.233 130.85)",
+			"chart-3": "oklch(0.648 0.2 131.684)",
+			"chart-4": "oklch(0.532 0.157 131.589)",
+			"chart-5": "oklch(0.453 0.124 130.933)",
+			"sidebar-primary": "oklch(0.648 0.2 131.684)",
+			"sidebar-primary-foreground": "oklch(0.986 0.031 120.757)"
+		},
+		"dark": {
+			"primary": "oklch(0.453 0.124 130.933)",
+			"primary-foreground": "oklch(0.986 0.031 120.757)",
+			"secondary": "oklch(0.274 0.006 286.033)",
+			"secondary-foreground": "oklch(0.985 0 0)",
+			"chart-1": "oklch(0.897 0.196 126.665)",
+			"chart-2": "oklch(0.768 0.233 130.85)",
+			"chart-3": "oklch(0.648 0.2 131.684)",
+			"chart-4": "oklch(0.532 0.157 131.589)",
+			"chart-5": "oklch(0.453 0.124 130.933)",
+			"sidebar-primary": "oklch(0.768 0.233 130.85)",
+			"sidebar-primary-foreground": "oklch(0.274 0.072 132.109)"
+		}
+	}
+}

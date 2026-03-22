@@ -1,0 +1,22 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "calendar-22",
+	"type": "registry:block",
+	"devDependencies": [
+		"@lucide/svelte@^0.577.0",
+		"@internationalized/date@^3.12.0"
+	],
+	"registryDependencies": [
+		"calendar",
+		"popover",
+		"button",
+		"label"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport Calendar from \"$UI$/calendar/calendar.svelte\";\n\timport * as Popover from \"$UI$/popover/index.js\";\n\timport { Button } from \"$UI$/button/index.js\";\n\timport { Label } from \"$UI$/label/index.js\";\n\timport ChevronDownIcon from \"@lucide/svelte/icons/chevron-down\";\n\timport { getLocalTimeZone, today, type CalendarDate } from \"@internationalized/date\";\n\n\tconst id = $props.id();\n\n\tlet open = $state(false);\n\tlet value = $state<CalendarDate | undefined>();\n</script>\n\n<div class=\"flex flex-col gap-3\">\n\t<Label for=\"{id}-date\" class=\"px-1\">Date of birth</Label>\n\t<Popover.Root bind:open>\n\t\t<Popover.Trigger id=\"{id}-date\">\n\t\t\t{#snippet child({ props })}\n\t\t\t\t<Button {...props} variant=\"outline\" class=\"w-48 justify-between font-normal\">\n\t\t\t\t\t{value ? value.toDate(getLocalTimeZone()).toLocaleDateString() : \"Select date\"}\n\t\t\t\t\t<ChevronDownIcon />\n\t\t\t\t</Button>\n\t\t\t{/snippet}\n\t\t</Popover.Trigger>\n\t\t<Popover.Content class=\"w-auto overflow-hidden p-0\" align=\"start\">\n\t\t\t<Calendar\n\t\t\t\ttype=\"single\"\n\t\t\t\tbind:value\n\t\t\t\tcaptionLayout=\"dropdown\"\n\t\t\t\tonValueChange={() => {\n\t\t\t\t\topen = false;\n\t\t\t\t}}\n\t\t\t\tmaxValue={today(getLocalTimeZone())}\n\t\t\t/>\n\t\t</Popover.Content>\n\t</Popover.Root>\n</div>\n",
+			"type": "registry:component",
+			"target": "calendar-22.svelte"
+		}
+	]
+}

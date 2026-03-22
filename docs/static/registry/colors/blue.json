@@ -1,0 +1,33 @@
+{
+	"name": "blue",
+	"title": "Blue",
+	"type": "registry:theme",
+	"cssVars": {
+		"light": {
+			"primary": "oklch(0.488 0.243 264.376)",
+			"primary-foreground": "oklch(0.97 0.014 254.604)",
+			"secondary": "oklch(0.967 0.001 286.375)",
+			"secondary-foreground": "oklch(0.21 0.006 285.885)",
+			"chart-1": "oklch(0.809 0.105 251.813)",
+			"chart-2": "oklch(0.623 0.214 259.815)",
+			"chart-3": "oklch(0.546 0.245 262.881)",
+			"chart-4": "oklch(0.488 0.243 264.376)",
+			"chart-5": "oklch(0.424 0.199 265.638)",
+			"sidebar-primary": "oklch(0.546 0.245 262.881)",
+			"sidebar-primary-foreground": "oklch(0.97 0.014 254.604)"
+		},
+		"dark": {
+			"primary": "oklch(0.424 0.199 265.638)",
+			"primary-foreground": "oklch(0.97 0.014 254.604)",
+			"secondary": "oklch(0.274 0.006 286.033)",
+			"secondary-foreground": "oklch(0.985 0 0)",
+			"chart-1": "oklch(0.809 0.105 251.813)",
+			"chart-2": "oklch(0.623 0.214 259.815)",
+			"chart-3": "oklch(0.546 0.245 262.881)",
+			"chart-4": "oklch(0.488 0.243 264.376)",
+			"chart-5": "oklch(0.424 0.199 265.638)",
+			"sidebar-primary": "oklch(0.623 0.214 259.815)",
+			"sidebar-primary-foreground": "oklch(0.97 0.014 254.604)"
+		}
+	}
+}

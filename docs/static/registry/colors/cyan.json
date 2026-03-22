@@ -1,0 +1,33 @@
+{
+	"name": "cyan",
+	"title": "Cyan",
+	"type": "registry:theme",
+	"cssVars": {
+		"light": {
+			"primary": "oklch(0.52 0.105 223.128)",
+			"primary-foreground": "oklch(0.984 0.019 200.873)",
+			"secondary": "oklch(0.967 0.001 286.375)",
+			"secondary-foreground": "oklch(0.21 0.006 285.885)",
+			"chart-1": "oklch(0.865 0.127 207.078)",
+			"chart-2": "oklch(0.715 0.143 215.221)",
+			"chart-3": "oklch(0.609 0.126 221.723)",
+			"chart-4": "oklch(0.52 0.105 223.128)",
+			"chart-5": "oklch(0.45 0.085 224.283)",
+			"sidebar-primary": "oklch(0.609 0.126 221.723)",
+			"sidebar-primary-foreground": "oklch(0.984 0.019 200.873)"
+		},
+		"dark": {
+			"primary": "oklch(0.45 0.085 224.283)",
+			"primary-foreground": "oklch(0.984 0.019 200.873)",
+			"secondary": "oklch(0.274 0.006 286.033)",
+			"secondary-foreground": "oklch(0.985 0 0)",
+			"chart-1": "oklch(0.865 0.127 207.078)",
+			"chart-2": "oklch(0.715 0.143 215.221)",
+			"chart-3": "oklch(0.609 0.126 221.723)",
+			"chart-4": "oklch(0.52 0.105 223.128)",
+			"chart-5": "oklch(0.45 0.085 224.283)",
+			"sidebar-primary": "oklch(0.715 0.143 215.221)",
+			"sidebar-primary-foreground": "oklch(0.302 0.056 229.695)"
+		}
+	}
+}
