@@ -58,7 +58,7 @@
 		"@sveltejs/acorn-typescript": "^1.0.9",
 		"@sveltejs/adapter-cloudflare": "^7.2.8",
 		"@sveltejs/enhanced-img": "^0.10.4",
-		"@sveltejs/kit": "^2.55.0",
+		"@sveltejs/kit": "catalog:",
 		"@sveltejs/vite-plugin-svelte": "catalog:",
 		"@tabler/icons-svelte": "^3.40.0",
 		"@tailwindcss/vite": "^4.2.2",
@@ -128,6 +128,7 @@
 	},
 	"dependencies": {
 		"@types/lodash": "^4.17.24",
+		"agent-browser": "^0.21.4",
 		"lodash": "^4.17.23"
 	}
 }
