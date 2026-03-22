@@ -7,6 +7,7 @@
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
 	import { cn } from "$lib/utils.js";
+	import { SvelteSet } from "svelte/reactivity";
 
 	import { sidebarNavItems } from "$lib/navigation.js";
 
@@ -60,7 +61,7 @@
 
 	// Strip anchor from href for deduplication (per-section results have #anchors)
 	const deduplicatedSearchResults = $derived.by(() => {
-		const seen = new Set<string>();
+		const seen = new SvelteSet<string>();
 		return searchResults.filter((r) => {
 			if (sidebarMatchHrefs.has(r.href.split("#")[0])) return false;
 			if (seen.has(r.href)) return false;

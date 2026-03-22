@@ -2,12 +2,7 @@
  * Creates a cubic-bezier easing function matching the CSS cubic-bezier() specification.
  * Uses Newton-Raphson iteration to solve for the parametric t value.
  */
-function createCubicBezier(
-	x1: number,
-	y1: number,
-	x2: number,
-	y2: number
-): (t: number) => number {
+function createCubicBezier(x1: number, y1: number, x2: number, y2: number): (t: number) => number {
 	function A(a1: number, a2: number) {
 		return 1.0 - 3.0 * a2 + 3.0 * a1;
 	}

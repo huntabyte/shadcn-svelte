@@ -70,10 +70,7 @@
 					/>
 				{/snippet}
 				{#snippet marks({ series, getAreaProps })}
-					<ChartClipPath
-						initialWidth={0}
-						motion={defaultClipMotion}
-					>
+					<ChartClipPath initialWidth={0} motion={defaultClipMotion}>
 						{#each series as s, i (s.key)}
 							<LinearGradient
 								stops={[

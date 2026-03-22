@@ -169,10 +169,7 @@
 				}}
 			>
 				{#snippet marks({ visibleSeries, getSplineProps })}
-					<ChartClipPath
-						initialWidth={0}
-						motion={defaultClipMotion}
-					>
+					<ChartClipPath initialWidth={0} motion={defaultClipMotion}>
 						{#each visibleSeries as s, i (s.key)}
 							<Spline {...getSplineProps(s, i)} />
 						{/each}

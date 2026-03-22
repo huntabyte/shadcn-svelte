@@ -8,7 +8,7 @@
 		class?: string;
 	};
 
-	let { class: className }: Props = $props();
+	let { class: _className }: Props = $props();
 </script>
 
 <Tooltip.Root>

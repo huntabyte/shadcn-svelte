@@ -1,17 +1,12 @@
 <script lang="ts">
 	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { cn } from "$lib/utils.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { useDesignSystem } from "$lib/features/design-system/index.js";
 
 	type Props = {
 		item: string;
 	};
 
 	let { item }: Props = $props();
-
-	const designSystem = useDesignSystem();
 </script>
 
 <div

@@ -124,7 +124,7 @@ function parseIntoSections(
 	}
 	sections.push(current);
 
-	let currentAnchor = "";
+	let currentAnchor: string;
 
 	for (const section of sections) {
 		if (section.heading === null) {

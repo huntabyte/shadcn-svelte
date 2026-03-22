@@ -54,10 +54,10 @@
 				}}
 			>
 				{#snippet belowMarks()}
-					{#each gridRadii as r}
+					{#each gridRadii as r (r)}
 						<circle cx="0" cy="0" {r} fill="none" class="stroke-border" />
 					{/each}
-					{#each Array(spokeCount) as _, i}
+					{#each Array(spokeCount) as _, i (i)}
 						{@const angle = (i / spokeCount) * Math.PI * 2}
 						<line
 							x1="0"

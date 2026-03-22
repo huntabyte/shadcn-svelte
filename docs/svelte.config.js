@@ -6,6 +6,10 @@ import { mdsxConfig } from "./mdsx.config.js";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
+	vitePlugin: {
+		inspector: true,
+	},
+
 	preprocess: [mdsx(mdsxConfig), componentPreviews()],
 	extensions: [".svelte", ".md"],
 

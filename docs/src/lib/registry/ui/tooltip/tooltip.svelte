@@ -11,5 +11,5 @@
 </script>
 
 <TooltipProvider>
-	<TooltipPrimitive.Root bind:open {...restProps} />
+	<TooltipPrimitive.Root bind:open {...rootProps} />
 </TooltipProvider>
