@@ -1,0 +1,3 @@
+interface:
+  display_name: "shadcn-svelte"
+  short_description: "Manages shadcn-svelte components for Svelte apps — setup, add, compose, debug, migrate, and customize generated UI."
