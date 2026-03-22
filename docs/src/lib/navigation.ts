@@ -2,7 +2,7 @@ import { components, installation, migration } from "$content/index.js";
 import type { Component } from "svelte";
 
 /** List new components here to highlight them in the sidebar */
-export const NEW_COMPONENTS = new Set(["Direction", "RTL"]);
+export const NEW_COMPONENTS = new Set(["CLI", "Skills", "Changelog"]);
 
 export type NavItem = {
 	title: string;
@@ -33,23 +33,42 @@ function generateSectionsNav(): SidebarNavItem[] {
 			title: "Components",
 			href: "/docs/components",
 			items: [],
-		} /*
+		},
 		{
-			title: "Directory",
-			href: "/docs/directory",
+			title: "Installation",
+			href: "/docs/installation",
 			items: [],
 		},
 		{
+			title: "Theming",
+			href: "/docs/theming",
+			items: [],
+		},
+		{
+			title: "CLI",
+			href: "/docs/cli",
+			items: [],
+		} /*
+		{
+			title: "RTL",
+			href: "/docs/rtl",
+			items: [],
+		},*/,
+		{
+			title: "Skills",
+			href: "/docs/skills",
+			items: [],
+		},
+		/*{
 			title: "MCP Server",
 			href: "/docs/mcp",
 			items: [],
 		},
 		{
-			title: "Forms",
-			href: "/docs/forms",
+			title: "Registry",
+			href: "/docs/registry",
 			items: [],
-			},*/,
-		{
+		},*/ {
 			title: "Formsnap",
 			href: "/docs/forms",
 			items: [],
@@ -67,28 +86,13 @@ function generateSectionsNav(): SidebarNavItem[] {
 function generateGetStartedNav(): SidebarNavItem[] {
 	const getStartedNavItems: SidebarNavItem[] = [
 		{
-			title: "Installation",
-			href: "/docs/installation",
-			items: [],
-		},
-		{
 			title: "components.json",
 			href: "/docs/components-json",
 			items: [],
 		},
 		{
-			title: "Theming",
-			href: "/docs/theming",
-			items: [],
-		},
-		{
 			title: "Dark Mode",
 			href: "/docs/dark-mode",
-			items: [],
-		},
-		{
-			title: "CLI",
-			href: "/docs/cli",
 			items: [],
 		},
 		{
