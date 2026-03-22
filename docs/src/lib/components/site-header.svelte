@@ -54,7 +54,7 @@
 					<Customizer />
 					<Button href="/create" variant="default" size="sm">
 						<PlusIcon />
-						New Project
+						New
 					</Button>
 				{/if}
 			</div>
