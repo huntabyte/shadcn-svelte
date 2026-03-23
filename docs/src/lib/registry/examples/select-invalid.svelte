@@ -8,9 +8,11 @@
 			Select a fruit
 		</Select.Trigger>
 		<Select.Content>
-			<Select.Item value="apple" label="Apple">Apple</Select.Item>
-			<Select.Item value="banana" label="Banana">Banana</Select.Item>
-			<Select.Item value="mango" label="Mango">Mango</Select.Item>
+			<Select.Group>
+				<Select.Item value="apple" label="Apple">Apple</Select.Item>
+				<Select.Item value="banana" label="Banana">Banana</Select.Item>
+				<Select.Item value="mango" label="Mango">Mango</Select.Item>
+			</Select.Group>
 		</Select.Content>
 	</Select.Root>
 	<p class="text-destructive text-sm">Please select a fruit.</p>

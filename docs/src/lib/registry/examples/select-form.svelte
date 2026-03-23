@@ -38,9 +38,11 @@
 						{$formData.email ? $formData.email : "Select a verified email to display"}
 					</Select.Trigger>
 					<Select.Content>
-						<Select.Item value="m@example.com" label="m@example.com" />
-						<Select.Item value="m@google.com" label="m@google.com" />
-						<Select.Item value="m@support.com" label="m@support.com" />
+						<Select.Group>
+							<Select.Item value="m@example.com" label="m@example.com" />
+							<Select.Item value="m@google.com" label="m@google.com" />
+							<Select.Item value="m@support.com" label="m@support.com" />
+						</Select.Group>
 					</Select.Content>
 				</Select.Root>
 			{/snippet}

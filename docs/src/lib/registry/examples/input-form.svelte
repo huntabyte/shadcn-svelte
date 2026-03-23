@@ -40,9 +40,11 @@
 						{countryLabel}
 					</Select.Trigger>
 					<Select.Content>
+						<Select.Group>
 						{#each countries as c (c.value)}
 							<Select.Item value={c.value} label={c.label}>{c.label}</Select.Item>
 						{/each}
+						</Select.Group>
 					</Select.Content>
 				</Select.Root>
 			</Field.Field>

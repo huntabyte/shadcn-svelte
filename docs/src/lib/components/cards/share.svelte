@@ -83,11 +83,13 @@
 										?.label ?? "Select"}
 								</Select.Trigger>
 								<Select.Content align="end">
+									<Select.Group>
 									{#each permissions as permission (permission.value)}
 										<Select.Item value={permission.value}>
 											{permission.label}
 										</Select.Item>
 									{/each}
+									</Select.Group>
 								</Select.Content>
 							</Select.Root>
 						</Item.Actions>

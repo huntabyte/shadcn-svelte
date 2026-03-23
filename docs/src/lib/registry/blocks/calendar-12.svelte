@@ -49,9 +49,11 @@
 					{selectedLanguage}
 				</Select.Trigger>
 				<Select.Content align="end">
+					<Select.Group>
 					{#each languageOptions as option (option.value)}
 						<Select.Item value={option.value}>{option.label}</Select.Item>
 					{/each}
+					</Select.Group>
 				</Select.Content>
 			</Select.Root>
 		</Card.Action>

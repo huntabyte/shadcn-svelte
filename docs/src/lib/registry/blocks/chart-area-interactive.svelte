@@ -150,9 +150,11 @@
 				{selectedLabel}
 			</Select.Trigger>
 			<Select.Content class="rounded-xl">
+				<Select.Group>
 				<Select.Item value="90d" class="rounded-lg">Last 3 months</Select.Item>
 				<Select.Item value="30d" class="rounded-lg">Last 30 days</Select.Item>
 				<Select.Item value="7d" class="rounded-lg">Last 7 days</Select.Item>
+				</Select.Group>
 			</Select.Content>
 		</Select.Root>
 	</Card.Header>

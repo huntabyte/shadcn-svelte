@@ -36,6 +36,7 @@
 		<span class="text-muted-foreground font-mono">{userConfig.current.colorFormat}</span>
 	</Select.Trigger>
 	<Select.Content align="end" class="rounded-xl">
+		<Select.Group>
 		{#each Object.entries(formats) as [format, value] (format)}
 			<Select.Item
 				value={format}
@@ -47,5 +48,6 @@
 				</span>
 			</Select.Item>
 		{/each}
+		</Select.Group>
 	</Select.Content>
 </Select.Root>

@@ -44,10 +44,12 @@
 								"Select Severity"}
 						</Select.Trigger>
 						<Select.Content>
+								<Select.Group>
 							{#each severities as severity (severity.value)}
 								<Select.Item value={severity.value}>{severity.label}</Select.Item>
 							{/each}
-						</Select.Content>
+								</Select.Group>
+							</Select.Content>
 					</Select.Root>
 				</Field.Field>
 				<Field.Field>
@@ -58,10 +60,12 @@
 								"Select Component"}
 						</Select.Trigger>
 						<Select.Content>
+								<Select.Group>
 							{#each components as component (component.value)}
 								<Select.Item value={component.value}>{component.label}</Select.Item>
 							{/each}
-						</Select.Content>
+								</Select.Group>
+							</Select.Content>
 					</Select.Root>
 				</Field.Field>
 			</div>

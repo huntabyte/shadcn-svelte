@@ -74,9 +74,11 @@ Update the import paths to match your project setup.
 <Select.Root type="single">
   <Select.Trigger class="w-[180px]"></Select.Trigger>
   <Select.Content>
-    <Select.Item value="light">Light</Select.Item>
-    <Select.Item value="dark">Dark</Select.Item>
-    <Select.Item value="system">System</Select.Item>
+    <Select.Group>
+      <Select.Item value="light">Light</Select.Item>
+      <Select.Item value="dark">Dark</Select.Item>
+      <Select.Item value="system">System</Select.Item>
+    </Select.Group>
   </Select.Content>
 </Select.Root>
 ```

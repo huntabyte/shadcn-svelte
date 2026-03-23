@@ -29,6 +29,7 @@
 					{file.target.split("/").pop()}
 				</Select.Trigger>
 				<Select.Content>
+					<Select.Group>
 					{#if ctx.tree}
 						{@const tree = ctx.tree[0]}
 						{#if tree && tree.children}
@@ -39,6 +40,7 @@
 							{/each}
 						{/if}
 					{/if}
+					</Select.Group>
 				</Select.Content>
 			</Select.Root>
 			<div class="ms-auto flex items-center gap-2">

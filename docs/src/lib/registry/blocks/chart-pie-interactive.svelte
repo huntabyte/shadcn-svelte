@@ -54,6 +54,7 @@
 					: "Select month"}
 			</Select.Trigger>
 			<Select.Content align="end" class="rounded-xl">
+				<Select.Group>
 				{#each months as month (month)}
 					{@const config = chartConfig[month as keyof typeof chartConfig]}
 
@@ -69,6 +70,7 @@
 						</Select.Item>
 					{/if}
 				{/each}
+				</Select.Group>
 			</Select.Content>
 		</Select.Root>
 	</Card.Header>
