@@ -1488,4 +1488,16 @@ describe("updateCss", () => {
 			}"
 		`);
 	});
+
+	it("should not duplicate existing import with different quoting", async () => {
+		const input = `@import 'tailwindcss';`;
+
+		const result = transformCss(input, {
+			css: {
+				'@import "tailwindcss"': {},
+			},
+		});
+
+		expect(result).toMatchInlineSnapshot(`"@import 'tailwindcss';"`);
+	});
 });

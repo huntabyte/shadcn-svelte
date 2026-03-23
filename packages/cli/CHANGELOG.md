@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.2.3
+
+### Patch Changes
+
+- fix: Ensure imports are not duplicated when updating stylesheets ([#2583](https://github.com/huntabyte/shadcn-svelte/pull/2583))
+
 ## 1.2.2
 
 ### Patch Changes
