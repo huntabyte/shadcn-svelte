@@ -13,6 +13,27 @@ function inferBefore(parentBefore: string | undefined): string {
 	return "\n" + (parentBefore?.replaceAll("\n", "") ?? "") + TAB;
 }
 
+function normalizeImportParams(params: string = ""): string {
+	const trimmed = params.trim().replace(/\s+/g, " ");
+
+	// Normalize `@import "x"` and `@import 'x'` to `x`.
+	const quotedMatch = trimmed.match(/^(['"])(.+)\1$/);
+	if (quotedMatch?.[2]) {
+		return quotedMatch[2].trim();
+	}
+
+	// Normalize `@import url("x")`, `url('x')`, and `url(x)` to `url(x)`.
+	const urlMatch = trimmed.match(/^url\((.*)\)$/i);
+	if (urlMatch?.[1] !== undefined) {
+		const raw = urlMatch[1].trim();
+		const innerQuotedMatch = raw.match(/^(['"])(.+)\1$/);
+		const inner = innerQuotedMatch?.[2] ?? raw;
+		return `url(${inner.trim()})`;
+	}
+
+	return trimmed;
+}
+
 export function updateCss(root: Root, css: CssSchema): void {
 	for (const [selector, properties] of Object.entries(css)) {
 		if (selector.startsWith("@")) {
@@ -24,10 +45,14 @@ export function updateCss(root: Root, css: CssSchema): void {
 
 			// Special handling for imports - place them at the top.
 			if (name === "import") {
+				const normalizedParams = normalizeImportParams(params);
+
 				// Check if this import already exists.
 				const existingImport = root.nodes?.find(
 					(node): node is AtRule =>
-						node.type === "atrule" && node.name === "import" && node.params === params
+						node.type === "atrule" &&
+						node.name === "import" &&
+						normalizeImportParams(node.params) === normalizedParams
 				);
 
 				if (!existingImport) {
