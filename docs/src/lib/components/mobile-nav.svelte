@@ -8,6 +8,7 @@
 
 	type MobileLinkProps = HTMLAnchorAttributes & {
 		content?: string;
+		indicator?: "new";
 	};
 
 	let { class: className, ...restProps }: ButtonProps = $props();
@@ -22,7 +23,7 @@
 	export { closeMenu };
 </script>
 
-{#snippet MobileLink({ href, content, class: className, ...props }: MobileLinkProps)}
+{#snippet MobileLink({ href, content, indicator, class: className, ...props }: MobileLinkProps)}
 	<a
 		{href}
 		onclick={() => {
@@ -32,7 +33,7 @@
 		{...props}
 	>
 		{content}
-		{#if href && NEW_COMPONENTS.has(href.replace("/docs/components/", ""))}
+		{#if indicator === "new" || (href && NEW_COMPONENTS.has(href.replace("/docs/components/", "")))}
 			<span class="bg-svelte-orange flex size-2 rounded-full" title="New"></span>
 		{/if}
 	</a>
@@ -97,7 +98,7 @@
 						</div>
 						<div class="flex flex-col gap-3">
 							{#each group.items as item, i (i)}
-								{@render MobileLink({ href: item.href, content: item.title })}
+								{@render MobileLink({ href: item.href, content: item.title, indicator: item.indicator })}
 							{/each}
 						</div>
 					</div>
