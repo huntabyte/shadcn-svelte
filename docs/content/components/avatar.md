@@ -79,6 +79,14 @@ Update the import paths to match your project setup.
 
 ## Examples
 
+### Basic
+
+<ComponentPreview name="avatar-basic">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Badge
 
 <ComponentPreview name="avatar-badge">

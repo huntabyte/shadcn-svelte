@@ -2,18 +2,21 @@
 	import * as Avatar from "$lib/registry/ui/avatar/index.js";
 </script>
 
-<div class="flex flex-row flex-wrap items-center gap-12">
+<div class="flex flex-row flex-wrap items-center gap-6 md:gap-12">
 	<Avatar.Root>
-		<Avatar.Image src="https://github.com/shadcn.png" alt="@shadcn" />
+		<Avatar.Image
+			src="https://github.com/shadcn.png"
+			alt="@shadcn"
+			class="grayscale"
+		/>
 		<Avatar.Fallback>CN</Avatar.Fallback>
 	</Avatar.Root>
-	<Avatar.Root class="rounded-lg">
+	<Avatar.Root>
 		<Avatar.Image src="https://github.com/evilrabbit.png" alt="@evilrabbit" />
 		<Avatar.Fallback>ER</Avatar.Fallback>
+		<Avatar.Badge class="bg-green-600 dark:bg-green-800" />
 	</Avatar.Root>
-	<div
-		class="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale"
-	>
+	<Avatar.Group class="grayscale">
 		<Avatar.Root>
 			<Avatar.Image src="https://github.com/shadcn.png" alt="@shadcn" />
 			<Avatar.Fallback>CN</Avatar.Fallback>
@@ -26,5 +29,6 @@
 			<Avatar.Image src="https://github.com/evilrabbit.png" alt="@evilrabbit" />
 			<Avatar.Fallback>ER</Avatar.Fallback>
 		</Avatar.Root>
-	</div>
+		<Avatar.GroupCount>+3</Avatar.GroupCount>
+	</Avatar.Group>
 </div>

@@ -1,18 +1,20 @@
 <script lang="ts">
 	import { Separator } from "$lib/registry/ui/separator/index.js";
-
-	const tags = ["React", "Vue", "Svelte", "Angular", "Solid"];
 </script>
 
-<div>
-	<h4 class="text-sm leading-none font-medium">Frameworks</h4>
-	<Separator class="my-4" />
-	<div class="flex h-5 items-center space-x-4 text-sm">
-		{#each tags as tag, i (tag)}
-			{tag}
-			{#if i < tags.length - 1}
-				<Separator orientation="vertical" />
-			{/if}
-		{/each}
-	</div>
+<div class="flex w-full max-w-sm flex-col gap-2 text-sm">
+	<dl class="flex items-center justify-between">
+		<dt>Item 1</dt>
+		<dd class="text-muted-foreground">Value 1</dd>
+	</dl>
+	<Separator />
+	<dl class="flex items-center justify-between">
+		<dt>Item 2</dt>
+		<dd class="text-muted-foreground">Value 2</dd>
+	</dl>
+	<Separator />
+	<dl class="flex items-center justify-between">
+		<dt>Item 3</dt>
+		<dd class="text-muted-foreground">Value 3</dd>
+	</dl>
 </div>

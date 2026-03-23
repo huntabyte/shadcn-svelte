@@ -76,6 +76,14 @@ Update the import paths to match your project setup.
 
 ## Examples
 
+### Basic
+
+<ComponentPreview name="checkbox-basic">
+
+<div></div>
+
+</ComponentPreview>
+
 ### With Text
 
 <ComponentPreview name="checkbox-with-text">
@@ -95,6 +103,14 @@ Update the import paths to match your project setup.
 ### Disabled
 
 <ComponentPreview name="checkbox-disabled">
+
+<div></div>
+
+</ComponentPreview>
+
+### Invalid
+
+<ComponentPreview name="checkbox-invalid">
 
 <div></div>
 

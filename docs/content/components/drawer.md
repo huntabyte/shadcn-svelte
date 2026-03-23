@@ -91,6 +91,22 @@ Update the import paths to match your project setup.
 
 ## Examples
 
+### Scrollable Content
+
+<ComponentPreview name="drawer-scrollable-content">
+
+<div></div>
+
+</ComponentPreview>
+
+### Sides
+
+<ComponentPreview name="drawer-sides">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Responsive Dialog
 
 You can combine the `Dialog` and `Drawer` components to create a responsive dialog. This renders a `Dialog` on desktop and a `Drawer` on mobile.

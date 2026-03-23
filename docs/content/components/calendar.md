@@ -81,15 +81,93 @@ You can use the `<Calendar />` component to build a date picker. See the [Date P
 
 ## Examples
 
+### Basic
+
+A basic calendar component with a border.
+
+<ComponentPreview name="calendar-basic">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Range Calendar
 
-<ComponentPreview name="calendar-02" class="**:[.preview]:h-auto lg:**:[.preview]:h-[450px]">
+Use the range calendar to allow users to select a range of dates.
+
+<ComponentPreview name="calendar-range" class="**:[.preview]:h-auto lg:**:[.preview]:h-[450px]">
 
 <div></div>
 
 </ComponentPreview>
 
 ### Month and Year Selector
+
+Use `captionLayout="dropdown"` to show month and year dropdowns.
+
+<ComponentPreview name="calendar-caption">
+
+<div></div>
+
+</ComponentPreview>
+
+### Presets
+
+<ComponentPreview name="calendar-presets" class="**:[.preview]:h-[650px]">
+
+<div></div>
+
+</ComponentPreview>
+
+### Date and Time Picker
+
+<ComponentPreview name="calendar-time" class="**:[.preview]:h-[600px]">
+
+<div></div>
+
+</ComponentPreview>
+
+### Booked Dates
+
+<ComponentPreview name="calendar-booked-dates">
+
+<div></div>
+
+</ComponentPreview>
+
+### Custom Cell Size
+
+A calendar with custom cell content — useful for showing prices or other per-day data.
+
+<ComponentPreview name="calendar-custom-days">
+
+<div></div>
+
+</ComponentPreview>
+
+### Week Numbers
+
+<ComponentPreview name="calendar-week-numbers">
+
+<div></div>
+
+</ComponentPreview>
+
+### Persian / Hijri / Jalali Calendar
+
+<ComponentPreview name="calendar-hijri">
+
+<div></div>
+
+</ComponentPreview>
+
+### Blocks
+
+<ComponentPreview name="calendar-02" class="**:[.preview]:h-auto lg:**:[.preview]:h-[450px]">
+
+<div></div>
+
+</ComponentPreview>
 
 <ComponentPreview name="calendar-13">
 
@@ -105,7 +183,7 @@ You can use the `<Calendar />` component to build a date picker. See the [Date P
 
 </ComponentPreview>
 
-### Date and Time Picker
+### Date and Time Picker (Block)
 
 <ComponentPreview name="calendar-24">
 

@@ -70,7 +70,7 @@ function componentPreviews() {
 					importStatement = `import ${identifier} from "$lib/registry/blocks/${name}.svelte";`;
 				} else if (name.includes("sidebar") || name.includes("Sidebar")) {
 					continue;
-				} else if (name.startsWith("calendar") && !name.includes("demo")) {
+				} else if (name.startsWith("calendar-") && !name.includes("demo") && /^calendar-\d/.test(name)) {
 					importStatement = `import ${identifier} from "$lib/registry/blocks/${name}.svelte";`;
 				} else {
 					importStatement = `import ${identifier} from "$lib/registry/examples/${name}.svelte";`;

@@ -78,17 +78,25 @@ Update the import paths to match your project setup.
 
 ## Examples
 
-### With Form
+### Small
 
-<ComponentPreview name="card-with-form">
+<ComponentPreview name="card-small">
 
 <div></div>
 
 </ComponentPreview>
 
-### Small
+### Image
 
-<ComponentPreview name="card-small">
+<ComponentPreview name="card-image">
+
+<div></div>
+
+</ComponentPreview>
+
+### With Form
+
+<ComponentPreview name="card-with-form">
 
 <div></div>
 

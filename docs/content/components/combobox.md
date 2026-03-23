@@ -134,6 +134,106 @@ See installation instructions for the [Popover](/docs/components/popover#install
 
 </ComponentPreview>
 
+### Basic
+
+A simple combobox with a list of frameworks.
+
+<ComponentPreview name="combobox-basic">
+
+<div></div>
+
+</ComponentPreview>
+
+### Multiple
+
+A combobox with multiple selection using chips.
+
+<ComponentPreview name="combobox-multiple">
+
+<div></div>
+
+</ComponentPreview>
+
+### Clear Button
+
+A combobox with a clear button to reset the selection.
+
+<ComponentPreview name="combobox-clear">
+
+<div></div>
+
+</ComponentPreview>
+
+### Groups
+
+Use grouped items with separators between groups.
+
+<ComponentPreview name="combobox-groups">
+
+<div></div>
+
+</ComponentPreview>
+
+### Custom Items
+
+You can render a custom component inside each item.
+
+<ComponentPreview name="combobox-custom">
+
+<div></div>
+
+</ComponentPreview>
+
+### Invalid
+
+Use `aria-invalid` to indicate an invalid state.
+
+<ComponentPreview name="combobox-invalid">
+
+<div></div>
+
+</ComponentPreview>
+
+### Disabled
+
+Use the `disabled` prop to disable the combobox.
+
+<ComponentPreview name="combobox-disabled">
+
+<div></div>
+
+</ComponentPreview>
+
+### Auto Highlight
+
+Automatically highlight the first filtered item on input.
+
+<ComponentPreview name="combobox-auto-highlight">
+
+<div></div>
+
+</ComponentPreview>
+
+### Popup
+
+Trigger a combobox from a button with a country list.
+
+<ComponentPreview name="combobox-popup">
+
+<div></div>
+
+</ComponentPreview>
+
+### Input Group
+
+Add an icon addon to the combobox using the `InputGroup` component.
+
+<ComponentPreview name="combobox-input-group">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Popover
 
 <ComponentPreview name="combobox-popover">

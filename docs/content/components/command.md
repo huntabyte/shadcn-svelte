@@ -93,6 +93,38 @@ Update the import paths to match your project setup.
 
 ## Examples
 
+### Basic
+
+<ComponentPreview name="command-basic">
+
+<div></div>
+
+</ComponentPreview>
+
+### Shortcuts
+
+<ComponentPreview name="command-shortcuts">
+
+<div></div>
+
+</ComponentPreview>
+
+### Groups
+
+<ComponentPreview name="command-groups">
+
+<div></div>
+
+</ComponentPreview>
+
+### Scrollable
+
+<ComponentPreview name="command-scrollable">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Dialog
 
 <ComponentPreview name="command-dialog">

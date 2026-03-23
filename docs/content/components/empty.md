@@ -127,3 +127,13 @@ You can add an `InputGroup` component to the `EmptyContent` component.
 <div></div>
 
 </ComponentPreview>
+
+### Card
+
+Use the `Card` component to display the empty state inside a card.
+
+<ComponentPreview name="empty-card-demo">
+
+<div></div>
+
+</ComponentPreview>

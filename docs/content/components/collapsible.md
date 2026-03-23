@@ -82,6 +82,14 @@ Update the import paths to match your project setup.
 
 ## Examples
 
+### Basic
+
+<ComponentPreview name="collapsible-basic">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Settings Panel
 
 <ComponentPreview name="collapsible-settings">

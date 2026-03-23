@@ -88,6 +88,14 @@ Update the import paths to match your project setup.
 
 ## Examples
 
+### Basic
+
+<ComponentPreview name="dropdown-menu-basic">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Submenu
 
 <ComponentPreview name="dropdown-menu-submenu">
@@ -120,9 +128,25 @@ Update the import paths to match your project setup.
 
 </ComponentPreview>
 
+### Checkboxes with Icons
+
+<ComponentPreview name="dropdown-menu-checkboxes-icons">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Radio Group
 
 <ComponentPreview name="dropdown-menu-radio-group">
+
+<div></div>
+
+</ComponentPreview>
+
+### Radio Group with Icons
+
+<ComponentPreview name="dropdown-menu-radio-icons">
 
 <div></div>
 

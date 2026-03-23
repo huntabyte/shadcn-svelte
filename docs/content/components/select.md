@@ -83,6 +83,14 @@ Update the import paths to match your project setup.
 
 ## Examples
 
+### Align Item
+
+<ComponentPreview name="select-align-item">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Groups
 
 <ComponentPreview name="select-groups">

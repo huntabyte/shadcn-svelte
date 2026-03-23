@@ -92,6 +92,16 @@ Update the import paths to match your project setup.
 </InputOTP.Root>
 ```
 
+## Pattern
+
+Use the `pattern` prop to restrict input to a specific pattern. The `REGEXP_ONLY_DIGITS` constant can be imported from `bits-ui`.
+
+<ComponentPreview name="input-otp-pattern">
+
+<div></div>
+
+</ComponentPreview>
+
 ## Examples
 
 ### Separator
@@ -138,9 +148,9 @@ You can use the `InputOTP.Separator` component to add a separator between the gr
 
 ### Alphanumeric
 
-Use the `pattern` prop to define a custom pattern for the OTP input.
+Use the `REGEXP_ONLY_DIGITS_AND_CHARS` pattern to accept both letters and numbers.
 
-<ComponentPreview name="input-otp-pattern">
+<ComponentPreview name="input-otp-alphanumeric">
 
 <div></div>
 

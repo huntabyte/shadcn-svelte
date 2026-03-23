@@ -92,6 +92,14 @@ Update the import paths to match your project setup.
 
 ## Examples
 
+### Basic
+
+<ComponentPreview name="accordion-basic">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Multiple
 
 <ComponentPreview name="accordion-multiple">

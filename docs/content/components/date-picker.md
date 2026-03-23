@@ -68,17 +68,31 @@ See installations instructions for the [Popover](/docs/components/popover#instal
 
 ## Examples
 
-### Range Picker
+### Basic
 
-<ComponentPreview name="date-picker-with-range">
+A basic date picker component.
+
+<ComponentPreview name="date-picker-basic">
 
 <div></div>
 
 </ComponentPreview>
 
-### Date of Birth Picker
+### Range Picker
 
-<ComponentPreview name="calendar-22" description="A calendar with date of birth picker." >
+A date picker component for selecting a range of dates.
+
+<ComponentPreview name="date-picker-range">
+
+<div></div>
+
+</ComponentPreview>
+
+### Date of Birth
+
+A date picker component for selecting a date of birth. Includes a dropdown caption layout and closes on selection.
+
+<ComponentPreview name="date-picker-dob">
 
 <div></div>
 
@@ -86,9 +100,9 @@ See installations instructions for the [Popover](/docs/components/popover#instal
 
 ### Picker with Input
 
-<!--need to fix code not showing due to type-->
+A date picker component with an input field for selecting a date.
 
-<ComponentPreview name="calendar-28" description="A calendar with input and picker." >
+<ComponentPreview name="date-picker-input">
 
 <div></div>
 
@@ -96,7 +110,10 @@ See installations instructions for the [Popover](/docs/components/popover#instal
 
 ### Date and Time Picker
 
-<ComponentPreview name="calendar-24" description="A calendar with date and time picker." >
+A date picker component with a time input field.
+
+<ComponentPreview name="date-picker-time">
+
 <div></div>
 
 </ComponentPreview>
@@ -105,7 +122,7 @@ See installations instructions for the [Popover](/docs/components/popover#instal
 
 This component uses the `chrono-node` library to parse natural language dates.
 
-<ComponentPreview name="calendar-29" description="A calendar with natural language picker.">
+<ComponentPreview name="date-picker-natural-language">
 
 <div></div>
 

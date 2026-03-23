@@ -82,6 +82,14 @@ Update the import paths to match your project setup.
 
 </ComponentPreview>
 
+### Invalid
+
+<ComponentPreview name="textarea-invalid">
+
+<div></div>
+
+</ComponentPreview>
+
 ### With Label
 
 <ComponentPreview name="textarea-with-label">

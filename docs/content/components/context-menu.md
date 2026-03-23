@@ -84,6 +84,14 @@ Update the import paths to match your project setup.
 
 ## Examples
 
+### Basic
+
+<ComponentPreview name="context-menu-basic">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Submenu
 
 <ComponentPreview name="context-menu-submenu">

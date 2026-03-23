@@ -84,6 +84,14 @@ Update the import paths to match your project setup.
 
 </ComponentPreview>
 
+### Choice Card
+
+<ComponentPreview name="switch-choice-card">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Disabled
 
 <ComponentPreview name="switch-disabled">

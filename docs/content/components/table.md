@@ -82,6 +82,24 @@ Update the import paths to match your project setup.
 </Table.Root>
 ```
 
+## Examples
+
+### Footer
+
+<ComponentPreview name="table-footer">
+
+<div></div>
+
+</ComponentPreview>
+
+### Actions
+
+<ComponentPreview name="table-actions">
+
+<div></div>
+
+</ComponentPreview>
+
 ## Data Table
 
 You can use the `<Table />` component to build more complex data tables. Combine it with [@tanstack/table](https://tanstack.com/table) to create tables with sorting, filtering and pagination.

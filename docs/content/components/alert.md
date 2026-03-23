@@ -71,6 +71,14 @@ Update the import paths to match your project setup.
 
 ## Examples
 
+### Basic
+
+<ComponentPreview name="alert-basic">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Destructive
 
 Use `variant="destructive"` to create a destructive alert.

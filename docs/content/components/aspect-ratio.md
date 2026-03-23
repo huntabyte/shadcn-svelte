@@ -80,17 +80,17 @@ Update the import paths to match your project setup.
 
 ## Examples
 
-### Portrait
+### Square
 
-<ComponentPreview name="aspect-ratio-portrait">
+<ComponentPreview name="aspect-ratio-square">
 
 <div></div>
 
 </ComponentPreview>
 
-### Square
+### Portrait
 
-<ComponentPreview name="aspect-ratio-square">
+<ComponentPreview name="aspect-ratio-portrait">
 
 <div></div>
 

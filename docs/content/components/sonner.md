@@ -127,6 +127,14 @@ Update the import paths to match your project setup.
 
 </ComponentPreview>
 
+### Description
+
+<ComponentPreview name="sonner-description">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Position
 
 <ComponentPreview name="sonner-position">

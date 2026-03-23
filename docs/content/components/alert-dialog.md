@@ -91,6 +91,14 @@ Update the import paths to match your project setup.
 
 ## Examples
 
+### Basic
+
+<ComponentPreview name="alert-dialog-basic">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Small
 
 <ComponentPreview name="alert-dialog-small">

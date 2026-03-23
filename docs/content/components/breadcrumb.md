@@ -24,6 +24,16 @@ links:
 
 </ComponentPreview>
 
+## Examples
+
+### Basic
+
+<ComponentPreview name="breadcrumb-basic">
+
+<div></div>
+
+</ComponentPreview>
+
 ## Installation
 
 <InstallTabs>

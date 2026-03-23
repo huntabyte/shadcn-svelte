@@ -79,6 +79,14 @@ Update the import paths to match your project setup.
 
 ## Examples
 
+### Basic
+
+<ComponentPreview name="popover-basic">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Align
 
 <ComponentPreview name="popover-align">
