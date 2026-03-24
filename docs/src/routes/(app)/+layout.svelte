@@ -11,8 +11,8 @@
 </script>
 
 <ModeWatcher defaultMode="system" disableTransitions />
-<Toaster position="top-center" />
 
 <DesignSystemProvider>
+	<Toaster position="top-center" />
 	{@render children()}
 </DesignSystemProvider>
