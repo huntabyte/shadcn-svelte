@@ -73,9 +73,9 @@
 				</Select.Trigger>
 				<Select.Content class="max-h-[200px] overflow-y-auto">
 					<Select.Group>
-					{#each monthOptions as { value, label } (value)}
-						<Select.Item value={`${value}`} {label} />
-					{/each}
+						{#each monthOptions as { value, label } (value)}
+							<Select.Item value={`${value}`} {label} />
+						{/each}
 					</Select.Group>
 				</Select.Content>
 			</Select.Root>
@@ -93,9 +93,9 @@
 				</Select.Trigger>
 				<Select.Content class="max-h-[200px] overflow-y-auto">
 					<Select.Group>
-					{#each yearOptions as { value, label } (value)}
-						<Select.Item value={`${value}`} {label} />
-					{/each}
+						{#each yearOptions as { value, label } (value)}
+							<Select.Item value={`${value}`} {label} />
+						{/each}
 					</Select.Group>
 				</Select.Content>
 			</Select.Root>

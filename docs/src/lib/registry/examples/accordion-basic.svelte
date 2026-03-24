@@ -23,7 +23,7 @@
 	];
 </script>
 
-<Accordion.Root type="single" collapsible value="item-1" class="max-w-lg">
+<Accordion.Root type="single" value="item-1" class="max-w-lg">
 	{#each items as item (item.value)}
 		<Accordion.Item value={item.value}>
 			<Accordion.Trigger>{item.trigger}</Accordion.Trigger>

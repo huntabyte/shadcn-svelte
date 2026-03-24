@@ -130,17 +130,19 @@
 							<Select.Content>
 								<Select.Group>
 									<Select.Item value="Table of Contents"
-									>Table of Contents</Select.Item
+										>Table of Contents</Select.Item
 									>
 									<Select.Item value="Executive Summary"
-									>Executive Summary</Select.Item
+										>Executive Summary</Select.Item
 									>
 									<Select.Item value="Technical Approach">
 										Technical Approach
 									</Select.Item>
 									<Select.Item value="Design">Design</Select.Item>
 									<Select.Item value="Capabilities">Capabilities</Select.Item>
-									<Select.Item value="Focus Documents">Focus Documents</Select.Item>
+									<Select.Item value="Focus Documents"
+										>Focus Documents</Select.Item
+									>
 									<Select.Item value="Narrative">Narrative</Select.Item>
 									<Select.Item value="Cover Page">Cover Page</Select.Item>
 								</Select.Group>
@@ -182,7 +184,9 @@
 						<Select.Content>
 							<Select.Group>
 								<Select.Item value="Eddie Lake">Eddie Lake</Select.Item>
-								<Select.Item value="Jamik Tashpulatov">Jamik Tashpulatov</Select.Item>
+								<Select.Item value="Jamik Tashpulatov"
+									>Jamik Tashpulatov</Select.Item
+								>
 								<Select.Item value="Emily Whalen">Emily Whalen</Select.Item>
 							</Select.Group>
 						</Select.Content>

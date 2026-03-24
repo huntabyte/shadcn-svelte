@@ -21,7 +21,6 @@ links:
 	let { viewerData, links } = $props();
 </script>
 
-
 <ComponentPreview name="button-demo" class="mb-4">
 
 <div></div>

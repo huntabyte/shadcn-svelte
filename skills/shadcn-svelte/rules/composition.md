@@ -33,23 +33,23 @@ Do not rewrite this into React JSX patterns.
 
 Replace custom markup with built-in alternatives:
 
-| Instead of | Use |
-|------------|-----|
-| Custom callout div | `Alert` |
-| Empty state div | `Empty` |
-| `<hr>` or border div | `Separator` |
-| Custom loading animation | `Skeleton` |
-| Styled span for status | `Badge` |
-| Custom toast system | `sonner` |
+| Instead of               | Use         |
+| ------------------------ | ----------- |
+| Custom callout div       | `Alert`     |
+| Empty state div          | `Empty`     |
+| `<hr>` or border div     | `Separator` |
+| Custom loading animation | `Skeleton`  |
+| Styled span for status   | `Badge`     |
+| Custom toast system      | `sonner`    |
 
 ## Overlay Selection
 
-| Use case | Component |
-|----------|-----------|
-| Focused task (confirm, edit) | `Dialog` |
-| Destructive confirmation | `AlertDialog` |
-| Side panel content | `Sheet` |
-| Mobile-first bottom panel | `Drawer` |
+| Use case                     | Component     |
+| ---------------------------- | ------------- |
+| Focused task (confirm, edit) | `Dialog`      |
+| Destructive confirmation     | `AlertDialog` |
+| Side panel content           | `Sheet`       |
+| Mobile-first bottom panel    | `Drawer`      |
 
 ## Loading States
 

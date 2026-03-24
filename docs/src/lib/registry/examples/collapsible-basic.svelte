@@ -7,7 +7,7 @@
 
 <Card.Root class="mx-auto w-full max-w-sm">
 	<Card.Content>
-		<Collapsible.Root class="rounded-md data-[state=open]:bg-muted">
+		<Collapsible.Root class="data-[state=open]:bg-muted rounded-md">
 			<Collapsible.Trigger>
 				{#snippet child({ props })}
 					<Button variant="ghost" class="group w-full" {...props}>
@@ -17,9 +17,7 @@
 				{/snippet}
 			</Collapsible.Trigger>
 			<Collapsible.Content class="flex flex-col items-start gap-2 p-2.5 pt-0 text-sm">
-				<div>
-					This panel can be expanded or collapsed to reveal additional content.
-				</div>
+				<div>This panel can be expanded or collapsed to reveal additional content.</div>
 				<Button size="xs">Learn More</Button>
 			</Collapsible.Content>
 		</Collapsible.Root>

@@ -50,12 +50,12 @@
 							{selectedFramework}
 						</Select.Trigger>
 						<Select.Content>
-								<Select.Group>
-							{#each frameworks as { value, label } (value)}
-								<Select.Item {value} {label} />
-							{/each}
-								</Select.Group>
-							</Select.Content>
+							<Select.Group>
+								{#each frameworks as { value, label } (value)}
+									<Select.Item {value} {label} />
+								{/each}
+							</Select.Group>
+						</Select.Content>
 					</Select.Root>
 				</div>
 			</div>

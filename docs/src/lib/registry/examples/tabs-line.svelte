@@ -19,7 +19,9 @@
 	<Tabs.Content value="analytics">
 		<div class="space-y-2 pt-4">
 			<h3 class="font-medium">Analytics</h3>
-			<p class="text-muted-foreground text-sm">Detailed analytics and metrics for your project.</p>
+			<p class="text-muted-foreground text-sm">
+				Detailed analytics and metrics for your project.
+			</p>
 		</div>
 	</Tabs.Content>
 	<Tabs.Content value="reports">

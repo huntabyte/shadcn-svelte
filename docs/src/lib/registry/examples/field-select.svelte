@@ -29,9 +29,9 @@
 			</Select.Trigger>
 			<Select.Content>
 				<Select.Group>
-				{#each departments as department (department.value)}
-					<Select.Item {...department} />
-				{/each}
+					{#each departments as department (department.value)}
+						<Select.Item {...department} />
+					{/each}
 				</Select.Group>
 			</Select.Content>
 		</Select.Root>

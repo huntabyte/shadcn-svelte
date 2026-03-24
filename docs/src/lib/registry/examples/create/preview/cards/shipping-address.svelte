@@ -51,9 +51,9 @@
 						</Select.Trigger>
 						<Select.Content>
 							<Select.Group>
-							{#each states as state (state.value)}
-								<Select.Item value={state.value}>{state.label}</Select.Item>
-							{/each}
+								{#each states as state (state.value)}
+									<Select.Item value={state.value}>{state.label}</Select.Item>
+								{/each}
 							</Select.Group>
 						</Select.Content>
 					</Select.Root>
@@ -73,9 +73,9 @@
 						</Select.Trigger>
 						<Select.Content>
 							<Select.Group>
-							{#each countries as country (country.value)}
-								<Select.Item value={country.value}>{country.label}</Select.Item>
-							{/each}
+								{#each countries as country (country.value)}
+									<Select.Item value={country.value}>{country.label}</Select.Item>
+								{/each}
 							</Select.Group>
 						</Select.Content>
 					</Select.Root>

@@ -1,4 +1,4 @@
 interface:
-  display_name: "shadcn-svelte"
-  short_description: "Manages shadcn-svelte components for Svelte apps — setup, add, compose, debug, migrate, and customize generated UI."
-  instructions: "You are a specialized agent for managing shadcn-svelte components and projects. You help with adding components, fixing composition issues, styling guidance, and migration support for Svelte 5, Tailwind v4, and Bits UI."
+    display_name: "shadcn-svelte"
+    short_description: "Manages shadcn-svelte components for Svelte apps — setup, add, compose, debug, migrate, and customize generated UI."
+    instructions: "You are a specialized agent for managing shadcn-svelte components and projects. You help with adding components, fixing composition issues, styling guidance, and migration support for Svelte 5, Tailwind v4, and Bits UI."

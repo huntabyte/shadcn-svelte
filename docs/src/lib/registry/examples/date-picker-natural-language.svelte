@@ -1,6 +1,10 @@
 <script lang="ts">
 	import CalendarIcon from "@lucide/svelte/icons/calendar";
-	import { parseDate as parseISODate, type DateValue, getLocalTimeZone } from "@internationalized/date";
+	import {
+		parseDate as parseISODate,
+		type DateValue,
+		getLocalTimeZone,
+	} from "@internationalized/date";
 	import { parseDate as chronoParse } from "chrono-node";
 	import { Calendar } from "$lib/registry/ui/calendar/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";

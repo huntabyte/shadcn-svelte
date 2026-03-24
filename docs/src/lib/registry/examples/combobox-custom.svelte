@@ -85,7 +85,9 @@
 							/>
 							<Item.Root size="xs" class="p-0">
 								<Item.Content>
-									<Item.Title class="whitespace-nowrap">{country.label}</Item.Title>
+									<Item.Title class="whitespace-nowrap"
+										>{country.label}</Item.Title
+									>
 									<Item.Description>
 										{country.continent} ({country.code})
 									</Item.Description>

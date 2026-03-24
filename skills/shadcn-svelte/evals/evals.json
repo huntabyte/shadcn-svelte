@@ -1,53 +1,53 @@
 [
-  {
-    "name": "settings-form",
-    "description": "Build a settings form with Field composition, Switch toggles, and validation",
-    "prompt": "Create a settings page with a form that has: an email input with validation, a notifications Switch toggle, and a theme Select dropdown. Use proper Field composition and show an error state on the email field.",
-    "expected_patterns": [
-      "Field.Group wraps all fields",
-      "Field.Field wraps each control with Field.Label",
-      "Field.Error for validation message",
-      "data-invalid on Field.Field and aria-invalid on Input",
-      "Switch component for toggles, not checkbox",
-      "Select.Root with Select.Group and Select.Item",
-      "gap-* for spacing, not space-y-*",
-      "Semantic tokens like bg-background, text-foreground"
-    ],
-    "framework": "sveltekit",
-    "icon_library": "@lucide/svelte"
-  },
-  {
-    "name": "profile-dialog",
-    "description": "Build a profile editor dialog with Avatar and icon buttons",
-    "prompt": "Create a dialog that shows a user profile editor. It should have an Avatar with fallback initials, a name input, a bio textarea, and save/cancel buttons. The save button should have a check icon and the cancel button should have an X icon.",
-    "expected_patterns": [
-      "Dialog.Root with Dialog.Trigger",
-      "Dialog.Title inside Dialog.Header for accessibility",
-      "Avatar.Root with Avatar.Image and Avatar.Fallback",
-      "Icons imported from @lucide/svelte",
-      "No sizing classes on icons inside Button",
-      "Button variant='outline' for cancel",
-      "Namespace import: import * as Dialog",
-      "$props() rune for component props"
-    ],
-    "framework": "sveltekit",
-    "icon_library": "@lucide/svelte"
-  },
-  {
-    "name": "dashboard-stats",
-    "description": "Build a dashboard stats grid with Cards, Skeleton loading, and Badges",
-    "prompt": "Create a responsive grid of 3 stat cards. Each card shows a metric name, value, and trend Badge. Add a loading state using Skeleton components. Use proper Card composition.",
-    "expected_patterns": [
-      "Card.Root with Card.Header, Card.Title, Card.Content",
-      "Badge for trend indicators, not styled spans",
-      "Skeleton for loading placeholders",
-      "Semantic color tokens like text-muted-foreground",
-      "size-* shorthand for equal dimensions",
-      "gap-* for grid/flex spacing",
-      "{#if loading} block for conditional rendering",
-      "Svelte 5 $props() for component input"
-    ],
-    "framework": "sveltekit",
-    "icon_library": "@lucide/svelte"
-  }
+	{
+		"name": "settings-form",
+		"description": "Build a settings form with Field composition, Switch toggles, and validation",
+		"prompt": "Create a settings page with a form that has: an email input with validation, a notifications Switch toggle, and a theme Select dropdown. Use proper Field composition and show an error state on the email field.",
+		"expected_patterns": [
+			"Field.Group wraps all fields",
+			"Field.Field wraps each control with Field.Label",
+			"Field.Error for validation message",
+			"data-invalid on Field.Field and aria-invalid on Input",
+			"Switch component for toggles, not checkbox",
+			"Select.Root with Select.Group and Select.Item",
+			"gap-* for spacing, not space-y-*",
+			"Semantic tokens like bg-background, text-foreground"
+		],
+		"framework": "sveltekit",
+		"icon_library": "@lucide/svelte"
+	},
+	{
+		"name": "profile-dialog",
+		"description": "Build a profile editor dialog with Avatar and icon buttons",
+		"prompt": "Create a dialog that shows a user profile editor. It should have an Avatar with fallback initials, a name input, a bio textarea, and save/cancel buttons. The save button should have a check icon and the cancel button should have an X icon.",
+		"expected_patterns": [
+			"Dialog.Root with Dialog.Trigger",
+			"Dialog.Title inside Dialog.Header for accessibility",
+			"Avatar.Root with Avatar.Image and Avatar.Fallback",
+			"Icons imported from @lucide/svelte",
+			"No sizing classes on icons inside Button",
+			"Button variant='outline' for cancel",
+			"Namespace import: import * as Dialog",
+			"$props() rune for component props"
+		],
+		"framework": "sveltekit",
+		"icon_library": "@lucide/svelte"
+	},
+	{
+		"name": "dashboard-stats",
+		"description": "Build a dashboard stats grid with Cards, Skeleton loading, and Badges",
+		"prompt": "Create a responsive grid of 3 stat cards. Each card shows a metric name, value, and trend Badge. Add a loading state using Skeleton components. Use proper Card composition.",
+		"expected_patterns": [
+			"Card.Root with Card.Header, Card.Title, Card.Content",
+			"Badge for trend indicators, not styled spans",
+			"Skeleton for loading placeholders",
+			"Semantic color tokens like text-muted-foreground",
+			"size-* shorthand for equal dimensions",
+			"gap-* for grid/flex spacing",
+			"{#if loading} block for conditional rendering",
+			"Svelte 5 $props() for component input"
+		],
+		"framework": "sveltekit",
+		"icon_library": "@lucide/svelte"
+	}
 ]

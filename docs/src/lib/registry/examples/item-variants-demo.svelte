@@ -10,9 +10,7 @@
 		</Item.Media>
 		<Item.Content>
 			<Item.Title>Default Variant</Item.Title>
-			<Item.Description>
-				Transparent background with no border.
-			</Item.Description>
+			<Item.Description>Transparent background with no border.</Item.Description>
 		</Item.Content>
 	</Item.Root>
 	<Item.Root variant="outline">
@@ -21,9 +19,7 @@
 		</Item.Media>
 		<Item.Content>
 			<Item.Title>Outline Variant</Item.Title>
-			<Item.Description>
-				Outlined style with a visible border.
-			</Item.Description>
+			<Item.Description>Outlined style with a visible border.</Item.Description>
 		</Item.Content>
 	</Item.Root>
 	<Item.Root variant="muted">
@@ -32,9 +28,7 @@
 		</Item.Media>
 		<Item.Content>
 			<Item.Title>Muted Variant</Item.Title>
-			<Item.Description>
-				Muted background for secondary content.
-			</Item.Description>
+			<Item.Description>Muted background for secondary content.</Item.Description>
 		</Item.Content>
 	</Item.Root>
 </div>

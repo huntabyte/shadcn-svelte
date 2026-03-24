@@ -16,10 +16,7 @@
 	<Button variant="outline" onclick={() => toast("Bottom Left", { position: "bottom-left" })}>
 		Bottom Left
 	</Button>
-	<Button
-		variant="outline"
-		onclick={() => toast("Bottom Center", { position: "bottom-center" })}
-	>
+	<Button variant="outline" onclick={() => toast("Bottom Center", { position: "bottom-center" })}>
 		Bottom Center
 	</Button>
 	<Button variant="outline" onclick={() => toast("Bottom Right", { position: "bottom-right" })}>

@@ -15,7 +15,8 @@
 				</Empty.Media>
 				<Empty.Title>No projects yet</Empty.Title>
 				<Empty.Description>
-					You haven't created any projects yet. Get started by creating your first project.
+					You haven't created any projects yet. Get started by creating your first
+					project.
 				</Empty.Description>
 			</Empty.Header>
 			<Empty.Content>

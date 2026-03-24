@@ -6,16 +6,14 @@
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import Clock2Icon from "@lucide/svelte/icons/clock-2";
 
-	let value = $state<DateValue | undefined>(
-		today(getLocalTimeZone()).set({ day: 12 })
-	);
+	let value = $state<DateValue | undefined>(today(getLocalTimeZone()).set({ day: 12 }));
 </script>
 
 <Card.Root size="sm" class="mx-auto w-fit">
 	<Card.Content>
 		<Calendar type="single" bind:value class="p-0" />
 	</Card.Content>
-	<Card.Footer class="border-t bg-card">
+	<Card.Footer class="bg-card border-t">
 		<Field.Group>
 			<Field.Field>
 				<Field.Label for="time-from">Start Time</Field.Label>

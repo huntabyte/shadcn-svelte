@@ -128,23 +128,25 @@
 								{type ?? "Select a type"}
 							</Select.Trigger>
 							<Select.Content>
-									<Select.Group>
-								<Select.Item value="Table of Contents"
-									>Table of Contents</Select.Item
+								<Select.Group>
+									<Select.Item value="Table of Contents"
+										>Table of Contents</Select.Item
 									>
-								<Select.Item value="Executive Summary"
-									>Executive Summary</Select.Item
-								>
-								<Select.Item value="Technical Approach">
-									Technical Approach
-								</Select.Item>
-								<Select.Item value="Design">Design</Select.Item>
-								<Select.Item value="Capabilities">Capabilities</Select.Item>
-								<Select.Item value="Focus Documents">Focus Documents</Select.Item>
-								<Select.Item value="Narrative">Narrative</Select.Item>
-								<Select.Item value="Cover Page">Cover Page</Select.Item>
-									</Select.Group>
-								</Select.Content>
+									<Select.Item value="Executive Summary"
+										>Executive Summary</Select.Item
+									>
+									<Select.Item value="Technical Approach">
+										Technical Approach
+									</Select.Item>
+									<Select.Item value="Design">Design</Select.Item>
+									<Select.Item value="Capabilities">Capabilities</Select.Item>
+									<Select.Item value="Focus Documents"
+										>Focus Documents</Select.Item
+									>
+									<Select.Item value="Narrative">Narrative</Select.Item>
+									<Select.Item value="Cover Page">Cover Page</Select.Item>
+								</Select.Group>
+							</Select.Content>
 						</Select.Root>
 					</div>
 					<div class="flex flex-col gap-3">
@@ -154,12 +156,12 @@
 								{status ?? "Select a status"}
 							</Select.Trigger>
 							<Select.Content>
-									<Select.Group>
-								<Select.Item value="Done">Done</Select.Item>
-								<Select.Item value="In Progress">In Progress</Select.Item>
-								<Select.Item value="Not Started">Not Started</Select.Item>
-									</Select.Group>
-								</Select.Content>
+								<Select.Group>
+									<Select.Item value="Done">Done</Select.Item>
+									<Select.Item value="In Progress">In Progress</Select.Item>
+									<Select.Item value="Not Started">Not Started</Select.Item>
+								</Select.Group>
+							</Select.Content>
 						</Select.Root>
 					</div>
 				</div>
@@ -182,7 +184,9 @@
 						<Select.Content>
 							<Select.Group>
 								<Select.Item value="Eddie Lake">Eddie Lake</Select.Item>
-								<Select.Item value="Jamik Tashpulatov">Jamik Tashpulatov</Select.Item>
+								<Select.Item value="Jamik Tashpulatov"
+									>Jamik Tashpulatov</Select.Item
+								>
 								<Select.Item value="Emily Whalen">Emily Whalen</Select.Item>
 							</Select.Group>
 						</Select.Content>

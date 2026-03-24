@@ -34,9 +34,9 @@
 					</Select.Trigger>
 					<Select.Content>
 						<Select.Group>
-						{#each roles as role (role.value)}
-							<Select.Item value={role.value}>{role.label}</Select.Item>
-						{/each}
+							{#each roles as role (role.value)}
+								<Select.Item value={role.value}>{role.label}</Select.Item>
+							{/each}
 						</Select.Group>
 					</Select.Content>
 				</Select.Root>
@@ -51,9 +51,9 @@
 					</Select.Trigger>
 					<Select.Content>
 						<Select.Group>
-						{#each roles as role (role.value)}
-							<Select.Item value={role.value}>{role.label}</Select.Item>
-						{/each}
+							{#each roles as role (role.value)}
+								<Select.Item value={role.value}>{role.label}</Select.Item>
+							{/each}
 						</Select.Group>
 					</Select.Content>
 				</Select.Root>

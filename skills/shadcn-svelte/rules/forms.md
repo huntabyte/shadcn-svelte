@@ -49,17 +49,17 @@ Both attributes are needed — `data-invalid`/`data-disabled` styles the field (
 
 Use the right control for the interaction:
 
-| Need | Use |
-|------|-----|
-| Text input | `Input` |
-| Option list | `Select` |
-| Searchable options | `Combobox` |
-| Native dropdown | `Native Select` |
-| Boolean toggle | `Switch` or `Checkbox` |
-| Single choice from set | `Radio Group` |
-| 2–7 compact options | `Toggle Group` |
-| Verification code | `Input OTP` |
-| Multi-line text | `Textarea` |
+| Need                   | Use                    |
+| ---------------------- | ---------------------- |
+| Text input             | `Input`                |
+| Option list            | `Select`               |
+| Searchable options     | `Combobox`             |
+| Native dropdown        | `Native Select`        |
+| Boolean toggle         | `Switch` or `Checkbox` |
+| Single choice from set | `Radio Group`          |
+| 2–7 compact options    | `Toggle Group`         |
+| Verification code      | `Input OTP`            |
+| Multi-line text        | `Textarea`             |
 
 ## Toggle Group
 

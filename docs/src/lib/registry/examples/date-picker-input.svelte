@@ -1,6 +1,11 @@
 <script lang="ts">
 	import CalendarIcon from "@lucide/svelte/icons/calendar";
-	import { DateFormatter, parseDate, type DateValue, getLocalTimeZone } from "@internationalized/date";
+	import {
+		DateFormatter,
+		parseDate,
+		type DateValue,
+		getLocalTimeZone,
+	} from "@internationalized/date";
 	import { Calendar } from "$lib/registry/ui/calendar/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
@@ -66,7 +71,12 @@
 							</InputGroup.Button>
 						{/snippet}
 					</Popover.Trigger>
-					<Popover.Content class="w-auto overflow-hidden p-0" align="end" alignOffset={-8} sideOffset={10}>
+					<Popover.Content
+						class="w-auto overflow-hidden p-0"
+						align="end"
+						alignOffset={-8}
+						sideOffset={10}
+					>
 						<Calendar
 							type="single"
 							bind:value

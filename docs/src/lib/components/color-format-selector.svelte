@@ -37,17 +37,17 @@
 	</Select.Trigger>
 	<Select.Content align="end" class="rounded-xl">
 		<Select.Group>
-		{#each Object.entries(formats) as [format, value] (format)}
-			<Select.Item
-				value={format}
-				class="gap-2 rounded-lg [&>span]:flex [&>span]:items-center [&>span]:gap-2"
-			>
-				<span class="font-medium">{format}</span>
-				<span class="text-muted-foreground font-mono text-xs">
-					{value}
-				</span>
-			</Select.Item>
-		{/each}
+			{#each Object.entries(formats) as [format, value] (format)}
+				<Select.Item
+					value={format}
+					class="gap-2 rounded-lg [&>span]:flex [&>span]:items-center [&>span]:gap-2"
+				>
+					<span class="font-medium">{format}</span>
+					<span class="text-muted-foreground font-mono text-xs">
+						{value}
+					</span>
+				</Select.Item>
+			{/each}
 		</Select.Group>
 	</Select.Content>
 </Select.Root>

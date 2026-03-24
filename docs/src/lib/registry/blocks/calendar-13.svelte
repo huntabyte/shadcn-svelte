@@ -44,12 +44,12 @@
 				{selectedDropdown}
 			</Select.Trigger>
 			<Select.Content align="center">
-					<Select.Group>
+				<Select.Group>
 					{#each dropdownOptions as option (option.value)}
 						<Select.Item value={option.value}>{option.label}</Select.Item>
 					{/each}
-					</Select.Group>
-				</Select.Content>
+				</Select.Group>
+			</Select.Content>
 		</Select.Root>
 	</div>
 </div>

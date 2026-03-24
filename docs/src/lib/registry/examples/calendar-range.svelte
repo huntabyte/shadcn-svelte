@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { today, getLocalTimeZone, type DateValue } from "@internationalized/date";
+	import { today, getLocalTimeZone } from "@internationalized/date";
 	import { RangeCalendar } from "$lib/registry/ui/range-calendar/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import type { DateRange } from "bits-ui";

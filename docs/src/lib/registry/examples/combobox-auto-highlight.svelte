@@ -15,9 +15,7 @@
 	let triggerRef = $state<HTMLButtonElement>(null!);
 
 	const filtered = $derived(
-		frameworks.filter((f) =>
-			f.toLowerCase().includes(inputValue.toLowerCase())
-		)
+		frameworks.filter((f) => f.toLowerCase().includes(inputValue.toLowerCase()))
 	);
 
 	function closeAndFocusTrigger() {
@@ -50,10 +48,7 @@
 	</Popover.Trigger>
 	<Popover.Content class="w-[200px] p-0">
 		<Command.Root shouldFilter={false} value={filtered[0] ?? ""}>
-			<Command.Input
-				placeholder="Search framework..."
-				bind:value={inputValue}
-			/>
+			<Command.Input placeholder="Search framework..." bind:value={inputValue} />
 			<Command.List>
 				<Command.Empty>No items found.</Command.Empty>
 				<Command.Group>

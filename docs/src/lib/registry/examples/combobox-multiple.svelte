@@ -2,7 +2,6 @@
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
 	import XIcon from "@lucide/svelte/icons/x";
-	import { tick } from "svelte";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
@@ -25,13 +24,6 @@
 	function removeFramework(framework: string, e: MouseEvent) {
 		e.stopPropagation();
 		selected = selected.filter((f) => f !== framework);
-	}
-
-	function closeAndFocusTrigger() {
-		open = false;
-		tick().then(() => {
-			triggerRef.focus();
-		});
 	}
 </script>
 

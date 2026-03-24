@@ -30,16 +30,16 @@
 				</Select.Trigger>
 				<Select.Content>
 					<Select.Group>
-					{#if ctx.tree}
-						{@const tree = ctx.tree[0]}
-						{#if tree && tree.children}
-							{#each tree.children as file (file.name)}
-								<Select.Item value={file.path ?? ""}>
-									{file.name}
-								</Select.Item>
-							{/each}
+						{#if ctx.tree}
+							{@const tree = ctx.tree[0]}
+							{#if tree && tree.children}
+								{#each tree.children as file (file.name)}
+									<Select.Item value={file.path ?? ""}>
+										{file.name}
+									</Select.Item>
+								{/each}
+							{/if}
 						{/if}
-					{/if}
 					</Select.Group>
 				</Select.Content>
 			</Select.Root>

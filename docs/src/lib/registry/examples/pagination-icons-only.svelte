@@ -3,14 +3,12 @@
 </script>
 
 <Pagination.Root count={100} perPage={10}>
-	{#snippet children()}
-		<Pagination.Content>
-			<Pagination.Item>
-				<Pagination.Previous />
-			</Pagination.Item>
-			<Pagination.Item>
-				<Pagination.Next />
-			</Pagination.Item>
-		</Pagination.Content>
-	{/snippet}
+	<Pagination.Content>
+		<Pagination.Item>
+			<Pagination.PrevButton />
+		</Pagination.Item>
+		<Pagination.Item>
+			<Pagination.NextButton />
+		</Pagination.Item>
+	</Pagination.Content>
 </Pagination.Root>

@@ -56,9 +56,9 @@
 			</Select.Trigger>
 			<Select.Content>
 				<Select.Group>
-				{#each items as item (item.value)}
-					<Select.Item value={`${item.value}`}>{item.label}</Select.Item>
-				{/each}
+					{#each items as item (item.value)}
+						<Select.Item value={`${item.value}`}>{item.label}</Select.Item>
+					{/each}
 				</Select.Group>
 			</Select.Content>
 		</Select.Root>

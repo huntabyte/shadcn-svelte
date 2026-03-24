@@ -23,20 +23,20 @@ shadcn-svelte init [options]
 
 **Options:**
 
-| Flag | Description |
-|------|-------------|
-| `-c, --cwd <path>` | Working directory |
-| `-o, --overwrite` | Overwrite existing files |
-| `--no-deps` | Skip dependency installation |
-| `--skip-preflight` | Skip preflight checks |
-| `--base-color <name>` | Base color preset |
-| `--css <path>` | Global CSS file path |
-| `--components-alias <path>` | Components import alias |
-| `--lib-alias <path>` | Lib import alias |
-| `--utils-alias <path>` | Utils import alias |
-| `--hooks-alias <path>` | Hooks import alias |
-| `--ui-alias <path>` | UI import alias |
-| `--proxy <proxy>` | HTTP proxy |
+| Flag                        | Description                  |
+| --------------------------- | ---------------------------- |
+| `-c, --cwd <path>`          | Working directory            |
+| `-o, --overwrite`           | Overwrite existing files     |
+| `--no-deps`                 | Skip dependency installation |
+| `--skip-preflight`          | Skip preflight checks        |
+| `--base-color <name>`       | Base color preset            |
+| `--css <path>`              | Global CSS file path         |
+| `--components-alias <path>` | Components import alias      |
+| `--lib-alias <path>`        | Lib import alias             |
+| `--utils-alias <path>`      | Utils import alias           |
+| `--hooks-alias <path>`      | Hooks import alias           |
+| `--ui-alias <path>`         | UI import alias              |
+| `--proxy <proxy>`           | HTTP proxy                   |
 
 ### Add
 
@@ -55,15 +55,15 @@ shadcn-svelte add [components...] [options]
 
 **Options:**
 
-| Flag | Description |
-|------|-------------|
-| `-c, --cwd <path>` | Working directory |
-| `--no-deps` | Skip dependency installation |
-| `--skip-preflight` | Skip preflight checks |
-| `-a, --all` | Install all components |
-| `-y, --yes` | Skip confirmation prompts |
-| `-o, --overwrite` | Overwrite existing files |
-| `--proxy <proxy>` | HTTP proxy |
+| Flag               | Description                  |
+| ------------------ | ---------------------------- |
+| `-c, --cwd <path>` | Working directory            |
+| `--no-deps`        | Skip dependency installation |
+| `--skip-preflight` | Skip preflight checks        |
+| `-a, --all`        | Install all components       |
+| `-y, --yes`        | Skip confirmation prompts    |
+| `-o, --overwrite`  | Overwrite existing files     |
+| `--proxy <proxy>`  | HTTP proxy                   |
 
 ### Registry Build
 
@@ -75,10 +75,10 @@ shadcn-svelte registry build [registry] [options]
 
 **Options:**
 
-| Flag | Description |
-|------|-------------|
-| `-c, --cwd <path>` | Working directory |
-| `-o, --output <path>` | Output directory |
+| Flag                  | Description       |
+| --------------------- | ----------------- |
+| `-c, --cwd <path>`    | Working directory |
+| `-o, --output <path>` | Output directory  |
 
 Use this only when building a custom component registry, not for routine app usage.
 
