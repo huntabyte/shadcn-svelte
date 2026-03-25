@@ -1,5 +1,13 @@
 # shadcn-svelte
 
+## 1.2.4
+
+### Patch Changes
+
+- fix: Ensure tailwind utilities are installed on `add`/`update` ([#2598](https://github.com/huntabyte/shadcn-svelte/pull/2598))
+
+- fix: Only prompt the user to update the stylesheet if the stylesheet actually changes ([#2598](https://github.com/huntabyte/shadcn-svelte/pull/2598))
+
 ## 1.2.3
 
 ### Patch Changes
