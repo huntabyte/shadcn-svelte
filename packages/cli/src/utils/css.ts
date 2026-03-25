@@ -17,22 +17,20 @@ export const TAILWIND_UTILS = {
 		},
 	},
 	"@custom-variant data-closed": {
-		'&:where([data-state="closed"]), &:where([data-closed]:not([data-closed="false"]))':
-		{
+		'&:where([data-state="closed"]), &:where([data-closed]:not([data-closed="false"]))': {
 			"@slot": {},
 		},
 	},
 	"@custom-variant data-checked": {
-		'&:where([data-state="checked"]), &:where([data-checked]:not([data-checked="false"]))':
-		{
+		'&:where([data-state="checked"]), &:where([data-checked]:not([data-checked="false"]))': {
 			"@slot": {},
 		},
 	},
 	"@custom-variant data-unchecked": {
 		'&:where([data-state="unchecked"]), &:where([data-unchecked]:not([data-unchecked="false"]))':
-		{
-			"@slot": {},
-		},
+			{
+				"@slot": {},
+			},
 	},
 	"@custom-variant data-selected": {
 		"&:where([data-selected])": {
@@ -40,14 +38,12 @@ export const TAILWIND_UTILS = {
 		},
 	},
 	"@custom-variant data-disabled": {
-		'&:where([data-disabled="true"]), &:where([data-disabled]:not([data-disabled="false"]))':
-		{
+		'&:where([data-disabled="true"]), &:where([data-disabled]:not([data-disabled="false"]))': {
 			"@slot": {},
 		},
 	},
 	"@custom-variant data-active": {
-		'&:where([data-state="active"]), &:where([data-active]:not([data-active="false"]))':
-		{
+		'&:where([data-state="active"]), &:where([data-active]:not([data-active="false"]))': {
 			"@slot": {},
 		},
 	},
@@ -68,4 +64,4 @@ export const TAILWIND_UTILS = {
 			display: "none",
 		},
 	},
-}
+};

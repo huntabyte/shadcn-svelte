@@ -219,17 +219,17 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 					initialValue: true,
 				});
 				if (p.isCancel(overwrite)) cancel();
-	
+
 				opts.overwrite = overwrite;
 			}
-	
+
 			await p.tasks([
 				{
 					title: "Updating stylesheet",
 					enabled: opts.overwrite,
 					async task() {
 						await fs.writeFile(cssPath, modifiedCss, "utf8");
-	
+
 						return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;
 					},
 				},

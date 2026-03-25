@@ -282,7 +282,7 @@ export function buildRegistryBase(config: PresetConfig) {
 				"*": { "@apply border-border outline-ring/50": {} },
 				body: { "@apply bg-background text-foreground": {} },
 			},
-			...TAILWIND_UTILS
+			...TAILWIND_UTILS,
 		},
 	};
 }
