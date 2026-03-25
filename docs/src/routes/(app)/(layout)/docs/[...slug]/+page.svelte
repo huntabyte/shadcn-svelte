@@ -140,7 +140,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 					</div>
 				{/if}
 			</div>
-			<div class="mt-4">
+			<div class="my-4">
 				<CtaMobile />
 			</div>
 			<div class="w-full flex-1 *:data-[slot=alert]:first:mt-0">
