@@ -27,6 +27,10 @@
 			"types": "./dist/schema/index.d.mts",
 			"default": "./dist/schema/index.mjs"
 		},
+		"./utils/css": {
+			"types": "./dist/utils/css.d.mts",
+			"default": "./dist/utils/css.mjs"
+		},
 		"./transformers": {
 			"types": "./dist/utils/transformers/index.d.mts",
 			"default": "./dist/utils/transformers/index.mjs"
