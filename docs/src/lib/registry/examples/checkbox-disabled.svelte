@@ -6,7 +6,7 @@
 <div class="flex items-center space-x-2">
 	<Checkbox id="terms" disabled />
 	<Label
-		for="terms2"
+		for="terms"
 		class="text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70 peer-data-[disabled=true]:cursor-not-allowed peer-data-[disabled=true]:opacity-70"
 	>
 		Accept terms and conditions

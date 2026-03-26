@@ -3,7 +3,7 @@ title: Item
 description: A versatile component that you can use to display any content.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/item
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/item
 ---
 
 <script>

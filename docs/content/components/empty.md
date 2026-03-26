@@ -1,9 +1,9 @@
 ---
 title: Empty
-description: Use the Empty component to display a empty state.
+description: Use the Empty component to display an empty state.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/empty
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/empty
 ---
 
 <script>
@@ -57,6 +57,7 @@ Update the import paths to match your project setup.
 ```svelte
 <script lang="ts">
   import * as Empty from "$lib/components/ui/empty/index.js";
+  import { Button } from "$lib/components/ui/button/index.js";
   import FolderCodeIcon from "@tabler/icons-svelte/icons/folder-code";
 </script>
 ```

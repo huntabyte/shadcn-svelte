@@ -3,7 +3,7 @@ title: Drawer
 description: A drawer component for Svelte.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/drawer
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/drawer
   doc: https://github.com/huntabyte/vaul-svelte
 ---
 
@@ -70,6 +70,7 @@ Update the import paths to match your project setup.
 ```svelte showLineNumbers
 <script lang="ts">
   import * as Drawer from "$lib/components/ui/drawer/index.js";
+  import { Button } from "$lib/components/ui/button/index.js";
 </script>
 ```
 

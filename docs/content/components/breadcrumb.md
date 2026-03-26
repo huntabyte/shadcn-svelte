@@ -3,7 +3,7 @@ title: Breadcrumb
 description: Displays the path to the current resource using a hierarchy of links.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/breadcrumb
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/breadcrumb
 ---
 
 <script>
@@ -19,16 +19,6 @@ links:
 </script>
 
 <ComponentPreview name="breadcrumb-demo">
-
-<div></div>
-
-</ComponentPreview>
-
-## Examples
-
-### Basic
-
-<ComponentPreview name="breadcrumb-basic">
 
 <div></div>
 
@@ -90,9 +80,17 @@ Update the import paths to match your project setup.
 
 ## Examples
 
+### Basic
+
+<ComponentPreview name="breadcrumb-basic">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Custom separator
 
-Use a custom component in the `<slot>` of `<Breadcrumb.Separator />` to create a custom separator.
+Pass a custom component as children of `<Breadcrumb.Separator />` to create a custom separator.
 
 <ComponentPreview name="breadcrumb-separator">
 
@@ -177,11 +175,11 @@ We provide a `<Breadcrumb.Ellipsis />` component to show a collapsed state when 
 
 <Breadcrumb.Root>
  <Breadcrumb.List>
-     {/* ... */}
+     <!-- ... -->
   <Breadcrumb.Item>
    <Breadcrumb.Ellipsis />
   </Breadcrumb.Item>
-    {/* ... */}
+    <!-- ... -->
  </Breadcrumb.List>
 </Breadcrumb.Root>
 ```
@@ -208,7 +206,7 @@ To use a link just add the `href` prop to `<Breadcrumb.Link />`.
   <Breadcrumb.Item>
    <Breadcrumb.Link href="/">Home</Breadcrumb.Link>
   </Breadcrumb.Item>
-    {/* ... */}
+    <!-- ... -->
  </Breadcrumb.List>
 </Breadcrumb.Root>
 ```

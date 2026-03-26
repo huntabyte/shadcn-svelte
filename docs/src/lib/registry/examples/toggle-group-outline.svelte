@@ -12,7 +12,7 @@
 	<ToggleGroup.Item value="italic" aria-label="Toggle italic">
 		<ItalicIcon class="size-4" />
 	</ToggleGroup.Item>
-	<ToggleGroup.Item value="strikethrough" aria-label="Toggle strikethrough">
+	<ToggleGroup.Item value="underline" aria-label="Toggle underline">
 		<UnderlineIcon class="size-4" />
 	</ToggleGroup.Item>
 </ToggleGroup.Root>

@@ -3,7 +3,7 @@ title: Field
 description: Combine labels, controls, and help text to compose accessible form fields and grouped inputs.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/field
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/field
 ---
 
 <script>
@@ -57,6 +57,8 @@ Update the import paths to match your project setup.
 ```svelte showLineNumbers
 <script lang="ts">
   import * as Field from "$lib/components/ui/field/index.js";
+  import { Input } from "$lib/components/ui/input/index.js";
+  import { Switch } from "$lib/components/ui/switch/index.js";
 </script>
 ```
 
@@ -74,7 +76,7 @@ Update the import paths to match your project setup.
     </Field.Field>
     <Field.Field>
       <Field.Label for="username">Username</Field.Label>
-      <Input id="username" autoComplete="off" aria-invalid />
+      <Input id="username" autocomplete="off" aria-invalid />
       <Field.Error>Choose another username.</Field.Error>
     </Field.Field>
     <Field.Field orientation="horizontal">
@@ -205,7 +207,6 @@ Stack `Field` components with `Field.Group`. Add `Field.Separator` to divide the
 - Add `data-invalid` to `Field` to switch the entire block into an error state.
 - Add `aria-invalid` on the input itself for assistive technologies.
 - Render `FieldError` immediately after the control or inside `FieldContent` to keep error messages aligned with the field.
-  Copy
 
 ```svelte
 <Field.Field data-invalid>

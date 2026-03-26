@@ -3,7 +3,7 @@ title: Carousel
 description: A carousel with motion and swipe built using Embla.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/carousel
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/carousel
   doc: https://www.embla-carousel.com/get-started/svelte
   api: https://www.embla-carousel.com/api
 ---
@@ -229,7 +229,7 @@ Use reactive state and the `setApi` callback to get an instance of the carousel 
 
 ## Events
 
-You can listen to events using the api instance from `bind:api`.
+You can listen to events using the api instance from the `setApi` callback.
 
 ```svelte showLineNumbers {2,5,7-13,16}
 <script lang="ts">

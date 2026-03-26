@@ -3,7 +3,7 @@ title: Date Picker
 description: A date picker component with range and presets.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/examples/date-picker-demo.svelte
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/examples/date-picker-demo.svelte
 ---
 
 <script>
@@ -20,7 +20,7 @@ links:
 
 The Date Picker is built using a composition of the `<Popover />` and either the `<Calendar />` or `<RangeCalendar />` components.
 
-See installations instructions for the [Popover](/docs/components/popover#installation), [Calendar](/docs/components/calendar#installation), and [Range Calendar](/docs/components/range-calendar#installation) components.
+See installation instructions for the [Popover](/docs/components/popover#installation), [Calendar](/docs/components/calendar#installation), and [Range Calendar](/docs/components/range-calendar#installation) components.
 
 ## Usage
 

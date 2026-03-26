@@ -3,7 +3,7 @@ title: Kbd
 description: Used to display textual user input from keyboard.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/kbd
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/kbd
 ---
 
 <script>

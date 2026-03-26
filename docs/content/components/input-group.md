@@ -3,7 +3,7 @@ title: Input Group
 description: Display additional information or actions to an input or textarea.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/input-group
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/input-group
 ---
 
 <script>

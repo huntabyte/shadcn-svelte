@@ -3,7 +3,7 @@ title: Native Select
 description: A styled native HTML select element with consistent design system integration.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/native-select
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/native-select
 ---
 
 <script>
@@ -145,7 +145,7 @@ The `NativeSelect` component provides native HTML select functionality with cons
 - The chevron icon is marked as `aria-hidden="true"` to avoid duplication.
 - Use `aria-label` or `aria-labelledby` for additional context when needed.
 
-```tsx showLineNumbers
+```svelte showLineNumbers
 <NativeSelect.Root aria-label="Choose your preferred language">
   <NativeSelect.Option value="en">English</NativeSelect.Option>
   <NativeSelect.Option value="es">Spanish</NativeSelect.Option>

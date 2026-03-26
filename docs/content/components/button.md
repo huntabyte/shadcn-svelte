@@ -3,7 +3,7 @@ title: Button
 description: Displays a button or a component that looks like a button.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/button
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/button
   api: https://bits-ui.com/docs/components/button#api-reference
 ---
 
@@ -236,7 +236,7 @@ Use the `rounded-full` class to make the button rounded.
 </ComponentPreview>
 
 ```svelte
-<Button variant="outline" size="icon" className="rounded-full">
+<Button variant="outline" size="icon" class="rounded-full">
   <ArrowUpRightIcon />
 </Button>
 ```

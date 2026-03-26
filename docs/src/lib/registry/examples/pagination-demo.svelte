@@ -22,9 +22,6 @@
 				{/if}
 			{/each}
 			<Pagination.Item>
-				<Pagination.Ellipsis />
-			</Pagination.Item>
-			<Pagination.Item>
 				<Pagination.NextButton />
 			</Pagination.Item>
 		</Pagination.Content>

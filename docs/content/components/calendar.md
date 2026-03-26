@@ -3,7 +3,7 @@ title: Calendar
 description: A calendar component that allows users to select dates.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/calendar
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/calendar
   doc: https://bits-ui.com/docs/components/calendar
   api: https://bits-ui.com/docs/components/calendar#api-reference
 ---
@@ -31,7 +31,7 @@ links:
 
 We have built a collection of 30+ calendar blocks that you can use to build your own calendar components.
 
-See call calendar blocks in the [Blocks Library](/blocks/calendar) page.
+See all calendar blocks in the [Blocks Library](/blocks/calendar) page.
 
 ## Installation
 

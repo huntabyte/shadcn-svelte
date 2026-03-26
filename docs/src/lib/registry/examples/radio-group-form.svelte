@@ -44,7 +44,7 @@
 				<Form.Control>
 					{#snippet children({ props })}
 						<RadioGroup.Item value="mentions" {...props} />
-						<Form.Label class="font-normal">Direction messages and mentions</Form.Label>
+						<Form.Label class="font-normal">Direct messages and mentions</Form.Label>
 					{/snippet}
 				</Form.Control>
 			</div>

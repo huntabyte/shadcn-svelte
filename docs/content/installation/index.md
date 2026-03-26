@@ -12,7 +12,7 @@ description: How to install dependencies and structure your app.
 
 <Callout class="mb-6 border-emerald-600 bg-emerald-100 dark:border-emerald-400 dark:bg-emerald-900">
 
-**Starting a new project?** Use [shadcn/create](/create) to scaffold a complete app with custom themes, components, and presets. Works with Next.js, Vite, and TanStack Start.
+**Starting a new project?** Use [shadcn/create](/create) to scaffold a complete app with custom themes, components, and presets. Works with SvelteKit and Vite.
 
 </Callout>
 
@@ -38,7 +38,7 @@ For example, the Accordion component is split into four `.svelte` files:
 They can then be imported from the `accordion/index.ts` file like so:
 
 ```ts
-import * as Accordion from '$lib/components/ui/accordion"
+import * as Accordion from "$lib/components/ui/accordion"
 // or
 import {
   Accordion,
@@ -48,7 +48,7 @@ import {
 } from "$lib/components/ui/accordion"
 ```
 
-Regardless of the import approach you take, the components will be tree-shaken by Rollup, so you don't have to worry about unused components being bundled into your app.
+Regardless of the import approach you take, the components will be tree-shaken by your bundler, so you don't have to worry about unused components being bundled into your app.
 
 ## VSCode extension
 

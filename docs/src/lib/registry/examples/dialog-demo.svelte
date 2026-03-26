@@ -20,11 +20,11 @@
 			<div class="grid gap-4">
 				<div class="grid gap-3">
 					<Label for="name-1">Name</Label>
-					<Input id="name-1" name="name" defaultValue="Pedro Duarte" />
+					<Input id="name-1" name="name" value="Pedro Duarte" />
 				</div>
 				<div class="grid gap-3">
 					<Label for="username-1">Username</Label>
-					<Input id="username-1" name="username" defaultValue="@peduarte" />
+					<Input id="username-1" name="username" value="@peduarte" />
 				</div>
 			</div>
 			<Dialog.Footer>

@@ -17,11 +17,11 @@
 		<div class="grid gap-4">
 			<div class="grid gap-3">
 				<Label for="no-close-name">Name</Label>
-				<Input id="no-close-name" defaultValue="Pedro Duarte" />
+				<Input id="no-close-name" value="Pedro Duarte" />
 			</div>
 			<div class="grid gap-3">
 				<Label for="no-close-username">Username</Label>
-				<Input id="no-close-username" defaultValue="@peduarte" />
+				<Input id="no-close-username" value="@peduarte" />
 			</div>
 		</div>
 		<Dialog.Footer>

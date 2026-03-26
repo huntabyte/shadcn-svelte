@@ -3,7 +3,7 @@ title: Sidebar
 description: A composable, themeable and customizable sidebar component.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/sidebar
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/sidebar
 ---
 
 <script>
@@ -404,19 +404,20 @@ Available options are `sidebar`, `floating` and `inset`.
 <Callout>
 
 **Note:** If you use the `inset` variant, remember to wrap your main content
-in a `SidebarInset` component.
+in a `Sidebar.Inset` component.
 
 </Callout>
 
 ```svelte showLineNumbers
 <Sidebar.Provider>
   <Sidebar.Root variant="inset">
-    <Sidebar.Inset>
-      <main>
-        <!-- Your main content -->
-      </main>
-    </Sidebar.Inset>
+    <!-- Sidebar content -->
   </Sidebar.Root>
+  <Sidebar.Inset>
+    <main>
+      <!-- Your main content -->
+    </main>
+  </Sidebar.Inset>
 </Sidebar.Provider>
 ```
 

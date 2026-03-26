@@ -3,7 +3,7 @@ title: Button Group
 description: A container that groups related buttons together with consistent styling.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/button-group
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/button-group
 ---
 
 <script>

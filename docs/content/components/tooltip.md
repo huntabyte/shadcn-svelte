@@ -3,7 +3,7 @@ title: Tooltip
 description: A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/tooltip
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/tooltip
   doc: https://bits-ui.com/docs/components/tooltip
   api: https://bits-ui.com/docs/components/tooltip#api-reference
 ---
@@ -72,9 +72,7 @@ The `Tooltip.Provider` component should be placed once in your root layout, wrap
 
   let { children } = $props();
 </script>
-```
 
-```svelte showLineNumbers
 <Tooltip.Provider>
   {@render children()}
 </Tooltip.Provider>

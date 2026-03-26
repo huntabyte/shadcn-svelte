@@ -3,7 +3,7 @@ title: Formsnap
 description: Building forms with Formsnap, Superforms, & Zod.
 links:
   doc: https://formsnap.dev
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/form
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/form
 ---
 
 <script>
@@ -147,7 +147,7 @@ For this example, we'll be passing the `form` returned from the load function as
 </form>
 ```
 
-The `name`, `id`, and all accessibility attributes are applied to the input by spreading the `attrs` object from the `Form.Control` component. The `Form.Label` will automatically be associated with the input using the `for` attribute, so you don't have to worry about that.
+The `name`, `id`, and all accessibility attributes are applied to the input by spreading the `props` object from the `Form.Control` component. The `Form.Label` will automatically be associated with the input using the `for` attribute, so you don't have to worry about that.
 
 ### Use the component
 
