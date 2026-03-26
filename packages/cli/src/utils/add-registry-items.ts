@@ -16,6 +16,7 @@ import {
 	transformStripTypes,
 } from "./transformers/index.js";
 import { setupFonts, type Font } from "./fonts.js";
+import { TAILWIND_UTILS } from "./css.js";
 
 const STYLE_TYPES = ["registry:style", "registry:theme"];
 
@@ -198,34 +199,42 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 	cssVars = merge(cssVars, fontsCssVars);
 	fontsDependencies.forEach((dep) => devDependencies.add(dep));
 
+	// add tailwind utils to the css
+	css = merge(css, TAILWIND_UTILS);
+
 	if (Object.keys(cssVars).length || Object.keys(css).length) {
 		const cssPath = opts.config.resolvedPaths.tailwindCss;
 		const relative = path.relative(cwd, cssPath);
 
-		if (!opts.overwrite) {
-			const overwrite = await p.confirm({
-				message: `A new ${highlight("style")} is ready to be installed. Existing CSS variables may be ${color.bold(color.red("overwritten"))} in ${highlight(relative)}. Continue?`,
-				initialValue: true,
-			});
-			if (p.isCancel(overwrite)) cancel();
+		const cssSource = await fs.readFile(cssPath, "utf8");
 
-			opts.overwrite = overwrite;
-		}
+		const modifiedCss = transformCss(cssSource, { css, cssVars });
 
-		await p.tasks([
-			{
-				title: "Updating stylesheet",
-				enabled: opts.overwrite,
-				async task() {
-					const cssSource = await fs.readFile(cssPath, "utf8");
+		const isModified = cssSource !== modifiedCss;
 
-					const modifiedCss = transformCss(cssSource, { css, cssVars });
-					await fs.writeFile(cssPath, modifiedCss, "utf8");
+		if (isModified) {
+			if (!opts.overwrite) {
+				const overwrite = await p.confirm({
+					message: `Updates to your ${highlight(relative)} are required. Existing CSS variables may be ${color.bold(color.red("overwritten"))}. Continue?`,
+					initialValue: true,
+				});
+				if (p.isCancel(overwrite)) cancel();
 
-					return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;
+				opts.overwrite = overwrite;
+			}
+
+			await p.tasks([
+				{
+					title: "Updating stylesheet",
+					enabled: opts.overwrite,
+					async task() {
+						await fs.writeFile(cssPath, modifiedCss, "utf8");
+
+						return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;
+					},
 				},
-			},
-		]);
+			]);
+		}
 	}
 
 	return {
