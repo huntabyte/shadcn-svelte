@@ -170,17 +170,17 @@ We provide a `<Breadcrumb.Ellipsis />` component to show a collapsed state when 
 
 ```svelte showLineNumbers {2,9}
 <script lang="ts">
- import * as Breadcrumb from "$lib/components/ui/breadcrumb/index.js";
+  import * as Breadcrumb from "$lib/components/ui/breadcrumb/index.js";
 </script>
 
 <Breadcrumb.Root>
- <Breadcrumb.List>
-     <!-- ... -->
-  <Breadcrumb.Item>
-   <Breadcrumb.Ellipsis />
-  </Breadcrumb.Item>
+  <Breadcrumb.List>
     <!-- ... -->
- </Breadcrumb.List>
+    <Breadcrumb.Item>
+      <Breadcrumb.Ellipsis />
+    </Breadcrumb.Item>
+    <!-- ... -->
+  </Breadcrumb.List>
 </Breadcrumb.Root>
 ```
 
@@ -198,16 +198,16 @@ To use a link just add the `href` prop to `<Breadcrumb.Link />`.
 
 ```svelte showLineNumbers {2,7-9}
 <script lang="ts">
- import * as Breadcrumb from "$lib/components/ui/breadcrumb/index.js";
+  import * as Breadcrumb from "$lib/components/ui/breadcrumb/index.js";
 </script>
 
 <Breadcrumb.Root>
- <Breadcrumb.List>
-  <Breadcrumb.Item>
-   <Breadcrumb.Link href="/">Home</Breadcrumb.Link>
-  </Breadcrumb.Item>
+  <Breadcrumb.List>
+    <Breadcrumb.Item>
+      <Breadcrumb.Link href="/">Home</Breadcrumb.Link>
+    </Breadcrumb.Item>
     <!-- ... -->
- </Breadcrumb.List>
+  </Breadcrumb.List>
 </Breadcrumb.Root>
 ```
 

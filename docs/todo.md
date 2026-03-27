@@ -37,54 +37,54 @@ Reviewed by 8 parallel agents covering: component docs (A-Z), non-component docs
 
 #### Critical (broken code examples)
 
-| # | File | Issue | Status |
-|---|------|-------|--------|
-| 1 | `button.md:239` | React `className` -> Svelte `class` | Fixed |
-| 2 | `breadcrumb.md:180,184,211` | JSX comments `{/* ... */}` -> `<!-- ... -->` | Fixed |
-| 3 | `installation/index.md:41` | Mismatched quotes in import | Fixed |
-| 4 | `field.md:77` | React `autoComplete` -> HTML `autocomplete` | Fixed |
-| 5 | `sidebar.md:411-421` | `Sidebar.Inset` incorrectly nested inside `Sidebar.Root` (should be sibling) | Fixed |
-| 6 | `tooltip.md:69-81` | `+layout.svelte` example split into two code blocks | Fixed |
-| 7 | `forms.md:150` | Text said `attrs` but code uses `props` | Fixed |
-| 8 | `alert-dialog.md:67` | Typo `showLineNumbersw` (extra `w`) | Fixed |
+| #   | File                        | Issue                                                                        | Status |
+| --- | --------------------------- | ---------------------------------------------------------------------------- | ------ |
+| 1   | `button.md:239`             | React `className` -> Svelte `class`                                          | Fixed  |
+| 2   | `breadcrumb.md:180,184,211` | JSX comments `{/* ... */}` -> `<!-- ... -->`                                 | Fixed  |
+| 3   | `installation/index.md:41`  | Mismatched quotes in import                                                  | Fixed  |
+| 4   | `field.md:77`               | React `autoComplete` -> HTML `autocomplete`                                  | Fixed  |
+| 5   | `sidebar.md:411-421`        | `Sidebar.Inset` incorrectly nested inside `Sidebar.Root` (should be sibling) | Fixed  |
+| 6   | `tooltip.md:69-81`          | `+layout.svelte` example split into two code blocks                          | Fixed  |
+| 7   | `forms.md:150`              | Text said `attrs` but code uses `props`                                      | Fixed  |
+| 8   | `alert-dialog.md:67`        | Typo `showLineNumbersw` (extra `w`)                                          | Fixed  |
 
 #### Medium (misleading/incorrect info)
 
-| # | File | Issue | Status |
-|---|------|-------|--------|
-| 9 | All ~55 component docs | Source links used non-existent `next` branch and `sites/docs/` path | Fixed |
-| 10 | `hover-card.md:6` | Source link pointed to `link-preview` instead of `hover-card` | Fixed |
-| 11 | `drawer.md:85` | `Button` used but never imported | Fixed |
-| 12 | `empty.md:74` | `Button` used but never imported | Fixed |
-| 13 | `field.md:70,77,81` | `Input` and `Switch` used but never imported | Fixed |
-| 14 | `carousel.md:232` | Text said `bind:api` but code uses `setApi` callback | Fixed |
-| 15 | `installation/index.md:15` | React frameworks in callout (Next.js, TanStack Start) | Fixed |
-| 16 | `native-select.md:148` | Code block tagged as `tsx` instead of `svelte` | Fixed |
-| 17 | `installation/index.md:51` | Referenced "Rollup" instead of "your bundler" | Fixed |
+| #   | File                       | Issue                                                               | Status |
+| --- | -------------------------- | ------------------------------------------------------------------- | ------ |
+| 9   | All ~55 component docs     | Source links used non-existent `next` branch and `sites/docs/` path | Fixed  |
+| 10  | `hover-card.md:6`          | Source link pointed to `link-preview` instead of `hover-card`       | Fixed  |
+| 11  | `drawer.md:85`             | `Button` used but never imported                                    | Fixed  |
+| 12  | `empty.md:74`              | `Button` used but never imported                                    | Fixed  |
+| 13  | `field.md:70,77,81`        | `Input` and `Switch` used but never imported                        | Fixed  |
+| 14  | `carousel.md:232`          | Text said `bind:api` but code uses `setApi` callback                | Fixed  |
+| 15  | `installation/index.md:15` | React frameworks in callout (Next.js, TanStack Start)               | Fixed  |
+| 16  | `native-select.md:148`     | Code block tagged as `tsx` instead of `svelte`                      | Fixed  |
+| 17  | `installation/index.md:51` | Referenced "Rollup" instead of "your bundler"                       | Fixed  |
 
 #### Low (typos, inconsistencies)
 
-| # | File | Issue | Status |
-|---|------|-------|--------|
-| 18 | `calendar.md:34` | Typo: "See call" -> "See all" | Fixed |
-| 19 | `empty.md:3` | Grammar: "a empty" -> "an empty" | Fixed |
-| 20 | `date-picker.md:23` | Typo: "installations" -> "installation" | Fixed |
-| 21 | `field.md:210` | Stray "Copy" text (copy-paste artifact) | Fixed |
-| 22 | `sidebar.md:407` | Prose said `SidebarInset` -> `Sidebar.Inset` | Fixed |
-| 23 | `breadcrumb.md:27,91` | Duplicate `## Examples` heading; section before Installation | Fixed |
-| 24 | `breadcrumb.md:95` | Referenced Svelte 4 `<slot>` -> updated to "children" | Fixed |
-| 25 | `badge.md` | Missing `component: true` in frontmatter | Fixed |
-| 26 | `menubar.md:24` | Missing `<div></div>` inside ComponentPreview | Fixed |
+| #   | File                  | Issue                                                        | Status |
+| --- | --------------------- | ------------------------------------------------------------ | ------ |
+| 18  | `calendar.md:34`      | Typo: "See call" -> "See all"                                | Fixed  |
+| 19  | `empty.md:3`          | Grammar: "a empty" -> "an empty"                             | Fixed  |
+| 20  | `date-picker.md:23`   | Typo: "installations" -> "installation"                      | Fixed  |
+| 21  | `field.md:210`        | Stray "Copy" text (copy-paste artifact)                      | Fixed  |
+| 22  | `sidebar.md:407`      | Prose said `SidebarInset` -> `Sidebar.Inset`                 | Fixed  |
+| 23  | `breadcrumb.md:27,91` | Duplicate `## Examples` heading; section before Installation | Fixed  |
+| 24  | `breadcrumb.md:95`    | Referenced Svelte 4 `<slot>` -> updated to "children"        | Fixed  |
+| 25  | `badge.md`            | Missing `component: true` in frontmatter                     | Fixed  |
+| 26  | `menubar.md:24`       | Missing `<div></div>` inside ComponentPreview                | Fixed  |
 
 ### Not Fixed (intentional/low-risk)
 
-| # | File | Issue | Reason |
-|---|------|-------|--------|
-| - | `forms.md:123` | `zod4Client` vs `zod4` in examples | `zod4Client` is correct for the documented SvelteKit load-function pattern |
-| - | `button.md:186,354` | Duplicate `### Link` heading | Two legitimately different sections (variant vs href behavior) |
-| - | `changelog/2023-10` | Svelte 4 syntax in code example | Historical changelog entry |
-| - | `changelog/2024-02` | `@lucide/svelte` package name | Retroactive update for current package name |
-| - | `chart.md:32` | `chart-bar-interactive` ComponentPreview may not render | Needs `type="block"` attribute — requires verification |
+| #   | File                | Issue                                                   | Reason                                                                     |
+| --- | ------------------- | ------------------------------------------------------- | -------------------------------------------------------------------------- |
+| -   | `forms.md:123`      | `zod4Client` vs `zod4` in examples                      | `zod4Client` is correct for the documented SvelteKit load-function pattern |
+| -   | `button.md:186,354` | Duplicate `### Link` heading                            | Two legitimately different sections (variant vs href behavior)             |
+| -   | `changelog/2023-10` | Svelte 4 syntax in code example                         | Historical changelog entry                                                 |
+| -   | `changelog/2024-02` | `@lucide/svelte` package name                           | Retroactive update for current package name                                |
+| -   | `chart.md:32`       | `chart-bar-interactive` ComponentPreview may not render | Needs `type="block"` attribute — requires verification                     |
 
 ### Positive Findings
 
@@ -104,34 +104,34 @@ Reviewed all 388 `.svelte` example files in `docs/src/lib/registry/examples/` us
 
 #### Bugs / Incorrect Code
 
-| # | File | Issue | Status |
-|---|------|-------|--------|
-| 1 | `toggle-group-demo.svelte` + 5 variants | `value="strikethrough"` and `aria-label="Toggle strikethrough"` but renders `UnderlineIcon` — fixed to `value="underline"` | Fixed |
-| 2 | `checkbox-disabled.svelte` | Label `for="terms2"` doesn't match Checkbox `id="terms"` — clicking label won't toggle checkbox | Fixed |
-| 3 | `combobox-form.svelte` | `let open = false` missing `$state()` rune — `bind:open` won't work reactively | Fixed |
-| 4 | `dialog-close-button.svelte` | React `defaultValue` prop — should be `value` | Fixed |
-| 5 | `dialog-demo.svelte` | React `defaultValue` prop (2 occurrences) — should be `value` | Fixed |
-| 6 | `dialog-no-close-button.svelte` | React `defaultValue` prop (2 occurrences) — should be `value` | Fixed |
-| 7 | `card-demo.svelte` | Submit button outside `<form>` element — click won't trigger submission | Fixed |
-| 8 | `empty-card-demo.svelte` | `<a>` nested inside `<Button>` — invalid HTML (interactive in interactive) | Fixed |
-| 9 | `empty-demo.svelte` | `<a>` nested inside `<Button>` — invalid HTML (interactive in interactive) | Fixed |
-| 10 | `pagination-demo.svelte` | Extra hard-coded `Pagination.Ellipsis` outside the loop — always shows duplicate ellipsis | Fixed |
-| 11 | `radio-group-form.svelte` | Typo: "Direction messages" should be "Direct messages" | Fixed |
-| 12 | `breadcrumb-responsive.svelte` | `Breadcrumb.Separator` nested inside `Breadcrumb.Item` — produces invalid `<li>` inside `<li>` HTML | Fixed |
-| 13 | `tooltip-demo.svelte` | Relative import `../ui/button` inconsistent with all other examples using `$lib/registry/ui/button` | Fixed |
-| 14 | `table-demo.svelte` | `#each` key uses entire object `(invoice)` instead of unique field `(invoice.invoice)` | Fixed |
+| #   | File                                    | Issue                                                                                                                      | Status |
+| --- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------ |
+| 1   | `toggle-group-demo.svelte` + 5 variants | `value="strikethrough"` and `aria-label="Toggle strikethrough"` but renders `UnderlineIcon` — fixed to `value="underline"` | Fixed  |
+| 2   | `checkbox-disabled.svelte`              | Label `for="terms2"` doesn't match Checkbox `id="terms"` — clicking label won't toggle checkbox                            | Fixed  |
+| 3   | `combobox-form.svelte`                  | `let open = false` missing `$state()` rune — `bind:open` won't work reactively                                             | Fixed  |
+| 4   | `dialog-close-button.svelte`            | React `defaultValue` prop — should be `value`                                                                              | Fixed  |
+| 5   | `dialog-demo.svelte`                    | React `defaultValue` prop (2 occurrences) — should be `value`                                                              | Fixed  |
+| 6   | `dialog-no-close-button.svelte`         | React `defaultValue` prop (2 occurrences) — should be `value`                                                              | Fixed  |
+| 7   | `card-demo.svelte`                      | Submit button outside `<form>` element — click won't trigger submission                                                    | Fixed  |
+| 8   | `empty-card-demo.svelte`                | `<a>` nested inside `<Button>` — invalid HTML (interactive in interactive)                                                 | Fixed  |
+| 9   | `empty-demo.svelte`                     | `<a>` nested inside `<Button>` — invalid HTML (interactive in interactive)                                                 | Fixed  |
+| 10  | `pagination-demo.svelte`                | Extra hard-coded `Pagination.Ellipsis` outside the loop — always shows duplicate ellipsis                                  | Fixed  |
+| 11  | `radio-group-form.svelte`               | Typo: "Direction messages" should be "Direct messages"                                                                     | Fixed  |
+| 12  | `breadcrumb-responsive.svelte`          | `Breadcrumb.Separator` nested inside `Breadcrumb.Item` — produces invalid `<li>` inside `<li>` HTML                        | Fixed  |
+| 13  | `tooltip-demo.svelte`                   | Relative import `../ui/button` inconsistent with all other examples using `$lib/registry/ui/button`                        | Fixed  |
+| 14  | `table-demo.svelte`                     | `#each` key uses entire object `(invoice)` instead of unique field `(invoice.invoice)`                                     | Fixed  |
 
 #### Not Fixed (low-risk / intentional)
 
-| # | File | Issue | Reason |
-|---|------|-------|--------|
-| - | `sheet-demo.svelte`, `sheet-side.svelte` | Two import statements from same module (cosmetic) | Style preference, not a bug |
-| - | `field-checkbox-demo` / `field-checkbox` (+ 3 similar pairs) | Exact duplicate files | Likely intentional — one for preview, one for code display |
-| - | `combobox-responsive.svelte` | Redundant `browser` check inside `onMount` | Dead code but harmless |
-| - | `carousel-api.svelte` | Missing cleanup for Embla event listener in `$effect` | Matches upstream shadcn/ui pattern |
-| - | `data-table-demo.svelte` | `createRawSnippet` with unescaped data (potential XSS) | Static demo data only — low risk |
-| - | `navigation-menu-demo.svelte` | `HTMLAttributes<HTMLAnchorElement>` should be `HTMLAnchorAttributes` | Works correctly, just incomplete types |
-| - | `select-scrollable.svelte` | Missing `label` props on Select.Items (typeahead uses `value` fallback) | Functional but suboptimal UX |
+| #   | File                                                         | Issue                                                                   | Reason                                                     |
+| --- | ------------------------------------------------------------ | ----------------------------------------------------------------------- | ---------------------------------------------------------- |
+| -   | `sheet-demo.svelte`, `sheet-side.svelte`                     | Two import statements from same module (cosmetic)                       | Style preference, not a bug                                |
+| -   | `field-checkbox-demo` / `field-checkbox` (+ 3 similar pairs) | Exact duplicate files                                                   | Likely intentional — one for preview, one for code display |
+| -   | `combobox-responsive.svelte`                                 | Redundant `browser` check inside `onMount`                              | Dead code but harmless                                     |
+| -   | `carousel-api.svelte`                                        | Missing cleanup for Embla event listener in `$effect`                   | Matches upstream shadcn/ui pattern                         |
+| -   | `data-table-demo.svelte`                                     | `createRawSnippet` with unescaped data (potential XSS)                  | Static demo data only — low risk                           |
+| -   | `navigation-menu-demo.svelte`                                | `HTMLAttributes<HTMLAnchorElement>` should be `HTMLAnchorAttributes`    | Works correctly, just incomplete types                     |
+| -   | `select-scrollable.svelte`                                   | Missing `label` props on Select.Items (typeahead uses `value` fallback) | Functional but suboptimal UX                               |
 
 ### Summary Stats
 
