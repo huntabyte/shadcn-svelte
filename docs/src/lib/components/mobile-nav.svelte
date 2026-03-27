@@ -47,7 +47,7 @@
 				{...restProps}
 				variant="ghost"
 				class={cn(
-					"extend-touch-target h-8 touch-manipulation items-center justify-start gap-2.5 !p-0 hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 active:bg-transparent data-[state=open]:bg-transparent dark:hover:bg-transparent",
+					"extend-touch-target h-8 touch-manipulation items-center justify-start gap-2.5 !p-0 hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 active:!translate-y-0 active:bg-transparent active:!opacity-100 data-[state=open]:bg-transparent dark:hover:bg-transparent",
 					className
 				)}
 			>
