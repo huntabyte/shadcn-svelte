@@ -4,26 +4,25 @@
 	const items = [
 		{
 			value: "item-1",
-			trigger: "How do I reset my password?",
-			content:
-				"Click on 'Forgot Password' on the login page, enter your email address, and we'll send you a link to reset your password. The link will expire in 24 hours.",
+			trigger: "Is it accessible?",
+			content: "Yes. It adheres to the WAI-ARIA design pattern.",
 		},
 		{
 			value: "item-2",
-			trigger: "Can I change my subscription plan?",
+			trigger: "Is it styled?",
 			content:
-				"Yes, you can upgrade or downgrade your plan at any time from your account settings. Changes will be reflected in your next billing cycle.",
+				"Yes. It comes with default styles that matches the other components' aesthetic.",
 		},
 		{
 			value: "item-3",
-			trigger: "What payment methods do you accept?",
+			trigger: "Is it animated?",
 			content:
-				"We accept all major credit cards, PayPal, and bank transfers. All payments are processed securely through our payment partners.",
+				"Yes. It's animated by default, but you can disable it if you prefer.",
 		},
 	];
 </script>
 
-<Accordion.Root type="single" value="item-1" class="max-w-lg">
+<Accordion.Root type="single" class="w-full max-w-lg">
 	{#each items as item (item.value)}
 		<Accordion.Item value={item.value}>
 			<Accordion.Trigger>{item.trigger}</Accordion.Trigger>

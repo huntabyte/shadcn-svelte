@@ -94,6 +94,8 @@ Update the import paths to match your project setup.
 
 ### Basic
 
+A basic accordion that shows one item at a time. The first item is open by default.
+
 <ComponentPreview name="accordion-basic">
 
 <div></div>
@@ -101,6 +103,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Multiple
+
+Use `type="multiple"` to allow multiple items to be open at the same time.
 
 <ComponentPreview name="accordion-multiple">
 
@@ -110,6 +114,8 @@ Update the import paths to match your project setup.
 
 ### Disabled
 
+Use the `disabled` prop on `Accordion.Item` to disable individual items.
+
 <ComponentPreview name="accordion-disabled">
 
 <div></div>
@@ -118,6 +124,8 @@ Update the import paths to match your project setup.
 
 ### Borders
 
+Add `border` to the `Accordion.Root` and `border-b last:border-b-0` to the `Accordion.Item` to add borders to the items.
+
 <ComponentPreview name="accordion-borders">
 
 <div></div>
@@ -125,6 +133,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Card
+
+Wrap the `Accordion` in a `Card` component.
 
 <ComponentPreview name="accordion-card">
 
