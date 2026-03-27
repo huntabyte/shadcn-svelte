@@ -11,6 +11,7 @@
 	import Metadata from "$lib/components/metadata.svelte";
 	import Ethical from "$lib/components/ethical.svelte";
 	import DocsCopyPage from "$lib/components/docs-copy-page.svelte";
+	import CtaMobile from "$lib/components/cta-mobile.svelte";
 
 	let { data } = $props();
 
@@ -148,6 +149,9 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 						</p>
 					{/if}
 				</div>
+			</div>
+			<div class="mt-3">
+				<CtaMobile />
 			</div>
 			{#if isChangelogIndex}
 				<div class="w-full flex-1 pb-16 sm:pb-0">
