@@ -6,7 +6,7 @@
 		"d3-scale@^4.0.2",
 		"@types/d3-scale@^4.0.9",
 		"layerchart@2.0.0-next.46",
-		"@lucide/svelte@^0.577.0"
+		"@lucide/svelte@^1.7.0"
 	],
 	"registryDependencies": [
 		"card",

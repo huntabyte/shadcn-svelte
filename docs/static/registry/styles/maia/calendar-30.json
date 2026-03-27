@@ -3,7 +3,7 @@
 	"name": "calendar-30",
 	"type": "registry:block",
 	"devDependencies": [
-		"@lucide/svelte@^0.577.0",
+		"@lucide/svelte@^1.7.0",
 		"bits-ui@^2.16.3",
 		"@internationalized/date@^3.12.0",
 		"little-date@^1.2.1"

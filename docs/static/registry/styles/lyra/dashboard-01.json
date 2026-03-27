@@ -3,7 +3,7 @@
 	"name": "dashboard-01",
 	"type": "registry:block",
 	"devDependencies": [
-		"@tabler/icons-svelte@^3.40.0",
+		"@tabler/icons-svelte@^3.41.0",
 		"d3-scale@^4.0.2",
 		"@types/d3-scale@^4.0.9",
 		"layerchart@2.0.0-next.46",

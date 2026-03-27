@@ -3,7 +3,7 @@
 	"name": "demo-sidebar-group-action",
 	"type": "registry:block",
 	"devDependencies": [
-		"@lucide/svelte@^0.577.0",
+		"@lucide/svelte@^1.7.0",
 		"svelte-sonner@^1.1.0"
 	],
 	"registryDependencies": [

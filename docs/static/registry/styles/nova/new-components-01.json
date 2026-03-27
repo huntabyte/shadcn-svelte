@@ -3,8 +3,8 @@
 	"name": "new-components-01",
 	"type": "registry:block",
 	"devDependencies": [
-		"@tabler/icons-svelte@^3.40.0",
-		"@lucide/svelte@^0.577.0"
+		"@tabler/icons-svelte@^3.41.0",
+		"@lucide/svelte@^1.7.0"
 	],
 	"registryDependencies": [
 		"checkbox",

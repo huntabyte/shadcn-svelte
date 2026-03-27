@@ -3,7 +3,7 @@
 	"name": "login-05",
 	"type": "registry:block",
 	"devDependencies": [
-		"@lucide/svelte@^0.577.0"
+		"@lucide/svelte@^1.7.0"
 	],
 	"registryDependencies": [
 		"field",

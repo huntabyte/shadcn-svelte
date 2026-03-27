@@ -50,7 +50,7 @@
 		"@hugeicons/core-free-icons": "^4.0.0",
 		"@hugeicons/svelte": "^1.1.2",
 		"@internationalized/date": "^3.12.0",
-		"@lucide/svelte": "^0.577.0",
+		"@lucide/svelte": "^1.7.0",
 		"@prettier/sync": "0.6.1",
 		"@shadcn-svelte/registry": "workspace:*",
 		"@shikijs/langs": "^4.0.2",
@@ -60,7 +60,7 @@
 		"@sveltejs/enhanced-img": "^0.10.4",
 		"@sveltejs/kit": "catalog:",
 		"@sveltejs/vite-plugin-svelte": "catalog:",
-		"@tabler/icons-svelte": "^3.40.0",
+		"@tabler/icons-svelte": "^3.41.0",
 		"@tailwindcss/vite": "^4.2.2",
 		"@tanstack/table-core": "^8.21.3",
 		"@types/d3-scale": "^4.0.9",
@@ -111,7 +111,7 @@
 		"svelte-check": "catalog:",
 		"svelte-sonner": "^1.1.0",
 		"svelte-toolbelt": "^0.10.6",
-		"sveltekit-superforms": "^2.30.0",
+		"sveltekit-superforms": "^2.30.1",
 		"tailwind-merge": "^3.5.0",
 		"tailwind-variants": "^3.2.2",
 		"tailwindcss": "^4.2.2",
@@ -123,12 +123,12 @@
 		"unist-util-visit": "^5.1.0",
 		"vaul-svelte": "1.0.0-next.7",
 		"velite": "^0.3.1",
-		"vite": "^8.0.1",
+		"vite": "^8.0.3",
 		"zod": "catalog:"
 	},
 	"dependencies": {
 		"@types/lodash": "^4.17.24",
-		"agent-browser": "^0.21.4",
+		"agent-browser": "^0.22.3",
 		"lodash": "^4.17.23"
 	}
 }
