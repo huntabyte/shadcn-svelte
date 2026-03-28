@@ -9,15 +9,14 @@
 	</AlertDialog.Trigger>
 	<AlertDialog.Content size="sm">
 		<AlertDialog.Header>
-			<AlertDialog.Title>Are you absolutely sure?</AlertDialog.Title>
+			<AlertDialog.Title>Allow accessory to connect?</AlertDialog.Title>
 			<AlertDialog.Description>
-				This action cannot be undone. This will permanently delete your account and remove
-				your data from our servers.
+				Do you want to allow the USB accessory to connect to this device?
 			</AlertDialog.Description>
 		</AlertDialog.Header>
 		<AlertDialog.Footer>
-			<AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
-			<AlertDialog.Action>Continue</AlertDialog.Action>
+			<AlertDialog.Cancel>Don't allow</AlertDialog.Cancel>
+			<AlertDialog.Action>Allow</AlertDialog.Action>
 		</AlertDialog.Footer>
 	</AlertDialog.Content>
 </AlertDialog.Root>

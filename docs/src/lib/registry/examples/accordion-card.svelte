@@ -11,8 +11,8 @@
 		</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<Accordion.Root type="single" value="plans">
-			<Accordion.Item value="plans" class="border-t border-b-0 px-0 first:border-t-0">
+		<Accordion.Root type="single" collapsible value="plans">
+			<Accordion.Item value="plans">
 				<Accordion.Trigger>What subscription plans do you offer?</Accordion.Trigger>
 				<Accordion.Content>
 					<p>
@@ -27,7 +27,7 @@
 					</p>
 				</Accordion.Content>
 			</Accordion.Item>
-			<Accordion.Item value="billing" class="border-t border-b-0 px-0">
+			<Accordion.Item value="billing">
 				<Accordion.Trigger>How does billing work?</Accordion.Trigger>
 				<Accordion.Content>
 					<p>
@@ -42,7 +42,7 @@
 					</p>
 				</Accordion.Content>
 			</Accordion.Item>
-			<Accordion.Item value="upgrade" class="border-t border-b-0 px-0">
+			<Accordion.Item value="upgrade">
 				<Accordion.Trigger>Can I upgrade or downgrade my plan?</Accordion.Trigger>
 				<Accordion.Content>
 					<p>
@@ -57,7 +57,7 @@
 					</p>
 				</Accordion.Content>
 			</Accordion.Item>
-			<Accordion.Item value="cancel" class="border-t border-b-0 px-0">
+			<Accordion.Item value="cancel">
 				<Accordion.Trigger>How do I cancel my subscription?</Accordion.Trigger>
 				<Accordion.Content>
 					<p>
@@ -71,7 +71,7 @@
 					</p>
 				</Accordion.Content>
 			</Accordion.Item>
-			<Accordion.Item value="refund" class="border-t border-b-0 px-0">
+			<Accordion.Item value="refund">
 				<Accordion.Trigger>What is your refund policy?</Accordion.Trigger>
 				<Accordion.Content>
 					<p>

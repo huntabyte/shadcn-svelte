@@ -1,22 +1,30 @@
 <script lang="ts">
 	import * as AlertDialog from "$lib/registry/ui/alert-dialog/index.js";
 	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import Trash2Icon from "@lucide/svelte/icons/trash-2";
 </script>
 
 <AlertDialog.Root>
 	<AlertDialog.Trigger class={buttonVariants({ variant: "destructive" })}>
-		Delete account
+		Delete Chat
 	</AlertDialog.Trigger>
-	<AlertDialog.Content>
+	<AlertDialog.Content size="sm">
 		<AlertDialog.Header>
-			<AlertDialog.Title>Are you absolutely sure?</AlertDialog.Title>
+			<AlertDialog.Media
+				class="bg-destructive/10 text-destructive dark:bg-destructive/20 dark:text-destructive"
+			>
+				<Trash2Icon />
+			</AlertDialog.Media>
+			<AlertDialog.Title>Delete chat?</AlertDialog.Title>
 			<AlertDialog.Description>
-				This action cannot be undone. This will permanently delete your account and remove
-				your data from our servers.
+				This will permanently delete this chat conversation. View
+				<a href="#">Settings</a> delete any memories saved during this chat.
 			</AlertDialog.Description>
 		</AlertDialog.Header>
 		<AlertDialog.Footer>
-			<AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
+			<AlertDialog.Cancel class={buttonVariants({ variant: "outline" })}>
+				Cancel
+			</AlertDialog.Cancel>
 			<AlertDialog.Action class={buttonVariants({ variant: "destructive" })}>
 				Delete
 			</AlertDialog.Action>

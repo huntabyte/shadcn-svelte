@@ -26,7 +26,7 @@
 	];
 </script>
 
-<Accordion.Root type="single" class="w-full max-w-lg">
+<Accordion.Root type="single" collapsible class="w-full max-w-lg">
 	{#each items as item (item.value)}
 		<Accordion.Item value={item.value} disabled={item.disabled}>
 			<Accordion.Trigger>{item.trigger}</Accordion.Trigger>
