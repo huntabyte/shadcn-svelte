@@ -52,7 +52,6 @@
 				props={{
 					bars: {
 						stroke: "none",
-						initialHeight: 0,
 						motion: { type: "tween", duration: 500, easing: cubicInOut },
 					},
 					highlight: { area: false },

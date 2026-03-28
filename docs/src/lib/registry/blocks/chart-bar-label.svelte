@@ -41,7 +41,6 @@
 						stroke: "none",
 						radius: 8,
 						rounded: "all",
-						initialHeight: 0,
 						motion: { type: "tween", duration: 500, easing: cubicInOut },
 					},
 					highlight: { area: { fill: "none" } },

@@ -114,7 +114,6 @@
 						stroke: "none",
 						rounded: "all",
 						radius: 4,
-						initialHeight: 0,
 						motion: { type: "tween", duration: 500, easing: cubicInOut },
 					},
 					xAxis: { format: (d) => d.toLocaleDateString("en-US", { day: "numeric" }) },

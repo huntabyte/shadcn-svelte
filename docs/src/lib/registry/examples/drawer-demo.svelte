@@ -110,7 +110,6 @@
 									stroke: "none",
 									rounded: "all",
 									radius: 4,
-									initialHeight: 0,
 									motion: { type: "tween", duration: 500, easing: cubicInOut },
 									fill: "var(--color-foreground)",
 									fillOpacity: 0.9,
