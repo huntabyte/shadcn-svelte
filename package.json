@@ -52,11 +52,11 @@
 		"prettier-plugin-svelte": "^3.5.1",
 		"prettier-plugin-tailwindcss": "^0.7.2",
 		"pretty-quick": "^4.2.2",
-		"svelte": "^5.55.0",
+		"svelte": "catalog:",
 		"typescript": "6.0.2",
 		"typescript-eslint": "^8.57.2",
 		"wait-on": "^9.0.4",
-		"wrangler": "^4.77.0"
+		"wrangler": "^4.78.0"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [

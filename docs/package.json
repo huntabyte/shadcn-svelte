@@ -70,7 +70,7 @@
 		"@types/lodash.template": "^4.5.3",
 		"@types/mdast": "^4.0.4",
 		"acorn": "^8.16.0",
-		"bits-ui": "^2.16.3",
+		"bits-ui": "^2.16.4",
 		"chrono-node": "^2.9.0",
 		"clsx": "^2.1.1",
 		"consola": "^3.4.2",
@@ -81,7 +81,7 @@
 		"estree-walker": "^3.0.3",
 		"flexsearch": "^0.8.212",
 		"formsnap": "^2.0.1",
-		"globby": "^16.1.1",
+		"globby": "^16.2.0",
 		"hast-util-to-html": "^9.0.5",
 		"jsdom": "^29.0.1",
 		"layerchart": "2.0.0-next.46",
@@ -128,7 +128,7 @@
 	},
 	"dependencies": {
 		"@types/lodash": "^4.17.24",
-		"agent-browser": "^0.22.3",
+		"agent-browser": "^0.23.0",
 		"lodash": "^4.17.23"
 	}
 }
