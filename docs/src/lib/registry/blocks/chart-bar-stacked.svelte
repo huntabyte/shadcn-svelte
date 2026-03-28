@@ -2,7 +2,7 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import { scaleBand } from "d3-scale";
-	import { BarChart, Highlight, type ChartContextValue } from "layerchart";
+	import { BarChart, Highlight } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { cubicInOut } from "svelte/easing";
 
@@ -20,7 +20,6 @@
 		mobile: { label: "Mobile", color: "var(--chart-2)" },
 	} satisfies Chart.ChartConfig;
 
-	let context = $state<ChartContextValue>();
 </script>
 
 <Card.Root>
@@ -31,7 +30,6 @@
 	<Card.Content>
 		<Chart.Container config={chartConfig}>
 			<BarChart
-				bind:context
 				data={chartData}
 				xScale={scaleBand().padding(0.25)}
 				x="month"
@@ -54,12 +52,8 @@
 				props={{
 					bars: {
 						stroke: "none",
-						initialY: context?.height,
 						initialHeight: 0,
-						motion: {
-							y: { type: "tween", duration: 500, easing: cubicInOut },
-							height: { type: "tween", duration: 500, easing: cubicInOut },
-						},
+						motion: { type: "tween", duration: 500, easing: cubicInOut },
 					},
 					highlight: { area: false },
 					xAxis: { format: (d) => d.slice(0, 3) },

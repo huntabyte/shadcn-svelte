@@ -2,7 +2,7 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import { scaleBand } from "d3-scale";
-	import { BarChart, type ChartContextValue } from "layerchart";
+	import { BarChart } from "layerchart";
 	import { cubicInOut } from "svelte/easing";
 
 	const chartData = [
@@ -19,7 +19,6 @@
 		swimming: { label: "Swimming", color: "var(--chart-2)" },
 	} satisfies Chart.ChartConfig;
 
-	let context = $state<ChartContextValue>();
 </script>
 
 <Card.Root>
@@ -30,7 +29,6 @@
 	<Card.Content>
 		<Chart.Container config={chartConfig}>
 			<BarChart
-				bind:context
 				data={chartData}
 				xScale={scaleBand().padding(0.25)}
 				x="date"
@@ -55,12 +53,8 @@
 				props={{
 					bars: {
 						stroke: "none",
-						initialY: context?.height,
 						initialHeight: 0,
-						motion: {
-							y: { type: "tween", duration: 500, easing: cubicInOut },
-							height: { type: "tween", duration: 500, easing: cubicInOut },
-						},
+						motion: { type: "tween", duration: 500, easing: cubicInOut },
 					},
 					xAxis: {
 						format: (d) =>
@@ -77,7 +71,7 @@
 			>
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel class="w-[180px]">
-						{#snippet formatter({ name, index, value, item })}
+						{#snippet formatter({ name, index, value, item, payload })}
 							<div
 								style="--color-bg: var(--color-{name.toLowerCase()})"
 								class="size-2.5 shrink-0 rounded-[2px] bg-(--color-bg)"
@@ -91,6 +85,7 @@
 							</div>
 							<!-- Add this after the last item-->
 							{#if index === 1}
+								{@const total = payload.reduce((sum, p) => sum + (Number(p.value) || 0), 0)}
 								<div
 									class="text-foreground mt-1.5 flex basis-full items-center border-t pt-1.5 text-xs font-medium"
 								>
@@ -98,7 +93,7 @@
 									<div
 										class="text-foreground ms-auto flex items-baseline gap-0.5 font-mono font-medium tabular-nums"
 									>
-										{item.payload.running + item.payload.swimming}
+										{total}
 										<span class="text-muted-foreground font-normal">
 											kcal
 										</span>

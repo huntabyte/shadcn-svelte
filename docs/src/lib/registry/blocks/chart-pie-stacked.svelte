@@ -20,6 +20,8 @@
 		{ month: "may", mobile: 130, color: "var(--color-may)" },
 	];
 
+	type PieDataItem = { month: string; value: number; color: string; key: string };
+
 	const chartConfig = {
 		desktop: { label: "Desktop" },
 		mobile: { label: "Mobile" },
@@ -40,12 +42,12 @@
 		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
 			<PieChart
 				label="month"
-				c={(d) => {
+				c={(d: PieDataItem) => {
 					return d.color;
 				}}
 				props={{
 					pie: {
-						sort: (a, b) => {
+						sort: (a: PieDataItem, b: PieDataItem) => {
 							const monthOrder = ["january", "february", "march", "april", "may"];
 							return monthOrder.indexOf(a.month) - monthOrder.indexOf(b.month);
 						},

@@ -43,7 +43,7 @@
 				props={{
 					area: {
 						curve: curveStep,
-						"fill-opacity": 0.4,
+						fillOpacity: 0.4,
 						line: { class: "stroke-1" },
 						motion: "tween",
 					},

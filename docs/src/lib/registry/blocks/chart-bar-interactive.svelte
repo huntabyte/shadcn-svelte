@@ -2,7 +2,7 @@
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { scaleUtc } from "d3-scale";
-	import { BarChart, type ChartContextValue, Highlight } from "layerchart";
+	import { BarChart, Highlight } from "layerchart";
 	import { cubicInOut } from "svelte/easing";
 
 	const chartData = [
@@ -104,7 +104,6 @@
 		desktop: { label: "Desktop", color: "var(--chart-2)" },
 		mobile: { label: "Mobile", color: "var(--chart-1)" },
 	} satisfies Chart.ChartConfig;
-	let context = $state<ChartContextValue>();
 
 	let activeChart = $state<keyof typeof chartConfig>("desktop");
 
@@ -149,7 +148,6 @@
 	<Card.Content class="px-2 sm:p-6">
 		<Chart.Container config={chartConfig} class="aspect-auto h-[250px] w-full">
 			<BarChart
-				bind:context
 				data={chartData}
 				x="date"
 				axis="x"
@@ -158,13 +156,8 @@
 					bars: {
 						stroke: "none",
 						rounded: "none",
-						// use the height of the chart to animate the bars
-						initialY: context?.height,
 						initialHeight: 0,
-						motion: {
-							y: { type: "tween", duration: 500, easing: cubicInOut },
-							height: { type: "tween", duration: 500, easing: cubicInOut },
-						},
+						motion: { type: "tween", duration: 500, easing: cubicInOut },
 					},
 					highlight: { area: { fill: "none" } },
 					xAxis: {

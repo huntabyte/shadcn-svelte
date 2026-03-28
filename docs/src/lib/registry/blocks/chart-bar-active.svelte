@@ -2,7 +2,7 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import { scaleBand } from "d3-scale";
-	import { Bar, BarChart, type ChartContextValue } from "layerchart";
+	import { Bar, BarChart } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { cubicInOut } from "svelte/easing";
 
@@ -23,7 +23,6 @@
 		other: { label: "Other", color: "var(--chart-5)" },
 	} satisfies Chart.ChartConfig;
 
-	let context = $state<ChartContextValue>();
 </script>
 
 <Card.Root>
@@ -34,7 +33,6 @@
 	<Card.Content>
 		<Chart.Container config={chartConfig}>
 			<BarChart
-				bind:context
 				data={chartData}
 				x="browser"
 				c="color"
@@ -44,17 +42,6 @@
 				axis="x"
 				rule={false}
 				props={{
-					bars: {
-						stroke: "none",
-						radius: 8,
-						rounded: "all", // use the height of the chart to animate the bars
-						initialY: context?.height,
-						initialHeight: 0,
-						motion: {
-							y: { type: "tween", duration: 500, easing: cubicInOut },
-							height: { type: "tween", duration: 500, easing: cubicInOut },
-						},
-					},
 					xAxis: {
 						format: (d) => chartConfig[d as keyof typeof chartConfig].label,
 					},
@@ -64,13 +51,14 @@
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel nameKey="visitors" />
 				{/snippet}
-				{#snippet marks({ getBarsProps, visibleSeries })}
-					{@const baseBarProps = getBarsProps(visibleSeries[0], 0)}
+				{#snippet marks({ context })}
+					{@const s = context.series.visibleSeries[0]}
 					{#each chartData as data, i (i)}
 						{#if i === 2}
 							<!-- The "active" bar -->
 							<Bar
-								{...baseBarProps}
+								seriesKey={s.key}
+								{...s.props}
 								motion="tween"
 								fill={data.color}
 								{data}
@@ -81,7 +69,7 @@
 								stroke-dashoffset={4}
 							/>
 						{:else}
-							<Bar {...baseBarProps} fill={data.color} {data} motion="tween" />
+							<Bar seriesKey={s.key} {...s.props} fill={data.color} {data} motion="tween" />
 						{/if}
 					{/each}
 				{/snippet}

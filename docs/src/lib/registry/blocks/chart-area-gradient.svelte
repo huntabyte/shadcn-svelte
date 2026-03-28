@@ -47,12 +47,6 @@
 				]}
 				seriesLayout="stack"
 				props={{
-					area: {
-						curve: curveNatural,
-						"fill-opacity": 0.4,
-						line: { class: "stroke-1" },
-						motion: "tween",
-					},
 					xAxis: {
 						format: (v: Date) => v.toLocaleDateString("en-US", { month: "short" }),
 					},
@@ -69,8 +63,8 @@
 						}}
 					/>
 				{/snippet}
-				{#snippet marks({ series, getAreaProps })}
-					{#each series as s, i (s.key)}
+				{#snippet marks({ context })}
+					{#each context.series.visibleSeries as s (s.key)}
 						<LinearGradient
 							stops={[
 								s.color ?? "",
@@ -79,7 +73,15 @@
 							vertical
 						>
 							{#snippet children({ gradient })}
-								<Area {...getAreaProps(s, i)} fill={gradient} />
+								<Area
+									seriesKey={s.key}
+									curve={curveNatural}
+									fillOpacity={0.4}
+									line={{ class: "stroke-1" }}
+									motion="tween"
+									{...s.props}
+									fill={gradient}
+								/>
 							{/snippet}
 						</LinearGradient>
 					{/each}

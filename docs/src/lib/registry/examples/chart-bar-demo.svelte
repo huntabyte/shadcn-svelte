@@ -31,7 +31,7 @@
 		x="month"
 		axis="x"
 		seriesLayout="group"
-		tooltip={false}
+		tooltipContext={false}
 		series={[
 			{
 				key: "desktop",

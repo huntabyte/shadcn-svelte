@@ -4,7 +4,7 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import { BarChart, Highlight, type ChartContextValue } from "layerchart";
+	import { BarChart, Highlight } from "layerchart";
 	import RangeCalendar from "$lib/registry/ui/range-calendar/range-calendar.svelte";
 	import type { DateRange } from "bits-ui";
 	import { CalendarDate, getLocalTimeZone } from "@internationalized/date";
@@ -71,7 +71,6 @@
 		});
 	});
 
-	let context = $state<ChartContextValue>();
 </script>
 
 <Card.Root class="@container/card w-full max-w-xl">
@@ -105,7 +104,6 @@
 	<Card.Content class="px-4">
 		<Chart.Container config={chartConfig} class="aspect-auto h-[250px] w-full">
 			<BarChart
-				bind:context
 				data={filteredData}
 				xScale={scaleBand().padding(0.25)}
 				x="date"
@@ -116,15 +114,8 @@
 						stroke: "none",
 						rounded: "all",
 						radius: 4,
-						// use the height of the chart to animate the bars
-						initialY: context?.height,
 						initialHeight: 0,
-						motion: {
-							x: { type: "tween", duration: 500, easing: cubicInOut },
-							width: { type: "tween", duration: 500, easing: cubicInOut },
-							height: { type: "tween", duration: 500, easing: cubicInOut },
-							y: { type: "tween", duration: 500, easing: cubicInOut },
-						},
+						motion: { type: "tween", duration: 500, easing: cubicInOut },
 					},
 					xAxis: { format: (d) => d.toLocaleDateString("en-US", { day: "numeric" }) },
 				}}
