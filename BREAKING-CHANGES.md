@@ -2,69 +2,171 @@
 
 Discovered while migrating shadcn-svelte from `layerchart@2.0.0-next.43` to the `state-refactor` branch (PR #663).
 
-## Documented / Expected Changes
+---
 
-These changes are covered in the [migration guide](https://techniq-state-refactor.layerchart.pages.dev/docs/guides/migrations/state-refactor) and worked as expected:
+## 1. `tooltip={false}` on simplified charts must use `tooltipContext={false}`
 
-- `getTooltipContext()` removed in favor of `getChartContext()` (`.tooltip`, `.brushState`, `.transformState`)
-- `type ChartContextValue` removed, replaced by `ChartState`
-- `<Chart tooltip={...}>` prop renamed to `tooltipContext`
-- `GeoContext` renamed to `GeoProjection`
-- Various context getter/setter removals
+The `tooltip` prop on simplified charts is now a snippet slot, not a boolean. Use `tooltipContext={false}` to disable tooltips.
 
-## Undocumented / Potentially Missing from Migration Guide
+```diff
+- <BarChart tooltip={false} />
++ <BarChart tooltipContext={false} />
+```
 
-### 1. `tooltip={false}` on simplified charts no longer works
+## 2. `getTooltipContext()` removed — use `getChartContext()`
 
-The `tooltip` prop on simplified charts (`BarChart`, `AreaChart`, `LineChart`, etc.) is now typed as `ChartSnippet` (snippet only), not `boolean | Snippet`. Passing `tooltip={false}` to disable the default tooltip no longer works and causes a type error.
+```diff
+- import { getTooltipContext, Tooltip as TooltipPrimitive } from "layerchart";
++ import { getChartContext, Tooltip as TooltipPrimitive } from "layerchart";
 
-**Workaround:** Use `tooltipContext={false}` instead.
+- const tooltipCtx = getTooltipContext();
+- tooltipCtx.payload
++ const chartCtx = getChartContext();
++ chartCtx.tooltip.series
+```
 
-**Suggestion:** This should be documented in the migration guide, or the `tooltip` prop could accept `false` to disable it (matching the behavior of other props like `highlight`, `grid`, `axis` which accept `boolean | Snippet`).
+## 3. Tooltip data model changed
 
-### 2. `marks` snippet no longer receives helper functions
+The old `payload` array items are now `TooltipSeries` objects accessed via `chartCtx.tooltip.series`. The x-axis label (e.g., a Date) is no longer on each item — use `chartCtx.x(chartCtx.tooltip.data)` instead.
 
-The `marks` snippet on simplified charts now only receives `{ context }` instead of the old destructured helpers like `{ series, getAreaProps }`, `{ getBarsProps, visibleSeries }`, `{ getPointsProps }`, etc.
+```diff
+  // Old payload item properties → New equivalents
+- item.label        // x-axis value (e.g. Date)
++ chartCtx.x(chartCtx.tooltip.data)
 
-- `series` / `visibleSeries` → `context.series.visibleSeries`
-- `getAreaProps(s, i)` → no direct replacement; must manually pass `seriesKey={s.key}` and `{...s.props}` to `<Area>`
-- `getBarsProps(s, i)` → same pattern with `<Bars>` / `<Bar>`
-- `getPointsProps(s, i)` → same pattern with `<Points>`
-- `getAxisProps("x")` / `getAxisProps("y")` → no replacement; must manually configure `<Axis>` with `placement` and props
+- item.name         // series name
++ item.label
 
-**Key issue:** When overriding `marks`, the `props.area` / `props.bars` / etc. settings from the simplified chart are **not** automatically applied to the custom mark components. In the old API, `getAreaProps()` merged these props automatically. Now the user must manually apply them (e.g., `curve`, `fill-opacity`, `line`, `motion`).
+- item.payload      // raw data object
++ chartCtx.tooltip.data
 
-**Suggestion:** Document this in the migration guide. Consider providing the `props` object in the snippet context so users can still access `props.area`, etc., or provide helper functions like `getAreaProps` through `context`.
+- item.payload.color // nested data color
++ item.config?.color
+```
 
-### 3. `axis` snippet renamed / removed from simplified charts (radar charts)
+## 4. `type ChartContextValue` removed — use `ChartState`
 
-The old `{#snippet axis({ getAxisProps })}` snippet for customizing axes appears to need different handling. The `axis` prop now accepts `ChartSnippet`, so `{#snippet axis({ context })}` works, but the `getAxisProps` helper is gone.
+```diff
+- import { BarChart, type ChartContextValue } from "layerchart";
++ import { BarChart, type ChartState } from "layerchart";
 
-Users must manually specify `<Axis placement="angle">` / `<Axis placement="radius">` with all required props.
+- let context = $state<ChartContextValue>();
++ let context = $state<ChartState>();
+```
 
-### 4. Tooltip data model completely changed
+## 5. `marks` snippet no longer receives helper functions
 
-The tooltip payload structure is fundamentally different:
+The `marks` snippet now only receives `{ context }`. Helper functions like `getAreaProps()`, `getBarsProps()`, `getPointsProps()` are gone. You must pass props directly to mark components.
 
-| Old (`tooltipCtx.payload[i]`)      | New equivalent                      |
-| ---------------------------------- | ----------------------------------- |
-| `.label` (x-axis value, e.g. Date) | `chartCtx.x(chartCtx.tooltip.data)` |
-| `.name` (series name)              | `chartCtx.tooltip.series[i].label`  |
-| `.value` (y-axis value)            | `chartCtx.tooltip.series[i].value`  |
-| `.key` (series key)                | `chartCtx.tooltip.series[i].key`    |
-| `.color`                           | `chartCtx.tooltip.series[i].color`  |
-| `.payload` (raw data item)         | `chartCtx.tooltip.data`             |
+**Important:** `props.area` / `props.bars` settings on the simplified chart are NOT applied when overriding `marks`. Move those props directly onto the mark components.
 
-**Key issue:** The x-axis label value (e.g., a `Date` object) was previously available directly on each payload item as `.label`. It's now only accessible via `chartCtx.x(chartCtx.tooltip.data)`. This means custom `labelFormatter` functions that expected a `Date` as the first argument break silently (receive a string series label instead).
+```diff
+  <AreaChart
+-   props={{ area: { curve: curveNatural, fillOpacity: 0.4 } }}
++   props={{ xAxis: { ... } }}
+  >
+-   {#snippet marks({ series, getAreaProps })}
+-     {#each series as s, i (s.key)}
+-       <Area {...getAreaProps(s, i)} fill="url(#grad)" />
++   {#snippet marks({ context })}
++     {#each context.series.visibleSeries as s (s.key)}
++       <Area
++         seriesKey={s.key}
++         curve={curveNatural}
++         fillOpacity={0.4}
++         {...s.props}
++         fill="url(#grad)"
++       />
+      {/each}
+    {/snippet}
+  </AreaChart>
+```
 
-**Suggestion:** This mapping should be prominently documented. Consider adding a `dataLabel` or `xValue` property to `TooltipSeries` items so the x-axis value is easily accessible without needing to call `chartCtx.x()`.
+Same pattern for Bars:
+```diff
+- {#snippet marks({ getBarsProps, visibleSeries })}
+-   {#each visibleSeries as s, i (s.key)}
+-     <Bar {...getBarsProps(s, i)} />
++ {#snippet marks({ context })}
++   {#each context.series.visibleSeries as s (s.key)}
++     <Bar seriesKey={s.key} {...s.props} />
+    {/each}
+  {/snippet}
+```
 
-### 5. Positional props on Text/primitives can now be function accessors
+## 6. `axis` snippet loses `getAxisProps` helper
 
-Props like `y` on `<Text>` (used in tick label snippets) changed type from `string | number` to `string | number | ((d: any) => any)` due to data-driven primitives. Code that calls `Number.parseInt(props.y)` needs an additional type guard for the function case.
+```diff
+- {#snippet axis({ getAxisProps })}
+-   <Axis {...getAxisProps("x")} />
+-   <Axis {...getAxisProps("y")} />
++ {#snippet axis({ context })}
++   <Axis placement="angle" />
++   <Axis placement="radius" />
+  {/snippet}
+```
 
-### 6. `points` snippet on `LineChart`
+## 7. `fill-opacity` prop renamed to `fillOpacity`
 
-The `points` snippet still exists separately from `marks`, but since the snippet parameter changed to `{ context }`, it's easy to accidentally rename it to `marks` (which replaces the entire line rendering instead of just the points).
+Applies to both component props and `props` objects.
 
-**Suggestion:** Document clearly that `points`, `axis`, `tooltip`, etc. are separate snippets from `marks`, and overriding `marks` replaces everything while the others only customize their specific layer.
+```diff
+  props={{
+    area: {
+-     "fill-opacity": 0.4,
++     fillOpacity: 0.4,
+    },
+  }}
+```
+
+## 8. Bar mount animation simplified
+
+`initialY`/`initialHeight` are now auto-computed when `motion` is set. Per-property motion configs can be a single flat object.
+
+```diff
+  bars: {
+-   initialY: context?.height,
+-   initialHeight: 0,
+-   motion: {
+-     y: { type: "tween", duration: 500, easing: cubicInOut },
+-     height: { type: "tween", duration: 500, easing: cubicInOut },
+-   },
++   motion: { type: "tween", duration: 500, easing: cubicInOut },
+  },
+```
+
+## 9. `points` snippet vs `marks` snippet on LineChart
+
+The `points` snippet only overrides point rendering. The `marks` snippet replaces the entire chart (lines + points). Don't accidentally rename `points` to `marks`.
+
+```diff
+  <LineChart>
+-   {#snippet points({ visibleSeries, getPointsProps })}
+-     {#each visibleSeries as s, i (s.key)}
+-       <Points {...getPointsProps(s, i)}>
++   {#snippet points({ context })}
++     {#each context.series.visibleSeries as s (s.key)}
++       <Points seriesKey={s.key} {...s.props}>
+          ...
+        </Points>
+      {/each}
+    {/snippet}
+  </LineChart>
+```
+
+## 10. Text/primitive positional props may be function accessors
+
+Due to data-driven primitives, props like `y` on `<Text>` can now be `string | number | ((d: any) => any)`. Add a type guard when parsing.
+
+```diff
+  {#snippet tickLabel({ props })}
+    {@const y = props.y
+      ? typeof props.y === "number"
+        ? props.y
+-       : Number.parseInt(props.y)
++       : typeof props.y === "string"
++         ? Number.parseInt(props.y)
++         : 0
+      : 0}
+  {/snippet}
+```

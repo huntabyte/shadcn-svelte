@@ -3,7 +3,7 @@
 	"name": "chart-pie-legend",
 	"type": "registry:block",
 	"devDependencies": [
-		"layerchart@https://pkg.pr.new/layerchart@06cfd5c",
+		"layerchart@https://pkg.pr.new/layerchart@3b90291",
 		"@lucide/svelte@^0.577.0"
 	],
 	"registryDependencies": [

@@ -50,17 +50,28 @@
 	const chart = useChart();
 	const chartCtx = getChartContext();
 
-	const formattedLabel = $derived.by(() => {
-		if (hideLabel || !chartCtx.tooltip.series?.length) return null;
+	// Filter to series with defined values (important for item-based charts like Pie/Arc
+	// where only the hovered item has a value)
+	const visibleSeries = $derived(
+		chartCtx.tooltip.series.filter((s: TooltipPayload) => s.value !== undefined)
+	);
 
-		const [item] = chartCtx.tooltip.series;
+	const formattedLabel = $derived.by(() => {
+		if (hideLabel || !visibleSeries?.length) return null;
+
+		const [item] = visibleSeries;
 		const tooltipData = chartCtx.tooltip.data;
 
 		// Get the x-axis label value from the raw tooltip data (e.g. a Date or month string)
 		const dataLabel = tooltipData != null ? chartCtx.x(tooltipData) : undefined;
 
 		const key = labelKey ?? item?.label ?? item?.key ?? "value";
-		const itemConfig = getPayloadConfigFromPayload(chart.config, item, key, tooltipData);
+		const itemConfig = getPayloadConfigFromPayload(
+			chart.config,
+			item,
+			key,
+			tooltipData as Record<string, unknown> | null
+		);
 
 		let value: unknown;
 		if (!labelKey && typeof label === "string") {
@@ -73,10 +84,10 @@
 
 		if (value === undefined) return null;
 		if (!labelFormatter) return value;
-		return labelFormatter(value, chartCtx.tooltip.series);
+		return labelFormatter(value, visibleSeries);
 	});
 
-	const nestLabel = $derived(chartCtx.tooltip.series.length === 1 && indicator !== "dot");
+	const nestLabel = $derived(visibleSeries.length === 1 && indicator !== "dot");
 </script>
 
 {#snippet TooltipLabel()}
@@ -104,9 +115,14 @@
 			{@render TooltipLabel()}
 		{/if}
 		<div class="grid gap-1.5">
-			{#each chartCtx.tooltip.series as item, i (item.key + i)}
+			{#each visibleSeries as item, i (item.key + i)}
 				{@const key = `${nameKey || item.key || item.label || "value"}`}
-				{@const itemConfig = getPayloadConfigFromPayload(chart.config, item, key, chartCtx.tooltip.data)}
+				{@const itemConfig = getPayloadConfigFromPayload(
+					chart.config,
+					item,
+					key,
+					chartCtx.tooltip.data
+				)}
 				{@const indicatorColor = color || item.config?.color || item.color}
 				<div
 					class={cn(
@@ -120,7 +136,7 @@
 							name: item.label,
 							item,
 							index: i,
-							payload: chartCtx.tooltip.series,
+							payload: visibleSeries,
 						})}
 					{:else}
 						{#if itemConfig?.icon}
