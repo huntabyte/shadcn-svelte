@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.2.5
+
+### Patch Changes
+
+- fix: add missing fields to components.json schema ([#2602](https://github.com/huntabyte/shadcn-svelte/pull/2602))
+
 ## 1.2.4
 
 ### Patch Changes
