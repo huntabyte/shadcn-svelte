@@ -3,7 +3,7 @@
 	"name": "chart",
 	"type": "registry:ui",
 	"devDependencies": [
-		"layerchart@https://pkg.pr.new/layerchart@1c98233"
+		"layerchart@https://pkg.pr.new/layerchart@06cfd5c"
 	],
 	"files": [
 		{

@@ -3,7 +3,7 @@
 	"name": "chart-radial-label",
 	"type": "registry:block",
 	"devDependencies": [
-		"layerchart@https://pkg.pr.new/layerchart@1c98233",
+		"layerchart@https://pkg.pr.new/layerchart@06cfd5c",
 		"@lucide/svelte@^0.577.0"
 	],
 	"registryDependencies": [

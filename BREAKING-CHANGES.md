@@ -46,14 +46,14 @@ Users must manually specify `<Axis placement="angle">` / `<Axis placement="radiu
 
 The tooltip payload structure is fundamentally different:
 
-| Old (`tooltipCtx.payload[i]`) | New equivalent |
-|---|---|
+| Old (`tooltipCtx.payload[i]`)      | New equivalent                      |
+| ---------------------------------- | ----------------------------------- |
 | `.label` (x-axis value, e.g. Date) | `chartCtx.x(chartCtx.tooltip.data)` |
-| `.name` (series name) | `chartCtx.tooltip.series[i].label` |
-| `.value` (y-axis value) | `chartCtx.tooltip.series[i].value` |
-| `.key` (series key) | `chartCtx.tooltip.series[i].key` |
-| `.color` | `chartCtx.tooltip.series[i].color` |
-| `.payload` (raw data item) | `chartCtx.tooltip.data` |
+| `.name` (series name)              | `chartCtx.tooltip.series[i].label`  |
+| `.value` (y-axis value)            | `chartCtx.tooltip.series[i].value`  |
+| `.key` (series key)                | `chartCtx.tooltip.series[i].key`    |
+| `.color`                           | `chartCtx.tooltip.series[i].color`  |
+| `.payload` (raw data item)         | `chartCtx.tooltip.data`             |
 
 **Key issue:** The x-axis label value (e.g., a `Date` object) was previously available directly on each payload item as `.label`. It's now only accessible via `chartCtx.x(chartCtx.tooltip.data)`. This means custom `labelFormatter` functions that expected a `Date` as the first argument break silently (receive a string series label instead).
 
