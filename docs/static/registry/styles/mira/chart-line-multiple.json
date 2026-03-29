@@ -3,7 +3,7 @@
 	"name": "chart-line-multiple",
 	"type": "registry:block",
 	"devDependencies": [
-		"layerchart@https://pkg.pr.new/layerchart@663",
+		"layerchart@https://pkg.pr.new/layerchart@1c98233",
 		"@lucide/svelte@^0.577.0",
 		"d3-scale@^4.0.2",
 		"@types/d3-scale@^4.0.9",

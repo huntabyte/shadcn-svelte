@@ -3,7 +3,7 @@
 	"name": "chart-radar-grid-none",
 	"type": "registry:block",
 	"devDependencies": [
-		"layerchart@https://pkg.pr.new/layerchart@663",
+		"layerchart@https://pkg.pr.new/layerchart@1c98233",
 		"@lucide/svelte@^0.577.0",
 		"d3-shape@^3.2.0",
 		"@types/d3-shape@^3.1.8",
