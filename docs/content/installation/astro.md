@@ -60,6 +60,36 @@ Answer `Yes` to all the question prompted by the CLI when installing TailwindCSS
 
 </Callout>
 
+### Configure Vite for Svelte libraries
+
+Astro v6 requires explicitly marking certain Svelte libraries as non-external for Vite to bundle them correctly. Add the following to your `astro.config.mjs`:
+
+```js title="astro.config.mjs" {7-17} showLineNumbers
+import { defineConfig } from "astro/config";
+import svelte from "@astrojs/svelte";
+import tailwindcss from "@astrojs/tailwind";
+
+export default defineConfig({
+  integrations: [svelte(), tailwindcss()],
+  vite: {
+    resolve: {
+      noExternal: [
+        "@lucide/svelte",
+        "bits-ui",
+        "runed",
+        "svelte-toolbelt",
+      ],
+    },
+  },
+});
+```
+
+<Callout className="mt-4">
+
+Without this configuration, you may encounter `ERR_UNKNOWN_FILE_EXTENSION` errors during build. This is required for Astro v6+ which uses Vite 7.
+
+</Callout>
+
 ### Import the global CSS file
 
 Import the `global.css` file in the `src/pages/index.astro` file:
