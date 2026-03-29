@@ -22,7 +22,6 @@
 		edge: { label: "Edge", color: "var(--chart-4)" },
 		other: { label: "Other", color: "var(--chart-5)" },
 	} satisfies Chart.ChartConfig;
-
 </script>
 
 <Card.Root>
@@ -59,6 +58,8 @@
 							<Bar
 								seriesKey={s.key}
 								{...s.props}
+								rounded="all"
+								radius={8}
 								motion="tween"
 								fill={data.color}
 								{data}
@@ -69,7 +70,15 @@
 								stroke-dashoffset={4}
 							/>
 						{:else}
-							<Bar seriesKey={s.key} {...s.props} fill={data.color} {data} motion="tween" />
+							<Bar
+								seriesKey={s.key}
+								{...s.props}
+								rounded="all"
+								radius={8}
+								fill={data.color}
+								{data}
+								motion="tween"
+							/>
 						{/if}
 					{/each}
 				{/snippet}
