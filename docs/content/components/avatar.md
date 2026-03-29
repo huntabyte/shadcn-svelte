@@ -145,4 +145,4 @@ Update the import paths to match your project setup.
 
 ## API Reference
 
-See the [Bits UI documentation](https://bits-ui.com) for more information.
+See the [Bits UI](https://bits-ui.com/docs/components/avatar#api-reference) documentation for more information.

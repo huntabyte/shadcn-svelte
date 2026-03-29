@@ -166,4 +166,4 @@ Use the `REGEXP_ONLY_DIGITS_AND_CHARS` pattern to accept both letters and number
 
 ## API Reference
 
-See the [Bits UI documentation](https://bits-ui.com) for more information.
+See the [Bits UI](https://bits-ui.com/docs/components/pin-input#api-reference) documentation for more information.

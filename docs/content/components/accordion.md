@@ -144,4 +144,4 @@ Wrap the `Accordion` in a `Card` component.
 
 ## API Reference
 
-See the [Bits UI documentation](https://bits-ui.com) for more information.
+See the [Bits UI](https://bits-ui.com/docs/components/accordion#api-reference) documentation for more information.

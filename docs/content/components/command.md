@@ -177,4 +177,4 @@ You can use the `<Command />` component as a combobox. See the [Combobox](/docs/
 
 ## API Reference
 
-See the [Bits UI documentation](https://bits-ui.com) for more information.
+See the [Bits UI](https://bits-ui.com/docs/components/command#api-reference) documentation for more information.

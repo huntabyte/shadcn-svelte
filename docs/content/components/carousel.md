@@ -287,4 +287,4 @@ See the [Embla Carousel docs](https://www.embla-carousel.com/api/plugins/) for m
 
 ## API Reference
 
-See the [Bits UI documentation](https://bits-ui.com) for more information.
+See the [Bits UI](https://www.embla-carousel.com/api) documentation for more information.

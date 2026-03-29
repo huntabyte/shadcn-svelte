@@ -203,4 +203,4 @@ This example shows how to open a dialog from a dropdown menu.
 
 ## API Reference
 
-See the [Bits UI documentation](https://bits-ui.com) for more information.
+See the [Bits UI](https://bits-ui.com/docs/components/dropdown-menu#api-reference) documentation for more information.

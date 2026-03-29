@@ -148,4 +148,4 @@ Use `spacing={2}` to add spacing between toggle group items.
 
 ## API Reference
 
-See the [Bits UI documentation](https://bits-ui.com) for more information.
+See the [Bits UI](https://bits-ui.com/docs/components/toggle-group#api-reference) documentation for more information.

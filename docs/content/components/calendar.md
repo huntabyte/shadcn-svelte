@@ -219,4 +219,4 @@ This will add the latest version of the calendar blocks.
 
 ## API Reference
 
-See the [Bits UI documentation](https://bits-ui.com) for more information.
+See the [Bits UI](https://bits-ui.com/docs/components/calendar#api-reference) documentation for more information.
