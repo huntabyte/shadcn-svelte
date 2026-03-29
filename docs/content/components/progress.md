@@ -94,4 +94,4 @@ Update the import paths to match your project setup.
 
 ## API Reference
 
-See the [Progress API Reference](https://bits-ui.com/docs/components/progress#api-reference) for a full list of props.
+See the [Bits UI documentation](https://bits-ui.com) for more information.

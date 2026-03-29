@@ -287,4 +287,4 @@ See the [Embla Carousel docs](https://www.embla-carousel.com/api/plugins/) for m
 
 ## API Reference
 
-See the [Carousel API Reference](https://www.embla-carousel.com/api) for a full list of props.
+See the [Bits UI documentation](https://bits-ui.com) for more information.

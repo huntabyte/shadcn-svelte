@@ -130,4 +130,4 @@ You can set or hide the handle by using the `withHandle` prop on the `ResizableH
 
 ## API Reference
 
-See the [Resizable API Reference](https://www.paneforge.com/docs/components/pane-group) for a full list of props.
+See the [Bits UI documentation](https://bits-ui.com) for more information.

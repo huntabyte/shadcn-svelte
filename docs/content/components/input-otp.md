@@ -166,4 +166,4 @@ Use the `REGEXP_ONLY_DIGITS_AND_CHARS` pattern to accept both letters and number
 
 ## API Reference
 
-See the [Input OTP API Reference](https://bits-ui.com/docs/components/pin-input#api-reference) for a full list of props.
+See the [Bits UI documentation](https://bits-ui.com) for more information.

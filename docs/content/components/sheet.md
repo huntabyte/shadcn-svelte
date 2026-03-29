@@ -126,4 +126,4 @@ You can adjust the size of the sheet using CSS classes:
 
 ## API Reference
 
-See the [Sheet API Reference](https://bits-ui.com/docs/components/dialog#api-reference) for a full list of props.
+See the [Bits UI documentation](https://bits-ui.com) for more information.

@@ -397,4 +397,4 @@ export const buttonVariants = tv({
 
 ## API Reference
 
-See the [Button API Reference](https://bits-ui.com/docs/components/button#api-reference) for a full list of props.
+See the [Bits UI documentation](https://bits-ui.com) for more information.

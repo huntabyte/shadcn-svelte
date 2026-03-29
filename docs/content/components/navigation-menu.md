@@ -93,4 +93,4 @@ When using the `NavigationMenu.Link` component as a child of a SvelteKit `<a>` e
 
 ## API Reference
 
-See the [Navigation Menu API Reference](https://bits-ui.com/docs/components/navigation-menu#api-reference) for a full list of props.
+See the [Bits UI documentation](https://bits-ui.com) for more information.

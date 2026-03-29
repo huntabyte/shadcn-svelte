@@ -125,4 +125,4 @@ Update the import paths to match your project setup.
 
 ## API Reference
 
-See the [Menubar API Reference](https://bits-ui.com/docs/components/menubar#api-reference) for a full list of props.
+See the [Bits UI documentation](https://bits-ui.com) for more information.

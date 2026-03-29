@@ -103,4 +103,4 @@ Set the `orientation` prop to `"horizontal"` to enable horizontal scrolling.
 
 ## API Reference
 
-See the [Scroll Area API Reference](https://bits-ui.com/docs/components/scroll-area#api-reference) for a full list of props.
+See the [Bits UI documentation](https://bits-ui.com) for more information.

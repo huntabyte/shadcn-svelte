@@ -141,4 +141,4 @@ Replace `bg-primary text-primary-foreground` with `bg-foreground text-background
 
 ## API Reference
 
-See the [Tooltip API Reference](https://bits-ui.com/docs/components/tooltip#api-reference) for a full list of props.
+See the [Bits UI documentation](https://bits-ui.com) for more information.

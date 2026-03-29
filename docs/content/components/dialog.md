@@ -163,4 +163,4 @@ To use the `Dialog` component from within a `Context Menu` or `Dropdown Menu`, y
 
 ## API Reference
 
-See the [Dialog API Reference](https://bits-ui.com/docs/components/dialog#api-reference) for a full list of props.
+See the [Bits UI documentation](https://bits-ui.com) for more information.
