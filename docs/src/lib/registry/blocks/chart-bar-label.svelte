@@ -18,7 +18,6 @@
 	const chartConfig = {
 		desktop: { label: "Desktop", color: "var(--chart-1)" },
 	} satisfies Chart.ChartConfig;
-
 </script>
 
 <Card.Root>

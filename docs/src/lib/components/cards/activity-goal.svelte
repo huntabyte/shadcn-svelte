@@ -62,7 +62,6 @@
 	function onClick(adjustment: number) {
 		goal = Math.max(200, Math.min(400, goal + adjustment));
 	}
-
 </script>
 
 <Card.Root class="w-full gap-5">
@@ -113,7 +112,7 @@
 							stroke: "none",
 							rounded: "all",
 							radius: 4,
-								motion: { type: "tween", duration: 500, easing: cubicInOut },
+							motion: { type: "tween", duration: 500, easing: cubicInOut },
 							fill: "var(--color-goal)",
 						},
 						highlight: { area: { fill: "none" } },

@@ -18,7 +18,6 @@
 		running: { label: "Running", color: "var(--chart-1)" },
 		swimming: { label: "Swimming", color: "var(--chart-2)" },
 	} satisfies Chart.ChartConfig;
-
 </script>
 
 <Card.Root>
@@ -84,7 +83,10 @@
 							</div>
 							<!-- Add this after the last item-->
 							{#if index === 1}
-								{@const total = payload.reduce((sum, p) => sum + (Number(p.value) || 0), 0)}
+								{@const total = payload.reduce(
+									(sum, p) => sum + (Number(p.value) || 0),
+									0
+								)}
 								<div
 									class="text-foreground mt-1.5 flex basis-full items-center border-t pt-1.5 text-xs font-medium"
 								>

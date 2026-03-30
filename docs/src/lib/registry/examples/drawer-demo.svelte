@@ -54,7 +54,6 @@
 	function handleClick(adjustment: number) {
 		goal = Math.max(200, Math.min(400, goal + adjustment));
 	}
-
 </script>
 
 <Drawer.Root>

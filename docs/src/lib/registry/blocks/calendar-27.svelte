@@ -70,7 +70,6 @@
 			return dateObj >= startDate && dateObj <= endDate;
 		});
 	});
-
 </script>
 
 <Card.Root class="@container/card w-full max-w-xl">

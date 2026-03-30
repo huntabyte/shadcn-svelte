@@ -18,7 +18,6 @@
 		running: { label: "Running", color: "var(--chart-1)" },
 		swimming: { label: "Swimming", color: "var(--chart-2)" },
 	} satisfies Chart.ChartConfig;
-
 </script>
 
 <Card.Root>

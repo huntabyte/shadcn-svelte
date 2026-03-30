@@ -88,7 +88,11 @@
 			>
 				{#snippet axis({ context })}
 					<Axis placement="angle" format={() => ""} />
-					<Axis placement="radius" format="metric" tickLabelProps={{ class: "fill-background!" }} />
+					<Axis
+						placement="radius"
+						format="metric"
+						tickLabelProps={{ class: "fill-background!" }}
+					/>
 				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip />
