@@ -5,6 +5,7 @@
 	import SiteHeader from "$lib/components/site-header.svelte";
 	import Customizer from "../components/customizer.svelte";
 	import ActionMenu from "../components/action-menu.svelte";
+	import { OG_IMAGE_BASE_URL } from "../../../../og/og.js";
 
 	let { children } = $props();
 
@@ -15,7 +16,7 @@
 	title="New Project"
 	description="Build your own shadcn-svelte."
 	ogImage={{
-		url: `/create/og${new URL(designSystem.shareUrl).search}`,
+		url: `${OG_IMAGE_BASE_URL}/create/og${new URL(designSystem.shareUrl).search}`,
 		width: "1200",
 		height: "630",
 	}}
