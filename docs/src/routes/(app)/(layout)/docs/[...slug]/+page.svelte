@@ -150,7 +150,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 					{/if}
 				</div>
 			</div>
-			<div class="mt-3">
+			<div class=" -mb-2">
 				<CtaMobile />
 			</div>
 			{#if isChangelogIndex}
