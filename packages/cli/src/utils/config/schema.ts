@@ -11,6 +11,8 @@ import {
 } from "../../preset/index.js";
 import { PRESET_ICON_LIBRARIES } from "../../preset/preset.js";
 
+export const ICON_LIBRARIES = PRESET_ICON_LIBRARIES;
+
 export const STYLES = PRESET_STYLES;
 export type StyleName = (typeof STYLES)[number];
 export const BASE_COLORS = PRESET_BASE_COLOR_KEYS;
@@ -91,7 +93,7 @@ export const newConfigSchema = baseConfigSchema.extend({
 	registry: z.string().default(DEFAULT_CONFIG.registry),
 	// design system
 	style: z.string().optional(),
-	iconLibrary: z.enum(PRESET_ICON_LIBRARIES).optional(),
+	iconLibrary: z.enum(ICON_LIBRARIES).optional(),
 	menuColor: z.enum(MENU_COLORS).optional(),
 	menuAccent: z.enum(MENU_ACCENTS).optional(),
 });
@@ -120,7 +122,7 @@ export const resolvedConfigSchema = rawConfigSchema.extend({
 		lib: z.string(),
 	}),
 	style: z.string().default(DEFAULT_CONFIG.style),
-	iconLibrary: z.enum(PRESET_ICON_LIBRARIES).default(DEFAULT_CONFIG.iconLibrary),
+	iconLibrary: z.enum(ICON_LIBRARIES).default(DEFAULT_CONFIG.iconLibrary),
 	menuColor: z.enum(MENU_COLORS).default(DEFAULT_CONFIG.menuColor),
 	menuAccent: z.enum(MENU_ACCENTS).default(DEFAULT_CONFIG.menuAccent),
 });

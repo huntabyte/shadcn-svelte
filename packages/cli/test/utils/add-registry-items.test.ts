@@ -37,6 +37,10 @@ vi.mock("../../src/utils/prompt-helpers.js", () => ({
 	prettifyList: vi.fn().mockImplementation((items) => items.join(", ")),
 }));
 
+vi.mock("../../src/utils/transform-css.js", () => ({
+	transformCss: vi.fn((source: string) => source),
+}));
+
 vi.mock("../../src/utils/transformers.js", () => ({
 	transformContent: vi.fn().mockImplementation((content) => Promise.resolve(content)),
 	transformCss: vi.fn().mockImplementation((css) => css),

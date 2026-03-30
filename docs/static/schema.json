@@ -86,6 +86,35 @@
 					"additionalProperties": false
 				}
 			]
+		},
+		"iconLibrary": {
+			"description": "The icon library to use for your components.",
+			"type": "string",
+			"enum": [
+				"lucide",
+				"tabler",
+				"hugeicons",
+				"phosphor",
+				"remixicon"
+			]
+		},
+		"menuColor": {
+			"description": "The color scheme for menus.",
+			"type": "string",
+			"enum": [
+				"default",
+				"inverted",
+				"default-translucent",
+				"inverted-translucent"
+			]
+		},
+		"menuAccent": {
+			"description": "The accent style for menus.",
+			"type": "string",
+			"enum": [
+				"subtle",
+				"bold"
+			]
 		}
 	},
 	"required": [
