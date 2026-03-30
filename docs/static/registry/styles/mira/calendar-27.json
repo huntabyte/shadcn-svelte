@@ -4,7 +4,7 @@
 	"type": "registry:block",
 	"devDependencies": [
 		"@lucide/svelte@^0.577.0",
-		"layerchart@https://pkg.pr.new/layerchart@3b90291",
+		"layerchart@https://pkg.pr.new/layerchart@8d9a7d3",
 		"bits-ui@^2.16.3",
 		"@internationalized/date@^3.12.0",
 		"d3-scale@^4.0.2",

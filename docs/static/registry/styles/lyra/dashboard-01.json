@@ -6,7 +6,7 @@
 		"@tabler/icons-svelte@^3.40.0",
 		"d3-scale@^4.0.2",
 		"@types/d3-scale@^4.0.9",
-		"layerchart@https://pkg.pr.new/layerchart@3b90291",
+		"layerchart@https://pkg.pr.new/layerchart@8d9a7d3",
 		"d3-shape@^3.2.0",
 		"@types/d3-shape@^3.1.8",
 		"svelte-sonner@^1.1.0",

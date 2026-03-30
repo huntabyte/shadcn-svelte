@@ -3,7 +3,7 @@
 	"name": "chart-radial-shape",
 	"type": "registry:block",
 	"devDependencies": [
-		"layerchart@https://pkg.pr.new/layerchart@3b90291",
+		"layerchart@https://pkg.pr.new/layerchart@8d9a7d3",
 		"@lucide/svelte@^0.577.0"
 	],
 	"registryDependencies": [
