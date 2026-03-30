@@ -40,7 +40,6 @@
 						key: "other",
 						label: "Other",
 						color: chartConfig.other.color,
-						props: { opacity: 0.1 },
 					},
 					{
 						key: "mobile",
