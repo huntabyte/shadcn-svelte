@@ -16,7 +16,7 @@
 
 <Alert.Root
 	class={cn(
-		"bg-surface text-surface-foreground border-surface mt-6 w-auto rounded-xl md:-mx-1 **:[code]:border",
+		"bg-surface text-surface-foreground border-surface mt-6 w-auto rounded-xl px-4 py-3 md:-mx-1 **:[code]:border",
 		className
 	)}
 	{...restProps}
