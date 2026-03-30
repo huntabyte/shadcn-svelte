@@ -15,7 +15,7 @@
 	title="New Project"
 	description="Build your own shadcn-svelte."
 	ogImage={{
-		url: `/create/og${new URL(designSystem.shareUrl).search}`,
+		url: `/og/create${new URL(designSystem.shareUrl).search}`,
 		width: "1200",
 		height: "630",
 	}}
