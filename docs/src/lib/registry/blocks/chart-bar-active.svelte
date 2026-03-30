@@ -4,7 +4,6 @@
 	import { scaleBand } from "d3-scale";
 	import { Bar, BarChart } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
-	import { cubicInOut } from "svelte/easing";
 
 	const chartData = [
 		{ browser: "chrome", visitors: 187, color: "var(--color-chrome)" },

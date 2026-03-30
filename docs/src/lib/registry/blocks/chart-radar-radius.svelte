@@ -86,7 +86,7 @@
 					},
 				}}
 			>
-				{#snippet axis({ context })}
+				{#snippet axis()}
 					<Axis placement="angle" format={() => ""} />
 					<Axis
 						placement="radius"

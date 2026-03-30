@@ -57,7 +57,7 @@
 					<Chart.Tooltip hideLabel />
 				{/snippet}
 				{#snippet points({ context })}
-					{#each context.series.visibleSeries as s, i (s.key)}
+					{#each context.series.visibleSeries as s (s.key)}
 						<Points seriesKey={s.key} {...s.props}>
 							{#snippet children({ points })}
 								{#each points as p, i (i)}

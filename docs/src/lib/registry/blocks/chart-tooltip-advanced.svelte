@@ -69,7 +69,7 @@
 			>
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel class="w-[180px]">
-						{#snippet formatter({ name, index, value, item, payload })}
+						{#snippet formatter({ name, index, value, payload })}
 							<div
 								style="--color-bg: var(--color-{name.toLowerCase()})"
 								class="size-2.5 shrink-0 rounded-[2px] bg-(--color-bg)"

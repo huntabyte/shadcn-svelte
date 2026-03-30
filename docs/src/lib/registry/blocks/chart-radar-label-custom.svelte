@@ -79,7 +79,7 @@
 					},
 				}}
 			>
-				{#snippet axis({ context })}
+				{#snippet axis()}
 					<Axis placement="angle" tickLength={0}>
 						{#snippet tickLabel({ props, index })}
 							{@const y = props.y
