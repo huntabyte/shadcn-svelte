@@ -68,7 +68,10 @@
 				<Picker.Shortcut>{isMac.current ? "⇧⌘Z" : "Ctrl+Shift+Z"}</Picker.Shortcut>
 			</Picker.Item>
 			<Picker.Separator />
-			<Picker.Item onSelect={() => designSystem.reset()}>Reset</Picker.Item>
+			<Picker.Item onSelect={() => designSystem.reset()}>
+				Reset
+				<Picker.Shortcut>{isMac.current ? "⇧R" : "Shift+R"}</Picker.Shortcut>
+			</Picker.Item>
 		</Picker.Group>
 	</Picker.Content>
 </Picker.Root>
