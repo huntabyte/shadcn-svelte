@@ -50,6 +50,9 @@
 		"./transformers/strip-types": {
 			"types": "./dist/utils/transformers/transform-strip-types.d.mts",
 			"default": "./dist/utils/transformers/transform-strip-types.mjs"
+		},
+		"./tailwind.css": {
+			"style": "./dist/tailwind.css"
 		}
 	},
 	"files": [

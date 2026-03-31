@@ -1,3 +1,4 @@
+import { copyFileSync } from "node:fs";
 import { defineConfig } from "tsdown";
 
 export default defineConfig({
@@ -15,4 +16,7 @@ export default defineConfig({
 	],
 	target: "es2022",
 	dts: true,
+	onSuccess: async () => {
+		copyFileSync("src/tailwind.css", "dist/tailwind.css");
+	},
 });

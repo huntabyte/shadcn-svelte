@@ -16,7 +16,6 @@ import {
 	transformStripTypes,
 } from "./transformers/index.js";
 import { setupFonts, type Font } from "./fonts.js";
-import { TAILWIND_UTILS } from "./css.js";
 
 const STYLE_TYPES = ["registry:style", "registry:theme"];
 
@@ -198,9 +197,6 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 	css = merge(css, fontsCss);
 	cssVars = merge(cssVars, fontsCssVars);
 	fontsDependencies.forEach((dep) => devDependencies.add(dep));
-
-	// add tailwind utils to the css
-	css = merge(css, TAILWIND_UTILS);
 
 	if (Object.keys(cssVars).length || Object.keys(css).length) {
 		const cssPath = opts.config.resolvedPaths.tailwindCss;

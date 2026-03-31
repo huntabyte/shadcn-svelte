@@ -24,7 +24,6 @@ import {
 	transformStripTypes,
 } from "../../utils/transformers/index.js";
 import * as project from "../../utils/project.js";
-import { TAILWIND_UTILS } from "../../utils/css.js";
 
 const updateOptionsSchema = z.object({
 	all: z.boolean(),
@@ -243,9 +242,6 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 	css = merge(css, fontsCss);
 	cssVars = merge(cssVars, fontsCssVars);
 	fontsDependencies.forEach((dep) => devDependencies.add(dep));
-
-	// add tailwind utils to the css
-	css = merge(css, TAILWIND_UTILS);
 
 	if (Object.keys(cssVars).length > 0 || Object.keys(css).length > 0) {
 		// Update the stylesheet

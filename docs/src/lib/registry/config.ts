@@ -7,7 +7,6 @@ import { fonts } from "./fonts.js";
 import { STYLES, type Style } from "./styles/index.js";
 import { BASE_THEMES, THEMES, type BaseTheme, type Theme } from "./themes.js";
 import { PRESET_BASE_COLOR_KEYS, PRESET_FONTS, type PresetConfig } from "shadcn-svelte/preset";
-import { TAILWIND_UTILS } from "shadcn-svelte/utils/css";
 export { STYLES, type Style };
 export { THEMES, type Theme };
 export { BASE_THEMES, type BaseTheme };
@@ -280,11 +279,11 @@ export function buildRegistryBase(config: PresetConfig) {
 		cssVars: registryTheme.cssVars,
 		css: {
 			'@import "tw-animate-css"': {},
+			'@import "shadcn/tailwind.css"': {},
 			"@layer base": {
 				"*": { "@apply border-border outline-ring/50": {} },
 				body: { "@apply bg-background text-foreground": {} },
 			},
-			...TAILWIND_UTILS,
 		},
 	};
 }
