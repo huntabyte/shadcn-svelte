@@ -56,7 +56,7 @@
 		"@sveltejs/acorn-typescript": "^1.0.9",
 		"@sveltejs/adapter-cloudflare": "^7.2.8",
 		"@sveltejs/enhanced-img": "^0.10.4",
-		"@sveltejs/kit": "^2.55.0",
+		"@sveltejs/kit": "^2.53.3",
 		"@sveltejs/vite-plugin-svelte": "^7.0.0",
 		"@tabler/icons-svelte": "^3.40.0",
 		"@tailwindcss/vite": "^4.2.1",
