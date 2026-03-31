@@ -103,7 +103,7 @@
 		"runed": "^0.37.1",
 		"shadcn-svelte": "workspace:*",
 		"shiki": "^3.20.0",
-		"svelte": "^5.54.0",
+		"svelte": "^5.53.5",
 		"svelte-check": "^4.4.5",
 		"svelte-sonner": "^1.1.0",
 		"svelte-toolbelt": "^0.10.6",
