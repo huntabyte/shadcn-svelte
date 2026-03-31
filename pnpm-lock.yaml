@@ -270,8 +270,8 @@ importers:
         specifier: ^27.3.0
         version: 27.3.0(postcss@8.5.8)
       layerchart:
-        specifier: https://pkg.pr.new/layerchart@8d9a7d3
-        version: https://pkg.pr.new/layerchart@8d9a7d3(@sveltejs/kit@2.55.0(@sveltejs/vite-plugin-svelte@7.0.0(svelte@5.54.0)(vite@8.0.0(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1)))(svelte@5.54.0)(typescript@5.9.3)(vite@8.0.0(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1)))(svelte@5.54.0)(zod@4.3.6)
+        specifier: https://pkg.pr.new/layerchart@ffc05f0
+        version: https://pkg.pr.new/layerchart@ffc05f0(@sveltejs/kit@2.55.0(@sveltejs/vite-plugin-svelte@7.0.0(svelte@5.54.0)(vite@8.0.0(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1)))(svelte@5.54.0)(typescript@5.9.3)(vite@8.0.0(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1)))(svelte@5.54.0)(zod@4.3.6)
       little-date:
         specifier: ^1.2.1
         version: 1.2.1
@@ -4049,8 +4049,8 @@ packages:
   known-css-properties@0.37.0:
     resolution: {integrity: sha512-JCDrsP4Z1Sb9JwG0aJ8Eo2r7k4Ou5MwmThS/6lcIe1ICyb7UBJKGRIUUdqc2ASdE/42lgz6zFUnzAIhtXnBVrQ==}
 
-  layerchart@https://pkg.pr.new/layerchart@8d9a7d3:
-    resolution: {integrity: sha512-4xMeJv+EjaUO6foFvI73rablscTsUsr7rf1pDpUL7WHNRvCfzrrmWvYDF1ejUOVlI8tdqnwvitxOEi5+Youfdg==, tarball: https://pkg.pr.new/layerchart@8d9a7d3}
+  layerchart@https://pkg.pr.new/layerchart@ffc05f0:
+    resolution: {integrity: sha512-cy9pyPnNt/+d0TV56hY1NDZ/fB/SuYgBLCFq2GEC76DoC343CLLihuw5oCgHKeAYEqcIK8GbreCqSFFqQX5/3Q==, tarball: https://pkg.pr.new/layerchart@ffc05f0}
     version: 2.0.0-next.46
     peerDependencies:
       svelte: ^5.0.0
@@ -9573,7 +9573,7 @@ snapshots:
 
   known-css-properties@0.37.0: {}
 
-  layerchart@https://pkg.pr.new/layerchart@8d9a7d3(@sveltejs/kit@2.55.0(@sveltejs/vite-plugin-svelte@7.0.0(svelte@5.54.0)(vite@8.0.0(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1)))(svelte@5.54.0)(typescript@5.9.3)(vite@8.0.0(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1)))(svelte@5.54.0)(zod@4.3.6):
+  layerchart@https://pkg.pr.new/layerchart@ffc05f0(@sveltejs/kit@2.55.0(@sveltejs/vite-plugin-svelte@7.0.0(svelte@5.54.0)(vite@8.0.0(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1)))(svelte@5.54.0)(typescript@5.9.3)(vite@8.0.0(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1)))(svelte@5.54.0)(zod@4.3.6):
     dependencies:
       '@dagrejs/dagre': 2.0.4
       '@layerstack/svelte-actions': 1.0.1-next.18

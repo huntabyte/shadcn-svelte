@@ -3,7 +3,7 @@
 	"name": "chart-radial-grid",
 	"type": "registry:block",
 	"devDependencies": [
-		"layerchart@https://pkg.pr.new/layerchart@8d9a7d3",
+		"layerchart@https://pkg.pr.new/layerchart@ffc05f0",
 		"@lucide/svelte@^0.577.0"
 	],
 	"registryDependencies": [
