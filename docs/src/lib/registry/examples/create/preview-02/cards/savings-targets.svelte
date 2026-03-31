@@ -79,7 +79,9 @@
 						<NativeSelect.Option value="limit">Limit Order</NativeSelect.Option>
 						<NativeSelect.Option value="stop">Stop Order</NativeSelect.Option>
 					</NativeSelect.Root>
-					<Field.Description>Market orders execute at the current price.</Field.Description>
+					<Field.Description
+						>Market orders execute at the current price.</Field.Description
+					>
 				</Field.Field>
 				<div class="flex flex-col gap-2">
 					<div class="flex items-center justify-between">

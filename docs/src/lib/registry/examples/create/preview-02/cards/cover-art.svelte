@@ -21,7 +21,10 @@
 			Cover Art
 		</Label>
 		<Item.Root class="aspect-square" variant="outline">
-			<label for="cover-art" class="flex size-full cursor-pointer items-center justify-center">
+			<label
+				for="cover-art"
+				class="flex size-full cursor-pointer items-center justify-center"
+			>
 				<IconPlaceholder
 					lucide="ImageIcon"
 					tabler="IconPhoto"
@@ -41,7 +44,9 @@
 		/>
 	</Card.Content>
 	<Card.Footer class="flex-col gap-2">
-		<Button variant="secondary" class="w-full" type="button" onclick={openPicker}>Upload Artwork</Button>
+		<Button variant="secondary" class="w-full" type="button" onclick={openPicker}
+			>Upload Artwork</Button
+		>
 		<Card.Description class="text-center text-xs">
 			Minimum 3000 × 3000px
 			<br />

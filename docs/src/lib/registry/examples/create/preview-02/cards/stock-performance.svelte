@@ -74,7 +74,7 @@
 								{...props}
 								variant="outline"
 								id="ticker-select"
-								class="w-full justify-between font-normal bg-muted"
+								class="bg-muted w-full justify-between font-normal"
 								role="combobox"
 								aria-expanded={open}
 							>
@@ -117,7 +117,7 @@
 		<Separator />
 		<Chart.Container config={chartConfig} class="h-[200px] w-full">
 			<AreaChart
-				data={data}
+				{data}
 				x="month"
 				xScale={scaleBand()}
 				axis="x"

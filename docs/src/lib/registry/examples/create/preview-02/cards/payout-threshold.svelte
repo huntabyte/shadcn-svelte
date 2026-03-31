@@ -21,7 +21,9 @@
 <Card.Root>
 	<Card.Header>
 		<Card.Title>Payout Threshold</Card.Title>
-		<Card.Description>Set the minimum balance required before a payout is triggered.</Card.Description>
+		<Card.Description
+			>Set the minimum balance required before a payout is triggered.</Card.Description
+		>
 		<Card.Action>
 			<Button variant="ghost" size="icon-sm" class="bg-muted">
 				<IconPlaceholder
@@ -58,7 +60,14 @@
 						${amount[0].toFixed(2)}
 					</span>
 				</div>
-				<Slider type="multiple" id="min-payout" bind:value={amount} min={50} max={10000} step={50} />
+				<Slider
+					type="multiple"
+					id="min-payout"
+					bind:value={amount}
+					min={50}
+					max={10000}
+					step={50}
+				/>
 				<div class="flex items-center justify-between">
 					<Field.Description>$50 (MIN)</Field.Description>
 					<Field.Description>$10,000 (MAX)</Field.Description>

@@ -134,7 +134,9 @@
 					</Table.Cell>
 					<Table.Cell class="text-muted-foreground text-sm">Oct 12</Table.Cell>
 					<Table.Cell class="text-right">
-						<span class="text-emerald-500 text-sm font-semibold tabular-nums">+$4,200.00</span>
+						<span class="text-sm font-semibold text-emerald-500 tabular-nums"
+							>+$4,200.00</span
+						>
 					</Table.Cell>
 					<Table.Cell class="w-8">
 						<DropdownMenu.Root>

@@ -35,8 +35,8 @@
 	</Card.Content>
 	<Card.Footer>
 		<Card.Description>
-			Once your bank is connected, balances over $10.00 are automatically eligible for monthly distribution on
-			the 15th of each month.
+			Once your bank is connected, balances over $10.00 are automatically eligible for monthly
+			distribution on the 15th of each month.
 		</Card.Description>
 	</Card.Footer>
 </Card.Root>

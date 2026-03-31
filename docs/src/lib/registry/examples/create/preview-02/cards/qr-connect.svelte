@@ -21,7 +21,7 @@
 			{#if dataUrl}
 				<img src={dataUrl} alt="" width="160" height="160" class="block" />
 			{:else}
-				<div class="size-[160px] animate-pulse rounded bg-muted"></div>
+				<div class="bg-muted size-[160px] animate-pulse rounded"></div>
 			{/if}
 		</div>
 	</Card.Content>

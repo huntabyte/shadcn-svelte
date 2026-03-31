@@ -14,7 +14,8 @@
 				</Empty.Media>
 				<Empty.Title>Syncing your accounts</Empty.Title>
 				<Empty.Description>
-					We&apos;re pulling in your latest transactions. This usually takes a few seconds.
+					We&apos;re pulling in your latest transactions. This usually takes a few
+					seconds.
 				</Empty.Description>
 			</Empty.Header>
 			<Empty.Content>

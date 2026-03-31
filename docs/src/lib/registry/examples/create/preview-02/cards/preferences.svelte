@@ -63,7 +63,9 @@
 			<Field.Field orientation="horizontal">
 				<Field.Content>
 					<Field.Label for="email-notifications">Email Notifications</Field.Label>
-					<Field.Description>Monthly royalty reports and distribution updates</Field.Description>
+					<Field.Description
+						>Monthly royalty reports and distribution updates</Field.Description
+					>
 				</Field.Content>
 				<Switch id="email-notifications" checked={true} />
 			</Field.Field>

@@ -20,7 +20,8 @@
 			<Empty.Header>
 				<Empty.Title>Distribute Track</Empty.Title>
 				<Empty.Description>
-					Upload your first master to start reaching listeners on Spotify, Apple Music, and more.
+					Upload your first master to start reaching listeners on Spotify, Apple Music,
+					and more.
 				</Empty.Description>
 			</Empty.Header>
 			<Empty.Content>

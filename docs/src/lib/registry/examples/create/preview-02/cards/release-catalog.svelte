@@ -71,7 +71,9 @@
 			{#each HOLDINGS as holding (holding.ticker)}
 				<Item.Root variant="muted">
 					<Item.Media>
-						<div class="flex size-12 items-center justify-center rounded-lg border text-sm font-semibold">
+						<div
+							class="flex size-12 items-center justify-center rounded-lg border text-sm font-semibold"
+						>
 							{holding.ticker}
 						</div>
 					</Item.Media>
@@ -84,7 +86,9 @@
 					<div class="flex shrink-0 items-center gap-6">
 						<Badge variant="outline">{holding.type}</Badge>
 						<div class="flex flex-col items-end gap-0.5">
-							<span class="text-muted-foreground text-xs tracking-wider uppercase">Value</span>
+							<span class="text-muted-foreground text-xs tracking-wider uppercase"
+								>Value</span
+							>
 							<span class="font-medium tabular-nums">{holding.value}</span>
 						</div>
 					</div>

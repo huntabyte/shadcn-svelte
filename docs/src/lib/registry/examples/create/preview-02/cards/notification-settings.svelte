@@ -36,9 +36,7 @@
 	);
 
 	const allChecked = $derived(NOTIFICATIONS.every((n) => checkedMap[n.id]));
-	const someChecked = $derived(
-		NOTIFICATIONS.some((n) => checkedMap[n.id]) && !allChecked
-	);
+	const someChecked = $derived(NOTIFICATIONS.some((n) => checkedMap[n.id]) && !allChecked);
 
 	function setAll(value: boolean) {
 		checkedMap = Object.fromEntries(NOTIFICATIONS.map((n) => [n.id, value]));
