@@ -7,7 +7,7 @@ import { iconLibraries, type IconLibraryName } from "shadcn-svelte/icons";
 const SEARCH_BASE = "src/";
 const REGISTRY_BASE = "src/lib/registry";
 
-type IconUsage = Record<IconLibraryName, Set<string>>; 
+type IconUsage = Record<IconLibraryName, Set<string>>;
 
 async function findSvelteFiles(dir: string) {
 	const files: string[] = [];
