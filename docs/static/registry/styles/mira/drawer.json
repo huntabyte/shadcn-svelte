@@ -47,7 +47,7 @@
 			"target": "drawer/drawer-portal.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { Drawer as DrawerPrimitive } from \"vaul-svelte\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: DrawerPrimitive.TitleProps = $props();\n</script>\n\n<DrawerPrimitive.Title\n\tbind:ref\n\tdata-slot=\"drawer-title\"\n\tclass={cn(\"text-foreground text-sm font-medium\", className)}\n\t{...restProps}\n/>\n",
+			"content": "<script lang=\"ts\">\n\timport { Drawer as DrawerPrimitive } from \"vaul-svelte\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: DrawerPrimitive.TitleProps = $props();\n</script>\n\n<DrawerPrimitive.Title\n\tbind:ref\n\tdata-slot=\"drawer-title\"\n\tclass={cn(\"cn-font-heading text-foreground text-sm font-medium\", className)}\n\t{...restProps}\n/>\n",
 			"type": "registry:file",
 			"target": "drawer/drawer-title.svelte"
 		},

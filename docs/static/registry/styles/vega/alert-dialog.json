@@ -56,7 +56,7 @@
 			"target": "alert-dialog/alert-dialog-portal.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: AlertDialogPrimitive.TitleProps = $props();\n</script>\n\n<AlertDialogPrimitive.Title\n\tbind:ref\n\tdata-slot=\"alert-dialog-title\"\n\tclass={cn(\"text-lg font-medium sm:group-data-[size=default]/alert-dialog-content:group-has-data-[slot=alert-dialog-media]/alert-dialog-content:col-start-2\", className)}\n\t{...restProps}\n/>\n",
+			"content": "<script lang=\"ts\">\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: AlertDialogPrimitive.TitleProps = $props();\n</script>\n\n<AlertDialogPrimitive.Title\n\tbind:ref\n\tdata-slot=\"alert-dialog-title\"\n\tclass={cn(\"cn-font-heading text-lg font-medium sm:group-data-[size=default]/alert-dialog-content:group-has-data-[slot=alert-dialog-media]/alert-dialog-content:col-start-2\", className)}\n\t{...restProps}\n/>\n",
 			"type": "registry:file",
 			"target": "alert-dialog/alert-dialog-title.svelte"
 		},

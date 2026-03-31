@@ -46,7 +46,7 @@
 			"target": "dialog/dialog-portal.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { Dialog as DialogPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: DialogPrimitive.TitleProps = $props();\n</script>\n\n<DialogPrimitive.Title\n\tbind:ref\n\tdata-slot=\"dialog-title\"\n\tclass={cn(\"text-base leading-none font-medium\", className)}\n\t{...restProps}\n/>\n",
+			"content": "<script lang=\"ts\">\n\timport { Dialog as DialogPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: DialogPrimitive.TitleProps = $props();\n</script>\n\n<DialogPrimitive.Title\n\tbind:ref\n\tdata-slot=\"dialog-title\"\n\tclass={cn(\"cn-font-heading text-base leading-none font-medium\", className)}\n\t{...restProps}\n/>\n",
 			"type": "registry:file",
 			"target": "dialog/dialog-title.svelte"
 		},

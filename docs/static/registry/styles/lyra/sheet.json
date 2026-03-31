@@ -51,7 +51,7 @@
 			"target": "sheet/sheet-portal.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { Dialog as SheetPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: SheetPrimitive.TitleProps = $props();\n</script>\n\n<SheetPrimitive.Title\n\tbind:ref\n\tdata-slot=\"sheet-title\"\n\tclass={cn(\"text-foreground text-sm font-medium\", className)}\n\t{...restProps}\n/>\n",
+			"content": "<script lang=\"ts\">\n\timport { Dialog as SheetPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: SheetPrimitive.TitleProps = $props();\n</script>\n\n<SheetPrimitive.Title\n\tbind:ref\n\tdata-slot=\"sheet-title\"\n\tclass={cn(\"cn-font-heading text-foreground text-sm font-medium\", className)}\n\t{...restProps}\n/>\n",
 			"type": "registry:file",
 			"target": "sheet/sheet-title.svelte"
 		},
