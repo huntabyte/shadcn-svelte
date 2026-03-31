@@ -50,6 +50,7 @@ describe("encodePreset / decodePreset", () => {
 			theme: "blue",
 			iconLibrary: "tabler",
 			font: "jetbrains-mono",
+			fontHeading: "inherit",
 			radius: "large",
 			menuAccent: "bold",
 			menuColor: "inverted",
