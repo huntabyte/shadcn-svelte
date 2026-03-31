@@ -59,6 +59,19 @@ export const PRESET_THEME_KEYS = keys(PRESET_THEMES);
 
 export const PRESET_CHART_COLORS = PRESET_THEME_KEYS;
 
+// Before v2, base-color themes had colored chart palettes
+// borrowed from these colored themes. Used by consumers to
+// restore the original chart colors when decoding v1 presets.
+export const V1_CHART_COLOR_MAP: Record<string, string> = {
+	neutral: "blue",
+	stone: "lime",
+	zinc: "amber",
+	mauve: "emerald",
+	olive: "violet",
+	mist: "rose",
+	taupe: "cyan",
+};
+
 export const PRESET_ICON_LIBRARIES = keys(iconLibraries);
 
 export const PRESET_FONTS = [
@@ -130,6 +143,7 @@ export type PresetConfig = {
 	style: (typeof PRESET_STYLES)[number];
 	baseColor: (typeof PRESET_BASE_COLOR_KEYS)[number];
 	theme: (typeof PRESET_THEME_KEYS)[number];
+	chartColor?: (typeof PRESET_CHART_COLORS)[number];
 	iconLibrary: (typeof PRESET_ICON_LIBRARIES)[number];
 	font: (typeof PRESET_FONTS)[number];
 	fontHeading: (typeof PRESET_FONT_HEADINGS)[number];
