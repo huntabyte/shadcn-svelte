@@ -3,7 +3,7 @@
 	"name": "chart-pie-label",
 	"type": "registry:block",
 	"devDependencies": [
-		"layerchart@https://pkg.pr.new/layerchart@7eec953",
+		"layerchart@2.0.0-next.48",
 		"@lucide/svelte@^0.577.0"
 	],
 	"registryDependencies": [
