@@ -284,6 +284,10 @@ export function buildRegistryBase(config: PresetConfig) {
 		registryDependencies.push(`font-${config.font}`);
 	}
 
+	if (config.fontHeading) {
+		registryDependencies.push(`font-heading-${config.fontHeading}`);
+	}
+
 	return {
 		name: config.style,
 		extends: "none",
