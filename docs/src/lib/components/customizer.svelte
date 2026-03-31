@@ -6,6 +6,7 @@
 	import StylePicker from "../../routes/(app)/(layout)/(create)/components/style-picker.svelte";
 	import BaseColorPicker from "../../routes/(app)/(layout)/(create)/components/base-color-picker.svelte";
 	import ThemePicker from "../../routes/(app)/(layout)/(create)/components/theme-picker.svelte";
+	import ChartColorPicker from "../../routes/(app)/(layout)/(create)/components/chart-color-picker.svelte";
 	import IconLibraryPicker from "../../routes/(app)/(layout)/(create)/components/icon-library-picker.svelte";
 	import FontPicker from "../../routes/(app)/(layout)/(create)/components/font-picker.svelte";
 	import RadiusPicker from "../../routes/(app)/(layout)/(create)/components/radius-picker.svelte";
@@ -47,6 +48,7 @@
 				<StylePicker submenu />
 				<BaseColorPicker submenu />
 				<ThemePicker submenu />
+				<ChartColorPicker submenu />
 				<IconLibraryPicker submenu />
 				<FontPicker
 					submenu

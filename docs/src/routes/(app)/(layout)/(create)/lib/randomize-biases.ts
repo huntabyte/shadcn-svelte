@@ -1,7 +1,6 @@
 import type { FONTS } from "$lib/fonts.js";
 import type { BaseColor } from "$lib/registry/base-colors.js";
-import type { BaseColorName, Radius, StyleName, ThemeName } from "$lib/registry/config.js";
-import type { Theme } from "$lib/themes.js";
+import type { BaseColorName, Radius, StyleName, Theme, ThemeName } from "$lib/registry/config.js";
 
 export type RandomizeContext = {
 	style?: StyleName;

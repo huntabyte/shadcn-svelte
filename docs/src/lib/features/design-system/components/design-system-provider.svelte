@@ -36,6 +36,7 @@
 			...DEFAULT_CONFIG,
 			baseColor: designSystem.baseColor,
 			theme: designSystem.theme,
+			chartColor: designSystem.chartColor ?? DEFAULT_CONFIG.chartColor,
 			menuAccent: designSystem.menuAccent,
 			radius: designSystem.radius,
 		};

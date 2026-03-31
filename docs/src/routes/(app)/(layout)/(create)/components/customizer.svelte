@@ -4,6 +4,7 @@
 	import RadiusPicker from "./radius-picker.svelte";
 	import StylePicker from "./style-picker.svelte";
 	import ThemePicker from "./theme-picker.svelte";
+	import ChartColorPicker from "./chart-color-picker.svelte";
 	import BaseColorPicker from "./base-color-picker.svelte";
 	import IconLibraryPicker from "./icon-library-picker.svelte";
 	import FontPicker from "./font-picker.svelte";
@@ -40,6 +41,7 @@
 			<FieldGroup.Group class="flex-row gap-2.5 p-3 md:flex-col md:gap-3.25">
 				<BaseColorPicker />
 				<ThemePicker />
+				<ChartColorPicker />
 			</FieldGroup.Group>
 			<Separator />
 			<FieldGroup.Group class="flex-row gap-2.5 p-3 md:flex-col md:gap-3.25">

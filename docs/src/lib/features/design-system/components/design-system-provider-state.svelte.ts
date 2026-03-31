@@ -24,11 +24,15 @@ import {
 	DEFAULT_PRESET_CONFIG,
 	type PresetConfig,
 	PRESET_BASE_COLOR_KEYS,
+	PRESET_CHART_COLORS,
 } from "shadcn-svelte/preset";
+
+type ChartColorName = (typeof PRESET_CHART_COLORS)[number];
 import { FONTS } from "$lib/fonts.js";
 
 export interface IDesignSystemState extends PresetConfig {
 	preset: string;
+	chartColor: ChartColorName;
 	locks: Lockable;
 	lock: (key: keyof Lockable) => void;
 	unlock: (key: keyof Lockable) => void;
@@ -45,6 +49,7 @@ export type Lockable = {
 	style: boolean;
 	baseColor: boolean;
 	theme: boolean;
+	chartColor: boolean;
 	iconLibrary: boolean;
 	font: boolean;
 	fontHeading: boolean;
@@ -68,6 +73,7 @@ class DesignSystemState implements IDesignSystemState {
 			style: false,
 			baseColor: false,
 			theme: false,
+			chartColor: false,
 			iconLibrary: false,
 			font: false,
 			fontHeading: false,
@@ -166,10 +172,18 @@ class DesignSystemState implements IDesignSystemState {
 	set baseColor(value: PresetConfig["baseColor"]) {
 		// if the theme is currently set to a base color, we need to update it to this value as well
 		const shouldUpdateTheme = BASE_THEMES.some((base) => base.name === this.theme);
+		const nextTheme = shouldUpdateTheme ? value : this.system.theme;
+		const availableChart = getThemesForBaseColor(value);
+		const currentChart =
+			this.system.chartColor ?? DEFAULT_PRESET_CONFIG.chartColor ?? "neutral";
+		const nextChartColor = availableChart.some((t) => t.name === currentChart)
+			? currentChart
+			: availableChart[0]!.name;
 
 		this.#update({
-			theme: shouldUpdateTheme ? value : this.system.theme,
+			theme: nextTheme,
 			baseColor: value,
+			chartColor: nextChartColor,
 		});
 	}
 
@@ -179,6 +193,14 @@ class DesignSystemState implements IDesignSystemState {
 
 	set font(value: PresetConfig["font"]) {
 		this.#update({ font: value });
+	}
+
+	get chartColor() {
+		return this.system.chartColor ?? DEFAULT_PRESET_CONFIG.chartColor!;
+	}
+
+	set chartColor(value: ChartColorName) {
+		this.#update({ chartColor: value });
 	}
 
 	get fontHeading() {
@@ -258,6 +280,15 @@ class DesignSystemState implements IDesignSystemState {
 		const availableRadii = applyBias(RADII, context, RANDOMIZE_BIASES.radius);
 
 		const selectedTheme = this.locks.theme ? this.theme : randomItem(availableThemes).name;
+		context.theme = selectedTheme;
+		const availableChartThemes = applyBias(
+			availableThemes,
+			context,
+			RANDOMIZE_BIASES.chartColors
+		);
+		const selectedChartColor = this.locks.chartColor
+			? this.chartColor
+			: randomItem(availableChartThemes).name;
 		const selectedFont = this.locks.font ? this.font : randomItem(availableFonts).value;
 
 		// Pick heading font: ~70% inherit, ~30% distinct with cross-category contrast.
@@ -292,8 +323,8 @@ class DesignSystemState implements IDesignSystemState {
 			: randomItem(MENU_COLORS).value;
 
 		// Update context with selected values for potential future biases.
-		context.theme = selectedTheme;
 		context.font = selectedFont;
+		context.chartColor = selectedChartColor;
 		context.radius = selectedRadius;
 		context.iconLibrary = selectedIconLibrary;
 		context.menuAccent = selectedMenuAccent;
@@ -303,6 +334,7 @@ class DesignSystemState implements IDesignSystemState {
 			baseColor: selectedBaseColor,
 			style: selectedStyle,
 			theme: selectedTheme,
+			chartColor: selectedChartColor,
 			font: selectedFont,
 			fontHeading: selectedFontHeading,
 			radius: selectedRadius,
