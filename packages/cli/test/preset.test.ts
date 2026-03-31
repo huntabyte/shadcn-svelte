@@ -48,6 +48,7 @@ describe("encodePreset / decodePreset", () => {
 			style: "lyra",
 			baseColor: "zinc",
 			theme: "blue",
+			chartColor: "blue",
 			iconLibrary: "tabler",
 			font: "jetbrains-mono",
 			fontHeading: "inherit",
@@ -67,7 +68,7 @@ describe("encodePreset / decodePreset", () => {
 
 	it("should start with the version character", () => {
 		const code = encodePreset(DEFAULT_PRESET_CONFIG);
-		expect(code[0]).toBe("a");
+		expect(code[0]).toBe("b");
 	});
 
 	it("should handle partial config by filling defaults", () => {
@@ -155,7 +156,7 @@ describe("decodePreset edge cases", () => {
 	});
 
 	it("should return null for wrong version prefix", () => {
-		expect(decodePreset("b123")).toBeNull();
+		expect(decodePreset("c123")).toBeNull();
 	});
 
 	it("should return null for invalid base62 characters", () => {
@@ -198,7 +199,7 @@ describe("isValidPreset", () => {
 
 	it("should return false for invalid codes", () => {
 		expect(isValidPreset("")).toBe(false);
-		expect(isValidPreset("b123")).toBe(false);
+		expect(isValidPreset("c123")).toBe(false);
 	});
 });
 
