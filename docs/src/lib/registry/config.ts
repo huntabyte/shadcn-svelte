@@ -275,6 +275,7 @@ export function buildRegistryBase(config: PresetConfig) {
 		"clsx",
 		"tailwind-merge",
 		"tw-animate-css",
+		"shadcn-svelte@latest",
 		...iconLibraryItem.packages,
 	];
 
@@ -306,7 +307,7 @@ export function buildRegistryBase(config: PresetConfig) {
 		cssVars: registryTheme.cssVars,
 		css: {
 			'@import "tw-animate-css"': {},
-			'@import "shadcn/tailwind.css"': {},
+			'@import "shadcn-svelte/tailwind.css"': {},
 			"@layer base": {
 				"*": { "@apply border-border outline-ring/50": {} },
 				body: { "@apply bg-background text-foreground": {} },

@@ -6,6 +6,7 @@ import * as p from "@clack/prompts";
 import * as registry from "./registry/index.js";
 import { highlight } from "./colors.js";
 import { cancel, prettifyList } from "./prompt-helpers.js";
+import { shadcnSvelteTailwindCssImport } from "./css.js";
 import { transformCss } from "./transform-css.js";
 import type { ResolvedConfig } from "./config/index.js";
 import {
@@ -218,6 +219,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 	fontsDependencies.forEach((dep) => devDependencies.add(dep));
 
 	if (Object.keys(cssVars).length || Object.keys(css).length) {
+		css = merge(css, shadcnSvelteTailwindCssImport);
 		const cssPath = opts.config.resolvedPaths.tailwindCss;
 		const relative = path.relative(cwd, cssPath);
 

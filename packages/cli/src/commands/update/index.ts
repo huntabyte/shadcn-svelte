@@ -11,6 +11,7 @@ import { getEnvProxy } from "../../utils/get-env-proxy.js";
 import { cancel, intro, prettifyList, handleError } from "../../utils/prompt-helpers.js";
 import * as p from "@clack/prompts";
 import * as registry from "../../utils/registry/index.js";
+import { shadcnSvelteTailwindCssImport } from "../../utils/css.js";
 import { transformCss } from "../../utils/transform-css.js";
 import { setupFonts, type Font } from "../../utils/fonts.js";
 import { checkPreconditions } from "../../utils/preconditions.js";
@@ -266,6 +267,7 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 	fontsDependencies.forEach((dep) => devDependencies.add(dep));
 
 	if (Object.keys(cssVars).length > 0 || Object.keys(css).length > 0) {
+		css = merge(css, shadcnSvelteTailwindCssImport);
 		// Update the stylesheet
 		tasks.push({
 			title: "Updating stylesheet",
