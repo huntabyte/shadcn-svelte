@@ -93,6 +93,21 @@ export const DEFAULT_PRESETS = {
 
 		radius: "default",
 	},
+	luma: {
+		title: "Luma",
+		description: "Lucide / Inter",
+		hint: "Rounded geometry. Soft elevation. Breathable layouts.",
+		style: "luma",
+		baseColor: "neutral",
+		theme: "neutral",
+		iconLibrary: "lucide",
+		font: "inter",
+		fontHeading: "inherit",
+		menuAccent: "subtle" as const,
+		menuColor: "default" as const,
+
+		radius: "default",
+	},
 } as const;
 
 /**
