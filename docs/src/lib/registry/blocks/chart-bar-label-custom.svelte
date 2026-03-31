@@ -44,12 +44,7 @@
 						stroke: "none",
 						radius: 5,
 						rounded: "all",
-						initialWidth: 0,
-						initialX: 0,
-						motion: {
-							x: { type: "tween", duration: 500, easing: cubicInOut },
-							width: { type: "tween", duration: 500, easing: cubicInOut },
-						},
+						motion: { type: "tween", duration: 500, easing: cubicInOut },
 					},
 					highlight: { area: { fill: "none" } },
 					yAxis: {

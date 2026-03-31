@@ -30,7 +30,7 @@
 		xScale={scaleBand().padding(0.25)}
 		x="month"
 		axis="x"
-		tooltip={false}
+		tooltipContext={false}
 		seriesLayout="group"
 		series={[
 			{

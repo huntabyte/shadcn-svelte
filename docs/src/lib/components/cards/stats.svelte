@@ -68,7 +68,7 @@
 					y="revenue"
 					points={true}
 					grid={false}
-					tooltip={false}
+					tooltipContext={false}
 					highlight={false}
 					props={{
 						spline: {
@@ -104,7 +104,7 @@
 					y="subscription"
 					axis={false}
 					grid={false}
-					tooltip={false}
+					tooltipContext={false}
 					yPadding={[0, 8]}
 					props={{
 						area: {

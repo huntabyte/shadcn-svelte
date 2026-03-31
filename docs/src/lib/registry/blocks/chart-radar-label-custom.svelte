@@ -79,13 +79,15 @@
 					},
 				}}
 			>
-				{#snippet axis({ getAxisProps })}
-					<Axis {...getAxisProps("x")}>
+				{#snippet axis()}
+					<Axis placement="angle" tickLength={0}>
 						{#snippet tickLabel({ props, index })}
 							{@const y = props.y
 								? typeof props.y === "number"
 									? props.y
-									: Number.parseInt(props.y)
+									: typeof props.y === "string"
+										? Number.parseInt(props.y)
+										: 0
 								: 0}
 							{@const data = chartData[index]}
 							<Text
@@ -97,7 +99,7 @@
 							<Text {...props} y={y + 14} />
 						{/snippet}
 					</Axis>
-					<Axis {...getAxisProps("y")} />
+					<Axis placement="radius" format={() => ""} />
 				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip />
