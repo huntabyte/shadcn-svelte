@@ -17,6 +17,13 @@
 @import "@fontsource-variable/dm-sans/index.css";
 @import "@fontsource-variable/public-sans/index.css";
 @import "@fontsource-variable/outfit/index.css";
+@import "@fontsource-variable/oxanium/index.css";
+@import "@fontsource-variable/manrope/index.css";
+@import "@fontsource-variable/space-grotesk/index.css";
+@import "@fontsource-variable/montserrat/index.css";
+@import "@fontsource-variable/ibm-plex-sans/index.css";
+@import "@fontsource-variable/source-sans-3/index.css";
+@import "@fontsource-variable/instrument-sans/index.css";
 @import "@fontsource-variable/jetbrains-mono/index.css";
 @import "@fontsource-variable/geist-mono/index.css";
 @import "@fontsource-variable/noto-serif/index.css";
@@ -36,6 +43,7 @@
 
 @theme inline {
 	--font-sans: var(--font-sans);
+	--font-heading: var(--font-heading);
 	--font-mono: var(--font-mono);
 	--radius: 0.625rem;
 	--svelte-orange: oklch(0.6385 0.1991 34.99);
@@ -192,6 +200,10 @@
 	body {
 		font-synthesis-weight: none;
 		text-rendering: optimizeLegibility;
+	}
+
+	.cn-font-heading {
+		@apply font-heading;
 	}
 
 	@supports (font: -apple-system-body) and (-webkit-appearance: none) {

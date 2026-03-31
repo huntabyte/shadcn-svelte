@@ -27,6 +27,7 @@ export const DEFAULT_PRESETS = {
 		theme: "neutral",
 		iconLibrary: "lucide",
 		font: "geist",
+		fontHeading: "inherit",
 		menuAccent: "subtle" as const,
 		menuColor: "default" as const,
 
@@ -41,6 +42,7 @@ export const DEFAULT_PRESETS = {
 		theme: "neutral",
 		iconLibrary: "lucide",
 		font: "inter",
+		fontHeading: "inherit",
 		menuAccent: "subtle" as const,
 		menuColor: "default" as const,
 
@@ -55,6 +57,7 @@ export const DEFAULT_PRESETS = {
 		theme: "neutral",
 		iconLibrary: "hugeicons",
 		font: "figtree",
+		fontHeading: "inherit",
 		menuAccent: "subtle" as const,
 		menuColor: "default" as const,
 
@@ -69,6 +72,7 @@ export const DEFAULT_PRESETS = {
 		theme: "neutral",
 		iconLibrary: "phosphor",
 		font: "jetbrains-mono",
+		fontHeading: "inherit",
 		menuAccent: "subtle" as const,
 		menuColor: "default" as const,
 
@@ -83,6 +87,7 @@ export const DEFAULT_PRESETS = {
 		theme: "neutral",
 		iconLibrary: "hugeicons",
 		font: "inter",
+		fontHeading: "inherit",
 		menuAccent: "subtle" as const,
 		menuColor: "default" as const,
 
@@ -269,6 +274,7 @@ async function prompt(existingConfig: cliConfig.RawConfig | undefined): Promise<
 		theme: choices.theme as PresetConfig["theme"],
 		iconLibrary: choices.iconLibrary,
 		font: choices.font as PresetConfig["font"],
+		fontHeading: "inherit",
 		radius: choices.radius as PresetConfig["radius"],
 		menuColor: existingConfig?.menuColor ?? cliConfig.DEFAULT_CONFIG.menuColor,
 		menuAccent: existingConfig?.menuAccent ?? cliConfig.DEFAULT_CONFIG.menuAccent,

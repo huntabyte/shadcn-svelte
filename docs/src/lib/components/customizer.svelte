@@ -12,6 +12,7 @@
 	import MenuColorPicker from "../../routes/(app)/(layout)/(create)/components/menu-color-picker.svelte";
 	import MenuAccentPicker from "../../routes/(app)/(layout)/(create)/components/menu-accent-picker.svelte";
 	import CustomizerControls from "../../routes/(app)/(layout)/(create)/components/customizer-controls.svelte";
+	import { FONT_HEADING_OPTIONS, FONTS } from "$lib/fonts.js";
 	import { cn } from "$lib/utils.js";
 	import ModeSwitcher from "./mode-switcher.svelte";
 	import { setMode, mode } from "mode-watcher";
@@ -47,7 +48,13 @@
 				<BaseColorPicker submenu />
 				<ThemePicker submenu />
 				<IconLibraryPicker submenu />
-				<FontPicker submenu />
+				<FontPicker
+					submenu
+					label="Heading"
+					param="fontHeading"
+					fonts={FONT_HEADING_OPTIONS}
+				/>
+				<FontPicker submenu label="Font" param="font" fonts={FONTS} />
 				<RadiusPicker submenu />
 				<MenuColorPicker submenu />
 				<MenuAccentPicker submenu />

@@ -1,0 +1,16 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "font-heading-manrope",
+	"type": "registry:font",
+	"files": [],
+	"font": {
+		"family": "'Manrope Variable', sans-serif",
+		"provider": "google",
+		"import": "Manrope",
+		"variable": "--font-heading",
+		"subsets": [
+			"latin"
+		],
+		"dependency": "@fontsource-variable/manrope"
+	}
+}

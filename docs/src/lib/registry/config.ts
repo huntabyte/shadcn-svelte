@@ -20,6 +20,8 @@ export type BaseColorName = BaseTheme["name"];
 
 export type FontValue = (typeof PRESET_FONTS)[number];
 
+export type FontHeadingValue = FontValue | "inherit";
+
 export const MENU_ACCENTS = [
 	{ value: "subtle", label: "Subtle" },
 	{ value: "bold", label: "Bold" },

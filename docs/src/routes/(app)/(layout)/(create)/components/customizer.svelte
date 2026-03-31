@@ -15,6 +15,7 @@
 	import Cta from "$lib/components/cta.svelte";
 	import Ethical from "$lib/components/ethical.svelte";
 	import Separator from "$lib/registry/ui/separator/separator.svelte";
+	import { FONT_HEADING_OPTIONS, FONTS } from "$lib/fonts.js";
 </script>
 
 <div
@@ -42,7 +43,8 @@
 			</FieldGroup.Group>
 			<Separator />
 			<FieldGroup.Group class="flex-row gap-2.5 p-3 md:flex-col md:gap-3.25">
-				<FontPicker />
+				<FontPicker label="Heading" param="fontHeading" fonts={FONT_HEADING_OPTIONS} />
+				<FontPicker label="Font" param="font" fonts={FONTS} />
 			</FieldGroup.Group>
 			<Separator />
 			<FieldGroup.Group class="flex-row gap-2.5 p-3 md:flex-col md:gap-3.25">

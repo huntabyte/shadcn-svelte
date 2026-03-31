@@ -8,6 +8,7 @@ import {
 	MENU_COLORS,
 	RADII,
 	STYLES,
+	type FontHeadingValue,
 } from "$lib/registry/config.js";
 import { Context, PersistedState } from "runed";
 import { SvelteURLSearchParams } from "svelte/reactivity";
@@ -23,8 +24,8 @@ import {
 	DEFAULT_PRESET_CONFIG,
 	type PresetConfig,
 	PRESET_BASE_COLOR_KEYS,
-	PRESET_FONTS,
 } from "shadcn-svelte/preset";
+import { FONTS } from "$lib/fonts.js";
 
 export interface IDesignSystemState extends PresetConfig {
 	preset: string;
@@ -46,6 +47,7 @@ export type Lockable = {
 	theme: boolean;
 	iconLibrary: boolean;
 	font: boolean;
+	fontHeading: boolean;
 	item: boolean;
 	menuAccent: boolean;
 	menuColor: boolean;
@@ -68,6 +70,7 @@ class DesignSystemState implements IDesignSystemState {
 			theme: false,
 			iconLibrary: false,
 			font: false,
+			fontHeading: false,
 			item: false,
 			menuAccent: false,
 			menuColor: false,
@@ -178,6 +181,14 @@ class DesignSystemState implements IDesignSystemState {
 		this.#update({ font: value });
 	}
 
+	get fontHeading() {
+		return this.system.fontHeading;
+	}
+
+	set fontHeading(value: PresetConfig["fontHeading"]) {
+		this.#update({ fontHeading: value });
+	}
+
 	get iconLibrary() {
 		return this.system.iconLibrary;
 	}
@@ -243,10 +254,28 @@ class DesignSystemState implements IDesignSystemState {
 		};
 
 		const availableThemes = getThemesForBaseColor(selectedBaseColor);
+		const availableFonts = applyBias(FONTS, context, RANDOMIZE_BIASES.fonts);
 		const availableRadii = applyBias(RADII, context, RANDOMIZE_BIASES.radius);
 
 		const selectedTheme = this.locks.theme ? this.theme : randomItem(availableThemes).name;
-		const selectedFont = this.locks.font ? this.font : randomItem(PRESET_FONTS);
+		const selectedFont = this.locks.font ? this.font : randomItem(availableFonts).value;
+
+		// Pick heading font: ~70% inherit, ~30% distinct with cross-category contrast.
+		let selectedFontHeading: FontHeadingValue;
+		if (this.locks.fontHeading) {
+			selectedFontHeading = this.fontHeading;
+		} else if (Math.random() < 0.7) {
+			selectedFontHeading = "inherit";
+		} else {
+			const bodyType = availableFonts.find((f) => f.value === selectedFont)?.type;
+			const contrastFonts = availableFonts.filter(
+				(f) => f.type !== bodyType && f.value !== selectedFont
+			);
+			selectedFontHeading = (
+				contrastFonts.length > 0 ? randomItem(contrastFonts) : randomItem(availableFonts)
+			).value;
+		}
+
 		const selectedRadius = this.locks.radius ? this.radius : randomItem(availableRadii).name;
 		const selectedIconLibrary = this.locks.iconLibrary
 			? this.iconLibrary
@@ -275,6 +304,7 @@ class DesignSystemState implements IDesignSystemState {
 			style: selectedStyle,
 			theme: selectedTheme,
 			font: selectedFont,
+			fontHeading: selectedFontHeading,
 			radius: selectedRadius,
 			iconLibrary: selectedIconLibrary,
 			menuAccent: selectedMenuAccent,
