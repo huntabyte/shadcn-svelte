@@ -86,9 +86,13 @@
 					},
 				}}
 			>
-				{#snippet axis({ getAxisProps })}
-					<Axis {...getAxisProps("x")} />
-					<Axis {...getAxisProps("y")} />
+				{#snippet axis()}
+					<Axis placement="angle" format={() => ""} />
+					<Axis
+						placement="radius"
+						format="metric"
+						tickLabelProps={{ class: "fill-background!" }}
+					/>
 				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip />

@@ -3,7 +3,7 @@
 	"name": "chart-radar-lines-only",
 	"type": "registry:block",
 	"devDependencies": [
-		"layerchart@2.0.0-next.43",
+		"layerchart@2.0.0-next.48",
 		"@lucide/svelte@^0.577.0",
 		"d3-shape@^3.2.0",
 		"@types/d3-shape@^3.1.8",

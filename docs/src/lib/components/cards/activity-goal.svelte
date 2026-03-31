@@ -4,7 +4,7 @@
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
-	import { BarChart, type ChartContextValue } from "layerchart";
+	import { BarChart } from "layerchart";
 	import { cubicInOut } from "svelte/easing";
 	import { scaleBand } from "d3-scale";
 
@@ -62,8 +62,6 @@
 	function onClick(adjustment: number) {
 		goal = Math.max(200, Math.min(400, goal + adjustment));
 	}
-
-	let context = $state<ChartContextValue>();
 </script>
 
 <Card.Root class="w-full gap-5">
@@ -103,27 +101,18 @@
 		<div class="flex-1">
 			<Chart.Container config={chartConfig} class="aspect-auto h-14 w-full">
 				<BarChart
-					bind:context
 					data={data.map((d, i) => ({ goal: d.goal, index: i }))}
 					y="goal"
 					x="index"
 					xScale={scaleBand().padding(0.25)}
 					axis={false}
-					tooltip={false}
+					tooltipContext={false}
 					props={{
 						bars: {
 							stroke: "none",
 							rounded: "all",
 							radius: 4,
-							// use the height of the chart to animate the bars
-							initialY: context?.height,
-							initialHeight: 0,
-							motion: {
-								x: { type: "tween", duration: 500, easing: cubicInOut },
-								width: { type: "tween", duration: 500, easing: cubicInOut },
-								height: { type: "tween", duration: 500, easing: cubicInOut },
-								y: { type: "tween", duration: 500, easing: cubicInOut },
-							},
+							motion: { type: "tween", duration: 500, easing: cubicInOut },
 							fill: "var(--color-goal)",
 						},
 						highlight: { area: { fill: "none" } },
