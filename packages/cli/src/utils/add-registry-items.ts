@@ -10,11 +10,13 @@ import { transformCss } from "./transform-css.js";
 import type { ResolvedConfig } from "./config/index.js";
 import {
 	transform,
+	transformFont,
 	transformImports,
 	transformIcons,
 	transformMenu,
 	transformStripTypes,
 } from "./transformers/index.js";
+import { getSupportedFontMarkers, type FontMarkerSource } from "./font-markers.js";
 import { setupFonts, type Font } from "./fonts.js";
 
 const STYLE_TYPES = ["registry:style", "registry:theme"];
@@ -52,6 +54,17 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 	});
 
 	if (itemsWithContent.length === 0) cancel("Selected items not found.");
+
+	const fontMarkerSources: FontMarkerSource[] = [];
+	for (const item of itemsWithContent) {
+		if (item.cssVars) {
+			fontMarkerSources.push({ cssVars: item.cssVars });
+		}
+		if (item.type === "registry:font" && item.font) {
+			fontMarkerSources.push({ fonts: [{ font: item.font }] });
+		}
+	}
+	const registryFontMarkers = getSupportedFontMarkers(fontMarkerSources);
 
 	// build a list of existing items
 	const existingItems: string[] = [];
@@ -146,11 +159,17 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 						devDependencies: transformDevDependencies,
 						filePath: transformFilePath,
 					} = await transform(
-						{ content: file.content, filePath: filePath, config: opts.config },
+						{
+							content: file.content,
+							filePath: filePath,
+							config: opts.config,
+							supportedFontMarkers: registryFontMarkers,
+						},
 						[
 							transformImports,
 							transformIcons,
 							transformMenu,
+							transformFont,
 							!opts.config.typescript && transformStripTypes,
 						]
 					);

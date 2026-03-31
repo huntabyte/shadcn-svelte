@@ -47,6 +47,10 @@
 			"types": "./dist/utils/transformers/transform-menu.d.mts",
 			"default": "./dist/utils/transformers/transform-menu.mjs"
 		},
+		"./transformers/font": {
+			"types": "./dist/utils/transformers/transform-font.d.mts",
+			"default": "./dist/utils/transformers/transform-font.mjs"
+		},
 		"./transformers/strip-types": {
 			"types": "./dist/utils/transformers/transform-strip-types.d.mts",
 			"default": "./dist/utils/transformers/transform-strip-types.mjs"

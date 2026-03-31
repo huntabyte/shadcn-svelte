@@ -18,11 +18,13 @@ import { highlight } from "../../utils/colors.js";
 import { installDependencies } from "../../utils/install-deps.js";
 import {
 	transform,
+	transformFont,
 	transformImports,
 	transformIcons,
 	transformMenu,
 	transformStripTypes,
 } from "../../utils/transformers/index.js";
+import { getSupportedFontMarkers, type FontMarkerSource } from "../../utils/font-markers.js";
 import * as project from "../../utils/project.js";
 
 const updateOptionsSchema = z.object({
@@ -150,6 +152,17 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 	});
 	payload.sort((a, b) => a.name.localeCompare(b.name));
 
+	const fontMarkerSources: FontMarkerSource[] = [];
+	for (const item of payload) {
+		if (item.cssVars) {
+			fontMarkerSources.push({ cssVars: item.cssVars });
+		}
+		if (item.type === "registry:font" && item.font) {
+			fontMarkerSources.push({ fonts: [{ font: item.font }] });
+		}
+	}
+	const registryFontMarkers = getSupportedFontMarkers(fontMarkerSources);
+
 	const componentsToRemove: Record<string, string[]> = {};
 	const dependencies = new Set<string>();
 	const devDependencies = new Set<string>();
@@ -182,12 +195,21 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 						dependencies: transformDependencies,
 						devDependencies: transformDevDependencies,
 						filePath: transformFilePath,
-					} = await transform({ content: file.content, filePath, config }, [
-						transformImports,
-						transformIcons,
-						transformMenu,
-						!config.typescript && transformStripTypes,
-					]);
+					} = await transform(
+						{
+							content: file.content,
+							filePath,
+							config,
+							supportedFontMarkers: registryFontMarkers,
+						},
+						[
+							transformImports,
+							transformIcons,
+							transformMenu,
+							transformFont,
+							!config.typescript && transformStripTypes,
+						]
+					);
 
 					transformDependencies?.forEach((dep) => dependencies.add(dep));
 					transformDevDependencies?.forEach((dep) => devDependencies.add(dep));

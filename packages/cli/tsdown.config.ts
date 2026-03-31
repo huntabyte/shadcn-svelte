@@ -12,6 +12,7 @@ export default defineConfig({
 		"src/utils/transformers/transform-icons.ts",
 		"src/utils/transformers/transform-imports.ts",
 		"src/utils/transformers/transform-menu.ts",
+		"src/utils/transformers/transform-font.ts",
 		"src/utils/transformers/transform-strip-types.ts",
 	],
 	target: "es2022",

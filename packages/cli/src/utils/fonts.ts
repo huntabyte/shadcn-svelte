@@ -16,7 +16,7 @@ export function setupFonts(fonts: Font[]): {
 	const dependencies: string[] = [];
 
 	for (const font of fonts) {
-		const fontName = font.name.replace("font-", "");
+		const fontName = font.name.replace(/^font-heading-/, "").replace("font-", "");
 		const fontSourceDependency = font.dependency ?? `@fontsource-variable/${fontName}`;
 		dependencies.push(fontSourceDependency);
 		css[`@import "${fontSourceDependency}"`] = {};
