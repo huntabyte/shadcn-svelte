@@ -74,6 +74,7 @@
 		"@types/jsdom": "^27.0.0",
 		"@types/lodash.template": "^4.5.3",
 		"@types/mdast": "^4.0.4",
+		"@types/qrcode": "^1.5.6",
 		"acorn": "^8.16.0",
 		"bits-ui": "^2.16.3",
 		"chrono-node": "^2.9.0",
@@ -131,6 +132,7 @@
 	},
 	"dependencies": {
 		"@types/lodash": "^4.17.24",
-		"lodash": "^4.17.23"
+		"lodash": "^4.17.23",
+		"qrcode": "^1.5.4"
 	}
 }

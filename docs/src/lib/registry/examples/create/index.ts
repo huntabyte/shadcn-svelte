@@ -4,6 +4,8 @@ type Example = {
 	title: string;
 	name: string;
 	type: RegistryItemType;
+	/** If true, hidden from Navigate (⌘P / Ctrl+P); `/create` can still default here. */
+	hideFromCommandPalette?: boolean;
 };
 
 export const examples: Example[] = [
@@ -11,6 +13,12 @@ export const examples: Example[] = [
 		title: "Preview",
 		name: "preview",
 		type: "registry:example",
+	},
+	{
+		title: "Preview 02",
+		name: "preview-02",
+		type: "registry:example",
+		hideFromCommandPalette: true,
 	},
 	{
 		title: "Accordion",
