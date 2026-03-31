@@ -70,6 +70,12 @@
 				.family ?? fonts[0].font.family;
 		document.documentElement.style.setProperty("--font-sans", selectedFont);
 
+		const selectedHeadingFont =
+			fonts.find(
+				(font) => font.name.replace("font-heading-", "") === designSystem.fontHeading
+			)?.font.family ?? fonts[0].font.family;
+		document.documentElement.style.setProperty("--font-heading", selectedHeadingFont);
+
 		const styleId = uid;
 		let styleElement = document.getElementById(styleId) as HTMLStyleElement | null;
 
