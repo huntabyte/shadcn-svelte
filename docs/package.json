@@ -98,6 +98,7 @@
 		"paneforge": "^1.0.2",
 		"phosphor-svelte": "^3.0.1",
 		"postcss": "^8.5.8",
+		"qrcode": "^1.5.4",
 		"rehype-parse": "^9.0.1",
 		"rehype-pretty-code": "^0.14.1",
 		"rehype-remark": "^10.0.1",
@@ -132,7 +133,6 @@
 	},
 	"dependencies": {
 		"@types/lodash": "^4.17.24",
-		"lodash": "^4.17.23",
-		"qrcode": "^1.5.4"
+		"lodash": "^4.17.23"
 	}
 }
