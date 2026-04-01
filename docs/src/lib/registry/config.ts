@@ -285,7 +285,7 @@ export function buildRegistryBase(config: PresetConfig) {
 		registryDependencies.push(`font-${config.font}`);
 	}
 
-	if (config.fontHeading) {
+	if (config.fontHeading && config.fontHeading !== "inherit") {
 		registryDependencies.push(`font-heading-${config.fontHeading}`);
 	}
 
