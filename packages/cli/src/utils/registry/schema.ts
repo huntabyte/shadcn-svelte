@@ -1,7 +1,7 @@
 // !! BROWSER SAFE !!
 
 import { z } from "zod";
-import { rawConfigSchema } from "../config/schema.js";
+import { ICON_LIBRARIES, MENU_ACCENTS, MENU_COLORS, rawConfigSchema } from "../config/schema.js";
 
 const registryItemFileType = [
 	"registry:lib",
@@ -310,6 +310,12 @@ export const componentsJsonSchema = z.object({
 		.describe(
 			"Used to determine if Typescript is used for this project. When set to `false`, `.js` files will be installed instead. Defaults to `true`."
 		),
+	iconLibrary: z
+		.enum(ICON_LIBRARIES)
+		.optional()
+		.describe("The icon library to use for your components."),
+	menuColor: z.enum(MENU_COLORS).optional().describe("The color scheme for menus."),
+	menuAccent: z.enum(MENU_ACCENTS).optional().describe("The accent style for menus."),
 });
 
 /**

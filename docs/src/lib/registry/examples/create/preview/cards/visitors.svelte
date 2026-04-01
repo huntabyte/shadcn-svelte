@@ -58,7 +58,7 @@
 				props={{
 					area: {
 						curve: curveNatural,
-						"fill-opacity": 0.15,
+						fillOpacity: 0.15,
 						motion: "tween",
 					},
 					xAxis: {

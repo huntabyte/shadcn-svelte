@@ -47,11 +47,6 @@
 					},
 				]}
 				props={{
-					area: {
-						curve: curveLinear,
-						"fill-opacity": 0.4,
-						line: { class: "stroke-1" },
-					},
 					xAxis: { format: () => "" },
 					yAxis: { format: () => "" },
 				}}
@@ -59,9 +54,15 @@
 				{#snippet tooltip()}
 					<Chart.Tooltip indicator="line" hideLabel />
 				{/snippet}
-				{#snippet marks({ series, getAreaProps })}
-					{#each series as s, i (i)}
-						<Area {...getAreaProps(s, i)} />
+				{#snippet marks({ context })}
+					{#each context.series.visibleSeries as s (s.key)}
+						<Area
+							seriesKey={s.key}
+							curve={curveLinear}
+							fillOpacity={0.4}
+							line={{ class: "stroke-1" }}
+							{...s.props}
+						/>
 					{/each}
 				{/snippet}
 			</AreaChart>

@@ -41,7 +41,6 @@
 						key: "other",
 						label: "Other",
 						color: chartConfig.other.color,
-						props: { opacity: 0.1 },
 					},
 					{
 						key: "mobile",
@@ -57,7 +56,7 @@
 				props={{
 					area: {
 						curve: curveNatural,
-						"fill-opacity": 0.4,
+						fillOpacity: 0.4,
 						line: { class: "stroke-1" },
 					},
 					xAxis: {

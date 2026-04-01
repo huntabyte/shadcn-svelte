@@ -2,7 +2,7 @@
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { scaleUtc } from "d3-scale";
-	import { BarChart, type ChartContextValue, Highlight } from "layerchart";
+	import { BarChart, type ChartState, Highlight } from "layerchart";
 	import { defaultBarMotion } from "$lib/registry/ui/chart/easing.js";
 
 	const chartData = [
@@ -43,7 +43,7 @@
 		desktop: { label: "Desktop", color: "var(--chart-2)" },
 		mobile: { label: "Mobile", color: "var(--chart-1)" },
 	} satisfies Chart.ChartConfig;
-	let context = $state<ChartContextValue>();
+	let context = $state<ChartState>();
 
 	let activeChart = $state<keyof typeof chartConfig>("desktop");
 

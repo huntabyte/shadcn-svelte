@@ -84,7 +84,7 @@
 		"globby": "^16.2.0",
 		"hast-util-to-html": "^9.0.5",
 		"jsdom": "^29.0.1",
-		"layerchart": "2.0.0-next.46",
+		"layerchart": "2.0.0-next.48",
 		"little-date": "^1.2.1",
 		"magic-string": "^0.30.21",
 		"mdsx": "^0.0.7",

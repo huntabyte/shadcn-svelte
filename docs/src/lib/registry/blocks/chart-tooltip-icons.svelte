@@ -2,7 +2,7 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import { scaleBand } from "d3-scale";
-	import { BarChart, type ChartContextValue } from "layerchart";
+	import { BarChart, type ChartState } from "layerchart";
 	import { defaultBarMotion } from "$lib/registry/ui/chart/easing.js";
 	import { onMount } from "svelte";
 	import FootprintsIcon from "@lucide/svelte/icons/footprints";
@@ -22,7 +22,7 @@
 		swimming: { label: "Swimming", color: "var(--chart-2)", icon: WavesIcon },
 	} satisfies Chart.ChartConfig;
 
-	let context = $state<ChartContextValue>();
+	let context = $state<ChartState>();
 	let containerRef = $state<HTMLDivElement | null>(null);
 
 	onMount(() => {

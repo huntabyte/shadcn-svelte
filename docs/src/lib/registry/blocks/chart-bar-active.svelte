@@ -2,7 +2,7 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import { scaleBand } from "d3-scale";
-	import { Bar, BarChart, type ChartContextValue } from "layerchart";
+	import { Bar, BarChart, type ChartState } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { defaultBarMotion } from "$lib/registry/ui/chart/easing.js";
 
@@ -23,7 +23,7 @@
 		other: { label: "Other", color: "var(--chart-5)" },
 	} satisfies Chart.ChartConfig;
 
-	let context = $state<ChartContextValue>();
+	let context = $state<ChartState>();
 </script>
 
 <Card.Root>

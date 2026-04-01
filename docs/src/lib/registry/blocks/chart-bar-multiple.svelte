@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { scaleBand } from "d3-scale";
-	import { BarChart, type ChartContextValue } from "layerchart";
+	import { BarChart, type ChartState } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
@@ -20,7 +20,7 @@
 		mobile: { label: "Mobile", color: "var(--chart-2)" },
 	} satisfies Chart.ChartConfig;
 
-	let context = $state<ChartContextValue>();
+	let context = $state<ChartState>();
 </script>
 
 <Card.Root>

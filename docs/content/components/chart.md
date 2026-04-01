@@ -216,7 +216,7 @@ The `props` prop is how you can pass custom props to the various components that
     xScale={scaleBand().padding(0.25)}
     x="month"
     axis="x"
-    tooltip={false}
+    tooltipContext={false}
     seriesLayout="group"
     series={[
       {
@@ -257,7 +257,7 @@ To add a tooltip, we'll use the custom `Chart.Tooltip` component from `chart`.
 
 ### Add the `Chart.Tooltip` component to the chart
 
-We'll replace the `tooltip={false}` prop with the `tooltip` snippet where we'll place the `Chart.Tooltip` component.
+We'll replace the `tooltipContext={false}` prop with the `tooltip` snippet where we'll place the `Chart.Tooltip` component.
 
 ```svelte showLineNumbers {26-28}
 <Chart.Container config={chartConfig} class="min-h-[200px] w-full">

@@ -197,12 +197,6 @@
 				]}
 				seriesLayout="stack"
 				props={{
-					area: {
-						curve: curveNatural,
-						"fill-opacity": 0.7,
-						line: { class: "stroke-1" },
-						motion: "tween",
-					},
 					xAxis: {
 						ticks: timeRange === "7d" ? 7 : undefined,
 						format: (v) => {
@@ -212,11 +206,10 @@
 							});
 						},
 					},
-
 					yAxis: { format: () => "" },
 				}}
 			>
-				{#snippet marks({ series, getAreaProps })}
+				{#snippet marks({ context })}
 					<defs>
 						<linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
 							<stop
@@ -245,9 +238,14 @@
 							width: { type: "tween", duration: 1000, easing: cubicInOut },
 						}}
 					>
-						{#each series as s, i (s.key)}
+						{#each context.series.visibleSeries as s (s.key)}
 							<Area
-								{...getAreaProps(s, i)}
+								seriesKey={s.key}
+								curve={curveNatural}
+								fillOpacity={0.4}
+								line={{ class: "stroke-1" }}
+								motion="tween"
+								{...s.props}
 								fill={s.key === "desktop"
 									? "url(#fillDesktop)"
 									: "url(#fillMobile)"}

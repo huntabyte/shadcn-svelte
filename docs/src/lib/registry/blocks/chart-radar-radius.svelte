@@ -91,9 +91,13 @@
 					},
 				}}
 			>
-				{#snippet axis({ getAxisProps })}
-					<Axis {...getAxisProps("x")} />
-					<Axis {...getAxisProps("y")} />
+				{#snippet axis()}
+					<Axis placement="angle" format={() => ""} />
+					<Axis
+						placement="radius"
+						format="metric"
+						tickLabelProps={{ class: "fill-background!" }}
+					/>
 				{/snippet}
 				{#snippet marks({ visibleSeries, getSplineProps })}
 					<g style="transform: scale({$scale}); transform-origin: 0 0;">

@@ -78,7 +78,7 @@
 					bars: { stroke: "none" },
 				}}
 				axis={false}
-				tooltip={false}
+				tooltipContext={false}
 			/>
 		</Chart.Container>
 		<div class="grid grid-cols-4 gap-2">
