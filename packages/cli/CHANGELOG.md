@@ -1,5 +1,13 @@
 # shadcn-svelte
 
+## 1.2.6
+
+### Patch Changes
+
+- fix: Use `@import "shadcn-svelte/tailwind.css";` instead of adding each utility ([#2614](https://github.com/huntabyte/shadcn-svelte/pull/2614))
+
+- feat: Support new preset options ([#2614](https://github.com/huntabyte/shadcn-svelte/pull/2614))
+
 ## 1.2.5
 
 ### Patch Changes
