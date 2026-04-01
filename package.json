@@ -11,7 +11,7 @@
 		"build": "pnpm build:docs",
 		"build:cli": "pnpm -r -F \"./packages/**\" build",
 		"build:docs": "pnpm -F docs build",
-		"dev": "concurrently -n packages,apps --kill-others=false -c \"blue,green\" \"pnpm -r -parallel -F './packages/**' dev\" \"wait-on packages/cli/dist/index.mjs && pnpm -r -parallel -F docs dev\"",
+		"dev": "concurrently -n packages,apps --kill-others=false -c \"blue,green\" \"pnpm -r -parallel -F './packages/**' dev\" \"until [ -f packages/cli/dist/index.mjs ]; do sleep 0.5; done && pnpm -r -parallel -F docs dev\"",
 		"dev:cli": "pnpm -F  \"./packages/**\" --parallel --reporter append-only --color dev",
 		"preview": "pnpm -F docs preview",
 		"test": "pnpm -F shadcn-svelte test",
@@ -47,16 +47,15 @@
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.16.0",
 		"globals": "^17.4.0",
-		"minimatch": "^10.2.4",
+		"minimatch": "^10.2.5",
 		"prettier": "~3.8.1",
 		"prettier-plugin-svelte": "^3.5.1",
 		"prettier-plugin-tailwindcss": "^0.7.2",
 		"pretty-quick": "^4.2.2",
 		"svelte": "catalog:",
 		"typescript": "6.0.2",
-		"typescript-eslint": "^8.57.2",
-		"wait-on": "^9.0.4",
-		"wrangler": "^4.78.0"
+		"typescript-eslint": "^8.58.0",
+		"wrangler": "^4.79.0"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [

@@ -3,7 +3,7 @@
 	"name": "new-components-01",
 	"type": "registry:block",
 	"devDependencies": [
-		"@tabler/icons-svelte@^3.41.0",
+		"@tabler/icons-svelte@^3.41.1",
 		"@lucide/svelte@^1.7.0"
 	],
 	"registryDependencies": [

@@ -3,7 +3,7 @@
 	"name": "navigation-menu",
 	"type": "registry:ui",
 	"devDependencies": [
-		"bits-ui@^2.16.4",
+		"bits-ui@^2.16.5",
 		"@internationalized/date@^3.12.0",
 		"tailwind-variants@^3.2.2"
 	],
