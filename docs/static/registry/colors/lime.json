@@ -4,8 +4,8 @@
 	"type": "registry:theme",
 	"cssVars": {
 		"light": {
-			"primary": "oklch(0.532 0.157 131.589)",
-			"primary-foreground": "oklch(0.986 0.031 120.757)",
+			"primary": "oklch(0.841 0.238 128.85)",
+			"primary-foreground": "oklch(0.405 0.101 131.063)",
 			"secondary": "oklch(0.967 0.001 286.375)",
 			"secondary-foreground": "oklch(0.21 0.006 285.885)",
 			"chart-1": "oklch(0.897 0.196 126.665)",
@@ -17,8 +17,8 @@
 			"sidebar-primary-foreground": "oklch(0.986 0.031 120.757)"
 		},
 		"dark": {
-			"primary": "oklch(0.453 0.124 130.933)",
-			"primary-foreground": "oklch(0.986 0.031 120.757)",
+			"primary": "oklch(0.768 0.233 130.85)",
+			"primary-foreground": "oklch(0.405 0.101 131.063)",
 			"secondary": "oklch(0.274 0.006 286.033)",
 			"secondary-foreground": "oklch(0.985 0 0)",
 			"chart-1": "oklch(0.897 0.196 126.665)",

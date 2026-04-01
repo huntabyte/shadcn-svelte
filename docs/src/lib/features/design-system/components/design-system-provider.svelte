@@ -36,6 +36,7 @@
 			...DEFAULT_CONFIG,
 			baseColor: designSystem.baseColor,
 			theme: designSystem.theme,
+			chartColor: designSystem.chartColor ?? DEFAULT_CONFIG.chartColor,
 			menuAccent: designSystem.menuAccent,
 			radius: designSystem.radius,
 		};
@@ -69,6 +70,12 @@
 			fonts.find((font) => font.name.replace("font-", "") === designSystem.font)?.font
 				.family ?? fonts[0].font.family;
 		document.documentElement.style.setProperty("--font-sans", selectedFont);
+
+		const selectedHeadingFont =
+			fonts.find(
+				(font) => font.name.replace("font-heading-", "") === designSystem.fontHeading
+			)?.font.family ?? fonts[0].font.family;
+		document.documentElement.style.setProperty("--font-heading", selectedHeadingFont);
 
 		const styleId = uid;
 		let styleElement = document.getElementById(styleId) as HTMLStyleElement | null;
@@ -191,7 +198,7 @@
 	});
 
 	function handleKeyDown(e: KeyboardEvent) {
-		// randomize on r/R
+		// randomize / reset on r/R and shift+R
 		if ((e.key === "r" || e.key === "R") && !e.metaKey && !e.ctrlKey) {
 			if (
 				(e.target instanceof HTMLElement && e.target.isContentEditable) ||
@@ -203,6 +210,12 @@
 			}
 
 			e.preventDefault();
+
+			if (e.shiftKey) {
+				designSystem.reset();
+				return;
+			}
+
 			designSystem.randomize();
 		}
 

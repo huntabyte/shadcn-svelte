@@ -1,3 +1,5 @@
+import type { CssSchema } from "./registry/schema.js";
+
 export function createGlobalCssFile(): string {
 	return `
 @import "tailwindcss";
@@ -6,62 +8,6 @@ export function createGlobalCssFile(): string {
 `;
 }
 
-/**
- * these are the styles that `@import "shadcn/tailwind.css"` adds
- * but that seems like the wrong solution so for the time being we'll add them on init
- */
-export const TAILWIND_UTILS = {
-	"@custom-variant data-open": {
-		'&:where([data-state="open"]), &:where([data-open]:not([data-open="false"]))': {
-			"@slot": {},
-		},
-	},
-	"@custom-variant data-closed": {
-		'&:where([data-state="closed"]), &:where([data-closed]:not([data-closed="false"]))': {
-			"@slot": {},
-		},
-	},
-	"@custom-variant data-checked": {
-		'&:where([data-state="checked"]), &:where([data-checked]:not([data-checked="false"]))': {
-			"@slot": {},
-		},
-	},
-	"@custom-variant data-unchecked": {
-		'&:where([data-state="unchecked"]), &:where([data-unchecked]:not([data-unchecked="false"]))':
-			{
-				"@slot": {},
-			},
-	},
-	"@custom-variant data-selected": {
-		"&:where([data-selected])": {
-			"@slot": {},
-		},
-	},
-	"@custom-variant data-disabled": {
-		'&:where([data-disabled="true"]), &:where([data-disabled]:not([data-disabled="false"]))': {
-			"@slot": {},
-		},
-	},
-	"@custom-variant data-active": {
-		'&:where([data-state="active"]), &:where([data-active]:not([data-active="false"]))': {
-			"@slot": {},
-		},
-	},
-	"@custom-variant data-horizontal": {
-		'&:where([data-orientation="horizontal"])': {
-			"@slot": {},
-		},
-	},
-	"@custom-variant data-vertical": {
-		'&:where([data-orientation="vertical"])': {
-			"@slot": {},
-		},
-	},
-	"@utility no-scrollbar": {
-		"-ms-overflow-style": "none",
-		"scrollbar-width": "none",
-		"&::-webkit-scrollbar": {
-			display: "none",
-		},
-	},
+export const shadcnSvelteTailwindCssImport: CssSchema = {
+	'@import "shadcn-svelte/tailwind.css"': {},
 };

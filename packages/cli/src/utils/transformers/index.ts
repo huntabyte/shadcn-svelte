@@ -4,6 +4,7 @@ export type TransformOptions = {
 	content: string;
 	filePath: string;
 	config: ResolvedConfig;
+	supportedFontMarkers?: string[];
 };
 
 export type TransformerResult = {
@@ -32,6 +33,7 @@ export async function transform(
 			config: opts.config,
 			content: result.content,
 			filePath: result.filePath,
+			supportedFontMarkers: opts.supportedFontMarkers,
 		});
 		result.content = content ?? result.content;
 		dependencies?.forEach((dep) => result.dependencies.add(dep));
@@ -50,3 +52,4 @@ export { transformStripTypes } from "./transform-strip-types.js";
 export { transformIcons } from "./transform-icons.js";
 export { transformImports } from "./transform-imports.js";
 export { transformMenu } from "./transform-menu.js";
+export { transformFont, rewriteFontMarkers } from "./transform-font.js";

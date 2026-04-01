@@ -27,7 +27,7 @@
 			"target": "empty/empty-media.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div bind:this={ref} data-slot=\"empty-title\" class={cn(\"text-sm font-medium\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n",
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"empty-title\"\n\tclass={cn(\"cn-font-heading text-sm font-medium\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
 			"type": "registry:file",
 			"target": "empty/empty-title.svelte"
 		},

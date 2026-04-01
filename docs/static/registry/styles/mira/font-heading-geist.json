@@ -1,0 +1,16 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "font-heading-geist",
+	"type": "registry:font",
+	"files": [],
+	"font": {
+		"family": "'Geist Variable', sans-serif",
+		"provider": "google",
+		"import": "Geist",
+		"variable": "--font-heading",
+		"subsets": [
+			"latin"
+		],
+		"dependency": "@fontsource-variable/geist"
+	}
+}

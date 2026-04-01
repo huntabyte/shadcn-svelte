@@ -6,12 +6,14 @@
 	import StylePicker from "../../routes/(app)/(layout)/(create)/components/style-picker.svelte";
 	import BaseColorPicker from "../../routes/(app)/(layout)/(create)/components/base-color-picker.svelte";
 	import ThemePicker from "../../routes/(app)/(layout)/(create)/components/theme-picker.svelte";
+	import ChartColorPicker from "../../routes/(app)/(layout)/(create)/components/chart-color-picker.svelte";
 	import IconLibraryPicker from "../../routes/(app)/(layout)/(create)/components/icon-library-picker.svelte";
 	import FontPicker from "../../routes/(app)/(layout)/(create)/components/font-picker.svelte";
 	import RadiusPicker from "../../routes/(app)/(layout)/(create)/components/radius-picker.svelte";
 	import MenuColorPicker from "../../routes/(app)/(layout)/(create)/components/menu-color-picker.svelte";
 	import MenuAccentPicker from "../../routes/(app)/(layout)/(create)/components/menu-accent-picker.svelte";
 	import CustomizerControls from "../../routes/(app)/(layout)/(create)/components/customizer-controls.svelte";
+	import { FONT_HEADING_OPTIONS, FONTS } from "$lib/fonts.js";
 	import { cn } from "$lib/utils.js";
 	import ModeSwitcher from "./mode-switcher.svelte";
 	import { setMode, mode } from "mode-watcher";
@@ -46,8 +48,15 @@
 				<StylePicker submenu />
 				<BaseColorPicker submenu />
 				<ThemePicker submenu />
+				<ChartColorPicker submenu />
 				<IconLibraryPicker submenu />
-				<FontPicker submenu />
+				<FontPicker
+					submenu
+					label="Heading"
+					param="fontHeading"
+					fonts={FONT_HEADING_OPTIONS}
+				/>
+				<FontPicker submenu label="Font" param="font" fonts={FONTS} />
 				<RadiusPicker submenu />
 				<MenuColorPicker submenu />
 				<MenuAccentPicker submenu />

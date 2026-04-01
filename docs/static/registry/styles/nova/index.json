@@ -1910,6 +1910,48 @@
 		"relativeUrl": "font-outfit.json"
 	},
 	{
+		"name": "font-oxanium",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-oxanium.json"
+	},
+	{
+		"name": "font-manrope",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-manrope.json"
+	},
+	{
+		"name": "font-space-grotesk",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-space-grotesk.json"
+	},
+	{
+		"name": "font-montserrat",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-montserrat.json"
+	},
+	{
+		"name": "font-ibm-plex-sans",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-ibm-plex-sans.json"
+	},
+	{
+		"name": "font-source-sans-3",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-source-sans-3.json"
+	},
+	{
+		"name": "font-instrument-sans",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-instrument-sans.json"
+	},
+	{
 		"name": "font-jetbrains-mono",
 		"type": "registry:font",
 		"registryDependencies": [],
@@ -1950,5 +1992,149 @@
 		"type": "registry:font",
 		"registryDependencies": [],
 		"relativeUrl": "font-playfair-display.json"
+	},
+	{
+		"name": "font-heading-geist",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-heading-geist.json"
+	},
+	{
+		"name": "font-heading-inter",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-heading-inter.json"
+	},
+	{
+		"name": "font-heading-noto-sans",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-heading-noto-sans.json"
+	},
+	{
+		"name": "font-heading-nunito-sans",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-heading-nunito-sans.json"
+	},
+	{
+		"name": "font-heading-figtree",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-heading-figtree.json"
+	},
+	{
+		"name": "font-heading-roboto",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-heading-roboto.json"
+	},
+	{
+		"name": "font-heading-raleway",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-heading-raleway.json"
+	},
+	{
+		"name": "font-heading-dm-sans",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-heading-dm-sans.json"
+	},
+	{
+		"name": "font-heading-public-sans",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-heading-public-sans.json"
+	},
+	{
+		"name": "font-heading-outfit",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-heading-outfit.json"
+	},
+	{
+		"name": "font-heading-oxanium",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-heading-oxanium.json"
+	},
+	{
+		"name": "font-heading-manrope",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-heading-manrope.json"
+	},
+	{
+		"name": "font-heading-space-grotesk",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-heading-space-grotesk.json"
+	},
+	{
+		"name": "font-heading-montserrat",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-heading-montserrat.json"
+	},
+	{
+		"name": "font-heading-ibm-plex-sans",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-heading-ibm-plex-sans.json"
+	},
+	{
+		"name": "font-heading-source-sans-3",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-heading-source-sans-3.json"
+	},
+	{
+		"name": "font-heading-instrument-sans",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-heading-instrument-sans.json"
+	},
+	{
+		"name": "font-heading-jetbrains-mono",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-heading-jetbrains-mono.json"
+	},
+	{
+		"name": "font-heading-geist-mono",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-heading-geist-mono.json"
+	},
+	{
+		"name": "font-heading-noto-serif",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-heading-noto-serif.json"
+	},
+	{
+		"name": "font-heading-roboto-slab",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-heading-roboto-slab.json"
+	},
+	{
+		"name": "font-heading-merriweather",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-heading-merriweather.json"
+	},
+	{
+		"name": "font-heading-lora",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-heading-lora.json"
+	},
+	{
+		"name": "font-heading-playfair-display",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-heading-playfair-display.json"
 	}
 ]
