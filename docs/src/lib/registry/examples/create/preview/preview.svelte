@@ -2,9 +2,7 @@
 	import ActivateAgentDialog from "./cards/activate-agent-dialog.svelte";
 	import AnalyticsCard from "./cards/analytics-card.svelte";
 	import AnomalyAlert from "./cards/anomaly-alert.svelte";
-	import AssignIssue from "./cards/assign-issue.svelte";
 	import BarChartCard from "./cards/bar-chart-card.svelte";
-	import BarVisualizerCard from "./cards/bar-visualizer-card.svelte";
 	import BookAppointment from "./cards/book-appointment.svelte";
 	import CodespacesCard from "./cards/codespaces-card.svelte";
 	import ContributionsActivity from "./cards/contributions-activity.svelte";
@@ -27,6 +25,7 @@
 	import SkeletonLoading from "./cards/skeleton-loading.svelte";
 	import SleepReport from "./cards/sleep-report.svelte";
 	import StyleOverview from "./cards/style-overview.svelte";
+	import TypographySpecimen from "./cards/typography-specimen.svelte";
 	import UIElements from "./cards/ui-elements.svelte";
 	import UsageCard from "./cards/usage-card.svelte";
 	import Visitors from "./cards/visitors.svelte";
@@ -34,76 +33,77 @@
 </script>
 
 <div
-	class="3xl:[--gap:--spacing(12)] overflow-x-auto overflow-y-hidden contain-[paint] [--gap:--spacing(4)] md:[--gap:--spacing(10)]"
+	class="bg-muted dark:bg-background 3xl:[--gap:--spacing(12)] style-lyra:md:[--gap:--spacing(6)] style-mira:md:[--gap:--spacing(6)] overflow-x-auto overflow-y-hidden contain-[paint] [--gap:--spacing(4)] md:[--gap:--spacing(10)]"
 >
-	<div
-		class="bg-muted dark:bg-background grid w-[2400px] grid-cols-7 items-start gap-(--gap) p-(--gap) md:w-[3000px] *:[div]:gap-(--gap)"
-		data-slot="capture-target"
-	>
+	<div class="flex w-full min-w-max justify-center">
 		<div
-			class="flex flex-col p-px [contain-intrinsic-size:380px_1200px] [content-visibility:auto]"
+			class="bg-muted dark:bg-background style-lyra:md:w-[2600px] style-mira:md:w-[2600px] grid w-[2400px] grid-cols-7 items-start gap-(--gap) p-(--gap) md:w-[3000px] *:[div]:gap-(--gap)"
+			data-slot="capture-target"
 		>
-			<StyleOverview />
-			<div class="md:hidden">
-				<UIElements />
+			<div
+				class="flex flex-col p-px [contain-intrinsic-size:380px_1200px] [content-visibility:auto]"
+			>
+				<StyleOverview />
+				<TypographySpecimen />
+				<div class="md:hidden">
+					<UIElements />
+				</div>
+				<CodespacesCard />
+				<Invoice />
 			</div>
-			<CodespacesCard />
-			<BarVisualizerCard />
-			<Invoice />
-		</div>
-		<div
-			class="flex flex-col p-px [contain-intrinsic-size:380px_1200px] [content-visibility:auto]"
-		>
-			<IconPreviewGrid />
-			<div class="hidden w-full md:flex">
-				<UIElements />
+			<div
+				class="flex flex-col p-px [contain-intrinsic-size:380px_1200px] [content-visibility:auto]"
+			>
+				<IconPreviewGrid />
+				<div class="hidden w-full md:flex">
+					<UIElements />
+				</div>
+				<ObservabilityCard />
+				<ShippingAddress />
 			</div>
-			<ObservabilityCard />
-			<Visitors />
-			<Shortcuts />
-		</div>
-		<div
-			class="flex flex-col p-px [contain-intrinsic-size:380px_1200px] [content-visibility:auto]"
-		>
-			<EnvironmentVariables />
-			<BarChartCard />
-			<InviteTeam />
-			<ActivateAgentDialog />
-		</div>
-		<div
-			class="flex flex-col p-px [contain-intrinsic-size:380px_1200px] [content-visibility:auto]"
-		>
-			<SkeletonLoading />
-			<PieChartCard />
-			<NoTeamMembers />
-			<ReportBug />
-			<Contributors />
-		</div>
-		<div
-			class="flex flex-col p-px [contain-intrinsic-size:380px_1200px] [content-visibility:auto]"
-		>
-			<FeedbackForm />
-			<BookAppointment />
-			<SleepReport />
-			<GithubProfile />
-		</div>
-		<div
-			class="flex flex-col p-px [contain-intrinsic-size:380px_1200px] [content-visibility:auto]"
-		>
-			<AssignIssue />
-			<WeeklyFitnessSummary />
-			<FileUpload />
-			<AnalyticsCard />
-			<UsageCard />
-			<ContributionsActivity />
-		</div>
-		<div
-			class="flex flex-col p-px [contain-intrinsic-size:380px_1200px] [content-visibility:auto]"
-		>
-			<AnomalyAlert />
-			<LiveWaveformCard />
-			<ShippingAddress />
-			<NotFound />
+			<div
+				class="flex flex-col p-px [contain-intrinsic-size:380px_1200px] [content-visibility:auto]"
+			>
+				<EnvironmentVariables />
+				<BarChartCard />
+				<InviteTeam />
+				<ActivateAgentDialog />
+			</div>
+			<div
+				class="flex flex-col p-px [contain-intrinsic-size:380px_1200px] [content-visibility:auto]"
+			>
+				<SkeletonLoading />
+				<PieChartCard />
+				<NoTeamMembers />
+				<ReportBug />
+				<Contributors />
+			</div>
+			<div
+				class="flex flex-col p-px [contain-intrinsic-size:380px_1200px] [content-visibility:auto]"
+			>
+				<FeedbackForm />
+				<BookAppointment />
+				<SleepReport />
+				<GithubProfile />
+			</div>
+			<div
+				class="flex flex-col p-px [contain-intrinsic-size:380px_1200px] [content-visibility:auto]"
+			>
+				<WeeklyFitnessSummary />
+				<FileUpload />
+				<AnalyticsCard />
+				<UsageCard />
+				<Shortcuts />
+			</div>
+			<div
+				class="flex flex-col p-px [contain-intrinsic-size:380px_1200px] [content-visibility:auto]"
+			>
+				<AnomalyAlert />
+				<LiveWaveformCard />
+				<Visitors />
+				<ContributionsActivity />
+				<NotFound />
+			</div>
 		</div>
 	</div>
 </div>

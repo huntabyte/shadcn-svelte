@@ -51,13 +51,13 @@
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel nameKey="browser" />
 				{/snippet}
-				{#snippet arc({ props, seriesIndex, visibleSeries })}
+				{#snippet arc({ props, seriesIndex, context })}
 					<Arc {...props}>
 						{#snippet children({ getTrackTextProps })}
 							<Text
 								{...getTrackTextProps("middle", { startOffset: "1%" })}
 								class="pointer-events-none capitalize select-none"
-								value={visibleSeries[seriesIndex].label}
+								value={context.series.visibleSeries[seriesIndex].label}
 								fill="white"
 							/>
 						{/snippet}

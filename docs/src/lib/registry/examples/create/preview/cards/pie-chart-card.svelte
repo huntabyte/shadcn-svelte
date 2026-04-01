@@ -10,7 +10,6 @@
 		{ browser: "Safari", visitors: 200, color: "var(--color-Safari)" },
 		{ browser: "Firefox", visitors: 287, color: "var(--color-Firefox)" },
 		{ browser: "Edge", visitors: 173, color: "var(--color-Edge)" },
-		{ browser: "Other", visitors: 190, color: "var(--color-Other)" },
 	];
 
 	const pieChartConfig = {
@@ -19,7 +18,6 @@
 		Safari: { label: "Safari", color: "var(--chart-2)" },
 		Firefox: { label: "Firefox", color: "var(--chart-3)" },
 		Edge: { label: "Edge", color: "var(--chart-4)" },
-		Other: { label: "Other", color: "var(--chart-5)" },
 	} satisfies Chart.ChartConfig;
 
 	const totalVisitors = $derived(pieChartData.reduce((sum, item) => sum + item.visitors, 0));
@@ -47,24 +45,23 @@
 				key="browser"
 				value="visitors"
 				c="color"
-				innerRadius={50}
+				innerRadius={0.8}
 				padding={28}
-				legend
 				props={{ pie: { motion: "tween" } }}
 			>
 				{#snippet aboveMarks()}
 					<Text
-						value={totalVisitors.toLocaleString()}
+						value={String(totalVisitors)}
 						textAnchor="middle"
 						verticalAnchor="middle"
-						class="fill-foreground text-2xl font-bold"
+						class="fill-foreground text-3xl! font-bold"
 						dy={3}
 					/>
 					<Text
 						value="Visitors"
 						textAnchor="middle"
 						verticalAnchor="middle"
-						class="fill-muted-foreground text-xs"
+						class="fill-muted-foreground! text-muted-foreground"
 						dy={22}
 					/>
 				{/snippet}

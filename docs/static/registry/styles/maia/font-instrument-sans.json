@@ -1,0 +1,16 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "font-instrument-sans",
+	"type": "registry:font",
+	"files": [],
+	"font": {
+		"family": "'Instrument Sans Variable', sans-serif",
+		"provider": "google",
+		"import": "Instrument_Sans",
+		"variable": "--font-sans",
+		"subsets": [
+			"latin"
+		],
+		"dependency": "@fontsource-variable/instrument-sans"
+	}
+}

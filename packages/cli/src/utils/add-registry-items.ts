@@ -6,17 +6,19 @@ import * as p from "@clack/prompts";
 import * as registry from "./registry/index.js";
 import { highlight } from "./colors.js";
 import { cancel, prettifyList } from "./prompt-helpers.js";
+import { shadcnSvelteTailwindCssImport } from "./css.js";
 import { transformCss } from "./transform-css.js";
 import type { ResolvedConfig } from "./config/index.js";
 import {
 	transform,
+	transformFont,
 	transformImports,
 	transformIcons,
 	transformMenu,
 	transformStripTypes,
 } from "./transformers/index.js";
+import { getSupportedFontMarkers, type FontMarkerSource } from "./font-markers.js";
 import { setupFonts, type Font } from "./fonts.js";
-import { TAILWIND_UTILS } from "./css.js";
 
 const STYLE_TYPES = ["registry:style", "registry:theme"];
 
@@ -53,6 +55,17 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 	});
 
 	if (itemsWithContent.length === 0) cancel("Selected items not found.");
+
+	const fontMarkerSources: FontMarkerSource[] = [];
+	for (const item of itemsWithContent) {
+		if (item.cssVars) {
+			fontMarkerSources.push({ cssVars: item.cssVars });
+		}
+		if (item.type === "registry:font" && item.font) {
+			fontMarkerSources.push({ fonts: [{ font: item.font }] });
+		}
+	}
+	const registryFontMarkers = getSupportedFontMarkers(fontMarkerSources);
 
 	// build a list of existing items
 	const existingItems: string[] = [];
@@ -147,11 +160,17 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 						devDependencies: transformDevDependencies,
 						filePath: transformFilePath,
 					} = await transform(
-						{ content: file.content, filePath: filePath, config: opts.config },
+						{
+							content: file.content,
+							filePath: filePath,
+							config: opts.config,
+							supportedFontMarkers: registryFontMarkers,
+						},
 						[
 							transformImports,
 							transformIcons,
 							transformMenu,
+							transformFont,
 							!opts.config.typescript && transformStripTypes,
 						]
 					);
@@ -199,10 +218,8 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 	cssVars = merge(cssVars, fontsCssVars);
 	fontsDependencies.forEach((dep) => devDependencies.add(dep));
 
-	// add tailwind utils to the css
-	css = merge(css, TAILWIND_UTILS);
-
 	if (Object.keys(cssVars).length || Object.keys(css).length) {
+		css = merge(css, shadcnSvelteTailwindCssImport);
 		const cssPath = opts.config.resolvedPaths.tailwindCss;
 		const relative = path.relative(cwd, cssPath);
 

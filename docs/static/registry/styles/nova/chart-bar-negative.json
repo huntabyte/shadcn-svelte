@@ -5,7 +5,7 @@
 	"devDependencies": [
 		"d3-scale@^4.0.2",
 		"@types/d3-scale@^4.0.9",
-		"layerchart@2.0.0-next.43",
+		"layerchart@2.0.0-next.48",
 		"@lucide/svelte@^0.577.0"
 	],
 	"registryDependencies": [

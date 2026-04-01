@@ -1,6 +1,6 @@
 {
 	"name": "shadcn-svelte",
-	"version": "1.2.5",
+	"version": "1.2.6",
 	"description": "Add components to your apps.",
 	"license": "MIT",
 	"author": {
@@ -47,9 +47,16 @@
 			"types": "./dist/utils/transformers/transform-menu.d.mts",
 			"default": "./dist/utils/transformers/transform-menu.mjs"
 		},
+		"./transformers/font": {
+			"types": "./dist/utils/transformers/transform-font.d.mts",
+			"default": "./dist/utils/transformers/transform-font.mjs"
+		},
 		"./transformers/strip-types": {
 			"types": "./dist/utils/transformers/transform-strip-types.d.mts",
 			"default": "./dist/utils/transformers/transform-strip-types.mjs"
+		},
+		"./tailwind.css": {
+			"style": "./dist/tailwind.css"
 		}
 	},
 	"files": [

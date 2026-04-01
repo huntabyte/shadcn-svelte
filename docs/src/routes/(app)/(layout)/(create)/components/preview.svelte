@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { cn } from "$lib/utils.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
+	import PreviewSwitcher from "./preview-switcher.svelte";
 
 	type Props = {
 		item: string;
@@ -39,6 +39,6 @@
 			/>
 		</Button>
 		<iframe src="/preview/{item}" class="h-(--preview-height)" title={item}></iframe>
-		<Badge class="absolute right-2 bottom-2 isolate z-10" variant="secondary">Preview</Badge>
+		<PreviewSwitcher {item} />
 	</div>
 </div>
