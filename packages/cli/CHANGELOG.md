@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.2.7
+
+### Patch Changes
+
+- fix: Fix `tailwind.css` styles ([#2620](https://github.com/huntabyte/shadcn-svelte/pull/2620))
+
 ## 1.2.6
 
 ### Patch Changes
