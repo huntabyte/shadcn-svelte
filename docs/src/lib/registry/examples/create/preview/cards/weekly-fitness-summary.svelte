@@ -1,5 +1,6 @@
 <script lang="ts">
 	import * as Card from "$lib/registry/ui/card/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const FITNESS_WEEKLY_LOAD = [
 		{ day: "M", load: 84 },
@@ -32,4 +33,7 @@
 			{/each}
 		</div>
 	</Card.Content>
+	<Card.Footer>
+		<Button class="w-full">View details</Button>
+	</Card.Footer>
 </Card.Root>

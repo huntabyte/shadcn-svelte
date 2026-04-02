@@ -3,6 +3,7 @@ import Nova from "./icons/nova.svelte";
 import Maia from "./icons/maia.svelte";
 import Lyra from "./icons/lyra.svelte";
 import Mira from "./icons/mira.svelte";
+import Luma from "./icons/luma.svelte";
 
 export const STYLES = [
 	{
@@ -34,6 +35,12 @@ export const STYLES = [
 		title: "Mira",
 		description: "Compact. Made for dense interfaces.",
 		icon: Mira,
+	},
+	{
+		name: "luma",
+		title: "Luma",
+		description: "Rounded geometry. Soft elevation. Breathable layouts.",
+		icon: Luma,
 	},
 ] as const;
 

@@ -15,12 +15,7 @@
 		<Field.Group>
 			<Field.Field>
 				<Field.Label>Available on March 18, 2026</Field.Label>
-				<ToggleGroup.Root
-					type="multiple"
-					value={["slot-0"]}
-					class="flex flex-wrap gap-2"
-					spacing={2}
-				>
+				<ToggleGroup.Root type="multiple" value={["slot-0"]} spacing={2}>
 					<ToggleGroup.Item value="slot-0">9:00 AM</ToggleGroup.Item>
 					<ToggleGroup.Item value="slot-1">10:30 AM</ToggleGroup.Item>
 					<ToggleGroup.Item value="slot-2">11:00 AM</ToggleGroup.Item>

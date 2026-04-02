@@ -4,6 +4,7 @@
 	import { HugeiconsIcon } from "@hugeicons/svelte";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import * as Kbd from "$lib/registry/ui/kbd/index.js";
 
 	type Props = {
 		submenu?: boolean;
@@ -24,7 +25,10 @@
 			<div class="text-muted-foreground text-xs">Reset</div>
 			<div class="text-foreground text-sm font-medium">Start Over</div>
 		</div>
-		<HugeiconsIcon icon={Undo02Icon} className="-translate-x-0.5" />
+		<Kbd.Group>
+			<Kbd.Root class="bg-foreground/10 text-foreground hidden md:flex">⇧</Kbd.Root>
+			<Kbd.Root class="bg-foreground/10 text-foreground hidden md:flex">R</Kbd.Root>
+		</Kbd.Group>
 	</DropdownMenu.Item>
 {:else}
 	<Button

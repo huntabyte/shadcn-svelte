@@ -18,7 +18,10 @@
 
 	let { children }: { children: Snippet } = $props();
 
-	const groupedItems = $derived(groupItemsByType(examples));
+	const commandPaletteExamples = $derived(
+		examples.filter((example) => !example.hideFromCommandPalette)
+	);
+	const groupedItems = $derived(groupItemsByType(commandPaletteExamples));
 
 	function handleKeydown(e: KeyboardEvent) {
 		if (e.key === "p" && (e.metaKey || e.ctrlKey)) {

@@ -11,6 +11,7 @@ import { getEnvProxy } from "../../utils/get-env-proxy.js";
 import { cancel, intro, prettifyList, handleError } from "../../utils/prompt-helpers.js";
 import * as p from "@clack/prompts";
 import * as registry from "../../utils/registry/index.js";
+import { shadcnSvelteTailwindCssImport } from "../../utils/css.js";
 import { transformCss } from "../../utils/transform-css.js";
 import { setupFonts, type Font } from "../../utils/fonts.js";
 import { checkPreconditions } from "../../utils/preconditions.js";
@@ -18,13 +19,14 @@ import { highlight } from "../../utils/colors.js";
 import { installDependencies } from "../../utils/install-deps.js";
 import {
 	transform,
+	transformFont,
 	transformImports,
 	transformIcons,
 	transformMenu,
 	transformStripTypes,
 } from "../../utils/transformers/index.js";
+import { getSupportedFontMarkers, type FontMarkerSource } from "../../utils/font-markers.js";
 import * as project from "../../utils/project.js";
-import { TAILWIND_UTILS } from "../../utils/css.js";
 
 const updateOptionsSchema = z.object({
 	all: z.boolean(),
@@ -151,6 +153,17 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 	});
 	payload.sort((a, b) => a.name.localeCompare(b.name));
 
+	const fontMarkerSources: FontMarkerSource[] = [];
+	for (const item of payload) {
+		if (item.cssVars) {
+			fontMarkerSources.push({ cssVars: item.cssVars });
+		}
+		if (item.type === "registry:font" && item.font) {
+			fontMarkerSources.push({ fonts: [{ font: item.font }] });
+		}
+	}
+	const registryFontMarkers = getSupportedFontMarkers(fontMarkerSources);
+
 	const componentsToRemove: Record<string, string[]> = {};
 	const dependencies = new Set<string>();
 	const devDependencies = new Set<string>();
@@ -183,12 +196,21 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 						dependencies: transformDependencies,
 						devDependencies: transformDevDependencies,
 						filePath: transformFilePath,
-					} = await transform({ content: file.content, filePath, config }, [
-						transformImports,
-						transformIcons,
-						transformMenu,
-						!config.typescript && transformStripTypes,
-					]);
+					} = await transform(
+						{
+							content: file.content,
+							filePath,
+							config,
+							supportedFontMarkers: registryFontMarkers,
+						},
+						[
+							transformImports,
+							transformIcons,
+							transformMenu,
+							transformFont,
+							!config.typescript && transformStripTypes,
+						]
+					);
 
 					transformDependencies?.forEach((dep) => dependencies.add(dep));
 					transformDevDependencies?.forEach((dep) => devDependencies.add(dep));
@@ -244,10 +266,8 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 	cssVars = merge(cssVars, fontsCssVars);
 	fontsDependencies.forEach((dep) => devDependencies.add(dep));
 
-	// add tailwind utils to the css
-	css = merge(css, TAILWIND_UTILS);
-
 	if (Object.keys(cssVars).length > 0 || Object.keys(css).length > 0) {
+		css = merge(css, shadcnSvelteTailwindCssImport);
 		// Update the stylesheet
 		tasks.push({
 			title: "Updating stylesheet",

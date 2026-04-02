@@ -16,7 +16,7 @@ export function setupFonts(fonts: Font[]): {
 	const dependencies: string[] = [];
 
 	for (const font of fonts) {
-		const fontName = font.name.replace("font-", "");
+		const fontName = font.name.replace(/^font-heading-/, "").replace("font-", "");
 		const fontSourceDependency = font.dependency ?? `@fontsource-variable/${fontName}`;
 		dependencies.push(fontSourceDependency);
 		css[`@import "${fontSourceDependency}"`] = {};
@@ -26,6 +26,11 @@ export function setupFonts(fonts: Font[]): {
 
 	const groups = new Map<string, string[]>();
 	for (const font of fonts) {
+		// Heading tokens are for `font-heading` / cn-font-heading on components only;
+		// body copy stays on `font-sans` (or serif/mono when those are the primary variable).
+		if (font.variable === "--font-heading") {
+			continue;
+		}
 		const selector = font.selector ?? "html";
 		const cls = font.variable.replace("--", "");
 		if (!groups.has(selector)) {

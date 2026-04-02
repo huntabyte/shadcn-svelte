@@ -6,8 +6,12 @@ import { z } from "zod";
 import { fonts } from "./fonts.js";
 import { STYLES, type Style } from "./styles/index.js";
 import { BASE_THEMES, THEMES, type BaseTheme, type Theme } from "./themes.js";
-import { PRESET_BASE_COLOR_KEYS, PRESET_FONTS, type PresetConfig } from "shadcn-svelte/preset";
-import { TAILWIND_UTILS } from "shadcn-svelte/utils/css";
+import {
+	PRESET_BASE_COLOR_KEYS,
+	PRESET_CHART_COLORS,
+	PRESET_FONTS,
+	type PresetConfig,
+} from "shadcn-svelte/preset";
 export { STYLES, type Style };
 export { THEMES, type Theme };
 export { BASE_THEMES, type BaseTheme };
@@ -19,6 +23,8 @@ export type ThemeName = Theme["name"];
 export type BaseColorName = BaseTheme["name"];
 
 export type FontValue = (typeof PRESET_FONTS)[number];
+
+export type FontHeadingValue = FontValue | "inherit";
 
 export const MENU_ACCENTS = [
 	{ value: "subtle", label: "Subtle" },
@@ -59,6 +65,7 @@ export const designSystemConfigSchema = z
 			.default("lucide"),
 		baseColor: z.enum(PRESET_BASE_COLOR_KEYS).default("neutral"),
 		theme: z.enum(THEMES.map((t) => t.name)),
+		chartColor: z.enum(PRESET_CHART_COLORS).default("neutral"),
 		font: z.enum(PRESET_FONTS).default("inter"),
 		menuAccent: z
 			.enum(MENU_ACCENTS.map((a) => a.value) as [MenuAccentValue, ...MenuAccentValue[]])
@@ -85,6 +92,7 @@ export const DEFAULT_CONFIG: DesignSystemConfig = {
 	style: "vega",
 	baseColor: "neutral",
 	theme: "neutral",
+	chartColor: "neutral",
 	iconLibrary: "lucide",
 	font: "inter",
 	menuAccent: "subtle",
@@ -106,6 +114,7 @@ export const PRESETS: Preset[] = [
 		style: "vega",
 		baseColor: "neutral",
 		theme: "neutral",
+		chartColor: "neutral",
 		iconLibrary: "lucide",
 		font: "geist",
 		menuAccent: "subtle",
@@ -119,6 +128,7 @@ export const PRESETS: Preset[] = [
 		style: "nova",
 		baseColor: "neutral",
 		theme: "neutral",
+		chartColor: "neutral",
 		iconLibrary: "hugeicons",
 		font: "inter",
 		menuAccent: "subtle",
@@ -132,6 +142,7 @@ export const PRESETS: Preset[] = [
 		style: "maia",
 		baseColor: "neutral",
 		theme: "neutral",
+		chartColor: "neutral",
 		iconLibrary: "hugeicons",
 		font: "figtree",
 		menuAccent: "subtle",
@@ -145,6 +156,7 @@ export const PRESETS: Preset[] = [
 		style: "lyra",
 		baseColor: "neutral",
 		theme: "neutral",
+		chartColor: "neutral",
 		iconLibrary: "hugeicons",
 		font: "jetbrains-mono",
 		menuAccent: "subtle",
@@ -204,6 +216,18 @@ export function buildRegistryTheme(config: DesignSystemConfig) {
 	};
 	const themeVars: Record<string, string> = {};
 
+	// Apply chart color override.
+	const chartTheme = getTheme(config.chartColor);
+	if (chartTheme) {
+		const chartLight = chartTheme.cssVars?.light as Record<string, string>;
+		const chartDark = chartTheme.cssVars?.dark as Record<string, string>;
+		for (let i = 1; i <= 5; i++) {
+			const key = `chart-${i}`;
+			if (chartLight?.[key]) lightVars[key] = chartLight[key];
+			if (chartDark?.[key]) darkVars[key] = chartDark[key];
+		}
+	}
+
 	// Apply menu accent transformation.
 	if (config.menuAccent === "bold") {
 		lightVars.accent = lightVars.primary;
@@ -243,7 +267,7 @@ export function buildRegistryBase(config: PresetConfig) {
 		throw new Error(`Icon library "${config.iconLibrary}" not found`);
 	}
 
-	const registryTheme = buildRegistryTheme(config);
+	const registryTheme = buildRegistryTheme({ chartColor: "neutral", ...config });
 
 	// Dependencies added on init
 	const devDependencies = [
@@ -251,6 +275,7 @@ export function buildRegistryBase(config: PresetConfig) {
 		"clsx",
 		"tailwind-merge",
 		"tw-animate-css",
+		"shadcn-svelte@latest",
 		...iconLibraryItem.packages,
 	];
 
@@ -258,6 +283,10 @@ export function buildRegistryBase(config: PresetConfig) {
 
 	if (config.font) {
 		registryDependencies.push(`font-${config.font}`);
+	}
+
+	if (config.fontHeading && config.fontHeading !== "inherit") {
+		registryDependencies.push(`font-heading-${config.fontHeading}`);
 	}
 
 	return {
@@ -278,11 +307,11 @@ export function buildRegistryBase(config: PresetConfig) {
 		cssVars: registryTheme.cssVars,
 		css: {
 			'@import "tw-animate-css"': {},
+			'@import "shadcn-svelte/tailwind.css"': {},
 			"@layer base": {
 				"*": { "@apply border-border outline-ring/50": {} },
 				body: { "@apply bg-background text-foreground": {} },
 			},
-			...TAILWIND_UTILS,
 		},
 	};
 }

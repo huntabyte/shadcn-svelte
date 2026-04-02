@@ -55,7 +55,7 @@
 								<div class="flex flex-col justify-start pointer-coarse:gap-1">
 									<div>{style.title}</div>
 									<div
-										class="text-muted-foreground text-xs pointer-coarse:text-sm"
+										class="text-muted-foreground! text-xs pointer-coarse:text-sm"
 									>
 										{style.description}
 									</div>

@@ -23,6 +23,14 @@ export const contentDirPath = path.join(__dirname, "content");
 export const ogDirPath = path.join(__dirname, "src/routes/og");
 
 export default defineConfig({
+	resolve: {
+		// Use the browser implementation everywhere so SSR/Workers bundles avoid the Node
+		// `canvas` server build (main → lib/server) and so `qrcode` can be inlined into
+		// the Cloudflare worker instead of remaining a bare external import.
+		alias: {
+			qrcode: "qrcode/lib/browser.js",
+		},
+	},
 	plugins: [
 		visualizer({
 			emitFile: true,
