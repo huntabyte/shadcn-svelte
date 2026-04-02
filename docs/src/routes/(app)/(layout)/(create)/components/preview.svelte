@@ -1,8 +1,5 @@
 <script lang="ts">
 	import { cn } from "$lib/utils.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import PreviewSwitcher from "./preview-switcher.svelte";
 
 	type Props = {

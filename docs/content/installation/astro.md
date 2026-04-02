@@ -73,12 +73,7 @@ export default defineConfig({
   integrations: [svelte(), tailwindcss()],
   vite: {
     resolve: {
-      noExternal: [
-        "@lucide/svelte",
-        "bits-ui",
-        "runed",
-        "svelte-toolbelt",
-      ],
+      noExternal: ["@lucide/svelte", "bits-ui", "runed", "svelte-toolbelt"],
     },
   },
 });
