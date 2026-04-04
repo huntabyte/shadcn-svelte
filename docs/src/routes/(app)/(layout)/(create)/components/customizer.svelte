@@ -17,6 +17,7 @@
 	import Ethical from "$lib/components/ethical.svelte";
 	import Separator from "$lib/registry/ui/separator/separator.svelte";
 	import { FONT_HEADING_OPTIONS, FONTS } from "$lib/fonts.js";
+	import ProjectForm from "./project-form.svelte";
 </script>
 
 <div
@@ -59,10 +60,15 @@
 				<MenuAccentPicker />
 			</FieldGroup.Group>
 		</Card.Content>
-		<Card.Footer class="flex min-w-0 gap-2 md:flex-col md:**:[button,a]:w-full">
+		<Card.Footer
+			class="flex min-w-0 gap-2 md:flex-col md:rounded-b-none md:**:[button,a]:w-full"
+		>
 			<CopyPreset class="flex-1 md:flex-none" />
 			<RandomButton />
 			<!-- <ActionMenu {itemsByBase} /> -->
+		</Card.Footer>
+		<Card.Footer class="-mt-3 hidden min-w-0 gap-2 md:flex md:flex-col md:**:[button,a]:w-full">
+			<ProjectForm />
 		</Card.Footer>
 	</Card.Root>
 	<div class="flex w-full flex-1 flex-col justify-end gap-2">

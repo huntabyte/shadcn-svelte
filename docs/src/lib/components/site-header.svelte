@@ -12,7 +12,7 @@
 	import PlusIcon from "@lucide/svelte/icons/plus";
 	import Customizer from "./customizer.svelte";
 	import { page } from "$app/state";
-	import InitializeDialog from "../../routes/(app)/(layout)/(create)/components/initialize-dialog.svelte";
+	import ProjectForm from "../../routes/(app)/(layout)/(create)/components/project-form.svelte";
 	import ModeSwitcher from "./mode-switcher.svelte";
 
 	const colors = getColors();
@@ -49,7 +49,7 @@
 				{#if page.url.pathname.startsWith("/create")}
 					<ModeSwitcher class="md:hidden" />
 					<Separator orientation="vertical" />
-					<InitializeDialog />
+					<ProjectForm />
 				{:else}
 					<Customizer />
 					<Button href="/create" variant="default" size="sm">

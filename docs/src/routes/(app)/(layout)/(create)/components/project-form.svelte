@@ -11,21 +11,23 @@
 </script>
 
 <Dialog.Root>
-	<Dialog.Trigger
-		class={cn(buttonVariants({ variant: "default", size: "sm" }), "hidden md:flex")}
-	>
-		<SquareTerminal />
-		Initialize Project
+	<Dialog.Trigger class={cn(buttonVariants({ variant: "default" }))}>
+		Create Project
 	</Dialog.Trigger>
-	<Dialog.Content class="w-full max-w-lg!">
+	<Dialog.Content
+		class="dark no-scrollbar max-h-[calc(100svh-2rem)] overflow-y-auto rounded-2xl p-6 shadow-xl **:data-[slot=field-separator]:h-2 sm:max-w-sm"
+	>
 		<Dialog.Header>
-			<Dialog.Title>Initialize Project</Dialog.Title>
+			<Dialog.Title>Create Project</Dialog.Title>
 			<Dialog.Description>
-				Run the following command to initialize your project with the current preset.
+				Run the following command to create your project with the current preset.
 			</Dialog.Description>
 		</Dialog.Header>
 		<Tooltip.Provider>
-			<PMExecute command="shadcn-svelte init --preset {designSystem.preset}" />
+			<PMExecute
+				class={cn("dark")}
+				command="shadcn-svelte init --preset {designSystem.preset}"
+			/>
 		</Tooltip.Provider>
 	</Dialog.Content>
 </Dialog.Root>
