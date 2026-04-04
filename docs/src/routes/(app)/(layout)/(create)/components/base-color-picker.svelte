@@ -59,7 +59,7 @@
 						</Picker.RadioItem>
 					{/each}
 				</Picker.Group>
-				<Picker.Separator />
+				<!--<Picker.Separator />
 				<Picker.Group>
 					<Picker.Item
 						closeOnSelect={false}
@@ -76,7 +76,7 @@
 							</div>
 						</div>
 					</Picker.Item>
-				</Picker.Group>
+					</Picker.Group>-->
 			</Picker.RadioGroup>
 		</Picker.Content>
 	</Picker.Root>
