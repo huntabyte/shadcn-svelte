@@ -67,7 +67,7 @@
 			<RandomButton />
 			<!-- <ActionMenu {itemsByBase} /> -->
 		</Card.Footer>
-		<Card.Footer class="-mt-3 hidden min-w-0 gap-2 md:flex md:flex-col md:**:[button,a]:w-full">
+		<Card.Footer class="hidden min-w-0 gap-2 md:flex md:flex-col md:**:[button,a]:w-full">
 			<ProjectForm />
 		</Card.Footer>
 	</Card.Root>
