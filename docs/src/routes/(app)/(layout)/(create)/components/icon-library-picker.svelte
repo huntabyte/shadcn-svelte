@@ -159,17 +159,12 @@
 			<Picker.RadioGroup bind:value={designSystem.iconLibrary}>
 				<Picker.Group>
 					{#each Object.values(iconLibraries) as iconLibrary, index (iconLibrary.name)}
-						<Picker.RadioItem
-							closeOnSelect={false}
-							value={iconLibrary.name}
-							class="pr-2 *:data-[slot=dropdown-menu-radio-item-indicator]:hidden"
-						>
+						<Picker.RadioItem closeOnSelect={false} value={iconLibrary.name}>
 							<Item.Root size="sm">
-								<Item.Content class="gap-1">
+								<Item.Content>
 									<Item.Title class="text-muted-foreground text-xs font-medium">
 										{iconLibrary.title}
 									</Item.Title>
-									{@render IconLibraryPreview(iconLibrary.name)}
 								</Item.Content>
 							</Item.Root>
 						</Picker.RadioItem>
