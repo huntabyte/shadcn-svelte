@@ -17,7 +17,7 @@
 	<!-- When sidebar is hidden, show Select at all screen sizes -->
 	{#if hideSidebar}
 		<div
-			class="text-code-foreground [&_svg]:text-code-foreground flex h-12 shrink-0 items-center gap-2 border-b px-2 py-2 select-none [&_svg]:size-4 [&_svg]:opacity-70"
+			class="text-code-foreground [&_svg]:text-code-foreground flex h-12 shrink-0 items-center gap-2 border-b py-2 ps-2.5 pe-1.5 select-none [&_svg]:size-4 [&_svg]:opacity-70"
 			data-language={language}
 		>
 			<Select.Root
