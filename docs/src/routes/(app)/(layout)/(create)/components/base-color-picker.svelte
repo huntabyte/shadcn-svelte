@@ -55,17 +55,7 @@
 				<Picker.Group>
 					{#each BASE_THEMES as baseColor (baseColor.name)}
 						<Picker.RadioItem value={baseColor.name} closeOnSelect={false}>
-							<div class="flex items-center gap-2">
-								{#if mode.current}
-									<div
-										style="--color: {baseColor.cssVars?.[
-											mode.current as 'light' | 'dark'
-										]?.['muted-foreground']};"
-										class="size-4 rounded-full bg-(--color)"
-									></div>
-								{/if}
-								{baseColor.title}
-							</div>
+							{baseColor.title}
 						</Picker.RadioItem>
 					{/each}
 				</Picker.Group>
