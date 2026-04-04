@@ -31,9 +31,9 @@
 				</div>
 			</div>
 			<div
-				style="--color: 
+				style="--color:
 						{currentBaseColor?.cssVars?.[mode.current as 'light' | 'dark']?.['muted-foreground']}"
-				class="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 rounded-full bg-(--color) select-none"
+				class="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 rounded-full bg-(--color) select-none md:right-2.5"
 			></div>
 		</Picker.Trigger>
 		<Picker.Content
