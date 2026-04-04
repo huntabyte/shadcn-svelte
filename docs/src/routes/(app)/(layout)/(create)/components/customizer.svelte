@@ -65,10 +65,7 @@
 			<!-- <ActionMenu {itemsByBase} /> -->
 		</Card.Footer>
 	</Card.Root>
-	<div class="flex w-full flex-1 flex-col gap-12">
-		<Cta />
-	</div>
-	<div class="flex flex-col gap-12">
-		<Ethical />
+	<div class="flex w-full flex-1 flex-col justify-end gap-2">
+		<Cta /><Ethical />
 	</div>
 </div>
