@@ -4,6 +4,6 @@
 	import { ArrowRightIcon } from "@lucide/svelte";
 </script>
 
-<a href="/docs/changelog" class={cn(badgeVariants({ variant: "secondary", class: "bg-muted" }))}>
-	shadcn-svelte/skills, presets and more <ArrowRightIcon />
+<a href="/create" class={cn(badgeVariants({ variant: "secondary", class: "bg-muted" }))}>
+	Introducing Luma <ArrowRightIcon />
 </a>
