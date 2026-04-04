@@ -16,6 +16,7 @@
 	import ModeSwitcher from "./mode-switcher.svelte";
 
 	const colors = getColors();
+	const dev = import.meta.env.DEV;
 
 	let mobileNavRef: { closeMenu: () => void } | undefined;
 
@@ -51,7 +52,9 @@
 					<Separator orientation="vertical" />
 					<ProjectForm />
 				{:else}
-					<Customizer />
+					{#if dev}
+						<Customizer />
+					{/if}
 					<Button href="/create" variant="default" size="sm">
 						<PlusIcon />
 						New
