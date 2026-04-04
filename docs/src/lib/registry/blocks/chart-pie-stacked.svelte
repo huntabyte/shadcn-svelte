@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { Arc, PieChart } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
-	import { defaultMotion } from "$lib/registry/ui/chart/easing.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 
@@ -21,6 +20,14 @@
 		{ month: "may", mobile: 130, color: "var(--color-may)" },
 	];
 
+	type PieDataItem = { month: string; value: number; color: string };
+
+	const monthOrder = ["january", "february", "march", "april", "may"];
+
+	const sortMonths = (a: PieDataItem, b: PieDataItem) => {
+		return monthOrder.indexOf(a.month) - monthOrder.indexOf(b.month);
+	};
+
 	const chartConfig = {
 		desktop: { label: "Desktop" },
 		mobile: { label: "Mobile" },
@@ -30,6 +37,10 @@
 		april: { label: "April", color: "var(--chart-4)" },
 		may: { label: "May", color: "var(--chart-5)" },
 	} satisfies Chart.ChartConfig;
+
+	const tooltipLabelFormatter = (_: unknown, payload: Array<{ key: string }>) => {
+		return chartConfig[payload?.[0].key as keyof typeof chartConfig].label;
+	};
 </script>
 
 <Card.Root class="flex flex-col">
@@ -40,17 +51,13 @@
 	<Card.Content class="flex-1">
 		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
 			<PieChart
+				key="month"
 				label="month"
-				c={(d) => {
-					return d.color;
-				}}
+				c="color"
 				props={{
 					pie: {
-						sort: (a, b) => {
-							const monthOrder = ["january", "february", "march", "april", "may"];
-							return monthOrder.indexOf(a.month) - monthOrder.indexOf(b.month);
-						},
-						motion: defaultMotion,
+						sort: sortMonths,
+						motion: "tween",
 					},
 					tooltip: {
 						context: {
@@ -61,23 +68,21 @@
 				series={[
 					{
 						key: "desktop",
-						value: "desktop",
+						value: "value",
 						data: desktopData.map((d) => ({
 							month: d.month,
 							value: d.desktop,
 							color: d.color,
-							key: "desktop",
 						})),
 						props: { innerRadius: -20 },
 					},
 					{
 						key: "mobile",
-						value: "mobile",
+						value: "value",
 						data: mobileData.map((d) => ({
 							month: d.month,
 							value: d.mobile,
 							color: d.color,
-							key: "mobile",
 						})),
 						props: { outerRadius: -30 },
 					},
@@ -89,12 +94,9 @@
 				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip
-						labelKey="visitors"
 						nameKey="month"
 						indicator="line"
-						labelFormatter={(_, payload) => {
-							return chartConfig[payload?.[0].key as keyof typeof chartConfig].label;
-						}}
+						labelFormatter={tooltipLabelFormatter}
 					/>
 				{/snippet}
 			</PieChart>

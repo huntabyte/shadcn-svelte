@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { Arc, PieChart, Text } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
-	import { defaultMotion } from "$lib/registry/ui/chart/easing.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
@@ -54,23 +53,21 @@
 					: "Select month"}
 			</Select.Trigger>
 			<Select.Content align="end" class="rounded-xl">
-				<Select.Group>
-					{#each months as month (month)}
-						{@const config = chartConfig[month as keyof typeof chartConfig]}
+				{#each months as month (month)}
+					{@const config = chartConfig[month as keyof typeof chartConfig]}
 
-						{#if config}
-							<Select.Item
-								value={month}
-								label={config.label}
-								class="rounded-lg [&_span]:flex"
-							>
-								<div class="flex items-center gap-2 text-xs">
-									{config?.label}
-								</div>
-							</Select.Item>
-						{/if}
-					{/each}
-				</Select.Group>
+					{#if config}
+						<Select.Item
+							value={month}
+							label={config.label}
+							class="rounded-lg [&_span]:flex"
+						>
+							<div class="flex items-center gap-2 text-xs">
+								{config?.label}
+							</div>
+						</Select.Item>
+					{/if}
+				{/each}
 			</Select.Content>
 		</Select.Root>
 	</Card.Header>
@@ -88,7 +85,7 @@
 							const monthOrder = ["january", "february", "march", "april", "may"];
 							return monthOrder.indexOf(a.month) - monthOrder.indexOf(b.month);
 						},
-						motion: defaultMotion,
+						motion: "tween",
 					},
 				}}
 				innerRadius={60}

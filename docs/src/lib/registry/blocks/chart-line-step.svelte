@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { ChartClipPath, LineChart, Spline } from "layerchart";
-	import { defaultClipMotion } from "$lib/registry/ui/chart/easing.js";
+	import { LineChart } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { scaleUtc } from "d3-scale";
 	import { curveStep } from "d3-shape";
@@ -41,20 +40,13 @@
 					},
 				]}
 				props={{
-					spline: { curve: curveStep, strokeWidth: 2 },
+					spline: { curve: curveStep, motion: "tween", strokeWidth: 2 },
 					xAxis: {
 						format: (v: Date) => v.toLocaleDateString("en-US", { month: "short" }),
 					},
 					highlight: { points: { r: 4 } },
 				}}
 			>
-				{#snippet marks({ visibleSeries, getSplineProps })}
-					<ChartClipPath initialWidth={0} motion={defaultClipMotion}>
-						{#each visibleSeries as s, i (s.key)}
-							<Spline {...getSplineProps(s, i)} />
-						{/each}
-					</ChartClipPath>
-				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel />
 				{/snippet}

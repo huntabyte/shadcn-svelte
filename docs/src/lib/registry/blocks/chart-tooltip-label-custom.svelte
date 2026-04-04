@@ -2,9 +2,8 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import { scaleBand } from "d3-scale";
-	import { BarChart, type ChartState } from "layerchart";
-	import { defaultBarMotion } from "$lib/registry/ui/chart/easing.js";
-	import { onMount } from "svelte";
+	import { BarChart } from "layerchart";
+	import { cubicInOut } from "svelte/easing";
 
 	const chartData = [
 		{ date: "2024-07-15", running: 450, swimming: 300 },
@@ -20,27 +19,6 @@
 		running: { label: "Running", color: "var(--chart-1)" },
 		swimming: { label: "Swimming", color: "var(--chart-2)" },
 	} satisfies Chart.ChartConfig;
-
-	let context = $state<ChartState>();
-	let containerRef = $state<HTMLDivElement | null>(null);
-
-	onMount(() => {
-		setTimeout(() => {
-			if (!containerRef) return;
-			const rects = containerRef.querySelectorAll(".lc-tooltip-rect");
-			const target = rects[1];
-			if (target) {
-				const bounds = target.getBoundingClientRect();
-				target.dispatchEvent(
-					new PointerEvent("pointerenter", {
-						clientX: bounds.left + bounds.width / 2,
-						clientY: bounds.top + bounds.height / 2,
-						bubbles: true,
-					})
-				);
-			}
-		}, 1600);
-	});
 </script>
 
 <Card.Root>
@@ -49,9 +27,8 @@
 		<Card.Description>Tooltip with custom label from chartConfig.</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<Chart.Container bind:ref={containerRef} config={chartConfig}>
+		<Chart.Container config={chartConfig}>
 			<BarChart
-				bind:context
 				data={chartData}
 				xScale={scaleBand().padding(0.25)}
 				x="date"
@@ -76,9 +53,7 @@
 				props={{
 					bars: {
 						stroke: "none",
-						initialY: context?.height,
-						initialHeight: 0,
-						motion: defaultBarMotion,
+						motion: { type: "tween", duration: 500, easing: cubicInOut },
 					},
 					xAxis: {
 						format: (d) =>

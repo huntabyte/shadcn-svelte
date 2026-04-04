@@ -6,7 +6,7 @@
 	import { Area, AreaChart, ChartClipPath } from "layerchart";
 	import { curveNatural } from "d3-shape";
 	import ChartContainer from "../ui/chart/chart-container.svelte";
-	import { defaultClipMotion } from "$lib/registry/ui/chart/easing.js";
+	import { cubicInOut } from "svelte/easing";
 
 	const chartData = [
 		{ date: new Date("2024-04-01"), desktop: 222, mobile: 150 },
@@ -139,7 +139,7 @@
 	} satisfies Chart.ChartConfig;
 </script>
 
-<Card.Root class="py-0">
+<Card.Root>
 	<Card.Header class="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
 		<div class="grid flex-1 gap-1 text-center sm:text-start">
 			<Card.Title>Area Chart - Interactive</Card.Title>
@@ -150,11 +150,9 @@
 				{selectedLabel}
 			</Select.Trigger>
 			<Select.Content class="rounded-xl">
-				<Select.Group>
-					<Select.Item value="90d" class="rounded-lg">Last 3 months</Select.Item>
-					<Select.Item value="30d" class="rounded-lg">Last 30 days</Select.Item>
-					<Select.Item value="7d" class="rounded-lg">Last 7 days</Select.Item>
-				</Select.Group>
+				<Select.Item value="90d" class="rounded-lg">Last 3 months</Select.Item>
+				<Select.Item value="30d" class="rounded-lg">Last 30 days</Select.Item>
+				<Select.Item value="7d" class="rounded-lg">Last 7 days</Select.Item>
 			</Select.Content>
 		</Select.Root>
 	</Card.Header>
@@ -179,11 +177,6 @@
 				]}
 				seriesLayout="stack"
 				props={{
-					area: {
-						curve: curveNatural,
-						"fill-opacity": 0.4,
-						line: { class: "stroke-1" },
-					},
 					xAxis: {
 						ticks: timeRange === "7d" ? 7 : undefined,
 						format: (v) => {
@@ -193,11 +186,10 @@
 							});
 						},
 					},
-
 					yAxis: { format: () => "" },
 				}}
 			>
-				{#snippet marks({ series, getAreaProps })}
+				{#snippet marks({ context })}
 					<defs>
 						<linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
 							<stop
@@ -220,10 +212,20 @@
 							/>
 						</linearGradient>
 					</defs>
-					<ChartClipPath initialWidth={0} motion={defaultClipMotion}>
-						{#each series as s, i (s.key)}
+					<ChartClipPath
+						initialWidth={0}
+						motion={{
+							width: { type: "tween", duration: 1000, easing: cubicInOut },
+						}}
+					>
+						{#each context.series.visibleSeries as s (s.key)}
 							<Area
-								{...getAreaProps(s, i)}
+								seriesKey={s.key}
+								curve={curveNatural}
+								fillOpacity={0.4}
+								line={{ class: "stroke-1" }}
+								motion="tween"
+								{...s.props}
 								fill={s.key === "desktop"
 									? "url(#fillDesktop)"
 									: "url(#fillMobile)"}

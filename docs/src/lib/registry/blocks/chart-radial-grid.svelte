@@ -3,7 +3,6 @@
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import { ArcChart } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
-	import { defaultMotion } from "$lib/registry/ui/chart/easing.js";
 
 	const chartData = [
 		{ browser: "other", visitors: 90, color: "var(--color-other)" },
@@ -21,17 +20,12 @@
 		edge: { label: "Edge", color: "var(--chart-4)" },
 		other: { label: "Other", color: "var(--chart-5)" },
 	} satisfies Chart.ChartConfig;
-
-	// Grid geometry: concentric circles and radial spokes
-	const gridRadii = [20, 40, 60, 80, 100];
-	const spokeCount = 6;
-	const spokeLength = 105;
 </script>
 
 <Card.Root>
 	<Card.Header class="items-center">
 		<Card.Title>Radial Chart - Grid</Card.Title>
-		<Card.Description>January - June 2024</Card.Description>
+		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
 	</Card.Header>
 	<Card.Content class="flex-1">
 		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
@@ -49,25 +43,10 @@
 					data: [d],
 				}))}
 				props={{
-					arc: { track: { fill: "none" }, motion: defaultMotion },
+					arc: { track: { fill: "var(--muted)" }, motion: "tween" },
 					tooltip: { context: { hideDelay: 350 } },
 				}}
 			>
-				{#snippet belowMarks()}
-					{#each gridRadii as r (r)}
-						<circle cx="0" cy="0" {r} fill="none" class="stroke-border" />
-					{/each}
-					{#each Array(spokeCount) as _, i (i)}
-						{@const angle = (i / spokeCount) * Math.PI * 2}
-						<line
-							x1="0"
-							y1="0"
-							x2={Math.cos(angle) * spokeLength}
-							y2={Math.sin(angle) * spokeLength}
-							class="stroke-border"
-						/>
-					{/each}
-				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel nameKey="browser" />
 				{/snippet}

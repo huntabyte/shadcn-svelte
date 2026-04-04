@@ -3,7 +3,6 @@
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { PieChart } from "layerchart";
-	import { defaultMotion } from "$lib/registry/ui/chart/easing.js";
 
 	const chartData = [
 		{ browser: "chrome", visitors: 275, color: "var(--color-chrome)" },
@@ -37,7 +36,7 @@
 				c="color"
 				innerRadius={60}
 				padding={29}
-				props={{ pie: { motion: defaultMotion } }}
+				props={{ pie: { motion: "tween" } }}
 			>
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel />

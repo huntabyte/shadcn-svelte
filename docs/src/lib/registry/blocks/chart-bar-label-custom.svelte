@@ -4,7 +4,7 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { BarChart } from "layerchart";
 	import { scaleBand } from "d3-scale";
-	import { defaultBarMotion } from "$lib/registry/ui/chart/easing.js";
+	import { cubicInOut } from "svelte/easing";
 
 	const chartData = [
 		{ month: "January", desktop: 186, mobile: 80 },
@@ -44,9 +44,7 @@
 						stroke: "none",
 						radius: 5,
 						rounded: "all",
-						initialWidth: 0,
-						initialX: 0,
-						motion: defaultBarMotion,
+						motion: { type: "tween", duration: 500, easing: cubicInOut },
 					},
 					highlight: { area: { fill: "none" } },
 					yAxis: {

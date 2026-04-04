@@ -1,12 +1,11 @@
 <script lang="ts">
-	import { Area, AreaChart, ChartClipPath } from "layerchart";
+	import { AreaChart } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { curveStep } from "d3-shape";
 	import { scaleUtc } from "d3-scale";
 	import ActivityIcon from "@lucide/svelte/icons/activity";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
-	import { defaultClipMotion } from "$lib/registry/ui/chart/easing.js";
 
 	const chartData = [
 		{ date: new Date("2024-01-01"), desktop: 186 },
@@ -46,6 +45,7 @@
 						curve: curveStep,
 						fillOpacity: 0.4,
 						line: { class: "stroke-1" },
+						motion: "tween",
 					},
 					xAxis: {
 						format: (v: Date) => v.toLocaleDateString("en-US", { month: "short" }),
@@ -53,13 +53,6 @@
 					yAxis: { format: () => "" },
 				}}
 			>
-				{#snippet marks({ series, getAreaProps })}
-					<ChartClipPath initialWidth={0} motion={defaultClipMotion}>
-						{#each series as s, i (s.key)}
-							<Area {...getAreaProps(s, i)} />
-						{/each}
-					</ChartClipPath>
-				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel />
 				{/snippet}

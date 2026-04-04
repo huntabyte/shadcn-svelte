@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { Arc, PieChart, Text } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
-	import { defaultMotion } from "$lib/registry/ui/chart/easing.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 
@@ -38,7 +37,7 @@
 				c="color"
 				props={{
 					pie: {
-						motion: defaultMotion,
+						motion: "tween",
 					},
 				}}
 			>

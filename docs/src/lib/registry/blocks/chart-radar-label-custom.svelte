@@ -1,11 +1,8 @@
 <script lang="ts">
-	import { Axis, LineChart, Spline, Text } from "layerchart";
+	import { Axis, LineChart, Text } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { curveLinearClosed } from "d3-shape";
 	import { scaleBand } from "d3-scale";
-	import { defaultRadarScale } from "$lib/registry/ui/chart/easing.js";
-	import { tweened } from "svelte/motion";
-	import { onMount } from "svelte";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 
@@ -22,9 +19,6 @@
 		desktop: { label: "Desktop", color: "var(--chart-1)" },
 		mobile: { label: "Mobile", color: "var(--chart-2)" },
 	} satisfies Chart.ChartConfig;
-
-	const scale = tweened(0, defaultRadarScale);
-	onMount(() => scale.set(1));
 </script>
 
 <Card.Root>
@@ -63,6 +57,7 @@
 					spline: {
 						curve: curveLinearClosed,
 						stroke: "0",
+						motion: "tween",
 					},
 					xAxis: {
 						tickLength: 0,
@@ -105,13 +100,6 @@
 						{/snippet}
 					</Axis>
 					<Axis placement="radius" format={() => ""} />
-				{/snippet}
-				{#snippet marks({ visibleSeries, getSplineProps })}
-					<g style="transform: scale({$scale}); transform-origin: 0 0;">
-						{#each visibleSeries as s, i (s.key)}
-							<Spline {...getSplineProps(s, i)} />
-						{/each}
-					</g>
 				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip />
