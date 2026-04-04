@@ -58,22 +58,7 @@
 					{#each THEMES.filter( (theme) => BASE_THEMES.find((baseColor) => baseColor.name === theme.name) ) as theme (theme.name)}
 						{#if theme.name === designSystem.baseColor}
 							<Picker.RadioItem value={theme.name} closeOnSelect={false}>
-								<div class="flex items-start gap-2">
-									{#if mode.current}
-										<div
-											style="--color: {getColorForTheme(theme)};"
-											class="size-4 translate-y-1 rounded-full bg-(--color)"
-										></div>
-									{/if}
-									<div class="flex flex-col justify-start pointer-coarse:gap-1">
-										<div>{theme.title}</div>
-										<div
-											class="text-muted-foreground text-xs pointer-coarse:text-sm"
-										>
-											Match base color
-										</div>
-									</div>
-								</div>
+								{theme.title}
 							</Picker.RadioItem>
 						{/if}
 					{/each}
@@ -83,12 +68,6 @@
 					{#each THEMES.filter((theme) => !BASE_THEMES.find((baseColor) => baseColor.name === theme.name)) as theme (theme.name)}
 						<Picker.RadioItem value={theme.name} closeOnSelect={false}>
 							<div class="flex items-center gap-2">
-								{#if mode.current}
-									<div
-										style="--color: {theme.cssVars[mode.current]['primary']};"
-										class="size-4 rounded-full bg-(--color)"
-									></div>
-								{/if}
 								{theme.title}
 							</div>
 						</Picker.RadioItem>
