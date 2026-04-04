@@ -20,7 +20,7 @@
 </script>
 
 <div
-	class="top-24 right-12 isolate z-10 flex max-h-[92vh] min-h-0 w-full flex-col gap-2 self-start md:w-(--customizer-width)"
+	class="top-24 right-12 isolate z-10 flex min-h-0 w-full flex-col gap-2 md:w-(--customizer-width)"
 >
 	<Card.Root
 		class="dark bg-card/90 max-h-full min-h-0 w-full gap-0 rounded-2xl shadow-xl backdrop-blur-xl"
