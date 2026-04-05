@@ -39,7 +39,7 @@
 	<Card.Content class="pt-0">
 		<Chart.Container
 			config={barChartConfig}
-			class="max-h-[180px] w-full [&_.lc-legend-swatch-group]:py-4"
+			class="max-h-[180px] w-full [&_.lc-legend-swatch-group]:mt-16"
 		>
 			<BarChart
 				data={barChartData}
@@ -58,6 +58,7 @@
 					xAxis: {
 						format: (d: string) => d.slice(0, 3),
 						tickLength: 0,
+						tickLabelProps: { dy: 12 },
 					},
 				}}
 				series={[
@@ -78,7 +79,7 @@
 				{/snippet}
 			</BarChart>
 		</Chart.Container>
-		<div class="divide-border/60 grid w-full grid-cols-3 divide-x">
+		<div class="divide-border/60 mt-4 grid w-full grid-cols-3 divide-x">
 			<div class="px-2 text-center">
 				<div class="text-muted-foreground text-[0.65rem] uppercase">Desktop</div>
 				<div class="text-sm font-medium tabular-nums">
