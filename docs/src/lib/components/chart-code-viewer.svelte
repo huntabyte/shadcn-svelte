@@ -7,7 +7,7 @@
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import type { HTMLAttributes } from "svelte/elements";
 	import { getIconForLanguageExtension } from "./icons/icons.js";
-	import type { HighlightedBlock } from "../../routes/api/block/[block]/+server.js";
+	import type { HighlightedBlock } from "$lib/types/block.js";
 
 	const isDesktop = new MediaQuery("min-width: 768px");
 

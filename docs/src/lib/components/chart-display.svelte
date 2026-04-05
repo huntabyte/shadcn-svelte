@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { cn } from "$lib/utils.js";
-	import type { HighlightedBlock } from "../../routes/api/block/[block]/+server.js";
+	import type { HighlightedBlock } from "$lib/types/block.js";
 	import ChartToolbar from "./chart-toolbar.svelte";
 	import type { HTMLAttributes } from "svelte/elements";
 
