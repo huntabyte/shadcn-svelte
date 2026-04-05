@@ -15,7 +15,6 @@
 	import CustomizerControls from "../../routes/(app)/(layout)/(create)/components/customizer-controls.svelte";
 	import { FONT_HEADING_OPTIONS, FONTS } from "$lib/fonts.js";
 	import { cn } from "$lib/utils.js";
-	import ModeSwitcher from "./mode-switcher.svelte";
 	import { setMode, mode } from "mode-watcher";
 	import * as Kbd from "$lib/registry/ui/kbd/index.js";
 	import UndoIcon from "@lucide/svelte/icons/undo";

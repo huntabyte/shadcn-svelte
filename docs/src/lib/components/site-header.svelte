@@ -17,7 +17,6 @@
 	import ModeSwitcher from "./mode-switcher.svelte";
 
 	const colors = getColors();
-	const dev = import.meta.env.DEV;
 
 	let mobileNavRef: { closeMenu: () => void } | undefined;
 
