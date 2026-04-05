@@ -3,7 +3,7 @@
 	"name": "sheet",
 	"type": "registry:ui",
 	"devDependencies": [
-		"bits-ui@^2.16.5",
+		"bits-ui@^2.17.1",
 		"@internationalized/date@^3.12.0"
 	],
 	"registryDependencies": [
