@@ -254,7 +254,6 @@
 				size="sm"
 				class="justify-start capitalize shadow-none *:data-[slot=select-value]:w-12 *:data-[slot=select-value]:capitalize"
 			>
-				<span class="font-medium">Theme:</span>
 				<span data-slot="select-value">{coercedActiveTheme ?? "Select a theme"}</span>
 			</Select.Trigger>
 			<Select.Content align="end">
@@ -299,7 +298,7 @@
 	<Dialog.Root>
 		<Dialog.Trigger class={cn("hidden sm:flex!", "ms-auto")}>
 			{#snippet child({ props })}
-				<Button size="sm" class="ms-auto" variant="secondary" {...props}>
+				<Button size="icon-sm" class="ms-auto" variant="outline" {...props}>
 					<IconCopy />
 					<span class="group-data-[size=icon-sm]/button:sr-only">Copy Code</span>
 				</Button>
