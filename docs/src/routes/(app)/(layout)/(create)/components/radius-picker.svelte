@@ -32,10 +32,22 @@
 			<div
 				class="text-foreground pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base select-none"
 			>
-				<div
-					class="size-4 border-t-2 border-r-2 border-current transition-all"
-					style="border-top-right-radius: {currentRadius?.value};"
-				></div>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					class="text-foreground"
+				>
+					<path
+						fill="none"
+						stroke="currentColor"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M4 20v-5C4 8.925 8.925 4 15 4h5"
+					/>
+				</svg>
 			</div>
 		</Picker.Trigger>
 		<Picker.Content
