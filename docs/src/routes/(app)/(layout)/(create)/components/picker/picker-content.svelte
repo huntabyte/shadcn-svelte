@@ -16,18 +16,20 @@
 </script>
 
 {#if submenu}
-	<DropdownMenuPrimitive.SubContent
-		bind:ref
-		data-slot="dropdown-menu-sub-content"
-		{sideOffset}
-		preventScroll={false}
-		updatePositionStrategy="always"
-		class={cn(
-			"bg-popover/90 text-popover-foreground ring-foreground/10 z-50 w-auto min-w-[96px] rounded-md p-1 shadow-lg ring-1 backdrop-blur-xs",
-			className
-		)}
-		{...restProps}
-	/>
+	<DropdownMenuPrimitive.Portal>
+		<DropdownMenuPrimitive.SubContent
+			bind:ref
+			data-slot="dropdown-menu-sub-content"
+			{sideOffset}
+			preventScroll={false}
+			updatePositionStrategy="always"
+			class={cn(
+				"bg-popover/90 text-popover-foreground ring-foreground/10 z-50 w-auto min-w-[96px] rounded-md p-1 shadow-lg ring-1 backdrop-blur-xs",
+				className
+			)}
+			{...restProps}
+		/>
+	</DropdownMenuPrimitive.Portal>
 {:else}
 	<DropdownMenuPrimitive.Portal {...portalProps}>
 		<DropdownMenuPrimitive.Content
