@@ -4,7 +4,7 @@
 	"type": "registry:block",
 	"devDependencies": [
 		"@internationalized/date@^3.12.0",
-		"bits-ui@^2.17.1"
+		"bits-ui@^2.17.2"
 	],
 	"registryDependencies": [
 		"range-calendar"

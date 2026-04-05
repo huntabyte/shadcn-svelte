@@ -25,7 +25,7 @@
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20260404.1",
+		"@cloudflare/workers-types": "^4.20260405.1",
 		"@dnd-kit-svelte/svelte": "^0.1.6",
 		"@dnd-kit/abstract": "^0.3.2",
 		"@dnd-kit/collision": "^0.3.2",
@@ -78,7 +78,7 @@
 		"@types/mdast": "^4.0.4",
 		"@types/qrcode": "^1.5.6",
 		"acorn": "^8.16.0",
-		"bits-ui": "^2.17.1",
+		"bits-ui": "^2.17.2",
 		"chrono-node": "^2.9.0",
 		"clsx": "^2.1.1",
 		"consola": "^3.4.2",
@@ -137,7 +137,7 @@
 	},
 	"dependencies": {
 		"@types/lodash": "^4.17.24",
-		"agent-browser": "^0.23.4",
+		"agent-browser": "^0.24.1",
 		"lodash": "^4.18.1"
 	}
 }
