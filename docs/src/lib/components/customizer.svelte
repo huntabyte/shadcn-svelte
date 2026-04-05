@@ -144,4 +144,3 @@
 		</DropdownMenu.Content>
 	</DropdownMenu.Root>
 </Tooltip.Provider>
-<ModeSwitcher class="md:hidden" />

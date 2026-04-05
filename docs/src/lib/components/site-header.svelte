@@ -9,7 +9,8 @@
 	import CommandMenu from "./command-menu/command-menu.svelte";
 	import { getColors } from "$lib/colors.js";
 	import { mainNavItems } from "$lib/navigation.js";
-	import PlusIcon from "@lucide/svelte/icons/plus";
+	import { HugeiconsIcon } from "@hugeicons/svelte";
+	import { PlusSignIcon } from "@hugeicons/core-free-icons";
 	import Customizer from "./customizer.svelte";
 	import { page } from "$app/state";
 	import ProjectForm from "../../routes/(app)/(layout)/(create)/components/project-form.svelte";
@@ -53,8 +54,9 @@
 					<ProjectForm />
 				{:else}
 					<Customizer />
-					<Button href="/create" variant="default" size="sm">
-						<PlusIcon />
+					<Separator orientation="vertical" />
+					<Button href="/create" variant="default" size="sm" class="h-[31px] rounded-lg">
+						<HugeiconsIcon icon={PlusSignIcon} />
 						New
 					</Button>
 				{/if}
