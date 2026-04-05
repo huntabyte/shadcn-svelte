@@ -33,7 +33,11 @@
 		<div class="flex flex-wrap gap-2">
 			{#each usernames as username (username)}
 				<Avatar.Root>
-					<Avatar.Image src="https://github.com/{username}.png" alt={username} />
+					<Avatar.Image
+						class="grayscale"
+						src="https://github.com/{username}.png"
+						alt={username}
+					/>
 					<Avatar.Fallback>{username.charAt(0)}</Avatar.Fallback>
 				</Avatar.Root>
 			{/each}
