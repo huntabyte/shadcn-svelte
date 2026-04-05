@@ -2,7 +2,7 @@
 	import * as Accordion from "$lib/registry/ui/accordion/index.js";
 </script>
 
-<Accordion.Root type="single" collapsible class="w-full max-w-lg rounded-lg border" value="item-1">
+<Accordion.Root type="single" class="w-full max-w-lg rounded-lg border" value="item-1">
 	<Accordion.Item value="item-1" class="border-b px-4 last:border-b-0">
 		<Accordion.Trigger>How does billing work?</Accordion.Trigger>
 		<Accordion.Content>

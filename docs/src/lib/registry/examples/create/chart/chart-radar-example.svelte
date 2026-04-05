@@ -92,10 +92,10 @@
 						},
 					}}
 				>
-					{#snippet marks({ visibleSeries, getSplineProps })}
+					{#snippet marks({ context })}
 						<g style="transform: scale({$scale}); transform-origin: 0 0;">
-							{#each visibleSeries as s, i (s.key)}
-								<Spline {...getSplineProps(s, i)} />
+							{#each context.series.visibleSeries as s (s.key)}
+								<Spline seriesKey={s.key} curve={curveLinearClosed} stroke="0" {...s.props} />
 							{/each}
 						</g>
 					{/snippet}

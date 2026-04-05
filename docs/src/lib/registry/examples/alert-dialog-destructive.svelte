@@ -18,7 +18,7 @@
 			<AlertDialog.Title>Delete chat?</AlertDialog.Title>
 			<AlertDialog.Description>
 				This will permanently delete this chat conversation. View
-				<a href="#">Settings</a> delete any memories saved during this chat.
+				<a href="/settings">Settings</a> delete any memories saved during this chat.
 			</AlertDialog.Description>
 		</AlertDialog.Header>
 		<AlertDialog.Footer>

@@ -2,7 +2,6 @@
 	import type { Command } from "package-manager-detector";
 	import * as Tabs from "$lib/registry/ui/tabs/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import { getCommand, PACKAGE_MANAGERS, type PackageManager } from "$lib/package-manager.js";
 	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
 	import TerminalIcon from "@lucide/svelte/icons/terminal";
@@ -27,8 +26,6 @@
 		const cmd = getCommand(agent, type, command);
 		return `${cmd.command} ${cmd.args.join(" ")}`.trim();
 	}
-
-	const commandText = $derived(getCommandText(userConfig.current.packageManager));
 
 	const clipboard = new UseClipboard();
 </script>

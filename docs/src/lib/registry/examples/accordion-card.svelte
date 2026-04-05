@@ -11,7 +11,7 @@
 		</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<Accordion.Root type="single" collapsible value="plans">
+		<Accordion.Root type="single" value="plans">
 			<Accordion.Item value="plans">
 				<Accordion.Trigger>What subscription plans do you offer?</Accordion.Trigger>
 				<Accordion.Content>
