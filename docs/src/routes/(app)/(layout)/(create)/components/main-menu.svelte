@@ -83,7 +83,12 @@
 		</AlertDialog.Header>
 		<AlertDialog.Footer>
 			<AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
-			<AlertDialog.Action onclick={() => { designSystem.reset(); showResetDialog = false; }}>Reset</AlertDialog.Action>
+			<AlertDialog.Action
+				onclick={() => {
+					designSystem.reset();
+					showResetDialog = false;
+				}}>Reset</AlertDialog.Action
+			>
 		</AlertDialog.Footer>
 	</AlertDialog.Content>
 </AlertDialog.Root>

@@ -19,12 +19,32 @@ import { entries, kebabToPascal } from "../utils/utils.js";
 import { hex } from "../utils/colors.js";
 
 const PRESET_METADATA = {
-	nova: { title: "Nova", description: "Lucide / Geist", hint: "Reduced spacing for compact layouts." },
+	nova: {
+		title: "Nova",
+		description: "Lucide / Geist",
+		hint: "Reduced spacing for compact layouts.",
+	},
 	vega: { title: "Vega", description: "Lucide / Inter", hint: "The classic shadcn/ui look." },
-	maia: { title: "Maia", description: "Hugeicons / Figtree", hint: "Soft and rounded, with generous spacing." },
-	lyra: { title: "Lyra", description: "Phosphor / JetBrains Mono", hint: "Boxy and sharp. Pairs well with mono fonts." },
-	mira: { title: "Mira", description: "Hugeicons / Inter", hint: "Compact. Made for dense interfaces." },
-	luma: { title: "Luma", description: "Lucide / Inter", hint: "Rounded geometry. Soft elevation. Breathable layouts." },
+	maia: {
+		title: "Maia",
+		description: "Hugeicons / Figtree",
+		hint: "Soft and rounded, with generous spacing.",
+	},
+	lyra: {
+		title: "Lyra",
+		description: "Phosphor / JetBrains Mono",
+		hint: "Boxy and sharp. Pairs well with mono fonts.",
+	},
+	mira: {
+		title: "Mira",
+		description: "Hugeicons / Inter",
+		hint: "Compact. Made for dense interfaces.",
+	},
+	luma: {
+		title: "Luma",
+		description: "Lucide / Inter",
+		hint: "Rounded geometry. Soft elevation. Breathable layouts.",
+	},
 } as const;
 
 /**
