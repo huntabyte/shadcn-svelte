@@ -14,9 +14,11 @@
 	const {
 		type,
 		command,
+		class: className,
 	}: {
 		type: Command | "create";
 		command: string | string[];
+		class?: string;
 	} = $props();
 
 	const userConfig = UserConfigContext.get();
@@ -31,7 +33,7 @@
 	const clipboard = new UseClipboard();
 </script>
 
-<figure data-rehype-pretty-code-figure>
+<figure data-rehype-pretty-code-figure class={className}>
 	<div class="overflow-x-auto">
 		<Tabs.Root
 			bind:value={
@@ -82,28 +84,19 @@
 				{/each}
 			</div>
 		</Tabs.Root>
-		<Tooltip.Root disableCloseOnTriggerClick>
-			<Tooltip.Trigger onclick={() => clipboard.copy(commandText)}>
-				{#snippet child({ props })}
-					<Button
-						{...props}
-						data-slot="copy-button"
-						size="icon"
-						variant="ghost"
-						class="absolute end-2 top-2 z-10 size-7 opacity-70 hover:opacity-100 focus-visible:opacity-100"
-					>
-						<span class="sr-only" data-llm-ignore>Copy</span>
-						{#if clipboard.copied}
-							<CheckIcon />
-						{:else}
-							<CopyIcon />
-						{/if}
-					</Button>
-				{/snippet}
-			</Tooltip.Trigger>
-			<Tooltip.Content>
-				{clipboard.copied ? "Copied" : "Copy to Clipboard"}
-			</Tooltip.Content>
-		</Tooltip.Root>
+
+		<Button
+			data-slot="copy-button"
+			size="icon"
+			variant="ghost"
+			class="absolute top-2 right-2 z-10 size-7 opacity-70 hover:opacity-100 focus-visible:opacity-100"
+		>
+			<span class="sr-only" data-llm-ignore>Copy</span>
+			{#if clipboard.copied}
+				<CheckIcon />
+			{:else}
+				<CopyIcon />
+			{/if}
+		</Button>
 	</div>
 </figure>
