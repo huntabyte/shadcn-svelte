@@ -8,7 +8,7 @@
 	import BaseColorPicker from "./base-color-picker.svelte";
 	import IconLibraryPicker from "./icon-library-picker.svelte";
 	import FontPicker from "./font-picker.svelte";
-	import MenuColorPicker from "./menu-color-picker.svelte";
+	import MenuColorPicker from "./menu-picker.svelte";
 	import MenuAccentPicker from "./menu-accent-picker.svelte";
 	import RandomButton from "./random-button.svelte";
 	import CopyPreset from "./copy-preset.svelte";

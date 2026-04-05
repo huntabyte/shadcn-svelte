@@ -6,7 +6,8 @@
 	import type { MenuColorValue } from "$lib/registry/config.js";
 	import { mode } from "mode-watcher";
 	import { browser } from "$app/environment";
-	import MenuIcon from "@lucide/svelte/icons/menu";
+	import { Menu02Icon } from "@hugeicons/core-free-icons";
+	import { HugeiconsIcon } from "@hugeicons/svelte";
 
 	type ColorChoice = "default" | "inverted";
 	type SurfaceChoice = "solid" | "translucent";
@@ -98,7 +99,7 @@
 			<div
 				class="text-foreground pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base select-none md:right-2.5"
 			>
-				<MenuIcon class="size-4" strokeWidth={2} />
+				<HugeiconsIcon icon={Menu02Icon} strokeWidth={2} class="size-4" />
 			</div>
 		</Picker.Trigger>
 		<Picker.Content

@@ -10,7 +10,7 @@
 	import IconLibraryPicker from "../../routes/(app)/(layout)/(create)/components/icon-library-picker.svelte";
 	import FontPicker from "../../routes/(app)/(layout)/(create)/components/font-picker.svelte";
 	import RadiusPicker from "../../routes/(app)/(layout)/(create)/components/radius-picker.svelte";
-	import MenuColorPicker from "../../routes/(app)/(layout)/(create)/components/menu-color-picker.svelte";
+	import MenuColorPicker from "../../routes/(app)/(layout)/(create)/components/menu-picker.svelte";
 	import MenuAccentPicker from "../../routes/(app)/(layout)/(create)/components/menu-accent-picker.svelte";
 	import CustomizerControls from "../../routes/(app)/(layout)/(create)/components/customizer-controls.svelte";
 	import { FONT_HEADING_OPTIONS, FONTS } from "$lib/fonts.js";
