@@ -52,9 +52,7 @@
 					<Separator orientation="vertical" />
 					<ProjectForm />
 				{:else}
-					{#if dev}
-						<Customizer />
-					{/if}
+					<Customizer />
 					<Button href="/create" variant="default" size="sm">
 						<PlusIcon />
 						New
