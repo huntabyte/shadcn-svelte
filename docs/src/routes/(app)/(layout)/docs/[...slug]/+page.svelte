@@ -46,7 +46,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 	id="main-content"
 >
 	<div
-		class="sticky top-[calc(var(--header-height)+1px)] z-30 ms-auto hidden h-[calc(100svh-var(--footer-height)+2rem)] w-72 flex-col gap-4 overflow-hidden overscroll-none pb-8 xl:flex"
+		class="sticky top-[calc(var(--header-height)+1px)] z-30 ms-auto hidden h-[90svh] w-72 flex-col gap-4 overflow-hidden overscroll-none pb-8 xl:flex"
 		data-llm-ignore
 	>
 		<div class="h-(--top-spacing) shrink-0"></div>
