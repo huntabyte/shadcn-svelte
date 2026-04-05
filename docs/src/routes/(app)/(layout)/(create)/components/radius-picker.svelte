@@ -49,15 +49,8 @@
 					{#each RADII as radius (radius.name)}
 						{#if radius.name === "default"}
 							<Picker.RadioItem value={radius.name} closeOnSelect={false}>
-								<div class="flex flex-col justify-start pointer-coarse:gap-1">
-									<div>{radius.label}</div>
-									<div
-										class="text-muted-foreground text-xs pointer-coarse:text-sm"
-									>
-										Use radius from style
-									</div>
-								</div>
-							</Picker.RadioItem>
+								{radius.label}</Picker.RadioItem
+							>
 							<Picker.Separator />
 						{:else}
 							<Picker.RadioItem value={radius.name} closeOnSelect={false}>
