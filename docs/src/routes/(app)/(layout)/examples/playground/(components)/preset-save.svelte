@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Textarea from "$lib/registry/ui/textarea/textarea.svelte";
 	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
@@ -22,7 +23,7 @@
 			</div>
 			<div class="grid gap-2">
 				<Label for="description">Description</Label>
-				<Input id="description" />
+				<Textarea id="description" />
 			</div>
 		</div>
 		<Dialog.Footer>

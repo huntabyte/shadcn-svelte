@@ -75,7 +75,7 @@
 								completion within, or some text with instructions to edit it.
 							</HoverCard.Content>
 						</HoverCard.Root>
-						<Tabs.List class="grid grid-cols-3">
+						<Tabs.List class="grid w-full grid-cols-3">
 							<Tabs.Trigger value="complete">
 								<span class="sr-only">Complete</span>
 								<svg
