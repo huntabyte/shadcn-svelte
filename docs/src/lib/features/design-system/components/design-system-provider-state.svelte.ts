@@ -22,6 +22,7 @@ import {
 	decodePreset,
 	encodePreset,
 	DEFAULT_PRESET_CONFIG,
+	DEFAULT_PRESETS,
 	type PresetConfig,
 	PRESET_BASE_COLOR_KEYS,
 	PRESET_CHART_COLORS,
@@ -260,7 +261,7 @@ class DesignSystemState implements IDesignSystemState {
 	}
 
 	reset() {
-		this.system = DEFAULT_PRESET_CONFIG;
+		this.system = { ...DEFAULT_PRESETS[this.style] };
 	}
 
 	randomize() {
