@@ -43,7 +43,7 @@
 				remixicon="RiSettingsLine"
 			/>
 		</DropdownMenu.Trigger>
-		<DropdownMenu.Content align="end" class="dark min-w-64 p-0" preventScroll={false}>
+		<DropdownMenu.Content align="end" class="min-w-64 p-0" preventScroll={false}>
 			<DropdownMenu.Group>
 				<StylePicker submenu />
 				<BaseColorPicker submenu />
