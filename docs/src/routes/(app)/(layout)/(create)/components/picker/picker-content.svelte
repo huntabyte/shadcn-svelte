@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
 	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
+	import { setContext } from "svelte";
 
 	let {
 		ref = $bindable(null),
@@ -13,6 +14,9 @@
 		portalProps?: WithoutChildrenOrChild<DropdownMenuPrimitive.PortalProps>;
 		submenu?: boolean;
 	} = $props();
+
+	// Submenu items are theme-aware; standalone (non-submenu) items always use dark hardcoded colors.
+	setContext("picker-is-submenu", submenu);
 </script>
 
 {#if submenu}
@@ -39,7 +43,7 @@
 			preventScroll={false}
 			updatePositionStrategy="always"
 			class={cn(
-				"dark cn-menu-target no-scrollbar z-50 max-h-(--available-height) w-[calc(var(--available-width)-(--spacing(6)))] min-w-32 origin-(--transform-origin) translate-y-2 overflow-x-hidden overflow-y-auto rounded-xl border-0 bg-neutral-950/80 p-1.5 text-neutral-100 ring-1 ring-neutral-950/80 backdrop-blur-xl outline-none data-[state=closed]:overflow-hidden md:w-52 dark:bg-neutral-800/90 dark:ring-neutral-700/50",
+				"cn-menu-target no-scrollbar z-50 max-h-(--available-height) w-[calc(var(--available-width)-(--spacing(6)))] min-w-32 origin-(--transform-origin) translate-y-2 overflow-x-hidden overflow-y-auto rounded-xl border-0 bg-neutral-950/80 p-1.5 text-neutral-100 ring-1 ring-neutral-950/80 backdrop-blur-xl outline-none data-[state=closed]:overflow-hidden md:w-52 dark:bg-neutral-800/90 dark:ring-neutral-700/50",
 				className
 			)}
 			{...restProps}

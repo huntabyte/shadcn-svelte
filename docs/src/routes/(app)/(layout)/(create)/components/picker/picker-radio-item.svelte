@@ -2,6 +2,7 @@
 	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { cn, type WithoutChild } from "$lib/utils.js";
+	import { getContext } from "svelte";
 
 	let {
 		ref = $bindable(null),
@@ -9,13 +10,18 @@
 		children: childrenProp,
 		...restProps
 	}: WithoutChild<DropdownMenuPrimitive.RadioItemProps> = $props();
+
+	const isSubmenu = getContext("picker-is-submenu") ?? true;
 </script>
 
 <DropdownMenuPrimitive.RadioItem
 	bind:ref
 	data-slot="dropdown-menu-radio-item"
 	class={cn(
-		"relative flex cursor-default items-center gap-2 rounded-lg py-1.5 pr-8 pl-2 text-sm font-medium outline-hidden select-none focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 data-inset:pl-8 pointer-coarse:gap-3 pointer-coarse:py-2.5 pointer-coarse:pl-3 pointer-coarse:text-base [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+		"relative flex cursor-default items-center gap-2 rounded-lg py-1.5 pr-8 pl-2 text-sm font-medium outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 data-inset:pl-8 pointer-coarse:gap-3 pointer-coarse:py-2.5 pointer-coarse:pl-3 pointer-coarse:text-base [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+		isSubmenu
+			? "focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground"
+			: "**:text-neutral-100 focus:bg-neutral-600 focus:text-neutral-100 focus:**:text-neutral-100 dark:focus:bg-neutral-700/80",
 		className
 	)}
 	{...restProps}
