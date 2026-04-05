@@ -27,9 +27,7 @@
 
 	<Select.Root type="single" bind:value={designSystem.theme}>
 		<Select.Trigger size="sm" class="w-36" id="theme-selector">
-			<span class="w-12">
-				{label}
-			</span>
+			{label}
 		</Select.Trigger>
 		<Select.Content align="end" class="max-h-80">
 			<Select.Group>
