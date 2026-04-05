@@ -200,7 +200,7 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 					{@render Trigger({ props })}
 				{/snippet}
 			</DropdownMenu.Trigger>
-			<DropdownMenu.Content align="end" class="animate-none! rounded-lg shadow-none">
+			<DropdownMenu.Content align="end" class="animate-none! w-max rounded-lg shadow-none">
 				{#each Object.entries(menuItems) as [key, value] (key)}
 					<DropdownMenu.Item>
 						{#snippet child({ props })}
