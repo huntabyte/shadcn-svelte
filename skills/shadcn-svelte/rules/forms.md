@@ -1,66 +1,215 @@
 # Forms & Inputs
 
-## Form Structure
+## Contents
 
-Always use `Field.Group` + `Field.Field` for form layout — never raw `div` with `space-y-*`.
+- Forms use Field.Group + Field.Field
+- InputGroup requires InputGroup.Input/InputGroup.Textarea
+- Buttons inside inputs use InputGroup + InputGroup.Addon
+- Option sets (2–7 choices) use ToggleGroup
+- Field.Set + Field.Legend for grouping related fields
+- Field validation and disabled states
+
+---
+
+## Forms use Field.Group + Field.Field
+
+Always use `Field.Group` + `Field.Field` — never raw `div` with `space-y-*`:
 
 ```svelte
+<script lang="ts">
+  import * as Field from "$lib/components/ui/field/index.js";
+  import { Input } from "$lib/components/ui/input/index.js";
+</script>
+
 <Field.Group>
   <Field.Field>
     <Field.Label for="email">Email</Field.Label>
     <Input id="email" type="email" />
-    <Field.Description>We will never share it.</Field.Description>
+  </Field.Field>
+  <Field.Field>
+    <Field.Label for="password">Password</Field.Label>
+    <Input id="password" type="password" />
   </Field.Field>
 </Field.Group>
 ```
 
-## Field Organization
+Use `orientation="horizontal"` for settings pages. Use `class="sr-only"` on `Field.Label` for visually hidden labels.
 
-- Use `Field.Group` to stack related fields
-- Use `Field.Set` and `Field.Legend` for semantic grouping (checkboxes, radios, switches)
-- Use `orientation="horizontal"` or `orientation="responsive"` when the layout calls for it
+**Choosing form controls:**
 
-## Input Wrappers
+- Simple text input → `Input`
+- Dropdown with predefined options → `Select`
+- Searchable dropdown → `Combobox`
+- Native HTML select (no JS) → `NativeSelect`
+- Boolean toggle → `Switch` (for settings) or `Checkbox` (for forms)
+- Single choice from few options → `RadioGroup`
+- Toggle between 2–5 options → `ToggleGroup`
+- OTP/verification code → `InputOTP`
+- Multi-line text → `Textarea`
 
-When using `InputGroup`, you must use `InputGroup.Input` or `InputGroup.Textarea` — never bare `Input` inside it.
+---
 
-For buttons or icons alongside inputs, use `InputGroup.Root` with its companions:
+## InputGroup requires InputGroup.Input/InputGroup.Textarea
 
-- `InputGroup.Input` / `InputGroup.Textarea`
-- `InputGroup.Addon`
-- `InputGroup.Button`
-- `InputGroup.Text`
+Never use raw `Input` or `Textarea` inside an `InputGroup`.
 
-Do not use absolute positioning hacks for button-input combinations.
-
-## Validation & Disabled States
-
-Both attributes are needed — `data-invalid`/`data-disabled` styles the field (label, description), while `aria-invalid`/`disabled` styles the control:
+**Incorrect:**
 
 ```svelte
-<Field.Field data-invalid>
-  <Field.Label for="email">Email</Field.Label>
-  <Input id="email" aria-invalid />
-  <Field.Error>Enter a valid email address.</Field.Error>
+<InputGroup.Root>
+  <Input placeholder="Search..." />
+</InputGroup.Root>
+```
+
+**Correct:**
+
+```svelte
+<script lang="ts">
+  import * as InputGroup from "$lib/components/ui/input-group/index.js";
+</script>
+
+<InputGroup.Root>
+  <InputGroup.Input placeholder="Search..." />
+</InputGroup.Root>
+```
+
+---
+
+## Buttons inside inputs use InputGroup + InputGroup.Addon
+
+Never place a `Button` directly inside or adjacent to an `Input` with custom positioning.
+
+**Incorrect:**
+
+```svelte
+<div class="relative">
+  <Input placeholder="Search..." class="pr-10" />
+  <Button class="absolute right-0 top-0" size="icon">
+    <Search />
+  </Button>
+</div>
+```
+
+**Correct:**
+
+```svelte
+<script lang="ts">
+  import * as InputGroup from "$lib/components/ui/input-group/index.js";
+  import Search from "@lucide/svelte/icons/search";
+</script>
+
+<InputGroup.Root>
+  <InputGroup.Input placeholder="Search..." />
+  <InputGroup.Addon>
+    <Button size="icon">
+      <Search />
+    </Button>
+  </InputGroup.Addon>
+</InputGroup.Root>
+```
+
+---
+
+## Option sets (2–7 choices) use ToggleGroup
+
+Don't manually loop `Button` components with active state.
+
+**Incorrect:**
+
+```svelte
+<script lang="ts">
+  let selected = $state("daily");
+</script>
+
+<div class="flex gap-2">
+  {#each ["daily", "weekly", "monthly"] as option}
+    <Button
+      variant={selected === option ? "default" : "outline"}
+      onclick={() => selected = option}
+    >
+      {option}
+    </Button>
+  {/each}
+</div>
+```
+
+**Correct:**
+
+```svelte
+<script lang="ts">
+  import { ToggleGroup, ToggleGroupItem } from "$lib/components/ui/toggle-group/index.js";
+</script>
+
+<ToggleGroup spacing={2}>
+  <ToggleGroupItem value="daily">Daily</ToggleGroupItem>
+  <ToggleGroupItem value="weekly">Weekly</ToggleGroupItem>
+  <ToggleGroupItem value="monthly">Monthly</ToggleGroupItem>
+</ToggleGroup>
+```
+
+Combine with `Field.Field` for labelled toggle groups:
+
+```svelte
+<Field.Field orientation="horizontal">
+  <Field.Title id="theme-label">Theme</Field.Title>
+  <ToggleGroup aria-labelledby="theme-label" spacing={2}>
+    <ToggleGroupItem value="light">Light</ToggleGroupItem>
+    <ToggleGroupItem value="dark">Dark</ToggleGroupItem>
+    <ToggleGroupItem value="system">System</ToggleGroupItem>
+  </ToggleGroup>
 </Field.Field>
 ```
 
-## Control Selection
+---
 
-Use the right control for the interaction:
+## Field.Set + Field.Legend for grouping related fields
 
-| Need                   | Use                    |
-| ---------------------- | ---------------------- |
-| Text input             | `Input`                |
-| Option list            | `Select`               |
-| Searchable options     | `Combobox`             |
-| Native dropdown        | `Native Select`        |
-| Boolean toggle         | `Switch` or `Checkbox` |
-| Single choice from set | `Radio Group`          |
-| 2–7 compact options    | `Toggle Group`         |
-| Verification code      | `Input OTP`            |
-| Multi-line text        | `Textarea`             |
+Use `Field.Set` + `Field.Legend` for related checkboxes, radios, or switches — not `div` with a heading:
 
-## Toggle Group
+```svelte
+<Field.Set>
+  <Field.Legend variant="label">Preferences</Field.Legend>
+  <Field.Description>Select all that apply.</Field.Description>
+  <Field.Group class="gap-3">
+    <Field.Field orientation="horizontal">
+      <Checkbox id="dark" />
+      <Field.Label for="dark" class="font-normal">Dark mode</Field.Label>
+    </Field.Field>
+  </Field.Group>
+</Field.Set>
+```
 
-Use the local `ToggleGroup.Root` / `ToggleGroup.Item` API. Check the local docs for the current prop shape — do not import upstream React assumptions about `type="single"` vs `type="multiple"`.
+---
+
+## Field validation and disabled states
+
+Both attributes are needed — `data-invalid`/`data-disabled` styles the field (label, description), while `aria-invalid`/`disabled` styles the control.
+
+```svelte
+<!-- Invalid. -->
+<Field.Field data-invalid>
+  <Field.Label for="email">Email</Field.Label>
+  <Input id="email" aria-invalid />
+  <Field.Error>Invalid email address.</Field.Error>
+</Field.Field>
+
+<!-- Disabled. -->
+<Field.Field data-disabled>
+  <Field.Label for="email">Email</Field.Label>
+  <Input id="email" disabled />
+</Field.Field>
+```
+
+Works for all controls: `Input`, `Textarea`, `Select`, `Checkbox`, `RadioGroup.Item`, `Switch`, `Slider`, `NativeSelect`, `InputOTP`.
+
+---
+
+## Differences from shadcn/ui
+
+- **Namespace imports** — `Field.Group`, `Field.Field`, `Field.Label` etc. via `import * as Field from "..."`.
+- **`for` not `htmlFor`** — `Field.Label` uses the standard HTML `for` attribute.
+- **`class` not `className`** — all Svelte components use the `class` prop.
+- **`Field.Error` not `FieldDescription` for errors** — use `Field.Error` for validation messages, `Field.Description` for hints.
+- **No `FieldGroup` flat import** — use the namespace pattern; flat exports like `FieldGroup` exist as aliases but namespace imports are preferred.
+- **ToggleGroup has no `type` prop** — no `type="single"` or `type="multiple"`. Use a `multiple` boolean prop for multi-selection; single selection is the default.
+- **Svelte 5 event syntax** — use `onclick` not `onClick`.

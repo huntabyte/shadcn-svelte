@@ -1,49 +1,104 @@
 # Icons
 
-## 1. Use the Project's Icon Library
+**Always use the project's configured `iconLibrary` for imports.** Check `components.json` for the `iconLibrary` field. The shadcn-svelte default is `@lucide/svelte`.
 
-Always import from the project's configured icon library. The shadcn-svelte docs and components use `@lucide/svelte`:
+---
+
+## Use per-icon imports from @lucide/svelte
+
+Import individual icons by path — not from the package root.
+
+**Incorrect:**
 
 ```svelte
 <script lang="ts">
-  import GitBranch from "@lucide/svelte/icons/git-branch";
+  import { Search } from "@lucide/svelte";
 </script>
 ```
 
-Do not import from `lucide-react` or assume any other package.
-
-## 2. Component-Managed Sizing
-
-Don't add `size-4`, `w-4 h-4`, or other sizing classes to icons inside `Button`, `DropdownMenu.Item`, `Alert`, `Sidebar*`, or other shadcn-svelte components. Components handle icon sizing through their own CSS.
+**Correct:**
 
 ```svelte
-<!-- correct -->
-<Button variant="outline" size="sm">
-  <GitBranch />
-  New Branch
-</Button>
-
-<!-- wrong — don't add sizing classes -->
-<Button variant="outline" size="sm">
-  <GitBranch class="size-4" />
-  New Branch
-</Button>
+<script lang="ts">
+  import Search from "@lucide/svelte/icons/search";
+</script>
 ```
 
-## 3. Pass Icons as Components
+Per-icon imports avoid bundling the entire icon set.
 
-Use the actual icon component, not string keys:
+---
+
+## No sizing classes on icons inside components
+
+Components handle icon sizing via CSS. Don't add `size-4`, `w-4 h-4`, or other sizing classes to icons inside `Button`, `DropdownMenu.Item`, `Alert`, `Sidebar*`, or other shadcn-svelte components. Unless the user explicitly asks for custom icon sizes.
+
+**Incorrect:**
 
 ```svelte
-<!-- correct -->
-<MyComponent icon={GitBranch} />
+<Button variant="outline" size="sm">
+  <Search class="size-4" />
+  Search
+</Button>
 
-<!-- wrong -->
-<MyComponent icon="git-branch" />
+<DropdownMenu.Item>
+  <Settings class="mr-2 size-4" />
+  Settings
+</DropdownMenu.Item>
 ```
 
-This provides better type safety and clarity.
+**Correct:**
 
-## When in Doubt
+```svelte
+<Button variant="outline" size="sm">
+  <Search />
+  Search
+</Button>
 
-Inspect the installed component source. The local `button.svelte` implementation is a good example of component-owned icon sizing behavior.
+<DropdownMenu.Item>
+  <Settings />
+  Settings
+</DropdownMenu.Item>
+```
+
+---
+
+## Pass icons as component objects, not string keys
+
+Use `icon={Check}`, not a string key to a lookup map.
+
+**Incorrect:**
+
+```svelte
+<script lang="ts">
+  const iconMap = { check: Check, alert: AlertCircle };
+</script>
+
+<StatusBadge icon="check" />
+```
+
+**Correct:**
+
+```svelte
+<script lang="ts">
+  import Check from "@lucide/svelte/icons/check";
+  import type { Component } from "svelte";
+
+  let { icon: Icon }: { icon: Component } = $props();
+</script>
+
+<Icon />
+```
+
+```svelte
+<!-- Usage -->
+<StatusBadge icon={Check} />
+```
+
+---
+
+## Differences from shadcn/ui
+
+- **`@lucide/svelte` not `lucide-react`** — import icons from `@lucide/svelte/icons/<name>`, not `lucide-react`.
+- **No `data-icon` attribute** — shadcn-svelte does not use `data-icon="inline-start"` / `data-icon="inline-end"`. Icons in buttons are placed directly as children.
+- **`Component` type not `React.ComponentType`** — use `import type { Component } from "svelte"` for icon prop types.
+- **Per-icon import path** — `import Search from "@lucide/svelte/icons/search"` (path-based), not a named export from the package root.
