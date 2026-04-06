@@ -22,7 +22,7 @@
 		"replace:velite": "tsx scripts/velite/velite-watch-output.ts",
 		"sync": "pnpm build:registry && pnpm build:content && svelte-kit sync",
 		"preview": "vite preview",
-		"check": "svelte-check --fail-on-warnings --tsconfig ./tsconfig.json",
+		"check": "tsx scripts/build-search-data.ts && svelte-check --fail-on-warnings --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
