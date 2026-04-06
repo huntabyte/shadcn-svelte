@@ -1,4 +1,4 @@
-import fs from "node:fs";
+import fs, { watch } from "node:fs";
 import path from "node:path";
 import { globby } from "globby";
 import removeMd from "remove-markdown";
@@ -214,4 +214,17 @@ async function main() {
 	console.log(`Built search index with ${entries.length} entries → ${OUTPUT_PATH}`);
 }
 
-main();
+const isWatchMode = process.argv.includes("--watch");
+
+if (isWatchMode) {
+	await main();
+
+	watch(CONTENT_DIR, { recursive: true }, (_, filename) => {
+		if (!filename?.endsWith(".md")) return;
+		main().catch((error) => {
+			console.error("❌ Search index build failed:", error);
+		});
+	});
+} else {
+	await main();
+}
