@@ -84,7 +84,7 @@ Never place a `Button` directly inside or adjacent to an `Input` with custom pos
 ```svelte
 <div class="relative">
   <Input placeholder="Search..." class="pr-10" />
-  <Button class="absolute right-0 top-0" size="icon">
+  <Button class="absolute top-0 right-0" size="icon">
     <Search />
   </Button>
 </div>
@@ -125,7 +125,7 @@ Don't manually loop `Button` components with active state.
   {#each ["daily", "weekly", "monthly"] as option}
     <Button
       variant={selected === option ? "default" : "outline"}
-      onclick={() => selected = option}
+      onclick={() => (selected = option)}
     >
       {option}
     </Button>
@@ -137,7 +137,10 @@ Don't manually loop `Button` components with active state.
 
 ```svelte
 <script lang="ts">
-  import { ToggleGroup, ToggleGroupItem } from "$lib/components/ui/toggle-group/index.js";
+  import {
+    ToggleGroup,
+    ToggleGroupItem,
+  } from "$lib/components/ui/toggle-group/index.js";
 </script>
 
 <ToggleGroup spacing={2}>

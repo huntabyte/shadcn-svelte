@@ -64,10 +64,10 @@ npx shadcn-svelte@latest registry build [registry] [options]
 
 Generates distributable registry JSON files from a `registry.json` file.
 
-| Flag                  | Short | Description       | Default      |
-| --------------------- | ----- | ----------------- | ------------ |
-| `--cwd <path>`        | `-c`  | Working directory | current      |
-| `--output <path>`     | `-o`  | Output directory  | `./public/r` |
+| Flag              | Short | Description       | Default      |
+| ----------------- | ----- | ----------------- | ------------ |
+| `--cwd <path>`    | `-c`  | Working directory | current      |
+| `--output <path>` | `-o`  | Output directory  | `./public/r` |
 
 ---
 
@@ -75,18 +75,18 @@ Generates distributable registry JSON files from a `registry.json` file.
 
 The following upstream `shadcn` CLI features do **not** exist in `shadcn-svelte`. Do not suggest them.
 
-| Upstream feature             | shadcn-svelte alternative                                          |
-| ---------------------------- | ------------------------------------------------------------------ |
-| `shadcn info --json`         | Read `components.json` and `package.json` directly                 |
-| `shadcn docs <component>`    | Read `docs/content/components/<name>.md` directly                  |
-| `shadcn search`              | List the `resolvedPaths.ui` directory                              |
-| `shadcn view`                | Read the component source files directly                           |
-| `add --dry-run`              | Read source files before deciding to install                       |
-| `add --diff`                 | Use `git diff` after adding                                        |
-| `add --view`                 | Read source files directly                                         |
-| Presets (`--preset`)         | Not supported                                                      |
-| Templates (`--template`)     | Not supported                                                      |
-| `shadcn mcp`                 | No MCP server — use local file inspection                          |
+| Upstream feature          | shadcn-svelte alternative                          |
+| ------------------------- | -------------------------------------------------- |
+| `shadcn info --json`      | Read `components.json` and `package.json` directly |
+| `shadcn docs <component>` | Read `docs/content/components/<name>.md` directly  |
+| `shadcn search`           | List the `resolvedPaths.ui` directory              |
+| `shadcn view`             | Read the component source files directly           |
+| `add --dry-run`           | Read source files before deciding to install       |
+| `add --diff`              | Use `git diff` after adding                        |
+| `add --view`              | Read source files directly                         |
+| Presets (`--preset`)      | Not supported                                      |
+| Templates (`--template`)  | Not supported                                      |
+| `shadcn mcp`              | No MCP server — use local file inspection          |
 
 ---
 

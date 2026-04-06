@@ -117,21 +117,21 @@ These are the most common patterns that differentiate correct shadcn-svelte code
 
 ## Component Selection
 
-| Need                       | Use                                                                                                    |
-| -------------------------- | ------------------------------------------------------------------------------------------------------ |
-| Button/action              | `Button` with appropriate variant                                                                      |
-| Form inputs                | `Input`, `Select`, `Combobox`, `Switch`, `Checkbox`, `RadioGroup`, `Textarea`, `InputOTP`, `Slider`    |
-| Toggle between 2–5 options | `ToggleGroup` + `ToggleGroup.Item`                                                                     |
-| Data display               | `Table`, `Card`, `Badge`, `Avatar`                                                                     |
-| Navigation                 | `Sidebar`, `NavigationMenu`, `Breadcrumb`, `Tabs`, `Pagination`                                        |
-| Overlays                   | `Dialog` (modal), `Sheet` (side panel), `Drawer` (bottom sheet), `AlertDialog` (confirmation)          |
-| Feedback                   | `sonner` (toast), `Alert`, `Progress`, `Skeleton`, `Spinner`                                           |
-| Command palette            | `Command` inside `Dialog`                                                                              |
-| Charts                     | `Chart` (wraps Chart.js)                                                                               |
-| Layout                     | `Card`, `Separator`, `Resizable`, `ScrollArea`, `Accordion`, `Collapsible`                             |
-| Empty states               | `Empty`                                                                                                |
-| Menus                      | `DropdownMenu`, `ContextMenu`, `Menubar`                                                               |
-| Tooltips/info              | `Tooltip`, `HoverCard`, `Popover`                                                                      |
+| Need                       | Use                                                                                                 |
+| -------------------------- | --------------------------------------------------------------------------------------------------- |
+| Button/action              | `Button` with appropriate variant                                                                   |
+| Form inputs                | `Input`, `Select`, `Combobox`, `Switch`, `Checkbox`, `RadioGroup`, `Textarea`, `InputOTP`, `Slider` |
+| Toggle between 2–5 options | `ToggleGroup` + `ToggleGroup.Item`                                                                  |
+| Data display               | `Table`, `Card`, `Badge`, `Avatar`                                                                  |
+| Navigation                 | `Sidebar`, `NavigationMenu`, `Breadcrumb`, `Tabs`, `Pagination`                                     |
+| Overlays                   | `Dialog` (modal), `Sheet` (side panel), `Drawer` (bottom sheet), `AlertDialog` (confirmation)       |
+| Feedback                   | `sonner` (toast), `Alert`, `Progress`, `Skeleton`, `Spinner`                                        |
+| Command palette            | `Command` inside `Dialog`                                                                           |
+| Charts                     | `Chart` (wraps Chart.js)                                                                            |
+| Layout                     | `Card`, `Separator`, `Resizable`, `ScrollArea`, `Accordion`, `Collapsible`                          |
+| Empty states               | `Empty`                                                                                             |
+| Menus                      | `DropdownMenu`, `ContextMenu`, `Menubar`                                                            |
+| Tooltips/info              | `Tooltip`, `HoverCard`, `Popover`                                                                   |
 
 ## Key Fields in components.json
 

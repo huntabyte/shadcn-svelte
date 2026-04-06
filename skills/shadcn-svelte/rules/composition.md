@@ -27,7 +27,12 @@ shadcn-svelte components use namespace imports. Never use individual named impor
 
 ```svelte
 <script lang="ts">
-  import { DialogRoot, DialogTrigger, DialogContent, DialogTitle } from "$lib/components/ui/dialog/index.js";
+  import {
+    DialogRoot,
+    DialogTrigger,
+    DialogContent,
+    DialogTitle,
+  } from "$lib/components/ui/dialog/index.js";
 </script>
 ```
 
@@ -77,13 +82,13 @@ Never render items directly inside the content container.
 
 This applies to all group-based components:
 
-| Item | Group |
-|------|-------|
-| `Select.Item`, `Select.Label` | `Select.Group` |
+| Item                                                          | Group                |
+| ------------------------------------------------------------- | -------------------- |
+| `Select.Item`, `Select.Label`                                 | `Select.Group`       |
 | `DropdownMenu.Item`, `DropdownMenu.Label`, `DropdownMenu.Sub` | `DropdownMenu.Group` |
-| `Menubar.Item` | `Menubar.Group` |
-| `ContextMenu.Item` | `ContextMenu.Group` |
-| `Command.Item` | `Command.Group` |
+| `Menubar.Item`                                                | `Menubar.Group`      |
+| `ContextMenu.Item`                                            | `ContextMenu.Group`  |
+| `Command.Item`                                                | `Command.Group`      |
 
 ---
 
@@ -110,7 +115,9 @@ This applies to all group-based components:
   <Empty.Header>
     <Empty.Media variant="icon"><Folder /></Empty.Media>
     <Empty.Title>No projects yet</Empty.Title>
-    <Empty.Description>Get started by creating a new project.</Empty.Description>
+    <Empty.Description
+      >Get started by creating a new project.</Empty.Description
+    >
   </Empty.Header>
   <Empty.Content>
     <Button>Create Project</Button>
@@ -123,27 +130,27 @@ This applies to all group-based components:
 ## Toast notifications use sonner
 
 ```ts
-import { toast } from "sonner"
+import { toast } from "sonner";
 
-toast.success("Changes saved.")
-toast.error("Something went wrong.")
+toast.success("Changes saved.");
+toast.error("Something went wrong.");
 toast("File deleted.", {
   action: { label: "Undo", onClick: () => undoDelete() },
-})
+});
 ```
 
 ---
 
 ## Choosing between overlay components
 
-| Use case | Component |
-|----------|-----------|
-| Focused task that requires input | `Dialog` |
-| Destructive action confirmation | `AlertDialog` |
-| Side panel with details or filters | `Sheet` |
-| Mobile-first bottom panel | `Drawer` |
-| Quick info on hover | `HoverCard` |
-| Small contextual content on click | `Popover` |
+| Use case                           | Component     |
+| ---------------------------------- | ------------- |
+| Focused task that requires input   | `Dialog`      |
+| Destructive action confirmation    | `AlertDialog` |
+| Side panel with details or filters | `Sheet`       |
+| Mobile-first bottom panel          | `Drawer`      |
+| Quick info on hover                | `HoverCard`   |
+| Small contextual content on click  | `Popover`     |
 
 ---
 
@@ -226,11 +233,11 @@ Always include `Avatar.Fallback` for when the image fails to load:
 
 ## Use existing components instead of custom markup
 
-| Instead of | Use |
-|---|---|
-| `<hr>` or `<div class="border-t">` | `<Separator />` |
+| Instead of                                     | Use                              |
+| ---------------------------------------------- | -------------------------------- |
+| `<hr>` or `<div class="border-t">`             | `<Separator />`                  |
 | `<div class="animate-pulse">` with styled divs | `<Skeleton class="h-4 w-3/4" />` |
-| `<span class="rounded-full bg-green-100 ...">` | `<Badge variant="secondary">` |
+| `<span class="rounded-full bg-green-100 ...">` | `<Badge variant="secondary">`    |
 
 ---
 
