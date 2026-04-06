@@ -74,9 +74,32 @@ Update the import paths to match your project setup.
 <Checkbox />
 ```
 
+## Checked State
+
+Use `defaultChecked` for uncontrolled checkboxes, or `checked` and
+`onCheckedChange` to control the state.
+
+```svelte showLineNumbers
+<script lang="ts">
+  import { Checkbox } from "$lib/components/ui/checkbox/index.js";
+  let checked = $state(false);
+</script>
+
+<Checkbox bind:checked />
+```
+
+## Invalid State
+
+Set `aria-invalid` on the checkbox and `data-invalid` on the field wrapper to show the invalid styles.
+
+<ComponentPreview name="checkbox-invalid" />
+
+
 ## Examples
 
 ### Basic
+
+Pair the checkbox with `Field` and `Field.Label` for proper layout and labeling.
 
 <ComponentPreview name="checkbox-basic">
 
@@ -84,15 +107,9 @@ Update the import paths to match your project setup.
 
 </ComponentPreview>
 
-### With Text
-
-<ComponentPreview name="checkbox-with-text">
-
-<div></div>
-
-</ComponentPreview>
-
 ### Description
+
+Use `Field.Content` and `Field.Description` for helper text.
 
 <ComponentPreview name="checkbox-description">
 
@@ -102,21 +119,17 @@ Update the import paths to match your project setup.
 
 ### Disabled
 
+Use the `disabled` prop to prevent interaction and add the `data-disabled` attribute to the `<Field.Field>` component for disabled styles.
+
 <ComponentPreview name="checkbox-disabled">
 
 <div></div>
 
 </ComponentPreview>
 
-### Invalid
-
-<ComponentPreview name="checkbox-invalid">
-
-<div></div>
-
-</ComponentPreview>
-
 ### Group
+
+Use multiple fields to create a checkbox list.
 
 <ComponentPreview name="checkbox-group">
 
@@ -132,17 +145,9 @@ Update the import paths to match your project setup.
 
 </ComponentPreview>
 
-### Form (Multiple)
+### Form
 
 <ComponentPreview name="checkbox-form-multiple">
-
-<div></div>
-
-</ComponentPreview>
-
-### Form (Single)
-
-<ComponentPreview name="checkbox-form-single">
 
 <div></div>
 
