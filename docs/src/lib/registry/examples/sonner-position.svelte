@@ -3,7 +3,7 @@
 	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
-<div class="flex flex-wrap gap-2">
+<div class="flex flex-wrap justify-center gap-2">
 	<Button variant="outline" onclick={() => toast("Top Left", { position: "top-left" })}>
 		Top Left
 	</Button>
