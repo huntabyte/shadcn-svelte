@@ -98,7 +98,6 @@ Use the `size-*` utility class to change the size of the spinner.
 
 Add a spinner to a button to indicate a loading state. Place the `<Spinner />` before the label with `data-icon="inline-start"` for a start position, or after the label with `data-icon="inline-end"` for an end position.
 
-
 <ComponentPreview name="spinner-button-demo">
 
 <div></div>

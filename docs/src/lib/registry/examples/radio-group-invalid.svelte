@@ -5,9 +5,7 @@
 
 <Field.Set class="w-full max-w-xs">
 	<Field.Legend variant="label">Notification Preferences</Field.Legend>
-	<Field.Description>
-		Choose how you want to receive notifications.
-	</Field.Description>
+	<Field.Description>Choose how you want to receive notifications.</Field.Description>
 	<RadioGroup.Root value="email">
 		<Field.Field orientation="horizontal" data-invalid>
 			<RadioGroup.Item value="email" id="invalid-email" aria-invalid />

@@ -15,11 +15,11 @@
 			<Card.Header>
 				<Card.Title>Overview</Card.Title>
 				<Card.Description>
-					View your key metrics and recent project activity. Track progress
-					across all your active projects.
+					View your key metrics and recent project activity. Track progress across all
+					your active projects.
 				</Card.Description>
 			</Card.Header>
-			<Card.Content class="text-sm text-muted-foreground">
+			<Card.Content class="text-muted-foreground text-sm">
 				You have 12 active projects and 3 pending tasks.
 			</Card.Content>
 		</Card.Root>
@@ -29,11 +29,11 @@
 			<Card.Header>
 				<Card.Title>Analytics</Card.Title>
 				<Card.Description>
-					Track performance and user engagement metrics. Monitor trends and
-					identify growth opportunities.
+					Track performance and user engagement metrics. Monitor trends and identify
+					growth opportunities.
 				</Card.Description>
 			</Card.Header>
-			<Card.Content class="text-sm text-muted-foreground">
+			<Card.Content class="text-muted-foreground text-sm">
 				Page views are up 25% compared to last month.
 			</Card.Content>
 		</Card.Root>
@@ -43,11 +43,11 @@
 			<Card.Header>
 				<Card.Title>Reports</Card.Title>
 				<Card.Description>
-					Generate and download your detailed reports. Export data in
-					multiple formats for analysis.
+					Generate and download your detailed reports. Export data in multiple formats for
+					analysis.
 				</Card.Description>
 			</Card.Header>
-			<Card.Content class="text-sm text-muted-foreground">
+			<Card.Content class="text-muted-foreground text-sm">
 				You have 5 reports ready and available to export.
 			</Card.Content>
 		</Card.Root>
@@ -57,11 +57,11 @@
 			<Card.Header>
 				<Card.Title>Settings</Card.Title>
 				<Card.Description>
-					Manage your account preferences and options. Customize your
-					experience to fit your needs.
+					Manage your account preferences and options. Customize your experience to fit
+					your needs.
 				</Card.Description>
 			</Card.Header>
-			<Card.Content class="text-sm text-muted-foreground">
+			<Card.Content class="text-muted-foreground text-sm">
 				Configure notifications, security, and themes.
 			</Card.Content>
 		</Card.Root>

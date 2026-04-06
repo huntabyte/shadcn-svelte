@@ -3,7 +3,7 @@
 
 	const formSchema = z.object({
 		plan: z.enum(["starter", "pro", "enterprise"], {
-			required_error: "You must select a subscription plan to continue.",
+			error: "You must select a subscription plan to continue.",
 		}),
 	});
 </script>
