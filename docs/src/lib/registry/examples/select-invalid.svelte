@@ -1,19 +1,19 @@
 <script lang="ts">
+	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
 </script>
 
-<div class="flex w-[180px] flex-col gap-2">
+<Field.Field data-invalid class="w-full max-w-48">
+	<Field.Label>Fruit</Field.Label>
 	<Select.Root type="single">
-		<Select.Trigger aria-invalid="true" class="aria-[invalid=true]:border-destructive">
-			Select a fruit
-		</Select.Trigger>
+		<Select.Trigger aria-invalid>Select a fruit</Select.Trigger>
 		<Select.Content>
 			<Select.Group>
 				<Select.Item value="apple" label="Apple">Apple</Select.Item>
 				<Select.Item value="banana" label="Banana">Banana</Select.Item>
-				<Select.Item value="mango" label="Mango">Mango</Select.Item>
+				<Select.Item value="blueberry" label="Blueberry">Blueberry</Select.Item>
 			</Select.Group>
 		</Select.Content>
 	</Select.Root>
-	<p class="text-destructive text-sm">Please select a fruit.</p>
-</div>
+	<Field.Error errors={[{ message: "Please select a fruit." }]} />
+</Field.Field>

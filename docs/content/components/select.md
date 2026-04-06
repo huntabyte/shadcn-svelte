@@ -85,15 +85,9 @@ Update the import paths to match your project setup.
 
 ## Examples
 
-### Align Item
-
-<ComponentPreview name="select-align-item">
-
-<div></div>
-
-</ComponentPreview>
-
 ### Groups
+
+Use `Select.Group`, `Select.Label`, and `Select.Separator` to organize items.
 
 <ComponentPreview name="select-groups">
 
@@ -102,6 +96,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Scrollable
+
+A select with many items that scrolls.
 
 <ComponentPreview name="select-scrollable">
 
@@ -118,6 +114,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Invalid
+
+Add the `data-invalid` attribute to the `Field.Field` component and the `aria-invalid` attribute to the `Select.Trigger` component to show an error state.
 
 <ComponentPreview name="select-invalid">
 

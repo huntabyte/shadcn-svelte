@@ -3,45 +3,35 @@
 
 	let value = $state("");
 
-	const items = [
-		{
-			group: "Fruits",
-			items: [
-				{ value: "apple", label: "Apple" },
-				{ value: "banana", label: "Banana" },
-				{ value: "mango", label: "Mango" },
-			],
-		},
-		{
-			group: "Vegetables",
-			items: [
-				{ value: "carrot", label: "Carrot" },
-				{ value: "broccoli", label: "Broccoli" },
-				{ value: "spinach", label: "Spinach" },
-			],
-		},
-	];
-
 	const triggerContent = $derived(
-		items.flatMap((g) => g.items).find((i) => i.value === value)?.label ?? "Select a food"
+		[
+			{ value: "apple", label: "Apple" },
+			{ value: "banana", label: "Banana" },
+			{ value: "blueberry", label: "Blueberry" },
+			{ value: "carrot", label: "Carrot" },
+			{ value: "broccoli", label: "Broccoli" },
+			{ value: "spinach", label: "Spinach" },
+		].find((i) => i.value === value)?.label ?? "Select a fruit"
 	);
 </script>
 
 <Select.Root type="single" bind:value>
-	<Select.Trigger class="w-[200px]">
+	<Select.Trigger class="w-full max-w-48">
 		{triggerContent}
 	</Select.Trigger>
 	<Select.Content>
-		{#each items as group, gi (group.group)}
-			{#if gi > 0}
-				<Select.Separator />
-			{/if}
-			<Select.Group>
-				<Select.Label>{group.group}</Select.Label>
-				{#each group.items as item (item.value)}
-					<Select.Item value={item.value} label={item.label}>{item.label}</Select.Item>
-				{/each}
-			</Select.Group>
-		{/each}
+		<Select.Group>
+			<Select.Label>Fruits</Select.Label>
+			<Select.Item value="apple" label="Apple">Apple</Select.Item>
+			<Select.Item value="banana" label="Banana">Banana</Select.Item>
+			<Select.Item value="blueberry" label="Blueberry">Blueberry</Select.Item>
+		</Select.Group>
+		<Select.Separator />
+		<Select.Group>
+			<Select.Label>Vegetables</Select.Label>
+			<Select.Item value="carrot" label="Carrot">Carrot</Select.Item>
+			<Select.Item value="broccoli" label="Broccoli">Broccoli</Select.Item>
+			<Select.Item value="spinach" label="Spinach">Spinach</Select.Item>
+		</Select.Group>
 	</Select.Content>
 </Select.Root>

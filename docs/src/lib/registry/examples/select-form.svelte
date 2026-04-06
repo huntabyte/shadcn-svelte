@@ -8,7 +8,9 @@
 
 <script lang="ts">
 	import { defaults, superForm } from "sveltekit-superforms";
+	import SuperDebug from "sveltekit-superforms/SuperDebug.svelte";
 	import { zod4 } from "sveltekit-superforms/adapters";
+	import { browser } from "$app/environment";
 	import { toast } from "svelte-sonner";
 	import * as Form from "$lib/registry/ui/form/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
@@ -28,7 +30,8 @@
 	const { form: formData, enhance } = form;
 </script>
 
-<form method="POST" class="w-2/3 space-y-6" use:enhance>
+<div class="flex gap-8">
+<form method="POST" class="flex-1 space-y-6" use:enhance>
 	<Form.Field {form} name="email">
 		<Form.Control>
 			{#snippet children({ props })}
@@ -54,3 +57,9 @@
 	</Form.Field>
 	<Form.Button>Submit</Form.Button>
 </form>
+{#if browser}
+	<div class="flex-1">
+		<SuperDebug data={$formData} />
+	</div>
+{/if}
+</div>
