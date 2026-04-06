@@ -94,6 +94,8 @@ Update the import paths to match your project setup.
 
 ### Scrollable Content
 
+Keep actions visible while the content scrolls.
+
 <ComponentPreview name="drawer-scrollable-content">
 
 <div></div>
@@ -101,6 +103,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Sides
+
+Use the `direction` prop to set the side of the drawer. Available options are `top`, `right`, `bottom`, and `left`.
 
 <ComponentPreview name="drawer-sides">
 
