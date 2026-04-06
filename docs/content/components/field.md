@@ -164,7 +164,7 @@ The `Field` family is designed for composing accessible forms. A typical field i
 
 ### Switch
 
-<ComponentPreview name="field-switch">
+<ComponentPreview name="field-switch-demo">
 
 <div></div>
 
@@ -202,6 +202,14 @@ Stack `Field` components with `Field.Group`. Add `Field.Separator` to divide the
 
 </ComponentPreview>
 
+## Form
+
+<ComponentPreview name="checkbox-form-multiple">
+
+<div></div>
+
+</ComponentPreview>
+
 ## Validation and Errors
 
 - Add `data-invalid` to `Field` to switch the entire block into an error state.
@@ -221,3 +229,155 @@ Stack `Field` components with `Field.Group`. Add `Field.Separator` to divide the
 - `Field.Set` and `Field.Legend` keep related controls grouped for keyboard and assistive tech users.
 - `Field` outputs `role="group"` so nested controls inherit labeling from `Field.Label` and `Field.Legend` when combined.
 - Apply `Field.Separator` sparingly to ensure screen readers encounter clear section boundaries.
+
+## API Reference
+
+### Field.Set
+
+Container that renders a semantic `fieldset` with spacing presets.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` |         |
+
+```svelte
+<Field.Set>
+  <Field.Legend>Delivery</Field.Legend>
+  <Field.Group>{/* Fields */}</Field.Group>
+</Field.Set>
+```
+
+### Field.Legend
+
+Legend element for a `Field.Set`. Switch to the `label` variant to align with label sizing.
+
+| Prop      | Type                  | Default    |
+| --------- | --------------------- | ---------- |
+| `variant` | `"legend" \| "label"` | `"legend"` |
+| `class`   | `string`              |            |
+
+```svelte
+<Field.Legend variant="label">Notification Preferences</Field.Legend>
+```
+
+The `Field.Legend` has two variants: `legend` and `label`. The `label` variant applies label sizing and alignment. Handy if you have nested `Field.Set`.
+
+### Field.Group
+
+Layout wrapper that stacks `Field.Field` components and enables container queries for responsive orientations.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` |         |
+
+```svelte
+<Field.Group class="@container/field-group flex flex-col gap-6">
+  <Field.Field>{/* ... */}</Field.Field>
+  <Field.Field>{/* ... */}</Field.Field>
+</Field.Group>
+```
+
+### Field.Field
+
+The core wrapper for a single field. Provides orientation control, invalid state styling, and spacing.
+
+| Prop          | Type                                         | Default      |
+| ------------- | -------------------------------------------- | ------------ |
+| `orientation` | `"vertical" \| "horizontal" \| "responsive"` | `"vertical"` |
+| `class`       | `string`                                     |              |
+
+Use the `data-invalid` attribute to switch the entire block into an error state.
+
+```svelte
+<Field.Field orientation="horizontal">
+  <Field.Label for="remember">Remember me</Field.Label>
+  <Switch id="remember" />
+</Field.Field>
+```
+
+### Field.Content
+
+Flex column that groups control and descriptions when the label sits beside the control. Not required if you have no description.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` |         |
+
+```svelte
+<Field.Field>
+  <Checkbox id="notifications" />
+  <Field.Content>
+    <Field.Label for="notifications">Notifications</Field.Label>
+    <Field.Description>Email, SMS, and push options.</Field.Description>
+  </Field.Content>
+</Field.Field>
+```
+
+### Field.Label
+
+Label styled for both direct inputs and nested `Field.Field` children.
+
+| Prop      | Type      | Default |
+| --------- | --------- | ------- |
+| `class`   | `string`  |         |
+| `asChild` | `boolean` | `false` |
+
+```svelte
+<Field.Label for="email">Email</Field.Label>
+```
+
+### Field.Title
+
+Renders a title with label styling inside `Field.Content`.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` |         |
+
+```svelte
+<Field.Content>
+  <Field.Title>Enable Touch ID</Field.Title>
+  <Field.Description>Unlock your device faster.</Field.Description>
+</Field.Content>
+```
+
+### Field.Description
+
+Helper text slot that automatically balances long lines in horizontal layouts.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` |         |
+
+```svelte
+<Field.Description>We never share your email with anyone.</Field.Description>
+```
+
+### Field.Separator
+
+Visual divider to separate sections inside a `Field.Group`. Accepts optional inline content.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` |         |
+
+```svelte
+<Field.Separator>Or continue with</Field.Separator>
+```
+
+### Field.Error
+
+Accessible error container that accepts children or an `errors` array.
+
+| Prop      | Type                                       | Default |
+| --------- | ------------------------------------------ | ------- |
+| `errors`  | `Array<{ message?: string } \| undefined>` |         |
+| `class`   | `string`                                   |         |
+
+```svelte
+<Field.Error errors={errors.username} />
+```
+
+When the `errors` array contains multiple messages, the component renders a list automatically.
+
+`Field.Error` also accepts issues produced by any validator that implements [Standard Schema](https://standardschema.dev/), including Zod, Valibot, and ArkType. Pass the `issues` array from the schema result directly to render a unified error list across libraries.
