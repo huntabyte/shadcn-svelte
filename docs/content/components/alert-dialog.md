@@ -93,6 +93,8 @@ Update the import paths to match your project setup.
 
 ### Basic
 
+A basic alert dialog with a title, description, and cancel and continue buttons.
+
 <ComponentPreview name="alert-dialog-basic">
 
 <div></div>
@@ -100,6 +102,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Small
+
+Use the `size="sm"` prop to make the alert dialog smaller.
 
 <ComponentPreview name="alert-dialog-small">
 
@@ -109,6 +113,8 @@ Update the import paths to match your project setup.
 
 ### Media
 
+Use the `AlertDialog.Media` component to add a media element such as an icon or image to the alert dialog.
+
 <ComponentPreview name="alert-dialog-media">
 
 <div></div>
@@ -116,6 +122,9 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Small with Media
+
+Use the `size="sm"` prop to make the alert dialog smaller and the `AlertDialog.Media` component to add a media element such as an icon or image to the alert dialog.
+
 
 <ComponentPreview name="alert-dialog-small-media">
 
@@ -125,6 +134,8 @@ Update the import paths to match your project setup.
 
 ### Destructive
 
+Use the `AlertDialog.Action` component to add a destructive action button to the alert dialog.
+
 <ComponentPreview name="alert-dialog-destructive">
 
 <div></div>
@@ -133,4 +144,10 @@ Update the import paths to match your project setup.
 
 ## API Reference
 
-See the [Bits UI](https://bits-ui.com/docs/components/alert-dialog#api-reference) documentation for more information.
+Use the `size` prop on the `AlertDialog.Content` component to control the size of the alert dialog. It accepts the following values:
+
+| Prop   | Type                | Default     |
+| ------ | ------------------- | ----------- |
+| `size` | `"default" \| "sm"` | `"default"` |
+
+For more information about the other components and their props, see the [Bits UI documentation](https://bits-ui.com/docs/components/alert-dialog#api-reference).
