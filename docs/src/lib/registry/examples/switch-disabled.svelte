@@ -1,15 +1,9 @@
 <script lang="ts">
-	import { Label } from "$lib/registry/ui/label/index.js";
+	import * as Field from "$lib/registry/ui/field/index.js";
 	import { Switch } from "$lib/registry/ui/switch/index.js";
 </script>
 
-<div class="flex flex-col gap-4">
-	<div class="flex items-center space-x-2">
-		<Switch id="sw-disabled-off" disabled />
-		<Label for="sw-disabled-off">Disabled</Label>
-	</div>
-	<div class="flex items-center space-x-2">
-		<Switch id="sw-disabled-on" disabled checked />
-		<Label for="sw-disabled-on">Disabled (checked)</Label>
-	</div>
-</div>
+<Field.Field orientation="horizontal" data-disabled class="w-fit">
+	<Switch id="switch-disabled-unchecked" disabled />
+	<Field.Label for="switch-disabled-unchecked">Disabled</Field.Label>
+</Field.Field>

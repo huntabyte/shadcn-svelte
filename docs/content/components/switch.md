@@ -108,21 +108,6 @@ Update the import paths to match your project setup.
 
 </ComponentPreview>
 
-### Size
-
-<ComponentPreview name="switch-size">
-
-<div></div>
-
-</ComponentPreview>
-
-### Form
-
-<ComponentPreview name="switch-form">
-
-<div></div>
-
-</ComponentPreview>
 
 ## API Reference
 

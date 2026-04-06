@@ -1,12 +1,14 @@
 <script lang="ts">
-	import { Label } from "$lib/registry/ui/label/index.js";
+	import * as Field from "$lib/registry/ui/field/index.js";
 	import { Switch } from "$lib/registry/ui/switch/index.js";
 </script>
 
-<div class="flex max-w-sm items-center justify-between gap-4 rounded-lg border p-4">
-	<div class="space-y-0.5">
-		<Label for="marketing" class="text-base font-medium">Marketing emails</Label>
-		<p class="text-muted-foreground text-sm">Receive emails about new products and updates.</p>
-	</div>
-	<Switch id="marketing" />
-</div>
+<Field.Field orientation="horizontal" class="max-w-sm">
+	<Field.Content>
+		<Field.Label for="switch-focus-mode">Share across devices</Field.Label>
+		<Field.Description>
+			Focus is shared across devices, and turns off when you leave the app.
+		</Field.Description>
+	</Field.Content>
+	<Switch id="switch-focus-mode" />
+</Field.Field>
