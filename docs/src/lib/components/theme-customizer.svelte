@@ -163,6 +163,7 @@
 
 <script lang="ts">
 	import { baseColors, baseColorsOKLCH } from "$lib/registry/registry-base-colors.js";
+	import { THEMES } from "$lib/registry/themes.js";
 	import { setTheme } from "mode-watcher";
 	import { ScrollArea } from "$lib/registry/ui/scroll-area/index.js";
 	import { cn } from "$lib/utils.js";
@@ -182,10 +183,6 @@
 	let { class: className, ...rest }: Props = $props();
 
 	const userConfig = UserConfigContext.get();
-
-	const THEMES = baseColors
-		.filter((theme) => !["slate", "stone", "gray", "zinc"].includes(theme.name))
-		.sort((a, b) => a.name.localeCompare(b.name));
 
 	const coercedActiveTheme = $derived(
 		userConfig.current.activeTheme === "default" ? "neutral" : userConfig.current.activeTheme
@@ -229,7 +226,7 @@
 						setTheme(theme.name);
 					}}
 				>
-					{theme.name === "neutral" ? "Default" : theme.name}
+					{theme.title}
 				</Button>
 			{/each}
 		</div>
@@ -242,7 +239,7 @@
 			type="single"
 			allowDeselect={false}
 			bind:value={
-				() => userConfig.current.activeTheme,
+				() => coercedActiveTheme,
 				(v) => {
 					userConfig.setConfig({ activeTheme: v ?? "default" });
 					setTheme(v ?? "default");
@@ -254,13 +251,13 @@
 				size="sm"
 				class="justify-start capitalize shadow-none *:data-[slot=select-value]:w-12 *:data-[slot=select-value]:capitalize"
 			>
-				<span data-slot="select-value">{coercedActiveTheme ?? "Select a theme"}</span>
+				<span data-slot="select-value">{THEMES.find((t) => t.name === coercedActiveTheme)?.title ?? "Select a theme"}</span>
 			</Select.Trigger>
 			<Select.Content align="end">
 				<Select.Group>
 					{#each THEMES as theme (theme.name)}
-						<Select.Item value={theme.name} class="capitalize data-selected:opacity-50">
-							{theme.name}
+						<Select.Item value={theme.name} label={theme.title} class="capitalize data-selected:opacity-50">
+							{theme.title}
 						</Select.Item>
 					{/each}
 				</Select.Group>
