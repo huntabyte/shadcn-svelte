@@ -8,9 +8,7 @@
 
 <script lang="ts">
 	import { defaults, superForm } from "sveltekit-superforms";
-	import SuperDebug from "sveltekit-superforms/SuperDebug.svelte";
 	import { zod4 } from "sveltekit-superforms/adapters";
-	import { browser } from "$app/environment";
 	import { toast } from "svelte-sonner";
 	import RefreshCwIcon from "@lucide/svelte/icons/refresh-cw";
 	import * as Card from "$lib/registry/ui/card/index.js";
@@ -98,7 +96,4 @@
 			</Field.Field>
 		</Card.Footer>
 	</Card.Root>
-	{#if browser}
-		<div class="mt-4"><SuperDebug data={$formData} /></div>
-	{/if}
 </form>

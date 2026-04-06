@@ -10,9 +10,7 @@
 
 <script lang="ts">
 	import { defaults, superForm } from "sveltekit-superforms";
-	import SuperDebug from "sveltekit-superforms/SuperDebug.svelte";
 	import { zod4 } from "sveltekit-superforms/adapters";
-	import { browser } from "$app/environment";
 	import { toast } from "svelte-sonner";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
@@ -105,9 +103,4 @@
 			</Card.Footer>
 		</Card.Root>
 	</form>
-	{#if browser}
-		<div class="flex-1">
-			<SuperDebug data={$formData} />
-		</div>
-	{/if}
 </div>

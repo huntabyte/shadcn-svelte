@@ -17,9 +17,7 @@
 
 <script lang="ts">
 	import { defaults, superForm } from "sveltekit-superforms";
-	import SuperDebug from "sveltekit-superforms/SuperDebug.svelte";
 	import { zod4 } from "sveltekit-superforms/adapters";
-	import { browser } from "$app/environment";
 	import { toast } from "svelte-sonner";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
@@ -89,9 +87,4 @@
 		</Field.Set>
 		<Button type="submit">Submit</Button>
 	</form>
-	{#if browser}
-		<div class="flex-1">
-			<SuperDebug data={$formData} />
-		</div>
-	{/if}
 </div>
