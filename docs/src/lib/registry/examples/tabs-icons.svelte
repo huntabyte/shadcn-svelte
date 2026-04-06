@@ -1,32 +1,18 @@
 <script lang="ts">
-	import UserIcon from "@lucide/svelte/icons/user";
-	import LockIcon from "@lucide/svelte/icons/lock";
-	import SettingsIcon from "@lucide/svelte/icons/settings";
+	import AppWindowIcon from "@lucide/svelte/icons/app-window";
+	import CodeIcon from "@lucide/svelte/icons/code";
 	import * as Tabs from "$lib/registry/ui/tabs/index.js";
 </script>
 
-<Tabs.Root value="account" class="w-[400px]">
+<Tabs.Root value="preview">
 	<Tabs.List>
-		<Tabs.Trigger value="account" class="gap-2">
-			<UserIcon class="size-4" />
-			Account
+		<Tabs.Trigger value="preview">
+			<AppWindowIcon />
+			Preview
 		</Tabs.Trigger>
-		<Tabs.Trigger value="password" class="gap-2">
-			<LockIcon class="size-4" />
-			Password
-		</Tabs.Trigger>
-		<Tabs.Trigger value="settings" class="gap-2">
-			<SettingsIcon class="size-4" />
-			Settings
+		<Tabs.Trigger value="code">
+			<CodeIcon />
+			Code
 		</Tabs.Trigger>
 	</Tabs.List>
-	<Tabs.Content value="account">
-		<p class="text-muted-foreground py-4 text-sm">Account settings and preferences.</p>
-	</Tabs.Content>
-	<Tabs.Content value="password">
-		<p class="text-muted-foreground py-4 text-sm">Password and security settings.</p>
-	</Tabs.Content>
-	<Tabs.Content value="settings">
-		<p class="text-muted-foreground py-4 text-sm">General application settings.</p>
-	</Tabs.Content>
 </Tabs.Root>

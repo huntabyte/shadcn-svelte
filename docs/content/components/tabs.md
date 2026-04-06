@@ -87,6 +87,8 @@ Update the import paths to match your project setup.
 
 ### Line
 
+Use the `variant="line"` prop on `Tabs.List` for a line style.
+
 <ComponentPreview name="tabs-line">
 
 <div></div>
@@ -94,6 +96,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Vertical
+
+Use `orientation="vertical"` for vertical tabs.
 
 <ComponentPreview name="tabs-vertical">
 
