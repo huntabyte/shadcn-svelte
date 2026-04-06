@@ -94,19 +94,10 @@ Use the `size-*` utility class to change the size of the spinner.
 
 </ComponentPreview>
 
-### Color
-
-Use the `text-*` utility class to change the color of the spinner.
-
-<ComponentPreview name="spinner-color-demo">
-
-<div></div>
-
-</ComponentPreview>
-
 ### Button
 
-Add a spinner to a button to indicate a loading state. The `<Button />` will handle the spacing between the spinner and the text.
+Add a spinner to a button to indicate a loading state. Place the `<Spinner />` before the label with `data-icon="inline-start"` for a start position, or after the label with `data-icon="inline-end"` for an end position.
+
 
 <ComponentPreview name="spinner-button-demo">
 
@@ -116,7 +107,7 @@ Add a spinner to a button to indicate a loading state. The `<Button />` will han
 
 ### Badge
 
-You can also use a spinner inside a badge.
+Add a spinner to a badge to indicate a loading state. Place the `<Spinner />` before the label with `data-icon="inline-start"` for a start position, or after the label with `data-icon="inline-end"` for an end position.
 
 <ComponentPreview name="spinner-badge-demo">
 
