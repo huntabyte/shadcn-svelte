@@ -26,10 +26,6 @@ links:
 
 </ComponentPreview>
 
-## About
-
-The `Resizable` component is built on top of [PaneForge](https://github.com/svecosystem/paneforge) by [Huntabyte](https://github.com/huntabyte). Visit the [PaneForge documentation](https://paneforge.com) for all the available props and abilities of the `Resizable` component.
-
 ## Installation
 
 <InstallTabs>
@@ -130,4 +126,4 @@ You can set or hide the handle by using the `withHandle` prop on the `ResizableH
 
 ## API Reference
 
-See the [Bits UI](https://www.paneforge.com/docs/components/pane-group) documentation for more information.
+See the [PaneForge documentation](https://paneforge.com) documentation for more information.
