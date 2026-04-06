@@ -29,8 +29,6 @@ links:
 
 Sidebars are one of the most complex components to build. They are central to any application and often contain a lot of moving parts.
 
-Shad doesn't like building sidebars, so he built 30+ of them with all kinds of configurations. The core components have been extracted into `sidebar-*.svelte` files, and you can use them in your own projects.
-
 We now have a solid foundation to build on top of. Composable. Themeable. Customizable.
 
 [Browse the Blocks Library](/blocks).
