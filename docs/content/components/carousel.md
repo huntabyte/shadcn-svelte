@@ -283,8 +283,6 @@ You can use the `plugins` prop to add plugins to the carousel.
 
 </ComponentPreview>
 
-See the [Embla Carousel docs](https://www.embla-carousel.com/api/plugins/) for more information on using plugins.
-
 ## API Reference
 
-See the [Bits UI](https://www.embla-carousel.com/api) documentation for more information.
+See the [Embla Carousel docs](https://www.embla-carousel.com/api) for more information on props and plugins.
