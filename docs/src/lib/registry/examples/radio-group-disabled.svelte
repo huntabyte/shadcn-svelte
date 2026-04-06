@@ -3,17 +3,17 @@
 	import { Label } from "$lib/registry/ui/label/index.js";
 </script>
 
-<RadioGroup.Root value="comfortable" disabled>
-	<div class="flex items-center space-x-2">
-		<RadioGroup.Item value="default" id="rd1" />
-		<Label for="rd1">Default</Label>
+<RadioGroup.Root value="option2" class="w-fit">
+	<div class="flex items-center space-x-2" data-disabled>
+		<RadioGroup.Item value="option1" id="disabled-1" disabled />
+		<Label for="disabled-1" class="font-normal">Disabled</Label>
 	</div>
 	<div class="flex items-center space-x-2">
-		<RadioGroup.Item value="comfortable" id="rd2" />
-		<Label for="rd2">Comfortable</Label>
+		<RadioGroup.Item value="option2" id="disabled-2" />
+		<Label for="disabled-2" class="font-normal">Option 2</Label>
 	</div>
 	<div class="flex items-center space-x-2">
-		<RadioGroup.Item value="compact" id="rd3" />
-		<Label for="rd3">Compact</Label>
+		<RadioGroup.Item value="option3" id="disabled-3" />
+		<Label for="disabled-3" class="font-normal">Option 3</Label>
 	</div>
 </RadioGroup.Root>

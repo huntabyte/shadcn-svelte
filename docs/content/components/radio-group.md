@@ -88,6 +88,8 @@ Update the import paths to match your project setup.
 
 ### Description
 
+Radio group items with a description using the `Field` component.
+
 <ComponentPreview name="radio-group-description">
 
 <div></div>
@@ -95,6 +97,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Choice Card
+
+Use `FieldLabel` to wrap the entire `Field` for a clickable card-style selection.
 
 <ComponentPreview name="radio-group-choice-card">
 
@@ -104,6 +108,8 @@ Update the import paths to match your project setup.
 
 ### Fieldset
 
+Use `FieldSet` and `FieldLegend` to group radio items with a label and description.
+
 <ComponentPreview name="radio-group-fieldset">
 
 <div></div>
@@ -112,6 +118,8 @@ Update the import paths to match your project setup.
 
 ### Disabled
 
+Use the `disabled` prop on `RadioGroup.Item` to disable individual items.
+
 <ComponentPreview name="radio-group-disabled">
 
 <div></div>
@@ -119,6 +127,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Invalid
+
+Use `aria-invalid` on `RadioGroup.Item` and `data-invalid` on `Field` to show validation errors.
 
 <ComponentPreview name="radio-group-invalid">
 

@@ -3,30 +3,26 @@
 	import { Label } from "$lib/registry/ui/label/index.js";
 </script>
 
-<RadioGroup.Root value="startup" class="grid max-w-md grid-cols-1 gap-2">
+<RadioGroup.Root value="comfortable" class="w-fit">
 	<div class="flex items-start space-x-2">
-		<RadioGroup.Item value="free" id="free" class="mt-1" />
-		<div class="grid gap-0.5">
-			<Label for="free" class="font-medium">Free plan</Label>
-			<p class="text-muted-foreground text-sm">
-				Perfect for hobby projects and side experiments.
-			</p>
+		<RadioGroup.Item value="default" id="desc-r1" />
+		<div>
+			<Label for="desc-r1">Default</Label>
+			<p class="text-muted-foreground text-sm">Standard spacing for most use cases.</p>
 		</div>
 	</div>
 	<div class="flex items-start space-x-2">
-		<RadioGroup.Item value="startup" id="startup" class="mt-1" />
-		<div class="grid gap-0.5">
-			<Label for="startup" class="font-medium">Startup plan</Label>
-			<p class="text-muted-foreground text-sm">For growing teams that need more power.</p>
+		<RadioGroup.Item value="comfortable" id="desc-r2" />
+		<div>
+			<Label for="desc-r2">Comfortable</Label>
+			<p class="text-muted-foreground text-sm">More space between elements.</p>
 		</div>
 	</div>
 	<div class="flex items-start space-x-2">
-		<RadioGroup.Item value="enterprise" id="enterprise" class="mt-1" />
-		<div class="grid gap-0.5">
-			<Label for="enterprise" class="font-medium">Enterprise plan</Label>
-			<p class="text-muted-foreground text-sm">
-				Dedicated support for large-scale applications.
-			</p>
+		<RadioGroup.Item value="compact" id="desc-r3" />
+		<div>
+			<Label for="desc-r3">Compact</Label>
+			<p class="text-muted-foreground text-sm">Minimal spacing for dense layouts.</p>
 		</div>
 	</div>
 </RadioGroup.Root>

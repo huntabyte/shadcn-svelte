@@ -1,22 +1,25 @@
 <script lang="ts">
+	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
 </script>
 
-<div class="flex flex-col gap-3">
-	<RadioGroup.Root>
-		<div class="flex items-center space-x-2">
-			<RadioGroup.Item value="card" id="ri-card" aria-invalid="true" />
-			<Label for="ri-card">Card</Label>
-		</div>
-		<div class="flex items-center space-x-2">
-			<RadioGroup.Item value="paypal" id="ri-paypal" aria-invalid="true" />
-			<Label for="ri-paypal">PayPal</Label>
-		</div>
-		<div class="flex items-center space-x-2">
-			<RadioGroup.Item value="apple" id="ri-apple" aria-invalid="true" />
-			<Label for="ri-apple">Apple Pay</Label>
-		</div>
+<Field.Set class="w-full max-w-xs">
+	<Field.Legend variant="label">Notification Preferences</Field.Legend>
+	<Field.Description>
+		Choose how you want to receive notifications.
+	</Field.Description>
+	<RadioGroup.Root value="email">
+		<Field.Field orientation="horizontal" data-invalid>
+			<RadioGroup.Item value="email" id="invalid-email" aria-invalid />
+			<Field.Label for="invalid-email" class="font-normal">Email only</Field.Label>
+		</Field.Field>
+		<Field.Field orientation="horizontal" data-invalid>
+			<RadioGroup.Item value="sms" id="invalid-sms" aria-invalid />
+			<Field.Label for="invalid-sms" class="font-normal">SMS only</Field.Label>
+		</Field.Field>
+		<Field.Field orientation="horizontal" data-invalid>
+			<RadioGroup.Item value="both" id="invalid-both" aria-invalid />
+			<Field.Label for="invalid-both" class="font-normal">Both Email & SMS</Field.Label>
+		</Field.Field>
 	</RadioGroup.Root>
-	<p class="text-destructive text-sm">Please select a payment method.</p>
-</div>
+</Field.Set>
