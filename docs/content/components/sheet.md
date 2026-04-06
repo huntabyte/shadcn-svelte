@@ -99,6 +99,8 @@ Pass the `side` property to `<Sheet.Content />` to indicate the edge of the scre
 
 ### No Close Button
 
+Use `showCloseButton={false}` on `Sheet.Content` to hide the close button.
+
 <ComponentPreview name="sheet-no-close-button">
 
 <div></div>

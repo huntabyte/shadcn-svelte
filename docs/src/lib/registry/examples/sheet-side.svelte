@@ -1,13 +1,12 @@
 <script lang="ts">
 	import * as Sheet from "$lib/registry/ui/sheet/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const SHEET_SIDES = ["top", "right", "bottom", "left"] as const;
 </script>
 
-<div class="grid grid-cols-2 gap-2">
-	{#each SHEET_SIDES as side, _ (side)}
+<div class="flex flex-wrap gap-2">
+	{#each SHEET_SIDES as side (side)}
 		<Sheet.Root>
 			<Sheet.Trigger>
 				{#snippet child({ props })}
@@ -16,17 +15,19 @@
 					</Button>
 				{/snippet}
 			</Sheet.Trigger>
-			<Sheet.Content {side}>
+			<Sheet.Content
+				{side}
+				class="data-[side=bottom]:max-h-[50vh] data-[side=top]:max-h-[50vh]"
+			>
 				<Sheet.Header>
 					<Sheet.Title>Edit profile</Sheet.Title>
 					<Sheet.Description>
 						Make changes to your profile here. Click save when you're done.
 					</Sheet.Description>
 				</Sheet.Header>
-				<div class="overflow-y-auto px-4 text-sm">
-					<h4 class="mb-4 text-lg leading-none font-medium">Lorem Ipsum</h4>
+				<div class="no-scrollbar overflow-y-auto px-4">
 					{#each { length: 10 } as _, index (index)}
-						<p class="mb-4 leading-normal">
+						<p class="mb-2 leading-relaxed">
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
 							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
 							veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
@@ -38,8 +39,11 @@
 					{/each}
 				</div>
 				<Sheet.Footer>
-					<Sheet.Close class={buttonVariants({ variant: "outline" })}>
-						Save changes
+					<Button type="submit">Save changes</Button>
+					<Sheet.Close>
+						{#snippet child({ props })}
+							<Button variant="outline" {...props}>Cancel</Button>
+						{/snippet}
 					</Sheet.Close>
 				</Sheet.Footer>
 			</Sheet.Content>

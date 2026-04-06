@@ -1,13 +1,16 @@
 <script lang="ts">
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Sheet from "$lib/registry/ui/sheet/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
 	import { Label } from "$lib/registry/ui/label/index.js";
 </script>
 
 <Sheet.Root>
-	<Sheet.Trigger class={buttonVariants({ variant: "outline" })}>Open</Sheet.Trigger>
+	<Sheet.Trigger>
+		{#snippet child({ props })}
+			<Button variant="outline" {...props}>Open</Button>
+		{/snippet}
+	</Sheet.Trigger>
 	<Sheet.Content>
 		<Sheet.Header>
 			<Sheet.Title>Edit profile</Sheet.Title>
@@ -27,7 +30,11 @@
 		</div>
 		<Sheet.Footer>
 			<Button type="submit">Save changes</Button>
-			<Sheet.Close class={buttonVariants({ variant: "outline" })}>Close</Sheet.Close>
+			<Sheet.Close>
+				{#snippet child({ props })}
+					<Button variant="outline" {...props}>Close</Button>
+				{/snippet}
+			</Sheet.Close>
 		</Sheet.Footer>
 	</Sheet.Content>
 </Sheet.Root>
