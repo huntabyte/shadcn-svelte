@@ -18,15 +18,13 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-The `Item` component is a straightforward flex container that can house nearly any type of content. Use it to display a title, description, and actions. Group it with the `ItemGroup` component to create a list of items.
-
-You can pretty much achieve the same result with the `div` element and some classes, but **I've built this so many times** that I decided to create a component for it. Now I use it all the time.
-
 <ComponentPreview name="item-demo">
 
 <div></div>
 
 </ComponentPreview>
+
+The `Item` component is a straightforward flex container that can house nearly any type of content. Use it to display a title, description, and actions. Group it with the `ItemGroup` component to create a list of items.
 
 ## Installation
 
@@ -79,15 +77,13 @@ Update the import paths to match your project setup.
 
 ## Item vs Field
 
-Use Field if you need to display a form input such as a checkbox, input, radio, or select.
+Use `Field` if you need to display a form input such as a checkbox, input, radio, or select.
 
 If you only need to display content such as a title, description, and actions, use `Item`.
 
-## Examples
-
 ### Variants
 
-Item comes in three visual variants: `default` (transparent, no border), `outline` (with a visible border), and `muted` (muted background for secondary content).
+Use the `variant` prop to change the visual style of the item. 
 
 <ComponentPreview name="item-variants-demo">
 
@@ -97,7 +93,7 @@ Item comes in three visual variants: `default` (transparent, no border), `outlin
 
 ### Size
 
-The `Item` component has different sizes for different use cases. For example, you can use the `sm` size for a compact item or the default size for a standard item.
+Use the `size` prop to change the size of the item. Available sizes are `default`, `sm`, and `xs`.
 
 <ComponentPreview name="item-size-demo">
 
@@ -105,9 +101,11 @@ The `Item` component has different sizes for different use cases. For example, y
 
 </ComponentPreview>
 
+## Examples
+
 ### Icon
 
-Use `Item.Media` with `variant="icon"` to display an icon alongside the item content.
+Use `Item.Media` with `variant="icon"` to display an icon.
 
 <ComponentPreview name="item-icon-demo">
 
@@ -117,7 +115,7 @@ Use `Item.Media` with `variant="icon"` to display an icon alongside the item con
 
 ### Avatar
 
-Use `Item.Media` to display an avatar or a group of avatars next to the item content.
+You can use `Item.Media` to display an avatar.
 
 <ComponentPreview name="item-avatar-demo">
 
@@ -127,7 +125,7 @@ Use `Item.Media` to display an avatar or a group of avatars next to the item con
 
 ### Image
 
-Use `Item.Media` with `variant="image"` to display an image thumbnail alongside the content.
+Use `Item.Media` with `variant="image"` to display an image.
 
 <ComponentPreview name="item-image-demo">
 
@@ -137,7 +135,7 @@ Use `Item.Media` with `variant="image"` to display an image thumbnail alongside 
 
 ### Group
 
-Use `Item.Group` to stack multiple items in a list. Add `Item.Separator` between items to divide them visually.
+Use `Item.Group` to group related items together.
 
 <ComponentPreview name="item-group-demo">
 
@@ -147,7 +145,7 @@ Use `Item.Group` to stack multiple items in a list. Add `Item.Separator` between
 
 ### Header
 
-Use `Item.Header` to display a full-width header inside the item, useful for card-style layouts with a leading image.
+Use `Item.Header` to add a header above the item content.
 
 <ComponentPreview name="item-header-demo">
 
@@ -157,7 +155,7 @@ Use `Item.Header` to display a full-width header inside the item, useful for car
 
 ### Link
 
-To render an item as a link, use the the `child` snippet. The hover and focus states will be applied to the anchor element.
+Use the `child` snippet to render the item as a link. The hover and focus states will be applied to the anchor element.
 
 <ComponentPreview name="item-link-demo">
 
@@ -166,8 +164,6 @@ To render an item as a link, use the the `child` snippet. The hover and focus st
 </ComponentPreview>
 
 ### Dropdown
-
-Use `Item` inside a `DropdownMenu.Item` to create rich menu items with avatars, descriptions, and other content.
 
 <ComponentPreview name="item-dropdown-demo">
 
