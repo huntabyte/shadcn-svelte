@@ -3,23 +3,27 @@
 
 	const items = [
 		{
-			value: "item-1",
-			trigger:
-				"What are the key considerations when implementing a comprehensive enterprise-level authentication system?",
+			value: "notifications",
+			trigger: "Notification Settings",
 			content:
-				"Implementing a robust enterprise authentication system requires careful consideration of multiple factors. This includes secure password hashing and storage, multi-factor authentication (MFA) implementation, session management, OAuth2 and SSO integration, regular security audits, rate limiting to prevent brute force attacks, and maintaining detailed audit logs. Additionally, you'll need to consider scalability, performance impact, and compliance with relevant data protection regulations such as GDPR or HIPAA.",
+				"Manage how you receive notifications. You can enable email alerts for updates or push notifications for mobile devices.",
 		},
 		{
-			value: "item-2",
-			trigger:
-				"How does modern distributed system architecture handle eventual consistency and data synchronization across multiple regions?",
+			value: "privacy",
+			trigger: "Privacy & Security",
 			content:
-				"Modern distributed systems employ various strategies to maintain data consistency across regions. This often involves using techniques like CRDT (Conflict-Free Replicated Data Types), vector clocks, and gossip protocols. Systems might implement event sourcing patterns, utilize message queues for asynchronous updates, and employ sophisticated conflict resolution strategies. Popular solutions like Amazon's DynamoDB and Google's Spanner demonstrate different approaches to solving these challenges, balancing between consistency, availability, and partition tolerance as described in the CAP theorem.",
+				"Control your privacy settings and security preferences. Enable two-factor authentication, manage connected devices, review active sessions, and configure data sharing preferences. You can also download your data or delete your account.",
+		},
+		{
+			value: "billing",
+			trigger: "Billing & Subscription",
+			content:
+				"View your current plan, payment history, and upcoming invoices. Update your payment method, change your subscription tier, or cancel your subscription.",
 		},
 	];
 </script>
 
-<Accordion.Root type="multiple" class="w-full max-w-lg">
+<Accordion.Root type="multiple" value={["notifications"]} class="max-w-lg">
 	{#each items as item (item.value)}
 		<Accordion.Item value={item.value}>
 			<Accordion.Trigger>{item.trigger}</Accordion.Trigger>
