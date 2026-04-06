@@ -105,7 +105,6 @@ The `AspectRatio.Root` component displays content within a desired ratio.
 | Prop | Type | Default |
 |------|------|---------|
 | `ratio` | `number` | `1` |
-| `ref` | `HTMLDivElement` | `null` |
 | `children` | `Snippet` | — |
 | `class` | `string` | — |
 
