@@ -129,12 +129,97 @@ You can add an `InputGroup` component to the `EmptyContent` component.
 
 </ComponentPreview>
 
-### Card
+## API Reference
 
-Use the `Card` component to display the empty state inside a card.
+### Empty.Root
 
-<ComponentPreview name="empty-card-demo">
+The main component of the empty state. Wraps the `Empty.Header` and `Empty.Content` components.
 
-<div></div>
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` |         |
 
-</ComponentPreview>
+```svelte
+<Empty.Root>
+  <Empty.Header />
+  <Empty.Content />
+</Empty.Root>
+```
+
+### Empty.Header
+
+The `Empty.Header` component wraps the empty media, title, and description.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` |         |
+
+```svelte
+<Empty.Header>
+  <Empty.Media />
+  <Empty.Title />
+  <Empty.Description />
+</Empty.Header>
+```
+
+### Empty.Media
+
+Use the `Empty.Media` component to display the media of the empty state such as an icon or an image. You can also use it to display other components such as an avatar.
+
+| Prop      | Type                  | Default     |
+| --------- | --------------------- | ----------- |
+| `variant` | `"default" \| "icon"` | `"default"` |
+| `class`   | `string`              |             |
+
+```svelte
+<Empty.Media variant="icon">
+  <Icon />
+</Empty.Media>
+```
+
+```svelte
+<Empty.Media>
+  <Avatar.Root>
+    <Avatar.Image src="..." />
+    <Avatar.Fallback>CN</Avatar.Fallback>
+  </Avatar.Root>
+</Empty.Media>
+```
+
+### Empty.Title
+
+Use the `Empty.Title` component to display the title of the empty state.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` |         |
+
+```svelte
+<Empty.Title>No data</Empty.Title>
+```
+
+### Empty.Description
+
+Use the `Empty.Description` component to display the description of the empty state.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` |         |
+
+```svelte
+<Empty.Description>You do not have any notifications.</Empty.Description>
+```
+
+### Empty.Content
+
+Use the `Empty.Content` component to display the content of the empty state such as a button, input or a link.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` |         |
+
+```svelte
+<Empty.Content>
+  <Button>Add Project</Button>
+</Empty.Content>
+```
