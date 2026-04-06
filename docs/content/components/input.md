@@ -193,27 +193,3 @@ A full form example with multiple inputs, a select, and a button.
 <div></div>
 
 </ComponentPreview>
-
-### With Label
-
-<ComponentPreview name="input-with-label">
-
-<div></div>
-
-</ComponentPreview>
-
-### With Text
-
-<ComponentPreview name="input-with-text">
-
-<div></div>
-
-</ComponentPreview>
-
-### With Button
-
-<ComponentPreview name="input-with-button">
-
-<div></div>
-
-</ComponentPreview>
