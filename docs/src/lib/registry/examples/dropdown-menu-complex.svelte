@@ -189,12 +189,18 @@
 								<DropdownMenu.Portal>
 									<DropdownMenu.SubContent>
 										<DropdownMenu.Group>
-											<DropdownMenu.Label>Notification Types</DropdownMenu.Label>
-											<DropdownMenu.CheckboxItem bind:checked={notifications.push}>
+											<DropdownMenu.Label
+												>Notification Types</DropdownMenu.Label
+											>
+											<DropdownMenu.CheckboxItem
+												bind:checked={notifications.push}
+											>
 												<BellIcon />
 												Push Notifications
 											</DropdownMenu.CheckboxItem>
-											<DropdownMenu.CheckboxItem bind:checked={notifications.email}>
+											<DropdownMenu.CheckboxItem
+												bind:checked={notifications.email}
+											>
 												<MailIcon />
 												Email Notifications
 											</DropdownMenu.CheckboxItem>

@@ -1,11 +1,7 @@
 <script lang="ts">
 	import CalendarIcon from "@lucide/svelte/icons/calendar";
 	import type { DateRange } from "bits-ui";
-	import {
-		CalendarDate,
-		DateFormatter,
-		getLocalTimeZone,
-	} from "@internationalized/date";
+	import { CalendarDate, DateFormatter, getLocalTimeZone } from "@internationalized/date";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { RangeCalendar } from "$lib/registry/ui/range-calendar/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
@@ -31,15 +27,13 @@
 		<Popover.Root>
 			<Popover.Trigger id="date-picker-range">
 				{#snippet child({ props })}
-					<Button
-						{...props}
-						variant="outline"
-						class="justify-start px-2.5 font-normal"
-					>
+					<Button {...props} variant="outline" class="justify-start px-2.5 font-normal">
 						<CalendarIcon />
 						{#if value && value.start}
 							{#if value.end}
-								{df.format(value.start.toDate(getLocalTimeZone()))} - {df.format(value.end.toDate(getLocalTimeZone()))}
+								{df.format(value.start.toDate(getLocalTimeZone()))} - {df.format(
+									value.end.toDate(getLocalTimeZone())
+								)}
 							{:else}
 								{df.format(value.start.toDate(getLocalTimeZone()))}
 							{/if}
@@ -50,10 +44,7 @@
 				{/snippet}
 			</Popover.Trigger>
 			<Popover.Content class="w-auto p-0" align="start">
-				<RangeCalendar
-					bind:value
-					numberOfMonths={2}
-				/>
+				<RangeCalendar bind:value numberOfMonths={2} />
 			</Popover.Content>
 		</Popover.Root>
 	</Field.Field>

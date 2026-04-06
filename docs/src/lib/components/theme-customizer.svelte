@@ -251,12 +251,19 @@
 				size="sm"
 				class="justify-start capitalize shadow-none *:data-[slot=select-value]:w-12 *:data-[slot=select-value]:capitalize"
 			>
-				<span data-slot="select-value">{THEMES.find((t) => t.name === coercedActiveTheme)?.title ?? "Select a theme"}</span>
+				<span data-slot="select-value"
+					>{THEMES.find((t) => t.name === coercedActiveTheme)?.title ??
+						"Select a theme"}</span
+				>
 			</Select.Trigger>
 			<Select.Content align="end">
 				<Select.Group>
 					{#each THEMES as theme (theme.name)}
-						<Select.Item value={theme.name} label={theme.title} class="capitalize data-selected:opacity-50">
+						<Select.Item
+							value={theme.name}
+							label={theme.title}
+							class="capitalize data-selected:opacity-50"
+						>
 							{theme.title}
 						</Select.Item>
 					{/each}

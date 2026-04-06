@@ -26,9 +26,7 @@
 		{ value: "7", label: "In a week" },
 	];
 
-	const triggerLabel = $derived(
-		items.find((i) => i.value === selectValue)?.label ?? "Select"
-	);
+	const triggerLabel = $derived(items.find((i) => i.value === selectValue)?.label ?? "Select");
 </script>
 
 <Popover.Root>

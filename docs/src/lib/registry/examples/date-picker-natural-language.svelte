@@ -94,7 +94,7 @@
 			</Popover.Root>
 		</InputGroup.Addon>
 	</InputGroup.Root>
-	<div class="px-1 text-sm text-muted-foreground">
+	<div class="text-muted-foreground px-1 text-sm">
 		Your post will be published on
 		<span class="font-medium">{formatDateValue(value)}</span>.
 	</div>

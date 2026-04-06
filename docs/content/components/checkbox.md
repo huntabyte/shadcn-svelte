@@ -94,7 +94,6 @@ Set `aria-invalid` on the checkbox and `data-invalid` on the field wrapper to sh
 
 <ComponentPreview name="checkbox-invalid" />
 
-
 ## Examples
 
 ### Basic

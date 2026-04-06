@@ -12,9 +12,7 @@
 	<Field.Field orientation="horizontal">
 		<Checkbox id="terms-checkbox-2" name="terms-checkbox-2" checked />
 		<Field.Content>
-			<Field.Label for="terms-checkbox-2">
-				Accept terms and conditions
-			</Field.Label>
+			<Field.Label for="terms-checkbox-2">Accept terms and conditions</Field.Label>
 			<Field.Description>
 				By clicking this checkbox, you agree to the terms.
 			</Field.Description>
