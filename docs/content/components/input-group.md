@@ -16,6 +16,7 @@ links:
 
 	let { viewerData } = $props();
 	import Step from "$lib/components/step.svelte";
+	import Callout from "$lib/components/callout.svelte";
 </script>
 
 <ComponentPreview name="input-group-demo">
@@ -80,6 +81,56 @@ Update the import paths to match your project setup.
   </InputGroup.Addon>
 </InputGroup.Root>
 ```
+
+## Align
+
+Use the `align` prop on `InputGroup.Addon` to position the addon relative to the input.
+
+<Callout className="mt-4">
+
+  For proper focus management, `InputGroup.Addon` should always be placed after `InputGroup.Input` or `InputGroup.Textarea` in the DOM. Use the `align` prop to visually position the addon.
+  
+</Callout>
+
+### inline-start
+
+Use `align="inline-start"` to position the addon at the start of the input. This is the default.
+
+<ComponentPreview name="input-group-inline-start-demo">
+
+<div></div>
+
+</ComponentPreview>
+
+### inline-end
+
+Use `align="inline-end"` to position the addon at the end of the input.
+
+<ComponentPreview name="input-group-inline-end-demo">
+
+<div></div>
+
+</ComponentPreview>
+
+### block-start
+
+Use `align="block-start"` to position the addon above the input.
+
+<ComponentPreview name="input-group-block-start-demo">
+
+<div></div>
+
+</ComponentPreview>
+
+### block-end
+
+Use `align="block-end"` to position the addon below the input.
+
+<ComponentPreview name="input-group-block-end-demo">
+
+<div></div>
+
+</ComponentPreview>
 
 ## Examples
 
