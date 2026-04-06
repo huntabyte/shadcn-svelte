@@ -8,7 +8,7 @@
 			<span class="font-semibold">One</span>
 		</div>
 	</Resizable.Pane>
-	<Resizable.Handle />
+	<Resizable.Handle withHandle />
 	<Resizable.Pane defaultSize={50}>
 		<Resizable.PaneGroup direction="vertical">
 			<Resizable.Pane defaultSize={25}>
@@ -16,7 +16,7 @@
 					<span class="font-semibold">Two</span>
 				</div>
 			</Resizable.Pane>
-			<Resizable.Handle />
+			<Resizable.Handle withHandle />
 			<Resizable.Pane defaultSize={75}>
 				<div class="flex h-full items-center justify-center p-6">
 					<span class="font-semibold">Three</span>
