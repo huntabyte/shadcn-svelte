@@ -74,6 +74,20 @@ Update the import paths to match your project setup.
 <Label for="email">Your email address</Label>
 ```
 
+## Label in Field
+
+For form fields, use the [Field](/docs/components/field) component which
+includes built-in `Field.Label`, `Field.Description`, and `Field.Error` components.
+
+```svelte
+<Field.Field>
+  <Field.Label for="email">Your email address</Field.Label>
+  <Input id="email" />
+</Field.Field>
+```
+
+<ComponentPreview name="field-demo" previewClassName="h-[44rem]"/>
+
 ## API Reference
 
 See the [Bits UI](https://bits-ui.com/docs/components/label#api-reference) documentation for more information.
