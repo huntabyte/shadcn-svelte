@@ -105,3 +105,24 @@ You can use the `Kbd.Root` component inside a `InputGroup.Addon` component to di
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+### Kbd
+
+Displays a single keyboard key or input.
+
+```svelte
+<Kbd.Root>Ctrl</Kbd.Root>
+```
+
+### Kbd.Group
+
+Groups multiple keyboard keys together.
+
+```svelte
+<Kbd.Group>
+  <Kbd.Root>Ctrl</Kbd.Root>
+  <Kbd.Root>B</Kbd.Root>
+</Kbd.Group>
+```
