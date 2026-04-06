@@ -87,6 +87,8 @@ If you only need to display content such as a title, description, and actions, u
 
 ### Variants
 
+Item comes in three visual variants: `default` (transparent, no border), `outline` (with a visible border), and `muted` (muted background for secondary content).
+
 <ComponentPreview name="item-variants-demo">
 
 <div></div>
@@ -105,6 +107,8 @@ The `Item` component has different sizes for different use cases. For example, y
 
 ### Icon
 
+Use `Item.Media` with `variant="icon"` to display an icon alongside the item content.
+
 <ComponentPreview name="item-icon-demo">
 
 <div></div>
@@ -112,6 +116,8 @@ The `Item` component has different sizes for different use cases. For example, y
 </ComponentPreview>
 
 ### Avatar
+
+Use `Item.Media` to display an avatar or a group of avatars next to the item content.
 
 <ComponentPreview name="item-avatar-demo">
 
@@ -121,6 +127,8 @@ The `Item` component has different sizes for different use cases. For example, y
 
 ### Image
 
+Use `Item.Media` with `variant="image"` to display an image thumbnail alongside the content.
+
 <ComponentPreview name="item-image-demo">
 
 <div></div>
@@ -129,6 +137,8 @@ The `Item` component has different sizes for different use cases. For example, y
 
 ### Group
 
+Use `Item.Group` to stack multiple items in a list. Add `Item.Separator` between items to divide them visually.
+
 <ComponentPreview name="item-group-demo">
 
 <div></div>
@@ -136,6 +146,8 @@ The `Item` component has different sizes for different use cases. For example, y
 </ComponentPreview>
 
 ### Header
+
+Use `Item.Header` to display a full-width header inside the item, useful for card-style layouts with a leading image.
 
 <ComponentPreview name="item-header-demo">
 
@@ -155,8 +167,86 @@ To render an item as a link, use the the `child` snippet. The hover and focus st
 
 ### Dropdown
 
+Use `Item` inside a `DropdownMenu.Item` to create rich menu items with avatars, descriptions, and other content.
+
 <ComponentPreview name="item-dropdown-demo">
 
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+### Item
+
+The main component for displaying content with media, title, description, and actions.
+
+| Prop | Type | Default |
+|------|------|---------|
+| `variant` | `"default" \| "outline" \| "muted"` | `"default"` |
+| `size` | `"default" \| "sm" \| "xs"` | `"default"` |
+
+To render the item as a different element (e.g. an anchor), use the `child` snippet:
+
+```svelte
+<Item.Root>
+  {#snippet child({ props })}
+    <a href="/link" {...props}>...</a>
+  {/snippet}
+</Item.Root>
+```
+
+### Item.Group
+
+A container that groups related items together with consistent styling.
+
+```svelte
+<Item.Group>
+  <Item.Root />
+  <Item.Root />
+</Item.Group>
+```
+
+### Item.Separator
+
+A separator between items in a group.
+
+```svelte
+<Item.Group>
+  <Item.Root />
+  <Item.Separator />
+  <Item.Root />
+</Item.Group>
+```
+
+### Item.Media
+
+Use this to display media content such as icons, images, or avatars.
+
+| Prop | Type | Default |
+|------|------|---------|
+| `variant` | `"default" \| "icon" \| "image"` | `"default"` |
+
+### Item.Content
+
+Wraps the title and description of the item.
+
+### Item.Title
+
+Displays the title of the item.
+
+### Item.Description
+
+Displays the description of the item.
+
+### Item.Actions
+
+Container for action buttons or other interactive elements.
+
+### Item.Header
+
+Displays a header above the item content.
+
+### Item.Footer
+
+Displays a footer below the item content.
