@@ -2,7 +2,7 @@
 	import * as InputOTP from "$lib/registry/ui/input-otp/index.js";
 </script>
 
-<InputOTP.Root maxlength={6}>
+<InputOTP.Root maxlength={6} value="123456">
 	{#snippet children({ cells })}
 		<InputOTP.Group>
 			{#each cells as cell (cell)}

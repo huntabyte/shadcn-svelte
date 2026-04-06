@@ -116,6 +116,8 @@ You can use the `InputOTP.Separator` component to add a separator between the gr
 
 ### Disabled
 
+Use the `disabled` prop to prevent user interaction with the input.
+
 <ComponentPreview name="input-otp-disabled">
 
 <div></div>
@@ -123,6 +125,8 @@ You can use the `InputOTP.Separator` component to add a separator between the gr
 </ComponentPreview>
 
 ### Controlled
+
+Use `bind:value` to control the input value programmatically.
 
 <ComponentPreview name="input-otp-controlled">
 
@@ -132,6 +136,8 @@ You can use the `InputOTP.Separator` component to add a separator between the gr
 
 ### Invalid
 
+Use the `aria-invalid` attribute on slots to display an error state.
+
 <ComponentPreview name="input-otp-invalid">
 
 <div></div>
@@ -139,6 +145,8 @@ You can use the `InputOTP.Separator` component to add a separator between the gr
 </ComponentPreview>
 
 ### Four Digits
+
+A common pattern for PIN codes using a 4-digit numeric input.
 
 <ComponentPreview name="input-otp-four-digits">
 
@@ -157,6 +165,8 @@ Use the `REGEXP_ONLY_DIGITS_AND_CHARS` pattern to accept both letters and number
 </ComponentPreview>
 
 ### Form
+
+Use the input in a form with a label and description.
 
 <ComponentPreview name="input-otp-form">
 
