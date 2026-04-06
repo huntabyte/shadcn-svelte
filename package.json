@@ -38,14 +38,14 @@
 	"type": "module",
 	"devDependencies": {
 		"@changesets/cli": "^2.30.0",
-		"@eslint/compat": "^2.0.3",
+		"@eslint/compat": "^2.0.4",
 		"@eslint/js": "^10.0.1",
 		"@svitejs/changesets-changelog-github-compact": "^1.2.0",
-		"@types/node": "^25.5.0",
+		"@types/node": "^25.5.2",
 		"concurrently": "^9.2.1",
-		"eslint": "^10.1.0",
+		"eslint": "^10.2.0",
 		"eslint-config-prettier": "^10.1.8",
-		"eslint-plugin-svelte": "^3.16.0",
+		"eslint-plugin-svelte": "^3.17.0",
 		"globals": "^17.4.0",
 		"minimatch": "^10.2.5",
 		"prettier": "~3.8.1",
@@ -55,7 +55,7 @@
 		"svelte": "catalog:",
 		"typescript": "6.0.2",
 		"typescript-eslint": "^8.58.0",
-		"wrangler": "^4.79.0"
+		"wrangler": "^4.80.0"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [
