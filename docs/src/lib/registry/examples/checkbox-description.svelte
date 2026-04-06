@@ -1,19 +1,16 @@
 <script lang="ts">
 	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
+	import * as Field from "$lib/registry/ui/field/index.js";
 </script>
 
-<div class="items-top flex space-x-2">
-	<Checkbox id="terms" />
-	<div class="grid gap-1.5 leading-none">
-		<Label
-			for="terms"
-			class="text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-		>
-			Accept terms and conditions
-		</Label>
-		<p class="text-muted-foreground text-sm">
-			You agree to our Terms of Service and Privacy Policy.
-		</p>
-	</div>
-</div>
+<Field.Group class="mx-auto w-72">
+	<Field.Field orientation="horizontal">
+		<Checkbox id="terms-checkbox-desc" name="terms-checkbox-desc" checked />
+		<Field.Content>
+			<Field.Label for="terms-checkbox-desc">Accept terms and conditions</Field.Label>
+			<Field.Description>
+				By clicking this checkbox, you agree to the terms and conditions.
+			</Field.Description>
+		</Field.Content>
+	</Field.Field>
+</Field.Group>

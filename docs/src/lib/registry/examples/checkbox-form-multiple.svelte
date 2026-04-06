@@ -39,8 +39,9 @@
 	import { defaults, superForm } from "sveltekit-superforms";
 	import { zod4 } from "sveltekit-superforms/adapters";
 	import { toast } from "svelte-sonner";
-	import * as Form from "$lib/registry/ui/form/index.js";
+	import * as Field from "$lib/registry/ui/field/index.js";
 	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const form = superForm(defaults(zod4(formSchema)), {
 		SPA: true,
@@ -54,7 +55,7 @@
 		},
 	});
 
-	const { form: formData, enhance } = form;
+	const { form: formData, errors, enhance } = form;
 
 	function addItem(id: string) {
 		$formData.items = [...$formData.items, id];
@@ -66,40 +67,37 @@
 </script>
 
 <form method="POST" class="space-y-8" use:enhance>
-	<Form.Fieldset {form} name="items" class="space-y-0">
+	<Field.Set class="space-y-0">
 		<div class="mb-4">
-			<Form.Legend class="text-base">Sidebar</Form.Legend>
-			<Form.Description>
+			<Field.Legend class="text-base">Sidebar</Field.Legend>
+			<Field.Description>
 				Select the items you want to display in the sidebar.
-			</Form.Description>
+			</Field.Description>
 		</div>
 		<div class="space-y-2">
 			{#each items as item (item.id)}
 				{@const checked = $formData.items.includes(item.id)}
-				<div class="flex flex-row items-start space-x-3">
-					<Form.Control>
-						{#snippet children({ props })}
-							<Checkbox
-								{...props}
-								{checked}
-								value={item.id}
-								onCheckedChange={(v) => {
-									if (v) {
-										addItem(item.id);
-									} else {
-										removeItem(item.id);
-									}
-								}}
-							/>
-							<Form.Label class="font-normal">
-								{item.label}
-							</Form.Label>
-						{/snippet}
-					</Form.Control>
-				</div>
+				<Field.Field orientation="horizontal">
+					<Checkbox
+						id={item.id}
+						name="items"
+						{checked}
+						value={item.id}
+						onCheckedChange={(v) => {
+							if (v) {
+								addItem(item.id);
+							} else {
+								removeItem(item.id);
+							}
+						}}
+					/>
+					<Field.Label for={item.id} class="font-normal">
+						{item.label}
+					</Field.Label>
+				</Field.Field>
 			{/each}
-			<Form.FieldErrors />
+			<Field.Error errors={($errors.items ?? []).map((m) => ({ message: m }))} />
 		</div>
-	</Form.Fieldset>
-	<Form.Button>Update display</Form.Button>
+	</Field.Set>
+	<Button type="submit">Update display</Button>
 </form>

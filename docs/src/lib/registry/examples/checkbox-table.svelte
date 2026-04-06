@@ -1,32 +1,88 @@
 <script lang="ts">
 	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
+	import * as Table from "$lib/registry/ui/table/index.js";
 
-	let items = $state([
-		{ id: "1", label: "Invoice #001", amount: "$250.00", checked: false },
-		{ id: "2", label: "Invoice #002", amount: "$150.00", checked: true },
-		{ id: "3", label: "Invoice #003", amount: "$350.00", checked: false },
-		{ id: "4", label: "Invoice #004", amount: "$450.00", checked: false },
-	]);
+	const tableData = [
+		{
+			id: "1",
+			name: "Sarah Chen",
+			email: "sarah.chen@example.com",
+			role: "Admin",
+		},
+		{
+			id: "2",
+			name: "Marcus Rodriguez",
+			email: "marcus.rodriguez@example.com",
+			role: "User",
+		},
+		{
+			id: "3",
+			name: "Priya Patel",
+			email: "priya.patel@example.com",
+			role: "User",
+		},
+		{
+			id: "4",
+			name: "David Kim",
+			email: "david.kim@example.com",
+			role: "Editor",
+		},
+	];
 
-	let selectAll = $derived(items.every((item) => item.checked));
+	let selectedRows = $state(new Set(["1"]));
 
-	function toggleAll() {
-		const newValue = !selectAll;
-		items = items.map((item) => ({ ...item, checked: newValue }));
+	const selectAll = $derived(selectedRows.size === tableData.length);
+
+	function handleSelectAll(checked: boolean) {
+		if (checked) {
+			selectedRows = new Set(tableData.map((row) => row.id));
+		} else {
+			selectedRows = new Set();
+		}
+	}
+
+	function handleSelectRow(id: string, checked: boolean) {
+		const next = new Set(selectedRows);
+		if (checked) {
+			next.add(id);
+		} else {
+			next.delete(id);
+		}
+		selectedRows = next;
 	}
 </script>
 
-<div class="w-full max-w-sm rounded-md border">
-	<div class="flex items-center gap-4 border-b px-4 py-3">
-		<Checkbox checked={selectAll} onCheckedChange={toggleAll} aria-label="Select all" />
-		<span class="flex-1 text-sm font-medium">Invoice</span>
-		<span class="text-sm font-medium">Amount</span>
-	</div>
-	{#each items as item (item.id)}
-		<div class="flex items-center gap-4 border-b px-4 py-3 last:border-b-0">
-			<Checkbox bind:checked={item.checked} aria-label="Select row" />
-			<span class="flex-1 text-sm">{item.label}</span>
-			<span class="text-muted-foreground text-sm">{item.amount}</span>
-		</div>
-	{/each}
-</div>
+<Table.Table>
+	<Table.Header>
+		<Table.Row>
+			<Table.Head class="w-8">
+				<Checkbox
+					id="select-all-checkbox"
+					name="select-all-checkbox"
+					checked={selectAll}
+					onCheckedChange={handleSelectAll}
+				/>
+			</Table.Head>
+			<Table.Head>Name</Table.Head>
+			<Table.Head>Email</Table.Head>
+			<Table.Head>Role</Table.Head>
+		</Table.Row>
+	</Table.Header>
+	<Table.Body>
+		{#each tableData as row (row.id)}
+			<Table.Row data-state={selectedRows.has(row.id) ? "selected" : undefined}>
+				<Table.Cell>
+					<Checkbox
+						id="row-{row.id}-checkbox"
+						name="row-{row.id}-checkbox"
+						checked={selectedRows.has(row.id)}
+						onCheckedChange={(checked) => handleSelectRow(row.id, checked === true)}
+					/>
+				</Table.Cell>
+				<Table.Cell class="font-medium">{row.name}</Table.Cell>
+				<Table.Cell>{row.email}</Table.Cell>
+				<Table.Cell>{row.role}</Table.Cell>
+			</Table.Row>
+		{/each}
+	</Table.Body>
+</Table.Table>

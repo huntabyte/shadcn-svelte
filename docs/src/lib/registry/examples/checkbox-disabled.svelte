@@ -1,14 +1,11 @@
 <script lang="ts">
 	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
+	import * as Field from "$lib/registry/ui/field/index.js";
 </script>
 
-<div class="flex items-center space-x-2">
-	<Checkbox id="terms" disabled />
-	<Label
-		for="terms"
-		class="text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70 peer-data-[disabled=true]:cursor-not-allowed peer-data-[disabled=true]:opacity-70"
-	>
-		Accept terms and conditions
-	</Label>
-</div>
+<Field.Group class="mx-auto w-56">
+	<Field.Field orientation="horizontal" data-disabled>
+		<Checkbox id="toggle-checkbox-disabled" name="toggle-checkbox-disabled" disabled />
+		<Field.Label for="toggle-checkbox-disabled">Enable notifications</Field.Label>
+	</Field.Field>
+</Field.Group>

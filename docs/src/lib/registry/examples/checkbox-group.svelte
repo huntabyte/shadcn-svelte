@@ -1,23 +1,49 @@
 <script lang="ts">
 	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
-
-	const items = [
-		{ id: "recents", label: "Recents" },
-		{ id: "home", label: "Home" },
-		{ id: "applications", label: "Applications" },
-		{ id: "desktop", label: "Desktop" },
-		{ id: "downloads", label: "Downloads" },
-		{ id: "documents", label: "Documents" },
-	] as const;
+	import * as Field from "$lib/registry/ui/field/index.js";
 </script>
 
-<div class="flex flex-col space-y-3">
-	<p class="text-sm leading-none font-medium">Sidebar</p>
-	{#each items as item (item.id)}
-		<div class="flex items-center space-x-2">
-			<Checkbox id={item.id} />
-			<Label for={item.id}>{item.label}</Label>
-		</div>
-	{/each}
-</div>
+<Field.Set>
+	<Field.Legend variant="label">Show these items on the desktop:</Field.Legend>
+	<Field.Description>Select the items you want to show on the desktop.</Field.Description>
+	<Field.Group class="gap-3">
+		<Field.Field orientation="horizontal">
+			<Checkbox
+				id="finder-pref-9k2-hard-disks-ljj-checkbox"
+				name="finder-pref-9k2-hard-disks-ljj-checkbox"
+				checked
+			/>
+			<Field.Label for="finder-pref-9k2-hard-disks-ljj-checkbox" class="font-normal">
+				Hard disks
+			</Field.Label>
+		</Field.Field>
+		<Field.Field orientation="horizontal">
+			<Checkbox
+				id="finder-pref-9k2-external-disks-1yg-checkbox"
+				name="finder-pref-9k2-external-disks-1yg-checkbox"
+				checked
+			/>
+			<Field.Label for="finder-pref-9k2-external-disks-1yg-checkbox" class="font-normal">
+				External disks
+			</Field.Label>
+		</Field.Field>
+		<Field.Field orientation="horizontal">
+			<Checkbox
+				id="finder-pref-9k2-cds-dvds-fzt-checkbox"
+				name="finder-pref-9k2-cds-dvds-fzt-checkbox"
+			/>
+			<Field.Label for="finder-pref-9k2-cds-dvds-fzt-checkbox" class="font-normal">
+				CDs, DVDs, and iPods
+			</Field.Label>
+		</Field.Field>
+		<Field.Field orientation="horizontal">
+			<Checkbox
+				id="finder-pref-9k2-connected-servers-6l2-checkbox"
+				name="finder-pref-9k2-connected-servers-6l2-checkbox"
+			/>
+			<Field.Label for="finder-pref-9k2-connected-servers-6l2-checkbox" class="font-normal">
+				Connected servers
+			</Field.Label>
+		</Field.Field>
+	</Field.Group>
+</Field.Set>
