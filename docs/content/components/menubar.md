@@ -93,7 +93,7 @@ Update the import paths to match your project setup.
 
 ### Checkbox
 
-Use `MenubarCheckboxItem` for toggleable options.
+Use `Menubar.CheckboxItem` for toggleable options.
 
 <ComponentPreview name="menubar-checkbox">
 
@@ -103,7 +103,7 @@ Use `MenubarCheckboxItem` for toggleable options.
 
 ### Radio
 
-Use `MenubarRadioGroup` and `MenubarRadioItem` for single-select options.
+Use `Menubar.RadioGroup` and `Menubar.RadioItem` for single-select options.
 
 <ComponentPreview name="menubar-radio">
 
@@ -113,7 +113,7 @@ Use `MenubarRadioGroup` and `MenubarRadioItem` for single-select options.
 
 ### Submenu
 
-Use `MenubarSub`, `MenubarSubTrigger`, and `MenubarSubContent` for nested menus.
+Use `Menubar.Sub`, `Menubar.SubTrigger`, and `Menubar.SubContent` for nested menus.
 
 <ComponentPreview name="menubar-submenu">
 
