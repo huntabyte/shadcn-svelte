@@ -79,6 +79,8 @@ Update the import paths to match your project setup.
 
 ### Range
 
+Use an array with two values for a range slider.
+
 <ComponentPreview name="slider-range">
 
 <div></div>
@@ -87,6 +89,8 @@ Update the import paths to match your project setup.
 
 ### Multiple Thumbs
 
+Use an array with multiple values for multiple thumbs.
+
 <ComponentPreview name="slider-multiple">
 
 <div></div>
@@ -94,6 +98,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Vertical
+
+Use `orientation="vertical"` for a vertical slider.
 
 <ComponentPreview name="slider-vertical">
 
@@ -110,6 +116,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Disabled
+
+Use the `disabled` prop to disable the slider.
 
 <ComponentPreview name="slider-disabled">
 
