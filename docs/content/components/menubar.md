@@ -93,6 +93,8 @@ Update the import paths to match your project setup.
 
 ### Checkbox
 
+Use `MenubarCheckboxItem` for toggleable options.
+
 <ComponentPreview name="menubar-checkbox">
 
 <div></div>
@@ -101,6 +103,8 @@ Update the import paths to match your project setup.
 
 ### Radio
 
+Use `MenubarRadioGroup` and `MenubarRadioItem` for single-select options.
+
 <ComponentPreview name="menubar-radio">
 
 <div></div>
@@ -108,6 +112,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Submenu
+
+Use `MenubarSub`, `MenubarSubTrigger`, and `MenubarSubContent` for nested menus.
 
 <ComponentPreview name="menubar-submenu">
 

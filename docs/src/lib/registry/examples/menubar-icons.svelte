@@ -1,52 +1,50 @@
 <script lang="ts">
 	import FileIcon from "@lucide/svelte/icons/file";
-	import PrinterIcon from "@lucide/svelte/icons/printer";
-	import ShareIcon from "@lucide/svelte/icons/share-2";
-	import ScissorsIcon from "@lucide/svelte/icons/scissors";
-	import CopyIcon from "@lucide/svelte/icons/copy";
-	import ClipboardIcon from "@lucide/svelte/icons/clipboard";
+	import FolderIcon from "@lucide/svelte/icons/folder";
+	import SaveIcon from "@lucide/svelte/icons/save";
+	import SettingsIcon from "@lucide/svelte/icons/settings";
+	import HelpCircleIcon from "@lucide/svelte/icons/circle-help";
+	import TrashIcon from "@lucide/svelte/icons/trash-2";
 	import * as Menubar from "$lib/registry/ui/menubar/index.js";
 </script>
 
-<Menubar.Root>
+<Menubar.Root class="w-72">
 	<Menubar.Menu>
 		<Menubar.Trigger>File</Menubar.Trigger>
 		<Menubar.Content>
 			<Menubar.Item>
 				<FileIcon />
-				New Tab
-				<Menubar.Shortcut>⌘T</Menubar.Shortcut>
+				New File <Menubar.Shortcut>⌘N</Menubar.Shortcut>
 			</Menubar.Item>
 			<Menubar.Item>
-				<ShareIcon />
-				Share
+				<FolderIcon />
+				Open Folder
 			</Menubar.Item>
 			<Menubar.Separator />
 			<Menubar.Item>
-				<PrinterIcon />
-				Print...
-				<Menubar.Shortcut>⌘P</Menubar.Shortcut>
+				<SaveIcon />
+				Save <Menubar.Shortcut>⌘S</Menubar.Shortcut>
 			</Menubar.Item>
 		</Menubar.Content>
 	</Menubar.Menu>
 	<Menubar.Menu>
-		<Menubar.Trigger>Edit</Menubar.Trigger>
+		<Menubar.Trigger>More</Menubar.Trigger>
 		<Menubar.Content>
-			<Menubar.Item>
-				<ScissorsIcon />
-				Cut
-				<Menubar.Shortcut>⌘X</Menubar.Shortcut>
-			</Menubar.Item>
-			<Menubar.Item>
-				<CopyIcon />
-				Copy
-				<Menubar.Shortcut>⌘C</Menubar.Shortcut>
-			</Menubar.Item>
-			<Menubar.Item>
-				<ClipboardIcon />
-				Paste
-				<Menubar.Shortcut>⌘V</Menubar.Shortcut>
-			</Menubar.Item>
+			<Menubar.Group>
+				<Menubar.Item>
+					<SettingsIcon />
+					Settings
+				</Menubar.Item>
+				<Menubar.Item>
+					<HelpCircleIcon />
+					Help
+				</Menubar.Item>
+				<Menubar.Separator />
+				<Menubar.Item variant="destructive">
+					<TrashIcon />
+					Delete
+				</Menubar.Item>
+			</Menubar.Group>
 		</Menubar.Content>
 	</Menubar.Menu>
 </Menubar.Root>
