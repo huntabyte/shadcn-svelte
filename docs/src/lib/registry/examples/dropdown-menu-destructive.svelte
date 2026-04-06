@@ -1,5 +1,7 @@
 <script lang="ts">
-	import Trash2Icon from "@lucide/svelte/icons/trash-2";
+	import PencilIcon from "@lucide/svelte/icons/pencil";
+	import ShareIcon from "@lucide/svelte/icons/share";
+	import TrashIcon from "@lucide/svelte/icons/trash";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
@@ -7,17 +9,26 @@
 <DropdownMenu.Root>
 	<DropdownMenu.Trigger>
 		{#snippet child({ props })}
-			<Button {...props} variant="outline">Open</Button>
+			<Button {...props} variant="outline">Actions</Button>
 		{/snippet}
 	</DropdownMenu.Trigger>
-	<DropdownMenu.Content class="w-48">
-		<DropdownMenu.Item>Edit</DropdownMenu.Item>
-		<DropdownMenu.Item>Duplicate</DropdownMenu.Item>
-		<DropdownMenu.Item>Archive</DropdownMenu.Item>
+	<DropdownMenu.Content>
+		<DropdownMenu.Group>
+			<DropdownMenu.Item>
+				<PencilIcon />
+				Edit
+			</DropdownMenu.Item>
+			<DropdownMenu.Item>
+				<ShareIcon />
+				Share
+			</DropdownMenu.Item>
+		</DropdownMenu.Group>
 		<DropdownMenu.Separator />
-		<DropdownMenu.Item class="text-destructive focus:text-destructive focus:bg-destructive/10">
-			<Trash2Icon />
-			Delete
-		</DropdownMenu.Item>
+		<DropdownMenu.Group>
+			<DropdownMenu.Item variant="destructive">
+				<TrashIcon />
+				Delete
+			</DropdownMenu.Item>
+		</DropdownMenu.Group>
 	</DropdownMenu.Content>
 </DropdownMenu.Root>

@@ -9,10 +9,9 @@
 			<Button {...props} variant="outline">Open</Button>
 		{/snippet}
 	</DropdownMenu.Trigger>
-	<DropdownMenu.Content class="w-56">
+	<DropdownMenu.Content>
 		<DropdownMenu.Group>
 			<DropdownMenu.Label>My Account</DropdownMenu.Label>
-			<DropdownMenu.Separator />
 			<DropdownMenu.Item>
 				Profile
 				<DropdownMenu.Shortcut>⇧⌘P</DropdownMenu.Shortcut>
@@ -24,10 +23,6 @@
 			<DropdownMenu.Item>
 				Settings
 				<DropdownMenu.Shortcut>⌘S</DropdownMenu.Shortcut>
-			</DropdownMenu.Item>
-			<DropdownMenu.Item>
-				Keyboard shortcuts
-				<DropdownMenu.Shortcut>⌘K</DropdownMenu.Shortcut>
 			</DropdownMenu.Item>
 		</DropdownMenu.Group>
 		<DropdownMenu.Separator />

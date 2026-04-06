@@ -90,6 +90,8 @@ Update the import paths to match your project setup.
 
 ### Basic
 
+A basic dropdown menu with labels and separators.
+
 <ComponentPreview name="dropdown-menu-basic">
 
 <div></div>
@@ -97,6 +99,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Submenu
+
+Use `DropdownMenu.Sub` to nest secondary actions.
 
 <ComponentPreview name="dropdown-menu-submenu">
 
@@ -106,6 +110,8 @@ Update the import paths to match your project setup.
 
 ### Shortcuts
 
+Add `DropdownMenu.Shortcut` to show keyboard hints.
+
 <ComponentPreview name="dropdown-menu-shortcuts">
 
 <div></div>
@@ -113,6 +119,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Icons
+
+Combine icons with labels for quick scanning.
 
 <ComponentPreview name="dropdown-menu-icons">
 
@@ -122,6 +130,8 @@ Update the import paths to match your project setup.
 
 ### Checkboxes
 
+Use `DropdownMenu.CheckboxItem` for toggles.
+
 <ComponentPreview name="dropdown-menu-checkboxes">
 
 <div></div>
@@ -129,6 +139,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Checkboxes with Icons
+
+Add icons to checkbox items.
 
 <ComponentPreview name="dropdown-menu-checkboxes-icons">
 
@@ -138,6 +150,8 @@ Update the import paths to match your project setup.
 
 ### Radio Group
 
+Use `DropdownMenu.RadioGroup` for exclusive choices.
+
 <ComponentPreview name="dropdown-menu-radio-group">
 
 <div></div>
@@ -145,6 +159,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Radio Group with Icons
+
+Show radio options with icons.
 
 <ComponentPreview name="dropdown-menu-radio-icons">
 
@@ -154,6 +170,8 @@ Update the import paths to match your project setup.
 
 ### Destructive
 
+Use `variant="destructive"` for irreversible actions.
+
 <ComponentPreview name="dropdown-menu-destructive">
 
 <div></div>
@@ -162,6 +180,8 @@ Update the import paths to match your project setup.
 
 ### Avatar
 
+An account switcher dropdown triggered by an avatar.
+
 <ComponentPreview name="dropdown-menu-avatar">
 
 <div></div>
@@ -169,6 +189,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Complex
+
+A richer example combining groups, icons, and submenus.
 
 <ComponentPreview name="dropdown-menu-complex">
 

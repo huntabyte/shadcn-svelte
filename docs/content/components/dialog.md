@@ -89,6 +89,8 @@ Update the import paths to match your project setup.
 
 ### Custom close button
 
+Replace the default close control with your own button.
+
 <ComponentPreview name="dialog-close-button" >
 
 <div></div>
@@ -96,6 +98,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### No Close Button
+
+Use `showCloseButton={false}` to hide the close button.
 
 <ComponentPreview name="dialog-no-close-button">
 
@@ -105,6 +109,8 @@ Update the import paths to match your project setup.
 
 ### Sticky Footer
 
+Keep actions visible while the content scrolls.
+
 <ComponentPreview name="dialog-sticky-footer">
 
 <div></div>
@@ -112,6 +118,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Scrollable Content
+
+Long content can scroll while the header stays in view.
 
 <ComponentPreview name="dialog-scrollable">
 

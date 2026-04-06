@@ -10,7 +10,7 @@
 		<Dialog.Trigger type="button" class={buttonVariants({ variant: "outline" })}>
 			Open Dialog
 		</Dialog.Trigger>
-		<Dialog.Content class="sm:max-w-[425px]">
+		<Dialog.Content class="sm:max-w-sm">
 			<Dialog.Header>
 				<Dialog.Title>Edit profile</Dialog.Title>
 				<Dialog.Description>

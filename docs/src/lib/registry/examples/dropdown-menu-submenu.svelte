@@ -9,28 +9,35 @@
 			<Button {...props} variant="outline">Open</Button>
 		{/snippet}
 	</DropdownMenu.Trigger>
-	<DropdownMenu.Content class="w-56">
-		<DropdownMenu.Label>My Account</DropdownMenu.Label>
-		<DropdownMenu.Separator />
-		<DropdownMenu.Item>Team</DropdownMenu.Item>
-		<DropdownMenu.Sub>
-			<DropdownMenu.SubTrigger>Invite users</DropdownMenu.SubTrigger>
-			<DropdownMenu.SubContent>
-				<DropdownMenu.Item>Email</DropdownMenu.Item>
-				<DropdownMenu.Item>Message</DropdownMenu.Item>
-				<DropdownMenu.Separator />
-				<DropdownMenu.Sub>
-					<DropdownMenu.SubTrigger>More</DropdownMenu.SubTrigger>
+	<DropdownMenu.Content>
+		<DropdownMenu.Group>
+			<DropdownMenu.Item>Team</DropdownMenu.Item>
+			<DropdownMenu.Sub>
+				<DropdownMenu.SubTrigger>Invite users</DropdownMenu.SubTrigger>
+				<DropdownMenu.Portal>
 					<DropdownMenu.SubContent>
-						<DropdownMenu.Item>Link</DropdownMenu.Item>
-						<DropdownMenu.Item>QR Code</DropdownMenu.Item>
+						<DropdownMenu.Item>Email</DropdownMenu.Item>
+						<DropdownMenu.Item>Message</DropdownMenu.Item>
+						<DropdownMenu.Sub>
+							<DropdownMenu.SubTrigger>More options</DropdownMenu.SubTrigger>
+							<DropdownMenu.Portal>
+								<DropdownMenu.SubContent>
+									<DropdownMenu.Item>Calendly</DropdownMenu.Item>
+									<DropdownMenu.Item>Slack</DropdownMenu.Item>
+									<DropdownMenu.Separator />
+									<DropdownMenu.Item>Webhook</DropdownMenu.Item>
+								</DropdownMenu.SubContent>
+							</DropdownMenu.Portal>
+						</DropdownMenu.Sub>
+						<DropdownMenu.Separator />
+						<DropdownMenu.Item>Advanced...</DropdownMenu.Item>
 					</DropdownMenu.SubContent>
-				</DropdownMenu.Sub>
-			</DropdownMenu.SubContent>
-		</DropdownMenu.Sub>
-		<DropdownMenu.Item>
-			New Team
-			<DropdownMenu.Shortcut>⌘+T</DropdownMenu.Shortcut>
-		</DropdownMenu.Item>
+				</DropdownMenu.Portal>
+			</DropdownMenu.Sub>
+			<DropdownMenu.Item>
+				New Team
+				<DropdownMenu.Shortcut>⌘+T</DropdownMenu.Shortcut>
+			</DropdownMenu.Item>
+		</DropdownMenu.Group>
 	</DropdownMenu.Content>
 </DropdownMenu.Root>

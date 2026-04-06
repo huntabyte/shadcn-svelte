@@ -1,35 +1,31 @@
 <script lang="ts">
 	import { buttonVariants } from "$lib/registry/ui/button/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 </script>
 
 <Dialog.Root>
-	<Dialog.Trigger class={buttonVariants({ variant: "outline" })}>Open Dialog</Dialog.Trigger>
-	<Dialog.Content class="flex flex-col gap-0 p-0 sm:max-w-lg">
-		<Dialog.Header
-			class="*:data-[slot=dialog-description]:text-muted-foreground contents space-y-0 *:data-[slot=dialog-description]:order-last *:data-[slot=dialog-title]:font-semibold"
-		>
-			<Dialog.Title class="order-first border-b px-6 py-4 text-base">
-				Confirm action
-			</Dialog.Title>
-		</Dialog.Header>
-		<div class="overflow-y-auto px-6 py-4">
+	<Dialog.Trigger class={buttonVariants({ variant: "outline" })}>Sticky Footer</Dialog.Trigger>
+	<Dialog.Content>
+		<Dialog.Header>
+			<Dialog.Title>Sticky Footer</Dialog.Title>
 			<Dialog.Description>
-				This action will permanently remove the selected items. This cannot be undone.
+				This dialog has a sticky footer that stays visible while the content scrolls.
 			</Dialog.Description>
-			<div class="mt-4 space-y-3 text-sm">
-				<p>Please review the following items that will be deleted:</p>
-				<ul class="text-muted-foreground list-disc space-y-1 pl-4">
-					<li>Project configuration files</li>
-					<li>Associated media uploads</li>
-					<li>Connected API integrations</li>
-				</ul>
-			</div>
+		</Dialog.Header>
+		<div class="-mx-4 no-scrollbar max-h-[50vh] overflow-y-auto px-4">
+			{#each { length: 10 } as _, i (i)}
+				<p class="mb-4 leading-normal">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+					incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+					exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+					dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+					Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+					mollit anim id est laborum.
+				</p>
+			{/each}
 		</div>
-		<Dialog.Footer class="border-t px-6 py-4">
-			<Dialog.Close class={buttonVariants({ variant: "outline" })}>Cancel</Dialog.Close>
-			<Button variant="destructive">Delete</Button>
+		<Dialog.Footer>
+			<Dialog.Close class={buttonVariants({ variant: "outline" })}>Close</Dialog.Close>
 		</Dialog.Footer>
 	</Dialog.Content>
 </Dialog.Root>
