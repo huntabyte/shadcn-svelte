@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { SvelteSet } from "svelte/reactivity";
 	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
 	import * as Table from "$lib/registry/ui/table/index.js";
 
@@ -29,26 +30,26 @@
 		},
 	];
 
-	let selectedRows = $state(new Set(["1"]));
+	let selectedRows = new SvelteSet(["1"]);
 
 	const selectAll = $derived(selectedRows.size === tableData.length);
 
 	function handleSelectAll(checked: boolean) {
 		if (checked) {
-			selectedRows = new Set(tableData.map((row) => row.id));
+			for (const row of tableData) {
+				selectedRows.add(row.id);
+			}
 		} else {
-			selectedRows = new Set();
+			selectedRows.clear();
 		}
 	}
 
 	function handleSelectRow(id: string, checked: boolean) {
-		const next = new Set(selectedRows);
 		if (checked) {
-			next.add(id);
+			selectedRows.add(id);
 		} else {
-			next.delete(id);
+			selectedRows.delete(id);
 		}
-		selectedRows = next;
 	}
 </script>
 

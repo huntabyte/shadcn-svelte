@@ -77,7 +77,9 @@
 				</InputOTP.Root>
 				<Field.Error errors={($errors.pin ?? []).map((m) => ({ message: m }))} />
 				<Field.Description>
-					<a href="#">I no longer have access to this email address.</a>
+					<button type="button" class="hover:underline"
+						>I no longer have access to this email address.</button
+					>
 				</Field.Description>
 			</Field.Field>
 		</Card.Content>
@@ -86,17 +88,17 @@
 				<Button type="submit" class="w-full">Verify</Button>
 				<div class="text-muted-foreground text-sm">
 					Having trouble signing in?
-					<a
-						href="#"
+					<button
+						type="button"
 						class="hover:text-primary underline underline-offset-4 transition-colors"
 					>
 						Contact support
-					</a>
+					</button>
 				</div>
 			</Field.Field>
 		</Card.Footer>
 	</Card.Root>
 	{#if browser}
-		<SuperDebug class="mt-4" data={$formData} />
+		<div class="mt-4"><SuperDebug data={$formData} /></div>
 	{/if}
 </form>

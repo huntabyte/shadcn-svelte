@@ -1,6 +1,4 @@
 <script lang="ts">
-	import CalendarDaysIcon from "@lucide/svelte/icons/calendar-days";
-	import * as Avatar from "$lib/registry/ui/avatar/index.js";
 	import * as HoverCard from "$lib/registry/ui/hover-card/index.js";
 	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 </script>
