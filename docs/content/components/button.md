@@ -97,32 +97,6 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 
 </ComponentPreview>
 
-```svelte
-<!-- Extra Small -->
-<Button size="xs" variant="outline">Extra Small</Button>
-<Button size="icon-xs" aria-label="Submit" variant="outline">
-  <ArrowUpRightIcon />
-</Button>
-
-<!-- Small -->
-<Button size="sm" variant="outline">Small</Button>
-<Button size="icon-sm" aria-label="Submit" variant="outline">
-  <ArrowUpRightIcon />
-</Button>
-
-<!-- Medium -->
-<Button variant="outline">Default</Button>
-<Button size="icon" aria-label="Submit" variant="outline">
-  <ArrowUpRightIcon />
-</Button>
-
-<!-- Large -->
-<Button size="lg" variant="outline">Large</Button>
-<Button size="icon-lg" aria-label="Submit" variant="outline">
-  <ArrowUpRightIcon />
-</Button>
-```
-
 ### Default
 
 <ComponentPreview name="button-default" description="A primary button" class="mb-4">
@@ -130,10 +104,6 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 <div></div>
 
 </ComponentPreview>
-
-```svelte
-<Button>Button</Button>
-```
 
 ### Outline
 
@@ -143,10 +113,6 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 
 </ComponentPreview>
 
-```svelte
-<Button variant="outline">Outline</Button>
-```
-
 ### Secondary
 
 <ComponentPreview name="button-secondary" description="A secondary button" class="mb-4">
@@ -154,10 +120,6 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 <div></div>
   
 </ComponentPreview>
-
-```svelte
-<Button variant="secondary">Secondary</Button>
-```
 
 ### Ghost
 
@@ -167,10 +129,6 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 
 </ComponentPreview>
 
-```svelte
-<Button variant="ghost">Ghost</Button>
-```
-
 ### Destructive
 
 <ComponentPreview name="button-destructive" description="A destructive button" class="mb-4">
@@ -178,10 +136,6 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 <div></div>
 
 </ComponentPreview>
-
-```svelte
-<Button variant="destructive">Destructive</Button>
-```
 
 ### Link
 
@@ -191,10 +145,6 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 
 </ComponentPreview>
 
-```svelte
-<Button variant="link">Link</Button>
-```
-
 ### Icon
 
 <ComponentPreview name="button-icon" description="An icon button" class="mb-4">
@@ -202,12 +152,6 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 <div></div>
 
 </ComponentPreview>
-
-```svelte
-<Button variant="outline" size="icon" aria-label="Submit">
-  <CircleFadingArrowUpIcon />
-</Button>
-```
 
 ### With Icon
 
@@ -219,12 +163,6 @@ The spacing between the icon and the text is automatically adjusted based on the
 
 </ComponentPreview>
 
-```svelte
-<Button variant="outline" size="sm">
-  <IconGitBranch /> New Branch
-</Button>
-```
-
 ### Rounded
 
 Use the `rounded-full` class to make the button rounded.
@@ -235,26 +173,15 @@ Use the `rounded-full` class to make the button rounded.
 
 </ComponentPreview>
 
-```svelte
-<Button variant="outline" size="icon" class="rounded-full">
-  <ArrowUpRightIcon />
-</Button>
-```
-
 ### Spinner
+
+Render a `<Spinner />` component inside the button to show a loading state. Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` attribute to the spinner for the correct spacing.
 
 <ComponentPreview name="button-loading" description="A button with a loading state." class="mb-4">
 
 <div></div>
 
 </ComponentPreview>
-
-```svelte showLineNumbers
-<Button size="sm" variant="outline" disabled>
-  <Spinner />
-  Submit
-</Button>
-```
 
 ### Button Group
 
@@ -265,90 +192,6 @@ To create a button group, use the `ButtonGroup` component. See the [Button Group
 <div></div>
 
 </ComponentPreview>
-
-```svelte showLineNumbers
-<ButtonGroup.Root>
-  <ButtonGroup.Root class="hidden sm:flex">
-    <Button variant="outline" size="icon" aria-label="Go Back">
-      <ArrowLeft />
-    </Button>
-  </ButtonGroup.Root>
-  <ButtonGroup.Root>
-    <Button variant="outline">Archive</Button>
-    <Button variant="outline">Report</Button>
-  </ButtonGroup.Root>
-  <ButtonGroup.Root>
-    <Button variant="outline">Snooze</Button>
-    <DropdownMenu.Root>
-      <DropdownMenu.Trigger>
-        {#snippet child({ props })}
-          <Button
-            {...props}
-            variant="outline"
-            size="icon"
-            aria-label="More Options"
-          >
-            <MoreHorizontal />
-          </Button>
-        {/snippet}
-      </DropdownMenu.Trigger>
-      <DropdownMenu.Content align="end" class="w-52">
-        <DropdownMenu.Group>
-          <DropdownMenu.Item>
-            <MailCheck />
-            Mark as Read
-          </DropdownMenu.Item>
-          <DropdownMenu.Item>
-            <Archive />
-            Archive
-          </DropdownMenu.Item>
-        </DropdownMenu.Group>
-        <DropdownMenu.Separator />
-        <DropdownMenu.Group>
-          <DropdownMenu.Item>
-            <Clock />
-            Snooze
-          </DropdownMenu.Item>
-          <DropdownMenu.Item>
-            <CalendarPlus />
-            Add to Calendar
-          </DropdownMenu.Item>
-          <DropdownMenu.Item>
-            <ListFilter />
-            Add to List
-          </DropdownMenu.Item>
-          <DropdownMenu.Sub>
-            <DropdownMenu.SubTrigger>
-              <Tag />
-              Label As...
-            </DropdownMenu.SubTrigger>
-            <DropdownMenu.SubContent>
-              <DropdownMenu.RadioGroup bind:value={label}>
-                <DropdownMenu.RadioItem value="personal">
-                  Personal
-                </DropdownMenu.RadioItem>
-                <DropdownMenu.RadioItem value="work"
-                  >Work</DropdownMenu.RadioItem
-                >
-                <DropdownMenu.RadioItem value="other"
-                  >Other</DropdownMenu.RadioItem
-                >
-              </DropdownMenu.RadioGroup>
-            </DropdownMenu.SubContent>
-          </DropdownMenu.Sub>
-        </DropdownMenu.Group>
-        <DropdownMenu.Separator />
-        <DropdownMenu.Group>
-          <DropdownMenu.Item class="text-destructive focus:text-destructive">
-            <Trash2 />
-            Trash
-          </DropdownMenu.Item>
-        </DropdownMenu.Group>
-      </DropdownMenu.Content>
-    </DropdownMenu.Root>
-  </ButtonGroup.Root>
-</ButtonGroup.Root>
-```
 
 ### Link
 
@@ -374,27 +217,28 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 </a>
 ```
 
-## Changelog
-
-### 2025-09-24 New sizes
-
-We have added two new sizes to the button component: `icon-sm` and `icon-lg`. These sizes are used to create icon buttons. To add them, edit `button.svelte` and add the following code under `size` in `buttonVariants`:
-
-```ts showLineNumbers title="components/ui/button.svelte"
-export const buttonVariants = tv({
-  // ...
-  variants: {
-    // ...
-    size: {
-      // ...
-      icon: "size-9",
-      "icon-sm": "size-8",
-      "icon-lg": "size-10",
-    },
-  },
-});
-```
-
 ## API Reference
 
-See the [Bits UI](https://bits-ui.com/docs/components/button#api-reference) documentation for more information.
+### Button.Root
+
+The root button component. Renders a `<button>` element by default, or an `<a>` element when `href` is passed.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `variant` | `"default" \| "outline" \| "ghost" \| "destructive" \| "secondary" \| "link"` | `"default"` | The visual style variant of the button. |
+| `size` | `"default" \| "xs" \| "sm" \| "lg" \| "icon" \| "icon-xs" \| "icon-sm" \| "icon-lg"` | `"default"` | The size of the button. |
+| `href` | `string` | — | When provided, renders the button as an `<a>` element with this href. |
+| `disabled` | `boolean` | `false` | Whether the button is disabled. |
+| `class` | `string` | — | Additional CSS classes to apply to the button. |
+
+Use the `children` snippet to render content inside the button.
+
+```svelte
+<Button>
+  {#snippet children()}
+    Click me
+  {/snippet}
+</Button>
+```
+
+Use the `data-button-root` attribute to target the button element in CSS.
