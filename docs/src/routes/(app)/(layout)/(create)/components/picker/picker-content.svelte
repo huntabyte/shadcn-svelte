@@ -28,7 +28,7 @@
 			preventScroll={false}
 			updatePositionStrategy="always"
 			class={cn(
-				"bg-popover/90 text-popover-foreground ring-foreground/10 z-50 w-52 rounded-md p-1 shadow-lg ring-1 backdrop-blur-xs",
+				"bg-popover/90 text-popover-foreground ring-foreground/10 z-50 w-52 overflow-x-hidden rounded-md p-1 shadow-lg ring-1 backdrop-blur-xs",
 				className
 			)}
 			{...restProps}
