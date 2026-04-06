@@ -2,10 +2,10 @@
 	import { Skeleton } from "$lib/registry/ui/skeleton/index.js";
 </script>
 
-<div class="flex items-center space-x-4">
-	<Skeleton class="size-12 rounded-full" />
-	<div class="space-y-2">
-		<Skeleton class="h-4 w-[200px]" />
+<div class="flex w-fit items-center gap-4">
+	<Skeleton class="size-10 shrink-0 rounded-full" />
+	<div class="grid gap-2">
 		<Skeleton class="h-4 w-[150px]" />
+		<Skeleton class="h-4 w-[100px]" />
 	</div>
 </div>

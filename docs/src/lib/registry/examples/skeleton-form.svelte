@@ -2,18 +2,14 @@
 	import { Skeleton } from "$lib/registry/ui/skeleton/index.js";
 </script>
 
-<div class="w-[300px] space-y-4">
-	<div class="space-y-2">
-		<Skeleton class="h-4 w-[80px]" />
-		<Skeleton class="h-9 w-full rounded-md" />
+<div class="flex w-full max-w-xs flex-col gap-7">
+	<div class="flex flex-col gap-3">
+		<Skeleton class="h-4 w-20" />
+		<Skeleton class="h-8 w-full" />
 	</div>
-	<div class="space-y-2">
-		<Skeleton class="h-4 w-[80px]" />
-		<Skeleton class="h-9 w-full rounded-md" />
+	<div class="flex flex-col gap-3">
+		<Skeleton class="h-4 w-24" />
+		<Skeleton class="h-8 w-full" />
 	</div>
-	<div class="space-y-2">
-		<Skeleton class="h-4 w-[80px]" />
-		<Skeleton class="h-24 w-full rounded-md" />
-	</div>
-	<Skeleton class="h-9 w-[100px] rounded-md" />
+	<Skeleton class="h-8 w-24" />
 </div>
