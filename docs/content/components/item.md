@@ -173,7 +173,7 @@ Use the `child` snippet to render the item as a link. The hover and focus states
 
 ## API Reference
 
-### Item
+### Item.Root
 
 The main component for displaying content with media, title, description, and actions.
 
@@ -217,32 +217,79 @@ A separator between items in a group.
 
 ### Item.Media
 
-Use this to display media content such as icons, images, or avatars.
+Use `Item.Media` to display media content such as icons, images, or avatars.
 
-| Prop | Type | Default |
-|------|------|---------|
+| Prop      | Type                             | Default     |
+| --------- | -------------------------------- | ----------- |
 | `variant` | `"default" \| "icon" \| "image"` | `"default"` |
+
+```svelte
+<Item.Media variant="icon">
+  <Icon />
+</Item.Media>
+```
+
+```svelte
+<Item.Media variant="image">
+  <img src="..." alt="..." />
+</Item.Media>
+```
 
 ### Item.Content
 
 Wraps the title and description of the item.
 
+```svelte
+<Item.Content>
+  <Item.Title>Title</Item.Title>
+  <Item.Description>Description</Item.Description>
+</Item.Content>
+```
+
 ### Item.Title
 
 Displays the title of the item.
+
+```svelte
+<Item.Title>Item Title</Item.Title>
+```
 
 ### Item.Description
 
 Displays the description of the item.
 
+```svelte
+<Item.Description>Item description</Item.Description>
+```
+
 ### Item.Actions
 
 Container for action buttons or other interactive elements.
+
+```svelte
+<Item.Actions>
+  <Button>Action</Button>
+</Item.Actions>
+```
 
 ### Item.Header
 
 Displays a header above the item content.
 
+```svelte
+<Item.Root>
+  <Item.Header>Header</Item.Header>
+  <Item.Content>...</Item.Content>
+</Item.Root>
+```
+
 ### Item.Footer
 
 Displays a footer below the item content.
+
+```svelte
+<Item.Root>
+  <Item.Content>...</Item.Content>
+  <Item.Footer>Footer</Item.Footer>
+</Item.Root>
+```
