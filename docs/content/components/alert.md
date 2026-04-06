@@ -73,6 +73,8 @@ Update the import paths to match your project setup.
 
 ### Basic
 
+A basic alert with an icon, title and description.
+
 <ComponentPreview name="alert-basic">
 
 <div></div>
@@ -108,3 +110,38 @@ You can customize the alert colors by adding custom classes such as `bg-amber-50
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+### Alert.Root
+
+The `Alert.Root` component displays a callout for user attention.
+
+| Prop | Type | Default |
+|------|------|---------|
+| `variant` | `"default" \| "destructive"` | `"default"` |
+| `class` | `string` | — |
+
+### Alert.Title
+
+The `Alert.Title` component displays the title of the alert.
+
+| Prop | Type | Default |
+|------|------|---------|
+| `class` | `string` | — |
+
+### Alert.Description
+
+The `Alert.Description` component displays the description or content of the alert.
+
+| Prop | Type | Default |
+|------|------|---------|
+| `class` | `string` | — |
+
+### Alert.Action
+
+The `Alert.Action` component displays an action element positioned in the corner of the alert.
+
+| Prop | Type | Default |
+|------|------|---------|
+| `class` | `string` | — |
