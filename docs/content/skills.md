@@ -25,9 +25,7 @@ The skill reads your project's `components.json` and provides the assistant with
 
 ## Install
 
-```bash
-npx skills add shadcn-svelte
-```
+<PMExecute command="skills add shadcn-svelte" />
 
 This installs the shadcn-svelte skill into your project. Once installed, your AI assistant automatically loads it when working with shadcn-svelte components.
 
