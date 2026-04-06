@@ -108,9 +108,14 @@ You can use the `Kbd.Root` component inside a `InputGroup.Addon` component to di
 
 ## API Reference
 
-### Kbd
+### Kbd.Root
 
-Displays a single keyboard key or input.
+Use the `Kbd.Root` component to display a keyboard key.
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `class`     | `string` | ``      |
+
 
 ```svelte
 <Kbd.Root>Ctrl</Kbd.Root>
@@ -118,7 +123,11 @@ Displays a single keyboard key or input.
 
 ### Kbd.Group
 
-Groups multiple keyboard keys together.
+Use the `Kbd.Group` component to group `Kbd` components together.
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `class`     | `string` | ``      |
 
 ```svelte
 <Kbd.Group>
