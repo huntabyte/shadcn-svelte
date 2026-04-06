@@ -29,10 +29,14 @@ export default defineConfig({
 		// the Cloudflare worker instead of remaining a bare external import.
 		// Use the compact (no-worker) flexsearch build to avoid the `worker_threads` Node.js
 		// built-in that the bundle build conditionally imports — it is not needed for our
-		// simple in-memory Index usage.
+		// simple in-memory Index usage. Use an absolute path to bypass the package exports
+		// field which does not expose the compact build as a named export.
 		alias: {
 			qrcode: "qrcode/lib/browser.js",
-			flexsearch: "flexsearch/dist/flexsearch.compact.module.min.js",
+			flexsearch: path.resolve(
+				__dirname,
+				"node_modules/flexsearch/dist/flexsearch.compact.module.min.js"
+			),
 		},
 	},
 	plugins: [
