@@ -102,10 +102,10 @@ Update the import paths to match your project setup.
 
 The `AspectRatio.Root` component displays content within a desired ratio.
 
-| Prop | Type | Default |
-|------|------|---------|
-| `ratio` | `number` | `1` |
-| `children` | `Snippet` | - |
-| `class` | `string` | - |
+| Prop       | Type      | Default |
+| ---------- | --------- | ------- |
+| `ratio`    | `number`  | `1`     |
+| `children` | `Snippet` | -       |
+| `class`    | `string`  | -       |
 
 Use the `data-aspect-ratio-root` attribute to target the root element in CSS.

@@ -83,7 +83,7 @@ If you only need to display content such as a title, description, and actions, u
 
 ### Variants
 
-Use the `variant` prop to change the visual style of the item. 
+Use the `variant` prop to change the visual style of the item.
 
 <ComponentPreview name="item-variants-demo">
 
@@ -177,11 +177,11 @@ Use the `child` snippet to render the item as a link. The hover and focus states
 
 The main component for displaying content with media, title, description, and actions.
 
-| Prop | Type | Default |
-|------|------|---------|
+| Prop      | Type                                | Default     |
+| --------- | ----------------------------------- | ----------- |
 | `variant` | `"default" \| "outline" \| "muted"` | `"default"` |
-| `size` | `"default" \| "sm" \| "xs"` | `"default"` |
-| `child` | `Snippet<[{ props }]>` | - |
+| `size`    | `"default" \| "sm" \| "xs"`         | `"default"` |
+| `child`   | `Snippet<[{ props }]>`              | -           |
 
 To render the item as a different element (e.g. an anchor), use the `child` snippet:
 

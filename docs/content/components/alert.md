@@ -117,31 +117,31 @@ You can customize the alert colors by adding custom classes such as `bg-amber-50
 
 The `Alert.Root` component displays a callout for user attention.
 
-| Prop | Type | Default |
-|------|------|---------|
+| Prop      | Type                         | Default     |
+| --------- | ---------------------------- | ----------- |
 | `variant` | `"default" \| "destructive"` | `"default"` |
-| `class` | `string` | - |
+| `class`   | `string`                     | -           |
 
 ### Alert.Title
 
 The `Alert.Title` component displays the title of the alert.
 
-| Prop | Type | Default |
-|------|------|---------|
-| `class` | `string` | - |
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | -       |
 
 ### Alert.Description
 
 The `Alert.Description` component displays the description or content of the alert.
 
-| Prop | Type | Default |
-|------|------|---------|
-| `class` | `string` | - |
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | -       |
 
 ### Alert.Action
 
 The `Alert.Action` component displays an action element positioned in the corner of the alert.
 
-| Prop | Type | Default |
-|------|------|---------|
-| `class` | `string` | - |
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | -       |

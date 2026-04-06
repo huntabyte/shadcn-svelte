@@ -189,8 +189,8 @@ Use with a `Popover` component.
 
 The `ButtonGroup.Root` component serves as a container that groups related buttons together with consistent styling.
 
-| Prop | Type | Default |
-|------|------|---------|
+| Prop          | Type                         | Default        |
+| ------------- | ---------------------------- | -------------- |
 | `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` |
 
 ```svelte
@@ -213,8 +213,8 @@ You can nest multiple button groups to create complex layouts with spacing betwe
 
 The `ButtonGroup.Separator` component provides visual division between buttons within a group.
 
-| Prop | Type | Default |
-|------|------|---------|
+| Prop          | Type                         | Default      |
+| ------------- | ---------------------------- | ------------ |
 | `orientation` | `"horizontal" \| "vertical"` | `"vertical"` |
 
 ```svelte
@@ -229,10 +229,10 @@ The `ButtonGroup.Separator` component provides visual division between buttons w
 
 The `ButtonGroup.Text` component displays text content within a button group.
 
-| Prop | Type | Default |
-|------|------|---------|
-| `class` | `string` | - |
-| `child` | `Snippet<[{ props }]>` | - |
+| Prop    | Type                   | Default |
+| ------- | ---------------------- | ------- |
+| `class` | `string`               | -       |
+| `child` | `Snippet<[{ props }]>` | -       |
 
 ```svelte
 <ButtonGroup.Root>

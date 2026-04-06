@@ -7,11 +7,7 @@
 <Field.Field class="max-w-sm">
 	<Field.Label for="inline-end-input">Input</Field.Label>
 	<InputGroup.Root>
-		<InputGroup.Input
-			id="inline-end-input"
-			type="password"
-			placeholder="Enter password"
-		/>
+		<InputGroup.Input id="inline-end-input" type="password" placeholder="Enter password" />
 		<InputGroup.Addon align="inline-end">
 			<EyeOffIcon />
 		</InputGroup.Addon>

@@ -112,10 +112,9 @@ You can use the `Kbd.Root` component inside a `InputGroup.Addon` component to di
 
 Use the `Kbd.Root` component to display a keyboard key.
 
-| Prop        | Type     | Default |
-| ----------- | -------- | ------- |
-| `class`     | `string` | ``      |
-
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | ``      |
 
 ```svelte
 <Kbd.Root>Ctrl</Kbd.Root>
@@ -125,9 +124,9 @@ Use the `Kbd.Root` component to display a keyboard key.
 
 Use the `Kbd.Group` component to group `Kbd` components together.
 
-| Prop        | Type     | Default |
-| ----------- | -------- | ------- |
-| `class`     | `string` | ``      |
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | ``      |
 
 ```svelte
 <Kbd.Group>

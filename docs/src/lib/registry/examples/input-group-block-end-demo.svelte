@@ -20,7 +20,9 @@
 			<InputGroup.Textarea id="block-end-textarea" placeholder="Write a comment..." />
 			<InputGroup.Addon align="block-end">
 				<InputGroup.Text>0/280</InputGroup.Text>
-				<InputGroup.Button variant="default" size="sm" class="ms-auto">Post</InputGroup.Button>
+				<InputGroup.Button variant="default" size="sm" class="ms-auto"
+					>Post</InputGroup.Button
+				>
 			</InputGroup.Addon>
 		</InputGroup.Root>
 		<Field.Description>Footer positioned below the textarea.</Field.Description>

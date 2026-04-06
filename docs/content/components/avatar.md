@@ -165,49 +165,49 @@ You can use the `Avatar` component as a trigger for a dropdown menu.
 
 The `Avatar.Root` component serves as the root element that wraps the avatar image and fallback content.
 
-| Prop | Type | Default |
-|------|------|---------|
-| `size` | `"default" \| "sm" \| "lg"` | `"default"` |
-| `class` | `string` | - |
+| Prop    | Type                        | Default     |
+| ------- | --------------------------- | ----------- |
+| `size`  | `"default" \| "sm" \| "lg"` | `"default"` |
+| `class` | `string`                    | -           |
 
 ### Avatar.Image
 
 The `Avatar.Image` component displays the avatar image.
 
-| Prop | Type | Default |
-|------|------|---------|
-| `src` | `string` | - |
-| `alt` | `string` | - |
-| `class` | `string` | - |
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `src`   | `string` | -       |
+| `alt`   | `string` | -       |
+| `class` | `string` | -       |
 
 ### Avatar.Fallback
 
 The `Avatar.Fallback` component displays a fallback when the image fails to load.
 
-| Prop | Type | Default |
-|------|------|---------|
-| `class` | `string` | - |
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | -       |
 
 ### Avatar.Badge
 
 The `Avatar.Badge` component displays a badge indicator on the avatar, typically positioned at the bottom right.
 
-| Prop | Type | Default |
-|------|------|---------|
-| `class` | `string` | - |
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | -       |
 
 ### Avatar.Group
 
 The `Avatar.Group` component displays a group of avatars with overlapping styling.
 
-| Prop | Type | Default |
-|------|------|---------|
-| `class` | `string` | - |
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | -       |
 
 ### Avatar.GroupCount
 
 The `Avatar.GroupCount` component displays a count indicator in an avatar group, typically showing the number of additional avatars.
 
-| Prop | Type | Default |
-|------|------|---------|
-| `class` | `string` | - |
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | -       |

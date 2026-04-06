@@ -88,8 +88,8 @@ Use the `align` prop on `InputGroup.Addon` to position the addon relative to the
 
 <Callout className="mt-4">
 
-  For proper focus management, `InputGroup.Addon` should always be placed after `InputGroup.Input` or `InputGroup.Textarea` in the DOM. Use the `align` prop to visually position the addon.
-  
+For proper focus management, `InputGroup.Addon` should always be placed after `InputGroup.Input` or `InputGroup.Textarea` in the DOM. Use the `align` prop to visually position the addon.
+
 </Callout>
 
 ### inline-start

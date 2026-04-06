@@ -369,10 +369,10 @@ Visual divider to separate sections inside a `Field.Group`. Accepts optional inl
 
 Accessible error container that accepts children or an `errors` array.
 
-| Prop      | Type                                       | Default |
-| --------- | ------------------------------------------ | ------- |
-| `errors`  | `Array<{ message?: string } \| undefined>` |         |
-| `class`   | `string`                                   |         |
+| Prop     | Type                                       | Default |
+| -------- | ------------------------------------------ | ------- |
+| `errors` | `Array<{ message?: string } \| undefined>` |         |
+| `class`  | `string`                                   |         |
 
 ```svelte
 <Field.Error errors={errors.username} />

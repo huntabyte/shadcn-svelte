@@ -80,12 +80,8 @@
 		<Menubar.Trigger>View</Menubar.Trigger>
 		<Menubar.Content class="w-44">
 			<Menubar.Group>
-				<Menubar.CheckboxItem bind:checked={bookmarks}>
-					Bookmarks Bar
-				</Menubar.CheckboxItem>
-				<Menubar.CheckboxItem bind:checked={fullUrls}>
-					Full URLs
-				</Menubar.CheckboxItem>
+				<Menubar.CheckboxItem bind:checked={bookmarks}>Bookmarks Bar</Menubar.CheckboxItem>
+				<Menubar.CheckboxItem bind:checked={fullUrls}>Full URLs</Menubar.CheckboxItem>
 			</Menubar.Group>
 			<Menubar.Separator />
 			<Menubar.Group>
