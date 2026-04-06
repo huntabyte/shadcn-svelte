@@ -81,6 +81,8 @@ Update the import paths to match your project setup.
 
 ### Basic
 
+A basic avatar component with an image and a fallback.
+
 <ComponentPreview name="avatar-basic">
 
 <div></div>
@@ -88,6 +90,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Badge
+
+Use the `Avatar.Badge` component to add a badge to the avatar. The badge is positioned at the bottom right of the avatar.
 
 <ComponentPreview name="avatar-badge">
 
@@ -97,6 +101,8 @@ Update the import paths to match your project setup.
 
 ### Badge with Icon
 
+You can also use an icon inside `<Avatar.Badge>`.
+
 <ComponentPreview name="avatar-badge-icon">
 
 <div></div>
@@ -104,6 +110,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Group
+
+Use the `Avatar.Group` component to add a group of avatars.
 
 <ComponentPreview name="avatar-group">
 
@@ -113,6 +121,8 @@ Update the import paths to match your project setup.
 
 ### Group Count
 
+Use `<Avatar.GroupCount>` to add a count to the group.
+
 <ComponentPreview name="avatar-group-count">
 
 <div></div>
@@ -120,6 +130,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Group with Icon
+
+You can also use an icon inside `<Avatar.GroupCount>`.
 
 <ComponentPreview name="avatar-group-icon">
 
@@ -129,6 +141,8 @@ Update the import paths to match your project setup.
 
 ### Sizes
 
+Use the `size` prop to change the size of the avatar.
+
 <ComponentPreview name="avatar-sizes">
 
 <div></div>
@@ -136,6 +150,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Dropdown
+
+You can use the `Avatar` component as a trigger for a dropdown menu.
 
 <ComponentPreview name="avatar-dropdown">
 
@@ -145,4 +161,53 @@ Update the import paths to match your project setup.
 
 ## API Reference
 
-See the [Bits UI](https://bits-ui.com/docs/components/avatar#api-reference) documentation for more information.
+### Avatar.Root
+
+The `Avatar.Root` component serves as the root element that wraps the avatar image and fallback content.
+
+| Prop | Type | Default |
+|------|------|---------|
+| `size` | `"default" \| "sm" \| "lg"` | `"default"` |
+| `class` | `string` | — |
+
+### Avatar.Image
+
+The `Avatar.Image` component displays the avatar image.
+
+| Prop | Type | Default |
+|------|------|---------|
+| `src` | `string` | — |
+| `alt` | `string` | — |
+| `class` | `string` | — |
+
+### Avatar.Fallback
+
+The `Avatar.Fallback` component displays a fallback when the image fails to load.
+
+| Prop | Type | Default |
+|------|------|---------|
+| `class` | `string` | — |
+
+### Avatar.Badge
+
+The `Avatar.Badge` component displays a badge indicator on the avatar, typically positioned at the bottom right.
+
+| Prop | Type | Default |
+|------|------|---------|
+| `class` | `string` | — |
+
+### Avatar.Group
+
+The `Avatar.Group` component displays a group of avatars with overlapping styling.
+
+| Prop | Type | Default |
+|------|------|---------|
+| `class` | `string` | — |
+
+### Avatar.GroupCount
+
+The `Avatar.GroupCount` component displays a count indicator in an avatar group, typically showing the number of additional avatars.
+
+| Prop | Type | Default |
+|------|------|---------|
+| `class` | `string` | — |
