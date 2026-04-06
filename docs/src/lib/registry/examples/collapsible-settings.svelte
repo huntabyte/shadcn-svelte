@@ -1,24 +1,53 @@
 <script lang="ts">
-	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
+	import MaximizeIcon from "@lucide/svelte/icons/maximize";
+	import MinimizeIcon from "@lucide/svelte/icons/minimize";
+	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import * as Field from "$lib/registry/ui/field/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Input } from "$lib/registry/ui/input/index.js";
 
-	let open = $state(false);
+	let isOpen = $state(false);
 </script>
 
-<Collapsible.Root bind:open class="w-[350px] space-y-2">
-	<div class="flex items-center justify-between space-x-4 px-4">
-		<h4 class="text-sm font-semibold">Notifications</h4>
-		<Collapsible.Trigger class={buttonVariants({ variant: "ghost", size: "sm" })}>
-			<ChevronDownIcon
-				class="size-4 transition-transform duration-200 {open ? 'rotate-180' : ''}"
-			/>
-			<span class="sr-only">Toggle</span>
-		</Collapsible.Trigger>
-	</div>
-	<div class="rounded-md border px-4 py-3 text-sm">Push Notifications</div>
-	<Collapsible.Content class="space-y-2">
-		<div class="rounded-md border px-4 py-3 text-sm">Email Notifications</div>
-		<div class="rounded-md border px-4 py-3 text-sm">SMS Notifications</div>
-	</Collapsible.Content>
-</Collapsible.Root>
+<Card.Root class="mx-auto w-full max-w-xs" size="sm">
+	<Card.Header>
+		<Card.Title>Radius</Card.Title>
+		<Card.Description>Set the corner radius of the element.</Card.Description>
+	</Card.Header>
+	<Card.Content>
+		<Collapsible.Root bind:open={isOpen} class="flex items-start gap-2">
+			<Field.Group class="grid w-full grid-cols-2 gap-2">
+				<Field.Field>
+					<Field.Label class="sr-only">Radius X</Field.Label>
+					<Input id="radius-x" placeholder="0" value={0} />
+				</Field.Field>
+				<Field.Field>
+					<Field.Label class="sr-only">Radius Y</Field.Label>
+					<Input id="radius-y" placeholder="0" value={0} />
+				</Field.Field>
+				<Collapsible.Content class="col-span-full grid grid-cols-subgrid gap-2">
+					<Field.Field>
+						<Field.Label class="sr-only">Radius X</Field.Label>
+						<Input id="radius-x-2" placeholder="0" value={0} />
+					</Field.Field>
+					<Field.Field>
+						<Field.Label class="sr-only">Radius Y</Field.Label>
+						<Input id="radius-y-2" placeholder="0" value={0} />
+					</Field.Field>
+				</Collapsible.Content>
+			</Field.Group>
+			<Collapsible.Trigger>
+				{#snippet child({ props })}
+					<Button variant="outline" size="icon" {...props}>
+						{#if isOpen}
+							<MinimizeIcon />
+						{:else}
+							<MaximizeIcon />
+						{/if}
+					</Button>
+				{/snippet}
+			</Collapsible.Trigger>
+		</Collapsible.Root>
+	</Card.Content>
+</Card.Root>

@@ -92,6 +92,8 @@ Update the import paths to match your project setup.
 
 ### Settings Panel
 
+Use a trigger button to reveal additional settings.
+
 <ComponentPreview name="collapsible-settings">
 
 <div></div>
@@ -99,6 +101,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### File Tree
+
+Use nested collapsibles to build a file tree.
 
 <ComponentPreview name="collapsible-file-tree">
 
