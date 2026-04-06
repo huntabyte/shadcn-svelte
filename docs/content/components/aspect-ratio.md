@@ -98,4 +98,15 @@ Update the import paths to match your project setup.
 
 ## API Reference
 
-See the [Bits UI](https://bits-ui.com/docs/components/aspect-ratio#api-reference) documentation for more information.
+### AspectRatio.Root
+
+The `AspectRatio.Root` component displays content within a desired ratio.
+
+| Prop | Type | Default |
+|------|------|---------|
+| `ratio` | `number` | `1` |
+| `ref` | `HTMLDivElement` | `null` |
+| `children` | `Snippet` | — |
+| `class` | `string` | — |
+
+Use the `data-aspect-ratio-root` attribute to target the root element in CSS.
