@@ -101,3 +101,62 @@ Update the import paths to match your project setup.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+### Card
+
+The `Card` component is the root container for card content.
+
+| Prop | Type | Default |
+|------|------|---------|
+| `size` | `"default" \| "sm"` | `"default"` |
+| `class` | `string` | — |
+
+### Card.Header
+
+The `Card.Header` component is used for a title, description, and optional action.
+
+| Prop | Type | Default |
+|------|------|---------|
+| `class` | `string` | — |
+
+### Card.Title
+
+The `Card.Title` component is used for the card title.
+
+| Prop | Type | Default |
+|------|------|---------|
+| `class` | `string` | — |
+
+### Card.Description
+
+The `Card.Description` component is used for helper text under the title.
+
+| Prop | Type | Default |
+|------|------|---------|
+| `class` | `string` | — |
+
+### Card.Action
+
+The `Card.Action` component places content in the top-right of the header (for example, a button or a badge).
+
+| Prop | Type | Default |
+|------|------|---------|
+| `class` | `string` | — |
+
+### Card.Content
+
+The `Card.Content` component is used for the main card body.
+
+| Prop | Type | Default |
+|------|------|---------|
+| `class` | `string` | — |
+
+### Card.Footer
+
+The `Card.Footer` component is used for actions and secondary content at the bottom of the card.
+
+| Prop | Type | Default |
+|------|------|---------|
+| `class` | `string` | — |
