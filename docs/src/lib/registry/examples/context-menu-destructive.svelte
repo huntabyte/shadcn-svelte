@@ -1,22 +1,34 @@
 <script lang="ts">
-	import Trash2Icon from "@lucide/svelte/icons/trash-2";
+	import PencilIcon from "@lucide/svelte/icons/pencil";
+	import ShareIcon from "@lucide/svelte/icons/share";
+	import TrashIcon from "@lucide/svelte/icons/trash";
 	import * as ContextMenu from "$lib/registry/ui/context-menu/index.js";
 </script>
 
 <ContextMenu.Root>
 	<ContextMenu.Trigger
-		class="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm"
+		class="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed text-sm"
 	>
-		Right click here
+		<span class="hidden pointer-fine:inline-block">Right click here</span>
+		<span class="hidden pointer-coarse:inline-block">Long press here</span>
 	</ContextMenu.Trigger>
-	<ContextMenu.Content class="w-48">
-		<ContextMenu.Item>Edit</ContextMenu.Item>
-		<ContextMenu.Item>Duplicate</ContextMenu.Item>
-		<ContextMenu.Item>Archive</ContextMenu.Item>
+	<ContextMenu.Content>
+		<ContextMenu.Group>
+			<ContextMenu.Item>
+				<PencilIcon />
+				Edit
+			</ContextMenu.Item>
+			<ContextMenu.Item>
+				<ShareIcon />
+				Share
+			</ContextMenu.Item>
+		</ContextMenu.Group>
 		<ContextMenu.Separator />
-		<ContextMenu.Item class="text-destructive focus:text-destructive focus:bg-destructive/10">
-			<Trash2Icon />
-			Delete
-		</ContextMenu.Item>
+		<ContextMenu.Group>
+			<ContextMenu.Item variant="destructive">
+				<TrashIcon />
+				Delete
+			</ContextMenu.Item>
+		</ContextMenu.Group>
 	</ContextMenu.Content>
 </ContextMenu.Root>

@@ -16,7 +16,7 @@
 	} = $props();
 
 	// Submenu items are theme-aware; standalone (non-submenu) items always use dark hardcoded colors.
-	setContext("picker-is-submenu", submenu);
+	setContext("picker-is-submenu", () => submenu);
 </script>
 
 {#if submenu}

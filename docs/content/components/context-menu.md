@@ -86,6 +86,8 @@ Update the import paths to match your project setup.
 
 ### Basic
 
+A simple context menu with a few actions.
+
 <ComponentPreview name="context-menu-basic">
 
 <div></div>
@@ -93,6 +95,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Submenu
+
+Use `ContextMenuSub` to nest secondary actions.
 
 <ComponentPreview name="context-menu-submenu">
 
@@ -102,6 +106,8 @@ Update the import paths to match your project setup.
 
 ### Shortcuts
 
+Add `ContextMenuShortcut` to show keyboard hints.
+
 <ComponentPreview name="context-menu-shortcuts">
 
 <div></div>
@@ -109,6 +115,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Groups
+
+Group related actions and separate them with dividers.
 
 <ComponentPreview name="context-menu-groups">
 
@@ -118,6 +126,8 @@ Update the import paths to match your project setup.
 
 ### Icons
 
+Combine icons with labels for quick scanning.
+
 <ComponentPreview name="context-menu-icons">
 
 <div></div>
@@ -125,6 +135,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Checkboxes
+
+Use `ContextMenuCheckboxItem` for toggles.
 
 <ComponentPreview name="context-menu-checkboxes">
 
@@ -134,6 +146,8 @@ Update the import paths to match your project setup.
 
 ### Radio Group
 
+Use `ContextMenuRadioItem` for exclusive choices.
+
 <ComponentPreview name="context-menu-radio-group">
 
 <div></div>
@@ -141,6 +155,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Destructive
+
+Use `variant="destructive"` to style the menu item as destructive.
 
 <ComponentPreview name="context-menu-destructive">
 

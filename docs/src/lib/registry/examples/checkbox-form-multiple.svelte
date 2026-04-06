@@ -80,7 +80,7 @@
 						</Field.Label>
 					</Field.Field>
 				{/each}
-				<Field.Error errors={($errors.items ?? []).map((m) => ({ message: m }))} />
+				<Field.Error errors={(($errors.items as string[] | undefined) ?? []).map((m) => ({ message: m }))} />
 			</Field.Group>
 		</Field.Set>
 		<Button type="submit">Submit</Button>
