@@ -125,5 +125,5 @@ The `Badge` component displays a badge or a component that looks like a badge.
 | Prop | Type | Default |
 | --- | --- | --- |
 | `variant` | `"default" \| "secondary" \| "destructive" \| "outline" \| "ghost" \| "link"` | `"default"` |
-| `href` | `string` | — |
-| `class` | `string` | — |
+| `href` | `string` | - |
+| `class` | `string` | - |

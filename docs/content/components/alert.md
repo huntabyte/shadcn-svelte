@@ -120,7 +120,7 @@ The `Alert.Root` component displays a callout for user attention.
 | Prop | Type | Default |
 |------|------|---------|
 | `variant` | `"default" \| "destructive"` | `"default"` |
-| `class` | `string` | — |
+| `class` | `string` | - |
 
 ### Alert.Title
 
@@ -128,7 +128,7 @@ The `Alert.Title` component displays the title of the alert.
 
 | Prop | Type | Default |
 |------|------|---------|
-| `class` | `string` | — |
+| `class` | `string` | - |
 
 ### Alert.Description
 
@@ -136,7 +136,7 @@ The `Alert.Description` component displays the description or content of the ale
 
 | Prop | Type | Default |
 |------|------|---------|
-| `class` | `string` | — |
+| `class` | `string` | - |
 
 ### Alert.Action
 
@@ -144,4 +144,4 @@ The `Alert.Action` component displays an action element positioned in the corner
 
 | Prop | Type | Default |
 |------|------|---------|
-| `class` | `string` | — |
+| `class` | `string` | - |

@@ -193,19 +193,17 @@ To create a button group, use the `ButtonGroup` component. See the [Button Group
 
 </ComponentPreview>
 
-### Link
+### Child Snippet
 
-You can convert the `<button>` into an `<a>` element by simply passing an `href` as a prop.
+Use the `buttonVariants` helper to apply button styles to any element — useful when you need a link that looks like a button.
 
-```svelte
-<script lang="ts">
-  import { Button } from "$lib/components/ui/button/index.js";
-</script>
+<ComponentPreview name="button-as-child" class="mb-4">
 
-<Button href="/dashboard">Dashboard</Button>
-```
+<div></div>
 
-Alternatively, you can use the `buttonVariants` helper to create a link that looks like a button.
+</ComponentPreview>
+
+You can use the `buttonVariants` helper to create a link that looks like a button.
 
 ```svelte
 <script lang="ts">
@@ -227,10 +225,10 @@ The root button component. Renders a `<button>` element by default, or an `<a>` 
 | --- | --- | --- | --- |
 | `variant` | `"default" \| "outline" \| "ghost" \| "destructive" \| "secondary" \| "link"` | `"default"` | The visual style variant of the button. |
 | `size` | `"default" \| "xs" \| "sm" \| "lg" \| "icon" \| "icon-xs" \| "icon-sm" \| "icon-lg"` | `"default"` | The size of the button. |
-| `href` | `string` | — | When provided, renders the button as an `<a>` element with this href. |
+| `href` | `string` | - | When provided, renders the button as an `<a>` element with this href. |
 | `disabled` | `boolean` | `false` | Whether the button is disabled. |
-| `class` | `string` | — | Additional CSS classes to apply to the button. |
-
+| `class` | `string` | - | Additional CSS classes to apply to the button. |
+| `children` | `Snippet` | - | The content to render inside the button. |
 Use the `children` snippet to render content inside the button.
 
 ```svelte

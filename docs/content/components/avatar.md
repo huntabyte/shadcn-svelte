@@ -168,7 +168,7 @@ The `Avatar.Root` component serves as the root element that wraps the avatar ima
 | Prop | Type | Default |
 |------|------|---------|
 | `size` | `"default" \| "sm" \| "lg"` | `"default"` |
-| `class` | `string` | — |
+| `class` | `string` | - |
 
 ### Avatar.Image
 
@@ -176,9 +176,9 @@ The `Avatar.Image` component displays the avatar image.
 
 | Prop | Type | Default |
 |------|------|---------|
-| `src` | `string` | — |
-| `alt` | `string` | — |
-| `class` | `string` | — |
+| `src` | `string` | - |
+| `alt` | `string` | - |
+| `class` | `string` | - |
 
 ### Avatar.Fallback
 
@@ -186,7 +186,7 @@ The `Avatar.Fallback` component displays a fallback when the image fails to load
 
 | Prop | Type | Default |
 |------|------|---------|
-| `class` | `string` | — |
+| `class` | `string` | - |
 
 ### Avatar.Badge
 
@@ -194,7 +194,7 @@ The `Avatar.Badge` component displays a badge indicator on the avatar, typically
 
 | Prop | Type | Default |
 |------|------|---------|
-| `class` | `string` | — |
+| `class` | `string` | - |
 
 ### Avatar.Group
 
@@ -202,7 +202,7 @@ The `Avatar.Group` component displays a group of avatars with overlapping stylin
 
 | Prop | Type | Default |
 |------|------|---------|
-| `class` | `string` | — |
+| `class` | `string` | - |
 
 ### Avatar.GroupCount
 
@@ -210,4 +210,4 @@ The `Avatar.GroupCount` component displays a count indicator in an avatar group,
 
 | Prop | Type | Default |
 |------|------|---------|
-| `class` | `string` | — |
+| `class` | `string` | - |

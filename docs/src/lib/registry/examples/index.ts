@@ -13,6 +13,7 @@ export { default as BadgeDemo } from "./badge-demo.svelte";
 export { default as BadgeDestructive } from "./badge-destructive.svelte";
 export { default as BadgeOutline } from "./badge-outline.svelte";
 export { default as BadgeSecondary } from "./badge-secondary.svelte";
+export { default as ButtonAsChild } from "./button-as-child.svelte";
 export { default as ButtonDefault } from "./button-default.svelte";
 export { default as ButtonDemo } from "./button-demo.svelte";
 export { default as ButtonDestructive } from "./button-destructive.svelte";
