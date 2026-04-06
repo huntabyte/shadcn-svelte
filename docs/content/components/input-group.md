@@ -85,6 +85,8 @@ Update the import paths to match your project setup.
 
 ### Icon
 
+Display icons inside the input group to provide visual context.
+
 <ComponentPreview name="input-group-icon-demo">
 
 <div></div>
@@ -158,36 +160,6 @@ Add the `data-slot="input-group-control"` attribute to your custom input for aut
 No style is applied to the custom input. Apply your own styles using the `class` prop.
 
 <ComponentPreview name="input-group-custom-input-demo">
-
-<div></div>
-
-</ComponentPreview>
-
-### Tooltip
-
-Add tooltips to provide additional context or help.
-
-<ComponentPreview name="input-group-tooltip-demo">
-
-<div></div>
-
-</ComponentPreview>
-
-### Label
-
-Add labels within input groups to improve accessibility.
-
-<ComponentPreview name="input-group-label-demo">
-
-<div></div>
-
-</ComponentPreview>
-
-### Button Group
-
-Wrap input groups with button groups to create prefixes and suffixes.
-
-<ComponentPreview name="input-group-button-group-demo">
 
 <div></div>
 

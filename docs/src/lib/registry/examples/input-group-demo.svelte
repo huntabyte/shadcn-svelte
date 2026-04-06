@@ -1,14 +1,13 @@
 <script lang="ts">
-	import IconCheck from "@tabler/icons-svelte/icons/check";
-	import IconInfoCircle from "@tabler/icons-svelte/icons/info-circle";
-	import IconPlus from "@tabler/icons-svelte/icons/plus";
-
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
-	import SearchIcon from "@lucide/svelte/icons/search";
 	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
+	import CheckIcon from "@lucide/svelte/icons/check";
+	import InfoIcon from "@lucide/svelte/icons/info";
+	import PlusIcon from "@lucide/svelte/icons/plus";
+	import SearchIcon from "@lucide/svelte/icons/search";
 </script>
 
 <div class="grid w-full max-w-sm gap-6">
@@ -29,7 +28,7 @@
 				<Tooltip.Trigger>
 					{#snippet child({ props })}
 						<InputGroup.Button {...props} class="rounded-full" size="icon-xs">
-							<IconInfoCircle />
+							<InfoIcon />
 						</InputGroup.Button>
 					{/snippet}
 				</Tooltip.Trigger>
@@ -41,7 +40,7 @@
 		<InputGroup.Textarea placeholder="Ask, Search or Chat..." />
 		<InputGroup.Addon align="block-end">
 			<InputGroup.Button variant="outline" class="rounded-full" size="icon-xs">
-				<IconPlus />
+				<PlusIcon />
 			</InputGroup.Button>
 			<DropdownMenu.Root>
 				<DropdownMenu.Trigger>
@@ -69,7 +68,7 @@
 			<div
 				class="bg-primary text-primary-foreground flex size-4 items-center justify-center rounded-full"
 			>
-				<IconCheck class="size-3" />
+				<CheckIcon class="size-3" />
 			</div>
 		</InputGroup.Addon>
 	</InputGroup.Root>
