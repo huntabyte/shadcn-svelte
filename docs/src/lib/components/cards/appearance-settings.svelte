@@ -97,7 +97,7 @@
 					id="number-of-gpus-f6l"
 					bind:value={gpuCount}
 					size={3}
-					class="font-mono"
+					class="h-7 w-14! font-mono"
 					maxlength={3}
 					oninput={handleGpuCountChange}
 					type="text"
