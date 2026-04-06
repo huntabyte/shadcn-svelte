@@ -82,6 +82,14 @@ Update the import paths to match your project setup.
 
 ## Examples
 
+### Basic
+
+<ComponentPreview name="hover-card-demo">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Sides
 
 <ComponentPreview name="hover-card-sides">
