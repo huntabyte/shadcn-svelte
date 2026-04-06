@@ -19,7 +19,7 @@
 			<Label for="link" class="sr-only">Link</Label>
 			<Input
 				id="link"
-				defaultValue="https://platform.openai.com/playground/p/7bbKYQvsVkNmVb8NGcdUOLae?model=text-davinci-003"
+				value="https://platform.openai.com/playground/p/7bbKYQvsVkNmVb8NGcdUOLae?model=text-davinci-003"
 				class="h-9 pr-10"
 			/>
 			<Button type="submit" size="icon" variant="ghost" class="absolute top-1 right-1 size-7">
