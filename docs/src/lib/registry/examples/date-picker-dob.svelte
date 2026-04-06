@@ -14,30 +14,28 @@
 	let value = $state<DateValue | undefined>();
 </script>
 
-<div class="mx-auto w-44">
-	<Field.Field>
-		<Field.Label for="date-picker-dob">Date of birth</Field.Label>
-		<Popover.Root bind:open>
-			<Popover.Trigger
-				id="date-picker-dob"
-				class={cn(
-					buttonVariants({ variant: "outline" }),
-					"justify-start font-normal",
-					!value && "text-muted-foreground"
-				)}
-			>
-				{value ? df.format(value.toDate(getLocalTimeZone())) : "Select date"}
-			</Popover.Trigger>
-			<Popover.Content class="w-auto overflow-hidden p-0" align="start">
-				<Calendar
-					type="single"
-					captionLayout="dropdown"
-					bind:value
-					onValueChange={() => {
-						open = false;
-					}}
-				/>
-			</Popover.Content>
-		</Popover.Root>
-	</Field.Field>
-</div>
+<Field.Field class="mx-auto w-44">
+	<Field.Label for="date-picker-dob">Date of birth</Field.Label>
+	<Popover.Root bind:open>
+		<Popover.Trigger
+			id="date-picker-dob"
+			class={cn(
+				buttonVariants({ variant: "outline" }),
+				"justify-start font-normal",
+				!value && "text-muted-foreground"
+			)}
+		>
+			{value ? df.format(value.toDate(getLocalTimeZone())) : "Select date"}
+		</Popover.Trigger>
+		<Popover.Content class="w-auto overflow-hidden p-0" align="start">
+			<Calendar
+				type="single"
+				captionLayout="dropdown"
+				bind:value
+				onValueChange={() => {
+					open = false;
+				}}
+			/>
+		</Popover.Content>
+	</Popover.Root>
+</Field.Field>

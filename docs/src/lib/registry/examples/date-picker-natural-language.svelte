@@ -55,49 +55,47 @@
 	}
 </script>
 
-<div class="mx-auto max-w-xs">
-	<Field.Field>
-		<Field.Label for="date-natural-language">Schedule Date</Field.Label>
-		<InputGroup.Root>
-			<InputGroup.Input
-				id="date-natural-language"
-				value={inputValue}
-				placeholder="Tomorrow or next week"
-				oninput={handleInput}
-				onkeydown={handleKeyDown}
-			/>
-			<InputGroup.Addon align="inline-end">
-				<Popover.Root bind:open>
-					<Popover.Trigger>
-						{#snippet child({ props })}
-							<InputGroup.Button
-								{...props}
-								variant="ghost"
-								size="icon-xs"
-								aria-label="Select date"
-							>
-								<CalendarIcon />
-								<span class="sr-only">Select date</span>
-							</InputGroup.Button>
-						{/snippet}
-					</Popover.Trigger>
-					<Popover.Content class="w-auto overflow-hidden p-0" align="end" sideOffset={8}>
-						<Calendar
-							type="single"
-							captionLayout="dropdown"
-							bind:value
-							onValueChange={(v) => {
-								inputValue = formatDateValue(v);
-								open = false;
-							}}
-						/>
-					</Popover.Content>
-				</Popover.Root>
-			</InputGroup.Addon>
-		</InputGroup.Root>
-		<Field.Description>
-			Your post will be published on
-			<span class="font-medium">{formatDateValue(value)}</span>.
-		</Field.Description>
-	</Field.Field>
-</div>
+<Field.Field class="mx-auto max-w-xs">
+	<Field.Label for="date-natural-language">Schedule Date</Field.Label>
+	<InputGroup.Root>
+		<InputGroup.Input
+			id="date-natural-language"
+			value={inputValue}
+			placeholder="Tomorrow or next week"
+			oninput={handleInput}
+			onkeydown={handleKeyDown}
+		/>
+		<InputGroup.Addon align="inline-end">
+			<Popover.Root bind:open>
+				<Popover.Trigger>
+					{#snippet child({ props })}
+						<InputGroup.Button
+							{...props}
+							variant="ghost"
+							size="icon-xs"
+							aria-label="Select date"
+						>
+							<CalendarIcon />
+							<span class="sr-only">Select date</span>
+						</InputGroup.Button>
+					{/snippet}
+				</Popover.Trigger>
+				<Popover.Content class="w-auto overflow-hidden p-0" align="end" sideOffset={8}>
+					<Calendar
+						type="single"
+						captionLayout="dropdown"
+						bind:value
+						onValueChange={(v) => {
+							inputValue = formatDateValue(v);
+							open = false;
+						}}
+					/>
+				</Popover.Content>
+			</Popover.Root>
+		</InputGroup.Addon>
+	</InputGroup.Root>
+	<div class="px-1 text-sm text-muted-foreground">
+		Your post will be published on
+		<span class="font-medium">{formatDateValue(value)}</span>.
+	</div>
+</Field.Field>
