@@ -11,7 +11,7 @@ jobs:
   stale:
     runs-on: ubuntu-24.04-arm
     steps:
-      - uses: actions/stale@v10
+      - uses: actions/stale@b5d41d4e1d5dceea10e7104786b73624c18a190f # v10.2.0
         with:
           days-before-stale: -1 # Issues and PR will never be flagged stale automatically.
           stale-issue-label: needs reproduction # Label that flags an issue as stale.
