@@ -152,7 +152,6 @@ export { default as NativeSelectDisabled } from "./native-select-disabled.svelte
 export { default as NativeSelectInvalid } from "./native-select-invalid.svelte";
 export { default as PopoverBasic } from "./popover-basic.svelte";
 export { default as PopoverDemo } from "./popover-demo.svelte";
-export { default as PopoverAlign } from "./popover-align.svelte";
 export { default as PopoverForm } from "./popover-form.svelte";
 export { default as ProgressDemo } from "./progress-demo.svelte";
 export { default as ProgressLabel } from "./progress-label.svelte";
