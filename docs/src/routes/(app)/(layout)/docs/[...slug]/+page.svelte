@@ -108,7 +108,6 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 								<Button
 									variant="secondary"
 									size="sm"
-									class="h-8 shadow-none select-none md:h-7 md:text-[0.8rem]"
 									href="/rss.xml"
 									target="_blank"
 									rel="noopener noreferrer"
@@ -122,7 +121,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 									<Button
 										variant="secondary"
 										size="icon"
-										class="extend-touch-target ms-auto size-8 shadow-none md:size-7"
+										class="extend-touch-target size-8 shadow-none md:size-7"
 										href={neighbors.previous.href}
 									>
 										<ArrowLeftIcon />
@@ -202,8 +201,8 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 			>
 				{#if neighbors.previous}
 					<Button
-						variant="secondary"
 						size="sm"
+						variant="secondary"
 						class="shadow-none"
 						href={neighbors.previous.href}
 					>
@@ -213,9 +212,9 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 				{/if}
 				{#if neighbors.next}
 					<Button
-						variant="secondary"
 						size="sm"
-						class="ms-auto shadow-none"
+						variant="secondary"
+						class="ml-auto shadow-none"
 						href={neighbors.next.href}
 					>
 						{neighbors.next.title}
