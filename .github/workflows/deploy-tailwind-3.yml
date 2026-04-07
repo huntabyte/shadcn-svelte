@@ -10,7 +10,7 @@ on:
 
 jobs:
   deploy-production:
-    runs-on: ubuntu-24.04-arm
+    runs-on: macos-latest
     permissions:
       contents: read
       deployments: write
@@ -33,10 +33,12 @@ jobs:
         run: pnpm build
 
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
+        uses: AdrianGonz97/refined-cf-pages-action@v1
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          projectName: shadcn-svelte-tw-3
+          directory: ./.svelte-kit/cloudflare
           workingDirectory: sites/docs
-          command: pages deploy ./.svelte-kit/cloudflare --project-name=shadcn-svelte-tw-3
+          deploymentName: Production Tailwind 3
