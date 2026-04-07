@@ -142,6 +142,7 @@
 		},
 		getRowId: (row) => row.id.toString(),
 		enableRowSelection: true,
+		autoResetPageIndex: false,
 		getCoreRowModel: getCoreRowModel(),
 		getPaginationRowModel: getPaginationRowModel(),
 		getSortedRowModel: getSortedRowModel(),
@@ -297,8 +298,8 @@
 					</Table.Header>
 					<Table.Body class="**:data-[slot=table-cell]:first:w-8">
 						{#if table.getRowModel().rows?.length}
-							{#each table.getRowModel().rows as row, index (row.id)}
-								{@render DraggableRow({ row, index })}
+							{#each table.getRowModel().rows as row (row.id)}
+								{@render DraggableRow({ row })}
 							{/each}
 						{:else}
 							<Table.Row>
@@ -397,10 +398,10 @@
 	</Tabs.Content>
 </Tabs.Root>
 
-{#snippet DraggableRow({ row, index }: { row: Row<Schema>; index: number })}
+{#snippet DraggableRow({ row }: { row: Row<Schema> })}
 	{@const { ref, isDragging, handleRef } = useSortable({
 		id: row.original.id,
-		index: () => index,
+		index: () => row.index,
 	})}
 
 	<Table.Row
