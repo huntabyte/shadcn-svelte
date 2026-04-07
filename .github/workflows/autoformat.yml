@@ -93,7 +93,7 @@ jobs:
       - uses: actions/setup-node@v4
         if: steps.check-permission.outputs.should-continue == 'true'
         with:
-          node-version: 20
+          node-version: 24
           cache: pnpm
 
       - name: Install dependencies
