@@ -78,6 +78,8 @@ Update the import paths to match your project setup.
 
 ### Outline
 
+Use `variant="outline"` for an outline style.
+
 <ComponentPreview name="toggle-outline">
 
 <div></div>
