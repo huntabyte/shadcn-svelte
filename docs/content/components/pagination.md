@@ -26,6 +26,26 @@ links:
 
 </ComponentPreview>
 
+### Simple
+
+A simple pagination with only page numbers.
+
+<ComponentPreview name="pagination-simple">
+
+<div></div>
+
+</ComponentPreview>
+
+### Icons Only
+
+Use just the previous and next buttons without page numbers. This is useful for data tables with a rows per page selector.
+
+<ComponentPreview name="pagination-icons-only">
+
+<div></div>
+
+</ComponentPreview>
+
 ## Installation
 
 <InstallTabs>

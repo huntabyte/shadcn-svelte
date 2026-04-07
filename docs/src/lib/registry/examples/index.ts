@@ -313,8 +313,8 @@ export { default as EmptyAvatarGroupDemo } from "./empty-avatar-group-demo.svelt
 export { default as EmptyInputGroupDemo } from "./empty-input-group-demo.svelte";
 export { default as EmptyCardDemo } from "./empty-card-demo.svelte";
 export { default as PaginationDemo } from "./pagination-demo.svelte";
-// export { default as PaginationSimple } from "./pagination-simple.svelte";
-// export { default as PaginationIconsOnly } from "./pagination-icons-only.svelte";
+export { default as PaginationSimple } from "./pagination-simple.svelte";
+export { default as PaginationIconsOnly } from "./pagination-icons-only.svelte";
 export { default as DatePickerDemo } from "./date-picker-demo.svelte";
 export { default as DatePickerWithPresets } from "./date-picker-with-presets.svelte";
 export { default as DatePickerWithRange } from "./date-picker-with-range.svelte";
