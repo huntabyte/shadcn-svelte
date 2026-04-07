@@ -10,7 +10,7 @@ on:
 
 jobs:
   deploy-production:
-    runs-on: macos-latest
+    runs-on: ubuntu-24.04-arm
     permissions:
       contents: read
       deployments: write

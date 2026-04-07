@@ -9,7 +9,7 @@ jobs:
     # only run on PR comments
     if: github.event.issue.pull_request
 
-    runs-on: macos-latest
+    runs-on: ubuntu-24.04-arm
 
     permissions:
       contents: write
