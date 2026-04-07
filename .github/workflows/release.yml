@@ -16,7 +16,7 @@ jobs:
       id-token: write # Required for OIDC
     name: Build & Publish Release
     if: github.repository == 'huntabyte/shadcn-svelte'
-    runs-on: ubuntu-24.04-arm
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v6
         with:
