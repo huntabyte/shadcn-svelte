@@ -63,8 +63,8 @@
 					)}
 					{...restProps}
 				>
-					<div class="text-sm leading-none font-medium">{title}</div>
-					<p class="text-muted-foreground line-clamp-2 text-sm leading-snug">
+					<div class="leading-none font-medium">{title}</div>
+					<p class="text-muted-foreground line-clamp-2 text-sm">
 						{content}
 					</p>
 				</a>
@@ -73,26 +73,12 @@
 	</li>
 {/snippet}
 
-<NavigationMenu.Root viewport={false}>
+<NavigationMenu.Root>
 	<NavigationMenu.List>
 		<NavigationMenu.Item>
-			<NavigationMenu.Trigger>Home</NavigationMenu.Trigger>
+			<NavigationMenu.Trigger>Getting started</NavigationMenu.Trigger>
 			<NavigationMenu.Content>
-				<ul class="grid gap-2 p-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-					<li class="row-span-3">
-						<NavigationMenu.Link
-							class="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-6 no-underline outline-hidden select-none focus:shadow-md"
-						>
-							{#snippet child({ props })}
-								<a {...props} href="/">
-									<div class="mt-4 mb-2 text-lg font-medium">shadcn-svelte</div>
-									<p class="text-muted-foreground text-sm leading-tight">
-										Beautifully designed components built with Tailwind CSS.
-									</p>
-								</a>
-							{/snippet}
-						</NavigationMenu.Link>
-					</li>
+				<ul class="w-96">
 					{@render ListItem({
 						href: "/docs",
 						title: "Introduction",
@@ -111,10 +97,10 @@
 				</ul>
 			</NavigationMenu.Content>
 		</NavigationMenu.Item>
-		<NavigationMenu.Item>
+		<NavigationMenu.Item class="hidden md:flex">
 			<NavigationMenu.Trigger>Components</NavigationMenu.Trigger>
 			<NavigationMenu.Content>
-				<ul class="grid w-[400px] gap-2 p-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+				<ul class="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
 					{#each components as component, i (i)}
 						{@render ListItem({
 							href: component.href,
@@ -132,65 +118,6 @@
 					<a href="/docs" class={navigationMenuTriggerStyle()}>Docs</a>
 				{/snippet}
 			</NavigationMenu.Link>
-		</NavigationMenu.Item>
-		<NavigationMenu.Item>
-			<NavigationMenu.Trigger>List</NavigationMenu.Trigger>
-			<NavigationMenu.Content>
-				<ul class="grid w-[300px] gap-4 p-2">
-					<li>
-						<NavigationMenu.Link href="#">
-							<div class="font-medium">Components</div>
-							<div class="text-muted-foreground">
-								Browse all components in the library.
-							</div>
-						</NavigationMenu.Link>
-						<NavigationMenu.Link href="#">
-							<div class="font-medium">Documentation</div>
-							<div class="text-muted-foreground">Learn how to use the library.</div>
-						</NavigationMenu.Link>
-						<NavigationMenu.Link href="#">
-							<div class="font-medium">Blog</div>
-							<div class="text-muted-foreground">Read our latest blog posts.</div>
-						</NavigationMenu.Link>
-					</li>
-				</ul>
-			</NavigationMenu.Content>
-		</NavigationMenu.Item>
-		<NavigationMenu.Item>
-			<NavigationMenu.Trigger>Simple</NavigationMenu.Trigger>
-			<NavigationMenu.Content>
-				<ul class="grid w-[200px] gap-4 p-2">
-					<li>
-						<NavigationMenu.Link href="#">Components</NavigationMenu.Link>
-						<NavigationMenu.Link href="#">Documentation</NavigationMenu.Link>
-						<NavigationMenu.Link href="#">Blocks</NavigationMenu.Link>
-					</li>
-				</ul>
-			</NavigationMenu.Content>
-		</NavigationMenu.Item>
-		<NavigationMenu.Item>
-			<NavigationMenu.Trigger>With Icon</NavigationMenu.Trigger>
-
-			<NavigationMenu.Content>
-				<ul class="grid w-[200px] gap-4 p-2">
-					<li>
-						<NavigationMenu.Link href="#" class="flex-row items-center gap-2">
-							<CircleHelpIcon />
-							Backlog
-						</NavigationMenu.Link>
-
-						<NavigationMenu.Link href="#" class="flex-row items-center gap-2">
-							<CircleIcon />
-							To Do
-						</NavigationMenu.Link>
-
-						<NavigationMenu.Link href="#" class="flex-row items-center gap-2">
-							<CircleCheckIcon />
-							Done
-						</NavigationMenu.Link>
-					</li>
-				</ul>
-			</NavigationMenu.Content>
 		</NavigationMenu.Item>
 	</NavigationMenu.List>
 </NavigationMenu.Root>
