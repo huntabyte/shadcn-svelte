@@ -5,12 +5,7 @@
 	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
 </script>
 
-<ToggleGroup.Root
-	type="multiple"
-	orientation="vertical"
-	spacing={1}
-	value={["bold", "italic"]}
->
+<ToggleGroup.Root type="multiple" orientation="vertical" spacing={1} value={["bold", "italic"]}>
 	<ToggleGroup.Item value="bold" aria-label="Toggle bold">
 		<BoldIcon class="size-4" />
 	</ToggleGroup.Item>

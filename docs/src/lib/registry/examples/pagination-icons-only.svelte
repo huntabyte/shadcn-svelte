@@ -26,10 +26,10 @@
 	<Pagination.Root count={100} perPage={Number(rowsPerPage)} class="mx-0 w-auto">
 		<Pagination.Content>
 			<Pagination.Item>
-				<Pagination.Previous href="#" />
+				<Pagination.Previous />
 			</Pagination.Item>
 			<Pagination.Item>
-				<Pagination.Next href="#" />
+				<Pagination.Next />
 			</Pagination.Item>
 		</Pagination.Content>
 	</Pagination.Root>
