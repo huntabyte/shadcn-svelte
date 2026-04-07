@@ -5,7 +5,6 @@ import path from "node:path";
 
 const execAsync = promisify(exec);
 import postcss from "postcss";
-import prettier from "prettier";
 import { rimraf } from "rimraf";
 import {
 	componentsJsonSchema,
@@ -28,8 +27,6 @@ import { THEMES } from "../src/lib/registry/themes.js";
 import { getColorsData } from "../src/lib/components/colors/colors.js";
 import { toJSONSchema } from "zod";
 
-const prettierConfig = await prettier.resolveConfig(import.meta.url);
-if (!prettierConfig) throw new Error("Failed to resolve prettier config.");
 
 const INTERNAL_REGISTRY_PATH = path.resolve("src", "lib", "registry");
 const REGISTRY_PATH = path.resolve("static", "registry");
@@ -337,12 +334,9 @@ async function buildRegistryJson(
 	const filteredItems = result.items.filter((item) => ITEM_TYPES.includes(item.type));
 	const registryJsonPath = path.resolve(`registry-${style}.json`);
 
+	// This file is consumed by the CLI and immediately deleted — no need to format it.
 	const registryJson = JSON.stringify({ ...result, items: filteredItems }, null, "\t");
-	const formatted = await prettier.format(registryJson, {
-		...prettierConfig,
-		filepath: registryJsonPath,
-	});
-	fs.writeFileSync(registryJsonPath, formatted, "utf8");
+	fs.writeFileSync(registryJsonPath, registryJson, "utf8");
 }
 
 async function runRegistryBuild(style: PresetConfig["style"]) {
