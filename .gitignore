@@ -110,3 +110,5 @@ registry-template/static/r
 repro/src/lib/hooks
 repro/src/lib/components/ui
 !repro/src/lib/components/ui/light-switch
+
+.claude
