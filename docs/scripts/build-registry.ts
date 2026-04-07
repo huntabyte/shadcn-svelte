@@ -2,8 +2,6 @@ import fs from "node:fs";
 import { exec } from "node:child_process";
 import { promisify } from "node:util";
 import path from "node:path";
-
-const execAsync = promisify(exec);
 import postcss from "postcss";
 import { rimraf } from "rimraf";
 import {
@@ -14,6 +12,10 @@ import {
 	type RegistryItemType,
 } from "shadcn-svelte/schema";
 import { PRESET_STYLES, type PresetConfig } from "shadcn-svelte/preset";
+import { buildRegistry } from "./registry.js";
+import { THEMES } from "../src/lib/registry/themes.js";
+import { getColorsData } from "../src/lib/components/colors/colors.js";
+import { toJSONSchema } from "zod";
 
 interface BuildRegistryItem {
 	name: string;
@@ -22,11 +24,8 @@ interface BuildRegistryItem {
 		path: string;
 	}>;
 }
-import { buildRegistry } from "./registry.js";
-import { THEMES } from "../src/lib/registry/themes.js";
-import { getColorsData } from "../src/lib/components/colors/colors.js";
-import { toJSONSchema } from "zod";
 
+const execAsync = promisify(exec);
 
 const INTERNAL_REGISTRY_PATH = path.resolve("src", "lib", "registry");
 const REGISTRY_PATH = path.resolve("static", "registry");
