@@ -114,34 +114,33 @@ async function buildBlockRegistry(
 	blockName: string
 ): Promise<RegistryItems[number]> {
 	const dir = fs.readdirSync(blockPath, { withFileTypes: true, recursive: true });
-	const files: RegistryItemFiles = [];
 	const registryDependencies = new Set<string>();
 
 	const pagesNames = ["+page.svelte"];
 	const fileNames = ["data.json", "data.ts"];
-	for (const dirent of dir) {
-		if (!dirent.isFile()) continue;
-		const isPage = pagesNames.includes(dirent.name);
-		const isFile = fileNames.includes(dirent.name);
+	const fileEntries = dir.filter((d) => d.isFile());
 
-		const type = isPage || isFile ? "registry:page" : "registry:component";
+	const files = await Promise.all(
+		fileEntries.map(async (dirent) => {
+			const isPage = pagesNames.includes(dirent.name);
+			const isFile = fileNames.includes(dirent.name);
+			const type = isPage || isFile ? "registry:page" : "registry:component";
 
-		// TODO: fix
-		const compPath =
-			isPage || isFile
-				? dirent.name
-				: path.join(path.basename(dirent.parentPath), dirent.name);
-		const filepath = path.join(blockPath, compPath);
-		const relativePath = path.relative(process.cwd(), filepath);
-		const source = fs.readFileSync(filepath, { encoding: "utf8" });
+			// TODO: fix
+			const compPath =
+				isPage || isFile
+					? dirent.name
+					: path.join(path.basename(dirent.parentPath), dirent.name);
+			const filepath = path.join(blockPath, compPath);
+			const relativePath = path.relative(process.cwd(), filepath);
+			const source = fs.readFileSync(filepath, { encoding: "utf8" });
 
-		files.push({ path: relativePath, type });
+			const deps = await getFileDependencies(filepath, source);
+			if (deps) deps.registryDependencies.forEach((dep) => registryDependencies.add(dep));
 
-		const deps = await getFileDependencies(filepath, source);
-		if (!deps) continue;
-
-		deps.registryDependencies.forEach((dep) => registryDependencies.add(dep));
-	}
+			return { path: relativePath, type } satisfies RegistryItemFiles[number];
+		})
+	);
 
 	return {
 		type: "registry:block",
