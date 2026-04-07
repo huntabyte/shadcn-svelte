@@ -76,6 +76,8 @@ Update the import paths to match your project setup.
 
 ### Disabled
 
+Use the `disabled` prop to disable the textarea.
+
 <ComponentPreview name="textarea-disabled">
 
 <div></div>
@@ -83,6 +85,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Invalid
+
+Use the `aria-invalid` attribute to mark the textarea as invalid.
 
 <ComponentPreview name="textarea-invalid">
 
@@ -107,6 +111,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### With Button
+
+Pair with `Button` to create a textarea with a submit button.
 
 <ComponentPreview name="textarea-with-button">
 
