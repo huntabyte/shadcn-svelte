@@ -33,12 +33,10 @@ jobs:
         run: pnpm build
 
       - name: Deploy to Cloudflare Pages
-        uses: AdrianGonz97/refined-cf-pages-action@v1
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-          projectName: shadcn-svelte-tw-3
-          directory: ./.svelte-kit/cloudflare
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           workingDirectory: sites/docs
-          deploymentName: Production Tailwind 3
+          command: pages deploy ./.svelte-kit/cloudflare --project-name=shadcn-svelte-tw-3

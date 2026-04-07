@@ -27,11 +27,9 @@ jobs:
           run-id: ${{ github.event.workflow_run.id }}
 
       - name: Deploy to Cloudflare Pages
-        uses: AdrianGonz97/refined-cf-pages-action@v1
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-          projectName: shadcn-svelte
-          deploymentName: Preview
-          directory: ${{ steps.preview-build-artifact.outputs.download-path }}/cloudflare
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          command: pages deploy ${{ steps.preview-build-artifact.outputs.download-path }}/cloudflare --project-name=shadcn-svelte
