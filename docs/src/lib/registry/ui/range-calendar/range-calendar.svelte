@@ -79,7 +79,7 @@
 					<RangeCalendar.Grid>
 						<RangeCalendar.GridHead>
 							<RangeCalendar.GridRow class="select-none">
-								{#each weekdays as weekday (weekday)}
+								{#each weekdays as weekday, i (i)}
 									<RangeCalendar.HeadCell>
 										{weekday.slice(0, 2)}
 									</RangeCalendar.HeadCell>

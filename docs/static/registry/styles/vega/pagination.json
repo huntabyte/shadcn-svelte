@@ -4,8 +4,7 @@
 	"type": "registry:ui",
 	"devDependencies": [
 		"bits-ui@^2.16.3",
-		"@internationalized/date@^3.12.0",
-		"@lucide/svelte@^0.577.0"
+		"@internationalized/date@^3.12.0"
 	],
 	"registryDependencies": [
 		"button"
@@ -37,7 +36,7 @@
 			"target": "pagination/pagination-link.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\timport ChevronRightIcon from \"@lucide/svelte/icons/chevron-right\";\n\timport { cn } from \"$UTILS$.js\";\n\timport { buttonVariants } from \"../button/index.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PaginationPrimitive.NextButtonProps = $props();\n</script>\n\n{#snippet Fallback()}\n\t<span>Next</span>\n\t<ChevronRightIcon class=\"size-4\" />\n{/snippet}\n\n<PaginationPrimitive.NextButton\n\tbind:ref\n\taria-label=\"Go to next page\"\n\tclass={cn(buttonVariants({ variant: \"ghost\" }), \"pr-2!\", className)}\n\t{...restProps}\n>\n\t{#if children}\n\t\t{@render children?.()}\n\t{:else}\n\t\t{@render Fallback()}\n\t{/if}\n</PaginationPrimitive.NextButton>\n",
+			"content": "<script lang=\"ts\">\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\timport IconPlaceholder from \"$lib/components/icon-placeholder/icon-placeholder.svelte\";\n\timport { cn } from \"$UTILS$.js\";\n\timport { buttonVariants } from \"../button/index.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PaginationPrimitive.NextButtonProps = $props();\n</script>\n\n{#snippet Fallback()}\n\t<span>Next</span>\n\t<IconPlaceholder\n\t\tlucide=\"ChevronRightIcon\"\n\t\ttabler=\"IconChevronRight\"\n\t\thugeicons=\"ArrowRightIcon\"\n\t\tphosphor=\"CaretRightIcon\"\n\t\tremixicon=\"RiArrowRightSLine\"\n\t\tclass={cn(\"size-4\", className)}\n\t/>\n{/snippet}\n\n<PaginationPrimitive.NextButton\n\tbind:ref\n\taria-label=\"Go to next page\"\n\tclass={cn(buttonVariants({ variant: \"ghost\" }), \"pr-2!\", className)}\n\t{...restProps}\n>\n\t{#if children}\n\t\t{@render children?.()}\n\t{:else}\n\t\t{@render Fallback()}\n\t{/if}\n</PaginationPrimitive.NextButton>\n",
 			"type": "registry:file",
 			"target": "pagination/pagination-next-button.svelte"
 		},
@@ -47,7 +46,7 @@
 			"target": "pagination/pagination-next.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\timport ChevronLeftIcon from \"@lucide/svelte/icons/chevron-left\";\n\timport { cn } from \"$UTILS$.js\";\n\timport { buttonVariants } from \"../button/index.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PaginationPrimitive.PrevButtonProps = $props();\n</script>\n\n{#snippet Fallback()}\n\t<ChevronLeftIcon class=\"size-4\" />\n\t<span>Previous</span>\n{/snippet}\n\n<PaginationPrimitive.PrevButton\n\tbind:ref\n\taria-label=\"Go to previous page\"\n\tclass={cn(buttonVariants({ variant: \"ghost\" }), \"pl-2!\", className)}\n\t{...restProps}\n>\n\t{#if children}\n\t\t{@render children?.()}\n\t{:else}\n\t\t{@render Fallback()}\n\t{/if}\n</PaginationPrimitive.PrevButton>\n",
+			"content": "<script lang=\"ts\">\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\timport IconPlaceholder from \"$lib/components/icon-placeholder/icon-placeholder.svelte\";\n\timport { cn } from \"$UTILS$.js\";\n\timport { buttonVariants } from \"../button/index.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PaginationPrimitive.PrevButtonProps = $props();\n</script>\n\n{#snippet Fallback()}\n\t<IconPlaceholder\n\t\tlucide=\"ChevronLeftIcon\"\n\t\ttabler=\"IconChevronLeft\"\n\t\thugeicons=\"ArrowLeftIcon\"\n\t\tphosphor=\"CaretLeftIcon\"\n\t\tremixicon=\"RiArrowLeftSLine\"\n\t\tclass={cn(\"size-4\", className)}\n\t/>\n\t<span>Previous</span>\n{/snippet}\n\n<PaginationPrimitive.PrevButton\n\tbind:ref\n\taria-label=\"Go to previous page\"\n\tclass={cn(buttonVariants({ variant: \"ghost\" }), \"pl-2!\", className)}\n\t{...restProps}\n>\n\t{#if children}\n\t\t{@render children?.()}\n\t{:else}\n\t\t{@render Fallback()}\n\t{/if}\n</PaginationPrimitive.PrevButton>\n",
 			"type": "registry:file",
 			"target": "pagination/pagination-prev-button.svelte"
 		},
