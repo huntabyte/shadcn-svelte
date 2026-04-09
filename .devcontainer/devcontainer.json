@@ -1,7 +1,11 @@
 {
   "name": "shadcn-svelte",
   "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "features": {},
+  "features": {
+    "ghcr.io/stu-bell/devcontainer-features/node:0": {
+      "min_node_version": 24
+    }
+  },
    "customizations": {
         "vscode": {
             "extensions": [
