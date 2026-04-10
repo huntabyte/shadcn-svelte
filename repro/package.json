@@ -18,7 +18,7 @@
 		"@internationalized/date": "^3.10.0",
 		"@lucide/svelte": "^0.562.0",
 		"@sveltejs/adapter-auto": "^6.1.0",
-		"@sveltejs/kit": "2.42.1",
+		"@sveltejs/kit": "2.57.1",
 		"@sveltejs/vite-plugin-svelte": "^6.2.0",
 		"@tabler/icons-svelte": "^3.36.0",
 		"@tailwindcss/vite": "^4.1.13",
