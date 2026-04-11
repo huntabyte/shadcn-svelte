@@ -6,8 +6,6 @@
 	import PageHeaderDescription from "$lib/components/page-header/page-header-description.svelte";
 	import PageHeaderHeading from "$lib/components/page-header/page-header-heading.svelte";
 	import PageHeader from "$lib/components/page-header/page-header.svelte";
-	import PageNav from "$lib/components/page-nav.svelte";
-	import ThemeSelector from "$lib/components/theme-selector.svelte";
 	import Button from "$lib/registry/ui/button/button.svelte";
 	import RootComponents from "$lib/components/cards/root-components.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
