@@ -90,6 +90,20 @@ Update the import paths to match your project setup.
 </Accordion.Root>
 ```
 
+## Composition
+
+Use the following composition to build an `Accordion`:
+
+```text
+Accordion.Root
+├── Accordion.Item
+│   ├── Accordion.Trigger
+│   └── Accordion.Content
+└── Accordion.Item
+    ├── Accordion.Trigger
+    └── Accordion.Content
+```
+
 ## Examples
 
 ### Basic

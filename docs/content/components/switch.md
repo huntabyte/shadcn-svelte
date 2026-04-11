@@ -74,6 +74,14 @@ Update the import paths to match your project setup.
 <Switch />
 ```
 
+## Composition
+
+`Switch` is a single self-contained component with no sub-components:
+
+```text
+Switch
+```
+
 ## Examples
 
 ### Description

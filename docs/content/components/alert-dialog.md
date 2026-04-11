@@ -89,6 +89,23 @@ Update the import paths to match your project setup.
 </AlertDialog.Root>
 ```
 
+## Composition
+
+Use the following composition to build an `AlertDialog`:
+
+```text
+AlertDialog.Root
+├── AlertDialog.Trigger
+└── AlertDialog.Content
+    ├── AlertDialog.Media (optional)
+    ├── AlertDialog.Header
+    │   ├── AlertDialog.Title
+    │   └── AlertDialog.Description
+    └── AlertDialog.Footer
+        ├── AlertDialog.Cancel
+        └── AlertDialog.Action
+```
+
 ## Examples
 
 ### Basic

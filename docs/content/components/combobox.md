@@ -124,6 +124,22 @@ See installation instructions for the [Popover](/docs/components/popover#install
 
 </CodeCollapsibleWrapper>
 
+## Composition
+
+The Combobox is not a single component — it is built by composing `Popover` and `Command` together:
+
+```text
+Popover.Root
+├── Popover.Trigger
+└── Popover.Content
+    └── Command.Root
+        ├── Command.Input
+        └── Command.List
+            ├── Command.Empty
+            └── Command.Group
+                └── Command.Item
+```
+
 ## Examples
 
 ### Combobox

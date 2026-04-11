@@ -70,6 +70,16 @@ We do not wrap LayerChart. This means you're not locked into an abstraction. Whe
 
 **The components are yours**.
 
+## Composition
+
+Use the following composition to build a `Chart`:
+
+```text
+Chart.Container
+└── [LayerChart component (e.g. BarChart, LineChart)]
+    └── Chart.Tooltip (via tooltip snippet)
+```
+
 ## Installation
 
 <InstallTabs>

@@ -77,6 +77,27 @@ Update the import paths to match your project setup.
 </Avatar.Root>
 ```
 
+## Composition
+
+Use the following composition to build an `Avatar`:
+
+```text
+Avatar.Root
+├── Avatar.Image
+├── Avatar.Fallback
+└── Avatar.Badge (optional)
+```
+
+To display a group of avatars, use `Avatar.Group`:
+
+```text
+Avatar.Group
+├── Avatar.Root
+│   ├── Avatar.Image
+│   └── Avatar.Fallback
+└── Avatar.GroupCount (optional)
+```
+
 ## Examples
 
 ### Basic

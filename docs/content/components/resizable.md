@@ -78,6 +78,17 @@ Update the import paths to match your project setup.
 </Resizable.PaneGroup>
 ```
 
+## Composition
+
+Use the following composition to build a `Resizable` layout:
+
+```text
+Resizable.PaneGroup
+├── Resizable.Pane
+├── Resizable.Handle
+└── Resizable.Pane
+```
+
 ## Examples
 
 ### Vertical

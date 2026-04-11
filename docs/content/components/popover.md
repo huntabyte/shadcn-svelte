@@ -77,6 +77,22 @@ Update the import paths to match your project setup.
 </Popover.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `Popover`:
+
+```text
+Popover.Root
+├── Popover.Trigger
+└── Popover.Content
+    ├── Popover.Header
+    │   ├── Popover.Title
+    │   └── Popover.Description
+    └── Popover.Close
+```
+
+`Popover.Portal` can wrap `Popover.Content` to render it in a different part of the DOM.
+
 ## Examples
 
 ### Basic

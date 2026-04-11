@@ -61,6 +61,17 @@ Copy and paste the following code into your project.
 </ButtonGroup.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `ButtonGroup`:
+
+```text
+ButtonGroup.Root
+├── Button (or any child)
+├── ButtonGroup.Separator
+└── ButtonGroup.Text
+```
+
 ## Accessibility
 
 - The `ButtonGroup` component has the `role` attribute set to `group`.

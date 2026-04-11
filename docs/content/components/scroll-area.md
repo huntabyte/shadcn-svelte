@@ -81,6 +81,15 @@ Update the import paths to match your project setup.
 </ScrollArea>
 ```
 
+## Composition
+
+Use the following composition to build a `ScrollArea`:
+
+```text
+ScrollArea.Root
+└── ScrollArea.Scrollbar
+```
+
 ## Examples
 
 ### Horizontal Scrolling

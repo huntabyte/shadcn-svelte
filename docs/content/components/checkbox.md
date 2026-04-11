@@ -74,6 +74,14 @@ Update the import paths to match your project setup.
 <Checkbox />
 ```
 
+## Composition
+
+Use the following composition to build a `Checkbox`:
+
+```text
+Checkbox
+```
+
 ## Checked State
 
 Use `defaultChecked` for uncontrolled checkboxes, or `checked` and

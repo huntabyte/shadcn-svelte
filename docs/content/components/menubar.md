@@ -89,6 +89,30 @@ Update the import paths to match your project setup.
 </Menubar.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `Menubar`:
+
+```text
+Menubar.Root
+└── Menubar.Menu
+    ├── Menubar.Trigger
+    └── Menubar.Content
+        ├── Menubar.Item
+        │   └── Menubar.Shortcut
+        ├── Menubar.CheckboxItem
+        ├── Menubar.RadioGroup
+        │   └── Menubar.RadioItem
+        ├── Menubar.Group
+        │   ├── Menubar.GroupHeading
+        │   └── Menubar.Item
+        ├── Menubar.Sub
+        │   ├── Menubar.SubTrigger
+        │   └── Menubar.SubContent
+        ├── Menubar.Label
+        └── Menubar.Separator
+```
+
 ## Examples
 
 ### Checkbox

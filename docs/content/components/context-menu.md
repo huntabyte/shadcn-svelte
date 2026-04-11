@@ -82,6 +82,25 @@ Update the import paths to match your project setup.
 </ContextMenu.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `ContextMenu`:
+
+```text
+ContextMenu.Root
+├── ContextMenu.Trigger
+└── ContextMenu.Content
+    ├── ContextMenu.Label
+    ├── ContextMenu.Item
+    ├── ContextMenu.CheckboxItem
+    ├── ContextMenu.RadioGroup
+    │   └── ContextMenu.RadioItem
+    ├── ContextMenu.Sub
+    │   ├── ContextMenu.SubTrigger
+    │   └── ContextMenu.SubContent
+    └── ContextMenu.Separator
+```
+
 ## Examples
 
 ### Basic

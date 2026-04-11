@@ -70,6 +70,32 @@ Update the import paths to match your project setup.
 {/snippet}
 </InstallTabs>
 
+## Composition
+
+Use the following composition to build a `RangeCalendar`:
+
+```text
+RangeCalendar.Root
+└── RangeCalendar.Months
+    └── RangeCalendar.Month
+        ├── RangeCalendar.Caption
+        │   ├── RangeCalendar.Nav
+        │   │   ├── RangeCalendar.PrevButton
+        │   │   └── RangeCalendar.NextButton
+        │   └── RangeCalendar.Heading
+        ├── RangeCalendar.Header
+        │   ├── RangeCalendar.MonthSelect
+        │   └── RangeCalendar.YearSelect
+        └── RangeCalendar.Grid
+            ├── RangeCalendar.GridHead
+            │   └── RangeCalendar.GridRow
+            │       └── RangeCalendar.HeadCell
+            └── RangeCalendar.GridBody
+                └── RangeCalendar.GridRow
+                    └── RangeCalendar.Cell
+                        └── RangeCalendar.Day
+```
+
 ## API Reference
 
 See the [Bits UI](https://bits-ui.com/docs/components/range-calendar#api-reference) documentation for more information.

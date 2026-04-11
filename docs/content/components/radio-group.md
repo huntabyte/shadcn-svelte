@@ -84,6 +84,15 @@ Update the import paths to match your project setup.
 </RadioGroup.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `RadioGroup`:
+
+```text
+RadioGroup.Root
+└── RadioGroup.Item
+```
+
 ## Examples
 
 ### Description

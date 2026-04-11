@@ -86,6 +86,18 @@ Update the import paths to match your project setup.
 </Carousel.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `Carousel`:
+
+```text
+Carousel.Root
+├── Carousel.Content
+│   └── Carousel.Item
+├── Carousel.Previous
+└── Carousel.Next
+```
+
 ## Examples
 
 ### Sizes

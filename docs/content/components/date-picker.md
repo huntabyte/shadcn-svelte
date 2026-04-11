@@ -66,6 +66,18 @@ See installation instructions for the [Popover](/docs/components/popover#install
 </Popover.Root>
 ```
 
+## Composition
+
+The Date Picker is not a single component — it is composed from `Popover` and `Calendar` (or `RangeCalendar`):
+
+```text
+Popover.Root
+├── Popover.Trigger
+│   └── Button (displays selected date)
+└── Popover.Content
+    └── Calendar (or RangeCalendar)
+```
+
 ## Examples
 
 ### Basic

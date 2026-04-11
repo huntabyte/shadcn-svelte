@@ -87,6 +87,24 @@ Update the import paths to match your project setup.
 </Field.Set>
 ```
 
+## Composition
+
+Use the following composition to build a `Field`:
+
+```text
+Field.Set
+├── Field.Legend
+└── Field.Group
+    ├── Field.Separator
+    └── Field.Field
+        ├── Field.Label
+        ├── Field.Content
+        │   ├── Field.Title
+        │   └── Field.Description
+        ├── Field.Description
+        └── Field.Error
+```
+
 ## Anatomy
 
 The `Field` family is designed for composing accessible forms. A typical field is structured as follows:

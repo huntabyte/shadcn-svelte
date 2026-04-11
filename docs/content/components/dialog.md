@@ -85,6 +85,22 @@ Update the import paths to match your project setup.
 </Dialog.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `Dialog`:
+
+```text
+Dialog.Root
+├── Dialog.Trigger
+└── Dialog.Content
+    ├── Dialog.Header
+    │   ├── Dialog.Title
+    │   └── Dialog.Description
+    ├── (your content)
+    ├── Dialog.Footer
+    └── Dialog.Close
+```
+
 ## Examples
 
 ### Custom close button

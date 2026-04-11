@@ -83,6 +83,22 @@ Update the import paths to match your project setup.
 </Select.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `Select`:
+
+```text
+Select.Root
+├── Select.Trigger
+└── Select.Content
+    ├── Select.ScrollUpButton
+    ├── Select.Group
+    │   ├── Select.Label
+    │   ├── Select.Item
+    │   └── Select.Separator
+    └── Select.ScrollDownButton
+```
+
 ## Examples
 
 ### Groups

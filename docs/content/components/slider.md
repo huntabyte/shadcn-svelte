@@ -75,6 +75,14 @@ Update the import paths to match your project setup.
 <Slider type="single" bind:value max={100} step={1} />
 ```
 
+## Composition
+
+`Slider` is a single self-contained component with no sub-components:
+
+```text
+Slider
+```
+
 ## Examples
 
 ### Range

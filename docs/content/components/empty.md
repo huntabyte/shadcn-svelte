@@ -77,6 +77,19 @@ Update the import paths to match your project setup.
 </Empty.Root>
 ```
 
+## Composition
+
+Use the following composition to build an `Empty`:
+
+```text
+Empty.Root
+├── Empty.Header
+│   ├── Empty.Media
+│   ├── Empty.Title
+│   └── Empty.Description
+└── Empty.Content
+```
+
 ## Examples
 
 ### Outline

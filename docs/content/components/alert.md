@@ -69,6 +69,17 @@ Update the import paths to match your project setup.
 </Alert.Root>
 ```
 
+## Composition
+
+Use the following composition to build an `Alert`:
+
+```text
+Alert.Root
+├── Alert.Title
+├── Alert.Description
+└── Alert.Action (optional)
+```
+
 ## Examples
 
 ### Basic

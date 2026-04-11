@@ -86,6 +86,29 @@ Update the import paths to match your project setup.
 </DropdownMenu.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `DropdownMenu`:
+
+```text
+DropdownMenu.Root
+├── DropdownMenu.Trigger
+└── DropdownMenu.Content
+    ├── DropdownMenu.Label
+    ├── DropdownMenu.Item
+    ├── DropdownMenu.Separator
+    ├── DropdownMenu.Group
+    │   ├── DropdownMenu.GroupHeading
+    │   └── DropdownMenu.Item
+    ├── DropdownMenu.CheckboxItem
+    ├── DropdownMenu.RadioGroup
+    │   └── DropdownMenu.RadioItem
+    └── DropdownMenu.Sub
+        ├── DropdownMenu.SubTrigger
+        └── DropdownMenu.SubContent
+            └── DropdownMenu.Item
+```
+
 ## Examples
 
 ### Basic

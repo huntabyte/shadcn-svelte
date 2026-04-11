@@ -78,6 +78,25 @@ Update the import paths to match your project setup.
 </Breadcrumb.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `Breadcrumb`:
+
+```text
+Breadcrumb.Root
+└── Breadcrumb.List
+    ├── Breadcrumb.Item
+    │   └── Breadcrumb.Link
+    ├── Breadcrumb.Separator
+    ├── Breadcrumb.Item
+    │   └── Breadcrumb.Link
+    ├── Breadcrumb.Separator
+    └── Breadcrumb.Item
+        └── Breadcrumb.Page
+```
+
+Use `Breadcrumb.Ellipsis` inside a `Breadcrumb.Item` to represent collapsed items.
+
 ## Examples
 
 ### Basic

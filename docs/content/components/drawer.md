@@ -90,6 +90,22 @@ Update the import paths to match your project setup.
 </Drawer.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `Drawer`:
+
+```text
+Drawer.Root
+├── Drawer.Trigger
+└── Drawer.Content
+    ├── Drawer.Header
+    │   ├── Drawer.Title
+    │   └── Drawer.Description
+    ├── (your content)
+    ├── Drawer.Footer
+    └── Drawer.Close
+```
+
 ## Examples
 
 ### Scrollable Content

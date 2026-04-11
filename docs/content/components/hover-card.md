@@ -80,6 +80,16 @@ Update the import paths to match your project setup.
 </HoverCard.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `HoverCard`:
+
+```text
+HoverCard.Root
+├── HoverCard.Trigger
+└── HoverCard.Content
+```
+
 ## Examples
 
 ### Basic

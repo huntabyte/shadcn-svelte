@@ -93,6 +93,18 @@ Then use tooltips anywhere in your app:
 </Tooltip.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `Tooltip`:
+
+```text
+Tooltip.Provider
+└── Tooltip.Root
+    ├── Tooltip.Trigger
+    └── Tooltip.Portal
+        └── Tooltip.Content
+```
+
 ### Nested Providers
 
 You can nest providers to create groups with different settings. Tooltips use the closest ancestor provider. This is useful when you want instant tooltips in specific areas:

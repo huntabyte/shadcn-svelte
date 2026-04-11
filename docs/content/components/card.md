@@ -76,6 +76,20 @@ Update the import paths to match your project setup.
 </Card.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `Card`:
+
+```text
+Card.Root
+├── Card.Header
+│   ├── Card.Title
+│   ├── Card.Description
+│   └── Card.Action
+├── Card.Content
+└── Card.Footer
+```
+
 ## Examples
 
 ### Small

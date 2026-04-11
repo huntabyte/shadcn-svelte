@@ -82,6 +82,24 @@ Update the import paths to match your project setup.
 </Table.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `Table`:
+
+```text
+Table.Root
+├── Table.Caption
+├── Table.Header
+│   └── Table.Row
+│       └── Table.Head
+└── Table.Body
+    └── Table.Row
+        └── Table.Cell
+└── Table.Footer
+    └── Table.Row
+        └── Table.Cell
+```
+
 ## Examples
 
 ### Footer

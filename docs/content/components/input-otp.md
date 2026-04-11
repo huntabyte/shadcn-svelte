@@ -92,6 +92,17 @@ Update the import paths to match your project setup.
 </InputOTP.Root>
 ```
 
+## Composition
+
+Use the following composition to build an `InputOTP`:
+
+```text
+InputOTP.Root
+├── InputOTP.Group
+│   └── InputOTP.Slot
+└── InputOTP.Separator
+```
+
 ## Pattern
 
 Use the `pattern` prop to restrict input to a specific pattern. The `REGEXP_ONLY_DIGITS` constant can be imported from `bits-ui`.

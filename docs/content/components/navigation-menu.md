@@ -91,6 +91,22 @@ When using the `NavigationMenu.Link` component as a child of a SvelteKit `<a>` e
 </NavigationMenu.Link>
 ```
 
+## Composition
+
+Use the following composition to build a `NavigationMenu`:
+
+```text
+NavigationMenu.Root
+└── NavigationMenu.List
+    └── NavigationMenu.Item
+        ├── NavigationMenu.Trigger
+        ├── NavigationMenu.Content
+        │   └── NavigationMenu.Link
+        └── NavigationMenu.Link
+```
+
+`NavigationMenu.Viewport` and `NavigationMenu.Indicator` are optional elements that can be placed outside the list for custom layouts.
+
 ## API Reference
 
 See the [Bits UI](https://bits-ui.com/docs/components/navigation-menu#api-reference) documentation for more information.

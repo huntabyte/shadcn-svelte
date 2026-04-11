@@ -78,6 +78,15 @@ Update the import paths to match your project setup.
 </ToggleGroup.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `ToggleGroup`:
+
+```text
+ToggleGroup.Root
+└── ToggleGroup.Item
+```
+
 ## Examples
 
 ### Outline

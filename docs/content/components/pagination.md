@@ -118,6 +118,22 @@ Update the import paths to match your project setup.
 </Pagination.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `Pagination`:
+
+```text
+Pagination.Root
+└── Pagination.Content
+    ├── Pagination.Item
+    │   └── Pagination.Previous
+    ├── Pagination.Item
+    │   ├── Pagination.Link
+    │   └── Pagination.Ellipsis
+    └── Pagination.Item
+        └── Pagination.Next
+```
+
 ## API Reference
 
 See the [Bits UI](https://bits-ui.com/docs/components/pagination#api-reference) documentation for more information.

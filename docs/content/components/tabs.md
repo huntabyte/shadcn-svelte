@@ -83,6 +83,17 @@ Update the import paths to match your project setup.
 </Tabs.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `Tabs`:
+
+```text
+Tabs.Root
+├── Tabs.List
+│   └── Tabs.Trigger
+└── Tabs.Content
+```
+
 ## Examples
 
 ### Line

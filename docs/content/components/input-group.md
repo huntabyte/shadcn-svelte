@@ -82,6 +82,19 @@ Update the import paths to match your project setup.
 </InputGroup.Root>
 ```
 
+## Composition
+
+Use the following composition to build an `InputGroup`:
+
+```text
+InputGroup.Root
+├── InputGroup.Input
+├── InputGroup.Textarea
+└── InputGroup.Addon
+    ├── InputGroup.Button
+    └── InputGroup.Text
+```
+
 ## Align
 
 Use the `align` prop on `InputGroup.Addon` to position the addon relative to the input.

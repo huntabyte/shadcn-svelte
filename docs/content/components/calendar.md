@@ -79,6 +79,29 @@ If you're looking for a range calendar, check out the [Range Calendar](/docs/com
 
 You can use the `<Calendar />` component to build a date picker. See the [Date Picker](/docs/components/date-picker) page for more information.
 
+## Composition
+
+For most use cases, use the `Calendar` component directly. For advanced customization, you can compose a calendar manually using the following sub-components:
+
+```text
+Calendar.Root (Calendar)
+├── Calendar.Months
+│   └── Calendar.Month
+│       ├── Calendar.Caption
+│       │   ├── Calendar.Nav
+│       │   │   ├── Calendar.PrevButton
+│       │   │   └── Calendar.NextButton
+│       │   └── Calendar.Heading
+│       └── Calendar.Grid
+│           ├── Calendar.GridHead
+│           │   └── Calendar.GridRow
+│           │       └── Calendar.HeadCell
+│           └── Calendar.GridBody
+│               └── Calendar.GridRow
+│                   └── Calendar.Cell
+│                       └── Calendar.Day
+```
+
 ## Examples
 
 ### Basic

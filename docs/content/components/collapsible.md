@@ -80,6 +80,16 @@ Update the import paths to match your project setup.
 </Collapsible.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `Collapsible`:
+
+```text
+Collapsible.Root
+├── Collapsible.Trigger
+└── Collapsible.Content
+```
+
 ## Examples
 
 ### Basic

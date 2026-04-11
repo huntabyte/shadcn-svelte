@@ -75,6 +75,30 @@ Update the import paths to match your project setup.
 </Item.Root>
 ```
 
+## Composition
+
+Use the following composition to build an `Item`:
+
+```text
+Item.Root
+├── Item.Header
+├── Item.Media
+├── Item.Content
+│   ├── Item.Title
+│   └── Item.Description
+├── Item.Actions
+└── Item.Footer
+```
+
+Use `Item.Group` to group related items:
+
+```text
+Item.Group
+├── Item.Root
+├── Item.Separator
+└── Item.Root
+```
+
 ## Item vs Field
 
 Use `Field` if you need to display a form input such as a checkbox, input, radio, or select.

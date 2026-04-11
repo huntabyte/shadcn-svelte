@@ -85,6 +85,23 @@ Update the import paths to match your project setup.
 </Sheet.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `Sheet`:
+
+```text
+Sheet.Root
+├── Sheet.Trigger
+├── Sheet.Portal
+│   └── Sheet.Overlay
+└── Sheet.Content
+    ├── Sheet.Close
+    ├── Sheet.Header
+    │   ├── Sheet.Title
+    │   └── Sheet.Description
+    └── Sheet.Footer
+```
+
 ## Examples
 
 ### Side

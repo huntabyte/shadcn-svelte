@@ -305,6 +305,36 @@ We'll use the `Sidebar.Menu` component in a `Sidebar.Group`.
 
 </Steps>
 
+## Composition
+
+Use the following composition to build a `Sidebar`:
+
+```text
+Sidebar.Provider
+├── Sidebar.Root
+│   ├── Sidebar.Header
+│   ├── Sidebar.Content
+│   │   ├── Sidebar.Group
+│   │   │   ├── Sidebar.GroupLabel
+│   │   │   ├── Sidebar.GroupAction
+│   │   │   └── Sidebar.GroupContent
+│   │   │       └── Sidebar.Menu
+│   │   │           └── Sidebar.MenuItem
+│   │   │               ├── Sidebar.MenuButton
+│   │   │               ├── Sidebar.MenuAction
+│   │   │               ├── Sidebar.MenuBadge
+│   │   │               ├── Sidebar.MenuSkeleton
+│   │   │               └── Sidebar.MenuSub
+│   │   │                   └── Sidebar.MenuSubItem
+│   │   │                       └── Sidebar.MenuSubButton
+│   │   └── Sidebar.Separator
+│   ├── Sidebar.Footer
+│   └── Sidebar.Rail
+├── Sidebar.Trigger
+├── Sidebar.Input
+└── Sidebar.Inset
+```
+
 ## Components
 
 The components in the `sidebar-*.svelte` files are built to be composable i.e you build your sidebar by putting the provided components together. They also compose well with other shadcn-svelte components such as `DropdownMenu`, `Collapsible`, `Dialog`, etc.
