@@ -212,7 +212,7 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 		</DropdownMenu.Root>
 		<Separator
 			orientation="vertical"
-			class="bg-foreground/10! absolute end-8 top-0 z-0 h-8! peer-focus-visible:opacity-0 sm:end-7 sm:h-7!"
+			class="bg-foreground/5! absolute top-1 right-8 z-0 h-6! peer-focus-visible:opacity-0 sm:right-7 sm:h-5!"
 		/>
 		<Popover.Trigger class="flex sm:hidden">
 			{#snippet child({ props })}
