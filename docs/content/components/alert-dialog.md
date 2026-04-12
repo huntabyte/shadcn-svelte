@@ -97,8 +97,8 @@ Use the following composition to build an `AlertDialog`:
 AlertDialog.Root
 ├── AlertDialog.Trigger
 └── AlertDialog.Content
-    ├── AlertDialog.Media (optional)
     ├── AlertDialog.Header
+    │   ├── AlertDialog.Media
     │   ├── AlertDialog.Title
     │   └── AlertDialog.Description
     └── AlertDialog.Footer
