@@ -58,7 +58,7 @@
 		"@hugeicons/core-free-icons": "^4.1.1",
 		"@hugeicons/svelte": "^1.1.2",
 		"@internationalized/date": "^3.12.0",
-		"@lucide/svelte": "^1.7.0",
+		"@lucide/svelte": "^1.8.0",
 		"@prettier/sync": "0.6.1",
 		"@shadcn-svelte/registry": "workspace:*",
 		"@shikijs/langs": "^4.0.2",
@@ -79,7 +79,7 @@
 		"@types/mdast": "^4.0.4",
 		"@types/qrcode": "^1.5.6",
 		"acorn": "^8.16.0",
-		"bits-ui": "^2.17.2",
+		"bits-ui": "^2.17.3",
 		"chrono-node": "^2.9.0",
 		"clsx": "^2.1.1",
 		"consola": "^3.4.2",
@@ -133,7 +133,7 @@
 		"unist-util-visit": "^5.1.0",
 		"vaul-svelte": "1.0.0-next.7",
 		"velite": "^0.3.1",
-		"vite": "^8.0.5",
+		"vite": "^8.0.8",
 		"zod": "catalog:"
 	},
 	"dependencies": {
