@@ -87,7 +87,13 @@
 			>
 				{#snippet belowMarks()}
 					{#each gridRadii as r}
-						<circle cx="0" cy="0" {r} class="fill-none stroke-muted-foreground/20" stroke-width="1" />
+						<circle
+							cx="0"
+							cy="0"
+							{r}
+							class="stroke-muted-foreground/20 fill-none"
+							stroke-width="1"
+						/>
 					{/each}
 				{/snippet}
 				{#snippet tooltip()}
