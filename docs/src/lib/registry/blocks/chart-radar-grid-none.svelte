@@ -3,6 +3,7 @@
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { curveLinearClosed } from "d3-shape";
 	import { scaleBand } from "d3-scale";
+	import { onMount } from "svelte";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 
@@ -18,6 +19,13 @@
 	const chartConfig = {
 		desktop: { label: "Desktop", color: "var(--chart-1)" },
 	} satisfies Chart.ChartConfig;
+
+	const maxValue = Math.max(...chartData.map((d) => d.desktop));
+	let yEnd = $state(maxValue * 100);
+
+	onMount(() => {
+		yEnd = maxValue;
+	});
 </script>
 
 <Card.Root>
@@ -39,16 +47,17 @@
 				radial
 				x="month"
 				xScale={scaleBand()}
+				yDomain={[0, yEnd]}
 				points={{ r: 4 }}
 				padding={12}
 				grid={false}
+				motion={Chart.defaultMotion}
 				props={{
 					spline: {
 						curve: curveLinearClosed,
 						fill: "var(--color-desktop)",
 						fillOpacity: 0.6,
 						stroke: "0",
-						motion: Chart.defaultMotion,
 					},
 					xAxis: {
 						tickLength: 0,
