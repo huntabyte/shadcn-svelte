@@ -38,7 +38,7 @@
 				c="color"
 				innerRadius={60}
 				padding={28}
-				props={{ pie: { motion: "tween" } }}
+				props={{ pie: { motion: Chart.defaultMotion } }}
 			>
 				{#snippet aboveMarks()}
 					<Text

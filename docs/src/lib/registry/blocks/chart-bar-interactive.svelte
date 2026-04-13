@@ -3,7 +3,6 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { scaleUtc } from "d3-scale";
 	import { BarChart, Highlight } from "layerchart";
-	import { cubicInOut } from "svelte/easing";
 
 	const chartData = [
 		{ date: new Date("2024-04-01"), desktop: 222, mobile: 150 },
@@ -156,7 +155,7 @@
 					bars: {
 						stroke: "none",
 						rounded: "none",
-						motion: { type: "tween", duration: 500, easing: cubicInOut },
+						motion: Chart.defaultBarMotion,
 					},
 					highlight: { area: { fill: "none" } },
 					xAxis: {

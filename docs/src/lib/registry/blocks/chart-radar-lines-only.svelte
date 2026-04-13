@@ -49,7 +49,7 @@
 					},
 				]}
 				props={{
-					spline: { curve: curveLinearClosed, motion: "tween" },
+					spline: { curve: curveLinearClosed, motion: Chart.defaultMotion },
 					grid: { radialY: "linear", x: false },
 					yAxis: { format: () => "" },
 					tooltip: { context: { mode: "voronoi" } },

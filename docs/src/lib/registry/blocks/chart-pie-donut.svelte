@@ -36,7 +36,7 @@
 				c="color"
 				innerRadius={60}
 				padding={29}
-				props={{ pie: { motion: "tween" } }}
+				props={{ pie: { motion: Chart.defaultMotion } }}
 			>
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel />

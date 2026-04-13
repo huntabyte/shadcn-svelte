@@ -58,7 +58,7 @@
 					spline: {
 						curve: curveLinearClosed,
 						stroke: "0",
-						motion: "tween",
+						motion: Chart.defaultMotion,
 					},
 					xAxis: {
 						placement: "angle",

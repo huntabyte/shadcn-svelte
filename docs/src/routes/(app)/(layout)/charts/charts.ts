@@ -36,7 +36,7 @@ import ChartPieLabelCustom from "$lib/registry/blocks/chart-pie-label-custom.sve
 import ChartPieLabelList from "$lib/registry/blocks/chart-pie-label-list.svelte";
 import ChartPieLabel from "$lib/registry/blocks/chart-pie-label.svelte";
 import ChartPieLegend from "$lib/registry/blocks/chart-pie-legend.svelte";
-// import ChartPieSeparatorNone from "$lib/registry/blocks/chart-pie-separator-none.svelte";
+import ChartPieSeparatorNone from "$lib/registry/blocks/chart-pie-separator-none.svelte";
 import ChartPieSimple from "$lib/registry/blocks/chart-pie-simple.svelte";
 import ChartPieStacked from "$lib/registry/blocks/chart-pie-stacked.svelte";
 import ChartRadarDefault from "$lib/registry/blocks/chart-radar-default.svelte";
@@ -137,7 +137,7 @@ export const charts: ChartGroups = {
 	],
 	pie: [
 		{ id: "chart-pie-simple", component: ChartPieSimple },
-		// { id: "chart-pie-separator-none", component: ChartPieSeparatorNone },
+		{ id: "chart-pie-separator-none", component: ChartPieSeparatorNone },
 		{ id: "chart-pie-label", component: ChartPieLabel },
 		{ id: "chart-pie-label-custom", component: ChartPieLabelCustom },
 		{ id: "chart-pie-label-list", component: ChartPieLabelList },

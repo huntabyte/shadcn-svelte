@@ -85,7 +85,7 @@
 							const monthOrder = ["january", "february", "march", "april", "may"];
 							return monthOrder.indexOf(a.month) - monthOrder.indexOf(b.month);
 						},
-						motion: "tween",
+						motion: Chart.defaultMotion,
 					},
 				}}
 				innerRadius={60}

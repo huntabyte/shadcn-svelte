@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AreaChart } from "layerchart";
+	import { AreaChart, Area, ChartClipPath } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { curveStep } from "d3-shape";
 	import { scaleUtc } from "d3-scale";
@@ -45,7 +45,6 @@
 						curve: curveStep,
 						fillOpacity: 0.4,
 						line: { class: "stroke-1" },
-						motion: "tween",
 					},
 					xAxis: {
 						format: (v: Date) => v.toLocaleDateString("en-US", { month: "short" }),
@@ -53,6 +52,13 @@
 					yAxis: { format: () => "" },
 				}}
 			>
+				{#snippet marks({ context })}
+					<ChartClipPath initialWidth={0} motion={Chart.defaultClipMotion}>
+						{#each context.series.visibleSeries as s (s.key)}
+							<Area seriesKey={s.key} curve={curveStep} fillOpacity={0.4} line={{ class: "stroke-1" }} {...s.props} />
+						{/each}
+					</ChartClipPath>
+				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel />
 				{/snippet}

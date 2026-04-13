@@ -41,7 +41,7 @@
 				props={{
 					spline: {
 						curve: curveNatural,
-						motion: "tween",
+						motion: Chart.defaultMotion,
 						strokeWidth: 2,
 						stroke: "var(--color-visitors)",
 					},

@@ -57,7 +57,7 @@
 				props={{
 					pie: {
 						sort: sortMonths,
-						motion: "tween",
+						motion: Chart.defaultMotion,
 					},
 					tooltip: {
 						context: {

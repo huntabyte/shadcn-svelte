@@ -20,6 +20,12 @@
 		edge: { label: "Edge", color: "var(--chart-4)" },
 		other: { label: "Other", color: "var(--chart-5)" },
 	} satisfies Chart.ChartConfig;
+
+	// With outerRadius={-17}, innerRadius={-12.5}, padding={20}, and a 250px container:
+	// usable radius ≈ (250/2) - 20 = 105
+	// outermost arc outer edge ≈ 105 - 17 = 88
+	// each band is 12.5 wide, so 5 bands span radii from ~26 to ~88
+	const gridRadii = [20, 32, 44, 56, 68, 80, 92];
 </script>
 
 <Card.Root>
@@ -43,10 +49,15 @@
 					data: [d],
 				}))}
 				props={{
-					arc: { track: { fill: "var(--muted)" }, motion: "tween" },
+					arc: { track: { fill: "var(--muted)" }, motion: Chart.defaultMotion },
 					tooltip: { context: { hideDelay: 350 } },
 				}}
 			>
+				{#snippet belowMarks()}
+					{#each gridRadii as r}
+						<circle cx="0" cy="0" {r} class="fill-none stroke-muted-foreground/20" stroke-width="1" />
+					{/each}
+				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel nameKey="browser" />
 				{/snippet}

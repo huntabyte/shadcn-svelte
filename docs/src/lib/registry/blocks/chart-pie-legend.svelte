@@ -41,7 +41,7 @@
 				cRange={chartData.map((d) => d.color)}
 				props={{
 					pie: {
-						motion: "tween",
+						motion: Chart.defaultMotion,
 					},
 				}}
 				legend

@@ -6,7 +6,6 @@
 	import { Area, AreaChart, ChartClipPath } from "layerchart";
 	import { curveNatural } from "d3-shape";
 	import ChartContainer from "../ui/chart/chart-container.svelte";
-	import { cubicInOut } from "svelte/easing";
 
 	const chartData = [
 		{ date: new Date("2024-04-01"), desktop: 222, mobile: 150 },
@@ -214,9 +213,7 @@
 					</defs>
 					<ChartClipPath
 						initialWidth={0}
-						motion={{
-							width: { type: "tween", duration: 1000, easing: cubicInOut },
-						}}
+						motion={Chart.defaultClipMotion}
 					>
 						{#each context.series.visibleSeries as s (s.key)}
 							<Area
@@ -224,7 +221,6 @@
 								curve={curveNatural}
 								fillOpacity={0.4}
 								line={{ class: "stroke-1" }}
-								motion="tween"
 								{...s.props}
 								fill={s.key === "desktop"
 									? "url(#fillDesktop)"

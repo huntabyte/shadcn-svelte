@@ -37,7 +37,7 @@
 				c="color"
 				props={{
 					pie: {
-						motion: "tween",
+						motion: Chart.defaultMotion,
 					},
 				}}
 			>

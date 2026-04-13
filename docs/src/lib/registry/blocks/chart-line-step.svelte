@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { LineChart } from "layerchart";
+	import { LineChart, Spline, ChartClipPath } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { scaleUtc } from "d3-scale";
 	import { curveStep } from "d3-shape";
@@ -40,13 +40,19 @@
 					},
 				]}
 				props={{
-					spline: { curve: curveStep, motion: "tween", strokeWidth: 2 },
 					xAxis: {
 						format: (v: Date) => v.toLocaleDateString("en-US", { month: "short" }),
 					},
 					highlight: { points: { r: 4 } },
 				}}
 			>
+				{#snippet marks({ context })}
+					<ChartClipPath initialWidth={0} motion={Chart.defaultClipMotion}>
+						{#each context.series.visibleSeries as s (s.key)}
+							<Spline seriesKey={s.key} curve={curveStep} strokeWidth={2} {...s.props} />
+						{/each}
+					</ChartClipPath>
+				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel />
 				{/snippet}

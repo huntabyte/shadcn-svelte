@@ -47,7 +47,7 @@
 						fill: "var(--color-desktop)",
 						fillOpacity: 0.6,
 						stroke: "0",
-						motion: "tween",
+						motion: Chart.defaultMotion,
 					},
 					xAxis: {
 						tickLength: 0,
