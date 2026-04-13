@@ -153,6 +153,7 @@
 				xScale={scaleUtc()}
 				axis="x"
 				series={activeSeries}
+				yPadding={[0, 25]}
 				props={{
 					xAxis: {
 						format: (v: Date) => {
