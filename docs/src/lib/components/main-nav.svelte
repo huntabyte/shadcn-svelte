@@ -3,7 +3,7 @@
 	import { cn } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 	import { page } from "$app/state";
-	import type { NavItem } from "$lib/navigation.js";
+	import type { NavItem } from "$lib/config.js";
 
 	let {
 		items,

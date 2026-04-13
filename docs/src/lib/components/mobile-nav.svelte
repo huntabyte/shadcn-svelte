@@ -3,7 +3,7 @@
 	import { Button, type ButtonProps } from "$lib/registry/ui/button/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import type { HTMLAnchorAttributes } from "svelte/elements";
-	import { mainNavItems, sidebarNavItems, PAGES_NEW } from "$lib/navigation.js";
+	import { mainNavItems, sidebarNavItems, PAGES_NEW } from "$lib/config.js";
 
 	type MobileLinkProps = HTMLAnchorAttributes & {
 		content?: string;

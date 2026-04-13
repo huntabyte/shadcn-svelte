@@ -1,7 +1,7 @@
 <script lang="ts">
 	import DocsSidebar from "$lib/components/docs-sidebar.svelte";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import { sidebarNavItems } from "$lib/navigation.js";
+	import { sidebarNavItems } from "$lib/config.js";
 	let { children } = $props();
 </script>
 

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { components } from "$content/index.js";
-	import { NEW_COMPONENTS } from "$lib/navigation.js";
+	import { PAGES_NEW } from "$lib/docs.js";
 
 	const list = components.filter((c) => {
 		if (c.title === "Components") return false;
@@ -15,7 +15,7 @@
 			class="flex items-center gap-2 text-lg font-medium underline-offset-4 hover:underline md:text-base"
 		>
 			{component.title}
-			{#if NEW_COMPONENTS.has(component.slug)}
+			{#if PAGES_NEW.includes("/docs" + component.slugFull)}
 				<span class="bg-svelte-orange flex size-2 rounded-full" title="New"></span>
 			{/if}
 		</a>

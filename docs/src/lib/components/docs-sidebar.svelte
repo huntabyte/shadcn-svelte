@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import { page } from "$app/state";
-	import { PAGES_NEW, type SidebarNavItem } from "$lib/navigation.js";
+	import { PAGES_NEW, type SidebarNavItem } from "$lib/config.js";
 	import type { ComponentProps } from "svelte";
 
 	let {

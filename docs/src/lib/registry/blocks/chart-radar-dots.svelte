@@ -23,6 +23,13 @@
 	const maxValue = Math.max(...chartData.map((d) => d.desktop));
 	let yEnd = $state(maxValue * 100);
 
+	// With padding={12} and a 250px container:
+	// effective radius ≈ 125 - 12 = 113px
+	// yDomain at rest: [0, 305] (maxValue)
+	// d3 ticks for [0, 305] at count 5 → [50, 100, 150, 200, 250, 300]
+	// circle radii = tick/305 * 113
+	const gridRadii = [19, 37, 56, 74, 93, 111];
+
 	onMount(() => {
 		yEnd = maxValue;
 	});
@@ -65,7 +72,7 @@
 						format: () => "",
 					},
 					grid: {
-						radialY: "linear",
+						y: false,
 					},
 					tooltip: {
 						context: {
@@ -78,6 +85,11 @@
 					},
 				}}
 			>
+				{#snippet belowMarks()}
+					{#each gridRadii as r}
+						<circle cx="0" cy="0" {r} class="fill-none stroke-muted-foreground/20" stroke-width="1" />
+					{/each}
+				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip />
 				{/snippet}

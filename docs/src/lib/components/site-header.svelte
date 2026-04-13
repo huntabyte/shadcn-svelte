@@ -8,7 +8,7 @@
 	import LayoutToggle from "./layout-toggle.svelte";
 	import CommandMenu from "./command-menu/command-menu.svelte";
 	import { getColors } from "$lib/colors.js";
-	import { mainNavItems } from "$lib/navigation.js";
+	import { mainNavItems } from "$lib/config.js";
 	import { HugeiconsIcon } from "@hugeicons/svelte";
 	import { PlusSignIcon } from "@hugeicons/core-free-icons";
 	import Customizer from "./customizer.svelte";

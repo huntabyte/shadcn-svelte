@@ -9,7 +9,7 @@
 	import { cn } from "$lib/utils.js";
 	import { SvelteSet } from "svelte/reactivity";
 
-	import { sidebarNavItems, mainNavItems } from "$lib/navigation.js";
+	import { sidebarNavItems, mainNavItems } from "$lib/config.js";
 
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
 	import CornerDownLeftIcon from "@lucide/svelte/icons/corner-down-left";

@@ -5,7 +5,7 @@
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
 	import RssIcon from "@lucide/svelte/icons/rss";
 	import DocsToc from "$lib/components/docs-toc.svelte";
-	import { findNeighbors } from "$lib/navigation.js";
+	import { findNeighbors } from "$lib/config.js";
 	import { page } from "$app/state";
 	import Cta from "$lib/components/cta.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
