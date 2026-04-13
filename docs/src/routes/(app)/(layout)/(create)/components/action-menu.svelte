@@ -41,7 +41,11 @@
 
 <svelte:document onkeydown={handleKeydown} />
 
-<Command.Dialog bind:open={actionMenuCtx.open} value={page.url.searchParams.get("item") ?? DEFAULT_ITEM} class="animate-none!">
+<Command.Dialog
+	bind:open={actionMenuCtx.open}
+	value={page.url.searchParams.get("item") ?? DEFAULT_ITEM}
+	class="animate-none!"
+>
 	<Command.Input placeholder="Search" />
 	<Command.List>
 		<Command.Empty>No items found.</Command.Empty>
@@ -51,7 +55,8 @@
 					<Command.Item
 						value={item.name}
 						onSelect={() => handleSelect(item.name)}
-						data-checked={(page.url.searchParams.get("item") ?? DEFAULT_ITEM) === item.name}
+						data-checked={(page.url.searchParams.get("item") ?? DEFAULT_ITEM) ===
+							item.name}
 					>
 						{item.title}
 					</Command.Item>

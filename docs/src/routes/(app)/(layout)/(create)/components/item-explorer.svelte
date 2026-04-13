@@ -51,8 +51,10 @@
 										<Sidebar.MenuButton
 											onclick={() => goto(itemHref(item.name))}
 											class="data-[active=true]:bg-accent data-[active=true]:border-accent 3xl:fixed:w-full 3xl:fixed:max-w-48 relative h-[26px] w-fit cursor-pointer overflow-visible border border-transparent text-[0.8rem] font-normal after:absolute after:inset-x-0 after:-inset-y-1 after:z-0 after:rounded-md"
-											data-active={item.name === (page.url.searchParams.get("item") ?? DEFAULT_ITEM)}
-											isActive={item.name === (page.url.searchParams.get("item") ?? DEFAULT_ITEM)}
+											data-active={item.name ===
+												(page.url.searchParams.get("item") ?? DEFAULT_ITEM)}
+											isActive={item.name ===
+												(page.url.searchParams.get("item") ?? DEFAULT_ITEM)}
 										>
 											{item.title}
 											<span
