@@ -82,7 +82,7 @@ get along, so we shut typescript up by casting `value` to `never`.
 					<Calendar.Grid>
 						<Calendar.GridHead>
 							<Calendar.GridRow class="select-none">
-								{#each weekdays as weekday (weekday)}
+								{#each weekdays as weekday, i (i)}
 									<Calendar.HeadCell>
 										{weekday.slice(0, 2)}
 									</Calendar.HeadCell>
