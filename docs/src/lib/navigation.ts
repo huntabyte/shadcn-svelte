@@ -2,7 +2,7 @@ import { components, installation, migration } from "$content/index.js";
 import type { Component } from "svelte";
 
 /** List new components here to highlight them in the sidebar */
-export const NEW_COMPONENTS = new Set(["CLI", "Skills", "Changelog"]);
+export const NEW_COMPONENTS = new Set(["Skills", "Changelog"]);
 
 export type NavItem = {
 	title: string;
