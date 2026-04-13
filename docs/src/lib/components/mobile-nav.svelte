@@ -3,12 +3,10 @@
 	import { Button, type ButtonProps } from "$lib/registry/ui/button/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import type { HTMLAnchorAttributes } from "svelte/elements";
-	import { mainNavItems, sidebarNavItems } from "$lib/navigation.js";
-	import { NEW_COMPONENTS } from "$lib/navigation.js";
+	import { mainNavItems, sidebarNavItems, PAGES_NEW } from "$lib/navigation.js";
 
 	type MobileLinkProps = HTMLAnchorAttributes & {
 		content?: string;
-		indicator?: "new";
 	};
 
 	let { class: className, ...restProps }: ButtonProps = $props();
@@ -23,7 +21,7 @@
 	export { closeMenu };
 </script>
 
-{#snippet MobileLink({ href, content, indicator, class: className, ...props }: MobileLinkProps)}
+{#snippet MobileLink({ href, content, class: className, ...props }: MobileLinkProps)}
 	<a
 		{href}
 		onclick={() => {
@@ -33,7 +31,7 @@
 		{...props}
 	>
 		{content}
-		{#if indicator === "new" || (href && NEW_COMPONENTS.has(href.replace("/docs/components/", "")))}
+		{#if href && PAGES_NEW.includes(href)}
 			<span class="bg-svelte-orange flex size-2 rounded-full" title="New"></span>
 		{/if}
 	</a>
@@ -101,7 +99,6 @@
 								{@render MobileLink({
 									href: item.href,
 									content: item.title,
-									indicator: item.indicator,
 								})}
 							{/each}
 						</div>

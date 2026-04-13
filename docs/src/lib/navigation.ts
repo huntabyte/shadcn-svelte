@@ -1,8 +1,8 @@
 import { components, installation, migration } from "$content/index.js";
 import type { Component } from "svelte";
 
-/** List new components here to highlight them in the sidebar */
-export const NEW_COMPONENTS = new Set(["Skills", "Changelog"]);
+/** List page hrefs here to highlight them as new in the sidebar */
+export const PAGES_NEW = ["/docs/skills", "/docs/changelog"];
 
 export type NavItem = {
 	title: string;
@@ -11,7 +11,6 @@ export type NavItem = {
 	external?: boolean;
 	label?: string;
 	icon?: Component;
-	indicator?: "new";
 };
 
 export type SidebarNavItem = NavItem & {
@@ -80,24 +79,26 @@ function generateSectionsNav(): SidebarNavItem[] {
 		},
 	];
 
-	return sectionsNavItems.map((item) => ({
-		...item,
-		indicator: NEW_COMPONENTS.has(item.title) ? "new" : undefined,
-	}));
+	return sectionsNavItems;
 }
 
 function generateGetStartedNav(): SidebarNavItem[] {
 	const getStartedNavItems: SidebarNavItem[] = [
+		{ title: "Introduction", href: "/docs/introduction", items: [] },
+		{ title: "Installation", href: "/docs/installation", items: [] },
 		{
 			title: "components.json",
 			href: "/docs/components-json",
 			items: [],
 		},
+		{ title: "Theming", href: "/docs/theming", items: [] },
 		{
 			title: "Dark Mode",
 			href: "/docs/dark-mode",
 			items: [],
 		},
+		{ title: "CLI", href: "/docs/cli", items: [] },
+		{ title: "Skills", href: "/docs/skills", items: [] },
 		{
 			title: "JavaScript",
 			href: "/docs/javascript",
@@ -113,6 +114,7 @@ function generateGetStartedNav(): SidebarNavItem[] {
 			href: "/docs/figma",
 			items: [],
 		},
+		{ title: "Changelog", href: "/docs/changelog", items: [] },
 		{
 			title: "llms.txt",
 			href: "/llms.txt",
@@ -172,7 +174,6 @@ function generateComponentsNav(): SidebarNavItem[] {
 		if (doc.title === "Components") continue;
 		componentsNavItems.push({
 			title: doc.title,
-			indicator: NEW_COMPONENTS.has(doc.slug) ? "new" : undefined,
 			href: `/docs/components/${doc.slug}`,
 			items: [],
 		});
@@ -271,18 +272,17 @@ export const sidebarNavItems: SidebarNavItem[] = [
 		title: "Sections",
 		items: sectionsNav,
 	},
-	{
-		title: "Get Started",
-		items: getStartedNav,
-	},
-	{
-		title: "Migration",
-		items: migrationNav.filter((item) => item.title !== "Migration"),
-	},
+
 	{
 		title: "Components",
 		items: componentsNav.filter((item) => item.title !== "Components"),
 	},
+	{
+		title: "Get Started",
+		items: getStartedNav,
+	},
+	{ title: "Changelog", href: "/docs/changelog", items: [] },
+
 	{
 		title: "Installation",
 		items: installationNav.filter((item) => item.title !== "Installation"),
@@ -294,6 +294,10 @@ export const sidebarNavItems: SidebarNavItem[] = [
 	{
 		title: "Registry",
 		items: registryNav,
+	},
+	{
+		title: "Migration",
+		items: migrationNav.filter((item) => item.title !== "Migration"),
 	},
 ];
 

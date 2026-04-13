@@ -9,7 +9,7 @@
 	import { cn } from "$lib/utils.js";
 	import { SvelteSet } from "svelte/reactivity";
 
-	import { sidebarNavItems } from "$lib/navigation.js";
+	import { sidebarNavItems, mainNavItems } from "$lib/navigation.js";
 
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
 	import CornerDownLeftIcon from "@lucide/svelte/icons/corner-down-left";
@@ -44,10 +44,31 @@
 
 	const hasSearchQuery = $derived(searchQuery.trim().length > 0);
 
+	const COMMAND_MENU_GROUP_ORDER = [
+		"Components",
+		"Get Started",
+		"Installation",
+		"Dark Mode",
+		"Registry",
+		"Migration",
+	] as const;
+
+	const orderedSidebarGroups = $derived(
+		COMMAND_MENU_GROUP_ORDER.map((title) =>
+			sidebarNavItems.find((g) => g.title === title)
+		).filter((g): g is (typeof sidebarNavItems)[number] => g !== undefined)
+	);
+
+	const filteredPages = $derived.by(() => {
+		if (!searchQuery.trim()) return [];
+		const q = searchQuery.trim().toLowerCase();
+		return mainNavItems.filter((item) => item.title.toLowerCase().includes(q));
+	});
+
 	const filteredSidebarGroups = $derived.by(() => {
 		if (!searchQuery.trim()) return [];
 		const q = searchQuery.trim().toLowerCase();
-		return sidebarNavItems
+		return orderedSidebarGroups
 			.map((group) => ({
 				title: group.title,
 				items: group.items.filter((item) => item.title?.toLowerCase().includes(q)),
@@ -84,7 +105,8 @@
 	});
 
 	const hasAnyResults = $derived(
-		filteredSidebarGroups.length > 0 ||
+		filteredPages.length > 0 ||
+			filteredSidebarGroups.length > 0 ||
 			deduplicatedSearchResults.length > 0 ||
 			filteredColors.length > 0
 	);
@@ -249,6 +271,33 @@
 						</Command.Empty>
 					{/if}
 
+					{#if filteredPages.length > 0}
+						<Command.Group
+							heading="Pages"
+							class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
+						>
+							{#each filteredPages as item (item.href)}
+								<CommandMenuItem
+									value={`Pages ${item.title}`}
+									keywords={["page", item.title.toLowerCase()]}
+									onHighlight={() =>
+										handlePageHighlight(false, {
+											href: item.href ?? "",
+											title: item.title,
+										})}
+									onSelect={() => {
+										runCommand(() => {
+											if (item.href) goto(item.href);
+										});
+									}}
+								>
+									<ArrowRightIcon />
+									{item.title}
+								</CommandMenuItem>
+							{/each}
+						</Command.Group>
+					{/if}
+
 					{#each filteredSidebarGroups as group (group.title)}
 						<Command.Group
 							heading={group.title}
@@ -283,6 +332,26 @@
 						</Command.Group>
 					{/each}
 
+					{#if deduplicatedSearchResults.length > 0}
+						<Command.Group
+							heading="Search Results"
+							class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
+						>
+							{#each deduplicatedSearchResults as result (result.href)}
+								<Command.Item
+									class="data-selected:border-input data-selected:bg-input/50 h-9 rounded-md border border-transparent !px-3 font-normal"
+									value={result.title + " " + result.href}
+									keywords={[result.content]}
+									onSelect={() => {
+										runCommand(() => goto(result.href));
+									}}
+								>
+									<div class="line-clamp-1 text-sm">{result.title}</div>
+								</Command.Item>
+							{/each}
+						</Command.Group>
+					{/if}
+
 					{#each filteredColors as colorPalette (colorPalette.name)}
 						<Command.Group
 							heading={colorPalette.name.charAt(0).toUpperCase() +
@@ -312,31 +381,35 @@
 							{/each}
 						</Command.Group>
 					{/each}
-
-					{#if deduplicatedSearchResults.length > 0}
-						<Command.Group
-							heading="Search Results"
-							class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
-						>
-							{#each deduplicatedSearchResults as result (result.href)}
-								<Command.Item
-									class="data-selected:border-input data-selected:bg-input/50 h-9 rounded-md border border-transparent !px-3 font-normal"
-									value={result.title + " " + result.href}
-									keywords={[result.content]}
-									onSelect={() => {
-										runCommand(() => goto(result.href));
-									}}
-								>
-									<div class="line-clamp-1 text-sm">{result.title}</div>
-								</Command.Item>
-							{/each}
-						</Command.Group>
-					{/if}
 				{:else}
 					<Command.Empty class="text-muted-foreground py-12 text-center text-sm">
 						No results found.
 					</Command.Empty>
-					{#each sidebarNavItems as group (group.title)}
+					<Command.Group
+						heading="Pages"
+						class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
+					>
+						{#each mainNavItems as item (item.href)}
+							<CommandMenuItem
+								value={`Pages ${item.title}`}
+								keywords={["page", item.title.toLowerCase()]}
+								onHighlight={() =>
+									handlePageHighlight(false, {
+										href: item.href ?? "",
+										title: item.title,
+									})}
+								onSelect={() => {
+									runCommand(() => {
+										if (item.href) goto(item.href);
+									});
+								}}
+							>
+								<ArrowRightIcon />
+								{item.title}
+							</CommandMenuItem>
+						{/each}
+					</Command.Group>
+					{#each orderedSidebarGroups as group (group.title)}
 						<Command.Group
 							heading={group.title}
 							class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
@@ -374,35 +447,6 @@
 							{/each}
 						</Command.Group>
 					{/each}
-					{#each colors as colorPalette (colorPalette.name)}
-						<Command.Group
-							heading={colorPalette.name.charAt(0).toUpperCase() +
-								colorPalette.name.slice(1)}
-							class="!p-0 [&_[data-command-group-heading]]:!p-3"
-						>
-							{#each colorPalette.colors as color (color.hex)}
-								<CommandMenuItem
-									value={color.class}
-									keywords={["color", color.name, color.class]}
-									onHighlight={() => handleColorHighlight(color)}
-									onSelect={() => {
-										runCommand(() => clipboard.copy(color.oklch));
-									}}
-								>
-									<div
-										class="border-ghost aspect-square size-4 rounded-sm bg-(--color) after:rounded-sm"
-										style="--color: {color.oklch};"
-									></div>
-									{color.class}
-									<span
-										class="text-muted-foreground ms-auto font-mono text-xs font-normal tabular-nums"
-									>
-										{color.oklch}
-									</span>
-								</CommandMenuItem>
-							{/each}
-						</Command.Group>
-					{/each}
 					{#if blocks?.length}
 						<Command.Group
 							heading="Blocks"
@@ -435,6 +479,35 @@
 							{/each}
 						</Command.Group>
 					{/if}
+					{#each colors as colorPalette (colorPalette.name)}
+						<Command.Group
+							heading={colorPalette.name.charAt(0).toUpperCase() +
+								colorPalette.name.slice(1)}
+							class="!p-0 [&_[data-command-group-heading]]:!p-3"
+						>
+							{#each colorPalette.colors as color (color.hex)}
+								<CommandMenuItem
+									value={color.class}
+									keywords={["color", color.name, color.class]}
+									onHighlight={() => handleColorHighlight(color)}
+									onSelect={() => {
+										runCommand(() => clipboard.copy(color.oklch));
+									}}
+								>
+									<div
+										class="border-ghost aspect-square size-4 rounded-sm bg-(--color) after:rounded-sm"
+										style="--color: {color.oklch};"
+									></div>
+									{color.class}
+									<span
+										class="text-muted-foreground ms-auto font-mono text-xs font-normal tabular-nums"
+									>
+										{color.oklch}
+									</span>
+								</CommandMenuItem>
+							{/each}
+						</Command.Group>
+					{/each}
 				{/if}
 			</Command.List>
 		</Command.Root>
