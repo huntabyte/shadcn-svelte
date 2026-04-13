@@ -64,6 +64,13 @@
 			"sharp",
 			"workerd"
 		],
+		"packageExtensions": {
+			"vaul-svelte": {
+				"dependencies": {
+					"bits-ui": "^2.17.3"
+				}
+			}
+		},
 		"overrides": {
 			"brace-expansion@>=2.0.0 <=2.0.1": ">=2.0.2",
 			"cookie@<0.7.0": ">=0.7.0",

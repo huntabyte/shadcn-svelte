@@ -58,6 +58,8 @@ overrides:
   undici@>=7.17.0 <7.24.0: '>=7.24.0'
   ajv@<6.14.0: '>=6.14.0'
 
+packageExtensionsChecksum: sha256-iu7y2TsQ1twg8Y7ONcl3D+5hXiaRHVxyvu/XAnw24NA=
+
 importers:
 
   .:
@@ -410,7 +412,7 @@ importers:
         version: 5.55.3
       svelte-check:
         specifier: 'catalog:'
-        version: 4.4.6(picomatch@4.0.3)(svelte@5.55.3)(typescript@6.0.2)
+        version: 4.4.6(picomatch@4.0.4)(svelte@5.55.3)(typescript@6.0.2)
       svelte-sonner:
         specifier: ^1.1.0
         version: 1.1.0(svelte@5.55.3)
@@ -449,7 +451,7 @@ importers:
         version: 5.1.0
       vaul-svelte:
         specifier: 1.0.0-next.7
-        version: 1.0.0-next.7(svelte@5.55.3)
+        version: 1.0.0-next.7(@internationalized/date@3.12.0)(@sveltejs/kit@2.57.1(@sveltejs/vite-plugin-svelte@7.0.0(svelte@5.55.3)(vite@8.0.8(@types/node@25.5.2)(esbuild@0.27.7)(jiti@2.6.1)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.3)))(svelte@5.55.3)(typescript@6.0.2)(vite@8.0.8(@types/node@25.5.2)(esbuild@0.27.7)(jiti@2.6.1)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.3)))(svelte@5.55.3)
       velite:
         specifier: ^0.3.1
         version: 0.3.1
@@ -9004,6 +9006,10 @@ snapshots:
     optionalDependencies:
       picomatch: 4.0.3
 
+  fdir@6.5.0(picomatch@4.0.4):
+    optionalDependencies:
+      picomatch: 4.0.4
+
   file-entry-cache@8.0.0:
     dependencies:
       flat-cache: 4.0.1
@@ -10992,11 +10998,11 @@ snapshots:
     transitivePeerDependencies:
       - picomatch
 
-  svelte-check@4.4.6(picomatch@4.0.3)(svelte@5.55.3)(typescript@6.0.2):
+  svelte-check@4.4.6(picomatch@4.0.4)(svelte@5.55.3)(typescript@6.0.2):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       chokidar: 4.0.3
-      fdir: 6.5.0(picomatch@4.0.3)
+      fdir: 6.5.0(picomatch@4.0.4)
       picocolors: 1.1.1
       sade: 1.8.1
       svelte: 5.55.3
@@ -11504,11 +11510,15 @@ snapshots:
   validator@13.15.35:
     optional: true
 
-  vaul-svelte@1.0.0-next.7(svelte@5.55.3):
+  vaul-svelte@1.0.0-next.7(@internationalized/date@3.12.0)(@sveltejs/kit@2.57.1(@sveltejs/vite-plugin-svelte@7.0.0(svelte@5.55.3)(vite@8.0.8(@types/node@25.5.2)(esbuild@0.27.7)(jiti@2.6.1)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.3)))(svelte@5.55.3)(typescript@6.0.2)(vite@8.0.8(@types/node@25.5.2)(esbuild@0.27.7)(jiti@2.6.1)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.3)))(svelte@5.55.3):
     dependencies:
+      bits-ui: 2.17.3(@internationalized/date@3.12.0)(@sveltejs/kit@2.57.1(@sveltejs/vite-plugin-svelte@7.0.0(svelte@5.55.3)(vite@8.0.8(@types/node@25.5.2)(esbuild@0.27.7)(jiti@2.6.1)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.3)))(svelte@5.55.3)(typescript@6.0.2)(vite@8.0.8(@types/node@25.5.2)(esbuild@0.27.7)(jiti@2.6.1)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.3)))(svelte@5.55.3)
       runed: 0.23.4(svelte@5.55.3)
       svelte: 5.55.3
       svelte-toolbelt: 0.7.1(svelte@5.55.3)
+    transitivePeerDependencies:
+      - '@internationalized/date'
+      - '@sveltejs/kit'
 
   velite@0.3.1:
     dependencies:
