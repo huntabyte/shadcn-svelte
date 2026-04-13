@@ -18,7 +18,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="breadcrumb-demo">
+<ComponentPreview name="breadcrumb-demo" previewClassName="p-2">
 
 <div></div>
 
@@ -131,7 +131,7 @@ You can compose `<Breadcrumb.Item />` with a `<DropdownMenu />` to create a drop
 
 We provide a `<Breadcrumb.Ellipsis />` component to show a collapsed state when the breadcrumb is too long.
 
-<ComponentPreview name="breadcrumb-ellipsis">
+<ComponentPreview name="breadcrumb-ellipsis" previewClassName="p-2">
 
 <div></div>
 

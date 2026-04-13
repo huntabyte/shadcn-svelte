@@ -18,7 +18,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="alert-demo">
+<ComponentPreview name="alert-demo" previewClassName="h-auto sm:h-72 p-6">
 
 <div></div>
 
@@ -87,7 +87,7 @@ Alert.Root
 
 A basic alert with an icon, title and description.
 
-<ComponentPreview name="alert-basic">
+<ComponentPreview name="alert-basic" previewClassName="h-auto sm:h-72 p-6">
 
 <div></div>
 
@@ -97,7 +97,7 @@ A basic alert with an icon, title and description.
 
 Use `variant="destructive"` to create a destructive alert.
 
-<ComponentPreview name="alert-destructive">
+<ComponentPreview name="alert-destructive" previewClassName="h-auto sm:h-72 p-6">
 
 <div></div>
 
@@ -107,7 +107,7 @@ Use `variant="destructive"` to create a destructive alert.
 
 Use `Alert.Action` to add a button or other action element to the alert.
 
-<ComponentPreview name="alert-action">
+<ComponentPreview name="alert-action" previewClassName="h-auto sm:h-72 p-6">
 
 <div></div>
 
@@ -117,7 +117,7 @@ Use `Alert.Action` to add a button or other action element to the alert.
 
 You can customize the alert colors by adding custom classes such as `bg-amber-50 dark:bg-amber-950` to the `Alert.Root` component.
 
-<ComponentPreview name="alert-colors">
+<ComponentPreview name="alert-colors" previewClassName="h-auto sm:h-72 p-6">
 
 <div></div>
 

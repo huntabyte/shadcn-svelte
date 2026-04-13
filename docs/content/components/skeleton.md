@@ -76,7 +76,7 @@ Update the import paths to match your project setup.
 
 ### Card
 
-<ComponentPreview name="skeleton-card">
+<ComponentPreview name="skeleton-card" previewClassName="h-80">
 
 <div></div>
 

@@ -20,7 +20,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="alert-dialog-demo">
+<ComponentPreview name="alert-dialog-demo" previewClassName="h-56">
 
 <div></div>
 
@@ -112,7 +112,7 @@ AlertDialog.Root
 
 A basic alert dialog with a title, description, and cancel and continue buttons.
 
-<ComponentPreview name="alert-dialog-basic">
+<ComponentPreview name="alert-dialog-basic" previewClassName="h-56">
 
 <div></div>
 
@@ -122,7 +122,7 @@ A basic alert dialog with a title, description, and cancel and continue buttons.
 
 Use the `size="sm"` prop to make the alert dialog smaller.
 
-<ComponentPreview name="alert-dialog-small">
+<ComponentPreview name="alert-dialog-small" previewClassName="h-56">
 
 <div></div>
 
@@ -132,7 +132,7 @@ Use the `size="sm"` prop to make the alert dialog smaller.
 
 Use the `AlertDialog.Media` component to add a media element such as an icon or image to the alert dialog.
 
-<ComponentPreview name="alert-dialog-media">
+<ComponentPreview name="alert-dialog-media" previewClassName="h-56">
 
 <div></div>
 
@@ -142,7 +142,7 @@ Use the `AlertDialog.Media` component to add a media element such as an icon or 
 
 Use the `size="sm"` prop to make the alert dialog smaller and the `AlertDialog.Media` component to add a media element such as an icon or image to the alert dialog.
 
-<ComponentPreview name="alert-dialog-small-media">
+<ComponentPreview name="alert-dialog-small-media" previewClassName="h-56">
 
 <div></div>
 
@@ -152,7 +152,7 @@ Use the `size="sm"` prop to make the alert dialog smaller and the `AlertDialog.M
 
 Use the `AlertDialog.Action` component to add a destructive action button to the alert dialog.
 
-<ComponentPreview name="alert-dialog-destructive">
+<ComponentPreview name="alert-dialog-destructive" previewClassName="h-56">
 
 <div></div>
 

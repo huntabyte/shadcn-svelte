@@ -20,7 +20,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="checkbox-demo">
+<ComponentPreview name="checkbox-demo" previewClassName="h-80">
 
 <div></div>
 
@@ -146,7 +146,7 @@ Use multiple fields to create a checkbox list.
 
 ### Table
 
-<ComponentPreview name="checkbox-table">
+<ComponentPreview name="checkbox-table" previewClassName="p-4 md:p-8">
 
 <div></div>
 

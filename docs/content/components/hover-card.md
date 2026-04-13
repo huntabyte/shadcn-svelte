@@ -20,7 +20,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="hover-card-demo">
+<ComponentPreview name="hover-card-demo" previewClassName="h-80">
 
 <div></div>
 
@@ -94,7 +94,7 @@ HoverCard.Root
 
 ### Basic
 
-<ComponentPreview name="hover-card-demo">
+<ComponentPreview name="hover-card-demo" previewClassName="h-80">
 
 <div></div>
 
@@ -102,7 +102,7 @@ HoverCard.Root
 
 ### Sides
 
-<ComponentPreview name="hover-card-sides">
+<ComponentPreview name="hover-card-sides" previewClassName="h-[22rem]">
 
 <div></div>
 

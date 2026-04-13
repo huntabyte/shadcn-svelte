@@ -18,7 +18,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="field-demo">
+<ComponentPreview name="field-demo" previewClassName="h-[800px] p-6 md:h-[850px]">
 
 <div></div>
 

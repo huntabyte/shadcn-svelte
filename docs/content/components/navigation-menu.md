@@ -20,7 +20,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="navigation-menu-demo" align="start">
+<ComponentPreview name="navigation-menu-demo" align="start" previewClassName="h-96" className="overflow-visible">
 
 </ComponentPreview>
 

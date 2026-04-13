@@ -20,7 +20,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="context-menu-demo">
+<ComponentPreview name="context-menu-demo" description="A context menu with sub menu items.">
 
 <div></div>
 

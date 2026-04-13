@@ -21,7 +21,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="command-demo" align="start" class="[&_.preview>div]:max-w-[450px]">
+<ComponentPreview name="command-demo" align="start" previewClassName="h-[24.5rem]" class="[&_.preview>div]:max-w-[450px]">
 
 <div></div>
 

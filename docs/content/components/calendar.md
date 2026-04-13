@@ -21,7 +21,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="calendar-demo">
+<ComponentPreview name="calendar-demo" previewClassName="h-96">
 
 <div></div>
 
@@ -108,7 +108,7 @@ Calendar.Root (Calendar)
 
 A basic calendar component with a border.
 
-<ComponentPreview name="calendar-basic">
+<ComponentPreview name="calendar-basic" previewClassName="h-96">
 
 <div></div>
 
@@ -118,7 +118,7 @@ A basic calendar component with a border.
 
 Use the range calendar to allow users to select a range of dates.
 
-<ComponentPreview name="calendar-range" class="**:[.preview]:h-auto lg:**:[.preview]:h-[450px]">
+<ComponentPreview name="calendar-range" class="**:[.preview]:h-auto lg:**:[.preview]:h-[450px]" previewClassName="h-[36rem] md:h-96">
 
 <div></div>
 
@@ -128,7 +128,7 @@ Use the range calendar to allow users to select a range of dates.
 
 Use `captionLayout="dropdown"` to show month and year dropdowns.
 
-<ComponentPreview name="calendar-caption">
+<ComponentPreview name="calendar-caption" previewClassName="h-96">
 
 <div></div>
 
@@ -136,7 +136,7 @@ Use `captionLayout="dropdown"` to show month and year dropdowns.
 
 ### Presets
 
-<ComponentPreview name="calendar-presets" class="**:[.preview]:h-[650px]">
+<ComponentPreview name="calendar-presets" class="**:[.preview]:h-[650px]" previewClassName="h-[650px]">
 
 <div></div>
 
@@ -144,7 +144,7 @@ Use `captionLayout="dropdown"` to show month and year dropdowns.
 
 ### Date and Time Picker
 
-<ComponentPreview name="calendar-time" class="**:[.preview]:h-[600px]">
+<ComponentPreview name="calendar-time" class="**:[.preview]:h-[600px]" previewClassName="h-[600px]">
 
 <div></div>
 
@@ -152,7 +152,7 @@ Use `captionLayout="dropdown"` to show month and year dropdowns.
 
 ### Booked Dates
 
-<ComponentPreview name="calendar-booked-dates">
+<ComponentPreview name="calendar-booked-dates" previewClassName="h-96">
 
 <div></div>
 
@@ -162,7 +162,7 @@ Use `captionLayout="dropdown"` to show month and year dropdowns.
 
 A calendar with custom cell content — useful for showing prices or other per-day data.
 
-<ComponentPreview name="calendar-custom-days">
+<ComponentPreview name="calendar-custom-days" title="Custom Cell Size" description="A calendar with custom cell size that's responsive." className="**:[.preview]:h-[560px]">
 
 <div></div>
 
@@ -170,7 +170,7 @@ A calendar with custom cell content — useful for showing prices or other per-d
 
 ### Week Numbers
 
-<ComponentPreview name="calendar-week-numbers">
+<ComponentPreview name="calendar-week-numbers" previewClassName="h-96">
 
 <div></div>
 
@@ -178,7 +178,7 @@ A calendar with custom cell content — useful for showing prices or other per-d
 
 ### Persian / Hijri / Jalali Calendar
 
-<ComponentPreview name="calendar-hijri">
+<ComponentPreview name="calendar-hijri" title="Persian / Hijri / Jalali Calendar" description="A Persian calendar." previewClassName="h-[400px]">
 
 <div></div>
 

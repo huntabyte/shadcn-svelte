@@ -179,7 +179,7 @@ Use the `REGEXP_ONLY_DIGITS_AND_CHARS` pattern to accept both letters and number
 
 Use the input in a form with a label and description.
 
-<ComponentPreview name="input-otp-form">
+<ComponentPreview name="input-otp-form" previewClassName="h-[30rem]">
 
 <div></div>
 

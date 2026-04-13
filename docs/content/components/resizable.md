@@ -20,7 +20,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="resizable-demo">
+<ComponentPreview name="resizable-demo" previewClassName="h-80">
 
 <div></div>
 

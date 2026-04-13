@@ -18,7 +18,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="textarea-demo">
+<ComponentPreview name="textarea-demo" previewClassName="*:max-w-xs">
 
 <div></div>
 
@@ -68,7 +68,7 @@ Update the import paths to match your project setup.
 
 ### Default
 
-<ComponentPreview name="textarea-demo">
+<ComponentPreview name="textarea-demo" previewClassName="*:max-w-xs">
 
 <div></div>
 
@@ -78,7 +78,7 @@ Update the import paths to match your project setup.
 
 Use the `disabled` prop to disable the textarea.
 
-<ComponentPreview name="textarea-disabled">
+<ComponentPreview name="textarea-disabled" previewClassName="*:max-w-xs">
 
 <div></div>
 
@@ -88,7 +88,7 @@ Use the `disabled` prop to disable the textarea.
 
 Use the `aria-invalid` attribute to mark the textarea as invalid.
 
-<ComponentPreview name="textarea-invalid">
+<ComponentPreview name="textarea-invalid" previewClassName="*:max-w-xs">
 
 <div></div>
 

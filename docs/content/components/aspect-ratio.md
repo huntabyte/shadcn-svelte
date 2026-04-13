@@ -90,7 +90,7 @@ Update the import paths to match your project setup.
 
 ### Portrait
 
-<ComponentPreview name="aspect-ratio-portrait">
+<ComponentPreview name="aspect-ratio-portrait" previewClassName="h-96">
 
 <div></div>
 

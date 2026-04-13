@@ -20,7 +20,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="scroll-area-demo">
+<ComponentPreview name="scroll-area-demo" previewClassName="h-96">
 
 <div></div>
 

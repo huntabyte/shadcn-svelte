@@ -20,7 +20,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="dropdown-menu-demo">
+<ComponentPreview name="dropdown-menu-demo" description="A dropdown menu with icons, shortcuts and sub menu items.">
 
 <div></div>
 

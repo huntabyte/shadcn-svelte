@@ -20,7 +20,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="dialog-demo">
+<ComponentPreview name="dialog-demo" description="A dialog for editing profile details.">
 
 <div></div>
 

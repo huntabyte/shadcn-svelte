@@ -20,7 +20,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="collapsible-demo">
+<ComponentPreview name="collapsible-demo" align="start">
 
 <div></div>
 
@@ -94,7 +94,7 @@ Collapsible.Root
 
 ### Basic
 
-<ComponentPreview name="collapsible-basic">
+<ComponentPreview name="collapsible-basic" align="start">
 
 <div></div>
 
@@ -114,7 +114,7 @@ Use a trigger button to reveal additional settings.
 
 Use nested collapsibles to build a file tree.
 
-<ComponentPreview name="collapsible-file-tree">
+<ComponentPreview name="collapsible-file-tree" previewClassName="h-[36rem]">
 
 <div></div>
 

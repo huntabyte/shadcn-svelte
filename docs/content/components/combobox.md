@@ -9,7 +9,7 @@ component: true
 	import CodeCollapsibleWrapper from "$lib/components/code-collapsible-wrapper.svelte";
 </script>
 
-<ComponentPreview name="combobox-demo">
+<ComponentPreview name="combobox-demo" description="A combobox with a list of frameworks.">
 
 <div></div>
 
@@ -144,7 +144,7 @@ Popover.Root
 
 ### Combobox
 
-<ComponentPreview name="combobox-demo">
+<ComponentPreview name="combobox-demo" description="A combobox with a list of frameworks.">
 
 <div></div>
 
