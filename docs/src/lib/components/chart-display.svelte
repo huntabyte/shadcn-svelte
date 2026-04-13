@@ -27,7 +27,7 @@
 		<ChartToolbar {chart} class="relative z-20 flex justify-end px-3 py-2.5">
 			{@render children?.()}
 		</ChartToolbar>
-		<div class="bg-background relative z-10 overflow-hidden rounded-xl">
+		<div class="bg-background relative z-10 overflow-hidden rounded-xl border">
 			{@render children?.()}
 		</div>
 	</div>
