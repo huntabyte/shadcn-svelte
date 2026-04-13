@@ -19,6 +19,7 @@ Card.Root
 ## Why we added this
 
 We've found that **LLMs and coding agents compose elements more reliably** when they can see the full structure: fewer missing wrappers, fewer wrong hierarchies, better matches to the examples.
+
 <!--
 ### Bring docs into your agent
 

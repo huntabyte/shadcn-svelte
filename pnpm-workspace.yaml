@@ -1,14 +1,14 @@
 packages:
-  - packages/*
-  - docs
-  - registry-template
+    - packages/*
+    - docs
+    - registry-template
 
 catalog:
-  "@sveltejs/kit": ^2.57.1
-  "@sveltejs/vite-plugin-svelte": ^7.0.0
-  svelte: ^5.55.3
-  svelte-check: ^4.4.6
-  tsdown: ^0.18.4
-  typescript: ^6.0.2
-  vite: ^7.3.1
-  zod: ^4.3.6
+    "@sveltejs/kit": ^2.57.1
+    "@sveltejs/vite-plugin-svelte": ^7.0.0
+    svelte: ^5.55.3
+    svelte-check: ^4.4.6
+    tsdown: ^0.18.4
+    typescript: ^6.0.2
+    vite: ^7.3.1
+    zod: ^4.3.6
