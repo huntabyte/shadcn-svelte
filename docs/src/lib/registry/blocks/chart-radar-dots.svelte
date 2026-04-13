@@ -92,7 +92,7 @@
 				}}
 			>
 				{#snippet belowMarks()}
-					{#each gridPolygons as points}
+					{#each gridPolygons as points (points)}
 						<polygon
 							{points}
 							class="stroke-muted-foreground/20 fill-none"

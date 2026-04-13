@@ -85,7 +85,7 @@
 				}}
 			>
 				{#snippet belowMarks()}
-					{#each gridTicks as tick}
+					{#each gridTicks as tick (tick)}
 						{@const r = (tick / maxValue) * gridRadius}
 						<circle
 							cx="0"

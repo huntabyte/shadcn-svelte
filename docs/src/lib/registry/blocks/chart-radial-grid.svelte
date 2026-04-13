@@ -59,7 +59,7 @@
 				}}
 			>
 				{#snippet belowMarks()}
-					{#each gridRadii as r}
+					{#each gridRadii as r (r)}
 						<circle
 							cx="0"
 							cy="0"
@@ -68,7 +68,7 @@
 							stroke-width="1"
 						/>
 					{/each}
-					{#each spokeAngles as angle}
+					{#each spokeAngles as angle (angle)}
 						<line
 							x1={innerR * Math.cos(angle)}
 							y1={innerR * Math.sin(angle)}
