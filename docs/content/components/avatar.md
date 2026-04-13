@@ -85,17 +85,22 @@ Use the following composition to build an `Avatar`:
 Avatar.Root
 ├── Avatar.Image
 ├── Avatar.Fallback
-└── Avatar.Badge (optional)
+└── Avatar.Badge
 ```
 
-To display a group of avatars, use `Avatar.Group`:
+Use the following composition to build an `Avatar.Group`:
 
 ```text
 Avatar.Group
 ├── Avatar.Root
 │   ├── Avatar.Image
-│   └── Avatar.Fallback
-└── Avatar.GroupCount (optional)
+│   ├── Avatar.Fallback
+│   └── Avatar.Badge
+├── Avatar.Root
+│   ├── Avatar.Image
+│   ├── Avatar.Fallback
+│   └── Avatar.Badge
+└── Avatar.GroupCount
 ```
 
 ## Examples
