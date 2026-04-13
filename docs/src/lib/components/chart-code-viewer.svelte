@@ -24,11 +24,11 @@
 {#snippet Content()}
 	<div class="flex min-h-0 flex-1 flex-col gap-0">
 		<div
-			class="chart-wrapper theme-container hidden **:data-chart:mx-auto **:data-chart:max-h-[35vh] sm:block [&>div]:rounded-none [&>div]:border-0 [&>div]:border-b [&>div]:shadow-none"
+			class="chart-wrapper theme-container hidden sm:block [&_[data-chart]]:mx-auto [&_[data-chart]]:max-h-[35vh] [&>div]:rounded-none [&>div]:border-0 [&>div]:border-b [&>div]:shadow-none"
 		>
 			{@render children?.()}
 		</div>
-		<div class="flex min-w-0 flex-1 flex-col overflow-hidden p-4">
+		<div class="bg-background flex min-w-0 flex-1 flex-col overflow-hidden p-4">
 			<figure
 				data-rehype-pretty-code-figure=""
 				class="mt-0 flex h-auto min-w-0 flex-1 flex-col overflow-hidden"
