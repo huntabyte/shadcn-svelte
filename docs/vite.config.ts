@@ -40,10 +40,11 @@ export default defineConfig({
 		},
 	},
 	plugins: [
-		visualizer({
-			emitFile: true,
-			filename: "stats.html",
-		}),
+		!process.env.CI &&
+			visualizer({
+				emitFile: true,
+				filename: "stats.html",
+			}),
 		tailwindcss(),
 		enhancedImages(),
 		sveltekit(),
