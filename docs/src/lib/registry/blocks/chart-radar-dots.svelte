@@ -23,12 +23,18 @@
 	const maxValue = Math.max(...chartData.map((d) => d.desktop));
 	let yEnd = $state(maxValue * 100);
 
-	// With padding={12} and a 250px container:
-	// effective radius ≈ 125 - 12 = 113px
-	// yDomain at rest: [0, 305] (maxValue)
-	// d3 ticks for [0, 305] at count 5 → [50, 100, 150, 200, 250, 300]
-	// circle radii = tick/305 * 113
-	const gridRadii = [19, 37, 56, 74, 93, 111];
+	// Static hexagonal grid polygons — drawn in belowMarks so they don't react to yDomain changes.
+	// 6 months → 6 vertices; scaleBand centers at angles [π/6, π/2, 5π/6, 7π/6, 3π/2, 11π/6]
+	// (layerchart lineRadial convention: 0 = top, clockwise; band center = xScale(x) + bandwidth/2)
+	// Effective radius: 250px container / 2 - 12px padding = 113px
+	// d3 ticks for [0, maxValue] at count 5 → [50, 100, 150, 200, 250, 300]
+	const gridAngles = Array.from({ length: 6 }, (_, i) => Math.PI / 3 + (i * Math.PI * 2) / 6);
+	const gridRadius = 113;
+	const gridTicks = [65, 130, 195, 260];
+	const gridPolygons = gridTicks.map((tick) => {
+		const r = (tick / maxValue) * gridRadius;
+		return gridAngles.map((a) => `${r * Math.sin(a)},${-r * Math.cos(a)}`).join(" ");
+	});
 
 	onMount(() => {
 		yEnd = maxValue;
@@ -86,11 +92,9 @@
 				}}
 			>
 				{#snippet belowMarks()}
-					{#each gridRadii as r}
-						<circle
-							cx="0"
-							cy="0"
-							{r}
+					{#each gridPolygons as points}
+						<polygon
+							{points}
 							class="stroke-muted-foreground/20 fill-none"
 							stroke-width="1"
 						/>
