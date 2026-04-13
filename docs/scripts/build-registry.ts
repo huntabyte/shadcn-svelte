@@ -1,8 +1,8 @@
 import fs from "node:fs";
-import { execSync } from "node:child_process";
+import { exec } from "node:child_process";
+import { promisify } from "node:util";
 import path from "node:path";
 import postcss from "postcss";
-import prettier from "prettier";
 import { rimraf } from "rimraf";
 import {
 	componentsJsonSchema,
@@ -12,6 +12,10 @@ import {
 	type RegistryItemType,
 } from "shadcn-svelte/schema";
 import { PRESET_STYLES, type PresetConfig } from "shadcn-svelte/preset";
+import { buildRegistry } from "./registry.js";
+import { THEMES } from "../src/lib/registry/themes.js";
+import { getColorsData } from "../src/lib/components/colors/colors.js";
+import { toJSONSchema } from "zod";
 
 interface BuildRegistryItem {
 	name: string;
@@ -20,13 +24,8 @@ interface BuildRegistryItem {
 		path: string;
 	}>;
 }
-import { buildRegistry } from "./registry.js";
-import { THEMES } from "../src/lib/registry/themes.js";
-import { getColorsData } from "../src/lib/components/colors/colors.js";
-import { toJSONSchema } from "zod";
 
-const prettierConfig = await prettier.resolveConfig(import.meta.url);
-if (!prettierConfig) throw new Error("Failed to resolve prettier config.");
+const execAsync = promisify(exec);
 
 const INTERNAL_REGISTRY_PATH = path.resolve("src", "lib", "registry");
 const REGISTRY_PATH = path.resolve("static", "registry");
@@ -252,40 +251,34 @@ async function rewriteRegistryForStyle(
 	const styleCss = fs.readFileSync(styleCssPath, "utf8");
 	const styleMap = parseStyleCss(styleCss);
 
-	const styleItems: Awaited<ReturnType<typeof buildRegistry>> = [];
+	const styleItems = await Promise.all(
+		registry.map(async (item) => {
+			if (!item.files?.length) return item;
 
-	for (const item of registry) {
-		if (!item.files?.length) {
-			styleItems.push(item);
-			continue;
-		}
+			const styleFiles = await Promise.all(
+				item.files.map(async (file) => {
+					const srcPath = path.resolve(file.path);
+					const tempPath = path.join(styleTempDir, file.path);
+					const tempDir = path.dirname(tempPath);
 
-		const styleFiles: typeof item.files = [];
+					fs.mkdirSync(tempDir, { recursive: true });
 
-		for (const file of item.files) {
-			const srcPath = path.resolve(file.path);
-			const tempPath = path.join(styleTempDir, file.path);
-			const tempDir = path.dirname(tempPath);
+					const ext = path.extname(file.path);
+					if (TEXT_EXTENSIONS.has(ext)) {
+						let content = fs.readFileSync(srcPath, "utf8");
+						content = transformContentWithStyle(content, styleMap);
+						fs.writeFileSync(tempPath, content, "utf8");
+					} else {
+						fs.copyFileSync(srcPath, tempPath);
+					}
 
-			fs.mkdirSync(tempDir, { recursive: true });
+					return { ...file, path: path.relative(process.cwd(), tempPath) };
+				})
+			);
 
-			const ext = path.extname(file.path);
-			if (TEXT_EXTENSIONS.has(ext)) {
-				let content = fs.readFileSync(srcPath, "utf8");
-				content = transformContentWithStyle(content, styleMap);
-				fs.writeFileSync(tempPath, content, "utf8");
-			} else {
-				fs.copyFileSync(srcPath, tempPath);
-			}
-
-			styleFiles.push({
-				...file,
-				path: path.relative(process.cwd(), tempPath),
-			});
-		}
-
-		styleItems.push({ ...item, files: styleFiles });
-	}
+			return { ...item, files: styleFiles };
+		})
+	);
 
 	return styleItems;
 }
@@ -340,26 +333,20 @@ async function buildRegistryJson(
 	const filteredItems = result.items.filter((item) => ITEM_TYPES.includes(item.type));
 	const registryJsonPath = path.resolve(`registry-${style}.json`);
 
+	// This file is consumed by the CLI and immediately deleted — no need to format it.
 	const registryJson = JSON.stringify({ ...result, items: filteredItems }, null, "\t");
-	const formatted = await prettier.format(registryJson, {
-		...prettierConfig,
-		filepath: registryJsonPath,
-	});
-	fs.writeFileSync(registryJsonPath, formatted, "utf8");
+	fs.writeFileSync(registryJsonPath, registryJson, "utf8");
 }
 
-function runRegistryBuild(style: PresetConfig["style"]) {
+async function runRegistryBuild(style: PresetConfig["style"]) {
 	const cwd = process.cwd();
 	const registryJsonPath = path.resolve(cwd, `registry-${style}.json`);
 	const outputPath = path.resolve(cwd, "static", "registry", "styles", style);
 	const workspaceCliPath = path.resolve(cwd, "..", "packages", "cli", "dist", "index.mjs");
 
-	execSync(
+	await execAsync(
 		`node "${workspaceCliPath}" registry build "${registryJsonPath}" --output "${outputPath}" -c "${cwd}"`,
-		{
-			cwd,
-			stdio: ["pipe", "pipe", "inherit"],
-		}
+		{ cwd }
 	);
 }
 
