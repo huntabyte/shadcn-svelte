@@ -25,13 +25,18 @@
 	// usable radius ≈ (250/2) - 20 = 105
 	// outermost arc outer edge ≈ 105 - 17 = 88
 	// each band is 12.5 wide, so 5 bands span radii from ~26 to ~88
-	const gridRadii = [20, 32, 44, 56, 68, 80, 92];
+	// grid circles at each band's outer edge (skip center hole at ~26)
+	const gridRadii = [31, 48, 65, 82, 99];
+	// 12 evenly spaced spokes (every 30°) from center to outer radius
+	const spokeAngles = Array.from({ length: 14 }, (_, i) => (i * 24.5 * Math.PI) / 180);
+	const innerR = 23;
+	const outerR = 108;
 </script>
 
 <Card.Root>
 	<Card.Header class="items-center">
 		<Card.Title>Radial Chart - Grid</Card.Title>
-		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
+		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content class="flex-1">
 		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
@@ -49,13 +54,29 @@
 					data: [d],
 				}))}
 				props={{
-					arc: { track: { fill: "var(--muted)" }, motion: Chart.defaultMotion },
+					arc: { track: { fill: "transparent" }, motion: Chart.defaultMotion },
 					tooltip: { context: { hideDelay: 350 } },
 				}}
 			>
 				{#snippet belowMarks()}
 					{#each gridRadii as r}
-						<circle cx="0" cy="0" {r} class="fill-none stroke-muted-foreground/20" stroke-width="1" />
+						<circle
+							cx="0"
+							cy="0"
+							{r}
+							class="stroke-muted-foreground/20 fill-none"
+							stroke-width="1"
+						/>
+					{/each}
+					{#each spokeAngles as angle}
+						<line
+							x1={innerR * Math.cos(angle)}
+							y1={innerR * Math.sin(angle)}
+							x2={outerR * Math.cos(angle)}
+							y2={outerR * Math.sin(angle)}
+							class="stroke-muted-foreground/20"
+							stroke-width="1"
+						/>
 					{/each}
 				{/snippet}
 				{#snippet tooltip()}
@@ -69,7 +90,7 @@
 			Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
 		</div>
 		<div class="text-muted-foreground flex items-center gap-2 leading-none">
-			January - June 2024
+			Showing total visitors for the last 6 months
 		</div>
 	</Card.Footer>
 </Card.Root>

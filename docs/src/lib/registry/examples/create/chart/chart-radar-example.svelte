@@ -38,7 +38,7 @@
 	<Card.Root class="w-full">
 		<Card.Header class="items-center pb-4">
 			<Card.Title>Radar Chart - Multiple</Card.Title>
-			<Card.Description>Showing total visitors for the last 6 months</Card.Description>
+			<Card.Description>January - June 2024</Card.Description>
 		</Card.Header>
 		<Card.Content class="pb-0">
 			<Chart.Container config={radarChartConfig} class="mx-auto aspect-square max-h-[250px]">
@@ -123,7 +123,7 @@
 				/>
 			</div>
 			<div class="text-muted-foreground flex items-center gap-2 leading-none">
-				January - June 2024
+				Showing total visitors for the last 6 months
 			</div>
 		</Card.Footer>
 	</Card.Root>

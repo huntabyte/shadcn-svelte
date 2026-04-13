@@ -211,10 +211,7 @@
 							/>
 						</linearGradient>
 					</defs>
-					<ChartClipPath
-						initialWidth={0}
-						motion={Chart.defaultClipMotion}
-					>
+					<ChartClipPath initialWidth={0} motion={Chart.defaultClipMotion}>
 						{#each context.series.visibleSeries as s (s.key)}
 							<Area
 								seriesKey={s.key}

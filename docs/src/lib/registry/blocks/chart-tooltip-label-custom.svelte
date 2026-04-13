@@ -25,8 +25,11 @@
 	$effect(() => {
 		const t = setTimeout(() => {
 			if (!context) return;
-			context.tooltip.x = context.containerWidth / 2;
-			context.tooltip.y = context.containerHeight / 2;
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			const xs = context.xScale as any;
+			context.tooltip.x =
+				xs(chartData[1].date) + (xs.bandwidth?.() ?? 0) / 2 + context.padding.left;
+			context.tooltip.y = context.containerHeight / 3;
 			context.tooltip.data = chartData[1];
 			context.tooltip.series = [
 				{
@@ -35,7 +38,11 @@
 					value: chartData[1].swimming,
 					color: chartConfig.swimming.color,
 					visible: true,
-					config: { key: "swimming", label: "Swimming", color: chartConfig.swimming.color },
+					config: {
+						key: "swimming",
+						label: "Swimming",
+						color: chartConfig.swimming.color,
+					},
 				},
 				{
 					key: "running",

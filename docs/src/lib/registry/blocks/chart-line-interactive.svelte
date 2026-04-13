@@ -168,7 +168,12 @@
 				{#snippet marks({ context })}
 					<ChartClipPath initialWidth={0} motion={Chart.defaultClipMotion}>
 						{#each context.series.visibleSeries as s (s.key)}
-							<Spline seriesKey={s.key} curve={curveNatural} strokeWidth={2} {...s.props} />
+							<Spline
+								seriesKey={s.key}
+								curve={curveNatural}
+								strokeWidth={2}
+								{...s.props}
+							/>
 						{/each}
 					</ChartClipPath>
 				{/snippet}

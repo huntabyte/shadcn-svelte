@@ -3,6 +3,7 @@
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { curveLinearClosed } from "d3-shape";
 	import { scaleBand } from "d3-scale";
+	import { onMount } from "svelte";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 
@@ -18,12 +19,19 @@
 	const chartConfig = {
 		desktop: { label: "Desktop", color: "var(--chart-1)" },
 	} satisfies Chart.ChartConfig;
+
+	const maxValue = Math.max(...chartData.map((d) => d.desktop));
+	let yEnd = $state(maxValue * 100);
+
+	onMount(() => {
+		yEnd = maxValue;
+	});
 </script>
 
 <Card.Root>
 	<Card.Header class="items-center">
 		<Card.Title>Radar Chart - Dots</Card.Title>
-		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
+		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content class="flex-1">
 		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
@@ -39,6 +47,8 @@
 				radial
 				x="month"
 				xScale={scaleBand()}
+				yDomain={[0, yEnd]}
+				motion={Chart.defaultMotion}
 				points={{ r: 4 }}
 				padding={12}
 				props={{
@@ -47,7 +57,6 @@
 						fill: "var(--color-desktop)",
 						fillOpacity: 0.6,
 						stroke: "0",
-						motion: Chart.defaultMotion,
 					},
 					xAxis: {
 						tickLength: 0,
@@ -80,7 +89,7 @@
 			Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
 		</div>
 		<div class="text-muted-foreground flex items-center gap-2 leading-none">
-			January - June 2024
+			Showing total visitors for the last 6 months
 		</div>
 	</Card.Footer>
 </Card.Root>
