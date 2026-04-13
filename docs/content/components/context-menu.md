@@ -90,15 +90,27 @@ Use the following composition to build a `ContextMenu`:
 ContextMenu.Root
 ├── ContextMenu.Trigger
 └── ContextMenu.Content
-    ├── ContextMenu.Label
-    ├── ContextMenu.Item
-    ├── ContextMenu.CheckboxItem
-    ├── ContextMenu.RadioGroup
-    │   └── ContextMenu.RadioItem
-    ├── ContextMenu.Sub
-    │   ├── ContextMenu.SubTrigger
-    │   └── ContextMenu.SubContent
-    └── ContextMenu.Separator
+    ├── ContextMenu.Group
+    │   ├── ContextMenu.Label
+    │   ├── ContextMenu.Item
+    │   └── ContextMenu.Item
+    ├── ContextMenu.Separator
+    ├── ContextMenu.Group
+    │   ├── ContextMenu.Label
+    │   ├── ContextMenu.CheckboxItem
+    │   └── ContextMenu.CheckboxItem
+    ├── ContextMenu.Separator
+    ├── ContextMenu.Group
+    │   ├── ContextMenu.Label
+    │   └── ContextMenu.RadioGroup
+    │       ├── ContextMenu.RadioItem
+    │       └── ContextMenu.RadioItem
+    └── ContextMenu.Sub
+        ├── ContextMenu.SubTrigger
+        └── ContextMenu.SubContent
+            └── ContextMenu.Group
+                ├── ContextMenu.Item
+                └── ContextMenu.Item
 ```
 
 ## Examples

@@ -97,12 +97,15 @@ Use the following composition to build a `NavigationMenu`:
 
 ```text
 NavigationMenu.Root
-└── NavigationMenu.List
-    └── NavigationMenu.Item
-        ├── NavigationMenu.Trigger
-        ├── NavigationMenu.Content
-        │   └── NavigationMenu.Link
-        └── NavigationMenu.Link
+├── NavigationMenu.List
+│   ├── NavigationMenu.Item
+│   │   ├── NavigationMenu.Trigger
+│   │   └── NavigationMenu.Content
+│   │       ├── NavigationMenu.Link
+│   │       └── NavigationMenu.Link
+│   └── NavigationMenu.Item
+│       └── NavigationMenu.Link
+└── NavigationMenu.Indicator
 ```
 
 `NavigationMenu.Viewport` and `NavigationMenu.Indicator` are optional elements that can be placed outside the list for custom layouts.

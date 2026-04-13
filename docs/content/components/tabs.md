@@ -85,12 +85,14 @@ Update the import paths to match your project setup.
 
 ## Composition
 
-Use the following composition to build a `Tabs`:
+Use the following composition to build `Tabs`:
 
 ```text
 Tabs.Root
 ├── Tabs.List
+│   ├── Tabs.Trigger
 │   └── Tabs.Trigger
+├── Tabs.Content
 └── Tabs.Content
 ```
 

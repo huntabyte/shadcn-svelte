@@ -128,7 +128,8 @@ Pagination.Root
     ├── Pagination.Item
     │   └── Pagination.Previous
     ├── Pagination.Item
-    │   ├── Pagination.Link
+    │   └── Pagination.Link
+    ├── Pagination.Item
     │   └── Pagination.Ellipsis
     └── Pagination.Item
         └── Pagination.Next

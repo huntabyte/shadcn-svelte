@@ -94,19 +94,28 @@ Use the following composition to build a `DropdownMenu`:
 DropdownMenu.Root
 ├── DropdownMenu.Trigger
 └── DropdownMenu.Content
-    ├── DropdownMenu.Label
-    ├── DropdownMenu.Item
+    ├── DropdownMenu.Group
+    │   ├── DropdownMenu.Label
+    │   ├── DropdownMenu.Item
+    │   └── DropdownMenu.Item
     ├── DropdownMenu.Separator
     ├── DropdownMenu.Group
-    │   ├── DropdownMenu.GroupHeading
-    │   └── DropdownMenu.Item
-    ├── DropdownMenu.CheckboxItem
-    ├── DropdownMenu.RadioGroup
-    │   └── DropdownMenu.RadioItem
+    │   ├── DropdownMenu.Label
+    │   ├── DropdownMenu.CheckboxItem
+    │   └── DropdownMenu.CheckboxItem
+    ├── DropdownMenu.Separator
+    ├── DropdownMenu.Group
+    │   ├── DropdownMenu.Label
+    │   └── DropdownMenu.RadioGroup
+    │       ├── DropdownMenu.RadioItem
+    │       └── DropdownMenu.RadioItem
     └── DropdownMenu.Sub
         ├── DropdownMenu.SubTrigger
         └── DropdownMenu.SubContent
-            └── DropdownMenu.Item
+            └── DropdownMenu.Group
+                ├── DropdownMenu.Label
+                ├── DropdownMenu.Item
+                └── DropdownMenu.Item
 ```
 
 ## Examples

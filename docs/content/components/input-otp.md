@@ -99,8 +99,18 @@ Use the following composition to build an `InputOTP`:
 ```text
 InputOTP.Root
 ├── InputOTP.Group
+│   ├── InputOTP.Slot
+│   ├── InputOTP.Slot
 │   └── InputOTP.Slot
-└── InputOTP.Separator
+├── InputOTP.Separator
+├── InputOTP.Group
+│   ├── InputOTP.Slot
+│   ├── InputOTP.Slot
+│   └── InputOTP.Slot
+├── InputOTP.Separator
+└── InputOTP.Group
+    ├── InputOTP.Slot
+    └── InputOTP.Slot
 ```
 
 ## Pattern

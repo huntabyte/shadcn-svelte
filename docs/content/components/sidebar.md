@@ -307,7 +307,7 @@ We'll use the `Sidebar.Menu` component in a `Sidebar.Group`.
 
 ## Composition
 
-Use the following composition to build a `Sidebar`:
+Use the following composition to build a `Sidebar` layout:
 
 ```text
 Sidebar.Provider

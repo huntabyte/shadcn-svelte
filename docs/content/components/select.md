@@ -95,7 +95,12 @@ Select.Root
     ├── Select.Group
     │   ├── Select.Label
     │   ├── Select.Item
-    │   └── Select.Separator
+    │   └── Select.Item
+    ├── Select.Separator
+    ├── Select.Group
+    │   ├── Select.Label
+    │   ├── Select.Item
+    │   └── Select.Item
     └── Select.ScrollDownButton
 ```
 

@@ -91,13 +91,22 @@ Table.Root
 ├── Table.Caption
 ├── Table.Header
 │   └── Table.Row
+│       ├── Table.Head
+│       ├── Table.Head
+│       ├── Table.Head
 │       └── Table.Head
-└── Table.Body
-    └── Table.Row
-        └── Table.Cell
+├── Table.Body
+│   ├── Table.Row
+│   │   ├── Table.Cell
+│   │   ├── Table.Cell
+│   │   ├── Table.Cell
+│   │   └── Table.Cell
+│   └── Table.Row
+│       ├── Table.Cell
+│       ├── Table.Cell
+│       ├── Table.Cell
+│       └── Table.Cell
 └── Table.Footer
-    └── Table.Row
-        └── Table.Cell
 ```
 
 ## Examples
