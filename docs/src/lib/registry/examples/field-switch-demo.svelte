@@ -3,7 +3,7 @@
 	import { Switch } from "$lib/registry/ui/switch/index.js";
 </script>
 
-<Field.Field orientation="horizontal">
+<Field.Field orientation="horizontal" class="w-fit">
 	<Field.Content>
 		<Field.Label for="2fa">Multi-factor authentication</Field.Label>
 	</Field.Content>

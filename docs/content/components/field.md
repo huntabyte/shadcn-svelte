@@ -89,20 +89,52 @@ Update the import paths to match your project setup.
 
 ## Composition
 
-Use the following composition to build a `Field`:
+### Field.Field
+
+A single control with label, helper text, and validation.
+
+```text
+Field.Field
+├── Field.Label
+├── Input / Textarea / Switch / Select
+├── Field.Description
+└── Field.Error
+```
+
+### Field.Group
+
+Related fields in one group. Use `Field.Separator` between sections when needed.
+
+```text
+Field.Group
+├── Field.Field
+│   ├── Field.Label
+│   ├── Input / Textarea / Switch / Select
+│   ├── Field.Description
+│   └── Field.Error
+├── Field.Separator
+└── Field.Field
+    ├── Field.Label
+    └── Input / Textarea / Switch / Select
+```
+
+### Field.Set
+
+Semantic grouping with a legend and description, usually containing a `Field.Group`.
 
 ```text
 Field.Set
 ├── Field.Legend
+├── Field.Description
 └── Field.Group
-    ├── Field.Separator
+    ├── Field.Field
+    │   ├── Field.Label
+    │   ├── Input / Textarea / Switch / Select
+    │   ├── Field.Description
+    │   └── Field.Error
     └── Field.Field
         ├── Field.Label
-        ├── Field.Content
-        │   ├── Field.Title
-        │   └── Field.Description
-        ├── Field.Description
-        └── Field.Error
+        └── Input / Textarea / Switch / Select
 ```
 
 ## Anatomy
@@ -166,7 +198,7 @@ The `Field` family is designed for composing accessible forms. A typical field i
 
 ### Checkbox
 
-<ComponentPreview name="field-checkbox">
+<ComponentPreview name="field-checkbox" previewClassName="h-[32rem]">
 
 <div></div>
 
@@ -190,7 +222,7 @@ The `Field` family is designed for composing accessible forms. A typical field i
 
 ### Choice Card
 
-Wrap `Field` components inside `FieldLabel` to create selectable field groups. This works with `RadioItem`, `Checkbox` and `Switch` components.
+Wrap `Field` components inside `Field.Label` to create selectable field groups. This works with `RadioItem`, `Checkbox` and `Switch` components.
 
 <ComponentPreview name="field-choice-card">
 
@@ -214,7 +246,7 @@ Stack `Field` components with `Field.Group`. Add `Field.Separator` to divide the
 - **Horizontal fields:** Set `orientation="horizontal"` on `Field` to align the label and control side-by-side. Pair with `Field.Content` to keep descriptions aligned.
 - **Responsive fields:** Set `orientation="responsive"` for automatic column layouts inside container-aware parents. Apply `@container/field-group` classes on `Field.Group` to switch orientations at specific breakpoints.
 
-<ComponentPreview name="field-responsive-layout-demo">
+<ComponentPreview name="field-responsive-layout-demo" previewClassName="h-[650px] p-6 md:h-[500px] md:p-10">
 
 <div></div>
 
