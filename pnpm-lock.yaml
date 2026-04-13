@@ -128,8 +128,8 @@ importers:
         specifier: ^4.17.24
         version: 4.17.24
       agent-browser:
-        specifier: ^0.25.1
-        version: 0.25.1
+        specifier: ^0.25.4
+        version: 0.25.4
       lodash:
         specifier: ^4.18.1
         version: 4.18.1
@@ -412,7 +412,7 @@ importers:
         version: 5.55.3
       svelte-check:
         specifier: 'catalog:'
-        version: 4.4.6(picomatch@4.0.4)(svelte@5.55.3)(typescript@6.0.2)
+        version: 4.4.6(picomatch@4.0.3)(svelte@5.55.3)(typescript@6.0.2)
       svelte-sonner:
         specifier: ^1.1.0
         version: 1.1.0(svelte@5.55.3)
@@ -2973,8 +2973,8 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
-  agent-browser@0.25.1:
-    resolution: {integrity: sha512-aSl0JaaJauRuutU7IPVfn42wHSfUAUEY0VFIkzpwxm8/N/BhsHeWW97GJklmMLUuOaJmcZS+Gtqk705hQsgHEQ==}
+  agent-browser@0.25.4:
+    resolution: {integrity: sha512-vl4tzDAk5+pJ2g8eMWWzZOLJ2yevJDN3YQ1gcSdN3GKPI0RwNr+T/2PxqSxsipiREu0oid2yxFJIoQ6NMrq/fQ==}
     hasBin: true
 
   ajv@6.14.0:
@@ -8171,7 +8171,7 @@ snapshots:
 
   acorn@8.16.0: {}
 
-  agent-browser@0.25.1: {}
+  agent-browser@0.25.4: {}
 
   ajv@6.14.0:
     dependencies:
@@ -9005,10 +9005,6 @@ snapshots:
   fdir@6.5.0(picomatch@4.0.3):
     optionalDependencies:
       picomatch: 4.0.3
-
-  fdir@6.5.0(picomatch@4.0.4):
-    optionalDependencies:
-      picomatch: 4.0.4
 
   file-entry-cache@8.0.0:
     dependencies:
@@ -10998,11 +10994,11 @@ snapshots:
     transitivePeerDependencies:
       - picomatch
 
-  svelte-check@4.4.6(picomatch@4.0.4)(svelte@5.55.3)(typescript@6.0.2):
+  svelte-check@4.4.6(picomatch@4.0.3)(svelte@5.55.3)(typescript@6.0.2):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       chokidar: 4.0.3
-      fdir: 6.5.0(picomatch@4.0.4)
+      fdir: 6.5.0(picomatch@4.0.3)
       picocolors: 1.1.1
       sade: 1.8.1
       svelte: 5.55.3
