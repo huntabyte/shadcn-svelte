@@ -121,7 +121,7 @@
 	]);
 </script>
 
-<Card.Root>
+<Card.Root class="pt-0">
 	<Card.Header class="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
 		<div class="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
 			<Card.Title>Line Chart - Interactive</Card.Title>
