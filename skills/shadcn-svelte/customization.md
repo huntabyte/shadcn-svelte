@@ -10,7 +10,7 @@ Components reference semantic CSS variable tokens. Change the variables to chang
 - Changing the theme (presets, CSS variables)
 - Adding custom colors (Tailwind v3 and v4)
 - Border radius
-- Customizing components (variants, className, wrappers)
+- Customizing components (variants, class, wrappers)
 - Checking for updates
 
 ---
@@ -49,44 +49,37 @@ Colors use OKLCH: `--primary: oklch(0.205 0 0)` where values are lightness (0–
 
 ## Dark Mode
 
-Class-based toggle via `.dark` on the root element. In Next.js, use `next-themes`:
+Class-based toggle via `.dark` on the root element. In SvelteKit, use [mode-watcher](https://github.com/svecosystem/mode-watcher) (see [Dark mode — Svelte](https://shadcn-svelte.com/docs/dark-mode/svelte)):
 
-```tsx
-import { ThemeProvider } from "next-themes"
+```svelte
+<script lang="ts">
+  import { ModeWatcher } from "mode-watcher";
+  let { children } = $props();
+</script>
 
-<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-  {children}
-</ThemeProvider>
+<ModeWatcher />
+{@render children?.()}
 ```
 
 ---
 
 ## Changing the Theme
 
+Use a **preset** from the design-system builder on [shadcn-svelte.com](https://shadcn-svelte.com) and pass it to `init`:
+
 ```bash
-# Apply a preset code from ui.shadcn.com.
-npx shadcn@latest apply --preset a2r6bw
-
-# Positional shorthand also works.
-npx shadcn@latest apply a2r6bw
-
-# Switch to a named preset and overwrite existing components.
-npx shadcn@latest apply --preset nova
-
-# Preserve existing components instead.
-npx shadcn@latest init --preset nova --force --no-reinstall
-
-# Use a custom theme URL.
-npx shadcn@latest apply --preset "https://ui.shadcn.com/init?base=radix&style=nova&theme=blue&..."
+npx shadcn-svelte@latest init --preset <code>
 ```
 
-Or edit CSS variables directly in `globals.css`.
+Or edit CSS variables directly in the file set in `components.json` as `tailwind.css` (for example `src/app.css`).
+
+To align config and components with a new preset, re-run `init` with `--preset` and confirm overwrites when prompted.
 
 ---
 
 ## Adding Custom Colors
 
-Add variables to the file at `tailwindCssFile` from `npx shadcn@latest info` (typically `globals.css`). Never create a new CSS file for this.
+Add variables to the global CSS file path in `components.json` (`tailwind.css`). Do not create a second global CSS file for theming unless the project already uses that pattern.
 
 ```css
 /* 1. Define in the global CSS file. */
@@ -108,7 +101,7 @@ Add variables to the file at `tailwindCssFile` from `npx shadcn@latest info` (ty
 }
 ```
 
-When `tailwindVersion` is `"v3"` (check via `npx shadcn@latest info`), register in `tailwind.config.js` instead:
+On Tailwind v3, register in `tailwind.config.js` (see the [Tailwind v3 docs](https://tw3.shadcn-svelte.com) if you maintain a legacy setup):
 
 ```js
 // 2b. Register with Tailwind v3 (tailwind.config.js).
@@ -125,9 +118,9 @@ module.exports = {
 }
 ```
 
-```tsx
-// 3. Use in components.
-<div className="bg-warning text-warning-foreground">Warning</div>
+```svelte
+<!-- 3. Use in components. -->
+<div class="bg-warning text-warning-foreground">Warning</div>
 ```
 
 ---
@@ -146,49 +139,61 @@ Prefer these approaches in order:
 
 ### 1. Built-in variants
 
-```tsx
-<Button variant="outline" size="sm">
-  Click
-</Button>
+```svelte
+<script lang="ts">
+  import { Button } from "$lib/components/ui/button";
+</script>
+
+<Button variant="outline" size="sm">Click</Button>
 ```
 
-### 2. Tailwind classes via `className`
+### 2. Tailwind classes via `class`
 
-```tsx
-<Card className="mx-auto max-w-md">...</Card>
+```svelte
+<script lang="ts">
+  import * as Card from "$lib/components/ui/card";
+</script>
+
+<Card.Root class="mx-auto max-w-md">
+  <Card.Content>...</Card.Content>
+</Card.Root>
 ```
 
 ### 3. Add a new variant
 
-Edit the component source to add a variant via `cva`:
+Edit the component source to add a variant via `tailwind-variants` / `cva` in the `.svelte` or shared variants file:
 
-```tsx
-// components/ui/button.tsx
+```ts
+// e.g. in button variants
 warning: "bg-warning text-warning-foreground hover:bg-warning/90",
 ```
 
 ### 4. Wrapper components
 
-Compose shadcn/ui primitives into higher-level components:
+Compose shadcn-svelte primitives into higher-level `.svelte` files:
 
-```tsx
-export function ConfirmDialog({ title, description, onConfirm, children }) {
-  return (
-    <AlertDialog>
-      <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>{title}</AlertDialogTitle>
-          <AlertDialogDescription>{description}</AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={onConfirm}>Confirm</AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
-  )
-}
+```svelte
+<script lang="ts">
+  import * as AlertDialog from "$lib/components/ui/alert-dialog";
+  let { title, description, onConfirm, children } = $props();
+  let open = $state(false);
+</script>
+
+<AlertDialog.Root bind:open>
+  <AlertDialog.Trigger>
+    {@render children?.()}
+  </AlertDialog.Trigger>
+  <AlertDialog.Content>
+    <AlertDialog.Header>
+      <AlertDialog.Title>{title}</AlertDialog.Title>
+      <AlertDialog.Description>{description}</AlertDialog.Description>
+    </AlertDialog.Header>
+    <AlertDialog.Footer>
+      <AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
+      <AlertDialog.Action onclick={() => { onConfirm?.(); open = false; }}>Confirm</AlertDialog.Action>
+    </AlertDialog.Footer>
+  </AlertDialog.Content>
+</AlertDialog.Root>
 ```
 
 ---
@@ -196,14 +201,8 @@ export function ConfirmDialog({ title, description, onConfirm, children }) {
 ## Checking for Updates
 
 ```bash
-npx shadcn@latest add button --diff
+npx shadcn-svelte@latest update button
+npx shadcn-svelte@latest update --all
 ```
 
-To preview exactly what would change before updating, use `--dry-run` and `--diff`:
-
-```bash
-npx shadcn@latest add button --dry-run        # see all affected files
-npx shadcn@latest add button --diff button.tsx # see the diff for a specific file
-```
-
-See [Updating Components in SKILL.md](./SKILL.md#updating-components) for the full smart merge workflow.
+See [Updating Components in SKILL.md](./SKILL.md#updating-components). Review `git diff` after `update` to see what changed.

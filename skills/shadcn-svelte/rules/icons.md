@@ -1,6 +1,6 @@
 # Icons
 
-**Always use the project's configured `iconLibrary` for imports.** Check the `iconLibrary` field from project context: `lucide` → `lucide-react`, `tabler` → `@tabler/icons-react`, etc. Never assume `lucide-react`.
+**Always use the project's configured `iconLibrary` for imports.** Check the `iconLibrary` field in `components.json`: `lucide` → `@lucide/svelte`, `tabler` → `@tabler/icons-svelte`, etc. Never assume `@lucide/svelte`.
 
 ---
 
@@ -10,24 +10,35 @@ Add `data-icon="inline-start"` (prefix) or `data-icon="inline-end"` (suffix) to 
 
 **Incorrect:**
 
-```tsx
+```svelte
+<script lang="ts">
+  import { Button } from "$lib/components/ui/button";
+  import SearchIcon from "@lucide/svelte/icons/search";
+</script>
+
 <Button>
-  <SearchIcon className="mr-2 size-4" />
+  <SearchIcon class="mr-2 size-4" />
   Search
 </Button>
 ```
 
 **Correct:**
 
-```tsx
+```svelte
+<script lang="ts">
+  import { Button } from "$lib/components/ui/button";
+  import SearchIcon from "@lucide/svelte/icons/search";
+  import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
+</script>
+
 <Button>
-  <SearchIcon data-icon="inline-start"/>
+  <SearchIcon data-icon="inline-start" />
   Search
 </Button>
 
 <Button>
   Next
-  <ArrowRightIcon data-icon="inline-end"/>
+  <ArrowRightIcon data-icon="inline-end" />
 </Button>
 ```
 
@@ -35,67 +46,62 @@ Add `data-icon="inline-start"` (prefix) or `data-icon="inline-end"` (suffix) to 
 
 ## No sizing classes on icons inside components
 
-Components handle icon sizing via CSS. Don't add `size-4`, `w-4 h-4`, or other sizing classes to icons inside `Button`, `DropdownMenuItem`, `Alert`, `Sidebar*`, or other shadcn components. Unless the user explicitly asks for custom icon sizes.
+Components handle icon sizing via CSS. Don't add `size-4`, `w-4 h-4`, or other sizing classes to icons inside `<Button>`, `DropdownMenu.Item`, `Alert.Root`, `Sidebar.*`, or other shadcn-svelte components — unless the user explicitly asks for custom icon sizes.
 
 **Incorrect:**
 
-```tsx
+```svelte
+<script lang="ts">
+  import { Button } from "$lib/components/ui/button";
+  import SearchIcon from "@lucide/svelte/icons/search";
+</script>
+
 <Button>
-  <SearchIcon className="size-4" data-icon="inline-start" />
+  <SearchIcon class="size-4" data-icon="inline-start" />
   Search
 </Button>
-
-<DropdownMenuItem>
-  <SettingsIcon className="mr-2 size-4" />
-  Settings
-</DropdownMenuItem>
 ```
 
 **Correct:**
 
-```tsx
+```svelte
+<script lang="ts">
+  import { Button } from "$lib/components/ui/button";
+  import SearchIcon from "@lucide/svelte/icons/search";
+</script>
+
 <Button>
   <SearchIcon data-icon="inline-start" />
   Search
 </Button>
-
-<DropdownMenuItem>
-  <SettingsIcon />
-  Settings
-</DropdownMenuItem>
 ```
+
+The same applies to icons inside `DropdownMenu.Item`, sidebar items, and other menu rows — no extra sizing classes on the icon component.
 
 ---
 
-## Pass icons as component objects, not string keys
+## Pass icons as components, not string keys
 
-Use `icon={CheckIcon}`, not a string key to a lookup map.
+Use a component reference, not a string key to a lookup map.
 
 **Incorrect:**
 
-```tsx
-const iconMap = {
-  check: CheckIcon,
-  alert: AlertIcon,
-}
-
-function StatusBadge({ icon }: { icon: string }) {
-  const Icon = iconMap[icon]
-  return <Icon />
-}
-
-<StatusBadge icon="check" />
+```svelte
+<!-- String key lookup — avoid -->
+<DynamicIcon name="check" />
 ```
 
 **Correct:**
 
-```tsx
-// Import from the project's configured iconLibrary (e.g. lucide-react, @tabler/icons-react).
-import { CheckIcon } from "lucide-react"
+```svelte
+<script lang="ts">
+  import type { Component } from "svelte";
+  import CheckIcon from "@lucide/svelte/icons/check";
 
-function StatusBadge({ icon: Icon }: { icon: React.ComponentType }) {
-  return <Icon />
-}
+  let { Icon }: { Icon: Component } = $props();
+</script>
 
-<StatusBadge icon={CheckIcon} />
+<Icon />
+
+<!-- <StatusBadge Icon={CheckIcon} /> -->
 ```
