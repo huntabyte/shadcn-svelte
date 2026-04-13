@@ -62,7 +62,7 @@ How to build and publish custom component registries: `registry.json` format, it
 3. **Pattern enforcement** — The assistant follows shadcn-svelte composition rules: using `Field.Group` for forms, namespace imports, Svelte 5 runes, and correct Bits UI APIs.
 4. **Component discovery** — The assistant checks installed components and local docs before generating code.
 
-## Differences from shadcn/ui
+<!--## Differences from shadcn/ui
 
 The shadcn-svelte skill is adapted for the Svelte ecosystem:
 
@@ -72,7 +72,7 @@ The shadcn-svelte skill is adapted for the Svelte ecosystem:
 - **No MCP server** — uses local file inspection instead
 - **Reduced CLI surface** — no `info`, `docs`, `search`, `view`, or `diff` commands
 - **Multi-file components** — `.svelte` files with `index.ts` barrels, namespace imports
-
+-->
 ## Learn More
 
 - [CLI](/docs/cli) — Full CLI command reference
