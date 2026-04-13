@@ -107,7 +107,7 @@ Radio group items with a description using the `Field` component.
 
 ### Choice Card
 
-Use `FieldLabel` to wrap the entire `Field` for a clickable card-style selection.
+Use `Field.Label` to wrap the entire `Field` for a clickable card-style selection.
 
 <ComponentPreview name="radio-group-choice-card">
 
