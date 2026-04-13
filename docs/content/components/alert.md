@@ -75,9 +75,10 @@ Use the following composition to build an `Alert`:
 
 ```text
 Alert.Root
+├── Icon
 ├── Alert.Title
 ├── Alert.Description
-└── Alert.Action (optional)
+└── Alert.Action
 ```
 
 ## Examples
