@@ -95,22 +95,38 @@ Use the following composition to build a `Menubar`:
 
 ```text
 Menubar.Root
+├── Menubar.Menu
+│   ├── Menubar.Trigger
+│   └── Menubar.Content
+│       ├── Menubar.Group
+│       │   ├── Menubar.Label
+│       │   ├── Menubar.Item
+│       │   └── Menubar.Item
+│       ├── Menubar.Separator
+│       ├── Menubar.Group
+│       │   ├── Menubar.Label
+│       │   ├── Menubar.CheckboxItem
+│       │   └── Menubar.CheckboxItem
+│       ├── Menubar.Separator
+│       ├── Menubar.Group
+│       │   ├── Menubar.Label
+│       │   └── Menubar.RadioGroup
+│       │       ├── Menubar.RadioItem
+│       │       └── Menubar.RadioItem
+│       └── Menubar.Sub
+│           ├── Menubar.SubTrigger
+│           └── Menubar.SubContent
+│               └── Menubar.Group
+│                   ├── Menubar.Label
+│                   ├── Menubar.Item
+│                   └── Menubar.Item
 └── Menubar.Menu
     ├── Menubar.Trigger
     └── Menubar.Content
-        ├── Menubar.Item
-        │   └── Menubar.Shortcut
-        ├── Menubar.CheckboxItem
-        ├── Menubar.RadioGroup
-        │   └── Menubar.RadioItem
-        ├── Menubar.Group
-        │   ├── Menubar.GroupHeading
-        │   └── Menubar.Item
-        ├── Menubar.Sub
-        │   ├── Menubar.SubTrigger
-        │   └── Menubar.SubContent
-        ├── Menubar.Label
-        └── Menubar.Separator
+        └── Menubar.Group
+            ├── Menubar.Label
+            ├── Menubar.Item
+            └── Menubar.Item
 ```
 
 ## Examples
