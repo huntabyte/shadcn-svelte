@@ -9,7 +9,7 @@
 	import { HugeiconsIcon } from "@hugeicons/svelte";
 	import { Menu09FreeIcons } from "@hugeicons/core-free-icons";
 	import { ActionMenuCtx } from "./action-menu.svelte";
-	import * as AlertDialog from "$lib/registry/ui/alert-dialog/index.js";
+	import { ResetDialogCtx } from "$lib/features/design-system/components/design-system-provider.svelte";
 
 	type Props = {
 		class?: string;
@@ -20,8 +20,7 @@
 	const isMac = useIsMac();
 	const designSystem = useDesignSystem();
 	const actionMenuCtx = ActionMenuCtx.get();
-
-	let showResetDialog = $state(false);
+	const resetDialogCtx = ResetDialogCtx.get();
 
 	function toggleTheme() {
 		setMode(mode.current === "dark" ? "light" : "dark");
@@ -65,30 +64,10 @@
 				<Picker.Shortcut>{isMac.current ? "⇧⌘Z" : "Ctrl+Shift+Z"}</Picker.Shortcut>
 			</Picker.Item>
 			<Picker.Separator />
-			<Picker.Item onSelect={() => (showResetDialog = true)}>
+			<Picker.Item onSelect={() => (resetDialogCtx.open = true)}>
 				Reset
 				<Picker.Shortcut>{isMac.current ? "⇧R" : "Shift+R"}</Picker.Shortcut>
 			</Picker.Item>
 		</Picker.Group>
 	</Picker.Content>
 </Picker.Root>
-
-<AlertDialog.Root bind:open={showResetDialog}>
-	<AlertDialog.Content size="sm">
-		<AlertDialog.Header>
-			<AlertDialog.Title>Reset to defaults?</AlertDialog.Title>
-			<AlertDialog.Description>
-				This will reset all customization options to their default values.
-			</AlertDialog.Description>
-		</AlertDialog.Header>
-		<AlertDialog.Footer>
-			<AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
-			<AlertDialog.Action
-				onclick={() => {
-					designSystem.reset();
-					showResetDialog = false;
-				}}>Reset</AlertDialog.Action
-			>
-		</AlertDialog.Footer>
-	</AlertDialog.Content>
-</AlertDialog.Root>
