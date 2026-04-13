@@ -12,7 +12,7 @@
 		"lib": "$lib"
 	},
 	"typescript": true,
-	"registry": "http://localhost:5174/registry",
+	"registry": "https://shadcn-svelte.com/registry",
 	"designSystem": {
 		"style": "nova",
 		"iconLibrary": "tabler",
