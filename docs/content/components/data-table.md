@@ -88,23 +88,6 @@ export const data: Payment[] = [
 ];
 ```
 
-## Composition
-
-The Data Table is not a single component — it is built by combining `Table` sub-components with [TanStack Table](https://tanstack.com/table) for state management:
-
-```text
-Table.Root
-├── Table.Header
-│   └── Table.Row
-│       └── Table.Head (one per column)
-├── Table.Body
-│   └── Table.Row (one per data row)
-│       └── Table.Cell (one per column)
-└── Table.Footer (optional)
-    └── Table.Row
-        └── Table.Cell
-```
-
 ## Project Structure
 
 Start by creating a route where your data table will live (we'll call ours payments), along with the following files:
