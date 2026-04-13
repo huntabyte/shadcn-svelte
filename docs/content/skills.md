@@ -73,6 +73,7 @@ The shadcn-svelte skill is adapted for the Svelte ecosystem:
 - **Reduced CLI surface** — no `info`, `docs`, `search`, `view`, or `diff` commands
 - **Multi-file components** — `.svelte` files with `index.ts` barrels, namespace imports
 -->
+
 ## Learn More
 
 - [CLI](/docs/cli) — Full CLI command reference
