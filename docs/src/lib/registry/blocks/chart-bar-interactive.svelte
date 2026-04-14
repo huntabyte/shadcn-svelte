@@ -151,6 +151,7 @@
 				x="date"
 				axis="x"
 				series={activeSeries}
+				padding={{ left: 8, right: 8 }}
 				props={{
 					bars: {
 						stroke: "none",
@@ -162,7 +163,7 @@
 						format: (d: Date) => {
 							return d.toLocaleDateString("en-US", {
 								month: "short",
-								day: "2-digit",
+								day: "numeric",
 							});
 						},
 						ticks: (scale) => scaleUtc(scale.domain(), scale.range()).ticks(),
