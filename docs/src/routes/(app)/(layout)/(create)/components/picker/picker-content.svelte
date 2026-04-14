@@ -59,7 +59,9 @@
 				className
 			)}
 			{...restProps}
-		/>
+		>
+			{@render children?.()}
+		</DropdownMenuPrimitive.SubContent>
 	</DropdownMenuPrimitive.Portal>
 {:else}
 	<DropdownMenuPrimitive.Portal {...portalProps}>
