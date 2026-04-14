@@ -262,7 +262,7 @@
 			<Dialog.Description>Search for a command to run...</Dialog.Description>
 		</Dialog.Header>
 		<Command.Root
-			class="**:data-[slot=command-input-wrapper]:border-input **:data-[slot=command-input-wrapper]:bg-input/50 rounded-none bg-transparent **:data-[slot=command-input]:h-full! **:data-[slot=command-input]:py-0 **:data-[slot=command-input-wrapper]:mb-0 **:data-[slot=command-input-wrapper]:h-9! **:data-[slot=command-input-wrapper]:rounded-md **:data-[slot=command-input-wrapper]:border **:data-[slot=command-input-wrapper]:p-0! **:data-[slot=command-input-wrapper]:flex! **:data-[slot=command-input-wrapper]:items-center! **:data-[slot=input-group]:h-full! **:data-[slot=input-group]:rounded-none! **:data-[slot=input-group]:border-none! **:data-[slot=input-group]:bg-transparent! **:data-[slot=input-group]:shadow-none!"
+			class="**:data-[slot=command-input-wrapper]:border-input **:data-[slot=command-input-wrapper]:bg-input/50 rounded-none bg-transparent **:data-[slot=command-input]:h-full! **:data-[slot=command-input]:py-0 **:data-[slot=command-input-wrapper]:mb-0 **:data-[slot=command-input-wrapper]:flex! **:data-[slot=command-input-wrapper]:h-9! **:data-[slot=command-input-wrapper]:items-center! **:data-[slot=command-input-wrapper]:rounded-md **:data-[slot=command-input-wrapper]:border **:data-[slot=command-input-wrapper]:p-0! **:data-[slot=input-group]:h-full! **:data-[slot=input-group]:rounded-none! **:data-[slot=input-group]:border-none! **:data-[slot=input-group]:bg-transparent! **:data-[slot=input-group]:shadow-none!"
 			shouldFilter={!hasSearchQuery}
 		>
 			<Command.Input placeholder="Search documentation..." bind:value={searchQuery} />
