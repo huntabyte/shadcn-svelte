@@ -11,7 +11,7 @@
 
 <div
 	data-slot="preview"
-	class="border-border relative -mx-1 flex flex-1 flex-col justify-center overflow-hidden rounded-2xl border sm:mx-0"
+	class="border-border relative flex flex-1 flex-col justify-center overflow-hidden rounded-2xl border"
 >
 	<div
 		class={cn(
