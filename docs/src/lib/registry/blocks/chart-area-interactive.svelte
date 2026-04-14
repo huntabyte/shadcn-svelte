@@ -139,19 +139,24 @@
 </script>
 
 <Card.Root class="pt-0">
-	<Card.Header class="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
-		<div class="grid flex-1 gap-1 text-center sm:text-start">
+	<Card.Header class="flex gap-2 space-y-0 border-b py-5 sm:flex-row">
+		<div class="grid flex-1 gap-1 sm:text-start">
 			<Card.Title>Area Chart - Interactive</Card.Title>
 			<Card.Description>Showing total visitors for the last 3 months</Card.Description>
 		</div>
 		<Select.Root type="single" bind:value={timeRange}>
-			<Select.Trigger class="w-40 rounded-lg sm:ms-auto" aria-label="Select a value">
+			<Select.Trigger
+				class="hidden w-40 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate md:flex"
+				aria-label="Select a value"
+			>
 				{selectedLabel}
 			</Select.Trigger>
 			<Select.Content class="rounded-xl">
-				<Select.Item value="90d" class="rounded-lg">Last 3 months</Select.Item>
-				<Select.Item value="30d" class="rounded-lg">Last 30 days</Select.Item>
-				<Select.Item value="7d" class="rounded-lg">Last 7 days</Select.Item>
+				<Select.Group>
+					<Select.Item value="90d" class="rounded-lg">Last 3 months</Select.Item>
+					<Select.Item value="30d" class="rounded-lg">Last 30 days</Select.Item>
+					<Select.Item value="7d" class="rounded-lg">Last 7 days</Select.Item>
+				</Select.Group>
 			</Select.Content>
 		</Select.Root>
 	</Card.Header>
