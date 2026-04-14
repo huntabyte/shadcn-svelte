@@ -116,7 +116,9 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 									RSS
 								</Button>
 							{:else}
-								<DocsCopyPage />
+								<div class="hidden md:block">
+									<DocsCopyPage />
+								</div>
 								{#if neighbors.previous}
 									<Button
 										variant="secondary"
