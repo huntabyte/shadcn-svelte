@@ -54,10 +54,12 @@
 		handleOpenChange(false);
 	}
 
-	const triggerClassName = $derived(cn(
-		"hover:bg-muted! touch-manipulation bg-transparent! px-2! py-0! text-sm! transition-none select-none pointer-coarse:h-10!",
-		className
-	));
+	const triggerClassName = $derived(
+		cn(
+			"hover:bg-muted! touch-manipulation bg-transparent! px-2! py-0! text-sm! transition-none select-none pointer-coarse:h-10!",
+			className
+		)
+	);
 </script>
 
 {#snippet fields()}
