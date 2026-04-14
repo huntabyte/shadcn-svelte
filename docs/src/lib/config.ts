@@ -377,12 +377,12 @@ export const mainNavItems: NavItem[] = [
 
 export function getFullNavItems(): Array<SidebarNavItem & { index: number }> {
 	return [
-		...getStartedNav,
-		...migrationNav,
 		...componentsNav,
+		...getStartedNav,
 		...installationNav.filter((item) => item.title !== "Installation"),
 		...darkModeNav.filter((item) => item.title !== "Dark Mode"),
 		...registryNav,
+		...migrationNav,
 	].map((item, index) => ({
 		...item,
 		index,
