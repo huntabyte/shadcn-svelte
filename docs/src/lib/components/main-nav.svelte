@@ -21,7 +21,7 @@
 			href={item.href}
 			variant="ghost"
 			size="sm"
-			class={cn("px-2.5", page.url.pathname === item.href && "text-primary")}
+			class={cn("active:!translate-y-0", page.url.pathname === item.href && "text-primary")}
 		>
 			{item.title}
 		</Button>
