@@ -163,11 +163,9 @@ Use `components.json` and the filesystem — not a separate `info` command:
 - **`aliases`** → use the actual alias prefix from config (e.g. `$lib/`), never hardcode unrelated projects.
 - **`tailwind.css`** → the global CSS file where theme variables live. Edit this file for theme tweaks; don't add a second globals file unless the user already uses one.
 - **`style`** → visual treatment (e.g. `nova`, `vega`, …) and registry style path.
-- **`iconLibrary`** → determines icon packages (`@lucide/svelte`, `@tabler/icons-svelte`, etc.). Never assume `lucide-react`.
+- **`iconLibrary`** → determines icon packages (`@lucide/svelte`, `@tabler/icons-svelte`, etc.). Never assume `@lucide/svelte`.
 - **`registry`** → where the CLI fetches components; default official registry at `shadcn-svelte.com`.
 - **`resolvedPaths`** (conceptual) → the CLI resolves `aliases` to absolute paths; list `aliases.ui` on disk to see installed components.
-- **`sveltekit`** → when `true`, follow SvelteKit conventions (`src/routes`, layouts, etc.).
-- **`packageManager`** → use for non-CLI installs (e.g. `pnpm add date-fns` vs `npm install date-fns`).
 
 See [cli.md](./cli.md) for commands and flags.
 
