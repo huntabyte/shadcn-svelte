@@ -144,3 +144,7 @@ Use the `position` prop to change the position of the toast.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+See the [svelte-sonner documentation](https://svelte-sonner.vercel.app/) for more information.

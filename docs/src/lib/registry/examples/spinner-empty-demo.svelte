@@ -4,7 +4,7 @@
 	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
-<Empty.Root class="w-full border md:p-6">
+<Empty.Root class="w-full">
 	<Empty.Header>
 		<Empty.Media variant="icon">
 			<Spinner />

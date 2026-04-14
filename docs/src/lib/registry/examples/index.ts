@@ -204,6 +204,7 @@ export { default as SwitchDescription } from "./switch-description.svelte";
 export { default as SwitchChoiceCard } from "./switch-choice-card.svelte";
 export { default as SwitchDisabled } from "./switch-disabled.svelte";
 export { default as SwitchInvalid } from "./switch-invalid.svelte";
+export { default as SwitchSizes } from "./switch-sizes.svelte";
 export { default as TableDemo } from "./table-demo.svelte";
 export { default as TableFooter } from "./table-footer.svelte";
 export { default as TableActions } from "./table-actions.svelte";

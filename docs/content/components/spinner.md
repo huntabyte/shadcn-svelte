@@ -116,8 +116,6 @@ Add a spinner to a badge to indicate a loading state. Place the `<Spinner />` be
 
 ### Input Group
 
-Input Group can have spinners inside `<InputGroup.Addon>`.
-
 <ComponentPreview name="spinner-input-group-demo">
 
 <div></div>
@@ -127,16 +125,6 @@ Input Group can have spinners inside `<InputGroup.Addon>`.
 ### Empty
 
 <ComponentPreview name="spinner-empty-demo">
-
-<div></div>
-
-</ComponentPreview>
-
-### Item
-
-Use the spinner inside `<Item.Media>` to indicate a loading state.
-
-<ComponentPreview name="spinner-item-demo">
 
 <div></div>
 
