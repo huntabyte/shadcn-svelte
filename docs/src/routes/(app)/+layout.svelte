@@ -3,6 +3,7 @@
 	import { ModeWatcher } from "mode-watcher";
 	import { Toaster } from "$lib/registry/ui/sonner/index.js";
 	import { DesignSystemProvider } from "$lib/features/design-system/index.js";
+	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 
 	let { children, data } = $props();
 
@@ -13,6 +14,8 @@
 <ModeWatcher defaultMode="system" disableTransitions />
 <Toaster position="top-center" />
 
-<DesignSystemProvider>
-	{@render children()}
-</DesignSystemProvider>
+<Tooltip.Provider>
+	<DesignSystemProvider>
+		{@render children()}
+	</DesignSystemProvider>
+</Tooltip.Provider>
