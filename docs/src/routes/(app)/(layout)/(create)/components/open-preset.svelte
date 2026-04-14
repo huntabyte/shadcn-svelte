@@ -44,7 +44,7 @@
 		designSystem.style = nextPreset.style;
 		designSystem.baseColor = nextPreset.baseColor;
 		designSystem.theme = nextPreset.theme;
-		designSystem.chartColor = nextPreset.chartColor;
+		if (nextPreset.chartColor) designSystem.chartColor = nextPreset.chartColor;
 		designSystem.font = nextPreset.font;
 		designSystem.fontHeading = nextPreset.fontHeading;
 		designSystem.iconLibrary = nextPreset.iconLibrary;
@@ -54,10 +54,10 @@
 		handleOpenChange(false);
 	}
 
-	const triggerClassName = cn(
+	const triggerClassName = $derived(cn(
 		"hover:bg-muted! touch-manipulation bg-transparent! px-2! py-0! text-sm! transition-none select-none pointer-coarse:h-10!",
 		className
-	);
+	));
 </script>
 
 {#snippet fields()}
