@@ -47,7 +47,9 @@
 				<Separator orientation="vertical" class="3xl:flex hidden" />
 				<LayoutToggle class="3xl:flex hidden" />
 				<Separator orientation="vertical" />
-				<ModeSwitcher class="md:hidden" />
+				<div class="md:hidden">
+					<ModeSwitcher />
+				</div>
 				{#if page.url.pathname.startsWith("/create")}
 					<Separator orientation="vertical" class="hidden md:block" />
 					<div class="hidden md:block">
