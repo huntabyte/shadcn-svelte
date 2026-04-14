@@ -53,21 +53,23 @@
 					: "Select month"}
 			</Select.Trigger>
 			<Select.Content align="end" class="rounded-xl">
-				{#each months as month (month)}
-					{@const config = chartConfig[month as keyof typeof chartConfig]}
+				<Select.Group>
+					{#each months as month (month)}
+						{@const config = chartConfig[month as keyof typeof chartConfig]}
 
-					{#if config}
-						<Select.Item
-							value={month}
-							label={config.label}
-							class="rounded-lg [&_span]:flex"
-						>
-							<div class="flex items-center gap-2 text-xs">
-								{config?.label}
-							</div>
-						</Select.Item>
-					{/if}
-				{/each}
+						{#if config}
+							<Select.Item
+								value={month}
+								label={config.label}
+								class="rounded-lg [&_span]:flex"
+							>
+								<div class="flex items-center gap-2 text-xs">
+									{config?.label}
+								</div>
+							</Select.Item>
+						{/if}
+					{/each}</Select.Group
+				>
 			</Select.Content>
 		</Select.Root>
 	</Card.Header>
@@ -81,6 +83,8 @@
 				c="color"
 				props={{
 					pie: {
+						startAngle: Math.PI / 2,
+						endAngle: (-3 * Math.PI) / 2,
 						sort: (a, b) => {
 							const monthOrder = ["january", "february", "march", "april", "may"];
 							return monthOrder.indexOf(a.month) - monthOrder.indexOf(b.month);

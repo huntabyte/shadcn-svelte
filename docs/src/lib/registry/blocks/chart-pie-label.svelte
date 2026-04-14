@@ -37,6 +37,8 @@
 				c="color"
 				props={{
 					pie: {
+						startAngle: Math.PI / 2,
+						endAngle: -3 * Math.PI / 2,
 						motion: Chart.defaultMotion,
 					},
 				}}
