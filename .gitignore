@@ -111,8 +111,6 @@ repro/src/lib/hooks
 repro/src/lib/components/ui
 !repro/src/lib/components/ui/light-switch
 
-<<<<<<< HEAD
 # Claude
-=======
->>>>>>> huntabyte/main
 .claude
+!.claude/skills/

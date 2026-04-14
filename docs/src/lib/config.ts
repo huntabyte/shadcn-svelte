@@ -213,8 +213,11 @@ function generateComponentsNav(): SidebarNavItem[] {
 		});
 	}
 
-	for (const doc of components) {
-		if (doc.title === "Components") continue;
+	const sorted = components
+		.filter((doc) => doc.title !== "Components")
+		.sort((a, b) => a.title.localeCompare(b.title));
+
+	for (const doc of sorted) {
 		componentsNavItems.push({
 			title: doc.title,
 			href: `/docs/components/${doc.slug}`,
