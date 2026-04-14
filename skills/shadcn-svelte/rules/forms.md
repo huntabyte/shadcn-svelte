@@ -95,7 +95,7 @@ Never place a `Button` directly inside or adjacent to an `Input` with custom pos
 
 <div class="relative">
   <Input placeholder="Search..." class="pr-10" />
-  <Button class="absolute right-0 top-0" size="icon">
+  <Button class="absolute top-0 right-0" size="icon">
     <SearchIcon />
   </Button>
 </div>
@@ -197,7 +197,9 @@ Use `Field.FieldSet` + `Field.FieldLegend` for related checkboxes, radios, or sw
   <Field.FieldGroup class="gap-3">
     <Field.Field orientation="horizontal">
       <Checkbox id="dark" />
-      <Field.FieldLabel for="dark" class="font-normal">Dark mode</Field.FieldLabel>
+      <Field.FieldLabel for="dark" class="font-normal"
+        >Dark mode</Field.FieldLabel
+      >
     </Field.Field>
   </Field.FieldGroup>
 </Field.FieldSet>

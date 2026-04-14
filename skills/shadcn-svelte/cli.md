@@ -24,23 +24,23 @@ npx shadcn-svelte@latest init [options]
 
 Installs dependencies, adds the `cn` util, creates `components.json`, and sets up CSS variables. Run `init` from the root of your project.
 
-| Flag                      | Short | Description                                                                 | Default   |
-| ------------------------- | ----- | --------------------------------------------------------------------------- | --------- |
-| `--preset <preset>`       | —     | Encoded design-system preset string from the docs site                      | —         |
-| `-c, --cwd <path>`       | `-c`  | Working directory                                                           | current   |
-| `-o, --overwrite`        | —     | Overwrite existing files                                                    | `false`   |
-| `--no-deps`              | —     | Do not add or install dependencies                                          | —         |
-| `--skip-preflight`       | —     | Ignore preflight checks and continue                                        | `false`   |
-| `--base-color <name>`    | —     | Base color: `neutral`, `stone`, `zinc`, `mauve`, `olive`, `mist`, `taupe`   | —         |
-| `--css <path>`           | —     | Path to the global CSS file                                                 | —         |
-| `--components-alias <path>` | —  | Import alias for components                                                 | —         |
-| `--lib-alias <path>`     | —     | Import alias for lib                                                        | —         |
-| `--utils-alias <path>`   | —     | Import alias for utils                                                      | —         |
-| `--hooks-alias <path>`   | —     | Import alias for hooks                                                      | —         |
-| `--ui-alias <path>`      | —     | Import alias for UI components                                              | —         |
-| `--proxy <proxy>`        | —     | Fetch registry items through this proxy                                     | env-based |
-| `--design-system-url`    | —     | Optional design-system URL (see docs / preset builder)                      | —         |
-| `-h, --help`             | `-h`  | Help                                                                        | —         |
+| Flag                        | Short | Description                                                               | Default   |
+| --------------------------- | ----- | ------------------------------------------------------------------------- | --------- |
+| `--preset <preset>`         | —     | Encoded design-system preset string from the docs site                    | —         |
+| `-c, --cwd <path>`          | `-c`  | Working directory                                                         | current   |
+| `-o, --overwrite`           | —     | Overwrite existing files                                                  | `false`   |
+| `--no-deps`                 | —     | Do not add or install dependencies                                        | —         |
+| `--skip-preflight`          | —     | Ignore preflight checks and continue                                      | `false`   |
+| `--base-color <name>`       | —     | Base color: `neutral`, `stone`, `zinc`, `mauve`, `olive`, `mist`, `taupe` | —         |
+| `--css <path>`              | —     | Path to the global CSS file                                               | —         |
+| `--components-alias <path>` | —     | Import alias for components                                               | —         |
+| `--lib-alias <path>`        | —     | Import alias for lib                                                      | —         |
+| `--utils-alias <path>`      | —     | Import alias for utils                                                    | —         |
+| `--hooks-alias <path>`      | —     | Import alias for hooks                                                    | —         |
+| `--ui-alias <path>`         | —     | Import alias for UI components                                            | —         |
+| `--proxy <proxy>`           | —     | Fetch registry items through this proxy                                   | env-based |
+| `--design-system-url`       | —     | Optional design-system URL (see docs / preset builder)                    | —         |
+| `-h, --help`                | `-h`  | Help                                                                      | —         |
 
 ---
 
@@ -52,16 +52,16 @@ npx shadcn-svelte@latest add [options] [components...]
 
 Adds components from the configured registry. Arguments are component names from the registry index, or a **URL** to a registry JSON item. With **no** component names, the CLI prompts you to pick components interactively.
 
-| Flag                | Short | Description                                                | Default |
-| ------------------- | ----- | ---------------------------------------------------------- | ------- |
-| `-c, --cwd <path>`  | `-c`  | Working directory                                          | current |
-| `--no-deps`         | —     | Skip adding and installing package dependencies            | —       |
-| `--skip-preflight`  | —     | Ignore preflight checks and continue                       | `false` |
-| `-a, --all`         | —     | Install all UI components                                  | `false` |
-| `-y, --yes`         | —     | Skip confirmation prompt                                   | `false` |
-| `-o, --overwrite`   | —     | Overwrite existing files                                   | `false` |
-| `--proxy <proxy>`   | —     | Fetch components through this proxy                        | env-based |
-| `-h, --help`        | `-h`  | Help                                                       | —       |
+| Flag               | Short | Description                                     | Default   |
+| ------------------ | ----- | ----------------------------------------------- | --------- |
+| `-c, --cwd <path>` | `-c`  | Working directory                               | current   |
+| `--no-deps`        | —     | Skip adding and installing package dependencies | —         |
+| `--skip-preflight` | —     | Ignore preflight checks and continue            | `false`   |
+| `-a, --all`        | —     | Install all UI components                       | `false`   |
+| `-y, --yes`        | —     | Skip confirmation prompt                        | `false`   |
+| `-o, --overwrite`  | —     | Overwrite existing files                        | `false`   |
+| `--proxy <proxy>`  | —     | Fetch components through this proxy             | env-based |
+| `-h, --help`       | `-h`  | Help                                            | —         |
 
 ---
 
@@ -73,15 +73,15 @@ npx shadcn-svelte@latest update [options] [components...]
 
 Re-fetches and applies registry content for components **already present** in the project. Run `shadcn-svelte update --help` for options.
 
-| Flag                | Short | Description                                                | Default |
-| ------------------- | ----- | ---------------------------------------------------------- | ------- |
-| `-c, --cwd <path>`  | `-c`  | Working directory                                          | current |
-| `--skip-preflight`  | —     | Ignore preflight checks and continue                       | `false` |
-| `--no-deps`         | —     | Skip adding and installing package dependencies            | —       |
-| `-a, --all`         | —     | Update every installed component                           | `false` |
-| `-y, --yes`         | —     | Skip confirmation prompt                                   | `false` |
-| `--proxy <proxy>`   | —     | Fetch through this proxy                                   | env-based |
-| `-h, --help`        | `-h`  | Help                                                       | —       |
+| Flag               | Short | Description                                     | Default   |
+| ------------------ | ----- | ----------------------------------------------- | --------- |
+| `-c, --cwd <path>` | `-c`  | Working directory                               | current   |
+| `--skip-preflight` | —     | Ignore preflight checks and continue            | `false`   |
+| `--no-deps`        | —     | Skip adding and installing package dependencies | —         |
+| `-a, --all`        | —     | Update every installed component                | `false`   |
+| `-y, --yes`        | —     | Skip confirmation prompt                        | `false`   |
+| `--proxy <proxy>`  | —     | Fetch through this proxy                        | env-based |
+| `-h, --help`       | `-h`  | Help                                            | —         |
 
 Commit your work before updating; overwrites are destructive.
 
@@ -95,11 +95,11 @@ npx shadcn-svelte@latest registry build [options] [registry]
 
 Reads a `registry.json` and writes registry JSON files for distribution. Default input: `./registry.json`, default output: `./static/r`.
 
-| Flag                | Short | Description                    | Default       |
-| ------------------- | ----- | ------------------------------ | ------------- |
-| `-c, --cwd <path>`  | `-c`  | Working directory              | current       |
-| `-o, --output <path>` | `-o` | Output directory for JSON files | `./static/r` |
-| `-h, --help`        | `-h`  | Help                           | —             |
+| Flag                  | Short | Description                     | Default      |
+| --------------------- | ----- | ------------------------------- | ------------ |
+| `-c, --cwd <path>`    | `-c`  | Working directory               | current      |
+| `-o, --output <path>` | `-o`  | Output directory for JSON files | `./static/r` |
+| `-h, --help`          | `-h`  | Help                            | —            |
 
 ---
 
@@ -125,14 +125,14 @@ Changing presets on an existing project: re-run **`init`** with the new preset (
 
 ## `components.json` — useful fields for agents
 
-| Field / path        | Meaning |
-| ------------------- | ------- |
-| `tailwind.css`      | Global CSS file path (Tailwind entry / theme variables) |
-| `tailwind.baseColor`| Base palette (cannot change after init) |
-| `aliases.*`         | Import aliases; must match `svelte.config.js` / `tsconfig` paths |
-| `registry`          | Base registry URL (default `https://shadcn-svelte.com/registry`) |
-| `style`             | Registered style name (e.g. `nova`, `vega`, …) |
-| `iconLibrary`       | Icon set key (`lucide`, `tabler`, …) — drives generated imports |
-| `typescript`        | Whether TS and optional custom config path |
+| Field / path         | Meaning                                                          |
+| -------------------- | ---------------------------------------------------------------- |
+| `tailwind.css`       | Global CSS file path (Tailwind entry / theme variables)          |
+| `tailwind.baseColor` | Base palette (cannot change after init)                          |
+| `aliases.*`          | Import aliases; must match `svelte.config.js` / `tsconfig` paths |
+| `registry`           | Base registry URL (default `https://shadcn-svelte.com/registry`) |
+| `style`              | Registered style name (e.g. `nova`, `vega`, …)                   |
+| `iconLibrary`        | Icon set key (`lucide`, `tabler`, …) — drives generated imports  |
+| `typescript`         | Whether TS and optional custom config path                       |
 
 Resolved paths (including `tailwindCss`, `ui`, `components`) are computed by the CLI from `components.json` and the filesystem. Read `components.json` and list the UI directory when you need a snapshot of what is installed.

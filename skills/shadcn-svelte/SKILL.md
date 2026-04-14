@@ -142,9 +142,9 @@ These are the most common patterns that differentiate correct shadcn-svelte code
 
 | Need                       | Use                                                                                                 |
 | -------------------------- | --------------------------------------------------------------------------------------------------- |
-| Button/action              | `Button` with appropriate variant (`import { Button }`)                                           |
+| Button/action              | `Button` with appropriate variant (`import { Button }`)                                             |
 | Form inputs                | `Input`, `Select`, `Combobox`, `Switch`, `Checkbox`, `RadioGroup`, `Textarea`, `InputOTP`, `Slider` |
-| Toggle between 2–5 options | `ToggleGroup.Root` + `ToggleGroup.Item`                                                              |
+| Toggle between 2–5 options | `ToggleGroup.Root` + `ToggleGroup.Item`                                                             |
 | Data display               | `Table`, `Card`, `Badge`, `Avatar`                                                                  |
 | Navigation                 | `Sidebar`, `NavigationMenu`, `Breadcrumb`, `Tabs`, `Pagination`                                     |
 | Overlays                   | `Dialog` (modal), `Sheet` (side panel), `Drawer` (bottom sheet), `AlertDialog` (confirmation)       |

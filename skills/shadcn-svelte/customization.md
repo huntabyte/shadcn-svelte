@@ -115,7 +115,7 @@ module.exports = {
       },
     },
   },
-}
+};
 ```
 
 ```svelte
@@ -190,7 +190,12 @@ Compose shadcn-svelte primitives into higher-level `.svelte` files:
     </AlertDialog.Header>
     <AlertDialog.Footer>
       <AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
-      <AlertDialog.Action onclick={() => { onConfirm?.(); open = false; }}>Confirm</AlertDialog.Action>
+      <AlertDialog.Action
+        onclick={() => {
+          onConfirm?.();
+          open = false;
+        }}>Confirm</AlertDialog.Action
+      >
     </AlertDialog.Footer>
   </AlertDialog.Content>
 </AlertDialog.Root>

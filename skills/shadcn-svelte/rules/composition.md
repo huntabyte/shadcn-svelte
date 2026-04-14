@@ -52,13 +52,13 @@ Never render items directly inside the content container.
 
 This applies to all group-based components:
 
-| Item | Group |
-|------|-------|
-| `Select.Item`, `Select.Label` | `Select.Group` |
+| Item                                                          | Group                |
+| ------------------------------------------------------------- | -------------------- |
+| `Select.Item`, `Select.Label`                                 | `Select.Group`       |
 | `DropdownMenu.Item`, `DropdownMenu.Label`, `DropdownMenu.Sub` | `DropdownMenu.Group` |
-| `Menubar.Item` | `Menubar.Group` |
-| `ContextMenu.Item` | `ContextMenu.Group` |
-| `Command.Item` | `Command.Group` |
+| `Menubar.Item`                                                | `Menubar.Group`      |
+| `ContextMenu.Item`                                            | `ContextMenu.Group`  |
+| `Command.Item`                                                | `Command.Group`      |
 
 ---
 
@@ -90,7 +90,9 @@ This applies to all group-based components:
   <Empty.Header>
     <Empty.Media variant="icon"><FolderIcon /></Empty.Media>
     <Empty.Title>No projects yet</Empty.Title>
-    <Empty.Description>Get started by creating a new project.</Empty.Description>
+    <Empty.Description
+      >Get started by creating a new project.</Empty.Description
+    >
   </Empty.Header>
   <Empty.Content>
     <Button>Create Project</Button>
@@ -122,14 +124,14 @@ Mount the `Toaster` from your UI folder once in the app layout (see [Sonner](htt
 
 ## Choosing between overlay components
 
-| Use case | Component |
-|----------|-----------|
-| Focused task that requires input | `Dialog` |
-| Destructive action confirmation | `AlertDialog` |
-| Side panel with details or filters | `Sheet` |
-| Mobile-first bottom panel | `Drawer` |
-| Quick info on hover | `HoverCard` |
-| Small contextual content on click | `Popover` |
+| Use case                           | Component     |
+| ---------------------------------- | ------------- |
+| Focused task that requires input   | `Dialog`      |
+| Destructive action confirmation    | `AlertDialog` |
+| Side panel with details or filters | `Sheet`       |
+| Mobile-first bottom panel          | `Drawer`      |
+| Quick info on hover                | `HoverCard`   |
+| Small contextual content on click  | `Popover`     |
 
 ---
 
@@ -235,8 +237,8 @@ Always include `Avatar.Fallback` for when the image fails to load:
 
 ## Use existing components instead of custom markup
 
-| Instead of | Use |
-|---|---|
-| `<hr>` or `<div class="border-t">` | `<Separator />` (`import { Separator } from "$lib/components/ui/separator"`) |
+| Instead of                                     | Use                                                                                         |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `<hr>` or `<div class="border-t">`             | `<Separator />` (`import { Separator } from "$lib/components/ui/separator"`)                |
 | `<div class="animate-pulse">` with styled divs | `<Skeleton class="h-4 w-3/4" />` (`import { Skeleton } from "$lib/components/ui/skeleton"`) |
-| `<span class="rounded-full bg-green-100 ...">` | `<Badge variant="secondary">` (`import { Badge } from "$lib/components/ui/badge"`) |
+| `<span class="rounded-full bg-green-100 ...">` | `<Badge variant="secondary">` (`import { Badge } from "$lib/components/ui/badge"`)          |
