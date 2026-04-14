@@ -39,13 +39,15 @@
 			<Card.Title>Pie Chart - Interactive</Card.Title>
 			<Card.Description>January - June 2024</Card.Description>
 		</div>
+	</Card.Header>
+	<Card.Content class="flex-1">
 		<Select.Root type="single" bind:value={activeMonth}>
 			<Select.Trigger
-				class="ms-auto h-7 w-[130px] rounded-lg ps-2.5 text-sm"
+				class="ms-auto mb-14 h-7 w-[130px] rounded-lg ps-2.5 text-sm"
 				aria-label="Select a value"
 			>
 				<span
-					class="flex h-3 w-3 shrink-0 rounded-sm"
+					class="flex h-3 w-3 shrink-0 rounded-xs"
 					style:background-color={`var(--color-${activeMonth})`}
 				></span>
 				{activeMonth
@@ -72,8 +74,7 @@
 				>
 			</Select.Content>
 		</Select.Root>
-	</Card.Header>
-	<Card.Content class="flex-1">
+
 		<Chart.Container {id} config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
 			<PieChart
 				data={desktopData}
@@ -139,12 +140,4 @@
 			</PieChart>
 		</Chart.Container>
 	</Card.Content>
-	<Card.Footer class="flex-col gap-2 text-sm">
-		<div class="flex items-center gap-2 leading-none font-medium">
-			Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
-		</div>
-		<div class="text-muted-foreground leading-none">
-			Showing total visitors for the last 6 months
-		</div>
-	</Card.Footer>
 </Card.Root>
