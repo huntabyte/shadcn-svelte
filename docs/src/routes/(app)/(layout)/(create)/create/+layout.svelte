@@ -5,6 +5,7 @@
 	import SiteHeader from "$lib/components/site-header.svelte";
 	import Customizer from "../components/customizer.svelte";
 	import ActionMenu from "../components/action-menu.svelte";
+	import CtaMobile from "$lib/components/cta-mobile.svelte";
 	import { OG_IMAGE_BASE_URL } from "../../../../og/og.js";
 
 	let { children } = $props();
@@ -32,6 +33,9 @@
 			data-slot="designer"
 			class="container-wrapper flex min-h-0 flex-1 flex-col gap-(--gap) p-(--gap) pt-[calc(var(--gap)*0.25)] md:flex-row-reverse"
 		>
+			<div class="md:hidden">
+				<CtaMobile />
+			</div>
 			{@render children?.()}
 			<Customizer />
 			<WelcomeDialog />
