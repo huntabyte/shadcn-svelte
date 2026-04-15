@@ -15,15 +15,18 @@
 <div data-slot="command-input-wrapper" class="cn-command-input-wrapper">
 	<InputGroup.Root class="cn-command-input-group">
 		<CommandPrimitive.Input
+			{value}
 			data-slot="command-input"
 			class={cn(
 				"cn-command-input outline-hidden disabled:cursor-not-allowed disabled:opacity-50",
 				className
 			)}
-			bind:ref
 			{...restProps}
-			bind:value
-		/>
+		>
+			{#snippet child({ props })}
+				<InputGroup.Input {...props} bind:value bind:ref />
+			{/snippet}
+		</CommandPrimitive.Input>
 		<InputGroup.Addon>
 			<IconPlaceholder
 				lucide="SearchIcon"
