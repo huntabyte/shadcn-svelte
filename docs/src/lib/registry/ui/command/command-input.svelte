@@ -18,7 +18,7 @@
 			{value}
 			data-slot="command-input"
 			class={cn(
-				"cn-command-input w-full text-xs/relaxed outline-hidden disabled:cursor-not-allowed disabled:opacity-50",
+				"cn-command-input outline-hidden disabled:cursor-not-allowed disabled:opacity-50",
 				className
 			)}
 			{...restProps}
