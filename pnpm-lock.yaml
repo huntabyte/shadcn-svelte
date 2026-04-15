@@ -97,9 +97,6 @@ importers:
       lodash:
         specifier: ^4.17.23
         version: 4.17.23
-      qrcode:
-        specifier: ^1.5.4
-        version: 1.5.4
     devDependencies:
       '@cloudflare/workers-types':
         specifier: ^4.20260317.1
@@ -266,6 +263,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      concurrently:
+        specifier: ^9.2.1
+        version: 9.2.1
       consola:
         specifier: ^3.4.2
         version: 3.4.2
@@ -323,6 +323,9 @@ importers:
       postcss:
         specifier: ^8.5.8
         version: 8.5.8
+      qrcode:
+        specifier: ^1.5.4
+        version: 1.5.4
       rehype-parse:
         specifier: ^9.0.1
         version: 9.0.1
