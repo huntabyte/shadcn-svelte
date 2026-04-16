@@ -1,0 +1,17 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "input",
+	"type": "registry:ui",
+	"files": [
+		{
+			"content": "import Root from \"./input.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Input,\n};\n",
+			"type": "registry:file",
+			"target": "input/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport type { HTMLInputAttributes, HTMLInputTypeAttribute } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\n\ttype InputType = Exclude<HTMLInputTypeAttribute, \"file\">;\n\n\ttype Props = WithElementRef<\n\t\tOmit<HTMLInputAttributes, \"type\"> &\n\t\t\t({ type: \"file\"; files?: FileList } | { type?: InputType; files?: undefined })\n\t>;\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\ttype,\n\t\tfiles = $bindable(),\n\t\tclass: className,\n\t\t\"data-slot\": dataSlot = \"input\",\n\t\t...restProps\n\t}: Props = $props();\n</script>\n\n{#if type === \"file\"}\n\t<input\n\t\tbind:this={ref}\n\t\tdata-slot={dataSlot}\n\t\tclass={cn(\n\t\t\t\"border-b-input focus-visible:border-b-ring aria-invalid:border-b-destructive dark:aria-invalid:border-b-destructive/50 h-10 border border-transparent bg-transparent px-0 py-1 text-base transition-[color,border-color] file:h-7 file:text-sm file:font-medium md:text-sm file:text-foreground placeholder:text-muted-foreground w-full min-w-0 outline-none file:inline-flex file:border-0 file:bg-transparent disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50\",\n\t\t\tclassName\n\t\t)}\n\t\ttype=\"file\"\n\t\tbind:files\n\t\tbind:value\n\t\t{...restProps}\n\t/>\n{:else}\n\t<input\n\t\tbind:this={ref}\n\t\tdata-slot={dataSlot}\n\t\tclass={cn(\n\t\t\t\"border-b-input focus-visible:border-b-ring aria-invalid:border-b-destructive dark:aria-invalid:border-b-destructive/50 h-10 border border-transparent bg-transparent px-0 py-1 text-base transition-[color,border-color] file:h-7 file:text-sm file:font-medium md:text-sm file:text-foreground placeholder:text-muted-foreground w-full min-w-0 outline-none file:inline-flex file:border-0 file:bg-transparent disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50\",\n\t\t\tclassName\n\t\t)}\n\t\t{type}\n\t\tbind:value\n\t\t{...restProps}\n\t/>\n{/if}\n",
+			"type": "registry:file",
+			"target": "input/input.svelte"
+		}
+	]
+}

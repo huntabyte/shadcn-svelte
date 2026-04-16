@@ -1,0 +1,20 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "calendar-13",
+	"type": "registry:block",
+	"devDependencies": [
+		"@internationalized/date@^3.12.0"
+	],
+	"registryDependencies": [
+		"calendar",
+		"select",
+		"label"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport Calendar from \"$UI$/calendar/calendar.svelte\";\n\timport * as Select from \"$UI$/select/index.js\";\n\timport { Label } from \"$UI$/label/index.js\";\n\timport { CalendarDate } from \"@internationalized/date\";\n\timport type { ComponentProps } from \"svelte\";\n\n\tlet value = $state<CalendarDate>(new CalendarDate(2025, 6, 12));\n\tlet dropdown = $state<ComponentProps<typeof Calendar>[\"captionLayout\"]>(\"dropdown\");\n\n\tconst dropdownOptions = [\n\t\t{\n\t\t\tlabel: \"Month and Year\",\n\t\t\tvalue: \"dropdown\",\n\t\t},\n\t\t{\n\t\t\tlabel: \"Month Only\",\n\t\t\tvalue: \"dropdown-months\",\n\t\t},\n\t\t{\n\t\t\tlabel: \"Year Only\",\n\t\t\tvalue: \"dropdown-years\",\n\t\t},\n\t];\n\n\tconst selectedDropdown = $derived(\n\t\tdropdownOptions.find((option) => option.value === dropdown)?.label ?? \"Dropdown\"\n\t);\n\n\tconst id = $props.id();\n</script>\n\n<div class=\"flex flex-col gap-4\">\n\t<Calendar\n\t\ttype=\"single\"\n\t\tbind:value\n\t\tclass=\"rounded-lg border shadow-sm\"\n\t\tcaptionLayout={dropdown}\n\t/>\n\t<div class=\"flex flex-col gap-3\">\n\t\t<Label for=\"{id}-dropdown\" class=\"px-1\">Dropdown</Label>\n\t\t<Select.Root type=\"single\" bind:value={dropdown}>\n\t\t\t<Select.Trigger id=\"{id}-dropdown\" size=\"sm\" class=\"bg-background w-full\">\n\t\t\t\t{selectedDropdown}\n\t\t\t</Select.Trigger>\n\t\t\t<Select.Content align=\"center\">\n\t\t\t\t{#each dropdownOptions as option (option.value)}\n\t\t\t\t\t<Select.Item value={option.value}>{option.label}</Select.Item>\n\t\t\t\t{/each}\n\t\t\t</Select.Content>\n\t\t</Select.Root>\n\t</div>\n</div>\n",
+			"type": "registry:component",
+			"target": "calendar-13.svelte"
+		}
+	]
+}

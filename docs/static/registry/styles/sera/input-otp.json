@@ -1,0 +1,36 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "input-otp",
+	"type": "registry:ui",
+	"devDependencies": [
+		"bits-ui@^2.16.3",
+		"@internationalized/date@^3.12.0"
+	],
+	"files": [
+		{
+			"content": "import Root from \"./input-otp.svelte\";\nimport Group from \"./input-otp-group.svelte\";\nimport Slot from \"./input-otp-slot.svelte\";\nimport Separator from \"./input-otp-separator.svelte\";\n\nexport {\n\tRoot,\n\tGroup,\n\tSlot,\n\tSeparator,\n\tRoot as InputOTP,\n\tGroup as InputOTPGroup,\n\tSlot as InputOTPSlot,\n\tSeparator as InputOTPSeparator,\n};\n",
+			"type": "registry:file",
+			"target": "input-otp/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"input-otp-group\"\n\tclass={cn(\"has-aria-invalid:border-b-destructive dark:has-aria-invalid:border-b-destructive/50 gap-1 rounded-none flex items-center\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "input-otp/input-otp-group.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"$UTILS$.js\";\n\timport { cn } from \"$UTILS$.js\";\n\timport IconPlaceholder from \"$lib/components/icon-placeholder/icon-placeholder.svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"input-otp-separator\"\n\trole=\"separator\"\n\tclass={cn(\"[&_svg:not([class*='size-'])]:size-3.5 flex items-center\", className)}\n\t{...restProps}\n>\n\t{#if children}\n\t\t{@render children?.()}\n\t{:else}\n\t\t<IconPlaceholder\n\t\t\tlucide=\"MinusIcon\"\n\t\t\ttabler=\"IconMinus\"\n\t\t\thugeicons=\"MinusSignIcon\"\n\t\t\tphosphor=\"MinusIcon\"\n\t\t\tremixicon=\"RiSubtractLine\"\n\t\t/>\n\t{/if}\n</div>\n",
+			"type": "registry:file",
+			"target": "input-otp/input-otp-separator.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { PinInput as InputOTPPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tcell,\n\t\tclass: className,\n\t\t...restProps\n\t}: InputOTPPrimitive.CellProps = $props();\n</script>\n\n<InputOTPPrimitive.Cell\n\t{cell}\n\tbind:ref\n\tdata-slot=\"input-otp-slot\"\n\tclass={cn(\n\t\t\"border-b-input data-[active=true]:border-b-ring aria-invalid:border-b-destructive dark:aria-invalid:border-b-destructive/50 size-10 border border-transparent bg-transparent text-sm transition-[color,border-color] outline-none first:rounded-none last:rounded-none relative flex items-center justify-center data-[active=true]:z-10\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{cell.char}\n\t{#if cell.hasFakeCaret}\n\t\t<div\n\t\t\tclass=\"cn-input-otp-caret pointer-events-none absolute inset-0 flex items-center justify-center\"\n\t\t>\n\t\t\t<div class=\"animate-caret-blink bg-foreground h-4 w-px duration-1000 bg-foreground h-4 w-px\"></div>\n\t\t</div>\n\t{/if}\n</InputOTPPrimitive.Cell>\n",
+			"type": "registry:file",
+			"target": "input-otp/input-otp-slot.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { PinInput as InputOTPPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tvalue = $bindable(\"\"),\n\t\t...restProps\n\t}: InputOTPPrimitive.RootProps = $props();\n</script>\n\n<InputOTPPrimitive.Root\n\tbind:ref\n\tbind:value\n\tdata-slot=\"input-otp\"\n\tspellcheck={false}\n\tclass={cn(\n\t\t\"cn-input-otp-input gap-2 flex items-center disabled:cursor-not-allowed has-disabled:opacity-50\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "input-otp/input-otp.svelte"
+		}
+	]
+}

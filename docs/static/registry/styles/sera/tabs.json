@@ -1,0 +1,37 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "tabs",
+	"type": "registry:ui",
+	"devDependencies": [
+		"bits-ui@^2.16.3",
+		"@internationalized/date@^3.12.0",
+		"tailwind-variants@^3.2.2"
+	],
+	"files": [
+		{
+			"content": "import Root from \"./tabs.svelte\";\nimport Content from \"./tabs-content.svelte\";\nimport List, { tabsListVariants, type TabsListVariant } from \"./tabs-list.svelte\";\nimport Trigger from \"./tabs-trigger.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tList,\n\tTrigger,\n\ttabsListVariants,\n\ttype TabsListVariant,\n\t//\n\tRoot as Tabs,\n\tContent as TabsContent,\n\tList as TabsList,\n\tTrigger as TabsTrigger,\n};\n",
+			"type": "registry:file",
+			"target": "tabs/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Tabs as TabsPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: TabsPrimitive.ContentProps = $props();\n</script>\n\n<TabsPrimitive.Content\n\tbind:ref\n\tdata-slot=\"tabs-content\"\n\tclass={cn(\"text-sm flex-1 outline-none\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "tabs/tabs-content.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\" module>\n\timport { tv, type VariantProps } from \"tailwind-variants\";\n\n\texport const tabsListVariants = tv({\n\t\tbase: \"p-1 group-data-horizontal/tabs:h-10 group/tabs-list text-muted-foreground inline-flex w-fit items-center justify-center group-data-[orientation=vertical]/tabs:h-fit group-data-[orientation=vertical]/tabs:flex-col\",\n\t\tvariants: {\n\t\t\tvariant: {\n\t\t\t\tdefault: \"cn-tabs-list-variant-default bg-muted\",\n\t\t\t\tline: \"cn-tabs-list-variant-line gap-1 bg-transparent\",\n\t\t\t},\n\t\t},\n\t\tdefaultVariants: {\n\t\t\tvariant: \"default\",\n\t\t},\n\t});\n\n\texport type TabsListVariant = VariantProps<typeof tabsListVariants>[\"variant\"];\n</script>\n\n<script lang=\"ts\">\n\timport { Tabs as TabsPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvariant = \"default\",\n\t\tclass: className,\n\t\t...restProps\n\t}: TabsPrimitive.ListProps & {\n\t\tvariant?: TabsListVariant;\n\t} = $props();\n</script>\n\n<TabsPrimitive.List\n\tbind:ref\n\tdata-slot=\"tabs-list\"\n\tdata-variant={variant}\n\tclass={cn(tabsListVariants({ variant }), className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "tabs/tabs-list.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Tabs as TabsPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: TabsPrimitive.TriggerProps = $props();\n</script>\n\n<TabsPrimitive.Trigger\n\tbind:ref\n\tdata-slot=\"tabs-trigger\"\n\tclass={cn(\n\t\t\"gap-2 border border-transparent px-4 py-1.5 text-xs font-semibold tracking-wider uppercase group-data-vertical/tabs:px-4 group-data-vertical/tabs:py-2 has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5 [&_svg:not([class*='size-'])]:size-3.5 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring text-foreground/60 hover:text-foreground dark:text-muted-foreground dark:hover:text-foreground relative inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center whitespace-nowrap transition-all group-data-[orientation=vertical]/tabs:w-full group-data-[orientation=vertical]/tabs:justify-start focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0\",\n\t\t\"group-data-[variant=line]/tabs-list:bg-transparent group-data-[variant=line]/tabs-list:data-active:bg-transparent dark:group-data-[variant=line]/tabs-list:data-active:border-transparent dark:group-data-[variant=line]/tabs-list:data-active:bg-transparent\",\n\t\t\"data-active:bg-background dark:data-active:text-foreground dark:data-active:border-input dark:data-active:bg-input/30 data-active:text-foreground\",\n\t\t\"after:bg-foreground after:absolute after:opacity-0 after:transition-opacity group-data-[orientation=horizontal]/tabs:after:inset-x-0 group-data-[orientation=horizontal]/tabs:after:bottom-[-5px] group-data-[orientation=horizontal]/tabs:after:h-0.5 group-data-[orientation=vertical]/tabs:after:inset-y-0 group-data-[orientation=vertical]/tabs:after:-right-1 group-data-[orientation=vertical]/tabs:after:w-0.5 group-data-[variant=line]/tabs-list:data-active:after:opacity-100\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "tabs/tabs-trigger.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Tabs as TabsPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(\"\"),\n\t\tclass: className,\n\t\t...restProps\n\t}: TabsPrimitive.RootProps = $props();\n</script>\n\n<TabsPrimitive.Root\n\tbind:ref\n\tbind:value\n\tdata-slot=\"tabs\"\n\tclass={cn(\"gap-2 group/tabs flex data-[orientation=horizontal]:flex-col\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "tabs/tabs.svelte"
+		}
+	]
+}

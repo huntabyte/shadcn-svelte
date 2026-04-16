@@ -1,0 +1,69 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "dialog",
+	"type": "registry:ui",
+	"devDependencies": [
+		"bits-ui@^2.16.3",
+		"@internationalized/date@^3.12.0"
+	],
+	"registryDependencies": [
+		"button"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport { Dialog as DialogPrimitive } from \"bits-ui\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\ttype = \"button\",\n\t\t...restProps\n\t}: DialogPrimitive.CloseProps = $props();\n</script>\n\n<DialogPrimitive.Close bind:ref data-slot=\"dialog-close\" {type} {...restProps} />\n",
+			"type": "registry:file",
+			"target": "dialog/dialog-close.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Dialog as DialogPrimitive } from \"bits-ui\";\n\timport DialogPortal from \"./dialog-portal.svelte\";\n\timport type { Snippet } from \"svelte\";\n\timport * as Dialog from \"./index.js\";\n\timport { cn, type WithoutChildrenOrChild } from \"$UTILS$.js\";\n\timport type { ComponentProps } from \"svelte\";\n\timport { Button } from \"$UI$/button/index.js\";\n\timport IconPlaceholder from \"$lib/components/icon-placeholder/icon-placeholder.svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tportalProps,\n\t\tchildren,\n\t\tshowCloseButton = true,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<DialogPrimitive.ContentProps> & {\n\t\tportalProps?: WithoutChildrenOrChild<ComponentProps<typeof DialogPortal>>;\n\t\tchildren: Snippet;\n\t\tshowCloseButton?: boolean;\n\t} = $props();\n</script>\n\n<DialogPortal {...portalProps}>\n\t<Dialog.Overlay />\n\t<DialogPrimitive.Content\n\t\tbind:ref\n\t\tdata-slot=\"dialog-content\"\n\t\tclass={cn(\n\t\t\t\"bg-popover text-popover-foreground data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 ring-foreground/10 grid max-w-[calc(100%-2rem)] gap-6 rounded-none p-6 text-sm shadow-md ring-1 duration-100 sm:max-w-md fixed top-1/2 left-1/2 z-50 w-full -translate-x-1/2 -translate-y-1/2 outline-none\",\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t>\n\t\t{@render children?.()}\n\t\t{#if showCloseButton}\n\t\t\t<DialogPrimitive.Close data-slot=\"dialog-close\">\n\t\t\t\t{#snippet child({ props })}\n\t\t\t\t\t<Button variant=\"ghost\" class=\"bg-secondary absolute top-5 right-5\" size=\"icon-sm\" {...props}>\n\t\t\t\t\t\t<IconPlaceholder\n\t\t\t\t\t\t\tlucide=\"XIcon\"\n\t\t\t\t\t\t\ttabler=\"IconX\"\n\t\t\t\t\t\t\thugeicons=\"Cancel01Icon\"\n\t\t\t\t\t\t\tphosphor=\"XIcon\"\n\t\t\t\t\t\t\tremixicon=\"RiCloseLine\"\n\t\t\t\t\t\t/>\n\t\t\t\t\t\t<span class=\"sr-only\">Close</span>\n\t\t\t\t\t</Button>\n\t\t\t\t{/snippet}\n\t\t\t</DialogPrimitive.Close>\n\t\t{/if}\n\t</DialogPrimitive.Content>\n</DialogPortal>\n",
+			"type": "registry:file",
+			"target": "dialog/dialog-content.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Dialog as DialogPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: DialogPrimitive.DescriptionProps = $props();\n</script>\n\n<DialogPrimitive.Description\n\tbind:ref\n\tdata-slot=\"dialog-description\"\n\tclass={cn(\"text-muted-foreground *:[a]:hover:text-foreground mt-0.5 text-sm leading-relaxed *:[a]:underline *:[a]:underline-offset-3\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "dialog/dialog-description.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { Dialog as DialogPrimitive } from \"bits-ui\";\n\timport { Button } from \"$UI$/button/index.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\tshowCloseButton = false,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {\n\t\tshowCloseButton?: boolean;\n\t} = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"dialog-footer\"\n\tclass={cn(\"gap-2 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n\t{#if showCloseButton}\n\t\t<DialogPrimitive.Close>\n\t\t\t{#snippet child({ props })}\n\t\t\t\t<Button variant=\"outline\" {...props}>Close</Button>\n\t\t\t{/snippet}\n\t\t</DialogPrimitive.Close>\n\t{/if}\n</div>\n",
+			"type": "registry:file",
+			"target": "dialog/dialog-footer.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"dialog-header\"\n\tclass={cn(\"gap-2 flex flex-col\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "dialog/dialog-header.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Dialog as DialogPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: DialogPrimitive.OverlayProps = $props();\n</script>\n\n<DialogPrimitive.Overlay\n\tbind:ref\n\tdata-slot=\"dialog-overlay\"\n\tclass={cn(\"data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 bg-black/20 duration-100 supports-backdrop-filter:backdrop-blur-sm fixed inset-0 isolate z-50\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "dialog/dialog-overlay.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Dialog as DialogPrimitive } from \"bits-ui\";\n\n\tlet { ...restProps }: DialogPrimitive.PortalProps = $props();\n</script>\n\n<DialogPrimitive.Portal {...restProps} />\n",
+			"type": "registry:file",
+			"target": "dialog/dialog-portal.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Dialog as DialogPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: DialogPrimitive.TitleProps = $props();\n</script>\n\n<DialogPrimitive.Title\n\tbind:ref\n\tdata-slot=\"dialog-title\"\n\tclass={cn(\"cn-font-heading text-lg leading-none font-semibold tracking-wider uppercase\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "dialog/dialog-title.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Dialog as DialogPrimitive } from \"bits-ui\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\ttype = \"button\",\n\t\t...restProps\n\t}: DialogPrimitive.TriggerProps = $props();\n</script>\n\n<DialogPrimitive.Trigger bind:ref data-slot=\"dialog-trigger\" {type} {...restProps} />\n",
+			"type": "registry:file",
+			"target": "dialog/dialog-trigger.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Dialog as DialogPrimitive } from \"bits-ui\";\n\n\tlet { open = $bindable(false), ...restProps }: DialogPrimitive.RootProps = $props();\n</script>\n\n<DialogPrimitive.Root bind:open {...restProps} />\n",
+			"type": "registry:file",
+			"target": "dialog/dialog.svelte"
+		},
+		{
+			"content": "import Root from \"./dialog.svelte\";\nimport Portal from \"./dialog-portal.svelte\";\nimport Title from \"./dialog-title.svelte\";\nimport Footer from \"./dialog-footer.svelte\";\nimport Header from \"./dialog-header.svelte\";\nimport Overlay from \"./dialog-overlay.svelte\";\nimport Content from \"./dialog-content.svelte\";\nimport Description from \"./dialog-description.svelte\";\nimport Trigger from \"./dialog-trigger.svelte\";\nimport Close from \"./dialog-close.svelte\";\n\nexport {\n\tRoot,\n\tTitle,\n\tPortal,\n\tFooter,\n\tHeader,\n\tTrigger,\n\tOverlay,\n\tContent,\n\tDescription,\n\tClose,\n\t//\n\tRoot as Dialog,\n\tTitle as DialogTitle,\n\tPortal as DialogPortal,\n\tFooter as DialogFooter,\n\tHeader as DialogHeader,\n\tTrigger as DialogTrigger,\n\tOverlay as DialogOverlay,\n\tContent as DialogContent,\n\tDescription as DialogDescription,\n\tClose as DialogClose,\n};\n",
+			"type": "registry:file",
+			"target": "dialog/index.ts"
+		}
+	]
+}
