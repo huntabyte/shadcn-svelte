@@ -4,7 +4,7 @@
 	import InfoIcon from "@lucide/svelte/icons/info";
 </script>
 
-<div class="grid w-full max-w-xl items-start gap-4">
+<div class="grid w-full max-w-md items-start gap-4">
 	<Alert.Root>
 		<CheckCircle2Icon />
 		<Alert.Title>Payment successful</Alert.Title>
