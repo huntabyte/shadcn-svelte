@@ -82,6 +82,8 @@ Update the import paths to match your project setup.
 
 ### Square
 
+A square aspect ratio component using the `ratio={1 / 1}` prop. This is useful for displaying images in a square format.
+
 <ComponentPreview name="aspect-ratio-square">
 
 <div></div>
@@ -89,6 +91,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Portrait
+
+A portrait aspect ratio component using the `ratio={9 / 16}` prop. This is useful for displaying images in a portrait format.
 
 <ComponentPreview name="aspect-ratio-portrait" previewClassName="h-96">
 
