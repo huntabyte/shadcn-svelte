@@ -160,6 +160,8 @@ Use the `AlertDialog.Action` component to add a destructive action button to the
 
 ## API Reference
 
+### size
+
 Use the `size` prop on the `AlertDialog.Content` component to control the size of the alert dialog. It accepts the following values:
 
 | Prop   | Type                | Default     |
