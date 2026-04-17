@@ -155,7 +155,7 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 
 ### With Icon
 
-The spacing between the icon and the text is automatically adjusted based on the size of the button. You do not need any margin on the icon.
+Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` attribute to the icon for the correct spacing.
 
 <ComponentPreview name="button-with-icon" description="A button with an icon" class="mb-4">
 
@@ -177,7 +177,7 @@ Use the `rounded-full` class to make the button rounded.
 
 Render a `<Spinner />` component inside the button to show a loading state. Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` attribute to the spinner for the correct spacing.
 
-<ComponentPreview name="button-loading" description="A button with a loading state." class="mb-4">
+<ComponentPreview name="button-spinner" description="A button with a loading state." class="mb-4">
 
 <div></div>
 
@@ -195,7 +195,7 @@ To create a button group, use the `ButtonGroup` component. See the [Button Group
 
 ### Child Snippet
 
-Use the `buttonVariants` helper to apply button styles to any element — useful when you need a link that looks like a button.
+You can use `buttonVariants` helper on `<Button />` to make another component look like a button. Here's an example of a link that looks like a button.
 
 <ComponentPreview name="button-as-child" class="mb-4">
 
@@ -203,41 +203,15 @@ Use the `buttonVariants` helper to apply button styles to any element — useful
 
 </ComponentPreview>
 
-You can use the `buttonVariants` helper to create a link that looks like a button.
-
-```svelte
-<script lang="ts">
-  import { buttonVariants } from "$lib/components/ui/button";
-</script>
-
-<a href="/dashboard" class={buttonVariants({ variant: "outline" })}>
-  Dashboard
-</a>
-```
-
 ## API Reference
 
-### Button.Root
+### Button
 
-The root button component. Renders a `<button>` element by default, or an `<a>` element when `href` is passed.
+The Button component is a wrapper around the button element that adds a variety of styles and functionality.
 
-| Prop       | Type                                                                                 | Default     | Description                                                           |
-| ---------- | ------------------------------------------------------------------------------------ | ----------- | --------------------------------------------------------------------- |
-| `variant`  | `"default" \| "outline" \| "ghost" \| "destructive" \| "secondary" \| "link"`        | `"default"` | The visual style variant of the button.                               |
-| `size`     | `"default" \| "xs" \| "sm" \| "lg" \| "icon" \| "icon-xs" \| "icon-sm" \| "icon-lg"` | `"default"` | The size of the button.                                               |
-| `href`     | `string`                                                                             | -           | When provided, renders the button as an `<a>` element with this href. |
-| `disabled` | `boolean`                                                                            | `false`     | Whether the button is disabled.                                       |
-| `class`    | `string`                                                                             | -           | Additional CSS classes to apply to the button.                        |
-| `children` | `Snippet`                                                                            | -           | The content to render inside the button.                              |
-
-Use the `children` snippet to render content inside the button.
-
-```svelte
-<Button>
-  {#snippet children()}
-    Click me
-  {/snippet}
-</Button>
-```
-
-Use the `data-button-root` attribute to target the button element in CSS.
+| Prop       | Type                                                                                 | Default     |
+| ---------- | ------------------------------------------------------------------------------------ | ----------- |
+| `variant`  | `"default" \| "outline" \| "ghost" \| "destructive" \| "secondary" \| "link"`        | `"default"` |
+| `size`     | `"default" \| "xs" \| "sm" \| "lg" \| "icon" \| "icon-xs" \| "icon-sm" \| "icon-lg"` | `"default"` |
+| `href`     | `string`                                                                             | -           |
+| `children` | `Snippet`                                                                            | -           |

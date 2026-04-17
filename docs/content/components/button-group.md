@@ -67,7 +67,7 @@ Use the following composition to build a `ButtonGroup`:
 
 ```text
 ButtonGroup.Root
-├── Button (or any child)
+├── Button
 ├── ButtonGroup.Separator
 └── ButtonGroup.Text
 ```

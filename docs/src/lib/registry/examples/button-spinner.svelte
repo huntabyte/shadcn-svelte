@@ -3,7 +3,13 @@
 	import { Spinner } from "$lib/registry/ui/spinner/index.js";
 </script>
 
-<Button size="sm" variant="outline" disabled>
-	<Spinner />
-	Submit
-</Button>
+<div class="flex gap-2">
+	<Button variant="outline" disabled>
+		<Spinner data-icon="inline-start" />
+		Generating
+	</Button>
+	<Button variant="secondary" disabled>
+		Downloading
+		<Spinner data-icon="inline-start" />
+	</Button>
+</div>
