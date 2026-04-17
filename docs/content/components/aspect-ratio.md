@@ -102,9 +102,9 @@ A portrait aspect ratio component using the `ratio={9 / 16}` prop. This is usefu
 
 ## API Reference
 
-### AspectRatio.Root
+### AspectRatio
 
-The `AspectRatio.Root` component displays content within a desired ratio.
+The `AspectRatio` component displays content within a desired ratio.
 
 | Prop       | Type      | Default |
 | ---------- | --------- | ------- |
@@ -112,4 +112,4 @@ The `AspectRatio.Root` component displays content within a desired ratio.
 | `children` | `Snippet` | -       |
 | `class`    | `string`  | -       |
 
-Use the `data-aspect-ratio-root` attribute to target the root element in CSS.
+For more information, see the [Bits UI](https://bits-ui.com/docs/components/aspect-ratio#api-reference) documentation.
