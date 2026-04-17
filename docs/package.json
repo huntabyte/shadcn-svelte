@@ -26,7 +26,7 @@
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20260405.1",
+		"@cloudflare/workers-types": "^4.20260409.1",
 		"@dnd-kit-svelte/svelte": "^0.1.6",
 		"@dnd-kit/abstract": "^0.3.2",
 		"@dnd-kit/collision": "^0.3.2",
@@ -92,7 +92,7 @@
 		"formsnap": "^2.0.1",
 		"globby": "^16.2.0",
 		"hast-util-to-html": "^9.0.5",
-		"jsdom": "^29.0.1",
+		"jsdom": "^29.0.2",
 		"layerchart": "2.0.0-next.48",
 		"little-date": "^1.2.1",
 		"magic-string": "^0.30.21",
@@ -101,7 +101,7 @@
 		"package-manager-detector": "^1.6.0",
 		"paneforge": "^1.0.2",
 		"phosphor-svelte": "^3.1.0",
-		"postcss": "^8.5.8",
+		"postcss": "^8.5.9",
 		"qrcode": "^1.5.4",
 		"rehype-parse": "^9.0.1",
 		"rehype-pretty-code": "^0.14.3",
@@ -133,12 +133,12 @@
 		"unist-util-visit": "^5.1.0",
 		"vaul-svelte": "1.0.0-next.7",
 		"velite": "^0.3.1",
-		"vite": "^8.0.8",
+		"vite": "catalog:",
 		"zod": "catalog:"
 	},
 	"dependencies": {
 		"@types/lodash": "^4.17.24",
-		"agent-browser": "^0.25.4",
+		"agent-browser": "^0.25.3",
 		"lodash": "^4.18.1"
 	}
 }

@@ -6,11 +6,11 @@ packages:
 catalog:
     "@sveltejs/kit": ^2.57.1
     "@sveltejs/vite-plugin-svelte": ^7.0.0
-    svelte: ^5.55.3
+    svelte: ^5.55.2
     svelte-check: ^4.4.6
     tsdown: ^0.18.4
     typescript: ^6.0.2
-    vite: ^7.3.2
+    vite: ^8.0.8
     zod: ^4.3.6
 
 minimumReleaseAge: 10080 # 7 days
@@ -34,3 +34,6 @@ minimumReleaseAgeExclude:
     - "@rolldown/binding-linux-s390x-gnu"
     - "@rolldown/binding-linux-ppc64-gnu"
     - "@napi-rs/wasm-runtime"
+    - bits-ui
+    - runed
+    - vaul-svelte

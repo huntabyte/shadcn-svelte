@@ -38,7 +38,7 @@
 	"type": "module",
 	"devDependencies": {
 		"@changesets/cli": "^2.30.0",
-		"@eslint/compat": "^2.0.4",
+		"@eslint/compat": "^2.0.5",
 		"@eslint/js": "^10.0.1",
 		"@svitejs/changesets-changelog-github-compact": "^1.2.0",
 		"@types/node": "^25.5.2",
@@ -54,8 +54,8 @@
 		"pretty-quick": "^4.2.2",
 		"svelte": "catalog:",
 		"typescript": "6.0.2",
-		"typescript-eslint": "^8.58.0",
-		"wrangler": "^4.80.0"
+		"typescript-eslint": "^8.58.1",
+		"wrangler": "^4.81.1"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [
