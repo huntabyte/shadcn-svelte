@@ -14,16 +14,17 @@
 			<span class="text-muted-foreground text-[10px] font-medium tracking-wide uppercase"
 				>Special Sponsor</span
 			>
-			<div class="size-10 opacity-80 transition-opacity group-hover:opacity-100">
+			<div class="size-10 overflow-hidden rounded-lg opacity-80 transition-opacity group-hover:opacity-100">
 				<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-					<circle cx="170" cy="170" r="100" fill="#cccccc" opacity="1" />
-					<circle cx="230" cy="230" r="100" fill="#ffffff" opacity="1" />
+					<rect width="400" height="400" fill="#000" />
+					<circle cx="170" cy="170" r="100" fill="#ccc" />
+					<circle cx="230" cy="230" r="100" fill="#fff" />
 				</svg>
 			</div>
 		</div>
 		<div>
 			<h3 class="text-foreground text-lg font-semibold tracking-tight">Epicenter</h3>
-			<p class="text-foreground/85 text-xs leading-relaxed">Open source, local first apps</p>
+			<p class="text-foreground/85 text-xs leading-relaxed">Local-first, open source apps</p>
 		</div>
 	</div>
 </a>

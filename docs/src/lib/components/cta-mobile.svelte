@@ -10,17 +10,18 @@
 	></div>
 
 	<div
-		class="relative z-10 size-8 shrink-0 opacity-80 transition-opacity group-hover:opacity-100"
+		class="relative z-10 size-8 shrink-0 overflow-hidden rounded-md opacity-80 transition-opacity group-hover:opacity-100"
 	>
 		<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-			<circle cx="170" cy="170" r="100" fill="#cccccc" opacity="1" />
-			<circle cx="230" cy="230" r="100" fill="#ffffff" opacity="1" />
+			<rect width="400" height="400" fill="#000" />
+			<circle cx="170" cy="170" r="100" fill="#ccc" />
+			<circle cx="230" cy="230" r="100" fill="#fff" />
 		</svg>
 	</div>
 
 	<div class="relative z-10 min-w-0 flex-1">
 		<h3 class="text-foreground text-sm font-semibold tracking-tight">Epicenter</h3>
-		<p class="text-foreground/70 truncate text-xs">Open source, local first apps</p>
+		<p class="text-foreground/70 truncate text-xs">Local-first, open source apps</p>
 	</div>
 
 	<span
