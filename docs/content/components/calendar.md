@@ -27,12 +27,6 @@ links:
 
 </ComponentPreview>
 
-## Blocks
-
-We have built a collection of 30+ calendar blocks that you can use to build your own calendar components.
-
-See all calendar blocks in the [Blocks Library](/blocks/calendar) page.
-
 ## Installation
 
 <InstallTabs>
@@ -69,6 +63,19 @@ Update the import paths to match your project setup.
 {/snippet}
 </InstallTabs>
 
+## Usage
+
+```svelte showLineNumbers
+<script lang="ts">
+	import { Calendar } from "$lib/components/ui/calendar/index.js";
+	import type { DateValue } from "@internationalized/date";
+
+	let date = $state<DateValue | undefined>(undefined);
+</script>
+
+<Calendar type="single" bind:value={date} class="rounded-lg border" />
+```
+
 ## About
 
 The `<Calendar />` component is built on top of the [Bits UI Calendar](https://www.bits-ui.com/docs/components/calendar) component, which uses the [@internationalized/date](https://react-spectrum.adobe.com/internationalized/date/index.html) package to handle dates.
@@ -79,34 +86,11 @@ If you're looking for a range calendar, check out the [Range Calendar](/docs/com
 
 You can use the `<Calendar />` component to build a date picker. See the [Date Picker](/docs/components/date-picker) page for more information.
 
-## Composition
-
-For most use cases, use the `Calendar` component directly. For advanced customization, you can compose a calendar manually using the following sub-components:
-
-```text
-Calendar.Root (Calendar)
-├── Calendar.Months
-│   └── Calendar.Month
-│       ├── Calendar.Caption
-│       │   ├── Calendar.Nav
-│       │   │   ├── Calendar.PrevButton
-│       │   │   └── Calendar.NextButton
-│       │   └── Calendar.Heading
-│       └── Calendar.Grid
-│           ├── Calendar.GridHead
-│           │   └── Calendar.GridRow
-│           │       └── Calendar.HeadCell
-│           └── Calendar.GridBody
-│               └── Calendar.GridRow
-│                   └── Calendar.Cell
-│                       └── Calendar.Day
-```
-
 ## Examples
 
 ### Basic
 
-A basic calendar component with a border.
+A basic calendar component with a border. We used `class="rounded-lg border"` to style the calendar.
 
 <ComponentPreview name="calendar-basic" previewClassName="h-96">
 
@@ -116,7 +100,7 @@ A basic calendar component with a border.
 
 ### Range Calendar
 
-Use the range calendar to allow users to select a range of dates.
+Use the `RangeCalendar` component to enable range selection.
 
 <ComponentPreview name="calendar-range" class="**:[.preview]:h-auto lg:**:[.preview]:h-[450px]" previewClassName="h-[36rem] md:h-96">
 
@@ -162,83 +146,43 @@ Use `captionLayout="dropdown"` to show month and year dropdowns.
 
 A calendar with custom cell content — useful for showing prices or other per-day data.
 
-<ComponentPreview name="calendar-custom-days" title="Custom Cell Size" description="A calendar with custom cell size that's responsive." className="**:[.preview]:h-[560px]">
+<ComponentPreview name="calendar-custom-days" description="A calendar with custom cell size that's responsive." class="**:[.preview]:h-[560px]">
 
 <div></div>
 
 </ComponentPreview>
 
+<!--You can customize the size of calendar cells using the `--cell-size` CSS variable. You can also make it responsive by using breakpoint-specific values:
+
+```svelte showLineNumbers
+<RangeCalendar
+  mode="single"
+  selected={date}
+  onSelect={setDate}
+  class="rounded-lg border [--cell-size:--spacing(11)] md:[--cell-size:--spacing(12)]"
+/>
+```
+
+Or use fixed values:
+
+```svelte showLineNumbers
+<RangeCalendar
+  mode="single"
+  selected={date}
+  onSelect={setDate}
+  class="rounded-lg border [--cell-size:2.75rem] md:[--cell-size:3rem]"
+/>
+```-->
+
 ### Week Numbers
+
+<!--Use `showWeekNumber` to show week numbers.-->
 
 <ComponentPreview name="calendar-week-numbers" previewClassName="h-96">
 
 <div></div>
 
 </ComponentPreview>
-
-### Persian / Hijri / Jalali Calendar
-
-<ComponentPreview name="calendar-hijri" title="Persian / Hijri / Jalali Calendar" description="A Persian calendar." previewClassName="h-[400px]">
-
-<div></div>
-
-</ComponentPreview>
-
-### Blocks
-
-<ComponentPreview name="calendar-02" class="**:[.preview]:h-auto lg:**:[.preview]:h-[450px]">
-
-<div></div>
-
-</ComponentPreview>
-
-<ComponentPreview name="calendar-13">
-
-<div></div>
-
-</ComponentPreview>
-
-### Date of Birth Picker
-
-<ComponentPreview name="calendar-22">
-
-<div></div>
-
-</ComponentPreview>
-
-### Date and Time Picker (Block)
-
-<ComponentPreview name="calendar-24">
-
-<div></div>
-
-</ComponentPreview>
-
-### Natural Language Picker
-
-This component uses the `chrono-node` library to parse natural language dates.
-
-<ComponentPreview name="calendar-29">
-
-<div></div>
-
-</ComponentPreview>
-
-## Upgrade Guide
-
-You can upgrade to the latest version of the `<Calendar />` component by running the following command:
-
-<PMAddComp name="calendar" />
-
-When you're prompted to overwrite the existing files, select `Yes`. **If you have made any changes to the `Calendar` component, you will need to merge your changes with the new version.**
-
-#### Installing Blocks
-
-After upgrading the `Calendar` component, you can add the new blocks with the following:
-
-<PMAddComp name="calendar-02" />
-
-This will add the latest version of the calendar blocks.
 
 ## API Reference
 
