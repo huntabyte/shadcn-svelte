@@ -1,13 +1,3 @@
-<script lang="ts" module>
-	import { Context } from "runed";
-
-	class ActionMenuContext {
-		open = $state(false);
-	}
-
-	export const ActionMenuCtx = new Context<ActionMenuContext>("action-menu-ctx");
-</script>
-
 <script lang="ts">
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import { goto } from "$app/navigation";
@@ -15,8 +5,11 @@
 	import { groupItemsByType } from "../lib/utils.js";
 	import { examples } from "$lib/registry/examples/create/index.js";
 	import type { Snippet } from "svelte";
+	import { ActionMenuContext, ActionMenuCtx } from "./action-menu-context.svelte.js";
 
 	let { children }: { children: Snippet } = $props();
+
+	const actionMenuCtx = ActionMenuCtx.set(new ActionMenuContext());
 
 	const commandPaletteExamples = $derived(
 		examples.filter((example) => !example.hideFromCommandPalette)
@@ -30,8 +23,6 @@
 			actionMenuCtx.open = !actionMenuCtx.open;
 		}
 	}
-
-	const actionMenuCtx = ActionMenuCtx.set(new ActionMenuContext());
 
 	function handleSelect(itemName: string) {
 		goto(`/create/${itemName}${page.url.search}`);
