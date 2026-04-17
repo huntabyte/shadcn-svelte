@@ -13,9 +13,7 @@
 
 	const designSystem = useDesignSystem();
 
-	const isRadiusLocked = $derived(
-		designSystem.style === "lyra" || designSystem.style === "sera"
-	);
+	const isRadiusLocked = $derived(designSystem.style === "lyra" || designSystem.style === "sera");
 
 	const selectedRadiusName = $derived(isRadiusLocked ? "none" : designSystem.radius);
 

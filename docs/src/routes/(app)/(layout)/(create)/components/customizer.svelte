@@ -73,10 +73,7 @@
 				<RandomButton />
 			</Card.Footer>
 			<Card.Footer class="flex min-w-0 gap-2 px-3! md:flex-col md:**:[button,a]:w-full">
-				<Button
-					variant="default"
-					onclick={() => (initializeProjectCtx.open = true)}
-				>
+				<Button variant="default" onclick={() => (initializeProjectCtx.open = true)}>
 					<SquareTerminal />
 					Initialize Project
 				</Button>
