@@ -1,0 +1,64 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "pagination",
+	"type": "registry:ui",
+	"devDependencies": [
+		"bits-ui@^2.16.3",
+		"@internationalized/date@^3.12.0"
+	],
+	"registryDependencies": [
+		"button"
+	],
+	"files": [
+		{
+			"content": "import Root from \"./pagination.svelte\";\nimport Content from \"./pagination-content.svelte\";\nimport Item from \"./pagination-item.svelte\";\nimport Link from \"./pagination-link.svelte\";\nimport PrevButton from \"./pagination-prev-button.svelte\";\nimport NextButton from \"./pagination-next-button.svelte\";\nimport Ellipsis from \"./pagination-ellipsis.svelte\";\nimport Previous from \"./pagination-previous.svelte\";\nimport Next from \"./pagination-next.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tLink,\n\tPrevButton, // old\n\tNextButton, // old\n\tEllipsis,\n\tPrevious,\n\tNext,\n\t//\n\tRoot as Pagination,\n\tContent as PaginationContent,\n\tItem as PaginationItem,\n\tLink as PaginationLink,\n\tPrevButton as PaginationPrevButton, // old\n\tNextButton as PaginationNextButton, // old\n\tEllipsis as PaginationEllipsis,\n\tPrevious as PaginationPrevious,\n\tNext as PaginationNext,\n};\n",
+			"type": "registry:file",
+			"target": "pagination/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLUListElement>> = $props();\n</script>\n\n<ul\n\tbind:this={ref}\n\tdata-slot=\"pagination-content\"\n\tclass={cn(\"gap-1 flex items-center\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</ul>\n",
+			"type": "registry:file",
+			"target": "pagination/pagination-content.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef, type WithoutChildren } from \"$UTILS$.js\";\n\timport IconPlaceholder from \"$lib/components/icon-placeholder/icon-placeholder.svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildren<WithElementRef<HTMLAttributes<HTMLSpanElement>>> = $props();\n</script>\n\n<span\n\tbind:this={ref}\n\taria-hidden=\"true\"\n\tdata-slot=\"pagination-ellipsis\"\n\tclass={cn(\"size-9 items-center justify-center [&_svg:not([class*='size-'])]:size-4 flex items-center justify-center\", className)}\n\t{...restProps}\n>\n\t<IconPlaceholder\n\t\tlucide=\"MoreHorizontalIcon\"\n\t\ttabler=\"IconDots\"\n\t\thugeicons=\"MoreHorizontalCircle01Icon\"\n\t\tphosphor=\"DotsThreeIcon\"\n\t\tremixicon=\"RiMoreLine\"\n\t/>\n\t<span class=\"sr-only\">More pages</span>\n</span>\n",
+			"type": "registry:file",
+			"target": "pagination/pagination-ellipsis.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport type { HTMLLiAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLLiAttributes> = $props();\n</script>\n\n<li bind:this={ref} data-slot=\"pagination-item\" {...restProps}>\n\t{@render children?.()}\n</li>\n",
+			"type": "registry:file",
+			"target": "pagination/pagination-item.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\timport { buttonVariants, type ButtonSize } from \"$UI$/button/index.js\";\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tsize = \"icon\",\n\t\tisActive,\n\t\tpage,\n\t\tchildren,\n\t\t...restProps\n\t}: PaginationPrimitive.PageProps & {\n\t\tsize?: ButtonSize;\n\t\tisActive: boolean;\n\t} = $props();\n</script>\n\n{#snippet Fallback()}\n\t{page.value}\n{/snippet}\n\n<PaginationPrimitive.Page\n\tbind:ref\n\t{page}\n\taria-current={isActive ? \"page\" : undefined}\n\tdata-slot=\"pagination-link\"\n\tdata-active={isActive}\n\tdata-size={size}\n\tclass={cn(\n\t\tbuttonVariants({ size, variant: isActive ? \"outline\" : \"ghost\" }),\n\t\t\"cn-pagination-link\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{#if children}\n\t\t{@render children?.()}\n\t{:else}\n\t\t{@render Fallback()}\n\t{/if}\n</PaginationPrimitive.Page>\n",
+			"type": "registry:file",
+			"target": "pagination/pagination-link.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\timport IconPlaceholder from \"$lib/components/icon-placeholder/icon-placeholder.svelte\";\n\timport { cn } from \"$UTILS$.js\";\n\timport { buttonVariants } from \"../button/index.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PaginationPrimitive.NextButtonProps = $props();\n</script>\n\n{#snippet Fallback()}\n\t<span>Next</span>\n\t<IconPlaceholder\n\t\tlucide=\"ChevronRightIcon\"\n\t\ttabler=\"IconChevronRight\"\n\t\thugeicons=\"ArrowRightIcon\"\n\t\tphosphor=\"CaretRightIcon\"\n\t\tremixicon=\"RiArrowRightSLine\"\n\t\tclass={cn(\"size-4\", className)}\n\t/>\n{/snippet}\n\n<PaginationPrimitive.NextButton\n\tbind:ref\n\taria-label=\"Go to next page\"\n\tclass={cn(buttonVariants({ variant: \"ghost\" }), \"pr-2!\", className)}\n\t{...restProps}\n>\n\t{#if children}\n\t\t{@render children?.()}\n\t{:else}\n\t\t{@render Fallback()}\n\t{/if}\n</PaginationPrimitive.NextButton>\n",
+			"type": "registry:file",
+			"target": "pagination/pagination-next-button.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport type { ComponentProps } from \"svelte\";\n\timport { cn } from \"$UTILS$.js\";\n\timport { PaginationLink } from \"./index.js\";\n\timport IconPlaceholder from \"$lib/components/icon-placeholder/icon-placeholder.svelte\";\n\n\ttype PaginationNextProps = ComponentProps<typeof PaginationLink>;\n\n\tlet { class: className, ...restProps }: PaginationNextProps = $props();\n</script>\n\n<PaginationLink\n\taria-label=\"Go to next page\"\n\tsize=\"default\"\n\tclass={cn(\"pr-2!\", className)}\n\t{...restProps}\n>\n\t<span class=\"cn-pagination-next-text hidden sm:block\">Next</span>\n\t<IconPlaceholder\n\t\tlucide=\"ChevronRightIcon\"\n\t\ttabler=\"IconChevronRight\"\n\t\thugeicons=\"ArrowRight01Icon\"\n\t\tphosphor=\"CaretRightIcon\"\n\t\tremixicon=\"RiArrowRightSLine\"\n\t\tdata-icon=\"inline-end\"\n\t/>\n</PaginationLink>\n",
+			"type": "registry:file",
+			"target": "pagination/pagination-next.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\timport IconPlaceholder from \"$lib/components/icon-placeholder/icon-placeholder.svelte\";\n\timport { cn } from \"$UTILS$.js\";\n\timport { buttonVariants } from \"../button/index.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PaginationPrimitive.PrevButtonProps = $props();\n</script>\n\n{#snippet Fallback()}\n\t<IconPlaceholder\n\t\tlucide=\"ChevronLeftIcon\"\n\t\ttabler=\"IconChevronLeft\"\n\t\thugeicons=\"ArrowLeftIcon\"\n\t\tphosphor=\"CaretLeftIcon\"\n\t\tremixicon=\"RiArrowLeftSLine\"\n\t\tclass={cn(\"size-4\", className)}\n\t/>\n\t<span>Previous</span>\n{/snippet}\n\n<PaginationPrimitive.PrevButton\n\tbind:ref\n\taria-label=\"Go to previous page\"\n\tclass={cn(buttonVariants({ variant: \"ghost\" }), \"pl-2!\", className)}\n\t{...restProps}\n>\n\t{#if children}\n\t\t{@render children?.()}\n\t{:else}\n\t\t{@render Fallback()}\n\t{/if}\n</PaginationPrimitive.PrevButton>\n",
+			"type": "registry:file",
+			"target": "pagination/pagination-prev-button.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport type { ComponentProps } from \"svelte\";\n\timport { cn } from \"$UTILS$.js\";\n\timport { PaginationLink } from \"./index.js\";\n\timport IconPlaceholder from \"$lib/components/icon-placeholder/icon-placeholder.svelte\";\n\n\ttype PaginationPreviousProps = ComponentProps<typeof PaginationLink>;\n\n\tlet { class: className, ...restProps }: PaginationPreviousProps = $props();\n</script>\n\n<PaginationLink\n\taria-label=\"Go to previous page\"\n\tsize=\"default\"\n\tclass={cn(\"pl-2!\", className)}\n\t{...restProps}\n>\n\t<IconPlaceholder\n\t\tlucide=\"ChevronLeftIcon\"\n\t\ttabler=\"IconChevronLeft\"\n\t\thugeicons=\"ArrowLeft01Icon\"\n\t\tphosphor=\"CaretLeftIcon\"\n\t\tremixicon=\"RiArrowLeftSLine\"\n\t\tdata-icon=\"inline-start\"\n\t/>\n\t<span class=\"cn-pagination-previous-text hidden sm:block\">Previous</span>\n</PaginationLink>\n",
+			"type": "registry:file",
+			"target": "pagination/pagination-previous.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tcount = 0,\n\t\tperPage = 10,\n\t\tpage = $bindable(1),\n\t\tsiblingCount = 1,\n\t\t...restProps\n\t}: PaginationPrimitive.RootProps = $props();\n</script>\n\n<PaginationPrimitive.Root\n\tbind:ref\n\tbind:page\n\trole=\"navigation\"\n\taria-label=\"pagination\"\n\tdata-slot=\"pagination\"\n\t{count}\n\t{perPage}\n\t{siblingCount}\n\tclass={cn(\"cn-pagination mx-auto flex w-full justify-center\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "pagination/pagination.svelte"
+		}
+	]
+}

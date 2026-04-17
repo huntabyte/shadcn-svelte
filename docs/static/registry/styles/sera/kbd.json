@@ -1,0 +1,22 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "kbd",
+	"type": "registry:ui",
+	"files": [
+		{
+			"content": "import Root from \"./kbd.svelte\";\nimport Group from \"./kbd-group.svelte\";\n\nexport {\n\tRoot,\n\tGroup,\n\t//\n\tRoot as Kbd,\n\tGroup as KbdGroup,\n};\n",
+			"type": "registry:file",
+			"target": "kbd/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLElement>> = $props();\n</script>\n\n<kbd\n\tbind:this={ref}\n\tdata-slot=\"kbd-group\"\n\tclass={cn(\"gap-1 inline-flex items-center\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</kbd>\n",
+			"type": "registry:file",
+			"target": "kbd/kbd-group.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLElement>> = $props();\n</script>\n\n<kbd\n\tbind:this={ref}\n\tdata-slot=\"kbd\"\n\tclass={cn(\n\t\t\"bg-muted text-muted-foreground in-data-[slot=tooltip-content]:bg-background/20 in-data-[slot=tooltip-content]:text-background dark:in-data-[slot=tooltip-content]:bg-background/10 in-data-[slot=input-group]:bg-input h-5.5 w-fit min-w-5.5 gap-1 rounded-none px-1.5 font-sans text-xs font-medium [&_svg:not([class*='size-'])]:size-3 pointer-events-none inline-flex items-center justify-center select-none\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</kbd>\n",
+			"type": "registry:file",
+			"target": "kbd/kbd.svelte"
+		}
+	]
+}

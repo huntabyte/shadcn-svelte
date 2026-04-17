@@ -23,9 +23,17 @@
 
 	const designSystem = setupDesignSystem();
 
+	const effectiveRadius = $derived(designSystem.style === "lyra" ? "none" : designSystem.radius);
+
 	const radius = $derived(
-		RADII.find((radius) => radius.name === designSystem.radius)?.value ?? RADII[0].value
+		RADII.find((radius) => radius.name === effectiveRadius)?.value ?? RADII[0].value
 	);
+
+	watch([() => designSystem.style, () => designSystem.radius], ([style, radius]) => {
+		if ((style === "lyra" || style === "sera") && radius !== "none") {
+			designSystem.radius = "none";
+		}
+	});
 
 	const registryTheme = $derived.by(() => {
 		if (!designSystem.baseColor || !designSystem.theme || !designSystem.menuAccent || !radius) {
@@ -38,7 +46,7 @@
 			theme: designSystem.theme,
 			chartColor: designSystem.chartColor ?? DEFAULT_CONFIG.chartColor,
 			menuAccent: designSystem.menuAccent,
-			radius: designSystem.radius,
+			radius: effectiveRadius,
 		};
 
 		return buildRegistryTheme(config);

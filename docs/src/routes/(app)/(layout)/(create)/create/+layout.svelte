@@ -5,7 +5,9 @@
 	import SiteHeader from "$lib/components/site-header.svelte";
 	import Customizer from "../components/customizer.svelte";
 	import ActionMenu from "../components/action-menu.svelte";
+	import InitializeDialog from "../components/initialize-dialog.svelte";
 	import { OG_IMAGE_BASE_URL } from "../../../../og/og.js";
+	import { cn } from "$lib/utils.js";
 
 	let { children } = $props();
 
@@ -23,18 +25,24 @@
 />
 
 <ActionMenu>
-	<div
-		data-slot="layout"
-		class="group/layout section-soft relative z-10 flex h-svh flex-col overflow-hidden [--customizer-width:--spacing(56)] [--gap:--spacing(4)] md:[--gap:--spacing(6)]"
-	>
-		<SiteHeader />
-		<main
-			data-slot="designer"
-			class="container-wrapper flex min-h-0 flex-1 flex-col gap-(--gap) p-(--gap) pt-[calc(var(--gap)*0.25)] md:flex-row-reverse"
+	<InitializeDialog>
+		<div
+			data-slot="layout"
+			class={cn(
+				"group/layout section-soft relative z-10 flex h-svh flex-col overflow-hidden",
+				"[--customizer-width:--spacing(56)] [--gap:--spacing(4)] md:[--gap:--spacing(6)]",
+				"[--preview-height:calc(100svh-var(--header-height)-2rem-150px)] md:[--preview-height:calc(100svh-var(--header-height)-2rem)]"
+			)}
 		>
-			{@render children?.()}
-			<Customizer />
-			<WelcomeDialog />
-		</main>
-	</div>
+			<SiteHeader />
+			<main
+				data-slot="designer"
+				class="container-wrapper flex min-h-0 flex-1 flex-col gap-(--gap) p-(--gap) pt-[calc(var(--gap)*0.25)] md:flex-row-reverse"
+			>
+				{@render children?.()}
+				<Customizer />
+				<WelcomeDialog />
+			</main>
+		</div>
+	</InitializeDialog>
 </ActionMenu>

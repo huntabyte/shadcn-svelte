@@ -10,10 +10,13 @@
 	import { getColors } from "$lib/colors.js";
 	import { mainNavItems } from "$lib/navigation.js";
 	import PlusIcon from "@lucide/svelte/icons/plus";
+	import SquareTerminal from "@lucide/svelte/icons/square-terminal";
 	import Customizer from "./customizer.svelte";
 	import { page } from "$app/state";
-	import InitializeDialog from "../../routes/(app)/(layout)/(create)/components/initialize-dialog.svelte";
+	import { InitializeProjectCtx } from "../../routes/(app)/(layout)/(create)/components/initialize-project-context.svelte.js";
 	import ModeSwitcher from "./mode-switcher.svelte";
+
+	const initializeProjectCtx = InitializeProjectCtx.getOr(null);
 
 	const colors = getColors();
 
@@ -49,7 +52,17 @@
 				{#if page.url.pathname.startsWith("/create")}
 					<ModeSwitcher class="md:hidden" />
 					<Separator orientation="vertical" />
-					<InitializeDialog />
+					{#if initializeProjectCtx}
+						<Button
+							onclick={() => (initializeProjectCtx.open = true)}
+							variant="default"
+							size="sm"
+							class="hidden md:flex"
+						>
+							<SquareTerminal />
+							Initialize Project
+						</Button>
+					{/if}
 				{:else}
 					<Customizer />
 					<Button href="/create" variant="default" size="sm">
