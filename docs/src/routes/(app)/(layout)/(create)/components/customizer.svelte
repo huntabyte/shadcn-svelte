@@ -35,7 +35,7 @@
 			size="sm"
 		>
 			<Card.Header
-				class="hidden items-center justify-between gap-2 border-b group-data-reversed/layout:flex-row-reverse md:flex"
+				class="hidden items-center justify-between gap-2 border-b px-3! group-data-reversed/layout:flex-row-reverse md:flex"
 			>
 				<MainMenu />
 			</Card.Header>
@@ -67,12 +67,12 @@
 					<MenuAccentPicker />
 				</FieldGroup.Group>
 			</Card.Content>
-			<Card.Footer class="flex min-w-0 gap-2 md:flex-col md:**:[button,a]:w-full">
+			<Card.Footer class="flex min-w-0 gap-2 px-3! md:flex-col md:**:[button,a]:w-full">
 				<CopyPreset class="flex-1 md:flex-none" />
 				<OpenPreset class="max-w-20 min-w-0 flex-1 sm:max-w-none md:flex-none" />
 				<RandomButton />
 			</Card.Footer>
-			<Card.Footer class="flex min-w-0 gap-2 md:flex-col md:**:[button,a]:w-full">
+			<Card.Footer class="flex min-w-0 gap-2 px-3! md:flex-col md:**:[button,a]:w-full">
 				<Button
 					variant="default"
 					onclick={() => (initializeProjectCtx.open = true)}
