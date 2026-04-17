@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Calendar as CalendarPrimitive, RangeCalendar as RangeCalendarPrimitive } from "bits-ui";
+	import { Calendar as CalendarPrimitive } from "bits-ui";
+	import type { RangeCalendar as RangeCalendarPrimitive } from "bits-ui";
 	import * as Calendar from "./index.js";
-	import { RangeCalendar } from "../range-calendar/index.js";
 	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
 	import type { ButtonVariant } from "../button/button.svelte";
 	import { isEqualMonth, type DateValue } from "@internationalized/date";
@@ -52,23 +52,25 @@ Discriminated Unions + Destructing (required for bindable) do not
 get along, so we shut typescript up by casting `value` to `never`.
 -->
 {#if mode === "range"}
-	<RangeCalendar
-		bind:ref
-		bind:value={value as never}
-		bind:placeholder
-		class={className}
-		{weekdayFormat}
-		{buttonVariant}
-		{captionLayout}
-		{locale}
-		months={monthsProp}
-		{years}
-		monthFormat={monthFormatProp}
-		{yearFormat}
-		{day}
-		{disableDaysOutsideMonth}
-		{...(restProps as RangeCalendarPrimitive.RootProps)}
-	/>
+	{#await import("../range-calendar/index.js") then { RangeCalendar }}
+		<RangeCalendar
+			bind:ref
+			bind:value={value as never}
+			bind:placeholder
+			class={className}
+			{weekdayFormat}
+			{buttonVariant}
+			{captionLayout}
+			{locale}
+			months={monthsProp}
+			{years}
+			monthFormat={monthFormatProp}
+			{yearFormat}
+			{day}
+			{disableDaysOutsideMonth}
+			{...(restProps as RangeCalendarPrimitive.RootProps)}
+		/>
+	{/await}
 {:else}
 <CalendarPrimitive.Root
 	bind:value={value as never}
