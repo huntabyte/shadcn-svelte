@@ -14,7 +14,9 @@
 			<span class="text-muted-foreground text-[10px] font-medium tracking-wide uppercase"
 				>Special Sponsor</span
 			>
-			<div class="size-10 overflow-hidden rounded-lg opacity-80 transition-opacity group-hover:opacity-100">
+			<div
+				class="size-10 overflow-hidden rounded-lg opacity-80 transition-opacity group-hover:opacity-100"
+			>
 				<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
 					<rect width="400" height="400" fill="#000" />
 					<circle cx="170" cy="170" r="100" fill="#ccc" />
