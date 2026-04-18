@@ -223,6 +223,17 @@ export const DEFAULT_PRESETS: Record<PresetConfig["style"], PresetConfig> = {
 		menuColor: "default",
 		radius: "default",
 	},
+	sera: {
+		style: "sera",
+		baseColor: "taupe",
+		theme: "taupe",
+		iconLibrary: "lucide",
+		font: "noto-sans",
+		fontHeading: "playfair-display",
+		menuAccent: "subtle",
+		menuColor: "default",
+		radius: "none",
+	},
 };
 
 // Base62 alphabet.
