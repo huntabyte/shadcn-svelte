@@ -18,7 +18,6 @@
 	const isMac = useIsMac();
 	const designSystem = useDesignSystem();
 	const actionMenuCtx = ActionMenuCtx.get();
-	const resetDialogCtx = ResetDialogCtx.get();
 
 	function toggleTheme() {
 		setMode(mode.current === "dark" ? "light" : "dark");
