@@ -8,6 +8,7 @@
 	import { useIsMac } from "$lib/hooks/use-is-mac.svelte.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { ActionMenuCtx } from "./action-menu-context.svelte.js";
+	import { ResetDialogCtx } from "$lib/features/design-system/components/design-system-provider.svelte";
 
 	type Props = {
 		class?: string;
@@ -18,6 +19,7 @@
 	const isMac = useIsMac();
 	const designSystem = useDesignSystem();
 	const actionMenuCtx = ActionMenuCtx.get();
+	const resetDialogCtx = ResetDialogCtx.get();
 
 	function toggleTheme() {
 		setMode(mode.current === "dark" ? "light" : "dark");
