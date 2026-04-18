@@ -89,7 +89,9 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 						</Button>
 					</div>
 				</div>
-				<p class="text-muted-foreground text-[1.05rem] sm:text-base sm:text-balance md:max-w-[80%]">
+				<p
+					class="text-muted-foreground text-[1.05rem] sm:text-base sm:text-balance md:max-w-[80%]"
+				>
 					Latest updates and announcements.
 				</p>
 			</div>
@@ -112,13 +114,15 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 						</h2>
 						<div class="grid auto-rows-fr gap-3 sm:grid-cols-2">
 							{#each olderPages as changelogPage (changelogPage.href)}
-								{@const [date, ...titleParts] = changelogPage.metadata.title.split(" - ")}
+								{@const [date, ...titleParts] =
+									changelogPage.metadata.title.split(" - ")}
 								<a
 									href={changelogPage.href}
 									class="bg-surface text-surface-foreground hover:bg-surface/80 flex w-full flex-col rounded-xl px-4 py-3 transition-colors"
 								>
 									<span class="text-muted-foreground text-xs">{date}</span>
-									<span class="text-sm font-medium">{titleParts.join(" - ")}</span>
+									<span class="text-sm font-medium">{titleParts.join(" - ")}</span
+									>
 								</a>
 							{/each}
 						</div>

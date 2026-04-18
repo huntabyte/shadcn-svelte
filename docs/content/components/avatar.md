@@ -126,6 +126,7 @@ Use the `Avatar.Badge` component to add a badge to the avatar. The badge is posi
 </ComponentPreview>
 
 Use the `class` prop to add custom styles to the badge such as custom colors, sizes, etc.
+
 ```svelte showLineNumbers
 <Avatar.Root>
   <Avatar.Image src="https://github.com/shadcn.png" alt="@shadcn" />

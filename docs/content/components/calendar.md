@@ -67,10 +67,10 @@ Update the import paths to match your project setup.
 
 ```svelte showLineNumbers
 <script lang="ts">
-	import { Calendar } from "$lib/components/ui/calendar/index.js";
-	import type { DateValue } from "@internationalized/date";
+  import { Calendar } from "$lib/components/ui/calendar/index.js";
+  import type { DateValue } from "@internationalized/date";
 
-	let date = $state<DateValue | undefined>(undefined);
+  let date = $state<DateValue | undefined>(undefined);
 </script>
 
 <Calendar type="single" bind:value={date} class="rounded-lg border" />
