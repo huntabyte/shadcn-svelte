@@ -6,10 +6,8 @@
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { setMode, mode } from "mode-watcher";
 	import { useIsMac } from "$lib/hooks/use-is-mac.svelte.js";
-	import { HugeiconsIcon } from "@hugeicons/svelte";
-	import { Menu09FreeIcons } from "@hugeicons/core-free-icons";
-	import { ActionMenuCtx } from "./action-menu.svelte";
-	import { ResetDialogCtx } from "$lib/features/design-system/components/design-system-provider.svelte";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { ActionMenuCtx } from "./action-menu-context.svelte.js";
 
 	type Props = {
 		class?: string;
@@ -36,7 +34,14 @@
 		)}
 	>
 		<span class="font-medium">Menu</span>
-		<HugeiconsIcon icon={Menu09FreeIcons} />
+		<IconPlaceholder
+			lucide="MenuIcon"
+			hugeicons="Menu09Icon"
+			phosphor="ListIcon"
+			tabler="IconMenu2"
+			remixicon="RiMenuLine"
+			class="size-5"
+		/>
 	</Picker.Trigger>
 	<Picker.Content side="right" align="start" alignOffset={-8}>
 		<Picker.Group>

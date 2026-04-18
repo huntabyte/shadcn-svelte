@@ -45,6 +45,21 @@ const PRESET_METADATA = {
 		description: "Lucide / Inter",
 		hint: "Rounded geometry. Soft elevation. Breathable layouts.",
 	},
+	sera: {
+		title: "Sera",
+		description: "Lucide / Noto Sans + Playfair Display",
+		hint: "Editorial and typographic.",
+		style: "sera",
+		baseColor: "taupe",
+		theme: "taupe",
+		iconLibrary: "lucide",
+		font: "noto-sans",
+		fontHeading: "playfair-display",
+		menuAccent: "subtle" as const,
+		menuColor: "default" as const,
+
+		radius: "default",
+	},
 } as const;
 
 /**
