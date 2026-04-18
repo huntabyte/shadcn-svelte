@@ -9,4 +9,4 @@
 	});
 </script>
 
-<Calendar mode="range" bind:value class="rounded-lg border shadow-sm" />
+<Calendar mode="range" bind:value={value as never} class="rounded-lg border shadow-sm" />
