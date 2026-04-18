@@ -24,7 +24,7 @@
 		disableDaysOutsideMonth = false,
 		mode,
 		...restProps
-	}: WithoutChildrenOrChild<CalendarPrimitive.RootProps> & {
+	}: WithoutChildrenOrChild<CalendarPrimitive.RootProps & RangeCalendarPrimitive.RootProps> & {
 		buttonVariant?: ButtonVariant;
 		captionLayout?: "dropdown" | "dropdown-months" | "dropdown-years" | "label";
 		months?: CalendarPrimitive.MonthSelectProps["months"];
@@ -47,7 +47,14 @@ Discriminated Unions + Destructing (required for bindable) do not
 get along, so we shut typescript up by casting `value` to `never`.
 -->
 {#if mode === "range"}
-	{#await import("../range-calendar/index.js") then { RangeCalendar }}
+	{#await import("../range-calendar/index.js")}
+		<div
+			class={cn(
+				"cn-calendar bg-background group/calendar p-3",
+				className
+			)}
+		></div>
+	{:then { RangeCalendar }}
 		<RangeCalendar
 			bind:ref
 			bind:value={value as never}
@@ -63,8 +70,10 @@ get along, so we shut typescript up by casting `value` to `never`.
 			{yearFormat}
 			{day}
 			{disableDaysOutsideMonth}
-			{...restProps as unknown as RangeCalendarPrimitive.RootProps}
+			{...restProps}
 		/>
+	{:catch}
+		<div class={cn("cn-calendar bg-background group/calendar p-3", className)}></div>
 	{/await}
 {:else}
 	<CalendarPrimitive.Root
@@ -74,7 +83,7 @@ get along, so we shut typescript up by casting `value` to `never`.
 		{weekdayFormat}
 		{disableDaysOutsideMonth}
 		class={cn(
-			"cn-calendar bg-background group/calendar in-data-[slot=card-content]:bg-transparent in-data-[slot=popover-content]:bg-transparent",
+			"cn-calendar bg-background group/calendar p-3 in-data-[slot=card-content]:bg-transparent in-data-[slot=popover-content]:bg-transparent",
 			className
 		)}
 		{locale}
