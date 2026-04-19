@@ -11,7 +11,9 @@
 	function applyPreset(code: string) {
 		const raw = JSON.stringify(code);
 		localStorage.setItem("design-system-preset", raw);
-		window.dispatchEvent(new StorageEvent("storage", { key: "design-system-preset", newValue: raw }));
+		window.dispatchEvent(
+			new StorageEvent("storage", { key: "design-system-preset", newValue: raw })
+		);
 	}
 
 	onMount(() => {

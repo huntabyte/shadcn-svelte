@@ -262,7 +262,9 @@ class DesignSystemState implements IDesignSystemState {
 			style: value,
 			baseColor: locks.baseColor ? current.baseColor : defaults.baseColor,
 			theme: locks.theme ? current.theme : defaults.theme,
-			chartColor: locks.chartColor ? (current.chartColor ?? defaults.chartColor) : defaults.chartColor,
+			chartColor: locks.chartColor
+				? (current.chartColor ?? defaults.chartColor)
+				: defaults.chartColor,
 			iconLibrary: locks.iconLibrary ? current.iconLibrary : defaults.iconLibrary,
 			font: locks.font ? current.font : defaults.font,
 			fontHeading: locks.fontHeading ? current.fontHeading : defaults.fontHeading,
