@@ -10,7 +10,7 @@
 		"dev:search": "tsx scripts/build-search-data.ts --watch",
 		"dev:svelte": "vite dev",
 		"build:search": "tsx scripts/build-search-data.ts",
-		"build": "concurrently \"pnpm build:icons\" \"pnpm build:content\" \"pnpm build:llm-placeholders\" && pnpm build:svelte && pnpm build:llms",
+		"build": "concurrently \"pnpm build:icons\" \"pnpm build:content\" \"pnpm build:llm-placeholders\" \"pnpm build:search\" && pnpm build:svelte && pnpm build:llms",
 		"build:content": "velite && tsx scripts/velite/velite-update-json.ts",
 		"build:svelte": "vite build",
 		"build:registry": "tsx scripts/build-registry.ts build-registry",

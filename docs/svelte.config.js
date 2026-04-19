@@ -17,6 +17,7 @@ const config = {
 		// https://kit.svelte.dev/docs/adapter-cloudflare#options
 		adapter: adapter(),
 		prerender: {
+			entries: ["*", "/api/search.json"],
 			handleMissingId: (details) => {
 				if (details.id === "#") return;
 				console.warn(details.message);
