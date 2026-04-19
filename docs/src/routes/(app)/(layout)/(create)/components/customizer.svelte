@@ -70,7 +70,7 @@
 			</Card.Footer>
 		</Card.Root>
 		<div class="hidden w-full flex-1 flex-col justify-end gap-2 md:flex">
-			<Cta /><Ethical />
+			<Cta /><!--<Ethical />-->
 		</div>
 	</div>
 </Tooltip.Provider>
