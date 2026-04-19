@@ -16,7 +16,7 @@
 	import OpenPreset from "./open-preset.svelte";
 	import MainMenu from "./main-menu.svelte";
 	import Cta from "$lib/components/cta.svelte";
-	import Ethical from "$lib/components/ethical.svelte";
+	import _Ethical from "$lib/components/ethical.svelte";
 	import { FONT_HEADING_OPTIONS, FONTS } from "$lib/fonts.js";
 	import ProjectForm from "./project-form.svelte";
 </script>
