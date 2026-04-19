@@ -31,7 +31,7 @@
 	</PageHeaderDescription>
 	<PageActions class="**:[.container]:justify-start">
 		<Button href="/create?preset=b4xFeBLg4O" size="sm">
-			Open in shadcn/create
+			Open in shadcn-svelte/create
 			<ArrowRightIcon data-icon="inline-end" />
 		</Button>
 	</PageActions>
