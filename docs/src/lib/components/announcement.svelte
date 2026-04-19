@@ -4,6 +4,6 @@
 	import { ArrowRightIcon } from "@lucide/svelte";
 </script>
 
-<a href="/docs/changelog" class={cn(badgeVariants({ variant: "secondary", class: "bg-muted" }))}>
-	Introducing Luma <ArrowRightIcon />
+<a href="/sera" class={cn(badgeVariants({ variant: "secondary", class: "bg-muted" }))}>
+	Introducing Sera <ArrowRightIcon />
 </a>
