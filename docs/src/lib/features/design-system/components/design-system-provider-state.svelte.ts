@@ -255,7 +255,21 @@ class DesignSystemState implements IDesignSystemState {
 	}
 
 	set style(value: PresetConfig["style"]) {
-		this.#update({ style: value });
+		const defaults = DEFAULT_PRESETS[value];
+		const current = this.system;
+		const locks = this.#locks.current;
+		this.system = {
+			style: value,
+			baseColor: locks.baseColor ? current.baseColor : defaults.baseColor,
+			theme: locks.theme ? current.theme : defaults.theme,
+			chartColor: locks.chartColor ? (current.chartColor ?? defaults.chartColor) : defaults.chartColor,
+			iconLibrary: locks.iconLibrary ? current.iconLibrary : defaults.iconLibrary,
+			font: locks.font ? current.font : defaults.font,
+			fontHeading: locks.fontHeading ? current.fontHeading : defaults.fontHeading,
+			menuAccent: locks.menuAccent ? current.menuAccent : defaults.menuAccent,
+			menuColor: locks.menuColor ? current.menuColor : defaults.menuColor,
+			radius: locks.radius ? current.radius : defaults.radius,
+		};
 	}
 
 	get theme() {
