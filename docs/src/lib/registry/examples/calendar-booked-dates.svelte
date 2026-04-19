@@ -24,6 +24,7 @@
 			bind:value
 			placeholder={base}
 			isDateUnavailable={isBooked}
+			isDateDisabled={isBooked}
 			class="rounded-lg"
 		/>
 	</Card.Content>

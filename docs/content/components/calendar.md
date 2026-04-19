@@ -178,7 +178,7 @@ Or use fixed values:
 
 <!--Use `showWeekNumber` to show week numbers.-->
 
-<ComponentPreview name="calendar-week-numbers" previewClassName="h-96">
+<ComponentPreview name="calendar-week-numbers" previewClassName="h-96" hideCode>
 
 <div></div>
 
