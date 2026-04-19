@@ -30,7 +30,6 @@
 		className
 	)}
 	{...rp}
-	,
 >
 	<span class="sr-only" data-llm-ignore>Copy</span>
 	{#if clipboard.copied}
