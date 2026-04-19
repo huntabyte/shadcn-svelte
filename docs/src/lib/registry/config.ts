@@ -89,7 +89,7 @@ export const designSystemConfigSchema = z
 export type DesignSystemConfig = z.infer<typeof designSystemConfigSchema>;
 
 export const DEFAULT_CONFIG: DesignSystemConfig = {
-	style: "vega",
+	style: "nova",
 	baseColor: "neutral",
 	theme: "neutral",
 	chartColor: "neutral",
