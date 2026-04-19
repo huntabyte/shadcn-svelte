@@ -7,6 +7,7 @@
 	import ActionMenu from "../components/action-menu.svelte";
 	import CtaMobile from "$lib/components/cta-mobile.svelte";
 	import { OG_IMAGE_BASE_URL } from "../../../../og/og.js";
+	import { cn } from "$lib/utils.js";
 
 	let { children } = $props();
 
@@ -26,7 +27,11 @@
 <ActionMenu>
 	<div
 		data-slot="layout"
-		class="group/layout section-soft relative z-10 flex h-svh flex-col overflow-hidden [--customizer-width:--spacing(56)] [--gap:--spacing(4)] md:[--gap:--spacing(6)]"
+		class={cn(
+			"group/layout section-soft relative z-10 flex h-svh flex-col overflow-hidden [--customizer-width:--spacing(56)] [--gap:--spacing(4)] md:[--gap:--spacing(6)]",
+			"[--customizer-width:--spacing(56)] [--gap:--spacing(4)] md:[--gap:--spacing(6)]",
+			"[--preview-height:calc(100svh-var(--header-height)-2rem-150px)] md:[--preview-height:calc(100svh-var(--header-height)-2rem)]"
+		)}
 	>
 		<SiteHeader />
 		<main
