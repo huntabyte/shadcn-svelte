@@ -3,7 +3,6 @@
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { curveLinearClosed } from "d3-shape";
 	import { scaleBand } from "d3-scale";
-	import { onMount } from "svelte";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 
@@ -21,23 +20,13 @@
 	} satisfies Chart.ChartConfig;
 
 	const maxValue = Math.max(...chartData.map((d) => d.desktop));
-	let yEnd = $state(maxValue * 100);
 
-	// Static hexagonal grid polygons — drawn in belowMarks so they don't react to yDomain changes.
-	// 6 months → 6 vertices; scaleBand centers at angles [π/6, π/2, 5π/6, 7π/6, 3π/2, 11π/6]
-	// (layerchart lineRadial convention: 0 = top, clockwise; band center = xScale(x) + bandwidth/2)
-	// Effective radius: 250px container / 2 - 12px padding = 113px
-	// d3 ticks for [0, maxValue] at count 5 → [50, 100, 150, 200, 250, 300]
 	const gridAngles = Array.from({ length: 6 }, (_, i) => Math.PI / 3 + (i * Math.PI * 2) / 6);
 	const gridRadius = 113;
 	const gridTicks = [65, 130, 195, 260];
 	const gridPolygons = gridTicks.map((tick) => {
 		const r = (tick / maxValue) * gridRadius;
 		return gridAngles.map((a) => `${r * Math.sin(a)},${-r * Math.cos(a)}`).join(" ");
-	});
-
-	onMount(() => {
-		yEnd = maxValue;
 	});
 </script>
 
@@ -60,8 +49,6 @@
 				radial
 				x="month"
 				xScale={scaleBand()}
-				yDomain={[0, yEnd]}
-				motion={Chart.defaultMotion}
 				points={{ r: 4 }}
 				padding={12}
 				props={{
@@ -70,6 +57,7 @@
 						fill: "var(--color-desktop)",
 						fillOpacity: 0.6,
 						stroke: "0",
+						motion: Chart.defaultMotion,
 					},
 					xAxis: {
 						tickLength: 0,
