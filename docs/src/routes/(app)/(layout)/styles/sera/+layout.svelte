@@ -8,12 +8,18 @@
 	const designSystem = useDesignSystem();
 	const SERA_PRESET = encodePreset(DEFAULT_PRESETS.sera);
 
+	function applyPreset(code: string) {
+		const raw = JSON.stringify(code);
+		localStorage.setItem("design-system-preset", raw);
+		window.dispatchEvent(new StorageEvent("storage", { key: "design-system-preset", newValue: raw }));
+	}
+
 	onMount(() => {
 		const savedPreset = designSystem.preset;
-		designSystem.preset = SERA_PRESET;
+		applyPreset(SERA_PRESET);
 
 		return () => {
-			designSystem.preset = savedPreset;
+			applyPreset(savedPreset);
 		};
 	});
 </script>
