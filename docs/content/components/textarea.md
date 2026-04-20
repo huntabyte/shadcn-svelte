@@ -66,9 +66,11 @@ Update the import paths to match your project setup.
 
 ## Examples
 
-### Default
+### Field
 
-<ComponentPreview name="textarea-demo" previewClassName="*:max-w-xs">
+Use `Field`, `Field.Label`, and `Field.Description` to create a textarea with a label and description.
+
+<ComponentPreview name="textarea-field" previewClassName="*:max-w-xs">
 
 <div></div>
 
@@ -76,7 +78,7 @@ Update the import paths to match your project setup.
 
 ### Disabled
 
-Use the `disabled` prop to disable the textarea.
+Use the `disabled` prop to disable the textarea. To style the disabled state, add the `data-disabled` attribute to the `Field` component.
 
 <ComponentPreview name="textarea-disabled" previewClassName="*:max-w-xs">
 
@@ -94,27 +96,11 @@ Use the `aria-invalid` attribute to mark the textarea as invalid.
 
 </ComponentPreview>
 
-### With Label
-
-<ComponentPreview name="textarea-with-label">
-
-<div></div>
-
-</ComponentPreview>
-
-### With Text
-
-<ComponentPreview name="textarea-with-text">
-
-<div></div>
-
-</ComponentPreview>
-
-### With Button
+### Button
 
 Pair with `Button` to create a textarea with a submit button.
 
-<ComponentPreview name="textarea-with-button">
+<ComponentPreview name="textarea-button" previewClassName="*:max-w-xs">
 
 <div></div>
 

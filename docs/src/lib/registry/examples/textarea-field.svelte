@@ -4,6 +4,7 @@
 </script>
 
 <div class="grid w-full gap-1.5">
-	<Label for="message">Your message</Label>
-	<Textarea placeholder="Type your message here." id="message" />
+	<Label for="textarea-message">Message</Label>
+	<p class="text-muted-foreground text-sm">Enter your message below.</p>
+	<Textarea id="textarea-message" placeholder="Type your message here." />
 </div>

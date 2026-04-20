@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { Label } from "$lib/registry/ui/label/index.js";
+	import * as Field from "$lib/registry/ui/field/index.js";
 	import { Textarea } from "$lib/registry/ui/textarea/index.js";
 </script>
 
-<div class="grid w-full gap-1.5">
-	<Label for="message-invalid">Message</Label>
-	<Textarea id="message-invalid" placeholder="Type your message here." aria-invalid="true" />
-	<p class="text-destructive text-sm">Please enter a valid message.</p>
-</div>
+<Field.Field data-invalid>
+	<Field.Label for="textarea-invalid">Message</Field.Label>
+	<Textarea id="textarea-invalid" placeholder="Type your message here." aria-invalid />
+	<Field.Description>Please enter a valid message.</Field.Description>
+</Field.Field>
