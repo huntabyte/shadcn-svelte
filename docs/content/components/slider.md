@@ -75,14 +75,6 @@ Update the import paths to match your project setup.
 <Slider type="single" bind:value max={100} step={1} />
 ```
 
-## Composition
-
-`Slider` is a single self-contained component with no sub-components:
-
-```text
-Slider
-```
-
 ## Examples
 
 ### Range
@@ -135,4 +127,4 @@ Use the `disabled` prop to disable the slider.
 
 ## API Reference
 
-See the [Bits UI](https://bits-ui.com/docs/components/slider#api-reference) documentation for more information.
+See the [Bits UI Slider](https://bits-ui.com/docs/components/slider#api-reference) documentation.
