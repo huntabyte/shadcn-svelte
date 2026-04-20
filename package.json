@@ -47,7 +47,7 @@
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.15.2",
 		"globals": "^17.4.0",
-		"minimatch": "^10.2.4",
+		"minimatch": "^10.2.5",
 		"prettier": "~3.8.1",
 		"prettier-plugin-svelte": "^3.5.1",
 		"prettier-plugin-tailwindcss": "^0.7.2",
