@@ -113,6 +113,8 @@ Table.Root
 
 ### Footer
 
+Use the `<Table.Footer />` component to add a footer to the table.
+
 <ComponentPreview name="table-footer">
 
 <div></div>
@@ -120,6 +122,8 @@ Table.Root
 </ComponentPreview>
 
 ### Actions
+
+A table showing actions for each row using a `<DropdownMenu />` component.
 
 <ComponentPreview name="table-actions">
 
