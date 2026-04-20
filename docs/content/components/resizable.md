@@ -71,11 +71,11 @@ Update the import paths to match your project setup.
 ```
 
 ```svelte showLineNumbers
-<Resizable.PaneGroup direction="horizontal">
-  <Resizable.Pane>One</Resizable.Pane>
+<Resizable.PanelGroup orientation="horizontal">
+  <Resizable.Panel>One</Resizable.Panel>
   <Resizable.Handle />
-  <Resizable.Pane>Two</Resizable.Pane>
-</Resizable.PaneGroup>
+  <Resizable.Panel>Two</Resizable.Panel>
+</Resizable.PanelGroup>
 ```
 
 ## Composition
@@ -83,17 +83,17 @@ Update the import paths to match your project setup.
 Use the following composition to build a `Resizable` layout:
 
 ```text
-Resizable.PaneGroup
-├── Resizable.Pane
+Resizable.PanelGroup
+├── Resizable.Panel
 ├── Resizable.Handle
-└── Resizable.Pane
+└── Resizable.Panel
 ```
 
 ## Examples
 
 ### Vertical
 
-Use `direction="vertical"` for vertical resizing.
+Use `orientation="vertical"` for vertical resizing.
 
 <ComponentPreview name="resizable-vertical">
 
