@@ -98,15 +98,4 @@ A progress bar that can be controlled by a slider.
 
 ## API Reference
 
-### Progress.Root
-
-The progress bar component.
-
-| Prop       | Type             | Default | Description                                                                                     |
-| ---------- | ---------------- | ------- | ----------------------------------------------------------------------------------------------- |
-| `max`      | `number`         | `100`   | The maximum value of the progress bar.                                                          |
-| `min`      | `number`         | `0`     | The minimum value of the progress bar.                                                          |
-| `value`    | `number \| null` | `0`     | The current value of the progress bar. If set to `null` the progress bar will be indeterminate. |
-| `class`    | `string`         | —       | Additional CSS classes to apply to the element.                                                 |
-| `children` | `Snippet`        | —       | The children content to render.                                                                 |
-| `child`    | `Snippet`        | —       | Use render delegation to render your own element.                                               |
+See the [Bits UI Progress](https://bits-ui.com/docs/components/progress#api-reference) documentation.
