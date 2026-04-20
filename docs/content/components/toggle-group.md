@@ -84,6 +84,7 @@ Use the following composition to build a `ToggleGroup`:
 
 ```text
 ToggleGroup.Root
+├── ToggleGroup.Item
 └── ToggleGroup.Item
 ```
 
@@ -99,11 +100,11 @@ Use `variant="outline"` for an outline style.
 
 </ComponentPreview>
 
-### Large
+### Sizes
 
 Use the `size` prop to change the size of the toggle group.
 
-<ComponentPreview name="toggle-group-lg">
+<ComponentPreview name="toggle-group-sizes">
 
 <div></div>
 
@@ -111,7 +112,7 @@ Use the `size` prop to change the size of the toggle group.
 
 ### Spacing
 
-Use `spacing={2}` to add spacing between toggle group items.
+Use `spacing` to add spacing between toggle group items.
 
 <ComponentPreview name="toggle-group-spacing">
 
@@ -137,9 +138,11 @@ Use `orientation="vertical"` for vertical toggle groups.
 
 </ComponentPreview>
 
-### Single
+### Custom
 
-<ComponentPreview name="toggle-group-single">
+A custom toggle group example.
+
+<ComponentPreview name="toggle-group-font-weight-selector" previewClassName="*:data-[slot=field]:max-w-xs">
 
 <div></div>
 
@@ -147,33 +150,4 @@ Use `orientation="vertical"` for vertical toggle groups.
 
 ## API Reference
 
-### ToggleGroup.Root
-
-The root component which contains the toggle group items.
-
-| Prop              | Type                                                   | Default        | Description                                                                                                                                |
-| ----------------- | ------------------------------------------------------ | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `type` (required) | `'single' \| 'multiple'`                               | —              | The type of the component, used to determine the type of the value. When `'multiple'`, the value will be an array.                         |
-| `value`           | `string \| string[]`                                   | —              | The value of the toggle group. If the `type` is `'multiple'`, this will be an array of strings, otherwise it will be a string.             |
-| `onValueChange`   | `(value: string) => void \| (value: string[]) => void` | —              | A callback function called when the value of the toggle group changes. The type of the value is dependent on the type of the toggle group. |
-| `disabled`        | `boolean`                                              | `false`        | Whether or not the toggle group is disabled.                                                                                               |
-| `loop`            | `boolean`                                              | `true`         | Whether or not the toggle group should loop when navigating.                                                                               |
-| `orientation`     | `'horizontal' \| 'vertical'`                           | `'horizontal'` | The orientation of the toggle group.                                                                                                       |
-| `rovingFocus`     | `boolean`                                              | `true`         | Whether or not the toggle group should use roving focus when navigating.                                                                   |
-| `children`        | `Snippet`                                              | —              | The children content to render.                                                                                                            |
-| `child`           | `Snippet`                                              | —              | Use render delegation to render your own element.                                                                                          |
-
-Use the `data-orientation` attribute to style the toggle group based on its orientation. Use the `data-toggle-group-root` attribute to target the root element.
-
-### ToggleGroup.Item
-
-An individual toggle item within the group.
-
-| Prop               | Type      | Default | Description                                       |
-| ------------------ | --------- | ------- | ------------------------------------------------- |
-| `value` (required) | `string`  | —       | The value of the item.                            |
-| `disabled`         | `boolean` | `false` | Whether or not the item is disabled.              |
-| `children`         | `Snippet` | —       | The children content to render.                   |
-| `child`            | `Snippet` | —       | Use render delegation to render your own element. |
-
-Use the `data-state` attribute (`'on' \| 'off'`) to style the item based on its active state. Use the `data-disabled` attribute to style disabled items. Use the `data-orientation` attribute to style based on the group's orientation.
+See the [Bits UI Toggle Group](https://bits-ui.com/docs/components/toggle-group#api-reference) documentation.
