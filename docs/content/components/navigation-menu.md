@@ -20,7 +20,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="navigation-menu-demo" align="start" previewClassName="h-96" className="overflow-visible">
+<ComponentPreview name="navigation-menu-demo" previewClassName="h-96" class="overflow-visible">
 
 </ComponentPreview>
 
@@ -79,18 +79,6 @@ Update the import paths to match your project setup.
 </NavigationMenu.Root>
 ```
 
-## Link Component
-
-When using the `NavigationMenu.Link` component as a child of a SvelteKit `<a>` element or similar router link, use the `child` snippet to pass the link props through:
-
-```svelte showLineNumbers
-<NavigationMenu.Link>
-  {#snippet child({ props })}
-    <a href="/docs" {...props}> Documentation </a>
-  {/snippet}
-</NavigationMenu.Link>
-```
-
 ## Composition
 
 Use the following composition to build a `NavigationMenu`:
@@ -108,7 +96,17 @@ NavigationMenu.Root
 └── NavigationMenu.Indicator
 ```
 
-`NavigationMenu.Viewport` and `NavigationMenu.Indicator` are optional elements that can be placed outside the list for custom layouts.
+## Link Component
+
+When using the `NavigationMenu.Link` component as a child of a SvelteKit `<a>` element or similar router link, use the `child` snippet to pass the link props through:
+
+```svelte showLineNumbers
+<NavigationMenu.Link>
+  {#snippet child({ props })}
+    <a href="/docs" {...props}> Documentation </a>
+  {/snippet}
+</NavigationMenu.Link>
+```
 
 ## API Reference
 
