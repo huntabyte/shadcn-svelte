@@ -21,9 +21,7 @@
 </svelte:head>
 
 <PageHeader>
-	<PageHeaderHeading
-		class="font-(family-name:--font-playfair-display) text-[2.875rem] tracking-tight!"
-	>
+	<PageHeaderHeading class="font-(family-name:--font-heading) text-[2.875rem] tracking-tight!">
 		{title}
 	</PageHeaderHeading>
 	<PageHeaderDescription class="max-w-2xl text-pretty md:text-balance">

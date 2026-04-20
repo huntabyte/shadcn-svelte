@@ -1,7 +1,7 @@
 @layer base {
 	.preview {
-		--font-sans: var(--font-noto-sans);
-		--font-heading: var(--font-playfair-display);
+		--font-sans: "Noto Sans Variable", sans-serif;
+		--font-heading: "Playfair Display Variable", serif;
 		contain-intrinsic-size: auto 900px;
 		content-visibility: auto;
 	}
