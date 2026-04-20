@@ -139,4 +139,4 @@ Use `showCloseButton={false}` on `Sheet.Content` to hide the close button.
 
 ## API Reference
 
-See the [Bits UI](https://bits-ui.com/docs/components/dialog#api-reference) documentation for more information.
+See the [Bits UI Dialog](https://bits-ui.com/docs/components/dialog#api-reference) documentation.
