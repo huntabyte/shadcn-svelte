@@ -9,12 +9,13 @@
 		orientation,
 		direction,
 		...restProps
-	}: ResizablePrimitive.PaneGroupProps & {
+	}: Omit<ResizablePrimitive.PaneGroupProps, "direction"> & {
 		this?: ResizablePrimitive.PaneGroup;
+		direction?: ResizablePrimitive.PaneGroupProps["direction"];
 		orientation?: "horizontal" | "vertical";
 	} = $props();
 
-	const resolvedDirection = orientation ?? direction ?? "horizontal";
+	const resolvedDirection = $derived(orientation ?? direction ?? "horizontal");
 </script>
 
 <ResizablePrimitive.PaneGroup
