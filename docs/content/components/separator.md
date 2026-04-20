@@ -78,6 +78,8 @@ Update the import paths to match your project setup.
 
 ### Vertical
 
+Use `orientation="vertical"` for a vertical separator.
+
 <ComponentPreview name="separator-vertical">
 
 <div></div>
@@ -85,6 +87,8 @@ Update the import paths to match your project setup.
 </ComponentPreview>
 
 ### Menu
+
+Vertical separators between menu items with descriptions.
 
 <ComponentPreview name="separator-menu">
 
@@ -94,6 +98,8 @@ Update the import paths to match your project setup.
 
 ### List
 
+Horizontal separators between list items.
+
 <ComponentPreview name="separator-list">
 
 <div></div>
@@ -102,4 +108,4 @@ Update the import paths to match your project setup.
 
 ## API Reference
 
-See the [Bits UI](https://bits-ui.com/docs/components/separator#api-reference) documentation for more information.
+See the [Bits UI Separator](https://bits-ui.com/docs/components/separator#api-reference) documentation.

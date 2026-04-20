@@ -4,7 +4,7 @@
 
 <div class="flex max-w-sm flex-col gap-4 text-sm">
 	<div class="flex flex-col gap-1.5">
-		<div class="leading-none font-medium">shadcn/ui</div>
+		<div class="leading-none font-medium">shadcn-svelte</div>
 		<div class="text-muted-foreground">The Foundation for your Design System</div>
 	</div>
 	<Separator />
