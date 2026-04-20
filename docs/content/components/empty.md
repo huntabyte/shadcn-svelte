@@ -18,7 +18,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="empty-demo">
+<ComponentPreview name="empty-demo" previewClassName="h-96 p-0">
 
 <div></div>
 
@@ -79,7 +79,7 @@ Update the import paths to match your project setup.
 
 ## Composition
 
-Use the following composition to build an `Empty`:
+Use the following composition to build an `Empty` state:
 
 ```text
 Empty.Root
@@ -96,7 +96,7 @@ Empty.Root
 
 Use the `border` utility class to create a outline empty state.
 
-<ComponentPreview name="empty-outline-demo">
+<ComponentPreview name="empty-outline-demo" previewClassName="h-96 p-0 md:p-10">
 
 <div></div>
 
@@ -106,7 +106,7 @@ Use the `border` utility class to create a outline empty state.
 
 Use the `bg-*` and `bg-gradient-*` utilities to add a background to the empty state.
 
-<ComponentPreview name="empty-background-demo">
+<ComponentPreview name="empty-background-demo" previewClassName="h-96 p-0">
 
 <div></div>
 
@@ -116,7 +116,7 @@ Use the `bg-*` and `bg-gradient-*` utilities to add a background to the empty st
 
 Use the `EmptyMedia` component to display an avatar in the empty state.
 
-<ComponentPreview name="empty-avatar-demo">
+<ComponentPreview name="empty-avatar-demo" previewClassName="h-96 p-0">
 
 <div></div>
 
@@ -124,9 +124,9 @@ Use the `EmptyMedia` component to display an avatar in the empty state.
 
 ### Avatar Group
 
-Use the `EmptyMedia` component to display an avatar group in the empty state.
+Use the `Empty.Media` component to display an avatar group in the empty state.
 
-<ComponentPreview name="empty-avatar-group-demo">
+<ComponentPreview name="empty-avatar-group-demo" previewClassName="h-96 p-0">
 
 <div></div>
 
@@ -136,7 +136,7 @@ Use the `EmptyMedia` component to display an avatar group in the empty state.
 
 You can add an `InputGroup` component to the `EmptyContent` component.
 
-<ComponentPreview name="empty-input-group-demo">
+<ComponentPreview name="empty-input-group-demo" previewClassName="h-96 p-0">
 
 <div></div>
 
