@@ -26,6 +26,16 @@
 	} = $props();
 
 	let isMobileCodeVisible = $state(false);
+	let codeEl: HTMLElement | undefined = $state();
+
+	$effect(() => {
+		if (codeEl) {
+			const lineCount = codeEl.querySelectorAll("[data-line]").length;
+			if (lineCount > 0 && lineCount <= 3) {
+				isMobileCodeVisible = true;
+			}
+		}
+	});
 </script>
 
 {#snippet ExampleFallback()}
@@ -69,6 +79,7 @@
 		</div>
 		{#if !hideCode}
 			<div
+				bind:this={codeEl}
 				data-slot="code"
 				data-mobile-code-visible={isMobileCodeVisible}
 				class="relative overflow-hidden **:data-rehype-pretty-code-figure:m-0! **:data-rehype-pretty-code-figure:rounded-t-none **:data-rehype-pretty-code-figure:border-t [&_[data-rehype-pretty-code-figure]]:!m-0 [&_[data-rehype-pretty-code-figure]]:rounded-t-none [&_[data-rehype-pretty-code-figure]]:border-t data-[mobile-code-visible=false]:[&_[data-slot=copy-button]]:hidden [&_pre]:max-h-72"
