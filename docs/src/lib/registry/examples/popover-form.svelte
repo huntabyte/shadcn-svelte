@@ -1,30 +1,26 @@
 <script lang="ts">
 	import { buttonVariants } from "$lib/registry/ui/button/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
+	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 </script>
 
 <Popover.Root>
-	<Popover.Trigger class={buttonVariants({ variant: "outline" })}>Edit profile</Popover.Trigger>
-	<Popover.Content class="w-80">
-		<div class="grid gap-4">
-			<div class="space-y-2">
-				<h4 class="leading-none font-medium">Profile</h4>
-				<p class="text-muted-foreground text-sm">Update your profile information.</p>
-			</div>
-			<div class="grid gap-2">
-				<div class="grid grid-cols-3 items-center gap-4">
-					<Label for="name">Name</Label>
-					<Input id="name" value="Pedro Duarte" class="col-span-2 h-8" />
-				</div>
-				<div class="grid grid-cols-3 items-center gap-4">
-					<Label for="username">Username</Label>
-					<Input id="username" value="@peduarte" class="col-span-2 h-8" />
-				</div>
-			</div>
-			<Button size="sm">Save changes</Button>
-		</div>
+	<Popover.Trigger class={buttonVariants({ variant: "outline" })}>Open Popover</Popover.Trigger>
+	<Popover.Content class="w-64" align="start">
+		<Popover.Header>
+			<Popover.Title>Dimensions</Popover.Title>
+			<Popover.Description>Set the dimensions for the layer.</Popover.Description>
+		</Popover.Header>
+		<Field.Group class="gap-4">
+			<Field.Field orientation="horizontal">
+				<Field.Label for="width" class="w-1/2">Width</Field.Label>
+				<Input id="width" defaultValue="100%" />
+			</Field.Field>
+			<Field.Field orientation="horizontal">
+				<Field.Label for="height" class="w-1/2">Height</Field.Label>
+				<Input id="height" defaultValue="25px" />
+			</Field.Field>
+		</Field.Group>
 	</Popover.Content>
 </Popover.Root>
