@@ -92,7 +92,9 @@ Card.Root
 
 ## Examples
 
-### Small
+### Size
+
+Use the `size="sm"` prop to set the size of the card to small. The small size variant uses smaller spacing.
 
 <ComponentPreview name="card-small" previewClassName="h-96">
 
@@ -101,6 +103,8 @@ Card.Root
 </ComponentPreview>
 
 ### Image
+
+Add an image before the card header to create a card with an image.
 
 <ComponentPreview name="card-image" previewClassName="h-[32rem]">
 

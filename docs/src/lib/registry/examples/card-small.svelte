@@ -3,12 +3,18 @@
 	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
-<Card.Root size="sm" class="w-full max-w-sm">
+<Card.Root size="sm" class="mx-auto w-full max-w-sm">
 	<Card.Header>
-		<Card.Title>Upgrade to Pro</Card.Title>
-		<Card.Description>Get access to all features and priority support.</Card.Description>
+		<Card.Title>Small Card</Card.Title>
+		<Card.Description>This card uses the small size variant.</Card.Description>
 	</Card.Header>
+	<Card.Content>
+		<p>
+			The card component supports a size prop that can be set to &quot;sm&quot; for a more
+			compact appearance.
+		</p>
+	</Card.Content>
 	<Card.Footer>
-		<Button size="sm" class="w-full">Upgrade</Button>
+		<Button variant="outline" size="sm" class="w-full">Action</Button>
 	</Card.Footer>
 </Card.Root>
