@@ -80,23 +80,15 @@ Update the import paths to match your project setup.
 Use the following composition to build an `Item`:
 
 ```text
-Item.Root
-├── Item.Header
-├── Item.Media
-├── Item.Content
-│   ├── Item.Title
-│   └── Item.Description
-├── Item.Actions
-└── Item.Footer
-```
-
-Use `Item.Group` to group related items:
-
-```text
 Item.Group
-├── Item.Root
-├── Item.Separator
 └── Item.Root
+    ├── Item.Header
+    ├── Item.Media
+    ├── Item.Content
+    │   ├── Item.Title
+    │   └── Item.Description
+    ├── Item.Actions
+    └── Item.Footer
 ```
 
 ## Item vs Field
@@ -109,7 +101,7 @@ If you only need to display content such as a title, description, and actions, u
 
 Use the `variant` prop to change the visual style of the item.
 
-<ComponentPreview name="item-variants-demo">
+<ComponentPreview name="item-variants-demo" previewClassName="h-96">
 
 <div></div>
 
@@ -119,7 +111,7 @@ Use the `variant` prop to change the visual style of the item.
 
 Use the `size` prop to change the size of the item. Available sizes are `default`, `sm`, and `xs`.
 
-<ComponentPreview name="item-size-demo">
+<ComponentPreview name="item-size-demo" previewClassName="h-96">
 
 <div></div>
 
@@ -139,9 +131,10 @@ Use `Item.Media` with `variant="icon"` to display an icon.
 
 ### Avatar
 
-You can use `Item.Media` to display an avatar.
+You can use `Item.Media` with `variant="avatar"` to display an avatar.
 
-<ComponentPreview name="item-avatar-demo">
+
+<ComponentPreview name="item-avatar-demo" >
 
 <div></div>
 
@@ -161,7 +154,7 @@ Use `Item.Media` with `variant="image"` to display an image.
 
 Use `Item.Group` to group related items together.
 
-<ComponentPreview name="item-group-demo">
+<ComponentPreview name="item-group-demo" previewClassName="h-96">
 
 <div></div>
 
@@ -171,7 +164,7 @@ Use `Item.Group` to group related items together.
 
 Use `Item.Header` to add a header above the item content.
 
-<ComponentPreview name="item-header-demo">
+<ComponentPreview name="item-header-demo" previewClassName="h-96">
 
 <div></div>
 
