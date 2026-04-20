@@ -44,7 +44,7 @@ Thanks for contributing to `shadcn-svelte`!
 
 We ask that you follow these guidelines to help make it easier for us to review your PR:
  
-- Your PR should fix a single issue linked in the PR description (e.g. `Fixes #123`)
+- Your PR should fix a *single issue* linked in the PR description (e.g. `Fixes #123`)
 - Your PR should pass all CI checks and show a checkmark (Maintainers won't review PRs on red, or in draft)
 
 ## Responsible use of AI
