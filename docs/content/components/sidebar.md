@@ -127,21 +127,6 @@ We'll go over the colors later in the [theming section](/docs/components/sidebar
 
 </InstallTabs>
 
-## Structure
-
-A `Sidebar` component is composed of the following parts:
-
-- `Sidebar.Provider` - Handles collapsible state.
-- `Sidebar.Root` - The sidebar container.
-- `Sidebar.Header` and `Sidebar.Footer` - Sticky at the top and bottom of the sidebar.
-- `Sidebar.Content` - Scrollable content.
-- `Sidebar.Group` - Section within the `Sidebar.Content`.
-- `Sidebar.Trigger` - Trigger for the `Sidebar`.
-
-<img src="/img/sidebar/sidebar-structure.png" width="716" height="420" alt="Sidebar structure" class="border dark:hidden rounded-lg overflow-hidden mt-6 w-full" />
-
-<img src="/img/sidebar/sidebar-structure-dark.png" width="716" height="420" alt="Sidebar structure" class="border hidden dark:block rounded-lg overflow-hidden mt-6 w-full" />
-
 ## Usage
 
 ```svelte showLineNumbers title="src/routes/+layout.svelte"
@@ -175,6 +160,56 @@ A `Sidebar` component is composed of the following parts:
   <Sidebar.Footer />
 </Sidebar.Root>
 ```
+
+## Composition
+
+Use the following composition to build a `Sidebar` layout:
+
+```text
+Sidebar.Provider
+├── Sidebar.Root
+│   ├── Sidebar.Header
+│   ├── Sidebar.Content
+│   │   ├── Sidebar.Group
+│   │   │   ├── Sidebar.GroupLabel
+│   │   │   ├── Sidebar.GroupAction
+│   │   │   ├── Sidebar.GroupContent
+│   │   │   └── Sidebar.Menu
+│   │   │       ├── Sidebar.MenuItem
+│   │   │       │   ├── Sidebar.MenuButton
+│   │   │       │   ├── Sidebar.MenuAction
+│   │   │       │   └── Sidebar.MenuBadge
+│   │   │       └── Sidebar.MenuItem
+│   │   │           ├── Sidebar.MenuButton
+│   │   │           └── Sidebar.MenuSub
+│   │   │               ├── Sidebar.MenuSubItem
+│   │   │               └── Sidebar.MenuSubItem
+│   │   └── Sidebar.Group
+│   │       └── Sidebar.Menu
+│   │           ├── Sidebar.MenuItem
+│   │           └── Sidebar.MenuItem
+│   ├── Sidebar.Footer
+│   └── Sidebar.Rail
+├── Sidebar.Inset
+└── Sidebar.Trigger
+```
+
+## Structure
+
+- **Sidebar.Provider** — Handles collapsible state and provides sidebar context to child components.
+- **Sidebar.Root** — The main collapsible sidebar panel.
+- **Sidebar.Header** — Sticky at the top; use for branding, titles, or workspace switchers.
+- **Sidebar.Footer** — Sticky at the bottom; use for user menus, settings, or actions.
+- **Sidebar.Content** — Scrollable region between the header and footer.
+- **Sidebar.Group** — Groups related navigation with optional label, action, and content areas.
+- **Sidebar.Menu** / **Sidebar.MenuItem** — Menu structure for links, badges, actions, and nested submenus.
+- **Sidebar.Rail** — Resize handle for adjusting sidebar width when applicable.
+- **Sidebar.Inset** — Wraps main content when using the `inset` variant.
+- **Sidebar.Trigger** — Control that toggles the sidebar open or collapsed.
+
+<img src="/img/sidebar/sidebar-structure.png" width="716" height="420" alt="Sidebar structure" class="border dark:hidden rounded-lg overflow-hidden mt-6 w-full" />
+
+<img src="/img/sidebar/sidebar-structure-dark.png" width="716" height="420" alt="Sidebar structure" class="border hidden dark:block rounded-lg overflow-hidden mt-6 w-full" />
 
 ## Your First Sidebar
 
@@ -304,36 +339,6 @@ We'll use the `Sidebar.Menu` component in a `Sidebar.Group`.
 </DocsFigure>
 
 </Steps>
-
-## Composition
-
-Use the following composition to build a `Sidebar` layout:
-
-```text
-Sidebar.Provider
-├── Sidebar.Root
-│   ├── Sidebar.Header
-│   ├── Sidebar.Content
-│   │   ├── Sidebar.Group
-│   │   │   ├── Sidebar.GroupLabel
-│   │   │   ├── Sidebar.GroupAction
-│   │   │   └── Sidebar.GroupContent
-│   │   │       └── Sidebar.Menu
-│   │   │           └── Sidebar.MenuItem
-│   │   │               ├── Sidebar.MenuButton
-│   │   │               ├── Sidebar.MenuAction
-│   │   │               ├── Sidebar.MenuBadge
-│   │   │               ├── Sidebar.MenuSkeleton
-│   │   │               └── Sidebar.MenuSub
-│   │   │                   └── Sidebar.MenuSubItem
-│   │   │                       └── Sidebar.MenuSubButton
-│   │   └── Sidebar.Separator
-│   ├── Sidebar.Footer
-│   └── Sidebar.Rail
-├── Sidebar.Trigger
-├── Sidebar.Input
-└── Sidebar.Inset
-```
 
 ## Components
 
