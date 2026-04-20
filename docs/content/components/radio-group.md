@@ -90,6 +90,7 @@ Use the following composition to build a `RadioGroup`:
 
 ```text
 RadioGroup.Root
+├── RadioGroup.Item
 └── RadioGroup.Item
 ```
 
@@ -117,7 +118,7 @@ Use `Field.Label` to wrap the entire `Field` for a clickable card-style selectio
 
 ### Fieldset
 
-Use `FieldSet` and `FieldLegend` to group radio items with a label and description.
+Use `Field.Set` and `Field.Legend` to group radio items with a label and description.
 
 <ComponentPreview name="radio-group-fieldset">
 
