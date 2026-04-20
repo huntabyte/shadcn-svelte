@@ -91,17 +91,15 @@ Use the following composition to build a `Select`:
 Select.Root
 ├── Select.Trigger
 └── Select.Content
-    ├── Select.ScrollUpButton
     ├── Select.Group
     │   ├── Select.Label
     │   ├── Select.Item
     │   └── Select.Item
     ├── Select.Separator
-    ├── Select.Group
-    │   ├── Select.Label
-    │   ├── Select.Item
-    │   └── Select.Item
-    └── Select.ScrollDownButton
+    └── Select.Group
+        ├── Select.Label
+        ├── Select.Item
+        └── Select.Item
 ```
 
 ## Examples
