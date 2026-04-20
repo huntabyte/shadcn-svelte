@@ -234,7 +234,7 @@ Wrap `Field` components inside `Field.Label` to create selectable field groups. 
 
 Stack `Field` components with `Field.Group`. Add `Field.Separator` to divide them.
 
-<ComponentPreview name="field-field-group-demo">
+<ComponentPreview name="field-field-group-demo" previewClassName="h-96">
 
 <div></div>
 
