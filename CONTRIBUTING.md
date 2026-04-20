@@ -17,7 +17,7 @@ We appreciate your interest in contributing. This guide will help you get starte
 We welcome all kinds of contributions:
 
 - **Feedback** - have suggestions or ideas? [Open a discussion](https://github.com/huntabyte/shadcn-svelte/discussions) to discuss it. Just note that this project is a port of [shadcn/ui](https://github.com/shadcn/ui), meaning if a feature is not in [shadcn/ui](https://github.com/shadcn/ui), it will not be considered here.
-- **Help & Support** - if you enjoy helping others, join the [Discord](https://discord.gg/SRbSSrvXug) and help out in the `libs` -> `shadcn-support` channel, or answer questions asked in [Discussions](https://github.com/huntabyte/shadcn-svelte/discussions)
+- **Help & Support** - if you enjoy helping others, join the [Discord](https://shadcn-svelte.com/discord) and help out in the `libs` -> `shadcn-support` channel, or answer questions asked in [Discussions](https://github.com/huntabyte/shadcn-svelte/discussions)
 - **Bug reports** - please [open an issue](https://github.com/huntabyte/shadcn-svelte/issues/new) to report a bug.
 - **Docs fixes** - spot a typo or broken link? Open a PR. If it's a larger change, please start a discussion first.
 - **Code improvements** - For anything more involved than a quick fix, start a discussion first so we can align before you dive in.
@@ -55,7 +55,7 @@ We take no issue with you using AI to help you contribute to `shadcn-svelte`. Ho
 
 ## Questions
 
-If you're looking to contribute and have questions about the process or the codebase in general, feel free to ask in the [Discord](https://hbyt.us/discord) in the `libs`->`shadcn-chat` channel!
+If you're looking to contribute and have questions about the process or the codebase in general, feel free to ask in the [Discord](https://shadcn-svelte.com/discord) in the `Questions`->`shadcn-svelte` channel!
 
 ## License
 
