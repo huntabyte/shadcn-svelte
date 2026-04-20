@@ -17,7 +17,11 @@
 		className
 	)}
 >
-	<RangeCalendarPrimitive.YearSelect bind:ref class="bg-popover absolute inset-0 opacity-0" {...restProps}>
+	<RangeCalendarPrimitive.YearSelect
+		bind:ref
+		class="bg-popover absolute inset-0 opacity-0"
+		{...restProps}
+	>
 		{#snippet child({ props, yearItems, selectedYearItem })}
 			<select {...props} {value}>
 				{#each yearItems as yearItem (yearItem.value)}

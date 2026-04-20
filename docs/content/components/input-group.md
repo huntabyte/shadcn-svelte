@@ -234,8 +234,8 @@ No style is applied to the custom input. Apply your own styles using the `class`
 
 The main component that wraps inputs and addons.
 
-| Prop        | Type     | Default |
-| ----------- | -------- | ------- |
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
 | `class` | `string` |         |
 
 ```svelte
@@ -255,10 +255,10 @@ For proper focus navigation, the `InputGroup.Addon` component should be placed a
 
 </Callout>
 
-| Prop    | Type                                                              | Default          |
-| ------- | ----------------------------------------------------------------- | ---------------- |
+| Prop    | Type                                                             | Default          |
+| ------- | ---------------------------------------------------------------- | ---------------- |
 | `align` | `"inline-start" \| "inline-end" \| "block-start" \| "block-end"` | `"inline-start"` |
-| `class` | `string`                                                          |                  |
+| `class` | `string`                                                         |                  |
 
 ```svelte
 <InputGroup.Addon align="inline-end">
@@ -283,7 +283,7 @@ Displays buttons within input groups.
 
 | Prop      | Type                                                                          | Default   |
 | --------- | ----------------------------------------------------------------------------- | --------- |
-| `size`    | `"xs" \| "icon-xs" \| "sm" \| "icon-sm"`                                     | `"xs"`    |
+| `size`    | `"xs" \| "icon-xs" \| "sm" \| "icon-sm"`                                      | `"xs"`    |
 | `variant` | `"default" \| "destructive" \| "outline" \| "secondary" \| "ghost" \| "link"` | `"ghost"` |
 | `class`   | `string`                                                                      |           |
 
