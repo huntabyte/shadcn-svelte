@@ -2,7 +2,9 @@
 	import { z } from "zod";
 
 	const formSchema = z.object({
-		type: z.enum(["all", "mentions", "none"]),
+		plan: z.enum(["starter", "pro", "enterprise"], {
+			error: "You must select a subscription plan to continue.",
+		}),
 	});
 </script>
 
@@ -10,12 +12,32 @@
 	import { defaults, superForm } from "sveltekit-superforms";
 	import { zod4 } from "sveltekit-superforms/adapters";
 	import { toast } from "svelte-sonner";
-	import * as Form from "$lib/registry/ui/form/index.js";
+	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+
+	const plans = [
+		{
+			id: "starter",
+			title: "Starter (100K tokens/month)",
+			description: "For everyday use with basic features.",
+		},
+		{
+			id: "pro",
+			title: "Pro (1M tokens/month)",
+			description: "For advanced AI usage with more features.",
+		},
+		{
+			id: "enterprise",
+			title: "Enterprise (Unlimited tokens)",
+			description: "For large teams and heavy usage.",
+		},
+	] as const;
 
 	const form = superForm(defaults(zod4(formSchema)), {
-		validators: zod4(formSchema),
 		SPA: true,
+		validators: zod4(formSchema),
 		onUpdate: ({ form: f }) => {
 			if (f.valid) {
 				toast.success(`You submitted ${JSON.stringify(f.data, null, 2)}`);
@@ -25,39 +47,60 @@
 		},
 	});
 
-	const { form: formData, enhance } = form;
+	const { form: formData, errors, enhance } = form;
 </script>
 
-<form method="POST" class="w-2/3 space-y-6" use:enhance>
-	<Form.Fieldset {form} name="type" class="space-y-3">
-		<Form.Legend>Notify me about...</Form.Legend>
-		<RadioGroup.Root bind:value={$formData.type} class="flex flex-col space-y-1" name="type">
-			<div class="flex items-center space-y-0 space-x-3">
-				<Form.Control>
-					{#snippet children({ props })}
-						<RadioGroup.Item value="all" {...props} />
-						<Form.Label class="font-normal">All new messages</Form.Label>
-					{/snippet}
-				</Form.Control>
-			</div>
-			<div class="flex items-center space-y-0 space-x-3">
-				<Form.Control>
-					{#snippet children({ props })}
-						<RadioGroup.Item value="mentions" {...props} />
-						<Form.Label class="font-normal">Direction messages and mentions</Form.Label>
-					{/snippet}
-				</Form.Control>
-			</div>
-			<div class="flex items-center space-y-0 space-x-3">
-				<Form.Control>
-					{#snippet children({ props })}
-						<RadioGroup.Item value="none" {...props} />
-						<Form.Label class="font-normal">Nothing</Form.Label>
-					{/snippet}
-				</Form.Control>
-			</div>
-		</RadioGroup.Root>
-		<Form.FieldErrors />
-	</Form.Fieldset>
-	<Form.Button>Submit</Form.Button>
-</form>
+<div class="flex w-full gap-8">
+	<form method="POST" class="flex-1" use:enhance>
+		<Card.Root class="w-full">
+			<Card.Header>
+				<Card.Title>Subscription Plan</Card.Title>
+				<Card.Description>See pricing and features for each plan.</Card.Description>
+			</Card.Header>
+			<Card.Content>
+				<Field.Group>
+					<Field.Set data-invalid={$errors.plan ? true : undefined}>
+						<Field.Legend>Plan</Field.Legend>
+						<Field.Description>
+							You can upgrade or downgrade your plan at any time.
+						</Field.Description>
+						<RadioGroup.Root
+							bind:value={$formData.plan}
+							aria-invalid={$errors.plan ? true : undefined}
+						>
+							{#each plans as p (p.id)}
+								<Field.Label for="radio-group-form-{p.id}">
+									<Field.Field
+										orientation="horizontal"
+										data-invalid={$errors.plan ? true : undefined}
+									>
+										<Field.Content>
+											<Field.Title>{p.title}</Field.Title>
+											<Field.Description>{p.description}</Field.Description>
+										</Field.Content>
+										<RadioGroup.Item
+											value={p.id}
+											id="radio-group-form-{p.id}"
+											aria-invalid={$errors.plan ? true : undefined}
+										/>
+									</Field.Field>
+								</Field.Label>
+							{/each}
+						</RadioGroup.Root>
+						<Field.Error
+							errors={(($errors.plan as string[] | undefined) ?? []).map((m) => ({
+								message: m,
+							}))}
+						/>
+					</Field.Set>
+				</Field.Group>
+			</Card.Content>
+			<Card.Footer>
+				<Field.Field orientation="horizontal">
+					<Button type="reset" variant="outline">Reset</Button>
+					<Button type="submit">Save</Button>
+				</Field.Field>
+			</Card.Footer>
+		</Card.Root>
+	</form>
+</div>

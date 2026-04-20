@@ -7,8 +7,9 @@
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
 	import { cn } from "$lib/utils.js";
+	import { SvelteSet } from "svelte/reactivity";
 
-	import { sidebarNavItems } from "$lib/navigation.js";
+	import { sidebarNavItems, mainNavItems } from "$lib/config.js";
 
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
 	import CornerDownLeftIcon from "@lucide/svelte/icons/corner-down-left";
@@ -17,6 +18,12 @@
 	import { goto } from "$app/navigation";
 	import { UserConfigContext } from "$lib/user-config.svelte.js";
 	import * as Kbd from "$lib/registry/ui/kbd/index.js";
+	import { onMount } from "svelte";
+	import {
+		type SearchResult,
+		createContentIndex,
+		searchContentIndex,
+	} from "$lib/utils/search.js";
 
 	let {
 		colors,
@@ -29,11 +36,108 @@
 	} = $props();
 
 	let open = $state(false);
-	let selectedType = $state<"color" | "page" | "component" | "block" | null>(null);
+	let selectedType = $state<"color" | "page" | "component" | "block" | "search" | null>(null);
 	let copyPayload = $state("");
+	let searchQuery = $state("");
+	let searchResults = $state<SearchResult[]>([]);
+	let searchState = $state<"loading" | "ready">("loading");
+
+	const hasSearchQuery = $derived(searchQuery.trim().length > 0);
+
+	const COMMAND_MENU_GROUP_ORDER = [
+		"Components",
+		"Get Started",
+		"Installation",
+		"Dark Mode",
+		"Registry",
+		"Migration",
+	] as const;
+
+	const orderedSidebarGroups = $derived(
+		COMMAND_MENU_GROUP_ORDER.map((title) =>
+			sidebarNavItems.find((g) => g.title === title)
+		).filter((g): g is (typeof sidebarNavItems)[number] => g !== undefined)
+	);
+
+	const filteredPages = $derived.by(() => {
+		if (!searchQuery.trim()) return [];
+		const q = searchQuery.trim().toLowerCase();
+		return mainNavItems.filter((item) => item.title.toLowerCase().includes(q));
+	});
+
+	const filteredSidebarGroups = $derived.by(() => {
+		if (!searchQuery.trim()) return [];
+		const q = searchQuery.trim().toLowerCase();
+		return orderedSidebarGroups
+			.map((group) => ({
+				title: group.title,
+				items: group.items.filter((item) => item.title?.toLowerCase().includes(q)),
+			}))
+			.filter((group) => group.items.length > 0);
+	});
+
+	const sidebarMatchHrefs = $derived(
+		new Set(filteredSidebarGroups.flatMap((g) => g.items.map((i) => i.href)))
+	);
+
+	// Strip anchor from href for deduplication (per-section results have #anchors)
+	const deduplicatedSearchResults = $derived.by(() => {
+		const seen = new SvelteSet<string>();
+		return searchResults.filter((r) => {
+			if (sidebarMatchHrefs.has(r.href.split("#")[0])) return false;
+			if (seen.has(r.href)) return false;
+			seen.add(r.href);
+			return true;
+		});
+	});
+
+	const filteredColors = $derived.by(() => {
+		if (!searchQuery.trim()) return [];
+		const q = searchQuery.trim().toLowerCase();
+		return colors
+			.map((palette) => ({
+				...palette,
+				colors: palette.colors.filter(
+					(c) => c.name.toLowerCase().includes(q) || c.class.toLowerCase().includes(q)
+				),
+			}))
+			.filter((palette) => palette.colors.length > 0);
+	});
+
+	const hasAnyResults = $derived(
+		filteredPages.length > 0 ||
+			filteredSidebarGroups.length > 0 ||
+			deduplicatedSearchResults.length > 0 ||
+			filteredColors.length > 0
+	);
 
 	const userConfig = UserConfigContext.get();
 	const clipboard = new UseClipboard();
+
+	onMount(async () => {
+		const content = await fetch("/api/search.json").then((res) => res.json());
+		createContentIndex(content);
+		searchState = "ready";
+	});
+
+	$effect(() => {
+		if (searchState !== "ready") return;
+		searchResults = searchContentIndex(searchQuery);
+		if (searchQuery.trim()) {
+			selectedType = "search";
+			copyPayload = "";
+		}
+	});
+
+	let clearTimeoutId: number | undefined;
+
+	function clearSearchWithDelay() {
+		if (clearTimeoutId) window.clearTimeout(clearTimeoutId);
+		clearTimeoutId = window.setTimeout(() => {
+			searchQuery = "";
+			clearTimeoutId = undefined;
+		}, 300);
+	}
 
 	function handlePageHighlight(isComponent: boolean, item: { href: string; title?: string }) {
 		if (isComponent) {
@@ -127,138 +231,286 @@
 
 <svelte:document onkeydown={handleKeydown} />
 
-<Dialog.Root bind:open>
+<Dialog.Root
+	bind:open
+	onOpenChange={(o) => {
+		if (o) return;
+		clearSearchWithDelay();
+	}}
+>
 	<Dialog.Trigger>
 		{#snippet child({ props })}
 			<Button
 				{...props}
-				variant="secondary"
+				variant="outline"
 				class={cn(
-					"bg-surface text-foreground dark:bg-card relative h-8 w-full justify-start pl-3 font-medium shadow-none sm:pr-12 md:w-48 lg:w-56 xl:w-64"
+					"text-foreground dark:bg-card hover:bg-muted/50 relative h-8 w-full justify-start pl-3 font-normal shadow-none sm:pr-12 md:w-48 xl:w-64"
 				)}
 				onclick={() => openCommandMenu()}
 			>
-				<span class="hidden lg:inline-flex">Search documentation...</span>
-				<span class="inline-flex lg:hidden">Search...</span>
-				<div class="absolute end-1.5 top-1.5 hidden gap-1 sm:flex">
-					<Kbd.Group>
-						<Kbd.Root class="border">⌘</Kbd.Root>
-						<Kbd.Root class="border">K</Kbd.Root>
-					</Kbd.Group>
-				</div>
+				<span class="hidden xl:inline-flex">Search documentation...</span>
+				<span class="inline-flex xl:hidden">Search...</span>
 			</Button>
 		{/snippet}
 	</Dialog.Trigger>
 	<Dialog.Content
 		showCloseButton={false}
-		class="rounded-xl border-none bg-clip-padding p-2 pb-11 shadow-2xl ring-4 ring-neutral-200/80 dark:bg-neutral-900 dark:ring-neutral-800"
+		class="top-[15%] -translate-y-0 rounded-xl border-none bg-clip-padding p-2 pb-11 shadow-2xl ring-4 ring-neutral-200/80 sm:max-w-lg dark:bg-neutral-900 dark:ring-neutral-800"
 	>
 		<Dialog.Header class="sr-only">
 			<Dialog.Title>Search documentation...</Dialog.Title>
 			<Dialog.Description>Search for a command to run...</Dialog.Description>
 		</Dialog.Header>
-		<Command.Root class="rounded-none bg-transparent">
-			<Command.Input placeholder="Search documentation..." />
+		<Command.Root
+			class="**:data-[slot=command-input-wrapper]:border-input **:data-[slot=command-input-wrapper]:bg-input/50 rounded-none bg-transparent **:data-[slot=command-input]:h-full! **:data-[slot=command-input]:py-0 **:data-[slot=command-input-wrapper]:mb-0 **:data-[slot=command-input-wrapper]:flex! **:data-[slot=command-input-wrapper]:h-9! **:data-[slot=command-input-wrapper]:items-center! **:data-[slot=command-input-wrapper]:rounded-md **:data-[slot=command-input-wrapper]:border **:data-[slot=command-input-wrapper]:p-0! **:data-[slot=input-group]:h-full! **:data-[slot=input-group]:rounded-none! **:data-[slot=input-group]:border-none! **:data-[slot=input-group]:bg-transparent! **:data-[slot=input-group]:shadow-none!"
+			shouldFilter={!hasSearchQuery}
+		>
+			<Command.Input placeholder="Search documentation..." bind:value={searchQuery} />
 			<Command.List tabindex={-1} class="no-scrollbar min-h-80 scroll-pt-2 scroll-pb-1.5">
-				<Command.Empty class="text-muted-foreground py-12 text-center text-sm">
-					No results found.
-				</Command.Empty>
-				{#each sidebarNavItems as group (group.title)}
+				{#if hasSearchQuery}
+					{#if !hasAnyResults}
+						<Command.Empty class="text-muted-foreground py-12 text-center text-sm">
+							No results found.
+						</Command.Empty>
+					{/if}
+
+					{#if filteredPages.length > 0}
+						<Command.Group
+							heading="Pages"
+							class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
+						>
+							{#each filteredPages as item (item.href)}
+								<CommandMenuItem
+									value={`Pages ${item.title}`}
+									keywords={["page", item.title.toLowerCase()]}
+									onHighlight={() =>
+										handlePageHighlight(false, {
+											href: item.href ?? "",
+											title: item.title,
+										})}
+									onSelect={() => {
+										runCommand(() => {
+											if (item.href) goto(item.href);
+										});
+									}}
+								>
+									<ArrowRightIcon />
+									{item.title}
+								</CommandMenuItem>
+							{/each}
+						</Command.Group>
+					{/if}
+
+					{#each filteredSidebarGroups as group (group.title)}
+						<Command.Group
+							heading={group.title}
+							class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
+						>
+							{#each group.items as item (item.href)}
+								{@const isComponent = item.href?.includes("/components/") ?? false}
+								<CommandMenuItem
+									value={`${group.title} ${item.title}`}
+									keywords={isComponent ? ["component"] : undefined}
+									onHighlight={() =>
+										handlePageHighlight(isComponent, {
+											href: item.href ?? "",
+											title: item.title,
+										})}
+									onSelect={() => {
+										runCommand(() => {
+											if (item.href) goto(item.href);
+										});
+									}}
+								>
+									{#if isComponent}
+										<div
+											class="border-muted-foreground aspect-square size-4 rounded-full border border-dashed"
+										></div>
+									{:else}
+										<ArrowRightIcon />
+									{/if}
+									{item.title}
+								</CommandMenuItem>
+							{/each}
+						</Command.Group>
+					{/each}
+
+					{#if deduplicatedSearchResults.length > 0}
+						<Command.Group
+							heading="Search Results"
+							class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
+						>
+							{#each deduplicatedSearchResults as result (result.href)}
+								<Command.Item
+									class="data-selected:border-input data-selected:bg-input/50 h-9 rounded-md border border-transparent !px-3 font-normal"
+									value={result.title + " " + result.href}
+									keywords={[result.content]}
+									onSelect={() => {
+										runCommand(() => goto(result.href));
+									}}
+								>
+									<div class="line-clamp-1 text-sm">{result.title}</div>
+								</Command.Item>
+							{/each}
+						</Command.Group>
+					{/if}
+
+					{#each filteredColors as colorPalette (colorPalette.name)}
+						<Command.Group
+							heading={colorPalette.name.charAt(0).toUpperCase() +
+								colorPalette.name.slice(1)}
+							class="!p-0 [&_[data-command-group-heading]]:!p-3"
+						>
+							{#each colorPalette.colors as color (color.hex)}
+								<CommandMenuItem
+									value={color.class}
+									keywords={["color", color.name, color.class]}
+									onHighlight={() => handleColorHighlight(color)}
+									onSelect={() => {
+										runCommand(() => clipboard.copy(color.oklch));
+									}}
+								>
+									<div
+										class="border-ghost aspect-square size-4 rounded-sm bg-(--color) after:rounded-sm"
+										style="--color: {color.oklch};"
+									></div>
+									{color.class}
+									<span
+										class="text-muted-foreground ms-auto font-mono text-xs font-normal tabular-nums"
+									>
+										{color.oklch}
+									</span>
+								</CommandMenuItem>
+							{/each}
+						</Command.Group>
+					{/each}
+				{:else}
+					<Command.Empty class="text-muted-foreground py-12 text-center text-sm">
+						No results found.
+					</Command.Empty>
 					<Command.Group
-						heading={group.title}
+						heading="Pages"
 						class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
 					>
-						{#each group.items as item, i (i)}
-							{@const isComponent = item.href?.includes("/components/") ?? false}
-
+						{#each mainNavItems as item (item.href)}
 							<CommandMenuItem
-								value={item.title?.toString() ? `${group.title} ${item.title}` : ""}
-								keywords={isComponent ? ["component"] : undefined}
+								value={`Pages ${item.title}`}
+								keywords={["page", item.title.toLowerCase()]}
 								onHighlight={() =>
-									handlePageHighlight(isComponent, {
+									handlePageHighlight(false, {
 										href: item.href ?? "",
 										title: item.title,
 									})}
 								onSelect={() => {
 									runCommand(() => {
-										if (item.href) {
-											goto(item.href);
-										}
+										if (item.href) goto(item.href);
 									});
 								}}
 							>
-								{#if isComponent}
-									<div
-										class="border-muted-foreground aspect-square size-4 rounded-full border border-dashed"
-									></div>
-								{:else}
-									<ArrowRightIcon />
-								{/if}
+								<ArrowRightIcon />
 								{item.title}
 							</CommandMenuItem>
 						{/each}
 					</Command.Group>
-				{/each}
-				{#each colors as colorPalette (colorPalette.name)}
-					<Command.Group
-						heading={colorPalette.name.charAt(0).toUpperCase() +
-							colorPalette.name.slice(1)}
-						class="!p-0 [&_[data-command-group-heading]]:!p-3"
-					>
-						{#each colorPalette.colors as color (color.hex)}
-							<CommandMenuItem
-								value={color.class}
-								keywords={["color", color.name, color.class]}
-								onHighlight={() => handleColorHighlight(color)}
-								onSelect={() => {
-									runCommand(() => clipboard.copy(color.oklch));
-								}}
-							>
-								<div
-									class="border-ghost aspect-square size-4 rounded-sm bg-(--color) after:rounded-sm"
-									style="--color: {color.oklch};"
-								></div>
-								{color.class}
-								<span
-									class="text-muted-foreground ms-auto font-mono text-xs font-normal tabular-nums"
+					{#each orderedSidebarGroups as group (group.title)}
+						<Command.Group
+							heading={group.title}
+							class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
+						>
+							{#each group.items as item, i (i)}
+								{@const isComponent = item.href?.includes("/components/") ?? false}
+
+								<CommandMenuItem
+									value={item.title?.toString()
+										? `${group.title} ${item.title}`
+										: ""}
+									keywords={isComponent ? ["component"] : undefined}
+									onHighlight={() =>
+										handlePageHighlight(isComponent, {
+											href: item.href ?? "",
+											title: item.title,
+										})}
+									onSelect={() => {
+										runCommand(() => {
+											if (item.href) {
+												goto(item.href);
+											}
+										});
+									}}
 								>
-									{color.oklch}
-								</span>
-							</CommandMenuItem>
-						{/each}
-					</Command.Group>
-				{/each}
-				{#if blocks?.length}
-					<Command.Group
-						heading="Blocks"
-						class="!p-0 [&_[data-command-group-heading]]:!p-3"
-					>
-						{#each blocks as block (block.name)}
-							<CommandMenuItem
-								value={block.name}
-								onHighlight={() => handleBlockHighlight(block)}
-								keywords={[
-									"block",
-									block.name,
-									block.description,
-									...block.categories,
-								]}
-								onSelect={() => {
-									runCommand(() => {
-										goto(`/blocks/${block.categories[0]}#${block.name}`);
-									});
-								}}
-							>
-								<SquareDashedIcon />
-								{block.description}
-								<span
-									class="text-muted-foreground ms-auto font-mono text-xs font-normal tabular-nums"
+									{#if isComponent}
+										<div
+											class="border-muted-foreground aspect-square size-4 rounded-full border border-dashed"
+										></div>
+									{:else}
+										<ArrowRightIcon />
+									{/if}
+									{item.title}
+								</CommandMenuItem>
+							{/each}
+						</Command.Group>
+					{/each}
+					{#if blocks?.length}
+						<Command.Group
+							heading="Blocks"
+							class="!p-0 [&_[data-command-group-heading]]:!p-3"
+						>
+							{#each blocks as block (block.name)}
+								<CommandMenuItem
+									value={block.name}
+									onHighlight={() => handleBlockHighlight(block)}
+									keywords={[
+										"block",
+										block.name,
+										block.description,
+										...block.categories,
+									]}
+									onSelect={() => {
+										runCommand(() => {
+											goto(`/blocks/${block.categories[0]}#${block.name}`);
+										});
+									}}
 								>
-									{block.name}
-								</span>
-							</CommandMenuItem>
-						{/each}
-					</Command.Group>
+									<SquareDashedIcon />
+									{block.description}
+									<span
+										class="text-muted-foreground ms-auto font-mono text-xs font-normal tabular-nums"
+									>
+										{block.name}
+									</span>
+								</CommandMenuItem>
+							{/each}
+						</Command.Group>
+					{/if}
+					{#each colors as colorPalette (colorPalette.name)}
+						<Command.Group
+							heading={colorPalette.name.charAt(0).toUpperCase() +
+								colorPalette.name.slice(1)}
+							class="!p-0 [&_[data-command-group-heading]]:!p-3"
+						>
+							{#each colorPalette.colors as color (color.hex)}
+								<CommandMenuItem
+									value={color.class}
+									keywords={["color", color.name, color.class]}
+									onHighlight={() => handleColorHighlight(color)}
+									onSelect={() => {
+										runCommand(() => clipboard.copy(color.oklch));
+									}}
+								>
+									<div
+										class="border-ghost aspect-square size-4 rounded-sm bg-(--color) after:rounded-sm"
+										style="--color: {color.oklch};"
+									></div>
+									{color.class}
+									<span
+										class="text-muted-foreground ms-auto font-mono text-xs font-normal tabular-nums"
+									>
+										{color.oklch}
+									</span>
+								</CommandMenuItem>
+							{/each}
+						</Command.Group>
+					{/each}
 				{/if}
 			</Command.List>
 		</Command.Root>
@@ -267,7 +519,7 @@
 		>
 			<div class="flex items-center gap-2">
 				<Kbd.Root class="bg-background border"><CornerDownLeftIcon /></Kbd.Root>
-				{#if selectedType === "page" || selectedType === "component"}
+				{#if selectedType === "page" || selectedType === "component" || selectedType === "search"}
 					Go to Page
 				{/if}
 				{#if selectedType === "color"}

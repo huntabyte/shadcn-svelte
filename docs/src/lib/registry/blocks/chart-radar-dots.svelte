@@ -18,12 +18,22 @@
 	const chartConfig = {
 		desktop: { label: "Desktop", color: "var(--chart-1)" },
 	} satisfies Chart.ChartConfig;
+
+	const maxValue = Math.max(...chartData.map((d) => d.desktop));
+
+	const gridAngles = Array.from({ length: 6 }, (_, i) => Math.PI / 3 + (i * Math.PI * 2) / 6);
+	const gridRadius = 113;
+	const gridTicks = [65, 130, 195, 260];
+	const gridPolygons = gridTicks.map((tick) => {
+		const r = (tick / maxValue) * gridRadius;
+		return gridAngles.map((a) => `${r * Math.sin(a)},${-r * Math.cos(a)}`).join(" ");
+	});
 </script>
 
 <Card.Root>
 	<Card.Header class="items-center">
 		<Card.Title>Radar Chart - Dots</Card.Title>
-		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
+		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content class="flex-1">
 		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
@@ -47,7 +57,7 @@
 						fill: "var(--color-desktop)",
 						fillOpacity: 0.6,
 						stroke: "0",
-						motion: "tween",
+						motion: Chart.defaultMotion,
 					},
 					xAxis: {
 						tickLength: 0,
@@ -56,7 +66,7 @@
 						format: () => "",
 					},
 					grid: {
-						radialY: "linear",
+						y: false,
 					},
 					tooltip: {
 						context: {
@@ -69,6 +79,15 @@
 					},
 				}}
 			>
+				{#snippet belowMarks()}
+					{#each gridPolygons as points (points)}
+						<polygon
+							{points}
+							class="stroke-muted-foreground/20 fill-none"
+							stroke-width="1"
+						/>
+					{/each}
+				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip />
 				{/snippet}
@@ -80,7 +99,7 @@
 			Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
 		</div>
 		<div class="text-muted-foreground flex items-center gap-2 leading-none">
-			January - June 2024
+			Showing total visitors for the last 6 months
 		</div>
 	</Card.Footer>
 </Card.Root>

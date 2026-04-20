@@ -1,12 +1,11 @@
 <script lang="ts">
-	import IconCheck from "@tabler/icons-svelte/icons/check";
-	import IconCopy from "@tabler/icons-svelte/icons/copy";
-	import IconInfoCircle from "@tabler/icons-svelte/icons/info-circle";
-	import IconStar from "@tabler/icons-svelte/icons/star";
-
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
+	import CheckIcon from "@lucide/svelte/icons/check";
+	import CopyIcon from "@lucide/svelte/icons/copy";
+	import InfoIcon from "@lucide/svelte/icons/info";
+	import StarIcon from "@lucide/svelte/icons/star";
 
 	let isFavorite = $state(false);
 
@@ -24,9 +23,9 @@
 				onclick={() => clipboard.copy("https://x.com/shadcn")}
 			>
 				{#if clipboard.copied}
-					<IconCheck />
+					<CheckIcon />
 				{:else}
-					<IconCopy />
+					<CopyIcon />
 				{/if}
 			</InputGroup.Button>
 		</InputGroup.Addon>
@@ -37,7 +36,7 @@
 				{#snippet child({ props })}
 					<InputGroup.Addon>
 						<InputGroup.Button {...props} variant="secondary" size="icon-xs">
-							<IconInfoCircle />
+							<InfoIcon />
 						</InputGroup.Button>
 					</InputGroup.Addon>
 				{/snippet}
@@ -53,7 +52,7 @@
 		<InputGroup.Input />
 		<InputGroup.Addon align="inline-end">
 			<InputGroup.Button onclick={() => (isFavorite = !isFavorite)} size="icon-xs">
-				<IconStar class={isFavorite ? "fill-blue-600 stroke-blue-600" : ""} />
+				<StarIcon class={isFavorite ? "fill-blue-600 stroke-blue-600" : ""} />
 			</InputGroup.Button>
 		</InputGroup.Addon>
 	</InputGroup.Root>

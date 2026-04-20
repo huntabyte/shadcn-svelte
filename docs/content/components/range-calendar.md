@@ -3,7 +3,7 @@ title: Range Calendar
 description: A calendar component that allows users to select a range of dates.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/range-calendar
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/range-calendar
   doc: https://bits-ui.com/docs/components/range-calendar
   api: https://bits-ui.com/docs/components/range-calendar#api-reference
 ---
@@ -60,6 +60,42 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
+
+## Composition
+
+Use the following composition to build a `RangeCalendar`:
+
+```text
+RangeCalendar.Root
+└── RangeCalendar.Months
+    └── RangeCalendar.Month
+        ├── RangeCalendar.Caption
+        │   ├── RangeCalendar.Nav
+        │   │   ├── RangeCalendar.PrevButton
+        │   │   └── RangeCalendar.NextButton
+        │   └── RangeCalendar.Heading
+        ├── RangeCalendar.Header
+        │   ├── RangeCalendar.MonthSelect
+        │   └── RangeCalendar.YearSelect
+        └── RangeCalendar.Grid
+            ├── RangeCalendar.GridHead
+            │   └── RangeCalendar.GridRow
+            │       └── RangeCalendar.HeadCell
+            └── RangeCalendar.GridBody
+                └── RangeCalendar.GridRow
+                    └── RangeCalendar.Cell
+                        └── RangeCalendar.Day
+```
+
+## API Reference
+
+See the [Bits UI](https://bits-ui.com/docs/components/range-calendar#api-reference) documentation for more information.

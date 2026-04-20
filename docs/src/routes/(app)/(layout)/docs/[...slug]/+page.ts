@@ -11,6 +11,8 @@ export const entries: EntryGenerator = () => {
 
 	for (const path of Object.keys(modules)) {
 		const slug = path.replace("/content/", "").replace(".md", "").replace("/index", "");
+		// /docs/changelog has its own dedicated route
+		if (slug === "changelog") continue;
 		entries.push({ slug });
 	}
 
@@ -25,6 +27,7 @@ const ITEMS_TO_IGNORE = ["combobox", "date-picker", "typography"];
 export const load: PageLoad = async ({ params, fetch }) => {
 	const doc = await getDoc(params.slug);
 	const name = doc.metadata.slug;
+
 	if (params.slug.includes("components/") && !ITEMS_TO_IGNORE.includes(name)) {
 		const res = await fetch(`/api/block/${name}`);
 		const item: HighlightedBlock = await res.json();

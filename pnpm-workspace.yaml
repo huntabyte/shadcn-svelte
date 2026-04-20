@@ -4,11 +4,36 @@ packages:
     - registry-template
 
 catalog:
-    "@sveltejs/kit": ^2.55.0
-    "@sveltejs/vite-plugin-svelte": ^6.2.4
-    svelte: ^5.54.0
-    svelte-check: ^4.4.5
+    "@sveltejs/kit": ^2.57.1
+    "@sveltejs/vite-plugin-svelte": ^7.0.0
+    svelte: ^5.55.3
+    svelte-check: ^4.4.6
     tsdown: ^0.18.4
-    typescript: ^5.9.3
-    vite: ^7.3.1
+    typescript: ^6.0.2
+    vite: ^8.0.8
     zod: ^4.3.6
+
+minimumReleaseAge: 10080 # 7 days
+minimumReleaseAgeExclude:
+    - tsdown
+    - rolldown
+    - layerchart
+    - "@rolldown/binding-darwin-x64"
+    - "@rolldown/binding-win32-x64-msvc"
+    - "@rolldown/binding-linux-x64-gnu"
+    - "@rolldown/binding-linux-x64-musl"
+    - "@rolldown/binding-freebsd-x64"
+    - "@rolldown/binding-linux-arm-gnueabihf"
+    - "@rolldown/binding-linux-arm64-gnu"
+    - "@rolldown/binding-darwin-arm64"
+    - "@rolldown/binding-linux-arm64-musl"
+    - "@rolldown/binding-openharmony-arm64"
+    - "@rolldown/binding-win32-arm64-msvc"
+    - "@rolldown/binding-android-arm64"
+    - "@rolldown/binding-wasm32-wasi"
+    - "@rolldown/binding-linux-s390x-gnu"
+    - "@rolldown/binding-linux-ppc64-gnu"
+    - "@napi-rs/wasm-runtime"
+    - bits-ui
+    - runed
+    - vaul-svelte

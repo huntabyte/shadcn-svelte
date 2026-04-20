@@ -3,7 +3,7 @@ title: Spinner
 description: An indicator that can be used to show a loading state.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/spinner
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/spinner
 ---
 
 <script>
@@ -50,6 +50,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -88,19 +94,9 @@ Use the `size-*` utility class to change the size of the spinner.
 
 </ComponentPreview>
 
-### Color
-
-Use the `text-*` utility class to change the color of the spinner.
-
-<ComponentPreview name="spinner-color-demo">
-
-<div></div>
-
-</ComponentPreview>
-
 ### Button
 
-Add a spinner to a button to indicate a loading state. The `<Button />` will handle the spacing between the spinner and the text.
+Add a spinner to a button to indicate a loading state. Place the `<Spinner />` before the label with `data-icon="inline-start"` for a start position, or after the label with `data-icon="inline-end"` for an end position.
 
 <ComponentPreview name="spinner-button-demo">
 
@@ -110,7 +106,7 @@ Add a spinner to a button to indicate a loading state. The `<Button />` will han
 
 ### Badge
 
-You can also use a spinner inside a badge.
+Add a spinner to a badge to indicate a loading state. Place the `<Spinner />` before the label with `data-icon="inline-start"` for a start position, or after the label with `data-icon="inline-end"` for an end position.
 
 <ComponentPreview name="spinner-badge-demo">
 
@@ -120,8 +116,6 @@ You can also use a spinner inside a badge.
 
 ### Input Group
 
-Input Group can have spinners inside `<InputGroup.Addon>`.
-
 <ComponentPreview name="spinner-input-group-demo">
 
 <div></div>
@@ -130,17 +124,7 @@ Input Group can have spinners inside `<InputGroup.Addon>`.
 
 ### Empty
 
-<ComponentPreview name="spinner-empty-demo">
-
-<div></div>
-
-</ComponentPreview>
-
-### Item
-
-Use the spinner inside `<Item.Media>` to indicate a loading state.
-
-<ComponentPreview name="spinner-item-demo">
+<ComponentPreview name="spinner-empty">
 
 <div></div>
 

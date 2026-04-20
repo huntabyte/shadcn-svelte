@@ -3,7 +3,7 @@ title: Popover
 description: Displays rich content in a portal, triggered by a button.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/popover
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/popover
   doc: https://bits-ui.com/docs/components/popover
   api: https://bits-ui.com/docs/components/popover#api-reference
 ---
@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -70,3 +76,51 @@ Copy and paste the following code into your project.
   <Popover.Content>Place content for the popover here.</Popover.Content>
 </Popover.Root>
 ```
+
+## Composition
+
+Use the following composition to build a `Popover`:
+
+```text
+Popover.Root
+├── Popover.Trigger
+└── Popover.Content
+```
+
+`Popover.Portal` can wrap `Popover.Content` to render it in a different part of the DOM.
+
+## Examples
+
+### Basic
+
+A simple popover with a header, title, and description.
+
+<ComponentPreview name="popover-basic">
+
+<div></div>
+
+</ComponentPreview>
+
+## Align
+
+Use the `align` prop on `Popover.Content` to control the horizontal alignment.
+
+<ComponentPreview name="popover-alignments">
+
+<div></div>
+
+</ComponentPreview>
+
+### With Form
+
+A popover with form fields inside.
+
+<ComponentPreview name="popover-form">
+
+<div></div>
+
+</ComponentPreview>
+
+## API Reference
+
+See the [Bits UI Popover](https://bits-ui.com/docs/components/popover#api-reference) documentation.

@@ -29,7 +29,7 @@
 </div>
 
 <div
-	class="relative container hidden h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0"
+	class="relative container hidden flex-1 shrink-0 items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0"
 >
 	<Button
 		href="/examples/authentication"

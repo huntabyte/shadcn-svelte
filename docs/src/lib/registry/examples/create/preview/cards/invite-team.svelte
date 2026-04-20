@@ -33,9 +33,11 @@
 						{roles.find((role) => role.value === role1)?.label}
 					</Select.Trigger>
 					<Select.Content>
-						{#each roles as role (role.value)}
-							<Select.Item value={role.value}>{role.label}</Select.Item>
-						{/each}
+						<Select.Group>
+							{#each roles as role (role.value)}
+								<Select.Item value={role.value}>{role.label}</Select.Item>
+							{/each}
+						</Select.Group>
 					</Select.Content>
 				</Select.Root>
 			</div>
@@ -48,9 +50,11 @@
 						{roles.find((role) => role.value === role2)?.label}
 					</Select.Trigger>
 					<Select.Content>
-						{#each roles as role (role.value)}
-							<Select.Item value={role.value}>{role.label}</Select.Item>
-						{/each}
+						<Select.Group>
+							{#each roles as role (role.value)}
+								<Select.Item value={role.value}>{role.label}</Select.Item>
+							{/each}
+						</Select.Group>
 					</Select.Content>
 				</Select.Root>
 			</div>

@@ -32,7 +32,7 @@
 	class="h-8 shadow-none"
 >
 	<GithubIcon />
-	<span class="text-muted-foreground w-8 text-xs tabular-nums">
+	<span class="text-muted-foreground w-fit text-xs tabular-nums">
 		{stars >= 1000 ? `${(stars / 1000).toFixed(1)}k` : stars.toLocaleString()}
 	</span>
 </Button>

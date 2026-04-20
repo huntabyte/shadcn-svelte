@@ -3,7 +3,7 @@ title: Toggle
 description: A two-state button that can be either on or off.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/toggle
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/toggle
   doc: https://bits-ui.com/docs/components/toggle
   api: https://bits-ui.com/docs/components/toggle#api-reference
 ---
@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -70,15 +76,9 @@ Copy and paste the following code into your project.
 
 ## Examples
 
-### Default
-
-<ComponentPreview name="toggle-demo">
-
-<div></div>
-
-</ComponentPreview>
-
 ### Outline
+
+Use `variant="outline"` for an outline style.
 
 <ComponentPreview name="toggle-outline">
 
@@ -94,17 +94,11 @@ Copy and paste the following code into your project.
 
 </ComponentPreview>
 
-### Small
+### Size
 
-<ComponentPreview name="toggle-sm">
+Use the `size` prop to change the size of the toggle.
 
-<div></div>
-
-</ComponentPreview>
-
-### Large
-
-<ComponentPreview name="toggle-lg">
+<ComponentPreview name="toggle-sizes">
 
 <div></div>
 
@@ -117,3 +111,7 @@ Copy and paste the following code into your project.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+See the [Bits UI Toggle](https://bits-ui.com/docs/components/toggle#api-reference) documentation.

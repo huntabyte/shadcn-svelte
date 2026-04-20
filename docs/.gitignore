@@ -21,3 +21,10 @@ Thumbs.db
 # Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# temp
+static/registry/temp
+
+# Generated artifacts
+src/routes/api/search.json/search.json
+static/registry/styles/

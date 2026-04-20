@@ -30,8 +30,8 @@
 	<PageHeaderHeading>{title}</PageHeaderHeading>
 	<PageHeaderDescription>{description}</PageHeaderDescription>
 	<PageActions>
-		<Button href="#blocks" size="sm">Browse Blocks</Button>
-		<!-- <Button href="/docs/blocks" variant="ghost" size="sm">Add a block</Button> -->
+		<Button size="sm">Browse Blocks</Button>
+		<Button variant="ghost" size="sm">View Components</Button>
 	</PageActions>
 </PageHeader>
 <PageNav>
