@@ -20,7 +20,7 @@
 	);
 </script>
 
-<div class="w-full max-w-md">
+<div class="w-full max-w-xs">
 	<Field.Field>
 		<Field.Label for="department">Department</Field.Label>
 		<Select.Root type="single" bind:value={department}>
