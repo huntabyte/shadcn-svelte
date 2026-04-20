@@ -50,9 +50,9 @@
 	const { form: formData, errors, enhance } = form;
 </script>
 
-<div class="flex gap-8">
+<div class="flex w-full gap-8">
 	<form method="POST" class="flex-1" use:enhance>
-		<Card.Root class="w-full sm:max-w-md">
+		<Card.Root class="w-full">
 			<Card.Header>
 				<Card.Title>Subscription Plan</Card.Title>
 				<Card.Description>See pricing and features for each plan.</Card.Description>
