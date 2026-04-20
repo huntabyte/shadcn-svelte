@@ -133,7 +133,6 @@ Use `Item.Media` with `variant="icon"` to display an icon.
 
 You can use `Item.Media` with `variant="avatar"` to display an avatar.
 
-
 <ComponentPreview name="item-avatar-demo" >
 
 <div></div>
