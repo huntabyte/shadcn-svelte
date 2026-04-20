@@ -94,17 +94,11 @@ Use `variant="outline"` for an outline style.
 
 </ComponentPreview>
 
-### Small
+### Size
 
-<ComponentPreview name="toggle-sm">
+Use the `size` prop to change the size of the toggle.
 
-<div></div>
-
-</ComponentPreview>
-
-### Large
-
-<ComponentPreview name="toggle-lg">
+<ComponentPreview name="toggle-sizes">
 
 <div></div>
 
@@ -120,4 +114,4 @@ Use `variant="outline"` for an outline style.
 
 ## API Reference
 
-See the [Bits UI](https://bits-ui.com/docs/components/toggle#api-reference) documentation for more information.
+See the [Bits UI Toggle](https://bits-ui.com/docs/components/toggle#api-reference) documentation.
