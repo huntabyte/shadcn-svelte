@@ -92,10 +92,7 @@ Use the following composition to build a `Sheet`:
 ```text
 Sheet.Root
 ├── Sheet.Trigger
-├── Sheet.Portal
-│   └── Sheet.Overlay
 └── Sheet.Content
-    ├── Sheet.Close
     ├── Sheet.Header
     │   ├── Sheet.Title
     │   └── Sheet.Description
@@ -106,7 +103,7 @@ Sheet.Root
 
 ### Side
 
-Pass the `side` property to `<Sheet.Content />` to indicate the edge of the screen where the component will appear. The values can be `top`, `right`, `bottom` or `left`.
+Use the `side` prop on `Sheet.Content` to set the edge of the screen where the sheet appears. Values are `top`, `right`, `bottom`, or `left`.
 
 <ComponentPreview name="sheet-side">
 
@@ -124,10 +121,7 @@ Use `showCloseButton={false}` on `Sheet.Content` to hide the close button.
 
 </ComponentPreview>
 
-### Size
-
-You can adjust the size of the sheet using CSS classes:
-
+<!--
 ```svelte showLineNumbers {3}
 <Sheet.Root>
   <Sheet.Trigger>Open</Sheet.Trigger>
@@ -141,7 +135,7 @@ You can adjust the size of the sheet using CSS classes:
     </Sheet.Header>
   </Sheet.Content>
 </Sheet.Root>
-```
+```-->
 
 ## API Reference
 
