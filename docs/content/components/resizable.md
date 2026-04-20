@@ -93,7 +93,7 @@ Resizable.PaneGroup
 
 ### Vertical
 
-Use the `direction` prop to set the direction of the resizable panels.
+Use `direction="vertical"` for vertical resizing.
 
 <ComponentPreview name="resizable-vertical">
 
@@ -101,39 +101,15 @@ Use the `direction` prop to set the direction of the resizable panels.
 
 </ComponentPreview>
 
-```svelte showLineNumbers {5}
-<script lang="ts">
-  import * as Resizable from "$lib/components/ui/resizable/index.js";
-</script>
-
-<Resizable.PaneGroup direction="vertical">
-  <Resizable.Pane>One</Resizable.Pane>
-  <Resizable.Handle />
-  <Resizable.Pane>Two</Resizable.Pane>
-</Resizable.PaneGroup>
-```
-
 ### Handle
 
-You can set or hide the handle by using the `withHandle` prop on the `ResizableHandle` component.
+Use the `withHandle` prop on `Resizable.Handle` to show a visible handle.
 
 <ComponentPreview name="resizable-handle">
 
 <div></div>
 
 </ComponentPreview>
-
-```svelte showLineNumbers {7}
-<script lang="ts">
-  import * as Resizable from "$lib/components/ui/resizable/index.js";
-</script>
-
-<Resizable.PaneGroup direction="vertical">
-  <Resizable.Pane>One</Resizable.Pane>
-  <Resizable.Handle withHandle />
-  <Resizable.Pane>Two</Resizable.Pane>
-</Resizable.PaneGroup>
-```
 
 ## API Reference
 
