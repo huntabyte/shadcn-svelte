@@ -136,4 +136,4 @@ Use `orientation="vertical"` for vertical tabs.
 
 ## API Reference
 
-See the [Bits UI](https://bits-ui.com/docs/components/tabs#api-reference) documentation for more information.
+See the [Bits UI Tabs](https://bits-ui.com/docs/components/tabs#api-reference) documentation.
