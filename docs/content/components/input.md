@@ -166,7 +166,7 @@ Use `Badge` in the label to highlight a recommended field.
 
 ### Input Group
 
-To add icons, text, or buttons inside an input, use the `InputGroup` component.
+To add icons, text, or buttons inside an input, use the `InputGroup` component. See the [Input Group](/docs/components/input-group) component for more examples.
 
 <ComponentPreview name="input-input-group" previewClassName="*:max-w-xs">
 
@@ -176,7 +176,7 @@ To add icons, text, or buttons inside an input, use the `InputGroup` component.
 
 ### Button Group
 
-To add buttons to an input, use the `ButtonGroup` component.
+To add buttons to an input, use the `ButtonGroup` component. See the [Button Group](/docs/components/button-group) component for more examples.
 
 <ComponentPreview name="input-button-group" previewClassName="*:max-w-xs">
 
