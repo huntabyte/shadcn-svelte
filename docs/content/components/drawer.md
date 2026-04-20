@@ -101,9 +101,7 @@ Drawer.Root
     ├── Drawer.Header
     │   ├── Drawer.Title
     │   └── Drawer.Description
-    ├── (your content)
-    ├── Drawer.Footer
-    └── Drawer.Close
+    └── Drawer.Footer
 ```
 
 ## Examples
