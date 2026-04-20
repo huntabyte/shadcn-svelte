@@ -74,14 +74,6 @@ Update the import paths to match your project setup.
 <Switch />
 ```
 
-## Composition
-
-`Switch` is a single self-contained component with no sub-components:
-
-```text
-Switch
-```
-
 ## Examples
 
 ### Description
@@ -134,4 +126,4 @@ Use the `size` prop to change the size of the switch.
 
 ## API Reference
 
-See the [Bits UI](https://bits-ui.com/docs/components/switch#api-reference) documentation for more information.
+See the [Bits UI Switch](https://bits-ui.com/docs/components/switch#api-reference) documentation.
