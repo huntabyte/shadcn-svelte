@@ -64,6 +64,15 @@ Update the import paths to match your project setup.
 <Kbd.Root>B</Kbd.Root>
 ```
 
+## Composition
+
+```text
+Kbd.Root
+Kbd.Group
+├── Kbd.Root
+└── Kbd.Root
+```
+
 ## Examples
 
 ### Group
