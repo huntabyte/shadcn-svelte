@@ -148,7 +148,7 @@ Use `aria-invalid` on `RadioGroup.Item` and `data-invalid` on `Field` to show va
 
 ### Form
 
-<ComponentPreview name="radio-group-form">
+<ComponentPreview name="radio-group-form" previewClassName="h-128">
 
 <div></div>
 
