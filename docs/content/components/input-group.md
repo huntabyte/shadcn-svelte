@@ -19,7 +19,7 @@ links:
 	import Callout from "$lib/components/callout.svelte";
 </script>
 
-<ComponentPreview name="input-group" previewClassName="h-[26rem]">
+<ComponentPreview name="input-group-demo-simple" previewClassName="h-[26rem]">
 
 <div></div>
 
