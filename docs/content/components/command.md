@@ -98,14 +98,15 @@ Use the following composition to build a `Command`:
 ```text
 Command.Root
 ├── Command.Input
-├── Command.List
-│   ├── Command.Empty
-│   ├── Command.Group
-│   │   ├── Command.Item
-│   │   ├── Command.LinkItem
-│   │   └── Command.Shortcut
-│   └── Command.Separator
-└── Command.Loading
+└── Command.List
+    ├── Command.Empty
+    ├── Command.Group
+    │   ├── Command.Item
+    │   └── Command.Item
+    ├── Command.Separator
+    └── Command.Group
+        ├── Command.Item
+        └── Command.Item
 ```
 
 For a dialog variant, wrap with `Command.Dialog`:
