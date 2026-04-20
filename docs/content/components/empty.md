@@ -126,7 +126,7 @@ Use the `EmptyMedia` component to display an avatar in the empty state.
 
 Use the `Empty.Media` component to display an avatar group in the empty state.
 
-<ComponentPreview name="empty-avatar-group-demo" previewClassName="h-96 p-0">
+<ComponentPreview name="empty-avatar-group" previewClassName="h-96 p-0">
 
 <div></div>
 
