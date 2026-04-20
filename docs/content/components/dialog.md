@@ -96,9 +96,7 @@ Dialog.Root
     ├── Dialog.Header
     │   ├── Dialog.Title
     │   └── Dialog.Description
-    ├── (your content)
-    ├── Dialog.Footer
-    └── Dialog.Close
+    └── Dialog.Footer
 ```
 
 ## Examples
