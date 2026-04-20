@@ -81,18 +81,9 @@ Update the import paths to match your project setup.
 </ScrollArea>
 ```
 
-## Composition
-
-Use the following composition to build a `ScrollArea`:
-
-```text
-ScrollArea.Root
-└── ScrollArea.Scrollbar
-```
-
 ## Examples
 
-### Horizontal Scrolling
+### Horizontal
 
 Set the `orientation` prop to `"horizontal"` to enable horizontal scrolling.
 
@@ -104,4 +95,4 @@ Set the `orientation` prop to `"horizontal"` to enable horizontal scrolling.
 
 ## API Reference
 
-See the [Bits UI](https://bits-ui.com/docs/components/scroll-area#api-reference) documentation for more information.
+See the [Bits UI Scroll Area](https://bits-ui.com/docs/components/scroll-area#api-reference) documentation for more information.
