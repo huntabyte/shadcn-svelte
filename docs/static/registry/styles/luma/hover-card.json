@@ -2,10 +2,7 @@
 	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 	"name": "hover-card",
 	"type": "registry:ui",
-	"devDependencies": [
-		"bits-ui@^2.16.3",
-		"@internationalized/date@^3.12.0"
-	],
+	"devDependencies": ["bits-ui@^2.16.3", "@internationalized/date@^3.12.0"],
 	"files": [
 		{
 			"content": "<script lang=\"ts\">\n\timport { LinkPreview as HoverCardPrimitive } from \"bits-ui\";\n\timport { cn, type WithoutChildrenOrChild } from \"$UTILS$.js\";\n\timport HoverCardPortal from \"./hover-card-portal.svelte\";\n\timport type { ComponentProps } from \"svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\talign = \"center\",\n\t\tsideOffset = 4,\n\t\tportalProps,\n\t\t...restProps\n\t}: HoverCardPrimitive.ContentProps & {\n\t\tportalProps?: WithoutChildrenOrChild<ComponentProps<typeof HoverCardPortal>>;\n\t} = $props();\n</script>\n\n<HoverCardPortal {...portalProps}>\n\t<HoverCardPrimitive.Content\n\t\tbind:ref\n\t\tdata-slot=\"hover-card-content\"\n\t\t{align}\n\t\t{sideOffset}\n\t\tclass={cn(\n\t\t\t\"data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 ring-foreground/5 dark:ring-foreground/10 bg-popover text-popover-foreground w-72 rounded-3xl p-4 text-sm shadow-lg ring-1 duration-100 z-50 origin-(--transform-origin) outline-hidden\",\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t/>\n</HoverCardPortal>\n",

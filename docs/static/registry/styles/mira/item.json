@@ -2,12 +2,8 @@
 	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 	"name": "item",
 	"type": "registry:ui",
-	"devDependencies": [
-		"tailwind-variants@^3.2.2"
-	],
-	"registryDependencies": [
-		"separator"
-	],
+	"devDependencies": ["tailwind-variants@^3.2.2"],
+	"registryDependencies": ["separator"],
 	"files": [
 		{
 			"content": "import Root from \"./item.svelte\";\nimport Group from \"./item-group.svelte\";\nimport Separator from \"./item-separator.svelte\";\nimport Header from \"./item-header.svelte\";\nimport Footer from \"./item-footer.svelte\";\nimport Content from \"./item-content.svelte\";\nimport Title from \"./item-title.svelte\";\nimport Description from \"./item-description.svelte\";\nimport Actions from \"./item-actions.svelte\";\nimport Media from \"./item-media.svelte\";\n\nexport {\n\tRoot,\n\tGroup,\n\tSeparator,\n\tHeader,\n\tFooter,\n\tContent,\n\tTitle,\n\tDescription,\n\tActions,\n\tMedia,\n\t//\n\tRoot as Item,\n\tGroup as ItemGroup,\n\tSeparator as ItemSeparator,\n\tHeader as ItemHeader,\n\tFooter as ItemFooter,\n\tContent as ItemContent,\n\tTitle as ItemTitle,\n\tDescription as ItemDescription,\n\tActions as ItemActions,\n\tMedia as ItemMedia,\n};\n",

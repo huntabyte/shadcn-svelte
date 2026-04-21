@@ -8,9 +8,7 @@
 		"provider": "google",
 		"import": "Lora",
 		"variable": "--font-serif",
-		"subsets": [
-			"latin"
-		],
+		"subsets": ["latin"],
 		"dependency": "@fontsource-variable/lora"
 	}
 }

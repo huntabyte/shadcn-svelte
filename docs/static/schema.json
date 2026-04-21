@@ -25,10 +25,7 @@
 					"type": "string"
 				}
 			},
-			"required": [
-				"css",
-				"baseColor"
-			],
+			"required": ["css", "baseColor"],
 			"additionalProperties": false
 		},
 		"aliases": {
@@ -55,10 +52,7 @@
 					"type": "string"
 				}
 			},
-			"required": [
-				"components",
-				"utils"
-			],
+			"required": ["components", "utils"],
 			"additionalProperties": false,
 			"description": "The CLI uses these values and the `alias` config from your `svelte.config.js` file to place generated components in the correct location."
 		},
@@ -80,9 +74,7 @@
 							"description": "Path to the tsconfig/jsconfig file."
 						}
 					},
-					"required": [
-						"config"
-					],
+					"required": ["config"],
 					"additionalProperties": false
 				}
 			]
@@ -90,36 +82,19 @@
 		"iconLibrary": {
 			"description": "The icon library to use for your components.",
 			"type": "string",
-			"enum": [
-				"lucide",
-				"tabler",
-				"hugeicons",
-				"phosphor",
-				"remixicon"
-			]
+			"enum": ["lucide", "tabler", "hugeicons", "phosphor", "remixicon"]
 		},
 		"menuColor": {
 			"description": "The color scheme for menus.",
 			"type": "string",
-			"enum": [
-				"default",
-				"inverted",
-				"default-translucent",
-				"inverted-translucent"
-			]
+			"enum": ["default", "inverted", "default-translucent", "inverted-translucent"]
 		},
 		"menuAccent": {
 			"description": "The accent style for menus.",
 			"type": "string",
-			"enum": [
-				"subtle",
-				"bold"
-			]
+			"enum": ["subtle", "bold"]
 		}
 	},
-	"required": [
-		"tailwind",
-		"aliases"
-	],
+	"required": ["tailwind", "aliases"],
 	"additionalProperties": false
 }

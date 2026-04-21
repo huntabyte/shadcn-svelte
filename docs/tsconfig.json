@@ -34,6 +34,7 @@
 	],
 	"exclude": [
 		"./node_modules/**",
+		"./scripts/**",
 		"./src/service-worker.js",
 		"./src/service-worker.ts",
 		"./src/service-worker.d.ts"

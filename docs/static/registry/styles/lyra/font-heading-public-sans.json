@@ -8,9 +8,7 @@
 		"provider": "google",
 		"import": "Public_Sans",
 		"variable": "--font-heading",
-		"subsets": [
-			"latin"
-		],
+		"subsets": ["latin"],
 		"dependency": "@fontsource-variable/public-sans"
 	}
 }

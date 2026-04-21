@@ -2,10 +2,7 @@
 	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 	"name": "tabs",
 	"type": "registry:ui",
-	"devDependencies": [
-		"bits-ui@^2.14.4",
-		"@internationalized/date@^3.10.0"
-	],
+	"devDependencies": ["bits-ui@^2.14.4", "@internationalized/date@^3.10.0"],
 	"files": [
 		{
 			"content": "import Root from \"./tabs.svelte\";\nimport Content from \"./tabs-content.svelte\";\nimport List from \"./tabs-list.svelte\";\nimport Trigger from \"./tabs-trigger.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tList,\n\tTrigger,\n\t//\n\tRoot as Tabs,\n\tContent as TabsContent,\n\tList as TabsList,\n\tTrigger as TabsTrigger,\n};\n",

@@ -2,14 +2,8 @@
 	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 	"name": "form",
 	"type": "registry:ui",
-	"devDependencies": [
-		"formsnap@^2.0.1",
-		"sveltekit-superforms@^2.30.0"
-	],
-	"registryDependencies": [
-		"button",
-		"label"
-	],
+	"devDependencies": ["formsnap@^2.0.1", "sveltekit-superforms@^2.30.0"],
+	"registryDependencies": ["button", "label"],
 	"files": [
 		{
 			"content": "<script lang=\"ts\">\n\timport { Button, type ButtonProps } from \"$UI$/button/index.js\";\n\n\tlet { ref = $bindable(null), ...restProps }: ButtonProps = $props();\n</script>\n\n<Button bind:ref type=\"submit\" {...restProps} />\n",

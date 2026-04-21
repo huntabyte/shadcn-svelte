@@ -149,10 +149,7 @@
 									"description": "The path to the file relative to the registry root."
 								}
 							},
-							"required": [
-								"type",
-								"path"
-							],
+							"required": ["type", "path"],
 							"additionalProperties": false
 						},
 						"description": "An array of files that instructs the `build` command on how to locate and parse the registry files."
@@ -232,31 +229,17 @@
 								"type": "string"
 							}
 						},
-						"required": [
-							"family",
-							"provider",
-							"import",
-							"variable"
-						],
+						"required": ["family", "provider", "import", "variable"],
 						"additionalProperties": false
 					}
 				},
-				"required": [
-					"name",
-					"type",
-					"registryDependencies",
-					"files"
-				],
+				"required": ["name", "type", "registryDependencies", "files"],
 				"additionalProperties": false
 			},
 			"description": "Defines a custom component registry."
 		}
 	},
-	"required": [
-		"name",
-		"homepage",
-		"items"
-	],
+	"required": ["name", "homepage", "items"],
 	"additionalProperties": false,
 	"$defs": {
 		"__schema0": {

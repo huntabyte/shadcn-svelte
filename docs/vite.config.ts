@@ -27,8 +27,16 @@ export default defineConfig({
 		// Use the browser implementation everywhere so SSR/Workers bundles avoid the Node
 		// `canvas` server build (main → lib/server) and so `qrcode` can be inlined into
 		// the Cloudflare worker instead of remaining a bare external import.
+		// Use the compact (no-worker) flexsearch build to avoid the `worker_threads` Node.js
+		// built-in that the bundle build conditionally imports — it is not needed for our
+		// simple in-memory Index usage. Use an absolute path to bypass the package exports
+		// field which does not expose the compact build as a named export.
 		alias: {
 			qrcode: "qrcode/lib/browser.js",
+			flexsearch: path.resolve(
+				__dirname,
+				"node_modules/flexsearch/dist/flexsearch.compact.module.min.js"
+			),
 		},
 	},
 	plugins: [

@@ -140,11 +140,7 @@
 								"description": "The target path of the file. This is where the file will be installed."
 							}
 						},
-						"required": [
-							"content",
-							"type",
-							"target"
-						],
+						"required": ["content", "type", "target"],
 						"additionalProperties": false,
 						"description": "The main payload of the registry item. This is an array of files that are part of the registry item. Each file is an object with a target, type, and content."
 					}
@@ -204,9 +200,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"config"
-									],
+									"required": ["config"],
 									"additionalProperties": false
 								}
 							]
@@ -220,13 +214,7 @@
 						},
 						"iconLibrary": {
 							"type": "string",
-							"enum": [
-								"lucide",
-								"tabler",
-								"hugeicons",
-								"phosphor",
-								"remixicon"
-							]
+							"enum": ["lucide", "tabler", "hugeicons", "phosphor", "remixicon"]
 						},
 						"menuColor": {
 							"type": "string",
@@ -239,19 +227,13 @@
 						},
 						"menuAccent": {
 							"type": "string",
-							"enum": [
-								"subtle",
-								"bold"
-							]
+							"enum": ["subtle", "bold"]
 						}
 					},
 					"additionalProperties": false
 				}
 			},
-			"required": [
-				"name",
-				"type"
-			],
+			"required": ["name", "type"],
 			"additionalProperties": false
 		},
 		{
@@ -393,11 +375,7 @@
 								"description": "The target path of the file. This is where the file will be installed."
 							}
 						},
-						"required": [
-							"content",
-							"type",
-							"target"
-						],
+						"required": ["content", "type", "target"],
 						"additionalProperties": false,
 						"description": "The main payload of the registry item. This is an array of files that are part of the registry item. Each file is an object with a target, type, and content."
 					}
@@ -437,20 +415,11 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"family",
-						"provider",
-						"import",
-						"variable"
-					],
+					"required": ["family", "provider", "import", "variable"],
 					"additionalProperties": false
 				}
 			},
-			"required": [
-				"name",
-				"type",
-				"font"
-			],
+			"required": ["name", "type", "font"],
 			"additionalProperties": false
 		},
 		{
@@ -605,20 +574,13 @@
 								"description": "The target path of the file. This is where the file will be installed."
 							}
 						},
-						"required": [
-							"content",
-							"type",
-							"target"
-						],
+						"required": ["content", "type", "target"],
 						"additionalProperties": false,
 						"description": "The main payload of the registry item. This is an array of files that are part of the registry item. Each file is an object with a target, type, and content."
 					}
 				}
 			},
-			"required": [
-				"name",
-				"type"
-			],
+			"required": ["name", "type"],
 			"additionalProperties": false
 		}
 	],

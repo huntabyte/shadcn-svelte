@@ -2,10 +2,7 @@
 	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 	"name": "menubar",
 	"type": "registry:ui",
-	"devDependencies": [
-		"bits-ui@^2.16.3",
-		"@internationalized/date@^3.12.0"
-	],
+	"devDependencies": ["bits-ui@^2.16.3", "@internationalized/date@^3.12.0"],
 	"files": [
 		{
 			"content": "import Root from \"./menubar.svelte\";\nimport Menu from \"./menubar-menu.svelte\";\nimport Sub from \"./menubar-sub.svelte\";\nimport RadioGroup from \"./menubar-radio-group.svelte\";\nimport CheckboxItem from \"./menubar-checkbox-item.svelte\";\nimport Content from \"./menubar-content.svelte\";\nimport Item from \"./menubar-item.svelte\";\nimport Group from \"./menubar-group.svelte\";\nimport RadioItem from \"./menubar-radio-item.svelte\";\nimport Separator from \"./menubar-separator.svelte\";\nimport Shortcut from \"./menubar-shortcut.svelte\";\nimport SubContent from \"./menubar-sub-content.svelte\";\nimport SubTrigger from \"./menubar-sub-trigger.svelte\";\nimport Trigger from \"./menubar-trigger.svelte\";\nimport Label from \"./menubar-label.svelte\";\nimport GroupHeading from \"./menubar-group-heading.svelte\";\nimport Portal from \"./menubar-portal.svelte\";\n\nexport {\n\tRoot,\n\tCheckboxItem,\n\tContent,\n\tItem,\n\tRadioItem,\n\tSeparator,\n\tShortcut,\n\tSubContent,\n\tSubTrigger,\n\tTrigger,\n\tMenu,\n\tGroup,\n\tSub,\n\tRadioGroup,\n\tLabel,\n\tGroupHeading,\n\tPortal,\n\t//\n\tRoot as Menubar,\n\tCheckboxItem as MenubarCheckboxItem,\n\tContent as MenubarContent,\n\tItem as MenubarItem,\n\tRadioItem as MenubarRadioItem,\n\tSeparator as MenubarSeparator,\n\tShortcut as MenubarShortcut,\n\tSubContent as MenubarSubContent,\n\tSubTrigger as MenubarSubTrigger,\n\tTrigger as MenubarTrigger,\n\tMenu as MenubarMenu,\n\tGroup as MenubarGroup,\n\tSub as MenubarSub,\n\tRadioGroup as MenubarRadioGroup,\n\tLabel as MenubarLabel,\n\tGroupHeading as MenubarGroupHeading,\n\tPortal as MenubarPortal,\n};\n",

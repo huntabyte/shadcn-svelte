@@ -8,9 +8,7 @@
 		"provider": "google",
 		"import": "Figtree",
 		"variable": "--font-heading",
-		"subsets": [
-			"latin"
-		],
+		"subsets": ["latin"],
 		"dependency": "@fontsource-variable/figtree"
 	}
 }

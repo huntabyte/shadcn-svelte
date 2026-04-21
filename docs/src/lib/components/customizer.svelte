@@ -10,12 +10,11 @@
 	import IconLibraryPicker from "../../routes/(app)/(layout)/(create)/components/icon-library-picker.svelte";
 	import FontPicker from "../../routes/(app)/(layout)/(create)/components/font-picker.svelte";
 	import RadiusPicker from "../../routes/(app)/(layout)/(create)/components/radius-picker.svelte";
-	import MenuColorPicker from "../../routes/(app)/(layout)/(create)/components/menu-color-picker.svelte";
+	import MenuColorPicker from "../../routes/(app)/(layout)/(create)/components/menu-picker.svelte";
 	import MenuAccentPicker from "../../routes/(app)/(layout)/(create)/components/menu-accent-picker.svelte";
 	import CustomizerControls from "../../routes/(app)/(layout)/(create)/components/customizer-controls.svelte";
 	import { FONT_HEADING_OPTIONS, FONTS } from "$lib/fonts.js";
 	import { cn } from "$lib/utils.js";
-	import ModeSwitcher from "./mode-switcher.svelte";
 	import { setMode, mode } from "mode-watcher";
 	import * as Kbd from "$lib/registry/ui/kbd/index.js";
 	import UndoIcon from "@lucide/svelte/icons/undo";
@@ -43,7 +42,7 @@
 				remixicon="RiSettingsLine"
 			/>
 		</DropdownMenu.Trigger>
-		<DropdownMenu.Content align="end" class="dark min-w-64 p-0" preventScroll={false}>
+		<DropdownMenu.Content align="end" class="min-w-64 p-0" preventScroll={false}>
 			<DropdownMenu.Group>
 				<StylePicker submenu />
 				<BaseColorPicker submenu />
@@ -144,4 +143,3 @@
 		</DropdownMenu.Content>
 	</DropdownMenu.Root>
 </Tooltip.Provider>
-<ModeSwitcher class="md:hidden" />

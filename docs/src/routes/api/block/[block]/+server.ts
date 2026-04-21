@@ -19,28 +19,9 @@ import {
 	type MenuColorValue,
 	type StyleName,
 } from "$lib/registry/config.js";
+import type { HighlightedBlock } from "$lib/types/block.js";
 
-export interface HighlightedBlock {
-	name: string;
-	description?: string;
-	meta?: Record<string, unknown>;
-	type: string;
-	files: HighlightedFile[];
-}
-
-export interface HighlightedFile {
-	type:
-		| "registry:file"
-		| "registry:page"
-		| "registry:ui"
-		| "registry:component"
-		| "registry:lib"
-		| "registry:hook"
-		| "registry:theme"
-		| "registry:style";
-	target: string;
-	highlightedContent: string;
-}
+export type { HighlightedBlock } from "$lib/types/block.js";
 
 const highlightedBlockSchema = z.object({
 	name: z.string(),

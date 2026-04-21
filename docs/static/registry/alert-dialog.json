@@ -2,13 +2,8 @@
 	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 	"name": "alert-dialog",
 	"type": "registry:ui",
-	"devDependencies": [
-		"bits-ui@^2.14.4",
-		"@internationalized/date@^3.10.0"
-	],
-	"registryDependencies": [
-		"button"
-	],
+	"devDependencies": ["bits-ui@^2.14.4", "@internationalized/date@^3.10.0"],
+	"registryDependencies": ["button"],
 	"files": [
 		{
 			"content": "<script lang=\"ts\">\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport { buttonVariants } from \"$UI$/button/index.js\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: AlertDialogPrimitive.ActionProps = $props();\n</script>\n\n<AlertDialogPrimitive.Action\n\tbind:ref\n\tdata-slot=\"alert-dialog-action\"\n\tclass={cn(buttonVariants(), className)}\n\t{...restProps}\n/>\n",

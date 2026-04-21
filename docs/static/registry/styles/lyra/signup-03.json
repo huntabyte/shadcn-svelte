@@ -2,15 +2,8 @@
 	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 	"name": "signup-03",
 	"type": "registry:block",
-	"devDependencies": [
-		"@lucide/svelte@^0.577.0"
-	],
-	"registryDependencies": [
-		"button",
-		"card",
-		"field",
-		"input"
-	],
+	"devDependencies": ["@lucide/svelte@^0.577.0"],
+	"registryDependencies": ["button", "card", "field", "input"],
 	"files": [
 		{
 			"content": "<script>\n\timport GalleryVerticalEndIcon from \"@lucide/svelte/icons/gallery-vertical-end\";\n\timport SignupForm from \"$COMPONENTS$/signup-form.svelte\";\n</script>\n\n<div class=\"bg-muted flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10\">\n\t<div class=\"flex w-full max-w-sm flex-col gap-6\">\n\t\t<a href=\"#/\" class=\"flex items-center gap-2 self-center font-medium\">\n\t\t\t<div\n\t\t\t\tclass=\"bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md\"\n\t\t\t>\n\t\t\t\t<GalleryVerticalEndIcon class=\"size-4\" />\n\t\t\t</div>\n\t\t\tAcme Inc.\n\t\t</a>\n\t\t<SignupForm />\n\t</div>\n</div>\n",

@@ -221,9 +221,11 @@
 				{viewLabel}
 			</Select.Trigger>
 			<Select.Content>
-				{#each views as view (view.id)}
-					<Select.Item value={view.id}>{view.label}</Select.Item>
-				{/each}
+				<Select.Group>
+					{#each views as view (view.id)}
+						<Select.Item value={view.id}>{view.label}</Select.Item>
+					{/each}
+				</Select.Group>
 			</Select.Content>
 		</Select.Root>
 		<Tabs.List
@@ -331,11 +333,13 @@
 							{table.getState().pagination.pageSize}
 						</Select.Trigger>
 						<Select.Content side="top">
-							{#each [10, 20, 30, 40, 50] as pageSize (pageSize)}
-								<Select.Item value={pageSize.toString()}>
-									{pageSize}
-								</Select.Item>
-							{/each}
+							<Select.Group>
+								{#each [10, 20, 30, 40, 50] as pageSize (pageSize)}
+									<Select.Item value={pageSize.toString()}>
+										{pageSize}
+									</Select.Item>
+								{/each}
+							</Select.Group>
 						</Select.Content>
 					</Select.Root>
 				</div>

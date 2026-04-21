@@ -2,11 +2,7 @@
 	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 	"name": "otp-02",
 	"type": "registry:block",
-	"registryDependencies": [
-		"button",
-		"field",
-		"input-otp"
-	],
+	"registryDependencies": ["button", "field", "input-otp"],
 	"files": [
 		{
 			"content": "<script>\n\timport OTPForm from \"$COMPONENTS$/otp-form.svelte\";\n</script>\n\n<div class=\"flex min-h-svh w-full\">\n\t<div class=\"flex w-full items-center justify-center p-6 lg:w-1/2\">\n\t\t<div class=\"w-full max-w-xs\">\n\t\t\t<OTPForm />\n\t\t</div>\n\t</div>\n\t<div class=\"relative hidden w-1/2 lg:block\">\n\t\t<img\n\t\t\talt=\"Authentication\"\n\t\t\tclass=\"absolute inset-0 h-full w-full object-cover\"\n\t\t\theight={1080}\n\t\t\tsrc=\"/placeholder.svg\"\n\t\t\twidth={1920}\n\t\t/>\n\t</div>\n</div>\n",

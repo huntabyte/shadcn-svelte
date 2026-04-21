@@ -2,9 +2,7 @@
 	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 	"name": "empty",
 	"type": "registry:ui",
-	"devDependencies": [
-		"tailwind-variants@^3.2.2"
-	],
+	"devDependencies": ["tailwind-variants@^3.2.2"],
 	"files": [
 		{
 			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"empty-content\"\n\tclass={cn(\n\t\t\"gap-2.5 text-sm flex w-full max-w-sm min-w-0 flex-col items-center text-balance\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",

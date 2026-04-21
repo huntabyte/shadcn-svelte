@@ -7,9 +7,7 @@
 		"@internationalized/date@^3.12.0",
 		"tailwind-variants@^3.2.2"
 	],
-	"registryDependencies": [
-		"toggle"
-	],
+	"registryDependencies": ["toggle"],
 	"files": [
 		{
 			"content": "import Root from \"./toggle-group.svelte\";\nimport Item from \"./toggle-group-item.svelte\";\n\nexport {\n\tRoot,\n\tItem,\n\t//\n\tRoot as ToggleGroup,\n\tItem as ToggleGroupItem,\n};\n",

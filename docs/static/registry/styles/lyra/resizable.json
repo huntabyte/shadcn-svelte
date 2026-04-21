@@ -2,9 +2,7 @@
 	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 	"name": "resizable",
 	"type": "registry:ui",
-	"devDependencies": [
-		"paneforge@^1.0.2"
-	],
+	"devDependencies": ["paneforge@^1.0.2"],
 	"files": [
 		{
 			"content": "import { Pane } from \"paneforge\";\nimport Handle from \"./resizable-handle.svelte\";\nimport PaneGroup from \"./resizable-pane-group.svelte\";\n\nexport {\n\tPaneGroup,\n\tPane,\n\tHandle,\n\t//\n\tPaneGroup as ResizablePaneGroup,\n\tPane as ResizablePane,\n\tHandle as ResizableHandle,\n};\n",

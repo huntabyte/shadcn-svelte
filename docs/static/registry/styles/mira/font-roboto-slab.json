@@ -8,9 +8,7 @@
 		"provider": "google",
 		"import": "Roboto_Slab",
 		"variable": "--font-serif",
-		"subsets": [
-			"latin"
-		],
+		"subsets": ["latin"],
 		"dependency": "@fontsource-variable/roboto-slab"
 	}
 }

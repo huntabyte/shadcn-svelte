@@ -2,10 +2,7 @@
 	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 	"name": "new-components-01",
 	"type": "registry:block",
-	"devDependencies": [
-		"@tabler/icons-svelte@^3.40.0",
-		"@lucide/svelte@^0.577.0"
-	],
+	"devDependencies": ["@tabler/icons-svelte@^3.40.0", "@lucide/svelte@^0.577.0"],
 	"registryDependencies": [
 		"checkbox",
 		"field",

@@ -8,9 +8,7 @@
 		"provider": "google",
 		"import": "Source_Sans_3",
 		"variable": "--font-sans",
-		"subsets": [
-			"latin"
-		],
+		"subsets": ["latin"],
 		"dependency": "@fontsource-variable/source-sans-3"
 	}
 }

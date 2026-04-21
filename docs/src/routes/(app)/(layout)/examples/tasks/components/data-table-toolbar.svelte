@@ -46,4 +46,5 @@
 		{/if}
 	</div>
 	<DataTableViewOptions {table} />
+	<Button size="sm">Add Task</Button>
 </div>

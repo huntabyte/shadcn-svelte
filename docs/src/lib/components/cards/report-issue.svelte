@@ -72,9 +72,11 @@
 							{areaLabel}
 						</Select.Trigger>
 						<Select.Content>
-							{#each areas as area (area.value)}
-								<Select.Item value={area.value}>{area.label}</Select.Item>
-							{/each}
+							<Select.Group>
+								{#each areas as area (area.value)}
+									<Select.Item value={area.value}>{area.label}</Select.Item>
+								{/each}
+							</Select.Group>
 						</Select.Content>
 					</Select.Root>
 				</Field.Field>
@@ -91,9 +93,11 @@
 							</span>
 						</Select.Trigger>
 						<Select.Content>
-							{#each levels as level (level.value)}
-								<Select.Item value={level.value}>{level.label}</Select.Item>
-							{/each}
+							<Select.Group>
+								{#each levels as level (level.value)}
+									<Select.Item value={level.value}>{level.label}</Select.Item>
+								{/each}
+							</Select.Group>
 						</Select.Content>
 					</Select.Root>
 				</Field.Field>

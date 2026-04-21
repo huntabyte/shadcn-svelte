@@ -7,7 +7,7 @@
 	import BlockViewerCode from "./block-viewer-code.svelte";
 	import type { Snippet } from "svelte";
 	import BlockViewerViewMobile from "./block-viewer-view-mobile.svelte";
-	import type { HighlightedBlock } from "../../routes/api/block/[block]/+server.js";
+	import type { HighlightedBlock } from "$lib/types/block.js";
 
 	type BlockViewerContextType = {
 		item: HighlightedBlock;

@@ -2,14 +2,8 @@
 	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 	"name": "signup-02",
 	"type": "registry:block",
-	"devDependencies": [
-		"@lucide/svelte@^0.561.0"
-	],
-	"registryDependencies": [
-		"button",
-		"field",
-		"input"
-	],
+	"devDependencies": ["@lucide/svelte@^0.561.0"],
+	"registryDependencies": ["button", "field", "input"],
 	"files": [
 		{
 			"content": "<script>\n\timport GalleryVerticalEndIcon from \"@lucide/svelte/icons/gallery-vertical-end\";\n\timport SignupForm from \"$COMPONENTS$/signup-form.svelte\";\n</script>\n\n<div class=\"grid min-h-svh lg:grid-cols-2\">\n\t<div class=\"flex flex-col gap-4 p-6 md:p-10\">\n\t\t<div class=\"flex justify-center gap-2 md:justify-start\">\n\t\t\t<a href=\"#/\" class=\"flex items-center gap-2 font-medium\">\n\t\t\t\t<div\n\t\t\t\t\tclass=\"bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md\"\n\t\t\t\t>\n\t\t\t\t\t<GalleryVerticalEndIcon class=\"size-4\" />\n\t\t\t\t</div>\n\t\t\t\tAcme Inc.\n\t\t\t</a>\n\t\t</div>\n\t\t<div class=\"flex flex-1 items-center justify-center\">\n\t\t\t<div class=\"w-full max-w-xs\">\n\t\t\t\t<SignupForm />\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t<div class=\"bg-muted relative hidden lg:block\">\n\t\t<img\n\t\t\tsrc=\"/placeholder.svg\"\n\t\t\talt=\"\"\n\t\t\tclass=\"absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale\"\n\t\t/>\n\t</div>\n</div>\n",

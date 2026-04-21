@@ -7,7 +7,7 @@
 
 <div
 	class={cn(
-		"[&>[aria-level='3']]:step steps mb-12 [counter-reset:step] *:[aria-level='3']:first:!mt-0",
+		"steps [&>h3]:step [&>[aria-level='3']]:step mb-12 [counter-reset:step] md:ml-4 md:border-l md:pl-8",
 		className
 	)}
 	{...restProps}

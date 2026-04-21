@@ -1,21 +1,19 @@
 <script lang="ts">
 	import Button from "$lib/registry/ui/button/button.svelte";
 	import { toggleMode } from "mode-watcher";
-	import { cn } from "$lib/utils.js";
 
 	type Props = {
 		class?: string;
 	};
 
-	let { class: className }: Props = $props();
+	let { class: _className }: Props = $props();
 </script>
 
 <Button
 	variant="ghost"
 	size="icon"
-	class={cn("group/toggle extend-touch-target size-8", className)}
+	class="group/toggle extend-touch-target size-8"
 	onclick={toggleMode}
-	title="Toggle theme"
 >
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
