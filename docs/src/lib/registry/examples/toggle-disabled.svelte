@@ -1,8 +1,8 @@
 <script lang="ts">
-	import UnderlineIcon from "@lucide/svelte/icons/underline";
 	import { Toggle } from "$lib/registry/ui/toggle/index.js";
 </script>
 
-<Toggle aria-label="Toggle underline" disabled>
-	<UnderlineIcon class="size-4" />
-</Toggle>
+<div class="flex flex-wrap items-center gap-2">
+	<Toggle aria-label="Toggle disabled" disabled>Disabled</Toggle>
+	<Toggle variant="outline" aria-label="Toggle disabled outline" disabled>Disabled</Toggle>
+</div>

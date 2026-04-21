@@ -10,9 +10,9 @@
 	orientation="vertical"
 	class="w-full max-w-xs"
 >
-	<Carousel.Content class="-mt-1 h-[200px]">
+	<Carousel.Content class="-mt-1 h-[270px]">
 		{#each Array(5) as _, i (i)}
-			<Carousel.Item class="pt-1 md:basis-1/2">
+			<Carousel.Item class="basis-1/2 pt-1">
 				<div class="p-1">
 					<Card.Root>
 						<Card.Content class="flex items-center justify-center p-6">

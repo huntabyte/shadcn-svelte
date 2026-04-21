@@ -33,5 +33,6 @@
 				/>
 			</Button>
 		</div>
+		<Button href="#/">Link</Button>
 	</div>
 </Example>

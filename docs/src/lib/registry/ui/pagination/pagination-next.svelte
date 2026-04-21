@@ -1,20 +1,18 @@
 <script lang="ts">
-	import type { ComponentProps } from "svelte";
+	import { Pagination as PaginationPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils.js";
-	import { PaginationLink } from "./index.js";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 
-	type PaginationNextProps = ComponentProps<typeof PaginationLink>;
-
-	let { class: className, ...restProps }: PaginationNextProps = $props();
+	let {
+		ref = $bindable(null),
+		class: className,
+		children,
+		...restProps
+	}: PaginationPrimitive.NextButtonProps = $props();
 </script>
 
-<PaginationLink
-	aria-label="Go to next page"
-	size="default"
-	class={cn("cn-pagination-next", className)}
-	{...restProps}
->
+{#snippet Fallback()}
 	<span class="cn-pagination-next-text hidden sm:block">Next</span>
 	<IconPlaceholder
 		lucide="ChevronRightIcon"
@@ -24,4 +22,18 @@
 		remixicon="RiArrowRightSLine"
 		data-icon="inline-end"
 	/>
-</PaginationLink>
+{/snippet}
+
+<PaginationPrimitive.NextButton
+	bind:ref
+	aria-label="Go to next page"
+	data-slot="pagination-next"
+	class={cn(buttonVariants({ variant: "ghost" }), "cn-pagination-next", className)}
+	{...restProps}
+>
+	{#if children}
+		{@render children?.()}
+	{:else}
+		{@render Fallback()}
+	{/if}
+</PaginationPrimitive.NextButton>

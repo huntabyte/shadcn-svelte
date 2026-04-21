@@ -7,7 +7,7 @@
 	opts={{
 		align: "start",
 	}}
-	class="w-full max-w-sm"
+	class="w-full max-w-[12rem] sm:max-w-xs md:max-w-sm"
 >
 	<Carousel.Content>
 		{#each Array(5) as _, i (i)}

@@ -7,15 +7,18 @@
 	import { Input } from "$lib/registry/ui/input/index.js";
 	import { Label } from "$lib/registry/ui/label/index.js";
 	import { Textarea } from "$lib/registry/ui/textarea/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
 
 	let showNewDialog = $state(false);
 	let showShareDialog = $state(false);
 </script>
 
 <DropdownMenu.Root>
-	<DropdownMenu.Trigger class={buttonVariants({ variant: "outline", size: "icon-sm" })}>
-		<MoreHorizontal />
+	<DropdownMenu.Trigger>
+		{#snippet child({ props })}
+			<Button {...props} variant="outline" size="icon-sm">
+				<MoreHorizontal />
+			</Button>
+		{/snippet}
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content class="w-40" align="end">
 		<DropdownMenu.Label>File Actions</DropdownMenu.Label>
@@ -39,12 +42,12 @@
 				Provide a name for your new file. Click create when you&apos;re done.
 			</Dialog.Description>
 		</Dialog.Header>
-		<Field.Group class="pb-3">
-			<Field.Field>
-				<Field.Label for="filename">File Name</Field.Label>
+		<div class="grid gap-4 pb-3">
+			<div class="grid gap-3">
+				<Label for="filename">File Name</Label>
 				<Input id="filename" name="filename" placeholder="document.txt" />
-			</Field.Field>
-		</Field.Group>
+			</div>
+		</div>
 		<Dialog.Footer>
 			<Dialog.Close class={buttonVariants({ variant: "outline" })}>Cancel</Dialog.Close>
 			<Button type="submit">Create</Button>
@@ -60,16 +63,16 @@
 				Anyone with the link will be able to view this file.
 			</Dialog.Description>
 		</Dialog.Header>
-		<Field.Group class="py-3">
-			<Field.Field>
+		<div class="grid gap-4 py-3">
+			<div class="grid gap-3">
 				<Label for="email">Email Address</Label>
 				<Input id="email" name="email" type="email" placeholder="shadcn@vercel.com" />
-			</Field.Field>
-			<Field.Field>
-				<Field.Label for="message">Message (Optional)</Field.Label>
+			</div>
+			<div class="grid gap-3">
+				<Label for="message">Message (Optional)</Label>
 				<Textarea id="message" name="message" placeholder="Check out this file" />
-			</Field.Field>
-		</Field.Group>
+			</div>
+		</div>
 		<Dialog.Footer>
 			<Dialog.Close class={buttonVariants({ variant: "outline" })}>Cancel</Dialog.Close>
 			<Button type="submit">Send Invite</Button>
