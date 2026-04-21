@@ -56,6 +56,7 @@ export default defineConfig({
 	},
 	build: {
 		// minify: false,
+		// @ts-ignore rolldownOptions is vite 8+ only
 		rolldownOptions: {
 			output: {
 				codeSplitting: {
