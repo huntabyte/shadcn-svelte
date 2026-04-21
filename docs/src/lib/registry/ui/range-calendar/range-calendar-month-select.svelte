@@ -14,11 +14,15 @@
 
 <span
 	class={cn(
-		"has-focus:border-ring border-input has-focus:ring-ring/50 relative flex rounded-md border shadow-xs has-focus:ring-[3px]",
+		"has-focus:border-ring has-focus:ring-ring/50 relative flex rounded-(--cell-radius) has-focus:ring-[3px]",
 		className
 	)}
 >
-	<RangeCalendarPrimitive.MonthSelect bind:ref class="absolute inset-0 opacity-0" {...restProps}>
+	<RangeCalendarPrimitive.MonthSelect
+		bind:ref
+		class="bg-popover absolute inset-0 opacity-0"
+		{...restProps}
+	>
 		{#snippet child({ props, monthItems, selectedMonthItem })}
 			<select {...props} {value} {onchange}>
 				{#each monthItems as monthItem (monthItem.value)}
@@ -33,7 +37,7 @@
 				{/each}
 			</select>
 			<span
-				class="[&>svg]:text-muted-foreground flex h-(--cell-size) items-center gap-1 rounded-md ps-2 pe-1 text-sm font-medium select-none [&>svg]:size-3.5"
+				class="[&>svg]:text-muted-foreground flex h-(--cell-size) items-center gap-1 rounded-(--cell-radius) ps-2 pe-1 text-sm font-medium select-none [&>svg]:size-3.5"
 				aria-hidden="true"
 			>
 				{monthItems.find((item) => item.value === value)?.label || selectedMonthItem.label}
