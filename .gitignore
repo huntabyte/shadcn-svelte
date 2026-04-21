@@ -111,4 +111,5 @@ repro/src/lib/hooks
 repro/src/lib/components/ui
 !repro/src/lib/components/ui/light-switch
 
+# Claude
 .claude

@@ -6,6 +6,10 @@ import { mdsxConfig } from "./mdsx.config.js";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
+	vitePlugin: {
+		inspector: true,
+	},
+
 	preprocess: [mdsx(mdsxConfig), componentPreviews()],
 	extensions: [".svelte", ".md"],
 
@@ -13,6 +17,7 @@ const config = {
 		// https://kit.svelte.dev/docs/adapter-cloudflare#options
 		adapter: adapter(),
 		prerender: {
+			entries: ["*", "/api/search.json"],
 			handleMissingId: (details) => {
 				if (details.id === "#") return;
 				console.warn(details.message);
@@ -66,7 +71,11 @@ function componentPreviews() {
 					importStatement = `import ${identifier} from "$lib/registry/blocks/${name}.svelte";`;
 				} else if (name.includes("sidebar") || name.includes("Sidebar")) {
 					continue;
-				} else if (name.startsWith("calendar") && !name.includes("demo")) {
+				} else if (
+					name.startsWith("calendar-") &&
+					!name.includes("demo") &&
+					/^calendar-\d/.test(name)
+				) {
 					importStatement = `import ${identifier} from "$lib/registry/blocks/${name}.svelte";`;
 				} else {
 					importStatement = `import ${identifier} from "$lib/registry/examples/${name}.svelte";`;
