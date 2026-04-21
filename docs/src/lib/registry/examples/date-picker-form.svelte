@@ -44,8 +44,6 @@
 	});
 
 	let value = $derived($formData.dob ? parseDate($formData.dob) : undefined);
-
-	let placeholder = $state<DateValue>(today(getLocalTimeZone()));
 </script>
 
 <form method="POST" class="space-y-8" use:enhance>
@@ -58,22 +56,21 @@
 						{...props}
 						class={cn(
 							buttonVariants({ variant: "outline" }),
-							"w-[280px] justify-start ps-4 text-start font-normal",
+							"w-[240px] pl-3 text-left font-normal",
 							!value && "text-muted-foreground"
 						)}
 					>
 						{value ? df.format(value.toDate(getLocalTimeZone())) : "Pick a date"}
-						<CalendarIcon class="ms-auto size-4 opacity-50" />
+						<CalendarIcon class="ml-auto h-4 w-4 opacity-50" />
 					</Popover.Trigger>
-					<Popover.Content class="w-auto p-0" side="top">
+					<Popover.Content class="w-auto p-0" align="start">
 						<Calendar
 							type="single"
 							value={value as DateValue}
-							bind:placeholder
 							captionLayout="dropdown"
-							minValue={new CalendarDate(1900, 1, 1)}
-							maxValue={today(getLocalTimeZone())}
-							calendarLabel="Date of birth"
+							isDateDisabled={(date) =>
+								date.compare(today(getLocalTimeZone())) > 0 ||
+								date.compare(new CalendarDate(1900, 1, 1)) < 0}
 							onValueChange={(v) => {
 								if (v) {
 									$formData.dob = v.toString();
@@ -84,8 +81,9 @@
 						/>
 					</Popover.Content>
 				</Popover.Root>
-				<Form.Description>Your date of birth is used to calculate your age</Form.Description
-				>
+				<Form.Description>
+					Your date of birth is used to calculate your age.
+				</Form.Description>
 				<Form.FieldErrors />
 				<input hidden value={$formData.dob} name={props.name} />
 			{/snippet}
