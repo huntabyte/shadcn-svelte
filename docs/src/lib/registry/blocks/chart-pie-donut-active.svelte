@@ -53,7 +53,12 @@
 				c="color"
 				innerRadius={60}
 				props={{
-					pie: { motion: "tween" },
+					pie: {
+						startAngle: Math.PI / 2,
+						endAngle: (-3 * Math.PI) / 2,
+						sort: null,
+						motion: Chart.defaultMotion,
+					},
 					arc: {
 						strokeWidth: 5,
 					},
