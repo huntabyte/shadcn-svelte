@@ -2,10 +2,7 @@
 	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 	"name": "context-menu",
 	"type": "registry:ui",
-	"devDependencies": [
-		"bits-ui@^2.16.3",
-		"@internationalized/date@^3.12.0"
-	],
+	"devDependencies": ["bits-ui@^2.16.3", "@internationalized/date@^3.12.0"],
 	"files": [
 		{
 			"content": "<script lang=\"ts\">\n\timport { ContextMenu as ContextMenuPrimitive } from \"bits-ui\";\n\timport { cn, type WithoutChildrenOrChild } from \"$UTILS$.js\";\n\timport type { Snippet } from \"svelte\";\n\timport IconPlaceholder from \"$lib/components/icon-placeholder/icon-placeholder.svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tchecked = $bindable(false),\n\t\tindeterminate = $bindable(false),\n\t\tclass: className,\n\t\tinset,\n\t\tchildren: childrenProp,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<ContextMenuPrimitive.CheckboxItemProps> & {\n\t\tinset?: boolean;\n\t\tchildren?: Snippet;\n\t} = $props();\n</script>\n\n<ContextMenuPrimitive.CheckboxItem\n\tbind:ref\n\tbind:checked\n\tbind:indeterminate\n\tdata-slot=\"context-menu-checkbox-item\"\n\tdata-inset={inset}\n\tclass={cn(\n\t\t\"focus:bg-accent focus:text-accent-foreground gap-1.5 rounded-md py-1 pr-8 pl-1.5 text-sm data-inset:pl-7 [&_svg:not([class*='size-'])]:size-4 relative flex cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{#snippet children({ checked })}\n\t\t<span class=\"absolute right-2 pointer-events-none\">\n\t\t\t{#if checked}\n\t\t\t\t<IconPlaceholder\n\t\t\t\t\tlucide=\"CheckIcon\"\n\t\t\t\t\ttabler=\"IconCheck\"\n\t\t\t\t\thugeicons=\"Tick02Icon\"\n\t\t\t\t\tphosphor=\"CheckIcon\"\n\t\t\t\t\tremixicon=\"RiCheckLine\"\n\t\t\t\t/>\n\t\t\t{/if}\n\t\t</span>\n\t\t{@render childrenProp?.()}\n\t{/snippet}\n</ContextMenuPrimitive.CheckboxItem>\n",

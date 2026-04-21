@@ -31,10 +31,7 @@
 			class="bg-secondary text-secondary-foreground border-secondary justify-start shadow-none"
 			id="theme-selector"
 		>
-			<span class="font-medium"> Theme: </span>
-			<span class="w-12">
-				{label}
-			</span>
+			{label}
 		</Select.Trigger>
 		<Select.Content align="end" class="max-h-80">
 			<Select.Group>

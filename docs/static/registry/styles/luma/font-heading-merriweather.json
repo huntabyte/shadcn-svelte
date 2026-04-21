@@ -8,9 +8,7 @@
 		"provider": "google",
 		"import": "Merriweather",
 		"variable": "--font-heading",
-		"subsets": [
-			"latin"
-		],
+		"subsets": ["latin"],
 		"dependency": "@fontsource-variable/merriweather"
 	}
 }

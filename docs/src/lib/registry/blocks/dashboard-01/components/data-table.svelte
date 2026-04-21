@@ -277,7 +277,10 @@
 					// @ts-expect-error @dnd-kit/abstract types are botched atm
 					RestrictToVerticalAxis,
 				]}
-				onDragEnd={(e) => (data = move(data, e))}
+				onDragEnd={
+					// @ts-expect-error @dnd-kit/abstract types are botched atm
+					(e) => (data = move(data, e))
+				}
 			>
 				<Table.Root>
 					<Table.Header class="bg-muted sticky top-0 z-10">

@@ -2,14 +2,8 @@
 	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 	"name": "otp-05",
 	"type": "registry:block",
-	"devDependencies": [
-		"@lucide/svelte@^0.577.0"
-	],
-	"registryDependencies": [
-		"button",
-		"field",
-		"input-otp"
-	],
+	"devDependencies": ["@lucide/svelte@^0.577.0"],
+	"registryDependencies": ["button", "field", "input-otp"],
 	"files": [
 		{
 			"content": "<script>\n\timport OTPForm from \"$COMPONENTS$/otp-form.svelte\";\n</script>\n\n<div class=\"bg-background flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10\">\n\t<div class=\"w-full max-w-sm\">\n\t\t<OTPForm />\n\t</div>\n</div>\n",

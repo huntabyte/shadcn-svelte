@@ -8,9 +8,7 @@
 		"provider": "google",
 		"import": "Playfair_Display",
 		"variable": "--font-heading",
-		"subsets": [
-			"latin"
-		],
+		"subsets": ["latin"],
 		"dependency": "@fontsource-variable/playfair-display"
 	}
 }

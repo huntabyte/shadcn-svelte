@@ -89,7 +89,7 @@ export const designSystemConfigSchema = z
 export type DesignSystemConfig = z.infer<typeof designSystemConfigSchema>;
 
 export const DEFAULT_CONFIG: DesignSystemConfig = {
-	style: "vega",
+	style: "nova",
 	baseColor: "neutral",
 	theme: "neutral",
 	chartColor: "neutral",
@@ -110,13 +110,13 @@ export const PRESETS: Preset[] = [
 	{
 		name: "vega",
 		title: "Vega",
-		description: "Vega / Lucide / Geist Sans",
+		description: "Vega / Lucide / Inter",
 		style: "vega",
 		baseColor: "neutral",
 		theme: "neutral",
 		chartColor: "neutral",
 		iconLibrary: "lucide",
-		font: "geist",
+		font: "inter",
 		menuAccent: "subtle",
 		menuColor: "default",
 		radius: "default",
@@ -124,13 +124,13 @@ export const PRESETS: Preset[] = [
 	{
 		name: "nova",
 		title: "Nova",
-		description: "Nova / Hugeicons / Inter",
+		description: "Nova / Lucide / Geist",
 		style: "nova",
 		baseColor: "neutral",
 		theme: "neutral",
 		chartColor: "neutral",
-		iconLibrary: "hugeicons",
-		font: "inter",
+		iconLibrary: "lucide",
+		font: "geist",
 		menuAccent: "subtle",
 		menuColor: "default",
 		radius: "default",

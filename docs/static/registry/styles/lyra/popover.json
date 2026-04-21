@@ -2,10 +2,7 @@
 	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 	"name": "popover",
 	"type": "registry:ui",
-	"devDependencies": [
-		"bits-ui@^2.16.3",
-		"@internationalized/date@^3.12.0"
-	],
+	"devDependencies": ["bits-ui@^2.16.3", "@internationalized/date@^3.12.0"],
 	"files": [
 		{
 			"content": "import Root from \"./popover.svelte\";\nimport Close from \"./popover-close.svelte\";\nimport Content from \"./popover-content.svelte\";\nimport Description from \"./popover-description.svelte\";\nimport Header from \"./popover-header.svelte\";\nimport Title from \"./popover-title.svelte\";\nimport Trigger from \"./popover-trigger.svelte\";\nimport Portal from \"./popover-portal.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tDescription,\n\tHeader,\n\tTitle,\n\tTrigger,\n\tClose,\n\tPortal,\n\t//\n\tRoot as Popover,\n\tContent as PopoverContent,\n\tDescription as PopoverDescription,\n\tHeader as PopoverHeader,\n\tTitle as PopoverTitle,\n\tTrigger as PopoverTrigger,\n\tClose as PopoverClose,\n\tPortal as PopoverPortal,\n};\n",

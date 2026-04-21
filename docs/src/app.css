@@ -47,20 +47,19 @@
 @custom-variant fixed (&:is(.layout-fixed *));
 
 @theme inline {
+	--breakpoint-3xl: 1600px;
+	--breakpoint-4xl: 2000px;
 	--font-sans: var(--font-sans);
 	--font-heading: var(--font-heading);
 	--font-mono: var(--font-mono);
-	--radius: 0.625rem;
-	--svelte-orange: oklch(0.6385 0.1991 34.99);
-	--breakpoint-3xl: 1600px;
-	--breakpoint-4xl: 2000px;
-	--radius-sm: calc(var(--radius) - 4px);
-	--radius-md: calc(var(--radius) - 2px);
+	--radius-sm: calc(var(--radius) * 0.6);
+	--radius-md: calc(var(--radius) * 0.8);
 	--radius-lg: var(--radius);
-	--radius-xl: calc(var(--radius) + 4px);
-	--radius-2xl: calc(var(--radius) + 8px);
-	--radius-3xl: calc(var(--radius) + 12px);
-	--radius-4xl: calc(var(--radius) + 16px);
+	--radius-xl: calc(var(--radius) * 1.4);
+	--radius-2xl: calc(var(--radius) * 1.8);
+	--radius-3xl: calc(var(--radius) * 2.2);
+	--radius-4xl: calc(var(--radius) * 2.6);
+	--svelte-orange: oklch(0.6385 0.1991 34.99);
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
 	--color-card: var(--card);
@@ -106,6 +105,7 @@
 :root {
 	--font-sans: "Geist Variable", sans-serif;
 	--font-mono: "Geist Mono Variable", monospace;
+	--radius: 0.625rem;
 	--background: oklch(1 0 0);
 	--foreground: oklch(0.145 0 0);
 	--card: oklch(1 0 0);
@@ -120,7 +120,8 @@
 	--muted-foreground: oklch(0.556 0 0);
 	--accent: oklch(0.97 0 0);
 	--accent-foreground: oklch(0.205 0 0);
-	--destructive: oklch(0.58 0.22 27);
+	--destructive: oklch(0.577 0.245 27.325);
+	--destructive-foreground: oklch(0.97 0.01 17);
 	--border: oklch(0.922 0 0);
 	--input: oklch(0.922 0 0);
 	--ring: oklch(0.708 0 0);
@@ -154,7 +155,7 @@
 	--card-foreground: oklch(0.985 0 0);
 	--popover: oklch(0.205 0 0);
 	--popover-foreground: oklch(0.985 0 0);
-	--primary: oklch(0.87 0 0);
+	--primary: oklch(0.922 0 0);
 	--primary-foreground: oklch(0.205 0 0);
 	--secondary: oklch(0.269 0 0);
 	--secondary-foreground: oklch(0.985 0 0);
@@ -163,6 +164,7 @@
 	--accent: oklch(0.371 0 0);
 	--accent-foreground: oklch(0.985 0 0);
 	--destructive: oklch(0.704 0.191 22.216);
+	--destructive-foreground: oklch(0.58 0.22 27);
 	--border: oklch(1 0 0 / 10%);
 	--input: oklch(1 0 0 / 15%);
 	--ring: oklch(0.556 0 0);
@@ -178,7 +180,7 @@
 	--sidebar-accent: oklch(0.269 0 0);
 	--sidebar-accent-foreground: oklch(0.985 0 0);
 	--sidebar-border: oklch(1 0 0 / 10%);
-	--sidebar-ring: oklch(0.556 0 0);
+	--sidebar-ring: oklch(0.439 0 0);
 	--surface: oklch(0.2 0 0);
 	--surface-foreground: oklch(0.708 0 0);
 	--code: var(--surface);
@@ -199,7 +201,7 @@
 	}
 
 	html {
-		@apply overscroll-none scroll-smooth;
+		@apply overscroll-y-none;
 	}
 
 	body {
@@ -220,6 +222,23 @@
 	a:active,
 	button:active {
 		@apply opacity-60 md:opacity-100;
+	}
+
+	[data-lang="ar"] {
+		font-family: var(--font-ar);
+	}
+
+	[data-lang="he"] {
+		font-family: var(--font-he);
+	}
+}
+
+@utility no-scrollbar {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		display: none;
 	}
 }
 
@@ -262,10 +281,9 @@
 
 @utility step {
 	counter-increment: step;
-	@apply relative;
 
 	&:before {
-		@apply text-muted-foreground end-0 me-2 hidden size-7 items-center justify-center rounded-full text-center -indent-px font-mono text-sm font-medium md:absolute;
+		@apply border-background bg-muted me-2 inline-flex size-6 items-center justify-center rounded-full text-center -indent-px font-mono text-sm font-medium md:absolute md:ms-[-50px] md:mt-[-4px] md:size-9 md:border-4;
 		content: counter(step);
 	}
 }
@@ -282,15 +300,27 @@
 			@apply !mt-0;
 		}
 
-		&:first-child > *[aria-level="3"]:first-child {
+		&:first-child > h3:first-child {
 			@apply !mt-0;
 		}
 
-		> *[aria-level="3"] {
-			@apply !mt-16;
+		&:first-child > [aria-level="3"]:first-child {
+			@apply !mt-0;
 		}
 
-		> *[aria-level="3"] + p {
+		> h3 {
+			@apply !mt-8;
+		}
+
+		> [aria-level="3"] {
+			@apply !mt-8;
+		}
+
+		> h3 + p {
+			@apply !mt-2;
+		}
+
+		> [aria-level="3"] + p {
 			@apply !mt-2;
 		}
 	}
@@ -298,7 +328,7 @@
 	[data-rehype-pretty-code-figure] {
 		background-color: var(--color-code);
 		color: var(--color-code-foreground);
-		border-radius: var(--radius-lg);
+		border-radius: var(--radius-xl);
 		border-width: 0px;
 		border-color: var(--border);
 		margin-top: calc(var(--spacing) * 6);
@@ -397,6 +427,12 @@
 
 	.mdsx code:not(pre code) {
 		@apply bg-muted relative rounded-md px-[0.3rem] py-[0.2rem] font-mono text-[0.8rem] outline-none;
+	}
+}
+
+@layer components {
+	.dialog-ring {
+		@apply rounded-xl border-none bg-clip-padding shadow-2xl ring-4 ring-neutral-200/80 dark:bg-neutral-900 dark:ring-neutral-800;
 	}
 
 	.super-debug {

@@ -2,10 +2,7 @@
 	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 	"name": "separator",
 	"type": "registry:ui",
-	"devDependencies": [
-		"bits-ui@^2.14.4",
-		"@internationalized/date@^3.10.0"
-	],
+	"devDependencies": ["bits-ui@^2.14.4", "@internationalized/date@^3.10.0"],
 	"files": [
 		{
 			"content": "import Root from \"./separator.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Separator,\n};\n",

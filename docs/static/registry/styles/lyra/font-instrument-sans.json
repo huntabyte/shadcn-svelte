@@ -8,9 +8,7 @@
 		"provider": "google",
 		"import": "Instrument_Sans",
 		"variable": "--font-sans",
-		"subsets": [
-			"latin"
-		],
+		"subsets": ["latin"],
 		"dependency": "@fontsource-variable/instrument-sans"
 	}
 }

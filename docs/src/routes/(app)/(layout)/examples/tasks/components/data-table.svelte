@@ -40,7 +40,7 @@
 	let columnVisibility = $state<VisibilityState>({});
 	let columnFilters = $state<ColumnFiltersState>([]);
 	let sorting = $state<SortingState>([]);
-	let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
+	let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 25 });
 
 	const columns: ColumnDef<Task>[] = [
 		{
@@ -222,11 +222,13 @@
 						{String(table.getState().pagination.pageSize)}
 					</Select.Trigger>
 					<Select.Content side="top">
-						{#each [10, 20, 30, 40, 50] as pageSize (pageSize)}
-							<Select.Item value={`${pageSize}`}>
-								{pageSize}
-							</Select.Item>
-						{/each}
+						<Select.Group>
+							{#each [10, 20, 30, 40, 50] as pageSize (pageSize)}
+								<Select.Item value={`${pageSize}`}>
+									{pageSize}
+								</Select.Item>
+							{/each}
+						</Select.Group>
 					</Select.Content>
 				</Select.Root>
 			</div>

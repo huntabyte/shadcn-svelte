@@ -3,7 +3,7 @@
 	import { cn } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 	import { page } from "$app/state";
-	import type { NavItem } from "$lib/navigation.js";
+	import type { NavItem } from "$lib/config.js";
 
 	let {
 		items,
@@ -15,13 +15,13 @@
 	} & HTMLAttributes<HTMLElement> = $props();
 </script>
 
-<nav class={cn("items-center gap-0.5", className)} {...restProps}>
+<nav class={cn("items-center gap-0", className)} {...restProps}>
 	{#each items as item (item.href)}
 		<Button
 			href={item.href}
 			variant="ghost"
 			size="sm"
-			class={cn(page.url.pathname === item.href && "text-primary")}
+			class={cn("active:!translate-y-0", page.url.pathname === item.href && "text-primary")}
 		>
 			{item.title}
 		</Button>

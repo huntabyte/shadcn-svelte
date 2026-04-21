@@ -8,9 +8,7 @@
 		"provider": "google",
 		"import": "JetBrains_Mono",
 		"variable": "--font-heading",
-		"subsets": [
-			"latin"
-		],
+		"subsets": ["latin"],
 		"dependency": "@fontsource-variable/jetbrains-mono"
 	}
 }

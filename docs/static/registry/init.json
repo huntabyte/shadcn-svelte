@@ -2,13 +2,7 @@
 	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 	"name": "init",
 	"type": "registry:style",
-	"devDependencies": [
-		"tailwind-variants",
-		"@lucide/svelte",
-		"tw-animate-css"
-	],
-	"registryDependencies": [
-		"utils"
-	],
+	"devDependencies": ["tailwind-variants", "@lucide/svelte", "tw-animate-css"],
+	"registryDependencies": ["utils"],
 	"files": []
 }

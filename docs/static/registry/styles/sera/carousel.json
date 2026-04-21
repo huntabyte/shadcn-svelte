@@ -7,9 +7,7 @@
 		"bits-ui@^2.16.3",
 		"@internationalized/date@^3.12.0"
 	],
-	"registryDependencies": [
-		"button"
-	],
+	"registryDependencies": ["button"],
 	"files": [
 		{
 			"content": "<script lang=\"ts\">\n\timport emblaCarouselSvelte from \"embla-carousel-svelte\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { getEmblaContext } from \"./context.js\";\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n\n\tconst emblaCtx = getEmblaContext(\"<Carousel.Content/>\");\n</script>\n\n<div\n\tdata-slot=\"carousel-content\"\n\tclass=\"overflow-hidden\"\n\tuse:emblaCarouselSvelte={{\n\t\toptions: {\n\t\t\tcontainer: \"[data-embla-container]\",\n\t\t\tslides: \"[data-embla-slide]\",\n\t\t\t...emblaCtx.options,\n\t\t\taxis: emblaCtx.orientation === \"horizontal\" ? \"x\" : \"y\",\n\t\t},\n\t\tplugins: emblaCtx.plugins,\n\t}}\n\tonemblaInit={emblaCtx.onInit}\n>\n\t<div\n\t\tbind:this={ref}\n\t\tclass={cn(\n\t\t\t\"flex\",\n\t\t\temblaCtx.orientation === \"horizontal\" ? \"-ms-4\" : \"-mt-4 flex-col\",\n\t\t\tclassName\n\t\t)}\n\t\tdata-embla-container=\"\"\n\t\t{...restProps}\n\t>\n\t\t{@render children?.()}\n\t</div>\n</div>\n",

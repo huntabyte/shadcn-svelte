@@ -2,9 +2,7 @@
 	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 	"name": "sidebar-06",
 	"type": "registry:block",
-	"devDependencies": [
-		"@lucide/svelte@^0.577.0"
-	],
+	"devDependencies": ["@lucide/svelte@^0.577.0"],
 	"registryDependencies": [
 		"breadcrumb",
 		"separator",

@@ -7,9 +7,7 @@
 		"@internationalized/date@^3.10.0",
 		"@lucide/svelte@^0.561.0"
 	],
-	"registryDependencies": [
-		"dialog"
-	],
+	"registryDependencies": ["dialog"],
 	"files": [
 		{
 			"content": "<script lang=\"ts\">\n\timport type { Command as CommandPrimitive, Dialog as DialogPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\timport Command from \"./command.svelte\";\n\timport * as Dialog from \"$UI$/dialog/index.js\";\n\timport type { WithoutChildrenOrChild } from \"$UTILS$.js\";\n\n\tlet {\n\t\topen = $bindable(false),\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(\"\"),\n\t\ttitle = \"Command Palette\",\n\t\tdescription = \"Search for a command to run\",\n\t\tportalProps,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<DialogPrimitive.RootProps> &\n\t\tWithoutChildrenOrChild<CommandPrimitive.RootProps> & {\n\t\t\tportalProps?: DialogPrimitive.PortalProps;\n\t\t\tchildren: Snippet;\n\t\t\ttitle?: string;\n\t\t\tdescription?: string;\n\t\t} = $props();\n</script>\n\n<Dialog.Root bind:open {...restProps}>\n\t<Dialog.Header class=\"sr-only\">\n\t\t<Dialog.Title>{title}</Dialog.Title>\n\t\t<Dialog.Description>{description}</Dialog.Description>\n\t</Dialog.Header>\n\t<Dialog.Content class=\"overflow-hidden p-0\" {portalProps}>\n\t\t<Command\n\t\t\tclass=\"**:data-[slot=command-input-wrapper]:h-12 [&_[data-command-group]]:px-2 [&_[data-command-group]:not([hidden])_~[data-command-group]]:pt-0 [&_[data-command-input-wrapper]_svg]:h-5 [&_[data-command-input-wrapper]_svg]:w-5 [&_[data-command-input]]:h-12 [&_[data-command-item]]:px-2 [&_[data-command-item]]:py-3 [&_[data-command-item]_svg]:h-5 [&_[data-command-item]_svg]:w-5\"\n\t\t\t{...restProps}\n\t\t\tbind:value\n\t\t\tbind:ref\n\t\t\t{children}\n\t\t/>\n\t</Dialog.Content>\n</Dialog.Root>\n",

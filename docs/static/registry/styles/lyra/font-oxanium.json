@@ -8,9 +8,7 @@
 		"provider": "google",
 		"import": "Oxanium",
 		"variable": "--font-sans",
-		"subsets": [
-			"latin"
-		],
+		"subsets": ["latin"],
 		"dependency": "@fontsource-variable/oxanium"
 	}
 }

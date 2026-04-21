@@ -7,9 +7,7 @@
 		"bits-ui@^2.14.4",
 		"@internationalized/date@^3.10.0"
 	],
-	"registryDependencies": [
-		"button"
-	],
+	"registryDependencies": ["button"],
 	"files": [
 		{
 			"content": "import Root from \"./pagination.svelte\";\nimport Content from \"./pagination-content.svelte\";\nimport Item from \"./pagination-item.svelte\";\nimport Link from \"./pagination-link.svelte\";\nimport PrevButton from \"./pagination-prev-button.svelte\";\nimport NextButton from \"./pagination-next-button.svelte\";\nimport Ellipsis from \"./pagination-ellipsis.svelte\";\nimport Previous from \"./pagination-previous.svelte\";\nimport Next from \"./pagination-next.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tLink,\n\tPrevButton, //old\n\tNextButton, //old\n\tEllipsis,\n\tPrevious,\n\tNext,\n\t//\n\tRoot as Pagination,\n\tContent as PaginationContent,\n\tItem as PaginationItem,\n\tLink as PaginationLink,\n\tPrevButton as PaginationPrevButton, //old\n\tNextButton as PaginationNextButton, //old\n\tEllipsis as PaginationEllipsis,\n\tPrevious as PaginationPrevious,\n\tNext as PaginationNext,\n};\n",

@@ -3,8 +3,7 @@
 	import { Button, type ButtonProps } from "$lib/registry/ui/button/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import type { HTMLAnchorAttributes } from "svelte/elements";
-	import { mainNavItems, sidebarNavItems } from "$lib/navigation.js";
-	import { NEW_COMPONENTS } from "$lib/navigation.js";
+	import { mainNavItems, sidebarNavItems, PAGES_NEW } from "$lib/config.js";
 
 	type MobileLinkProps = HTMLAnchorAttributes & {
 		content?: string;
@@ -32,7 +31,7 @@
 		{...props}
 	>
 		{content}
-		{#if href && NEW_COMPONENTS.has(href.replace("/docs/components/", ""))}
+		{#if href && PAGES_NEW.includes(href)}
 			<span class="bg-svelte-orange flex size-2 rounded-full" title="New"></span>
 		{/if}
 	</a>
@@ -46,7 +45,7 @@
 				{...restProps}
 				variant="ghost"
 				class={cn(
-					"extend-touch-target h-8 touch-manipulation items-center justify-start gap-2.5 !p-0 hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 active:bg-transparent dark:hover:bg-transparent",
+					"extend-touch-target h-8 touch-manipulation items-center justify-start gap-2.5 !p-0 hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 active:!translate-y-0 active:bg-transparent active:!opacity-100 data-[state=open]:bg-transparent dark:hover:bg-transparent",
 					className
 				)}
 			>
@@ -97,7 +96,10 @@
 						</div>
 						<div class="flex flex-col gap-3">
 							{#each group.items as item, i (i)}
-								{@render MobileLink({ href: item.href, content: item.title })}
+								{@render MobileLink({
+									href: item.href,
+									content: item.title,
+								})}
 							{/each}
 						</div>
 					</div>

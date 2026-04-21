@@ -2,9 +2,7 @@
 	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 	"name": "drawer",
 	"type": "registry:ui",
-	"devDependencies": [
-		"vaul-svelte@next"
-	],
+	"devDependencies": ["vaul-svelte@next"],
 	"files": [
 		{
 			"content": "<script lang=\"ts\">\n\timport { Drawer as DrawerPrimitive } from \"vaul-svelte\";\n\n\tlet { ref = $bindable(null), ...restProps }: DrawerPrimitive.CloseProps = $props();\n</script>\n\n<DrawerPrimitive.Close bind:ref data-slot=\"drawer-close\" {...restProps} />\n",

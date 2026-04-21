@@ -56,3 +56,4 @@ export async function getDoc(
 		metadata,
 	};
 }
+export const PAGES_NEW = ["/docs/skills", "/docs/changelog"];

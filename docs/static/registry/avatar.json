@@ -2,10 +2,7 @@
 	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 	"name": "avatar",
 	"type": "registry:ui",
-	"devDependencies": [
-		"bits-ui@^2.14.4",
-		"@internationalized/date@^3.10.0"
-	],
+	"devDependencies": ["bits-ui@^2.14.4", "@internationalized/date@^3.10.0"],
 	"files": [
 		{
 			"content": "<script lang=\"ts\">\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: AvatarPrimitive.FallbackProps = $props();\n</script>\n\n<AvatarPrimitive.Fallback\n\tbind:ref\n\tdata-slot=\"avatar-fallback\"\n\tclass={cn(\"bg-muted flex size-full items-center justify-center rounded-full\", className)}\n\t{...restProps}\n/>\n",

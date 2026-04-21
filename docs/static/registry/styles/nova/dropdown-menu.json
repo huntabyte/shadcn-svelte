@@ -2,10 +2,7 @@
 	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 	"name": "dropdown-menu",
 	"type": "registry:ui",
-	"devDependencies": [
-		"bits-ui@^2.16.3",
-		"@internationalized/date@^3.12.0"
-	],
+	"devDependencies": ["bits-ui@^2.16.3", "@internationalized/date@^3.12.0"],
 	"files": [
 		{
 			"content": "<script lang=\"ts\">\n\timport { DropdownMenu as DropdownMenuPrimitive } from \"bits-ui\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable([]),\n\t\t...restProps\n\t}: DropdownMenuPrimitive.CheckboxGroupProps = $props();\n</script>\n\n<DropdownMenuPrimitive.CheckboxGroup\n\tbind:ref\n\tbind:value\n\tdata-slot=\"dropdown-menu-checkbox-group\"\n\t{...restProps}\n/>\n",

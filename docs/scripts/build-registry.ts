@@ -344,10 +344,18 @@ async function runRegistryBuild(style: PresetConfig["style"]) {
 	const outputPath = path.resolve(cwd, "static", "registry", "styles", style);
 	const workspaceCliPath = path.resolve(cwd, "..", "packages", "cli", "dist", "index.mjs");
 
-	await execAsync(
-		`node "${workspaceCliPath}" registry build "${registryJsonPath}" --output "${outputPath}" -c "${cwd}"`,
-		{ cwd }
-	);
+	try {
+		await execAsync(
+			`node "${workspaceCliPath}" registry build "${registryJsonPath}" --output "${outputPath}" -c "${cwd}"`,
+			{ cwd }
+		);
+	} catch (e: unknown) {
+		const err = e as { stdout?: string; stderr?: string; message?: string };
+		console.error(`\n[registry]: CLI registry build failed for style "${style}"`);
+		if (err.stdout) console.error(`[registry]: stdout:\n${err.stdout}`);
+		if (err.stderr) console.error(`[registry]: stderr:\n${err.stderr}`);
+		throw e;
+	}
 }
 
 if (process.argv.includes("build-registry")) {

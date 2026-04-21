@@ -1,5 +1,6 @@
 import { Context } from "runed";
 import { z } from "zod";
+import { THEMES } from "$lib/registry/themes.js";
 
 export const USER_CONFIG_COOKIE_NAME = "scn_user_config";
 
@@ -8,22 +9,7 @@ const installationTypeSchema = z.enum(["cli", "manual"]).default("cli");
 const packageManagerSchema = z.enum(["npm", "yarn", "pnpm", "bun"]).default("pnpm");
 const colorFormatSchema = z.enum(["class", "hex", "rgb", "hsl", "oklch", "var"]).default("oklch");
 const activeTheme = z
-	.enum([
-		"default",
-		"scaled",
-		"mono",
-		"blue",
-		"green",
-		"amber",
-		"rose",
-		"purple",
-		"orange",
-		"teal",
-		"violet",
-		"red",
-		"yellow",
-		"neutral",
-	])
+	.enum(["default", ...THEMES.map((t) => t.name)] as [string, ...string[]])
 	.default("default");
 
 export type Layout = z.infer<typeof layoutSchema>;

@@ -7,9 +7,7 @@
 		"@internationalized/date@^3.10.0",
 		"@lucide/svelte@^0.561.0"
 	],
-	"registryDependencies": [
-		"separator"
-	],
+	"registryDependencies": ["separator"],
 	"files": [
 		{
 			"content": "import Root from \"./select.svelte\";\nimport Group from \"./select-group.svelte\";\nimport Label from \"./select-label.svelte\";\nimport Item from \"./select-item.svelte\";\nimport Content from \"./select-content.svelte\";\nimport Trigger from \"./select-trigger.svelte\";\nimport Separator from \"./select-separator.svelte\";\nimport ScrollDownButton from \"./select-scroll-down-button.svelte\";\nimport ScrollUpButton from \"./select-scroll-up-button.svelte\";\nimport GroupHeading from \"./select-group-heading.svelte\";\nimport Portal from \"./select-portal.svelte\";\n\nexport {\n\tRoot,\n\tGroup,\n\tLabel,\n\tItem,\n\tContent,\n\tTrigger,\n\tSeparator,\n\tScrollDownButton,\n\tScrollUpButton,\n\tGroupHeading,\n\tPortal,\n\t//\n\tRoot as Select,\n\tGroup as SelectGroup,\n\tLabel as SelectLabel,\n\tItem as SelectItem,\n\tContent as SelectContent,\n\tTrigger as SelectTrigger,\n\tSeparator as SelectSeparator,\n\tScrollDownButton as SelectScrollDownButton,\n\tScrollUpButton as SelectScrollUpButton,\n\tGroupHeading as SelectGroupHeading,\n\tPortal as SelectPortal,\n};\n",

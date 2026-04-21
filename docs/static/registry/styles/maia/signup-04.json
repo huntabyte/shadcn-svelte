@@ -2,12 +2,7 @@
 	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 	"name": "signup-04",
 	"type": "registry:block",
-	"registryDependencies": [
-		"button",
-		"card",
-		"field",
-		"input"
-	],
+	"registryDependencies": ["button", "card", "field", "input"],
 	"files": [
 		{
 			"content": "<script>\n\timport SignupForm from \"$COMPONENTS$/signup-form.svelte\";\n</script>\n\n<div class=\"bg-muted flex min-h-svh flex-col items-center justify-center p-6 md:p-10\">\n\t<div class=\"w-full max-w-sm md:max-w-4xl\">\n\t\t<SignupForm />\n\t</div>\n</div>\n",

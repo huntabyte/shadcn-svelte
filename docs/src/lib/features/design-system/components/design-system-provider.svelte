@@ -1,3 +1,13 @@
+<script lang="ts" module>
+	import { Context } from "runed";
+
+	class ResetDialogContext {
+		open = $state(false);
+	}
+
+	export const ResetDialogCtx = new Context<ResetDialogContext>("reset-dialog-ctx");
+</script>
+
 <script lang="ts">
 	import type { Snippet } from "svelte";
 	import {
@@ -12,6 +22,7 @@
 	import { setupDesignSystem } from "./design-system-provider-state.svelte.js";
 	import { cn } from "$lib/registry/lib/utils.js";
 	import { toggleMode } from "mode-watcher";
+	import * as AlertDialog from "$lib/registry/ui/alert-dialog/index.js";
 
 	const uid = $props.id();
 
@@ -22,6 +33,7 @@
 	let { children }: Props = $props();
 
 	const designSystem = setupDesignSystem();
+	const resetDialogCtx = ResetDialogCtx.set(new ResetDialogContext());
 
 	const effectiveRadius = $derived(designSystem.style === "lyra" ? "none" : designSystem.radius);
 
@@ -220,7 +232,7 @@
 			e.preventDefault();
 
 			if (e.shiftKey) {
-				designSystem.reset();
+				resetDialogCtx.open = true;
 				return;
 			}
 
@@ -263,3 +275,23 @@
 >
 	{@render children?.()}
 </div>
+
+<AlertDialog.Root bind:open={resetDialogCtx.open}>
+	<AlertDialog.Content size="sm">
+		<AlertDialog.Header>
+			<AlertDialog.Title>Reset to defaults?</AlertDialog.Title>
+			<AlertDialog.Description>
+				This will reset all customization options to their default values.
+			</AlertDialog.Description>
+		</AlertDialog.Header>
+		<AlertDialog.Footer>
+			<AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
+			<AlertDialog.Action
+				onclick={() => {
+					designSystem.reset();
+					resetDialogCtx.open = false;
+				}}>Reset</AlertDialog.Action
+			>
+		</AlertDialog.Footer>
+	</AlertDialog.Content>
+</AlertDialog.Root>

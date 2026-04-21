@@ -2,12 +2,8 @@
 	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 	"name": "button-group",
 	"type": "registry:ui",
-	"devDependencies": [
-		"tailwind-variants@^3.2.2"
-	],
-	"registryDependencies": [
-		"separator"
-	],
+	"devDependencies": ["tailwind-variants@^3.2.2"],
+	"registryDependencies": ["separator"],
 	"files": [
 		{
 			"content": "<script lang=\"ts\">\n\timport { cn } from \"$UTILS$.js\";\n\timport type { ComponentProps } from \"svelte\";\n\timport { Separator } from \"$UI$/separator/index.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\torientation = \"vertical\",\n\t\t...restProps\n\t}: ComponentProps<typeof Separator> = $props();\n</script>\n\n<Separator\n\tbind:ref\n\tdata-slot=\"button-group-separator\"\n\t{orientation}\n\tclass={cn(\"bg-input relative !m-0 self-stretch data-[orientation=vertical]:h-auto\", className)}\n\t{...restProps}\n/>\n",

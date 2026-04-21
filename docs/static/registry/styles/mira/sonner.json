@@ -2,10 +2,7 @@
 	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 	"name": "sonner",
 	"type": "registry:ui",
-	"devDependencies": [
-		"svelte-sonner@^1.1.0",
-		"mode-watcher@^1.1.0"
-	],
+	"devDependencies": ["svelte-sonner@^1.1.0", "mode-watcher@^1.1.0"],
 	"files": [
 		{
 			"content": "export { default as Toaster } from \"./sonner.svelte\";\n",

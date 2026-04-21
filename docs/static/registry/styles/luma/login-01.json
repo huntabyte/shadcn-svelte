@@ -2,12 +2,7 @@
 	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 	"name": "login-01",
 	"type": "registry:block",
-	"registryDependencies": [
-		"button",
-		"card",
-		"input",
-		"field"
-	],
+	"registryDependencies": ["button", "card", "input", "field"],
 	"files": [
 		{
 			"content": "<script lang=\"ts\">\n\timport LoginForm from \"$COMPONENTS$/login-form.svelte\";\n</script>\n\n<div class=\"flex h-screen w-full items-center justify-center px-4\">\n\t<LoginForm />\n</div>\n",

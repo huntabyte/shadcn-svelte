@@ -2,13 +2,8 @@
 	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 	"name": "calendar",
 	"type": "registry:ui",
-	"devDependencies": [
-		"@internationalized/date@^3.12.0",
-		"bits-ui@^2.16.3"
-	],
-	"registryDependencies": [
-		"button"
-	],
+	"devDependencies": ["@internationalized/date@^3.12.0", "bits-ui@^2.16.3"],
+	"registryDependencies": ["button"],
 	"files": [
 		{
 			"content": "<script lang=\"ts\">\n\timport type { ComponentProps } from \"svelte\";\n\timport type Calendar from \"./calendar.svelte\";\n\timport CalendarMonthSelect from \"./calendar-month-select.svelte\";\n\timport CalendarYearSelect from \"./calendar-year-select.svelte\";\n\timport { DateFormatter, getLocalTimeZone, type DateValue } from \"@internationalized/date\";\n\n\tlet {\n\t\tcaptionLayout,\n\t\tmonths,\n\t\tmonthFormat,\n\t\tyears,\n\t\tyearFormat,\n\t\tmonth,\n\t\tlocale,\n\t\tplaceholder = $bindable(),\n\t\tmonthIndex = 0,\n\t}: {\n\t\tcaptionLayout: ComponentProps<typeof Calendar>[\"captionLayout\"];\n\t\tmonths: ComponentProps<typeof CalendarMonthSelect>[\"months\"];\n\t\tmonthFormat: ComponentProps<typeof CalendarMonthSelect>[\"monthFormat\"];\n\t\tyears: ComponentProps<typeof CalendarYearSelect>[\"years\"];\n\t\tyearFormat: ComponentProps<typeof CalendarYearSelect>[\"yearFormat\"];\n\t\tmonth: DateValue;\n\t\tplaceholder: DateValue | undefined;\n\t\tlocale: string;\n\t\tmonthIndex: number;\n\t} = $props();\n\n\tfunction formatYear(date: DateValue) {\n\t\tconst dateObj = date.toDate(getLocalTimeZone());\n\t\tif (typeof yearFormat === \"function\") return yearFormat(dateObj.getFullYear());\n\t\treturn new DateFormatter(locale, { year: yearFormat }).format(dateObj);\n\t}\n\n\tfunction formatMonth(date: DateValue) {\n\t\tconst dateObj = date.toDate(getLocalTimeZone());\n\t\tif (typeof monthFormat === \"function\") return monthFormat(dateObj.getMonth() + 1);\n\t\treturn new DateFormatter(locale, { month: monthFormat }).format(dateObj);\n\t}\n</script>\n\n{#snippet MonthSelect()}\n\t<CalendarMonthSelect\n\t\t{months}\n\t\t{monthFormat}\n\t\tvalue={month.month}\n\t\tonchange={(e) => {\n\t\t\tif (!placeholder) return;\n\t\t\tconst v = Number.parseInt(e.currentTarget.value);\n\t\t\tconst newPlaceholder = placeholder.set({ month: v });\n\t\t\tplaceholder = newPlaceholder.subtract({ months: monthIndex });\n\t\t}}\n\t/>\n{/snippet}\n\n{#snippet YearSelect()}\n\t<CalendarYearSelect {years} {yearFormat} value={month.year} />\n{/snippet}\n\n{#if captionLayout === \"dropdown\"}\n\t{@render MonthSelect()}\n\t{@render YearSelect()}\n{:else if captionLayout === \"dropdown-months\"}\n\t{@render MonthSelect()}\n\t{#if placeholder}\n\t\t{formatYear(placeholder)}\n\t{/if}\n{:else if captionLayout === \"dropdown-years\"}\n\t{#if placeholder}\n\t\t{formatMonth(placeholder)}\n\t{/if}\n\t{@render YearSelect()}\n{:else}\n\t{formatMonth(month)} {formatYear(month)}\n{/if}\n",

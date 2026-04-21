@@ -2,14 +2,8 @@
 	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 	"name": "input-group",
 	"type": "registry:ui",
-	"devDependencies": [
-		"tailwind-variants@^3.2.2"
-	],
-	"registryDependencies": [
-		"button",
-		"input",
-		"textarea"
-	],
+	"devDependencies": ["tailwind-variants@^3.2.2"],
+	"registryDependencies": ["button", "input", "textarea"],
 	"files": [
 		{
 			"content": "import Root from \"./input-group.svelte\";\nimport Addon from \"./input-group-addon.svelte\";\nimport Button from \"./input-group-button.svelte\";\nimport Input from \"./input-group-input.svelte\";\nimport Text from \"./input-group-text.svelte\";\nimport Textarea from \"./input-group-textarea.svelte\";\n\nexport {\n\tRoot,\n\tAddon,\n\tButton,\n\tInput,\n\tText,\n\tTextarea,\n\t//\n\tRoot as InputGroup,\n\tAddon as InputGroupAddon,\n\tButton as InputGroupButton,\n\tInput as InputGroupInput,\n\tText as InputGroupText,\n\tTextarea as InputGroupTextarea,\n};\n",
