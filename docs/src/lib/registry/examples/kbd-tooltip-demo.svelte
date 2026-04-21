@@ -10,7 +10,7 @@
 		<Tooltip.Root>
 			<Tooltip.Trigger>
 				{#snippet child({ props })}
-					<Button size="sm" variant="outline" {...props}>Save</Button>
+					<Button variant="outline" {...props}>Save</Button>
 				{/snippet}
 			</Tooltip.Trigger>
 			<Tooltip.Content>
@@ -22,7 +22,7 @@
 		<Tooltip.Root>
 			<Tooltip.Trigger>
 				{#snippet child({ props })}
-					<Button size="sm" variant="outline" {...props}>Print</Button>
+					<Button variant="outline" {...props}>Print</Button>
 				{/snippet}
 			</Tooltip.Trigger>
 			<Tooltip.Content>

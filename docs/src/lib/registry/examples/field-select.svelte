@@ -20,7 +20,7 @@
 	);
 </script>
 
-<div class="w-full max-w-md">
+<div class="w-full max-w-xs">
 	<Field.Field>
 		<Field.Label for="department">Department</Field.Label>
 		<Select.Root type="single" bind:value={department}>
@@ -28,9 +28,11 @@
 				{departmentLabel}
 			</Select.Trigger>
 			<Select.Content>
-				{#each departments as department (department.value)}
-					<Select.Item {...department} />
-				{/each}
+				<Select.Group>
+					{#each departments as department (department.value)}
+						<Select.Item {...department} />
+					{/each}
+				</Select.Group>
 			</Select.Content>
 		</Select.Root>
 		<Field.Description>Select your department or area of work.</Field.Description>

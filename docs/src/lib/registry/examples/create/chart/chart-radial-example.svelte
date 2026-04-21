@@ -3,6 +3,7 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import { ArcChart, Text } from "layerchart";
+	import { defaultMotion } from "$lib/registry/ui/chart/easing.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 
 	const radialChartData = [{ browser: "safari", visitors: 1260, fill: "var(--color-safari)" }];
@@ -31,8 +32,8 @@
 					value="visitors"
 					outerRadius={88}
 					innerRadius={66}
-					trackOuterRadius={83}
-					trackInnerRadius={72}
+					trackOuterRadius={88}
+					trackInnerRadius={66}
 					padding={40}
 					range={[90, -270]}
 					maxValue={radialChartData[0].visitors * 4}
@@ -42,7 +43,7 @@
 						data: [d],
 					}))}
 					props={{
-						arc: { track: { fill: "var(--muted)" }, motion: "tween" },
+						arc: { track: { fill: "var(--muted)" }, motion: defaultMotion },
 						tooltip: { context: { hideDelay: 350 } },
 					}}
 					tooltipContext={false}

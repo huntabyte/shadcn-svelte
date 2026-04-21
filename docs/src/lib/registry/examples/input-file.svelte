@@ -1,9 +1,10 @@
 <script lang="ts">
+	import * as Field from "$lib/registry/ui/field/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
 </script>
 
-<div class="grid w-full max-w-sm items-center gap-1.5">
-	<Label for="picture">Picture</Label>
+<Field.Field>
+	<Field.Label for="picture">Picture</Field.Label>
 	<Input id="picture" type="file" />
-</div>
+	<Field.Description>Select a picture to upload.</Field.Description>
+</Field.Field>

@@ -30,9 +30,9 @@
 					<img
 						src={artwork.art}
 						alt="Photo by {artwork.artist}"
-						class="aspect-[3/4] h-fit w-fit object-cover"
-						width={300}
-						height={400}
+						class="aspect-[3/4] h-[200px] object-cover"
+						width={150}
+						height={200}
 					/>
 				</div>
 				<figcaption class="text-muted-foreground pt-2 text-xs">

@@ -1033,6 +1033,7 @@
 		"name": "chart-pie-separator-none",
 		"type": "registry:block",
 		"registryDependencies": [
+			"chart",
 			"card"
 		],
 		"relativeUrl": "chart-pie-separator-none.json"

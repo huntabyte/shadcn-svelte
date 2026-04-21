@@ -3,7 +3,7 @@
 	"name": "sidebar-08",
 	"type": "registry:block",
 	"devDependencies": [
-		"@lucide/svelte@^0.577.0"
+		"@lucide/svelte@^1.8.0"
 	],
 	"registryDependencies": [
 		"breadcrumb",

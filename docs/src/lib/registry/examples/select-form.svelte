@@ -28,27 +28,33 @@
 	const { form: formData, enhance } = form;
 </script>
 
-<form method="POST" class="w-2/3 space-y-6" use:enhance>
-	<Form.Field {form} name="email">
-		<Form.Control>
-			{#snippet children({ props })}
-				<Form.Label>Email</Form.Label>
-				<Select.Root type="single" bind:value={$formData.email} name={props.name}>
-					<Select.Trigger {...props}>
-						{$formData.email ? $formData.email : "Select a verified email to display"}
-					</Select.Trigger>
-					<Select.Content>
-						<Select.Item value="m@example.com" label="m@example.com" />
-						<Select.Item value="m@google.com" label="m@google.com" />
-						<Select.Item value="m@support.com" label="m@support.com" />
-					</Select.Content>
-				</Select.Root>
-			{/snippet}
-		</Form.Control>
-		<Form.Description>
-			You can manage email address in your <a href="/examples/forms">email settings</a>.
-		</Form.Description>
-		<Form.FieldErrors />
-	</Form.Field>
-	<Form.Button>Submit</Form.Button>
-</form>
+<div class="flex gap-8">
+	<form method="POST" class="flex-1 space-y-6" use:enhance>
+		<Form.Field {form} name="email">
+			<Form.Control>
+				{#snippet children({ props })}
+					<Form.Label>Email</Form.Label>
+					<Select.Root type="single" bind:value={$formData.email} name={props.name}>
+						<Select.Trigger {...props}>
+							{$formData.email
+								? $formData.email
+								: "Select a verified email to display"}
+						</Select.Trigger>
+						<Select.Content>
+							<Select.Group>
+								<Select.Item value="m@example.com" label="m@example.com" />
+								<Select.Item value="m@google.com" label="m@google.com" />
+								<Select.Item value="m@support.com" label="m@support.com" />
+							</Select.Group>
+						</Select.Content>
+					</Select.Root>
+				{/snippet}
+			</Form.Control>
+			<Form.Description>
+				You can manage email address in your <a href="/examples/forms">email settings</a>.
+			</Form.Description>
+			<Form.FieldErrors />
+		</Form.Field>
+		<Form.Button>Submit</Form.Button>
+	</form>
+</div>

@@ -17,18 +17,14 @@
 </script>
 
 <Select.Root type="single" name="favoriteFruit" bind:value>
-	<Select.Trigger class="w-[180px]">
+	<Select.Trigger class="w-full max-w-48">
 		{triggerContent}
 	</Select.Trigger>
 	<Select.Content>
 		<Select.Group>
 			<Select.Label>Fruits</Select.Label>
 			{#each fruits as fruit (fruit.value)}
-				<Select.Item
-					value={fruit.value}
-					label={fruit.label}
-					disabled={fruit.value === "grapes"}
-				>
+				<Select.Item value={fruit.value} label={fruit.label}>
 					{fruit.label}
 				</Select.Item>
 			{/each}

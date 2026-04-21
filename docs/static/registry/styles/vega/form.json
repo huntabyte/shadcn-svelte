@@ -4,7 +4,7 @@
 	"type": "registry:ui",
 	"devDependencies": [
 		"formsnap@^2.0.1",
-		"sveltekit-superforms@^2.30.0"
+		"sveltekit-superforms@^2.30.1"
 	],
 	"registryDependencies": [
 		"button",
