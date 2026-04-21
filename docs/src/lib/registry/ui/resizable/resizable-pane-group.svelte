@@ -6,10 +6,16 @@
 		ref = $bindable(null),
 		this: paneGroup = $bindable(),
 		class: className,
+		orientation,
+		direction,
 		...restProps
-	}: ResizablePrimitive.PaneGroupProps & {
+	}: Omit<ResizablePrimitive.PaneGroupProps, "direction"> & {
 		this?: ResizablePrimitive.PaneGroup;
+		direction?: ResizablePrimitive.PaneGroupProps["direction"];
+		orientation?: "horizontal" | "vertical";
 	} = $props();
+
+	const resolvedDirection = $derived(orientation ?? direction ?? "horizontal");
 </script>
 
 <ResizablePrimitive.PaneGroup
@@ -20,5 +26,6 @@
 		"cn-resizable-panel-group flex h-full w-full data-[direction=vertical]:flex-col",
 		className
 	)}
+	direction={resolvedDirection}
 	{...restProps}
 />

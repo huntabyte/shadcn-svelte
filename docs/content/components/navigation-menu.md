@@ -3,7 +3,7 @@ title: Navigation Menu
 description: A collection of links for navigating websites.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/navigation-menu
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/navigation-menu
   doc: https://bits-ui.com/docs/components/navigation-menu
   api: https://bits-ui.com/docs/components/navigation-menu#api-reference
 ---
@@ -20,7 +20,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="navigation-menu-demo" align="start">
+<ComponentPreview name="navigation-menu-demo" previewClassName="h-96" class="overflow-visible">
 
 </ComponentPreview>
 
@@ -47,6 +47,13 @@ Copy and paste the following code into your project.
 {#if viewerData}
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
+
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -71,3 +78,36 @@ Copy and paste the following code into your project.
   </NavigationMenu.List>
 </NavigationMenu.Root>
 ```
+
+## Composition
+
+Use the following composition to build a `NavigationMenu`:
+
+```text
+NavigationMenu.Root
+├── NavigationMenu.List
+│   ├── NavigationMenu.Item
+│   │   ├── NavigationMenu.Trigger
+│   │   └── NavigationMenu.Content
+│   │       ├── NavigationMenu.Link
+│   │       └── NavigationMenu.Link
+│   └── NavigationMenu.Item
+│       └── NavigationMenu.Link
+└── NavigationMenu.Indicator
+```
+
+## Link Component
+
+When using the `NavigationMenu.Link` component as a child of a SvelteKit `<a>` element or similar router link, use the `child` snippet to pass the link props through:
+
+```svelte showLineNumbers
+<NavigationMenu.Link>
+  {#snippet child({ props })}
+    <a href="/docs" {...props}> Documentation </a>
+  {/snippet}
+</NavigationMenu.Link>
+```
+
+## API Reference
+
+See the [Bits UI](https://bits-ui.com/docs/components/navigation-menu#api-reference) documentation for more information.

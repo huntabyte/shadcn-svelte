@@ -3,7 +3,7 @@ title: Label
 description: Renders an accessible label associated with controls.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/label
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/label
   doc: https://bits-ui.com/docs/components/label
   api: https://bits-ui.com/docs/components/label#api-reference
 ---
@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -67,3 +73,25 @@ Copy and paste the following code into your project.
 ```svelte
 <Label for="email">Your email address</Label>
 ```
+
+## Label in Field
+
+For form fields, use the [Field](/docs/components/field) component which
+includes built-in `Field.Label`, `Field.Description`, and `Field.Error` components.
+
+```svelte
+<Field.Field>
+  <Field.Label for="email">Your email address</Field.Label>
+  <Input id="email" />
+</Field.Field>
+```
+
+<ComponentPreview name="field-demo" previewClassName="h-[44rem]">
+
+<div></div>
+
+</ComponentPreview>
+
+## API Reference
+
+See the [Bits UI](https://bits-ui.com/docs/components/label#api-reference) documentation for more information.

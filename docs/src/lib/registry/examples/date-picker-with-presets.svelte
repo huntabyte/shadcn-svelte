@@ -17,14 +17,16 @@
 	});
 
 	let value: DateValue | undefined = $state();
-	const valueString = $derived(value ? df.format(value.toDate(getLocalTimeZone())) : "");
+	let selectValue = $state("");
 
 	const items = [
-		{ value: 0, label: "Today" },
-		{ value: 1, label: "Tomorrow" },
-		{ value: 3, label: "In 3 days" },
-		{ value: 7, label: "In a week" },
+		{ value: "0", label: "Today" },
+		{ value: "1", label: "Tomorrow" },
+		{ value: "3", label: "In 3 days" },
+		{ value: "7", label: "In a week" },
 	];
+
+	const triggerLabel = $derived(items.find((i) => i.value === selectValue)?.label ?? "Select");
 </script>
 
 <Popover.Root>
@@ -32,31 +34,29 @@
 		class={cn(
 			buttonVariants({
 				variant: "outline",
-				class: "w-[280px] justify-start text-start font-normal",
+				class: "w-[240px] justify-start text-left font-normal",
 			}),
 			!value && "text-muted-foreground"
 		)}
 	>
-		<CalendarIcon class="me-2 size-4" />
+		<CalendarIcon />
 		{value ? df.format(value.toDate(getLocalTimeZone())) : "Pick a date"}
 	</Popover.Trigger>
-	<Popover.Content class="flex w-auto flex-col space-y-2 p-2">
+	<Popover.Content align="start" class="flex w-auto flex-col space-y-2 p-2">
 		<Select.Root
 			type="single"
-			bind:value={
-				() => valueString,
-				(v) => {
-					if (!v) return;
-					value = today(getLocalTimeZone()).add({ days: Number.parseInt(v) });
-				}
-			}
+			bind:value={selectValue}
+			onValueChange={(v) => {
+				if (!v) return;
+				value = today(getLocalTimeZone()).add({ days: Number.parseInt(v) });
+			}}
 		>
 			<Select.Trigger>
-				{valueString}
+				{triggerLabel}
 			</Select.Trigger>
 			<Select.Content>
 				{#each items as item (item.value)}
-					<Select.Item value={`${item.value}`}>{item.label}</Select.Item>
+					<Select.Item value={item.value} label={item.label} />
 				{/each}
 			</Select.Content>
 		</Select.Root>

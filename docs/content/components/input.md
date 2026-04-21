@@ -3,7 +3,7 @@ title: Input
 description: Displays a form input field or a component that looks like an input field.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/input
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/input
 ---
 
 <script>
@@ -18,7 +18,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="input-demo">
+<ComponentPreview name="input-demo" previewClassName="*:max-w-xs">
 
 <div></div>
 
@@ -42,6 +42,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -60,17 +66,29 @@ Copy and paste the following code into your project.
 
 ## Examples
 
-### Default
+### Basic
 
-<ComponentPreview name="input-demo">
+<ComponentPreview name="input-basic" previewClassName="*:max-w-xs">
 
 <div></div>
 
 </ComponentPreview>
 
-### File
+### Field
 
-<ComponentPreview name="input-file">
+Use `Field`, `Field.Label`, and `Field.Description` to create an input with a label and description.
+
+<ComponentPreview name="input-field" previewClassName="*:max-w-xs">
+
+<div></div>
+
+</ComponentPreview>
+
+### Field Group
+
+Use `Field.Group` to show multiple `Field` blocks and to build forms.
+
+<ComponentPreview name="input-fieldgroup" previewClassName="*:max-w-xs">
 
 <div></div>
 
@@ -78,23 +96,99 @@ Copy and paste the following code into your project.
 
 ### Disabled
 
-<ComponentPreview name="input-disabled">
+Use the `disabled` prop to disable the input. Add the `data-disabled` attribute to the `Field` component to style the disabled state.
+
+<ComponentPreview name="input-disabled" previewClassName="*:max-w-xs">
 
 <div></div>
 
 </ComponentPreview>
 
-### With Label
+### Invalid
 
-<ComponentPreview name="input-with-label">
+Use the `aria-invalid` prop to mark the input as invalid. Add the `data-invalid` attribute to the `Field` component to style the invalid state.
+
+<ComponentPreview name="input-invalid" previewClassName="*:max-w-xs">
 
 <div></div>
 
 </ComponentPreview>
 
-### With Button
+### File
 
-<ComponentPreview name="input-with-button">
+Use the `type="file"` prop to create a file input.
+
+<ComponentPreview name="input-file" previewClassName="*:max-w-xs">
+
+<div></div>
+
+</ComponentPreview>
+
+### Inline
+
+Use `Field` with `orientation="horizontal"` to create an inline input. Pair with `Button` to create a search input with a button.
+
+<ComponentPreview name="input-inline" previewClassName="*:max-w-xs">
+
+<div></div>
+
+</ComponentPreview>
+
+### Grid
+
+Use a grid layout to place multiple inputs side by side.
+
+<ComponentPreview name="input-grid" previewClassName="p-6">
+
+<div></div>
+
+</ComponentPreview>
+
+### Required
+
+Use the `required` attribute to indicate required inputs.
+
+<ComponentPreview name="input-required" previewClassName="*:max-w-xs">
+
+<div></div>
+
+</ComponentPreview>
+
+### Badge
+
+Use `Badge` in the label to highlight a recommended field.
+
+<ComponentPreview name="input-badge" previewClassName="*:max-w-xs">
+
+<div></div>
+
+</ComponentPreview>
+
+### Input Group
+
+To add icons, text, or buttons inside an input, use the `InputGroup` component. See the [Input Group](/docs/components/input-group) component for more examples.
+
+<ComponentPreview name="input-input-group" previewClassName="*:max-w-xs">
+
+<div></div>
+
+</ComponentPreview>
+
+### Button Group
+
+To add buttons to an input, use the `ButtonGroup` component. See the [Button Group](/docs/components/button-group) component for more examples.
+
+<ComponentPreview name="input-button-group" previewClassName="*:max-w-xs">
+
+<div></div>
+
+</ComponentPreview>
+
+### Form
+
+A full form example with multiple inputs, a select, and a button.
+
+<ComponentPreview name="input-form" previewClassName="h-[32rem]">
 
 <div></div>
 
