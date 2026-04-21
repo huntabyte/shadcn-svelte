@@ -25,8 +25,10 @@
 			</span>
 		</Select.Trigger>
 		<Select.Content align="end">
-			<Select.Item value="Eddie Lake">Eddie Lake</Select.Item>
-			<Select.Item value="Jamik Tashpulatov">Jamik Tashpulatov</Select.Item>
+			<Select.Group>
+				<Select.Item value="Eddie Lake">Eddie Lake</Select.Item>
+				<Select.Item value="Jamik Tashpulatov">Jamik Tashpulatov</Select.Item>
+			</Select.Group>
 		</Select.Content>
 	</Select.Root>
 {/if}
