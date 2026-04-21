@@ -4,7 +4,7 @@
 	"type": "registry:block",
 	"devDependencies": [
 		"little-date@^1.2.1",
-		"@lucide/svelte@^0.577.0",
+		"@lucide/svelte@^1.8.0",
 		"@internationalized/date@^3.12.0"
 	],
 	"registryDependencies": [
