@@ -3,7 +3,7 @@
 	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
 	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 	import type { RegistryItem } from "shadcn-svelte/schema";
-	import { groupItemsByType } from "../lib/utils.js";
+	import { groupItemsByType, itemHref, DEFAULT_ITEM } from "../lib/utils.js";
 	import { cn } from "$lib/utils.js";
 	import { goto } from "$app/navigation";
 	import { page } from "$app/state";
@@ -49,11 +49,12 @@
 											></div>
 										{/if}
 										<Sidebar.MenuButton
-											onclick={() =>
-												goto(`/create/${item.name}${page.url.search}`)}
+											onclick={() => goto(itemHref(item.name))}
 											class="data-[active=true]:bg-accent data-[active=true]:border-accent 3xl:fixed:w-full 3xl:fixed:max-w-48 relative h-[26px] w-fit cursor-pointer overflow-visible border border-transparent text-[0.8rem] font-normal after:absolute after:inset-x-0 after:-inset-y-1 after:z-0 after:rounded-md"
-											data-active={item.name === page.params.item}
-											isActive={item.name === page.params.item}
+											data-active={item.name ===
+												(page.url.searchParams.get("item") ?? DEFAULT_ITEM)}
+											isActive={item.name ===
+												(page.url.searchParams.get("item") ?? DEFAULT_ITEM)}
 										>
 											{item.title}
 											<span

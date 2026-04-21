@@ -9,81 +9,68 @@
 	import BaseColorPicker from "./base-color-picker.svelte";
 	import IconLibraryPicker from "./icon-library-picker.svelte";
 	import FontPicker from "./font-picker.svelte";
-	import MenuColorPicker from "./menu-color-picker.svelte";
+	import MenuColorPicker from "./menu-picker.svelte";
 	import MenuAccentPicker from "./menu-accent-picker.svelte";
 	import RandomButton from "./random-button.svelte";
 	import CopyPreset from "./copy-preset.svelte";
 	import OpenPreset from "./open-preset.svelte";
 	import MainMenu from "./main-menu.svelte";
 	import Cta from "$lib/components/cta.svelte";
-	import Ethical from "$lib/components/ethical.svelte";
-	import Separator from "$lib/registry/ui/separator/separator.svelte";
+	import _Ethical from "$lib/components/ethical.svelte";
 	import { FONT_HEADING_OPTIONS, FONTS } from "$lib/fonts.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import SquareTerminal from "@lucide/svelte/icons/square-terminal";
-	import { InitializeProjectCtx } from "./initialize-project-context.svelte.js";
-
-	const initializeProjectCtx = InitializeProjectCtx.get();
+	import ProjectForm from "./project-form.svelte";
 </script>
 
 <Tooltip.Provider>
 	<div
-		class="top-24 right-12 isolate z-10 flex min-h-0 w-full flex-col gap-2 self-start md:w-(--customizer-width)"
+		class="top-24 right-12 isolate z-10 flex min-h-0 w-full flex-col gap-2 md:w-(--customizer-width)"
 	>
 		<Card.Root
-			class="dark bg-card/90 max-h-(--preview-height) min-h-0 w-full gap-0 rounded-2xl shadow-xl backdrop-blur-xl"
+			class="dark bg-card/90 top-24 right-12 isolate z-10 max-h-full min-h-0 w-full self-start rounded-2xl shadow-xl backdrop-blur-xl md:w-(--customizer-width)"
 			size="sm"
 		>
 			<Card.Header
-				class="hidden items-center justify-between gap-2 border-b px-3! group-data-reversed/layout:flex-row-reverse md:flex"
+				class="hidden items-center justify-between gap-2 border-b group-data-reversed/layout:flex-row-reverse md:flex"
 			>
 				<MainMenu />
 			</Card.Header>
 			<Card.Content
-				class="no-scrollbar min-h-0 flex-1 overflow-x-auto overflow-y-hidden p-0 md:overflow-y-auto"
+				class="no-scrollbar min-h-0 flex-1 overflow-x-auto overflow-y-hidden md:overflow-y-auto"
 			>
-				<FieldGroup.Group class="flex-row gap-2.5 p-3 md:flex-col md:gap-3.25">
+				<FieldGroup.Group
+					class="flex-row gap-2.5 py-px **:data-[slot=field-separator]:-mx-4 **:data-[slot=field-separator]:w-auto md:flex-col md:gap-3.25"
+				>
 					<StylePicker />
-				</FieldGroup.Group>
-				<Separator />
-				<FieldGroup.Group class="flex-row gap-2.5 p-3 md:flex-col md:gap-3.25">
+					<FieldGroup.Separator class="hidden md:block" />
 					<BaseColorPicker />
 					<ThemePicker />
 					<ChartColorPicker />
-				</FieldGroup.Group>
-				<Separator />
-				<FieldGroup.Group class="flex-row gap-2.5 p-3 md:flex-col md:gap-3.25">
+					<FieldGroup.Separator class="hidden md:block" />
 					<FontPicker label="Heading" param="fontHeading" fonts={FONT_HEADING_OPTIONS} />
 					<FontPicker label="Font" param="font" fonts={FONTS} />
-				</FieldGroup.Group>
-				<Separator />
-				<FieldGroup.Group class="flex-row gap-2.5 p-3 md:flex-col md:gap-3.25">
+					<FieldGroup.Separator class="hidden md:block" />
 					<IconLibraryPicker />
 					<RadiusPicker />
-				</FieldGroup.Group>
-				<Separator />
-				<FieldGroup.Group class="flex-row gap-2.5 p-3 md:flex-col md:gap-3.25">
+					<FieldGroup.Separator class="hidden md:block" />
 					<MenuColorPicker />
 					<MenuAccentPicker />
 				</FieldGroup.Group>
 			</Card.Content>
-			<Card.Footer class="flex min-w-0 gap-2 px-3! md:flex-col md:**:[button,a]:w-full">
-				<CopyPreset class="flex-1 md:flex-none" />
+			<Card.Footer
+				class="flex min-w-0 gap-2 md:flex-col md:rounded-b-none md:**:[button,a]:w-full"
+			>
+				<CopyPreset class="min-w-0 flex-1 md:flex-none" />
 				<OpenPreset class="max-w-20 min-w-0 flex-1 sm:max-w-none md:flex-none" />
-				<RandomButton />
+				<RandomButton class="max-w-20 min-w-0 flex-1 sm:max-w-none md:flex-none" />
 			</Card.Footer>
-			<Card.Footer class="flex min-w-0 gap-2 px-3! pt-2 md:flex-col md:**:[button,a]:w-full">
-				<Button variant="default" onclick={() => (initializeProjectCtx.open = true)}>
-					<SquareTerminal />
-					Initialize Project
-				</Button>
+			<Card.Footer
+				class="-mt-3 hidden min-w-0 gap-2 md:flex md:flex-col md:**:[button,a]:w-full"
+			>
+				<ProjectForm />
 			</Card.Footer>
 		</Card.Root>
-		<div class="hidden w-full flex-1 flex-col gap-12 md:flex">
-			<Cta />
-		</div>
-		<div class="hidden flex-col gap-12 md:flex">
-			<Ethical />
+		<div class="hidden w-full flex-1 flex-col justify-end gap-2 md:flex">
+			<Cta /><!--<Ethical />-->
 		</div>
 	</div>
 </Tooltip.Provider>

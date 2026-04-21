@@ -38,33 +38,19 @@
 		<Picker.Content
 			side={isMobile.current ? "top" : submenu ? "left" : "right"}
 			align={isMobile.current ? "center" : "start"}
-			class="md:w-64"
 			sideOffset={submenu ? 5 : 20}
 			{submenu}
 		>
 			<Picker.RadioGroup bind:value={designSystem.style}>
 				<Picker.Group>
-					{#each STYLES as style, i (style.name)}
+					{#each STYLES as style (style.name)}
 						<Picker.RadioItem value={style.name} closeOnSelect={false}>
 							<div class="flex items-start gap-2">
-								<div
-									class="flex size-4 translate-y-0.5 items-center justify-center"
-								>
-									<style.icon class="size-4" />
-								</div>
 								<div class="flex flex-col justify-start pointer-coarse:gap-1">
 									<div>{style.title}</div>
-									<div
-										class="text-muted-foreground! text-xs pointer-coarse:text-sm"
-									>
-										{style.description}
-									</div>
 								</div>
 							</div>
 						</Picker.RadioItem>
-						{#if i < STYLES.length - 1}
-							<Picker.Separator />
-						{/if}
 					{/each}
 				</Picker.Group>
 			</Picker.RadioGroup>
