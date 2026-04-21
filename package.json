@@ -11,7 +11,7 @@
 		"build": "pnpm build:docs",
 		"build:cli": "pnpm -r -F \"./packages/**\" build",
 		"build:docs": "pnpm -F docs build",
-		"dev": "concurrently -n packages,apps --kill-others=false -c \"blue,green\" \"pnpm -r -parallel -F './packages/**' dev\" \"wait-on packages/cli/dist/index.mjs && pnpm -r -parallel -F docs dev\"",
+		"dev": "concurrently -n packages,apps --kill-others=false -c \"blue,green\" \"pnpm -r -parallel -F './packages/**' dev\" \"until [ -f packages/cli/dist/index.mjs ]; do sleep 0.5; done && pnpm -r -parallel -F docs dev\"",
 		"dev:cli": "pnpm -F  \"./packages/**\" --parallel --reporter append-only --color dev",
 		"preview": "pnpm -F docs preview",
 		"test": "pnpm -F shadcn-svelte test",
@@ -29,7 +29,7 @@
 		"pnpm": ">=9",
 		"node": ">=20"
 	},
-	"packageManager": "pnpm@10.32.1",
+	"packageManager": "pnpm@10.33.0",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/huntabyte/shadcn-svelte.git"
@@ -38,25 +38,24 @@
 	"type": "module",
 	"devDependencies": {
 		"@changesets/cli": "^2.30.0",
-		"@eslint/compat": "^2.0.3",
+		"@eslint/compat": "^2.0.5",
 		"@eslint/js": "^10.0.1",
 		"@svitejs/changesets-changelog-github-compact": "^1.2.0",
-		"@types/node": "^25.5.0",
+		"@types/node": "^25.6.0",
 		"concurrently": "^9.2.1",
-		"eslint": "^10.0.3",
+		"eslint": "^10.2.0",
 		"eslint-config-prettier": "^10.1.8",
-		"eslint-plugin-svelte": "^3.15.2",
-		"globals": "^17.4.0",
-		"minimatch": "^10.2.4",
-		"prettier": "~3.8.1",
+		"eslint-plugin-svelte": "^3.17.0",
+		"globals": "^17.5.0",
+		"minimatch": "^10.2.5",
+		"prettier": "~3.8.2",
 		"prettier-plugin-svelte": "^3.5.1",
 		"prettier-plugin-tailwindcss": "^0.7.2",
 		"pretty-quick": "^4.2.2",
-		"svelte": "^5.54.0",
-		"typescript": "5.9.3",
-		"typescript-eslint": "^8.57.1",
-		"wait-on": "^9.0.4",
-		"wrangler": "^4.75.0"
+		"svelte": "catalog:",
+		"typescript": "6.0.2",
+		"typescript-eslint": "^8.58.1",
+		"wrangler": "^4.81.1"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [
@@ -65,13 +64,45 @@
 			"sharp",
 			"workerd"
 		],
+		"packageExtensions": {
+			"vaul-svelte": {
+				"dependencies": {
+					"bits-ui": "^2.17.3"
+				}
+			}
+		},
 		"overrides": {
 			"brace-expansion@>=2.0.0 <=2.0.1": ">=2.0.2",
 			"cookie@<0.7.0": ">=0.7.0",
 			"glob@>=10.2.0 <10.5.0": ">=10.5.0",
-			"js-yaml@>=4.0.0 <4.1.1": ">=4.1.1",
+			"valibot@>=0.31.0 <1.2.0": ">=1.2.0",
 			"mdast-util-to-hast@>=13.0.0 <13.2.1": ">=13.2.1",
-			"tar@=7.5.1": ">=7.5.11"
+			"tar@<=7.5.3": ">=7.5.4",
+			"tar@<7.5.7": ">=7.5.7",
+			"ajv@>=8.0.0 <8.18.0": ">=8.18.0",
+			"tar@<7.5.8": ">=7.5.8",
+			"minimatch@<10.2.1": ">=10.2.1",
+			"tar@<=7.5.2": ">=7.5.3",
+			"svelte@<=5.51.4": ">=5.51.5",
+			"svelte@>=5.39.3 <5.51.5": ">=5.51.5",
+			"@sveltejs/kit@>=2.49.0 <=2.52.1": ">=2.52.2",
+			"devalue@<=5.6.2": ">=5.6.3",
+			"rollup@>=4.0.0 <4.59.0": ">=4.59.0",
+			"minimatch@>=10.0.0 <10.2.3": ">=10.2.3",
+			"svelte@>=5.53.0 <5.53.5": ">=5.53.5",
+			"@sveltejs/kit@>=2.49.0 <=2.53.2": ">=2.53.3",
+			"tar@<=7.5.9": ">=7.5.10",
+			"tar@<=7.5.10": ">=7.5.11",
+			"svelte@<=5.53.4": ">=5.53.5",
+			"devalue@<5.6.4": ">=5.6.4",
+			"devalue@<=5.6.3": ">=5.6.4",
+			"flatted@<3.4.0": ">=3.4.0",
+			"undici@>=7.0.0 <7.24.0": ">=7.24.0",
+			"undici@>=7.17.0 <7.24.0": ">=7.24.0",
+			"ajv@<6.14.0": ">=6.14.0"
 		}
+	},
+	"dependencies": {
+		"vite": "catalog:"
 	}
 }
