@@ -3,7 +3,7 @@ title: Tooltip
 description: A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/tooltip
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/tooltip
   doc: https://bits-ui.com/docs/components/tooltip
   api: https://bits-ui.com/docs/components/tooltip#api-reference
 ---
@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -66,9 +72,7 @@ The `Tooltip.Provider` component should be placed once in your root layout, wrap
 
   let { children } = $props();
 </script>
-```
 
-```svelte showLineNumbers
 <Tooltip.Provider>
   {@render children()}
 </Tooltip.Provider>
@@ -99,12 +103,47 @@ You can nest providers to create groups with different settings. Tooltips use th
 </Tooltip.Provider>
 ```
 
----
+## Composition
 
-## Changelog
+Use the following composition to build a `Tooltip`:
 
-### 2025-12 Update tooltip colors
+```text
+Tooltip.Provider
+└── Tooltip.Root
+    ├── Tooltip.Trigger
+    └── Tooltip.Content
+```
 
-We've updated the tooltip colors to use the foreground color for the background and the background color for the foreground.
+## Examples
 
-Replace `bg-primary text-primary-foreground` with `bg-foreground text-background` for `<Tooltip.Content />`.
+### Side
+
+Use the `side` prop to change the position of the tooltip.
+
+<ComponentPreview name="tooltip-side">
+
+<div></div>
+
+</ComponentPreview>
+
+### With Keyboard Shortcut
+
+<ComponentPreview name="tooltip-keyboard-shortcut">
+
+<div></div>
+
+</ComponentPreview>
+
+### Disabled Button
+
+Show a tooltip on a disabled button by wrapping it with a span.
+
+<ComponentPreview name="tooltip-disabled-button">
+
+<div></div>
+
+</ComponentPreview>
+
+## API Reference
+
+See the [Bits UI Tooltip](https://bits-ui.com/docs/components/tooltip#api-reference) documentation.

@@ -3,7 +3,7 @@ title: Button Group
 description: A container that groups related buttons together with consistent styling.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/button-group
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/button-group
 ---
 
 <script>
@@ -59,6 +59,17 @@ Copy and paste the following code into your project.
   <Button>Button 1</Button>
   <Button>Button 2</Button>
 </ButtonGroup.Root>
+```
+
+## Composition
+
+Use the following composition to build a `ButtonGroup`:
+
+```text
+ButtonGroup.Root
+├── Button
+├── ButtonGroup.Separator
+└── ButtonGroup.Text
 ```
 
 ## Accessibility
@@ -182,3 +193,74 @@ Use with a `Popover` component.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+### ButtonGroup.Root
+
+The `ButtonGroup.Root` component serves as a container that groups related buttons together with consistent styling.
+
+| Prop          | Type                         | Default        |
+| ------------- | ---------------------------- | -------------- |
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` |
+
+```svelte
+<ButtonGroup.Root>
+  <Button>Button 1</Button>
+  <Button>Button 2</Button>
+</ButtonGroup.Root>
+```
+
+You can nest multiple button groups to create complex layouts with spacing between them.
+
+```svelte
+<ButtonGroup.Root>
+  <ButtonGroup.Root />
+  <ButtonGroup.Root />
+</ButtonGroup.Root>
+```
+
+### ButtonGroup.Separator
+
+The `ButtonGroup.Separator` component provides visual division between buttons within a group.
+
+| Prop          | Type                         | Default      |
+| ------------- | ---------------------------- | ------------ |
+| `orientation` | `"horizontal" \| "vertical"` | `"vertical"` |
+
+```svelte
+<ButtonGroup.Root>
+  <Button>Button 1</Button>
+  <ButtonGroup.Separator />
+  <Button>Button 2</Button>
+</ButtonGroup.Root>
+```
+
+### ButtonGroup.Text
+
+The `ButtonGroup.Text` component displays text content within a button group.
+
+| Prop    | Type                   | Default |
+| ------- | ---------------------- | ------- |
+| `class` | `string`               | -       |
+| `child` | `Snippet<[{ props }]>` | -       |
+
+```svelte
+<ButtonGroup.Root>
+  <ButtonGroup.Text>Text</ButtonGroup.Text>
+  <Button>Button</Button>
+</ButtonGroup.Root>
+```
+
+Use the `child` snippet to render a custom element as the text, such as a label.
+
+```svelte
+<ButtonGroup.Root>
+  <ButtonGroup.Text>
+    {#snippet child({ props })}
+      <Label {...props} for="name">Text</Label>
+    {/snippet}
+  </ButtonGroup.Text>
+  <Input placeholder="Type something here..." id="name" />
+</ButtonGroup.Root>
+```

@@ -3,7 +3,7 @@ title: Drawer
 description: A drawer component for Svelte.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/drawer
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/drawer
   doc: https://github.com/huntabyte/vaul-svelte
 ---
 
@@ -55,6 +55,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -64,6 +70,7 @@ Copy and paste the following code into your project.
 ```svelte showLineNumbers
 <script lang="ts">
   import * as Drawer from "$lib/components/ui/drawer/index.js";
+  import { Button } from "$lib/components/ui/button/index.js";
 </script>
 ```
 
@@ -83,7 +90,41 @@ Copy and paste the following code into your project.
 </Drawer.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `Drawer`:
+
+```text
+Drawer.Root
+├── Drawer.Trigger
+└── Drawer.Content
+    ├── Drawer.Header
+    │   ├── Drawer.Title
+    │   └── Drawer.Description
+    └── Drawer.Footer
+```
+
 ## Examples
+
+### Scrollable Content
+
+Keep actions visible while the content scrolls.
+
+<ComponentPreview name="drawer-scrollable-content">
+
+<div></div>
+
+</ComponentPreview>
+
+### Sides
+
+Use the `direction` prop to set the side of the drawer. Available options are `top`, `right`, `bottom`, and `left`.
+
+<ComponentPreview name="drawer-sides">
+
+<div></div>
+
+</ComponentPreview>
 
 ### Responsive Dialog
 
@@ -94,3 +135,7 @@ You can combine the `Dialog` and `Drawer` components to create a responsive dial
 <div></div>
 
 </ComponentPreview>
+
+### API Reference
+
+See the [Vaul Svelte documentation](https://github.com/huntabyte/vaul-svelte?tab=readme-ov-file#api-reference) for the full API reference.

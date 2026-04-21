@@ -3,7 +3,7 @@ title: Sheet
 description: Extends the Dialog component to display content that complements the main content of the screen.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/sheet
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/sheet
   doc: https://bits-ui.com/docs/components/dialog
   api: https://bits-ui.com/docs/components/dialog#api-reference
 ---
@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -79,16 +85,43 @@ Copy and paste the following code into your project.
 </Sheet.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `Sheet`:
+
+```text
+Sheet.Root
+├── Sheet.Trigger
+└── Sheet.Content
+    ├── Sheet.Header
+    │   ├── Sheet.Title
+    │   └── Sheet.Description
+    └── Sheet.Footer
+```
+
 ## Examples
 
 ### Side
 
-Pass the `side` property to `<Sheet.Content />` to indicate the edge of the screen where the component will appear. The values can be `top`, `right`, `bottom` or `left`.
+Use the `side` prop on `Sheet.Content` to set the edge of the screen where the sheet appears. Values are `top`, `right`, `bottom`, or `left`.
 
-### Size
+<ComponentPreview name="sheet-side">
 
-You can adjust the size of the sheet using CSS classes:
+<div></div>
 
+</ComponentPreview>
+
+### No Close Button
+
+Use `showCloseButton={false}` on `Sheet.Content` to hide the close button.
+
+<ComponentPreview name="sheet-no-close-button">
+
+<div></div>
+
+</ComponentPreview>
+
+<!--
 ```svelte showLineNumbers {3}
 <Sheet.Root>
   <Sheet.Trigger>Open</Sheet.Trigger>
@@ -102,4 +135,8 @@ You can adjust the size of the sheet using CSS classes:
     </Sheet.Header>
   </Sheet.Content>
 </Sheet.Root>
-```
+```-->
+
+## API Reference
+
+See the [Bits UI Dialog](https://bits-ui.com/docs/components/dialog#api-reference) documentation.

@@ -3,7 +3,7 @@ title: Input OTP
 description: Accessible one-time password component with copy paste functionality.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/input-otp
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/input-otp
   doc: https://bits-ui.com/docs/components/pin-input
   api: https://bits-ui.com/docs/components/pin-input#api-reference
 ---
@@ -56,6 +56,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -86,11 +92,30 @@ Copy and paste the following code into your project.
 </InputOTP.Root>
 ```
 
-## Examples
+## Composition
 
-### Pattern
+Use the following composition to build an `InputOTP`:
 
-Use the `pattern` prop to define a custom pattern for the OTP input.
+```text
+InputOTP.Root
+├── InputOTP.Group
+│   ├── InputOTP.Slot
+│   ├── InputOTP.Slot
+│   └── InputOTP.Slot
+├── InputOTP.Separator
+├── InputOTP.Group
+│   ├── InputOTP.Slot
+│   ├── InputOTP.Slot
+│   └── InputOTP.Slot
+├── InputOTP.Separator
+└── InputOTP.Group
+    ├── InputOTP.Slot
+    └── InputOTP.Slot
+```
+
+## Pattern
+
+Use the `pattern` prop to restrict input to a specific pattern. The `REGEXP_ONLY_DIGITS` constant can be imported from `bits-ui`.
 
 <ComponentPreview name="input-otp-pattern">
 
@@ -98,16 +123,7 @@ Use the `pattern` prop to define a custom pattern for the OTP input.
 
 </ComponentPreview>
 
-```svelte showLineNumbers {3,6}
-<script lang="ts">
-  import * as InputOTP from "$lib/components/ui/input-otp/index.js";
-  import { REGEXP_ONLY_DIGITS_AND_CHARS } from "bits-ui";
-</script>
-
-<InputOTP.Root maxlength={6} pattern={REGEXP_ONLY_DIGITS_AND_CHARS}>
-  <!-- ... -->
-</InputOTP.Root>
-```
+## Examples
 
 ### Separator
 
@@ -119,29 +135,19 @@ You can use the `InputOTP.Separator` component to add a separator between the gr
 
 </ComponentPreview>
 
-```svelte showLineNumbers {12}
-<script lang="ts">
-  import * as InputOTP from "$lib/components/ui/input-otp/index.js";
-</script>
+### Disabled
 
-<InputOTP.Root maxlength={4}>
-  {#snippet children({ cells })}
-    <InputOTP.Group>
-      {#each cells.slice(0, 2) as cell}
-        <InputOTP.Slot {cell} />
-      {/each}
-    </InputOTP.Group>
-    <InputOTP.Separator />
-    <InputOTP.Group>
-      {#each cells.slice(2, 4) as cell}
-        <InputOTP.Slot {cell} />
-      {/each}
-    </InputOTP.Group>
-  {/snippet}
-</InputOTP.Root>
-```
+Use the `disabled` prop to prevent user interaction with the input.
+
+<ComponentPreview name="input-otp-disabled">
+
+<div></div>
+
+</ComponentPreview>
 
 ### Controlled
+
+Use `bind:value` to control the input value programmatically.
 
 <ComponentPreview name="input-otp-controlled">
 
@@ -149,10 +155,46 @@ You can use the `InputOTP.Separator` component to add a separator between the gr
 
 </ComponentPreview>
 
-### Form
+### Invalid
 
-<ComponentPreview name="input-otp-form">
+Use the `aria-invalid` attribute on slots to display an error state.
+
+<ComponentPreview name="input-otp-invalid">
 
 <div></div>
 
 </ComponentPreview>
+
+### Four Digits
+
+A common pattern for PIN codes using a 4-digit numeric input.
+
+<ComponentPreview name="input-otp-four-digits">
+
+<div></div>
+
+</ComponentPreview>
+
+### Alphanumeric
+
+Use the `REGEXP_ONLY_DIGITS_AND_CHARS` pattern to accept both letters and numbers.
+
+<ComponentPreview name="input-otp-alphanumeric">
+
+<div></div>
+
+</ComponentPreview>
+
+### Form
+
+Use the input in a form with a label and description.
+
+<ComponentPreview name="input-otp-form" previewClassName="h-[30rem]">
+
+<div></div>
+
+</ComponentPreview>
+
+## API Reference
+
+See the [Bits UI](https://bits-ui.com/docs/components/pin-input#api-reference) documentation for more information.

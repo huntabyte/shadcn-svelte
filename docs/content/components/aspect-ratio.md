@@ -3,7 +3,7 @@ title: Aspect Ratio
 description: Displays content within a desired ratio.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/aspect-ratio
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/aspect-ratio
   doc: https://bits-ui.com/docs/components/aspect-ratio
   api: https://bits-ui.com/docs/components/aspect-ratio#api-reference
 ---
@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -71,3 +77,39 @@ Copy and paste the following code into your project.
   </AspectRatio>
 </div>
 ```
+
+## Examples
+
+### Square
+
+A square aspect ratio component using the `ratio={1 / 1}` prop. This is useful for displaying images in a square format.
+
+<ComponentPreview name="aspect-ratio-square">
+
+<div></div>
+
+</ComponentPreview>
+
+### Portrait
+
+A portrait aspect ratio component using the `ratio={9 / 16}` prop. This is useful for displaying images in a portrait format.
+
+<ComponentPreview name="aspect-ratio-portrait" previewClassName="h-96">
+
+<div></div>
+
+</ComponentPreview>
+
+## API Reference
+
+### AspectRatio
+
+The `AspectRatio` component displays content within a desired ratio.
+
+| Prop       | Type      | Default |
+| ---------- | --------- | ------- |
+| `ratio`    | `number`  | `1`     |
+| `children` | `Snippet` | -       |
+| `class`    | `string`  | -       |
+
+For more information, see the [Bits UI](https://bits-ui.com/docs/components/aspect-ratio#api-reference) documentation.
