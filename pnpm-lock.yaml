@@ -134,9 +134,6 @@ importers:
       '@types/lodash':
         specifier: ^4.17.24
         version: 4.17.24
-      agent-browser:
-        specifier: ^0.25.4
-        version: 0.25.4
       lodash:
         specifier: ^4.18.1
         version: 4.18.1
@@ -2996,10 +2993,6 @@ packages:
   acorn@8.16.0:
     resolution: {integrity: sha512-UVJyE9MttOsBQIDKw1skb9nAwQuR5wuGD3+82K6JgJlm/Y+KI92oNsMNGZCYdDsVtRHSak0pcV5Dno5+4jh9sw==}
     engines: {node: '>=0.4.0'}
-    hasBin: true
-
-  agent-browser@0.25.4:
-    resolution: {integrity: sha512-vl4tzDAk5+pJ2g8eMWWzZOLJ2yevJDN3YQ1gcSdN3GKPI0RwNr+T/2PxqSxsipiREu0oid2yxFJIoQ6NMrq/fQ==}
     hasBin: true
 
   ajv@6.14.0:
@@ -8216,8 +8209,6 @@ snapshots:
   acorn@8.15.0: {}
 
   acorn@8.16.0: {}
-
-  agent-browser@0.25.4: {}
 
   ajv@6.14.0:
     dependencies:
