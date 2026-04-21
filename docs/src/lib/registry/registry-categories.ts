@@ -24,7 +24,7 @@ export const registryCategories = [
 		slug: "sign-up",
 		hidden: false,
 	},
-	{
+	/*{
 		name: "OTP",
 		slug: "otp",
 		hidden: false,
@@ -33,5 +33,5 @@ export const registryCategories = [
 		name: "Calendar",
 		slug: "calendar",
 		hidden: false,
-	},
+	},*/
 ];
