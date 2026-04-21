@@ -56,6 +56,7 @@ export default defineConfig({
 	},
 	build: {
 		// minify: false,
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore rolldownOptions is vite 8+ only
 		rolldownOptions: {
 			output: {
