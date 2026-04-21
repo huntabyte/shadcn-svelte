@@ -3,7 +3,7 @@ title: Carousel
 description: A carousel with motion and swipe built using Embla.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/carousel
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/carousel
   doc: https://www.embla-carousel.com/get-started/svelte
   api: https://www.embla-carousel.com/api
 ---
@@ -56,6 +56,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -80,13 +86,25 @@ Copy and paste the following code into your project.
 </Carousel.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `Carousel`:
+
+```text
+Carousel.Root
+├── Carousel.Content
+│   └── Carousel.Item
+├── Carousel.Previous
+└── Carousel.Next
+```
+
 ## Examples
 
 ### Sizes
 
 To set the size of the items, you can use the `basis` utility class on the `<Carousel.Item />`.
 
-<ComponentPreview name="carousel-size" previewClassName="h-80 sm:h-72">
+<ComponentPreview name="carousel-size">
 
 <div></div>
 
@@ -118,7 +136,7 @@ To set the size of the items, you can use the `basis` utility class on the `<Car
 
 To set the spacing between the items, we use a `ps-[VALUE]` utility on the `<Carousel.Item />` and a negative `-ms-[VALUE]` on the `<Carousel.Content />`.
 
-<ComponentPreview name="carousel-spacing" previewClassName="h-80 sm:h-72">
+<ComponentPreview name="carousel-spacing">
 
 <div></div>
 
@@ -187,7 +205,7 @@ You can pass options to the carousel using the `opts` prop. See the [Embla Carou
 
 Use reactive state and the `setApi` callback to get an instance of the carousel API.
 
-<ComponentPreview name="carousel-api" previewClassName="h-[32rem]">
+<ComponentPreview name="carousel-api" previewClassName="sm:h-[32rem]">
 
 <div></div>
 
@@ -223,7 +241,7 @@ Use reactive state and the `setApi` callback to get an instance of the carousel 
 
 ## Events
 
-You can listen to events using the api instance from `bind:api`.
+You can listen to events using the api instance from the `setApi` callback.
 
 ```svelte showLineNumbers {2,5,7-13,16}
 <script lang="ts">
@@ -271,10 +289,12 @@ You can use the `plugins` prop to add plugins to the carousel.
 </Carousel.Root>
 ```
 
-<ComponentPreview name="carousel-plugin" previewClassName="h-80 sm:h-[32rem]">
+<ComponentPreview name="carousel-plugin" previewClassName="sm:h-[32rem]">
 
 <div></div>
 
 </ComponentPreview>
 
-See the [Embla Carousel docs](https://www.embla-carousel.com/api/plugins/) for more information on using plugins.
+## API Reference
+
+See the [Embla Carousel docs](https://www.embla-carousel.com/api) for more information on props and plugins.

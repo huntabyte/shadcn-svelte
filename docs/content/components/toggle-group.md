@@ -3,7 +3,7 @@ title: Toggle Group
 description: A set of two-state buttons that can be toggled on or off.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/toggle-group
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/toggle-group
   doc: https://bits-ui.com/docs/components/toggle-group
   api: https://bits-ui.com/docs/components/toggle-group#api-reference
 ---
@@ -20,7 +20,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="toggle-group-spacing">
+<ComponentPreview name="toggle-group-demo">
 
 <div></div>
 
@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -72,9 +78,21 @@ Copy and paste the following code into your project.
 </ToggleGroup.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `ToggleGroup`:
+
+```text
+ToggleGroup.Root
+├── ToggleGroup.Item
+└── ToggleGroup.Item
+```
+
 ## Examples
 
 ### Outline
+
+Use `variant="outline"` for an outline style.
 
 <ComponentPreview name="toggle-group-outline">
 
@@ -82,25 +100,31 @@ Copy and paste the following code into your project.
 
 </ComponentPreview>
 
-### Single
+### Sizes
 
-<ComponentPreview name="toggle-group-single">
+Use the `size` prop to change the size of the toggle group.
 
-<div></div>
-
-</ComponentPreview>
-
-### Small
-
-<ComponentPreview name="toggle-group-sm">
+<ComponentPreview name="toggle-group-sizes">
 
 <div></div>
 
 </ComponentPreview>
 
-### Large
+### Spacing
 
-<ComponentPreview name="toggle-group-lg">
+Use `spacing` to add spacing between toggle group items.
+
+<ComponentPreview name="toggle-group-spacing">
+
+<div></div>
+
+</ComponentPreview>
+
+### Vertical
+
+Use `orientation="vertical"` for vertical toggle groups.
+
+<ComponentPreview name="toggle-group-vertical">
 
 <div></div>
 
@@ -114,12 +138,16 @@ Copy and paste the following code into your project.
 
 </ComponentPreview>
 
-### Spacing
+### Custom
 
-Use `spacing={2}` to add spacing between toggle group items.
+A custom toggle group example.
 
-<ComponentPreview name="toggle-group-spacing">
+<ComponentPreview name="toggle-group-font-weight-selector" previewClassName="*:data-[slot=field]:max-w-xs">
 
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+See the [Bits UI Toggle Group](https://bits-ui.com/docs/components/toggle-group#api-reference) documentation.
