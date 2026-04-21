@@ -1,0 +1,23 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "otp-04",
+	"type": "registry:block",
+	"registryDependencies": [
+		"button",
+		"card",
+		"field",
+		"input-otp"
+	],
+	"files": [
+		{
+			"content": "<script>\n\timport OTPForm from \"$COMPONENTS$/otp-form.svelte\";\n</script>\n\n<div class=\"flex min-h-svh w-full items-center justify-center p-6 md:p-10\">\n\t<div class=\"w-full max-w-sm md:max-w-3xl\">\n\t\t<OTPForm />\n\t</div>\n</div>\n",
+			"type": "registry:page",
+			"target": "otp-04/+page.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn } from \"$UTILS$.js\";\n\timport { Button } from \"$UI$/button/index.js\";\n\timport * as Card from \"$UI$/card/index.js\";\n\timport * as Field from \"$UI$/field/index.js\";\n\timport * as InputOTP from \"$UI$/input-otp/index.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet { class: className, ...restProps }: HTMLAttributes<HTMLDivElement> = $props();\n</script>\n\n<div class={cn(\"flex flex-col gap-6 md:min-h-[450px]\", className)} {...restProps}>\n\t<Card.Root class=\"flex-1 overflow-hidden p-0\">\n\t\t<Card.Content class=\"grid flex-1 p-0 md:grid-cols-2\">\n\t\t\t<form class=\"flex flex-col items-center justify-center p-6 md:p-8\">\n\t\t\t\t<Field.Group>\n\t\t\t\t\t<Field.Field class=\"items-center text-center\">\n\t\t\t\t\t\t<h1 class=\"text-2xl font-bold\">Enter verification code</h1>\n\t\t\t\t\t\t<p class=\"text-muted-foreground text-sm text-balance\">\n\t\t\t\t\t\t\tWe sent a 6-digit code to your email\n\t\t\t\t\t\t</p>\n\t\t\t\t\t</Field.Field>\n\t\t\t\t\t<Field.Field>\n\t\t\t\t\t\t<Field.Label for=\"otp\" class=\"sr-only\">Verification code</Field.Label>\n\t\t\t\t\t\t<InputOTP.Root maxlength={6} id=\"otp\" required class=\"gap-4\">\n\t\t\t\t\t\t\t{#snippet children({ cells })}\n\t\t\t\t\t\t\t\t<InputOTP.Group>\n\t\t\t\t\t\t\t\t\t{#each cells.slice(0, 3) as cell (cell)}\n\t\t\t\t\t\t\t\t\t\t<InputOTP.Slot {cell} />\n\t\t\t\t\t\t\t\t\t{/each}\n\t\t\t\t\t\t\t\t</InputOTP.Group>\n\t\t\t\t\t\t\t\t<InputOTP.Separator />\n\t\t\t\t\t\t\t\t<InputOTP.Group>\n\t\t\t\t\t\t\t\t\t{#each cells.slice(3, 6) as cell (cell)}\n\t\t\t\t\t\t\t\t\t\t<InputOTP.Slot {cell} />\n\t\t\t\t\t\t\t\t\t{/each}\n\t\t\t\t\t\t\t\t</InputOTP.Group>\n\t\t\t\t\t\t\t{/snippet}\n\t\t\t\t\t\t</InputOTP.Root>\n\t\t\t\t\t\t<Field.Description class=\"text-center\">\n\t\t\t\t\t\t\tEnter the 6-digit code sent to your email.\n\t\t\t\t\t\t</Field.Description>\n\t\t\t\t\t</Field.Field>\n\t\t\t\t\t<Field.Field>\n\t\t\t\t\t\t<Button type=\"submit\">Verify</Button>\n\t\t\t\t\t\t<Field.Description class=\"text-center\">\n\t\t\t\t\t\t\tDidn't receive the code? <a href=\"#/\">Resend</a>\n\t\t\t\t\t\t</Field.Description>\n\t\t\t\t\t</Field.Field>\n\t\t\t\t</Field.Group>\n\t\t\t</form>\n\t\t\t<div class=\"bg-muted relative hidden md:block\">\n\t\t\t\t<img\n\t\t\t\t\tsrc=\"/placeholder.svg\"\n\t\t\t\t\talt=\"\"\n\t\t\t\t\tclass=\"absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale\"\n\t\t\t\t/>\n\t\t\t</div>\n\t\t</Card.Content>\n\t</Card.Root>\n\t<Field.Description class=\"text-center\">\n\t\tBy clicking continue, you agree to our <a href=\"#/\">Terms of Service</a>\n\t\tand <a href=\"#/\">Privacy Policy</a>.\n\t</Field.Description>\n</div>\n",
+			"type": "registry:component",
+			"target": "otp-form.svelte"
+		}
+	]
+}

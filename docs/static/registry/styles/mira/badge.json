@@ -1,0 +1,20 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "badge",
+	"type": "registry:ui",
+	"devDependencies": [
+		"tailwind-variants@^3.2.2"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\" module>\n\timport { type VariantProps, tv } from \"tailwind-variants\";\n\n\texport const badgeVariants = tv({\n\t\tbase: \"h-5 gap-1 rounded-full border border-transparent px-2 py-0.5 text-[0.625rem] font-medium transition-all has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&>svg]:size-2.5! focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive group/badge inline-flex w-fit shrink-0 items-center justify-center overflow-hidden whitespace-nowrap transition-colors focus-visible:ring-[3px] [&>svg]:pointer-events-none\",\n\t\tvariants: {\n\t\t\tvariant: {\n\t\t\t\tdefault: \"bg-primary text-primary-foreground [a]:hover:bg-primary/80\",\n\t\t\t\tsecondary: \"bg-secondary text-secondary-foreground [a]:hover:bg-secondary/80\",\n\t\t\t\tdestructive: \"bg-destructive/10 [a]:hover:bg-destructive/20 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 text-destructive dark:bg-destructive/20\",\n\t\t\t\toutline: \"border-border text-foreground [a]:hover:bg-muted [a]:hover:text-muted-foreground bg-input/20 dark:bg-input/30\",\n\t\t\t\tghost: \"hover:bg-muted hover:text-muted-foreground dark:hover:bg-muted/50\",\n\t\t\t\tlink: \"text-primary underline-offset-4 hover:underline\",\n\t\t\t},\n\t\t},\n\t\tdefaultVariants: {\n\t\t\tvariant: \"default\",\n\t\t},\n\t});\n\n\texport type BadgeVariant = VariantProps<typeof badgeVariants>[\"variant\"];\n</script>\n\n<script lang=\"ts\">\n\timport type { HTMLAnchorAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\thref,\n\t\tclass: className,\n\t\tvariant = \"default\",\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAnchorAttributes> & {\n\t\tvariant?: BadgeVariant;\n\t} = $props();\n</script>\n\n<svelte:element\n\tthis={href ? \"a\" : \"span\"}\n\tbind:this={ref}\n\tdata-slot=\"badge\"\n\t{href}\n\tclass={cn(badgeVariants({ variant }), className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</svelte:element>\n",
+			"type": "registry:file",
+			"target": "badge/badge.svelte"
+		},
+		{
+			"content": "export { default as Badge } from \"./badge.svelte\";\nexport { badgeVariants, type BadgeVariant } from \"./badge.svelte\";\n",
+			"type": "registry:file",
+			"target": "badge/index.ts"
+		}
+	]
+}

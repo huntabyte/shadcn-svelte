@@ -1,0 +1,18 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "calendar-03",
+	"type": "registry:block",
+	"devDependencies": [
+		"@internationalized/date@^3.12.0"
+	],
+	"registryDependencies": [
+		"calendar"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport Calendar from \"$UI$/calendar/calendar.svelte\";\n\timport { CalendarDate, type DateValue } from \"@internationalized/date\";\n\n\tlet value = $state<CalendarDate[]>([\n\t\tnew CalendarDate(2025, 6, 12),\n\t\tnew CalendarDate(2025, 7, 24),\n\t]);\n\t// svelte-ignore state_referenced_locally\n\tlet placeholder = $state<DateValue>(value[0]);\n</script>\n\n<Calendar\n\ttype=\"multiple\"\n\tbind:value\n\tbind:placeholder\n\tmaxDays={5}\n\tclass=\"rounded-lg border shadow-sm\"\n\tnumberOfMonths={2}\n/>\n",
+			"type": "registry:component",
+			"target": "calendar-03.svelte"
+		}
+	]
+}

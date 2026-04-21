@@ -1,0 +1,33 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "button-group",
+	"type": "registry:ui",
+	"devDependencies": [
+		"tailwind-variants@^3.2.2"
+	],
+	"registryDependencies": [
+		"separator"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn } from \"$UTILS$.js\";\n\timport type { ComponentProps } from \"svelte\";\n\timport { Separator } from \"$UI$/separator/index.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\torientation = \"vertical\",\n\t\t...restProps\n\t}: ComponentProps<typeof Separator> = $props();\n</script>\n\n<Separator\n\tbind:ref\n\tdata-slot=\"button-group-separator\"\n\t{orientation}\n\tclass={cn(\n\t\t\"bg-input relative self-stretch data-[orientation=horizontal]:mx-px data-[orientation=horizontal]:w-auto data-[orientation=vertical]:my-px data-[orientation=vertical]:h-auto\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "button-group/button-group-separator.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { Snippet } from \"svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchild,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {\n\t\tchild?: Snippet<[{ props: Record<string, unknown> }]>;\n\t} = $props();\n\n\tconst mergedProps = $derived({\n\t\t...restProps,\n\t\tclass: cn(\"border-b-input group-has-[>[data-variant=outline]]/button-group:border-border gap-2 border border-transparent bg-transparent px-2.5 text-xs font-semibold uppercase [&_svg:not([class*='size-'])]:size-3.5 flex items-center [&_svg]:pointer-events-none\", className),\n\t\t\"data-slot\": \"button-group-text\",\n\t});\n</script>\n\n{#if child}\n\t{@render child({ props: mergedProps })}\n{:else}\n\t<div bind:this={ref} {...mergedProps}>\n\t\t{@render mergedProps.children?.()}\n\t</div>\n{/if}\n",
+			"type": "registry:file",
+			"target": "button-group/button-group-text.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\" module>\n\timport { tv, type VariantProps } from \"tailwind-variants\";\n\n\texport const buttonGroupVariants = tv({\n\t\tbase: \"has-[>[data-variant=outline]]:[&>input]:border-border has-[>[data-variant=outline]]:[&>input:focus-visible]:border-ring has-[>[data-variant=outline]]:*:data-[slot=input-group]:border-border has-[>[data-variant=outline]]:[&>[data-slot=input-group]:has(:focus-visible)]:border-ring has-[>[data-variant=outline]]:*:data-[slot=select-trigger]:border-border has-[>[data-variant=outline]]:[&>[data-slot=select-trigger]:focus-visible]:border-ring has-[>[data-slot=button-group]]:gap-2 *:data-[slot=input]:px-4 has-[>[data-variant=outline]]:*:data-[slot=input-group]:px-2.5 has-[>[data-variant=outline]]:*:[[role=combobox]]:px-2.5 has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-none flex w-fit items-stretch [&>*]:focus-visible:relative [&>*]:focus-visible:z-10 [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1\",\n\t\tvariants: {\n\t\t\torientation: {\n\t\t\t\thorizontal:\n\t\t\t\t\t\"[&>[data-slot]:not(:has(~[data-slot]))]:rounded-none! [&>[data-slot]]:rounded-r-none [&>[data-slot]~[data-slot]]:rounded-l-none [&>[data-slot]~[data-slot]]:border-l-0\",\n\t\t\t\tvertical:\n\t\t\t\t\t\"[&>[data-slot]:not(:has(~[data-slot]))]:rounded-none! flex-col [&>[data-slot]]:rounded-b-none [&>[data-slot]~[data-slot]]:rounded-t-none [&>[data-slot]~[data-slot]]:border-t-0\",\n\t\t\t},\n\t\t},\n\t\tdefaultVariants: {\n\t\t\torientation: \"horizontal\",\n\t\t},\n\t});\n\n\texport type ButtonGroupOrientation = VariantProps<typeof buttonGroupVariants>[\"orientation\"];\n</script>\n\n<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\torientation = \"horizontal\",\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {\n\t\torientation?: ButtonGroupOrientation;\n\t} = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\trole=\"group\"\n\tdata-slot=\"button-group\"\n\tdata-orientation={orientation}\n\tclass={cn(buttonGroupVariants({ orientation }), className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "button-group/button-group.svelte"
+		},
+		{
+			"content": "import Root, { buttonGroupVariants, type ButtonGroupOrientation } from \"./button-group.svelte\";\nimport Text from \"./button-group-text.svelte\";\nimport Separator from \"./button-group-separator.svelte\";\n\nexport {\n\tRoot,\n\tText,\n\tSeparator,\n\tbuttonGroupVariants,\n\ttype ButtonGroupOrientation,\n\t//\n\tRoot as ButtonGroup,\n\tText as ButtonGroupText,\n\tSeparator as ButtonGroupSeparator,\n};\n",
+			"type": "registry:file",
+			"target": "button-group/index.ts"
+		}
+	]
+}
