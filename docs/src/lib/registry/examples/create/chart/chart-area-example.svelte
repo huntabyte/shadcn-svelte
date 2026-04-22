@@ -28,7 +28,7 @@
 	<Card.Root class="w-full">
 		<Card.Header>
 			<Card.Title>Area Chart</Card.Title>
-			<Card.Description>Showing total visitors for the last 6 months</Card.Description>
+			<Card.Description>January - June 2024</Card.Description>
 		</Card.Header>
 		<Card.Content>
 			<Chart.Container config={areaChartConfig}>
@@ -77,7 +77,7 @@
 						/>
 					</div>
 					<div class="text-muted-foreground flex items-center gap-2 leading-none">
-						January - June 2024
+						Showing total visitors for the last 6 months
 					</div>
 				</div>
 			</div>

@@ -6,7 +6,7 @@
 
 	import { MediaQuery } from "svelte/reactivity";
 
-	import type { HighlightedBlock } from "../../routes/api/block/[block]/+server.js";
+	import type { HighlightedBlock } from "$lib/types/block.js";
 
 	type ComponentCodeViewerContextType = {
 		item: HighlightedBlock;

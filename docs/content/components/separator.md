@@ -3,7 +3,7 @@ title: Separator
 description: Visually or semantically separates content.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/separator
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/separator
   doc: https://bits-ui.com/docs/components/separator
   api: https://bits-ui.com/docs/components/separator#api-reference
 ---
@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -67,3 +73,39 @@ Copy and paste the following code into your project.
 ```svelte showLineNumbers
 <Separator />
 ```
+
+## Examples
+
+### Vertical
+
+Use `orientation="vertical"` for a vertical separator.
+
+<ComponentPreview name="separator-vertical">
+
+<div></div>
+
+</ComponentPreview>
+
+### Menu
+
+Vertical separators between menu items with descriptions.
+
+<ComponentPreview name="separator-menu">
+
+<div></div>
+
+</ComponentPreview>
+
+### List
+
+Horizontal separators between list items.
+
+<ComponentPreview name="separator-list">
+
+<div></div>
+
+</ComponentPreview>
+
+## API Reference
+
+See the [Bits UI Separator](https://bits-ui.com/docs/components/separator#api-reference) documentation.

@@ -11,7 +11,7 @@
 	import RadarIcon from "@lucide/svelte/icons/radar";
 	import ChartCopyButton from "./chart-copy-button.svelte";
 	import type { HTMLAttributes } from "svelte/elements";
-	import type { HighlightedBlock } from "../../routes/api/block/[block]/+server.js";
+	import type { HighlightedBlock } from "$lib/types/block.js";
 
 	let {
 		chart,

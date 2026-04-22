@@ -11,12 +11,7 @@
 	}: WithoutChildrenOrChild<CalendarPrimitive.YearSelectProps> = $props();
 </script>
 
-<span
-	class={cn(
-		"has-focus:border-ring border-input has-focus:ring-ring/50 relative flex rounded-md border shadow-xs has-focus:ring-[3px]",
-		className
-	)}
->
+<span class={cn("relative flex rounded-md", className)}>
 	<CalendarPrimitive.YearSelect
 		bind:ref
 		class="dark:bg-popover dark:text-popover-foreground absolute inset-0 opacity-0"

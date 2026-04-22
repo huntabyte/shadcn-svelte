@@ -4,7 +4,6 @@
 	import { scaleBand } from "d3-scale";
 	import { BarChart, Highlight } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
-	import { cubicInOut } from "svelte/easing";
 
 	const chartData = [
 		{ month: "January", desktop: 186, mobile: 80 },
@@ -51,7 +50,7 @@
 				props={{
 					bars: {
 						stroke: "none",
-						motion: { type: "tween", duration: 500, easing: cubicInOut },
+						motion: Chart.defaultBarMotion,
 					},
 					highlight: { area: false },
 					xAxis: { format: (d) => d.slice(0, 3) },

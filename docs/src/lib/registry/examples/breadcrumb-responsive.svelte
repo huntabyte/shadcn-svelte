@@ -85,13 +85,15 @@
 					<Breadcrumb.Link href={item.href} class="max-w-20 truncate md:max-w-none">
 						{item.label}
 					</Breadcrumb.Link>
-					<Breadcrumb.Separator />
 				{:else}
 					<Breadcrumb.Page class="max-w-20 truncate md:max-w-none">
 						{item.label}
 					</Breadcrumb.Page>
 				{/if}
 			</Breadcrumb.Item>
+			{#if item.href}
+				<Breadcrumb.Separator />
+			{/if}
 		{/each}
 	</Breadcrumb.List>
 </Breadcrumb.Root>

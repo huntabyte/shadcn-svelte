@@ -3,7 +3,7 @@ title: Breadcrumb
 description: Displays the path to the current resource using a hierarchy of links.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/breadcrumb
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/breadcrumb
 ---
 
 <script>
@@ -18,7 +18,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="breadcrumb-demo">
+<ComponentPreview name="breadcrumb-demo" previewClassName="p-2">
 
 <div></div>
 
@@ -41,6 +41,12 @@ Copy and paste the following code into your project.
 {#if viewerData}
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
+
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
 
 </Steps>
 {/snippet}
@@ -72,40 +78,44 @@ Copy and paste the following code into your project.
 </Breadcrumb.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `Breadcrumb`:
+
+```text
+Breadcrumb.Root
+└── Breadcrumb.List
+    ├── Breadcrumb.Item
+    │   └── Breadcrumb.Link
+    ├── Breadcrumb.Separator
+    ├── Breadcrumb.Item
+    │   └── Breadcrumb.Link
+    ├── Breadcrumb.Separator
+    └── Breadcrumb.Item
+        └── Breadcrumb.Page
+```
+
+Use `Breadcrumb.Ellipsis` inside a `Breadcrumb.Item` to represent collapsed items.
+
 ## Examples
+
+### Basic
+
+<ComponentPreview name="breadcrumb-basic">
+
+<div></div>
+
+</ComponentPreview>
 
 ### Custom separator
 
-Use a custom component in the `<slot>` of `<Breadcrumb.Separator />` to create a custom separator.
+Pass a custom component as children of `<Breadcrumb.Separator />` to create a custom separator.
 
 <ComponentPreview name="breadcrumb-separator">
 
 <div></div>
 
 </ComponentPreview>
-
-```svelte showLineNumbers {2,11-13}
-<script lang="ts">
-  import SlashIcon from "@lucide/svelte/icons/slash";
-  import * as Breadcrumb from "$lib/components/ui/breadcrumb/index.js";
-</script>
-
-<Breadcrumb.Root>
-  <Breadcrumb.List>
-    <Breadcrumb.Item>
-      <Breadcrumb.Link href="/">Home</Breadcrumb.Link>
-    </Breadcrumb.Item>
-    <Breadcrumb.Separator>
-      <SlashIcon />
-    </Breadcrumb.Separator>
-    <Breadcrumb.Item>
-      <Breadcrumb.Link href="/components">Components</Breadcrumb.Link>
-    </Breadcrumb.Item>
-  </Breadcrumb.List>
-</Breadcrumb.Root>
-```
-
----
 
 ### Dropdown
 
@@ -117,60 +127,15 @@ You can compose `<Breadcrumb.Item />` with a `<DropdownMenu />` to create a drop
 
 </ComponentPreview>
 
-```svelte showLineNumbers {2-5,11-22}
-<script lang="ts">
-  import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
-  import SlashIcon from "@lucide/svelte/icons/slash";
-  import * as Breadcrumb from "$lib/components/ui/breadcrumb/index.js";
-  import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
-</script>
-
-<!-- ... -->
-
-<Breadcrumb.Item>
-  <DropdownMenu.Root>
-    <DropdownMenu.Trigger class="flex items-center gap-1">
-      Components
-      <ChevronDownIcon class="size-4" />
-    </DropdownMenu.Trigger>
-    <DropdownMenu.Content align="start">
-      <DropdownMenu.Item>Documentation</DropdownMenu.Item>
-      <DropdownMenu.Item>Themes</DropdownMenu.Item>
-      <DropdownMenu.Item>GitHub</DropdownMenu.Item>
-    </DropdownMenu.Content>
-  </DropdownMenu.Root>
-</Breadcrumb.Item>
-```
-
----
-
 ### Collapsed
 
 We provide a `<Breadcrumb.Ellipsis />` component to show a collapsed state when the breadcrumb is too long.
 
-<ComponentPreview name="breadcrumb-ellipsis">
+<ComponentPreview name="breadcrumb-ellipsis" previewClassName="p-2">
 
 <div></div>
 
 </ComponentPreview>
-
-```svelte showLineNumbers {2,9}
-<script lang="ts">
- import * as Breadcrumb from "$lib/components/ui/breadcrumb/index.js";
-</script>
-
-<Breadcrumb.Root>
- <Breadcrumb.List>
-     {/* ... */}
-  <Breadcrumb.Item>
-   <Breadcrumb.Ellipsis />
-  </Breadcrumb.Item>
-    {/* ... */}
- </Breadcrumb.List>
-</Breadcrumb.Root>
-```
-
----
 
 ### Link component
 
@@ -182,31 +147,62 @@ To use a link just add the `href` prop to `<Breadcrumb.Link />`.
 
 </ComponentPreview>
 
-```svelte showLineNumbers {2,7-9}
-<script lang="ts">
- import * as Breadcrumb from "$lib/components/ui/breadcrumb/index.js";
-</script>
+## API Reference
 
-<Breadcrumb.Root>
- <Breadcrumb.List>
-  <Breadcrumb.Item>
-   <Breadcrumb.Link href="/">Home</Breadcrumb.Link>
-  </Breadcrumb.Item>
-    {/* ... */}
- </Breadcrumb.List>
-</Breadcrumb.Root>
-```
+### Breadcrumb.Root
 
----
+The `Breadcrumb.Root` component is the root navigation element that wraps all breadcrumb components.
 
-### Responsive
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | -       |
 
-Here's an example of a responsive breadcrumb that composes `<Breadcrumb.Item />` with `<Breadcrumb.Ellipsis />`, `<DropdownMenu />`, and `<Drawer />`.
+### Breadcrumb.List
 
-It displays a dropdown on desktop and a drawer on mobile.
+The `Breadcrumb.List` component displays the ordered list of breadcrumb items.
 
-<ComponentPreview name="breadcrumb-responsive">
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | -       |
 
-<div></div>
+### Breadcrumb.Item
 
-</ComponentPreview>
+The `Breadcrumb.Item` component wraps individual breadcrumb items.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | -       |
+
+### Breadcrumb.Link
+
+The `Breadcrumb.Link` component displays a clickable link in the breadcrumb.
+
+| Prop    | Type                   | Default |
+| ------- | ---------------------- | ------- |
+| `class` | `string`               | -       |
+| `child` | `Snippet<[{ props }]>` | -       |
+
+### Breadcrumb.Page
+
+The `Breadcrumb.Page` component displays the current page in the breadcrumb (non-clickable).
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | -       |
+
+### Breadcrumb.Separator
+
+The `Breadcrumb.Separator` component displays a separator between breadcrumb items. You can pass custom children to override the default separator icon.
+
+| Prop       | Type      | Default |
+| ---------- | --------- | ------- |
+| `children` | `Snippet` | -       |
+| `class`    | `string`  | -       |
+
+### Breadcrumb.Ellipsis
+
+The `Breadcrumb.Ellipsis` component displays an ellipsis indicator for collapsed breadcrumb items.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | -       |

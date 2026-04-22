@@ -6,7 +6,7 @@
 	"$schema": "../node_modules/wrangler/config-schema.json",
 	"name": "shadcn-svelte",
 	"main": ".svelte-kit/cloudflare/_worker.js",
-	"compatibility_date": "2025-05-13",
+	"compatibility_date": "2026-04-06",
 	"compatibility_flags": ["nodejs_compat"],
 	"assets": {
 		"binding": "ASSETS",

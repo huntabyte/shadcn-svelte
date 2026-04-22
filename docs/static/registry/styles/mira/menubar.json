@@ -3,7 +3,7 @@
 	"name": "menubar",
 	"type": "registry:ui",
 	"devDependencies": [
-		"bits-ui@^2.16.3",
+		"bits-ui@^2.17.3",
 		"@internationalized/date@^3.12.0"
 	],
 	"files": [
@@ -18,7 +18,7 @@
 			"target": "menubar/menubar-checkbox-item.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { Menubar as MenubarPrimitive } from \"bits-ui\";\n\timport MenubarPortal from \"./menubar-portal.svelte\";\n\timport { cn, type WithoutChildrenOrChild } from \"$UTILS$.js\";\n\timport type { ComponentProps } from \"svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tsideOffset = 8,\n\t\talignOffset = -4,\n\t\talign = \"start\",\n\t\tside = \"bottom\",\n\t\tportalProps,\n\t\t...restProps\n\t}: MenubarPrimitive.ContentProps & {\n\t\tportalProps?: WithoutChildrenOrChild<ComponentProps<typeof MenubarPortal>>;\n\t} = $props();\n</script>\n\n<MenubarPortal {...portalProps}>\n\t<MenubarPrimitive.Content\n\t\tbind:ref\n\t\tdata-slot=\"menubar-content\"\n\t\t{align}\n\t\t{alignOffset}\n\t\t{side}\n\t\t{sideOffset}\n\t\tclass={cn(\n\t\t\t\"cn-menu-target cn-menu-translucent bg-popover text-popover-foreground ring-foreground/10 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 z-50 min-w-36 origin-(--bits-menubar-content-transform-origin) overflow-hidden rounded-lg p-1 shadow-md ring-1 duration-100\",\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t/>\n</MenubarPortal>\n",
+			"content": "<script lang=\"ts\">\n\timport { Menubar as MenubarPrimitive } from \"bits-ui\";\n\timport MenubarPortal from \"./menubar-portal.svelte\";\n\timport { cn, type WithoutChildrenOrChild } from \"$UTILS$.js\";\n\timport type { ComponentProps } from \"svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tsideOffset = 8,\n\t\talignOffset = -4,\n\t\talign = \"start\",\n\t\tside = \"bottom\",\n\t\tportalProps,\n\t\t...restProps\n\t}: MenubarPrimitive.ContentProps & {\n\t\tportalProps?: WithoutChildrenOrChild<ComponentProps<typeof MenubarPortal>>;\n\t} = $props();\n</script>\n\n<MenubarPortal {...portalProps}>\n\t<MenubarPrimitive.Content\n\t\tbind:ref\n\t\tdata-slot=\"menubar-content\"\n\t\t{align}\n\t\t{alignOffset}\n\t\t{side}\n\t\t{sideOffset}\n\t\tonOpenAutoFocus={(e) => e.preventDefault()}\n\t\tclass={cn(\n\t\t\t\"cn-menu-target cn-menu-translucent bg-popover text-popover-foreground ring-foreground/10 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 z-50 min-w-36 origin-(--bits-menubar-content-transform-origin) overflow-hidden rounded-lg p-1 shadow-md ring-1 duration-100\",\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t/>\n</MenubarPortal>\n",
 			"type": "registry:file",
 			"target": "menubar/menubar-content.svelte"
 		},

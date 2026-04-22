@@ -15,19 +15,16 @@
 				Anyone who has this link and an OpenAI account will be able to view this.
 			</p>
 		</div>
-		<div class="flex items-center space-x-2 pt-4">
-			<div class="grid flex-1 gap-2">
-				<Label for="link" class="sr-only">Link</Label>
-				<Input
-					id="link"
-					value="https://platform.openai.com/playground/p/7bbKYQvsVkNmVb8NGcdUOLae?model=text-davinci-003"
-					readonly
-					class="h-9"
-				/>
-			</div>
-			<Button type="submit" size="sm" class="px-3">
-				<span class="sr-only"> Copy </span>
-				<CopyIcon />
+		<div class="relative flex-1">
+			<Label for="link" class="sr-only">Link</Label>
+			<Input
+				id="link"
+				value="https://platform.openai.com/playground/p/7bbKYQvsVkNmVb8NGcdUOLae?model=text-davinci-003"
+				class="h-9 pr-10"
+			/>
+			<Button type="submit" size="icon" variant="ghost" class="absolute top-1 right-1 size-7">
+				<span class="sr-only">Copy</span>
+				<CopyIcon class="size-3.5" />
 			</Button>
 		</div>
 	</Popover.Content>

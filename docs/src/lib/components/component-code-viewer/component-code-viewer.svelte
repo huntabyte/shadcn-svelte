@@ -8,7 +8,7 @@
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import { MediaQuery } from "svelte/reactivity";
 	import { badgeVariants } from "$lib/registry/ui/badge/badge.svelte";
-	import type { HighlightedBlock } from "../../../routes/api/block/[block]/+server.js";
+	import type { HighlightedBlock } from "$lib/types/block.js";
 
 	type ComponentCodeViewerContextType = {
 		item: HighlightedBlock;

@@ -3,7 +3,7 @@ title: Data Table
 description: Powerful table and datagrids built using TanStack Table.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/data-table
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/data-table
   doc: https://tanstack.com/table/v8/docs/introduction
 ---
 
@@ -16,7 +16,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="data-table-demo">
+<ComponentPreview name="data-table-demo" align="start" previewClassName="items-start h-auto px-4 md:px-8" hideCode>
 
 <div></div>
 

@@ -3,7 +3,7 @@
 	"name": "pagination",
 	"type": "registry:ui",
 	"devDependencies": [
-		"bits-ui@^2.16.3",
+		"bits-ui@^2.17.3",
 		"@internationalized/date@^3.12.0"
 	],
 	"registryDependencies": [
@@ -41,7 +41,7 @@
 			"target": "pagination/pagination-next-button.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport type { ComponentProps } from \"svelte\";\n\timport { cn } from \"$UTILS$.js\";\n\timport { PaginationLink } from \"./index.js\";\n\timport IconPlaceholder from \"$lib/components/icon-placeholder/icon-placeholder.svelte\";\n\n\ttype PaginationNextProps = ComponentProps<typeof PaginationLink>;\n\n\tlet { class: className, ...restProps }: PaginationNextProps = $props();\n</script>\n\n<PaginationLink\n\taria-label=\"Go to next page\"\n\tsize=\"default\"\n\tclass={cn(\"pr-1.5!\", className)}\n\t{...restProps}\n>\n\t<span class=\"cn-pagination-next-text hidden sm:block\">Next</span>\n\t<IconPlaceholder\n\t\tlucide=\"ChevronRightIcon\"\n\t\ttabler=\"IconChevronRight\"\n\t\thugeicons=\"ArrowRight01Icon\"\n\t\tphosphor=\"CaretRightIcon\"\n\t\tremixicon=\"RiArrowRightSLine\"\n\t\tdata-icon=\"inline-end\"\n\t/>\n</PaginationLink>\n",
+			"content": "<script lang=\"ts\">\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\timport { buttonVariants } from \"$UI$/button/index.js\";\n\timport IconPlaceholder from \"$lib/components/icon-placeholder/icon-placeholder.svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PaginationPrimitive.NextButtonProps = $props();\n</script>\n\n{#snippet Fallback()}\n\t<span class=\"cn-pagination-next-text hidden sm:block\">Next</span>\n\t<IconPlaceholder\n\t\tlucide=\"ChevronRightIcon\"\n\t\ttabler=\"IconChevronRight\"\n\t\thugeicons=\"ArrowRight01Icon\"\n\t\tphosphor=\"CaretRightIcon\"\n\t\tremixicon=\"RiArrowRightSLine\"\n\t\tdata-icon=\"inline-end\"\n\t/>\n{/snippet}\n\n<PaginationPrimitive.NextButton\n\tbind:ref\n\taria-label=\"Go to next page\"\n\tdata-slot=\"pagination-next\"\n\tclass={cn(buttonVariants({ variant: \"ghost\" }), \"pr-1.5!\", className)}\n\t{...restProps}\n>\n\t{#if children}\n\t\t{@render children?.()}\n\t{:else}\n\t\t{@render Fallback()}\n\t{/if}\n</PaginationPrimitive.NextButton>\n",
 			"type": "registry:file",
 			"target": "pagination/pagination-next.svelte"
 		},
@@ -51,7 +51,7 @@
 			"target": "pagination/pagination-prev-button.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport type { ComponentProps } from \"svelte\";\n\timport { cn } from \"$UTILS$.js\";\n\timport { PaginationLink } from \"./index.js\";\n\timport IconPlaceholder from \"$lib/components/icon-placeholder/icon-placeholder.svelte\";\n\n\ttype PaginationPreviousProps = ComponentProps<typeof PaginationLink>;\n\n\tlet { class: className, ...restProps }: PaginationPreviousProps = $props();\n</script>\n\n<PaginationLink\n\taria-label=\"Go to previous page\"\n\tsize=\"default\"\n\tclass={cn(\"pl-1.5!\", className)}\n\t{...restProps}\n>\n\t<IconPlaceholder\n\t\tlucide=\"ChevronLeftIcon\"\n\t\ttabler=\"IconChevronLeft\"\n\t\thugeicons=\"ArrowLeft01Icon\"\n\t\tphosphor=\"CaretLeftIcon\"\n\t\tremixicon=\"RiArrowLeftSLine\"\n\t\tdata-icon=\"inline-start\"\n\t/>\n\t<span class=\"cn-pagination-previous-text hidden sm:block\">Previous</span>\n</PaginationLink>\n",
+			"content": "<script lang=\"ts\">\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\timport { buttonVariants } from \"$UI$/button/index.js\";\n\timport IconPlaceholder from \"$lib/components/icon-placeholder/icon-placeholder.svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PaginationPrimitive.PrevButtonProps = $props();\n</script>\n\n{#snippet Fallback()}\n\t<IconPlaceholder\n\t\tlucide=\"ChevronLeftIcon\"\n\t\ttabler=\"IconChevronLeft\"\n\t\thugeicons=\"ArrowLeft01Icon\"\n\t\tphosphor=\"CaretLeftIcon\"\n\t\tremixicon=\"RiArrowLeftSLine\"\n\t\tdata-icon=\"inline-start\"\n\t/>\n\t<span class=\"cn-pagination-previous-text hidden sm:block\">Previous</span>\n{/snippet}\n\n<PaginationPrimitive.PrevButton\n\tbind:ref\n\taria-label=\"Go to previous page\"\n\tdata-slot=\"pagination-previous\"\n\tclass={cn(buttonVariants({ variant: \"ghost\" }), \"pl-1.5!\", className)}\n\t{...restProps}\n>\n\t{#if children}\n\t\t{@render children?.()}\n\t{:else}\n\t\t{@render Fallback()}\n\t{/if}\n</PaginationPrimitive.PrevButton>\n",
 			"type": "registry:file",
 			"target": "pagination/pagination-previous.svelte"
 		},

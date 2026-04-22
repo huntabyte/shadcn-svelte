@@ -21,10 +21,18 @@ export function getCommand(
 	// special handling for create
 	if (type === "create") return { command: pm, args: ["create", ...args] };
 
-	const cmd = resolveCommand(pm, type, args);
+	// yarn v1 resolves "execute" to "npx"
+	const effectivePm = pm;
+
+	const cmd = resolveCommand(effectivePm, type, args);
 
 	// since docs are static any unresolved command is a code error
 	if (cmd === null) throw new Error("Could not resolve command!");
+
+	// yarn v1 resolves "execute" to "npx", but we want "yarn" instead
+	if (pm === "yarn" && cmd.command === "npx") {
+		return { command: "yarn", args: cmd.args };
+	}
 
 	return cmd;
 }

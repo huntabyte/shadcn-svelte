@@ -3,7 +3,7 @@ title: Pagination
 description: Pagination with page navigation, next and previous links.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/pagination
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/pagination
   doc: https://bits-ui.com/docs/components/pagination
   api: https://bits-ui.com/docs/components/pagination#api-reference
 ---
@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -91,3 +97,46 @@ Copy and paste the following code into your project.
   {/snippet}
 </Pagination.Root>
 ```
+
+## Composition
+
+Use the following composition to build a `Pagination`:
+
+```text
+Pagination.Root
+└── Pagination.Content
+    ├── Pagination.Item
+    │   └── Pagination.Previous
+    ├── Pagination.Item
+    │   └── Pagination.Link
+    ├── Pagination.Item
+    │   └── Pagination.Ellipsis
+    └── Pagination.Item
+        └── Pagination.Next
+```
+
+## Examples
+
+### Simple
+
+A simple pagination with only page numbers.
+
+<ComponentPreview name="pagination-simple">
+
+<div></div>
+
+</ComponentPreview>
+
+### Icons Only
+
+Use just the previous and next buttons without page numbers. This is useful for data tables with a rows per page selector.
+
+<ComponentPreview name="pagination-icons-only">
+
+<div></div>
+
+</ComponentPreview>
+
+## API Reference
+
+See the [Bits UI](https://bits-ui.com/docs/components/pagination#api-reference) documentation for more information.

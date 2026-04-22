@@ -9,7 +9,7 @@
 		{#snippet child({ props })}
 			<Button {...props} variant="ghost" class="relative size-8 rounded-full">
 				<Avatar.Root class="size-9">
-					<Avatar.Image src="/avatars/01.png" alt="@shadcn" />
+					<Avatar.Image src="/avatars/03.png" alt="@shadcn" />
 					<Avatar.Fallback>SC</Avatar.Fallback>
 				</Avatar.Root>
 			</Button>

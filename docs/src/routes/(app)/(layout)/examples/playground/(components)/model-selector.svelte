@@ -18,7 +18,7 @@
 
 	let value = $state("");
 
-	const selectedValue = $derived(models.find((f) => f.id === value)?.name ?? "Select a model...");
+	const selectedValue = $derived(models.find((f) => f.id === value)?.name ?? "text-davinci-003");
 
 	// We want to refocus the trigger button when the user selects
 	// an item from the list so users can continue navigating the
