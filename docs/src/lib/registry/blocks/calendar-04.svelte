@@ -1,5 +1,5 @@
 <script lang="ts">
-	import RangeCalendar from "$lib/registry/ui/range-calendar/range-calendar.svelte";
+	import Calendar from "$lib/registry/ui/calendar/calendar.svelte";
 	import { CalendarDate } from "@internationalized/date";
 	import type { DateRange } from "bits-ui";
 
@@ -9,4 +9,4 @@
 	});
 </script>
 
-<RangeCalendar bind:value class="rounded-lg border shadow-sm" />
+<Calendar mode="range" bind:value={value as never} class="rounded-lg border shadow-sm" />

@@ -74,7 +74,7 @@
 							minValue={new CalendarDate(1900, 1, 1)}
 							maxValue={today(getLocalTimeZone())}
 							calendarLabel="Date of birth"
-							onValueChange={(v) => {
+							onValueChange={(v: DateValue | undefined) => {
 								if (v) {
 									$formData.dob = v.toString();
 								} else {
