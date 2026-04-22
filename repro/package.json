@@ -31,7 +31,7 @@
 		"mode-watcher": "^1.1.0",
 		"paneforge": "^1.0.2",
 		"phosphor-svelte": "^3.0.1",
-		"svelte": "^5.39.5",
+		"svelte": "^5.53.5",
 		"svelte-check": "^4.3.2",
 		"svelte-sonner": "^1.0.5",
 		"sveltekit-superforms": "^2.26.1",
