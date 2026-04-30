@@ -68,7 +68,7 @@ Copy and paste the following code into your project.
     </Field.Field>
     <Field.Field>
       <Field.Label for="username">Username</Field.Label>
-      <Input id="username" autoComplete="off" aria-invalid />
+      <Input id="username" autocomplete="off" aria-invalid />
       <Field.Error>Choose another username.</Field.Error>
     </Field.Field>
     <Field.Field orientation="horizontal">
