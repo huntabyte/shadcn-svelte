@@ -29,4 +29,5 @@ playgrounds
 registry-template/static
 .svelte-kit
 docs/src/routes/og/*-otf.json
+docs/src/routes/api/search.json/search.json
 **/__*__/**/*

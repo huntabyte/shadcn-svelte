@@ -15,8 +15,8 @@
 		</Dialog.Header>
 		<div class="grid gap-4">
 			<div class="rounded-md bg-black p-6">
-				<pre><code class="text-muted-foreground grid gap-1 text-sm [&_span]:h-4"
-						><span><span class="text-sky-300">import</span> os</span><span
+				<pre>              <code class="grid gap-1 text-sm text-white [&_span]:h-4">
+<span><span class="text-sky-300">import</span> os</span><span
 							><span class="text-sky-300">import</span> openai</span
 						><span></span><span
 							>openai.api_key = os.getenv(<span class="text-green-300"

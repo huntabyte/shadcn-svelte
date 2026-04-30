@@ -72,16 +72,18 @@
 						</span>
 					</Select.Trigger>
 					<Select.Content align="end">
-						{#each formats as format (format.format)}
-							<Select.Item value={format.format}>
-								<span>
-									<span>{format.format}</span>
-									<span class="text-muted-foreground font-mono"
-										>{format.hint}</span
-									>
-								</span>
-							</Select.Item>
-						{/each}
+						<Select.Group>
+							{#each formats as format (format.format)}
+								<Select.Item value={format.format}>
+									<span>
+										<span>{format.format}</span>
+										<span class="text-muted-foreground font-mono"
+											>{format.hint}</span
+										>
+									</span>
+								</Select.Item>
+							{/each}
+						</Select.Group>
 					</Select.Content>
 				</Select.Root>
 			</div>

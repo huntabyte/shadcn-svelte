@@ -156,6 +156,86 @@ export const DEFAULT_PRESET_CONFIG: PresetConfig = Object.fromEntries(
 	PRESET_FIELDS_V2.map((f) => [f.key, f.values[0]])
 ) as PresetConfig;
 
+export const DEFAULT_PRESETS: Record<PresetConfig["style"], PresetConfig> = {
+	nova: {
+		style: "nova",
+		baseColor: "neutral",
+		theme: "neutral",
+		iconLibrary: "lucide",
+		font: "geist",
+		fontHeading: "inherit",
+		menuAccent: "subtle",
+		menuColor: "default",
+		radius: "default",
+	},
+	vega: {
+		style: "vega",
+		baseColor: "neutral",
+		theme: "neutral",
+		iconLibrary: "lucide",
+		font: "inter",
+		fontHeading: "inherit",
+		menuAccent: "subtle",
+		menuColor: "default",
+		radius: "default",
+	},
+	maia: {
+		style: "maia",
+		baseColor: "neutral",
+		theme: "neutral",
+		iconLibrary: "hugeicons",
+		font: "figtree",
+		fontHeading: "inherit",
+		menuAccent: "subtle",
+		menuColor: "default",
+		radius: "default",
+	},
+	lyra: {
+		style: "lyra",
+		baseColor: "neutral",
+		theme: "neutral",
+		iconLibrary: "phosphor",
+		font: "jetbrains-mono",
+		fontHeading: "inherit",
+		menuAccent: "subtle",
+		menuColor: "default",
+		radius: "default",
+	},
+	mira: {
+		style: "mira",
+		baseColor: "neutral",
+		theme: "neutral",
+		iconLibrary: "hugeicons",
+		font: "inter",
+		fontHeading: "inherit",
+		menuAccent: "subtle",
+		menuColor: "default",
+		radius: "default",
+	},
+	luma: {
+		style: "luma",
+		baseColor: "neutral",
+		theme: "neutral",
+		iconLibrary: "lucide",
+		font: "inter",
+		fontHeading: "inherit",
+		menuAccent: "subtle",
+		menuColor: "default",
+		radius: "default",
+	},
+	sera: {
+		style: "sera",
+		baseColor: "taupe",
+		theme: "taupe",
+		iconLibrary: "lucide",
+		font: "noto-sans",
+		fontHeading: "playfair-display",
+		menuAccent: "subtle",
+		menuColor: "default",
+		radius: "none",
+	},
+};
+
 // Base62 alphabet.
 const BASE62 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 

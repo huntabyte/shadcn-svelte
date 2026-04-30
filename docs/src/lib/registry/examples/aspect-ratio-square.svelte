@@ -1,0 +1,13 @@
+<script lang="ts">
+	import { AspectRatio } from "$lib/registry/ui/aspect-ratio/index.js";
+</script>
+
+<div class="w-full max-w-[12rem]">
+	<AspectRatio ratio={1 / 1} class="bg-muted rounded-lg">
+		<img
+			src="https://avatar.vercel.sh/shadcn1"
+			alt="Square"
+			class="rounded-lg object-cover grayscale dark:brightness-20"
+		/>
+	</AspectRatio>
+</div>

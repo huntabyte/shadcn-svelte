@@ -16,7 +16,7 @@
 		<span class="sr-only">Actions</span>
 		<EllipsisIcon />
 	</DropdownMenu.Trigger>
-	<DropdownMenu.Content align="end">
+	<DropdownMenu.Content align="end" class="w-max">
 		<DropdownMenu.Item onSelect={() => (open = true)}>
 			Content filter preferences
 		</DropdownMenu.Item>

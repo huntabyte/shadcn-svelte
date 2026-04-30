@@ -3,7 +3,7 @@ title: Skeleton
 description: Use to show a placeholder while content is loading.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/skeleton
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/skeleton
 ---
 
 <script>
@@ -42,6 +42,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -60,9 +66,41 @@ Copy and paste the following code into your project.
 
 ## Examples
 
-## Card
+### Avatar
 
-<ComponentPreview name="skeleton-card">
+<ComponentPreview name="skeleton-avatar">
+
+<div></div>
+
+</ComponentPreview>
+
+### Card
+
+<ComponentPreview name="skeleton-card" previewClassName="h-80">
+
+<div></div>
+
+</ComponentPreview>
+
+### Text
+
+<ComponentPreview name="skeleton-text">
+
+<div></div>
+
+</ComponentPreview>
+
+### Form
+
+<ComponentPreview name="skeleton-form">
+
+<div></div>
+
+</ComponentPreview>
+
+### Table
+
+<ComponentPreview name="skeleton-table">
 
 <div></div>
 

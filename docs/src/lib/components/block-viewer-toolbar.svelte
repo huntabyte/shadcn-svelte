@@ -11,7 +11,7 @@
 	import FullscreenIcon from "@lucide/svelte/icons/fullscreen";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import TerminalIcon from "@lucide/svelte/icons/terminal";
-	import RotateCcwIcon from "@lucide/svelte/icons/rotate-ccw";
+	import RotateCwIcon from "@lucide/svelte/icons/rotate-cw";
 	import { getCommand } from "$lib/package-manager.js";
 	import { UserConfigContext } from "$lib/user-config.svelte.js";
 
@@ -48,7 +48,7 @@
 		{ctx.item.description?.replace(/\.$/, "")}
 	</a>
 	<div class="ms-auto flex items-center gap-2">
-		<div class="h-8 items-center gap-1.5 rounded-md border p-1 shadow-none">
+		<div class="flex h-8 items-center gap-1.5 rounded-md border p-1 shadow-none">
 			<ToggleGroup.Root
 				type="single"
 				value="100"
@@ -68,32 +68,32 @@
 				<ToggleGroup.Item value="30" title="Mobile">
 					<SmartphoneIcon />
 				</ToggleGroup.Item>
-				<Separator orientation="vertical" class="!h-4" />
-				<Button
-					size="icon"
-					variant="ghost"
-					class="size-6 rounded-sm p-0"
-					title="Open in New Tab"
-					href="/view/{ctx.item.name}"
-					target="_blank"
-				>
-					<span class="sr-only">Open in New Tab</span>
-					<FullscreenIcon />
-				</Button>
-				<Separator orientation="vertical" class="!h-4" />
-				<Button
-					size="icon"
-					variant="ghost"
-					class="size-6 rounded-sm p-0"
-					title="Refresh Preview"
-					onclick={() => {
-						ctx.iframeKey = ctx.iframeKey + 1;
-					}}
-				>
-					<RotateCcwIcon />
-					<span class="sr-only">Refresh Preview</span>
-				</Button>
 			</ToggleGroup.Root>
+			<Separator orientation="vertical" class="!h-4" />
+			<Button
+				size="icon"
+				variant="ghost"
+				class="size-6 rounded-sm p-0"
+				title="Open in New Tab"
+				href="/view/{ctx.item.name}"
+				target="_blank"
+			>
+				<span class="sr-only">Open in New Tab</span>
+				<FullscreenIcon />
+			</Button>
+			<Separator orientation="vertical" class="!h-4" />
+			<Button
+				size="icon"
+				variant="ghost"
+				class="size-6 rounded-sm p-0"
+				title="Refresh Preview"
+				onclick={() => {
+					ctx.iframeKey = ctx.iframeKey + 1;
+				}}
+			>
+				<RotateCwIcon />
+				<span class="sr-only">Refresh Preview</span>
+			</Button>
 		</div>
 		<Separator orientation="vertical" class="mx-1 !h-4" />
 		<Button
