@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import prettier from "prettier";
 
-const styles = ["vega", "nova", "maia", "lyra", "mira", "luma"];
+const styles = ["vega", "nova", "maia", "lyra", "mira", "luma", "sera"];
 
 const prettierConfig = await prettier.resolveConfig(import.meta.url);
 if (!prettierConfig) throw new Error("Failed to resolve prettier config.");

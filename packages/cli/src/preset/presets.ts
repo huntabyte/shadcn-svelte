@@ -108,6 +108,21 @@ export const DEFAULT_PRESETS = {
 
 		radius: "default",
 	},
+	sera: {
+		title: "Sera",
+		description: "Lucide / Noto Sans + Playfair Display",
+		hint: "Editorial and typographic.",
+		style: "sera",
+		baseColor: "taupe",
+		theme: "taupe",
+		iconLibrary: "lucide",
+		font: "noto-sans",
+		fontHeading: "playfair-display",
+		menuAccent: "subtle" as const,
+		menuColor: "default" as const,
+
+		radius: "default",
+	},
 } as const;
 
 /**

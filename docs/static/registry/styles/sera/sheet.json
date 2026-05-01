@@ -1,0 +1,69 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "sheet",
+	"type": "registry:ui",
+	"devDependencies": [
+		"bits-ui@^2.16.3",
+		"@internationalized/date@^3.12.0"
+	],
+	"registryDependencies": [
+		"button"
+	],
+	"files": [
+		{
+			"content": "import Root from \"./sheet.svelte\";\nimport Portal from \"./sheet-portal.svelte\";\nimport Trigger from \"./sheet-trigger.svelte\";\nimport Close from \"./sheet-close.svelte\";\nimport Overlay from \"./sheet-overlay.svelte\";\nimport Content from \"./sheet-content.svelte\";\nimport Header from \"./sheet-header.svelte\";\nimport Footer from \"./sheet-footer.svelte\";\nimport Title from \"./sheet-title.svelte\";\nimport Description from \"./sheet-description.svelte\";\n\nexport {\n\tRoot,\n\tClose,\n\tTrigger,\n\tPortal,\n\tOverlay,\n\tContent,\n\tHeader,\n\tFooter,\n\tTitle,\n\tDescription,\n\t//\n\tRoot as Sheet,\n\tClose as SheetClose,\n\tTrigger as SheetTrigger,\n\tPortal as SheetPortal,\n\tOverlay as SheetOverlay,\n\tContent as SheetContent,\n\tHeader as SheetHeader,\n\tFooter as SheetFooter,\n\tTitle as SheetTitle,\n\tDescription as SheetDescription,\n};\n",
+			"type": "registry:file",
+			"target": "sheet/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Dialog as SheetPrimitive } from \"bits-ui\";\n\n\tlet { ref = $bindable(null), ...restProps }: SheetPrimitive.CloseProps = $props();\n</script>\n\n<SheetPrimitive.Close bind:ref data-slot=\"sheet-close\" {...restProps} />\n",
+			"type": "registry:file",
+			"target": "sheet/sheet-close.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\" module>\n\texport type Side = \"top\" | \"right\" | \"bottom\" | \"left\";\n</script>\n\n<script lang=\"ts\">\n\timport { Dialog as SheetPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\timport SheetPortal from \"./sheet-portal.svelte\";\n\timport SheetOverlay from \"./sheet-overlay.svelte\";\n\timport { Button } from \"$UI$/button/index.js\";\n\timport IconPlaceholder from \"$lib/components/icon-placeholder/icon-placeholder.svelte\";\n\timport { cn, type WithoutChildrenOrChild } from \"$UTILS$.js\";\n\timport type { ComponentProps } from \"svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tside = \"right\",\n\t\tshowCloseButton = true,\n\t\tportalProps,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<SheetPrimitive.ContentProps> & {\n\t\tportalProps?: WithoutChildrenOrChild<ComponentProps<typeof SheetPortal>>;\n\t\tside?: Side;\n\t\tshowCloseButton?: boolean;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<SheetPortal {...portalProps}>\n\t<SheetOverlay />\n\t<SheetPrimitive.Content\n\t\tbind:ref\n\t\tdata-slot=\"sheet-content\"\n\t\tdata-side={side}\n\t\tclass={cn(\n\t\t\t\"bg-popover text-popover-foreground fixed z-50 flex flex-col bg-clip-padding text-sm shadow-md transition duration-200 ease-in-out data-[side=bottom]:inset-x-0 data-[side=bottom]:bottom-0 data-[side=bottom]:h-auto data-[side=bottom]:border-t data-[side=left]:inset-y-0 data-[side=left]:left-0 data-[side=left]:h-full data-[side=left]:w-3/4 data-[side=left]:border-r data-[side=right]:inset-y-0 data-[side=right]:right-0 data-[side=right]:h-full data-[side=right]:w-3/4 data-[side=right]:border-l data-[side=top]:inset-x-0 data-[side=top]:top-0 data-[side=top]:h-auto data-[side=top]:border-b data-[side=left]:sm:max-w-sm data-[side=right]:sm:max-w-sm data-open:animate-in data-open:fade-in-0 data-[side=bottom]:data-open:slide-in-from-bottom-10 data-[side=left]:data-open:slide-in-from-left-10 data-[side=right]:data-open:slide-in-from-right-10 data-[side=top]:data-open:slide-in-from-top-10 data-closed:animate-out data-closed:fade-out-0 data-[side=bottom]:data-closed:slide-out-to-bottom-10 data-[side=left]:data-closed:slide-out-to-left-10 data-[side=right]:data-closed:slide-out-to-right-10 data-[side=top]:data-closed:slide-out-to-top-10\",\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t>\n\t\t{@render children?.()}\n\t\t{#if showCloseButton}\n\t\t\t<SheetPrimitive.Close data-slot=\"sheet-close\">\n\t\t\t\t{#snippet child({ props })}\n\t\t\t\t\t<Button variant=\"ghost\" class=\"bg-secondary absolute top-4 right-4\" size=\"icon-sm\" {...props}>\n\t\t\t\t\t\t<IconPlaceholder\n\t\t\t\t\t\t\tlucide=\"XIcon\"\n\t\t\t\t\t\t\ttabler=\"IconX\"\n\t\t\t\t\t\t\thugeicons=\"Cancel01Icon\"\n\t\t\t\t\t\t\tphosphor=\"XIcon\"\n\t\t\t\t\t\t\tremixicon=\"RiCloseLine\"\n\t\t\t\t\t\t/>\n\t\t\t\t\t\t<span class=\"sr-only\">Close</span>\n\t\t\t\t\t</Button>\n\t\t\t\t{/snippet}\n\t\t\t</SheetPrimitive.Close>\n\t\t{/if}\n\t</SheetPrimitive.Content>\n</SheetPortal>\n",
+			"type": "registry:file",
+			"target": "sheet/sheet-content.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Dialog as SheetPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: SheetPrimitive.DescriptionProps = $props();\n</script>\n\n<SheetPrimitive.Description\n\tbind:ref\n\tdata-slot=\"sheet-description\"\n\tclass={cn(\"text-muted-foreground mt-0.5 text-sm leading-relaxed\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "sheet/sheet-description.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"sheet-footer\"\n\tclass={cn(\"gap-2 p-8 mt-auto flex flex-col\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "sheet/sheet-footer.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"sheet-header\"\n\tclass={cn(\"gap-1.5 p-8 flex flex-col\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "sheet/sheet-header.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Dialog as SheetPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: SheetPrimitive.OverlayProps = $props();\n</script>\n\n<SheetPrimitive.Overlay\n\tbind:ref\n\tdata-slot=\"sheet-overlay\"\n\tclass={cn(\"bg-black/20 supports-backdrop-filter:backdrop-blur-sm fixed inset-0 z-50\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "sheet/sheet-overlay.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Dialog as SheetPrimitive } from \"bits-ui\";\n\n\tlet { ...restProps }: SheetPrimitive.PortalProps = $props();\n</script>\n\n<SheetPrimitive.Portal {...restProps} />\n",
+			"type": "registry:file",
+			"target": "sheet/sheet-portal.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Dialog as SheetPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: SheetPrimitive.TitleProps = $props();\n</script>\n\n<SheetPrimitive.Title\n\tbind:ref\n\tdata-slot=\"sheet-title\"\n\tclass={cn(\"cn-font-heading text-foreground text-lg font-semibold tracking-wider uppercase\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "sheet/sheet-title.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Dialog as SheetPrimitive } from \"bits-ui\";\n\n\tlet { ref = $bindable(null), ...restProps }: SheetPrimitive.TriggerProps = $props();\n</script>\n\n<SheetPrimitive.Trigger bind:ref data-slot=\"sheet-trigger\" {...restProps} />\n",
+			"type": "registry:file",
+			"target": "sheet/sheet-trigger.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Dialog as SheetPrimitive } from \"bits-ui\";\n\n\tlet { open = $bindable(false), ...restProps }: SheetPrimitive.RootProps = $props();\n</script>\n\n<SheetPrimitive.Root bind:open {...restProps} />\n",
+			"type": "registry:file",
+			"target": "sheet/sheet.svelte"
+		}
+	]
+}

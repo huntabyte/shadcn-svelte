@@ -1,0 +1,22 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "calendar-16",
+	"type": "registry:block",
+	"devDependencies": [
+		"@internationalized/date@^3.12.0",
+		"@lucide/svelte@^0.577.0"
+	],
+	"registryDependencies": [
+		"calendar",
+		"card",
+		"label",
+		"input"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport Calendar from \"$UI$/calendar/calendar.svelte\";\n\timport { CalendarDate } from \"@internationalized/date\";\n\timport * as Card from \"$UI$/card/index.js\";\n\timport { Label } from \"$UI$/label/index.js\";\n\timport { Input } from \"$UI$/input/index.js\";\n\timport Clock2Icon from \"@lucide/svelte/icons/clock-2\";\n\n\tlet value = $state<CalendarDate | undefined>(new CalendarDate(2025, 6, 12));\n</script>\n\n<Card.Root class=\"w-fit py-4\">\n\t<Card.Content class=\"px-4\">\n\t\t<Calendar type=\"single\" bind:value class=\"bg-transparent p-0\" />\n\t</Card.Content>\n\t<Card.Footer class=\"flex flex-col gap-6 border-t px-4 !pt-4\">\n\t\t<div class=\"flex w-full flex-col gap-3\">\n\t\t\t<Label for=\"time-from\">Start Time</Label>\n\t\t\t<div class=\"relative flex w-full items-center gap-2\">\n\t\t\t\t<Clock2Icon\n\t\t\t\t\tclass=\"text-muted-foreground pointer-events-none absolute start-2.5 size-4 select-none\"\n\t\t\t\t/>\n\t\t\t\t<Input\n\t\t\t\t\tid=\"time-from\"\n\t\t\t\t\ttype=\"time\"\n\t\t\t\t\tstep=\"1\"\n\t\t\t\t\tvalue=\"10:30:00\"\n\t\t\t\t\tclass=\"appearance-none ps-8 [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none\"\n\t\t\t\t/>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"flex w-full flex-col gap-3\">\n\t\t\t<Label for=\"time-to\">End Time</Label>\n\t\t\t<div class=\"relative flex w-full items-center gap-2\">\n\t\t\t\t<Clock2Icon\n\t\t\t\t\tclass=\"text-muted-foreground pointer-events-none absolute start-2.5 size-4 select-none\"\n\t\t\t\t/>\n\t\t\t\t<Input\n\t\t\t\t\tid=\"time-to\"\n\t\t\t\t\ttype=\"time\"\n\t\t\t\t\tstep=\"1\"\n\t\t\t\t\tvalue=\"12:30:00\"\n\t\t\t\t\tclass=\"appearance-none ps-8 [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none\"\n\t\t\t\t/>\n\t\t\t</div>\n\t\t</div>\n\t</Card.Footer>\n</Card.Root>\n",
+			"type": "registry:component",
+			"target": "calendar-16.svelte"
+		}
+	]
+}

@@ -14,7 +14,7 @@
 		"@dnd-kit/abstract@^0.1.21",
 		"@dnd-kit-svelte/svelte@^0.1.5",
 		"@dnd-kit/helpers@^0.1.21",
-		"zod@catalog:"
+		"zod@^4.3.6"
 	],
 	"registryDependencies": [
 		"sidebar",

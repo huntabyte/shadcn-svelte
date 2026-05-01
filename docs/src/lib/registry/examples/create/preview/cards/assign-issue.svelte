@@ -99,7 +99,7 @@
 					</div>
 				{/snippet}
 			</Popover.Trigger>
-			<Popover.Content class="w-[--radix-popover-trigger-width] p-0" align="start">
+			<Popover.Content class="w-(--bits-popover-trigger-width) p-0" align="start">
 				<Command.Root>
 					<Command.Input placeholder="Search users..." />
 					<Command.List>

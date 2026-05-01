@@ -1,0 +1,21 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "slider",
+	"type": "registry:ui",
+	"devDependencies": [
+		"bits-ui@^2.16.3",
+		"@internationalized/date@^3.12.0"
+	],
+	"files": [
+		{
+			"content": "import Root from \"./slider.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Slider,\n};\n",
+			"type": "registry:file",
+			"target": "slider/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Slider as SliderPrimitive } from \"bits-ui\";\n\timport { cn, type WithoutChildrenOrChild } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\torientation = \"horizontal\",\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<SliderPrimitive.RootProps> = $props();\n</script>\n\n<!--\nDiscriminated Unions + Destructing (required for bindable) do not\nget along, so we shut typescript up by casting `value` to `never`.\n-->\n<SliderPrimitive.Root\n\tbind:ref\n\tbind:value={value as never}\n\tdata-slot=\"slider\"\n\t{orientation}\n\tclass={cn(\n\t\t\"data-vertical:min-h-40 relative flex w-full touch-none items-center select-none data-disabled:opacity-50 data-vertical:h-full data-vertical:w-auto data-vertical:flex-col\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{#snippet children({ thumbItems })}\n\t\t<span\n\t\t\tdata-slot=\"slider-track\"\n\t\t\tdata-orientation={orientation}\n\t\t\tclass={cn(\n\t\t\t\t\"bg-input/50 data-horizontal:h-0.5 data-horizontal:w-full data-vertical:h-full data-vertical:w-0.5 bg-muted relative grow overflow-hidden data-horizontal:w-full data-vertical:h-full\"\n\t\t\t)}\n\t\t>\n\t\t\t<SliderPrimitive.Range\n\t\t\t\tdata-slot=\"slider-range\"\n\t\t\t\tclass={cn(\n\t\t\t\t\t\"bg-primary absolute select-none data-horizontal:h-full data-vertical:w-full\"\n\t\t\t\t)}\n\t\t\t/>\n\t\t</span>\n\t\t{#each thumbItems as thumb (thumb)}\n\t\t\t<SliderPrimitive.Thumb\n\t\t\t\tdata-slot=\"slider-thumb\"\n\t\t\t\tindex={thumb.index}\n\t\t\t\tclass=\"bg-primary hover:ring-ring/30 focus-visible:ring-ring/30 size-3 border-none transition-colors hover:ring-2 focus-visible:ring-2 focus-visible:outline-hidden block shrink-0 select-none disabled:pointer-events-none disabled:opacity-50\"\n\t\t\t/>\n\t\t{/each}\n\t{/snippet}\n</SliderPrimitive.Root>\n",
+			"type": "registry:file",
+			"target": "slider/slider.svelte"
+		}
+	]
+}

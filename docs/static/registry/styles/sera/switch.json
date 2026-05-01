@@ -1,0 +1,21 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "switch",
+	"type": "registry:ui",
+	"devDependencies": [
+		"bits-ui@^2.16.3",
+		"@internationalized/date@^3.12.0"
+	],
+	"files": [
+		{
+			"content": "import Root from \"./switch.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Switch,\n};\n",
+			"type": "registry:file",
+			"target": "switch/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Switch as SwitchPrimitive } from \"bits-ui\";\n\timport { cn, type WithoutChildrenOrChild } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchecked = $bindable(false),\n\t\tsize = \"default\",\n\t\t...restProps\n\t}: WithoutChildrenOrChild<SwitchPrimitive.RootProps> & {\n\t\tsize?: \"sm\" | \"default\";\n\t} = $props();\n</script>\n\n<SwitchPrimitive.Root\n\tbind:ref\n\tbind:checked\n\tdata-slot=\"switch\"\n\tdata-size={size}\n\tclass={cn(\n\t\t\"data-checked:bg-primary data-unchecked:bg-input data-checked:border-primary data-unchecked:border-input/50 focus-visible:border-ring focus-visible:ring-ring/30 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 shrink-0 rounded-none border focus-visible:ring-2 aria-invalid:ring-2 data-[size=default]:h-4.5 data-[size=default]:w-8.25 data-[size=sm]:h-3.5 data-[size=sm]:w-6.25 peer group/switch relative inline-flex items-center transition-all outline-none after:absolute after:-inset-x-3 after:-inset-y-2 data-disabled:cursor-not-allowed data-disabled:opacity-50\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t<SwitchPrimitive.Thumb\n\t\tdata-slot=\"switch-thumb\"\n\t\tclass=\"bg-background dark:data-unchecked:bg-foreground dark:data-checked:bg-primary-foreground group-data-[size=default]/switch:size-3.5 group-data-[size=sm]/switch:size-2.5 data-checked:translate-x-[calc(100%+2px)] data-unchecked:translate-x-0.25 pointer-events-none block ring-0 transition-transform rtl:data-[state=checked]:translate-x-[calc(-100%)]\"\n\t/>\n</SwitchPrimitive.Root>\n",
+			"type": "registry:file",
+			"target": "switch/switch.svelte"
+		}
+	]
+}

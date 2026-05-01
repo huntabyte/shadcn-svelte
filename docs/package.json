@@ -130,10 +130,10 @@
 		"vaul-svelte": "1.0.0-next.7",
 		"velite": "^0.3.1",
 		"vite": "^8.0.0",
-		"zod": "catalog:"
+		"zod": "^4.3.6"
 	},
 	"dependencies": {
 		"@types/lodash": "^4.17.24",
-		"lodash": "^4.17.23"
+		"lodash": "^4.18.1"
 	}
 }

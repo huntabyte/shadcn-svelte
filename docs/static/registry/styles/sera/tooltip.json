@@ -1,0 +1,41 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "tooltip",
+	"type": "registry:ui",
+	"devDependencies": [
+		"bits-ui@^2.16.3",
+		"@internationalized/date@^3.12.0"
+	],
+	"files": [
+		{
+			"content": "import Root from \"./tooltip.svelte\";\nimport Trigger from \"./tooltip-trigger.svelte\";\nimport Content from \"./tooltip-content.svelte\";\nimport Provider from \"./tooltip-provider.svelte\";\nimport Portal from \"./tooltip-portal.svelte\";\n\nexport {\n\tRoot,\n\tTrigger,\n\tContent,\n\tProvider,\n\tPortal,\n\t//\n\tRoot as Tooltip,\n\tContent as TooltipContent,\n\tTrigger as TooltipTrigger,\n\tProvider as TooltipProvider,\n\tPortal as TooltipPortal,\n};\n",
+			"type": "registry:file",
+			"target": "tooltip/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Tooltip as TooltipPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\timport TooltipPortal from \"./tooltip-portal.svelte\";\n\timport type { ComponentProps } from \"svelte\";\n\timport type { WithoutChildrenOrChild } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tsideOffset = 0,\n\t\tside = \"top\",\n\t\tchildren,\n\t\tarrowClasses,\n\t\tportalProps,\n\t\t...restProps\n\t}: TooltipPrimitive.ContentProps & {\n\t\tarrowClasses?: string;\n\t\tportalProps?: WithoutChildrenOrChild<ComponentProps<typeof TooltipPortal>>;\n\t} = $props();\n</script>\n\n<TooltipPortal {...portalProps}>\n\t<TooltipPrimitive.Content\n\t\tbind:ref\n\t\tdata-slot=\"tooltip-content\"\n\t\t{sideOffset}\n\t\t{side}\n\t\tclass={cn(\n\t\t\t\"data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-[state=delayed-open]:animate-in data-[state=delayed-open]:fade-in-0 data-[state=delayed-open]:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 inline-flex items-center gap-1.5 rounded-none px-3 py-1.5 text-xs has-data-[slot=kbd]:pr-1.5 **:data-[slot=kbd]:relative **:data-[slot=kbd]:isolate **:data-[slot=kbd]:z-50 **:data-[slot=kbd]:rounded-none bg-foreground text-background z-50 w-fit max-w-xs origin-(--bits-tooltip-content-transform-origin)\",\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t>\n\t\t{@render children?.()}\n\t\t<TooltipPrimitive.Arrow>\n\t\t\t{#snippet child({ props })}\n\t\t\t\t<div\n\t\t\t\t\tclass={cn(\n\t\t\t\t\t\t\"size-2.5 translate-y-[calc(-50%-2px)] rotate-45 rounded-none bg-foreground fill-foreground z-50\",\n\t\t\t\t\t\t\"data-[side=top]:translate-x-1/2 data-[side=top]:translate-y-[calc(-50%+2px)]\",\n\t\t\t\t\t\t\"data-[side=bottom]:-translate-x-1/2 data-[side=bottom]:-translate-y-[calc(-50%+1px)]\",\n\t\t\t\t\t\t\"data-[side=right]:translate-x-[calc(50%+2px)] data-[side=right]:translate-y-1/2\",\n\t\t\t\t\t\t\"data-[side=left]:-translate-y-[calc(50%-3px)]\",\n\t\t\t\t\t\tarrowClasses\n\t\t\t\t\t)}\n\t\t\t\t\t{...props}\n\t\t\t\t></div>\n\t\t\t{/snippet}\n\t\t</TooltipPrimitive.Arrow>\n\t</TooltipPrimitive.Content>\n</TooltipPortal>\n",
+			"type": "registry:file",
+			"target": "tooltip/tooltip-content.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Tooltip as TooltipPrimitive } from \"bits-ui\";\n\n\tlet { ...restProps }: TooltipPrimitive.PortalProps = $props();\n</script>\n\n<TooltipPrimitive.Portal {...restProps} />\n",
+			"type": "registry:file",
+			"target": "tooltip/tooltip-portal.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Tooltip as TooltipPrimitive } from \"bits-ui\";\n\n\tlet { delayDuration = 0, ...restProps }: TooltipPrimitive.ProviderProps = $props();\n</script>\n\n<TooltipPrimitive.Provider {delayDuration} {...restProps} />\n",
+			"type": "registry:file",
+			"target": "tooltip/tooltip-provider.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Tooltip as TooltipPrimitive } from \"bits-ui\";\n\n\tlet { ref = $bindable(null), ...restProps }: TooltipPrimitive.TriggerProps = $props();\n</script>\n\n<TooltipPrimitive.Trigger bind:ref data-slot=\"tooltip-trigger\" {...restProps} />\n",
+			"type": "registry:file",
+			"target": "tooltip/tooltip-trigger.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Tooltip as TooltipPrimitive } from \"bits-ui\";\n\n\tlet { open = $bindable(false), ...restProps }: TooltipPrimitive.RootProps = $props();\n</script>\n\n<TooltipPrimitive.Root bind:open {...restProps} />\n",
+			"type": "registry:file",
+			"target": "tooltip/tooltip.svelte"
+		}
+	]
+}

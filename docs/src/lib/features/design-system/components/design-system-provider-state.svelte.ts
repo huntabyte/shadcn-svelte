@@ -132,6 +132,12 @@ class DesignSystemState implements IDesignSystemState {
 		return this.#preset.current;
 	}
 
+	set preset(code: string) {
+		const decoded = decodePreset(code);
+		if (!decoded) return;
+		this.system = decoded;
+	}
+
 	// locks
 
 	lock(key: keyof Lockable): void {

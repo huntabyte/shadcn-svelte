@@ -1,0 +1,35 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "alert",
+	"type": "registry:ui",
+	"devDependencies": [
+		"tailwind-variants@^3.2.2"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"alert-action\"\n\tclass={cn(\"absolute top-2.5 right-3\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "alert/alert-action.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"alert-description\"\n\tclass={cn(\n\t\t\"text-muted-foreground text-sm text-balance md:text-pretty [&_p:not(:last-child)]:mb-4 [&_a]:hover:text-foreground [&_a]:underline [&_a]:underline-offset-3\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "alert/alert-description.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"alert-title\"\n\tclass={cn(\n\t\t\"cn-font-heading text-sm font-semibold group-has-[>svg]/alert:col-start-2 [&_a]:hover:text-foreground [&_a]:underline [&_a]:underline-offset-3\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "alert/alert-title.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\" module>\n\timport { type VariantProps, tv } from \"tailwind-variants\";\n\n\texport const alertVariants = tv({\n\t\tbase: \"bg-background relative grid gap-1 border px-4 py-3 text-left text-sm after:absolute after:-inset-y-px after:-left-px after:w-0.5 has-data-[slot=alert-action]:relative has-data-[slot=alert-action]:pr-18 has-[>svg]:grid-cols-[auto_1fr] has-[>svg]:gap-x-2.5 *:[svg]:row-span-2 *:[svg]:translate-y-0.5 *:[svg]:text-current *:[svg:not([class*='size-'])]:size-4 group/alert relative w-full\",\n\t\tvariants: {\n\t\t\tvariant: {\n\t\t\t\tdefault: \"bg-card text-card-foreground after:bg-foreground\",\n\t\t\t\tdestructive: \"text-destructive bg-card *:data-[slot=alert-description]:text-destructive/90 after:bg-destructive *:[svg]:text-current\",\n\t\t\t},\n\t\t},\n\t\tdefaultVariants: {\n\t\t\tvariant: \"default\",\n\t\t},\n\t});\n\n\texport type AlertVariant = VariantProps<typeof alertVariants>[\"variant\"];\n</script>\n\n<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tvariant = \"default\",\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {\n\t\tvariant?: AlertVariant;\n\t} = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"alert\"\n\trole=\"alert\"\n\tclass={cn(alertVariants({ variant }), className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "alert/alert.svelte"
+		},
+		{
+			"content": "import Root from \"./alert.svelte\";\nimport Description from \"./alert-description.svelte\";\nimport Title from \"./alert-title.svelte\";\nimport Action from \"./alert-action.svelte\";\nexport { alertVariants, type AlertVariant } from \"./alert.svelte\";\n\nexport {\n\tRoot,\n\tDescription,\n\tTitle,\n\tAction,\n\t//\n\tRoot as Alert,\n\tDescription as AlertDescription,\n\tTitle as AlertTitle,\n\tAction as AlertAction,\n};\n",
+			"type": "registry:file",
+			"target": "alert/index.ts"
+		}
+	]
+}

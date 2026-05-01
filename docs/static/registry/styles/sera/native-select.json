@@ -1,0 +1,27 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "native-select",
+	"type": "registry:ui",
+	"files": [
+		{
+			"content": "import Root from \"./native-select.svelte\";\nimport Option from \"./native-select-option.svelte\";\nimport OptGroup from \"./native-select-opt-group.svelte\";\n\nexport {\n\tRoot,\n\tOption,\n\tOptGroup,\n\tRoot as NativeSelect,\n\tOption as NativeSelectOption,\n\tOptGroup as NativeSelectOptGroup,\n};\n",
+			"type": "registry:file",
+			"target": "native-select/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport type { HTMLOptgroupAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLOptgroupAttributes> = $props();\n</script>\n\n<optgroup bind:this={ref} data-slot=\"native-select-opt-group\" {...restProps}>\n\t{@render children?.()}\n</optgroup>\n",
+			"type": "registry:file",
+			"target": "native-select/native-select-opt-group.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport type { HTMLOptionAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLOptionAttributes> = $props();\n</script>\n\n<option bind:this={ref} data-slot=\"native-select-option\" {...restProps}>\n\t{@render children?.()}\n</option>\n",
+			"type": "registry:file",
+			"target": "native-select/native-select-option.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLSelectAttributes } from \"svelte/elements\";\n\timport IconPlaceholder from \"$lib/components/icon-placeholder/icon-placeholder.svelte\";\n\n\ttype NativeSelectProps = Omit<WithElementRef<HTMLSelectAttributes>, \"size\"> & {\n\t\tsize?: \"sm\" | \"default\";\n\t};\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\tclass: className,\n\t\tsize = \"default\",\n\t\tchildren,\n\t\t...restProps\n\t}: NativeSelectProps = $props();\n</script>\n\n<div\n\tclass={cn(\n\t\t\"cn-native-select-wrapper group/native-select relative w-fit has-[select:disabled]:opacity-50\",\n\t\tclassName\n\t)}\n\tdata-slot=\"native-select-wrapper\"\n\tdata-size={size}\n>\n\t<select\n\t\tbind:value\n\t\tbind:this={ref}\n\t\tdata-slot=\"native-select\"\n\t\tdata-size={size}\n\t\tclass=\"border-b-input placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground focus-visible:border-b-ring aria-invalid:border-b-destructive dark:aria-invalid:border-b-destructive/50 h-10 w-full min-w-0 appearance-none rounded-none border border-transparent bg-transparent py-2 pr-8 pl-0 text-sm transition-[color,border-color] select-none data-[size=sm]:h-9 outline-none disabled:pointer-events-none disabled:cursor-not-allowed\"\n\t\t{...restProps}\n\t>\n\t\t{@render children?.()}\n\t</select>\n\t<IconPlaceholder\n\t\tlucide=\"ChevronDownIcon\"\n\t\ttabler=\"IconSelector\"\n\t\thugeicons=\"UnfoldMoreIcon\"\n\t\tphosphor=\"CaretDownIcon\"\n\t\tremixicon=\"RiArrowDownSLine\"\n\t\tclass=\"text-muted-foreground top-1/2 right-0 size-3.5 -translate-y-1/2 pointer-events-none absolute select-none\"\n\t\taria-hidden\n\t\tdata-slot=\"native-select-icon\"\n\t/>\n</div>\n",
+			"type": "registry:file",
+			"target": "native-select/native-select.svelte"
+		}
+	]
+}

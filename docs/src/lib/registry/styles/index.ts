@@ -4,6 +4,7 @@ import Maia from "./icons/maia.svelte";
 import Lyra from "./icons/lyra.svelte";
 import Mira from "./icons/mira.svelte";
 import Luma from "./icons/luma.svelte";
+import Sera from "./icons/sera.svelte";
 
 export const STYLES = [
 	{
@@ -41,6 +42,12 @@ export const STYLES = [
 		title: "Luma",
 		description: "Rounded geometry. Soft elevation. Breathable layouts.",
 		icon: Luma,
+	},
+	{
+		name: "sera",
+		title: "Sera",
+		description: "Editorial and typographic.",
+		icon: Sera,
 	},
 ] as const;
 

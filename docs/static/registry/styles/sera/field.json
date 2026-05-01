@@ -1,0 +1,69 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "field",
+	"type": "registry:ui",
+	"devDependencies": [
+		"tailwind-variants@^3.2.2"
+	],
+	"registryDependencies": [
+		"label",
+		"separator"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"field-content\"\n\tclass={cn(\"gap-1 group/field-content flex flex-1 flex-col leading-snug\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "field/field-content.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLParagraphElement>> = $props();\n</script>\n\n<p\n\tbind:this={ref}\n\tdata-slot=\"field-description\"\n\tclass={cn(\n\t\t\"text-muted-foreground text-left text-sm tracking-normal normal-case [[data-variant=legend]+&]:-mt-1.5 leading-normal font-normal group-has-[[data-orientation=horizontal]]/field:text-balance\",\n\t\t\"last:mt-0 nth-last-2:-mt-1\",\n\t\t\"[&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</p>\n",
+			"type": "registry:file",
+			"target": "field/field-description.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { Snippet } from \"svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\terrors,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {\n\t\tchildren?: Snippet;\n\t\terrors?: { message?: string }[];\n\t} = $props();\n\n\tconst hasContent = $derived.by(() => {\n\t\t// has slotted error\n\t\tif (children) return true;\n\n\t\t// no errors\n\t\tif (!errors || errors.length === 0) return false;\n\n\t\t// has an error but no message\n\t\tif (errors.length === 1 && !errors[0]?.message) {\n\t\t\treturn false;\n\t\t}\n\n\t\treturn true;\n\t});\n\n\tconst isMultipleErrors = $derived(errors && errors.length > 1);\n\tconst singleErrorMessage = $derived(errors && errors.length === 1 && errors[0]?.message);\n</script>\n\n{#if hasContent}\n\t<div\n\t\tbind:this={ref}\n\t\trole=\"alert\"\n\t\tdata-slot=\"field-error\"\n\t\tclass={cn(\"text-destructive text-sm font-normal\", className)}\n\t\t{...restProps}\n\t>\n\t\t{#if children}\n\t\t\t{@render children()}\n\t\t{:else if singleErrorMessage}\n\t\t\t{singleErrorMessage}\n\t\t{:else if isMultipleErrors}\n\t\t\t<ul class=\"ml-4 flex list-disc flex-col gap-1\">\n\t\t\t\t{#each errors ?? [] as error, index (index)}\n\t\t\t\t\t{#if error?.message}\n\t\t\t\t\t\t<li>{error.message}</li>\n\t\t\t\t\t{/if}\n\t\t\t\t{/each}\n\t\t\t</ul>\n\t\t{/if}\n\t</div>\n{/if}\n",
+			"type": "registry:file",
+			"target": "field/field-error.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"field-group\"\n\tclass={cn(\n\t\t\"gap-10 data-[slot=checkbox-group]:gap-3 *:data-[slot=field-group]:gap-4 group/field-group @container/field-group flex w-full flex-col\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "field/field-group.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Label } from \"$UI$/label/index.js\";\n\timport { cn } from \"$UTILS$.js\";\n\timport type { ComponentProps } from \"svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: ComponentProps<typeof Label> = $props();\n</script>\n\n<Label\n\tbind:ref\n\tdata-slot=\"field-label\"\n\tclass={cn(\n\t\t\"has-data-checked:bg-primary/5 has-data-checked:border-primary/30 dark:has-data-checked:border-primary/20 dark:has-data-checked:bg-primary/10 gap-2 leading-relaxed group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:rounded-none has-[>[data-slot=field]]:border *:data-[slot=field]:p-4 group/field-label peer/field-label flex w-fit leading-snug\",\n\t\t\"has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</Label>\n",
+			"type": "registry:file",
+			"target": "field/field-label.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tvariant = \"legend\",\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLLegendElement>> & {\n\t\tvariant?: \"legend\" | \"label\";\n\t} = $props();\n</script>\n\n<legend\n\tbind:this={ref}\n\tdata-slot=\"field-legend\"\n\tdata-variant={variant}\n\tclass={cn(\"mb-3 font-semibold uppercase data-[variant=label]:text-xs data-[variant=legend]:text-xs\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</legend>\n",
+			"type": "registry:file",
+			"target": "field/field-legend.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Separator } from \"$UI$/separator/index.js\";\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { Snippet } from \"svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {\n\t\tchildren?: Snippet;\n\t} = $props();\n\n\tconst hasContent = $derived(!!children);\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"field-separator\"\n\tdata-content={hasContent}\n\tclass={cn(\"-my-2 h-5 text-sm group-data-[variant=outline]/field-group:-mb-2 relative\", className)}\n\t{...restProps}\n>\n\t<Separator class=\"absolute inset-0 top-1/2\" />\n\t{#if children}\n\t\t<span\n\t\t\tclass=\"text-muted-foreground px-2 bg-background relative mx-auto block w-fit\"\n\t\t\tdata-slot=\"field-separator-content\"\n\t\t>\n\t\t\t{@render children()}\n\t\t</span>\n\t{/if}\n</div>\n",
+			"type": "registry:file",
+			"target": "field/field-separator.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLFieldsetAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLFieldsetAttributes> = $props();\n</script>\n\n<fieldset\n\tbind:this={ref}\n\tdata-slot=\"field-set\"\n\tclass={cn(\"gap-6 has-[>[data-slot=checkbox-group]]:gap-3 has-[>[data-slot=radio-group]]:gap-3 flex flex-col\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</fieldset>\n",
+			"type": "registry:file",
+			"target": "field/field-set.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"field-label\"\n\tclass={cn(\"cn-font-heading gap-2 text-xs leading-normal font-semibold uppercase group-data-[disabled=true]/field:opacity-50 in-data-[slot=field-label]:font-semibold flex w-fit items-center leading-snug\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "field/field-title.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\" module>\n\timport { tv, type VariantProps } from \"tailwind-variants\";\n\n\texport const fieldVariants = tv({\n\t\tbase: \"data-[invalid=true]:text-destructive gap-3 group/field flex w-full\",\n\t\tvariants: {\n\t\t\torientation: {\n\t\t\t\tvertical: \"cn-field-orientation-vertical flex-col [&>*]:w-full [&>.sr-only]:w-auto\",\n\t\t\t\thorizontal:\n\t\t\t\t\t\"cn-field-orientation-horizontal flex-row items-center has-[>[data-slot=field-content]]:items-start [&>[data-slot=field-label]]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px\",\n\t\t\t\tresponsive:\n\t\t\t\t\t\"cn-field-orientation-responsive flex-col @md/field-group:flex-row @md/field-group:items-center @md/field-group:has-[>[data-slot=field-content]]:items-start [&>*]:w-full @md/field-group:[&>*]:w-auto [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px\",\n\t\t\t},\n\t\t},\n\t\tdefaultVariants: {\n\t\t\torientation: \"vertical\",\n\t\t},\n\t});\n\n\texport type FieldOrientation = VariantProps<typeof fieldVariants>[\"orientation\"];\n</script>\n\n<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\torientation = \"vertical\",\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {\n\t\torientation?: FieldOrientation;\n\t} = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\trole=\"group\"\n\tdata-slot=\"field\"\n\tdata-orientation={orientation}\n\tclass={cn(fieldVariants({ orientation }), className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "field/field.svelte"
+		},
+		{
+			"content": "import Field from \"./field.svelte\";\nimport Set from \"./field-set.svelte\";\nimport Legend from \"./field-legend.svelte\";\nimport Group from \"./field-group.svelte\";\nimport Content from \"./field-content.svelte\";\nimport Label from \"./field-label.svelte\";\nimport Title from \"./field-title.svelte\";\nimport Description from \"./field-description.svelte\";\nimport Separator from \"./field-separator.svelte\";\nimport Error from \"./field-error.svelte\";\n\nexport {\n\tField,\n\tSet,\n\tLegend,\n\tGroup,\n\tContent,\n\tLabel,\n\tTitle,\n\tDescription,\n\tSeparator,\n\tError,\n\t//\n\tSet as FieldSet,\n\tLegend as FieldLegend,\n\tGroup as FieldGroup,\n\tContent as FieldContent,\n\tLabel as FieldLabel,\n\tTitle as FieldTitle,\n\tDescription as FieldDescription,\n\tSeparator as FieldSeparator,\n\tError as FieldError,\n};\n",
+			"type": "registry:file",
+			"target": "field/index.ts"
+		}
+	]
+}

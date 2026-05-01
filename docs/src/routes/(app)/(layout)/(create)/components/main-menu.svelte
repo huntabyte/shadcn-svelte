@@ -7,7 +7,7 @@
 	import { setMode, mode } from "mode-watcher";
 	import { useIsMac } from "$lib/hooks/use-is-mac.svelte.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { ActionMenuCtx } from "./action-menu.svelte";
+	import { ActionMenuCtx } from "./action-menu-context.svelte.js";
 
 	type Props = {
 		class?: string;
