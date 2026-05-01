@@ -13,10 +13,7 @@
 <option
 	bind:this={ref}
 	data-slot="native-select-option"
-	class={cn(
-		"bg-[Canvas] text-[CanvasText]",
-		className
-	)}
+	class={cn("bg-[Canvas] text-[CanvasText]", className)}
 	{...restProps}
 >
 	{@render children?.()}
