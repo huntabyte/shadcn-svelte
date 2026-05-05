@@ -4,7 +4,7 @@ packages:
     - registry-template
 
 catalog:
-    "@sveltejs/kit": ^2.55.0
+    "@sveltejs/kit": ^2.57.1
     "@sveltejs/vite-plugin-svelte": ^6.2.4
     svelte: ^5.54.0
     svelte-check: ^4.4.5
