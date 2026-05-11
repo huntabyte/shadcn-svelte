@@ -8,6 +8,7 @@
 @import "./lib/registry/styles/style-maia.css" layer(base);
 @import "./lib/registry/styles/style-mira.css" layer(base);
 @import "./lib/registry/styles/style-luma.css" layer(base);
+@import "./lib/registry/styles/style-sera.css" layer(base);
 
 @import "@fontsource-variable/geist/index.css";
 @import "@fontsource-variable/inter/index.css";
@@ -40,6 +41,7 @@
 @custom-variant style-maia (&:where(.style-maia *));
 @custom-variant style-mira (&:where(.style-mira *));
 @custom-variant style-luma (&:where(.style-luma *));
+@custom-variant style-sera (&:where(.style-sera *));
 
 @custom-variant dark (&:is(.dark *));
 @custom-variant fixed (&:is(.layout-fixed *));

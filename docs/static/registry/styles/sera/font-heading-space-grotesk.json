@@ -1,0 +1,16 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "font-heading-space-grotesk",
+	"type": "registry:font",
+	"files": [],
+	"font": {
+		"family": "'Space Grotesk Variable', sans-serif",
+		"provider": "google",
+		"import": "Space_Grotesk",
+		"variable": "--font-heading",
+		"subsets": [
+			"latin"
+		],
+		"dependency": "@fontsource-variable/space-grotesk"
+	}
+}

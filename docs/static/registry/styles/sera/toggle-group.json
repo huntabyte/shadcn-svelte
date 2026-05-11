@@ -1,0 +1,30 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "toggle-group",
+	"type": "registry:ui",
+	"devDependencies": [
+		"bits-ui@^2.16.3",
+		"@internationalized/date@^3.12.0",
+		"tailwind-variants@^3.2.2"
+	],
+	"registryDependencies": [
+		"toggle"
+	],
+	"files": [
+		{
+			"content": "import Root from \"./toggle-group.svelte\";\nimport Item from \"./toggle-group-item.svelte\";\n\nexport {\n\tRoot,\n\tItem,\n\t//\n\tRoot as ToggleGroup,\n\tItem as ToggleGroupItem,\n};\n",
+			"type": "registry:file",
+			"target": "toggle-group/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { ToggleGroup as ToggleGroupPrimitive } from \"bits-ui\";\n\timport { getToggleGroupCtx } from \"./toggle-group.svelte\";\n\timport { cn } from \"$UTILS$.js\";\n\timport { type ToggleVariants, toggleVariants } from \"$UI$/toggle/index.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\tclass: className,\n\t\tsize,\n\t\tvariant,\n\t\t...restProps\n\t}: ToggleGroupPrimitive.ItemProps & ToggleVariants = $props();\n\n\tconst ctx = getToggleGroupCtx();\n</script>\n\n<ToggleGroupPrimitive.Item\n\tbind:ref\n\tdata-slot=\"toggle-group-item\"\n\tdata-variant={ctx.variant || variant}\n\tdata-size={ctx.size || size}\n\tdata-spacing={ctx.spacing}\n\tclass={cn(\n\t\t\"data-[state=on]:bg-muted data-[state=on]:text-foreground group-data-[spacing=0]/toggle-group:rounded-none group-data-[spacing=0]/toggle-group:px-6 group-data-[spacing=0]/toggle-group:shadow-none group-data-[spacing=0]/toggle-group:has-data-[icon=inline-end]:pr-4 group-data-[spacing=0]/toggle-group:has-data-[icon=inline-start]:pl-4 group-data-horizontal/toggle-group:data-[spacing=0]:first:rounded-none group-data-vertical/toggle-group:data-[spacing=0]:first:rounded-none group-data-horizontal/toggle-group:data-[spacing=0]:last:rounded-none group-data-vertical/toggle-group:data-[spacing=0]:last:rounded-none shrink-0 focus:z-10 focus-visible:z-10 group-data-horizontal/toggle-group:data-[spacing=0]:data-[variant=outline]:border-l-0 group-data-vertical/toggle-group:data-[spacing=0]:data-[variant=outline]:border-t-0 group-data-horizontal/toggle-group:data-[spacing=0]:data-[variant=outline]:first:border-l group-data-vertical/toggle-group:data-[spacing=0]:data-[variant=outline]:first:border-t\",\n\t\ttoggleVariants({\n\t\t\tvariant: ctx.variant || variant,\n\t\t\tsize: ctx.size || size,\n\t\t}),\n\t\tclassName\n\t)}\n\t{value}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "toggle-group/toggle-group-item.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\" module>\n\timport { getContext, setContext } from \"svelte\";\n\timport type { VariantProps } from \"tailwind-variants\";\n\timport { toggleVariants } from \"$UI$/toggle/index.js\";\n\n\ttype ToggleVariants = VariantProps<typeof toggleVariants>;\n\n\tinterface ToggleGroupContext extends ToggleVariants {\n\t\tspacing?: number;\n\t\torientation?: \"horizontal\" | \"vertical\";\n\t}\n\n\texport function setToggleGroupCtx(props: ToggleGroupContext) {\n\t\tsetContext(\"toggleGroup\", props);\n\t}\n\n\texport function getToggleGroupCtx() {\n\t\treturn getContext<Required<ToggleGroupContext>>(\"toggleGroup\");\n\t}\n</script>\n\n<script lang=\"ts\">\n\timport { ToggleGroup as ToggleGroupPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\tclass: className,\n\t\tsize = \"default\",\n\t\tspacing = 0,\n\t\torientation = \"horizontal\",\n\t\tvariant = \"default\",\n\t\t...restProps\n\t}: ToggleGroupPrimitive.RootProps &\n\t\tToggleVariants & {\n\t\t\tspacing?: number;\n\t\t\torientation?: \"horizontal\" | \"vertical\";\n\t\t} = $props();\n\n\tsetToggleGroupCtx({\n\t\tget variant() {\n\t\t\treturn variant;\n\t\t},\n\t\tget size() {\n\t\t\treturn size;\n\t\t},\n\t\tget spacing() {\n\t\t\treturn spacing;\n\t\t},\n\t\tget orientation() {\n\t\t\treturn orientation;\n\t\t},\n\t});\n</script>\n\n<!--\nDiscriminated Unions + Destructing (required for bindable) do not\nget along, so we shut typescript up by casting `value` to `never`.\n-->\n<ToggleGroupPrimitive.Root\n\tbind:value={value as never}\n\tbind:ref\n\t{orientation}\n\tdata-slot=\"toggle-group\"\n\tdata-variant={variant}\n\tdata-size={size}\n\tdata-spacing={spacing}\n\tstyle={`--gap: ${spacing}`}\n\tclass={cn(\n\t\t\"data-[spacing=0]:data-[variant=outline]:rounded-none group/toggle-group flex w-fit flex-row items-center gap-[--spacing(var(--gap))] data-vertical:flex-col data-vertical:items-stretch\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "toggle-group/toggle-group.svelte"
+		}
+	]
+}

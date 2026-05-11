@@ -1,0 +1,45 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "empty",
+	"type": "registry:ui",
+	"devDependencies": [
+		"tailwind-variants@^3.2.2"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"empty-content\"\n\tclass={cn(\n\t\t\"gap-4 text-sm flex w-full max-w-sm min-w-0 flex-col items-center text-balance\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "empty/empty-content.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"empty-description\"\n\tclass={cn(\n\t\t\"mt-0.5 text-sm/relaxed text-muted-foreground [&>a:hover]:text-primary text-sm/relaxed [&>a]:underline [&>a]:underline-offset-4\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "empty/empty-description.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"empty-header\"\n\tclass={cn(\"gap-2 flex max-w-sm flex-col items-center\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "empty/empty-header.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\" module>\n\timport { tv, type VariantProps } from \"tailwind-variants\";\n\n\texport const emptyMediaVariants = tv({\n\t\tbase: \"mb-2 flex shrink-0 items-center justify-center [&_svg]:pointer-events-none [&_svg]:shrink-0\",\n\t\tvariants: {\n\t\t\tvariant: {\n\t\t\t\tdefault: \"bg-transparent\",\n\t\t\t\ticon: \"bg-muted text-foreground flex size-10 shrink-0 items-center justify-center rounded-none [&_svg:not([class*='size-'])]:size-5\",\n\t\t\t},\n\t\t},\n\t\tdefaultVariants: {\n\t\t\tvariant: \"default\",\n\t\t},\n\t});\n\n\texport type EmptyMediaVariant = VariantProps<typeof emptyMediaVariants>[\"variant\"];\n</script>\n\n<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\tvariant = \"default\",\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> & { variant?: EmptyMediaVariant } = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"empty-icon\"\n\tdata-variant={variant}\n\tclass={cn(emptyMediaVariants({ variant }), className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "empty/empty-media.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"empty-title\"\n\tclass={cn(\"cn-font-heading text-lg font-semibold tracking-wider uppercase\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "empty/empty-title.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"empty\"\n\tclass={cn(\n\t\t\"gap-4 border-dashed p-12 flex w-full min-w-0 flex-1 flex-col items-center justify-center text-center text-balance\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "empty/empty.svelte"
+		},
+		{
+			"content": "import Root from \"./empty.svelte\";\nimport Header from \"./empty-header.svelte\";\nimport Media from \"./empty-media.svelte\";\nimport Title from \"./empty-title.svelte\";\nimport Description from \"./empty-description.svelte\";\nimport Content from \"./empty-content.svelte\";\n\nexport {\n\tRoot,\n\tHeader,\n\tMedia,\n\tTitle,\n\tDescription,\n\tContent,\n\t//\n\tRoot as Empty,\n\tHeader as EmptyHeader,\n\tMedia as EmptyMedia,\n\tTitle as EmptyTitle,\n\tDescription as EmptyDescription,\n\tContent as EmptyContent,\n};\n",
+			"type": "registry:file",
+			"target": "empty/index.ts"
+		}
+	]
+}

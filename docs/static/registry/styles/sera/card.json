@@ -1,0 +1,47 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "card",
+	"type": "registry:ui",
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"card-action\"\n\tclass={cn(\n\t\t\"cn-card-action col-start-2 row-span-2 row-start-1 self-start justify-self-end\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "card/card-action.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"card-content\"\n\tclass={cn(\"px-8 group-data-[size=sm]/card:px-5\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "card/card-content.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLParagraphElement>> = $props();\n</script>\n\n<p\n\tbind:this={ref}\n\tdata-slot=\"card-description\"\n\tclass={cn(\"text-muted-foreground text-sm leading-relaxed\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</p>\n",
+			"type": "registry:file",
+			"target": "card/card-description.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"card-footer\"\n\tclass={cn(\"px-8 group-data-[size=sm]/card:px-5 [.border-t]:pt-8 group-data-[size=sm]/card:[.border-t]:pt-5 flex items-center\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "card/card-footer.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"card-header\"\n\tclass={cn(\n\t\t\"gap-1.5 rounded-none px-8 group-data-[size=sm]/card:px-5 [.border-b]:pb-8 group-data-[size=sm]/card:[.border-b]:pb-5 group/card-header @container/card-header grid auto-rows-min items-start has-data-[slot=card-action]:grid-cols-[1fr_auto] has-data-[slot=card-description]:grid-rows-[auto_auto]\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "card/card-header.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"card-title\"\n\tclass={cn(\"cn-font-heading text-lg font-semibold tracking-wider uppercase\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "card/card-title.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\tsize = \"default\",\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> & { size?: \"default\" | \"sm\" } = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"card\"\n\tdata-size={size}\n\tclass={cn(\"bg-card text-card-foreground ring-foreground/5 gap-8 overflow-hidden py-8 text-sm shadow-sm ring-1 has-[>img:first-child]:pt-0 data-[size=sm]:gap-5 data-[size=sm]:py-5 *:[img:first-child]:rounded-none *:[img:last-child]:rounded-none group/card flex flex-col\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "card/card.svelte"
+		},
+		{
+			"content": "import Root from \"./card.svelte\";\nimport Content from \"./card-content.svelte\";\nimport Description from \"./card-description.svelte\";\nimport Footer from \"./card-footer.svelte\";\nimport Header from \"./card-header.svelte\";\nimport Title from \"./card-title.svelte\";\nimport Action from \"./card-action.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tDescription,\n\tFooter,\n\tHeader,\n\tTitle,\n\tAction,\n\t//\n\tRoot as Card,\n\tContent as CardContent,\n\tDescription as CardDescription,\n\tFooter as CardFooter,\n\tHeader as CardHeader,\n\tTitle as CardTitle,\n\tAction as CardAction,\n};\n",
+			"type": "registry:file",
+			"target": "card/index.ts"
+		}
+	]
+}
