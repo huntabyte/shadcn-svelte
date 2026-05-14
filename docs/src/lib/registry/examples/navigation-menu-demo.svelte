@@ -7,10 +7,6 @@
 	import CircleIcon from "@lucide/svelte/icons/circle";
 	import CircleCheckIcon from "@lucide/svelte/icons/circle-check";
 
-	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
-
-	const isMobile = new IsMobile();
-
 	const components: { title: string; href: string; description: string }[] = [
 		{
 			title: "Alert Dialog",
@@ -77,7 +73,7 @@
 	</li>
 {/snippet}
 
-<NavigationMenu.Root viewport={isMobile.current}>
+<NavigationMenu.Root>
 	<NavigationMenu.List class="flex-wrap">
 		<NavigationMenu.Item>
 			<NavigationMenu.Trigger>Home</NavigationMenu.Trigger>
