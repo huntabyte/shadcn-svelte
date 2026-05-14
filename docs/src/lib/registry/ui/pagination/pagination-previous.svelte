@@ -1,18 +1,24 @@
 <script lang="ts">
-	import type { ComponentProps } from "svelte";
+	import { Pagination as PaginationPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils.js";
-	import { PaginationLink } from "./index.js";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 
-	type PaginationPreviousProps = ComponentProps<typeof PaginationLink>;
-
-	let { class: className, ...restProps }: PaginationPreviousProps = $props();
+	let {
+		ref = $bindable(null),
+		class: className,
+		...restProps
+	}: PaginationPrimitive.PrevButtonProps = $props();
 </script>
 
-<PaginationLink
+<PaginationPrimitive.PrevButton
+	bind:ref
 	aria-label="Go to previous page"
-	size="default"
-	class={cn("cn-pagination-previous", className)}
+	class={cn(
+		buttonVariants({ variant: "ghost", size: "default" }),
+		"cn-pagination-previous",
+		className
+	)}
 	{...restProps}
 >
 	<IconPlaceholder
@@ -24,4 +30,4 @@
 		data-icon="inline-start"
 	/>
 	<span class="cn-pagination-previous-text hidden sm:block">Previous</span>
-</PaginationLink>
+</PaginationPrimitive.PrevButton>
