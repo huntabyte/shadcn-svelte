@@ -197,7 +197,7 @@ The main component for displaying content with media, title, description, and ac
 | --------- | ----------------------------------- | ----------- |
 | `variant` | `"default" \| "outline" \| "muted"` | `"default"` |
 | `size`    | `"default" \| "sm" \| "xs"`         | `"default"` |
-| `child`   | `Snippet<[{ props }]>`              | -           |
+| `child`   | `Snippet<[{ props: Record<string, any> }]>` | -           |
 
 To render the item as a different element (e.g. an anchor), use the `child` snippet:
 

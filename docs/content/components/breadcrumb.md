@@ -180,7 +180,7 @@ The `Breadcrumb.Link` component displays a clickable link in the breadcrumb.
 | Prop    | Type                   | Default |
 | ------- | ---------------------- | ------- |
 | `class` | `string`               | -       |
-| `child` | `Snippet<[{ props }]>` | -       |
+| `child` | `Snippet<[{ props: Record<string, any> }]>` | -       |
 
 ### Breadcrumb.Page
 
