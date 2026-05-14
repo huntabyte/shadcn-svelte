@@ -34,7 +34,7 @@ export type NavItemWithChildren = NavItem & {
 function generateSectionsNav(): SidebarNavItem[] {
 	const sectionsNavItems: SidebarNavItem[] = [
 		{
-			title: "Get Started",
+			title: "Introduction",
 			href: "/docs",
 			items: [],
 		},
@@ -42,10 +42,30 @@ function generateSectionsNav(): SidebarNavItem[] {
 			title: "Components",
 			href: "/docs/components",
 			items: [],
+		},
+		{
+			title: "Installation",
+			href: "/docs/installation",
+			items: [],
+		},
+		{
+			title: "Theming",
+			href: "/docs/theming",
+			items: [],
+		},
+		{
+			title: "CLI",
+			href: "/docs/cli",
+			items: [],
+		},
+		{
+			title: "Skills",
+			href: "/docs/skills",
+			items: [],
 		} /*
 		{
-			title: "Directory",
-			href: "/docs/directory",
+			title: "RTL",
+			href: "/docs/rtl",
 			items: [],
 		},
 		{
@@ -54,10 +74,14 @@ function generateSectionsNav(): SidebarNavItem[] {
 			items: [],
 		},
 		{
-			title: "Forms",
+			title: "Registry",
+			href: "/docs/registry",
+			items: [],
+		},*/, {
+			title: "Formsnap",
 			href: "/docs/forms",
 			items: [],
-			},*/,
+		},
 		{
 			title: "Changelog",
 			href: "/docs/changelog",
@@ -70,6 +94,7 @@ function generateSectionsNav(): SidebarNavItem[] {
 
 function generateGetStartedNav(): SidebarNavItem[] {
 	const getStartedNavItems: SidebarNavItem[] = [
+		{ title: "Introduction", href: "/docs/introduction", items: [] },
 		{
 			title: "Installation",
 			href: "/docs/installation",
@@ -95,6 +120,7 @@ function generateGetStartedNav(): SidebarNavItem[] {
 			href: "/docs/cli",
 			items: [],
 		},
+		{ title: "Skills", href: "/docs/skills", items: [] },
 		{
 			title: "JavaScript",
 			href: "/docs/javascript",
@@ -110,6 +136,7 @@ function generateGetStartedNav(): SidebarNavItem[] {
 			href: "/docs/figma",
 			items: [],
 		},
+		{ title: "Changelog", href: "/docs/changelog", items: [] },
 		{
 			title: "llms.txt",
 			href: "/llms.txt",
@@ -269,17 +296,14 @@ export const sidebarNavItems: SidebarNavItem[] = [
 		items: sectionsNav,
 	},
 	{
-		title: "Get Started",
-		items: getStartedNav,
-	},
-	{
-		title: "Migration",
-		items: migrationNav.filter((item) => item.title !== "Migration"),
-	},
-	{
 		title: "Components",
 		items: componentsNav.filter((item) => item.title !== "Components"),
 	},
+	{
+		title: "Get Started",
+		items: getStartedNav,
+	},
+	{ title: "Changelog", href: "/docs/changelog", items: [] },
 	{
 		title: "Installation",
 		items: installationNav.filter((item) => item.title !== "Installation"),
@@ -291,6 +315,10 @@ export const sidebarNavItems: SidebarNavItem[] = [
 	{
 		title: "Registry",
 		items: registryNav,
+	},
+	{
+		title: "Migration",
+		items: migrationNav.filter((item) => item.title !== "Migration"),
 	},
 ];
 
