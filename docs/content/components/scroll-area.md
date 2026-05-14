@@ -3,7 +3,7 @@ title: Scroll Area
 description: Augments native scroll functionality for custom, cross-browser styling.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/scroll-area
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/scroll-area
   doc: https://bits-ui.com/docs/components/scroll-area
   api: https://bits-ui.com/docs/components/scroll-area#api-reference
 ---
@@ -20,7 +20,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="scroll-area-demo">
+<ComponentPreview name="scroll-area-demo" previewClassName="h-96">
 
 <div></div>
 
@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -77,7 +83,7 @@ Copy and paste the following code into your project.
 
 ## Examples
 
-### Horizontal Scrolling
+### Horizontal
 
 Set the `orientation` prop to `"horizontal"` to enable horizontal scrolling.
 
@@ -86,3 +92,7 @@ Set the `orientation` prop to `"horizontal"` to enable horizontal scrolling.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+See the [Bits UI Scroll Area](https://bits-ui.com/docs/components/scroll-area#api-reference) documentation for more information.

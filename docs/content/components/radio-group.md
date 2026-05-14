@@ -3,7 +3,7 @@ title: Radio Group
 description: A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/radio-group
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/radio-group
   doc: https://bits-ui.com/docs/components/radio-group
   api: https://bits-ui.com/docs/components/radio-group#api-reference
 ---
@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -77,3 +83,77 @@ Copy and paste the following code into your project.
   </div>
 </RadioGroup.Root>
 ```
+
+## Composition
+
+Use the following composition to build a `RadioGroup`:
+
+```text
+RadioGroup.Root
+├── RadioGroup.Item
+└── RadioGroup.Item
+```
+
+## Examples
+
+### Description
+
+Radio group items with a description using the `Field` component.
+
+<ComponentPreview name="radio-group-description">
+
+<div></div>
+
+</ComponentPreview>
+
+### Choice Card
+
+Use `Field.Label` to wrap the entire `Field` for a clickable card-style selection.
+
+<ComponentPreview name="radio-group-choice-card">
+
+<div></div>
+
+</ComponentPreview>
+
+### Fieldset
+
+Use `Field.Set` and `Field.Legend` to group radio items with a label and description.
+
+<ComponentPreview name="radio-group-fieldset">
+
+<div></div>
+
+</ComponentPreview>
+
+### Disabled
+
+Use the `disabled` prop on `RadioGroup.Item` to disable individual items.
+
+<ComponentPreview name="radio-group-disabled">
+
+<div></div>
+
+</ComponentPreview>
+
+### Invalid
+
+Use `aria-invalid` on `RadioGroup.Item` and `data-invalid` on `Field` to show validation errors.
+
+<ComponentPreview name="radio-group-invalid">
+
+<div></div>
+
+</ComponentPreview>
+
+### Form
+
+<ComponentPreview name="radio-group-form" previewClassName="h-128">
+
+<div></div>
+
+</ComponentPreview>
+
+## API Reference
+
+See the [Bits UI](https://bits-ui.com/docs/components/radio-group#api-reference) documentation for more information.

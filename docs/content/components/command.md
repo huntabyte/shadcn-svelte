@@ -3,7 +3,7 @@ title: Command
 description: Fast, composable, unstyled command menu for Svelte.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/command
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/command
   doc: https://bits-ui.com/docs/components/command
   api: https://bits-ui.com/docs/components/command#api-reference
 ---
@@ -21,7 +21,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="command-demo" align="start" class="[&_.preview>div]:max-w-[450px]">
+<ComponentPreview name="command-demo" align="start" previewClassName="h-[24.5rem]" class="[&_.preview>div]:max-w-[450px]">
 
 <div></div>
 
@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 {#if viewerData}
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
+
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
 
 </Steps>
 {/snippet}
@@ -85,7 +91,71 @@ Copy and paste the following code into your project.
 </Command.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `Command`:
+
+```text
+Command.Root
+├── Command.Input
+└── Command.List
+    ├── Command.Empty
+    ├── Command.Group
+    │   ├── Command.Item
+    │   └── Command.Item
+    ├── Command.Separator
+    └── Command.Group
+        ├── Command.Item
+        └── Command.Item
+```
+
+For a dialog variant, wrap with `Command.Dialog`:
+
+```text
+Command.Dialog
+└── Command.Root
+    └── (same as above)
+```
+
 ## Examples
+
+### Basic
+
+A simple command menu in a dialog.
+
+<ComponentPreview name="command-basic">
+
+<div></div>
+
+</ComponentPreview>
+
+### Shortcuts
+
+<ComponentPreview name="command-shortcuts">
+
+<div></div>
+
+</ComponentPreview>
+
+### Groups
+
+A command menu with groups, icons and separators.
+
+<ComponentPreview name="command-groups">
+
+<div></div>
+
+</ComponentPreview>
+
+### Scrollable
+
+Scrollable command menu with multiple items.
+
+<ComponentPreview name="command-scrollable">
+
+<div></div>
+
+</ComponentPreview>
 
 ### Dialog
 
@@ -95,44 +165,6 @@ Copy and paste the following code into your project.
 
 </ComponentPreview>
 
-To show the command menu in a dialog, use the `<Command.Dialog />` component instead of `<Command.Root />`. It accepts props for both the `<Dialog.Root />` and `<Command.Root />` components.
+## API Reference
 
-```svelte title="lib/components/example-command-menu.svelte" showLineNumbers
-<script lang="ts">
-  import * as Command from "$lib/components/ui/command/index.js";
-  import { onMount } from "svelte";
-
-  let open = $state(false);
-
-  function handleKeydown(e: KeyboardEvent) {
-    if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-      e.preventDefault();
-      open = !open;
-    }
-  }
-</script>
-
-<svelte:document onkeydown={handleKeydown} />
-
-<Command.Dialog bind:open>
-  <Command.Input placeholder="Type a command or search..." />
-  <Command.List>
-    <Command.Empty>No results found.</Command.Empty>
-    <Command.Group heading="Suggestions">
-      <Command.Item>Calendar</Command.Item>
-      <Command.Item>Search Emoji</Command.Item>
-      <Command.Item>Calculator</Command.Item>
-    </Command.Group>
-  </Command.List>
-</Command.Dialog>
-```
-
-### Combobox
-
-You can use the `<Command />` component as a combobox. See the [Combobox](/docs/components/combobox) page for more information.
-
-## Changelog
-
-### 2024-10-30 Classes for icons
-
-- Added `gap-2 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0` to the `<Command.Item>` component to automatically style the icons inside.
+See the [Bits UI](https://bits-ui.com/docs/components/command#api-reference) documentation for more information.

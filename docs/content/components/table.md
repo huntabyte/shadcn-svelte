@@ -3,7 +3,7 @@ title: Table
 description: A responsive table component.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/table
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/table
 ---
 
 <script>
@@ -18,7 +18,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="table-demo">
+<ComponentPreview name="table-demo" previewClassName="h-[30rem]">
 
 <div></div>
 
@@ -41,6 +41,12 @@ Copy and paste the following code into your project.
 {#if viewerData}
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
+
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
 
 </Steps>
 {/snippet}
@@ -75,6 +81,55 @@ Copy and paste the following code into your project.
   </Table.Body>
 </Table.Root>
 ```
+
+## Composition
+
+Use the following composition to build a `Table`:
+
+```text
+Table.Root
+├── Table.Caption
+├── Table.Header
+│   └── Table.Row
+│       ├── Table.Head
+│       ├── Table.Head
+│       ├── Table.Head
+│       └── Table.Head
+├── Table.Body
+│   ├── Table.Row
+│   │   ├── Table.Cell
+│   │   ├── Table.Cell
+│   │   ├── Table.Cell
+│   │   └── Table.Cell
+│   └── Table.Row
+│       ├── Table.Cell
+│       ├── Table.Cell
+│       ├── Table.Cell
+│       └── Table.Cell
+└── Table.Footer
+```
+
+## Examples
+
+### Footer
+
+Use the `<Table.Footer />` component to add a footer to the table.
+
+<ComponentPreview name="table-footer">
+
+<div></div>
+
+</ComponentPreview>
+
+### Actions
+
+A table showing actions for each row using a `<DropdownMenu />` component.
+
+<ComponentPreview name="table-actions">
+
+<div></div>
+
+</ComponentPreview>
 
 ## Data Table
 

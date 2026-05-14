@@ -3,7 +3,7 @@ title: Native Select
 description: A styled native HTML select element with consistent design system integration.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/native-select
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/native-select
 ---
 
 <script>
@@ -25,7 +25,11 @@ For a styled select component, see the [Select](/docs/components/select) compone
 
 </Callout>
 
-<ComponentPreview name="native-select-demo" />
+<ComponentPreview name="native-select-demo">
+
+<div></div>
+
+</ComponentPreview>
 
 ## Installation
 
@@ -44,6 +48,12 @@ Copy and paste the following code into your project.
 {#if viewerData}
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
+
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
 
 </Steps>
 {/snippet}
@@ -68,11 +78,39 @@ Copy and paste the following code into your project.
 </NativeSelect.Root>
 ```
 
+## Composition
+
+### Simple
+
+Options placed directly under `NativeSelect` (no `NativeSelect.OptGroup`).
+
+```text
+NativeSelect.Root
+├── NativeSelect.Option
+├── NativeSelect.Option
+├── NativeSelect.Option
+└── NativeSelect.Option
+```
+
+### With groups
+
+Use `NativeSelect.OptGroup` to organize options into categories.
+
+```text
+NativeSelect.Root
+├── NativeSelect.OptGroup
+│   ├── NativeSelect.Option
+│   └── NativeSelect.Option
+└── NativeSelect.OptGroup
+    ├── NativeSelect.Option
+    └── NativeSelect.Option
+```
+
 ## Examples
 
-### With Groups
+### Groups
 
-Organize options using `NativeSelect.OptGroup` for better categorization.
+Use `NativeSelect.OptGroup` to organize options into categories.
 
 <ComponentPreview name="native-select-groups" >
 
@@ -80,25 +118,9 @@ Organize options using `NativeSelect.OptGroup` for better categorization.
 
 </ComponentPreview>
 
-```svelte showLineNumbers
-<NativeSelect.Root>
-  <NativeSelect.Option value="">Select a food</NativeSelect.Option>
-  <NativeSelect.OptGroup label="Fruits">
-    <NativeSelect.Option value="apple">Apple</NativeSelect.Option>
-    <NativeSelect.Option value="banana">Banana</NativeSelect.Option>
-    <NativeSelect.Option value="blueberry">Blueberry</NativeSelect.Option>
-  </NativeSelect.OptGroup>
-  <NativeSelect.OptGroup label="Vegetables">
-    <NativeSelect.Option value="carrot">Carrot</NativeSelect.Option>
-    <NativeSelect.Option value="broccoli">Broccoli</NativeSelect.Option>
-    <NativeSelect.Option value="spinach">Spinach</NativeSelect.Option>
-  </NativeSelect.OptGroup>
-</NativeSelect.Root>
-```
+### Disabled
 
-### Disabled State
-
-Disable individual options or the entire select component.
+Add the `disabled` prop to the `NativeSelect` component to disable the select.
 
 <ComponentPreview name="native-select-disabled" >
 
@@ -108,7 +130,7 @@ Disable individual options or the entire select component.
 
 ### Invalid State
 
-Show validation errors with the `aria-invalid` attribute and error styling.
+Use `aria-invalid` to show validation errors and the `data-invalid` attribute to the `Field` component for styling.
 
 <ComponentPreview name="native-select-invalid" >
 
@@ -116,36 +138,10 @@ Show validation errors with the `aria-invalid` attribute and error styling.
 
 </ComponentPreview>
 
-```svelte showLineNumbers
-<NativeSelect.Root aria-invalid="true">
-  <NativeSelect.Option value="">Select a country</NativeSelect.Option>
-  <NativeSelect.Option value="us">United States</NativeSelect.Option>
-  <NativeSelect.Option value="uk">United Kingdom</NativeSelect.Option>
-  <NativeSelect.Option value="ca">Canada</NativeSelect.Option>
-</NativeSelect.Root>
-```
-
 ## Native Select vs Select
 
 - Use `NativeSelect` when you need native browser behavior, better performance, or mobile-optimized dropdowns.
 - Use `Select` when you need custom styling, animations, or complex interactions.
-
-The `NativeSelect` component provides native HTML select functionality with consistent styling that matches your design system.
-
-## Accessibility
-
-- The component maintains all native HTML select accessibility features.
-- Screen readers can navigate through options using arrow keys.
-- The chevron icon is marked as `aria-hidden="true"` to avoid duplication.
-- Use `aria-label` or `aria-labelledby` for additional context when needed.
-
-```tsx showLineNumbers
-<NativeSelect.Root aria-label="Choose your preferred language">
-  <NativeSelect.Option value="en">English</NativeSelect.Option>
-  <NativeSelect.Option value="es">Spanish</NativeSelect.Option>
-  <NativeSelect.Option value="fr">French</NativeSelect.Option>
-</NativeSelect.Root>
-```
 
 ## API Reference
 

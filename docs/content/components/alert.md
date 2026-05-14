@@ -3,7 +3,7 @@ title: Alert
 description: Displays a callout for user attention.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/alert
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/alert
 ---
 
 <script>
@@ -18,7 +18,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="alert-demo">
+<ComponentPreview name="alert-demo" previewClassName="h-auto sm:h-72 p-6">
 
 <div></div>
 
@@ -42,6 +42,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -62,3 +68,92 @@ Copy and paste the following code into your project.
   </Alert.Description>
 </Alert.Root>
 ```
+
+## Composition
+
+Use the following composition to build an `Alert`:
+
+```text
+Alert.Root
+├── Icon
+├── Alert.Title
+├── Alert.Description
+└── Alert.Action
+```
+
+## Examples
+
+### Basic
+
+A basic alert with an icon, title and description.
+
+<ComponentPreview name="alert-basic" previewClassName="h-auto sm:h-72 p-6">
+
+<div></div>
+
+</ComponentPreview>
+
+### Destructive
+
+Use `variant="destructive"` to create a destructive alert.
+
+<ComponentPreview name="alert-destructive" previewClassName="h-auto sm:h-72 p-6">
+
+<div></div>
+
+</ComponentPreview>
+
+### Action
+
+Use `Alert.Action` to add a button or other action element to the alert.
+
+<ComponentPreview name="alert-action" previewClassName="h-auto sm:h-72 p-6">
+
+<div></div>
+
+</ComponentPreview>
+
+### Custom Colors
+
+You can customize the alert colors by adding custom classes such as `bg-amber-50 dark:bg-amber-950` to the `Alert.Root` component.
+
+<ComponentPreview name="alert-colors" previewClassName="h-auto sm:h-72 p-6">
+
+<div></div>
+
+</ComponentPreview>
+
+## API Reference
+
+### Alert.Root
+
+The `Alert.Root` component displays a callout for user attention.
+
+| Prop      | Type                         | Default     |
+| --------- | ---------------------------- | ----------- |
+| `variant` | `"default" \| "destructive"` | `"default"` |
+| `class`   | `string`                     | -           |
+
+### Alert.Title
+
+The `Alert.Title` component displays the title of the alert.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | -       |
+
+### Alert.Description
+
+The `Alert.Description` component displays the description or content of the alert.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | -       |
+
+### Alert.Action
+
+The `Alert.Action` component displays an action element positioned in the corner of the alert.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | -       |

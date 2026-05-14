@@ -57,7 +57,7 @@
 			</DropdownMenu.Root>
 			<InputGroup.Text class="ms-auto">52% used</InputGroup.Text>
 			<Separator orientation="vertical" class="!h-4" />
-			<InputGroup.Button variant="default" class="rounded-full" size="icon-xs" disabled>
+			<InputGroup.Button variant="default" class="rounded-full" size="icon-xs">
 				<ArrowUpIcon />
 				<span class="sr-only">Send</span>
 			</InputGroup.Button>

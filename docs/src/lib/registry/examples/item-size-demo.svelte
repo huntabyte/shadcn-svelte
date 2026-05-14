@@ -1,33 +1,34 @@
 <script lang="ts">
 	import * as Item from "$lib/registry/ui/item/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import BadgeCheckIcon from "@lucide/svelte/icons/badge-check";
-	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
+	import InboxIcon from "@lucide/svelte/icons/inbox";
 </script>
 
 <div class="flex w-full max-w-md flex-col gap-6">
 	<Item.Root variant="outline">
+		<Item.Media variant="icon">
+			<InboxIcon />
+		</Item.Media>
 		<Item.Content>
-			<Item.Title>Basic Item</Item.Title>
-			<Item.Description>A simple item with title and description.</Item.Description>
+			<Item.Title>Default Size</Item.Title>
+			<Item.Description>The standard size for most use cases.</Item.Description>
 		</Item.Content>
-		<Item.Actions>
-			<Button variant="outline" size="sm">Action</Button>
-		</Item.Actions>
 	</Item.Root>
 	<Item.Root variant="outline" size="sm">
-		{#snippet child({ props })}
-			<a href="#/" {...props}>
-				<Item.Media>
-					<BadgeCheckIcon class="size-5" />
-				</Item.Media>
-				<Item.Content>
-					<Item.Title>Your profile has been verified.</Item.Title>
-				</Item.Content>
-				<Item.Actions>
-					<ChevronRightIcon class="size-4" />
-				</Item.Actions>
-			</a>
-		{/snippet}
+		<Item.Media variant="icon">
+			<InboxIcon />
+		</Item.Media>
+		<Item.Content>
+			<Item.Title>Small Size</Item.Title>
+			<Item.Description>A compact size for dense layouts.</Item.Description>
+		</Item.Content>
+	</Item.Root>
+	<Item.Root variant="outline" size="xs">
+		<Item.Media variant="icon">
+			<InboxIcon />
+		</Item.Media>
+		<Item.Content>
+			<Item.Title>Extra Small Size</Item.Title>
+			<Item.Description>The most compact size available.</Item.Description>
+		</Item.Content>
 	</Item.Root>
 </div>

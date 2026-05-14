@@ -3,7 +3,7 @@ title: Switch
 description: A control that allows the user to toggle between checked and not checked.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/switch
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/switch
   doc: https://bits-ui.com/docs/components/switch
   api: https://bits-ui.com/docs/components/switch#api-reference
 ---
@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -67,3 +73,57 @@ Copy and paste the following code into your project.
 ```svelte
 <Switch />
 ```
+
+## Examples
+
+### Description
+
+<ComponentPreview name="switch-description">
+
+<div></div>
+
+</ComponentPreview>
+
+### Choice Card
+
+Card-style selection where `Field.Label` wraps the entire `Field` for a clickable card pattern.
+
+<ComponentPreview name="switch-choice-card">
+
+<div></div>
+
+</ComponentPreview>
+
+### Disabled
+
+Add the `disabled` prop to the `Switch` component to disable the switch. Add the `data-disabled` prop to the `Field` component for styling.
+
+<ComponentPreview name="switch-disabled">
+
+<div></div>
+
+</ComponentPreview>
+
+### Invalid
+
+Add the `aria-invalid` prop to the `Switch` component to indicate an invalid state. Add the `data-invalid` prop to the `Field` component for styling.
+
+<ComponentPreview name="switch-invalid">
+
+<div></div>
+
+</ComponentPreview>
+
+### Size
+
+Use the `size` prop to change the size of the switch.
+
+<ComponentPreview name="switch-sizes">
+
+<div></div>
+
+</ComponentPreview>
+
+## API Reference
+
+See the [Bits UI Switch](https://bits-ui.com/docs/components/switch#api-reference) documentation.

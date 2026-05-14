@@ -3,7 +3,7 @@ title: Resizable
 description: Accessible resizable panel groups and layouts with keyboard support.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/resizable
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/resizable
   doc: https://www.paneforge.com
   api: https://www.paneforge.com/docs/components/pane-group
 ---
@@ -20,15 +20,11 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="resizable-demo">
+<ComponentPreview name="resizable-demo" previewClassName="h-80">
 
 <div></div>
 
 </ComponentPreview>
-
-## About
-
-The `Resizable` component is built on top of [PaneForge](https://github.com/svecosystem/paneforge) by [Huntabyte](https://github.com/huntabyte). Visit the [PaneForge documentation](https://paneforge.com) for all the available props and abilities of the `Resizable` component.
 
 ## Installation
 
@@ -56,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -69,18 +71,29 @@ Copy and paste the following code into your project.
 ```
 
 ```svelte showLineNumbers
-<Resizable.PaneGroup direction="horizontal">
-  <Resizable.Pane>One</Resizable.Pane>
+<Resizable.PanelGroup orientation="horizontal">
+  <Resizable.Panel>One</Resizable.Panel>
   <Resizable.Handle />
-  <Resizable.Pane>Two</Resizable.Pane>
-</Resizable.PaneGroup>
+  <Resizable.Panel>Two</Resizable.Panel>
+</Resizable.PanelGroup>
+```
+
+## Composition
+
+Use the following composition to build a `Resizable` layout:
+
+```text
+Resizable.PanelGroup
+├── Resizable.Panel
+├── Resizable.Handle
+└── Resizable.Panel
 ```
 
 ## Examples
 
 ### Vertical
 
-Use the `direction` prop to set the direction of the resizable panels.
+Use `orientation="vertical"` for vertical resizing.
 
 <ComponentPreview name="resizable-vertical">
 
@@ -88,21 +101,9 @@ Use the `direction` prop to set the direction of the resizable panels.
 
 </ComponentPreview>
 
-```svelte showLineNumbers {5}
-<script lang="ts">
-  import * as Resizable from "$lib/components/ui/resizable/index.js";
-</script>
-
-<Resizable.PaneGroup direction="vertical">
-  <Resizable.Pane>One</Resizable.Pane>
-  <Resizable.Handle />
-  <Resizable.Pane>Two</Resizable.Pane>
-</Resizable.PaneGroup>
-```
-
 ### Handle
 
-You can set or hide the handle by using the `withHandle` prop on the `ResizableHandle` component.
+Use the `withHandle` prop on `Resizable.Handle` to show a visible handle.
 
 <ComponentPreview name="resizable-handle">
 
@@ -110,14 +111,6 @@ You can set or hide the handle by using the `withHandle` prop on the `ResizableH
 
 </ComponentPreview>
 
-```svelte showLineNumbers {7}
-<script lang="ts">
-  import * as Resizable from "$lib/components/ui/resizable/index.js";
-</script>
+## API Reference
 
-<Resizable.PaneGroup direction="vertical">
-  <Resizable.Pane>One</Resizable.Pane>
-  <Resizable.Handle withHandle />
-  <Resizable.Pane>Two</Resizable.Pane>
-</Resizable.PaneGroup>
-```
+See the [PaneForge documentation](https://paneforge.com) documentation for more information.

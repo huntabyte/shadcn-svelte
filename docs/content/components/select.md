@@ -3,7 +3,7 @@ title: Select
 description: Displays a list of options for the user to pick from—triggered by a button.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/select
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/select
   doc: https://bits-ui.com/docs/components/select
   api: https://bits-ui.com/docs/components/select#api-reference
 ---
@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -68,19 +74,82 @@ Copy and paste the following code into your project.
 <Select.Root type="single">
   <Select.Trigger class="w-[180px]"></Select.Trigger>
   <Select.Content>
-    <Select.Item value="light">Light</Select.Item>
-    <Select.Item value="dark">Dark</Select.Item>
-    <Select.Item value="system">System</Select.Item>
+    <Select.Group>
+      <Select.Item value="light">Light</Select.Item>
+      <Select.Item value="dark">Dark</Select.Item>
+      <Select.Item value="system">System</Select.Item>
+    </Select.Group>
   </Select.Content>
 </Select.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `Select`:
+
+```text
+Select.Root
+├── Select.Trigger
+└── Select.Content
+    ├── Select.Group
+    │   ├── Select.Label
+    │   ├── Select.Item
+    │   └── Select.Item
+    ├── Select.Separator
+    └── Select.Group
+        ├── Select.Label
+        ├── Select.Item
+        └── Select.Item
+```
+
 ## Examples
 
+### Groups
+
+Use `Select.Group`, `Select.Label`, and `Select.Separator` to organize items.
+
+<ComponentPreview name="select-groups">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Scrollable
+
+A select with many items that scrolls.
 
 <ComponentPreview name="select-scrollable">
 
 <div></div>
 
 </ComponentPreview>
+
+### Disabled
+
+<ComponentPreview name="select-disabled">
+
+<div></div>
+
+</ComponentPreview>
+
+### Invalid
+
+Add the `data-invalid` attribute to the `Field.Field` component and the `aria-invalid` attribute to the `Select.Trigger` component to show an error state.
+
+<ComponentPreview name="select-invalid">
+
+<div></div>
+
+</ComponentPreview>
+
+### Form
+
+<ComponentPreview name="select-form">
+
+<div></div>
+
+</ComponentPreview>
+
+## API Reference
+
+See the [Bits UI](https://bits-ui.com/docs/components/select#api-reference) documentation for more information.

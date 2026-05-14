@@ -3,7 +3,7 @@ title: Accordion
 description: A vertically stacked set of interactive headings that each reveal a section of content.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/accordion
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/accordion
   doc: https://bits-ui.com/docs/components/accordion
   api: https://bits-ui.com/docs/components/accordion#api-reference
 ---
@@ -21,7 +21,7 @@ links:
 
 </script>
 
-<ComponentPreview name="accordion-demo" class="[&_.preview>[data-orientation=vertical]]:sm:max-w-[80%] **:[.preview]:min-h-[400px]" description="An accordion with three items" align="start">
+<ComponentPreview name="accordion-demo" previewClassName="*:data-[slot=accordion]:max-w-sm h-[300px]" description="An accordion with three items" align="start">
 
 <div></div>
 
@@ -59,6 +59,12 @@ Copy and paste the following code into your project.
 <ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 
 {/snippet}
@@ -83,3 +89,73 @@ Copy and paste the following code into your project.
   </Accordion.Item>
 </Accordion.Root>
 ```
+
+## Composition
+
+Use the following composition to build an `Accordion`:
+
+```text
+Accordion.Root
+├── Accordion.Item
+│   ├── Accordion.Trigger
+│   └── Accordion.Content
+└── Accordion.Item
+    ├── Accordion.Trigger
+    └── Accordion.Content
+```
+
+## Examples
+
+### Basic
+
+A basic accordion that shows one item at a time. The first item is open by default.
+
+<ComponentPreview name="accordion-basic" align="start" previewClassName="*:data-[slot=accordion]:max-w-sm h-[300px]">
+
+<div></div>
+
+</ComponentPreview>
+
+### Multiple
+
+Use `type="multiple"` to allow multiple items to be open at the same time.
+
+<ComponentPreview name="accordion-multiple" align="start" previewClassName="*:data-[slot=accordion]:max-w-sm h-[36rem] md:h-[30rem]">
+
+<div></div>
+
+</ComponentPreview>
+
+### Disabled
+
+Use the `disabled` prop on `Accordion.Item` to disable individual items.
+
+<ComponentPreview name="accordion-disabled" align="start" previewClassName="*:data-[slot=accordion]:max-w-sm h-[300px]">
+
+<div></div>
+
+</ComponentPreview>
+
+### Borders
+
+Add `border` to the `Accordion.Root` and `border-b last:border-b-0` to the `Accordion.Item` to add borders to the items.
+
+<ComponentPreview name="accordion-borders" align="start" previewClassName="*:data-[slot=accordion]:max-w-sm h-96 md:h-80">
+
+<div></div>
+
+</ComponentPreview>
+
+### Card
+
+Wrap the `Accordion` in a `Card` component.
+
+<ComponentPreview name="accordion-card" align="start" previewClassName="*:data-[slot=accordion]:max-w-sm h-[32rem] md:h-[28rem]">
+
+<div></div>
+
+</ComponentPreview>
+
+## API Reference
+
+See the [Bits UI](https://bits-ui.com/docs/components/accordion#api-reference) documentation for more information.

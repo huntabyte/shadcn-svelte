@@ -3,7 +3,7 @@ title: Kbd
 description: Used to display textual user input from keyboard.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/kbd
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/kbd
 ---
 
 <script>
@@ -42,6 +42,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -56,6 +62,15 @@ Copy and paste the following code into your project.
 
 ```svelte
 <Kbd.Root>B</Kbd.Root>
+```
+
+## Composition
+
+```text
+Kbd.Root
+Kbd.Group
+├── Kbd.Root
+└── Kbd.Root
 ```
 
 ## Examples
@@ -99,3 +114,32 @@ You can use the `Kbd.Root` component inside a `InputGroup.Addon` component to di
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+### Kbd.Root
+
+Use the `Kbd.Root` component to display a keyboard key.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | ``      |
+
+```svelte
+<Kbd.Root>Ctrl</Kbd.Root>
+```
+
+### Kbd.Group
+
+Use the `Kbd.Group` component to group `Kbd` components together.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | ``      |
+
+```svelte
+<Kbd.Group>
+  <Kbd.Root>Ctrl</Kbd.Root>
+  <Kbd.Root>B</Kbd.Root>
+</Kbd.Group>
+```
