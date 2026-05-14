@@ -243,7 +243,7 @@ The `ButtonGroup.Text` component displays text content within a button group.
 | Prop    | Type                   | Default |
 | ------- | ---------------------- | ------- |
 | `class` | `string`               | -       |
-| `child` | `Snippet<[{ props }]>` | -       |
+| `child` | `Snippet<[{ props: Record<string, any> }]>` | -       |
 
 ```svelte
 <ButtonGroup.Root>
