@@ -1,11 +1,8 @@
 <script lang="ts">
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
-	import { LineChart, Spline } from "layerchart";
+	import { LineChart } from "layerchart";
 	import { curveLinearClosed } from "d3-shape";
 	import { scaleBand } from "d3-scale";
-	import { defaultRadarScale } from "$lib/registry/ui/chart/easing.js";
-	import { tweened } from "svelte/motion";
-	import { onMount } from "svelte";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
@@ -29,16 +26,13 @@
 			color: "var(--chart-2)",
 		},
 	} satisfies Chart.ChartConfig;
-
-	const scale = tweened(0, defaultRadarScale);
-	onMount(() => scale.set(1));
 </script>
 
 <Example title="Radar Chart">
 	<Card.Root class="w-full">
 		<Card.Header class="items-center pb-4">
 			<Card.Title>Radar Chart - Multiple</Card.Title>
-			<Card.Description>January - June 2024</Card.Description>
+			<Card.Description>Showing total visitors for the last 6 months</Card.Description>
 		</Card.Header>
 		<Card.Content class="pb-0">
 			<Chart.Container config={radarChartConfig} class="mx-auto aspect-square max-h-[250px]">
@@ -71,6 +65,7 @@
 						spline: {
 							curve: curveLinearClosed,
 							stroke: "0",
+							motion: "tween",
 						},
 						xAxis: {
 							tickLength: 0,
@@ -92,18 +87,6 @@
 						},
 					}}
 				>
-					{#snippet marks({ context })}
-						<g style="transform: scale({$scale}); transform-origin: 0 0;">
-							{#each context.series.visibleSeries as s (s.key)}
-								<Spline
-									seriesKey={s.key}
-									curve={curveLinearClosed}
-									stroke="0"
-									{...s.props}
-								/>
-							{/each}
-						</g>
-					{/snippet}
 					{#snippet tooltip()}
 						<Chart.Tooltip indicator="line" />
 					{/snippet}
@@ -123,7 +106,7 @@
 				/>
 			</div>
 			<div class="text-muted-foreground flex items-center gap-2 leading-none">
-				Showing total visitors for the last 6 months
+				January - June 2024
 			</div>
 		</Card.Footer>
 	</Card.Root>
