@@ -1,4 +1,3 @@
-import { browser } from "$app/environment";
 import type { Id } from "flexsearch";
 
 export type SearchContent = {
@@ -23,7 +22,6 @@ let contentIndex: any;
 let content: SearchContent[] = [];
 
 export async function createContentIndex(data: SearchContent[]) {
-	if (!browser) return;
 	const { Index } = await import("flexsearch");
 
 	titleIndex = new Index({
