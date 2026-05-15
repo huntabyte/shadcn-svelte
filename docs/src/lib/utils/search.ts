@@ -1,4 +1,4 @@
-import { Index, type Id } from "flexsearch";
+import type { Id } from "flexsearch";
 
 export type SearchContent = {
 	title: string;
@@ -15,11 +15,15 @@ export type SearchResult = SearchContent & {
 	highlights?: string[];
 };
 
-let titleIndex: Index;
-let contentIndex: Index;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let titleIndex: any;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let contentIndex: any;
 let content: SearchContent[] = [];
 
-export function createContentIndex(data: SearchContent[]) {
+export async function createContentIndex(data: SearchContent[]) {
+	const { Index } = await import("flexsearch");
+
 	titleIndex = new Index({
 		tokenize: "forward",
 		resolution: 9,
