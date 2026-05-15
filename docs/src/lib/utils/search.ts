@@ -1,4 +1,4 @@
-import { Index, type Id } from "flexsearch";
+import type { Id } from "flexsearch";
 
 export type SearchContent = {
 	title: string;
@@ -15,11 +15,20 @@ export type SearchResult = SearchContent & {
 	highlights?: string[];
 };
 
-let titleIndex: Index;
-let contentIndex: Index;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let titleIndex: any;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let contentIndex: any;
 let content: SearchContent[] = [];
 
-export function createContentIndex(data: SearchContent[]) {
+export async function createContentIndex(data: SearchContent[]) {
+	// import.meta.env.SSR is replaced with `true` at build time, so rolldown
+	// eliminates the dynamic import below as dead code — flexsearch never
+	// enters the server/worker bundle.
+	if (import.meta.env.SSR) return;
+
+	const { Index } = await import("flexsearch");
+
 	titleIndex = new Index({
 		tokenize: "forward",
 		resolution: 9,

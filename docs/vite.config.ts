@@ -29,7 +29,6 @@ export default defineConfig({
 		// the Cloudflare worker instead of remaining a bare external import.
 		alias: {
 			qrcode: "qrcode/lib/browser.js",
-			flexsearch: "flexsearch/dist/flexsearch.bundle.module.min.mjs",
 		},
 	},
 	plugins: [

@@ -112,7 +112,7 @@
 
 	onMount(async () => {
 		const data = await fetch("/api/search.json").then((res) => res.json());
-		createContentIndex(data);
+		await createContentIndex(data);
 		searchState = "ready";
 	});
 
