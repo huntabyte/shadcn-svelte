@@ -1238,7 +1238,7 @@
 	}
 
 	.cn-tabs-list {
-		@apply rounded-lg p-[3px] group-data-horizontal/tabs:h-8 data-[variant=line]:rounded-none;
+		@apply rounded-lg p-[3px] group-data-[orientation=horizontal]/tabs:h-8 data-[variant=line]:rounded-none;
 	}
 
 	.cn-tabs-trigger {

@@ -1238,11 +1238,11 @@
 	}
 
 	.cn-tabs-list {
-		@apply rounded-4xl p-[3px] group-data-horizontal/tabs:h-9 group-data-vertical/tabs:rounded-2xl data-[variant=line]:rounded-none;
+		@apply rounded-4xl p-[3px] group-data-[orientation=horizontal]/tabs:h-9 group-data-[orientation=vertical]/tabs:rounded-2xl data-[variant=line]:rounded-none;
 	}
 
 	.cn-tabs-trigger {
-		@apply gap-1.5 rounded-xl border border-transparent px-2 py-1 text-sm font-medium group-data-vertical/tabs:px-2.5 group-data-vertical/tabs:py-1.5 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-4;
+		@apply gap-1.5 rounded-xl border border-transparent px-2 py-1 text-sm font-medium group-data-[orientation=vertical]/tabs:px-2.5 group-data-[orientation=vertical]/tabs:py-1.5 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-4;
 	}
 
 	.cn-tabs-content {

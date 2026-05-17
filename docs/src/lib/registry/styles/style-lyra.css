@@ -1213,11 +1213,11 @@
 	}
 
 	.cn-tabs-list {
-		@apply rounded-none p-[3px] group-data-horizontal/tabs:h-8 data-[variant=line]:rounded-none;
+		@apply rounded-none p-[3px] group-data-[orientation=horizontal]/tabs:h-8 data-[variant=line]:rounded-none;
 	}
 
 	.cn-tabs-trigger {
-		@apply gap-1.5 rounded-none border border-transparent px-1.5 py-0.5 text-xs font-medium group-data-vertical/tabs:py-[calc(--spacing(1.25))] has-data-[icon=inline-end]:pr-1 has-data-[icon=inline-start]:pl-1 [&_svg:not([class*='size-'])]:size-4;
+		@apply gap-1.5 rounded-none border border-transparent px-1.5 py-0.5 text-xs font-medium group-data-[orientation=vertical]/tabs:py-[calc(--spacing(1.25))] has-data-[icon=inline-end]:pr-1 has-data-[icon=inline-start]:pl-1 [&_svg:not([class*='size-'])]:size-4;
 	}
 
 	.cn-tabs-content {
