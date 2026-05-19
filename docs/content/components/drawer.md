@@ -85,6 +85,16 @@ Copy and paste the following code into your project.
 
 ## Examples
 
+### Sides
+
+Use the `direction` prop to set the side of the drawer. Available options are `top`, `right`, `bottom`, and `left`.
+
+<ComponentPreview name="drawer-direction">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Responsive Dialog
 
 You can combine the `Dialog` and `Drawer` components to create a responsive dialog. This renders a `Dialog` on desktop and a `Drawer` on mobile.
