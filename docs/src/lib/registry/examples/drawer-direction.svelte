@@ -7,7 +7,7 @@
 </script>
 
 <div class="flex flex-wrap gap-2">
-	{#each DRAWER_SIDES as side}
+	{#each DRAWER_SIDES as side (side)}
 		<Drawer.Root direction={side === "bottom" ? undefined : side}>
 			<Drawer.Trigger class={cn(buttonVariants({ variant: "outline" }), "capitalize")}>
 				{side}
@@ -20,7 +20,7 @@
 					<Drawer.Description>Set your daily activity goal.</Drawer.Description>
 				</Drawer.Header>
 				<div class="no-scrollbar overflow-y-auto px-4">
-					{#each Array.from({ length: 10 }) as _}
+					{#each Array.from({ length: 10 }) as _, i (i)}
 						<p class="mb-4 leading-normal">
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
 							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
