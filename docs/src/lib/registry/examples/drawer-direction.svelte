@@ -34,9 +34,9 @@
 				</div>
 				<Drawer.Footer>
 					<Button>Submit</Button>
-					<Drawer.Close class={buttonVariants({ variant: "outline" })}
-						>Cancel</Drawer.Close
-					>
+					<Drawer.Close class={buttonVariants({ variant: "outline" })}>
+						Cancel
+					</Drawer.Close>
 				</Drawer.Footer>
 			</Drawer.Content>
 		</Drawer.Root>
