@@ -17,10 +17,10 @@
 				<Dialog.Description>This is a dialog with scrollable content.</Dialog.Description>
 			</Dialog.Header>
 			<div
-				class="no-scrollbar max-h-[70vh] overflow-y-auto style-vega:-mx-6 style-vega:px-6 style-nova:-mx-4 style-nova:px-4 style-lyra:-mx-4 style-lyra:px-4 style-maia:-mx-6 style-maia:px-6 style-mira:-mx-4 style-mira:px-4 style-luma:-mx-6 style-luma:px-6 style-rhea:-mx-6 style-rhea:px-6"
+				class="no-scrollbar style-vega:-mx-6 style-vega:px-6 style-nova:-mx-4 style-nova:px-4 style-lyra:-mx-4 style-lyra:px-4 style-maia:-mx-6 style-maia:px-6 style-mira:-mx-4 style-mira:px-4 style-luma:-mx-6 style-luma:px-6 style-rhea:-mx-6 style-rhea:px-6 max-h-[70vh] overflow-y-auto"
 			>
 				{#each Array(10) as _, i (i)}
-					<p class="mb-4 leading-normal style-lyra:mb-2 style-lyra:leading-relaxed">
+					<p class="style-lyra:mb-2 style-lyra:leading-relaxed mb-4 leading-normal">
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
 						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo

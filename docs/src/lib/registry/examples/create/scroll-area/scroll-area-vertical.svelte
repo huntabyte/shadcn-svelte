@@ -7,7 +7,9 @@
 </script>
 
 <Example title="Vertical">
-	<ScrollArea class="mx-auto h-72 w-48 rounded-md border style-luma:rounded-2xl style-rhea:rounded-2xl">
+	<ScrollArea
+		class="style-luma:rounded-2xl style-rhea:rounded-2xl mx-auto h-72 w-48 rounded-md border"
+	>
 		<div class="p-4">
 			<h4 class="mb-4 text-sm leading-none font-medium">Tags</h4>
 			{#each tags as tag (tag)}
