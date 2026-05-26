@@ -14,7 +14,7 @@
 			"target": "native-select/native-select-opt-group.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport type { HTMLOptionAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLOptionAttributes> = $props();\n</script>\n\n<option bind:this={ref} data-slot=\"native-select-option\" {...restProps}>\n\t{@render children?.()}\n</option>\n",
+			"content": "<script lang=\"ts\">\n\timport type { HTMLOptionAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLOptionAttributes> = $props();\n</script>\n\n<option\n\tbind:this={ref}\n\tdata-slot=\"native-select-option\"\n\tclass={cn(\"bg-[Canvas] text-[CanvasText]\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</option>\n",
 			"type": "registry:file",
 			"target": "native-select/native-select-option.svelte"
 		},
