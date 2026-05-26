@@ -1994,6 +1994,18 @@
 		"relativeUrl": "font-playfair-display.json"
 	},
 	{
+		"name": "font-eb-garamond",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-eb-garamond.json"
+	},
+	{
+		"name": "font-instrument-serif",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-instrument-serif.json"
+	},
+	{
 		"name": "font-heading-geist",
 		"type": "registry:font",
 		"registryDependencies": [],
@@ -2136,5 +2148,17 @@
 		"type": "registry:font",
 		"registryDependencies": [],
 		"relativeUrl": "font-heading-playfair-display.json"
+	},
+	{
+		"name": "font-heading-eb-garamond",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-heading-eb-garamond.json"
+	},
+	{
+		"name": "font-heading-instrument-serif",
+		"type": "registry:font",
+		"registryDependencies": [],
+		"relativeUrl": "font-heading-instrument-serif.json"
 	}
 ]

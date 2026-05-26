@@ -14,7 +14,7 @@ import { keys } from "../utils/utils.js";
 //   4. Stay under 53 bits total (JS safe integer limit).
 
 // Value arrays — order matters for backward compat. Never reorder, only append.
-export const PRESET_STYLES = ["nova", "vega", "maia", "lyra", "mira", "luma", "sera"] as const;
+export const PRESET_STYLES = ["nova", "vega", "maia", "lyra", "mira", "luma", "sera", "rhea"] as const;
 
 export const PRESET_BASE_COLORS = {
 	neutral: { name: "Neutral", color: "#737373" },
@@ -99,6 +99,8 @@ export const PRESET_FONTS = [
 	"ibm-plex-sans",
 	"source-sans-3",
 	"instrument-sans",
+	"eb-garamond",
+	"instrument-serif",
 ] as const;
 export const PRESET_FONT_HEADINGS = ["inherit", ...PRESET_FONTS] as const;
 

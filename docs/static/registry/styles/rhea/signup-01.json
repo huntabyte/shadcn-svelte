@@ -1,0 +1,23 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "signup-01",
+	"type": "registry:block",
+	"registryDependencies": [
+		"button",
+		"card",
+		"field",
+		"input"
+	],
+	"files": [
+		{
+			"content": "<script>\n\timport SignupForm from \"$COMPONENTS$/signup-form.svelte\";\n</script>\n\n<div class=\"flex min-h-svh w-full items-center justify-center p-6 md:p-10\">\n\t<div class=\"w-full max-w-sm\">\n\t\t<SignupForm />\n\t</div>\n</div>\n",
+			"type": "registry:page",
+			"target": "signup-01/+page.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Button } from \"$UI$/button/index.js\";\n\timport * as Card from \"$UI$/card/index.js\";\n\timport * as Field from \"$UI$/field/index.js\";\n\timport { Input } from \"$UI$/input/index.js\";\n\timport type { ComponentProps } from \"svelte\";\n\n\tlet { ...restProps }: ComponentProps<typeof Card.Root> = $props();\n</script>\n\n<Card.Root {...restProps}>\n\t<Card.Header>\n\t\t<Card.Title>Create an account</Card.Title>\n\t\t<Card.Description>Enter your information below to create your account</Card.Description>\n\t</Card.Header>\n\t<Card.Content>\n\t\t<form>\n\t\t\t<Field.Group>\n\t\t\t\t<Field.Field>\n\t\t\t\t\t<Field.Label for=\"name\">Full Name</Field.Label>\n\t\t\t\t\t<Input id=\"name\" type=\"text\" placeholder=\"John Doe\" required />\n\t\t\t\t</Field.Field>\n\t\t\t\t<Field.Field>\n\t\t\t\t\t<Field.Label for=\"email\">Email</Field.Label>\n\t\t\t\t\t<Input id=\"email\" type=\"email\" placeholder=\"m@example.com\" required />\n\t\t\t\t\t<Field.Description>\n\t\t\t\t\t\tWe'll use this to contact you. We will not share your email with anyone\n\t\t\t\t\t\telse.\n\t\t\t\t\t</Field.Description>\n\t\t\t\t</Field.Field>\n\t\t\t\t<Field.Field>\n\t\t\t\t\t<Field.Label for=\"password\">Password</Field.Label>\n\t\t\t\t\t<Input id=\"password\" type=\"password\" required />\n\t\t\t\t\t<Field.Description>Must be at least 8 characters long.</Field.Description>\n\t\t\t\t</Field.Field>\n\t\t\t\t<Field.Field>\n\t\t\t\t\t<Field.Label for=\"confirm-password\">Confirm Password</Field.Label>\n\t\t\t\t\t<Input id=\"confirm-password\" type=\"password\" required />\n\t\t\t\t\t<Field.Description>Please confirm your password.</Field.Description>\n\t\t\t\t</Field.Field>\n\t\t\t\t<Field.Group>\n\t\t\t\t\t<Field.Field>\n\t\t\t\t\t\t<Button type=\"submit\">Create Account</Button>\n\t\t\t\t\t\t<Button variant=\"outline\" type=\"button\">Sign up with Google</Button>\n\t\t\t\t\t\t<Field.Description class=\"px-6 text-center\">\n\t\t\t\t\t\t\tAlready have an account? <a href=\"#/\">Sign in</a>\n\t\t\t\t\t\t</Field.Description>\n\t\t\t\t\t</Field.Field>\n\t\t\t\t</Field.Group>\n\t\t\t</Field.Group>\n\t\t</form>\n\t</Card.Content>\n</Card.Root>\n",
+			"type": "registry:component",
+			"target": "signup-form.svelte"
+		}
+	]
+}

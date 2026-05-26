@@ -1,0 +1,16 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "font-merriweather",
+	"type": "registry:font",
+	"files": [],
+	"font": {
+		"family": "'Merriweather Variable', serif",
+		"provider": "google",
+		"import": "Merriweather",
+		"variable": "--font-serif",
+		"subsets": [
+			"latin"
+		],
+		"dependency": "@fontsource-variable/merriweather"
+	}
+}

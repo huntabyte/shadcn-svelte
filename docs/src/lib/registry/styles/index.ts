@@ -5,6 +5,7 @@ import Lyra from "./icons/lyra.svelte";
 import Mira from "./icons/mira.svelte";
 import Luma from "./icons/luma.svelte";
 import Sera from "./icons/sera.svelte";
+import Rhea from "./icons/rhea.svelte";
 
 export const STYLES = [
 	{
@@ -48,6 +49,12 @@ export const STYLES = [
 		title: "Sera",
 		description: "Editorial and typographic.",
 		icon: Sera,
+	},
+	{
+		name: "rhea",
+		title: "Rhea",
+		description: "Like Luma but compact.",
+		icon: Rhea,
 	},
 ] as const;
 

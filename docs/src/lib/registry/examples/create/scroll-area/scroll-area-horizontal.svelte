@@ -19,7 +19,7 @@
 </script>
 
 <Example title="Horizontal">
-	<ScrollArea.Root orientation="horizontal" class="mx-auto w-full max-w-96 rounded-md border p-4">
+	<ScrollArea.Root orientation="horizontal" class="mx-auto w-full max-w-96 rounded-md border p-4 style-luma:rounded-2xl style-rhea:rounded-2xl">
 		<div class="flex gap-4">
 			{#each works as artwork (artwork.artist)}
 				<figure class="shrink-0">
