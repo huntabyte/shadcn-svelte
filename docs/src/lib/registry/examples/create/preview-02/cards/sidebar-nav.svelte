@@ -254,7 +254,7 @@
 											lucide="ActivityIcon"
 											tabler="IconActivity"
 											hugeicons="ActivityIcon"
-											phosphor="ActivityIcon"
+											phosphor="PulseIcon"
 											remixicon="RiPulseLine"
 										/>
 										Status
