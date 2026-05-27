@@ -21,10 +21,16 @@ export function getCommand(
 	// special handling for create
 	if (type === "create") return { command: pm, args: ["create", ...args] };
 
-	const cmd = resolveCommand(pm, type, args);
+	let cmd = resolveCommand(pm, type, args);
 
-	// since docs are static any unresolved command is a code error
 	if (cmd === null) throw new Error("Could not resolve command!");
+
+	if (cmd.command === "bun" && cmd.args[0] === "x") {
+		cmd = {
+			command: "bunx",
+			args: cmd.args.slice(1),
+		};
+	}
 
 	return cmd;
 }
