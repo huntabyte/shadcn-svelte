@@ -1,0 +1,20 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "calendar-20",
+	"type": "registry:block",
+	"devDependencies": [
+		"@internationalized/date@^3.12.0"
+	],
+	"registryDependencies": [
+		"button",
+		"card",
+		"calendar"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport { Button } from \"$UI$/button/index.js\";\n\timport * as Card from \"$UI$/card/index.js\";\n\timport Calendar from \"$UI$/calendar/calendar.svelte\";\n\timport { CalendarDate, getLocalTimeZone } from \"@internationalized/date\";\n\n\tlet value = $state<CalendarDate | undefined>(new CalendarDate(2025, 6, 12));\n\tlet selectedTime = $state<string | null>(\"10:00\");\n\n\tconst bookedDates = Array.from({ length: 3 }, (_, i) => new CalendarDate(2025, 6, 17 + i));\n\tconst timeSlots = Array.from({ length: 37 }, (_, i) => {\n\t\tconst totalMinutes = i * 15;\n\t\tconst hour = Math.floor(totalMinutes / 60) + 9;\n\t\tconst minute = totalMinutes % 60;\n\t\treturn `${hour.toString().padStart(2, \"0\")}:${minute.toString().padStart(2, \"0\")}`;\n\t});\n</script>\n\n<Card.Root class=\"gap-0 p-0\">\n\t<Card.Content class=\"relative p-0 md:pe-48\">\n\t\t<div class=\"p-6\">\n\t\t\t<Calendar\n\t\t\t\ttype=\"single\"\n\t\t\t\tbind:value\n\t\t\t\tisDateUnavailable={(date) => bookedDates.some((d) => d.compare(date) === 0)}\n\t\t\t\tclass=\"bg-transparent p-0 [--cell-size:--spacing(10)] data-unavailable:line-through data-unavailable:opacity-100 md:[--cell-size:--spacing(12)] [&_[data-outside-month]]:hidden\"\n\t\t\t\tweekdayFormat=\"short\"\n\t\t\t/>\n\t\t</div>\n\t\t<div\n\t\t\tclass=\"no-scrollbar inset-y-0 end-0 flex max-h-72 w-full scroll-pb-6 flex-col gap-4 overflow-y-auto border-t p-6 md:absolute md:max-h-none md:w-48 md:border-s md:border-t-0\"\n\t\t>\n\t\t\t<div class=\"grid gap-2\">\n\t\t\t\t{#each timeSlots as time (time)}\n\t\t\t\t\t<Button\n\t\t\t\t\t\tvariant={selectedTime === time ? \"default\" : \"outline\"}\n\t\t\t\t\t\tonclick={() => (selectedTime = time)}\n\t\t\t\t\t\tclass=\"w-full shadow-none\"\n\t\t\t\t\t>\n\t\t\t\t\t\t{time}\n\t\t\t\t\t</Button>\n\t\t\t\t{/each}\n\t\t\t</div>\n\t\t</div>\n\t</Card.Content>\n\t<Card.Footer class=\"flex flex-col gap-4 border-t px-6 !py-5 md:flex-row\">\n\t\t<div class=\"text-sm\">\n\t\t\t{#if value && selectedTime}\n\t\t\t\tYour meeting is booked for\n\t\t\t\t<span class=\"font-medium\">\n\t\t\t\t\t{value.toDate(getLocalTimeZone()).toLocaleDateString(\"en-US\", {\n\t\t\t\t\t\tweekday: \"long\",\n\t\t\t\t\t\tday: \"numeric\",\n\t\t\t\t\t\tmonth: \"short\",\n\t\t\t\t\t})}\n\t\t\t\t</span>\n\t\t\t\tat <span class=\"font-medium\">{selectedTime}</span>.\n\t\t\t{:else}\n\t\t\t\tSelect a date and time for your meeting.\n\t\t\t{/if}\n\t\t</div>\n\t\t<Button\n\t\t\tdisabled={!value || !selectedTime}\n\t\t\tclass=\"w-full md:ms-auto md:w-auto\"\n\t\t\tvariant=\"outline\"\n\t\t>\n\t\t\tContinue\n\t\t</Button>\n\t</Card.Footer>\n</Card.Root>\n",
+			"type": "registry:component",
+			"target": "calendar-20.svelte"
+		}
+	]
+}

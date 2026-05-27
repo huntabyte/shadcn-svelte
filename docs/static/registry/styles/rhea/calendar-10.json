@@ -1,0 +1,20 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "calendar-10",
+	"type": "registry:block",
+	"devDependencies": [
+		"@internationalized/date@^3.12.0"
+	],
+	"registryDependencies": [
+		"calendar",
+		"card",
+		"button"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport Calendar from \"$UI$/calendar/calendar.svelte\";\n\timport * as Card from \"$UI$/card/index.js\";\n\timport { Button } from \"$UI$/button/index.js\";\n\timport { CalendarDate, getLocalTimeZone, today } from \"@internationalized/date\";\n\n\tlet value = $state<CalendarDate | undefined>(new CalendarDate(2025, 6, 12));\n</script>\n\n<Card.Root>\n\t<Card.Header>\n\t\t<Card.Title>Appointment</Card.Title>\n\t\t<Card.Description>Find a date.</Card.Description>\n\t\t<Card.Action>\n\t\t\t<Button size=\"sm\" variant=\"outline\" onclick={() => (value = today(getLocalTimeZone()))}>\n\t\t\t\tToday\n\t\t\t</Button>\n\t\t</Card.Action>\n\t</Card.Header>\n\t<Card.Content>\n\t\t<Calendar type=\"single\" bind:value class=\"bg-transparent p-0\" />\n\t</Card.Content>\n</Card.Root>\n",
+			"type": "registry:component",
+			"target": "calendar-10.svelte"
+		}
+	]
+}

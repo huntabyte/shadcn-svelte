@@ -1,14 +1,13 @@
 import fs from "node:fs/promises";
 import prettier from "prettier";
-
-const styles = ["vega", "nova", "maia", "lyra", "mira", "luma", "sera"];
+import { PRESET_STYLES } from "shadcn-svelte/preset";
 
 const prettierConfig = await prettier.resolveConfig(import.meta.url);
 if (!prettierConfig) throw new Error("Failed to resolve prettier config.");
 
 async function pullStyles() {
 	await Promise.all(
-		styles.map(async (style) => {
+		PRESET_STYLES.map(async (style) => {
 			console.log(`Pulling upstream style ${style}...`);
 			const stylePath = `https://raw.githubusercontent.com/shadcn-ui/ui/refs/heads/main/apps/v4/registry/styles/style-${style}.css`;
 			const styleContent = await fetch(stylePath).then((res) => res.text());

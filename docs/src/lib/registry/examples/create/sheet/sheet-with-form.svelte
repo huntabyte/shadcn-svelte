@@ -21,7 +21,7 @@
 				</Sheet.Description>
 			</Sheet.Header>
 			<div
-				class="style-vega:px-4 style-maia:px-6 style-mira:px-6 style-lyra:px-4 style-nova:px-4"
+				class="style-vega:px-4 style-nova:px-4 style-lyra:px-4 style-maia:px-6 style-mira:px-6 style-luma:px-6 style-rhea:px-6"
 			>
 				<Field.Group>
 					<Field.Field>
