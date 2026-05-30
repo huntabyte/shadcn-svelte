@@ -50,23 +50,6 @@ export const userConfigSchema = z
 
 export type UserConfigType = z.infer<typeof userConfigSchema>;
 
-export function parseUserConfigValue(value: unknown): UserConfigType {
-	const parsed = userConfigSchema.safeParse(value);
-	if (parsed.success) return parsed.data;
-
-	return userConfigSchema.parse({});
-}
-
-export function parseUserConfigJson(value: string | undefined): UserConfigType {
-	if (!value) return parseUserConfigValue({});
-
-	try {
-		return parseUserConfigValue(JSON.parse(value));
-	} catch {
-		return parseUserConfigValue({});
-	}
-}
-
 function parseCookie(cookie: string): Record<string, string> {
 	const cookies = cookie.split(";");
 	const cookieMap: Record<string, string> = {};
@@ -80,7 +63,8 @@ function parseCookie(cookie: string): Record<string, string> {
 export function parseUserConfig(cookie: string): UserConfigType {
 	const cookieMap = parseCookie(cookie);
 	const userConfig = cookieMap[USER_CONFIG_COOKIE_NAME];
-	return parseUserConfigJson(userConfig);
+	if (!userConfig) return userConfigSchema.parse({});
+	return userConfigSchema.parse(JSON.parse(userConfig));
 }
 
 export class UserConfig {
