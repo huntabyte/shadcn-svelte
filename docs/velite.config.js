@@ -5,6 +5,7 @@ const docSchema = s
 	.object({
 		title: s.string(),
 		description: s.string(),
+		date: s.string().optional(),
 		path: s.path(),
 		navLabel: s.string().optional(),
 		links: s
@@ -61,6 +62,12 @@ const registry = defineCollection({
 	schema: docSchema,
 });
 
+const changelog = defineCollection({
+	name: "changelog",
+	pattern: "./changelog/**/*.md",
+	schema: docSchema,
+});
+
 export default defineConfig({
 	root: "./content",
 	collections: {
@@ -70,6 +77,7 @@ export default defineConfig({
 		installation,
 		darkMode,
 		registry,
+		changelog,
 	},
 	output: { assets: "static" },
 });

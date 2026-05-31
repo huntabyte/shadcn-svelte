@@ -83,7 +83,6 @@
 			<div class="flex flex-col gap-4">
 				<div class="text-muted-foreground text-sm font-medium">Menu</div>
 				<div class="flex flex-col gap-3">
-					{@render MobileLink({ href: "/", content: "Home" })}
 					{#each mainNavItems as item, i (i)}
 						{@render MobileLink({ href: item.href, content: item.title })}
 					{/each}
