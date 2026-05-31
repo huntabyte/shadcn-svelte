@@ -36,7 +36,7 @@
 		<div class="container overflow-hidden md:px-0 lg:max-w-none">
 			<section class="-mx-4 w-[140vw] overflow-hidden md:hidden">
 				<enhanced:img
-					src="/images/full-light.png"
+					src="../../../../../static/img/registry/full-light.png"
 					width="2560"
 					height="2764"
 					alt="Dashboard"
@@ -45,7 +45,7 @@
 					loading={mobile.current ? "eager" : "lazy"}
 				/>
 				<enhanced:img
-					src="/images/full-dark.png"
+					src="../../../../../static/img/registry/full-dark.png"
 					width="2560"
 					height="2764"
 					alt="Dashboard"
