@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Logo from "./logo.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import MainNav from "./main-nav.svelte";
 	import Separator from "$lib/registry/ui/separator/separator.svelte";
