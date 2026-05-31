@@ -51,7 +51,7 @@
 							></HugeiconsIcon>
 							<span class="sr-only">Account options</span>
 						</DropdownMenuTrigger>
-						<DropdownMenuContent align="start">
+						<DropdownMenuContent align="start" portalProps={{ disabled: true }}>
 							<DropdownMenuGroup>
 								<DropdownMenuItem>Profile</DropdownMenuItem>
 								<DropdownMenuItem>Statements</DropdownMenuItem>

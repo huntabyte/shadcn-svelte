@@ -37,10 +37,7 @@
 			class="group-has-data-[slot=designer]/layout:fixed:max-w-none 3xl:fixed:container flex h-(--header-height) items-center **:data-[slot=separator]:h-4!"
 		>
 			<MobileNav bind:this={mobileNavRef} class="flex lg:hidden" />
-			<Button href="/" variant="ghost" size="icon" class="hidden size-8 lg:flex">
-				<Logo class="size-5" />
-				<span class="sr-only">shadcn-svelte</span>
-			</Button>
+
 			<MainNav items={mainNavItems} class="hidden lg:flex" />
 			<div class="ml-auto flex items-center gap-2 md:flex-1 md:justify-end">
 				<div class="hidden w-full flex-1 md:flex md:w-auto md:flex-none">

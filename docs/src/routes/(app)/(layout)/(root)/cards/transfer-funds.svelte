@@ -70,7 +70,10 @@
 					<SelectTrigger id="from-account" class="w-full">
 						Main Checking (··8402) — $12,450.00
 					</SelectTrigger>
-					<SelectContent>
+					<SelectContent
+						class="w-(--bits-select-anchor-width)"
+						portalProps={{ disabled: true }}
+					>
 						<SelectGroup>
 							{#each FROM_ACCOUNTS as item (item.value)}
 								<SelectItem value={item.value}>
@@ -87,7 +90,10 @@
 					<SelectTrigger id="to-account" class="w-full">
 						High-Yield Savings (··1044)
 					</SelectTrigger>
-					<SelectContent>
+					<SelectContent
+						class="w-(--bits-select-anchor-width)"
+						portalProps={{ disabled: true }}
+					>
 						<SelectGroup>
 							{#each TO_ACCOUNTS as item (item.value)}
 								<SelectItem value={item.value}>
