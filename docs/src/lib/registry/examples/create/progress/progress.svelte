@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
 	import ProgressBar from "./progress-bar.svelte";
 	import ProgressWithLabel from "./progress-with-label.svelte";
 	import ProgressControlled from "./progress-controlled.svelte";

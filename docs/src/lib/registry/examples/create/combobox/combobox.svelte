@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
 	import ComboboxBasic from "./combobox-basic.svelte";
 	import ComboboxDisabled from "./combobox-disabled.svelte";
 	import ComboboxDisabledItems from "./combobox-disabled-items.svelte";

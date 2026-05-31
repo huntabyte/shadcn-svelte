@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
 	import CommandInline from "./command-inline.svelte";
 	import CommandBasic from "./command-basic.svelte";
 	import CommandWithShortcuts from "./command-with-shortcuts.svelte";

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { tick } from "svelte";
-	import Example from "../../../../../routes/(app)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";

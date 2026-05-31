@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
 	import SliderBasic from "./slider-basic.svelte";
 	import SliderRange from "./slider-range.svelte";
 	import SliderMultiple from "./slider-multiple.svelte";

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import * as Kbd from "$lib/registry/ui/kbd/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 </script>

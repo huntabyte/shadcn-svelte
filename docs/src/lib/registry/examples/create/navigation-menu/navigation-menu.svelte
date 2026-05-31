@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
 	import NavigationMenuWithViewport from "./navigation-menu-with-viewport.svelte";
 	import NavigationMenuWithoutViewport from "./navigation-menu-without-viewport.svelte";
 </script>

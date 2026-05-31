@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
 	import ContextMenuBasic from "./context-menu-basic.svelte";
 	import ContextMenuWithSides from "./context-menu-with-sides.svelte";
 	import ContextMenuWithIcons from "./context-menu-with-icons.svelte";

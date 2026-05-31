@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
 	import TooltipBasic from "./tooltip-basic.svelte";
 	import TooltipSides from "./tooltip-sides.svelte";
 	import TooltipWithIcon from "./tooltip-with-icon.svelte";

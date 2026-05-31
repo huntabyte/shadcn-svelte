@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
 	import ResizableHorizontal from "./resizable-horizontal.svelte";
 	import ResizableVertical from "./resizable-vertical.svelte";
 	import ResizableWithHandle from "./resizable-with-handle.svelte";

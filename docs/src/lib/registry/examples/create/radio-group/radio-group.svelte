@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
 	import RadioGroupBasic from "./radio-group-basic.svelte";
 	import RadioGroupWithDescriptions from "./radio-group-with-descriptions.svelte";
 	import RadioGroupWithFieldSet from "./radio-group-with-field-set.svelte";

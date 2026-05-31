@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import { Badge } from "$lib/registry/ui/badge/index.js";

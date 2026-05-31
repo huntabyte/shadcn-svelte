@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { RangeCalendar } from "$lib/registry/ui/range-calendar/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";

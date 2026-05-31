@@ -1,4 +1,4 @@
-import type { HighlightedBlock } from "../../../api/block/[block]/+server.js";
+import type { HighlightedBlock } from "../../../../api/block/[block]/+server.js";
 import type { EntryGenerator, PageLoad } from "./$types.js";
 
 const chartTypes = ["area", "bar", "line", "pie", "radar", "radial", "tooltip"] as const;
