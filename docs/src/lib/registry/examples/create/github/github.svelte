@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(create)/components/example-wrapper.svelte";
 	import CodespacesCard from "./codespaces-card.svelte";
 	import AssignIssue from "./assign-issue.svelte";
 	import Navbar from "./navbar.svelte";

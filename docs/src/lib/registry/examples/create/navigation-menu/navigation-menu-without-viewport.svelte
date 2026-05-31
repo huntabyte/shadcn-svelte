@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(create)/components/example.svelte";
 	import * as NavigationMenu from "$lib/registry/ui/navigation-menu/index.js";
 	import { navigationMenuTriggerStyle } from "$lib/registry/ui/navigation-menu/navigation-menu-trigger.svelte";
 	import CircleAlertIcon from "@lucide/svelte/icons/circle-alert";

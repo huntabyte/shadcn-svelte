@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(create)/components/example-wrapper.svelte";
 	import ToggleBasic from "./toggle-basic.svelte";
 	import ToggleOutline from "./toggle-outline.svelte";
 	import ToggleSizes from "./toggle-sizes.svelte";

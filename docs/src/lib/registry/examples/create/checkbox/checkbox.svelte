@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(create)/components/example-wrapper.svelte";
 	import CheckboxBasic from "./checkbox-basic.svelte";
 	import CheckboxWithDescription from "./checkbox-with-description.svelte";
 	import CheckboxInvalid from "./checkbox-invalid.svelte";

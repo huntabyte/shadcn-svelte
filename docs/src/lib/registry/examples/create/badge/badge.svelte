@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(create)/components/example-wrapper.svelte";
 	import BadgeVariants from "./badge-variants.svelte";
 	import BadgeWithIconLeft from "./badge-with-icon-left.svelte";
 	import BadgeWithIconRight from "./badge-with-icon-right.svelte";

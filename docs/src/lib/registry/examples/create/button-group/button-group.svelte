@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(create)/components/example-wrapper.svelte";
 	import ButtonGroupBasic from "./button-group-basic.svelte";
 	import ButtonGroupWithInput from "./button-group-with-input.svelte";
 	import ButtonGroupWithText from "./button-group-with-text.svelte";

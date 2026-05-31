@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(create)/components/example-wrapper.svelte";
 	import DeploymentFilter from "./deployment-filter.svelte";
 	import UsageCard from "./usage-card.svelte";
 	import ObservabilityCard from "./observability-card.svelte";

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(create)/components/example.svelte";
 	import { ScrollArea } from "$lib/registry/ui/scroll-area/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
 

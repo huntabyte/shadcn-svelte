@@ -13,7 +13,7 @@
 	import SquareTerminal from "@lucide/svelte/icons/square-terminal";
 	import Customizer from "./customizer.svelte";
 	import { page } from "$app/state";
-	import { InitializeProjectCtx } from "../../routes/(app)/(layout)/(create)/components/initialize-project-context.svelte.js";
+	import { InitializeProjectCtx } from "../../routes/(app)/(create)/components/initialize-project-context.svelte.js";
 	import ModeSwitcher from "./mode-switcher.svelte";
 
 	const initializeProjectCtx = InitializeProjectCtx.getOr(null);

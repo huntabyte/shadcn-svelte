@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(create)/components/example-wrapper.svelte";
 	import KbdBasic from "./kbd-basic.svelte";
 	import KbdModifierKeys from "./kbd-modifier-keys.svelte";
 	import KbdGroupExample from "./kbd-group-example.svelte";

@@ -16,7 +16,7 @@ import {
 	applyBias,
 	RANDOMIZE_BIASES,
 	type RandomizeContext,
-} from "../../../../routes/(app)/(layout)/(create)/lib/randomize-biases.js";
+} from "../../../../routes/(app)/(create)/lib/randomize-biases.js";
 import { StateHistory } from "runed";
 import {
 	decodePreset,

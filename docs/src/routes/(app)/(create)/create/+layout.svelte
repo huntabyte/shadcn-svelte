@@ -6,7 +6,7 @@
 	import Customizer from "../components/customizer.svelte";
 	import ActionMenu from "../components/action-menu.svelte";
 	import InitializeDialog from "../components/initialize-dialog.svelte";
-	import { OG_IMAGE_BASE_URL } from "../../../../og/og.js";
+	import { OG_IMAGE_BASE_URL } from "../../../og/og.js";
 	import { cn } from "$lib/utils.js";
 
 	let { children } = $props();

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(create)/components/example.svelte";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";

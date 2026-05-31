@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(create)/components/example.svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { Skeleton } from "$lib/registry/ui/skeleton/index.js";
 </script>

@@ -83,16 +83,21 @@
 				<Checkbox checked aria-label="Enable email alerts"></Checkbox>
 				<Checkbox class="4xl:flex hidden" aria-label="Enable push alerts"></Checkbox>
 			</div>
-			<Switch checked class="4xl:hidden flex" aria-label="Enable compact notifications"
+			<Switch
+				checked
+				class="4xl:hidden data-[state=checked]:bg-primary data-[state=unchecked]:bg-input/90 data-[state=checked]:border-primary [&_[data-slot=switch-thumb]]:bg-background dark:[&_[data-slot=switch-thumb][data-state=checked]]:bg-primary-foreground dark:[&_[data-slot=switch-thumb][data-state=unchecked]]:bg-foreground flex data-[state=unchecked]:border-transparent [&_[data-slot=switch-thumb][data-state=checked]]:translate-x-[calc(100%-4px)] [&_[data-slot=switch-thumb][data-state=unchecked]]:translate-x-0"
+				aria-label="Enable compact notifications"
 			></Switch>
 		</div>
 		<div class="flex items-center gap-4">
 			<AlertDialog>
-				<AlertDialogTrigger
-					class="cn-button cn-button-variant-outline cn-button-size-default"
-				>
-					<span class="style-sera:md:hidden hidden md:flex"> Alert Dialog </span>
-					<span class="style-sera:md:flex flex md:hidden">Dialog</span>
+				<AlertDialogTrigger>
+					{#snippet child({ props })}
+						<Button variant="outline" {...props}>
+							<span class="style-sera:md:hidden hidden md:flex"> Alert Dialog </span>
+							<span class="style-sera:md:flex flex md:hidden">Dialog</span>
+						</Button>
+					{/snippet}
 				</AlertDialogTrigger>
 				<AlertDialogContent size="sm">
 					<AlertDialogHeader>
@@ -114,13 +119,25 @@
 					<span class="style-sera:block hidden">Group</span>
 				</Button>
 				<DropdownMenu>
-					<DropdownMenuTrigger
-						class="cn-button cn-button-variant-outline cn-button-size-icon"
-						aria-label="Open quick actions"
-					>
-						<HugeiconsIcon icon={ArrowUp01Icon} stroke-width={2}></HugeiconsIcon>
+					<DropdownMenuTrigger>
+						{#snippet child({ props })}
+							<Button
+								variant="outline"
+								size="icon"
+								aria-label="Open quick actions"
+								{...props}
+							>
+								<HugeiconsIcon icon={ArrowUp01Icon} stroke-width={2}
+								></HugeiconsIcon>
+							</Button>
+						{/snippet}
 					</DropdownMenuTrigger>
-					<DropdownMenuContent align="end" side="top" class="w-40">
+					<DropdownMenuContent
+						align="end"
+						side="top"
+						class="w-40"
+						portalProps={{ disabled: true }}
+					>
 						<DropdownMenuGroup>
 							<DropdownMenuLabel>Quick Actions</DropdownMenuLabel>
 							<DropdownMenuItem>Mute Conversation</DropdownMenuItem>
@@ -136,7 +153,11 @@
 					</DropdownMenuContent>
 				</DropdownMenu>
 			</ButtonGroup>
-			<Switch checked class="4xl:flex hidden" aria-label="Enable advanced setting"></Switch>
+			<Switch
+				checked
+				class="4xl:flex data-[state=checked]:bg-primary data-[state=unchecked]:bg-input/90 data-[state=checked]:border-primary [&_[data-slot=switch-thumb]]:bg-background dark:[&_[data-slot=switch-thumb][data-state=checked]]:bg-primary-foreground dark:[&_[data-slot=switch-thumb][data-state=unchecked]]:bg-foreground hidden data-[state=unchecked]:border-transparent [&_[data-slot=switch-thumb][data-state=checked]]:translate-x-[calc(100%-4px)] [&_[data-slot=switch-thumb][data-state=unchecked]]:translate-x-0"
+				aria-label="Enable advanced setting"
+			></Switch>
 		</div>
 	</CardContent>
 </Card>

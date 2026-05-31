@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(create)/components/example-wrapper.svelte";
 	import CardDefault from "./card-default.svelte";
 	import CardSmall from "./card-small.svelte";
 	import CardHeaderWithBorder from "./card-header-with-border.svelte";

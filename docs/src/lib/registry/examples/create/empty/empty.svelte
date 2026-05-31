@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(create)/components/example-wrapper.svelte";
 	import EmptyBasic from "./empty-basic.svelte";
 	import EmptyWithMutedBackground from "./empty-with-muted-background.svelte";
 	import EmptyWithBorder from "./empty-with-border.svelte";

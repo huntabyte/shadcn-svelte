@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(create)/components/example.svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
 	import CircularGauge from "./circular-gauge.svelte";

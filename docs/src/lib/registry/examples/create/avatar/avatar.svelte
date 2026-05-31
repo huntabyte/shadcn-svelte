@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(create)/components/example-wrapper.svelte";
 	import AvatarSizes from "./avatar-sizes.svelte";
 	import AvatarWithBadge from "./avatar-with-badge.svelte";
 	import AvatarWithBadgeIcon from "./avatar-with-badge-icon.svelte";
