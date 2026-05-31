@@ -10,9 +10,6 @@ import {
 import { error } from "@sveltejs/kit";
 import type { Component } from "svelte";
 
-export const PAGES_NEW = ["/docs/skills", "/docs/changelog"];
-export const PAGES_UPDATED = ["/docs/components/button"];
-
 const allDocs = [
 	...gettingStarted,
 	...migration,
