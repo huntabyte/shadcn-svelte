@@ -15,6 +15,8 @@
 
 	const isRadiusLocked = $derived(designSystem.style === "lyra" || designSystem.style === "sera");
 
+	const isLargeRadiusDisabled = $derived(designSystem.style === "rhea");
+
 	const selectedRadiusName = $derived(isRadiusLocked ? "none" : designSystem.radius);
 
 	const currentRadius = $derived(
@@ -72,7 +74,11 @@
 							</Picker.RadioItem>
 							<Picker.Separator />
 						{:else}
-							<Picker.RadioItem value={radius.name} closeOnSelect={false}>
+							<Picker.RadioItem
+								value={radius.name}
+								closeOnSelect={false}
+								disabled={isLargeRadiusDisabled && radius.name === "large"}
+							>
 								{radius.label}
 							</Picker.RadioItem>
 						{/if}

@@ -32,6 +32,11 @@
 	watch([() => designSystem.style, () => designSystem.radius], ([style, radius]) => {
 		if ((style === "lyra" || style === "sera") && radius !== "none") {
 			designSystem.radius = "none";
+			return;
+		}
+
+		if (style === "rhea" && radius === "large") {
+			designSystem.radius = "default";
 		}
 	});
 
