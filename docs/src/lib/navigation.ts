@@ -2,16 +2,7 @@ import { components, installation, migration } from "$content/index.js";
 import type { Component } from "svelte";
 
 /** List new components here to highlight them in the sidebar */
-export const NEW_COMPONENTS = new Set([
-	"item",
-	"button-group",
-	"kbd",
-	"spinner",
-	"input-group",
-	"field",
-	"empty",
-	"native-select",
-]);
+export const NEW_COMPONENTS = new Set<string>([]);
 
 export type NavItem = {
 	title: string;
@@ -295,6 +286,7 @@ export const sidebarNavItems: SidebarNavItem[] = [
 ];
 
 export const mainNavItems: NavItem[] = [
+	{ title: "Home", href: "/" },
 	{
 		title: "Docs",
 		href: "/docs/installation",
@@ -310,14 +302,6 @@ export const mainNavItems: NavItem[] = [
 	{
 		title: "Charts",
 		href: "/charts/area",
-	},
-	// {
-	// 	title: "Themes",
-	// 	href: "/themes",
-	// },
-	{
-		title: "Colors",
-		href: "/colors",
 	},
 	{
 		title: "Create",
