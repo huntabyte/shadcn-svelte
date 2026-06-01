@@ -1,0 +1,20 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "calendar-12",
+	"type": "registry:block",
+	"devDependencies": [
+		"@internationalized/date@^3.12.0",
+		"bits-ui@^2.16.3"
+	],
+	"registryDependencies": [
+		"card",
+		"select"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport * as Card from \"$UI$/card/index.js\";\n\timport * as Select from \"$UI$/select/index.js\";\n\timport { CalendarDate } from \"@internationalized/date\";\n\timport RangeCalendar from \"../ui/range-calendar/range-calendar.svelte\";\n\timport type { DateRange } from \"bits-ui\";\n\n\tlet value = $state<DateRange | undefined>({\n\t\tstart: new CalendarDate(2025, 9, 9),\n\t\tend: new CalendarDate(2025, 9, 17),\n\t});\n\n\tconst localizedStrings = {\n\t\ten: {\n\t\t\ttitle: \"Book an appointment\",\n\t\t\tdescription: \"Select the dates for your appointment\",\n\t\t},\n\t\tes: {\n\t\t\ttitle: \"Reserva una cita\",\n\t\t\tdescription: \"Selecciona las fechas para tu cita\",\n\t\t},\n\t} as const;\n\n\tlet locale = $state<keyof typeof localizedStrings>(\"es\");\n\n\tconst languageOptions = [\n\t\t{\n\t\t\tlabel: \"English\",\n\t\t\tvalue: \"en\",\n\t\t},\n\t\t{\n\t\t\tlabel: \"Español\",\n\t\t\tvalue: \"es\",\n\t\t},\n\t];\n\n\tconst selectedLanguage = $derived(\n\t\tlanguageOptions.find((option) => option.value === locale)?.label ?? \"Language\"\n\t);\n</script>\n\n<Card.Root>\n\t<Card.Header>\n\t\t<Card.Title>{localizedStrings[locale].title}</Card.Title>\n\t\t<Card.Description>{localizedStrings[locale].description}</Card.Description>\n\t\t<Card.Action>\n\t\t\t<Select.Root type=\"single\" bind:value={locale}>\n\t\t\t\t<Select.Trigger class=\"w-[100px]\" aria-label=\"Select language\">\n\t\t\t\t\t{selectedLanguage}\n\t\t\t\t</Select.Trigger>\n\t\t\t\t<Select.Content align=\"end\">\n\t\t\t\t\t{#each languageOptions as option (option.value)}\n\t\t\t\t\t\t<Select.Item value={option.value}>{option.label}</Select.Item>\n\t\t\t\t\t{/each}\n\t\t\t\t</Select.Content>\n\t\t\t</Select.Root>\n\t\t</Card.Action>\n\t</Card.Header>\n\t<Card.Content>\n\t\t<RangeCalendar\n\t\t\tbind:value\n\t\t\tnumberOfMonths={2}\n\t\t\t{locale}\n\t\t\tclass=\"bg-transparent p-0\"\n\t\t\tbuttonVariant=\"outline\"\n\t\t/>\n\t</Card.Content>\n</Card.Root>\n",
+			"type": "registry:component",
+			"target": "calendar-12.svelte"
+		}
+	]
+}

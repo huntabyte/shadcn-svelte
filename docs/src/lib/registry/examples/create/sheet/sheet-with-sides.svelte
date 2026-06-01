@@ -26,7 +26,7 @@
 						</Sheet.Description>
 					</Sheet.Header>
 					<div
-						class="no-scrollbar style-vega:px-4 style-maia:px-6 style-mira:px-6 style-lyra:px-4 style-nova:px-4 overflow-y-auto"
+						class="no-scrollbar style-vega:px-4 style-nova:px-4 style-lyra:px-4 style-maia:px-6 style-mira:px-6 style-luma:px-6 style-rhea:px-6 overflow-y-auto"
 					>
 						{#each Array.from({ length: 10 }) as _, index (index)}
 							<p

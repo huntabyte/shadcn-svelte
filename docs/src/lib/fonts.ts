@@ -44,6 +44,8 @@ export const FONTS = [
 	createFontOption("merriweather"),
 	createFontOption("lora"),
 	createFontOption("playfair-display"),
+	createFontOption("eb-garamond"),
+	createFontOption("instrument-serif"),
 ] as const;
 
 export type Font = (typeof FONTS)[number];
