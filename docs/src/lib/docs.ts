@@ -25,7 +25,7 @@ type DocResolver = () => Promise<{ default: Component; metadata: DocMetadata }>;
 type ChangelogMetadata = (typeof changelog)[number];
 type ChangelogResolver = () => Promise<{ default: Component }>;
 
-const changelogModules = import.meta.glob("/content/changelog/*.md");
+const changelogModules = import.meta.glob("/content/changelog/**/*.md");
 
 export type ChangelogPage = {
 	href: string;
