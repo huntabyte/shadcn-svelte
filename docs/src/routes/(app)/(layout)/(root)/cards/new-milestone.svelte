@@ -16,7 +16,7 @@
 	<CardHeader>
 		<CardTitle>Set a new milestone</CardTitle>
 		<CardDescription>
-			Define your financial target and we&apos;ll help you pace your savings.
+			Define your financial target and we'll help you pace your savings.
 		</CardDescription>
 	</CardHeader>
 	<CardContent>

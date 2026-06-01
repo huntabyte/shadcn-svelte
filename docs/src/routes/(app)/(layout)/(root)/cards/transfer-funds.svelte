@@ -35,6 +35,14 @@
 		{ label: "High Yield Savings (··1192) — $42,100.00", value: "savings" },
 		{ label: "Investment (··3349) — $18,200.00", value: "investment" },
 	];
+
+	let fromAccount = $state("checking");
+	let toAccount = $state("savings");
+
+	const selectedFromAccount = $derived(
+		FROM_ACCOUNTS.find((account) => account.value === fromAccount)
+	);
+	const selectedToAccount = $derived(TO_ACCOUNTS.find((account) => account.value === toAccount));
 </script>
 
 <Card>
@@ -71,9 +79,9 @@
 			</Field>
 			<Field>
 				<FieldLabel for="from-account">From Account</FieldLabel>
-				<Select type="single" items={FROM_ACCOUNTS} value="checking">
+				<Select type="single" items={FROM_ACCOUNTS} bind:value={fromAccount}>
 					<SelectTrigger id="from-account" class="w-full">
-						Main Checking (··8402) — $12,450.00
+						{selectedFromAccount?.label}
 					</SelectTrigger>
 					<SelectContent class="w-(--bits-select-anchor-width)">
 						<SelectGroup>
@@ -88,9 +96,9 @@
 			</Field>
 			<Field>
 				<FieldLabel for="to-account">To Account</FieldLabel>
-				<Select type="single" items={TO_ACCOUNTS} value="savings">
+				<Select type="single" items={TO_ACCOUNTS} bind:value={toAccount}>
 					<SelectTrigger id="to-account" class="w-full">
-						High-Yield Savings (··1044)
+						{selectedToAccount?.label}
 					</SelectTrigger>
 					<SelectContent class="w-(--bits-select-anchor-width)">
 						<SelectGroup>
