@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { Cancel01Icon } from "@hugeicons/core-free-icons";
-	import { HugeiconsIcon } from "@hugeicons/svelte";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import {
 		Card,
@@ -49,7 +48,13 @@
 				class="bg-muted"
 				aria-label="Dismiss transfer funds"
 			>
-				<HugeiconsIcon icon={Cancel01Icon} stroke-width={2}></HugeiconsIcon>
+				<IconPlaceholder
+					lucide="XIcon"
+					tabler="IconX"
+					hugeicons="Cancel01Icon"
+					phosphor="XIcon"
+					remixicon="RiCloseLine"
+				/>
 			</Button>
 		</CardAction>
 	</CardHeader>

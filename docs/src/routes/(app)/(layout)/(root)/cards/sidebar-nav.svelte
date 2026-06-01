@@ -1,27 +1,5 @@
 <script lang="ts">
-	import {
-		ActivityIcon,
-		Analytics01Icon,
-		AnalyticsUpIcon,
-		ArrowDataTransferHorizontalIcon,
-		BankIcon,
-		BookOpen02Icon,
-		Calendar03Icon,
-		ChartBarLineIcon,
-		CreditCardIcon,
-		File02Icon,
-		Globe02Icon,
-		HelpCircleIcon,
-		Message01Icon,
-		Notification03Icon,
-		PaintBoardIcon,
-		PieChartIcon,
-		ShieldIcon,
-		Target02Icon,
-		UserIcon,
-		Wallet01Icon,
-	} from "@hugeicons/core-free-icons";
-	import { HugeiconsIcon } from "@hugeicons/svelte";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 
 	import { SidebarMenuButton, SidebarMenuItem } from "$lib/registry/ui/sidebar/index.js";
 	import SidebarSection from "./sidebar-section.svelte";
@@ -31,32 +9,61 @@
 	<SidebarSection label="Overview" class="xl:col-start-1 xl:row-start-2">
 		<SidebarMenuItem>
 			<SidebarMenuButton isActive={true}>
-				<HugeiconsIcon icon={Analytics01Icon} stroke-width={2}></HugeiconsIcon>
+				<IconPlaceholder
+					lucide="ChartLineIcon"
+					tabler="IconChartLine"
+					hugeicons="Analytics01Icon"
+					phosphor="ChartLineIcon"
+					remixicon="RiLineChartLine"
+				/>
 				Analytics
 			</SidebarMenuButton>
 		</SidebarMenuItem>
 		<SidebarMenuItem>
 			<SidebarMenuButton>
-				<HugeiconsIcon icon={ArrowDataTransferHorizontalIcon} stroke-width={2}
-				></HugeiconsIcon>
+				<IconPlaceholder
+					lucide="ArrowLeftRightIcon"
+					tabler="IconArrowsLeftRight"
+					hugeicons="ArrowDataTransferHorizontalIcon"
+					phosphor="ArrowsLeftRightIcon"
+					remixicon="RiArrowLeftRightLine"
+				/>
 				Transactions
 			</SidebarMenuButton>
 		</SidebarMenuItem>
 		<SidebarMenuItem>
 			<SidebarMenuButton>
-				<HugeiconsIcon icon={AnalyticsUpIcon} stroke-width={2}></HugeiconsIcon>
+				<IconPlaceholder
+					lucide="TrendingUpIcon"
+					tabler="IconTrendingUp"
+					hugeicons="AnalyticsUpIcon"
+					phosphor="TrendUpIcon"
+					remixicon="RiLineChartLine"
+				/>
 				Investments
 			</SidebarMenuButton>
 		</SidebarMenuItem>
 		<SidebarMenuItem>
 			<SidebarMenuButton>
-				<HugeiconsIcon icon={BankIcon} stroke-width={2}></HugeiconsIcon>
+				<IconPlaceholder
+					lucide="Building2Icon"
+					tabler="IconBuildingBank"
+					hugeicons="BankIcon"
+					phosphor="BankIcon"
+					remixicon="RiBankLine"
+				/>
 				Accounts
 			</SidebarMenuButton>
 		</SidebarMenuItem>
 		<SidebarMenuItem>
 			<SidebarMenuButton>
-				<HugeiconsIcon icon={PieChartIcon} stroke-width={2}></HugeiconsIcon>
+				<IconPlaceholder
+					lucide="PieChartIcon"
+					tabler="IconChartPie"
+					hugeicons="PieChartIcon"
+					phosphor="ChartPieIcon"
+					remixicon="RiPieChartLine"
+				/>
 				Spending
 			</SidebarMenuButton>
 		</SidebarMenuItem>
@@ -65,31 +72,61 @@
 	<SidebarSection label="Planning" class="xl:col-start-1 xl:row-start-1">
 		<SidebarMenuItem>
 			<SidebarMenuButton>
-				<HugeiconsIcon icon={File02Icon} stroke-width={2}></HugeiconsIcon>
+				<IconPlaceholder
+					lucide="FileTextIcon"
+					tabler="IconFileText"
+					hugeicons="File02Icon"
+					phosphor="FileTextIcon"
+					remixicon="RiFileTextLine"
+				/>
 				Documents
 			</SidebarMenuButton>
 		</SidebarMenuItem>
 		<SidebarMenuItem>
 			<SidebarMenuButton>
-				<HugeiconsIcon icon={Wallet01Icon} stroke-width={2}></HugeiconsIcon>
+				<IconPlaceholder
+					lucide="WalletIcon"
+					tabler="IconWallet"
+					hugeicons="Wallet01Icon"
+					phosphor="WalletIcon"
+					remixicon="RiWalletLine"
+				/>
 				Budget
 			</SidebarMenuButton>
 		</SidebarMenuItem>
 		<SidebarMenuItem>
 			<SidebarMenuButton>
-				<HugeiconsIcon icon={ChartBarLineIcon} stroke-width={2}></HugeiconsIcon>
+				<IconPlaceholder
+					lucide="ChartBarIcon"
+					tabler="IconChartBar"
+					hugeicons="ChartBarLineIcon"
+					phosphor="ChartBarIcon"
+					remixicon="RiBarChartLine"
+				/>
 				Reports
 			</SidebarMenuButton>
 		</SidebarMenuItem>
 		<SidebarMenuItem>
 			<SidebarMenuButton>
-				<HugeiconsIcon icon={Target02Icon} stroke-width={2}></HugeiconsIcon>
+				<IconPlaceholder
+					lucide="TargetIcon"
+					tabler="IconTarget"
+					hugeicons="Target02Icon"
+					phosphor="TargetIcon"
+					remixicon="RiFocus3Line"
+				/>
 				Goals
 			</SidebarMenuButton>
 		</SidebarMenuItem>
 		<SidebarMenuItem>
 			<SidebarMenuButton>
-				<HugeiconsIcon icon={Calendar03Icon} stroke-width={2}></HugeiconsIcon>
+				<IconPlaceholder
+					lucide="CalendarIcon"
+					tabler="IconCalendar"
+					hugeicons="Calendar03Icon"
+					phosphor="CalendarIcon"
+					remixicon="RiCalendarLine"
+				/>
 				Calendar
 			</SidebarMenuButton>
 		</SidebarMenuItem>
@@ -98,31 +135,61 @@
 	<SidebarSection label="Support" class="flex xl:col-start-2 xl:row-start-1">
 		<SidebarMenuItem>
 			<SidebarMenuButton>
-				<HugeiconsIcon icon={HelpCircleIcon} stroke-width={2}></HugeiconsIcon>
+				<IconPlaceholder
+					lucide="HelpCircleIcon"
+					tabler="IconHelpCircle"
+					hugeicons="HelpCircleIcon"
+					phosphor="QuestionIcon"
+					remixicon="RiQuestionLine"
+				/>
 				Help Center
 			</SidebarMenuButton>
 		</SidebarMenuItem>
 		<SidebarMenuItem>
 			<SidebarMenuButton>
-				<HugeiconsIcon icon={BookOpen02Icon} stroke-width={2}></HugeiconsIcon>
+				<IconPlaceholder
+					lucide="BookOpenIcon"
+					tabler="IconBook"
+					hugeicons="BookOpen02Icon"
+					phosphor="BookOpenIcon"
+					remixicon="RiBookOpenLine"
+				/>
 				Docs
 			</SidebarMenuButton>
 		</SidebarMenuItem>
 		<SidebarMenuItem>
 			<SidebarMenuButton>
-				<HugeiconsIcon icon={Message01Icon} stroke-width={2}></HugeiconsIcon>
+				<IconPlaceholder
+					lucide="MessageSquareIcon"
+					tabler="IconMessage"
+					hugeicons="Message01Icon"
+					phosphor="ChatCircleIcon"
+					remixicon="RiChat1Line"
+				/>
 				Contact Us
 			</SidebarMenuButton>
 		</SidebarMenuItem>
 		<SidebarMenuItem>
 			<SidebarMenuButton>
-				<HugeiconsIcon icon={ActivityIcon} stroke-width={2}></HugeiconsIcon>
+				<IconPlaceholder
+					lucide="ActivityIcon"
+					tabler="IconActivity"
+					hugeicons="ActivityIcon"
+					phosphor="PulseIcon"
+					remixicon="RiPulseLine"
+				/>
 				Status
 			</SidebarMenuButton>
 		</SidebarMenuItem>
 		<SidebarMenuItem>
 			<SidebarMenuButton>
-				<HugeiconsIcon icon={Globe02Icon} stroke-width={2}></HugeiconsIcon>
+				<IconPlaceholder
+					lucide="GlobeIcon"
+					tabler="IconWorld"
+					hugeicons="Globe02Icon"
+					phosphor="GlobeIcon"
+					remixicon="RiGlobalLine"
+				/>
 				Community
 			</SidebarMenuButton>
 		</SidebarMenuItem>
@@ -131,31 +198,61 @@
 	<SidebarSection label="Account" class="flex xl:col-start-2 xl:row-start-2">
 		<SidebarMenuItem>
 			<SidebarMenuButton>
-				<HugeiconsIcon icon={UserIcon} stroke-width={2}></HugeiconsIcon>
+				<IconPlaceholder
+					lucide="UserIcon"
+					tabler="IconUser"
+					hugeicons="UserIcon"
+					phosphor="UserIcon"
+					remixicon="RiUserLine"
+				/>
 				Profile
 			</SidebarMenuButton>
 		</SidebarMenuItem>
 		<SidebarMenuItem>
 			<SidebarMenuButton isActive={true}>
-				<HugeiconsIcon icon={CreditCardIcon} stroke-width={2}></HugeiconsIcon>
+				<IconPlaceholder
+					lucide="CreditCardIcon"
+					tabler="IconCreditCard"
+					hugeicons="CreditCardIcon"
+					phosphor="CreditCardIcon"
+					remixicon="RiBankCardLine"
+				/>
 				Billing
 			</SidebarMenuButton>
 		</SidebarMenuItem>
 		<SidebarMenuItem>
 			<SidebarMenuButton>
-				<HugeiconsIcon icon={Notification03Icon} stroke-width={2}></HugeiconsIcon>
+				<IconPlaceholder
+					lucide="BellIcon"
+					tabler="IconBell"
+					hugeicons="Notification03Icon"
+					phosphor="BellIcon"
+					remixicon="RiNotificationLine"
+				/>
 				Notifications
 			</SidebarMenuButton>
 		</SidebarMenuItem>
 		<SidebarMenuItem>
 			<SidebarMenuButton>
-				<HugeiconsIcon icon={ShieldIcon} stroke-width={2}></HugeiconsIcon>
+				<IconPlaceholder
+					lucide="ShieldIcon"
+					tabler="IconShield"
+					hugeicons="ShieldIcon"
+					phosphor="ShieldIcon"
+					remixicon="RiShieldLine"
+				/>
 				Security
 			</SidebarMenuButton>
 		</SidebarMenuItem>
 		<SidebarMenuItem>
 			<SidebarMenuButton>
-				<HugeiconsIcon icon={PaintBoardIcon} stroke-width={2}></HugeiconsIcon>
+				<IconPlaceholder
+					lucide="PaletteIcon"
+					tabler="IconPalette"
+					hugeicons="PaintBoardIcon"
+					phosphor="PaletteIcon"
+					remixicon="RiPaletteLine"
+				/>
 				Appearance
 			</SidebarMenuButton>
 		</SidebarMenuItem>

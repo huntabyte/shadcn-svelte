@@ -1,10 +1,5 @@
 <script lang="ts">
-	import {
-		AlertCircleIcon,
-		ArrowRight01Icon,
-		SquareLock02Icon,
-	} from "@hugeicons/core-free-icons";
-	import { HugeiconsIcon } from "@hugeicons/svelte";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import {
 		Card,
@@ -53,13 +48,25 @@
 	</CardContent>
 	<CardFooter class="flex-col gap-4">
 		<Button class="w-full">
-			<HugeiconsIcon icon={SquareLock02Icon} stroke-width={2}></HugeiconsIcon>
+			<IconPlaceholder
+				lucide="LockKeyholeIcon"
+				tabler="IconLock"
+				hugeicons="SquareLock02Icon"
+				phosphor="LockKeyIcon"
+				remixicon="RiLockLine"
+			/>
 			Update Security
 		</Button>
 		<Item variant="muted">
 			<ItemMedia variant="icon">
-				<HugeiconsIcon icon={AlertCircleIcon} class="text-destructive" stroke-width={2}
-				></HugeiconsIcon>
+				<IconPlaceholder
+					lucide="CircleAlertIcon"
+					tabler="IconAlertCircle"
+					hugeicons="AlertCircleIcon"
+					phosphor="WarningCircleIcon"
+					remixicon="RiErrorWarningLine"
+					class="text-destructive"
+				/>
 			</ItemMedia>
 			<ItemContent>
 				<ItemTitle>Danger Zone</ItemTitle>
@@ -67,7 +74,14 @@
 					Archive account and remove catalog
 				</ItemDescription>
 			</ItemContent>
-			<HugeiconsIcon icon={ArrowRight01Icon} class="size-4" stroke-width={2}></HugeiconsIcon>
+			<IconPlaceholder
+				lucide="ArrowRightIcon"
+				tabler="IconArrowRight"
+				hugeicons="ArrowRight01Icon"
+				phosphor="ArrowRightIcon"
+				remixicon="RiArrowRightLine"
+				class="size-4"
+			/>
 		</Item>
 	</CardFooter>
 </Card>
