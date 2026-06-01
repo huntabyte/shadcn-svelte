@@ -59,10 +59,7 @@
 					<SelectTrigger id="preferred-currency" class="w-full">
 						USD — United States Dollar
 					</SelectTrigger>
-					<SelectContent
-						class="w-(--bits-select-anchor-width)"
-						portalProps={{ disabled: true }}
-					>
+					<SelectContent class="w-(--bits-select-anchor-width)">
 						<SelectGroup>
 							{#each CURRENCIES as item (item.value)}
 								<SelectItem value={item.value}>
