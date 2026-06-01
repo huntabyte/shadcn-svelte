@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { Add01Icon } from "@hugeicons/core-free-icons";
-	import { HugeiconsIcon } from "@hugeicons/svelte";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Card, CardContent } from "$lib/registry/ui/card/index.js";
 	import {
@@ -17,7 +16,13 @@
 	<CardContent>
 		<Empty class="p-4">
 			<EmptyMedia variant="icon">
-				<HugeiconsIcon icon={Add01Icon} stroke-width={2}></HugeiconsIcon>
+				<IconPlaceholder
+					lucide="PlusIcon"
+					tabler="IconPlus"
+					hugeicons="Add01Icon"
+					phosphor="PlusIcon"
+					remixicon="RiAddLine"
+				/>
 			</EmptyMedia>
 			<EmptyHeader>
 				<EmptyTitle>Distribute Track</EmptyTitle>

@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { ArrowRight02Icon, ArrowUp01Icon, Search01Icon } from "@hugeicons/core-free-icons";
-	import { HugeiconsIcon } from "@hugeicons/svelte";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import {
 		AlertDialog,
 		AlertDialogAction,
@@ -44,8 +43,14 @@
 		<div class="flex gap-2">
 			<Button>
 				Button
-				<HugeiconsIcon icon={ArrowRight02Icon} stroke-width={2} data-icon="inline-end"
-				></HugeiconsIcon>
+				<IconPlaceholder
+					lucide="ArrowRightIcon"
+					tabler="IconArrowRight"
+					hugeicons="ArrowRight02Icon"
+					phosphor="ArrowRightIcon"
+					remixicon="RiArrowRightLine"
+					data-icon="inline-end"
+				/>
 			</Button>
 			<Button variant="secondary">Secondary</Button>
 			<Button variant="outline">Outline</Button>
@@ -56,7 +61,13 @@
 					<InputGroupInput placeholder="Name"></InputGroupInput>
 					<InputGroupAddon align="inline-end">
 						<InputGroupText>
-							<HugeiconsIcon icon={Search01Icon} stroke-width={2}></HugeiconsIcon>
+							<IconPlaceholder
+								lucide="SearchIcon"
+								tabler="IconSearch"
+								hugeicons="Search01Icon"
+								phosphor="MagnifyingGlassIcon"
+								remixicon="RiSearchLine"
+							/>
 						</InputGroupText>
 					</InputGroupAddon>
 				</InputGroup>
@@ -127,8 +138,13 @@
 								aria-label="Open quick actions"
 								{...props}
 							>
-								<HugeiconsIcon icon={ArrowUp01Icon} stroke-width={2}
-								></HugeiconsIcon>
+								<IconPlaceholder
+									lucide="ArrowUpIcon"
+									tabler="IconArrowUp"
+									hugeicons="ArrowUp01Icon"
+									phosphor="ArrowUpIcon"
+									remixicon="RiArrowUpLine"
+								/>
 							</Button>
 						{/snippet}
 					</DropdownMenuTrigger>

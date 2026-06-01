@@ -1,12 +1,5 @@
 <script lang="ts">
-	import {
-		ArrowRight01Icon,
-		Calendar03Icon,
-		MoreHorizontalCircle01Icon,
-		RefreshIcon,
-		Settings01Icon,
-	} from "@hugeicons/core-free-icons";
-	import { HugeiconsIcon } from "@hugeicons/svelte";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import {
 		Breadcrumb,
 		BreadcrumbItem,
@@ -47,8 +40,13 @@
 							class="cn-button cn-button-variant-ghost cn-button-size-icon-sm"
 							aria-label="Account options"
 						>
-							<HugeiconsIcon icon={MoreHorizontalCircle01Icon} stroke-width={2}
-							></HugeiconsIcon>
+							<IconPlaceholder
+								lucide="MoreHorizontalIcon"
+								tabler="IconDots"
+								hugeicons="MoreHorizontalCircle01Icon"
+								phosphor="DotsThreeIcon"
+								remixicon="RiMoreLine"
+							/>
 							<span class="sr-only">Account options</span>
 						</DropdownMenuTrigger>
 						<DropdownMenuContent align="start" portalProps={{ disabled: true }}>
@@ -72,7 +70,13 @@
 			<div role="listitem" class="w-full">
 				<Item variant="muted">
 					<ItemMedia variant="icon">
-						<HugeiconsIcon icon={Settings01Icon} stroke-width={2}></HugeiconsIcon>
+						<IconPlaceholder
+							lucide="SettingsIcon"
+							tabler="IconSettings"
+							hugeicons="Settings01Icon"
+							phosphor="GearIcon"
+							remixicon="RiSettingsLine"
+						/>
 					</ItemMedia>
 					<ItemContent>
 						<ItemTitle>Change transfer limit</ItemTitle>
@@ -80,17 +84,26 @@
 							Adjust how much you can send from your balance.
 						</ItemDescription>
 					</ItemContent>
-					<HugeiconsIcon
-						icon={ArrowRight01Icon}
+					<IconPlaceholder
+						lucide="ArrowRightIcon"
+						tabler="IconArrowRight"
+						hugeicons="ArrowRight01Icon"
+						phosphor="ArrowRightIcon"
+						remixicon="RiArrowRightLine"
 						class="text-muted-foreground size-4 shrink-0"
-						stroke-width={2}
-					></HugeiconsIcon>
+					/>
 				</Item>
 			</div>
 			<div role="listitem" class="w-full">
 				<Item variant="muted">
 					<ItemMedia variant="icon">
-						<HugeiconsIcon icon={Calendar03Icon} stroke-width={2}></HugeiconsIcon>
+						<IconPlaceholder
+							lucide="CalendarIcon"
+							tabler="IconCalendar"
+							hugeicons="Calendar03Icon"
+							phosphor="CalendarIcon"
+							remixicon="RiCalendarLine"
+						/>
 					</ItemMedia>
 					<ItemContent>
 						<ItemTitle>Scheduled transfers</ItemTitle>
@@ -98,27 +111,39 @@
 							Set up a transfer to send at a later date.
 						</ItemDescription>
 					</ItemContent>
-					<HugeiconsIcon
-						icon={ArrowRight01Icon}
+					<IconPlaceholder
+						lucide="ArrowRightIcon"
+						tabler="IconArrowRight"
+						hugeicons="ArrowRight01Icon"
+						phosphor="ArrowRightIcon"
+						remixicon="RiArrowRightLine"
 						class="text-muted-foreground size-4 shrink-0"
-						stroke-width={2}
-					></HugeiconsIcon>
+					/>
 				</Item>
 			</div>
 			<div role="listitem" class="w-full">
 				<Item variant="muted">
 					<ItemMedia variant="icon">
-						<HugeiconsIcon icon={RefreshIcon} stroke-width={2}></HugeiconsIcon>
+						<IconPlaceholder
+							lucide="RefreshCwIcon"
+							tabler="IconRefresh"
+							hugeicons="RefreshIcon"
+							phosphor="ArrowsClockwiseIcon"
+							remixicon="RiRefreshLine"
+						/>
 					</ItemMedia>
 					<ItemContent>
 						<ItemTitle>Recurring card payments</ItemTitle>
 						<ItemDescription>Manage your repeated card transactions.</ItemDescription>
 					</ItemContent>
-					<HugeiconsIcon
-						icon={ArrowRight01Icon}
+					<IconPlaceholder
+						lucide="ArrowRightIcon"
+						tabler="IconArrowRight"
+						hugeicons="ArrowRight01Icon"
+						phosphor="ArrowRightIcon"
+						remixicon="RiArrowRightLine"
 						class="text-muted-foreground size-4 shrink-0"
-						stroke-width={2}
-					></HugeiconsIcon>
+					/>
 				</Item>
 			</div>
 		</ItemGroup>
