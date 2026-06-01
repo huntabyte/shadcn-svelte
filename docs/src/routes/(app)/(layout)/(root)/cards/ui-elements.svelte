@@ -12,7 +12,7 @@
 		AlertDialogTrigger,
 	} from "$lib/registry/ui/alert-dialog/index.js";
 	import { Badge } from "$lib/registry/ui/badge/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { ButtonGroup } from "$lib/registry/ui/button-group/index.js";
 	import { Card, CardContent } from "$lib/registry/ui/card/index.js";
 	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
@@ -35,7 +35,6 @@
 	import { RadioGroup, RadioGroupItem } from "$lib/registry/ui/radio-group/index.js";
 	import { Switch } from "$lib/registry/ui/switch/index.js";
 	import { Textarea } from "$lib/registry/ui/textarea/index.js";
-	("use client");
 </script>
 
 <Card class="w-full">
@@ -102,13 +101,9 @@
 		</div>
 		<div class="flex items-center gap-4">
 			<AlertDialog>
-				<AlertDialogTrigger>
-					{#snippet child({ props })}
-						<Button variant="outline" {...props}>
-							<span class="style-sera:md:hidden hidden md:flex"> Alert Dialog </span>
-							<span class="style-sera:md:flex flex md:hidden">Dialog</span>
-						</Button>
-					{/snippet}
+				<AlertDialogTrigger class={buttonVariants({ variant: "outline" })}>
+					<span class="style-sera:md:hidden hidden md:flex"> Alert Dialog </span>
+					<span class="style-sera:md:flex flex md:hidden">Dialog</span>
 				</AlertDialogTrigger>
 				<AlertDialogContent size="sm" portalProps={{ disabled: true }}>
 					<AlertDialogHeader>
@@ -130,23 +125,17 @@
 					<span class="style-sera:block hidden">Group</span>
 				</Button>
 				<DropdownMenu>
-					<DropdownMenuTrigger>
-						{#snippet child({ props })}
-							<Button
-								variant="outline"
-								size="icon"
-								aria-label="Open quick actions"
-								{...props}
-							>
-								<IconPlaceholder
-									lucide="ArrowUpIcon"
-									tabler="IconArrowUp"
-									hugeicons="ArrowUp01Icon"
-									phosphor="ArrowUpIcon"
-									remixicon="RiArrowUpLine"
-								/>
-							</Button>
-						{/snippet}
+					<DropdownMenuTrigger
+						class={buttonVariants({ variant: "outline", size: "icon" })}
+						aria-label="Open quick actions"
+					>
+						<IconPlaceholder
+							lucide="ArrowUpIcon"
+							tabler="IconArrowUp"
+							hugeicons="ArrowUp01Icon"
+							phosphor="ArrowUpIcon"
+							remixicon="RiArrowUpLine"
+						/>
 					</DropdownMenuTrigger>
 					<DropdownMenuContent
 						align="end"

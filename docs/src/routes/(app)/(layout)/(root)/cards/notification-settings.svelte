@@ -16,7 +16,7 @@
 		FieldGroup,
 		FieldLabel,
 	} from "$lib/registry/ui/field/index.js";
-	const NOTIFICATIONS = [
+	let notifications = $state([
 		{
 			id: "transactions",
 			label: "Transaction alerts",
@@ -41,7 +41,7 @@
 			description: "Daily portfolio summary and price alerts.",
 			checked: false,
 		},
-	];
+	]);
 </script>
 
 <Card>
@@ -51,9 +51,9 @@
 	</CardHeader>
 	<CardContent>
 		<FieldGroup>
-			{#each NOTIFICATIONS as n (n.id)}
+			{#each notifications as n (n.id)}
 				<Field orientation="horizontal">
-					<Checkbox id={`notify-${n.id}`} checked={n.checked}></Checkbox>
+					<Checkbox id={`notify-${n.id}`} bind:checked={n.checked}></Checkbox>
 					<FieldContent>
 						<FieldLabel for={`notify-${n.id}`}>{n.label}</FieldLabel>
 						<FieldDescription>{n.description}</FieldDescription>
