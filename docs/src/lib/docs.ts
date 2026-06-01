@@ -88,10 +88,11 @@ export async function getDoc(
 }
 
 export async function getChangelogPages(): Promise<ChangelogPage[]> {
+	const changelogByPath = new Map(changelog.map((doc) => [doc.path, doc]));
 	const pages = await Promise.all(
 		Object.entries(changelogModules).map(async ([modulePath, resolver]) => {
 			const path = transformPath(modulePath);
-			const metadata = changelog.find((doc) => doc.path === path);
+			const metadata = changelogByPath.get(path);
 
 			if (!metadata || metadata.path === "changelog") {
 				return null;

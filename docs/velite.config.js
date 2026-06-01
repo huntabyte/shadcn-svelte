@@ -1,11 +1,15 @@
 // @ts-check
 import { defineCollection, defineConfig, s } from "velite";
 
+const dateSchema = s
+	.union([s.string(), s.date()])
+	.transform((date) => (date instanceof Date ? date.toISOString().slice(0, 10) : date));
+
 const docSchema = s
 	.object({
 		title: s.string(),
 		description: s.string(),
-		date: s.string().optional(),
+		date: dateSchema.optional(),
 		path: s.path(),
 		navLabel: s.string().optional(),
 		links: s
