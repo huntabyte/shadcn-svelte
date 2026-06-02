@@ -102,7 +102,7 @@ export async function getChangelogPages(): Promise<ChangelogPage[]> {
 
 			return {
 				href: `/docs/${metadata.path}`,
-				slug: metadata.slug,
+				slug: metadata.slug ?? metadata.path,
 				metadata,
 				component: module.default,
 				date: getChangelogDate(metadata),
