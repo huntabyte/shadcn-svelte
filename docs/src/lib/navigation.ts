@@ -199,6 +199,11 @@ function generateRegistryNav(): SidebarNavItem[] {
 			items: [],
 		},
 		{
+			title: "GitHub Registries",
+			href: "/docs/registry/github",
+			items: [],
+		},
+		{
 			title: "FAQ",
 			href: "/docs/registry/faq",
 			items: [],
