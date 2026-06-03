@@ -1,9 +1,20 @@
 // @ts-check
 import { defineCollection, defineConfig, s } from "velite";
 
-const dateSchema = s
-	.union([s.string(), s.date()])
-	.transform((date) => (date instanceof Date ? date.toISOString().slice(0, 10) : date));
+const dateSchema = s.union([s.string(), s.date()]).transform((date) => {
+	if (date instanceof Date) {
+		const year = date.getUTCFullYear();
+		const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+		const day = String(date.getUTCDate()).padStart(2, "0");
+		return `${year}-${month}-${day}`;
+	}
+
+	if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+		throw new Error(`Invalid date "${date}". Expected YYYY-MM-DD.`);
+	}
+
+	return date;
+});
 
 const docSchema = s
 	.object({

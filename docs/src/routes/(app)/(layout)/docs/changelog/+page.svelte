@@ -10,6 +10,22 @@
 
 	const latestPages = $derived(data.latestPages as ChangelogPage[]);
 	const olderPages = $derived(data.olderPages as ChangelogPage[]);
+
+	const dateFormatter = new Intl.DateTimeFormat("en", {
+		month: "long",
+		timeZone: "UTC",
+		year: "numeric",
+	});
+
+	function getDateLabel(page: ChangelogPage): string {
+		return page.date ? dateFormatter.format(page.date) : "Update";
+	}
+
+	function getDisplayTitle(title: string): string {
+		const [_date, ...titleParts] = title.split(" - ");
+		const displayTitle = titleParts.join(" - ").trim();
+		return displayTitle || title;
+	}
 </script>
 
 <Metadata
@@ -98,14 +114,16 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 			<div class="w-full flex-1 pb-16 sm:pb-0">
 				{#each latestPages as changelogPage (changelogPage.href)}
 					{@const ChangelogMarkdown = changelogPage.component}
-					<article class="mb-12 border-b pb-12">
-						<h2 class="font-heading text-xl font-semibold tracking-tight">
-							{changelogPage.metadata.title}
-						</h2>
-						<div class="prose-changelog mt-6 *:first:mt-0">
-							<ChangelogMarkdown />
-						</div>
-					</article>
+					{#if ChangelogMarkdown}
+						<article class="mb-12 border-b pb-12">
+							<h2 class="font-heading text-xl font-semibold tracking-tight">
+								{changelogPage.metadata.title}
+							</h2>
+							<div class="prose-changelog mt-6 *:first:mt-0">
+								<ChangelogMarkdown />
+							</div>
+						</article>
+					{/if}
 				{/each}
 				{#if olderPages.length > 0}
 					<div id="more-updates" class="mb-24 scroll-mt-24">
@@ -114,15 +132,16 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 						</h2>
 						<div class="grid auto-rows-fr gap-3 sm:grid-cols-2">
 							{#each olderPages as changelogPage (changelogPage.href)}
-								{@const [date, ...titleParts] =
-									changelogPage.metadata.title.split(" - ")}
 								<a
 									href={changelogPage.href}
 									class="bg-surface text-surface-foreground hover:bg-surface/80 flex w-full flex-col rounded-xl px-4 py-3 transition-colors"
 								>
-									<span class="text-muted-foreground text-xs">{date}</span>
-									<span class="text-sm font-medium">{titleParts.join(" - ")}</span
-									>
+									<span class="text-muted-foreground text-xs">
+										{getDateLabel(changelogPage)}
+									</span>
+									<span class="text-sm font-medium">
+										{getDisplayTitle(changelogPage.metadata.title)}
+									</span>
 								</a>
 							{/each}
 						</div>

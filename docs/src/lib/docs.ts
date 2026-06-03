@@ -24,6 +24,7 @@ type DocMetadata = (typeof allDocs)[number];
 type DocResolver = () => Promise<{ default: Component; metadata: DocMetadata }>;
 type ChangelogMetadata = (typeof changelog)[number];
 type ChangelogResolver = () => Promise<{ default: Component }>;
+type ChangelogPageEntry = ChangelogPage & { resolver: ChangelogResolver };
 
 const changelogModules = import.meta.glob("/content/changelog/**/*.md");
 
@@ -31,7 +32,7 @@ export type ChangelogPage = {
 	href: string;
 	slug: string;
 	metadata: ChangelogMetadata;
-	component: Component;
+	component: Component | null;
 	date: Date | null;
 };
 
@@ -87,34 +88,48 @@ export async function getDoc(
 	};
 }
 
-export async function getChangelogPages(): Promise<ChangelogPage[]> {
+type ChangelogPagesOptions = {
+	includeComponentsForLatest?: number;
+};
+
+export async function getChangelogPages(
+	options: ChangelogPagesOptions = {}
+): Promise<ChangelogPage[]> {
 	const changelogByPath = new Map(changelog.map((doc) => [doc.path, doc]));
-	const pages = await Promise.all(
-		Object.entries(changelogModules).map(async ([modulePath, resolver]) => {
-			const path = transformPath(modulePath);
-			const metadata = changelogByPath.get(path);
+	const pages: ChangelogPageEntry[] = [];
 
-			if (!metadata || metadata.path === "changelog") {
-				return null;
-			}
+	for (const [modulePath, resolver] of Object.entries(changelogModules)) {
+		const path = transformPath(modulePath);
+		const metadata = changelogByPath.get(path);
 
-			const module = await (resolver as ChangelogResolver)();
+		if (!metadata || metadata.path === "changelog") {
+			continue;
+		}
 
-			return {
-				href: `/docs/${metadata.path}`,
-				slug: metadata.slug ?? metadata.path,
-				metadata,
-				component: module.default,
-				date: getChangelogDate(metadata),
-			};
+		pages.push({
+			href: `/docs/${metadata.path}`,
+			slug: metadata.slug ?? metadata.path,
+			metadata,
+			component: null,
+			date: getChangelogDate(metadata),
+			resolver: resolver as ChangelogResolver,
+		});
+	}
+
+	pages.sort((a, b) => {
+		const dateA = a.date?.getTime() ?? 0;
+		const dateB = b.date?.getTime() ?? 0;
+		return dateB - dateA;
+	});
+
+	const componentCount = options.includeComponentsForLatest ?? pages.length;
+
+	await Promise.all(
+		pages.slice(0, componentCount).map(async (page) => {
+			const module = await page.resolver();
+			page.component = module.default;
 		})
 	);
 
-	return pages
-		.filter((page): page is ChangelogPage => page !== null)
-		.sort((a, b) => {
-			const dateA = a.date?.getTime() ?? 0;
-			const dateB = b.date?.getTime() ?? 0;
-			return dateB - dateA;
-		});
+	return pages.map(({ resolver: _resolver, ...page }) => page);
 }
