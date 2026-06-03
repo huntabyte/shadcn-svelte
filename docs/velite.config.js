@@ -2,15 +2,25 @@
 import { defineCollection, defineConfig, s } from "velite";
 
 const dateSchema = s.union([s.string(), s.date()]).transform((date) => {
-	if (date instanceof Date) {
-		const year = date.getUTCFullYear();
-		const month = String(date.getUTCMonth() + 1).padStart(2, "0");
-		const day = String(date.getUTCDate()).padStart(2, "0");
+	/** @param {Date} value */
+	function formatDate(value) {
+		const year = value.getUTCFullYear();
+		const month = String(value.getUTCMonth() + 1).padStart(2, "0");
+		const day = String(value.getUTCDate()).padStart(2, "0");
 		return `${year}-${month}-${day}`;
+	}
+
+	if (date instanceof Date) {
+		return formatDate(date);
 	}
 
 	if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
 		throw new Error(`Invalid date "${date}". Expected YYYY-MM-DD.`);
+	}
+
+	const parsedDate = new Date(`${date}T00:00:00Z`);
+	if (Number.isNaN(parsedDate.getTime()) || formatDate(parsedDate) !== date) {
+		throw new Error(`Invalid date "${date}". Expected a valid YYYY-MM-DD date.`);
 	}
 
 	return date;

@@ -31,7 +31,7 @@
 		{...props}
 	>
 		{content}
-		{#if href && PAGES_NEW.includes(href)}
+		{#if href && PAGES_NEW.has(href)}
 			<span class="bg-svelte-orange flex size-2 rounded-full" title="New"></span>
 		{/if}
 	</a>

@@ -2,7 +2,12 @@ import { components, installation, migration } from "$content/index.js";
 import type { Component } from "svelte";
 
 /** List page hrefs here to highlight them as new in navigation. */
-export const PAGES_NEW = ["/docs/skills", "/docs/changelog"];
+export const NEW_PAGE_HREFS = new Set(["/docs/skills", "/docs/changelog"]);
+
+/** List component hrefs here to highlight them as new in component lists. */
+export const NEW_COMPONENT_HREFS = new Set<string>();
+
+export const PAGES_NEW = new Set([...NEW_PAGE_HREFS, ...NEW_COMPONENT_HREFS]);
 
 export type NavItem = {
 	title: string;

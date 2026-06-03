@@ -32,7 +32,7 @@
 </script>
 
 <Sidebar.Root
-	class="sticky top-[calc(var(--header-height)+0.6rem)] z-30 hidden h-[calc(100svh-10rem)] overscroll-none bg-transparent [--sidebar-menu-width:--spacing(56)] lg:flex"
+	class="sticky top-[calc(var(--header-height)+0.6rem)] z-30 hidden h-[calc(100svh-10rem)] overscroll-none bg-transparent [--sidebar-menu-width:calc(var(--spacing)*56)] lg:flex"
 	collapsible="none"
 	{...restProps}
 	><div class="h-9"></div>
@@ -68,7 +68,7 @@
 														class="absolute inset-0 flex w-(--sidebar-menu-width) bg-transparent"
 													></span>
 													{subItem.title}
-													{#if subItem.href && PAGES_NEW.includes(subItem.href)}
+													{#if subItem.href && PAGES_NEW.has(subItem.href)}
 														<span
 															class="bg-svelte-orange flex size-2 rounded-full"
 															title="New"
