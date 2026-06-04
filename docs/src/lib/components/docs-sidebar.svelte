@@ -1,7 +1,8 @@
 <script lang="ts">
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import { page } from "$app/state";
-	import { PAGES_NEW, type SidebarNavItem } from "$lib/navigation.js";
+	import { PAGES_NEW } from "$lib/docs.js";
+	import type { SidebarNavItem } from "$lib/navigation.js";
 	import type { ComponentProps } from "svelte";
 
 	let {
@@ -68,7 +69,7 @@
 														class="absolute inset-0 flex w-(--sidebar-menu-width) bg-transparent"
 													></span>
 													{subItem.title}
-													{#if subItem.href && PAGES_NEW.has(subItem.href)}
+													{#if subItem.href && PAGES_NEW.includes(subItem.href)}
 														<span
 															class="bg-svelte-orange flex size-2 rounded-full"
 															title="New"

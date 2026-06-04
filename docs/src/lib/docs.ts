@@ -28,6 +28,13 @@ type ChangelogPageEntry = ChangelogPage & { resolver: ChangelogResolver };
 
 const changelogModules = import.meta.glob("/content/changelog/**/*.md");
 
+export const PAGES_NEW = [
+	"/docs/skills",
+	"/docs/changelog",
+];
+
+export const PAGES_UPDATED: string[] = [];
+
 export type ChangelogPage = {
 	href: string;
 	slug: string;
