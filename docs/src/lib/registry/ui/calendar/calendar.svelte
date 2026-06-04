@@ -2,10 +2,43 @@
 	import { Calendar as CalendarPrimitive } from "bits-ui";
 	import type { RangeCalendar as RangeCalendarPrimitive } from "bits-ui";
 	import * as Calendar from "./index.js";
+	import { RangeCalendar } from "$lib/registry/ui/range-calendar/index.js";
 	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
 	import type { ButtonVariant } from "../button/button.svelte";
 	import { isEqualMonth, type DateValue } from "@internationalized/date";
 	import type { Snippet } from "svelte";
+
+	type CalendarRootProps = WithoutChildrenOrChild<CalendarPrimitive.RootProps>;
+	type RangeCalendarRootProps = WithoutChildrenOrChild<RangeCalendarPrimitive.RootProps>;
+
+	type CalendarProps = Partial<CalendarRootProps> & {
+		value?: CalendarRootProps["value"] | RangeCalendarRootProps["value"];
+		onValueChange?:
+			| CalendarRootProps["onValueChange"]
+			| RangeCalendarRootProps["onValueChange"];
+		placeholder?: CalendarRootProps["placeholder"] | RangeCalendarRootProps["placeholder"];
+		type?: CalendarRootProps["type"];
+		excludeDisabled?: RangeCalendarRootProps["excludeDisabled"];
+		maxDays?: RangeCalendarRootProps["maxDays"];
+		minDays?: RangeCalendarRootProps["minDays"];
+		onStartValueChange?: RangeCalendarRootProps["onStartValueChange"];
+		buttonVariant?: ButtonVariant;
+		captionLayout?: "dropdown" | "dropdown-months" | "dropdown-years" | "label";
+		months?:
+			| CalendarPrimitive.MonthSelectProps["months"]
+			| RangeCalendarPrimitive.MonthSelectProps["months"];
+		years?:
+			| CalendarPrimitive.YearSelectProps["years"]
+			| RangeCalendarPrimitive.YearSelectProps["years"];
+		monthFormat?:
+			| CalendarPrimitive.MonthSelectProps["monthFormat"]
+			| RangeCalendarPrimitive.MonthSelectProps["monthFormat"];
+		yearFormat?:
+			| CalendarPrimitive.YearSelectProps["yearFormat"]
+			| RangeCalendarPrimitive.YearSelectProps["yearFormat"];
+		day?: Snippet<[{ day: DateValue; outsideMonth: boolean }]>;
+		mode?: "single" | "multiple" | "range";
+	};
 
 	let {
 		ref = $bindable(null),
@@ -24,22 +57,16 @@
 		disableDaysOutsideMonth = false,
 		mode,
 		...restProps
-	}: WithoutChildrenOrChild<CalendarPrimitive.RootProps & RangeCalendarPrimitive.RootProps> & {
-		buttonVariant?: ButtonVariant;
-		captionLayout?: "dropdown" | "dropdown-months" | "dropdown-years" | "label";
-		months?: CalendarPrimitive.MonthSelectProps["months"];
-		years?: CalendarPrimitive.YearSelectProps["years"];
-		monthFormat?: CalendarPrimitive.MonthSelectProps["monthFormat"];
-		yearFormat?: CalendarPrimitive.YearSelectProps["yearFormat"];
-		day?: Snippet<[{ day: DateValue; outsideMonth: boolean }]>;
-		mode?: "single" | "multiple" | "range";
-	} = $props();
+	}: CalendarProps = $props();
 
 	const monthFormat = $derived.by(() => {
 		if (monthFormatProp) return monthFormatProp;
 		if (captionLayout.startsWith("dropdown")) return "short";
 		return "long";
 	});
+
+	const calendarProps = $derived(restProps as CalendarRootProps);
+	const rangeCalendarProps = $derived(restProps as RangeCalendarRootProps);
 </script>
 
 <!--
@@ -47,34 +74,23 @@ Discriminated Unions + Destructing (required for bindable) do not
 get along, so we shut typescript up by casting `value` to `never`.
 -->
 {#if mode === "range"}
-	{#await import("../range-calendar/index.js")}
-		<div
-			class={cn(
-				"cn-calendar bg-background group/calendar p-3",
-				className
-			)}
-		></div>
-	{:then { RangeCalendar }}
-		<RangeCalendar
-			bind:ref
-			bind:value={value as never}
-			bind:placeholder
-			class={className}
-			{weekdayFormat}
-			{buttonVariant}
-			{captionLayout}
-			{locale}
-			months={monthsProp}
-			{years}
-			monthFormat={monthFormatProp}
-			{yearFormat}
-			{day}
-			{disableDaysOutsideMonth}
-			{...restProps}
-		/>
-	{:catch}
-		<div class={cn("cn-calendar bg-background group/calendar p-3", className)}></div>
-	{/await}
+	<RangeCalendar
+		bind:ref
+		bind:value={value as never}
+		bind:placeholder
+		class={className}
+		{weekdayFormat}
+		{buttonVariant}
+		{captionLayout}
+		{locale}
+		months={monthsProp}
+		{years}
+		monthFormat={monthFormatProp}
+		{yearFormat}
+		{day}
+		{disableDaysOutsideMonth}
+		{...rangeCalendarProps}
+	/>
 {:else}
 	<CalendarPrimitive.Root
 		bind:value={value as never}
@@ -89,7 +105,7 @@ get along, so we shut typescript up by casting `value` to `never`.
 		{locale}
 		{monthFormat}
 		{yearFormat}
-		{...restProps}
+		{...calendarProps}
 	>
 		{#snippet children({ months, weekdays })}
 			<Calendar.Months>

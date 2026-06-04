@@ -7,11 +7,11 @@
 		"bits-ui@^2.16.3"
 	],
 	"registryDependencies": [
-		"range-calendar"
+		"calendar"
 	],
 	"files": [
 		{
-			"content": "<script lang=\"ts\">\n\timport RangeCalendar from \"$UI$/range-calendar/range-calendar.svelte\";\n\timport { CalendarDate } from \"@internationalized/date\";\n\timport type { DateRange } from \"bits-ui\";\n\n\tlet value = $state<DateRange>({\n\t\tstart: new CalendarDate(2025, 6, 9),\n\t\tend: new CalendarDate(2025, 6, 26),\n\t});\n</script>\n\n<RangeCalendar bind:value class=\"rounded-lg border shadow-sm\" />\n",
+			"content": "<script lang=\"ts\">\n\timport Calendar from \"$UI$/calendar/calendar.svelte\";\n\timport { CalendarDate } from \"@internationalized/date\";\n\timport type { DateRange } from \"bits-ui\";\n\n\tlet value = $state<DateRange>({\n\t\tstart: new CalendarDate(2025, 6, 9),\n\t\tend: new CalendarDate(2025, 6, 26),\n\t});\n</script>\n\n<Calendar mode=\"range\" bind:value={value as never} class=\"rounded-lg border shadow-sm\" />\n",
 			"type": "registry:component",
 			"target": "calendar-04.svelte"
 		}
