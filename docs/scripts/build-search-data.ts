@@ -1,12 +1,13 @@
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { globby } from "globby";
 import removeMd from "remove-markdown";
 
-const CONTENT_DIR = path.resolve(import.meta.dirname, "../content");
-const OUTPUT_PATH = path.resolve(import.meta.dirname, "../src/routes/api/search.json/search.json");
+const CONTENT_DIR = path.resolve(process.cwd(), "content");
+const OUTPUT_PATH = path.resolve(process.cwd(), ".generated/search.json");
 
-type SearchEntry = {
+export type SearchEntry = {
 	title: string;
 	description: string;
 	content: string;
@@ -189,7 +190,7 @@ function parseIntoSections(
 	return entries;
 }
 
-async function main() {
+export async function buildSearchData(): Promise<SearchEntry[]> {
 	const files = await globby("**/*.md", { cwd: CONTENT_DIR, absolute: true });
 
 	const entries: SearchEntry[] = [];
@@ -207,6 +208,11 @@ async function main() {
 		entries.push(...sections);
 	}
 
+	return entries;
+}
+
+async function writeSearchData() {
+	const entries = await buildSearchData();
 	const outputDir = path.dirname(OUTPUT_PATH);
 	fs.mkdirSync(outputDir, { recursive: true });
 
@@ -225,7 +231,7 @@ async function watchContentDirectory() {
 	const rebuild = () => {
 		if (buildTimeout) clearTimeout(buildTimeout);
 		buildTimeout = setTimeout(() => {
-			main().catch((error) => {
+			writeSearchData().catch((error) => {
 				console.error("❌ Search index build failed:", error);
 			});
 		}, 100);
@@ -240,10 +246,13 @@ async function watchContentDirectory() {
 }
 
 const isWatchMode = process.argv.includes("--watch");
+const isCliRun = process.argv[1] === fileURLToPath(import.meta.url);
 
-if (isWatchMode) {
-	await main();
-	await watchContentDirectory();
-} else {
-	await main();
+if (isCliRun) {
+	if (isWatchMode) {
+		await writeSearchData();
+		await watchContentDirectory();
+	} else {
+		await writeSearchData();
+	}
 }

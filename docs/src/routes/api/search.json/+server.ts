@@ -1,12 +1,8 @@
 import type { RequestHandler } from "@sveltejs/kit";
-import search from "./search.json?raw";
+import { buildSearchData } from "../../../../scripts/build-search-data.js";
 
 export const prerender = true;
 
 export const GET: RequestHandler = async () => {
-	return new Response(search, {
-		headers: {
-			"content-type": "application/json",
-		},
-	});
+	return Response.json(await buildSearchData());
 };
