@@ -9,6 +9,7 @@
 	import { cn } from "$lib/utils.js";
 	import { SvelteSet } from "svelte/reactivity";
 	import { onMount } from "svelte";
+	import { base } from "$app/paths";
 
 	import { sidebarNavItems, mainNavItems } from "$lib/navigation.js";
 	import {
@@ -111,7 +112,7 @@
 	);
 
 	onMount(async () => {
-		const data = await fetch("/api/search.json").then((res) => res.json());
+		const data = await fetch(`${base}/api/search.json`).then((res) => res.json());
 		await createContentIndex(data);
 		searchState = "ready";
 	});
@@ -340,7 +341,6 @@
 								<Command.Item
 									class="data-selected:border-input data-selected:bg-input/50 h-9 rounded-md border border-transparent !px-3 font-normal"
 									value={result.title + " " + result.href}
-									keywords={[result.content]}
 									onSelect={() => {
 										runCommand(() => goto(result.href));
 									}}

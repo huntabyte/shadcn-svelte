@@ -1,4 +1,4 @@
-import fs, { watch } from "node:fs";
+import fs from "node:fs";
 import path from "node:path";
 import { globby } from "globby";
 import removeMd from "remove-markdown";
@@ -17,7 +17,7 @@ type SearchEntry = {
 };
 
 function parseFrontmatter(raw: string): { title: string; description: string; body: string } {
-	const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+	const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
 	if (!match) return { title: "", description: "", body: raw };
 
 	const frontmatter = match[1];
@@ -59,6 +59,13 @@ function cleanText(raw: string): string {
 	content = content.replace(/\*{1,2}([^*]+)\*{1,2}/g, "$1");
 
 	return content;
+}
+
+function splitParagraphs(raw: string): string[] {
+	return raw
+		.split(/\r?\n\s*\r?\n/)
+		.map((paragraph) => cleanText(paragraph))
+		.filter((paragraph) => paragraph.length > 20);
 }
 
 function deriveHref(filePath: string): string {
@@ -163,26 +170,19 @@ function parseIntoSections(
 		});
 
 		// Add text entries for paragraphs under this heading
-		const bodyText = cleanText(section.lines.join("\n"));
-		if (bodyText.trim().length > 20) {
-			// Split into paragraphs (double newline in original = blank lines)
-			const paragraphs = bodyText
-				.split(/\s{2,}/)
-				.map((p) => p.trim())
-				.filter((p) => p.length > 20);
+		const paragraphs = splitParagraphs(section.lines.join("\n"));
 
-			for (const para of paragraphs) {
-				const title = para.length > 120 ? para.slice(0, 120) + "…" : para;
-				entries.push({
-					title,
-					description: "",
-					content: para,
-					href: `${pageHref}#${currentAnchor}`,
-					category,
-					type: "text",
-					pageTitle,
-				});
-			}
+		for (const para of paragraphs) {
+			const title = para.length > 120 ? para.slice(0, 120) + "…" : para;
+			entries.push({
+				title,
+				description: "",
+				content: para,
+				href: `${pageHref}#${currentAnchor}`,
+				category,
+				type: "text",
+				pageTitle,
+			});
 		}
 	}
 
@@ -214,17 +214,36 @@ async function main() {
 	console.log(`Built search index with ${entries.length} entries → ${OUTPUT_PATH}`);
 }
 
+async function watchContentDirectory() {
+	const directories = await globby("**", {
+		cwd: CONTENT_DIR,
+		absolute: true,
+		onlyDirectories: true,
+	});
+	let buildTimeout: NodeJS.Timeout | undefined;
+
+	const rebuild = () => {
+		if (buildTimeout) clearTimeout(buildTimeout);
+		buildTimeout = setTimeout(() => {
+			main().catch((error) => {
+				console.error("❌ Search index build failed:", error);
+			});
+		}, 100);
+	};
+
+	for (const directory of [CONTENT_DIR, ...directories]) {
+		fs.watch(directory, (_, filename) => {
+			if (!filename?.endsWith(".md")) return;
+			rebuild();
+		});
+	}
+}
+
 const isWatchMode = process.argv.includes("--watch");
 
 if (isWatchMode) {
 	await main();
-
-	watch(CONTENT_DIR, { recursive: true }, (_, filename) => {
-		if (!filename?.endsWith(".md")) return;
-		main().catch((error) => {
-			console.error("❌ Search index build failed:", error);
-		});
-	});
+	await watchContentDirectory();
 } else {
 	await main();
 }

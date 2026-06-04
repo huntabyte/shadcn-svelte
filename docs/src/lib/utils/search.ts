@@ -92,6 +92,7 @@ function substringMatch(text: string, query: string): boolean {
 
 export function searchContentIndex(query: string): SearchResult[] {
 	if (!query.trim()) return [];
+	if (!titleIndex || !contentIndex) return [];
 
 	const titleResults = titleIndex.search(query, { limit: 20 });
 	const contentResults = contentIndex.search(query, { limit: 20 });
