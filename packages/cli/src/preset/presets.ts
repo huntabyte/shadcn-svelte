@@ -123,6 +123,21 @@ export const DEFAULT_PRESETS = {
 
 		radius: "default",
 	},
+	rhea: {
+		title: "Rhea",
+		description: "Lucide / Inter",
+		hint: "Like Luma but compact.",
+		style: "rhea",
+		baseColor: "neutral",
+		theme: "neutral",
+		iconLibrary: "lucide",
+		font: "inter",
+		fontHeading: "inherit",
+		menuAccent: "subtle" as const,
+		menuColor: "default" as const,
+
+		radius: "default",
+	},
 } as const;
 
 /**

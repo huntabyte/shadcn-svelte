@@ -241,20 +241,14 @@
 		{#snippet child({ props })}
 			<Button
 				{...props}
-				variant="secondary"
+				variant="outline"
 				class={cn(
-					"bg-surface text-foreground dark:bg-card relative h-8 w-full justify-start pl-3 font-medium shadow-none sm:pr-12 md:w-48 lg:w-56 xl:w-64"
+					"bg-muted text-foreground hover:bg-muted/50 dark:bg-card relative h-8 w-full justify-start rounded-lg border-none pl-3 shadow-none transition-colors md:w-48 lg:w-40 xl:w-64"
 				)}
 				onclick={() => openCommandMenu()}
 			>
-				<span class="hidden lg:inline-flex">Search documentation...</span>
-				<span class="inline-flex lg:hidden">Search...</span>
-				<div class="absolute end-1.5 top-1.5 hidden gap-1 sm:flex">
-					<Kbd.Group>
-						<Kbd.Root class="border">⌘</Kbd.Root>
-						<Kbd.Root class="border">K</Kbd.Root>
-					</Kbd.Group>
-				</div>
+				<span class="hidden xl:inline-flex">Search documentation...</span>
+				<span class="inline-flex xl:hidden">Search...</span>
 			</Button>
 		{/snippet}
 	</Dialog.Trigger>

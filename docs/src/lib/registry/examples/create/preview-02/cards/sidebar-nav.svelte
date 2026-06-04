@@ -49,6 +49,30 @@
 										Investments
 									</Sidebar.MenuButton>
 								</Sidebar.MenuItem>
+								<Sidebar.MenuItem>
+									<Sidebar.MenuButton>
+										<IconPlaceholder
+											lucide="Building2Icon"
+											tabler="IconBuildingBank"
+											hugeicons="BankIcon"
+											phosphor="BankIcon"
+											remixicon="RiBankLine"
+										/>
+										Accounts
+									</Sidebar.MenuButton>
+								</Sidebar.MenuItem>
+								<Sidebar.MenuItem>
+									<Sidebar.MenuButton>
+										<IconPlaceholder
+											lucide="PieChartIcon"
+											tabler="IconChartPie"
+											hugeicons="PieChartIcon"
+											phosphor="ChartPieIcon"
+											remixicon="RiPieChartLine"
+										/>
+										Spending
+									</Sidebar.MenuButton>
+								</Sidebar.MenuItem>
 							</Sidebar.Menu>
 						</Sidebar.GroupContent>
 					</Sidebar.Group>
@@ -168,6 +192,18 @@
 										Security
 									</Sidebar.MenuButton>
 								</Sidebar.MenuItem>
+								<Sidebar.MenuItem>
+									<Sidebar.MenuButton>
+										<IconPlaceholder
+											lucide="PaintbrushIcon"
+											tabler="IconPalette"
+											hugeicons="PaintBoardIcon"
+											phosphor="PaletteIcon"
+											remixicon="RiPaletteLine"
+										/>
+										Appearance
+									</Sidebar.MenuButton>
+								</Sidebar.MenuItem>
 							</Sidebar.Menu>
 						</Sidebar.GroupContent>
 					</Sidebar.Group>
@@ -198,6 +234,18 @@
 											remixicon="RiChat1Line"
 										/>
 										Contact Us
+									</Sidebar.MenuButton>
+								</Sidebar.MenuItem>
+								<Sidebar.MenuItem>
+									<Sidebar.MenuButton>
+										<IconPlaceholder
+											lucide="BookOpenIcon"
+											tabler="IconBook"
+											hugeicons="BookOpen02Icon"
+											phosphor="BookOpenIcon"
+											remixicon="RiBookOpenLine"
+										/>
+										Documentation
 									</Sidebar.MenuButton>
 								</Sidebar.MenuItem>
 								<Sidebar.MenuItem>

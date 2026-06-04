@@ -1,0 +1,46 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "avatar",
+	"type": "registry:ui",
+	"devDependencies": [
+		"bits-ui@^2.16.3",
+		"@internationalized/date@^3.12.0"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLSpanElement>> = $props();\n</script>\n\n<span\n\tbind:this={ref}\n\tdata-slot=\"avatar-badge\"\n\tclass={cn(\n\t\t\"bg-primary text-primary-foreground ring-background absolute right-0 bottom-0 z-10 inline-flex items-center justify-center rounded-full bg-blend-color ring-2 select-none\",\n\t\t\"group-data-[size=sm]/avatar:size-2 group-data-[size=sm]/avatar:[&>svg]:hidden\",\n\t\t\"group-data-[size=default]/avatar:size-2.5 group-data-[size=default]/avatar:[&>svg]:size-2\",\n\t\t\"group-data-[size=lg]/avatar:size-3 group-data-[size=lg]/avatar:[&>svg]:size-2\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</span>\n",
+			"type": "registry:file",
+			"target": "avatar/avatar-badge.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: AvatarPrimitive.FallbackProps = $props();\n</script>\n\n<AvatarPrimitive.Fallback\n\tbind:ref\n\tdata-slot=\"avatar-fallback\"\n\tclass={cn(\n\t\t\"bg-muted text-muted-foreground rounded-full flex size-full items-center justify-center text-sm group-data-[size=sm]/avatar:text-xs\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "avatar/avatar-fallback.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"avatar-group-count\"\n\tclass={cn(\n\t\t\"bg-muted text-muted-foreground size-8 rounded-full text-sm group-has-data-[size=lg]/avatar-group:size-10 group-has-data-[size=sm]/avatar-group:size-6 [&>svg]:size-4 group-has-data-[size=lg]/avatar-group:[&>svg]:size-5 group-has-data-[size=sm]/avatar-group:[&>svg]:size-3 ring-background relative flex shrink-0 items-center justify-center ring-2\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "avatar/avatar-group-count.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"avatar-group\"\n\tclass={cn(\n\t\t\"cn-avatar-group *:data-[slot=avatar]:ring-background group/avatar-group flex -space-x-2 *:data-[slot=avatar]:ring-2\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "avatar/avatar-group.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: AvatarPrimitive.ImageProps = $props();\n</script>\n\n<AvatarPrimitive.Image\n\tbind:ref\n\tdata-slot=\"avatar-image\"\n\tclass={cn(\"rounded-full aspect-square size-full object-cover\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "avatar/avatar-image.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tloadingStatus = $bindable(\"loading\"),\n\t\tsize = \"default\",\n\t\tclass: className,\n\t\t...restProps\n\t}: AvatarPrimitive.RootProps & {\n\t\tsize?: \"default\" | \"sm\" | \"lg\";\n\t} = $props();\n</script>\n\n<AvatarPrimitive.Root\n\tbind:ref\n\tbind:loadingStatus\n\tdata-slot=\"avatar\"\n\tdata-size={size}\n\tclass={cn(\n\t\t\"size-8 rounded-full after:rounded-full data-[size=lg]:size-10 data-[size=sm]:size-6 after:border-border group/avatar relative flex shrink-0 select-none after:absolute after:inset-0 after:border after:mix-blend-darken dark:after:mix-blend-lighten\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "avatar/avatar.svelte"
+		},
+		{
+			"content": "import Root from \"./avatar.svelte\";\nimport Image from \"./avatar-image.svelte\";\nimport Fallback from \"./avatar-fallback.svelte\";\nimport Badge from \"./avatar-badge.svelte\";\nimport Group from \"./avatar-group.svelte\";\nimport GroupCount from \"./avatar-group-count.svelte\";\n\nexport {\n\tRoot,\n\tImage,\n\tFallback,\n\tBadge,\n\tGroup,\n\tGroupCount,\n\t//\n\tRoot as Avatar,\n\tImage as AvatarImage,\n\tFallback as AvatarFallback,\n\tBadge as AvatarBadge,\n\tGroup as AvatarGroup,\n\tGroupCount as AvatarGroupCount,\n};\n",
+			"type": "registry:file",
+			"target": "avatar/index.ts"
+		}
+	]
+}

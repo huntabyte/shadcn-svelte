@@ -1,0 +1,21 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "sonner",
+	"type": "registry:ui",
+	"devDependencies": [
+		"svelte-sonner@^1.1.0",
+		"mode-watcher@^1.1.0"
+	],
+	"files": [
+		{
+			"content": "export { default as Toaster } from \"./sonner.svelte\";\n",
+			"type": "registry:file",
+			"target": "sonner/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Toaster as Sonner, type ToasterProps as SonnerProps } from \"svelte-sonner\";\n\timport { mode } from \"mode-watcher\";\n\timport IconPlaceholder from \"$lib/components/icon-placeholder/icon-placeholder.svelte\";\n\n\tlet { ...restProps }: SonnerProps = $props();\n</script>\n\n<Sonner\n\ttheme={mode.current}\n\tclass=\"toaster group\"\n\tstyle=\"--normal-bg: var(--color-popover); --normal-text: var(--color-popover-foreground); --normal-border: var(--color-border);\"\n\t{...restProps}\n>\n\t{#snippet loadingIcon()}\n\t\t<IconPlaceholder\n\t\t\tlucide=\"Loader2Icon\"\n\t\t\ttabler=\"IconLoader\"\n\t\t\thugeicons=\"Loading03Icon\"\n\t\t\tphosphor=\"SpinnerIcon\"\n\t\t\tremixicon=\"RiLoaderLine\"\n\t\t\tclass=\"size-4 animate-spin\"\n\t\t/>\n\t{/snippet}\n\t{#snippet successIcon()}\n\t\t<IconPlaceholder\n\t\t\tlucide=\"CircleCheckIcon\"\n\t\t\ttabler=\"IconCircleCheck\"\n\t\t\thugeicons=\"CheckmarkCircle02Icon\"\n\t\t\tphosphor=\"CheckCircleIcon\"\n\t\t\tremixicon=\"RiCheckboxCircleLine\"\n\t\t\tclass=\"size-4\"\n\t\t/>\n\t{/snippet}\n\t{#snippet errorIcon()}\n\t\t<IconPlaceholder\n\t\t\tlucide=\"OctagonXIcon\"\n\t\t\ttabler=\"IconAlertOctagon\"\n\t\t\thugeicons=\"MultiplicationSignCircleIcon\"\n\t\t\tphosphor=\"XCircleIcon\"\n\t\t\tremixicon=\"RiErrorWarningLine\"\n\t\t\tclass=\"size-4\"\n\t\t/>\n\t{/snippet}\n\t{#snippet infoIcon()}\n\t\t<IconPlaceholder\n\t\t\tlucide=\"InfoIcon\"\n\t\t\ttabler=\"IconInfoCircle\"\n\t\t\thugeicons=\"InformationCircleIcon\"\n\t\t\tphosphor=\"InfoIcon\"\n\t\t\tremixicon=\"RiInformationLine\"\n\t\t\tclass=\"size-4\"\n\t\t/>\n\t{/snippet}\n\t{#snippet warningIcon()}\n\t\t<IconPlaceholder\n\t\t\tlucide=\"TriangleAlertIcon\"\n\t\t\ttabler=\"IconAlertTriangle\"\n\t\t\thugeicons=\"Alert02Icon\"\n\t\t\tphosphor=\"WarningIcon\"\n\t\t\tremixicon=\"RiCloseCircleLine\"\n\t\t\tclass=\"size-4\"\n\t\t/>\n\t{/snippet}\n</Sonner>\n",
+			"type": "registry:file",
+			"target": "sonner/sonner.svelte"
+		}
+	]
+}

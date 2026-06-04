@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.3.0
+
+### Minor Changes
+
+- feat: add rhea style preset ([#2715](https://github.com/huntabyte/shadcn-svelte/pull/2715))
+
 ## 1.2.7
 
 ### Patch Changes
