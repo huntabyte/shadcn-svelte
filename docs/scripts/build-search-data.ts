@@ -5,7 +5,7 @@ import { globby } from "globby";
 import removeMd from "remove-markdown";
 
 const CONTENT_DIR = path.resolve(process.cwd(), "content");
-const OUTPUT_PATH = path.resolve(process.cwd(), ".generated/search.json");
+const OUTPUT_PATH = path.resolve(process.cwd(), "src/routes/api/search.json/search.json");
 
 export type SearchEntry = {
 	title: string;
