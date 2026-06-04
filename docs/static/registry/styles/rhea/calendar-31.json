@@ -1,0 +1,22 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "calendar-31",
+	"type": "registry:block",
+	"devDependencies": [
+		"little-date@^1.2.1",
+		"@lucide/svelte@^0.577.0",
+		"@internationalized/date@^3.12.0"
+	],
+	"registryDependencies": [
+		"button",
+		"calendar",
+		"card"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport { formatDateRange } from \"little-date\";\n\timport PlusIcon from \"@lucide/svelte/icons/plus\";\n\timport { Button } from \"$UI$/button/index.js\";\n\timport Calendar from \"$UI$/calendar/calendar.svelte\";\n\timport * as Card from \"$UI$/card/index.js\";\n\timport { CalendarDate, getLocalTimeZone, type DateValue } from \"@internationalized/date\";\n\n\tconst events = [\n\t\t{\n\t\t\ttitle: \"Team Sync Meeting\",\n\t\t\tstart: \"2025-06-12T09:00:00\",\n\t\t\tend: \"2025-06-12T10:00:00\",\n\t\t},\n\t\t{\n\t\t\ttitle: \"Design Review\",\n\t\t\tstart: \"2025-06-12T11:30:00\",\n\t\t\tend: \"2025-06-12T12:30:00\",\n\t\t},\n\t\t{\n\t\t\ttitle: \"Client Presentation\",\n\t\t\tstart: \"2025-06-12T14:00:00\",\n\t\t\tend: \"2025-06-12T15:00:00\",\n\t\t},\n\t];\n\n\tlet value = $state<DateValue | undefined>(new CalendarDate(2025, 6, 12));\n</script>\n\n<Card.Root class=\"w-fit py-4\">\n\t<Card.Content class=\"px-4\">\n\t\t<Calendar type=\"single\" bind:value class=\"bg-transparent p-0\" preventDeselect />\n\t</Card.Content>\n\t<Card.Footer class=\"flex flex-col items-start gap-3 border-t px-4 !pt-4\">\n\t\t<div class=\"flex w-full items-center justify-between px-1\">\n\t\t\t<div class=\"text-sm font-medium\">\n\t\t\t\t{value?.toDate(getLocalTimeZone()).toLocaleDateString(\"en-US\", {\n\t\t\t\t\tday: \"numeric\",\n\t\t\t\t\tmonth: \"long\",\n\t\t\t\t\tyear: \"numeric\",\n\t\t\t\t})}\n\t\t\t</div>\n\t\t\t<Button variant=\"ghost\" size=\"icon\" class=\"size-6\" title=\"Add Event\">\n\t\t\t\t<PlusIcon />\n\t\t\t\t<span class=\"sr-only\">Add Event</span>\n\t\t\t</Button>\n\t\t</div>\n\t\t<div class=\"flex w-full flex-col gap-2\">\n\t\t\t{#each events as event (event.title)}\n\t\t\t\t<div\n\t\t\t\t\tclass=\"bg-muted after:bg-primary/70 relative rounded-md p-2 ps-6 text-sm after:absolute after:inset-y-2 after:start-2 after:w-1 after:rounded-full\"\n\t\t\t\t>\n\t\t\t\t\t<div class=\"font-medium\">{event.title}</div>\n\t\t\t\t\t<div class=\"text-muted-foreground text-xs\">\n\t\t\t\t\t\t{formatDateRange(new Date(event.start), new Date(event.end))}\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t{/each}\n\t\t</div>\n\t</Card.Footer>\n</Card.Root>\n",
+			"type": "registry:component",
+			"target": "calendar-31.svelte"
+		}
+	]
+}
