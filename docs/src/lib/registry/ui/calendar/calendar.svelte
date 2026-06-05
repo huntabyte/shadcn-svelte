@@ -11,17 +11,7 @@
 	type CalendarRootProps = WithoutChildrenOrChild<CalendarPrimitive.RootProps>;
 	type RangeCalendarRootProps = WithoutChildrenOrChild<RangeCalendarPrimitive.RootProps>;
 
-	type CalendarProps = Partial<CalendarRootProps> & {
-		value?: CalendarRootProps["value"] | RangeCalendarRootProps["value"];
-		onValueChange?:
-			| CalendarRootProps["onValueChange"]
-			| RangeCalendarRootProps["onValueChange"];
-		placeholder?: CalendarRootProps["placeholder"] | RangeCalendarRootProps["placeholder"];
-		type?: CalendarRootProps["type"];
-		excludeDisabled?: RangeCalendarRootProps["excludeDisabled"];
-		maxDays?: RangeCalendarRootProps["maxDays"];
-		minDays?: RangeCalendarRootProps["minDays"];
-		onStartValueChange?: RangeCalendarRootProps["onStartValueChange"];
+	type SharedCalendarProps = {
 		buttonVariant?: ButtonVariant;
 		captionLayout?: "dropdown" | "dropdown-months" | "dropdown-years" | "label";
 		months?:
@@ -37,8 +27,25 @@
 			| CalendarPrimitive.YearSelectProps["yearFormat"]
 			| RangeCalendarPrimitive.YearSelectProps["yearFormat"];
 		day?: Snippet<[{ day: DateValue; outsideMonth: boolean }]>;
-		mode?: "single" | "multiple" | "range";
 	};
+
+	type SingleOrMultipleCalendarProps = Partial<CalendarRootProps> &
+		SharedCalendarProps & {
+			mode?: "single" | "multiple";
+			value?: CalendarRootProps["value"];
+			onValueChange?: CalendarRootProps["onValueChange"];
+			placeholder?: CalendarRootProps["placeholder"];
+		};
+
+	type RangeCalendarProps = Partial<RangeCalendarRootProps> &
+		SharedCalendarProps & {
+			mode: "range";
+			value?: RangeCalendarRootProps["value"];
+			onValueChange?: RangeCalendarRootProps["onValueChange"];
+			placeholder?: RangeCalendarRootProps["placeholder"];
+		};
+
+	type CalendarProps = SingleOrMultipleCalendarProps | RangeCalendarProps;
 
 	let {
 		ref = $bindable(null),
