@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { components } from "$content/index.js";
-	import { PAGES_NEW } from "$lib/docs.js";
+	import { PAGES_NEW } from "$lib/navigation.js";
 
 	const list = components.filter((c) => {
 		if (c.title === "Components") return false;
