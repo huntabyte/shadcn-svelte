@@ -1,10 +1,15 @@
 // @ts-check
 import { defineCollection, defineConfig, s } from "velite";
 
+const dateSchema = s
+	.union([s.string(), s.date()])
+	.transform((date) => (date instanceof Date ? date.toISOString().slice(0, 10) : date));
+
 const docSchema = s
 	.object({
 		title: s.string(),
 		description: s.string(),
+		date: dateSchema.optional(),
 		path: s.path(),
 		navLabel: s.string().optional(),
 		links: s
@@ -61,6 +66,12 @@ const registry = defineCollection({
 	schema: docSchema,
 });
 
+const changelog = defineCollection({
+	name: "changelog",
+	pattern: "./changelog/**/*.md",
+	schema: docSchema,
+});
+
 export default defineConfig({
 	root: "./content",
 	collections: {
@@ -70,6 +81,7 @@ export default defineConfig({
 		installation,
 		darkMode,
 		registry,
+		changelog,
 	},
 	output: { assets: "static" },
 });
