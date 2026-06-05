@@ -40,6 +40,7 @@
 	type RangeCalendarProps = Partial<RangeCalendarRootProps> &
 		SharedCalendarProps & {
 			mode: "range";
+			type?: never;
 			value?: RangeCalendarRootProps["value"];
 			onValueChange?: RangeCalendarRootProps["onValueChange"];
 			placeholder?: RangeCalendarRootProps["placeholder"];
@@ -63,6 +64,7 @@
 		day,
 		disableDaysOutsideMonth = false,
 		mode,
+		type,
 		...restProps
 	}: CalendarProps = $props();
 
@@ -72,7 +74,8 @@
 		return "long";
 	});
 
-	const calendarProps = $derived(restProps as CalendarRootProps);
+	const calendarType = $derived(mode === "single" || mode === "multiple" ? mode : type);
+	const calendarProps = $derived({ ...restProps, type: calendarType } as CalendarRootProps);
 	const rangeCalendarProps = $derived(restProps as RangeCalendarRootProps);
 </script>
 
