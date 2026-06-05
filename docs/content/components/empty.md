@@ -1,6 +1,6 @@
 ---
 title: Empty
-description: Use the Empty component to display a empty state.
+description: Use the Empty component to display an empty state.
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/empty
@@ -74,7 +74,7 @@ Copy and paste the following code into your project.
 
 ### Outline
 
-Use the `border` utility class to create a outline empty state.
+Use the `border` utility class to create an outline empty state.
 
 <ComponentPreview name="empty-outline-demo">
 
