@@ -58,7 +58,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 	<div class="flex min-w-0 flex-1 flex-col">
 		<div class="h-(--top-spacing) shrink-0"></div>
 		<div
-			class="mx-auto flex w-full max-w-[40rem] min-w-0 flex-1 flex-col gap-6 px-4 py-6 text-neutral-800 md:px-0 lg:py-8 dark:text-neutral-300"
+			class="text-foreground dark:text-foreground mx-auto flex w-full max-w-160 min-w-0 flex-1 flex-col gap-6 px-4 py-6 md:px-0 lg:py-8"
 		>
 			<div class="flex flex-col gap-2">
 				<div class="flex flex-col gap-2">
@@ -67,7 +67,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 							{doc.title}
 						</h1>
 						<div class="docs-nav flex items-center gap-2" data-llm-ignore>
-							<div class="hidden md:block">
+							<div class="hidden sm:block">
 								<DocsCopyPage />
 							</div>
 							<div class="ml-auto flex gap-2">
