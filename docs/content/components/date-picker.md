@@ -18,9 +18,9 @@ links:
 
 ## Installation
 
-The Date Picker is built using a composition of the `<Popover />` and either the `<Calendar />` or `<RangeCalendar />` components.
+The Date Picker is built using a composition of the `<Popover />` and `<Calendar />` components.
 
-See installations instructions for the [Popover](/docs/components/popover#installation), [Calendar](/docs/components/calendar#installation), and [Range Calendar](/docs/components/range-calendar#installation) components.
+See installations instructions for the [Popover](/docs/components/popover#installation) and [Calendar](/docs/components/calendar#installation) components. Use `mode="range"` for date range pickers.
 
 ## Usage
 
