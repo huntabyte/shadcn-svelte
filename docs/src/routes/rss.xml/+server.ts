@@ -26,7 +26,7 @@ function getDate(value: string | undefined): Date {
 }
 
 export function GET() {
-	const siteUrl = siteConfig.url;
+	const siteUrl = siteConfig.url.replace(/\/+$/, "");
 	const items = changelog
 		.filter((item) => item.path !== "changelog")
 		.sort((a, b) => getDate(b.date).getTime() - getDate(a.date).getTime())
