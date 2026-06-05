@@ -38,11 +38,11 @@
 			<MobileNav bind:this={mobileNavRef} class="flex lg:hidden" />
 
 			<MainNav items={mainNavItems} class="hidden lg:flex" />
-			<div class="ms-auto flex items-center gap-2 md:flex-1 md:justify-end">
+			<div class="ml-auto flex items-center gap-2 md:flex-1 md:justify-end">
 				<div class="hidden w-full flex-1 md:flex md:w-auto md:flex-none">
 					<CommandMenu {colors} {closeMobileMenu} />
 				</div>
-				<Separator orientation="vertical" class="ms-2 hidden lg:block" />
+				<Separator orientation="vertical" class="ml-2 hidden lg:block" />
 				<GithubLink />
 				<Separator orientation="vertical" class="3xl:flex hidden" />
 				<LayoutToggle class="3xl:flex hidden" />
