@@ -73,6 +73,102 @@ If you're looking for a range calendar, check out the [Range Calendar](/docs/com
 
 You can use the `<Calendar />` component to build a date picker. See the [Date Picker](/docs/components/date-picker) page for more information.
 
+## Persian / Hijri / Jalali Calendar
+
+The `<Calendar />` component uses `@internationalized/date`, so you can use non-Gregorian calendar systems by passing a date value with the desired calendar.
+
+<ComponentPreview name="persian-calendar-demo">
+
+<div></div>
+
+</ComponentPreview>
+
+For Persian / Jalali calendars, create the value with `PersianCalendar` and pass a Persian locale with the `arabext` numbering system:
+
+```svelte
+<script lang="ts">
+  import "@fontsource-variable/vazirmatn/index.css";
+  import {
+    CalendarDate,
+    DateFormatter,
+    getLocalTimeZone,
+    PersianCalendar,
+    type DateValue,
+  } from "@internationalized/date";
+  import * as Calendar from "$lib/components/ui/calendar/index.js";
+
+  const locale = "fa-IR-u-nu-arabext";
+  const dayFormatter = new DateFormatter(locale, { day: "numeric" });
+
+  let value = $state(new CalendarDate(new PersianCalendar(), 1404, 3, 22));
+
+  function formatDay(day: DateValue) {
+    return dayFormatter.format(day.toDate(getLocalTimeZone()));
+  }
+</script>
+
+<div
+  class="persian-calendar"
+  lang="fa"
+  style="font-family: 'Vazirmatn Variable', sans-serif;"
+>
+  <Calendar.Calendar
+    type="single"
+    bind:value
+    {locale}
+    dir="rtl"
+    weekdayFormat="narrow"
+    class="rounded-md border shadow-sm"
+  >
+    {#snippet day({ day })}
+      <Calendar.Day>
+        {formatDay(day)}
+      </Calendar.Day>
+    {/snippet}
+  </Calendar.Calendar>
+</div>
+
+<style>
+  .persian-calendar :global([data-calendar-head-cell]) {
+    font-size: 0;
+  }
+
+  .persian-calendar :global([data-calendar-head-cell]::before) {
+    font-size: 0.8rem;
+  }
+
+  .persian-calendar :global([data-calendar-head-cell]:nth-child(1)::before) {
+    content: "ش";
+  }
+
+  .persian-calendar :global([data-calendar-head-cell]:nth-child(2)::before) {
+    content: "ش۱";
+  }
+
+  .persian-calendar :global([data-calendar-head-cell]:nth-child(3)::before) {
+    content: "ش۲";
+  }
+
+  .persian-calendar :global([data-calendar-head-cell]:nth-child(4)::before) {
+    content: "ش۳";
+  }
+
+  .persian-calendar :global([data-calendar-head-cell]:nth-child(5)::before) {
+    content: "ش۴";
+  }
+
+  .persian-calendar :global([data-calendar-head-cell]:nth-child(6)::before) {
+    content: "ش۵";
+  }
+
+  .persian-calendar :global([data-calendar-head-cell]:nth-child(7)::before) {
+    content: "ج";
+  }
+</style>
+```
+
+You can use the same pattern with other calendars supported by `@internationalized/date`, such as Islamic calendar identifiers.
+
 ## Examples
 
 ### Range Calendar

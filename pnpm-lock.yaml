@@ -188,6 +188,9 @@ importers:
       '@fontsource-variable/space-grotesk':
         specifier: ^5.2.10
         version: 5.2.10
+      '@fontsource-variable/vazirmatn':
+        specifier: ^5.2.8
+        version: 5.2.8
       '@fontsource/instrument-serif':
         specifier: ^5.2.8
         version: 5.2.8
@@ -1552,6 +1555,9 @@ packages:
 
   '@fontsource-variable/space-grotesk@5.2.10':
     resolution: {integrity: sha512-yJQO/o35/hAP3CFnpdFTwQku2yzJOae2HIpBmqkOVoxhhXJaQP3g+b6Jrz7u+eI7A5ZdCIf88uMWpBJdFiGr5w==}
+
+  '@fontsource-variable/vazirmatn@5.2.8':
+    resolution: {integrity: sha512-2YzXfH4PNOeoZsBsgJgjbnm+IC2nonGyMLX3gXLm8FQrP+wpi1uGBIWYWlEzJ0lmntgdyAc3lRViHHfZWKvbog==}
 
   '@fontsource/instrument-serif@5.2.8':
     resolution: {integrity: sha512-s+bkz+syj2rO00Rmq9g0P+PwuLig33DR1xDR8pTWmovH1pUjwnncrFk++q9mmOex8fUQ7oW80gPpPDaw7V1MMw==}
@@ -7114,6 +7120,8 @@ snapshots:
   '@fontsource-variable/source-sans-3@5.2.9': {}
 
   '@fontsource-variable/space-grotesk@5.2.10': {}
+
+  '@fontsource-variable/vazirmatn@5.2.8': {}
 
   '@fontsource/instrument-serif@5.2.8': {}
 
