@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { describe, it, expect, afterAll, beforeEach } from "vitest";
-import { detectConfigs } from "../../src/utils/auto-detect";
+import { detectConfigs, detectPM } from "../../src/utils/auto-detect";
 
 describe("detectConfigs", () => {
 	const tmpDir = path.join(process.cwd(), "test-fixtures");
@@ -72,5 +72,33 @@ describe("detectConfigs", () => {
 
 		const result = detectConfigs(tmpDir);
 		expect(result.cssPath).toBeUndefined();
+	});
+});
+
+describe("detectPM", () => {
+	it("detects package managers from lockfiles", async () => {
+		expect(await detectPM(path.resolve(__dirname, "../fixtures/project-yarn"), false)).toBe(
+			"yarn"
+		);
+
+		expect(await detectPM(path.resolve(__dirname, "../fixtures/project-npm"), false)).toBe(
+			"npm"
+		);
+
+		expect(await detectPM(path.resolve(__dirname, "../fixtures/project-pnpm"), false)).toBe(
+			"pnpm"
+		);
+
+		expect(await detectPM(path.resolve(__dirname, "../fixtures/project-bun"), false)).toBe(
+			"bun"
+		);
+
+		expect(await detectPM(path.resolve(__dirname, "../fixtures/project-bun-lock"), false)).toBe(
+			"bun"
+		);
+
+		expect(await detectPM(path.resolve(__dirname, "../fixtures/project-deno"), false)).toBe(
+			"deno"
+		);
 	});
 });

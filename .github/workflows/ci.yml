@@ -61,5 +61,8 @@ jobs:
       - name: Build packages
         run: pnpm build:cli
 
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2
+
       - name: Run tests
         run: pnpm -F shadcn-svelte test
