@@ -19,7 +19,7 @@
 	}
 </script>
 
-<div class="persian-calendar" lang="fa" style="font-family: 'Vazirmatn Variable', sans-serif;">
+<div lang="fa" style="font-family: 'Vazirmatn Variable', sans-serif;">
 	<Calendar.Calendar
 		type="single"
 		bind:value
@@ -35,41 +35,3 @@
 		{/snippet}
 	</Calendar.Calendar>
 </div>
-
-<style>
-	.persian-calendar :global([data-calendar-head-cell]) {
-		font-size: 0;
-	}
-
-	.persian-calendar :global([data-calendar-head-cell]::before) {
-		font-size: 0.8rem;
-	}
-
-	.persian-calendar :global([data-calendar-head-cell]:nth-child(1)::before) {
-		content: "ش";
-	}
-
-	.persian-calendar :global([data-calendar-head-cell]:nth-child(2)::before) {
-		content: "ش۱";
-	}
-
-	.persian-calendar :global([data-calendar-head-cell]:nth-child(3)::before) {
-		content: "ش۲";
-	}
-
-	.persian-calendar :global([data-calendar-head-cell]:nth-child(4)::before) {
-		content: "ش۳";
-	}
-
-	.persian-calendar :global([data-calendar-head-cell]:nth-child(5)::before) {
-		content: "ش۴";
-	}
-
-	.persian-calendar :global([data-calendar-head-cell]:nth-child(6)::before) {
-		content: "ش۵";
-	}
-
-	.persian-calendar :global([data-calendar-head-cell]:nth-child(7)::before) {
-		content: "ج";
-	}
-</style>
