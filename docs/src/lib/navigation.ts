@@ -166,8 +166,11 @@ function generateComponentsNav(): SidebarNavItem[] {
 		});
 	}
 
-	for (const doc of components) {
-		if (doc.title === "Components") continue;
+	const sorted = components
+		.filter((doc) => doc.title !== "Components")
+		.sort((a, b) => a.title.localeCompare(b.title));
+
+	for (const doc of sorted) {
 		componentsNavItems.push({
 			title: doc.title,
 			href: `/docs/components/${doc.slug}`,
@@ -269,17 +272,14 @@ export const sidebarNavItems: SidebarNavItem[] = [
 		items: sectionsNav,
 	},
 	{
-		title: "Get Started",
-		items: getStartedNav,
-	},
-	{
-		title: "Migration",
-		items: migrationNav.filter((item) => item.title !== "Migration"),
-	},
-	{
 		title: "Components",
 		items: componentsNav.filter((item) => item.title !== "Components"),
 	},
+	{
+		title: "Get Started",
+		items: getStartedNav,
+	},
+	{ title: "Changelog", href: "/docs/changelog", items: [] },
 	{
 		title: "Installation",
 		items: installationNav.filter((item) => item.title !== "Installation"),
@@ -292,10 +292,13 @@ export const sidebarNavItems: SidebarNavItem[] = [
 		title: "Registry",
 		items: registryNav,
 	},
+	{
+		title: "Migration",
+		items: migrationNav.filter((item) => item.title !== "Migration"),
+	},
 ];
 
 export const mainNavItems: NavItem[] = [
-	{ title: "Home", href: "/" },
 	{
 		title: "Docs",
 		href: "/docs/installation",
@@ -320,12 +323,12 @@ export const mainNavItems: NavItem[] = [
 
 export function getFullNavItems(): Array<SidebarNavItem & { index: number }> {
 	return [
-		...getStartedNav,
-		...migrationNav,
 		...componentsNav,
+		...getStartedNav,
 		...installationNav.filter((item) => item.title !== "Installation"),
 		...darkModeNav.filter((item) => item.title !== "Dark Mode"),
 		...registryNav,
+		...migrationNav,
 	].map((item, index) => ({
 		...item,
 		index,
