@@ -28,6 +28,7 @@
 		"Installation",
 		"Dark Mode",
 		"Changelog",
+		"Forms",
 		"Migration",
 	]);
 	const EXCLUDED_PAGES = new Set(["/docs", "/docs/changelog"]);
