@@ -1,4 +1,4 @@
-import { components, installation, migration } from "$content/index.js";
+import { components, forms, installation, migration } from "$content/index.js";
 import type { Component } from "svelte";
 
 export type NavItem = {
@@ -52,6 +52,11 @@ function generateSectionsNav(): SidebarNavItem[] {
 		{
 			title: "Skills",
 			href: "/docs/skills",
+			items: [],
+		},
+		{
+			title: "Forms",
+			href: "/docs/forms",
 			items: [],
 		},
 		{
@@ -235,6 +240,20 @@ function generateRegistryNav(): SidebarNavItem[] {
 	return registryNavItems;
 }
 
+function generateFormsNav(): SidebarNavItem[] {
+	const formsNavItems: SidebarNavItem[] = [];
+
+	for (const doc of forms) {
+		formsNavItems.push({
+			title: doc.title,
+			href: doc.path === "forms" ? "/docs/forms" : `/docs/forms/${doc.slug}`,
+			items: [],
+		});
+	}
+
+	return formsNavItems;
+}
+
 function generateMigrationNav(): SidebarNavItem[] {
 	const migrationNavItems: SidebarNavItem[] = [];
 
@@ -265,6 +284,7 @@ const componentsNav = generateComponentsNav();
 const installationNav = generateInstallationNav();
 const darkModeNav = generateDarkModeNav();
 const registryNav = generateRegistryNav();
+const formsNav = generateFormsNav();
 
 export const sidebarNavItems: SidebarNavItem[] = [
 	{
@@ -291,6 +311,10 @@ export const sidebarNavItems: SidebarNavItem[] = [
 	{
 		title: "Registry",
 		items: registryNav,
+	},
+	{
+		title: "Forms",
+		items: formsNav,
 	},
 	{
 		title: "Migration",
@@ -328,6 +352,7 @@ export function getFullNavItems(): Array<SidebarNavItem & { index: number }> {
 		...installationNav.filter((item) => item.title !== "Installation"),
 		...darkModeNav.filter((item) => item.title !== "Dark Mode"),
 		...registryNav,
+		...formsNav,
 		...migrationNav,
 	].map((item, index) => ({
 		...item,

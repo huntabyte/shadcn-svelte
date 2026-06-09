@@ -19,6 +19,7 @@
 		{ title: "CLI", href: "/docs/cli", items: [] },
 		{ title: "Skills", href: "/docs/skills", items: [] },
 		{ title: "Registry", href: "/docs/registry", items: [] },
+		{ title: "Forms", href: "/docs/forms", items: [] },
 		{ title: "Changelog", href: "/docs/changelog", items: [] },
 	] satisfies SidebarNavItem[];
 
