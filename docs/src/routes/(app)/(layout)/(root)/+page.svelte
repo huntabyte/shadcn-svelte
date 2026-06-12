@@ -2,16 +2,14 @@
 
 <script lang="ts">
 	import Announcement from "$lib/components/announcement.svelte";
-	import ExamplesNav from "$lib/components/examples-nav.svelte";
 	import PageActions from "$lib/components/page-header/page-actions.svelte";
 	import PageHeaderDescription from "$lib/components/page-header/page-header-description.svelte";
 	import PageHeaderHeading from "$lib/components/page-header/page-header-heading.svelte";
 	import PageHeader from "$lib/components/page-header/page-header.svelte";
-	import PageNav from "$lib/components/page-nav.svelte";
-	import ThemeSelector from "$lib/components/theme-selector.svelte";
 	import Button from "$lib/registry/ui/button/button.svelte";
-	import RootComponents from "$lib/components/cards/root-components.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
+	import { IconArrowRight } from "@tabler/icons-svelte";
+	import CardsDemo from "./cards/cards-demo.svelte";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 
 	const title = "The Foundation for your Design System";
@@ -24,44 +22,46 @@
 <Metadata {title} {description} />
 
 <div class="flex flex-1 flex-col">
-	<PageHeader>
+	<PageHeader class="md:**:[.container]:pb-8 lg:**:[.container]:pb-12">
 		<Announcement />
 		<PageHeaderHeading class="max-w-4xl">{title}</PageHeaderHeading>
 		<PageHeaderDescription>{description}</PageHeaderDescription>
 		<PageActions>
-			<Button href="/docs/installation" size="sm">Get Started</Button>
-			<Button href="/docs/components" size="sm" variant="ghost">View Components</Button>
+			<Button href="/create?preset=b27GcrRo" class="h-[31px] rounded-lg">
+				Build Your Own <IconArrowRight data-icon="inline-end" />
+			</Button>
 		</PageActions>
 	</PageHeader>
-	{#if !mobile.current}
-		<PageNav class="hidden md:flex">
-			<ExamplesNav class="[&>a:first-child]:text-primary flex-1 overflow-hidden" />
-			<ThemeSelector class="me-4 hidden md:flex" />
-		</PageNav>
-	{/if}
-	<div class="container-wrapper section-soft flex-1 pb-6">
-		<div class="container overflow-hidden">
-			<section
-				class="border-border/50 -mx-4 w-[160vw] overflow-hidden rounded-lg border md:hidden md:w-[150vw]"
-			>
+	<div class="container-wrapper flex-1 p-0">
+		<div class="container overflow-hidden md:px-0 lg:max-w-none">
+			<section class="-mx-4 w-[140vw] overflow-hidden md:hidden">
 				<enhanced:img
-					class="block dark:hidden"
-					src="../../../../static/img/registry/dashboard-01-light.png"
+					src="../../../../../static/img/registry/full-light.png"
+					width="2560"
+					height="2764"
 					alt="Dashboard"
-					fetchpriority={mobile.current ? "high" : undefined}
+					class="block h-auto w-full dark:hidden"
+					fetchpriority="high"
 					loading={mobile.current ? "eager" : "lazy"}
 				/>
 				<enhanced:img
-					class="hidden dark:block"
-					src="../../../../static/img/registry/dashboard-01-dark.png"
+					src="../../../../../static/img/registry/full-dark.png"
+					width="2560"
+					height="2764"
 					alt="Dashboard"
+					class="hidden h-auto w-full dark:block"
 					fetchpriority="high"
 					loading={mobile.current ? "eager" : "lazy"}
 				/>
 			</section>
 			{#if !mobile.current}
-				<section class="theme-container hidden md:block">
-					<RootComponents />
+				<section class="hidden md:block">
+					<div
+						class="style-rhea base-color-neutral theme-neutral"
+						style="--radius: 0.625rem; font-family: 'Inter Variable', sans-serif;"
+					>
+						<CardsDemo />
+					</div>
 				</section>
 			{/if}
 		</div>

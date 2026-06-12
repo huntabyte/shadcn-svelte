@@ -8,7 +8,7 @@
 	import { Separator } from "$lib/registry/ui/separator/index.js";
 	import { cn } from "$lib/utils.js";
 
-	import { sidebarNavItems } from "$lib/navigation.js";
+	import { mainNavItems, sidebarNavItems } from "$lib/navigation.js";
 
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
 	import CornerDownLeftIcon from "@lucide/svelte/icons/corner-down-left";
@@ -34,6 +34,22 @@
 
 	const userConfig = UserConfigContext.get();
 	const clipboard = new UseClipboard();
+
+	const COMMAND_MENU_GROUP_ORDER = [
+		"Components",
+		"Get Started",
+		"Installation",
+		"Dark Mode",
+		"Registry",
+		"Forms",
+		"Migration",
+	] as const;
+
+	const orderedSidebarGroups = $derived(
+		COMMAND_MENU_GROUP_ORDER.map((title) =>
+			sidebarNavItems.find((group) => group.title === title)
+		).filter((group): group is (typeof sidebarNavItems)[number] => group !== undefined)
+	);
 
 	function handlePageHighlight(isComponent: boolean, item: { href: string; title?: string }) {
 		if (isComponent) {
@@ -132,20 +148,14 @@
 		{#snippet child({ props })}
 			<Button
 				{...props}
-				variant="secondary"
+				variant="outline"
 				class={cn(
-					"bg-surface text-foreground dark:bg-card relative h-8 w-full justify-start pl-3 font-medium shadow-none sm:pr-12 md:w-48 lg:w-56 xl:w-64"
+					"bg-muted text-foreground hover:bg-muted/50 dark:bg-card relative h-8 w-full justify-start rounded-lg border-none pl-3 shadow-none transition-colors md:w-48 lg:w-40 xl:w-64"
 				)}
 				onclick={() => openCommandMenu()}
 			>
-				<span class="hidden lg:inline-flex">Search documentation...</span>
-				<span class="inline-flex lg:hidden">Search...</span>
-				<div class="absolute end-1.5 top-1.5 hidden gap-1 sm:flex">
-					<Kbd.Group>
-						<Kbd.Root class="border">⌘</Kbd.Root>
-						<Kbd.Root class="border">K</Kbd.Root>
-					</Kbd.Group>
-				</div>
+				<span class="hidden xl:inline-flex">Search documentation...</span>
+				<span class="inline-flex xl:hidden">Search...</span>
 			</Button>
 		{/snippet}
 	</Dialog.Trigger>
@@ -163,7 +173,33 @@
 				<Command.Empty class="text-muted-foreground py-12 text-center text-sm">
 					No results found.
 				</Command.Empty>
-				{#each sidebarNavItems as group (group.title)}
+				<Command.Group
+					heading="Pages"
+					class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
+				>
+					{#each mainNavItems as item (item.href)}
+						<CommandMenuItem
+							value={`Pages ${item.title}`}
+							keywords={["page", item.title.toLowerCase()]}
+							onHighlight={() =>
+								handlePageHighlight(false, {
+									href: item.href ?? "",
+									title: item.title,
+								})}
+							onSelect={() => {
+								runCommand(() => {
+									if (item.href) {
+										goto(item.href);
+									}
+								});
+							}}
+						>
+							<ArrowRightIcon />
+							{item.title}
+						</CommandMenuItem>
+					{/each}
+				</Command.Group>
+				{#each orderedSidebarGroups as group (group.title)}
 					<Command.Group
 						heading={group.title}
 						class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
@@ -195,35 +231,6 @@
 									<ArrowRightIcon />
 								{/if}
 								{item.title}
-							</CommandMenuItem>
-						{/each}
-					</Command.Group>
-				{/each}
-				{#each colors as colorPalette (colorPalette.name)}
-					<Command.Group
-						heading={colorPalette.name.charAt(0).toUpperCase() +
-							colorPalette.name.slice(1)}
-						class="!p-0 [&_[data-command-group-heading]]:!p-3"
-					>
-						{#each colorPalette.colors as color (color.hex)}
-							<CommandMenuItem
-								value={color.class}
-								keywords={["color", color.name, color.class]}
-								onHighlight={() => handleColorHighlight(color)}
-								onSelect={() => {
-									runCommand(() => clipboard.copy(color.oklch));
-								}}
-							>
-								<div
-									class="border-ghost aspect-square size-4 rounded-sm bg-(--color) after:rounded-sm"
-									style="--color: {color.oklch};"
-								></div>
-								{color.class}
-								<span
-									class="text-muted-foreground ms-auto font-mono text-xs font-normal tabular-nums"
-								>
-									{color.oklch}
-								</span>
 							</CommandMenuItem>
 						{/each}
 					</Command.Group>
@@ -260,6 +267,35 @@
 						{/each}
 					</Command.Group>
 				{/if}
+				{#each colors as colorPalette (colorPalette.name)}
+					<Command.Group
+						heading={colorPalette.name.charAt(0).toUpperCase() +
+							colorPalette.name.slice(1)}
+						class="!p-0 [&_[data-command-group-heading]]:!p-3"
+					>
+						{#each colorPalette.colors as color (color.hex)}
+							<CommandMenuItem
+								value={color.class}
+								keywords={["color", color.name, color.class]}
+								onHighlight={() => handleColorHighlight(color)}
+								onSelect={() => {
+									runCommand(() => clipboard.copy(color.oklch));
+								}}
+							>
+								<div
+									class="border-ghost aspect-square size-4 rounded-sm bg-(--color) after:rounded-sm"
+									style="--color: {color.oklch};"
+								></div>
+								{color.class}
+								<span
+									class="text-muted-foreground ms-auto font-mono text-xs font-normal tabular-nums"
+								>
+									{color.oklch}
+								</span>
+							</CommandMenuItem>
+						{/each}
+					</Command.Group>
+				{/each}
 			</Command.List>
 		</Command.Root>
 		<div
