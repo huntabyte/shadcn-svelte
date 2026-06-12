@@ -35,7 +35,11 @@ export const apply = new Command()
     .command("apply")
     .description("apply a preset to an existing project")
     .option("--preset <preset>", "the preset to use")
-    .addOption(new Option("--only", "disable adding & installing dependencies").choices(ONLY_OPTIONS))
+    .addOption(
+        new Option("--only [parts]", "apply only parts of a preset: theme, font").choices(
+            ONLY_OPTIONS
+        )
+    )
     .option("-c, --cwd <path>", "the working directory", process.cwd())
     .option("-y, --yes", "skip confirmation prompt", false)
     .option("-s, --silent", "mute output", false)

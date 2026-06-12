@@ -83,6 +83,38 @@ Options:
 
 ---
 
+## apply
+
+Use the `apply` command to apply a preset to an existing project.
+
+<PMExecute command="shadcn-svelte@latest apply --preset [preset]" />
+
+You can apply only the theme or fonts from a preset without reinstalling UI components:
+
+<PMExecute command="shadcn-svelte@latest apply a2r6bw --only theme" />
+
+Supported values for `--only` are `theme` and `font`.
+
+**Options**
+
+```bash
+Usage: shadcn-svelte apply [options]
+
+apply a preset to an existing project
+
+Options:
+  --preset <preset>  the preset to apply (required)
+  --only [parts]     apply only parts of a preset: theme, font
+  -c, --cwd <path>   the working directory (default: the current directory)
+  -y, --yes          overwrite existing files without confirmation (default: false)
+  -s, --silent       mute output (default: false)
+  --skip-preflight   ignore preflight checks and continue (default: false)
+  --proxy <proxy>    fetch items from registry using a proxy
+  -h, --help         display help for command
+```
+
+---
+
 ## registry build
 
 Use the `registry build` command to generate the registry JSON files.
