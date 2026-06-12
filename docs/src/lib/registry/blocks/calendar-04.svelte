@@ -1,12 +1,14 @@
 <script lang="ts">
-	import RangeCalendar from "$lib/registry/ui/range-calendar/range-calendar.svelte";
-	import { CalendarDate } from "@internationalized/date";
-	import type { DateRange } from "bits-ui";
+	import { getLocalTimeZone, today } from "@internationalized/date";
+	import Calendar from "$lib/registry/ui/calendar/calendar.svelte";
 
-	let value = $state<DateRange>({
-		start: new CalendarDate(2025, 6, 9),
-		end: new CalendarDate(2025, 6, 26),
+	const start = today(getLocalTimeZone());
+	const end = start.add({ days: 7 });
+
+	let value = $state({
+		start,
+		end,
 	});
 </script>
 
-<RangeCalendar bind:value class="rounded-lg border shadow-sm" />
+<Calendar mode="range" bind:value class="rounded-lg border shadow-sm" />
