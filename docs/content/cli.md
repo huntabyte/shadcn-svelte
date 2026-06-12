@@ -35,12 +35,13 @@ Usage: shadcn-svelte init [options]
 initialize your project and install dependencies
 
 Options:
-  -c, --cwd <path>           the working directory (default: the current directory)
-  -o, --overwrite            overwrite existing files (default: false)
+  --preset <preset>          the preset to use
+  -c, --cwd <path>           the working directory
   --no-deps                  disable adding & installing dependencies
   --skip-preflight           ignore preflight checks and continue (default: false)
-  --base-color <name>        the base color for the components (choices: "slate", "gray", "zinc",
-                             "neutral", "stone")
+  --reinstall                reinstall existing components when style changes
+  --no-reinstall             skip reinstalling existing components when style changes
+  --base-color <name>        the base color for the components (choices: "neutral", "stone", "zinc", "mauve", "olive", "mist", "taupe")
   --css <path>               path to the global CSS file
   --components-alias <path>  import alias for components
   --lib-alias <path>         import alias for lib
@@ -78,6 +79,38 @@ Options:
   -o, --overwrite   overwrite existing files (default: false)
   --proxy <proxy>   fetch components from registry using a proxy
   -h, --help        display help for command
+```
+
+---
+
+## apply
+
+Use the `apply` command to apply a preset to an existing project.
+
+<PMExecute command="shadcn-svelte@latest apply --preset [preset]" />
+
+You can apply only the theme or fonts from a preset without reinstalling UI components:
+
+<PMExecute command="shadcn-svelte@latest apply a2r6bw --only theme" />
+
+Supported values for `--only` are `theme` and `font`.
+
+**Options**
+
+```bash
+Usage: shadcn-svelte apply [options]
+
+apply a preset to an existing project
+
+Options:
+  --preset <preset>  the preset to apply (required)
+  --only [parts]     apply only parts of a preset: theme, font
+  -c, --cwd <path>   the working directory (default: the current directory)
+  -y, --yes          overwrite existing files without confirmation (default: false)
+  -s, --silent       mute output (default: false)
+  --skip-preflight   ignore preflight checks and continue (default: false)
+  --proxy <proxy>    fetch items from registry using a proxy
+  -h, --help         display help for command
 ```
 
 ---

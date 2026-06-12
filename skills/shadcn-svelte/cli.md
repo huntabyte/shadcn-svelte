@@ -8,9 +8,9 @@ Configuration is read from `components.json`. See [components.json](https://shad
 
 ## Contents
 
-- Commands: `init`, `add`, `update`, `registry build`
+- Commands: `init`, `add`, `apply`, `update`, `registry build`
 - Proxy / outgoing requests
-- Presets (via `init`)
+- Presets (via `init` and `apply`)
 
 ---
 
@@ -65,6 +65,33 @@ Adds components from the configured registry. Arguments are component names from
 
 ---
 
+### `apply` — Apply a preset to an existing project
+
+```bash
+npx shadcn-svelte@latest apply [options]
+```
+
+Applies a design-system preset to a project that has already been initialized. Updates `components.json` with the preset settings, reinstalls existing components (except `utils`) with the new styles, and installs any required dependencies.
+
+Use `--only theme` or `--only font` to apply only part of a preset without reinstalling UI components. **This flag is not yet implemented.**
+
+Get a preset code from the builder at [shadcn-svelte.com/create](https://shadcn-svelte.com/create).
+
+| Flag                | Short | Description                                                | Default   |
+| ------------------- | ----- | ---------------------------------------------------------- | --------- |
+| `--preset <preset>` | —     | Encoded design-system preset string (required)             | —         |
+| `--only [parts]`    | —     | Apply only `theme` or `font` from the preset | —         |
+| `-c, --cwd <path>`  | `-c`  | Working directory                                          | current   |
+| `-y, --yes`         | `-y`  | Overwrite existing files without confirmation              | `false`   |
+| `-s, --silent`      | `-s`  | Mute output                                                | `false`   |
+| `--skip-preflight`  | —     | Ignore preflight checks and continue                       | `false`   |
+| `--proxy <proxy>`   | —     | Fetch registry items through this proxy                    | env-based |
+| `-h, --help`        | `-h`  | Help                                                       | —         |
+
+Requires an existing `components.json`. Run `init` first if the project is not yet configured.
+
+---
+
 ### `update` — Update installed components
 
 ```bash
@@ -107,7 +134,7 @@ Reads a `registry.json` and writes registry JSON files for distribution. Default
 
 ### Proxy
 
-The CLI can fetch the registry through a proxy. If `HTTP_PROXY` or `http_proxy` is set, requests respect it. You can also pass `--proxy` on `init`, `add`, or `update`.
+The CLI can fetch the registry through a proxy. If `HTTP_PROXY` or `http_proxy` is set, requests respect it. You can also pass `--proxy` on `init`, `add`, `apply`, or `update`.
 
 ```bash
 HTTP_PROXY="<proxy-url>" npx shadcn-svelte@latest init
@@ -117,9 +144,10 @@ HTTP_PROXY="<proxy-url>" npx shadcn-svelte@latest init
 
 ## Presets
 
-Design-system options (style, theme, icons, fonts, etc.) can be captured as an encoded **preset** string from the builder on [shadcn-svelte.com](https://shadcn-svelte.com/create). Pass it to **`init`** with `--preset <string>`.
+Design-system options (style, theme, icons, fonts, etc.) can be captured as an encoded **preset** string from the builder on [shadcn-svelte.com/create](https://shadcn-svelte.com/create).
 
-Changing presets on an existing project: re-run **`init`** with the new preset (and confirm overwrites when prompted), or edit `components.json` and CSS and then run `add` / `update` as needed.
+- **New project:** pass the preset to **`init`** with `--preset <string>`.
+- **Existing project:** use **`apply --preset <string>`** to update configuration, restyle installed components, and install any new dependencies.
 
 ---
 

@@ -19,6 +19,7 @@ import {
 } from "./transformers/index.js";
 import { getSupportedFontMarkers, type FontMarkerSource } from "./font-markers.js";
 import { setupFonts, type Font } from "./fonts.js";
+import { silentOutput } from "./node-utils.js";
 
 const STYLE_TYPES = ["registry:style", "registry:theme"];
 
@@ -27,6 +28,7 @@ type AddRegistryItemsProps = {
 	config: ResolvedConfig;
 	overwrite: boolean;
 	deps: boolean;
+	silent?: boolean;
 };
 
 // this logic is shared between the `add` and `init` commands
@@ -206,7 +208,9 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 		});
 	}
 
-	await p.tasks(tasks);
+	const output = opts.silent ? silentOutput : process.stdout;
+
+	await p.tasks(tasks, { output });
 
 	const {
 		css: fontsCss,
@@ -250,7 +254,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 						return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;
 					},
 				},
-			]);
+			], { output });
 		}
 	}
 
