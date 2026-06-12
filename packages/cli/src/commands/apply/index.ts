@@ -1,5 +1,5 @@
 import color from "picocolors";
-import { Command } from "commander";
+import { Command, Option } from "commander";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import process from "node:process";
@@ -7,7 +7,7 @@ import { z } from "zod";
 import * as p from "@clack/prompts";
 import { ConfigError, error } from "../../utils/errors.js";
 import * as cliConfig from "../../utils/config/index.js";
-import { intro, handleError, prettifyList } from "../../utils/prompt-helpers.js";
+import { intro, handleError } from "../../utils/prompt-helpers.js";
 import * as registry from "../../utils/registry/index.js";
 import { preflightInit } from "../init/preflight.js";
 import { addRegistryItems } from "../../utils/add-registry-items.js";
@@ -17,12 +17,16 @@ import { type PresetConfig, decodePreset, encodePreset } from "../../preset/inde
 import * as project from "../../utils/project.js";
 import { installDependencies } from "../../utils/install-deps.js";
 
+const ONLY_OPTIONS = ["font", "theme"] as const;
+
 const initOptionsSchema = z.object({
     cwd: z.string(),
     preset: z.string().optional(),
-    deps: z.boolean(),
-    proxy: z.string().optional(),
+    only: z.enum(ONLY_OPTIONS).optional(),
+    yes: z.boolean(),
+    silent: z.boolean(),
     skipPreflight: z.boolean(),
+    proxy: z.string().optional(),
 });
 
 type InitOptions = z.infer<typeof initOptionsSchema>;
@@ -31,12 +35,14 @@ export const apply = new Command()
     .command("apply")
     .description("apply a preset to an existing project")
     .option("--preset <preset>", "the preset to use")
+    .addOption(new Option("--only", "disable adding & installing dependencies").choices(ONLY_OPTIONS))
     .option("-c, --cwd <path>", "the working directory", process.cwd())
-    .option("--no-deps", "disable adding & installing dependencies")
+    .option("-y, --yes", "skip confirmation prompt", false)
+    .option("-s, --silent", "mute output", false)
     .option("--skip-preflight", "ignore preflight checks and continue", false)
     .option("--proxy <proxy>", "fetch items from registry using a proxy", getEnvProxy())
     .action(async (opts) => {
-        intro();
+        if (!opts.silent)  intro();
         const options = initOptionsSchema.parse(opts);
         const cwd = path.resolve(options.cwd);
 
@@ -66,7 +72,7 @@ export const apply = new Command()
 
             await runApply({ cwd, config, decidedPresets: presetConfig, options });
 
-            p.outro(`Preset ${color.bold(options.preset)} applied successfully.`);
+            if (!options.silent) p.outro(`Preset ${color.bold(options.preset)} applied successfully.`);
         } catch (e) {
             handleError(e);
         }
@@ -95,15 +101,17 @@ export async function runApply({
     config.style = decidedPresets.style;
     config.tailwind.baseColor = decidedPresets.baseColor;
 
-    const tasks: p.Task[] = [];
+    const loader = p.spinner();
 
-    tasks.push({
-        title: "Applying preset to config file",
-        async task() {
-            cliConfig.writeConfig(cwd, config);
-            return `Config file ${highlight("components.json")} created`;
-        },
-    });
+    if (!options.silent) {
+        loader.start(`Applying preset ${color.bold(options.preset)} to config file`);
+    }
+
+    cliConfig.writeConfig(cwd, config);
+
+    if (!options.silent) {
+        loader.stop(`Applied preset ${color.bold(options.preset)} to config file`);
+    }
 
     // we create a registry base item using the encoded preset at the /init endpoint in the docs
     const registryUrl = registry.getRegistryUrl(config);
@@ -124,23 +132,16 @@ export async function runApply({
                 .map((component) => component.name)
         ],
         config,
-        deps: options.deps,
-        overwrite: true,
+        deps: true,
+        overwrite: options.yes,
+        silent: options.silent,
     });
 
-    if (options.deps) {
-        await installDependencies({
-            cwd,
-            prompt: options.deps,
-            dependencies: Array.from(result.dependencies),
-            devDependencies: Array.from(result.devDependencies),
-        });
-    } else if (result.skippedDeps.size) {
-        const prettyList = prettifyList([...result.skippedDeps], 7);
-        p.log.warn(
-            `shadcn-svelte has been initialized ${color.bold(color.red("without"))} the following ${highlight("dependencies")}:\n${color.gray(prettyList)}`
-        );
-    }
-
-    await p.tasks(tasks);
+    await installDependencies({
+        cwd,
+        prompt: false,
+        dependencies: Array.from(result.dependencies),
+        devDependencies: Array.from(result.devDependencies),
+        silent: options.silent
+    });
 }

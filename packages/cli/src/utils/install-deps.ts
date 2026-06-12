@@ -5,18 +5,21 @@ import * as project from "./project.js";
 import { exec } from "tinyexec";
 import { resolveCommand } from "package-manager-detector";
 import { error } from "./errors.js";
+import { silentOutput } from "./node-utils.js";
 
 type InstallOptions = {
 	dependencies: string[];
 	devDependencies: string[];
 	cwd: string;
 	prompt: boolean;
+	silent?: boolean;
 };
 export async function installDependencies({
 	cwd,
 	prompt,
 	dependencies,
 	devDependencies,
+	silent
 }: InstallOptions): Promise<void> {
 	const pm = await detectPM(cwd, prompt);
 	if (!pm) return;
@@ -49,6 +52,7 @@ export async function installDependencies({
 		limit: Math.ceil(process.stdout.rows / 2),
 		spacing: 0,
 		retainLog: true,
+		output: silent ? silentOutput : process.stdout,
 	});
 
 	const install = (cmd: string, args: string[]) => {
