@@ -35,12 +35,14 @@ Usage: shadcn-svelte init [options]
 initialize your project and install dependencies
 
 Options:
-  -c, --cwd <path>           the working directory (default: the current directory)
-  -o, --overwrite            overwrite existing files (default: false)
+  --preset <preset>          the preset to use
+  -c, --cwd <path>           the working directory
   --no-deps                  disable adding & installing dependencies
   --skip-preflight           ignore preflight checks and continue (default: false)
-  --base-color <name>        the base color for the components (choices: "slate", "gray", "zinc",
-                             "neutral", "stone")
+  --reinstall                reinstall existing components when style changes
+  --no-reinstall             skip reinstalling existing components when style changes
+  --base-color <name>        the base color for the components (choices: "neutral", "stone", "zinc", "mauve", "olive", "mist", "taupe")
+  --design-system-url
   --css <path>               path to the global CSS file
   --components-alias <path>  import alias for components
   --lib-alias <path>         import alias for lib

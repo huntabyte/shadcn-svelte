@@ -38,6 +38,7 @@ const initOptionsSchema = z.object({
 	overwrite: z.boolean(),
 	proxy: z.string().optional(),
 	skipPreflight: z.boolean(),
+	reinstall: z.boolean().optional(),
 });
 
 type InitOptions = z.infer<typeof initOptionsSchema>;
@@ -47,9 +48,11 @@ export const init = new Command()
 	.description("initialize your project and install dependencies")
 	.option("--preset <preset>", "the preset to use")
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
-	.option("-o, --overwrite", "overwrite existing files", false)
+	.addOption(new Option("-o, --overwrite", "deprecated: use --reinstall").hideHelp())
 	.option("--no-deps", "disable adding & installing dependencies")
 	.option("--skip-preflight", "ignore preflight checks and continue", false)
+	.option("--reinstall", "reinstall existing components when style changes")
+	.option("--no-reinstall", "skip reinstalling existing components when style changes")
 	.addOption(
 		new Option("--base-color <name>", "the base color for the components").choices(
 			baseColors.map((color) => color.name)
@@ -106,6 +109,8 @@ export const init = new Command()
 		} catch (e) {
 			handleError(e);
 		}
+	}).on("option:overwrite", () => {
+		console.warn(color.yellow(`Warning: ${color.bold("--overwrite")} is deprecated. Use ${color.bold("--reinstall")} instead.\n`));
 	});
 
 function validateOptions(cwd: string, options: InitOptions, tsconfig: TsConfigResult) {
@@ -306,9 +311,10 @@ export async function runInit({
 	const presetUrl = new URL(`/init?preset=${encodedPreset}`, registryUrl).toString();
 
 	let selectedItems: string[] = [];
-	let overwrite = options.overwrite;
+	let overwrite = options.overwrite || options.reinstall === true;
 	// if the style has changed then we want to ask the user if they want to reinstall existing components to update their styles
-	if (styleChanged) {
+	// unless of course they user has explicitly disabled it
+	if (styleChanged && options.reinstall !== false) {
 		const registryIndex = await registry.getRegistryIndex(registryUrl);
 		const existingComponents = await project.getComponents({
 			registryIndex,
