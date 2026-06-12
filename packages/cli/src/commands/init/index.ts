@@ -26,7 +26,6 @@ const baseColors = registry.getBaseColors();
 const initOptionsSchema = z.object({
 	cwd: z.string(),
 	baseColor: z.string().optional(),
-	// TODO: Add additional options for the preset
 	preset: z.string().optional(),
 	css: z.string().optional(),
 	componentsAlias: z.string().optional(),
@@ -58,7 +57,6 @@ export const init = new Command()
 			baseColors.map((color) => color.name)
 		)
 	)
-	.addOption(new Option("--design-system-url"))
 	.option("--css <path>", "path to the global CSS file")
 	.option("--components-alias <path>", "import alias for components")
 	.option("--lib-alias <path>", "import alias for lib")

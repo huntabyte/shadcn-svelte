@@ -42,7 +42,6 @@ Options:
   --reinstall                reinstall existing components when style changes
   --no-reinstall             skip reinstalling existing components when style changes
   --base-color <name>        the base color for the components (choices: "neutral", "stone", "zinc", "mauve", "olive", "mist", "taupe")
-  --design-system-url
   --css <path>               path to the global CSS file
   --components-alias <path>  import alias for components
   --lib-alias <path>         import alias for lib
