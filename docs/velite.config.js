@@ -87,6 +87,12 @@ const registry = defineCollection({
 	schema: docSchema,
 });
 
+const forms = defineCollection({
+	name: "forms",
+	pattern: "./forms/**/*.md",
+	schema: docSchema,
+});
+
 const changelog = defineCollection({
 	name: "changelog",
 	pattern: "./changelog/**/*.md",
@@ -102,6 +108,7 @@ export default defineConfig({
 		installation,
 		darkMode,
 		registry,
+		forms,
 		changelog,
 	},
 	output: { assets: "static" },
