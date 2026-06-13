@@ -115,7 +115,7 @@
 		</div>
 	</div>
 	<div
-		class="from-background via-muted absolute inset-x-0 top-0 z-1 h-120 bg-linear-to-b to-transparent dark:hidden"
+		class="from-background via-muted absolute inset-x-0 top-0 z-[1] h-120 bg-linear-to-b to-transparent dark:hidden"
 	></div>
 	<div
 		class="from-background via-muted/80 dark:via-background/80 absolute inset-x-0 bottom-0 z-20 h-48 bg-linear-to-t to-transparent lg:h-80 xl:h-64"

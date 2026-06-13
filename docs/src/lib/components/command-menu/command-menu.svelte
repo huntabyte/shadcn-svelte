@@ -51,6 +51,7 @@
 		"Installation",
 		"Dark Mode",
 		"Registry",
+		"Forms",
 		"Migration",
 	] as const;
 
