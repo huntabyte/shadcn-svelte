@@ -1,9 +1,11 @@
 <footer
-	class="group-has-[.section-soft]/body:bg-surface/40 3xl:fixed:bg-transparent group-has-[.docs-nav]/body:pb-20 group-has-[.docs-nav]/body:sm:pb-0 dark:bg-transparent"
+	class="group-has-[.section-soft]/body:bg-surface/40 dark:group-has-[.section-soft]/body:bg-surface/40 3xl:fixed:bg-transparent group-has-[.docs-nav]/body:pb-20 group-has-[[data-slot=designer]]/body:hidden group-has-[[data-slot=docs]]/body:hidden group-has-[.docs-nav]/body:sm:pb-0 dark:bg-transparent"
 >
 	<div class="container-wrapper px-4 xl:px-6">
 		<div class="flex h-(--footer-height) items-center justify-between">
-			<div class="text-muted-foreground w-full text-center text-xs leading-loose sm:text-sm">
+			<div
+				class="text-muted-foreground w-full px-1 text-center text-xs leading-loose sm:text-sm"
+			>
 				Built by
 				<a
 					href="https://x.com/shadcn"
