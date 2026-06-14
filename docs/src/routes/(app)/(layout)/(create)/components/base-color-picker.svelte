@@ -31,9 +31,9 @@
 				</div>
 			</div>
 			<div
-				style="--color: 
+				style="--color:
 						{currentBaseColor?.cssVars?.[mode.current as 'light' | 'dark']?.['muted-foreground']}"
-				class="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 rounded-full bg-(--color) select-none"
+				class="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 rounded-full bg-(--color) select-none md:right-2.5"
 			></div>
 		</Picker.Trigger>
 		<Picker.Content
@@ -55,21 +55,11 @@
 				<Picker.Group>
 					{#each BASE_THEMES as baseColor (baseColor.name)}
 						<Picker.RadioItem value={baseColor.name} closeOnSelect={false}>
-							<div class="flex items-center gap-2">
-								{#if mode.current}
-									<div
-										style="--color: {baseColor.cssVars?.[
-											mode.current as 'light' | 'dark'
-										]?.['muted-foreground']};"
-										class="size-4 rounded-full bg-(--color)"
-									></div>
-								{/if}
-								{baseColor.title}
-							</div>
+							{baseColor.title}
 						</Picker.RadioItem>
 					{/each}
 				</Picker.Group>
-				<Picker.Separator />
+				<!--<Picker.Separator />
 				<Picker.Group>
 					<Picker.Item
 						closeOnSelect={false}
@@ -86,7 +76,7 @@
 							</div>
 						</div>
 					</Picker.Item>
-				</Picker.Group>
+					</Picker.Group>-->
 			</Picker.RadioGroup>
 		</Picker.Content>
 	</Picker.Root>

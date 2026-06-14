@@ -21,6 +21,20 @@
 	);
 </script>
 
+<svelte:head>
+	<style>
+		html,
+		body {
+			scrollbar-width: none;
+			-ms-overflow-style: none;
+		}
+		html::-webkit-scrollbar,
+		body::-webkit-scrollbar {
+			display: none;
+		}
+	</style>
+</svelte:head>
+
 {#if page.url.searchParams.get("fromPreview") === "true"}
 	<Button
 		class="absolute top-2 right-2 isolate z-10"

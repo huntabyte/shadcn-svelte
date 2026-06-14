@@ -1,8 +1,6 @@
 <script lang="ts">
+	import CtaMobile from "$lib/components/cta-mobile.svelte";
 	import { cn } from "$lib/utils.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import PreviewSwitcher from "./preview-switcher.svelte";
 
 	type Props = {
@@ -10,20 +8,21 @@
 	};
 
 	let { item }: Props = $props();
-
-	const designSystem = useDesignSystem();
 </script>
 
-<div
-	data-slot="preview"
-	class="border-border relative -mx-1 flex flex-1 flex-col justify-center overflow-hidden rounded-2xl border sm:mx-0"
->
+<div data-slot="preview" class="flex min-h-0 flex-1 flex-col gap-(--gap)">
+	<div class="hidden md:block">
+		<CtaMobile class="xl:flex" />
+	</div>
 	<div
-		class={cn(
-			"z-0 mx-auto flex max-h-(--preview-height) w-full flex-1 flex-col overflow-y-auto"
-		)}
+		class="border-border relative flex min-h-0 flex-1 flex-col justify-center overflow-hidden rounded-2xl border"
 	>
-		<Button
+		<div
+			class={cn(
+				"z-0 mx-auto flex max-h-(--preview-height) w-full flex-1 flex-col overflow-y-auto"
+			)}
+		>
+			<!--<Button
 			href="/preview/{item}{new URL(designSystem.shareUrl).search}&fromPreview=true"
 			class="absolute top-2 right-2 isolate z-10"
 			variant="ghost"
@@ -36,8 +35,9 @@
 				phosphor="CornersOutIcon"
 				remixicon="RiExpandDiagonalLine"
 			/>
-		</Button>
-		<iframe src="/preview/{item}" class="h-(--preview-height)" title={item}></iframe>
-		<PreviewSwitcher {item} />
+		</Button>-->
+			<iframe src="/preview/{item}" class="h-(--preview-height)" title={item}></iframe>
+			<PreviewSwitcher {item} />
+		</div>
 	</div>
 </div>

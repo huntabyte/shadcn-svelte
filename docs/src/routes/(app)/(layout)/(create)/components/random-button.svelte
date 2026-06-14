@@ -5,12 +5,14 @@
 	import { HugeiconsIcon } from "@hugeicons/svelte";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import { cn } from "$lib/utils.js";
 
 	type Props = {
 		submenu?: boolean;
+		class?: string;
 	};
 
-	let { submenu = false }: Props = $props();
+	let { submenu = false, class: className }: Props = $props();
 
 	const designSystem = useDesignSystem();
 </script>
@@ -32,7 +34,10 @@
 	<Button
 		variant="outline"
 		onclick={designSystem.randomize}
-		class="hover:bg-muted! flex-1 touch-manipulation bg-transparent! px-2! py-0! text-sm! transition-none select-none md:flex-none pointer-coarse:h-10!"
+		class={cn(
+			"hover:bg-muted! flex-1 touch-manipulation bg-transparent! px-2! py-0! text-sm! transition-none select-none md:flex-none pointer-coarse:h-10!",
+			className
+		)}
 	>
 		<span class="w-full text-center font-medium">Shuffle</span>
 	</Button>

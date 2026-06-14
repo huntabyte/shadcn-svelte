@@ -5,6 +5,7 @@
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Kbd from "$lib/registry/ui/kbd/index.js";
+	import * as AlertDialog from "$lib/registry/ui/alert-dialog/index.js";
 
 	type Props = {
 		submenu?: boolean;
@@ -13,11 +14,22 @@
 	let { submenu = false }: Props = $props();
 
 	const designSystem = useDesignSystem();
+
+	let showResetDialog = $state(false);
+
+	function openResetDialog() {
+		showResetDialog = true;
+	}
+
+	function confirmReset() {
+		designSystem.reset();
+		showResetDialog = false;
+	}
 </script>
 
 {#if submenu}
 	<DropdownMenu.Item
-		onSelect={designSystem.reset}
+		onSelect={openResetDialog}
 		closeOnSelect={false}
 		class="border-foreground/10 bg-muted/50 h-[calc(--spacing(13.5))] w-[140px] touch-manipulation justify-between rounded-xl border select-none focus-visible:border-transparent focus-visible:ring-1 sm:rounded-lg md:w-full md:rounded-lg md:border-transparent md:bg-transparent md:pr-3.5! md:pl-2!"
 	>
@@ -34,7 +46,7 @@
 	<Button
 		variant="ghost"
 		size="sm"
-		onclick={designSystem.reset}
+		onclick={openResetDialog}
 		class="border-foreground/10 bg-muted/50 h-[calc(--spacing(13.5))] w-[140px] touch-manipulation justify-between rounded-xl border select-none focus-visible:border-transparent focus-visible:ring-1 sm:rounded-lg md:w-full md:rounded-lg md:border-transparent md:bg-transparent md:pr-3.5! md:pl-2!"
 	>
 		<div class="flex flex-col justify-start text-left">
@@ -44,3 +56,18 @@
 		<HugeiconsIcon icon={Undo02Icon} className="-translate-x-0.5" />
 	</Button>
 {/if}
+
+<AlertDialog.Root bind:open={showResetDialog}>
+	<AlertDialog.Content size="sm">
+		<AlertDialog.Header>
+			<AlertDialog.Title>Reset to defaults?</AlertDialog.Title>
+			<AlertDialog.Description>
+				This will reset all customization options to their default values.
+			</AlertDialog.Description>
+		</AlertDialog.Header>
+		<AlertDialog.Footer>
+			<AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
+			<AlertDialog.Action onclick={confirmReset}>Reset</AlertDialog.Action>
+		</AlertDialog.Footer>
+	</AlertDialog.Content>
+</AlertDialog.Root>
