@@ -245,6 +245,17 @@ export const DEFAULT_PRESETS: Record<PresetConfig["style"], PresetConfig> = {
 		menuColor: "default",
 		radius: "none",
 	},
+	rhea: {
+		style: "rhea",
+		baseColor: "neutral",
+		theme: "neutral",
+		iconLibrary: "lucide",
+		font: "inter",
+		fontHeading: "inherit",
+		menuAccent: "subtle",
+		menuColor: "default",
+		radius: "default",
+	},
 };
 
 // Base62 alphabet.
