@@ -15,7 +15,6 @@
 	import CopyPreset from "./copy-preset.svelte";
 	import OpenPreset from "./open-preset.svelte";
 	import MainMenu from "./main-menu.svelte";
-	import Cta from "$lib/components/cta.svelte";
 	import _Ethical from "$lib/components/ethical.svelte";
 	import { FONT_HEADING_OPTIONS, FONTS } from "$lib/fonts.js";
 	import ProjectForm from "./project-form.svelte";
@@ -69,8 +68,5 @@
 				<ProjectForm />
 			</Card.Footer>
 		</Card.Root>
-		<div class="hidden w-full flex-1 flex-col justify-end gap-2 md:flex">
-			<Cta /><!--<Ethical />-->
-		</div>
 	</div>
 </Tooltip.Provider>
