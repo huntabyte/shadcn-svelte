@@ -11,7 +11,7 @@
 </script>
 
 <div data-slot="preview" class="flex min-h-0 flex-1 flex-col gap-(--gap)">
-	<div class="hidden md:block">
+	<div>
 		<CtaMobile class="xl:flex" />
 	</div>
 	<div

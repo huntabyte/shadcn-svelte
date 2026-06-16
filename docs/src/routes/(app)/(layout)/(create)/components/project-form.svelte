@@ -10,6 +10,12 @@
 	import { HugeiconsIcon } from "@hugeicons/svelte";
 	import { Copy01Icon, Tick02Icon } from "@hugeicons/core-free-icons";
 
+	type Props = {
+		class?: string;
+	};
+
+	let { class: className }: Props = $props();
+
 	const designSystem = useDesignSystem();
 	const userConfig = UserConfigContext.get();
 	const clipboard = new UseClipboard();
@@ -25,7 +31,7 @@
 </script>
 
 <Dialog.Root>
-	<Dialog.Trigger class={cn(buttonVariants({ variant: "default" }))}>
+	<Dialog.Trigger class={cn(buttonVariants({ variant: "default" }), className)}>
 		Create Project
 	</Dialog.Trigger>
 	<Dialog.Content
