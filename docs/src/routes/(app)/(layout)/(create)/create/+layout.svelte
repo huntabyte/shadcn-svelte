@@ -27,15 +27,14 @@
 	<div
 		data-slot="layout"
 		class={cn(
-			"group/layout section-soft relative z-10 flex h-svh flex-col overflow-hidden [--customizer-width:--spacing(56)] [--gap:--spacing(4)] md:[--gap:--spacing(6)]",
-			"[--customizer-width:--spacing(56)] [--gap:--spacing(4)] md:[--gap:--spacing(6)]",
+			"group/layout section-soft relative z-10 flex h-svh flex-col overflow-hidden [--customizer-width:--spacing(48)] [--gap:--spacing(4)] md:[--gap:--spacing(6)] 2xl:[--customizer-width:--spacing(56)]",
 			"[--preview-height:calc(100svh-var(--header-height)-2rem-150px)] md:[--preview-height:calc(100svh-var(--header-height)-2rem)]"
 		)}
 	>
 		<SiteHeader />
 		<main
 			data-slot="designer"
-			class="container-wrapper flex min-h-0 flex-1 flex-col gap-(--gap) p-(--gap) pt-[calc(var(--gap)*0.25)] md:flex-row-reverse"
+			class="flex min-h-0 flex-1 flex-col gap-(--gap) p-(--gap) pt-[calc(var(--gap)*0.25)] md:flex-row-reverse"
 		>
 			{@render children?.()}
 			<Customizer />
