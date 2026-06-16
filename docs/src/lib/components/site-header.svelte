@@ -45,7 +45,7 @@
 				<LayoutToggle class="3xl:flex hidden" />
 				<Separator orientation="vertical" />
 				{#if page.url.pathname.startsWith("/create")}
-					<ModeSwitcher class="md:hidden" />
+					<ModeSwitcher />
 					<Separator orientation="vertical" />
 					<ProjectForm class="hidden h-[31px] rounded-lg md:flex" />
 				{:else}
