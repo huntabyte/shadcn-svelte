@@ -24,9 +24,9 @@
 	variant="outline"
 	onclick={handleCopy}
 	class={cn(
-		"hover:bg-muted! touch-manipulation bg-transparent! px-2! py-0! text-sm! transition-none select-none pointer-coarse:h-10!",
+		"hover:bg-muted! touch-manipulation overflow-hidden bg-transparent! px-2! py-0! text-sm! transition-none select-none pointer-coarse:h-10!",
 		className
 	)}
 >
-	<span>{clipboard.copied ? "Copied" : `--preset ${presetCode}`}</span>
+	<span class="min-w-0 truncate">{clipboard.copied ? "Copied" : `--preset ${presetCode}`}</span>
 </Button>
