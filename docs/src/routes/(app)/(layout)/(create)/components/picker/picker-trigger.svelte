@@ -7,10 +7,25 @@
 		class: className,
 		submenu = false,
 		children,
+		onpointerdown,
+		onclick,
 		...restProps
 	}: DropdownMenuPrimitive.TriggerProps & {
 		submenu?: boolean;
 	} = $props();
+
+	function preservePickerScroll() {
+		const scroller = ref?.closest('[data-slot="picker-scroll"]');
+		if (!(scroller instanceof HTMLElement)) return;
+
+		const scrollLeft = scroller.scrollLeft;
+		requestAnimationFrame(() => {
+			scroller.scrollLeft = scrollLeft;
+		});
+		setTimeout(() => {
+			scroller.scrollLeft = scrollLeft;
+		}, 0);
+	}
 </script>
 
 {#if submenu}
@@ -34,6 +49,14 @@
 			className
 		)}
 		disabled={restProps.disabled}
+		onpointerdown={(event) => {
+			preservePickerScroll();
+			onpointerdown?.(event);
+		}}
+		onclick={(event) => {
+			preservePickerScroll();
+			onclick?.(event);
+		}}
 	>
 		{@render children?.()}
 	</DropdownMenuPrimitive.Trigger>

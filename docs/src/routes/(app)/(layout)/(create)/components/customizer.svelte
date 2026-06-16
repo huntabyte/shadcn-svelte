@@ -34,6 +34,7 @@
 				<MainMenu />
 			</Card.Header>
 			<Card.Content
+				data-slot="picker-scroll"
 				class="no-scrollbar min-h-0 flex-1 overflow-x-auto overflow-y-hidden md:overflow-y-auto"
 			>
 				<FieldGroup.Group
