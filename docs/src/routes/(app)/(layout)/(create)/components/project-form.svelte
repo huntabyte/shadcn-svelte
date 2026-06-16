@@ -174,7 +174,7 @@
 								<div
 									class="text-muted-foreground min-w-0 truncate font-mono text-sm"
 								>
-									globals.css
+									app.css
 								</div>
 								<Button
 									size="icon-sm"
