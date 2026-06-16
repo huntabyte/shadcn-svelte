@@ -9,22 +9,29 @@
 		children,
 		onpointerdown,
 		onclick,
+		onfocus,
 		...restProps
 	}: DropdownMenuPrimitive.TriggerProps & {
 		submenu?: boolean;
 	} = $props();
 
-	function preservePickerScroll() {
-		const scroller = ref?.closest('[data-slot="picker-scroll"]');
+	function preservePickerScroll(target?: EventTarget | null) {
+		const trigger = target instanceof HTMLElement ? target : ref;
+		const scroller = trigger?.closest('[data-slot="picker-scroll"]');
 		if (!(scroller instanceof HTMLElement)) return;
 
-		const scrollLeft = scroller.scrollLeft;
-		requestAnimationFrame(() => {
-			scroller.scrollLeft = scrollLeft;
-		});
-		setTimeout(() => {
-			scroller.scrollLeft = scrollLeft;
-		}, 0);
+		const pickerScroller = scroller;
+		const scrollLeft = pickerScroller.scrollLeft;
+		const startedAt = performance.now();
+
+		function restore() {
+			pickerScroller.scrollLeft = scrollLeft;
+			if (performance.now() - startedAt < 250) {
+				requestAnimationFrame(restore);
+			}
+		}
+
+		requestAnimationFrame(restore);
 	}
 </script>
 
@@ -50,12 +57,16 @@
 		)}
 		disabled={restProps.disabled}
 		onpointerdown={(event) => {
-			preservePickerScroll();
+			preservePickerScroll(event.currentTarget);
 			onpointerdown?.(event);
 		}}
 		onclick={(event) => {
-			preservePickerScroll();
+			preservePickerScroll(event.currentTarget);
 			onclick?.(event);
+		}}
+		onfocus={(event) => {
+			preservePickerScroll(event.currentTarget);
+			onfocus?.(event);
 		}}
 	>
 		{@render children?.()}
