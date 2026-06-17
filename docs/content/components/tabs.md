@@ -20,7 +20,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="tabs-demo" previewClassName="h-96">
+<ComponentPreview name="tabs-demo">
 
 <div></div>
 

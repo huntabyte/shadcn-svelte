@@ -81,7 +81,7 @@ If you only need to display content such as a title, description, and actions, u
 
 ### Variants
 
-<ComponentPreview name="item-variants-demo" previewClassName="h-96">
+<ComponentPreview name="item-variants-demo">
 
 <div></div>
 
@@ -91,7 +91,7 @@ If you only need to display content such as a title, description, and actions, u
 
 The `Item` component has different sizes for different use cases. For example, you can use the `sm` size for a compact item or the default size for a standard item.
 
-<ComponentPreview name="item-size-demo" previewClassName="h-96">
+<ComponentPreview name="item-size-demo">
 
 <div></div>
 
@@ -123,7 +123,7 @@ The `Item` component has different sizes for different use cases. For example, y
 
 ### Group
 
-<ComponentPreview name="item-group-demo" previewClassName="h-96">
+<ComponentPreview name="item-group-demo">
 
 <div></div>
 
@@ -131,7 +131,7 @@ The `Item` component has different sizes for different use cases. For example, y
 
 ### Header
 
-<ComponentPreview name="item-header-demo" previewClassName="h-96">
+<ComponentPreview name="item-header-demo">
 
 <div></div>
 

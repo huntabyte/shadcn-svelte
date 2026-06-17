@@ -18,7 +18,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="card-demo" previewClassName="h-[30rem]">
+<ComponentPreview name="card-demo">
 
 <div></div>
 
@@ -71,7 +71,7 @@ Copy and paste the following code into your project.
 
 ## Examples
 
-<ComponentPreview name="card-demo" previewClassName="h-[30rem]">
+<ComponentPreview name="card-demo">
 
 <div></div>
 
