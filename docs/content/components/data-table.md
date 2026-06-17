@@ -16,7 +16,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="data-table-demo">
+<ComponentPreview name="data-table-demo" align="start" previewClassName="h-auto items-start px-4 md:px-8">
 
 <div></div>
 

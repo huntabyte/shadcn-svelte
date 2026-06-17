@@ -20,7 +20,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="aspect-ratio-demo">
+<ComponentPreview name="aspect-ratio-demo" previewClassName="h-[20rem]">
 
 <div></div>
 
