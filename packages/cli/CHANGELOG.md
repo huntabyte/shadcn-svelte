@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.3.1
+
+### Patch Changes
+
+- fix: expose tooltip tether generics for strongly typed payloads ([#2746](https://github.com/huntabyte/shadcn-svelte/pull/2746))
+
 ## 1.3.0
 
 ### Minor Changes
