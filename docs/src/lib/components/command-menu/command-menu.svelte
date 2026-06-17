@@ -8,7 +8,7 @@
 	import { Separator } from "$lib/registry/ui/separator/index.js";
 	import { cn } from "$lib/utils.js";
 
-	import { sidebarNavItems } from "$lib/navigation.js";
+	import { mainNavItems, sidebarNavItems } from "$lib/navigation.js";
 
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
 	import CornerDownLeftIcon from "@lucide/svelte/icons/corner-down-left";
@@ -34,6 +34,22 @@
 
 	const userConfig = UserConfigContext.get();
 	const clipboard = new UseClipboard();
+
+	const COMMAND_MENU_GROUP_ORDER = [
+		"Components",
+		"Get Started",
+		"Installation",
+		"Dark Mode",
+		"Registry",
+		"Forms",
+		"Migration",
+	] as const;
+
+	const orderedSidebarGroups = $derived(
+		COMMAND_MENU_GROUP_ORDER.map((title) =>
+			sidebarNavItems.find((group) => group.title === title)
+		).filter((group): group is (typeof sidebarNavItems)[number] => group !== undefined)
+	);
 
 	function handlePageHighlight(isComponent: boolean, item: { href: string; title?: string }) {
 		if (isComponent) {
@@ -157,7 +173,33 @@
 				<Command.Empty class="text-muted-foreground py-12 text-center text-sm">
 					No results found.
 				</Command.Empty>
-				{#each sidebarNavItems as group (group.title)}
+				<Command.Group
+					heading="Pages"
+					class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
+				>
+					{#each mainNavItems as item (item.href)}
+						<CommandMenuItem
+							value={`Pages ${item.title}`}
+							keywords={["page", item.title.toLowerCase()]}
+							onHighlight={() =>
+								handlePageHighlight(false, {
+									href: item.href ?? "",
+									title: item.title,
+								})}
+							onSelect={() => {
+								runCommand(() => {
+									if (item.href) {
+										goto(item.href);
+									}
+								});
+							}}
+						>
+							<ArrowRightIcon />
+							{item.title}
+						</CommandMenuItem>
+					{/each}
+				</Command.Group>
+				{#each orderedSidebarGroups as group (group.title)}
 					<Command.Group
 						heading={group.title}
 						class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
@@ -189,35 +231,6 @@
 									<ArrowRightIcon />
 								{/if}
 								{item.title}
-							</CommandMenuItem>
-						{/each}
-					</Command.Group>
-				{/each}
-				{#each colors as colorPalette (colorPalette.name)}
-					<Command.Group
-						heading={colorPalette.name.charAt(0).toUpperCase() +
-							colorPalette.name.slice(1)}
-						class="!p-0 [&_[data-command-group-heading]]:!p-3"
-					>
-						{#each colorPalette.colors as color (color.hex)}
-							<CommandMenuItem
-								value={color.class}
-								keywords={["color", color.name, color.class]}
-								onHighlight={() => handleColorHighlight(color)}
-								onSelect={() => {
-									runCommand(() => clipboard.copy(color.oklch));
-								}}
-							>
-								<div
-									class="border-ghost aspect-square size-4 rounded-sm bg-(--color) after:rounded-sm"
-									style="--color: {color.oklch};"
-								></div>
-								{color.class}
-								<span
-									class="text-muted-foreground ms-auto font-mono text-xs font-normal tabular-nums"
-								>
-									{color.oklch}
-								</span>
 							</CommandMenuItem>
 						{/each}
 					</Command.Group>
@@ -254,6 +267,35 @@
 						{/each}
 					</Command.Group>
 				{/if}
+				{#each colors as colorPalette (colorPalette.name)}
+					<Command.Group
+						heading={colorPalette.name.charAt(0).toUpperCase() +
+							colorPalette.name.slice(1)}
+						class="!p-0 [&_[data-command-group-heading]]:!p-3"
+					>
+						{#each colorPalette.colors as color (color.hex)}
+							<CommandMenuItem
+								value={color.class}
+								keywords={["color", color.name, color.class]}
+								onHighlight={() => handleColorHighlight(color)}
+								onSelect={() => {
+									runCommand(() => clipboard.copy(color.oklch));
+								}}
+							>
+								<div
+									class="border-ghost aspect-square size-4 rounded-sm bg-(--color) after:rounded-sm"
+									style="--color: {color.oklch};"
+								></div>
+								{color.class}
+								<span
+									class="text-muted-foreground ms-auto font-mono text-xs font-normal tabular-nums"
+								>
+									{color.oklch}
+								</span>
+							</CommandMenuItem>
+						{/each}
+					</Command.Group>
+				{/each}
 			</Command.List>
 		</Command.Root>
 		<div

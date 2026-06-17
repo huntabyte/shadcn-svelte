@@ -90,6 +90,7 @@
 	<CardContent>
 		<ItemGroup>
 			{#each HOLDINGS as holding (holding.name)}
+				{@const maxDividend = Math.max(1, ...holding.data.map((point) => point.value))}
 				<Item role="listitem" variant="muted">
 					<ItemContent>
 						<ItemTitle>{holding.name}</ItemTitle>
@@ -103,7 +104,7 @@
 						{#each holding.data as item (item.q)}
 							<div
 								class="bg-chart-2 min-h-1 flex-1 rounded-t-sm"
-								style={`height: ${(item.value / Math.max(...holding.data.map((point) => point.value))) * 100}%`}
+								style={`height: ${(item.value / maxDividend) * 100}%`}
 							></div>
 						{/each}
 					</div>
