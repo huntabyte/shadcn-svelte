@@ -87,7 +87,7 @@ Options:
 
 Use the `apply` command to apply a preset to an existing project.
 
-<PMExecute command="shadcn-svelte@latest apply --preset [preset]" />
+<PMExecute command="shadcn-svelte@latest apply a2r6bw" />
 
 You can apply only the theme or fonts from a preset without reinstalling UI components:
 

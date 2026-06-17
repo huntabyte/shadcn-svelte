@@ -22,7 +22,7 @@ const ONLY_OPTIONS = ["font", "theme"] as const;
 const initOptionsSchema = z.object({
     cwd: z.string(),
     preset: z.string().optional(),
-    only: z.enum(ONLY_OPTIONS).optional(),
+    only: z.array(z.enum(ONLY_OPTIONS)).optional(),
     yes: z.boolean(),
     silent: z.boolean(),
     skipPreflight: z.boolean(),
@@ -36,7 +36,7 @@ export const apply = new Command()
     .description("apply a preset to an existing project")
     .option("--preset <preset>", "the preset to use")
     .addOption(
-        new Option("--only [parts]", "apply only parts of a preset: theme, font").choices(
+        new Option("--only [...parts]", "apply only parts of a preset: theme, font").choices(
             ONLY_OPTIONS
         )
     )
