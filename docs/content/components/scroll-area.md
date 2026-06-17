@@ -20,7 +20,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="scroll-area-demo">
+<ComponentPreview name="scroll-area-demo" previewClassName="h-96">
 
 <div></div>
 
@@ -81,7 +81,7 @@ Copy and paste the following code into your project.
 
 Set the `orientation` prop to `"horizontal"` to enable horizontal scrolling.
 
-<ComponentPreview name="scroll-area-horizontal">
+<ComponentPreview name="scroll-area-horizontal" previewClassName="h-[30rem] p-0 *:max-w-full sm:p-10">
 
 <div></div>
 
