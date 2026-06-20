@@ -53,9 +53,9 @@
 		<FieldGroup>
 			{#each notifications as n (n.id)}
 				<Field orientation="horizontal">
-					<Checkbox id={`notify-${n.id}`} bind:checked={n.checked}></Checkbox>
+					<Checkbox id="notify-{n.id}" bind:checked={n.checked}></Checkbox>
 					<FieldContent>
-						<FieldLabel for={`notify-${n.id}`}>{n.label}</FieldLabel>
+						<FieldLabel for="notify-{n.id}">{n.label}</FieldLabel>
 						<FieldDescription>{n.description}</FieldDescription>
 					</FieldContent>
 				</Field>
