@@ -2,6 +2,10 @@
 title: Combobox
 description: Autocomplete input with a list of suggestions.
 component: true
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/combobox
+  doc: https://bits-ui.com/docs/components/combobox
+  api: https://bits-ui.com/docs/components/combobox#api-reference
 ---
 
 <script>
@@ -73,54 +77,56 @@ pnpm dlx shadcn-svelte@latest add combobox
 
 ### Simple
 
-A single-line input and a flat list (see Basic).
+A single-line input and a flat list (see [Basic](#basic)).
 
 ```txt
 Combobox
-+-- ComboboxInput
-`-- ComboboxContent
-    +-- ComboboxEmpty
-    `-- ComboboxList
-        +-- ComboboxItem
-        `-- ComboboxItem
+├── ComboboxInput
+└── ComboboxContent
+    ├── ComboboxEmpty
+    └── ComboboxList
+        ├── ComboboxItem
+        └── ComboboxItem
 ```
 
 ### With chips
 
-Multi-select with `multiple`, chips, and a chips input (see Multiple).
+Multi-select with `multiple`, chips, and a chips input (see [Multiple](#multiple)).
 
 ```txt
 Combobox
-+-- ComboboxChips
-|   +-- ComboboxValue
-|   |   `-- ComboboxChip
-|   `-- ComboboxChipsInput
-`-- ComboboxContent
-    +-- ComboboxEmpty
-    `-- ComboboxList
-        +-- ComboboxItem
-        `-- ComboboxItem
+├── ComboboxChips
+│   ├── ComboboxValue
+│   │   └── ComboboxChip
+│   └── ComboboxChipsInput
+└── ComboboxContent
+    ├── ComboboxEmpty
+    └── ComboboxList
+        ├── ComboboxItem
+        └── ComboboxItem
 ```
 
 ### With groups and collection
 
-Nested items per group using grouped items, with a separator between groups (see Groups).
+Nested items per group using `ComboboxCollection` inside each `ComboboxGroup`, with a separator between groups (see [Groups](#groups)).
 
 ```txt
 Combobox
-+-- ComboboxInput
-`-- ComboboxContent
-    +-- ComboboxEmpty
-    `-- ComboboxList
-        +-- ComboboxGroup
-        |   +-- ComboboxLabel
-        |   +-- ComboboxItem
-        |   `-- ComboboxItem
-        +-- ComboboxSeparator
-        `-- ComboboxGroup
-            +-- ComboboxLabel
-            +-- ComboboxItem
-            `-- ComboboxItem
+├── ComboboxInput
+└── ComboboxContent
+    ├── ComboboxEmpty
+    └── ComboboxList
+        ├── ComboboxGroup
+        │   ├── ComboboxLabel
+        │   └── ComboboxCollection
+        │       ├── ComboboxItem
+        │       └── ComboboxItem
+        ├── ComboboxSeparator
+        └── ComboboxGroup
+            ├── ComboboxLabel
+            └── ComboboxCollection
+                ├── ComboboxItem
+                └── ComboboxItem
 ```
 
 ## Custom Items
@@ -226,7 +232,7 @@ Use the `autoHighlight` prop to automatically highlight the first item on filter
 
 ### Popup
 
-You can trigger the combobox from a button or any other component by moving the `ComboboxInput` inside the `ComboboxContent`.
+You can trigger the combobox from a button or any other component by using the `child` snippet. Move the `ComboboxInput` inside the `ComboboxContent`.
 
 <ComponentPreview name="combobox-in-popup">
 
@@ -246,4 +252,4 @@ You can add an addon to the combobox by using the `InputGroupAddon` component in
 
 ## API Reference
 
-See the [Bits UI Combobox](https://bits-ui.com/docs/components/combobox) documentation for more information.
+See the [Bits UI Combobox API reference](https://bits-ui.com/docs/components/combobox#api-reference) for more information.
