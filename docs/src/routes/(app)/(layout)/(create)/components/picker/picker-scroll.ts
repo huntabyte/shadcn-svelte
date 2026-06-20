@@ -26,7 +26,7 @@ export function preservePickerScroll(target?: EventTarget | null) {
 			scroller.scrollLeft = scrollLeft;
 		}
 
-		if (performance.now() - startedAt < 600) {
+		if (performance.now() - startedAt < 2000) {
 			requestAnimationFrame(restore);
 		}
 	}
