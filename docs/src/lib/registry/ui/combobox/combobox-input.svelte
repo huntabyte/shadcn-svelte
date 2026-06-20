@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { Combobox as ComboboxPrimitive } from "bits-ui";
+	import { getContext } from "svelte";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import { cn, type WithoutChild } from "$lib/utils.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { COMBOBOX_CONTEXT, type ComboboxContext } from "./context.js";
 
 	let {
 		ref = $bindable(null),
@@ -15,12 +17,28 @@
 		showTrigger?: boolean;
 		disabled?: boolean;
 	} = $props();
+
+	const combobox = getContext<ComboboxContext | undefined>(COMBOBOX_CONTEXT);
+
+	function handleFocus(event: FocusEvent, onFocus: unknown) {
+		combobox?.setOpen(true);
+
+		if (typeof onFocus === "function") {
+			onFocus(event);
+		}
+	}
 </script>
 
 <InputGroup.Root class={cn("w-auto", className)}>
 	<ComboboxPrimitive.Input bind:ref {disabled} {...restProps}>
 		{#snippet child({ props })}
-			<InputGroup.Input {...props} {disabled} />
+			<InputGroup.Input
+				{...props}
+				{disabled}
+				onfocus={(event) => {
+					handleFocus(event, props.onfocus);
+				}}
+			/>
 		{/snippet}
 	</ComboboxPrimitive.Input>
 	<InputGroup.Addon align="inline-end">

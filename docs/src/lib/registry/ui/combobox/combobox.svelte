@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Combobox as ComboboxPrimitive } from "bits-ui";
-	import type { Snippet } from "svelte";
+	import { setContext, type Snippet } from "svelte";
+	import { COMBOBOX_CONTEXT, type ComboboxContext } from "./context.js";
 
 	type Props = {
 		children?: Snippet;
@@ -23,6 +24,12 @@
 		inputValue,
 		...restProps
 	}: Props = $props();
+
+	setContext<ComboboxContext>(COMBOBOX_CONTEXT, {
+		setOpen: (value) => {
+			open = value;
+		},
+	});
 </script>
 
 <ComboboxPrimitive.Root bind:value bind:open type="single" {inputValue} {...restProps} />

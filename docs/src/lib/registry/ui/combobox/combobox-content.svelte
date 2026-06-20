@@ -24,7 +24,7 @@
 		{sideOffset}
 		{align}
 		class={cn(
-			"cn-combobox-content cn-menu-target cn-menu-translucent bg-popover text-popover-foreground relative isolate z-50 max-h-96 min-w-(--bits-combobox-anchor-width) overflow-hidden rounded-md shadow-md outline-hidden",
+			"cn-combobox-content cn-menu-target cn-menu-translucent bg-popover text-popover-foreground relative isolate z-50 max-h-96 w-(--bits-combobox-anchor-width) overflow-hidden rounded-md shadow-md outline-hidden",
 			className
 		)}
 		{...restProps}
