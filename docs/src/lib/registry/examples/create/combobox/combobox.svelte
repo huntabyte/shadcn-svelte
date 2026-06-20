@@ -4,25 +4,23 @@
 	import ComboboxBasic from "./combobox-basic.svelte";
 	import ComboboxClear from "./combobox-clear.svelte";
 	import ComboboxDisabled from "./combobox-disabled.svelte";
+	import ComboboxInputGroup from "./combobox-input-group.svelte";
 	import ComboboxInPopup from "./combobox-in-popup.svelte";
 	import ComboboxInvalid from "./combobox-invalid.svelte";
 	import ComboboxMultiple from "./combobox-multiple.svelte";
-	import ComboboxRtl from "./combobox-rtl.svelte";
 	import ComboboxWithCustomItems from "./combobox-with-custom-items.svelte";
-	import ComboboxWithGroups from "./combobox-with-groups.svelte";
 	import ComboboxWithGroupsAndSeparator from "./combobox-with-groups-and-separator.svelte";
 </script>
 
 <ExampleWrapper>
 	<ComboboxBasic />
-	<ComboboxClear />
-	<ComboboxDisabled />
-	<ComboboxInvalid />
-	<ComboboxAutoHighlight />
-	<ComboboxWithGroups />
-	<ComboboxWithGroupsAndSeparator />
-	<ComboboxInPopup />
 	<ComboboxMultiple />
+	<ComboboxClear />
+	<ComboboxWithGroupsAndSeparator />
 	<ComboboxWithCustomItems />
-	<ComboboxRtl />
+	<ComboboxInvalid />
+	<ComboboxDisabled />
+	<ComboboxAutoHighlight />
+	<ComboboxInPopup />
+	<ComboboxInputGroup />
 </ExampleWrapper>

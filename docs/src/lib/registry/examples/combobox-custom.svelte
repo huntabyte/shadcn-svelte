@@ -1,13 +1,16 @@
 <script lang="ts">
 	import * as Combobox from "$lib/registry/ui/combobox/index.js";
+	import * as Item from "$lib/registry/ui/item/index.js";
 
 	const countries = [
-		{ value: "argentina", label: "Argentina" },
-		{ value: "australia", label: "Australia" },
-		{ value: "brazil", label: "Brazil" },
-		{ value: "canada", label: "Canada" },
-		{ value: "france", label: "France" },
-		{ value: "japan", label: "Japan" },
+		{ code: "ar", value: "argentina", label: "Argentina", continent: "South America" },
+		{ code: "au", value: "australia", label: "Australia", continent: "Oceania" },
+		{ code: "br", value: "brazil", label: "Brazil", continent: "South America" },
+		{ code: "ca", value: "canada", label: "Canada", continent: "North America" },
+		{ code: "fr", value: "france", label: "France", continent: "Europe" },
+		{ code: "jp", value: "japan", label: "Japan", continent: "Asia" },
+		{ code: "mx", value: "mexico", label: "Mexico", continent: "North America" },
+		{ code: "us", value: "united-states", label: "United States", continent: "North America" },
 	] as const;
 </script>
 
@@ -15,8 +18,16 @@
 	<Combobox.Input placeholder="Search countries..." />
 	<Combobox.Content>
 		<Combobox.List>
-			{#each countries as country (country.value)}
-				<Combobox.Item value={country.value} label={country.label} />
+			{#each countries as country (country.code)}
+				<Combobox.Item value={country.value} label={country.label}>
+					<Item.Root size="xs" class="p-0">
+						<Item.Content>
+							<Item.Title class="whitespace-nowrap">{country.label}</Item.Title>
+							<Item.Description>{country.continent} ({country.code})</Item.Description
+							>
+						</Item.Content>
+					</Item.Root>
+				</Combobox.Item>
 			{/each}
 		</Combobox.List>
 	</Combobox.Content>

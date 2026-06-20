@@ -2,4 +2,4 @@
 	import UnderConstruction from "./combobox-under-construction.svelte";
 </script>
 
-<UnderConstruction title="Auto highlight" />
+<UnderConstruction title="Auto Highlight" />

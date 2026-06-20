@@ -15,7 +15,7 @@
 	] as const;
 </script>
 
-<Example title="Custom items">
+<Example title="Custom Items">
 	<Combobox.Root>
 		<Combobox.Input placeholder="Search countries..." />
 		<Combobox.Content>
