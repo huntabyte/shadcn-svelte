@@ -42,7 +42,6 @@
 		)}
 		disabled={restProps.disabled}
 		onpointerdown={(event) => {
-			preserveTriggerScroll(event.currentTarget);
 			onpointerdown?.(event);
 		}}
 		onclick={(event) => {

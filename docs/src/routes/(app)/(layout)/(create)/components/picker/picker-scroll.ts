@@ -20,14 +20,34 @@ export function preservePickerScroll(target?: EventTarget | null) {
 		scrollLeft: scroller.scrollLeft,
 	}));
 	const startedAt = performance.now();
+	let cancelled = false;
+
+	function cancel() {
+		cancelled = true;
+		for (const { scroller } of positions) {
+			scroller.removeEventListener("pointerdown", cancel);
+			scroller.removeEventListener("touchstart", cancel);
+			scroller.removeEventListener("wheel", cancel);
+		}
+	}
+
+	for (const { scroller } of positions) {
+		scroller.addEventListener("pointerdown", cancel, { passive: true, once: true });
+		scroller.addEventListener("touchstart", cancel, { passive: true, once: true });
+		scroller.addEventListener("wheel", cancel, { passive: true, once: true });
+	}
 
 	function restore() {
+		if (cancelled) return;
+
 		for (const { scroller, scrollLeft } of positions) {
 			scroller.scrollLeft = scrollLeft;
 		}
 
 		if (performance.now() - startedAt < 2000) {
 			requestAnimationFrame(restore);
+		} else {
+			cancel();
 		}
 	}
 
