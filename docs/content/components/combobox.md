@@ -1,12 +1,11 @@
 ---
 title: Combobox
-description: Autocomplete input and command palette with a list of suggestions.
+description: Autocomplete input with a list of suggestions.
 component: true
 ---
 
 <script>
 	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import CodeCollapsibleWrapper from "$lib/components/code-collapsible-wrapper.svelte";
 </script>
 
 <ComponentPreview name="combobox-demo">
@@ -17,145 +16,136 @@ component: true
 
 ## Installation
 
-The Combobox is built using a composition of the `<Popover />` and the `<Command />` components.
-
-See installation instructions for the [Popover](/docs/components/popover#installation) and the [Command](/docs/components/command#installation) components.
+```bash
+pnpm dlx shadcn-svelte@latest add combobox
+```
 
 ## Usage
 
-<CodeCollapsibleWrapper >
-
-```svelte title="lib/components/example-combobox.svelte"
+```svelte
 <script lang="ts">
-  import CheckIcon from "@lucide/svelte/icons/check";
-  import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
-  import { tick } from "svelte";
-  import * as Command from "$lib/components/ui/command/index.js";
-  import * as Popover from "$lib/components/ui/popover/index.js";
-  import { Button } from "$lib/components/ui/button/index.js";
-  import { cn } from "$lib/utils.js";
+  import * as Combobox from "$lib/components/ui/combobox/index.js";
 
   const frameworks = [
-    {
-      value: "sveltekit",
-      label: "SvelteKit",
-    },
-    {
-      value: "next.js",
-      label: "Next.js",
-    },
-    {
-      value: "nuxt.js",
-      label: "Nuxt.js",
-    },
-    {
-      value: "remix",
-      label: "Remix",
-    },
-    {
-      value: "astro",
-      label: "Astro",
-    },
-  ];
+    "Next.js",
+    "SvelteKit",
+    "Nuxt.js",
+    "Remix",
+    "Astro",
+  ] as const;
 
-  let open = $state(false);
   let value = $state("");
-  let triggerRef = $state<HTMLButtonElement>(null!);
+  let inputValue = $state("");
 
-  const selectedValue = $derived(
-    frameworks.find((f) => f.value === value)?.label
+  const filteredFrameworks = $derived(
+    inputValue === ""
+      ? frameworks
+      : frameworks.filter((framework) =>
+          framework.toLowerCase().includes(inputValue.toLowerCase())
+        )
   );
-
-  // We want to refocus the trigger button when the user selects
-  // an item from the list so users can continue navigating the
-  // rest of the form with the keyboard.
-  function closeAndFocusTrigger() {
-    open = false;
-    tick().then(() => {
-      triggerRef.focus();
-    });
-  }
 </script>
 
-<Popover.Root bind:open>
-  <Popover.Trigger bind:ref={triggerRef}>
-    {#snippet child({ props })}
-      <Button
-        variant="outline"
-        class="w-[200px] justify-between"
-        {...props}
-        role="combobox"
-        aria-expanded={open}
-      >
-        {selectedValue || "Select a framework..."}
-        <ChevronsUpDownIcon class="ms-2 size-4 shrink-0 opacity-50" />
-      </Button>
-    {/snippet}
-  </Popover.Trigger>
-  <Popover.Content class="w-[200px] p-0">
-    <Command.Root>
-      <Command.Input placeholder="Search framework..." />
-      <Command.List>
-        <Command.Empty>No framework found.</Command.Empty>
-        <Command.Group>
-          {#each frameworks as framework}
-            <Command.Item
-              value={framework.value}
-              onSelect={() => {
-                value = framework.value;
-                closeAndFocusTrigger();
-              }}
-            >
-              <CheckIcon
-                class={cn(
-                  "me-2 size-4",
-                  value !== framework.value && "text-transparent"
-                )}
-              />
-              {framework.label}
-            </Command.Item>
-          {/each}
-        </Command.Group>
-      </Command.List>
-    </Command.Root>
-  </Popover.Content>
-</Popover.Root>
+<Combobox.Root
+  bind:value
+  {inputValue}
+  onOpenChangeComplete={(open) => {
+    if (!open) inputValue = "";
+  }}
+>
+  <Combobox.Input
+    placeholder="Select a framework"
+    oninput={(event) => (inputValue = event.currentTarget.value)}
+  />
+  <Combobox.Content>
+    <Combobox.List>
+      {#each filteredFrameworks as framework (framework)}
+        <Combobox.Item value={framework} label={framework} />
+      {:else}
+        <Combobox.Empty>No items found.</Combobox.Empty>
+      {/each}
+    </Combobox.List>
+  </Combobox.Content>
+</Combobox.Root>
 ```
 
-</CodeCollapsibleWrapper>
+## Composition
+
+### Simple
+
+A single-line input and a flat list.
+
+```txt
+Combobox
++-- ComboboxInput
+`-- ComboboxContent
+    +-- ComboboxEmpty
+    `-- ComboboxList
+        +-- ComboboxItem
+        `-- ComboboxItem
+```
+
+### With groups
+
+Grouped items with labels and separators.
+
+```txt
+Combobox
++-- ComboboxInput
+`-- ComboboxContent
+    `-- ComboboxList
+        +-- ComboboxGroup
+        |   +-- ComboboxLabel
+        |   +-- ComboboxItem
+        |   `-- ComboboxItem
+        +-- ComboboxSeparator
+        `-- ComboboxGroup
+```
 
 ## Examples
 
-### Combobox
+### Basic
 
-<ComponentPreview name="combobox-demo">
+A simple combobox with a list of frameworks.
 
-<div></div>
-
-</ComponentPreview>
-
-### Popover
-
-<ComponentPreview name="combobox-popover">
+<ComponentPreview name="combobox-basic">
 
 <div></div>
 
 </ComponentPreview>
 
-### Dropdown menu
+### Clear
 
-<ComponentPreview name="combobox-dropdown-menu">
+<ComponentPreview name="combobox-clear">
+
+<div></div>
+
+</ComponentPreview>
+
+### Custom items
+
+<ComponentPreview name="combobox-custom">
 
 <div></div>
 
 </ComponentPreview>
 
-### Responsive
+### Groups
 
-You can create a responsive combobox by using the `<Popover />` on desktop and the `<Drawer />` components on mobile.
-
-<ComponentPreview name="combobox-responsive" >
+<ComponentPreview name="combobox-groups">
 
 <div></div>
 
 </ComponentPreview>
+
+### Multiple
+
+<ComponentPreview name="combobox-multiple">
+
+<div></div>
+
+</ComponentPreview>
+
+## Status
+
+The current Svelte combobox uses the `bits-ui` combobox primitive. Multiple selection with chips and built-in clear controls are still blocked on the bits-ui chips work in [huntabyte/bits-ui#2051](https://github.com/huntabyte/bits-ui/pull/2051).

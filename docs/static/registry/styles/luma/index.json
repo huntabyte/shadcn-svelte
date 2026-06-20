@@ -98,6 +98,14 @@
 		"relativeUrl": "collapsible.json"
 	},
 	{
+		"name": "combobox",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"input-group"
+		],
+		"relativeUrl": "combobox.json"
+	},
+	{
 		"name": "command",
 		"type": "registry:ui",
 		"registryDependencies": [
