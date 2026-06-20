@@ -2,11 +2,16 @@
 	import { cn } from "$lib/utils.js";
 	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
 	import { getContext } from "svelte";
+	import { preservePickerScroll } from "./picker-scroll.js";
 
 	let {
 		inset,
 		variant = "default",
 		class: className,
+		onpointerdown,
+		onclick,
+		onfocus,
+		onSelect,
 		...restProps
 	}: DropdownMenuPrimitive.ItemProps & {
 		inset?: boolean;
@@ -27,5 +32,21 @@
 			: "**:text-neutral-100 focus:bg-neutral-600 focus:text-neutral-100 focus:**:text-neutral-100 dark:focus:bg-neutral-700/80",
 		className
 	)}
+	onpointerdown={(event) => {
+		preservePickerScroll(event.currentTarget);
+		onpointerdown?.(event);
+	}}
+	onclick={(event) => {
+		preservePickerScroll(event.currentTarget);
+		onclick?.(event);
+	}}
+	onfocus={(event) => {
+		preservePickerScroll(event.currentTarget);
+		onfocus?.(event);
+	}}
+	onSelect={(event) => {
+		preservePickerScroll(event.currentTarget);
+		onSelect?.(event);
+	}}
 	{...restProps}
 />

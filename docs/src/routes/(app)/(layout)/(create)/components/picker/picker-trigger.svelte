@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { cn } from "$lib/utils.js";
 	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
+	import { preservePickerScroll } from "./picker-scroll.js";
 
 	let {
 		ref = $bindable(null),
@@ -15,24 +16,8 @@
 		submenu?: boolean;
 	} = $props();
 
-	function preservePickerScroll(target?: EventTarget | null) {
-		const trigger = target instanceof HTMLElement ? target : ref;
-		const scroller = trigger?.closest('[data-slot="picker-scroll"]');
-		if (!(scroller instanceof HTMLElement)) return;
-
-		const pickerScroller = scroller;
-		const scrollLeft = pickerScroller.scrollLeft;
-		const startedAt = performance.now();
-
-		function restore() {
-			pickerScroller.scrollLeft = scrollLeft;
-			if (performance.now() - startedAt < 250) {
-				requestAnimationFrame(restore);
-			}
-		}
-
-		requestAnimationFrame(restore);
-	}
+	const preserveTriggerScroll = (target?: EventTarget | null) =>
+		preservePickerScroll(target ?? ref);
 </script>
 
 {#if submenu}
@@ -57,15 +42,15 @@
 		)}
 		disabled={restProps.disabled}
 		onpointerdown={(event) => {
-			preservePickerScroll(event.currentTarget);
+			preserveTriggerScroll(event.currentTarget);
 			onpointerdown?.(event);
 		}}
 		onclick={(event) => {
-			preservePickerScroll(event.currentTarget);
+			preserveTriggerScroll(event.currentTarget);
 			onclick?.(event);
 		}}
 		onfocus={(event) => {
-			preservePickerScroll(event.currentTarget);
+			preserveTriggerScroll(event.currentTarget);
 			onfocus?.(event);
 		}}
 	>

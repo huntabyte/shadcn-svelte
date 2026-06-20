@@ -3,11 +3,16 @@
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { cn, type WithoutChild } from "$lib/utils.js";
 	import { getContext } from "svelte";
+	import { preservePickerScroll } from "./picker-scroll.js";
 
 	let {
 		ref = $bindable(null),
 		class: className,
 		children: childrenProp,
+		onpointerdown,
+		onclick,
+		onfocus,
+		onSelect,
 		...restProps
 	}: WithoutChild<DropdownMenuPrimitive.RadioItemProps> = $props();
 
@@ -24,6 +29,22 @@
 			: "**:text-neutral-100 focus:bg-neutral-600 focus:text-neutral-100 focus:**:text-neutral-100 dark:focus:bg-neutral-700/80",
 		className
 	)}
+	onpointerdown={(event) => {
+		preservePickerScroll(event.currentTarget);
+		onpointerdown?.(event);
+	}}
+	onclick={(event) => {
+		preservePickerScroll(event.currentTarget);
+		onclick?.(event);
+	}}
+	onfocus={(event) => {
+		preservePickerScroll(event.currentTarget);
+		onfocus?.(event);
+	}}
+	onSelect={(event) => {
+		preservePickerScroll(event.currentTarget);
+		onSelect?.(event);
+	}}
 	{...restProps}
 >
 	{#snippet children({ checked })}
