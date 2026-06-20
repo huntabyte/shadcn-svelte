@@ -9,7 +9,7 @@
 		...restProps
 	}: DropdownMenuPrimitive.SeparatorProps = $props();
 
-	const isSubmenu = (getContext<() => boolean>("picker-is-submenu") ?? (() => true))();
+	const isSubmenu = (getContext<() => boolean>("picker-is-submenu") ?? (() => false))();
 </script>
 
 <DropdownMenuPrimitive.Separator

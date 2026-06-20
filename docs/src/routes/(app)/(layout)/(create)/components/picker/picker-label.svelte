@@ -9,7 +9,7 @@
 		...restProps
 	}: DropdownMenuPrimitive.GroupHeadingProps & { inset?: boolean } = $props();
 
-	const isSubmenu = (getContext<() => boolean>("picker-is-submenu") ?? (() => true))();
+	const isSubmenu = (getContext<() => boolean>("picker-is-submenu") ?? (() => false))();
 </script>
 
 <DropdownMenuPrimitive.GroupHeading

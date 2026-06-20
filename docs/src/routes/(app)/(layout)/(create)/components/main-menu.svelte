@@ -8,7 +8,7 @@
 	import { useIsMac } from "$lib/hooks/use-is-mac.svelte.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { ActionMenuCtx } from "./action-menu-context.svelte.js";
-	import { ResetDialogCtx } from "$lib/features/design-system/components/design-system-provider.svelte";
+	import { ResetDialogCtx } from "$lib/features/design-system/components/reset-dialog-context.svelte.js";
 
 	type Props = {
 		class?: string;

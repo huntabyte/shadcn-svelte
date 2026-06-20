@@ -27,7 +27,7 @@
 	let input = $state("");
 
 	const nextPreset = $derived.by(() => {
-		const raw = input.trim().replace(/^--preset\s+/, "");
+		const raw = input.trim().replace(/^--preset\b\s+/i, "");
 		if (!raw) return null;
 		return decodePreset(raw);
 	});

@@ -1,13 +1,3 @@
-<script lang="ts" module>
-	import { Context } from "runed";
-
-	class ResetDialogContext {
-		open = $state(false);
-	}
-
-	export const ResetDialogCtx = new Context<ResetDialogContext>("reset-dialog-ctx");
-</script>
-
 <script lang="ts">
 	import type { Snippet } from "svelte";
 	import {
@@ -23,6 +13,7 @@
 	import { cn } from "$lib/registry/lib/utils.js";
 	import { toggleMode } from "mode-watcher";
 	import * as AlertDialog from "$lib/registry/ui/alert-dialog/index.js";
+	import { ResetDialogContext, ResetDialogCtx } from "./reset-dialog-context.svelte.js";
 
 	const uid = $props.id();
 
