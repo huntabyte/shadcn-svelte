@@ -203,7 +203,7 @@
 	}
 
 	html {
-		@apply overscroll-none scroll-smooth;
+		@apply overscroll-none;
 	}
 
 	body {
