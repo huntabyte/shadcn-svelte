@@ -4,7 +4,7 @@ import {
 	resolveGitHubItemAddress,
 	resolveGitHubRegistrySource,
 } from "../../src/utils/registry/address.js";
-import { parseGitLsRemote } from "../../src/utils/registry/github-ref.js";
+import { parseGitLsRemote, resolveGitHubRef } from "../../src/utils/registry/github-ref.js";
 import { fetchGitHubRegistryItem } from "../../src/utils/registry/github.js";
 import { resolveRegistryItems } from "../../src/utils/registry/index.js";
 
@@ -38,9 +38,24 @@ describe("GitHub registry addresses", () => {
 	it("parses git ls-remote output", () => {
 		expect(
 			parseGitLsRemote(
-				"ref: refs/heads/main\tHEAD\n0123456789abcdef0123456789abcdef01234567\trefs/heads/main"
+				"ref: refs/heads/main\tHEAD\n1111111111111111111111111111111111111111\tHEAD\n0123456789abcdef0123456789abcdef01234567\trefs/heads/main"
 			)
-		).toEqual(new Map([["refs/heads/main", "0123456789abcdef0123456789abcdef01234567"]]));
+		).toEqual(
+			new Map([
+				["HEAD", "1111111111111111111111111111111111111111"],
+				["refs/heads/main", "0123456789abcdef0123456789abcdef01234567"],
+			])
+		);
+	});
+
+	it("uses full commit SHAs without GitHub ref resolution", async () => {
+		await expect(
+			resolveGitHubRef({
+				owner: "acme",
+				repo: "toolkit",
+				ref: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+			})
+		).resolves.toBe("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 	});
 });
 
@@ -64,6 +79,7 @@ describe("GitHub registry source loading", () => {
 							type: "registry:file",
 							files: [
 								{ path: "agent.md", type: "registry:file", target: "~/AGENTS.md" },
+								{ path: "config.json", type: "registry:file" },
 							],
 							registryDependencies: [],
 						},
@@ -71,6 +87,7 @@ describe("GitHub registry source loading", () => {
 				},
 			],
 			["rules/agent.md", "Use small, focused changes."],
+			["rules/config.json", "{}"],
 		]);
 
 		vi.mocked(fetch).mockImplementation(async (url) => {
@@ -99,6 +116,10 @@ describe("GitHub registry source loading", () => {
 		expect(item.files?.[0]).toMatchObject({
 			target: "~/AGENTS.md",
 			content: "Use small, focused changes.",
+		});
+		expect(item.files?.[1]).toMatchObject({
+			target: "rules/config.json",
+			content: "{}",
 		});
 	});
 

@@ -90,7 +90,7 @@
 	<CardContent>
 		<ItemGroup>
 			{#each HOLDINGS as holding (holding.name)}
-				{@const maxDividend = Math.max(...holding.data.map((point) => point.value))}
+				{@const maxDividend = Math.max(1, ...holding.data.map((point) => point.value))}
 				<Item role="listitem" variant="muted">
 					<ItemContent>
 						<ItemTitle>{holding.name}</ItemTitle>

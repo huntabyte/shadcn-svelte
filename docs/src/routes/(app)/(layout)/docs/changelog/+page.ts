@@ -6,7 +6,9 @@ export const prerender = true;
 const NUMBER_OF_LATEST_PAGES = 2;
 
 export const load: PageLoad = async () => {
-	const pages = await getChangelogPages();
+	const pages = await getChangelogPages({
+		includeComponentsForLatest: NUMBER_OF_LATEST_PAGES,
+	});
 
 	return {
 		latestPages: pages.slice(0, NUMBER_OF_LATEST_PAGES),
