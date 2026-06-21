@@ -10,6 +10,14 @@ links:
 
 <script>
 	import ComponentPreview from "$lib/components/component-preview.svelte";
+	import ComponentSource from "$lib/components/component-source.svelte";
+	import InstallTabs from "$lib/components/install-tabs.svelte";
+	import PMAddComp from "$lib/components/pm-add-comp.svelte";
+	import PMInstall from "$lib/components/pm-install.svelte";
+	import Step from "$lib/components/step.svelte";
+	import Steps from "$lib/components/steps.svelte";
+
+	let { viewerData } = $props();
 </script>
 
 <ComponentPreview name="combobox-demo">
@@ -20,9 +28,33 @@ links:
 
 ## Installation
 
-```bash
-pnpm dlx shadcn-svelte@latest add combobox
-```
+<InstallTabs>
+{#snippet cli()}
+<PMAddComp name="combobox" />
+{/snippet}
+{#snippet manual()}
+<Steps>
+
+<Step>
+
+Install `bits-ui`:
+
+</Step>
+
+<PMInstall command="bits-ui -D" />
+
+<Step>
+
+Copy and paste the following code into your project.
+
+</Step>
+{#if viewerData}
+	<ComponentSource item={viewerData} data-llm-ignore/>
+{/if}
+
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 
