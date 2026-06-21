@@ -48,17 +48,29 @@
 	const COMMAND_MENU_GROUP_ORDER = [
 		"Components",
 		"Get Started",
+		"Changelog",
+		"Forms",
 		"Installation",
 		"Dark Mode",
 		"Registry",
-		"Forms",
 		"Migration",
 	] as const;
 
 	const orderedSidebarGroups = $derived(
 		COMMAND_MENU_GROUP_ORDER.map((title) =>
 			sidebarNavItems.find((g) => g.title === title)
-		).filter((g): g is (typeof sidebarNavItems)[number] => g !== undefined)
+		)
+			.filter((g): g is (typeof sidebarNavItems)[number] => g !== undefined)
+			.map((group) => ({
+				title: group.title,
+				items:
+					group.items.length > 0
+						? group.items
+						: group.href
+							? [{ title: group.title, href: group.href, items: [] }]
+							: [],
+			}))
+			.filter((group) => group.items.length > 0)
 	);
 
 	const filteredPages = $derived.by(() => {
@@ -333,25 +345,6 @@
 						</Command.Group>
 					{/each}
 
-					{#if deduplicatedSearchResults.length > 0}
-						<Command.Group
-							heading="Search Results"
-							class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
-						>
-							{#each deduplicatedSearchResults as result (result.href)}
-								<Command.Item
-									class="data-selected:border-input data-selected:bg-input/50 h-9 rounded-md border border-transparent !px-3 font-normal"
-									value={result.title + " " + result.href}
-									onSelect={() => {
-										runCommand(() => goto(result.href));
-									}}
-								>
-									<div class="line-clamp-1 text-sm">{result.title}</div>
-								</Command.Item>
-							{/each}
-						</Command.Group>
-					{/if}
-
 					{#each filteredColors as colorPalette (colorPalette.name)}
 						<Command.Group
 							heading={colorPalette.name.charAt(0).toUpperCase() +
@@ -381,10 +374,55 @@
 							{/each}
 						</Command.Group>
 					{/each}
+
+					{#if deduplicatedSearchResults.length > 0}
+						<Command.Group
+							heading="Search Results"
+							class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
+						>
+							{#each deduplicatedSearchResults as result (result.href)}
+								<Command.Item
+									class="data-selected:border-input data-selected:bg-input/50 h-9 rounded-md border border-transparent !px-3 font-normal"
+									value={result.title + " " + result.href}
+									onSelect={() => {
+										runCommand(() => goto(result.href));
+									}}
+								>
+									<div class="line-clamp-1 text-sm">{result.title}</div>
+								</Command.Item>
+							{/each}
+						</Command.Group>
+					{/if}
 				{:else}
 					<Command.Empty class="text-muted-foreground py-12 text-center text-sm">
 						No results found.
 					</Command.Empty>
+					{#if mainNavItems.length > 0}
+						<Command.Group
+							heading="Pages"
+							class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
+						>
+							{#each mainNavItems as item (item.href)}
+								<CommandMenuItem
+									value={`Pages ${item.title}`}
+									keywords={["nav", "navigation", item.title.toLowerCase()]}
+									onHighlight={() =>
+										handlePageHighlight(false, {
+											href: item.href ?? "",
+											title: item.title,
+										})}
+									onSelect={() => {
+										runCommand(() => {
+											if (item.href) goto(item.href);
+										});
+									}}
+								>
+									<ArrowRightIcon />
+									{item.title}
+								</CommandMenuItem>
+							{/each}
+						</Command.Group>
+					{/if}
 					{#each orderedSidebarGroups as group (group.title)}
 						<Command.Group
 							heading={group.title}
