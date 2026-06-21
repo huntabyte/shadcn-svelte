@@ -304,7 +304,7 @@
 	[data-rehype-pretty-code-figure] {
 		background-color: var(--color-code);
 		color: var(--color-code-foreground);
-		border-radius: var(--radius-lg);
+		border-radius: var(--radius-xl);
 		border-width: 0px;
 		border-color: var(--border);
 		margin-top: calc(var(--spacing) * 6);
@@ -317,6 +317,14 @@
 		&:has([data-rehype-pretty-code-title]) [data-slot="copy-button"] {
 			top: calc(var(--spacing) * 1.5) !important;
 		}
+	}
+
+	[data-rehype-pretty-code-figure] code,
+	[data-rehype-pretty-code-figure] code span {
+		font-variant-ligatures: none;
+		font-feature-settings:
+			"liga" 0,
+			"calt" 0;
 	}
 
 	[data-rehype-pretty-code-title] {
