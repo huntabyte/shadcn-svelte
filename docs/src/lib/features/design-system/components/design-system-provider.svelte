@@ -52,6 +52,8 @@
 
 		if (isChartRoute(pathname)) {
 			if (!chartRouteOverrideActive) {
+				if (designSystem.chartColor !== "neutral") return;
+
 				previousChartColor = designSystem.chartColor;
 				chartRouteOverrideActive = true;
 			}
