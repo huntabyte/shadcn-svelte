@@ -100,7 +100,7 @@ Use `variant="outline"` for an outline style.
 
 </ComponentPreview>
 
-### Sizes
+### Size
 
 Use the `size` prop to change the size of the toggle group.
 
@@ -147,6 +147,12 @@ A custom toggle group example.
 <div></div>
 
 </ComponentPreview>
+
+## Changelog
+
+### 2026-05-17 Default Spacing
+
+The default spacing for `ToggleGroup` has been updated to match the upstream component.
 
 ## API Reference
 

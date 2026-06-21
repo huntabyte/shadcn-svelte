@@ -81,6 +81,13 @@ Update the import paths to match your project setup.
 </ScrollArea>
 ```
 
+## Composition
+
+```text
+ScrollArea
+└── ScrollBar
+```
+
 ## Examples
 
 ### Horizontal

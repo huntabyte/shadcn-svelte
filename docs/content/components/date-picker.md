@@ -109,7 +109,7 @@ A date picker component for selecting a date of birth. Includes a dropdown capti
 
 </ComponentPreview>
 
-### Picker with Input
+### Input
 
 A date picker component with an input field for selecting a date.
 
@@ -119,7 +119,7 @@ A date picker component with an input field for selecting a date.
 
 </ComponentPreview>
 
-### Date and Time Picker
+### Time Picker
 
 A date picker component with a time input field.
 

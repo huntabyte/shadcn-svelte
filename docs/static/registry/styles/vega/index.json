@@ -686,6 +686,60 @@
 		"relativeUrl": "calendar-32.json"
 	},
 	{
+		"name": "calendar-basic",
+		"type": "registry:block",
+		"registryDependencies": [],
+		"relativeUrl": "calendar-basic.json"
+	},
+	{
+		"name": "calendar-booked-dates",
+		"type": "registry:block",
+		"registryDependencies": [],
+		"relativeUrl": "calendar-booked-dates.json"
+	},
+	{
+		"name": "calendar-caption",
+		"type": "registry:block",
+		"registryDependencies": [],
+		"relativeUrl": "calendar-caption.json"
+	},
+	{
+		"name": "calendar-custom-days",
+		"type": "registry:block",
+		"registryDependencies": [],
+		"relativeUrl": "calendar-custom-days.json"
+	},
+	{
+		"name": "calendar-presets",
+		"type": "registry:block",
+		"registryDependencies": [],
+		"relativeUrl": "calendar-presets.json"
+	},
+	{
+		"name": "calendar-range",
+		"type": "registry:block",
+		"registryDependencies": [],
+		"relativeUrl": "calendar-range.json"
+	},
+	{
+		"name": "calendar-time",
+		"type": "registry:block",
+		"registryDependencies": [],
+		"relativeUrl": "calendar-time.json"
+	},
+	{
+		"name": "calendar-week-numbers",
+		"type": "registry:block",
+		"registryDependencies": [],
+		"relativeUrl": "calendar-week-numbers.json"
+	},
+	{
+		"name": "calendar",
+		"type": "registry:block",
+		"registryDependencies": [],
+		"relativeUrl": "calendar.json"
+	},
+	{
 		"name": "chart-area-axes",
 		"type": "registry:block",
 		"registryDependencies": [
@@ -1033,7 +1087,6 @@
 		"name": "chart-pie-separator-none",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
 			"card"
 		],
 		"relativeUrl": "chart-pie-separator-none.json"

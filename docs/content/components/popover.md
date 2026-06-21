@@ -101,7 +101,7 @@ A simple popover with a header, title, and description.
 
 </ComponentPreview>
 
-## Align
+### Align
 
 Use the `align` prop on `Popover.Content` to control the horizontal alignment.
 

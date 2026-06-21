@@ -128,7 +128,7 @@ Add the `disabled` prop to the `NativeSelect` component to disable the select.
 
 </ComponentPreview>
 
-### Invalid State
+### Invalid
 
 Use `aria-invalid` to show validation errors and the `data-invalid` attribute to the `Field` component for styling.
 

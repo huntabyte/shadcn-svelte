@@ -175,7 +175,7 @@ Use `ContextMenuCheckboxItem` for toggles.
 
 </ComponentPreview>
 
-### Radio Group
+### Radio
 
 Use `ContextMenuRadioItem` for exclusive choices.
 

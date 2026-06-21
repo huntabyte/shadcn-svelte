@@ -136,6 +136,6 @@ You can combine the `Dialog` and `Drawer` components to create a responsive dial
 
 </ComponentPreview>
 
-### API Reference
+## API Reference
 
 See the [Vaul Svelte documentation](https://github.com/huntabyte/vaul-svelte?tab=readme-ov-file#api-reference) for the full API reference.

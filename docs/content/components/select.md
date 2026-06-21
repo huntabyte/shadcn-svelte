@@ -104,6 +104,16 @@ Select.Root
 
 ## Examples
 
+### Align Item With Trigger
+
+Use `Select.Item` contents that match the trigger width and alignment.
+
+<ComponentPreview name="select-align-item">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Groups
 
 Use `Select.Group`, `Select.Label`, and `Select.Separator` to organize items.

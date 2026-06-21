@@ -74,6 +74,20 @@ Update the import paths to match your project setup.
 <Progress value={33} />
 ```
 
+## Composition
+
+### With label and value
+
+Use `Progress.Label` and `Progress.Value` to display additional context.
+
+```text
+Progress.Root
+├── Progress.Label
+├── Progress.Track
+│   └── Progress.Range
+└── Progress.Value
+```
+
 ## Examples
 
 ### Label
