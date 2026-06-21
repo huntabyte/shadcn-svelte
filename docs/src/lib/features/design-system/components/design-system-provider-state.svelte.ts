@@ -33,7 +33,6 @@ import { FONTS } from "$lib/fonts.js";
 const DEFAULT_DOCS_PRESET = {
 	...DEFAULT_PRESET_CONFIG,
 	style: "vega",
-	chartColor: "blue",
 	font: "geist",
 	fontHeading: "geist",
 } satisfies PresetConfig;
