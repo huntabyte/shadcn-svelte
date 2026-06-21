@@ -42,7 +42,11 @@
 	}
 </script>
 
-<InputGroup.Root bind:ref={anchorRef} class={cn("cn-combobox-input w-auto", className)}>
+<InputGroup.Root
+	bind:ref={anchorRef}
+	class={cn("cn-combobox-input w-auto", className)}
+	onpointerdown={() => combobox?.setOpen(true)}
+>
 	<ComboboxPrimitive.Input bind:ref {disabled} {...restProps}>
 		{#snippet child({ props })}
 			<InputGroup.Input
