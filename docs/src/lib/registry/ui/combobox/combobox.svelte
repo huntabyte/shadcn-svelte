@@ -25,9 +25,17 @@
 		...restProps
 	}: Props = $props();
 
+	let anchor = $state<HTMLElement | null>(null);
+
 	setContext<ComboboxContext>(COMBOBOX_CONTEXT, {
+		get anchor() {
+			return anchor;
+		},
 		setOpen: (value) => {
 			open = value;
+		},
+		setAnchor: (value) => {
+			anchor = value;
 		},
 	});
 </script>

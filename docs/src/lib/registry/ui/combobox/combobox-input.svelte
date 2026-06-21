@@ -19,6 +19,19 @@
 	} = $props();
 
 	const combobox = getContext<ComboboxContext | undefined>(COMBOBOX_CONTEXT);
+	let anchorRef = $state<HTMLDivElement | null>(null);
+
+	$effect(() => {
+		if (showTrigger) {
+			combobox?.setAnchor(anchorRef);
+		}
+
+		return () => {
+			if (showTrigger) {
+				combobox?.setAnchor(null);
+			}
+		};
+	});
 
 	function handleFocus(event: FocusEvent, onFocus: unknown) {
 		combobox?.setOpen(true);
@@ -29,7 +42,7 @@
 	}
 </script>
 
-<InputGroup.Root class={cn("w-auto", className)}>
+<InputGroup.Root bind:ref={anchorRef} class={cn("cn-combobox-input w-auto", className)}>
 	<ComboboxPrimitive.Input bind:ref {disabled} {...restProps}>
 		{#snippet child({ props })}
 			<InputGroup.Input

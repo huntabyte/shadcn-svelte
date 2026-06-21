@@ -14,7 +14,7 @@
 	bind:ref
 	data-slot="combobox-list"
 	class={cn(
-		"max-h-[min(24rem,var(--bits-combobox-content-available-height))] overflow-y-auto p-1",
+		"cn-combobox-list max-h-[min(24rem,var(--bits-combobox-content-available-height))] overflow-y-auto overscroll-contain",
 		className
 	)}
 	{...restProps}

@@ -19,13 +19,13 @@
 	{label}
 	data-slot="combobox-item"
 	class={cn(
-		"cn-combobox-item data-highlighted:bg-accent data-highlighted:text-accent-foreground relative flex w-full cursor-default items-center gap-2 rounded-sm py-1.5 pr-8 pl-2 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+		"cn-combobox-item relative flex w-full cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 		className
 	)}
 	{...restProps}
 >
 	{#snippet children({ selected, highlighted })}
-		<span class="cn-combobox-item-text shrink-0 whitespace-nowrap">
+		<span class="cn-combobox-item-text">
 			{#if childrenProp}
 				{@render childrenProp({ selected, highlighted })}
 			{:else}
@@ -43,7 +43,7 @@
 					hugeicons="Tick02Icon"
 					phosphor="CheckIcon"
 					remixicon="RiCheckLine"
-					class="size-4"
+					class="cn-combobox-item-indicator-icon pointer-events-none"
 				/>
 			</span>
 		{/if}
