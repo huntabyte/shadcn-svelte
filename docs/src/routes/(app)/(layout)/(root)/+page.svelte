@@ -57,7 +57,7 @@
 			{#if !mobile.current}
 				<section class="hidden md:block">
 					<div
-						class="style-rhea base-color-neutral theme-neutral"
+						class="homepage-examples style-rhea base-color-neutral theme-neutral"
 						style="--radius: 0.625rem; font-family: 'Inter Variable', sans-serif;"
 					>
 						<CardsDemo />
@@ -67,3 +67,13 @@
 		</div>
 	</div>
 </div>
+
+<style>
+	.homepage-examples {
+		--chart-1: oklch(0.87 0 0);
+		--chart-2: oklch(0.556 0 0);
+		--chart-3: oklch(0.439 0 0);
+		--chart-4: oklch(0.371 0 0);
+		--chart-5: oklch(0.269 0 0);
+	}
+</style>
