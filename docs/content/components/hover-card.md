@@ -90,6 +90,28 @@ HoverCard.Root
 └── HoverCard.Content
 ```
 
+## Trigger Delays
+
+Use `openDelay` and `closeDelay` on `HoverCard.Root` to control when the card opens and closes.
+
+```svelte showLineNumbers
+<HoverCard.Root openDelay={100} closeDelay={200}>
+  <HoverCard.Trigger>Hover</HoverCard.Trigger>
+  <HoverCard.Content>Content</HoverCard.Content>
+</HoverCard.Root>
+```
+
+## Positioning
+
+Use the `side` and `align` props on `HoverCard.Content` to control placement.
+
+```svelte showLineNumbers
+<HoverCard.Root>
+  <HoverCard.Trigger>Hover</HoverCard.Trigger>
+  <HoverCard.Content side="top" align="start">Content</HoverCard.Content>
+</HoverCard.Root>
+```
+
 ## Examples
 
 ### Basic
