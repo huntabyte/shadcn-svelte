@@ -57,9 +57,7 @@
 	] as const;
 
 	const orderedSidebarGroups = $derived(
-		COMMAND_MENU_GROUP_ORDER.map((title) =>
-			sidebarNavItems.find((g) => g.title === title)
-		)
+		COMMAND_MENU_GROUP_ORDER.map((title) => sidebarNavItems.find((g) => g.title === title))
 			.filter((g): g is (typeof sidebarNavItems)[number] => g !== undefined)
 			.map((group) => ({
 				title: group.title,
