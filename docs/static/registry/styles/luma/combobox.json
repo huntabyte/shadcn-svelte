@@ -56,7 +56,7 @@
 			"target": "combobox/combobox-separator.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { Combobox as ComboboxPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\timport IconPlaceholder from \"$lib/components/icon-placeholder/icon-placeholder.svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: ComboboxPrimitive.TriggerProps = $props();\n</script>\n\n<ComboboxPrimitive.Trigger\n\tbind:ref\n\tdata-slot=\"combobox-trigger\"\n\tclass={cn(\"[&_svg:not([class*='size-'])]:size-4\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n\t<IconPlaceholder\n\t\tlucide=\"ChevronDownIcon\"\n\t\ttabler=\"IconSelector\"\n\t\thugeicons=\"UnfoldMoreIcon\"\n\t\tphosphor=\"CaretDownIcon\"\n\t\tremixicon=\"RiArrowDownSLine\"\n\t\tclass=\"text-muted-foreground size-4 pointer-events-none\"\n\t/>\n</ComboboxPrimitive.Trigger>\n",
+			"content": "<script lang=\"ts\">\n\timport { Combobox as ComboboxPrimitive } from \"bits-ui\";\n\n\tlet { ref = $bindable(null), ...restProps }: ComboboxPrimitive.TriggerProps = $props();\n</script>\n\n<ComboboxPrimitive.Trigger bind:ref data-slot=\"combobox-trigger\" {...restProps} />\n",
 			"type": "registry:file",
 			"target": "combobox/combobox-trigger.svelte"
 		},
