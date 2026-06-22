@@ -3,7 +3,6 @@
 	import * as Combobox from "$lib/registry/ui/combobox/index.js";
 
 	const countries = [
-		{ code: "", value: "", continent: "", label: "Select country" },
 		{ code: "ar", value: "argentina", label: "Argentina", continent: "South America" },
 		{ code: "au", value: "australia", label: "Australia", continent: "Oceania" },
 		{ code: "br", value: "brazil", label: "Brazil", continent: "South America" },
@@ -25,9 +24,9 @@
 		{ code: "us", value: "united-states", label: "United States", continent: "North America" },
 	] as const;
 
-	let value = $state(countries[0].value);
+	let value = $state("");
 	const selectedCountry = $derived(
-		countries.find((country) => country.value === value)?.label ?? countries[0].label
+		countries.find((country) => country.value === value)?.label ?? "Select country"
 	);
 </script>
 

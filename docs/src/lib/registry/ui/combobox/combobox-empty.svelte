@@ -13,7 +13,7 @@
 <div
 	bind:this={ref}
 	data-slot="combobox-empty"
-	class={cn("text-muted-foreground w-full py-2 text-center text-sm", className)}
+	class={cn("cn-combobox-empty", className)}
 	{...restProps}
 >
 	{@render children?.()}
