@@ -55,7 +55,7 @@
 				/>
 			</InputGroup.Addon>
 		</Combobox.Input>
-		<Combobox.Content avoidCollisions={false} class="w-60 min-w-60">
+		<Combobox.Content avoidCollisions={false} alignOffset={-28} class="w-60 min-w-60">
 			<Combobox.Empty>No timezones found.</Combobox.Empty>
 			<Combobox.List>
 				{#each timezones as group (group.value)}
