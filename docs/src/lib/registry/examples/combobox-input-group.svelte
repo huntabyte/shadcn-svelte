@@ -3,11 +3,45 @@
 	import * as Combobox from "$lib/registry/ui/combobox/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 
-	const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"] as const;
+	const timezones = [
+		{
+			value: "Americas",
+			items: [
+				"(GMT-5) New York",
+				"(GMT-8) Los Angeles",
+				"(GMT-6) Chicago",
+				"(GMT-5) Toronto",
+				"(GMT-8) Vancouver",
+				"(GMT-3) São Paulo",
+			],
+		},
+		{
+			value: "Europe",
+			items: [
+				"(GMT+0) London",
+				"(GMT+1) Paris",
+				"(GMT+1) Berlin",
+				"(GMT+1) Rome",
+				"(GMT+1) Madrid",
+				"(GMT+1) Amsterdam",
+			],
+		},
+		{
+			value: "Asia/Pacific",
+			items: [
+				"(GMT+9) Tokyo",
+				"(GMT+8) Shanghai",
+				"(GMT+8) Singapore",
+				"(GMT+4) Dubai",
+				"(GMT+11) Sydney",
+				"(GMT+9) Seoul",
+			],
+		},
+	] as const;
 </script>
 
 <Combobox.Root>
-	<Combobox.Input placeholder="Select a framework">
+	<Combobox.Input placeholder="Select a timezone">
 		<InputGroup.Addon>
 			<IconPlaceholder
 				lucide="GlobeIcon"
@@ -19,10 +53,18 @@
 			/>
 		</InputGroup.Addon>
 	</Combobox.Input>
-	<Combobox.Content>
+	<Combobox.Content alignOffset={-28} class="w-60">
+		<Combobox.Empty>No timezones found.</Combobox.Empty>
 		<Combobox.List>
-			{#each frameworks as framework (framework)}
-				<Combobox.Item value={framework} label={framework} />
+			{#each timezones as group (group.value)}
+				<Combobox.Group>
+					<Combobox.Label>{group.value}</Combobox.Label>
+					{#each group.items as item (item)}
+						<Combobox.Item value={item} label={item}>
+							{item}
+						</Combobox.Item>
+					{/each}
+				</Combobox.Group>
 			{/each}
 		</Combobox.List>
 	</Combobox.Content>
