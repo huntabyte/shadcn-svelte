@@ -41,7 +41,7 @@
 </script>
 
 <Combobox.Root>
-	<Combobox.Input placeholder="Select a timezone">
+	<Combobox.Input placeholder="Select a timezone" class="w-60">
 		<InputGroup.Addon>
 			<IconPlaceholder
 				lucide="GlobeIcon"
@@ -53,7 +53,7 @@
 			/>
 		</InputGroup.Addon>
 	</Combobox.Input>
-	<Combobox.Content alignOffset={-28} class="w-60">
+	<Combobox.Content avoidCollisions={false} class="w-60 min-w-60">
 		<Combobox.Empty>No timezones found.</Combobox.Empty>
 		<Combobox.List>
 			{#each timezones as group (group.value)}
