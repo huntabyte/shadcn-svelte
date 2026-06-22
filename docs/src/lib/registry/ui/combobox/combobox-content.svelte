@@ -24,7 +24,9 @@
 	const combobox = getContext<ComboboxContext | undefined>(COMBOBOX_CONTEXT);
 
 	function activatePortal(event: Event, handler: unknown) {
-		combobox?.setOpen(true);
+		if (!combobox?.disabled) {
+			combobox?.setOpen(true);
+		}
 
 		if (typeof handler === "function") {
 			handler(event);

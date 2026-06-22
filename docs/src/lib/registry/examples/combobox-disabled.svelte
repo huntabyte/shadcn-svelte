@@ -4,8 +4,8 @@
 	const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"] as const;
 </script>
 
-<Combobox.Root>
-	<Combobox.Input placeholder="Select a framework" disabled />
+<Combobox.Root disabled>
+	<Combobox.Input placeholder="Select a framework" />
 	<Combobox.Content>
 		<Combobox.List>
 			{#each frameworks as framework (framework)}

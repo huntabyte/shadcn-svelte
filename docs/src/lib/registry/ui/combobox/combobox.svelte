@@ -22,6 +22,7 @@
 		value = $bindable(""),
 		open = $bindable(false),
 		inputValue,
+		disabled = false,
 		...restProps
 	}: Props = $props();
 
@@ -31,7 +32,11 @@
 		get anchor() {
 			return anchor;
 		},
+		get disabled() {
+			return disabled;
+		},
 		setOpen: (value) => {
+			if (disabled && value) return;
 			open = value;
 		},
 		setAnchor: (value) => {
@@ -40,4 +45,4 @@
 	});
 </script>
 
-<ComboboxPrimitive.Root bind:value bind:open type="single" {inputValue} {...restProps} />
+<ComboboxPrimitive.Root bind:value bind:open type="single" {inputValue} {disabled} {...restProps} />

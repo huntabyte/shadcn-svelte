@@ -20,6 +20,7 @@
 
 	const combobox = getContext<ComboboxContext | undefined>(COMBOBOX_CONTEXT);
 	let anchorRef = $state<HTMLDivElement | null>(null);
+	const effectiveDisabled = $derived(disabled || !!combobox?.disabled);
 
 	$effect(() => {
 		if (showTrigger) {
@@ -33,8 +34,14 @@
 		};
 	});
 
-	function handleFocus(event: FocusEvent, onFocus: unknown) {
+	function openCombobox() {
+		if (effectiveDisabled) return;
+
 		combobox?.setOpen(true);
+	}
+
+	function handleFocus(event: FocusEvent, onFocus: unknown) {
+		openCombobox();
 
 		if (typeof onFocus === "function") {
 			onFocus(event);
@@ -45,13 +52,13 @@
 <InputGroup.Root
 	bind:ref={anchorRef}
 	class={cn("cn-combobox-input w-auto", className)}
-	onpointerdown={() => combobox?.setOpen(true)}
+	onpointerdown={openCombobox}
 >
-	<ComboboxPrimitive.Input bind:ref {disabled} {...restProps}>
+	<ComboboxPrimitive.Input bind:ref disabled={effectiveDisabled} {...restProps}>
 		{#snippet child({ props })}
 			<InputGroup.Input
 				{...props}
-				{disabled}
+				disabled={effectiveDisabled}
 				onfocus={(event) => {
 					handleFocus(event, props.onfocus);
 				}}
@@ -67,7 +74,7 @@
 						size="icon-xs"
 						variant="ghost"
 						class="data-pressed:bg-transparent"
-						{disabled}
+						disabled={effectiveDisabled}
 					>
 						<IconPlaceholder
 							lucide="ChevronDownIcon"
