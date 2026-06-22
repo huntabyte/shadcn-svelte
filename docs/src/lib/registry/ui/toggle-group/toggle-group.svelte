@@ -28,7 +28,7 @@
 		value = $bindable(),
 		class: className,
 		size = "default",
-		spacing = 0,
+		spacing = 2,
 		orientation = "horizontal",
 		variant = "default",
 		...restProps
