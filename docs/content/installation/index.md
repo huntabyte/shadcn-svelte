@@ -5,10 +5,42 @@ description: How to install dependencies and structure your app.
 
 <script>
 	import InstallCards from '$lib/components/install-cards.svelte'
+	import SetupCards from '$lib/components/setup-cards.svelte'
 	import SvelteWhite from '$lib/components/svelte-white.svelte'
+	import Callout from '$lib/components/callout.svelte'
+	import PMExecute from '$lib/components/pm-execute.svelte'
+	import { Button } from '$lib/registry/ui/button/index.js'
 </script>
 
-## Guides
+<Callout class="mb-6 border-emerald-600 bg-emerald-100 dark:border-emerald-400 dark:bg-emerald-900">
+
+**Recommended for new projects:** Use [shadcn-svelte/create](/create) to build your preset visually and generate the right setup command for your framework.
+
+</Callout>
+
+Choose the setup that matches your starting point.
+
+<SetupCards />
+
+## Use shadcn-svelte/create
+
+Build your preset visually, preview your choices, and generate a framework-specific setup command.
+
+<Button href="/create" class="mt-6">Open shadcn-svelte/create</Button>
+
+Available for SvelteKit, Astro, and Vite.
+
+## Use the CLI
+
+Use the CLI to scaffold a new project directly from the terminal:
+
+<PMExecute command="shadcn-svelte@latest init" />
+
+## Existing Project
+
+Each framework guide includes an `Existing Project` section with the manual setup steps for that framework.
+
+## Choose Your Framework
 
 <InstallCards />
 
@@ -38,7 +70,7 @@ import {
 } from "$lib/components/ui/accordion"
 ```
 
-Regardless of the import approach you take, the components will be tree-shaken by Rollup, so you don't have to worry about unused components being bundled into your app.
+Regardless of the import approach you take, the components will be tree-shaken by your bundler, so you don't have to worry about unused components being bundled into your app.
 
 ## VSCode extension
 
