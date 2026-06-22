@@ -46,7 +46,7 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 		variant="secondary"
 		size="sm"
 		class={cn(
-			"peer -ms-0.5 size-8 shadow-none md:size-7 md:text-[0.8rem]",
+			"peer -ml-0.5 size-8 shadow-none md:size-7 md:text-[0.8rem]",
 			props.class as string
 		)}
 	>
@@ -116,14 +116,14 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 
 <Popover.Root>
 	<div
-		class="bg-secondary group/buttons relative flex rounded-lg *:data-[slot=button]:focus-visible:relative *:data-[slot=button]:focus-visible:z-10"
+		class="group/buttons bg-secondary relative flex rounded-lg *:[[data-slot=button]]:focus-visible:relative *:[[data-slot=button]]:focus-visible:z-10"
 		data-llm-ignore
 	>
 		<div bind:this={customAnchor}></div>
 		<Button
 			variant="secondary"
 			size="sm"
-			class="h-8 shadow-none select-none md:h-7 md:text-[0.8rem]"
+			class="h-8 shadow-none md:h-7 md:text-[0.8rem]"
 			onclick={copyPage}
 		>
 			{#if clipboard.copied}
@@ -139,7 +139,7 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 					{@render Trigger({ props })}
 				{/snippet}
 			</DropdownMenu.Trigger>
-			<DropdownMenu.Content align="end" class="shadow-none">
+			<DropdownMenu.Content align="end" class="animate-none! rounded-lg shadow-none">
 				{#each Object.entries(menuItems) as [key, value] (key)}
 					<DropdownMenu.Item>
 						{#snippet child({ props })}
@@ -151,7 +151,7 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 		</DropdownMenu.Root>
 		<Separator
 			orientation="vertical"
-			class="bg-foreground/10! absolute end-8 top-0 z-0 h-8! peer-focus-visible:opacity-0 sm:end-7 sm:h-7!"
+			class="bg-foreground/5! absolute top-1 right-8 z-0 h-6! peer-focus-visible:opacity-0 sm:right-7 sm:h-5!"
 		/>
 		<Popover.Trigger class="flex sm:hidden">
 			{#snippet child({ props })}
@@ -159,7 +159,7 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 			{/snippet}
 		</Popover.Trigger>
 		<Popover.Content
-			class="bg-background/70 dark:bg-background/60 w-52 origin-center! rounded-lg p-1 shadow-sm backdrop-blur-sm"
+			class="bg-background/70 dark:bg-background/60 w-52 origin-center! rounded-lg p-1 shadow-none backdrop-blur-sm"
 			align="start"
 			{customAnchor}
 		>
@@ -171,7 +171,7 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 								variant: "ghost",
 								size: "lg",
 							}),
-							"*:[svg]:text-muted-foreground w-full justify-start text-base font-normal"
+							"w-full justify-start text-base font-normal *:[svg]:text-muted-foreground"
 						),
 					},
 				})}
