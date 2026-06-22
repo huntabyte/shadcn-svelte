@@ -266,10 +266,9 @@
 
 @utility step {
 	counter-increment: step;
-	@apply relative;
 
 	&:before {
-		@apply text-muted-foreground end-0 me-2 hidden size-7 items-center justify-center rounded-full text-center -indent-px font-mono text-sm font-medium md:absolute;
+		@apply border-background bg-muted mr-2 inline-flex size-6 items-center justify-center rounded-full text-center -indent-px font-mono text-sm font-medium md:absolute md:mt-[-4px] md:ml-[-50px] md:size-9 md:border-4;
 		content: counter(step);
 	}
 }
@@ -286,15 +285,15 @@
 			@apply !mt-0;
 		}
 
-		&:first-child > *[aria-level="3"]:first-child {
+		&:first-child > h3:first-child {
 			@apply !mt-0;
 		}
 
-		> *[aria-level="3"] {
-			@apply !mt-16;
+		> h3 {
+			@apply !mt-8;
 		}
 
-		> *[aria-level="3"] + p {
+		> h3 + p {
 			@apply !mt-2;
 		}
 	}
