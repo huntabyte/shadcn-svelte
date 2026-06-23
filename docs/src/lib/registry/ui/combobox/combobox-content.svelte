@@ -38,7 +38,7 @@
 	<ComboboxPrimitive.Content
 		bind:ref
 		data-slot="combobox-content"
-		data-chips={!!(customAnchor ?? combobox?.anchor)}
+		data-chips={!!combobox?.anchor}
 		{sideOffset}
 		{align}
 		customAnchor={customAnchor ?? combobox?.anchor ?? null}

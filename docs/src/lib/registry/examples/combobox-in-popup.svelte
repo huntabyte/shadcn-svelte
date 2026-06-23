@@ -1,7 +1,7 @@
 <script lang="ts">
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 	import * as Combobox from "$lib/registry/ui/combobox/index.js";
+	import { cn } from "$lib/utils.js";
 
 	type Country = {
 		code: string;
@@ -82,25 +82,11 @@
 </script>
 
 <Combobox.Root bind:value bind:open onValueChange={handleValueChange}>
-	<Combobox.Trigger>
-		{#snippet child({ props })}
-			<Button
-				{...props}
-				bind:ref={triggerRef}
-				variant="outline"
-				class="w-64 justify-between font-normal"
-			>
-				{selectedCountry.label}
-				<IconPlaceholder
-					lucide="ChevronDownIcon"
-					tabler="IconSelector"
-					hugeicons="UnfoldMoreIcon"
-					phosphor="CaretDownIcon"
-					remixicon="RiArrowDownSLine"
-					class="text-muted-foreground pointer-events-none size-4"
-				/>
-			</Button>
-		{/snippet}
+	<Combobox.Trigger
+		bind:ref={triggerRef}
+		class={cn(buttonVariants({ variant: "outline" }), "w-64 justify-between font-normal")}
+	>
+		{selectedCountry.label}
 	</Combobox.Trigger>
 	<Combobox.Content customAnchor={triggerRef}>
 		<Combobox.Input showTrigger={false} placeholder="Search" />
