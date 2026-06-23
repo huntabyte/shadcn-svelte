@@ -189,7 +189,7 @@ These components handle a lot of the common chart scaffolding for you, while all
 <ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
-<ComponentPreview name="chart-bar-demo" previewClassName="h-[22rem] p-4">
+<ComponentPreview name="chart-bar-demo" previewClassName="h-96 p-4">
 
 <div></div>
 
@@ -239,7 +239,7 @@ The `props` prop is how you can pass custom props to the various components that
 </Chart.Container>
 ```
 
-<ComponentPreview name="chart-bar-axis-tick-demo" previewClassName="h-[22rem] p-4">
+<ComponentPreview name="chart-bar-axis-tick-demo" previewClassName="h-96 p-4">
 
 <div></div>
 
@@ -292,7 +292,7 @@ We'll replace the `tooltipContext={false}` prop with the `tooltip` snippet where
 </Chart.Container>
 ```
 
-<ComponentPreview name="chart-bar-tooltip-demo" previewClassName="h-[22rem] p-4">
+<ComponentPreview name="chart-bar-tooltip-demo" previewClassName="h-96 p-4">
 
 <div></div>
 
@@ -342,7 +342,7 @@ The `legend` prop is used to show a legend for the chart. We are working with La
 </Chart.Container>
 ```
 
-<ComponentPreview name="chart-bar-legend-demo" previewClassName="h-[22rem] p-4">
+<ComponentPreview name="chart-bar-legend-demo" previewClassName="h-96 p-4">
 
 <div></div>
 
