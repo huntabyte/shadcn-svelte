@@ -81,10 +81,15 @@
 		if (!searchQuery.trim()) return [];
 		const q = searchQuery.trim().toLowerCase();
 		return orderedSidebarGroups
-			.map((group) => ({
-				title: group.title,
-				items: group.items.filter((item) => item.title?.toLowerCase().includes(q)),
-			}))
+			.map((group) => {
+				const groupMatches = group.title.toLowerCase().includes(q);
+				return {
+					title: group.title,
+					items: groupMatches
+						? group.items
+						: group.items.filter((item) => item.title?.toLowerCase().includes(q)),
+				};
+			})
 			.filter((group) => group.items.length > 0);
 	});
 
@@ -379,15 +384,18 @@
 							class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
 						>
 							{#each deduplicatedSearchResults as result (result.href)}
-								<Command.Item
-									class="data-selected:border-input data-selected:bg-input/50 h-9 rounded-md border border-transparent !px-3 font-normal"
+								<CommandMenuItem
 									value={result.title + " " + result.href}
+									onHighlight={() => {
+										selectedType = "search";
+										copyPayload = "";
+									}}
 									onSelect={() => {
 										runCommand(() => goto(result.href));
 									}}
 								>
 									<div class="line-clamp-1 text-sm">{result.title}</div>
-								</Command.Item>
+								</CommandMenuItem>
 							{/each}
 						</Command.Group>
 					{/if}
