@@ -128,9 +128,14 @@
 	);
 
 	onMount(async () => {
-		const data = await fetch(`${base}/api/search.json`).then((res) => res.json());
-		await createContentIndex(data);
-		searchState = "ready";
+		try {
+			const data = await fetch(`${base}/api/search.json`).then((res) => res.json());
+			await createContentIndex(data);
+		} catch {
+			// Keep the command menu usable with local navigation results if the content index fails.
+		} finally {
+			searchState = "ready";
+		}
 	});
 
 	$effect(() => {
@@ -144,8 +149,14 @@
 
 	let clearTimeoutId: number | undefined;
 
+	function cancelClearSearch() {
+		if (!clearTimeoutId) return;
+		window.clearTimeout(clearTimeoutId);
+		clearTimeoutId = undefined;
+	}
+
 	function clearSearchWithDelay() {
-		if (clearTimeoutId) window.clearTimeout(clearTimeoutId);
+		cancelClearSearch();
 		clearTimeoutId = window.setTimeout(() => {
 			searchQuery = "";
 			clearTimeoutId = undefined;
@@ -250,7 +261,10 @@
 <Dialog.Root
 	bind:open
 	onOpenChange={(o) => {
-		if (o) return;
+		if (o) {
+			cancelClearSearch();
+			return;
+		}
 		clearSearchWithDelay();
 	}}
 >

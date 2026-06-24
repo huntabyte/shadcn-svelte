@@ -33,15 +33,38 @@ function parseFrontmatter(raw: string): { title: string; description: string; bo
 function slugify(text: string): string {
 	return text
 		.toLowerCase()
-		.replace(/[^\w\s-]/g, "")
-		.replace(/\s+/g, "-")
-		.replace(/-+/g, "-")
-		.trim();
+		.split("")
+		.filter((char) => !isGithubSlugRemovedChar(char))
+		.join("")
+		.replace(/ /g, "-");
+}
+
+function isGithubSlugRemovedChar(char: string): boolean {
+	const code = char.codePointAt(0);
+	if (code === undefined) return false;
+
+	return (
+		code <= 0x1f ||
+		(code >= 0x21 && code <= 0x2c) ||
+		code === 0x2e ||
+		code === 0x2f ||
+		(code >= 0x3a && code <= 0x40) ||
+		(code >= 0x5b && code <= 0x5e) ||
+		code === 0x60 ||
+		(code >= 0x7b && code <= 0xa9)
+	);
 }
 
 function cleanText(raw: string): string {
 	// Remove <script> blocks
 	let content = raw.replace(/<script[\s\S]*?<\/script>/gi, "");
+	// Remove code blocks, but preserve inline code text for headings like `<DataTable />`.
+	content = content.replace(/```[\s\S]*?```/g, "");
+	const inlineCode: string[] = [];
+	content = content.replace(/`([^`]+)`/g, (_, code: string) => {
+		const index = inlineCode.push(code) - 1;
+		return ` INLINECODEPLACEHOLDER${index}END `;
+	});
 	// Remove HTML/Svelte tags
 	content = content.replace(/<[^>]+>/g, " ");
 	// Run remove-markdown (replaceLinksWithURL: false keeps display text, not URLs)
@@ -50,9 +73,9 @@ function cleanText(raw: string): string {
 		gfm: true,
 		useImgAltText: true,
 	});
-	// Remove code blocks
-	content = content.replace(/```[\s\S]*?```/g, "");
-	content = content.replace(/`[^`]+`/g, "");
+	content = content.replace(/INLINECODEPLACEHOLDER(\d+)END/g, (_, index: string) => {
+		return inlineCode[Number(index)] ?? "";
+	});
 	// Clean up whitespace
 	content = content.replace(/\s+/g, " ").trim();
 	// Remove remaining markdown link syntax (keeps display text)
