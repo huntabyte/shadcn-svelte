@@ -7,6 +7,7 @@ links:
 ---
 
 <script>
+	import ComponentPreview from "$lib/components/component-preview.svelte";
 	import ComponentSource from "$lib/components/component-source.svelte";
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
 	import Steps from "$lib/components/steps.svelte";
@@ -16,9 +17,11 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-The `DirectionProvider` component sets the text direction for your application.
+The `DirectionProvider` component is used to set the text direction (`ltr` or `rtl`) for your application. This is essential for supporting right-to-left languages like Arabic, Hebrew, and Persian.
 
-It supports left-to-right languages like English and Spanish, and right-to-left languages like Arabic, Hebrew, and Persian.
+Here's a preview of the component in RTL mode. Use the language selector to switch the language. To see more examples, look for the RTL section on components pages.
+
+<ComponentPreview name="card-rtl" hideCode class="mb-8" />
 
 ## Installation
 
@@ -50,16 +53,6 @@ Copy and paste the following code into your project.
 </script>
 ```
 
-Set the document direction.
-
-```html title="src/app.html" showLineNumbers
-<html lang="en" dir="rtl">
-  <!-- ... -->
-</html>
-```
-
-Wrap your application with `DirectionProvider`.
-
 ```svelte showLineNumbers
 <DirectionProvider direction="rtl">
   <!-- Your app content -->
@@ -68,7 +61,7 @@ Wrap your application with `DirectionProvider`.
 
 ## useDirection
 
-Use the `useDirection` hook to access the current direction.
+The `useDirection` hook is used to get the current direction of the application.
 
 ```svelte showLineNumbers
 <script lang="ts">
@@ -76,4 +69,6 @@ Use the `useDirection` hook to access the current direction.
 
   const direction = useDirection();
 </script>
+
+<div>Current direction: {direction}</div>
 ```
