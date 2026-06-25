@@ -85,6 +85,7 @@
 		"svelte": "^5.0.0"
 	},
 	"dependencies": {
+		"@modelcontextprotocol/sdk": "^1.23.0",
 		"commander": "^14.0.0",
 		"node-fetch-native": "^1.6.4",
 		"postcss": "^8.5.5",

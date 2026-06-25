@@ -55,6 +55,11 @@ function generateSectionsNav(): SidebarNavItem[] {
 			items: [],
 		},
 		{
+			title: "MCP Server",
+			href: "/docs/mcp",
+			items: [],
+		},
+		{
 			title: "Forms",
 			href: "/docs/forms",
 			items: [],
@@ -99,6 +104,11 @@ function generateGetStartedNav(): SidebarNavItem[] {
 		{
 			title: "Skills",
 			href: "/docs/skills",
+			items: [],
+		},
+		{
+			title: "MCP Server",
+			href: "/docs/mcp",
 			items: [],
 		},
 		{
