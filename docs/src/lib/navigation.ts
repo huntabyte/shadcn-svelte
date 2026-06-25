@@ -1,4 +1,4 @@
-import { components, forms, installation, migration } from "$content/index.js";
+import { components, forms, installation, migration, rtl } from "$content/index.js";
 import type { Component } from "svelte";
 
 export type NavItem = {
@@ -203,6 +203,34 @@ function generateDarkModeNav(): SidebarNavItem[] {
 	return darkModeNavItems;
 }
 
+function generateRtlNav(): SidebarNavItem[] {
+	const rtlNavItems: SidebarNavItem[] = [];
+	const pageOrder = ["RTL", "SvelteKit", "Vite", "Astro"];
+
+	const index = rtl.find((doc) => doc.title === "RTL");
+	if (index) {
+		rtlNavItems.push({
+			title: index.title,
+			href: "/docs/rtl",
+			items: [],
+		});
+	}
+
+	const pages = rtl
+		.filter((doc) => doc.title !== "RTL")
+		.sort((a, b) => pageOrder.indexOf(a.title) - pageOrder.indexOf(b.title));
+
+	for (const doc of pages) {
+		rtlNavItems.push({
+			title: doc.title,
+			href: `/docs/rtl/${doc.slug}`,
+			items: [],
+		});
+	}
+
+	return rtlNavItems;
+}
+
 function generateRegistryNav(): SidebarNavItem[] {
 	const registryNavItems: SidebarNavItem[] = [
 		{
@@ -283,6 +311,7 @@ const migrationNav = generateMigrationNav();
 const componentsNav = generateComponentsNav();
 const installationNav = generateInstallationNav();
 const darkModeNav = generateDarkModeNav();
+const rtlNav = generateRtlNav();
 const registryNav = generateRegistryNav();
 const formsNav = generateFormsNav();
 
@@ -307,6 +336,10 @@ export const sidebarNavItems: SidebarNavItem[] = [
 	{
 		title: "Dark Mode",
 		items: darkModeNav,
+	},
+	{
+		title: "RTL",
+		items: rtlNav,
 	},
 	{
 		title: "Registry",
@@ -352,6 +385,7 @@ export function getFullNavItems(): Array<SidebarNavItem & { index: number }> {
 		...getStartedNav,
 		...installationNav.filter((item) => item.title !== "Installation"),
 		...darkModeNav.filter((item) => item.title !== "Dark Mode"),
+		...rtlNav,
 		...registryNav,
 		...formsNav,
 		...migrationNav,

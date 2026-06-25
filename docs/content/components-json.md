@@ -151,6 +151,18 @@ You can also specify a path to your own custom Typescript config file if it has 
 }
 ```
 
+## RTL
+
+Set `rtl` to `true` to have the CLI convert physical Tailwind classes to logical equivalents when adding or updating components.
+
+```json title="components.json"
+{
+  "rtl": true
+}
+```
+
+See the [RTL section](/docs/rtl) for more information.
+
 ## Registry
 
 The registry URL tells the CLI where to fetch the shadcn-svelte components/registry from. You can pin this to a specific preview release or your own fork of the registry.

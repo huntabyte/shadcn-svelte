@@ -5,6 +5,7 @@ import {
 	installation,
 	migration,
 	registry,
+	rtl,
 	forms,
 	changelog,
 } from "$content/index.js";
@@ -17,6 +18,7 @@ const allDocs = [
 	...components,
 	...installation,
 	...darkMode,
+	...rtl,
 	...registry,
 	...forms,
 	...changelog,
