@@ -243,6 +243,10 @@
 								"subtle",
 								"bold"
 							]
+						},
+						"rtl": {
+							"default": false,
+							"type": "boolean"
 						}
 					},
 					"additionalProperties": false

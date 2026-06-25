@@ -4,6 +4,7 @@ import {
 	transformIcons,
 	transformImports,
 	transformMenu,
+	transformRtl,
 	transformStripTypes,
 } from "../../src/utils/transformers";
 import { transformCss } from "../../src/utils/transform-css";
@@ -36,6 +37,7 @@ const mockConfig: ResolvedConfig = {
 	menuColor: "default",
 	sveltekit: true,
 	typescript: true,
+	rtl: false,
 	registry: "https://shadcn-svelte.com/registry",
 };
 
@@ -622,6 +624,164 @@ describe("transformMenu", () => {
 	});
 });
 
+describe("transformRtl", () => {
+	it("does nothing when rtl is not enabled", async () => {
+		const content = `<div class="ml-auto text-left -translate-x-1/2"></div>`;
+
+		const result = await transformRtl({
+			content,
+			filePath: "test.svelte",
+			config: mockConfig,
+		});
+
+		expect(result.content).toBe(content);
+	});
+
+	it("maps static physical classes to logical classes", async () => {
+		const content = `
+<div class="ml-auto pl-8 text-left rounded-l-md border-r left-0"></div>
+`.trim();
+
+		const result = await transformRtl({
+			content,
+			filePath: "test.svelte",
+			config: { ...mockConfig, rtl: true },
+		});
+
+		expect(result.content).toBe(
+			`<div class="ms-auto ps-8 text-start rounded-s-md border-e start-0"></div>`
+		);
+	});
+
+	it("adds rtl variants for translate, reverse, cursor, and flip markers", async () => {
+		const content = `
+<div class="-translate-x-1/2 space-x-2 cursor-w-resize cn-rtl-flip"></div>
+`.trim();
+
+		const result = await transformRtl({
+			content,
+			filePath: "test.svelte",
+			config: { ...mockConfig, rtl: true },
+		});
+
+		expect(result.content).toBe(
+			`<div class="-translate-x-1/2 rtl:translate-x-1/2 space-x-2 rtl:space-x-reverse cursor-w-resize rtl:cursor-e-resize rtl:rotate-180"></div>`
+		);
+	});
+
+	it("maps string arguments inside cn calls", async () => {
+		const content = `
+<script lang="ts">
+	import { cn } from "$lib/utils.js";
+</script>
+
+<div class={cn("ml-auto text-right", active && "border-l-0")}></div>
+`.trim();
+
+		const result = await transformRtl({
+			content,
+			filePath: "test.svelte",
+			config: { ...mockConfig, rtl: true },
+		});
+
+		expect(result.content).toContain(`cn("ms-auto text-end", active && "border-s-0")`);
+	});
+
+	it("maps direct dynamic class expression strings", async () => {
+		const content = `
+<div class={active ? "ml-auto text-right" : "pl-2"}></div>
+`.trim();
+
+		const result = await transformRtl({
+			content,
+			filePath: "test.svelte",
+			config: { ...mockConfig, rtl: true },
+		});
+
+		expect(result.content).toBe(`<div class={active ? "ms-auto text-end" : "ps-2"}></div>`);
+	});
+
+	it("maps script-level tv string literals", async () => {
+		const content = `
+<script lang="ts" module>
+	import { tv } from "tailwind-variants";
+
+	export const variants = tv({
+		base: "ml-auto text-right",
+		variants: {
+			orientation: {
+				horizontal: "rounded-r-none border-l-0",
+			},
+		},
+	});
+</script>
+`.trim();
+
+		const result = await transformRtl({
+			content,
+			filePath: "test.svelte",
+			config: { ...mockConfig, rtl: true },
+		});
+
+		expect(result.content).toContain(`base: "ms-auto text-end"`);
+		expect(result.content).toContain(`horizontal: "rounded-e-none border-s-0"`);
+	});
+
+	it("maps logical-side slide animations", async () => {
+		const content = `
+<div class="data-[side=inline-start]:slide-in-from-right-2 data-[side=inline-end]:slide-out-to-left-2"></div>
+`.trim();
+
+		const result = await transformRtl({
+			content,
+			filePath: "test.svelte",
+			config: { ...mockConfig, rtl: true },
+		});
+
+		expect(result.content).toBe(
+			`<div class="data-[side=inline-start]:slide-in-from-end-2 data-[side=inline-end]:slide-out-to-start-2"></div>`
+		);
+	});
+
+	it("maps side props on menu content components", async () => {
+		const content = `
+<ContextMenuContent side="left" />
+<ContextMenuSubContent side="right" />
+<DropdownMenuSubContent side="right" />
+`.trim();
+
+		const result = await transformRtl({
+			content,
+			filePath: "test.svelte",
+			config: { ...mockConfig, rtl: true },
+		});
+
+		expect(result.content).toBe(
+			`
+<ContextMenuContent side="inline-start" />
+<ContextMenuSubContent side="inline-end" />
+<DropdownMenuSubContent side="inline-end" />
+`.trim()
+		);
+	});
+
+	it("preserves physical positioning inside physical side variants", async () => {
+		const content = `
+<div class="data-[side=left]:-right-1 data-[side=right]:left-0 data-[side=left]:text-right"></div>
+`.trim();
+
+		const result = await transformRtl({
+			content,
+			filePath: "test.svelte",
+			config: { ...mockConfig, rtl: true },
+		});
+
+		expect(result.content).toBe(
+			`<div class="data-[side=left]:-right-1 data-[side=right]:left-0 data-[side=left]:text-end"></div>`
+		);
+	});
+});
+
 describe("transformImports", () => {
 	it("transforms component imports correctly", async () => {
 		const content = 'import { Button } from "$COMPONENTS$/button";';
@@ -790,6 +950,7 @@ describe("transformImports with more custom paths", () => {
 		iconLibrary: "lucide",
 		menuAccent: "subtle",
 		menuColor: "default",
+		rtl: false,
 		sveltekit: true,
 		typescript: true,
 		registry: "https://shadcn-svelte.com/registry",

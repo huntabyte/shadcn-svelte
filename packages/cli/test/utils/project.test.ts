@@ -48,6 +48,7 @@ function createConfig(resolvedPaths: {
 		iconLibrary: "lucide",
 		menuColor: "default",
 		menuAccent: "subtle",
+		rtl: false,
 		sveltekit: true,
 	} satisfies ResolvedConfig;
 }

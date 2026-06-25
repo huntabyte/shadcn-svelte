@@ -77,6 +77,7 @@ describe("addRegistryItems", () => {
 		iconLibrary: "lucide",
 		menuColor: "default",
 		menuAccent: "subtle",
+		rtl: false,
 	} satisfies ResolvedConfig;
 
 	beforeEach(() => {

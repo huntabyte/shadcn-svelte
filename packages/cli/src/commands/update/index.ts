@@ -23,6 +23,7 @@ import {
 	transformImports,
 	transformIcons,
 	transformMenu,
+	transformRtl,
 	transformStripTypes,
 } from "../../utils/transformers/index.js";
 import { getSupportedFontMarkers, type FontMarkerSource } from "../../utils/font-markers.js";
@@ -207,6 +208,7 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 							transformImports,
 							transformIcons,
 							transformMenu,
+							transformRtl,
 							transformFont,
 							!config.typescript && transformStripTypes,
 						]

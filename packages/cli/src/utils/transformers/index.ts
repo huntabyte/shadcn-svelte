@@ -52,4 +52,5 @@ export { transformStripTypes } from "./transform-strip-types.js";
 export { transformIcons } from "./transform-icons.js";
 export { transformImports } from "./transform-imports.js";
 export { transformMenu } from "./transform-menu.js";
+export { transformRtl, applyRtlMapping } from "./transform-rtl.js";
 export { transformFont, rewriteFontMarkers } from "./transform-font.js";

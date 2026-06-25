@@ -43,6 +43,7 @@ export const DEFAULT_CONFIG = {
 	iconLibrary: "lucide",
 	menuColor: "default",
 	menuAccent: "subtle",
+	rtl: false,
 } as const;
 
 export const stripTrailingSlash = (s: string) => (s.endsWith("/") ? s.slice(0, -1) : s);
@@ -96,6 +97,7 @@ export const newConfigSchema = baseConfigSchema.extend({
 	iconLibrary: z.enum(ICON_LIBRARIES).optional(),
 	menuColor: z.enum(MENU_COLORS).optional(),
 	menuAccent: z.enum(MENU_ACCENTS).optional(),
+	rtl: z.boolean().default(DEFAULT_CONFIG.rtl),
 });
 
 export type RawConfig = z.infer<typeof rawConfigSchema>;
@@ -125,4 +127,5 @@ export const resolvedConfigSchema = rawConfigSchema.extend({
 	iconLibrary: z.enum(ICON_LIBRARIES).default(DEFAULT_CONFIG.iconLibrary),
 	menuColor: z.enum(MENU_COLORS).default(DEFAULT_CONFIG.menuColor),
 	menuAccent: z.enum(MENU_ACCENTS).default(DEFAULT_CONFIG.menuAccent),
+	rtl: z.boolean().default(DEFAULT_CONFIG.rtl),
 });
