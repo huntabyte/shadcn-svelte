@@ -80,9 +80,11 @@
 					{rtlPreviewLanguageOptions.find((option) => option.value === language)?.label}
 				</Select.Trigger>
 				<Select.Content>
-					{#each rtlPreviewLanguageOptions as option (option.value)}
-						<Select.Item value={option.value} label={option.label} />
-					{/each}
+					<Select.Group>
+						{#each rtlPreviewLanguageOptions as option (option.value)}
+							<Select.Item value={option.value} label={option.label} />
+						{/each}
+					</Select.Group>
 				</Select.Content>
 			</Select.Root>
 			<Popover.Root>

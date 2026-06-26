@@ -19,6 +19,7 @@ export { default as ButtonOutline } from "./button-outline.svelte";
 export { default as ButtonSecondary } from "./button-secondary.svelte";
 export { default as ButtonWithIcon } from "./button-with-icon.svelte";
 export { default as CardDemo } from "./card-demo.svelte";
+export { default as CardRtl } from "./card-rtl.svelte";
 export { default as CardWithForm } from "./card-with-form.svelte";
 export { default as CheckboxDemo } from "./checkbox-demo.svelte";
 export { default as CheckboxDisabled } from "./checkbox-disabled.svelte";

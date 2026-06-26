@@ -45,10 +45,13 @@ function componentPreviews() {
 			if (!filename?.endsWith(".md") || !content.includes(TARGET)) return;
 
 			const ms = new MagicString(content);
-			const results = content.matchAll(/<ComponentPreview name=["|']([^\s]*)["|']/g);
+			const results = content.matchAll(/<ComponentPreview\b([^>]*)>/g);
 			const components = new Set();
 			for (const exec of results) {
-				const [, name] = exec;
+				const [, attrs] = exec;
+				const name = attrs.match(/\bname=["']([^"']+)["']/)?.[1];
+				if (!name || attrs.includes("component=")) continue;
+
 				const insertIndex = exec.index + TARGET.length;
 				const identifier = camelize(name);
 				if (name.includes("sidebar")) continue;
