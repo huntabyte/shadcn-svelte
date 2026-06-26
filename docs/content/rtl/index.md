@@ -4,22 +4,24 @@ description: Add right-to-left support to your project.
 ---
 
 <script>
-	import Callout from "$lib/components/callout.svelte";
 	import ComponentPreview from "$lib/components/component-preview.svelte";
 	import LinkedCard from "$lib/components/linked-card.svelte";
 	import PMExecute from "$lib/components/pm-execute.svelte";
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
 	import Steps from "$lib/components/steps.svelte";
 	import Step from "$lib/components/step.svelte";
+	import SvelteWhite from "$lib/components/svelte-white.svelte";
 </script>
 
 shadcn-svelte components have first-class support for right-to-left (RTL) layouts. Text alignment, positioning, and directional styles automatically adapt for languages like Arabic, Hebrew, and Persian.
 
 <ComponentPreview
 	name="card-rtl"
+	direction="rtl"
+	previewClassName="h-auto"
 	hideCode
+	caption="A card component in RTL mode."
 	class="mb-8"
-	description="A card component in RTL mode."
 />
 
 When you install components, the CLI automatically transforms physical positioning classes to logical equivalents, so your components work seamlessly in both LTR and RTL contexts.
@@ -30,17 +32,7 @@ Select your framework to get started with RTL support.
 
 <div class="mt-6 grid gap-4 sm:grid-cols-2 sm:gap-6">
 	<LinkedCard href="/docs/rtl/sveltekit">
-		<svg
-			role="img"
-			viewBox="0 0 24 24"
-			xmlns="http://www.w3.org/2000/svg"
-			class="h-10 w-10"
-			fill="currentColor"
-		>
-			<title>SvelteKit</title>
-			<path d="M10.354 21.125a5.847 5.847 0 0 1-5.383-3.533 5.899 5.899 0 0 1 .977-6.272l.344-.403-.344-.403a3.978 3.978 0 0 1-.707-4.215 3.936 3.936 0 0 1 3.633-2.374h6.252a5.847 5.847 0 0 1 5.383 3.533 5.899 5.899 0 0 1-.977 6.272l-.344.403.344.403a3.978 3.978 0 0 1 .707 4.215 3.936 3.936 0 0 1-3.633 2.374zm0-1.625h6.252a2.31 2.31 0 0 0 2.134-1.397 2.337 2.337 0 0 0-.416-2.476l-.93-1.091 1.058-1.24a4.274 4.274 0 0 0 .708-4.545 4.222 4.222 0 0 0-3.884-2.55H8.874A2.31 2.31 0 0 0 6.74 7.598a2.337 2.337 0 0 0 .416 2.476l.93 1.091-1.058 1.24a4.274 4.274 0 0 0-.708 4.545 4.222 4.222 0 0 0 3.884 2.55z" />
-			<path d="M14.342 8.338a.78.78 0 0 1 .757.968l-.097.387a.777.777 0 0 1-.757.59H9.759a.777.777 0 0 0-.757.59l-.097.387a.78.78 0 0 0 .757.968h4.68a2.405 2.405 0 0 1 2.333 2.987l-.097.387a2.399 2.399 0 0 1-2.333 1.822H9.658a.78.78 0 0 1-.757-.968l.097-.387a.777.777 0 0 1 .757-.59h4.486a.777.777 0 0 0 .757-.59l.097-.387a.78.78 0 0 0-.757-.968h-4.68a2.405 2.405 0 0 1-2.333-2.987l.097-.387a2.399 2.399 0 0 1 2.333-1.822z" />
-		</svg>
+		<SvelteWhite />
 		<p class="mt-2 font-medium">SvelteKit</p>
 	</LinkedCard>
 	<LinkedCard href="/docs/rtl/vite">
@@ -81,11 +73,9 @@ When you add components with `rtl: true` set in your `components.json`, the shad
 - Text alignment and spacing classes are adjusted accordingly.
 - Supported icons are automatically flipped using `rtl:rotate-180`.
 
-```json title="components.json"
-{
-  "rtl": true
-}
-```
+## Try it out
+
+Follow the [SvelteKit](/docs/rtl/sveltekit), [Vite](/docs/rtl/vite), or [Astro](/docs/rtl/astro) guide to enable RTL support in a new project.
 
 ## Supported Styles
 
@@ -137,31 +127,19 @@ There is a [known issue](https://github.com/Wombosvideo/tw-animate-css/issues/67
 
 ## Migrating existing components
 
-If you have existing components installed before enabling RTL, set `rtl` to `true` in your `components.json`, then update the components you want to migrate.
+If you have existing components installed before enabling RTL, you can migrate them using the CLI as follows:
 
 <Steps>
 
-<Step>Set `rtl` to `true` in your `components.json` file.</Step>
+<Step>Run the migrate command</Step>
 
-```json title="components.json"
-{
-  "rtl": true
-}
-```
+<PMExecute command="shadcn-svelte@latest migrate rtl [path]" />
 
-<Step>Update existing components with the CLI.</Step>
-
-<PMExecute command="shadcn-svelte@latest update [component]" />
-
-<Callout class="mt-4">
-
-The upstream shadcn/ui docs include a dedicated `migrate rtl` command. shadcn-svelte currently applies RTL transforms when components are added or updated.
-
-</Callout>
+`[path]` accepts a path or component name to migrate. If you don't provide a path, it will migrate all the files in the `ui` directory.
 
 ### Manual Migration (Optional)
 
-Some components may need manual review after conversion, especially when your application has custom layout logic or directional placement.
+The following components are not automatically migrated by the CLI. Follow the RTL support section for each component to manually migrate them.
 
 - [Calendar](/docs/components/calendar)
 - [Pagination](/docs/components/pagination)
@@ -169,7 +147,7 @@ Some components may need manual review after conversion, especially when your ap
 
 ### Migrate Icons
 
-Some icons like arrow or chevron icons might need the `rtl:rotate-180` class to be flipped correctly. Add the `rtl:rotate-180` class to the icon component to flip it correctly.
+Some icons like `ArrowRightIcon` or `ChevronLeftIcon` might need the `rtl:rotate-180` class to be flipped correctly. Add the `rtl:rotate-180` class to the icon component to flip it correctly.
 
 ```svelte showLineNumbers /rtl:rotate-180/
 <ArrowRightIcon class="rtl:rotate-180" />
@@ -186,15 +164,5 @@ Add the direction component to your project.
 Follow your framework's documentation for details on how to add the `DirectionProvider` component to your project.
 
 See the [Get Started](#get-started) section for details on how to add the `DirectionProvider` component to your project.
-
-```svelte showLineNumbers
-<script lang="ts">
-  import { DirectionProvider } from "$lib/components/ui/direction/index.js";
-</script>
-
-<DirectionProvider direction="rtl">
-  <!-- Your app content -->
-</DirectionProvider>
-```
 
 </Steps>
