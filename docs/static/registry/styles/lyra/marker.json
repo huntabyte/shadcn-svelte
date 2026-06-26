@@ -1,0 +1,30 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "marker",
+	"type": "registry:ui",
+	"devDependencies": [
+		"tailwind-variants@^3.2.2"
+	],
+	"files": [
+		{
+			"content": "import Root from \"./marker.svelte\";\nimport Icon from \"./marker-icon.svelte\";\nimport Content from \"./marker-content.svelte\";\n\nexport {\n\tRoot,\n\tIcon,\n\tContent,\n\t//\n\tRoot as Marker,\n\tIcon as MarkerIcon,\n\tContent as MarkerContent,\n};\n",
+			"type": "registry:file",
+			"target": "marker/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLSpanElement>> = $props();\n</script>\n\n<span\n\tbind:this={ref}\n\tdata-slot=\"marker-content\"\n\tclass={cn(\n\t\t\"*:[a]:hover:text-foreground min-w-0 wrap-break-word group-data-[variant=separator]/marker:flex-none group-data-[variant=separator]/marker:text-center *:[a]:underline *:[a]:underline-offset-3\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</span>\n",
+			"type": "registry:file",
+			"target": "marker/marker-content.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLSpanElement>> = $props();\n</script>\n\n<span\n\tbind:this={ref}\n\tdata-slot=\"marker-icon\"\n\taria-hidden=\"true\"\n\tclass={cn(\"size-4 shrink-0 [&_svg:not([class*='size-'])]:size-4\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</span>\n",
+			"type": "registry:file",
+			"target": "marker/marker-icon.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\" module>\n\timport { tv, type VariantProps } from \"tailwind-variants\";\n\n\texport const markerVariants = tv({\n\t\tbase: \"group/marker text-muted-foreground [a]:hover:text-foreground relative flex min-h-4 w-full items-center gap-2 text-left text-sm [&_svg:not([class*='size-'])]:size-4 [a]:underline [a]:underline-offset-3\",\n\t\tvariants: {\n\t\t\tvariant: {\n\t\t\t\tdefault: \"\",\n\t\t\t\tseparator:\n\t\t\t\t\t\"before:bg-border after:bg-border before:mr-1 before:h-px before:min-w-0 before:flex-1 after:ml-1 after:h-px after:min-w-0 after:flex-1\",\n\t\t\t\tborder: \"border-border border-b pb-2\",\n\t\t\t},\n\t\t},\n\t});\n\n\texport type MarkerVariant = VariantProps<typeof markerVariants>[\"variant\"];\n</script>\n\n<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { Snippet } from \"svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tvariant = \"default\",\n\t\tchild,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {\n\t\tvariant?: MarkerVariant;\n\t\tchild?: Snippet<[{ props: HTMLAttributes<HTMLDivElement> }]>;\n\t} = $props();\n\n\tconst attrs = $derived({\n\t\t\"data-slot\": \"marker\",\n\t\t\"data-variant\": variant,\n\t\tclass: cn(markerVariants({ variant }), className),\n\t\t...restProps,\n\t});\n</script>\n\n{#if child}\n\t{@render child({ props: attrs })}\n{:else}\n\t<div bind:this={ref} {...attrs}>\n\t\t{@render children?.()}\n\t</div>\n{/if}\n",
+			"type": "registry:file",
+			"target": "marker/marker.svelte"
+		}
+	]
+}

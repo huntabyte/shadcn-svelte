@@ -1,0 +1,48 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "message-scroller",
+	"type": "registry:ui",
+	"devDependencies": [
+		"@lucide/svelte@^0.577.0"
+	],
+	"registryDependencies": [
+		"button"
+	],
+	"files": [
+		{
+			"content": "import Provider from \"./message-scroller-provider.svelte\";\nimport Root from \"./message-scroller.svelte\";\nimport Viewport from \"./message-scroller-viewport.svelte\";\nimport Content from \"./message-scroller-content.svelte\";\nimport Item from \"./message-scroller-item.svelte\";\nimport Button from \"./message-scroller-button.svelte\";\n\nexport {\n\tProvider,\n\tRoot,\n\tViewport,\n\tContent,\n\tItem,\n\tButton,\n\t//\n\tProvider as MessageScrollerProvider,\n\tRoot as MessageScroller,\n\tViewport as MessageScrollerViewport,\n\tContent as MessageScrollerContent,\n\tItem as MessageScrollerItem,\n\tButton as MessageScrollerButton,\n};\n",
+			"type": "registry:file",
+			"target": "message-scroller/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport ArrowDownIcon from \"@lucide/svelte/icons/arrow-down\";\n\timport { Button, type ButtonProps } from \"$UI$/button/index.js\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tclass: className,\n\t\tdirection = \"end\",\n\t\tvariant = \"secondary\",\n\t\tsize = \"icon-sm\",\n\t\tactive = true,\n\t\tbehavior = \"smooth\",\n\t\tchildren,\n\t\tonclick,\n\t\t...restProps\n\t}: ButtonProps & {\n\t\tdirection?: \"start\" | \"end\";\n\t\tactive?: boolean;\n\t\tbehavior?: ScrollBehavior;\n\t} = $props();\n\n\tfunction scrollToEdge(event: MouseEvent & { currentTarget: EventTarget & HTMLElement }) {\n\t\t(onclick as ((event: MouseEvent) => void) | undefined)?.(event);\n\t\tif (event.defaultPrevented) return;\n\n\t\tconst target = event.currentTarget;\n\t\tif (!(target instanceof HTMLElement)) return;\n\n\t\tconst root = target.closest('[data-slot=\"message-scroller\"]');\n\t\tconst viewport = root?.querySelector('[data-slot=\"message-scroller-viewport\"]');\n\t\tif (!(viewport instanceof HTMLElement)) return;\n\n\t\tviewport.scrollTo({\n\t\t\ttop: direction === \"end\" ? viewport.scrollHeight : 0,\n\t\t\tbehavior,\n\t\t});\n\t}\n</script>\n\n<Button\n\tdata-slot=\"message-scroller-button\"\n\tdata-direction={direction}\n\tdata-variant={variant}\n\tdata-size={size}\n\tdata-active={active}\n\t{variant}\n\t{size}\n\tclass={cn(\n\t\t\"border-border bg-background text-foreground hover:bg-muted hover:text-foreground absolute inset-s-1/2 -translate-x-1/2 transition-[translate,scale,opacity] duration-200 data-[active=false]:pointer-events-none data-[active=false]:scale-95 data-[active=false]:opacity-0 data-[active=false]:duration-400 data-[active=false]:ease-[cubic-bezier(0.7,0,0.84,0)] data-[active=true]:translate-y-0 data-[active=true]:scale-100 data-[active=true]:opacity-100 data-[active=true]:ease-[cubic-bezier(0.23,1,0.32,1)] data-[direction=end]:bottom-4 data-[direction=end]:data-[active=false]:translate-y-full data-[direction=start]:top-4 data-[direction=start]:data-[active=false]:-translate-y-full rtl:translate-x-1/2 data-[direction=start]:[&_svg]:rotate-180\",\n\t\tclassName\n\t)}\n\tonclick={scrollToEdge}\n\t{...restProps}\n>\n\t{#if children}\n\t\t{@render children()}\n\t{:else}\n\t\t<ArrowDownIcon />\n\t\t<span class=\"sr-only\">{direction === \"end\" ? \"Scroll to end\" : \"Scroll to start\"}</span>\n\t{/if}\n</Button>\n",
+			"type": "registry:file",
+			"target": "message-scroller/message-scroller-button.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"message-scroller-content\"\n\tclass={cn(\"flex h-max min-h-full flex-col gap-8\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "message-scroller/message-scroller-content.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tmessageId,\n\t\tscrollAnchor = false,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {\n\t\tmessageId?: string;\n\t\tscrollAnchor?: boolean;\n\t} = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"message-scroller-item\"\n\tdata-message-id={messageId}\n\tdata-scroll-anchor={scrollAnchor ? \"\" : undefined}\n\tclass={cn(\n\t\t\"min-w-0 shrink-0 [contain-intrinsic-size:auto_10rem] [content-visibility:auto]\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "message-scroller/message-scroller-item.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport type { Snippet } from \"svelte\";\n\n\tlet { children }: { children?: Snippet } = $props();\n</script>\n\n{@render children?.()}\n",
+			"type": "registry:file",
+			"target": "message-scroller/message-scroller-provider.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"message-scroller-viewport\"\n\tclass={cn(\n\t\t\"scroll-fade-b scrollbar-thin scrollbar-gutter-stable data-autoscrolling:scrollbar-none size-full min-h-0 min-w-0 overflow-y-auto overscroll-contain contain-content\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "message-scroller/message-scroller-viewport.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"message-scroller\"\n\tclass={cn(\n\t\t\"group/message-scroller relative flex size-full min-h-0 flex-col overflow-hidden\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "message-scroller/message-scroller.svelte"
+		}
+	]
+}
