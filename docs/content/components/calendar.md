@@ -99,6 +99,7 @@ For Persian / Jalali calendars, create the value with `PersianCalendar` and pass
 
   const locale = "fa-IR-u-nu-arabext";
   const dayFormatter = new DateFormatter(locale, { day: "numeric" });
+  const weekdayLabels = ["ش", "۱ش", "۲ش", "۳ش", "۴ش", "۵ش", "ج"];
 
   let value = $state(new CalendarDate(new PersianCalendar(), 1404, 3, 22));
 
@@ -116,6 +117,9 @@ For Persian / Jalali calendars, create the value with `PersianCalendar` and pass
     weekdayFormat="narrow"
     class="rounded-md border shadow-sm"
   >
+    {#snippet weekday({ index })}
+      {weekdayLabels[index]}
+    {/snippet}
     {#snippet day({ day })}
       <Calendar.Day>
         {formatDay(day)}
