@@ -8,7 +8,9 @@
 			"type": "registry:component",
 			"title": "Hello World",
 			"description": "A simple hello world component",
-			"registryDependencies": ["button"],
+			"registryDependencies": [
+				"button"
+			],
 			"files": [
 				{
 					"path": "src/lib/registry/blocks/hello-world/hello-world.svelte",
@@ -24,8 +26,16 @@
 			"type": "registry:component",
 			"title": "Example Form",
 			"description": "A contact form with Zod validation.",
-			"dependencies": ["zod"],
-			"registryDependencies": ["button", "input", "label", "textarea", "card"],
+			"dependencies": [
+				"zod"
+			],
+			"registryDependencies": [
+				"button",
+				"input",
+				"label",
+				"textarea",
+				"card"
+			],
 			"files": [
 				{
 					"path": "src/lib/registry/blocks/example-form/example-form.svelte",
@@ -38,7 +48,9 @@
 			"type": "registry:component",
 			"title": "Complex Component",
 			"description": "A complex component showing hooks, libs and components.",
-			"registryDependencies": ["card"],
+			"registryDependencies": [
+				"card"
+			],
 			"files": [
 				{
 					"path": "src/lib/registry/blocks/complex-component/+page.svelte",
@@ -104,11 +116,88 @@
 			"type": "registry:component",
 			"title": "Checkout Steps",
 			"description": "A checkout steps component.",
-			"registryDependencies": ["local:stepper"],
+			"registryDependencies": [
+				"local:stepper"
+			],
 			"files": [
 				{
 					"path": "src/lib/registry/blocks/checkout-steps/checkout-steps.svelte",
 					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "message-scroller",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/ui/message-scroller/message-scroller.svelte",
+					"type": "registry:file"
+				},
+				{
+					"path": "src/lib/registry/ui/message-scroller/index.ts",
+					"type": "registry:file"
+				}
+			]
+		},
+		{
+			"name": "message",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/ui/message/message.svelte",
+					"type": "registry:file"
+				},
+				{
+					"path": "src/lib/registry/ui/message/index.ts",
+					"type": "registry:file"
+				}
+			]
+		},
+		{
+			"name": "bubble",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/ui/bubble/bubble.svelte",
+					"type": "registry:file"
+				},
+				{
+					"path": "src/lib/registry/ui/bubble/index.ts",
+					"type": "registry:file"
+				}
+			]
+		},
+		{
+			"name": "attachment",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/ui/attachment/attachment.svelte",
+					"type": "registry:file"
+				},
+				{
+					"path": "src/lib/registry/ui/attachment/index.ts",
+					"type": "registry:file"
+				}
+			]
+		},
+		{
+			"name": "marker",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/ui/marker/marker.svelte",
+					"type": "registry:file"
+				},
+				{
+					"path": "src/lib/registry/ui/marker/index.ts",
+					"type": "registry:file"
 				}
 			]
 		}
