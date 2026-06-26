@@ -5,7 +5,6 @@ date: 2026-06-26
 ---
 
 <script>
-	import Button from "$lib/components/ui/button/button.svelte";
 	import ComponentPreview from "$lib/components/component-preview.svelte";
 </script>
 
