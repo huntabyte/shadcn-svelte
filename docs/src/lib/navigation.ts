@@ -18,7 +18,14 @@ export type NavItemWithChildren = NavItem & {
 	items: NavItemWithChildren[];
 };
 
-export const PAGES_NEW = ["/docs/skills", "/docs/changelog"];
+export const PAGES_NEW = [
+	"/docs/skills",
+	"/docs/components/attachment",
+	"/docs/components/bubble",
+	"/docs/components/message-scroller",
+	"/docs/components/marker",
+	"/docs/components/message",
+];
 
 export const PAGES_UPDATED: string[] = [];
 

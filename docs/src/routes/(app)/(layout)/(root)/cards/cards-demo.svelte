@@ -5,6 +5,7 @@
 	import ContributionHistory from "./contribution-history.svelte";
 	import DividendIncome from "./dividend-income.svelte";
 	import EmptyDistributeTrack from "./empty-distribute-track.svelte";
+	import MessageScrollerDemo from "$lib/registry/examples/message-scroller-demo.svelte";
 	import NewMilestone from "./new-milestone.svelte";
 	import NotificationSettings from "./notification-settings.svelte";
 	import Payments from "./payments.svelte";
@@ -28,7 +29,6 @@
 	import SkeletonSavingsTargets from "./skeleton/savings-targets.svelte";
 	import SkeletonTransferFunds from "./skeleton/transfer-funds.svelte";
 	import SkeletonUIElements from "./skeleton/ui-elements.svelte";
-	import TransferFunds from "./transfer-funds.svelte";
 	import UIElements from "./ui-elements.svelte";
 </script>
 
@@ -81,7 +81,7 @@
 
 <div
 	data-slot="demo"
-	class="theme-neutral bg-muted 3xl:[--gap:--spacing(8)] dark:bg-background relative flex w-full max-w-none flex-col gap-(--gap) overflow-hidden p-12 pb-0! [--gap:--spacing(8)] min-[1900px]:p-12 min-[1900px]:[--gap:--spacing(10)]! lg:p-6 lg:[--gap:--spacing(6)]"
+	class="theme-blue bg-muted 3xl:[--gap:--spacing(8)] dark:bg-background relative flex w-full max-w-none flex-col gap-(--gap) overflow-hidden p-12 pb-0! [--gap:--spacing(8)] min-[1900px]:p-12 min-[1900px]:[--gap:--spacing(10)]! lg:p-6 lg:[--gap:--spacing(6)]"
 >
 	{@render CardsSkeletonRails()}
 	<div
@@ -97,17 +97,19 @@
 			<ClaimableBalance></ClaimableBalance>
 			<DividendIncome></DividendIncome>
 		</div>
-		<div class="3xl:flex! hidden flex-col gap-(--gap)">
+		<div class="hidden flex-col gap-(--gap) min-[1400px]:flex">
 			<NewMilestone></NewMilestone>
 			<PayoutThreshold></PayoutThreshold>
 			<AccountAccess></AccountAccess>
 		</div>
 		<div class="hidden flex-col gap-(--gap) md:flex">
 			<QrConnect></QrConnect>
-			<TransferFunds></TransferFunds>
+			<div class="**:[.text-center.text-xs]:hidden">
+				<MessageScrollerDemo></MessageScrollerDemo>
+			</div>
 			<Payments></Payments>
 		</div>
-		<div class="hidden flex-col gap-(--gap) min-[1400px]:flex">
+		<div class="hidden flex-col gap-(--gap) min-[1900px]:flex">
 			<EmptyDistributeTrack></EmptyDistributeTrack>
 			<AnalyticsCard></AnalyticsCard>
 			<NotificationSettings></NotificationSettings>

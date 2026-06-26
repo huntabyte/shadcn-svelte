@@ -105,7 +105,7 @@
 					<span class="style-sera:md:hidden hidden md:flex"> Alert Dialog </span>
 					<span class="style-sera:md:flex flex md:hidden">Dialog</span>
 				</AlertDialogTrigger>
-				<AlertDialogContent size="sm" portalProps={{ disabled: true }}>
+				<AlertDialogContent size="sm" class="theme-blue" portalProps={{ disabled: true }}>
 					<AlertDialogHeader>
 						<AlertDialogTitle>Allow accessory to connect?</AlertDialogTitle>
 						<AlertDialogDescription>

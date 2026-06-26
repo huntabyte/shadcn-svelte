@@ -15,7 +15,6 @@
 		{ month: "Feb", amount: 900 },
 		{ month: "Mar", amount: 1300 },
 		{ month: "Apr", amount: 750 },
-		{ month: "May", amount: 1400 },
 	];
 	const maxAmount = Math.max(...chartData.map((item) => item.amount));
 </script>
@@ -31,10 +30,11 @@
 			role="img"
 			aria-label="Last 6 months of contribution activity"
 		>
-			{#each chartData as item (item.month)}
+			{#each chartData as item, index (item.month)}
 				<div class="flex h-full flex-1 flex-col justify-end gap-2">
 					<div
-						class="bg-chart-2 min-h-2 rounded-t-md"
+						data-index={index}
+						class="data-[index=0]:bg-chart-1 data-[index=1]:bg-chart-2 data-[index=2]:bg-chart-3 data-[index=3]:bg-chart-4 data-[index=4]:bg-chart-5 data-[index=5]:bg-chart-6 min-h-2 rounded-lg"
 						style={`height: ${(item.amount / maxAmount) * 100}%`}
 					></div>
 					<span class="text-muted-foreground text-center text-xs">

@@ -5,5 +5,5 @@
 </script>
 
 <a href="/docs/changelog" class={cn(badgeVariants({ variant: "secondary", class: "bg-muted" }))}>
-	Introducing Rhea <ArrowRightIcon />
+	Components for Chat Interfaces <ArrowRightIcon />
 </a>

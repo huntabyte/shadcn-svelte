@@ -1,6 +1,6 @@
 ---
 title: June 2026 - Components for Chat Interfaces
-description: Message Scroller, Message, Bubble, Attachment, and Marker. Components for building chat interfaces.
+description: MessageScroller, Message, Bubble, Attachment, and Marker. Components for building chat interfaces.
 date: 2026-06-26
 ---
 
@@ -8,10 +8,14 @@ date: 2026-06-26
 	import ComponentPreview from "$lib/components/component-preview.svelte";
 </script>
 
-<ComponentPreview name="message-scroller-demo" previewClassName="h-auto p-4 sm:p-8" />
+<ComponentPreview
+	name="message-scroller-demo"
+	class="rounded-[34px] sm:rounded-4xl"
+	previewClassName="h-auto theme-blue bg-surface dark:bg-background p-4 min-[480px]:p-8 min-[560px]:p-10 sm:px-10 sm:py-16"
+/>
 
-Today, we're adding a new set of components for building chat interfaces:
-[**Message Scroller**](/docs/components/message-scroller),
+Today, we're releasing a new set of components for building chat interfaces:
+[**MessageScroller**](/docs/components/message-scroller),
 [**Message**](/docs/components/message), [**Bubble**](/docs/components/bubble),
 [**Attachment**](/docs/components/attachment), and
 [**Marker**](/docs/components/marker).
@@ -23,18 +27,24 @@ shadcn-svelte components you can copy, compose, and adapt to your product.
 We are starting with the conversation layer: scrolling, message rows, bubbles,
 attachments, and markers.
 
+We asked ourselves: what makes a great streaming chat experience? Then we
+abstracted the core rules into a set of primitives: `MessageScroller`.
+
 ```bash
 npx shadcn-svelte@latest add message-scroller message bubble attachment marker
 ```
 
-## Message Scroller
+## MessageScroller
 
 `MessageScroller` is the scroll container for a conversation. It handles the
-viewport, transcript content, message rows, and scroll controls without owning
-your messages, AI state, transport, persistence, or model state.
+parts that are easy to get wrong: anchored turns, streamed replies, saved thread
+restore, prepended history, jump-to-message, scroll controls, and visibility
+tracking.
 
-Bring your own data and rendering. If your chat is powered by the AI SDK, compose
-these components with `@ai-sdk/svelte` state.
+`MessageScroller` owns that behavior without owning your messages, AI state,
+transport, persistence, or model state. You bring the content renderer. If your
+chat is powered by the AI SDK, compose these components with `@ai-sdk/svelte`
+state.
 
 ## Message, Bubble, Attachment, and Marker
 
@@ -55,8 +65,8 @@ inboxes, team threads, group chats, and product-specific conversations.
 
 ## scroll-fade and shimmer
 
-We also added two CSS utilities for the details that make chat interfaces feel
-better.
+We also added two new CSS utilities for the details that make chat interfaces
+feel better.
 
 `scroll-fade` adds scroll-aware edge fades to scroll containers. Use it on
 `MessageScroller`, attachment rows, and any long list where you want to hint at
@@ -72,12 +82,13 @@ with `npx shadcn-svelte@latest init` can use them.
 
 This does not replace [AI Elements](https://ai-sdk.dev/elements/overview). You
 can keep using AI Elements for AI interface components and patterns. This
-release brings the core pieces of chat into shadcn-svelte as local Svelte
-components.
+release is about bringing the core pieces of chat into shadcn-svelte, one
+component at a time.
 
 If you are already using a component from AI Elements, you do not need to
 rewrite your app. Keep what works. Try the shadcn-svelte version when you want
-copy-and-paste components that are easy to adapt in a Svelte project.
+the newer abstraction, updated styling, and copy-and-paste components that are
+easy to adapt in a Svelte project.
 
 The goal is to make these pieces easy to adopt independently. Replace one part,
 compose it with what you already have, and keep building.
