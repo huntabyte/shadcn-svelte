@@ -33,30 +33,25 @@ function generateSectionsNav(): SidebarNavItem[] {
 			title: "Components",
 			href: "/docs/components",
 			items: [],
-		} /*
-		{
-			title: "Directory",
-			href: "/docs/directory",
-			items: [],
 		},
+		// {
+		// 	title: "Directory",
+		// 	href: "/docs/directory",
+		// 	items: [],
+		// },
 		{
 			title: "MCP Server",
 			href: "/docs/mcp",
 			items: [],
 		},
-		{
-			title: "Forms",
-			href: "/docs/forms",
-			items: [],
-			},*/,
+		// {
+		// 	title: "Forms",
+		// 	href: "/docs/forms",
+		// 	items: [],
+		// },
 		{
 			title: "Skills",
 			href: "/docs/skills",
-			items: [],
-		},
-		{
-			title: "MCP Server",
-			href: "/docs/mcp",
 			items: [],
 		},
 		{
@@ -104,11 +99,6 @@ function generateGetStartedNav(): SidebarNavItem[] {
 		{
 			title: "Skills",
 			href: "/docs/skills",
-			items: [],
-		},
-		{
-			title: "MCP Server",
-			href: "/docs/mcp",
 			items: [],
 		},
 		{
