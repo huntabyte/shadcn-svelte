@@ -3,7 +3,7 @@ import type {
 	RegistryItem,
 	RegistryItemType,
 } from "../utils/registry/schema.js";
-import fuzzysort from "../vendored/fuzzysort.js";
+import fuzzysort from "fuzzysort";
 
 const SEARCHABLE_TYPES = [
 	"registry:ui",
