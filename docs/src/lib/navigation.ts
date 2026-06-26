@@ -33,6 +33,11 @@ function generateSectionsNav(): SidebarNavItem[] {
 			title: "Components",
 			href: "/docs/components",
 			items: [],
+		},
+		{
+			title: "RTL",
+			href: "/docs/rtl",
+			items: [],
 		} /*
 		{
 			title: "Directory",
@@ -336,10 +341,6 @@ export const sidebarNavItems: SidebarNavItem[] = [
 	{
 		title: "Dark Mode",
 		items: darkModeNav,
-	},
-	{
-		title: "RTL",
-		items: rtlNav,
 	},
 	{
 		title: "Registry",
