@@ -88,6 +88,11 @@ can keep using AI Elements for AI interface components and patterns. This
 release is about bringing the core pieces of chat into shadcn-svelte, one
 component at a time.
 
+For a broader Svelte port of AI Elements, see
+[Svelte AI Elements](https://svelte-ai-elements.vercel.app/components/chain-of-thought),
+an unofficial port maintained by
+[Sikandar Bhide](https://github.com/SikandarJODD/ai-elements) / Bhide Svelte.
+
 If you are already using a component from AI Elements, you do not need to
 rewrite your app. Keep what works. Try the shadcn-svelte version when you want
 the newer abstraction, updated styling, and copy-and-paste components that are
