@@ -10,11 +10,11 @@ date: 2026-06-26
 	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
-<ComponentPreview
-	name="message-scroller-demo"
-	class="rounded-[34px] sm:rounded-4xl"
-	previewClassName="h-auto theme-blue bg-surface dark:bg-background p-4 min-[480px]:p-8 min-[560px]:p-10 sm:px-10 sm:py-16 [--primary:oklch(0.488_0.243_264.376)] [--primary-foreground:oklch(0.97_0.014_254.604)]"
-/>
+<ComponentPreview name="message-scroller-demo" class="rounded-[34px] sm:rounded-4xl" previewClassName="h-auto theme-blue bg-surface dark:bg-background p-4 min-[480px]:p-8 min-[560px]:p-10 sm:px-10 sm:py-16 [--primary:oklch(0.488_0.243_264.376)] [--primary-foreground:oklch(0.97_0.014_254.604)]">
+
+<div></div>
+
+</ComponentPreview>
 
 Today, we're releasing a new set of components for building chat interfaces:
 [**MessageScroller**](/docs/components/message-scroller),
@@ -75,12 +75,20 @@ feel better.
 `MessageScroller`, attachment rows, and any long list where you want to hint at
 more content without adding overlays or scroll listeners.
 
-<ComponentPreview name="scroll-fade-demo" previewClassName="h-auto" />
+<ComponentPreview name="scroll-fade-demo" previewClassName="h-auto">
+
+<div></div>
+
+</ComponentPreview>
 
 `shimmer` adds a text shimmer for live status. Use it for things like
 "Thinking...", "Generating response...", running tools, and streaming markers.
 
-<ComponentPreview name="shimmer-demo" />
+<ComponentPreview name="shimmer-demo">
+
+<div></div>
+
+</ComponentPreview>
 
 Both utilities ship with `shadcn-svelte/tailwind.css`, so projects initialized
 with `npx shadcn-svelte@latest init` can use them.
