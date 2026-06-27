@@ -13,7 +13,7 @@ date: 2026-06-26
 <ComponentPreview
 	name="message-scroller-demo"
 	class="rounded-[34px] sm:rounded-4xl"
-	previewClassName="h-auto theme-blue bg-surface dark:bg-background p-4 min-[480px]:p-8 min-[560px]:p-10 sm:px-10 sm:py-16"
+	previewClassName="h-auto theme-blue bg-surface dark:bg-background p-4 min-[480px]:p-8 min-[560px]:p-10 sm:px-10 sm:py-16 [--primary:oklch(0.488_0.243_264.376)] [--primary-foreground:oklch(0.97_0.014_254.604)]"
 />
 
 Today, we're releasing a new set of components for building chat interfaces:

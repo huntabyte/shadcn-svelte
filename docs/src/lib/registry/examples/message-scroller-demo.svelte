@@ -86,7 +86,6 @@
 	function streamAssistantMessage(content: string, messageId: string, offset = 0) {
 		const nextOffset = Math.min(content.length, offset + 8);
 		updateMessage(messageId, content.slice(0, nextOffset));
-		scrollToEnd("auto");
 
 		if (nextOffset < content.length) {
 			queueTimeout(() => streamAssistantMessage(content, messageId, nextOffset), 16);
@@ -125,7 +124,6 @@
 				},
 			];
 			status = "streaming";
-			scrollToEnd();
 			streamAssistantMessage(next.assistant, assistantId);
 		}, 700);
 	}
@@ -142,11 +140,19 @@
 
 {#snippet MessageBubble(message: DemoMessage)}
 	<MessageScroller.Item messageId={message.id} scrollAnchor={message.role === "user"}>
+		{@const paragraphs = message.content
+			.split(/\n\s*\n/)
+			.map((paragraph) => paragraph.trim())
+			.filter(Boolean)}
 		<Message.Root align={message.role === "user" ? "end" : "start"}>
 			<Message.Content>
-				<Bubble.Root variant={message.role === "user" ? "default" : "muted"}>
-					<Bubble.Content class="whitespace-pre-wrap">
-						{message.content}
+				<Bubble.Root variant={message.role === "user" ? "muted" : "ghost"}>
+					<Bubble.Content class="space-y-2">
+						{#each paragraphs as paragraph, paragraphIndex (paragraphIndex)}
+							<p class="whitespace-pre-wrap">
+								{paragraph}
+							</p>
+						{/each}
 					</Bubble.Content>
 				</Bubble.Root>
 			</Message.Content>
@@ -156,7 +162,9 @@
 
 <MessageScroller.Provider>
 	<div class="relative flex flex-col gap-4">
-		<Card.Root class="mx-auto h-140 w-full max-w-sm gap-0">
+		<Card.Root
+			class="mx-auto h-140 w-full max-w-sm gap-0 [--card-spacing:calc(var(--spacing)*5)]"
+		>
 			<Card.Header class="gap-1 border-b">
 				<Card.Title>New Chat</Card.Title>
 				<Card.Description>How can I help you today?</Card.Description>
