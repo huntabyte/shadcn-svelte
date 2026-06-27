@@ -3,12 +3,15 @@
 	import { Button, type ButtonProps } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 
+	const DEFAULT_SCROLL_EDGE_THRESHOLD = 8;
+	const AUTOSCROLLING_CLEAR_DELAY = 180;
+
 	let {
 		class: className,
 		direction = "end",
 		variant = "secondary",
 		size = "icon-sm",
-		active = true,
+		active = undefined,
 		behavior = "smooth",
 		children,
 		onclick,
@@ -19,30 +22,131 @@
 		behavior?: ScrollBehavior;
 	} = $props();
 
+	let buttonRef = $state<HTMLButtonElement | null>(null);
+	let derivedActive = $state(false);
+	let isAutoscrolling = $state(false);
+	let isActive = $derived(active ?? derivedActive);
+	let autoscrollingTimeout: ReturnType<typeof setTimeout> | null = null;
+
+	function getViewport() {
+		const root = buttonRef?.closest('[data-slot="message-scroller"]');
+		const viewport = root?.querySelector('[data-slot="message-scroller-viewport"]');
+
+		return viewport instanceof HTMLElement ? viewport : null;
+	}
+
+	function updateActive() {
+		const viewport = getViewport();
+
+		if (!viewport) {
+			derivedActive = false;
+			return;
+		}
+
+		derivedActive =
+			direction === "end"
+				? viewport.scrollHeight - viewport.scrollTop - viewport.clientHeight >
+					DEFAULT_SCROLL_EDGE_THRESHOLD
+				: viewport.scrollTop > DEFAULT_SCROLL_EDGE_THRESHOLD;
+
+		if (isAutoscrolling && !derivedActive) {
+			isAutoscrolling = false;
+		}
+	}
+
+	function handleScroll() {
+		if (isAutoscrolling) {
+			const viewport = getViewport();
+			if (viewport) {
+				scheduleAutoscrollingClear(viewport);
+			}
+
+			updateActive();
+			derivedActive = false;
+			return;
+		}
+
+		updateActive();
+	}
+
+	function clearAutoscrollingTimeout() {
+		if (autoscrollingTimeout === null) return;
+
+		clearTimeout(autoscrollingTimeout);
+		autoscrollingTimeout = null;
+	}
+
+	function scheduleAutoscrollingClear(viewport: HTMLElement) {
+		clearAutoscrollingTimeout();
+		autoscrollingTimeout = setTimeout(() => {
+			isAutoscrolling = false;
+			viewport.removeAttribute("data-autoscrolling");
+			updateActive();
+		}, AUTOSCROLLING_CLEAR_DELAY);
+	}
+
+	function startAutoscrolling(viewport: HTMLElement) {
+		isAutoscrolling = true;
+		derivedActive = false;
+		viewport.toggleAttribute("data-autoscrolling", true);
+		scheduleAutoscrollingClear(viewport);
+	}
+
 	function scrollToEdge(event: MouseEvent & { currentTarget: EventTarget & HTMLElement }) {
+		if (!isActive) return;
+
 		(onclick as ((event: MouseEvent) => void) | undefined)?.(event);
 		if (event.defaultPrevented) return;
 
-		const target = event.currentTarget;
-		if (!(target instanceof HTMLElement)) return;
-
-		const root = target.closest('[data-slot="message-scroller"]');
-		const viewport = root?.querySelector('[data-slot="message-scroller-viewport"]');
-		if (!(viewport instanceof HTMLElement)) return;
+		event.currentTarget.blur();
+		const viewport = getViewport();
+		if (!viewport) return;
 
 		viewport.scrollTo({
 			top: direction === "end" ? viewport.scrollHeight : 0,
 			behavior,
 		});
+
+		startAutoscrolling(viewport);
 	}
+
+	$effect(() => {
+		buttonRef;
+		direction;
+
+		const viewport = getViewport();
+		if (!viewport) return;
+
+		updateActive();
+
+		const content = viewport.querySelector('[data-slot="message-scroller-content"]');
+		const resizeObserver =
+			typeof ResizeObserver === "undefined"
+				? null
+				: new ResizeObserver(() => requestAnimationFrame(updateActive));
+
+		resizeObserver?.observe(viewport);
+		if (content instanceof HTMLElement) {
+			resizeObserver?.observe(content);
+		}
+
+		viewport.addEventListener("scroll", handleScroll, { passive: true });
+		return () => {
+			clearAutoscrollingTimeout();
+			viewport.removeAttribute("data-autoscrolling");
+			viewport.removeEventListener("scroll", handleScroll);
+			resizeObserver?.disconnect();
+		};
+	});
 </script>
 
 <Button
+	bind:ref={buttonRef}
 	data-slot="message-scroller-button"
 	data-direction={direction}
 	data-variant={variant}
 	data-size={size}
-	data-active={active}
+	data-active={isActive}
 	{variant}
 	{size}
 	class={cn(
