@@ -88,13 +88,13 @@
 				</Select.Content>
 			</Select.Root>
 			<Popover.Root>
-				<Popover.Trigger>
-					<Button variant="ghost" size="icon-sm" class="ms-auto size-7">
+				<Popover.Trigger class="ms-auto">
+					<Button variant="ghost" size="icon-sm" class="size-7">
 						<AlertCircleIcon />
 						<span class="sr-only">Toggle</span>
 					</Button>
 				</Popover.Trigger>
-				<Popover.Content side="bottom" align="end" dir="rtl" class="w-56 text-xs">
+				<Popover.Content side="bottom" align="end" class="w-56 text-xs">
 					<div>
 						I used AI to translate the text for demonstration purposes. It's not perfect
 						and may contain errors.

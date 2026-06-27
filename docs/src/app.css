@@ -230,11 +230,13 @@
 		@apply opacity-60 md:opacity-100;
 	}
 
-	[data-lang="ar"] {
+	[data-lang="ar"],
+	[data-lang="ar"] .cn-font-heading {
 		font-family: var(--font-ar);
 	}
 
-	[data-lang="he"] {
+	[data-lang="he"],
+	[data-lang="he"] .cn-font-heading {
 		font-family: var(--font-he);
 	}
 }
