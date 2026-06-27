@@ -189,6 +189,10 @@ export function rehypeComponentExample() {
 				(node?.value?.startsWith("<ComponentPreview") ||
 					node?.value?.startsWith("<ComponentSource"))
 			) {
+				const componentTagName = node.value.startsWith("<ComponentPreview")
+					? "ComponentPreview"
+					: "ComponentSource";
+				const isSelfClosing = /\/>\s*$/.test(node.value);
 				const match = node.value.match(nameRegex);
 				const name = match ? match[1] : null;
 				const titleMatch = node.value.match(titleRegex);
@@ -243,7 +247,20 @@ export function rehypeComponentExample() {
 						],
 					});
 					if (!index) return;
-					// @ts-expect-error - this is fine
+
+					if (isSelfClosing) {
+						node.value = node.value.replace(/\/>\s*$/, ">");
+						parent?.children.splice(
+							index,
+							1,
+							node,
+							/** @type {any} */ (sourceCodeNode),
+							/** @type {any} */ (u("raw", `</${componentTagName}>`))
+						);
+						return;
+					}
+
+					// @ts-expect-error - HAST builder node typing is narrower than runtime.
 					parent?.children.splice(index + 1, 0, sourceCodeNode);
 				} catch (e) {
 					console.error(e);
