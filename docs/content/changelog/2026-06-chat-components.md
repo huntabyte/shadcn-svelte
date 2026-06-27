@@ -6,6 +6,7 @@ date: 2026-06-26
 
 <script>
 	import ComponentPreview from "$lib/components/component-preview.svelte";
+	import PMBlock from "$lib/components/pm-block.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
@@ -31,9 +32,10 @@ attachments, and markers.
 We asked ourselves: what makes a great streaming chat experience? Then we
 abstracted the core rules into a set of primitives: `MessageScroller`.
 
-```bash
-npx shadcn-svelte@latest add message-scroller message bubble attachment marker
-```
+<PMBlock
+	type="execute"
+	command="shadcn-svelte@latest add message-scroller message bubble attachment marker"
+/>
 
 ## MessageScroller
 
