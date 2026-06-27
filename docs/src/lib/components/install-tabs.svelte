@@ -15,7 +15,7 @@
 <div class="-ms-2 md:ms-0">
 	<CodeTabs>
 		<DocTabs.List>
-			<DocTabs.Trigger value="cli">CLI</DocTabs.Trigger>
+			<DocTabs.Trigger value="cli">Command</DocTabs.Trigger>
 			<DocTabs.Trigger value="manual">Manual</DocTabs.Trigger>
 		</DocTabs.List>
 		<DocTabs.Content value="cli" class="ms-2 md:ms-0">

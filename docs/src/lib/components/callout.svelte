@@ -8,14 +8,20 @@
 		class: className,
 		icon: Icon,
 		title,
+		variant = "default",
 		...restProps
-	}: ComponentProps<typeof Alert.Root> & {
+	}: Omit<ComponentProps<typeof Alert.Root>, "variant"> & {
 		icon?: Component;
+		variant?: "default" | "info" | "warning";
 	} = $props();
 </script>
 
 <Alert.Root
-	class={cn("bg-background text-foreground w-auto border md:-mx-1", className)}
+	data-variant={variant}
+	class={cn(
+		"border-surface bg-surface text-surface-foreground mt-6 w-auto rounded-xl md:-mx-1 **:[code]:border",
+		className
+	)}
 	{...restProps}
 >
 	{#if Icon}

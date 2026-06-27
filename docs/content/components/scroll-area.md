@@ -81,7 +81,7 @@ Copy and paste the following code into your project.
 
 Set the `orientation` prop to `"horizontal"` to enable horizontal scrolling.
 
-<ComponentPreview name="scroll-area-horizontal" previewClassName="h-[30rem] p-0 *:max-w-full sm:p-10">
+<ComponentPreview name="scroll-area-horizontal" previewClassName="h-[34rem] p-0 *:max-w-full sm:p-10">
 
 <div></div>
 
