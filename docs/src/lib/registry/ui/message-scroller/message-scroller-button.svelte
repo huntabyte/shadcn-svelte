@@ -43,15 +43,18 @@
 			return;
 		}
 
-		derivedActive =
+		const nextActive =
 			direction === "end"
 				? viewport.scrollHeight - viewport.scrollTop - viewport.clientHeight >
 					DEFAULT_SCROLL_EDGE_THRESHOLD
 				: viewport.scrollTop > DEFAULT_SCROLL_EDGE_THRESHOLD;
 
-		if (isAutoscrolling && !derivedActive) {
-			isAutoscrolling = false;
+		if (isAutoscrolling) {
+			derivedActive = false;
+			return;
 		}
+
+		derivedActive = nextActive;
 	}
 
 	function handleScroll() {
@@ -102,12 +105,12 @@
 		const viewport = getViewport();
 		if (!viewport) return;
 
+		startAutoscrolling(viewport);
+
 		viewport.scrollTo({
-			top: direction === "end" ? viewport.scrollHeight : 0,
+			top: direction === "end" ? viewport.scrollHeight - viewport.clientHeight : 0,
 			behavior,
 		});
-
-		startAutoscrolling(viewport);
 	}
 
 	$effect(() => {
