@@ -4,9 +4,6 @@
 	import { ArrowRightIcon } from "@lucide/svelte";
 </script>
 
-<a
-	href="/docs/components/message"
-	class={cn(badgeVariants({ variant: "secondary", class: "bg-muted" }))}
->
+<a href="/docs/changelog" class={cn(badgeVariants({ variant: "secondary", class: "bg-muted" }))}>
 	Components for Chat Interfaces <ArrowRightIcon />
 </a>

@@ -6,6 +6,7 @@ date: 2026-06-26
 
 <script>
 	import ComponentPreview from "$lib/components/component-preview.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
 <ComponentPreview
