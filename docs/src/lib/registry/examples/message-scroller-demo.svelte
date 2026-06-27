@@ -14,8 +14,10 @@
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Empty from "$lib/registry/ui/empty/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
+	import * as Marker from "$lib/registry/ui/marker/index.js";
 	import * as Message from "$lib/registry/ui/message/index.js";
 	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
+	import { Spinner } from "$lib/registry/ui/spinner/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 
 	type DemoMessage = {
@@ -79,21 +81,74 @@
 		);
 	}
 
+	function getViewport() {
+		if (viewportRef) return viewportRef;
+		if (typeof document === "undefined") return null;
+
+		return document.querySelector<HTMLElement>("[data-slot='message-scroller-viewport']");
+	}
+
 	function getMessageItem(messageId: string) {
-		return viewportRef?.querySelector<HTMLElement>(
+		return getViewport()?.querySelector<HTMLElement>(
 			`[data-slot="message-scroller-item"][data-message-id="${CSS.escape(messageId)}"]`
 		);
 	}
 
+	function getBlockPadding(element: HTMLElement) {
+		const style = getComputedStyle(element);
+
+		return {
+			end: Number.parseFloat(style.paddingBlockEnd || style.paddingBottom) || 0,
+			start: Number.parseFloat(style.paddingBlockStart || style.paddingTop) || 0,
+		};
+	}
+
+	function getMessageItems(content: HTMLElement) {
+		return Array.from(content.children).filter(
+			(child): child is HTMLElement =>
+				child instanceof HTMLElement && child.dataset.tailSpacer !== "true"
+		);
+	}
+
+	function getContentBottom(content: HTMLElement, viewport: HTMLElement) {
+		const items = getMessageItems(content);
+		const padding = getBlockPadding(content);
+		const viewportRect = viewport.getBoundingClientRect();
+		const scrollTop = viewport.scrollTop;
+		let contentBottom = padding.start + padding.end;
+
+		for (const item of items) {
+			const rect = item.getBoundingClientRect();
+
+			contentBottom = Math.max(
+				contentBottom,
+				rect.bottom - viewportRect.top + scrollTop + padding.end
+			);
+		}
+
+		return contentBottom;
+	}
+
+	function getElementTop(element: HTMLElement, viewport: HTMLElement) {
+		const elementRect = element.getBoundingClientRect();
+		const viewportRect = viewport.getBoundingClientRect();
+
+		return elementRect.top - viewportRect.top + viewport.scrollTop;
+	}
+
 	function getAnchorTargetOffset() {
-		const content = viewportRef?.querySelector<HTMLElement>(
+		const content = getViewport()?.querySelector<HTMLElement>(
 			"[data-slot='message-scroller-content']"
 		);
-		const paddingTop = content
-			? Number.parseFloat(getComputedStyle(content).paddingTop) || 0
-			: 0;
+		const paddingTop = content ? getBlockPadding(content).start : 0;
 
 		return paddingTop + SCROLL_PREVIOUS_ITEM_PEEK;
+	}
+
+	function waitForAnimationFrame() {
+		return new Promise<void>((resolve) => {
+			requestAnimationFrame(() => resolve());
+		});
 	}
 
 	async function updateTailSpacer(messageId = anchoredMessageId) {
@@ -103,48 +158,63 @@
 		}
 
 		await tick();
-		const viewport = viewportRef;
+		const viewport = getViewport();
 		const item = getMessageItem(messageId);
 		const content = viewport?.querySelector<HTMLElement>(
 			"[data-slot='message-scroller-content']"
 		);
 		if (!viewport || !item || !content) return;
 
-		const contentHeightWithoutSpacer = content.scrollHeight - tailSpacerHeight;
-		const contentBelowAnchor = contentHeightWithoutSpacer - item.offsetTop;
-		tailSpacerHeight = Math.max(
-			0,
-			viewport.clientHeight - getAnchorTargetOffset() - contentBelowAnchor
+		const scrollTop =
+			getElementTop(item, viewport) -
+			getBlockPadding(content).start -
+			SCROLL_PREVIOUS_ITEM_PEEK;
+		const contentBottom = getContentBottom(content, viewport);
+		tailSpacerHeight = Math.ceil(
+			Math.max(0, scrollTop + viewport.clientHeight - contentBottom)
 		);
 	}
 
 	async function scrollToMessageAnchor(messageId: string) {
-		await updateTailSpacer(messageId);
 		await tick();
 
-		const viewport = viewportRef;
+		const viewport = getViewport();
 		let item = getMessageItem(messageId);
 		if (!viewport || !item) return;
 
-		let viewportRect = viewport.getBoundingClientRect();
-		let itemRect = item.getBoundingClientRect();
-		let top = viewport.scrollTop + (itemRect.top - viewportRect.top) - getAnchorTargetOffset();
+		let top = getElementTop(item, viewport) - getAnchorTargetOffset();
 		const maxScrollTop = viewport.scrollHeight - viewport.clientHeight;
 
 		if (top > maxScrollTop) {
-			tailSpacerHeight += top - maxScrollTop;
+			tailSpacerHeight = Math.ceil(top - maxScrollTop);
 			await tick();
 			item = getMessageItem(messageId);
 			if (!item) return;
-			viewportRect = viewport.getBoundingClientRect();
-			itemRect = item.getBoundingClientRect();
-			top = viewport.scrollTop + (itemRect.top - viewportRect.top) - getAnchorTargetOffset();
+			top = getElementTop(item, viewport) - getAnchorTargetOffset();
 		}
 
 		viewport.scrollTo({
 			top,
-			behavior: "smooth",
+			behavior: "auto",
 		});
+
+		await waitForAnimationFrame();
+		item = getMessageItem(messageId);
+		if (!item) return;
+
+		const viewportTop = item.getBoundingClientRect().top - viewport.getBoundingClientRect().top;
+		const offset = getAnchorTargetOffset();
+		if (viewportTop > offset) {
+			tailSpacerHeight += Math.ceil(viewportTop - offset);
+			await tick();
+			item = getMessageItem(messageId);
+			if (!item) return;
+
+			viewport.scrollTo({
+				top: getElementTop(item, viewport) - offset,
+				behavior: "auto",
+			});
+		}
 	}
 
 	function streamAssistantMessage(content: string, messageId: string, offset = 0) {
@@ -179,6 +249,7 @@
 		status = "submitted";
 		anchoredMessageId = userId;
 		scrollToMessageAnchor(userId);
+		queueTimeout(() => scrollToMessageAnchor(userId), 0);
 
 		queueTimeout(() => {
 			messages = [
@@ -278,9 +349,20 @@
 								{#each messages as message (message.id)}
 									{@render MessageBubble(message)}
 								{/each}
+								{#if status === "submitted"}
+									<MessageScroller.Item scrollAnchor={false}>
+										<Marker.Root role="status">
+											<Marker.Icon>
+												<Spinner />
+											</Marker.Icon>
+											<Marker.Content>Thinking...</Marker.Content>
+										</Marker.Root>
+									</MessageScroller.Item>
+								{/if}
 								{#if tailSpacerHeight > 0}
 									<div
 										aria-hidden="true"
+										data-tail-spacer="true"
 										class="shrink-0"
 										style:height={`${tailSpacerHeight}px`}
 									></div>
