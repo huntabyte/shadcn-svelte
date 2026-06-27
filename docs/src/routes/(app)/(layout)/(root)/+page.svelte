@@ -57,7 +57,7 @@
 			{#if !mobile.current}
 				<section class="hidden md:block">
 					<div
-						class="style-rhea base-color-neutral theme-neutral"
+						class="homepage-demo-theme style-rhea base-color-blue theme-blue"
 						style="--radius: 0.625rem; font-family: 'Inter Variable', sans-serif;"
 					>
 						<CardsDemo />
@@ -67,3 +67,25 @@
 		</div>
 	</div>
 </div>
+
+<style>
+	.homepage-demo-theme {
+		--primary: oklch(0.488 0.243 264.376) !important;
+		--primary-foreground: oklch(0.97 0.014 254.604) !important;
+		--chart-1: oklch(0.809 0.105 251.813) !important;
+		--chart-2: oklch(0.623 0.214 259.815) !important;
+		--chart-3: oklch(0.546 0.245 262.881) !important;
+		--chart-4: oklch(0.488 0.243 264.376) !important;
+		--chart-5: oklch(0.424 0.199 265.638) !important;
+	}
+
+	:global(.dark) .homepage-demo-theme {
+		--primary: oklch(0.424 0.199 265.638) !important;
+		--primary-foreground: oklch(0.97 0.014 254.604) !important;
+		--chart-1: oklch(0.809 0.105 251.813) !important;
+		--chart-2: oklch(0.623 0.214 259.815) !important;
+		--chart-3: oklch(0.546 0.245 262.881) !important;
+		--chart-4: oklch(0.488 0.243 264.376) !important;
+		--chart-5: oklch(0.424 0.199 265.638) !important;
+	}
+</style>
