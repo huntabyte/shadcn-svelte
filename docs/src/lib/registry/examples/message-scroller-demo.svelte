@@ -47,10 +47,14 @@
 		},
 	] as const;
 
+	const SCROLL_PREVIOUS_ITEM_PEEK = 64;
+
 	let messages = $state<DemoMessage[]>([]);
 	let stepIndex = $state(0);
 	let status = $state<"ready" | "submitted" | "streaming">("ready");
 	let viewportRef = $state<HTMLDivElement | null>(null);
+	let anchoredMessageId = $state<string | null>(null);
+	let tailSpacerHeight = $state(0);
 	let timeoutIds: ReturnType<typeof setTimeout>[] = [];
 
 	const nextMessage = $derived(conversation[stepIndex]?.user);
@@ -75,11 +79,71 @@
 		);
 	}
 
-	async function scrollToEnd(behavior: ScrollBehavior = "smooth") {
+	function getMessageItem(messageId: string) {
+		return viewportRef?.querySelector<HTMLElement>(
+			`[data-slot="message-scroller-item"][data-message-id="${CSS.escape(messageId)}"]`
+		);
+	}
+
+	function getAnchorTargetOffset() {
+		const content = viewportRef?.querySelector<HTMLElement>(
+			"[data-slot='message-scroller-content']"
+		);
+		const paddingTop = content
+			? Number.parseFloat(getComputedStyle(content).paddingTop) || 0
+			: 0;
+
+		return paddingTop + SCROLL_PREVIOUS_ITEM_PEEK;
+	}
+
+	async function updateTailSpacer(messageId = anchoredMessageId) {
+		if (!messageId) {
+			tailSpacerHeight = 0;
+			return;
+		}
+
 		await tick();
-		viewportRef?.scrollTo({
-			top: viewportRef.scrollHeight,
-			behavior,
+		const viewport = viewportRef;
+		const item = getMessageItem(messageId);
+		const content = viewport?.querySelector<HTMLElement>(
+			"[data-slot='message-scroller-content']"
+		);
+		if (!viewport || !item || !content) return;
+
+		const contentHeightWithoutSpacer = content.scrollHeight - tailSpacerHeight;
+		const contentBelowAnchor = contentHeightWithoutSpacer - item.offsetTop;
+		tailSpacerHeight = Math.max(
+			0,
+			viewport.clientHeight - getAnchorTargetOffset() - contentBelowAnchor
+		);
+	}
+
+	async function scrollToMessageAnchor(messageId: string) {
+		await updateTailSpacer(messageId);
+		await tick();
+
+		const viewport = viewportRef;
+		let item = getMessageItem(messageId);
+		if (!viewport || !item) return;
+
+		let viewportRect = viewport.getBoundingClientRect();
+		let itemRect = item.getBoundingClientRect();
+		let top = viewport.scrollTop + (itemRect.top - viewportRect.top) - getAnchorTargetOffset();
+		const maxScrollTop = viewport.scrollHeight - viewport.clientHeight;
+
+		if (top > maxScrollTop) {
+			tailSpacerHeight += top - maxScrollTop;
+			await tick();
+			item = getMessageItem(messageId);
+			if (!item) return;
+			viewportRect = viewport.getBoundingClientRect();
+			itemRect = item.getBoundingClientRect();
+			top = viewport.scrollTop + (itemRect.top - viewportRect.top) - getAnchorTargetOffset();
+		}
+
+		viewport.scrollTo({
+			top,
+			behavior: "smooth",
 		});
 	}
 
@@ -94,6 +158,7 @@
 
 		stepIndex += 1;
 		status = "ready";
+		updateTailSpacer();
 	}
 
 	function sendMessage() {
@@ -112,7 +177,8 @@
 			},
 		];
 		status = "submitted";
-		scrollToEnd();
+		anchoredMessageId = userId;
+		scrollToMessageAnchor(userId);
 
 		queueTimeout(() => {
 			messages = [
@@ -133,6 +199,8 @@
 		messages = [];
 		stepIndex = 0;
 		status = "ready";
+		anchoredMessageId = null;
+		tailSpacerHeight = 0;
 	}
 
 	onDestroy(clearQueuedTimeouts);
@@ -210,6 +278,13 @@
 								{#each messages as message (message.id)}
 									{@render MessageBubble(message)}
 								{/each}
+								{#if tailSpacerHeight > 0}
+									<div
+										aria-hidden="true"
+										class="shrink-0"
+										style:height={`${tailSpacerHeight}px`}
+									></div>
+								{/if}
 							</MessageScroller.Content>
 						</MessageScroller.Viewport>
 						<MessageScroller.Button />
