@@ -79,6 +79,8 @@ export async function runMigrateRtl(
 		if (p.isCancel(proceed) || proceed === false) cancel();
 	}
 
+	updateRtlConfig(cwd);
+
 	const tasks: p.Task[] = [
 		{
 			title: `Migrating ${highlight(path.relative(cwd, targetPath) || ".")}`,
@@ -105,6 +107,18 @@ export async function runMigrateRtl(
 	];
 
 	await p.tasks(tasks);
+}
+
+function updateRtlConfig(cwd: string) {
+	const config = cliConfig.loadConfig(cwd);
+
+	if (!config) {
+		throw error(
+			`Configuration file is missing. Please run ${color.green("init")} to create a ${highlight("components.json")} file.`
+		);
+	}
+
+	cliConfig.writeConfig(cwd, { ...config, rtl: true });
 }
 
 function resolveTargetPath(
