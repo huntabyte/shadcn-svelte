@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onDestroy } from "svelte";
+	import { onDestroy, tick } from "svelte";
 	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
 	import GlobeIcon from "@lucide/svelte/icons/globe";
 	import ImageIcon from "@lucide/svelte/icons/image";
@@ -50,6 +50,7 @@
 	let messages = $state<DemoMessage[]>([]);
 	let stepIndex = $state(0);
 	let status = $state<"ready" | "submitted" | "streaming">("ready");
+	let viewportRef = $state<HTMLDivElement | null>(null);
 	let timeoutIds: ReturnType<typeof setTimeout>[] = [];
 
 	const nextMessage = $derived(conversation[stepIndex]?.user);
@@ -74,9 +75,18 @@
 		);
 	}
 
+	async function scrollToEnd(behavior: ScrollBehavior = "smooth") {
+		await tick();
+		viewportRef?.scrollTo({
+			top: viewportRef.scrollHeight,
+			behavior,
+		});
+	}
+
 	function streamAssistantMessage(content: string, messageId: string, offset = 0) {
 		const nextOffset = Math.min(content.length, offset + 8);
 		updateMessage(messageId, content.slice(0, nextOffset));
+		scrollToEnd("auto");
 
 		if (nextOffset < content.length) {
 			queueTimeout(() => streamAssistantMessage(content, messageId, nextOffset), 16);
@@ -103,6 +113,7 @@
 			},
 		];
 		status = "submitted";
+		scrollToEnd();
 
 		queueTimeout(() => {
 			messages = [
@@ -114,6 +125,7 @@
 				},
 			];
 			status = "streaming";
+			scrollToEnd();
 			streamAssistantMessage(next.assistant, assistantId);
 		}, 700);
 	}
@@ -185,7 +197,7 @@
 					</Empty.Root>
 				{:else}
 					<MessageScroller.Root>
-						<MessageScroller.Viewport>
+						<MessageScroller.Viewport bind:ref={viewportRef}>
 							<MessageScroller.Content aria-busy={isBusy} class="p-(--card-spacing)">
 								{#each messages as message (message.id)}
 									{@render MessageBubble(message)}

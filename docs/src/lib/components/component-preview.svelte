@@ -9,12 +9,14 @@
 		class: className,
 		align = "center",
 		hideCode = false,
+		integratedCode = false,
 		...restProps
 	}: HTMLAttributes<HTMLElement> & {
 		name: string;
 		align?: "center" | "start" | "end";
 		description?: string;
 		hideCode?: boolean;
+		integratedCode?: boolean;
 		type?: "block" | "component" | "example";
 		component?: Component;
 	} = $props();
@@ -44,5 +46,12 @@
 		</div>
 	</div>
 {:else if type === "component" || type === "example"}
-	<ComponentPreviewTabs {name} class={className} {align} {hideCode} {...restProps} />
+	<ComponentPreviewTabs
+		{name}
+		class={className}
+		{align}
+		{hideCode}
+		{integratedCode}
+		{...restProps}
+	/>
 {/if}

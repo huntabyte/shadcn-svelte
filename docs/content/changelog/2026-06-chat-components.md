@@ -14,6 +14,7 @@ date: 2026-06-26
 	name="message-scroller-demo"
 	class="rounded-[34px] sm:rounded-4xl"
 	previewClassName="h-auto theme-blue bg-surface dark:bg-background p-4 min-[480px]:p-8 min-[560px]:p-10 sm:px-10 sm:py-16"
+	integratedCode
 />
 
 Today, we're releasing a new set of components for building chat interfaces:
@@ -75,12 +76,16 @@ feel better.
 `MessageScroller`, attachment rows, and any long list where you want to hint at
 more content without adding overlays or scroll listeners.
 
-<ComponentPreview name="scroll-fade-demo" previewClassName="h-auto" />
+<ComponentPreview
+	name="scroll-fade-demo"
+	previewClassName="h-auto"
+	integratedCode
+/>
 
 `shimmer` adds a text shimmer for live status. Use it for things like
 "Thinking...", "Generating response...", running tools, and streaming markers.
 
-<ComponentPreview name="shimmer-demo" />
+<ComponentPreview name="shimmer-demo" integratedCode />
 
 Both utilities ship with `shadcn-svelte/tailwind.css`, so projects initialized
 with `npx shadcn-svelte@latest init` can use them.
