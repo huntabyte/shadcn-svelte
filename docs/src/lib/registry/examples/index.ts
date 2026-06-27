@@ -166,3 +166,5 @@ export { default as MessageAttachment } from "./message-attachment.svelte";
 export { default as AttachmentDemo } from "./attachment-demo.svelte";
 export { default as MarkerDemo } from "./marker-demo.svelte";
 export { default as MessageScrollerDemo } from "./message-scroller-demo.svelte";
+export { default as ScrollFadeDemo } from "./scroll-fade-demo.svelte";
+export { default as ShimmerDemo } from "./shimmer-demo.svelte";

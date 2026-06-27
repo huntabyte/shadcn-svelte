@@ -75,8 +75,12 @@ feel better.
 `MessageScroller`, attachment rows, and any long list where you want to hint at
 more content without adding overlays or scroll listeners.
 
+<ComponentPreview name="scroll-fade-demo" previewClassName="h-auto" />
+
 `shimmer` adds a text shimmer for live status. Use it for things like
 "Thinking...", "Generating response...", running tools, and streaming markers.
+
+<ComponentPreview name="shimmer-demo" />
 
 Both utilities ship with `shadcn-svelte/tailwind.css`, so projects initialized
 with `npx shadcn-svelte@latest init` can use them.
