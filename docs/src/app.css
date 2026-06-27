@@ -14,8 +14,6 @@
 @import "@fontsource-variable/geist/index.css";
 @import "@fontsource-variable/inter/index.css";
 @import "@fontsource-variable/noto-sans/index.css";
-@import "@fontsource-variable/noto-sans-arabic/index.css";
-@import "@fontsource-variable/noto-sans-hebrew/index.css";
 @import "@fontsource-variable/nunito-sans/index.css";
 @import "@fontsource-variable/figtree/index.css";
 @import "@fontsource-variable/roboto/index.css";
@@ -39,6 +37,30 @@
 @import "@fontsource-variable/playfair-display/index.css";
 @import "@fontsource-variable/eb-garamond/index.css";
 @import "@fontsource/instrument-serif/index.css";
+
+@font-face {
+	font-family: "Noto Sans Arabic Variable";
+	font-style: normal;
+	font-display: swap;
+	font-weight: 100 900;
+	src: url("@fontsource-variable/noto-sans-arabic/files/noto-sans-arabic-latin-wght-normal.woff2")
+		format("woff2-variations");
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
+		U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+	font-family: "Noto Sans Hebrew Variable";
+	font-style: normal;
+	font-display: swap;
+	font-weight: 100 900;
+	src: url("@fontsource-variable/noto-sans-hebrew/files/noto-sans-hebrew-latin-wght-normal.woff2")
+		format("woff2-variations");
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
+		U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
 @custom-variant style-vega (&:where(.style-vega *));
 @custom-variant style-nova (&:where(.style-nova *));
