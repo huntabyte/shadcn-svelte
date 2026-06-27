@@ -76,10 +76,10 @@
 	{#if direction === "rtl"}
 		<div class="flex h-16 items-center border-b px-4">
 			<Select.Root type="single" bind:value={language}>
-				<Select.Trigger class="w-[180px]">
+				<Select.Trigger size="sm" class="w-36" dir="ltr" data-name="language-selector">
 					{rtlPreviewLanguageOptions.find((option) => option.value === language)?.label}
 				</Select.Trigger>
-				<Select.Content>
+				<Select.Content dir="ltr" class="data-closed:animate-none data-open:animate-none">
 					<Select.Group>
 						{#each rtlPreviewLanguageOptions as option (option.value)}
 							<Select.Item value={option.value} label={option.label} />
@@ -94,7 +94,7 @@
 						<span class="sr-only">Toggle</span>
 					</Button>
 				</Popover.Trigger>
-				<Popover.Content side="bottom" align="end" class="w-56 text-xs">
+				<Popover.Content side="bottom" align="end" dir="rtl" class="w-56 text-xs">
 					<div>
 						I used AI to translate the text for demonstration purposes. It's not perfect
 						and may contain errors.
