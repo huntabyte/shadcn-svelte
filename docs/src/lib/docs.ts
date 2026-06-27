@@ -6,6 +6,7 @@ import {
 	migration,
 	registry,
 	forms,
+	utils,
 	changelog,
 } from "$content/index.js";
 import { error } from "@sveltejs/kit";
@@ -19,8 +20,11 @@ const allDocs = [
 	...darkMode,
 	...registry,
 	...forms,
+	...utils,
 	...changelog,
 ];
+
+export const docs = allDocs;
 
 type DocMetadata = (typeof allDocs)[number];
 type DocResolver = () => Promise<{ default: Component; metadata: DocMetadata }>;

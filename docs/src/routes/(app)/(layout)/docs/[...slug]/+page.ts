@@ -1,4 +1,4 @@
-import { getDoc } from "$lib/docs.js";
+import { docs, getDoc } from "$lib/docs.js";
 import type { HighlightedBlock } from "../../../../api/block/[block]/+server.js";
 import type { EntryGenerator, PageLoad } from "./$types.js";
 
@@ -6,15 +6,7 @@ export const prerender = true;
 
 export const entries: EntryGenerator = () => {
 	console.info("Prerendering /docs");
-	const modules = import.meta.glob("/content/**/*.md");
-	const entries = [];
-
-	for (const path of Object.keys(modules)) {
-		const slug = path.replace("/content/", "").replace(".md", "").replace("/index", "");
-		entries.push({ slug });
-	}
-
-	return entries;
+	return docs.map((doc) => ({ slug: doc.path.replace("/index", "") }));
 };
 
 /**
