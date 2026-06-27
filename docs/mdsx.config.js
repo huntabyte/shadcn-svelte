@@ -183,8 +183,6 @@ export function rehypeComponentExample() {
 	return (tree) => {
 		const nameRegex = /name="([^"]+)"/;
 		const titleRegex = /title="([^"]+)"/;
-		const hideCodeRegex = /\bhideCode(?:\s*=\s*(?:{true}|"true"|'true'))?\b/;
-		const integratedCodeRegex = /\bintegratedCode(?:\s*=\s*(?:{true}|"true"|'true'))?\b/;
 		visit(tree, (node, index, parent) => {
 			if (
 				node?.type === "raw" &&
@@ -197,9 +195,6 @@ export function rehypeComponentExample() {
 				const title = titleMatch ? titleMatch[1] : null;
 
 				if (!name) return null;
-				if (node.value.startsWith("<ComponentPreview") && hideCodeRegex.test(node.value)) {
-					return null;
-				}
 
 				try {
 					// @ts-expect-error - this is fine
@@ -247,22 +242,9 @@ export function rehypeComponentExample() {
 							}),
 						],
 					});
-					if (index == null) return;
-					const shouldIntegrateCode =
-						node.value.startsWith("<ComponentPreview") &&
-						integratedCodeRegex.test(node.value);
-
-					if (shouldIntegrateCode && node.value.trimEnd().endsWith("/>")) {
-						node.value = node.value.replace(/\/>\s*$/, ">");
-						// @ts-expect-error - this is fine
-						parent?.children.splice(index + 1, 0, sourceCodeNode, {
-							type: "raw",
-							value: "</ComponentPreview>",
-						});
-					} else {
-						// @ts-expect-error - this is fine
-						parent?.children.splice(index + 1, 0, sourceCodeNode);
-					}
+					if (!index) return;
+					// @ts-expect-error - this is fine
+					parent?.children.splice(index + 1, 0, sourceCodeNode);
 				} catch (e) {
 					console.error(e);
 				}
