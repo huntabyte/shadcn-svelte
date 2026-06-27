@@ -14,6 +14,8 @@
 @import "@fontsource-variable/geist/index.css";
 @import "@fontsource-variable/inter/index.css";
 @import "@fontsource-variable/noto-sans/index.css";
+@import "@fontsource-variable/noto-sans-arabic/index.css";
+@import "@fontsource-variable/noto-sans-hebrew/index.css";
 @import "@fontsource-variable/nunito-sans/index.css";
 @import "@fontsource-variable/figtree/index.css";
 @import "@fontsource-variable/roboto/index.css";
@@ -110,6 +112,8 @@
 :root {
 	--font-sans: "Geist Variable", sans-serif;
 	--font-mono: "Geist Mono Variable", monospace;
+	--font-ar: "Noto Sans Arabic Variable", sans-serif;
+	--font-he: "Noto Sans Hebrew Variable", sans-serif;
 	--background: oklch(1 0 0);
 	--foreground: oklch(0.145 0 0);
 	--card: oklch(1 0 0);
@@ -224,6 +228,14 @@
 	a:active,
 	button:active {
 		@apply opacity-60 md:opacity-100;
+	}
+
+	[data-lang="ar"] {
+		font-family: var(--font-ar);
+	}
+
+	[data-lang="he"] {
+		font-family: var(--font-he);
 	}
 }
 

@@ -45,6 +45,8 @@
 		"@fontsource-variable/merriweather": "^5.2.6",
 		"@fontsource-variable/montserrat": "^5.2.8",
 		"@fontsource-variable/noto-sans": "^5.2.10",
+		"@fontsource-variable/noto-sans-arabic": "^5.2.10",
+		"@fontsource-variable/noto-sans-hebrew": "^5.2.8",
 		"@fontsource-variable/noto-serif": "^5.2.9",
 		"@fontsource-variable/nunito-sans": "^5.2.7",
 		"@fontsource-variable/outfit": "^5.2.8",
