@@ -65,7 +65,7 @@ Wrap your application with `DirectionProvider`.
 </script>
 
 <DirectionProvider direction="rtl">
-  <div></div>
+  <!-- Your app content -->
 </DirectionProvider>
 ```
 

@@ -55,7 +55,7 @@ Copy and paste the following code into your project.
 
 ```svelte showLineNumbers
 <DirectionProvider direction="rtl">
-  <div></div>
+  <!-- Your app content -->
 </DirectionProvider>
 ```
 
