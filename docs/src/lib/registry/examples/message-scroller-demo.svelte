@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { Chat } from "@ai-sdk/svelte";
 	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
 	import GlobeIcon from "@lucide/svelte/icons/globe";
 	import ImageIcon from "@lucide/svelte/icons/image";
@@ -8,18 +9,14 @@
 	import RotateCwIcon from "@lucide/svelte/icons/rotate-cw";
 	import TelescopeIcon from "@lucide/svelte/icons/telescope";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import * as Bubble from "$lib/registry/ui/bubble/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Empty from "$lib/registry/ui/empty/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
-	import * as Marker from "$lib/registry/ui/marker/index.js";
-	import * as Message from "$lib/registry/ui/message/index.js";
 	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
-	import { Spinner } from "$lib/registry/ui/spinner/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import { createChat, getMessageText, useChat } from "$lib/registry/lib/ai.svelte.js";
-	import type { DemoMessage } from "$lib/registry/lib/ai.svelte.js";
+	import MessageAnimated from "$lib/components/message-animated.svelte";
+	import { createChat, getMessageText } from "$lib/registry/lib/ai.svelte.js";
 
 	const chat = createChat()
 		.user(
@@ -50,7 +47,7 @@
 		);
 	const initialMessages = chat.get({ count: 0 });
 	const transport = chat.transport({ chunkDelayMs: 20 });
-	const chatState = useChat({
+	const chatState = new Chat({
 		messages: initialMessages,
 		transport,
 	});
@@ -58,31 +55,9 @@
 	const isBusy = $derived(chatState.status === "submitted" || chatState.status === "streaming");
 
 	function resetConversation() {
-		chatState.setMessages(initialMessages);
+		chatState.messages = initialMessages;
 	}
 </script>
-
-{#snippet MessageBubble(message: DemoMessage)}
-	<MessageScroller.Item messageId={message.id} scrollAnchor={message.role === "user"}>
-		{@const paragraphs = getMessageText(message)
-			.split(/\n\s*\n/)
-			.map((paragraph) => paragraph.trim())
-			.filter(Boolean)}
-		<Message.Root align={message.role === "user" ? "end" : "start"}>
-			<Message.Content>
-				<Bubble.Root variant={message.role === "user" ? "muted" : "ghost"}>
-					<Bubble.Content class="space-y-2">
-						{#each paragraphs as paragraph, paragraphIndex (paragraphIndex)}
-							<p class="whitespace-pre-wrap">
-								{paragraph}
-							</p>
-						{/each}
-					</Bubble.Content>
-				</Bubble.Root>
-			</Message.Content>
-		</Message.Root>
-	</MessageScroller.Item>
-{/snippet}
 
 <MessageScroller.Provider>
 	<div class="relative flex flex-col gap-4">
@@ -132,20 +107,11 @@
 						<MessageScroller.Viewport>
 							<MessageScroller.Content aria-busy={isBusy} class="p-(--card-spacing)">
 								{#each chatState.messages as message (message.id)}
-									{@render MessageBubble(message)}
+									<MessageAnimated
+										{message}
+										scrollAnchor={message.role === "user"}
+									/>
 								{/each}
-								{#if chatState.status === "submitted"}
-									<MessageScroller.Item scrollAnchor={false}>
-										<Marker.Root role="status">
-											<Marker.Icon>
-												<Spinner />
-											</Marker.Icon>
-											<Marker.Content class="shimmer"
-												>Thinking...</Marker.Content
-											>
-										</Marker.Root>
-									</MessageScroller.Item>
-								{/if}
 							</MessageScroller.Content>
 						</MessageScroller.Viewport>
 						<MessageScroller.Button />
@@ -157,7 +123,7 @@
 					onsubmit={(event) => {
 						event.preventDefault();
 						if (!nextMessage || isBusy) return;
-						chatState.sendMessage(nextMessage);
+						void chatState.sendMessage(nextMessage);
 					}}
 					class="w-full"
 				>
