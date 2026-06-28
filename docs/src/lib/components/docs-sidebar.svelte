@@ -20,7 +20,6 @@
 		{ title: "Skills", href: "/docs/skills", items: [] },
 		{ title: "Registry", href: "/docs/registry", items: [] },
 		{ title: "Forms", href: "/docs/forms", items: [] },
-		{ title: "Utilities", href: "/docs/utils/scroll-fade", items: [] },
 		{ title: "Changelog", href: "/docs/changelog", items: [] },
 	] satisfies SidebarNavItem[];
 

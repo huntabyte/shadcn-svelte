@@ -69,11 +69,6 @@ function generateSectionsNav(): SidebarNavItem[] {
 			items: [],
 		},
 		{
-			title: "Utilities",
-			href: "/docs/utils/scroll-fade",
-			items: [],
-		},
-		{
 			title: "Changelog",
 			href: "/docs/changelog",
 			items: [],
@@ -336,16 +331,16 @@ export const sidebarNavItems: SidebarNavItem[] = [
 		items: darkModeNav,
 	},
 	{
-		title: "Registry",
-		items: registryNav,
+		title: "Utilities",
+		items: utilsNav,
 	},
 	{
 		title: "Forms",
 		items: formsNav,
 	},
 	{
-		title: "Utilities",
-		items: utilsNav,
+		title: "Registry",
+		items: registryNav,
 	},
 	{
 		title: "Migration",
