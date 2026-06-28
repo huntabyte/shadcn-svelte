@@ -16,13 +16,18 @@ description: Add right-to-left support to your project.
 shadcn-svelte components have first-class support for right-to-left (RTL) layouts. Text alignment, positioning, and directional styles automatically adapt for languages like Arabic, Hebrew, and Persian.
 
 <ComponentPreview
-	name="card-rtl"
-	direction="rtl"
-	previewClassName="h-auto"
-	hideCode
-	caption="A card component in RTL mode."
-	class="mb-8"
-/>
+name="card-rtl"
+direction="rtl"
+previewClassName="h-auto"
+hideCode
+caption="A card component in RTL mode."
+class="mb-8"
+
+>
+
+    <div></div>
+
+</ComponentPreview>
 
 When you install components, the CLI automatically transforms physical positioning classes to logical equivalents, so your components work seamlessly in both LTR and RTL contexts.
 

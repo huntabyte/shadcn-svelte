@@ -21,7 +21,9 @@ The `DirectionProvider` component is used to set the text direction (`ltr` or `r
 
 Here's a preview of the component in RTL mode. Use the language selector to switch the language. To see more examples, look for the RTL section on components pages.
 
-<ComponentPreview name="card-rtl" hideCode class="mb-8" />
+<ComponentPreview name="card-rtl" hideCode class="mb-8">
+	<div></div>
+</ComponentPreview>
 
 ## Installation
 
