@@ -5,6 +5,7 @@ description: Utilities for adding a shimmer effect to text elements.
 
 <script>
 	import ComponentPreview from "$lib/components/component-preview.svelte";
+	import PMBlock from "$lib/components/pm-block.svelte";
 </script>
 
 <ComponentPreview name="shimmer-demo">
@@ -19,9 +20,7 @@ If your project was set up with `npx shadcn-svelte@latest init`, you already hav
 
 Otherwise, install the `shadcn-svelte` package:
 
-```bash
-npm install shadcn-svelte
-```
+<PMBlock type="install" command="shadcn-svelte" />
 
 Then import the shared utilities in your global CSS file:
 
