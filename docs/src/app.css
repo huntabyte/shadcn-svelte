@@ -40,6 +40,15 @@
 @import "@fontsource-variable/noto-sans-arabic/index.css";
 @import "@fontsource-variable/noto-sans-hebrew/index.css";
 
+@font-face {
+	font-family: "Geist Fallback";
+	src: local("Arial");
+	ascent-override: 95.94%;
+	descent-override: 28.16%;
+	line-gap-override: 0%;
+	size-adjust: 104.76%;
+}
+
 @custom-variant style-vega (&:where(.style-vega *));
 @custom-variant style-nova (&:where(.style-nova *));
 @custom-variant style-lyra (&:where(.style-lyra *));
@@ -110,7 +119,8 @@
 }
 
 :root {
-	--font-sans: "Geist Variable", sans-serif;
+	--font-sans: "Geist Variable", "Geist Fallback", sans-serif;
+	--font-heading: "Geist Variable", "Geist Fallback", sans-serif;
 	--font-mono: "Geist Mono Variable", monospace;
 	--font-ar: "Noto Sans Arabic Variable", sans-serif;
 	--font-he: "Noto Sans Hebrew Variable", sans-serif;

@@ -17,7 +17,7 @@ export const FONT_DEFINITIONS = [
 		name: "geist",
 		title: "Geist",
 		type: "sans",
-		family: "'Geist Variable', sans-serif",
+		family: "'Geist Variable', 'Geist Fallback', sans-serif",
 		registryVariable: "--font-sans",
 		previewVariable: "--font-geist-sans",
 		provider: "google",

@@ -4,7 +4,7 @@
 	"type": "registry:font",
 	"files": [],
 	"font": {
-		"family": "'Geist Variable', sans-serif",
+		"family": "'Geist Variable', 'Geist Fallback', sans-serif",
 		"provider": "google",
 		"import": "Geist",
 		"variable": "--font-heading",
