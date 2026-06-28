@@ -1872,6 +1872,12 @@
 		"relativeUrl": "is-mobile.json"
 	},
 	{
+		"name": "ai.svelte",
+		"type": "registry:lib",
+		"registryDependencies": [],
+		"relativeUrl": "ai.svelte.json"
+	},
+	{
 		"name": "casing",
 		"type": "registry:lib",
 		"registryDependencies": [],
