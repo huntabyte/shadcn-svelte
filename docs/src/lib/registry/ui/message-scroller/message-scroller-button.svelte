@@ -1,10 +1,14 @@
 <script lang="ts">
+	import { getContext } from "svelte";
 	import ArrowDownIcon from "@lucide/svelte/icons/arrow-down";
 	import { Button, type ButtonProps } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
+	import { MESSAGE_SCROLLER_CONTEXT, type MessageScrollerContextValue } from "./context.js";
 
 	const DEFAULT_SCROLL_EDGE_THRESHOLD = 8;
 	const AUTOSCROLLING_CLEAR_DELAY = 180;
+
+	const controller = getContext<MessageScrollerContextValue | null>(MESSAGE_SCROLLER_CONTEXT);
 
 	let {
 		class: className,
@@ -102,12 +106,19 @@
 		const viewport = getViewport();
 		if (!viewport) return;
 
-		viewport.scrollTo({
-			top: direction === "end" ? viewport.scrollHeight : 0,
-			behavior,
-		});
+		const handled =
+			direction === "end"
+				? controller?.scrollToEnd({ behavior })
+				: controller?.scrollToStart({ behavior });
 
-		startAutoscrolling(viewport);
+		if (!handled) {
+			viewport.scrollTo({
+				top: direction === "end" ? viewport.scrollHeight : 0,
+				behavior,
+			});
+
+			startAutoscrolling(viewport);
+		}
 	}
 
 	$effect(() => {

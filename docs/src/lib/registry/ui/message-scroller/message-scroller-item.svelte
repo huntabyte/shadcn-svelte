@@ -1,6 +1,10 @@
 <script lang="ts">
+	import { getContext } from "svelte";
 	import { cn, type WithElementRef } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
+	import { MESSAGE_SCROLLER_CONTEXT, type MessageScrollerContextValue } from "./context.js";
+
+	const controller = getContext<MessageScrollerContextValue | null>(MESSAGE_SCROLLER_CONTEXT);
 
 	let {
 		ref = $bindable(null),
@@ -13,6 +17,23 @@
 		messageId?: string;
 		scrollAnchor?: boolean;
 	} = $props();
+
+	$effect(() => {
+		const element = ref;
+		const id = messageId;
+
+		if (id) {
+			controller?.registerMessage(id, element);
+		}
+
+		controller?.scheduleContentChange();
+
+		return () => {
+			if (id) {
+				controller?.registerMessage(id, null, element);
+			}
+		};
+	});
 </script>
 
 <div

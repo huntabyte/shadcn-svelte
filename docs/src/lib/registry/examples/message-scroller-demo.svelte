@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onDestroy, tick } from "svelte";
+	import { onDestroy } from "svelte";
 	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
 	import GlobeIcon from "@lucide/svelte/icons/globe";
 	import ImageIcon from "@lucide/svelte/icons/image";
@@ -49,15 +49,11 @@
 		},
 	] as const;
 
-	const SCROLL_PREVIOUS_ITEM_PEEK = 64;
 	const THINKING_DELAY_MS = 1000;
 
 	let messages = $state<DemoMessage[]>([]);
 	let stepIndex = $state(0);
 	let status = $state<"ready" | "submitted" | "streaming">("ready");
-	let viewportRef = $state<HTMLDivElement | null>(null);
-	let anchoredMessageId = $state<string | null>(null);
-	let tailSpacerHeight = $state(0);
 	let timeoutIds: ReturnType<typeof setTimeout>[] = [];
 
 	const nextMessage = $derived(conversation[stepIndex]?.user);
@@ -82,142 +78,6 @@
 		);
 	}
 
-	function getViewport() {
-		if (viewportRef) return viewportRef;
-		if (typeof document === "undefined") return null;
-
-		return document.querySelector<HTMLElement>("[data-slot='message-scroller-viewport']");
-	}
-
-	function getMessageItem(messageId: string) {
-		return getViewport()?.querySelector<HTMLElement>(
-			`[data-slot="message-scroller-item"][data-message-id="${CSS.escape(messageId)}"]`
-		);
-	}
-
-	function getBlockPadding(element: HTMLElement) {
-		const style = getComputedStyle(element);
-
-		return {
-			end: Number.parseFloat(style.paddingBlockEnd || style.paddingBottom) || 0,
-			start: Number.parseFloat(style.paddingBlockStart || style.paddingTop) || 0,
-		};
-	}
-
-	function getMessageItems(content: HTMLElement) {
-		return Array.from(content.children).filter(
-			(child): child is HTMLElement =>
-				child instanceof HTMLElement && child.dataset.tailSpacer !== "true"
-		);
-	}
-
-	function getContentBottom(content: HTMLElement, viewport: HTMLElement) {
-		const items = getMessageItems(content);
-		const padding = getBlockPadding(content);
-		const viewportRect = viewport.getBoundingClientRect();
-		const scrollTop = viewport.scrollTop;
-		let contentBottom = padding.start + padding.end;
-
-		for (const item of items) {
-			const rect = item.getBoundingClientRect();
-
-			contentBottom = Math.max(
-				contentBottom,
-				rect.bottom - viewportRect.top + scrollTop + padding.end
-			);
-		}
-
-		return contentBottom;
-	}
-
-	function getElementTop(element: HTMLElement, viewport: HTMLElement) {
-		const elementRect = element.getBoundingClientRect();
-		const viewportRect = viewport.getBoundingClientRect();
-
-		return elementRect.top - viewportRect.top + viewport.scrollTop;
-	}
-
-	function getAnchorTargetOffset() {
-		const content = getViewport()?.querySelector<HTMLElement>(
-			"[data-slot='message-scroller-content']"
-		);
-		const paddingTop = content ? getBlockPadding(content).start : 0;
-
-		return paddingTop + SCROLL_PREVIOUS_ITEM_PEEK;
-	}
-
-	function waitForAnimationFrame() {
-		return new Promise<void>((resolve) => {
-			requestAnimationFrame(() => resolve());
-		});
-	}
-
-	async function updateTailSpacer(messageId = anchoredMessageId) {
-		if (!messageId) {
-			tailSpacerHeight = 0;
-			return;
-		}
-
-		await tick();
-		const viewport = getViewport();
-		const item = getMessageItem(messageId);
-		const content = viewport?.querySelector<HTMLElement>(
-			"[data-slot='message-scroller-content']"
-		);
-		if (!viewport || !item || !content) return;
-
-		const scrollTop =
-			getElementTop(item, viewport) -
-			getBlockPadding(content).start -
-			SCROLL_PREVIOUS_ITEM_PEEK;
-		const contentBottom = getContentBottom(content, viewport);
-		tailSpacerHeight = Math.ceil(
-			Math.max(0, scrollTop + viewport.clientHeight - contentBottom)
-		);
-	}
-
-	async function scrollToMessageAnchor(messageId: string) {
-		await tick();
-
-		const viewport = getViewport();
-		let item = getMessageItem(messageId);
-		if (!viewport || !item) return;
-
-		let top = getElementTop(item, viewport) - getAnchorTargetOffset();
-		const maxScrollTop = viewport.scrollHeight - viewport.clientHeight;
-
-		if (top > maxScrollTop) {
-			tailSpacerHeight = Math.ceil(top - maxScrollTop);
-			await tick();
-			item = getMessageItem(messageId);
-			if (!item) return;
-			top = getElementTop(item, viewport) - getAnchorTargetOffset();
-		}
-
-		viewport.scrollTo({
-			top,
-			behavior: "auto",
-		});
-
-		await waitForAnimationFrame();
-		item = getMessageItem(messageId);
-		if (!item) return;
-
-		const viewportTop = item.getBoundingClientRect().top - viewport.getBoundingClientRect().top;
-		const offset = getAnchorTargetOffset();
-		if (viewportTop > offset) {
-			tailSpacerHeight += Math.ceil(viewportTop - offset);
-			await tick();
-			item = getMessageItem(messageId);
-			if (!item) return;
-
-			viewport.scrollTo({
-				top: getElementTop(item, viewport) - offset,
-				behavior: "auto",
-			});
-		}
-	}
-
 	function streamAssistantMessage(content: string, messageId: string, offset = 0) {
 		const nextOffset = Math.min(content.length, offset + 8);
 		updateMessage(messageId, content.slice(0, nextOffset));
@@ -229,7 +89,6 @@
 
 		stepIndex += 1;
 		status = "ready";
-		updateTailSpacer();
 	}
 
 	function sendMessage() {
@@ -248,9 +107,6 @@
 			},
 		];
 		status = "submitted";
-		anchoredMessageId = userId;
-		scrollToMessageAnchor(userId);
-		queueTimeout(() => scrollToMessageAnchor(userId), 0);
 
 		queueTimeout(() => {
 			messages = [
@@ -271,8 +127,6 @@
 		messages = [];
 		stepIndex = 0;
 		status = "ready";
-		anchoredMessageId = null;
-		tailSpacerHeight = 0;
 	}
 
 	onDestroy(clearQueuedTimeouts);
@@ -345,7 +199,7 @@
 					</Empty.Root>
 				{:else}
 					<MessageScroller.Root>
-						<MessageScroller.Viewport bind:ref={viewportRef}>
+						<MessageScroller.Viewport>
 							<MessageScroller.Content aria-busy={isBusy} class="p-(--card-spacing)">
 								{#each messages as message (message.id)}
 									{@render MessageBubble(message)}
@@ -361,14 +215,6 @@
 											>
 										</Marker.Root>
 									</MessageScroller.Item>
-								{/if}
-								{#if tailSpacerHeight > 0}
-									<div
-										aria-hidden="true"
-										data-tail-spacer="true"
-										class="shrink-0"
-										style:height={`${tailSpacerHeight}px`}
-									></div>
 								{/if}
 							</MessageScroller.Content>
 						</MessageScroller.Viewport>
