@@ -50,6 +50,7 @@
 	] as const;
 
 	const SCROLL_PREVIOUS_ITEM_PEEK = 64;
+	const THINKING_DELAY_MS = 1000;
 
 	let messages = $state<DemoMessage[]>([]);
 	let stepIndex = $state(0);
@@ -262,7 +263,7 @@
 			];
 			status = "streaming";
 			streamAssistantMessage(next.assistant, assistantId);
-		}, 700);
+		}, THINKING_DELAY_MS);
 	}
 
 	function resetConversation() {
@@ -355,7 +356,9 @@
 											<Marker.Icon>
 												<Spinner />
 											</Marker.Icon>
-											<Marker.Content>Thinking...</Marker.Content>
+											<Marker.Content class="shimmer"
+												>Thinking...</Marker.Content
+											>
 										</Marker.Root>
 									</MessageScroller.Item>
 								{/if}
