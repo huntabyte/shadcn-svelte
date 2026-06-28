@@ -7,7 +7,11 @@ description: Utilities for adding a fade effect to the edges of a scroll contain
 	import ComponentPreview from "$lib/components/component-preview.svelte";
 </script>
 
-<ComponentPreview name="scroll-fade-demo" previewClassName="h-auto" />
+<ComponentPreview name="scroll-fade-demo" previewClassName="h-auto">
+
+<div></div>
+
+</ComponentPreview>
 
 ## Installation
 
@@ -65,13 +69,21 @@ The [`ScrollArea`](/docs/components/scroll-area) and [`MessageScroller`](/docs/c
 
 If the content does not overflow, no fade is shown. You can apply `scroll-fade` to any list without checking whether it scrolls.
 
-<ComponentPreview name="scroll-fade-overflow" previewClassName="h-auto" />
+<ComponentPreview name="scroll-fade-overflow" previewClassName="h-auto">
+
+<div></div>
+
+</ComponentPreview>
 
 ## Horizontal Scrolling
 
 Use `scroll-fade-x` on containers that scroll horizontally, i.e. the element that has `overflow-x-auto`.
 
-<ComponentPreview name="scroll-fade-horizontal" previewClassName="h-64" />
+<ComponentPreview name="scroll-fade-horizontal" previewClassName="h-64">
+
+<div></div>
+
+</ComponentPreview>
 
 ```svelte
 <div class="flex scroll-fade-x overflow-x-auto">{/* ... */}</div>
@@ -83,7 +95,11 @@ The horizontal fade is direction-aware. In RTL layouts, the crisp edge and the f
 
 Use edge utilities when only one edge should track the scroll position.
 
-<ComponentPreview name="scroll-fade-edge" previewClassName="h-auto" />
+<ComponentPreview name="scroll-fade-edge" previewClassName="h-auto">
+
+<div></div>
+
+</ComponentPreview>
 
 ```svelte
 <div class="scroll-fade-b overflow-y-auto">{/* ... */}</div>
@@ -95,7 +111,11 @@ The edge utilities are scroll-aware. Start edges fade in after you scroll away f
 
 The fade depth defaults to `12%` of the container, capped at `40px` so tall scrollers stay subtle. Use `scroll-fade-<number>` to set a fixed size on the spacing scale instead, the same way `scroll-mt-<number>` works.
 
-<ComponentPreview name="scroll-fade-size" previewClassName="h-auto" />
+<ComponentPreview name="scroll-fade-size" previewClassName="h-auto">
+
+<div></div>
+
+</ComponentPreview>
 
 ```svelte
 <div class="scroll-fade overflow-y-auto scroll-fade-24">{/* ... */}</div>
@@ -135,7 +155,11 @@ Use `scroll-fade-none` to remove the fade. It works in any class order, so the t
 </div>
 ```
 
-<ComponentPreview name="scroll-fade-none" previewClassName="h-auto" />
+<ComponentPreview name="scroll-fade-none" previewClassName="h-auto">
+
+<div></div>
+
+</ComponentPreview>
 
 ## Fallback
 
@@ -143,10 +167,14 @@ The scroll-aware behavior is implemented with [CSS scroll-driven animations](htt
 
 Since the mask is applied to the scroll container itself, a visible scrollbar fades with the content at the edges. Pair `scroll-fade` with `no-scrollbar`, which ships in the same package, if you want to hide the scrollbar entirely.
 
-## RTL
+<!-- ## RTL
 
 To enable RTL support, set the `dir` attribute on the document or the relevant container.
 
 `scroll-fade-x` follows the reading direction. At rest, the start edge is crisp and the end edge fades. In RTL layouts that means a crisp right edge and a fade on the left, mirrored from LTR.
 
-<ComponentPreview name="scroll-fade-rtl" />
+<ComponentPreview name="scroll-fade-rtl">
+
+<div></div>
+
+</ComponentPreview> -->

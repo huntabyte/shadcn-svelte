@@ -7,7 +7,11 @@ description: Utilities for adding a shimmer effect to text elements.
 	import ComponentPreview from "$lib/components/component-preview.svelte";
 </script>
 
-<ComponentPreview name="shimmer-demo" />
+<ComponentPreview name="shimmer-demo">
+
+<div></div>
+
+</ComponentPreview>
 
 ## Installation
 
@@ -60,7 +64,11 @@ The effect is pure CSS. The text is painted with `background-clip: text`, and th
 
 The shimmer composes with any component that renders text. A common pattern is a [Marker](/docs/components/marker) showing a live status while the assistant is working:
 
-<ComponentPreview name="shimmer-marker" />
+<ComponentPreview name="shimmer-marker">
+
+<div></div>
+
+</ComponentPreview>
 
 ```svelte
 <Marker.Root role="status">
@@ -75,7 +83,11 @@ The shimmer composes with any component that renders text. A common pattern is a
 
 Use `shimmer-color-<color>` to set the highlight color explicitly. It accepts theme colors with an optional opacity modifier, or any arbitrary color value.
 
-<ComponentPreview name="shimmer-color" />
+<ComponentPreview name="shimmer-color">
+
+<div></div>
+
+</ComponentPreview>
 
 ```svelte
 <p class="shimmer shimmer-color-blue-500/60">Generating response&hellip;</p>
@@ -86,7 +98,11 @@ Use `shimmer-color-<color>` to set the highlight color explicitly. It accepts th
 
 Use `shimmer-duration-<number>` to set the duration of one sweep in milliseconds. The default is `2000`, i.e. `2s`.
 
-<ComponentPreview name="shimmer-duration" />
+<ComponentPreview name="shimmer-duration">
+
+<div></div>
+
+</ComponentPreview>
 
 ```svelte
 <p class="shimmer shimmer-duration-1000">Generating response&hellip;</p>
@@ -96,7 +112,11 @@ Use `shimmer-duration-<number>` to set the duration of one sweep in milliseconds
 
 Use `shimmer-spread-<number>` to set the width of the highlight band using the spacing scale. The default is `calc(3ch + 40px)`: a fixed base plus a `3ch` term that scales with the font size.
 
-<ComponentPreview name="shimmer-spread" />
+<ComponentPreview name="shimmer-spread">
+
+<div></div>
+
+</ComponentPreview>
 
 ```svelte
 <p class="shimmer shimmer-spread-24">Generating response&hellip;</p>
@@ -112,7 +132,11 @@ For one-off values, use an arbitrary length or percentage:
 
 Use `shimmer-angle-<number>` to set the tilt of the highlight band in degrees. The default is `20`.
 
-<ComponentPreview name="shimmer-angle" />
+<ComponentPreview name="shimmer-angle">
+
+<div></div>
+
+</ComponentPreview>
 
 ```svelte
 <p class="shimmer shimmer-angle-45">Generating response&hellip;</p>
@@ -130,7 +154,11 @@ Use `shimmer-reverse` to sweep the highlight in the opposite direction. In RTL l
 
 Use `shimmer-once` to play a single sweep instead of looping, useful as a reveal when streaming completes. Pair it with `shimmer-duration-<number>` to control how long the sweep takes.
 
-<ComponentPreview name="shimmer-once" />
+<ComponentPreview name="shimmer-once">
+
+<div></div>
+
+</ComponentPreview>
 
 ```svelte
 <p class="shimmer shimmer-duration-1100 shimmer-once">Response generated.</p>
@@ -140,7 +168,11 @@ Use `shimmer-once` to play a single sweep instead of looping, useful as a reveal
 
 Use `shimmer-none` to turn the effect off and render the text normally. It works in any class order, so the typical use is responsive or stateful:
 
-<ComponentPreview name="shimmer-none" />
+<ComponentPreview name="shimmer-none">
+
+<div></div>
+
+</ComponentPreview>
 
 ```svelte
 <p class="shimmer md:shimmer-none">Generating response&hellip;</p>
@@ -160,10 +192,14 @@ The shimmer is built on modern color features, [relative color syntax](https://d
 
 When the user prefers reduced motion, the animation is disabled automatically and the text renders normally. There is nothing to configure.
 
-## RTL
+<!-- ## RTL
 
 To enable RTL support, set the `dir` attribute on the document or the relevant container.
 
 The sweep follows the reading direction, left to right in LTR and right to left in RTL, with no extra classes. Use `shimmer-reverse` to flip the direction manually.
 
-<ComponentPreview name="shimmer-rtl" />
+<ComponentPreview name="shimmer-rtl">
+
+<div></div>
+
+</ComponentPreview> -->
