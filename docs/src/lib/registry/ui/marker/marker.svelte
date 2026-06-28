@@ -30,7 +30,7 @@
 		...restProps
 	}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {
 		variant?: MarkerVariant;
-		child?: Snippet<[{ props: HTMLAttributes<HTMLDivElement> }]>;
+		child?: Snippet<[{ props: Record<string, unknown> }]>;
 	} = $props();
 
 	const attrs = $derived({

@@ -17,14 +17,15 @@
 		<Message.Root>
 			<Message.Avatar>
 				<Avatar.Root>
+					<Avatar.Image src="/avatars/02.png" alt="@avatar" />
 					<Avatar.Fallback>CN</Avatar.Fallback>
 				</Avatar.Root>
 			</Message.Avatar>
 			<Message.Content>
 				<Bubble.Root variant="muted">
-					<Bubble.Content
-						>The component and example JSON live under the UI registry.</Bubble.Content
-					>
+					<Bubble.Content>
+						The component and example JSON now live under the UI registry.
+					</Bubble.Content>
 				</Bubble.Root>
 			</Message.Content>
 		</Message.Root>

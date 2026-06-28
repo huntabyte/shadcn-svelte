@@ -1,7 +1,5 @@
 <script lang="ts">
 	import * as Attachment from "$lib/registry/ui/attachment/index.js";
-	import { Spinner } from "$lib/registry/ui/spinner/index.js";
-	import FileCodeIcon from "@lucide/svelte/icons/file-code";
 	import XIcon from "@lucide/svelte/icons/x";
 
 	const images = [
@@ -26,8 +24,8 @@
 	];
 </script>
 
-<div class="mx-auto flex w-full max-w-sm flex-col gap-3 py-12">
-	<Attachment.Group>
+<div class="mx-auto w-full max-w-sm py-12">
+	<Attachment.Group class="w-full">
 		{#each images as image (image.name)}
 			<Attachment.Root orientation="vertical">
 				<Attachment.Media variant="image">
@@ -37,30 +35,17 @@
 					<Attachment.Title>{image.name}</Attachment.Title>
 					<Attachment.Description>{image.meta}</Attachment.Description>
 				</Attachment.Content>
+				<Attachment.Actions>
+					<Attachment.Action aria-label={`Remove ${image.name}`}>
+						<XIcon />
+					</Attachment.Action>
+				</Attachment.Actions>
+				<Attachment.Trigger aria-label={`Open ${image.name}`}>
+					{#snippet child({ props })}
+						<a href={image.src} target="_blank" rel="noreferrer" {...props}></a>
+					{/snippet}
+				</Attachment.Trigger>
 			</Attachment.Root>
 		{/each}
 	</Attachment.Group>
-	<Attachment.Root state="uploading" class="w-full">
-		<Attachment.Media>
-			<Spinner />
-		</Attachment.Media>
-		<Attachment.Content>
-			<Attachment.Title>sales-dashboard.pdf</Attachment.Title>
-			<Attachment.Description>Uploading · 64%</Attachment.Description>
-		</Attachment.Content>
-	</Attachment.Root>
-	<Attachment.Root class="w-full">
-		<Attachment.Media>
-			<FileCodeIcon />
-		</Attachment.Media>
-		<Attachment.Content>
-			<Attachment.Title>message-renderer.tsx</Attachment.Title>
-			<Attachment.Description>TypeScript · 12 KB</Attachment.Description>
-		</Attachment.Content>
-		<Attachment.Actions>
-			<Attachment.Action aria-label="Remove message-renderer.tsx">
-				<XIcon />
-			</Attachment.Action>
-		</Attachment.Actions>
-	</Attachment.Root>
 </div>

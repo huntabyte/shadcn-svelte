@@ -9,6 +9,8 @@
 		</Bubble.Content>
 	</Bubble.Root>
 	<Bubble.Root align="end">
-		<Bubble.Content>This bubble is aligned to the end.</Bubble.Content>
+		<Bubble.Content>
+			This bubble is aligned to the end. Use this for user messages.
+		</Bubble.Content>
 	</Bubble.Root>
 </div>

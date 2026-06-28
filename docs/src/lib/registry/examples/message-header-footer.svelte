@@ -15,7 +15,9 @@
 	<Message.Root align="end">
 		<Message.Content>
 			<Bubble.Root>
-				<Bubble.Content>Send the report to the team.</Bubble.Content>
+				<Bubble.Content>
+					Send the report to the team. Ping @shadcn if you need help.
+				</Bubble.Content>
 			</Bubble.Root>
 			<Message.Footer>
 				<div>Read <span class="font-normal">Yesterday</span></div>

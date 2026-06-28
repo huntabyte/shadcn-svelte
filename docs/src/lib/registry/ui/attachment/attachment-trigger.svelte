@@ -11,13 +11,13 @@
 		children,
 		...restProps
 	}: WithElementRef<HTMLButtonAttributes> & {
-		child?: Snippet<[{ props: HTMLButtonAttributes }]>;
+		child?: Snippet<[{ props: Record<string, unknown> }]>;
 	} = $props();
 
 	const attrs = $derived({
 		"data-slot": "attachment-trigger",
-		type,
 		class: cn("absolute inset-0 z-10 outline-none", className),
+		...(child ? {} : { type }),
 		...restProps,
 	});
 </script>

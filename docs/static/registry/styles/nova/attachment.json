@@ -45,7 +45,7 @@
 			"target": "attachment/attachment-title.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLButtonAttributes } from \"svelte/elements\";\n\timport type { Snippet } from \"svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\ttype = \"button\",\n\t\tchild,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLButtonAttributes> & {\n\t\tchild?: Snippet<[{ props: HTMLButtonAttributes }]>;\n\t} = $props();\n\n\tconst attrs = $derived({\n\t\t\"data-slot\": \"attachment-trigger\",\n\t\ttype,\n\t\tclass: cn(\"absolute inset-0 z-10 outline-none\", className),\n\t\t...restProps,\n\t});\n</script>\n\n{#if child}\n\t{@render child({ props: attrs })}\n{:else}\n\t<button bind:this={ref} {...attrs}>\n\t\t{@render children?.()}\n\t</button>\n{/if}\n",
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLButtonAttributes } from \"svelte/elements\";\n\timport type { Snippet } from \"svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\ttype = \"button\",\n\t\tchild,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLButtonAttributes> & {\n\t\tchild?: Snippet<[{ props: Record<string, unknown> }]>;\n\t} = $props();\n\n\tconst attrs = $derived({\n\t\t\"data-slot\": \"attachment-trigger\",\n\t\tclass: cn(\"absolute inset-0 z-10 outline-none\", className),\n\t\t...(child ? {} : { type }),\n\t\t...restProps,\n\t});\n</script>\n\n{#if child}\n\t{@render child({ props: attrs })}\n{:else}\n\t<button bind:this={ref} {...attrs}>\n\t\t{@render children?.()}\n\t</button>\n{/if}\n",
 			"type": "registry:file",
 			"target": "attachment/attachment-trigger.svelte"
 		},

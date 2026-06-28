@@ -17,15 +17,19 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="message-demo">
+<ComponentPreview name="message-demo" previewClassName="h-auto theme-blue">
 
 <div></div>
 
 </ComponentPreview>
 
-The `Message` component lays out a single message in a conversation. It handles the avatar, alignment, header, and footer around the message surface.
+The `Message` component lays out a single message in a conversation. It handles
+the avatar, alignment, header, and footer around the message surface.
 
-For AI apps, render reasoning steps, tool calls, assistant messages, and user messages by composing `Message` with [`Bubble`](/docs/components/bubble) and your application state from `@ai-sdk/svelte`.
+For AI apps, render reasoning steps, tool calls, assistant messages, and user
+messages by composing `Message` with [`Bubble`](/docs/components/bubble),
+[`Marker`](/docs/components/marker), and your application state from
+`@ai-sdk/svelte`.
 
 ## Installation
 
@@ -87,13 +91,22 @@ Message
 
 Use `Message.Group` to stack consecutive messages from the same sender.
 
+## Features
+
+- Start and end alignment for inbound and outbound rows
+- Avatar, content, header, and footer slots
+- Footer-aware avatar positioning
+- Works with `Bubble`, `Attachment`, and `Marker`
+- Customizable styling through the `class` prop on every part
+
 ## Examples
 
 ### Avatar
 
-Use `Message.Avatar` to render an avatar next to the message. Set `align="end"` on the message to align the avatar to the end.
+Use `Message.Avatar` to render an avatar next to the message. Set `align="end"`
+on the message to align the avatar to the end.
 
-<ComponentPreview name="message-avatar">
+<ComponentPreview name="message-avatar" previewClassName="h-auto theme-blue">
 
 <div></div>
 
@@ -103,7 +116,7 @@ Use `Message.Avatar` to render an avatar next to the message. Set `align="end"` 
 
 Use `Message.Group` to stack consecutive messages from the same sender.
 
-<ComponentPreview name="message-group">
+<ComponentPreview name="message-group" previewClassName="h-auto theme-blue">
 
 <div></div>
 
@@ -111,9 +124,10 @@ Use `Message.Group` to stack consecutive messages from the same sender.
 
 ### Header and Footer
 
-Use `Message.Header` for a sender name and `Message.Footer` for metadata such as a delivery or read status.
+Use `Message.Header` for a sender name and `Message.Footer` for metadata such
+as a delivery or read status.
 
-<ComponentPreview name="message-header-footer">
+<ComponentPreview name="message-header-footer" previewClassName="h-auto theme-blue">
 
 <div></div>
 
@@ -121,9 +135,10 @@ Use `Message.Header` for a sender name and `Message.Footer` for metadata such as
 
 ### Actions
 
-Place message-level actions in `Message.Footer`, such as copy, retry, or feedback buttons.
+Place message-level actions in `Message.Footer`, such as copy, retry, or
+feedback buttons.
 
-<ComponentPreview name="message-actions">
+<ComponentPreview name="message-actions" previewClassName="h-auto theme-blue">
 
 <div></div>
 
@@ -133,7 +148,7 @@ Place message-level actions in `Message.Footer`, such as copy, retry, or feedbac
 
 Attachments can be placed before or after the bubble in `Message.Content`.
 
-<ComponentPreview name="message-attachment">
+<ComponentPreview name="message-attachment" previewClassName="h-auto theme-blue">
 
 <div></div>
 
@@ -141,9 +156,32 @@ Attachments can be placed before or after the bubble in `Message.Content`.
 
 ## Accessibility
 
-`Message` is a presentational layout wrapper. Accessibility comes from the content you place inside it.
+`Message` is a presentational layout wrapper. Accessibility comes from the
+content you place inside it.
 
-Action buttons in `Message.Footer` are usually icon-only, so give each one an `aria-label`.
+### Label icon-only actions
+
+Action buttons in `Message.Footer` are usually icon-only, so give each one an
+`aria-label`.
+
+```svelte
+<Message.Footer>
+  <Button aria-label="Copy" size="icon" variant="ghost">
+    <CopyIcon />
+  </Button>
+</Message.Footer>
+```
+
+### Status updates
+
+For live state such as typing or tool progress, compose `Message` with
+[`Marker`](/docs/components/marker) and set the appropriate role on the marker.
+
+```svelte
+<Marker.Root role="status">
+  <Marker.Content class="shimmer">Oliver is typing...</Marker.Content>
+</Marker.Root>
+```
 
 ## API Reference
 
@@ -152,23 +190,44 @@ Action buttons in `Message.Footer` are usually icon-only, so give each one an `a
 | Prop    | Type               | Default   | Description                                       |
 | ------- | ------------------ | --------- | ------------------------------------------------- |
 | `align` | `"start" \| "end"` | `"start"` | The alignment of the message in the conversation. |
+| `class` | `string`           |           | Additional classes for the row.                   |
 
 ### Message.Group
 
 Groups consecutive messages from the same sender.
 
+| Prop    | Type     | Default | Description                            |
+| ------- | -------- | ------- | -------------------------------------- |
+| `class` | `string` |         | Additional classes for the group root. |
+
 ### Message.Avatar
 
 The avatar slot, aligned to the bottom of the message.
+
+| Prop    | Type     | Default | Description                             |
+| ------- | -------- | ------- | --------------------------------------- |
+| `class` | `string` |         | Additional classes for the avatar slot. |
 
 ### Message.Content
 
 Wraps the header, message surface, and footer.
 
+| Prop    | Type     | Default | Description                              |
+| ------- | -------- | ------- | ---------------------------------------- |
+| `class` | `string` |         | Additional classes for the content slot. |
+
 ### Message.Header
 
 Displays content above the message, such as a sender name.
 
+| Prop    | Type     | Default | Description                        |
+| ------- | -------- | ------- | ---------------------------------- |
+| `class` | `string` |         | Additional classes for the header. |
+
 ### Message.Footer
 
 Displays content below the message, such as status or actions.
+
+| Prop    | Type     | Default | Description                        |
+| ------- | -------- | ------- | ---------------------------------- |
+| `class` | `string` |         | Additional classes for the footer. |
