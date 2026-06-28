@@ -68,7 +68,7 @@ Wrap Svelte islands that use direction-aware components with `DirectionProvider`
 </script>
 
 <DirectionProvider direction="rtl">
-  <!-- Your Svelte island content -->
+  <div></div>
 </DirectionProvider>
 ```
 
