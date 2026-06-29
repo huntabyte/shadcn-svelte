@@ -21,6 +21,8 @@ export const veliteDirPath = path.join(__dirname, ".velite");
 export const staticDirPath = path.join(__dirname, "src/registry/json");
 export const contentDirPath = path.join(__dirname, "content");
 export const ogDirPath = path.join(__dirname, "src/routes/og");
+const nodeModulesDirPath = fs.realpathSync(path.join(__dirname, "node_modules"));
+const workspaceNodeModulesDirPath = fs.realpathSync(path.join(__dirname, "..", "node_modules"));
 
 export default defineConfig({
 	resolve: {
@@ -43,7 +45,14 @@ export default defineConfig({
 	],
 	server: {
 		fs: {
-			allow: [veliteDirPath, staticDirPath, contentDirPath, ogDirPath],
+			allow: [
+				veliteDirPath,
+				staticDirPath,
+				contentDirPath,
+				ogDirPath,
+				nodeModulesDirPath,
+				workspaceNodeModulesDirPath,
+			],
 		},
 	},
 	build: {

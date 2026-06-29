@@ -6,6 +6,7 @@
 	import MessageHeaderFooter from "./message-header-footer.svelte";
 	import MessageActions from "./message-actions.svelte";
 	import MessageAttachment from "./message-attachment.svelte";
+	import MessageMarkdown from "./message-markdown.svelte";
 </script>
 
 <ExampleWrapper>
@@ -15,4 +16,5 @@
 	<MessageHeaderFooter />
 	<MessageActions />
 	<MessageAttachment />
+	<MessageMarkdown />
 </ExampleWrapper>

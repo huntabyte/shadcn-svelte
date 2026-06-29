@@ -42,7 +42,7 @@ export const examples: Example[] = [
 	},
 	{
 		title: "Attachment",
-		name: "attachment",
+		name: "attachment-example",
 		type: "registry:example",
 	},
 	{
@@ -62,7 +62,7 @@ export const examples: Example[] = [
 	},
 	{
 		title: "Bubble",
-		name: "bubble",
+		name: "bubble-example",
 		type: "registry:example",
 	},
 	{
@@ -182,7 +182,7 @@ export const examples: Example[] = [
 	},
 	{
 		title: "Marker",
-		name: "marker",
+		name: "marker-example",
 		type: "registry:example",
 	},
 	{
@@ -192,12 +192,12 @@ export const examples: Example[] = [
 	},
 	{
 		title: "Message",
-		name: "message",
+		name: "message-example",
 		type: "registry:example",
 	},
 	{
 		title: "Message Scroller",
-		name: "message-scroller",
+		name: "message-scroller-example",
 		type: "registry:example",
 	},
 	{
