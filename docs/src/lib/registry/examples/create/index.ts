@@ -42,8 +42,14 @@ export const examples: Example[] = [
 	},
 	{
 		title: "Attachment",
+		name: "attachment",
+		type: "registry:example",
+	},
+	{
+		title: "Attachment",
 		name: "attachment-example",
 		type: "registry:example",
+		hideFromCommandPalette: true,
 	},
 	{
 		title: "Avatar",
@@ -62,8 +68,14 @@ export const examples: Example[] = [
 	},
 	{
 		title: "Bubble",
+		name: "bubble",
+		type: "registry:example",
+	},
+	{
+		title: "Bubble",
 		name: "bubble-example",
 		type: "registry:example",
+		hideFromCommandPalette: true,
 	},
 	{
 		title: "Button",
@@ -182,8 +194,14 @@ export const examples: Example[] = [
 	},
 	{
 		title: "Marker",
+		name: "marker",
+		type: "registry:example",
+	},
+	{
+		title: "Marker",
 		name: "marker-example",
 		type: "registry:example",
+		hideFromCommandPalette: true,
 	},
 	{
 		title: "Menubar",
@@ -192,13 +210,25 @@ export const examples: Example[] = [
 	},
 	{
 		title: "Message",
+		name: "message",
+		type: "registry:example",
+	},
+	{
+		title: "Message",
 		name: "message-example",
+		type: "registry:example",
+		hideFromCommandPalette: true,
+	},
+	{
+		title: "Message Scroller",
+		name: "message-scroller",
 		type: "registry:example",
 	},
 	{
 		title: "Message Scroller",
 		name: "message-scroller-example",
 		type: "registry:example",
+		hideFromCommandPalette: true,
 	},
 	{
 		title: "Navigation Menu",
