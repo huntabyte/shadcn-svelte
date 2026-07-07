@@ -189,7 +189,8 @@ describe("addRegistryItems", () => {
 				expect.objectContaining({
 					title: expect.stringContaining("card"),
 				}),
-			])
+			]),
+			expect.anything()
 		);
 	});
 });
