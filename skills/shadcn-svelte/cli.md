@@ -77,16 +77,16 @@ Use `--only theme` or `--only font` to apply only part of a preset without reins
 
 Get a preset code from the builder at [shadcn-svelte.com/create](https://shadcn-svelte.com/create).
 
-| Flag                | Short | Description                                                | Default   |
-| ------------------- | ----- | ---------------------------------------------------------- | --------- |
-| `--preset <preset>` | —     | Encoded design-system preset string (required)             | —         |
-| `--only [parts]`    | —     | Apply only `theme` or `font` from the preset | —         |
-| `-c, --cwd <path>`  | `-c`  | Working directory                                          | current   |
-| `-y, --yes`         | `-y`  | Overwrite existing files without confirmation              | `false`   |
-| `-s, --silent`      | `-s`  | Mute output                                                | `false`   |
-| `--skip-preflight`  | —     | Ignore preflight checks and continue                       | `false`   |
-| `--proxy <proxy>`   | —     | Fetch registry items through this proxy                    | env-based |
-| `-h, --help`        | `-h`  | Help                                                       | —         |
+| Flag                | Short | Description                                    | Default   |
+| ------------------- | ----- | ---------------------------------------------- | --------- |
+| `--preset <preset>` | —     | Encoded design-system preset string (required) | —         |
+| `--only [parts]`    | —     | Apply only `theme` or `font` from the preset   | —         |
+| `-c, --cwd <path>`  | `-c`  | Working directory                              | current   |
+| `-y, --yes`         | `-y`  | Overwrite existing files without confirmation  | `false`   |
+| `-s, --silent`      | `-s`  | Mute output                                    | `false`   |
+| `--skip-preflight`  | —     | Ignore preflight checks and continue           | `false`   |
+| `--proxy <proxy>`   | —     | Fetch registry items through this proxy        | env-based |
+| `-h, --help`        | `-h`  | Help                                           | —         |
 
 Requires an existing `components.json`. Run `init` first if the project is not yet configured.
 

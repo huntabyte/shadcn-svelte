@@ -107,8 +107,13 @@ export const init = new Command()
 		} catch (e) {
 			handleError(e);
 		}
-	}).on("option:overwrite", () => {
-		console.warn(color.yellow(`Warning: ${color.bold("--overwrite")} is deprecated. Use ${color.bold("--reinstall")} instead.\n`));
+	})
+	.on("option:overwrite", () => {
+		console.warn(
+			color.yellow(
+				`Warning: ${color.bold("--overwrite")} is deprecated. Use ${color.bold("--reinstall")} instead.\n`
+			)
+		);
 	});
 
 function validateOptions(cwd: string, options: InitOptions, tsconfig: TsConfigResult) {

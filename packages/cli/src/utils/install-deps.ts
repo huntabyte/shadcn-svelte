@@ -19,7 +19,7 @@ export async function installDependencies({
 	prompt,
 	dependencies,
 	devDependencies,
-	silent
+	silent,
 }: InstallOptions): Promise<void> {
 	const pm = await detectPM(cwd, prompt);
 	if (!pm) return;
