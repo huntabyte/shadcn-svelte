@@ -28,12 +28,12 @@
 			"target": "tooltip/tooltip-provider.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { Tooltip as TooltipPrimitive } from \"bits-ui\";\n\n\tlet { ref = $bindable(null), ...restProps }: TooltipPrimitive.TriggerProps = $props();\n</script>\n\n<TooltipPrimitive.Trigger bind:ref data-slot=\"tooltip-trigger\" {...restProps} />\n",
+			"content": "<script lang=\"ts\" generics=\"T = never\">\n\timport { Tooltip as TooltipPrimitive } from \"bits-ui\";\n\n\tlet { ref = $bindable(null), ...restProps }: TooltipPrimitive.TriggerProps<T> = $props();\n</script>\n\n<TooltipPrimitive.Trigger bind:ref data-slot=\"tooltip-trigger\" {...restProps} />\n",
 			"type": "registry:file",
 			"target": "tooltip/tooltip-trigger.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { Tooltip as TooltipPrimitive } from \"bits-ui\";\n\n\tlet { open = $bindable(false), ...restProps }: TooltipPrimitive.RootProps = $props();\n</script>\n\n<TooltipPrimitive.Root bind:open {...restProps} />\n",
+			"content": "<script lang=\"ts\" generics=\"T = never\">\n\timport { Tooltip as TooltipPrimitive } from \"bits-ui\";\n\n\tlet { open = $bindable(false), ...restProps }: TooltipPrimitive.RootProps<T> = $props();\n</script>\n\n<TooltipPrimitive.Root bind:open {...restProps} />\n",
 			"type": "registry:file",
 			"target": "tooltip/tooltip.svelte"
 		}
