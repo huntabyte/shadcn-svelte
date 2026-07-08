@@ -14,7 +14,6 @@ import { addRegistryItems } from "../../utils/add-registry-items.js";
 import { getEnvProxy } from "../../utils/get-env-proxy.js";
 import { highlight } from "../../utils/colors.js";
 import { type PresetConfig, decodePreset, encodePreset } from "../../preset/index.js";
-import * as project from "../../utils/project.js";
 import { installDependencies } from "../../utils/install-deps.js";
 
 const ONLY_OPTIONS = ["font", "theme"] as const;
@@ -36,7 +35,7 @@ export const apply = new Command()
 	.description("apply a preset to an existing project")
 	.option("--preset <preset>", "the preset to use")
 	.addOption(
-		new Option("--only [...parts]", "apply only parts of a preset: theme, font").choices(
+		new Option("--only <parts...>", "apply only parts of a preset: theme, font").choices(
 			ONLY_OPTIONS
 		)
 	)
@@ -99,23 +98,28 @@ export async function runApply({
 		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);
 	}
 
-	// set the config to reflect the newly applied preset
-	config.iconLibrary = decidedPresets.iconLibrary;
-	config.menuColor = decidedPresets.menuColor;
-	config.menuAccent = decidedPresets.menuAccent;
-	config.style = decidedPresets.style;
-	config.tailwind.baseColor = decidedPresets.baseColor;
+	const only = options.only && options.only.length > 0 ? options.only : undefined;
+	const shouldApplyTheme = only === undefined || only.includes("theme");
+	const onlyApplyTheme = only?.includes("theme");
 
-	const loader = p.spinner();
+	if (shouldApplyTheme) {
+		config.iconLibrary = decidedPresets.iconLibrary;
+		config.menuColor = decidedPresets.menuColor;
+		config.menuAccent = decidedPresets.menuAccent;
+		config.style = decidedPresets.style;
+		config.tailwind.baseColor = decidedPresets.baseColor;
 
-	if (!options.silent) {
-		loader.start(`Applying preset ${color.bold(options.preset)} to config file`);
-	}
+		const loader = p.spinner();
 
-	cliConfig.writeConfig(cwd, config);
+		if (!options.silent) {
+			loader.start(`Applying preset ${color.bold(options.preset)} to config file`);
+		}
 
-	if (!options.silent) {
-		loader.stop(`Applied preset ${color.bold(options.preset)} to config file`);
+		cliConfig.writeConfig(cwd, config);
+
+		if (!options.silent) {
+			loader.stop(`Applied preset ${color.bold(options.preset)} to config file`);
+		}
 	}
 
 	// we create a registry base item using the encoded preset at the /init endpoint in the docs
@@ -123,24 +127,19 @@ export async function runApply({
 	const encodedPreset = encodePreset(decidedPresets);
 	const presetUrl = new URL(`/init?preset=${encodedPreset}`, registryUrl).toString();
 
-	const registryIndex = await registry.getRegistryIndex(registryUrl);
-	const existingComponents = await project.getComponents({
-		registryIndex,
-		config,
-	});
-
 	const result = await addRegistryItems({
-		selectedItems: [
-			presetUrl,
-			...existingComponents
-				.filter((component) => component.name !== "utils")
-				.map((component) => component.name),
-		],
+		selectedItems: [presetUrl],
 		config,
 		deps: true,
 		overwrite: options.yes,
 		silent: options.silent,
+		only,
+		skipExisting: true,
+		forceStylesheet: true,
 	});
+
+	// never install dependencies if only the theme is being applied
+	if (onlyApplyTheme) return;
 
 	await installDependencies({
 		cwd,

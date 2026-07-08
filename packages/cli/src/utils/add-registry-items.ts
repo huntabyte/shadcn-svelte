@@ -23,12 +23,17 @@ import { silentOutput } from "./node-utils.js";
 
 const STYLE_TYPES = ["registry:style", "registry:theme"];
 
+export type ApplyOnly = "theme" | "font";
+
 type AddRegistryItemsProps = {
 	selectedItems: string[];
 	config: ResolvedConfig;
 	overwrite: boolean;
 	deps: boolean;
 	silent?: boolean;
+	only?: ApplyOnly[];
+	skipExisting?: boolean;
+	forceStylesheet?: boolean;
 };
 
 // this logic is shared between the `add` and `init` commands
@@ -43,6 +48,12 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 	const fonts: Font[] = [];
 	let cssVars = {};
 	let css = {};
+
+	const ALL_PARTS = ["theme", "font"] as const;
+	// apply the given parts, or all parts if no parts are given
+	const applyParts = opts.only?.length ? opts.only : ALL_PARTS;
+	const shouldApplyTheme = applyParts.includes("theme");
+	const shouldApplyFont = applyParts.includes("font");
 
 	const registryIndex = await registry.getRegistryIndex(registryUrl);
 	const resolvedItems = await registry.resolveRegistryItems({
@@ -63,7 +74,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 		if (item.cssVars) {
 			fontMarkerSources.push({ cssVars: item.cssVars });
 		}
-		if (item.type === "registry:font" && item.font) {
+		if (shouldApplyFont && item.type === "registry:font" && item.font) {
 			fontMarkerSources.push({ fonts: [{ font: item.font }] });
 		}
 	}
@@ -88,7 +99,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 	}
 
 	// prompt if the user wants to overwrite ALL files or individually
-	if (opts.overwrite === false && existingItems.length > 0) {
+	if (!opts.skipExisting && opts.overwrite === false && existingItems.length > 0) {
 		const prettyList = prettifyList(existingItems);
 		p.log.warn(
 			`The following items ${color.bold(color.yellow("already exist"))}:\n${color.gray(prettyList)}`
@@ -107,6 +118,10 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 	}
 
 	for (const item of itemsWithContent) {
+		if (item.type === "registry:font" && !shouldApplyFont) continue;
+
+		if (opts.skipExisting && existingItems.includes(item.name)) continue;
+
 		// `theme`s and `style`s do the same thing, because why not?
 		if (!STYLE_TYPES.includes(item.type)) {
 			const aliasDir = registry.getItemAliasDir(opts.config, item.type);
@@ -188,11 +203,13 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 					await fs.writeFile(transformFilePath, content, "utf8");
 				}
 
-				if (item.cssVars) {
-					cssVars = merge(cssVars, item.cssVars);
-				}
-				if (item.css) {
-					css = merge(css, item.css);
+				if (shouldApplyTheme) {
+					if (item.cssVars) {
+						cssVars = merge(cssVars, item.cssVars);
+					}
+					if (item.css) {
+						css = merge(css, item.css);
+					}
 				}
 
 				if (item.name !== "init") {
@@ -234,21 +251,22 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 		const isModified = cssSource !== modifiedCss;
 
 		if (isModified) {
-			if (!opts.overwrite) {
+			let writeStylesheet = opts.overwrite || opts.forceStylesheet === true;
+			if (!writeStylesheet) {
 				const overwrite = await p.confirm({
 					message: `Updates to your ${highlight(relative)} are required. Existing CSS variables may be ${color.bold(color.red("overwritten"))}. Continue?`,
 					initialValue: true,
 				});
 				if (p.isCancel(overwrite)) cancel();
 
-				opts.overwrite = overwrite;
+				writeStylesheet = overwrite;
 			}
 
 			await p.tasks(
 				[
 					{
 						title: "Updating stylesheet",
-						enabled: opts.overwrite,
+						enabled: writeStylesheet,
 						async task() {
 							await fs.writeFile(cssPath, modifiedCss, "utf8");
 

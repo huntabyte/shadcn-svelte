@@ -40,9 +40,11 @@ export async function installDependencies({
 	};
 
 	const devDeps = devDependencies.map(validateDep).filter((d) => d !== undefined);
-	const addDevDeps = resolveCommand(pm, "add", ["-D", ...devDeps]);
-
 	const deps = dependencies.map(validateDep).filter((d) => d !== undefined);
+
+	if (deps.length === 0 && devDeps.length === 0) return;
+
+	const addDevDeps = resolveCommand(pm, "add", ["-D", ...devDeps]);
 	const addDeps = resolveCommand(pm, "add", deps);
 
 	if (!addDevDeps || !addDeps) throw error(`Could not detect a package manager in ${cwd}.`);

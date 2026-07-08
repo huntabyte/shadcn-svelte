@@ -1,8 +1,9 @@
-import { existsSync } from "node:fs";
+import { existsSync, promises as fs } from "node:fs";
 import * as p from "@clack/prompts";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import * as registry from "../../src/utils/registry/index.js";
 import { addRegistryItems } from "../../src/utils/add-registry-items.js";
+import { transformCss } from "../../src/utils/transform-css.js";
 import type { ResolvedConfig } from "../../src/utils/config/index";
 
 vi.mock("node:fs", () => ({
@@ -192,5 +193,214 @@ describe("addRegistryItems", () => {
 			]),
 			expect.anything()
 		);
+	});
+
+	describe("--only filtering", () => {
+		// mirrors the `/init?preset=` response: a base item carrying the theme
+		// colors, with the chosen font as a resolved `registry:font` dependency
+		const themeItem = {
+			name: "vega",
+			type: "registry:base",
+			files: [],
+			registryDependencies: ["utils", "font-inter"],
+			cssVars: {
+				light: { background: "oklch(1 0 0)", primary: "oklch(0.2 0 0)" },
+				dark: { background: "oklch(0.1 0 0)" },
+			},
+			css: {},
+		} satisfies ResolvedRegistryItem;
+
+		const fontItem = {
+			name: "font-inter",
+			type: "registry:font",
+			files: [],
+			font: {
+				family: "'Inter Variable', sans-serif",
+				provider: "google",
+				import: "Inter",
+				variable: "--font-sans",
+				subsets: ["latin"],
+				dependency: "@fontsource-variable/inter",
+			},
+		} satisfies ResolvedRegistryItem;
+
+		// run the queued tasks so each item's `cssVars`/`css` actually get merged
+		const runTasks = async (tasks: p.Task[]) => {
+			for (const task of tasks) {
+				if (task.enabled === false) continue;
+				await task.task();
+			}
+			return undefined;
+		};
+
+		beforeEach(() => {
+			vi.mocked(existsSync).mockReturnValue(false);
+			vi.mocked(registry.resolveRegistryItems).mockResolvedValue([themeItem, fontItem]);
+			vi.mocked(registry.fetchRegistryItems).mockResolvedValue([themeItem, fontItem]);
+			vi.mocked(registry.resolveItemFilePath).mockImplementation((_, item, file) => {
+				return `/path/to/${item.name}/${file.target}`;
+			});
+			vi.mocked(registry.getItemAliasDir).mockReturnValue("/test/components");
+			// @ts-expect-error the mock returns undefined which is fine for our assertions
+			vi.mocked(p.tasks).mockImplementation(runTasks);
+		});
+
+		it("should apply both theme and fonts when `only` is omitted", async () => {
+			const result = await addRegistryItems({
+				selectedItems: ["https://example.com/init?preset=abc"],
+				config: mockConfig,
+				overwrite: true,
+				deps: true,
+			});
+
+			const [, changes] = vi.mocked(transformCss).mock.calls.at(-1)!;
+			// theme colors are present
+			expect(changes.cssVars).toMatchObject({ light: { background: "oklch(1 0 0)" } });
+			// font var is present
+			expect(changes.cssVars).toMatchObject({ theme: { "--font-sans": expect.any(String) } });
+			// font import + dependency are present
+			expect(changes.css).toHaveProperty('@import "@fontsource-variable/inter"');
+			expect(result.devDependencies.has("@fontsource-variable/inter")).toBe(true);
+		});
+
+		it("should apply only the theme and skip fonts when `only: ['theme']`", async () => {
+			const result = await addRegistryItems({
+				selectedItems: ["https://example.com/init?preset=abc"],
+				config: mockConfig,
+				overwrite: true,
+				deps: true,
+				only: ["theme"],
+			});
+
+			const [, changes] = vi.mocked(transformCss).mock.calls.at(-1)!;
+			// theme colors are present
+			expect(changes.cssVars).toMatchObject({ light: { background: "oklch(1 0 0)" } });
+			// no font var, no font import, no fontsource dependency
+			expect(changes.cssVars).not.toHaveProperty("theme");
+			expect(changes.css).not.toHaveProperty('@import "@fontsource-variable/inter"');
+			expect(result.devDependencies.has("@fontsource-variable/inter")).toBe(false);
+			// the font item is never turned into a task
+			const [tasks] = vi.mocked(p.tasks).mock.calls[0];
+			expect(tasks.some((t) => t.title.includes("font-inter"))).toBe(false);
+		});
+
+		it("should apply only the fonts and skip the theme when `only: ['font']`", async () => {
+			const result = await addRegistryItems({
+				selectedItems: ["https://example.com/init?preset=abc"],
+				config: mockConfig,
+				overwrite: true,
+				deps: true,
+				only: ["font"],
+			});
+
+			const [, changes] = vi.mocked(transformCss).mock.calls.at(-1)!;
+			// font var, font import, and fontsource dependency are present
+			expect(changes.cssVars).toMatchObject({ theme: { "--font-sans": expect.any(String) } });
+			expect(changes.css).toHaveProperty('@import "@fontsource-variable/inter"');
+			expect(result.devDependencies.has("@fontsource-variable/inter")).toBe(true);
+			// theme colors are NOT written
+			expect(changes.cssVars).not.toHaveProperty("light");
+			expect(changes.cssVars).not.toHaveProperty("dark");
+		});
+	});
+
+	describe("skipExisting / forceStylesheet", () => {
+		// the file-less base item carries the theme; `utils` is a file-bearing
+		// dependency pulled in by the preset that a project already has
+		const themeItem = {
+			name: "vega",
+			type: "registry:base",
+			files: [],
+			registryDependencies: ["utils"],
+			cssVars: { light: { background: "oklch(1 0 0)" }, dark: {} },
+			css: {},
+		} satisfies ResolvedRegistryItem;
+
+		const utilsItem = {
+			name: "utils",
+			type: "registry:lib",
+			files: [{ target: "utils.ts", type: "registry:lib", content: "<UTILS>" }],
+			registryDependencies: [],
+		} satisfies ResolvedRegistryItem;
+
+		const runTasks = async (tasks: p.Task[]) => {
+			for (const task of tasks) {
+				if (task.enabled === false) continue;
+				await task.task();
+			}
+			return undefined;
+		};
+
+		beforeEach(() => {
+			vi.mocked(registry.getItemAliasDir).mockReturnValue("/test/lib");
+			vi.mocked(registry.resolveItemFilePath).mockImplementation(
+				(_, item, file) => `/test/lib/${item.name}/${file.target}`
+			);
+			// @ts-expect-error the mock returns undefined which is fine for our assertions
+			vi.mocked(p.tasks).mockImplementation(runTasks);
+			vi.mocked(transformCss).mockImplementation((source: string) => source);
+		});
+
+		it("skips existing files (e.g. utils) without prompting, but still applies the theme", async () => {
+			// utils.ts already exists on disk; the base item does not
+			vi.mocked(existsSync).mockImplementation((path) => path.toString().includes("utils"));
+			vi.mocked(registry.resolveRegistryItems).mockResolvedValue([themeItem, utilsItem]);
+			vi.mocked(registry.fetchRegistryItems).mockResolvedValue([themeItem, utilsItem]);
+
+			await addRegistryItems({
+				selectedItems: ["https://example.com/init?preset=abc"],
+				config: mockConfig,
+				overwrite: false,
+				deps: true,
+				skipExisting: true,
+				forceStylesheet: true,
+			});
+
+			// no overwrite prompt for the pre-existing utils file
+			expect(p.confirm).not.toHaveBeenCalled();
+			// utils never becomes a task, so its file is left untouched
+			const [tasks] = vi.mocked(p.tasks).mock.calls[0];
+			expect(tasks.some((t) => t.title.includes("utils"))).toBe(false);
+			// the theme is still applied
+			const [, changes] = vi.mocked(transformCss).mock.calls.at(-1)!;
+			expect(changes.cssVars).toMatchObject({ light: { background: "oklch(1 0 0)" } });
+		});
+
+		it("writes the stylesheet without prompting when forceStylesheet is set", async () => {
+			vi.mocked(existsSync).mockReturnValue(false);
+			vi.mocked(registry.resolveRegistryItems).mockResolvedValue([themeItem]);
+			vi.mocked(registry.fetchRegistryItems).mockResolvedValue([themeItem]);
+			// make the stylesheet appear modified so the write path is exercised
+			vi.mocked(transformCss).mockReturnValue("/* updated */");
+
+			await addRegistryItems({
+				selectedItems: ["https://example.com/init?preset=abc"],
+				config: mockConfig,
+				overwrite: false,
+				deps: true,
+				forceStylesheet: true,
+			});
+
+			// no confirmation prompt for the stylesheet update
+			expect(p.confirm).not.toHaveBeenCalled();
+			expect(fs.writeFile).toHaveBeenCalledWith("/test/app.css", "/* updated */", "utf8");
+		});
+
+		it("prompts before writing the stylesheet when forceStylesheet is not set", async () => {
+			vi.mocked(existsSync).mockReturnValue(false);
+			vi.mocked(registry.resolveRegistryItems).mockResolvedValue([themeItem]);
+			vi.mocked(registry.fetchRegistryItems).mockResolvedValue([themeItem]);
+			vi.mocked(transformCss).mockReturnValue("/* updated */");
+			vi.mocked(p.confirm).mockResolvedValue(true);
+
+			await addRegistryItems({
+				selectedItems: ["https://example.com/init?preset=abc"],
+				config: mockConfig,
+				overwrite: false,
+				deps: true,
+			});
+
+			expect(p.confirm).toHaveBeenCalledTimes(1);
+		});
 	});
 });
