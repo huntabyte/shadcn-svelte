@@ -73,7 +73,7 @@ npx shadcn-svelte@latest apply [options]
 
 Applies a design-system preset to a project that has already been initialized. Updates `components.json` with the preset settings, reinstalls existing components (except `utils`) with the new styles, and installs any required dependencies.
 
-Use `--only theme` or `--only font` to apply only part of a preset without reinstalling UI components. **This flag is not yet implemented.**
+Use `--only theme` or `--only font` to apply only part of a preset without reinstalling UI components.
 
 Get a preset code from the builder at [shadcn-svelte.com/create](https://shadcn-svelte.com/create).
 
