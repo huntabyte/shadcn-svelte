@@ -94,3 +94,13 @@ Use negative margins with `-mx-(--card-spacing)` to make content go edge to edge
 <div></div>
 
 </ComponentPreview>
+
+### Image
+
+Add an image before the card header to create a card with an image.
+
+<ComponentPreview name="card-image" class="[&_.preview]:h-[32rem]">
+
+<div></div>
+
+</ComponentPreview>

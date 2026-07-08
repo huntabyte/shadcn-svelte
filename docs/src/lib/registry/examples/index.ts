@@ -20,6 +20,7 @@ export { default as ButtonSecondary } from "./button-secondary.svelte";
 export { default as ButtonWithIcon } from "./button-with-icon.svelte";
 export { default as CardDemo } from "./card-demo.svelte";
 export { default as CardEdgeToEdge } from "./card-edge-to-edge.svelte";
+export { default as CardImage } from "./card-image.svelte";
 export { default as CardSpacing } from "./card-spacing.svelte";
 export { default as CardWithForm } from "./card-with-form.svelte";
 export { default as CheckboxDemo } from "./checkbox-demo.svelte";
