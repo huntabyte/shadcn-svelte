@@ -102,8 +102,11 @@ Usage: shadcn-svelte apply [options]
 
 apply a preset to an existing project
 
+Arguments:
+  preset             the preset to apply
+
 Options:
-  --preset <preset>  the preset to apply (required)
+  --preset <preset>  the preset to apply
   --only [parts]     apply only parts of a preset: theme, font
   -c, --cwd <path>   the working directory (default: the current directory)
   -y, --yes          overwrite existing files without confirmation (default: false)

@@ -33,6 +33,7 @@ type InitOptions = z.infer<typeof initOptionsSchema>;
 export const apply = new Command()
 	.command("apply")
 	.description("apply a preset to an existing project")
+	.argument("[preset]", "the preset to apply")
 	.option("--preset <preset>", "the preset to use")
 	.addOption(
 		new Option("--only <parts...>", "apply only parts of a preset: theme, font").choices(
@@ -44,7 +45,7 @@ export const apply = new Command()
 	.option("-s, --silent", "mute output", false)
 	.option("--skip-preflight", "ignore preflight checks and continue", false)
 	.option("--proxy <proxy>", "fetch items from registry using a proxy", getEnvProxy())
-	.action(async (opts) => {
+	.action(async (preset, opts) => {
 		if (!opts.silent) intro();
 		const options = initOptionsSchema.parse(opts);
 		const cwd = path.resolve(options.cwd);
@@ -55,13 +56,15 @@ export const apply = new Command()
 				throw error(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
 			}
 
-			if (options.preset === undefined) {
+			const providedPreset = options.preset || (preset as string | undefined);
+
+			if (providedPreset === undefined) {
 				throw error(`${color.bold(`--preset`)} is required.`);
 			}
 
-			const presetConfig = decodePreset(options.preset);
+			const presetConfig = decodePreset(providedPreset);
 			if (presetConfig === null) {
-				throw error(`${color.bold(`--preset ${options.preset}`)} is not a valid preset.`);
+				throw error(`${color.bold(`--preset ${providedPreset}`)} is not a valid preset.`);
 			}
 
 			preflightInit(cwd, { skipPreflight: options.skipPreflight });
@@ -76,7 +79,7 @@ export const apply = new Command()
 			await runApply({ cwd, config, decidedPresets: presetConfig, options });
 
 			if (!options.silent)
-				p.outro(`Preset ${color.bold(options.preset)} applied successfully.`);
+				p.outro(`Preset ${color.bold(providedPreset)} applied successfully.`);
 		} catch (e) {
 			handleError(e);
 		}
