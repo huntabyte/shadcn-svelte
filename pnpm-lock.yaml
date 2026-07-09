@@ -16,6 +16,14 @@ catalogs:
       specifier: ^4.3.6
       version: 4.3.6
 
+overrides:
+  brace-expansion@>=2.0.0 <=2.0.1: '>=2.0.2'
+  cookie@<0.7.0: '>=0.7.0'
+  glob@>=10.2.0 <10.5.0: '>=10.5.0'
+  js-yaml@>=4.0.0 <4.1.1: '>=4.1.1'
+  mdast-util-to-hast@>=13.0.0 <13.2.1: '>=13.2.1'
+  tar@=7.5.1: '>=7.5.11'
+
 pnpmfileChecksum: sha256-FTkqU/bZyf7xN4jmYA6YoPQYPd6BYhk3kmR3mMpryX0=
 
 importers:
@@ -3673,10 +3681,6 @@ packages:
   consola@3.4.2:
     resolution: {integrity: sha512-5IKcdX0nnYavi6G7TtOhwkYzyjfJlatbjMjuLSfE2kYT5pMDOilZ4OvMhi637CcDICTmz3wARPoyhqyX1Y+XvA==}
     engines: {node: ^14.18.0 || >=16.10.0}
-
-  cookie@0.6.0:
-    resolution: {integrity: sha512-U71cyTamuh1CRNCfpGY6to28lxvNwPG4Guz/EVjgf3Jmzv0vlDp1atT9eS5dDjMYHucpHbWns6Lwf3BKz6svdw==}
-    engines: {node: '>= 0.6'}
 
   cookie@1.1.1:
     resolution: {integrity: sha512-ei8Aos7ja0weRpFzJnEA9UHJ/7XQmqglbRwnf2ATjcB9Wq874VKH9kfjjirM6UhU2/E5fFYadylyhFldcqSidQ==}
@@ -8448,7 +8452,7 @@ snapshots:
       '@sveltejs/vite-plugin-svelte': 5.1.0(svelte@5.39.6)(vite@6.4.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1))
       '@types/cookie': 0.6.0
       acorn: 8.15.0
-      cookie: 0.6.0
+      cookie: 1.1.1
       devalue: 5.6.2
       esm-env: 1.2.2
       kleur: 4.1.5
@@ -8469,7 +8473,7 @@ snapshots:
       '@sveltejs/vite-plugin-svelte': 7.0.0(svelte@5.54.0)(vite@8.0.0(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1))
       '@types/cookie': 0.6.0
       acorn: 8.16.0
-      cookie: 0.6.0
+      cookie: 1.1.1
       devalue: 5.8.1
       esm-env: 1.2.2
       kleur: 4.1.5
@@ -9464,8 +9468,6 @@ snapshots:
       yargs: 17.7.2
 
   consola@3.4.2: {}
-
-  cookie@0.6.0: {}
 
   cookie@1.1.1: {}
 
