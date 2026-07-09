@@ -1,23 +1,10 @@
 import { browser } from "$app/environment";
 import { replaceState } from "$app/navigation";
 import { page } from "$app/state";
-import {
-	BASE_THEMES,
-	getThemesForBaseColor,
-	iconLibraries,
-	MENU_ACCENTS,
-	MENU_COLORS,
-	RADII,
-	STYLES,
-	type FontHeadingValue,
-} from "$lib/registry/config.js";
+import { BASE_THEMES, getThemesForBaseColor } from "$lib/registry/config.js";
 import { Context, PersistedState } from "runed";
 import { SvelteURLSearchParams } from "svelte/reactivity";
-import {
-	applyBias,
-	RANDOMIZE_BIASES,
-	type RandomizeContext,
-} from "../../../../routes/(app)/(layout)/(create)/lib/randomize-biases.js";
+import { SHUFFLE_PRESETS } from "../../../../routes/(app)/(layout)/(create)/lib/shuffle-presets.js";
 import { StateHistory } from "runed";
 import {
 	decodePreset,
@@ -25,12 +12,10 @@ import {
 	DEFAULT_PRESET_CONFIG,
 	DEFAULT_PRESETS,
 	type PresetConfig,
-	PRESET_BASE_COLOR_KEYS,
 	PRESET_CHART_COLORS,
 } from "shadcn-svelte/preset";
 
 type ChartColorName = (typeof PRESET_CHART_COLORS)[number];
-import { FONTS } from "$lib/fonts.js";
 
 let hasSyncedPresetToUrl = false;
 
@@ -303,83 +288,34 @@ class DesignSystemState implements IDesignSystemState {
 	}
 
 	randomize() {
-		// Use current value if locked, otherwise randomize.
-		const selectedBaseColor = this.locks.baseColor
-			? this.baseColor
-			: randomItem(PRESET_BASE_COLOR_KEYS);
-		const selectedStyle = this.locks.style ? this.style : randomItem(STYLES).name;
+		const currentCode = this.#preset.current;
+		const availableCodes = SHUFFLE_PRESETS.filter((code) => code !== currentCode);
+		const decoded = decodePreset(
+			randomItem(availableCodes.length > 0 ? availableCodes : SHUFFLE_PRESETS)
+		);
 
-		const context: RandomizeContext = {
-			baseColor: selectedBaseColor,
-			style: selectedStyle,
+		if (!decoded) return;
+
+		const current = this.system;
+		const locks = this.#locks.current;
+		const preset = {
+			...DEFAULT_PRESET_CONFIG,
+			...decoded,
 		};
 
-		const availableThemes = getThemesForBaseColor(selectedBaseColor);
-		const availableFonts = applyBias(FONTS, context, RANDOMIZE_BIASES.fonts);
-		const availableRadii = applyBias(RADII, context, RANDOMIZE_BIASES.radius);
-
-		const selectedTheme = this.locks.theme ? this.theme : randomItem(availableThemes).name;
-		context.theme = selectedTheme;
-		const availableChartThemes = applyBias(
-			availableThemes,
-			context,
-			RANDOMIZE_BIASES.chartColors
-		);
-		const selectedChartColor = this.locks.chartColor
-			? this.chartColor
-			: randomItem(availableChartThemes).name;
-		const selectedFont = this.locks.font ? this.font : randomItem(availableFonts).value;
-
-		// Pick heading font: ~70% inherit, ~30% distinct with cross-category contrast.
-		let selectedFontHeading: FontHeadingValue;
-		if (this.locks.fontHeading) {
-			selectedFontHeading = this.fontHeading;
-		} else if (Math.random() < 0.7) {
-			selectedFontHeading = "inherit";
-		} else {
-			const bodyType = availableFonts.find((f) => f.value === selectedFont)?.type;
-			const contrastFonts = availableFonts.filter(
-				(f) => f.type !== bodyType && f.value !== selectedFont
-			);
-			selectedFontHeading = (
-				contrastFonts.length > 0 ? randomItem(contrastFonts) : randomItem(availableFonts)
-			).value;
-		}
-
-		const selectedRadius = this.locks.radius ? this.radius : randomItem(availableRadii).name;
-		const selectedIconLibrary = this.locks.iconLibrary
-			? this.iconLibrary
-			: (
-					randomItem(
-						Object.values(iconLibraries)
-					) as (typeof iconLibraries)[keyof typeof iconLibraries]
-				).name;
-		const selectedMenuAccent = this.locks.menuAccent
-			? this.menuAccent
-			: randomItem(MENU_ACCENTS).value;
-		const selectedMenuColor = this.locks.menuColor
-			? this.menuColor
-			: randomItem(MENU_COLORS).value;
-
-		// Update context with selected values for potential future biases.
-		context.font = selectedFont;
-		context.chartColor = selectedChartColor;
-		context.radius = selectedRadius;
-		context.iconLibrary = selectedIconLibrary;
-		context.menuAccent = selectedMenuAccent;
-		context.menuColor = selectedMenuColor;
-
 		this.system = {
-			baseColor: selectedBaseColor,
-			style: selectedStyle,
-			theme: selectedTheme,
-			chartColor: selectedChartColor,
-			font: selectedFont,
-			fontHeading: selectedFontHeading,
-			radius: selectedRadius,
-			iconLibrary: selectedIconLibrary,
-			menuAccent: selectedMenuAccent,
-			menuColor: selectedMenuColor,
+			style: locks.style ? current.style : preset.style,
+			baseColor: locks.baseColor ? current.baseColor : preset.baseColor,
+			theme: locks.theme ? current.theme : preset.theme,
+			chartColor: locks.chartColor
+				? current.chartColor
+				: ((preset.chartColor ?? preset.theme) as ChartColorName),
+			iconLibrary: locks.iconLibrary ? current.iconLibrary : preset.iconLibrary,
+			font: locks.font ? current.font : preset.font,
+			fontHeading: locks.fontHeading ? current.fontHeading : preset.fontHeading,
+			menuAccent: locks.menuAccent ? current.menuAccent : preset.menuAccent,
+			menuColor: locks.menuColor ? current.menuColor : preset.menuColor,
+			radius: locks.radius ? current.radius : preset.radius,
 		};
 	}
 
