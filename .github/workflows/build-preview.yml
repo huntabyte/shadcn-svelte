@@ -11,7 +11,7 @@ on:
 
 jobs:
   build-preview:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
       - uses: pnpm/action-setup@v5
@@ -19,14 +19,17 @@ jobs:
         with:
           node-version: 24
           cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
 
       - name: Install dependencies
-        run: pnpm install
+        env:
+          SHADCN_SKIP_POSTINSTALL: "1"
+        run: pnpm install --frozen-lockfile --trust-lockfile
 
       - name: Build site
         env:
           NODE_OPTIONS: --max-old-space-size=8192
-        run: pnpm build
+        run: pnpm build:cli && pnpm build
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v7
