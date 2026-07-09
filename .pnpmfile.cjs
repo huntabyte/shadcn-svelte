@@ -1,5 +1,13 @@
+const LEGACY_TYPESCRIPT_API_PACKAGES = new Set([
+	"@sveltejs/kit",
+	"svelte-check",
+	"typescript-eslint",
+]);
+
 function needsLegacyTypeScriptApi(pkg) {
-	return pkg.name === "typescript-eslint" || pkg.name?.startsWith("@typescript-eslint/");
+	return (
+		LEGACY_TYPESCRIPT_API_PACKAGES.has(pkg.name) || pkg.name?.startsWith("@typescript-eslint/")
+	);
 }
 
 module.exports = {
