@@ -22,14 +22,12 @@ jobs:
           cache-dependency-path: pnpm-lock.yaml
 
       - name: Install dependencies
-        env:
-          SHADCN_SKIP_POSTINSTALL: "1"
         run: pnpm install --frozen-lockfile --trust-lockfile
 
       - name: Build site
         env:
           NODE_OPTIONS: --max-old-space-size=8192
-        run: pnpm build:cli && pnpm build
+        run: pnpm build
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v7

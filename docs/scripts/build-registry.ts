@@ -29,7 +29,6 @@ const execAsync = promisify(exec);
 
 const INTERNAL_REGISTRY_PATH = path.resolve("src", "lib", "registry");
 const REGISTRY_PATH = path.resolve("static", "registry");
-const GENERATED_REGISTRY_JSON_PATH = path.resolve("src", "__registry__", "json");
 const STYLE_TEMP_BASE = path.join(REGISTRY_PATH, "temp", "style");
 
 function writeFileWithDirs(
@@ -191,10 +190,6 @@ export const Index = {`;
 		path.resolve(SCHEMA_DIR, "registry-item.json"),
 		JSON.stringify(toJSONSchema(registryItemSchema), null, "\t")
 	);
-
-	log("📁 Copying registry JSON into __registry__...");
-	rimraf.sync(GENERATED_REGISTRY_JSON_PATH);
-	fs.cpSync(REGISTRY_PATH, GENERATED_REGISTRY_JSON_PATH, { recursive: true });
 
 	log("🎉 Done!");
 }

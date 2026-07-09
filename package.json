@@ -20,7 +20,7 @@
 		"lint": "prettier --check . && eslint . --no-config-lookup --config eslint.config.js",
 		"format": "prettier --write .",
 		"preinstall": "npx only-allow pnpm",
-		"postinstall": "test \"$SHADCN_SKIP_POSTINSTALL\" = \"1\" && echo \"Skipping shadcn-svelte postinstall work.\" || (pnpm build:cli && pnpm -r sync)",
+		"postinstall": "pnpm build:cli && pnpm -r sync",
 		"ci:publish": "changeset publish",
 		"ci:build": "pnpm build:cli",
 		"ci:release": "pnpm ci:build && pnpm ci:publish"
@@ -57,5 +57,21 @@
 		"typescript-eslint": "^8.57.1",
 		"wait-on": "^9.0.4",
 		"wrangler": "^4.75.0"
+	},
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"@tailwindcss/oxide",
+			"esbuild",
+			"sharp",
+			"workerd"
+		],
+		"overrides": {
+			"brace-expansion@>=2.0.0 <=2.0.1": ">=2.0.2",
+			"cookie@<0.7.0": ">=0.7.0",
+			"glob@>=10.2.0 <10.5.0": ">=10.5.0",
+			"js-yaml@>=4.0.0 <4.1.1": ">=4.1.1",
+			"mdast-util-to-hast@>=13.0.0 <13.2.1": ">=13.2.1",
+			"tar@=7.5.1": ">=7.5.11"
+		}
 	}
 }
