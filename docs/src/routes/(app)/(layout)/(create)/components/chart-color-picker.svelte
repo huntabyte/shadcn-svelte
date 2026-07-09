@@ -10,9 +10,6 @@
 		type BaseTheme,
 		type Theme,
 	} from "$lib/registry/config.js";
-	import { PRESET_CHART_COLORS } from "shadcn-svelte/preset";
-
-	type ChartColorName = (typeof PRESET_CHART_COLORS)[number];
 
 	type Props = {
 		submenu?: boolean;
@@ -30,13 +27,6 @@
 		availableChartColors.find((theme) => theme.name === designSystem.chartColor) ??
 			availableChartColors[0]
 	);
-
-	$effect(() => {
-		if (availableChartColors.length === 0) return;
-		if (!availableChartColors.some((t) => t.name === designSystem.chartColor)) {
-			designSystem.chartColor = availableChartColors[0]!.name as ChartColorName;
-		}
-	});
 
 	function isBaseColor(theme: Theme): theme is BaseTheme {
 		return BASE_THEMES.some((baseColor) => baseColor.name === theme.name);

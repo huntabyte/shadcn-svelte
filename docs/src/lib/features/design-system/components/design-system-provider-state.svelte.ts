@@ -1,4 +1,5 @@
-import { goto } from "$app/navigation";
+import { browser } from "$app/environment";
+import { replaceState } from "$app/navigation";
 import { page } from "$app/state";
 import {
 	BASE_THEMES,
@@ -30,6 +31,8 @@ import {
 
 type ChartColorName = (typeof PRESET_CHART_COLORS)[number];
 import { FONTS } from "$lib/fonts.js";
+
+let hasSyncedPresetToUrl = false;
 
 export interface IDesignSystemState extends PresetConfig {
 	preset: string;
@@ -66,9 +69,10 @@ class DesignSystemState implements IDesignSystemState {
 	#preset: PersistedState<string>;
 	#locks: PersistedState<Lockable>;
 	constructor() {
+		const initialPreset = this.#getSearchParam("preset");
 		this.#preset = new PersistedState<string>(
 			"design-system-preset",
-			this.#getSearchParam("preset") ?? encodePreset(DEFAULT_PRESET_CONFIG)
+			initialPreset ?? encodePreset(DEFAULT_PRESET_CONFIG)
 		);
 		this.#locks = new PersistedState<Lockable>("locks", {
 			style: false,
@@ -91,9 +95,14 @@ class DesignSystemState implements IDesignSystemState {
 		this.#history = new StateHistory(
 			() => this.#preset.current,
 			(value) => {
-				this.#preset.current = value;
+				this.#setPresetCode(value);
 			}
 		);
+
+		if (browser && !hasSyncedPresetToUrl && !initialPreset) {
+			hasSyncedPresetToUrl = true;
+			queueMicrotask(() => this.#replacePresetParam(this.#preset.current));
+		}
 	}
 
 	private get system(): PresetConfig {
@@ -103,14 +112,21 @@ class DesignSystemState implements IDesignSystemState {
 	}
 
 	private set system(value: PresetConfig) {
-		this.#preset.current = encodePreset(value);
+		this.#setPresetCode(encodePreset(value));
+	}
+
+	#setPresetCode(code: string) {
+		this.#preset.current = code;
+		this.#replacePresetParam(code);
+	}
+
+	#replacePresetParam(code: string) {
+		if (!browser) return;
+
 		const searchParams = new SvelteURLSearchParams(page.url.searchParams);
-		searchParams.set("preset", this.#preset.current);
-		goto(`${page.url.pathname}?${searchParams.toString()}${page.url.hash}`, {
-			replaceState: true,
-			noScroll: true,
-			keepFocus: true,
-		});
+		searchParams.set("preset", code);
+		const query = searchParams.toString();
+		replaceState(`${page.url.pathname}${query ? `?${query}` : ""}${page.url.hash}`, page.state);
 	}
 
 	undo() {
