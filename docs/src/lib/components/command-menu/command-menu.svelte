@@ -2,6 +2,7 @@
 	import type { Color, ColorPalette } from "$lib/colors.js";
 	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
 	import { getCommand } from "$lib/package-manager.js";
+	import { STYLES } from "$lib/registry/config.js";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
@@ -17,6 +18,7 @@
 	import { goto } from "$app/navigation";
 	import { UserConfigContext } from "$lib/user-config.svelte.js";
 	import * as Kbd from "$lib/registry/ui/kbd/index.js";
+	import { encodePreset } from "shadcn-svelte/preset";
 
 	let {
 		colors,
@@ -29,7 +31,7 @@
 	} = $props();
 
 	let open = $state(false);
-	let selectedType = $state<"color" | "page" | "component" | "block" | null>(null);
+	let selectedType = $state<"color" | "page" | "component" | "block" | "style" | null>(null);
 	let copyPayload = $state("");
 
 	const userConfig = UserConfigContext.get();
@@ -84,6 +86,11 @@
 	function handleColorHighlight(color: Color) {
 		selectedType = "color";
 		copyPayload = color.class;
+	}
+
+	function handleStyleHighlight() {
+		selectedType = "style";
+		copyPayload = "";
 	}
 
 	function runCommand(command: () => unknown) {
@@ -199,6 +206,30 @@
 						</CommandMenuItem>
 					{/each}
 				</Command.Group>
+				<Command.Group
+					heading="Styles"
+					class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
+				>
+					{#each STYLES as style (style.name)}
+						{@const Icon = style.icon}
+						<CommandMenuItem
+							value={`Style ${style.title} ${style.description}`}
+							keywords={["style", "preset", style.name, style.title]}
+							onHighlight={handleStyleHighlight}
+							onSelect={() => {
+								runCommand(() => {
+									goto(`/create?preset=${encodePreset({ style: style.name })}`);
+								});
+							}}
+						>
+							<Icon />
+							{style.title}
+							<span class="text-muted-foreground ms-auto text-xs font-normal">
+								Open style in shadcn/create
+							</span>
+						</CommandMenuItem>
+					{/each}
+				</Command.Group>
 				{#each orderedSidebarGroups as group (group.title)}
 					<Command.Group
 						heading={group.title}
@@ -308,6 +339,9 @@
 				{/if}
 				{#if selectedType === "color"}
 					Copy OKLCH
+				{/if}
+				{#if selectedType === "style"}
+					Open in shadcn/create
 				{/if}
 			</div>
 			{#if copyPayload}
