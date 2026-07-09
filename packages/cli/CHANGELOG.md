@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.4.1
+
+### Patch Changes
+
+- fix: provide default value to deprecated --overrite option ([#2796](https://github.com/huntabyte/shadcn-svelte/pull/2796))
+
 ## 1.4.0
 
 ### Minor Changes
