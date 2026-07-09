@@ -20,7 +20,7 @@
 		"lint": "prettier --check . && eslint . --no-config-lookup --config eslint.config.js",
 		"format": "prettier --write .",
 		"preinstall": "npx only-allow pnpm",
-		"postinstall": "pnpm build:cli && pnpm -r sync",
+		"postinstall": "test \"$SHADCN_SKIP_POSTINSTALL\" = \"1\" && echo \"Skipping shadcn-svelte postinstall work.\" || (pnpm build:cli && pnpm -r sync)",
 		"ci:publish": "changeset publish",
 		"ci:build": "pnpm build:cli",
 		"ci:release": "pnpm ci:build && pnpm ci:publish"

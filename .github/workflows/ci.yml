@@ -21,7 +21,12 @@ jobs:
           cache-dependency-path: pnpm-lock.yaml
 
       - name: Install dependencies
+        env:
+          SHADCN_SKIP_POSTINSTALL: "1"
         run: pnpm install --frozen-lockfile --trust-lockfile
+
+      - name: Prepare generated files
+        run: pnpm build:cli && pnpm -r sync
 
       - name: Run svelte-check
         run: pnpm check
@@ -39,6 +44,8 @@ jobs:
           cache-dependency-path: pnpm-lock.yaml
 
       - name: Install dependencies
+        env:
+          SHADCN_SKIP_POSTINSTALL: "1"
         run: pnpm install --frozen-lockfile --trust-lockfile
 
       - run: pnpm lint
@@ -59,6 +66,8 @@ jobs:
           cache-dependency-path: pnpm-lock.yaml
 
       - name: Install dependencies
+        env:
+          SHADCN_SKIP_POSTINSTALL: "1"
         run: pnpm install --frozen-lockfile --trust-lockfile
 
       - name: Build packages
