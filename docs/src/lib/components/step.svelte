@@ -6,7 +6,10 @@
 </script>
 
 <h3
-	class={cn("font-heading mt-8 scroll-m-32 text-lg font-medium tracking-tight", className)}
+	class={cn(
+		"font-heading mt-8 scroll-m-32 text-lg font-medium tracking-tight [&>p]:!mt-0 [&>p]:inline",
+		className
+	)}
 	{...props}
 >
 	{@render children?.()}
