@@ -139,11 +139,16 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 					{@render Trigger({ props })}
 				{/snippet}
 			</DropdownMenu.Trigger>
-			<DropdownMenu.Content align="end" class="animate-none! rounded-lg shadow-none">
+			<DropdownMenu.Content align="end" class="w-max shadow-none">
 				{#each Object.entries(menuItems) as [key, value] (key)}
 					<DropdownMenu.Item>
 						{#snippet child({ props })}
-							{@render value({ props })}
+							{@render value({
+								props: {
+									...props,
+									class: cn(props.class as string, "whitespace-nowrap"),
+								},
+							})}
 						{/snippet}
 					</DropdownMenu.Item>
 				{/each}
@@ -171,7 +176,7 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 								variant: "ghost",
 								size: "lg",
 							}),
-							"w-full justify-start text-base font-normal *:[svg]:text-muted-foreground"
+							"*:[svg]:text-muted-foreground w-full justify-start whitespace-nowrap text-base font-normal"
 						),
 					},
 				})}
