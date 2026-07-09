@@ -25,7 +25,7 @@
 	class={cn(
 		"cn-carousel-next absolute touch-manipulation",
 		emblaCtx.orientation === "horizontal"
-			? "-end-12 top-1/2 -translate-y-1/2"
+			? "inset-y-0 -end-12 my-auto"
 			: "start-1/2 -bottom-12 -translate-x-1/2 rotate-90",
 		className
 	)}
