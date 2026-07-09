@@ -12,10 +12,10 @@
 </script>
 
 <ModeWatcher defaultMode="system" disableTransitions />
-<Toaster position="top-center" />
 
 <Tooltip.Provider>
 	<DesignSystemProvider>
+		<Toaster position="top-center" />
 		{@render children()}
 	</DesignSystemProvider>
 </Tooltip.Provider>
