@@ -74,7 +74,7 @@
 										{item.title}
 										{#if item.href && PAGES_NEW.includes(item.href)}
 											<span
-												class="flex size-2 rounded-full bg-blue-500"
+												class="bg-svelte-orange flex size-2 rounded-full"
 												title="New"
 											></span>
 										{/if}
@@ -110,7 +110,7 @@
 													{subItem.title}
 													{#if subItem.href && PAGES_NEW.includes(subItem.href)}
 														<span
-															class="flex size-2 rounded-full bg-blue-500"
+															class="bg-svelte-orange flex size-2 rounded-full"
 															title="New"
 														></span>
 													{/if}
