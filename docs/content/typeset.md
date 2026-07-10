@@ -11,7 +11,7 @@ You render markdown and get back plain unstyled HTML: headings, paragraphs, list
 
 You do it for your blog. Then you do it again for the docs. Then again for the chat app. Every time you're fighting the same thing: sizing and spacing.
 
-To fix this, we created **shadcn/typeset**. It's one CSS file that styles everything inside a `typeset` container. The file lives in your project, so you can change it directly when you need to.
+To fix this, we created **shadcn-svelte/typeset**. It's one CSS file that styles everything inside a `typeset` container. The file lives in your project, so you can change it directly when you need to.
 
 A typeset is just a small preset class. You can have multiple typesets in your app, for different contexts.
 

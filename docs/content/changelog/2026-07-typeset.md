@@ -1,5 +1,5 @@
 ---
-title: July 2026 - Introducing shadcn/typeset
+title: July 2026 - Introducing shadcn-svelte/typeset
 description: A complete typography system for HTML, from blog posts to streaming chat. One CSS file you own.
 date: 2026-07-10
 ---
@@ -8,7 +8,7 @@ date: 2026-07-10
 	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
-Today we're releasing **shadcn/typeset**: a styling system for HTML and rendered markdown, in one CSS file.
+Today we're releasing **shadcn-svelte/typeset**: a styling system for HTML and rendered markdown, in one CSS file.
 
 Your app renders the same HTML elements everywhere: headings, paragraphs, lists, tables, and code. You style them for your blog, then your docs, and now chat. Typeset lets you style them once, then tune the rhythm for each context.
 
