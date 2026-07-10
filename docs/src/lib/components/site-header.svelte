@@ -46,7 +46,7 @@
 				<Separator orientation="vertical" />
 				{#if page.url.pathname.startsWith("/create")}
 					<ModeSwitcher />
-					<Separator orientation="vertical" />
+					<Separator orientation="vertical" class="hidden md:flex" />
 					<ProjectForm class="hidden h-[31px] rounded-lg md:flex" />
 				{:else}
 					<Customizer />
