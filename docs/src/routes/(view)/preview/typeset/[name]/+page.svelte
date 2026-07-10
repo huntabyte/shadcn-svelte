@@ -2,7 +2,11 @@
 	import { onMount } from "svelte";
 	import { page } from "$app/state";
 	import { CHAT_QUESTION } from "$lib/features/typeset/fixtures/chat.js";
-	import { FIXTURES, CONTENT_OPTIONS, type FixtureName } from "$lib/features/typeset/fixtures/index.js";
+	import {
+		FIXTURES,
+		CONTENT_OPTIONS,
+		type FixtureName,
+	} from "$lib/features/typeset/fixtures/index.js";
 	import {
 		DEFAULT_TYPESET_PARAMS,
 		TYPESET_MEASURES,
@@ -46,15 +50,22 @@
 				event.target instanceof HTMLInputElement ||
 				event.target instanceof HTMLTextAreaElement ||
 				event.target instanceof HTMLSelectElement
-			) return;
+			)
+				return;
 			const key = event.key.toLowerCase();
 			let command = "";
-			if (!event.metaKey && !event.ctrlKey && !event.altKey && key === "r") command = event.shiftKey ? "reset" : "shuffle";
-			else if (!event.metaKey && !event.ctrlKey && !event.altKey && key === "d") command = "toggle-theme";
-			else if ((event.metaKey || event.ctrlKey) && key === "z") command = event.shiftKey ? "redo" : "undo";
+			if (!event.metaKey && !event.ctrlKey && !event.altKey && key === "r")
+				command = event.shiftKey ? "reset" : "shuffle";
+			else if (!event.metaKey && !event.ctrlKey && !event.altKey && key === "d")
+				command = "toggle-theme";
+			else if ((event.metaKey || event.ctrlKey) && key === "z")
+				command = event.shiftKey ? "redo" : "undo";
 			if (command) {
 				event.preventDefault();
-				window.parent.postMessage({ type: "typeset-command", command }, window.location.origin);
+				window.parent.postMessage(
+					{ type: "typeset-command", command },
+					window.location.origin
+				);
 			}
 		};
 		window.addEventListener("message", onMessage);
@@ -75,17 +86,25 @@
 	<div class="preview-params w-full" style="font-size: {params.scale}px; max-width: {measure};">
 		{#if name === "chat"}
 			<div class="flex w-full flex-col gap-10">
-				<div class="bg-muted ml-auto w-fit max-w-[65%] rounded-3xl px-4 py-2.5">{CHAT_QUESTION}</div>
+				<div class="bg-muted ml-auto w-fit max-w-[65%] rounded-3xl px-4 py-2.5">
+					{CHAT_QUESTION}
+				</div>
 				<div
 					class="typeset w-full"
 					style="--typeset-font-body: {bodyFont}; --typeset-font-heading: {headingFont}; --typeset-font-mono: {monoFont}; --typeset-leading: {params.leading}; --typeset-flow: {params.flow};"
-				>{@html content}</div>
+				>
+					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+					{@html content}
+				</div>
 			</div>
 		{:else}
 			<div
 				class="typeset w-full"
 				style="--typeset-font-body: {bodyFont}; --typeset-font-heading: {headingFont}; --typeset-font-mono: {monoFont}; --typeset-leading: {params.leading}; --typeset-flow: {params.flow};"
-			>{@html content}</div>
+			>
+				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+				{@html content}
+			</div>
 		{/if}
 	</div>
 </div>

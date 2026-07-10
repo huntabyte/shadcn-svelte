@@ -202,4 +202,4 @@ export const TAILWIND_HTML = `
 <p>Phew, with any luck we have styled the headings above this text and they look pretty good.</p>
 <p>Let's add a closing paragraph here so things end with a decently sized block of text. I can't explain why I want things to end that way but I have to assume it's because I think things will look weird or unbalanced if there is a heading too close to the end of the document.</p>
 <p>What I've written here is probably long enough, but adding this final sentence can't hurt.</p>
-`
+`;

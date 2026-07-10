@@ -1,4 +1,5 @@
 import { browser } from "$app/environment";
+import { SvelteSet, SvelteURLSearchParams } from "svelte/reactivity";
 import { FONT_DEFINITIONS } from "$lib/font-definitions.js";
 import { CONTENT_OPTIONS, type FixtureName } from "./fixtures/index.js";
 
@@ -80,7 +81,7 @@ export function findFont(id: string | null | undefined) {
 }
 
 export function serializeTypesetParams(path: string, params: TypesetParams) {
-	const query = new URLSearchParams();
+	const query = new SvelteURLSearchParams();
 	for (const [key, value] of Object.entries(params)) {
 		if (value !== DEFAULT_TYPESET_PARAMS[key as keyof TypesetParams]) query.set(key, value);
 	}
@@ -90,13 +91,13 @@ export function serializeTypesetParams(path: string, params: TypesetParams) {
 
 export class TypesetState {
 	params = $state<TypesetParams>({ ...DEFAULT_TYPESET_PARAMS });
-	locks = $state<Set<LockableParam>>(new Set());
+	locks = $state<SvelteSet<LockableParam>>(new SvelteSet());
 	history = $state<TypesetParams[]>([]);
 	historyIndex = $state(-1);
 
 	init() {
 		if (!browser) return;
-		const query = new URLSearchParams(window.location.search);
+		const query = new SvelteURLSearchParams(window.location.search);
 		const next = { ...DEFAULT_TYPESET_PARAMS };
 		for (const key of Object.keys(next) as (keyof TypesetParams)[]) {
 			const value = query.get(key);
@@ -115,11 +116,12 @@ export class TypesetState {
 			this.history = [...this.history.slice(0, this.historyIndex + 1), { ...this.params }];
 			this.historyIndex = this.history.length - 1;
 		}
-		if (browser) history.replaceState(null, "", serializeTypesetParams("/typeset", this.params));
+		if (browser)
+			history.replaceState(null, "", serializeTypesetParams("/typeset", this.params));
 	}
 
 	toggleLock(param: LockableParam) {
-		const next = new Set(this.locks);
+		const next = new SvelteSet(this.locks);
 		next.has(param) ? next.delete(param) : next.add(param);
 		this.locks = next;
 	}
@@ -148,14 +150,16 @@ export class TypesetState {
 		if (this.historyIndex <= 0) return;
 		this.historyIndex -= 1;
 		this.params = { ...this.history[this.historyIndex] };
-		if (browser) history.replaceState(null, "", serializeTypesetParams("/typeset", this.params));
+		if (browser)
+			history.replaceState(null, "", serializeTypesetParams("/typeset", this.params));
 	}
 
 	redo() {
 		if (this.historyIndex >= this.history.length - 1) return;
 		this.historyIndex += 1;
 		this.params = { ...this.history[this.historyIndex] };
-		if (browser) history.replaceState(null, "", serializeTypesetParams("/typeset", this.params));
+		if (browser)
+			history.replaceState(null, "", serializeTypesetParams("/typeset", this.params));
 	}
 
 	get canUndo() {

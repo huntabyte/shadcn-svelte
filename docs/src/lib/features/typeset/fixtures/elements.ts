@@ -116,4 +116,4 @@ captures:
     <li id="fn3"><p>The original draft said nine; the correct p95 is seven. <a href="#ref3">↩</a></p></li>
   </ol>
 </section>
-`
+`;

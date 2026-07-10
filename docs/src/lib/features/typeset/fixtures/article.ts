@@ -37,4 +37,4 @@ export const ARTICLE_HTML = `
 </ol>
 <p>The museum runs open studio on the first Saturday of every month, and they will let you set your own name if you ask. Mine came out crooked. Ruth looked at it for a moment and said it was a common beginner's error: I had been so careful choosing the letters that I forgot to check the spaces. I have been thinking about that all week.</p>
 <p><em>The Greer Street Press Museum is open Thursday through Sunday. If you go, bring a jacket; the composing room is kept cold for the metal.</em></p>
-`
+`;

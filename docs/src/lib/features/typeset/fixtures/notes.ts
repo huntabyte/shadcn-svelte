@@ -36,4 +36,4 @@ export const NOTES_HTML = `
 <blockquote>
   <p>“If an alert has fired twelve times and been actioned zero times, it isn’t an alert, it’s a screensaver.”</p>
 </blockquote>
-`
+`;

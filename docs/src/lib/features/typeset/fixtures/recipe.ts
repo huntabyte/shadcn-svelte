@@ -40,4 +40,4 @@ export const RECIPE_HTML = `
   <li>Thinly sliced potato and thyme, shingled like roof tiles</li>
   <li>A whole head of roasted garlic, smashed and dotted across the top</li>
 </ul>
-`
+`;

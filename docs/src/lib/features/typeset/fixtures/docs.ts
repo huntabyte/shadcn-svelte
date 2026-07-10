@@ -153,4 +153,4 @@ export async function POST(req: Request) {
   <mn>4</mn><mi>a</mi><msup><mi>b</mi><mn>3</mn></msup><mo>+</mo>
   <msup><mi>b</mi><mn>4</mn></msup>
 </math>
-`
+`;

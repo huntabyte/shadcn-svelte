@@ -8,12 +8,6 @@
 	const target = $derived(!internal ? "_blank" : undefined);
 </script>
 
-<a
-	{href}
-	{target}
-	{rel}
-	class={className}
-	{...restProps}
->
+<a {href} {target} {rel} class={className} {...restProps}>
 	{@render children?.()}
 </a>

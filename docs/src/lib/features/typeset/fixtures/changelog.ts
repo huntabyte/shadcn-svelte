@@ -26,4 +26,4 @@ export const CHANGELOG_HTML = `
   <li><strong>Deprecated:</strong> <code>store.update()</code>, removed in v2.4.0. A console warning links to the migration note.</li>
   <li><strong>Performance:</strong> subscription bookkeeping moved from an array to a Set; unsubscribe is now O(1).</li>
 </ul>
-`
+`;

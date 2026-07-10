@@ -2,7 +2,7 @@
 // a small table, code, and a closing question. The user bubble that precedes
 // it is page chrome, rendered outside the typeset container.
 export const CHAT_QUESTION =
-  "My Next.js dev server takes forever to start. How do I figure out what's actually slow?"
+	"My Next.js dev server takes forever to start. How do I figure out what's actually slow?";
 
 export const CHAT_HTML = `
 <p>Slow dev startup in Next.js almost always comes down to one of three things: module count, heavy config work at boot, or something outside the compiler entirely. Here's how to narrow it down fast.</p>
@@ -38,4 +38,4 @@ const nextConfig = {
 next internal trace .next/trace</code></pre>
 <blockquote><p>Compare against a bare <code>create-next-app</code> on the same machine first. If that's also slow, the problem is your machine or antivirus scanning <code>node_modules</code>, not your app.</p></blockquote>
 <p>Want to paste the first few lines of your trace output? I can point at the exact span that's eating the time.</p>
-`
+`;

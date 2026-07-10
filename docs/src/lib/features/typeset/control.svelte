@@ -3,6 +3,7 @@
 	import Unlock from "@lucide/svelte/icons/lock-keyhole-open";
 	import type { LockableParam, TypesetState } from "./typeset.svelte.js";
 	import { cn } from "$lib/utils.js";
+	import type { Component } from "svelte";
 
 	let {
 		typeset,
@@ -11,6 +12,7 @@
 		options,
 		class: className,
 		preview,
+		icon: Icon,
 	}: {
 		typeset: TypesetState;
 		param: LockableParam;
@@ -18,6 +20,7 @@
 		options: readonly { value: string; label: string }[];
 		class?: string;
 		preview?: string;
+		icon?: Component;
 	} = $props();
 
 	const value = $derived(typeset.params[param]);
@@ -36,15 +39,23 @@
 			<div
 				class="text-foreground pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base select-none md:right-2.5"
 				style:font-family={preview}
-			>Aa</div>
+			>
+				Aa
+			</div>
+		{:else if Icon}
+			<div
+				class="text-foreground pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center md:right-2.5"
+			>
+				<Icon class="size-4" />
+			</div>
 		{/if}
 		<select
 			aria-label={label}
 			class="absolute inset-0 z-10 size-full cursor-pointer opacity-0"
-			value={value}
+			{value}
 			onchange={(event) => typeset.update({ [param]: event.currentTarget.value })}
 		>
-			{#each options as option}
+			{#each options as option (option.value)}
 				<option value={option.value}>{option.label}</option>
 			{/each}
 		</select>
