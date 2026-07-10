@@ -209,6 +209,28 @@
 		};
 	});
 
+	$effect(() => {
+		if (!browser || window.self === window.top) return;
+
+		const handleMessage = (event: MessageEvent) => {
+			if (
+				event.origin !== window.location.origin ||
+				event.source !== window.parent ||
+				!event.data ||
+				typeof event.data !== "object" ||
+				event.data.type !== "design-system-preset" ||
+				typeof event.data.data !== "string"
+			) {
+				return;
+			}
+
+			designSystem.preset = event.data.data;
+		};
+
+		window.addEventListener("message", handleMessage);
+		return () => window.removeEventListener("message", handleMessage);
+	});
+
 	function handleKeyDown(e: KeyboardEvent) {
 		// randomize / reset on r/R and shift+R
 		if ((e.key === "r" || e.key === "R") && !e.metaKey && !e.ctrlKey) {
