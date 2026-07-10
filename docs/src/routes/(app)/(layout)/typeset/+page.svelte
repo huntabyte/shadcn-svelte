@@ -110,7 +110,7 @@
 	>
 		<DocsPanel {typeset} />
 
-		<div class="flex min-h-0 w-full flex-1 flex-col gap-(--gap) self-stretch md:contents">
+		<div class="flex min-h-0 w-full min-w-0 flex-1 flex-col gap-(--gap) self-stretch">
 			<div class="relative z-20 w-full">
 				<CtaMobile showOnDesktop />
 			</div>
