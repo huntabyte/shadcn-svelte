@@ -1,8 +1,5 @@
 <script lang="ts">
-	import { browser } from "$app/environment";
 	import CtaMobile from "$lib/components/cta-mobile.svelte";
-	import { useDesignSystem } from "$lib/features/design-system/index.js";
-	import { untrack } from "svelte";
 	import PreviewSwitcher from "./preview-switcher.svelte";
 
 	type Props = {
@@ -10,28 +7,6 @@
 	};
 
 	let { item }: Props = $props();
-
-	const designSystem = useDesignSystem();
-	let iframe: HTMLIFrameElement;
-	let iframeSrc = $derived(
-		`/preview/${item}?preset=${encodeURIComponent(untrack(() => designSystem.preset))}`
-	);
-
-	function syncDesignSystem() {
-		iframe.contentWindow?.postMessage(
-			{ type: "design-system-preset", data: designSystem.preset },
-			window.location.origin
-		);
-	}
-
-	$effect(() => {
-		if (!browser || !iframe) return;
-
-		syncDesignSystem();
-		iframe.addEventListener("load", syncDesignSystem);
-
-		return () => iframe.removeEventListener("load", syncDesignSystem);
-	});
 </script>
 
 <div data-slot="preview" class="flex min-h-0 flex-1 flex-col gap-(--gap)">
@@ -57,8 +32,7 @@
 				remixicon="RiExpandDiagonalLine"
 			/>
 		</Button>-->
-			<iframe bind:this={iframe} src={iframeSrc} class="z-10 size-full flex-1" title={item}
-			></iframe>
+			<iframe src="/preview/{item}" class="z-10 size-full flex-1" title={item}></iframe>
 		</div>
 		<PreviewSwitcher {item} />
 	</div>

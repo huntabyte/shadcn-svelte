@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from "$app/state";
 	import TailwindIndicator from "$lib/components/tailwind-indicator.svelte";
-	import DesignSystemProvider from "$lib/features/design-system/components/design-system-provider.svelte";
 	import Button from "$lib/registry/ui/button/button.svelte";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import type { Component } from "svelte";
@@ -53,8 +52,6 @@
 	</Button>
 {/if}
 {#await ComponentPromise then { default: Component }}
-	<DesignSystemProvider>
-		<Component />
-	</DesignSystemProvider>
+	<Component />
 {/await}
 <TailwindIndicator />
