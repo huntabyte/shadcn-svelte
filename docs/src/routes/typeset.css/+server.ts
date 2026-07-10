@@ -1,4 +1,4 @@
-import type { RequestHandler } from "./$types";
+import type { RequestHandler } from "./$types.js";
 import stylesheet from "$lib/styles/typeset.css?raw";
 
 export const GET: RequestHandler = () => {
