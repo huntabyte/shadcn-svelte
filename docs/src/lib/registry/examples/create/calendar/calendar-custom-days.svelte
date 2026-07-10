@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { RangeCalendar } from "$lib/registry/ui/range-calendar/index.js";
 	import type { DateRange } from "bits-ui";

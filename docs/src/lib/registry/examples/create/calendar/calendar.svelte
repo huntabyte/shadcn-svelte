@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 	import CalendarSingle from "./calendar-single.svelte";
 	import CalendarMultiple from "./calendar-multiple.svelte";
 	import CalendarWeekNumbers from "./calendar-week-numbers.svelte";

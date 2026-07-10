@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 	import ToggleGroupBasic from "./toggle-group-basic.svelte";
 	import ToggleGroupOutline from "./toggle-group-outline.svelte";
 	import ToggleGroupOutlineWithIcons from "./toggle-group-outline-with-icons.svelte";

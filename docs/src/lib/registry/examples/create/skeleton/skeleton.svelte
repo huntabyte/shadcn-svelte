@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 	import SkeletonAvatar from "./skeleton-avatar.svelte";
 	import SkeletonCard from "./skeleton-card.svelte";
 	import SkeletonText from "./skeleton-text.svelte";

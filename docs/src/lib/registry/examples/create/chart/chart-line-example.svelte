@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import { LineChart } from "layerchart";
 	import { scaleBand } from "d3-scale";
 	import { curveMonotoneX } from "d3-shape";

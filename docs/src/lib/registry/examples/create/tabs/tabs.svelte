@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 	import TabsBasic from "./tabs-basic.svelte";
 	import TabsLine from "./tabs-line.svelte";
 	import TabsVariantsComparison from "./tabs-variants-comparison.svelte";

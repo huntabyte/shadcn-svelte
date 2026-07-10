@@ -1,11 +1,11 @@
 <script lang="ts">
-	import WelcomeDialog from "../components/welcome-dialog.svelte";
+	import WelcomeDialog from "./components/welcome-dialog.svelte";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import Metadata from "$lib/components/metadata.svelte";
 	import SiteHeader from "$lib/components/site-header.svelte";
-	import Customizer from "../components/customizer.svelte";
-	import ActionMenu from "../components/action-menu.svelte";
-	import { OG_IMAGE_BASE_URL } from "../../../../og/og.js";
+	import Customizer from "./components/customizer.svelte";
+	import ActionMenu from "./components/action-menu.svelte";
+	import { OG_IMAGE_BASE_URL } from "../../../og/og.js";
 	import { cn } from "$lib/utils.js";
 
 	let { children } = $props();

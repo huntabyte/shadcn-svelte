@@ -4,7 +4,7 @@ import { page } from "$app/state";
 import { BASE_THEMES, getThemesForBaseColor } from "$lib/registry/config.js";
 import { Context, PersistedState } from "runed";
 import { SvelteURLSearchParams } from "svelte/reactivity";
-import { SHUFFLE_PRESETS } from "../../../../routes/(app)/(layout)/(create)/lib/shuffle-presets.js";
+import { SHUFFLE_PRESETS } from "../../../../routes/(app)/(layout)/create/lib/shuffle-presets.js";
 import { StateHistory } from "runed";
 import {
 	decodePreset,

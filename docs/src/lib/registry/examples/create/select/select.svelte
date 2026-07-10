@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 	import SelectBasic from "./select-basic.svelte";
 	import SelectWithIcons from "./select-with-icons.svelte";
 	import SelectWithGroups from "./select-with-groups.svelte";

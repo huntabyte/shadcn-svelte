@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 	import InputOTPForm from "./input-otp-form.svelte";
 	import InputOTPSimple from "./input-otp-simple.svelte";
 	import InputOTPPattern from "./input-otp-pattern.svelte";

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 	import MenubarBasic from "./menubar-basic.svelte";
 	import MenubarWithSubmenu from "./menubar-with-submenu.svelte";
 	import MenubarWithCheckboxes from "./menubar-with-checkboxes.svelte";

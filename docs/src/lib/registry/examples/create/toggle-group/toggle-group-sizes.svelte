@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
 
 	let value1 = $state("top");

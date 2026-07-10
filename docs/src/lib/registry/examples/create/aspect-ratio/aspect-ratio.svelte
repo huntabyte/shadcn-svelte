@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 	import AspectRatio16x9 from "./aspect-ratio-16x9.svelte";
 	import AspectRatio21x9 from "./aspect-ratio-21x9.svelte";
 	import AspectRatio1x1 from "./aspect-ratio-1x1.svelte";

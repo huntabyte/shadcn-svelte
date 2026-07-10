@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 	import ItemVariants from "./item-variants.svelte";
 	import ItemAsChild from "./item-as-child.svelte";
 	import ItemOutlineLink from "./item-outline-link.svelte";

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 	import TableBasic from "./table-basic.svelte";
 	import TableWithFooter from "./table-with-footer.svelte";
 	import TableSimple from "./table-simple.svelte";

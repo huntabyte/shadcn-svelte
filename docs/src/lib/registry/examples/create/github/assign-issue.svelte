@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";

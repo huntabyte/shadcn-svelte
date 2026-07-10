@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import { scaleBand } from "d3-scale";
 	import { BarChart } from "layerchart";
 	import * as Chart from "$lib/registry/ui/chart/index.js";

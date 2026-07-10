@@ -12,7 +12,7 @@
 	import Customizer from "./customizer.svelte";
 	import { page } from "$app/state";
 	import ModeSwitcher from "./mode-switcher.svelte";
-	import ProjectForm from "../../routes/(app)/(layout)/(create)/components/project-form.svelte";
+	import ProjectForm from "../../routes/(app)/(layout)/create/components/project-form.svelte";
 
 	const colors = getColors();
 
