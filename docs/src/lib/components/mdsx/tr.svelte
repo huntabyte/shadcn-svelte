@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 
 	let {
@@ -9,6 +8,6 @@
 	}: HTMLAttributes<HTMLTableRowElement> = $props();
 </script>
 
-<tr class={cn("m-0 border-b", className)} {...restProps}>
+<tr class={className} {...restProps}>
 	{@render children?.()}
 </tr>

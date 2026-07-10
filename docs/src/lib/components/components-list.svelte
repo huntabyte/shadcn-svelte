@@ -8,7 +8,7 @@
 	});
 </script>
 
-<div class="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-x-8 lg:gap-x-16 lg:gap-y-6 xl:gap-x-20">
+<div data-not-typeset class="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-x-8 lg:gap-x-16 lg:gap-y-6 xl:gap-x-20">
 	{#each list as component (component.title)}
 		<a
 			href="/docs{component.slugFull}"

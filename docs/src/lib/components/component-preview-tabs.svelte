@@ -40,6 +40,7 @@
 {/snippet}
 
 <div
+	data-not-typeset
 	class={cn(
 		"group relative mt-4 mb-12 flex flex-col overflow-hidden rounded-xl border",
 		className

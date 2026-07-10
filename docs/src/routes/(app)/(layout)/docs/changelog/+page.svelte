@@ -119,7 +119,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 							<h2 class="font-heading text-xl font-semibold tracking-tight">
 								{changelogPage.metadata.title}
 							</h2>
-							<div class="prose-changelog mt-6 *:first:mt-0">
+							<div class="typeset mt-6 *:first:mt-0">
 								<ChangelogMarkdown />
 							</div>
 						</article>
