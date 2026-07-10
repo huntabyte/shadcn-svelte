@@ -4,6 +4,8 @@
 	import type { LockableParam, TypesetState } from "./typeset.svelte.js";
 	import { cn } from "$lib/utils.js";
 	import type { Component } from "svelte";
+	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
+	import * as Picker from "./picker/index.js";
 
 	let {
 		typeset,
@@ -23,43 +25,56 @@
 		icon?: Component;
 	} = $props();
 
+	const isMobile = new IsMobile();
+	let open = $state(false);
 	const value = $derived(typeset.params[param]);
 	const current = $derived(options.find((option) => option.value === value));
 </script>
 
 <div class={cn("group/picker relative", className)}>
-	<div
-		class="ring-foreground/10 hover:bg-muted focus-within:ring-foreground/50 relative w-36 shrink-0 touch-manipulation rounded-xl p-3 ring-1 select-none md:w-full md:rounded-lg md:px-2.5 md:py-2"
-	>
-		<div class="flex min-w-0 flex-col justify-start pr-8 text-left">
-			<div class="text-muted-foreground text-xs">{label}</div>
-			<div class="text-foreground line-clamp-1 text-sm font-medium">{current?.label}</div>
-		</div>
-		{#if preview}
-			<div
-				class="text-foreground pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base select-none md:right-2.5"
-				style:font-family={preview}
-			>
-				Aa
+	<Picker.Root submenu={false} bind:open>
+		<Picker.Trigger submenu={false} class="w-36 md:w-full">
+			<div class="flex min-w-0 flex-col justify-start pr-8 text-left">
+				<div class="text-muted-foreground text-xs">{label}</div>
+				<div class="text-foreground line-clamp-1 text-sm font-medium">{current?.label}</div>
 			</div>
-		{:else if Icon}
-			<div
-				class="text-foreground pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center md:right-2.5"
-			>
-				<Icon class="size-4" />
-			</div>
-		{/if}
-		<select
-			aria-label={label}
-			class="absolute inset-0 z-10 size-full cursor-pointer opacity-0"
-			{value}
-			onchange={(event) => typeset.update({ [param]: event.currentTarget.value })}
+			{#if preview}
+				<div
+					class="text-foreground pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base select-none md:right-2.5"
+					style:font-family={preview}
+				>
+					Aa
+				</div>
+			{:else if Icon}
+				<div
+					class="text-foreground pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center md:right-2.5"
+				>
+					<Icon class="size-4" />
+				</div>
+			{/if}
+		</Picker.Trigger>
+		<Picker.Content
+			side={isMobile.current ? "top" : "right"}
+			align={isMobile.current ? "center" : "start"}
+			class="cn-menu-translucent max-h-96"
 		>
-			{#each options as option (option.value)}
-				<option value={option.value}>{option.label}</option>
-			{/each}
-		</select>
-	</div>
+			<Picker.RadioGroup {value} onValueChange={(next) => typeset.update({ [param]: next })}>
+				{#each options as option (option.value)}
+					<Picker.RadioItem value={option.value} closeOnSelect={isMobile.current}>
+						{option.label}
+					</Picker.RadioItem>
+				{/each}
+			</Picker.RadioGroup>
+		</Picker.Content>
+	</Picker.Root>
+	{#if open}
+		<button
+			type="button"
+			aria-label="Close {label} menu"
+			class="fixed inset-y-0 right-0 left-54 z-40 cursor-default bg-transparent"
+			onclick={() => (open = false)}
+		></button>
+	{/if}
 	<button
 		type="button"
 		title={typeset.locks.has(param) ? "Unlock" : "Lock"}

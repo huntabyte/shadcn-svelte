@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 	import { mode, setMode } from "mode-watcher";
-	import Menu from "@lucide/svelte/icons/menu";
 	import ExternalLink from "@lucide/svelte/icons/external-link";
 	import ArrowLeftRight from "@lucide/svelte/icons/arrow-left-right";
 	import CaseUpper from "@lucide/svelte/icons/case-upper";
@@ -12,6 +11,8 @@
 	import Metadata from "$lib/components/metadata.svelte";
 	import Control from "$lib/features/typeset/control.svelte";
 	import DocsPanel from "$lib/features/typeset/docs-panel.svelte";
+	import MainMenu from "$lib/features/typeset/main-menu.svelte";
+	import CtaMobile from "$lib/components/cta-mobile.svelte";
 	import {
 		CONTENT_OPTIONS,
 		FONTS,
@@ -26,7 +27,6 @@
 
 	const typeset = new TypesetState();
 	let iframe: HTMLIFrameElement;
-	let menuOpen = $state(false);
 	let codeOpen = $state(false);
 
 	const fontOptions = FONTS.map((font) => ({ value: font.id, label: font.label }));
@@ -102,7 +102,7 @@
 <Metadata title="Typeset" description="Typography for markdown you don't control." />
 
 <div
-	class="section-soft relative z-10 flex h-[calc(100svh-4rem)] min-h-[42rem] flex-1 flex-col overflow-hidden [--customizer-width:--spacing(48)] [--gap:--spacing(4)] md:[--gap:--spacing(6)] 2xl:[--customizer-width:--spacing(56)]"
+	class="section-soft relative z-10 flex min-h-0 flex-1 flex-col overflow-hidden [--customizer-width:--spacing(48)] [--gap:--spacing(4)] md:[--gap:--spacing(6)] 2xl:[--customizer-width:--spacing(56)]"
 >
 	<div
 		data-slot="designer"
@@ -111,9 +111,16 @@
 		<DocsPanel {typeset} />
 
 		<div
-			class="bg-background ring-foreground/10 relative isolate flex min-h-[32rem] w-full flex-1 self-stretch overflow-hidden rounded-2xl ring-1 md:min-h-0"
+			class="bg-background ring-foreground/10 relative isolate flex min-h-0 w-full flex-1 flex-col self-stretch overflow-hidden rounded-2xl ring-1"
 		>
-			<iframe bind:this={iframe} src={previewSrc} title="typeset preview" class="size-full"
+			<div class="relative z-20 p-3 pb-0 md:hidden">
+				<CtaMobile />
+			</div>
+			<iframe
+				bind:this={iframe}
+				src={previewSrc}
+				title="typeset preview"
+				class="min-h-0 w-full flex-1"
 			></iframe>
 			<div
 				class="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 items-center justify-center gap-1.5"
@@ -151,59 +158,8 @@
 			class="dark bg-card/90 isolate z-10 max-h-full min-h-0 w-full self-start rounded-2xl backdrop-blur-xl md:w-(--customizer-width)"
 			size="sm"
 		>
-			<Card.Header
-				class="relative hidden items-center justify-between gap-2 border-b md:flex"
-			>
-				<button
-					class="ring-foreground/10 flex w-full items-center justify-between gap-2 rounded-lg px-1.75 py-2 text-sm font-medium ring-1"
-					onclick={() => (menuOpen = !menuOpen)}
-				>
-					Menu <Menu class="size-5" />
-				</button>
-				{#if menuOpen}
-					<div
-						class="absolute top-12 left-[calc(100%+1.25rem)] z-50 w-52 rounded-xl bg-neutral-950/90 p-1.5 text-sm text-neutral-100 shadow-xl ring-1 ring-neutral-800 backdrop-blur-xl"
-					>
-						<button
-							class="flex w-full rounded-lg px-2 py-1.5 hover:bg-neutral-700"
-							onclick={() => {
-								typeset.shuffle();
-								menuOpen = false;
-							}}>Shuffle <span class="ml-auto text-neutral-400">R</span></button
-						>
-						<button
-							class="flex w-full rounded-lg px-2 py-1.5 hover:bg-neutral-700"
-							onclick={() => {
-								toggleTheme();
-								menuOpen = false;
-							}}>Light/Dark <span class="ml-auto text-neutral-400">D</span></button
-						>
-						<div class="my-1.5 h-px bg-neutral-700"></div>
-						<button
-							disabled={!typeset.canUndo}
-							class="flex w-full rounded-lg px-2 py-1.5 hover:bg-neutral-700 disabled:opacity-50"
-							onclick={() => {
-								typeset.undo();
-								menuOpen = false;
-							}}>Undo <span class="ml-auto text-neutral-400">⌘Z</span></button
-						>
-						<button
-							disabled={!typeset.canRedo}
-							class="flex w-full rounded-lg px-2 py-1.5 hover:bg-neutral-700 disabled:opacity-50"
-							onclick={() => {
-								typeset.redo();
-								menuOpen = false;
-							}}>Redo <span class="ml-auto text-neutral-400">⇧⌘Z</span></button
-						>
-						<button
-							class="flex w-full rounded-lg px-2 py-1.5 hover:bg-neutral-700"
-							onclick={() => {
-								typeset.reset();
-								menuOpen = false;
-							}}>Reset <span class="ml-auto text-neutral-400">⇧R</span></button
-						>
-					</div>
-				{/if}
+			<Card.Header class="hidden items-center justify-between gap-2 border-b md:flex">
+				<MainMenu {typeset} />
 			</Card.Header>
 			<Card.Content
 				class="no-scrollbar min-h-0 flex-1 overflow-x-auto overflow-y-hidden max-md:px-0 md:overflow-y-auto"
