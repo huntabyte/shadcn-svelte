@@ -30,7 +30,7 @@
 	<div
 		data-slot="example-content"
 		class={cn(
-			"bg-card text-foreground flex min-w-0 flex-1 flex-col items-start gap-6 rounded-xl p-12 *:[div:not([class*='w-'])]:w-full",
+			"bg-background dark:bg-card text-foreground flex min-w-0 flex-1 flex-col items-start gap-6 rounded-xl p-12 *:[div:not([class*='w-'])]:w-full",
 			className
 		)}
 	>
