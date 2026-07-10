@@ -111,8 +111,8 @@
 		<DocsPanel {typeset} />
 
 		<div class="flex min-h-0 w-full flex-1 flex-col gap-(--gap) self-stretch md:contents">
-			<div class="relative z-20 w-full md:hidden">
-				<CtaMobile />
+			<div class="relative z-20 w-full">
+				<CtaMobile showOnDesktop />
 			</div>
 			<div
 				class="bg-background ring-foreground/10 relative isolate flex min-h-0 w-full flex-1 flex-col self-stretch overflow-hidden rounded-2xl ring-1"
