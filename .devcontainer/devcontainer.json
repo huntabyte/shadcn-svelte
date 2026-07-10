@@ -1,0 +1,15 @@
+{
+  "name": "shadcn-svelte",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {
+  },
+   "customizations": {
+        "vscode": {
+            "extensions": [
+                "svelte.svelte-vscode",
+                "sveltex-preprocessor.sveltex",
+                "bradlc.vscode-tailwindcss"
+            ]
+        }
+    }
+}
