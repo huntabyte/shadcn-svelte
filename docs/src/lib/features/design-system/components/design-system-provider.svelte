@@ -136,25 +136,14 @@
 		styleElement.textContent = cssText;
 	});
 
-	let menuObserver: MutationObserver | null = null;
-	let menuFrameId = 0;
-
-	watch([() => designSystem.menuColor, () => browser], ([menuColor, browser]) => {
-		if (menuObserver) {
-			menuObserver.disconnect();
-			menuObserver = null;
-		}
-		if (menuFrameId) {
-			window.cancelAnimationFrame(menuFrameId);
-			menuFrameId = 0;
-		}
-
-		if (!browser) return;
-		if (!menuColor) return;
+	$effect.pre(() => {
+		const menuColor = designSystem.menuColor;
+		if (!browser || !menuColor) return;
 
 		const isInvertedMenu = menuColor === "inverted" || menuColor === "inverted-translucent";
 		const isTranslucentMenu =
 			menuColor === "default-translucent" || menuColor === "inverted-translucent";
+		let menuFrameId = 0;
 
 		const updateMenuElements = () => {
 			const allElements = document.querySelectorAll<HTMLElement>(
@@ -203,7 +192,7 @@
 
 		updateMenuElements();
 
-		menuObserver = new MutationObserver(() => {
+		const menuObserver = new MutationObserver(() => {
 			scheduleMenuUpdate();
 		});
 
@@ -211,6 +200,13 @@
 			childList: true,
 			subtree: true,
 		});
+
+		return () => {
+			menuObserver.disconnect();
+			if (menuFrameId) {
+				window.cancelAnimationFrame(menuFrameId);
+			}
+		};
 	});
 
 	function handleKeyDown(e: KeyboardEvent) {
