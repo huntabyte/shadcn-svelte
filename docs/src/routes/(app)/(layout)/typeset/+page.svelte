@@ -110,46 +110,51 @@
 	>
 		<DocsPanel {typeset} />
 
-		<div
-			class="bg-background ring-foreground/10 relative isolate flex min-h-0 w-full flex-1 flex-col self-stretch overflow-hidden rounded-2xl ring-1"
-		>
-			<div class="relative z-20 p-3 pb-0 md:hidden">
+		<div class="flex min-h-0 w-full flex-1 flex-col gap-(--gap) self-stretch md:contents">
+			<div class="relative z-20 w-full md:hidden">
 				<CtaMobile />
 			</div>
-			<iframe
-				bind:this={iframe}
-				src={previewSrc}
-				title="typeset preview"
-				class="min-h-0 w-full flex-1"
-			></iframe>
 			<div
-				class="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 items-center justify-center gap-1.5"
+				class="bg-background ring-foreground/10 relative isolate flex min-h-0 w-full flex-1 flex-col self-stretch overflow-hidden rounded-2xl ring-1"
 			>
+				<iframe
+					bind:this={iframe}
+					src={previewSrc}
+					title="typeset preview"
+					class="min-h-0 w-full flex-1"
+				></iframe>
 				<div
-					class="dark bg-card/90 flex items-center gap-1 rounded-xl p-1 shadow-xl backdrop-blur-xl"
+					class="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 items-center justify-center gap-1.5"
 				>
-					{#each CONTENT_OPTIONS as option, index (option.value)}
-						<button
-							type="button"
-							title={option.label}
-							data-active={typeset.params.item === option.value}
-							class="text-muted-foreground hover:text-foreground data-[active=true]:bg-accent data-[active=true]:text-accent-foreground h-7 min-w-7 cursor-pointer rounded-lg px-2 text-xs font-medium transition-colors"
-							onclick={() => typeset.update({ item: option.value })}
-							>{String(index + 1).padStart(2, "0")}</button
-						>
-					{/each}
-				</div>
-				<div
-					class="dark bg-card/90 flex items-center gap-1 rounded-xl p-1 shadow-xl backdrop-blur-xl"
-				>
-					<a
-						href={previewSrc}
-						target="_blank"
-						rel="noreferrer"
-						aria-label="Open in New Tab"
-						class="text-muted-foreground hover:text-foreground flex h-7 items-center rounded-lg px-2.5"
-						><ExternalLink class="size-3.5" /></a
+					<div
+						class="dark bg-card/90 flex items-center gap-1 rounded-xl p-1 shadow-xl backdrop-blur-xl"
 					>
+						{#each CONTENT_OPTIONS as option, index (option.value)}
+							<button
+								type="button"
+								title={option.label}
+								data-active={typeset.params.item === option.value}
+								class="text-muted-foreground hover:text-foreground data-[active=true]:bg-accent data-[active=true]:text-accent-foreground h-7 min-w-7 cursor-pointer rounded-lg px-2 text-xs font-medium transition-colors"
+								onclick={() => typeset.update({ item: option.value })}
+								>{String(index + 1).padStart(2, "0")}</button
+							>
+						{/each}
+					</div>
+					<div
+						class="dark bg-card/90 flex items-center gap-1 rounded-xl p-1 shadow-xl backdrop-blur-xl"
+					>
+						<Button
+							href={previewSrc}
+							target="_blank"
+							rel="noreferrer"
+							variant="ghost"
+							size="sm"
+							class="text-muted-foreground hover:text-foreground h-7 cursor-pointer rounded-lg px-2.5 text-xs font-medium transition-colors"
+						>
+							<ExternalLink class="size-3.5 md:hidden" />
+							<span class="max-md:sr-only">Open in New Tab</span>
+						</Button>
+					</div>
 				</div>
 			</div>
 		</div>

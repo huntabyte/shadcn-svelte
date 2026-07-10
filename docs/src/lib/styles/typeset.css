@@ -34,7 +34,17 @@
 		--typeset-rule: var(--color-border, color-mix(in oklab, currentColor 20%, transparent));
 	}
 
-	.typeset *:not(:where(.not-typeset, [data-not-typeset], .not-typeset *, [data-not-typeset] *)) {
+	.typeset
+		*:not(
+			:where(
+				.not-typeset,
+				[data-not-typeset],
+				[data-slot="button"],
+				.not-typeset *,
+				[data-not-typeset] *,
+				[data-slot="button"] *
+			)
+		) {
 		/* Paragraphs. */
 		&:where(p) {
 			margin-block-start: var(--typeset-flow);
@@ -430,12 +440,26 @@
 	/* First child adds no space above. Last so it wins ties. */
 	.typeset
 		> :where(:first-child):not(
-			:where(.not-typeset, [data-not-typeset], .not-typeset *, [data-not-typeset] *)
+			:where(
+				.not-typeset,
+				[data-not-typeset],
+				[data-slot="button"],
+				.not-typeset *,
+				[data-not-typeset] *,
+				[data-slot="button"] *
+			)
 		),
 	.typeset
 		> :where(:first-child)
 		> :where(:first-child):not(
-			:where(.not-typeset, [data-not-typeset], .not-typeset *, [data-not-typeset] *)
+			:where(
+				.not-typeset,
+				[data-not-typeset],
+				[data-slot="button"],
+				.not-typeset *,
+				[data-not-typeset] *,
+				[data-slot="button"] *
+			)
 		),
 	.typeset
 		:where(
@@ -446,7 +470,16 @@
 			dd > :first-child,
 			figure > :first-child,
 			figure > picture > img
-		):not(:where(.not-typeset, [data-not-typeset], .not-typeset *, [data-not-typeset] *)) {
+		):not(
+			:where(
+				.not-typeset,
+				[data-not-typeset],
+				[data-slot="button"],
+				.not-typeset *,
+				[data-not-typeset] *,
+				[data-slot="button"] *
+			)
+		) {
 		margin-block-start: 0;
 	}
 }
