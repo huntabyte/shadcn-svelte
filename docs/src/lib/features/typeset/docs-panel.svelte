@@ -55,7 +55,8 @@ Use not-typeset or data-not-typeset to exclude embedded components. Verify headi
 	}
 </script>
 
-<div class={compact ? "flex min-h-0 flex-1 flex-col" : "isolate hidden max-h-[calc(100vh-16rem)] w-88 flex-col overflow-hidden rounded-2xl bg-background ring-1 ring-foreground/10 xl:flex 2xl:w-104"}>
+<div class={compact ? "flex min-h-0 flex-1 flex-col" : "hidden w-88 flex-col items-start gap-3 xl:flex 2xl:w-104"}>
+	<div class={compact ? "flex min-h-0 flex-1 flex-col" : "isolate flex max-h-[calc(100vh-16rem)] w-full flex-col overflow-hidden rounded-2xl bg-background ring-1 ring-foreground/10"}>
 	<div class="flex items-center justify-between gap-2 border-b px-4 py-3">
 		<div class="bg-muted flex items-center rounded-lg p-1">
 			<button class="rounded-md px-3 py-1 text-sm data-[active=true]:bg-background" data-active={tab === "docs"} onclick={() => tab = "docs"}>Docs</button>
@@ -92,4 +93,8 @@ Use not-typeset or data-not-typeset to exclude embedded components. Verify headi
 			</div>
 		{/if}
 	</div>
+	</div>
+	{#if !compact}
+		<Button variant="link" size="sm" class="text-muted-foreground" href="/docs/typeset">Read the docs</Button>
+	{/if}
 </div>
