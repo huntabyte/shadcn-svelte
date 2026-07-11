@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         env:
           SHADCN_SKIP_POSTINSTALL: "1"
-        run: pnpm install --frozen-lockfile --trust-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Prepare generated files
         run: pnpm build:cli && pnpm -r sync
@@ -46,7 +46,7 @@ jobs:
       - name: Install dependencies
         env:
           SHADCN_SKIP_POSTINSTALL: "1"
-        run: pnpm install --frozen-lockfile --trust-lockfile
+        run: pnpm install --frozen-lockfile
 
       - run: pnpm lint
 
@@ -68,7 +68,7 @@ jobs:
       - name: Install dependencies
         env:
           SHADCN_SKIP_POSTINSTALL: "1"
-        run: pnpm install --frozen-lockfile --trust-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Build packages
         run: pnpm build:cli

@@ -101,7 +101,7 @@ jobs:
         if: steps.check-permission.outputs.should-continue == 'true'
         env:
           SHADCN_SKIP_POSTINSTALL: "1"
-        run: pnpm install --frozen-lockfile --trust-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Run formatter
         if: steps.check-permission.outputs.should-continue == 'true'

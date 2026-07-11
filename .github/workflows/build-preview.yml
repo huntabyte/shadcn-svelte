@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         env:
           SHADCN_SKIP_POSTINSTALL: "1"
-        run: pnpm install --frozen-lockfile --trust-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Build site
         env:
