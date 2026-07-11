@@ -3,6 +3,7 @@
 	import Check from "@lucide/svelte/icons/check";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
+	import * as Tabs from "$lib/registry/ui/tabs/index.js";
 	import { TYPESET_MEASURES, findFont, type TypesetState } from "./typeset.svelte.js";
 
 	let { typeset, compact = false }: { typeset: TypesetState; compact?: boolean } = $props();
@@ -80,34 +81,26 @@ Use not-typeset or data-not-typeset to exclude embedded components. Verify headi
 			? "flex min-h-0 flex-1 flex-col"
 			: "bg-background ring-foreground/10 isolate flex max-h-[calc(100vh-16rem)] w-full flex-col overflow-hidden rounded-2xl ring-1"}
 	>
-		<div class="flex items-center justify-between gap-2 border-b px-4 py-3">
-			<div class="bg-muted flex items-center rounded-lg p-1">
-				<button
-					class="data-[active=true]:bg-background rounded-md px-3 py-1 text-sm"
-					data-active={tab === "docs"}
-					onclick={() => (tab = "docs")}>Docs</button
-				>
-				<button
-					class="data-[active=true]:bg-background rounded-md px-3 py-1 text-sm"
-					data-active={tab === "prompt"}
-					onclick={() => (tab = "prompt")}>Prompt</button
-				>
+		<Tabs.Root bind:value={tab} class="flex min-h-0 flex-1 flex-col gap-0">
+			<div class="flex items-center justify-between gap-2 border-b px-4 py-3">
+				<Tabs.List>
+					<Tabs.Trigger value="docs">Docs</Tabs.Trigger>
+					<Tabs.Trigger value="prompt">Prompt</Tabs.Trigger>
+				</Tabs.List>
+				<Select.Root type="single" bind:value={framework}>
+					<Select.Trigger size="sm" aria-label="Framework">
+						{framework === "sveltekit" ? "SvelteKit" : "Vite"}
+					</Select.Trigger>
+					<Select.Content align="end" preventScroll={false}>
+						<Select.Group>
+							<Select.Item value="sveltekit">SvelteKit</Select.Item>
+							<Select.Item value="vite">Vite</Select.Item>
+						</Select.Group>
+					</Select.Content>
+				</Select.Root>
 			</div>
-			<Select.Root type="single" bind:value={framework}>
-				<Select.Trigger size="sm" aria-label="Framework">
-					{framework === "sveltekit" ? "SvelteKit" : "Vite"}
-				</Select.Trigger>
-				<Select.Content align="end" preventScroll={false}>
-					<Select.Group>
-						<Select.Item value="sveltekit">SvelteKit</Select.Item>
-						<Select.Item value="vite">Vite</Select.Item>
-					</Select.Group>
-				</Select.Content>
-			</Select.Root>
-		</div>
-		<div class="scroll-fade scrollbar-none min-h-0 flex-1 overflow-y-auto p-4 md:p-6">
-			{#if tab === "docs"}
-				<div class="flex flex-col gap-6">
+			<div class="scroll-fade scrollbar-none min-h-0 flex-1 overflow-y-auto p-4 md:p-6">
+				<Tabs.Content value="docs" class="flex flex-col gap-6">
 					<section class="flex flex-col gap-2.5">
 						<h3 class="text-sm font-medium">1. Create typeset.css</h3>
 						<p class="text-muted-foreground text-sm leading-relaxed">
@@ -143,9 +136,8 @@ Use not-typeset or data-not-typeset to exclude embedded components. Verify headi
 						<pre
 							class="bg-muted/60 overflow-x-auto rounded-lg p-3 font-mono text-xs">{usage}</pre>
 					</section>
-				</div>
-			{:else}
-				<div class="flex flex-col gap-2.5">
+				</Tabs.Content>
+				<Tabs.Content value="prompt" class="flex flex-col gap-2.5">
 					<p class="text-muted-foreground text-sm leading-relaxed">
 						One prompt with your picks baked in. Copy it into your coding agent.
 					</p>
@@ -158,9 +150,9 @@ Use not-typeset or data-not-typeset to exclude embedded components. Verify headi
 						onclick={() => copy(prompt, "prompt")}
 						>{#if copied === "prompt"}<Check />{:else}<Copy />{/if} Copy Prompt</Button
 					>
-				</div>
-			{/if}
-		</div>
+				</Tabs.Content>
+			</div>
+		</Tabs.Root>
 	</div>
 	{#if !compact}
 		<Button variant="link" size="sm" class="text-muted-foreground" href="/docs/typeset"
