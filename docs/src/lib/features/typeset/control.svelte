@@ -99,7 +99,7 @@
 			</Picker.RadioGroup>
 		</Picker.Content>
 	</Picker.Root>
-	{#if open}
+	{#if open && !isMobile.current}
 		<button
 			type="button"
 			aria-label="Close {label} menu"
