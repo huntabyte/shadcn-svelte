@@ -3,7 +3,7 @@
 	"name": "chart",
 	"type": "registry:ui",
 	"devDependencies": [
-		"layerchart@2.0.0-next.48"
+		"layerchart@2.0.0"
 	],
 	"files": [
 		{
