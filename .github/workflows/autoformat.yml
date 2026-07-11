@@ -95,10 +95,13 @@ jobs:
         with:
           node-version: 24
           cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
 
       - name: Install dependencies
         if: steps.check-permission.outputs.should-continue == 'true'
-        run: pnpm install
+        env:
+          SHADCN_SKIP_POSTINSTALL: "1"
+        run: pnpm install --frozen-lockfile --trust-lockfile
 
       - name: Run formatter
         if: steps.check-permission.outputs.should-continue == 'true'
