@@ -10,6 +10,7 @@
 	import {
 		DEFAULT_TYPESET_PARAMS,
 		TYPESET_MEASURES,
+		coerceTypesetValue,
 		findFont,
 		type TypesetParams,
 	} from "$lib/features/typeset/typeset.svelte.js";
@@ -35,7 +36,10 @@
 		const query = page.url.searchParams;
 		for (const key of Object.keys(DEFAULT_TYPESET_PARAMS) as (keyof TypesetParams)[]) {
 			const value = query.get(key);
-			if (value) (params as Record<string, string>)[key] = value;
+			if (value) {
+				const coerced = coerceTypesetValue(key, value);
+				if (coerced !== null) (params as Record<string, string>)[key] = coerced;
+			}
 		}
 		params = { ...params, item: name };
 

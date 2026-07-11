@@ -74,6 +74,10 @@ const VALUES: Record<keyof TypesetParams, readonly string[]> = {
 	item: CONTENT_OPTIONS.map((option) => option.value),
 };
 
+export function coerceTypesetValue<K extends keyof TypesetParams>(key: K, value: string) {
+	return VALUES[key].includes(value) ? (value as TypesetParams[K]) : null;
+}
+
 const random = <T>(items: readonly T[]) => items[Math.floor(Math.random() * items.length)];
 
 export function findFont(id: string | null | undefined) {
@@ -101,8 +105,9 @@ export class TypesetState {
 		const next = { ...DEFAULT_TYPESET_PARAMS };
 		for (const key of Object.keys(next) as (keyof TypesetParams)[]) {
 			const value = query.get(key);
-			if (value && VALUES[key].includes(value)) {
-				(next as Record<string, string>)[key] = value;
+			if (value) {
+				const coerced = coerceTypesetValue(key, value);
+				if (coerced !== null) (next as Record<string, string>)[key] = coerced;
 			}
 		}
 		this.params = next;

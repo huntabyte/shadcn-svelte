@@ -4,10 +4,10 @@
 	type Props =
 		| ({
 				submenu: true;
-		  } & DropdownMenuPrimitive.RootProps)
+		  } & DropdownMenuPrimitive.SubProps)
 		| ({
 				submenu: false;
-		  } & DropdownMenuPrimitive.SubProps);
+		  } & DropdownMenuPrimitive.RootProps);
 
 	let { open = $bindable(false), submenu, ...restProps }: Props = $props();
 </script>

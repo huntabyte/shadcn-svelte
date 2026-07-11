@@ -54,6 +54,9 @@
 	let previewSrc = $state(
 		serializeTypesetParams(`/preview/typeset/${typeset.params.item}`, typeset.params)
 	);
+	const openInNewTabHref = $derived(
+		serializeTypesetParams(`/preview/typeset/${typeset.params.item}`, typeset.params)
+	);
 	let previewItem = typeset.params.item;
 
 	function sendPreviewParams() {
@@ -168,7 +171,7 @@
 						class="dark bg-card/90 flex items-center gap-1 rounded-xl p-1 shadow-xl backdrop-blur-xl"
 					>
 						<Button
-							href={previewSrc}
+							href={openInNewTabHref}
 							target="_blank"
 							rel="noreferrer"
 							variant="ghost"
