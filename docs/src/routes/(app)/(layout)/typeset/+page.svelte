@@ -32,8 +32,19 @@
 	let pickerScroll = $state<HTMLElement | null>(null);
 
 	const fontOptions = FONTS.map((font) => ({ value: font.id, label: font.label }));
+	const fontGroups = (["sans", "serif", "mono"] as const).map((type) => ({
+		label: type === "sans" ? "Sans" : type === "serif" ? "Serif" : "Mono",
+		options: FONTS.filter((font) => font.type === type).map((font) => ({
+			value: font.id,
+			label: font.label,
+		})),
+	}));
 	const headingOptions = $derived([
-		{ value: "inherit", label: findFont(typeset.params.body)?.label ?? "Body font" },
+		{
+			value: "inherit",
+			label: findFont(typeset.params.body)?.label ?? "Body font",
+			menuLabel: "Body font",
+		},
 		...fontOptions,
 	]);
 	const bodyFont = $derived(findFont(typeset.params.body));
@@ -197,12 +208,13 @@
 						scrollContainer={pickerScroll}
 						class="max-[28rem]:hidden"
 					/>
-					<div class="bg-border my-1 hidden h-px md:block"></div>
+					<div class="bg-border -mx-3 my-1 hidden h-px md:block"></div>
 					<Control
 						{typeset}
 						param="heading"
 						label="Heading"
 						options={headingOptions}
+						groups={fontGroups}
 						preview={headingFont?.value}
 						anchor={customizerAnchor}
 						scrollContainer={pickerScroll}
@@ -212,6 +224,7 @@
 						param="body"
 						label="Body"
 						options={fontOptions}
+						groups={fontGroups}
 						preview={bodyFont?.value}
 						anchor={customizerAnchor}
 						scrollContainer={pickerScroll}
@@ -221,11 +234,12 @@
 						param="mono"
 						label="Mono"
 						options={fontOptions}
+						groups={fontGroups}
 						preview={monoFont?.value}
 						anchor={customizerAnchor}
 						scrollContainer={pickerScroll}
 					/>
-					<div class="bg-border my-1 hidden h-px md:block"></div>
+					<div class="bg-border -mx-3 my-1 hidden h-px md:block"></div>
 					<Control
 						{typeset}
 						param="scale"

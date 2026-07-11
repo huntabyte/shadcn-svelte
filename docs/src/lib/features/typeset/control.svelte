@@ -13,6 +13,7 @@
 		param,
 		label,
 		options,
+		groups,
 		class: className,
 		preview,
 		icon: Icon,
@@ -22,7 +23,11 @@
 		typeset: TypesetState;
 		param: LockableParam;
 		label: string;
-		options: readonly { value: string; label: string }[];
+		options: readonly { value: string; label: string; menuLabel?: string }[];
+		groups?: readonly {
+			label: string;
+			options: readonly { value: string; label: string; menuLabel?: string }[];
+		}[];
 		class?: string;
 		preview?: string;
 		icon?: Component;
@@ -34,6 +39,12 @@
 	let open = $state(false);
 	const value = $derived(typeset.params[param]);
 	const current = $derived(options.find((option) => option.value === value));
+	const groupedValues = $derived(
+		new Set(groups?.flatMap((group) => group.options.map((option) => option.value)) ?? [])
+	);
+	const ungroupedOptions = $derived(
+		groups ? options.filter((option) => !groupedValues.has(option.value)) : []
+	);
 
 	async function updateValue(next: string) {
 		const scrollLeft = scrollContainer?.scrollLeft;
@@ -91,11 +102,40 @@
 			class="cn-menu-translucent max-h-96 max-md:w-(--bits-dropdown-menu-anchor-width)"
 		>
 			<Picker.RadioGroup {value} onValueChange={updateValue}>
-				{#each options as option (option.value)}
-					<Picker.RadioItem value={option.value} closeOnSelect={isMobile.current}>
-						{option.label}
-					</Picker.RadioItem>
-				{/each}
+				{#if groups}
+					{#if ungroupedOptions.length}
+						<Picker.Group>
+							{#each ungroupedOptions as option (option.value)}
+								<Picker.RadioItem
+									value={option.value}
+									closeOnSelect={isMobile.current}
+								>
+									{option.menuLabel ?? option.label}
+								</Picker.RadioItem>
+							{/each}
+						</Picker.Group>
+						<Picker.Separator />
+					{/if}
+					{#each groups as group (group.label)}
+						<Picker.Group>
+							<Picker.Label>{group.label}</Picker.Label>
+							{#each group.options as option (option.value)}
+								<Picker.RadioItem
+									value={option.value}
+									closeOnSelect={isMobile.current}
+								>
+									{option.menuLabel ?? option.label}
+								</Picker.RadioItem>
+							{/each}
+						</Picker.Group>
+					{/each}
+				{:else}
+					{#each options as option (option.value)}
+						<Picker.RadioItem value={option.value} closeOnSelect={isMobile.current}>
+							{option.menuLabel ?? option.label}
+						</Picker.RadioItem>
+					{/each}
+				{/if}
 			</Picker.RadioGroup>
 		</Picker.Content>
 	</Picker.Root>
