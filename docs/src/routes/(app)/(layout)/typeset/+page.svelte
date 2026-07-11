@@ -41,9 +41,17 @@
 		typeset.params.heading === "inherit" ? bodyFont : findFont(typeset.params.heading)
 	);
 	const monoFont = $derived(findFont(typeset.params.mono));
-	const previewSrc = $derived(
+	let previewSrc = $state(
 		serializeTypesetParams(`/preview/typeset/${typeset.params.item}`, typeset.params)
 	);
+	let previewItem = typeset.params.item;
+
+	function sendPreviewParams() {
+		iframe?.contentWindow?.postMessage(
+			{ type: "typeset-params", data: { ...typeset.params } },
+			typeof window === "undefined" ? "*" : window.location.origin
+		);
+	}
 
 	function toggleTheme() {
 		setMode(mode.current === "dark" ? "light" : "dark");
@@ -94,10 +102,13 @@
 	});
 
 	$effect(() => {
-		iframe?.contentWindow?.postMessage(
-			{ type: "typeset-params", data: { ...typeset.params } },
-			typeof window === "undefined" ? "*" : window.location.origin
-		);
+		const params = { ...typeset.params };
+		if (params.item !== previewItem) {
+			previewItem = params.item;
+			previewSrc = serializeTypesetParams(`/preview/typeset/${params.item}`, params);
+			return;
+		}
+		sendPreviewParams();
 	});
 </script>
 
@@ -124,6 +135,7 @@
 					src={previewSrc}
 					title="typeset preview"
 					class="min-h-0 w-full flex-1"
+					onload={sendPreviewParams}
 				></iframe>
 				<div
 					class="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 items-center justify-center gap-1.5"
