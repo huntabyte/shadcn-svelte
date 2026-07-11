@@ -43,7 +43,6 @@
 		{
 			value: "inherit",
 			label: findFont(typeset.params.body)?.label ?? "Body font",
-			menuLabel: "Body font",
 		},
 		...fontOptions,
 	]);
