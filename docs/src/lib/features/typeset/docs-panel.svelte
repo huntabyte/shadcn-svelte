@@ -6,9 +6,16 @@
 	import * as Tabs from "$lib/registry/ui/tabs/index.js";
 	import { TYPESET_MEASURES, findFont, type TypesetState } from "./typeset.svelte.js";
 
+	const frameworkOptions = [
+		{ value: "sveltekit", label: "SvelteKit" },
+		{ value: "vite", label: "Vite" },
+		{ value: "astro", label: "Astro" },
+		{ value: "manual", label: "Manual Installation" },
+	] as const;
+
 	let { typeset, compact = false }: { typeset: TypesetState; compact?: boolean } = $props();
 	let tab = $state<"docs" | "prompt">("docs");
-	let framework = $state<"sveltekit" | "vite">("sveltekit");
+	let framework = $state<(typeof frameworkOptions)[number]["value"]>("sveltekit");
 	let copied = $state("");
 
 	const measure = $derived(
@@ -26,9 +33,13 @@
   --typeset-leading: ${typeset.params.leading};
   --typeset-flow: ${typeset.params.flow};
 }`);
-	const usage = $derived(`<div class="typeset ${presetName} max-w-[${measure}]">
+	const usage = $derived(
+		framework === "astro"
+			? `<div class="typeset ${presetName} max-w-[${measure}]" set:html={content}></div>`
+			: `<div class="typeset ${presetName} max-w-[${measure}]">
   {@html content}
-</div>`);
+</div>`
+	);
 	const picked = $derived(
 		[...new Set([typeset.params.body, heading, typeset.params.mono])]
 			.map(findFont)
@@ -89,12 +100,13 @@ Use not-typeset or data-not-typeset to exclude embedded components. Verify headi
 				</Tabs.List>
 				<Select.Root type="single" bind:value={framework}>
 					<Select.Trigger size="sm" aria-label="Framework">
-						{framework === "sveltekit" ? "SvelteKit" : "Vite"}
+						{frameworkOptions.find((option) => option.value === framework)?.label}
 					</Select.Trigger>
 					<Select.Content align="end" preventScroll={false}>
 						<Select.Group>
-							<Select.Item value="sveltekit">SvelteKit</Select.Item>
-							<Select.Item value="vite">Vite</Select.Item>
+							{#each frameworkOptions as option (option.value)}
+								<Select.Item value={option.value}>{option.label}</Select.Item>
+							{/each}
 						</Select.Group>
 					</Select.Content>
 				</Select.Root>
