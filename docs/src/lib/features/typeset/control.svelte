@@ -4,6 +4,7 @@
 	import type { LockableParam, TypesetState } from "./typeset.svelte.js";
 	import { cn } from "$lib/utils.js";
 	import type { Component } from "svelte";
+	import { tick } from "svelte";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import * as Picker from "./picker/index.js";
 
@@ -15,6 +16,8 @@
 		class: className,
 		preview,
 		icon: Icon,
+		anchor,
+		scrollContainer,
 	}: {
 		typeset: TypesetState;
 		param: LockableParam;
@@ -23,12 +26,40 @@
 		class?: string;
 		preview?: string;
 		icon?: Component;
+		anchor?: HTMLElement | null;
+		scrollContainer?: HTMLElement | null;
 	} = $props();
 
 	const isMobile = new IsMobile();
 	let open = $state(false);
 	const value = $derived(typeset.params[param]);
 	const current = $derived(options.find((option) => option.value === value));
+
+	async function updateValue(next: string) {
+		const scrollLeft = scrollContainer?.scrollLeft;
+		typeset.update({ [param]: next });
+		if (scrollLeft === undefined || !scrollContainer || !isMobile.current) return;
+
+		let cancelled = false;
+		const cancel = () => (cancelled = true);
+		const restore = () => {
+			if (!cancelled && scrollContainer) scrollContainer.scrollLeft = scrollLeft;
+		};
+		scrollContainer.addEventListener("pointerdown", cancel, { once: true });
+		scrollContainer.addEventListener("touchstart", cancel, { once: true, passive: true });
+		scrollContainer.addEventListener("wheel", cancel, { once: true, passive: true });
+		await tick();
+		restore();
+		requestAnimationFrame(() => {
+			restore();
+			requestAnimationFrame(restore);
+		});
+		setTimeout(() => {
+			scrollContainer?.removeEventListener("pointerdown", cancel);
+			scrollContainer?.removeEventListener("touchstart", cancel);
+			scrollContainer?.removeEventListener("wheel", cancel);
+		}, 150);
+	}
 </script>
 
 <div class={cn("group/picker relative", className)}>
@@ -56,9 +87,10 @@
 		<Picker.Content
 			side={isMobile.current ? "top" : "right"}
 			align={isMobile.current ? "center" : "start"}
-			class="cn-menu-translucent max-h-96"
+			customAnchor={isMobile.current ? anchor : undefined}
+			class="cn-menu-translucent max-h-96 max-md:w-(--bits-dropdown-menu-anchor-width)"
 		>
-			<Picker.RadioGroup {value} onValueChange={(next) => typeset.update({ [param]: next })}>
+			<Picker.RadioGroup {value} onValueChange={updateValue}>
 				{#each options as option (option.value)}
 					<Picker.RadioItem value={option.value} closeOnSelect={isMobile.current}>
 						{option.label}

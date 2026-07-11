@@ -12,6 +12,7 @@
 	import Control from "$lib/features/typeset/control.svelte";
 	import DocsPanel from "$lib/features/typeset/docs-panel.svelte";
 	import MainMenu from "$lib/features/typeset/main-menu.svelte";
+	import GetCodeDrawer from "$lib/features/typeset/get-code-drawer.svelte";
 	import CtaMobile from "$lib/components/cta-mobile.svelte";
 	import {
 		CONTENT_OPTIONS,
@@ -27,7 +28,8 @@
 
 	const typeset = new TypesetState();
 	let iframe: HTMLIFrameElement;
-	let codeOpen = $state(false);
+	let customizerAnchor = $state<HTMLElement | null>(null);
+	let pickerScroll = $state<HTMLElement | null>(null);
 
 	const fontOptions = FONTS.map((font) => ({ value: font.id, label: font.label }));
 	const headingOptions = $derived([
@@ -160,6 +162,7 @@
 		</div>
 
 		<Card.Root
+			bind:ref={customizerAnchor}
 			class="dark bg-card/90 isolate z-10 max-h-full min-h-0 w-full self-start rounded-2xl backdrop-blur-xl md:w-(--customizer-width)"
 			size="sm"
 		>
@@ -167,6 +170,8 @@
 				<MainMenu {typeset} />
 			</Card.Header>
 			<Card.Content
+				bind:ref={pickerScroll}
+				data-slot="picker-scroll"
 				class="no-scrollbar min-h-0 flex-1 overflow-x-auto overflow-y-hidden max-md:px-0 md:overflow-y-auto"
 			>
 				<div class="flex flex-row gap-2.5 py-px max-md:px-3 md:flex-col md:gap-3.25">
@@ -176,6 +181,8 @@
 						label="Measure"
 						options={TYPESET_MEASURES}
 						icon={ArrowLeftRight}
+						anchor={customizerAnchor}
+						scrollContainer={pickerScroll}
 						class="max-[28rem]:hidden"
 					/>
 					<div class="bg-border my-1 hidden h-px md:block"></div>
@@ -185,6 +192,8 @@
 						label="Heading"
 						options={headingOptions}
 						preview={headingFont?.value}
+						anchor={customizerAnchor}
+						scrollContainer={pickerScroll}
 					/>
 					<Control
 						{typeset}
@@ -192,6 +201,8 @@
 						label="Body"
 						options={fontOptions}
 						preview={bodyFont?.value}
+						anchor={customizerAnchor}
+						scrollContainer={pickerScroll}
 					/>
 					<Control
 						{typeset}
@@ -199,6 +210,8 @@
 						label="Mono"
 						options={fontOptions}
 						preview={monoFont?.value}
+						anchor={customizerAnchor}
+						scrollContainer={pickerScroll}
 					/>
 					<div class="bg-border my-1 hidden h-px md:block"></div>
 					<Control
@@ -207,6 +220,8 @@
 						label="Size"
 						options={TYPESET_SIZES}
 						icon={CaseUpper}
+						anchor={customizerAnchor}
+						scrollContainer={pickerScroll}
 					/>
 					<Control
 						{typeset}
@@ -214,6 +229,8 @@
 						label="Leading"
 						options={TYPESET_LEADINGS}
 						icon={AlignJustify}
+						anchor={customizerAnchor}
+						scrollContainer={pickerScroll}
 					/>
 					<Control
 						{typeset}
@@ -221,6 +238,8 @@
 						label="Flow"
 						options={TYPESET_FLOWS}
 						icon={MoveVertical}
+						anchor={customizerAnchor}
+						scrollContainer={pickerScroll}
 					/>
 					<div aria-hidden="true" class="w-0.5 shrink-0 md:hidden"></div>
 				</div>
@@ -233,43 +252,11 @@
 					class="min-w-0 flex-1 bg-transparent md:flex-none"
 					onclick={() => typeset.shuffle()}>Shuffle</Button
 				>
-				<Button
-					variant="outline"
-					class="min-w-0 flex-1 bg-transparent md:flex-none xl:hidden"
-					onclick={() => (codeOpen = true)}>Get Code</Button
-				>
+				<GetCodeDrawer
+					{typeset}
+					class="hover:bg-muted! min-w-0 flex-1 touch-manipulation bg-transparent! px-2! py-0! text-sm! transition-none select-none md:flex-none xl:hidden pointer-coarse:h-10!"
+				/>
 			</Card.Footer>
 		</Card.Root>
 	</div>
 </div>
-
-{#if codeOpen}
-	<div
-		class="fixed inset-0 z-50 flex items-end bg-black/40 xl:hidden"
-		role="presentation"
-		onclick={() => (codeOpen = false)}
-	>
-		<div
-			class="bg-background max-h-[85svh] w-full overflow-hidden rounded-t-2xl"
-			role="dialog"
-			aria-modal="true"
-			aria-label="Get Code"
-			tabindex="-1"
-			onclick={(event) => event.stopPropagation()}
-			onkeydown={(event) => event.stopPropagation()}
-		>
-			<div class="border-b p-4">
-				<h2 class="font-semibold">Get Code</h2>
-				<p class="text-muted-foreground text-sm">
-					Install typeset with the values you picked.
-				</p>
-			</div>
-			<DocsPanel {typeset} compact />
-			<div class="border-t p-4">
-				<Button variant="outline" class="w-full" onclick={() => (codeOpen = false)}
-					>Done</Button
-				>
-			</div>
-		</div>
-	</div>
-{/if}

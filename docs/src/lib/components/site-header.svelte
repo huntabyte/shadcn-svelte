@@ -62,7 +62,7 @@
 						</Button>
 					{/if}
 				{:else if page.url.pathname === "/typeset"}
-					<ModeSwitcher />
+					<ModeSwitcher class="hidden md:flex" />
 					<Customizer />
 				{:else}
 					<Customizer />

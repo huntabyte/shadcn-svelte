@@ -2,6 +2,7 @@
 	import Copy from "@lucide/svelte/icons/copy";
 	import Check from "@lucide/svelte/icons/check";
 	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as Select from "$lib/registry/ui/select/index.js";
 	import { TYPESET_MEASURES, findFont, type TypesetState } from "./typeset.svelte.js";
 
 	let { typeset, compact = false }: { typeset: TypesetState; compact?: boolean } = $props();
@@ -92,14 +93,17 @@ Use not-typeset or data-not-typeset to exclude embedded components. Verify headi
 					onclick={() => (tab = "prompt")}>Prompt</button
 				>
 			</div>
-			<select
-				bind:value={framework}
-				class="bg-background rounded-md border px-2 py-1.5 text-sm"
-				aria-label="Framework"
-			>
-				<option value="sveltekit">SvelteKit</option>
-				<option value="vite">Vite</option>
-			</select>
+			<Select.Root type="single" bind:value={framework}>
+				<Select.Trigger size="sm" aria-label="Framework">
+					{framework === "sveltekit" ? "SvelteKit" : "Vite"}
+				</Select.Trigger>
+				<Select.Content align="end" preventScroll={false}>
+					<Select.Group>
+						<Select.Item value="sveltekit">SvelteKit</Select.Item>
+						<Select.Item value="vite">Vite</Select.Item>
+					</Select.Group>
+				</Select.Content>
+			</Select.Root>
 		</div>
 		<div class="scroll-fade scrollbar-none min-h-0 flex-1 overflow-y-auto p-4 md:p-6">
 			{#if tab === "docs"}
