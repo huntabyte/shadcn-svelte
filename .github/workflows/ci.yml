@@ -23,10 +23,10 @@ jobs:
       - name: Install dependencies
         env:
           SHADCN_SKIP_POSTINSTALL: "1"
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --filter 'docs...'
 
       - name: Prepare generated files
-        run: pnpm build:cli && pnpm -r sync
+        run: pnpm build:cli && pnpm -F docs sync
 
       - name: Run svelte-check
         run: pnpm check
