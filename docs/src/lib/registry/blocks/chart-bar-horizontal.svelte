@@ -4,7 +4,6 @@
 	import { scaleBand } from "d3-scale";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
-	import { cubicInOut } from "svelte/easing";
 
 	const chartData = [
 		{ month: "January", desktop: 186 },
@@ -45,7 +44,7 @@
 							left: 24,
 						},
 						rounded: "all",
-						motion: { type: "tween", duration: 500, easing: cubicInOut },
+						motion: Chart.defaultBarMotion,
 					},
 					highlight: { area: { fill: "none" } },
 					yAxis: { format: (d) => d.slice(0, 3) },

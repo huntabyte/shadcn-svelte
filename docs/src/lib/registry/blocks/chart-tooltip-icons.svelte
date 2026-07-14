@@ -3,7 +3,7 @@
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import { scaleBand } from "d3-scale";
 	import { BarChart } from "layerchart";
-	import { cubicInOut } from "svelte/easing";
+	import type { ChartState } from "layerchart";
 	import FootprintsIcon from "@lucide/svelte/icons/footprints";
 	import WavesIcon from "@lucide/svelte/icons/waves";
 
@@ -20,6 +20,43 @@
 		running: { label: "Running", color: "var(--chart-1)", icon: FootprintsIcon },
 		swimming: { label: "Swimming", color: "var(--chart-2)", icon: WavesIcon },
 	} satisfies Chart.ChartConfig;
+
+	let context = $state<ChartState>();
+
+	$effect(() => {
+		const t = setTimeout(() => {
+			if (!context) return;
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			const xs = context.xScale as any;
+			context.tooltip.x =
+				xs(chartData[1].date) + (xs.bandwidth?.() ?? 0) / 2 + context.padding.left;
+			context.tooltip.y = context.containerHeight / 3;
+			context.tooltip.data = chartData[1];
+			context.tooltip.series = [
+				{
+					key: "swimming",
+					label: "Swimming",
+					value: chartData[1].swimming,
+					color: chartConfig.swimming.color,
+					visible: true,
+					config: {
+						key: "swimming",
+						label: "Swimming",
+						color: chartConfig.swimming.color,
+					},
+				},
+				{
+					key: "running",
+					label: "Running",
+					value: chartData[1].running,
+					color: chartConfig.running.color,
+					visible: true,
+					config: { key: "running", label: "Running", color: chartConfig.running.color },
+				},
+			];
+		}, 650);
+		return () => clearTimeout(t);
+	});
 </script>
 
 <Card.Root>
@@ -30,6 +67,7 @@
 	<Card.Content>
 		<Chart.Container config={chartConfig}>
 			<BarChart
+				bind:context
 				data={chartData}
 				xScale={scaleBand().padding(0.25)}
 				x="date"
@@ -54,7 +92,7 @@
 				props={{
 					bars: {
 						stroke: "none",
-						motion: { type: "tween", duration: 500, easing: cubicInOut },
+						motion: Chart.defaultBarMotion,
 					},
 					xAxis: {
 						format: (d) =>

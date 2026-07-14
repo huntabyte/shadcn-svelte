@@ -3,7 +3,6 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { scaleUtc } from "d3-scale";
 	import { BarChart, Highlight } from "layerchart";
-	import { cubicInOut } from "svelte/easing";
 
 	const chartData = [
 		{ date: new Date("2024-04-01"), desktop: 222, mobile: 150 },
@@ -121,7 +120,7 @@
 	]);
 </script>
 
-<Card.Root>
+<Card.Root class="pt-0">
 	<Card.Header class="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
 		<div class="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
 			<Card.Title>Bar Chart - Interactive</Card.Title>
@@ -152,18 +151,19 @@
 				x="date"
 				axis="x"
 				series={activeSeries}
+				padding={{ left: 8, right: 8 }}
 				props={{
 					bars: {
 						stroke: "none",
 						rounded: "none",
-						motion: { type: "tween", duration: 500, easing: cubicInOut },
+						motion: Chart.defaultBarMotion,
 					},
 					highlight: { area: { fill: "none" } },
 					xAxis: {
 						format: (d: Date) => {
 							return d.toLocaleDateString("en-US", {
 								month: "short",
-								day: "2-digit",
+								day: "numeric",
 							});
 						},
 						ticks: (scale) => scaleUtc(scale.domain(), scale.range()).ticks(),
