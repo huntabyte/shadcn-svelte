@@ -9,6 +9,7 @@ import { fonts } from "../src/lib/registry/fonts.js";
 
 const REGISTRY_DEPENDENCY = "$lib/";
 const UTILS_PATH = "$lib/utils.js";
+const REGISTRY_UI_PATH = path.resolve("src", "lib", "registry", "ui");
 
 const tsParser = acorn.Parser.extend(tsPlugin());
 
@@ -261,6 +262,16 @@ async function getFileDependencies(
 				} else if (source.includes("hook")) {
 					const hook = source.split("/").at(-1)!.split(".")[0];
 					registryDependencies.add(hook);
+				}
+			} else if (
+				source.startsWith(".") &&
+				path.relative(REGISTRY_UI_PATH, filename).startsWith("..")
+			) {
+				const absoluteImportPath = path.resolve(path.dirname(filename), source);
+				const relativeImportPath = path.relative(REGISTRY_UI_PATH, absoluteImportPath);
+				if (!relativeImportPath.startsWith("..") && !path.isAbsolute(relativeImportPath)) {
+					const component = relativeImportPath.split(path.sep).at(0);
+					if (component) registryDependencies.add(component);
 				}
 			}
 		}
