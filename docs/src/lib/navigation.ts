@@ -18,7 +18,7 @@ export type NavItemWithChildren = NavItem & {
 	items: NavItemWithChildren[];
 };
 
-export const PAGES_NEW = ["/docs/skills", "/docs/changelog"];
+export const PAGES_NEW = ["/docs/skills", "/docs/mcp"];
 
 export const PAGES_UPDATED: string[] = [];
 
@@ -33,22 +33,22 @@ function generateSectionsNav(): SidebarNavItem[] {
 			title: "Components",
 			href: "/docs/components",
 			items: [],
-		} /*
-		{
-			title: "Directory",
-			href: "/docs/directory",
-			items: [],
 		},
+		// {
+		// 	title: "Directory",
+		// 	href: "/docs/directory",
+		// 	items: [],
+		// },
 		{
 			title: "MCP Server",
 			href: "/docs/mcp",
 			items: [],
 		},
-		{
-			title: "Forms",
-			href: "/docs/forms",
-			items: [],
-			},*/,
+		// {
+		// 	title: "Forms",
+		// 	href: "/docs/forms",
+		// 	items: [],
+		// },
 		{
 			title: "Skills",
 			href: "/docs/skills",
