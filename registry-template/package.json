@@ -8,11 +8,11 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check": "svelte-kit sync && svelte-check-native --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
-		"build:registry": "pnpm shadcn-svelte registry build"
+		"build:registry": "node ../packages/cli/dist/index.mjs registry build"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.3.0",
@@ -21,6 +21,7 @@
 		"@sveltejs/kit": "^2.21.5",
 		"@sveltejs/vite-plugin-svelte": "^5.1.0",
 		"@tailwindcss/vite": "^4.1.10",
+		"@typescript/native-preview": "7.0.0-dev.20260707.2",
 		"bits-ui": "^2.7.0",
 		"clsx": "^2.1.1",
 		"eslint": "^9.18.0",
@@ -32,7 +33,8 @@
 		"prettier-plugin-tailwindcss": "^0.6.11",
 		"shadcn-svelte": "workspace:*",
 		"svelte": "^5.34.1",
-		"svelte-check": "^4.0.0",
+		"svelte-check": "^4.7.2",
+		"svelte-check-native": "^0.9.6",
 		"tailwind-merge": "^3.3.1",
 		"tailwind-variants": "^1.0.0",
 		"tailwindcss": "^4.1.10",
@@ -41,10 +43,5 @@
 		"typescript-eslint": "^8.34.0",
 		"vite": "^6.3.5",
 		"zod": "^4.2.1"
-	},
-	"pnpm": {
-		"onlyBuiltDependencies": [
-			"esbuild"
-		]
 	}
 }
