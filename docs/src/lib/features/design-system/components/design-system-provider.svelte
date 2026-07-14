@@ -8,6 +8,7 @@
 		type DesignSystemConfig,
 	} from "$lib/registry/config.js";
 	import { browser } from "$app/environment";
+	import { page } from "$app/state";
 	import { watch } from "runed";
 	import { setupDesignSystem } from "./design-system-provider-state.svelte.js";
 	import { cn } from "$lib/registry/lib/utils.js";
@@ -22,6 +23,8 @@
 	let { children }: Props = $props();
 
 	const designSystem = setupDesignSystem();
+	let previousChartColor: DesignSystemConfig["chartColor"] | null = null;
+	let chartRouteOverrideActive = false;
 
 	const effectiveRadius = $derived(designSystem.style === "lyra" ? "none" : designSystem.radius);
 
@@ -38,6 +41,36 @@
 		if (style === "rhea" && radius === "large") {
 			designSystem.radius = "default";
 		}
+	});
+
+	function isChartRoute(pathname: string) {
+		return pathname.startsWith("/charts") || pathname === "/docs/components/chart";
+	}
+
+	watch([() => page.url.pathname, () => browser], ([pathname, browser]) => {
+		if (!browser) return;
+
+		if (isChartRoute(pathname)) {
+			if (!chartRouteOverrideActive) {
+				if (designSystem.chartColor !== "neutral") return;
+
+				previousChartColor = designSystem.chartColor;
+				chartRouteOverrideActive = true;
+			}
+
+			if (designSystem.chartColor !== "blue") {
+				designSystem.chartColor = "blue";
+			}
+			return;
+		}
+
+		if (!chartRouteOverrideActive) return;
+
+		if (previousChartColor && designSystem.chartColor === "blue") {
+			designSystem.chartColor = previousChartColor;
+		}
+		previousChartColor = null;
+		chartRouteOverrideActive = false;
 	});
 
 	const registryTheme = $derived.by(() => {
