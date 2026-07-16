@@ -43,15 +43,15 @@ the docs container. The issue this resolves is prominent on slow connections (3G
   -->
 <div
 	data-slot="docs"
-	class="flex scroll-mt-24 flex-row-reverse items-stretch text-[1.05rem] sm:text-[15px] xl:w-full"
+	class="flex scroll-mt-24 flex-row-reverse items-stretch pb-8 text-[1.05rem] sm:text-[15px] xl:w-full"
 	id="main-content"
 >
 	<div
-		class="sticky top-[calc(var(--header-height)+1px)] z-30 ml-auto hidden h-[90svh] w-(--sidebar-width) flex-col gap-4 overflow-hidden overscroll-none pb-8 xl:flex"
+		class="sticky top-[calc(var(--header-height)+1px)] z-30 ml-auto hidden h-[90svh] w-72 flex-col gap-4 overflow-hidden overscroll-none pb-8 lg:flex"
 		data-llm-ignore
 	>
 		<div class="h-(--top-spacing) shrink-0"></div>
-		<div class="no-scrollbar overflow-y-auto px-8">
+		<div class="no-scrollbar flex flex-col gap-8 overflow-y-auto px-8">
 			<div class="flex flex-col gap-2 p-4 pt-0 text-sm">
 				<p class="text-muted-foreground bg-background sticky top-0 h-6 text-xs font-medium">
 					On This Page
@@ -85,11 +85,11 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 	<div class="flex min-w-0 flex-1 flex-col">
 		<div class="h-(--top-spacing) shrink-0"></div>
 		<div
-			class="text-foreground dark:text-foreground mx-auto flex w-full max-w-[40rem] min-w-0 flex-1 flex-col gap-6 px-4 py-6 md:px-0 lg:py-8"
+			class="text-foreground dark:text-foreground mx-auto flex w-full max-w-160 min-w-0 flex-1 flex-col gap-6 px-4 py-6 md:px-0 lg:py-8"
 		>
 			<div class="flex flex-col gap-2">
-				<div class="flex items-center justify-between md:items-start">
-					<h1 class="scroll-m-24 text-3xl font-semibold tracking-tight sm:text-3xl">
+				<div class="flex items-center justify-between">
+					<h1 class="scroll-m-24 text-4xl font-semibold tracking-tight sm:text-3xl">
 						Changelog
 					</h1>
 					<div class="docs-nav flex items-center gap-2" data-llm-ignore>
@@ -134,7 +134,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 							{#each olderPages as changelogPage (changelogPage.href)}
 								<a
 									href={changelogPage.href}
-									class="bg-surface text-surface-foreground hover:bg-surface/80 flex w-full flex-col rounded-xl px-4 py-3 transition-colors"
+									class="bg-surface text-surface-foreground hover:bg-surface/80 flex w-full flex-col rounded-2xl px-4 py-3 transition-colors"
 								>
 									<span class="text-muted-foreground text-xs">
 										{getDateLabel(changelogPage)}

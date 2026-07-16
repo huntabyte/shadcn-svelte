@@ -11,7 +11,7 @@
 	import FullscreenIcon from "@lucide/svelte/icons/fullscreen";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import TerminalIcon from "@lucide/svelte/icons/terminal";
-	import RotateCcwIcon from "@lucide/svelte/icons/rotate-ccw";
+	import RotateCwIcon from "@lucide/svelte/icons/rotate-cw";
 	import { getCommand } from "$lib/package-manager.js";
 	import { UserConfigContext } from "$lib/user-config.svelte.js";
 
@@ -34,7 +34,7 @@
 <div class="hidden w-full items-center gap-2 ps-2 md:pe-6 lg:flex">
 	<Tabs.Root bind:value={ctx.view} class="hidden lg:flex">
 		<Tabs.List
-			class="grid h-8 grid-cols-2 items-center rounded-md p-1 *:data-[slot=tabs-trigger]:h-6 *:data-[slot=tabs-trigger]:rounded-sm *:data-[slot=tabs-trigger]:px-2 *:data-[slot=tabs-trigger]:text-xs"
+			class="grid !h-8 grid-cols-2 items-center rounded-lg p-1 *:data-[slot=tabs-trigger]:h-6 *:data-[slot=tabs-trigger]:rounded-sm *:data-[slot=tabs-trigger]:px-2 *:data-[slot=tabs-trigger]:text-xs"
 		>
 			<Tabs.Trigger value="preview">Preview</Tabs.Trigger>
 			<Tabs.Trigger value="code">Code</Tabs.Trigger>
@@ -48,7 +48,7 @@
 		{ctx.item.description?.replace(/\.$/, "")}
 	</a>
 	<div class="ms-auto flex items-center gap-2">
-		<div class="h-8 items-center gap-1.5 rounded-md border p-1 shadow-none">
+		<div class="h-8 items-center gap-1.5 rounded-md border p-[3px] shadow-none">
 			<ToggleGroup.Root
 				type="single"
 				value="100"
@@ -90,7 +90,7 @@
 						ctx.iframeKey = ctx.iframeKey + 1;
 					}}
 				>
-					<RotateCcwIcon />
+					<RotateCwIcon />
 					<span class="sr-only">Refresh Preview</span>
 				</Button>
 			</ToggleGroup.Root>

@@ -1,6 +1,8 @@
 <script lang="ts">
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import { page } from "$app/state";
+	import { afterNavigate } from "$app/navigation";
+	import { onMount, tick } from "svelte";
 	import { PAGES_NEW, type SidebarNavItem } from "$lib/navigation.js";
 	import type { ComponentProps } from "svelte";
 
@@ -8,6 +10,9 @@
 		navItems,
 		...restProps
 	}: { navItems: SidebarNavItem[] } & ComponentProps<typeof Sidebar.Root> = $props();
+
+	let content = $state<HTMLElement | null>(null);
+	const SCROLL_STORAGE_KEY = "docs-sidebar-scroll";
 
 	const pathname = $derived(page.url.pathname.toString());
 
@@ -40,6 +45,93 @@
 		if (path === "/") return path;
 		return path.endsWith("/") ? path.slice(0, -1) : path;
 	}
+
+	function readScrollState(): { pathname: string; scrollTop: number } | null {
+		try {
+			return JSON.parse(sessionStorage.getItem(SCROLL_STORAGE_KEY) ?? "");
+		} catch {
+			return null;
+		}
+	}
+
+	function saveScrollState() {
+		if (!content) return;
+		try {
+			sessionStorage.setItem(
+				SCROLL_STORAGE_KEY,
+				JSON.stringify({ pathname, scrollTop: content.scrollTop })
+			);
+		} catch {
+			// Storage may be unavailable in private browsing or embedded contexts.
+		}
+	}
+
+	function getActiveItem(): HTMLElement | null {
+		if (!content) return null;
+		const items = content.querySelectorAll<HTMLElement>('[data-active="true"]');
+		const containerRect = content.getBoundingClientRect();
+		const containerCenter = containerRect.top + content.clientHeight / 2;
+		let active: HTMLElement | null = null;
+		let activePathLength = -1;
+		let activeDistance = Infinity;
+
+		for (const item of items) {
+			const link = item.querySelector<HTMLAnchorElement>("a[href]");
+			const href = item.getAttribute("href") ?? link?.getAttribute("href");
+			const pathLength = href?.length ?? 0;
+			const rect = item.getBoundingClientRect();
+			const distance = Math.abs(rect.top + rect.height / 2 - containerCenter);
+			if (
+				pathLength > activePathLength ||
+				(pathLength === activePathLength && distance < activeDistance)
+			) {
+				active = item;
+				activePathLength = pathLength;
+				activeDistance = distance;
+			}
+		}
+
+		return active;
+	}
+
+	async function restoreScroll() {
+		await tick();
+		if (!content || !content.clientHeight) return;
+
+		const stored = readScrollState();
+		if (stored?.pathname === pathname) {
+			content.scrollTop = stored.scrollTop;
+			saveScrollState();
+			return;
+		}
+
+		const active = getActiveItem();
+		if (!active) return;
+		const containerRect = content.getBoundingClientRect();
+		const activeRect = active.getBoundingClientRect();
+		if (activeRect.top < containerRect.top || activeRect.bottom > containerRect.bottom) {
+			content.scrollTop +=
+				activeRect.top - containerRect.top - (content.clientHeight - activeRect.height) / 2;
+		}
+		saveScrollState();
+	}
+
+	$effect(() => {
+		pathname;
+		void restoreScroll();
+	});
+
+	afterNavigate(() => void restoreScroll());
+
+	onMount(() => {
+		const observer = new MutationObserver(() => void restoreScroll());
+		if (content) observer.observe(content, { childList: true, subtree: true });
+		content?.addEventListener("scroll", saveScrollState, { passive: true });
+		return () => {
+			observer.disconnect();
+			content?.removeEventListener("scroll", saveScrollState);
+		};
+	});
 </script>
 
 <Sidebar.Root
@@ -51,7 +143,14 @@
 		class="from-background via-background/80 to-background/50 absolute top-8 z-10 h-8 w-(--sidebar-menu-width) shrink-0 bg-linear-to-b blur-xs"
 	></div>
 
-	<Sidebar.Content class="no-scrollbar w-(--sidebar-menu-width) overflow-x-hidden px-2.5">
+	<div
+		class="absolute top-12 right-2 bottom-0 hidden w-px bg-[linear-gradient(to_bottom,transparent_0%,var(--border)_10%,var(--border)_90%,transparent_100%)] lg:flex"
+	></div>
+	<Sidebar.Content
+		bind:ref={content}
+		data-docs-sidebar-content
+		class="no-scrollbar w-(--sidebar-menu-width) overflow-x-hidden px-2.5"
+	>
 		<Sidebar.Group class="pt-6">
 			<Sidebar.GroupLabel class="text-muted-foreground font-medium">
 				Sections
@@ -74,7 +173,7 @@
 										{item.title}
 										{#if item.href && PAGES_NEW.includes(item.href)}
 											<span
-												class="flex size-2 rounded-full bg-blue-500"
+												class="bg-svelte-orange flex size-2 rounded-full"
 												title="New"
 											></span>
 										{/if}
@@ -110,7 +209,7 @@
 													{subItem.title}
 													{#if subItem.href && PAGES_NEW.includes(subItem.href)}
 														<span
-															class="flex size-2 rounded-full bg-blue-500"
+															class="bg-svelte-orange flex size-2 rounded-full"
 															title="New"
 														></span>
 													{/if}

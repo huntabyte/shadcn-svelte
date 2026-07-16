@@ -37,7 +37,7 @@
 	</Tabs.List>
 
 	<Tabs.Content value="v4-oklch">
-		<figure data-rehype-pretty-code-figure class="mx-0! mt-0 rounded-lg">
+		<figure data-rehype-pretty-code-figure class="mx-0! mt-0 rounded-xl">
 			<figcaption
 				class="text-code-foreground [&_svg]:text-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70"
 				data-rehype-pretty-code-title=""
@@ -91,7 +91,7 @@
 	</Tabs.Content>
 
 	<Tabs.Content value="v4-hsl">
-		<figure data-rehype-pretty-code-figure class="mx-0! mt-0 rounded-lg">
+		<figure data-rehype-pretty-code-figure class="mx-0! mt-0 rounded-xl">
 			<figcaption
 				class="text-code-foreground [&_svg]:text-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70"
 				data-rehype-pretty-code-title=""
@@ -145,7 +145,7 @@
 	</Tabs.Content>
 
 	<Tabs.Content value="v3">
-		<figure data-rehype-pretty-code-figure class="mx-0! mt-0 rounded-lg">
+		<figure data-rehype-pretty-code-figure class="mx-0! mt-0 rounded-xl">
 			<figcaption
 				class="text-code-foreground [&_svg]:text-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70"
 				data-rehype-pretty-code-title=""
