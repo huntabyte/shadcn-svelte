@@ -134,7 +134,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 							{#each olderPages as changelogPage (changelogPage.href)}
 								<a
 									href={changelogPage.href}
-									class="bg-surface text-surface-foreground hover:bg-surface/80 flex w-full flex-col rounded-xl px-4 py-3 transition-colors"
+									class="bg-surface text-surface-foreground hover:bg-surface/80 flex w-full flex-col rounded-2xl px-4 py-3 transition-colors"
 								>
 									<span class="text-muted-foreground text-xs">
 										{getDateLabel(changelogPage)}

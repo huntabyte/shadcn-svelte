@@ -276,7 +276,7 @@
 				<Button size="sm" variant="secondary" {...props}>Copy Code</Button>
 			{/snippet}
 		</Drawer.Trigger>
-		<Drawer.Content class="h-auto">
+		<Drawer.Content class="h-auto rounded-t-2xl">
 			<Drawer.Header>
 				<Drawer.Title class="capitalize">
 					{coercedActiveTheme === "neutral" ? "Neutral" : coercedActiveTheme}
@@ -306,7 +306,7 @@
 			{/snippet}
 		</Dialog.Trigger>
 		<Dialog.Content
-			class="rounded-xl border-none bg-clip-padding shadow-2xl ring-4 ring-neutral-200/80 outline-none md:max-w-2xl dark:bg-neutral-800 dark:ring-neutral-900"
+			class="rounded-2xl border-none bg-clip-padding shadow-2xl ring-4 ring-neutral-200/80 outline-none md:max-w-2xl dark:bg-neutral-800 dark:ring-neutral-900"
 		>
 			<Dialog.Header>
 				<Dialog.Title class="capitalize">
