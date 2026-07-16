@@ -19,7 +19,7 @@
 <Alert.Root
 	data-variant={variant}
 	class={cn(
-		"border-surface bg-surface text-surface-foreground mt-6 w-auto rounded-xl md:-mx-1 **:[code]:border",
+		"border-surface bg-surface text-surface-foreground mt-6 w-auto rounded-2xl md:-mx-1 **:[code]:border",
 		className
 	)}
 	{...restProps}
