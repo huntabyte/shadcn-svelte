@@ -13,10 +13,9 @@
 			<Button {...props} variant="outline">Open</Button>
 		{/snippet}
 	</DropdownMenu.Trigger>
-	<DropdownMenu.Content class="w-56">
+	<DropdownMenu.Content class="w-40">
 		<DropdownMenu.Group>
 			<DropdownMenu.Label>Appearance</DropdownMenu.Label>
-			<DropdownMenu.Separator />
 			<DropdownMenu.CheckboxItem bind:checked={showStatusBar}>
 				Status Bar
 			</DropdownMenu.CheckboxItem>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
-	import SlashIcon from "@lucide/svelte/icons/slash";
+	import DotIcon from "@lucide/svelte/icons/dot";
 	import * as Breadcrumb from "$lib/registry/ui/breadcrumb/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 </script>
@@ -11,7 +11,7 @@
 			<Breadcrumb.Link href="/">Home</Breadcrumb.Link>
 		</Breadcrumb.Item>
 		<Breadcrumb.Separator>
-			<SlashIcon />
+			<DotIcon />
 		</Breadcrumb.Separator>
 		<Breadcrumb.Item>
 			<DropdownMenu.Root>
@@ -27,7 +27,7 @@
 			</DropdownMenu.Root>
 		</Breadcrumb.Item>
 		<Breadcrumb.Separator>
-			<SlashIcon />
+			<DotIcon />
 		</Breadcrumb.Separator>
 		<Breadcrumb.Item>
 			<Breadcrumb.Page>Breadcrumb</Breadcrumb.Page>

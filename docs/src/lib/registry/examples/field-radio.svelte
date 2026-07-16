@@ -5,7 +5,7 @@
 	let plan = $state("monthly");
 </script>
 
-<div class="w-full max-w-md">
+<div class="w-full max-w-xs">
 	<Field.Set>
 		<Field.Label>Subscription Plan</Field.Label>
 		<Field.Description>Yearly and lifetime plans offer significant savings.</Field.Description>

@@ -5,27 +5,27 @@
 </script>
 
 <div class="grid w-full max-w-sm gap-4">
-	<InputGroup.Root data-disabled>
-		<InputGroup.Input placeholder="Searching..." disabled />
+	<InputGroup.Root>
+		<InputGroup.Input placeholder="Searching..." />
 		<InputGroup.Addon align="inline-end">
 			<Spinner />
 		</InputGroup.Addon>
 	</InputGroup.Root>
-	<InputGroup.Root data-disabled>
-		<InputGroup.Input placeholder="Processing..." disabled />
+	<InputGroup.Root>
+		<InputGroup.Input placeholder="Processing..." />
 		<InputGroup.Addon>
 			<Spinner />
 		</InputGroup.Addon>
 	</InputGroup.Root>
-	<InputGroup.Root data-disabled>
-		<InputGroup.Input placeholder="Saving changes..." disabled />
+	<InputGroup.Root>
+		<InputGroup.Input placeholder="Saving changes..." />
 		<InputGroup.Addon align="inline-end">
 			<InputGroup.Text>Saving...</InputGroup.Text>
 			<Spinner />
 		</InputGroup.Addon>
 	</InputGroup.Root>
-	<InputGroup.Root data-disabled>
-		<InputGroup.Input placeholder="Refreshing data..." disabled />
+	<InputGroup.Root>
+		<InputGroup.Input placeholder="Refreshing data..." />
 		<InputGroup.Addon>
 			<LoaderIcon class="animate-spin" />
 		</InputGroup.Addon>

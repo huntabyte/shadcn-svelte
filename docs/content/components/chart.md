@@ -3,7 +3,7 @@ title: Chart
 description: Beautiful charts. Built using LayerChart. Copy and paste into your apps.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/chart
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/chart
 ---
 
 <script>
@@ -29,7 +29,7 @@ Your feedback will be invaluable in shaping the release and features. Current de
 
 </Callout>
 
-<ComponentPreview name="chart-bar-interactive" class="-mt-2 [&_.preview]:p-0 [&_.preview]:border-t [&_.preview>div]:shadow-none [&_.preview]:border-none [&_.preview>div]:w-full [&_.preview]:lg:min-h-[404px] [&_[data-slot='card-footer']]:hidden [&_[data-slot='card']]:py-0 [&_[data-slot='card-header'].border-b]:pb-0 [&_[data-slot='card']]:bg-background [&_[data-slot='card']]:border-none" hideCode>
+<ComponentPreview name="chart-demo" class="theme-blue [&_.preview]:h-auto [&_.preview]:p-0 [&_.preview]:lg:min-h-[404px] [&_.preview>div]:w-full [&_.preview>div]:border-none [&_.preview>div]:shadow-none" hideCode>
 
 <div></div>
 
@@ -69,6 +69,16 @@ We designed the `Chart` component with composition in mind. **You build your cha
 We do not wrap LayerChart. This means you're not locked into an abstraction. When a new LayerChart version is released, you can follow the official upgrade path to upgrade your charts.
 
 **The components are yours**.
+
+## Composition
+
+Use the following composition to build a `Chart`:
+
+```text
+Chart.Container
+└── [LayerChart component (e.g. BarChart, LineChart)]
+    └── Chart.Tooltip (via tooltip snippet)
+```
 
 ## Installation
 

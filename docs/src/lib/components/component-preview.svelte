@@ -7,14 +7,18 @@
 		name,
 		type = "example",
 		class: className,
+		previewClassName,
 		align = "center",
 		hideCode = false,
+		chromeLessOnMobile = false,
 		...restProps
 	}: HTMLAttributes<HTMLElement> & {
 		name: string;
 		align?: "center" | "start" | "end";
 		description?: string;
 		hideCode?: boolean;
+		chromeLessOnMobile?: boolean;
+		previewClassName?: string;
 		type?: "block" | "component" | "example";
 		component?: Component;
 	} = $props();
@@ -22,7 +26,7 @@
 
 {#if type === "block"}
 	<div
-		class="relative aspect-[4/2.5] w-full overflow-hidden rounded-md border md:-mx-4"
+		class="relative mt-6 aspect-[4/2.5] w-full overflow-hidden rounded-2xl border md:-mx-1"
 		data-llm-ignore
 	>
 		<img
@@ -30,19 +34,27 @@
 			alt={name}
 			width={1440}
 			height={900}
-			class="bg-background absolute start-0 top-0 z-20 w-[970px] max-w-none sm:w-7xl md:hidden dark:hidden md:dark:hidden"
+			class="bg-background absolute start-0 top-0 z-20 w-[970px] max-w-none sm:w-[1280px] md:hidden dark:hidden md:dark:hidden"
 		/>
 		<img
 			src="/img/registry/{name}-dark.png"
 			alt={name}
 			width={1440}
 			height={900}
-			class="bg-background absolute start-0 top-0 z-20 hidden w-[970px] max-w-none sm:w-7xl md:hidden dark:block md:dark:hidden"
+			class="bg-background absolute start-0 top-0 z-20 hidden w-[970px] max-w-none sm:w-[1280px] md:hidden dark:block md:dark:hidden"
 		/>
 		<div class="bg-background absolute inset-0 hidden w-[1600px] md:block">
 			<iframe src="/view/{name}" class="size-full" title={name}></iframe>
 		</div>
 	</div>
 {:else if type === "component" || type === "example"}
-	<ComponentPreviewTabs {name} class={className} {align} {hideCode} {...restProps} />
+	<ComponentPreviewTabs
+		{name}
+		class={className}
+		{previewClassName}
+		{align}
+		{hideCode}
+		{chromeLessOnMobile}
+		{...restProps}
+	/>
 {/if}

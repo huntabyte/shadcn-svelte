@@ -3,14 +3,14 @@ title: Date Picker
 description: A date picker component with range and presets.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/examples/date-picker-demo.svelte
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/examples/date-picker-demo.svelte
 ---
 
 <script>
 	import ComponentPreview from "$lib/components/component-preview.svelte";
 </script>
 
-<ComponentPreview name="calendar-22">
+<ComponentPreview name="date-picker-demo">
 
 <div></div>
 
@@ -20,7 +20,7 @@ links:
 
 The Date Picker is built using a composition of the `<Popover />` and either the `<Calendar />` or `<RangeCalendar />` components.
 
-See installations instructions for the [Popover](/docs/components/popover#installation), [Calendar](/docs/components/calendar#installation), and [Range Calendar](/docs/components/range-calendar#installation) components.
+See installation instructions for the [Popover](/docs/components/popover#installation), [Calendar](/docs/components/calendar#installation), and [Range Calendar](/docs/components/range-calendar#installation) components.
 
 ## Usage
 
@@ -66,38 +66,72 @@ See installations instructions for the [Popover](/docs/components/popover#instal
 </Popover.Root>
 ```
 
-## Examples
+## Composition
 
-### Date of Birth Picker
+A date picker is built from `Popover` and `Calendar` (there is no `DatePicker` root component):
 
-<ComponentPreview name="calendar-22" description="A calendar with date of birth picker." >
+```text
+Popover.Root
+├── Popover.Trigger
+└── Popover.Content
+    └── Calendar
+```
+
+## Basic
+
+A basic date picker component.
+
+<ComponentPreview name="date-picker-basic">
 
 <div></div>
 
 </ComponentPreview>
 
-### Picker with Input
+## Range Picker
 
-<!--need to fix code not showing due to type-->
+A date picker component for selecting a range of dates.
 
-<ComponentPreview name="calendar-28" description="A calendar with input and picker." >
+<ComponentPreview name="date-picker-range">
 
 <div></div>
 
 </ComponentPreview>
 
-### Date and Time Picker
+## Date of Birth
 
-<ComponentPreview name="calendar-24" description="A calendar with date and time picker." >
+A date picker component for selecting a date of birth. Includes a dropdown caption layout and closes on selection.
+
+<ComponentPreview name="date-picker-dob">
+
 <div></div>
 
 </ComponentPreview>
 
-### Natural Language Picker
+## Input
+
+A date picker component with an input field for selecting a date.
+
+<ComponentPreview name="date-picker-input">
+
+<div></div>
+
+</ComponentPreview>
+
+## Time Picker
+
+A date picker component with a time input field.
+
+<ComponentPreview name="date-picker-time">
+
+<div></div>
+
+</ComponentPreview>
+
+## Natural Language Picker
 
 This component uses the `chrono-node` library to parse natural language dates.
 
-<ComponentPreview name="calendar-29" description="A calendar with natural language picker.">
+<ComponentPreview name="date-picker-natural-language">
 
 <div></div>
 

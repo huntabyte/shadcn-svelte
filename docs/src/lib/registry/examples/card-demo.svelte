@@ -13,8 +13,8 @@
 			<Button variant="link">Sign Up</Button>
 		</Card.Action>
 	</Card.Header>
-	<Card.Content>
-		<form>
+	<form>
+		<Card.Content>
 			<div class="flex flex-col gap-6">
 				<div class="grid gap-2">
 					<Label for="email">Email</Label>
@@ -33,10 +33,10 @@
 					<Input id="password" type="password" required />
 				</div>
 			</div>
-		</form>
-	</Card.Content>
-	<Card.Footer class="flex-col gap-2">
-		<Button type="submit" class="w-full">Login</Button>
-		<Button variant="outline" class="w-full">Login with Google</Button>
-	</Card.Footer>
+		</Card.Content>
+		<Card.Footer class="flex-col gap-2">
+			<Button type="submit" class="w-full">Login</Button>
+			<Button variant="outline" class="w-full">Login with Google</Button>
+		</Card.Footer>
+	</form>
 </Card.Root>
