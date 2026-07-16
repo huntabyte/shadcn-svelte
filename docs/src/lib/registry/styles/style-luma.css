@@ -1203,7 +1203,7 @@
 
 	/* MARK: Table */
 	.cn-table-container {
-		@apply relative w-full overflow-x-auto;
+		@apply relative w-full overflow-auto;
 	}
 
 	.cn-table {
