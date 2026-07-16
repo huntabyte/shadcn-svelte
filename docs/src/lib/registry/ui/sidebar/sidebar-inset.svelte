@@ -13,7 +13,7 @@
 <main
 	bind:this={ref}
 	data-slot="sidebar-inset"
-	class={cn("cn-sidebar-inset relative flex w-full min-w-0 flex-1 flex-col", className)}
+	class={cn("cn-sidebar-inset relative flex w-full flex-1 flex-col", className)}
 	{...restProps}
 >
 	{@render children?.()}
