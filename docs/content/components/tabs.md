@@ -96,9 +96,7 @@ Tabs.Root
 └── Tabs.Content
 ```
 
-## Examples
-
-### Line
+## Line
 
 Use the `variant="line"` prop on `Tabs.List` for a line style.
 
@@ -108,7 +106,7 @@ Use the `variant="line"` prop on `Tabs.List` for a line style.
 
 </ComponentPreview>
 
-### Vertical
+## Vertical
 
 Use `orientation="vertical"` for vertical tabs.
 
@@ -118,7 +116,7 @@ Use `orientation="vertical"` for vertical tabs.
 
 </ComponentPreview>
 
-### Disabled
+## Disabled
 
 <ComponentPreview name="tabs-disabled">
 
@@ -126,7 +124,7 @@ Use `orientation="vertical"` for vertical tabs.
 
 </ComponentPreview>
 
-### Icons
+## Icons
 
 <ComponentPreview name="tabs-icons">
 

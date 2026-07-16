@@ -73,9 +73,7 @@ Kbd.Group
 └── Kbd.Root
 ```
 
-## Examples
-
-### Group
+## Group
 
 Use the `Kbd.Group` component to group keyboard keys together.
 
@@ -85,7 +83,7 @@ Use the `Kbd.Group` component to group keyboard keys together.
 
 </ComponentPreview>
 
-### Button
+## Button
 
 Use the `Kbd.Root` component inside a `Button` component to display a keyboard key inside a button.
 
@@ -95,7 +93,7 @@ Use the `Kbd.Root` component inside a `Button` component to display a keyboard k
 
 </ComponentPreview>
 
-### Tooltip
+## Tooltip
 
 You can use the `Kbd.Root` component inside a `Tooltip` component to display a tooltip with a keyboard key.
 
@@ -105,7 +103,7 @@ You can use the `Kbd.Root` component inside a `Tooltip` component to display a t
 
 </ComponentPreview>
 
-### Input Group
+## Input Group
 
 You can use the `Kbd.Root` component inside a `InputGroup.Addon` component to display a keyboard key inside an input group.
 

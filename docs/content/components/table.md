@@ -109,9 +109,7 @@ Table.Root
 └── Table.Footer
 ```
 
-## Examples
-
-### Footer
+## Footer
 
 Use the `<Table.Footer />` component to add a footer to the table.
 
@@ -121,7 +119,7 @@ Use the `<Table.Footer />` component to add a footer to the table.
 
 </ComponentPreview>
 
-### Actions
+## Actions
 
 A table showing actions for each row using a `<DropdownMenu />` component.
 

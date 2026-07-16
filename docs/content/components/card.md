@@ -90,9 +90,7 @@ Card.Root
 └── Card.Footer
 ```
 
-## Examples
-
-### Size
+## Size
 
 Use the `size="sm"` prop to set the size of the card to small. The small size variant uses smaller spacing.
 
@@ -102,7 +100,7 @@ Use the `size="sm"` prop to set the size of the card to small. The small size va
 
 </ComponentPreview>
 
-### Image
+## Image
 
 Add an image before the card header to create a card with an image.
 
@@ -112,7 +110,7 @@ Add an image before the card header to create a card with an image.
 
 </ComponentPreview>
 
-### With Form
+## With Form
 
 <ComponentPreview name="card-with-form">
 

@@ -117,9 +117,7 @@ Command.Dialog
     └── (same as above)
 ```
 
-## Examples
-
-### Basic
+## Basic
 
 A simple command menu in a dialog.
 
@@ -129,7 +127,7 @@ A simple command menu in a dialog.
 
 </ComponentPreview>
 
-### Shortcuts
+## Shortcuts
 
 <ComponentPreview name="command-shortcuts">
 
@@ -137,7 +135,7 @@ A simple command menu in a dialog.
 
 </ComponentPreview>
 
-### Groups
+## Groups
 
 A command menu with groups, icons and separators.
 
@@ -147,7 +145,7 @@ A command menu with groups, icons and separators.
 
 </ComponentPreview>
 
-### Scrollable
+## Scrollable
 
 Scrollable command menu with multiple items.
 
@@ -157,7 +155,7 @@ Scrollable command menu with multiple items.
 
 </ComponentPreview>
 
-### Dialog
+## Dialog
 
 <ComponentPreview name="command-dialog">
 

@@ -117,9 +117,7 @@ Update the import paths to match your project setup.
 <Button onclick={() => toast("Hello world")}>Show toast</Button>
 ```
 
-## Examples
-
-### Types
+## Types
 
 <ComponentPreview name="sonner-types">
 
@@ -127,7 +125,7 @@ Update the import paths to match your project setup.
 
 </ComponentPreview>
 
-### Description
+## Description
 
 <ComponentPreview name="sonner-description">
 
@@ -135,7 +133,7 @@ Update the import paths to match your project setup.
 
 </ComponentPreview>
 
-### Position
+## Position
 
 Use the `position` prop to change the position of the toast.
 

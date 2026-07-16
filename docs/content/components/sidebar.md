@@ -207,9 +207,9 @@ Sidebar.Provider
 - **Sidebar.Inset** — Wraps main content when using the `inset` variant.
 - **Sidebar.Trigger** — Control that toggles the sidebar open or collapsed.
 
-<img src="/img/sidebar/sidebar-structure.png" width="716" height="420" alt="Sidebar structure" class="border dark:hidden rounded-lg overflow-hidden mt-6 w-full" />
+<img src="/img/sidebar/sidebar-structure.png" width="716" height="420" alt="Sidebar structure" class="border dark:hidden rounded-2xl overflow-hidden mt-6 w-full" />
 
-<img src="/img/sidebar/sidebar-structure-dark.png" width="716" height="420" alt="Sidebar structure" class="border hidden dark:block rounded-lg overflow-hidden mt-6 w-full" />
+<img src="/img/sidebar/sidebar-structure-dark.png" width="716" height="420" alt="Sidebar structure" class="border hidden dark:block rounded-2xl overflow-hidden mt-6 w-full" />
 
 ## Your First Sidebar
 
@@ -709,9 +709,9 @@ The `Sidebar.Menu` component is used for building a menu within a `Sidebar.Group
 
 A `Sidebar.Menu` is composed of `Sidebar.MenuItem`, `Sidebar.MenuButton`, `Sidebar.MenuAction`, and `Sidebar.MenuSub` components.
 
-<img src="/img/sidebar/sidebar-menu.png" width="716" height="420" alt="Sidebar menu" class="border dark:hidden rounded-lg overflow-hidden mt-6 w-full" />
+<img src="/img/sidebar/sidebar-menu.png" width="716" height="420" alt="Sidebar menu" class="border dark:hidden rounded-2xl overflow-hidden mt-6 w-full" />
 
-<img src="/img/sidebar/sidebar-menu-dark.png" width="716" height="420" alt="Sidebar menu" class="border hidden dark:block rounded-lg overflow-hidden mt-6 w-full" />
+<img src="/img/sidebar/sidebar-menu-dark.png" width="716" height="420" alt="Sidebar menu" class="border hidden dark:block rounded-2xl overflow-hidden mt-6 w-full" />
 
 Here's an example of a `Sidebar.Menu` component rendering a list of projects.
 

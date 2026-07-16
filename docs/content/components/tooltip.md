@@ -114,9 +114,7 @@ Tooltip.Provider
     └── Tooltip.Content
 ```
 
-## Examples
-
-### Side
+## Side
 
 Use the `side` prop to change the position of the tooltip.
 
@@ -126,7 +124,7 @@ Use the `side` prop to change the position of the tooltip.
 
 </ComponentPreview>
 
-### With Keyboard Shortcut
+## With Keyboard Shortcut
 
 <ComponentPreview name="tooltip-keyboard-shortcut">
 
@@ -134,7 +132,7 @@ Use the `side` prop to change the position of the tooltip.
 
 </ComponentPreview>
 
-### Disabled Button
+## Disabled Button
 
 Show a tooltip on a disabled button by wrapping it with a span.
 

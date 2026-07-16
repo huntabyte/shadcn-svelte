@@ -64,9 +64,7 @@ Update the import paths to match your project setup.
 <Skeleton class="h-[20px] w-[100px] rounded-full" />
 ```
 
-## Examples
-
-### Avatar
+## Avatar
 
 <ComponentPreview name="skeleton-avatar">
 
@@ -74,7 +72,7 @@ Update the import paths to match your project setup.
 
 </ComponentPreview>
 
-### Card
+## Card
 
 <ComponentPreview name="skeleton-card" previewClassName="h-80">
 
@@ -82,7 +80,7 @@ Update the import paths to match your project setup.
 
 </ComponentPreview>
 
-### Text
+## Text
 
 <ComponentPreview name="skeleton-text">
 
@@ -90,7 +88,7 @@ Update the import paths to match your project setup.
 
 </ComponentPreview>
 
-### Form
+## Form
 
 <ComponentPreview name="skeleton-form">
 
@@ -98,7 +96,7 @@ Update the import paths to match your project setup.
 
 </ComponentPreview>
 
-### Table
+## Table
 
 <ComponentPreview name="skeleton-table">
 

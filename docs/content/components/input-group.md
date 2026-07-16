@@ -144,9 +144,7 @@ Use `align="block-end"` to position the addon below the input.
 
 </ComponentPreview>
 
-## Examples
-
-### Icon
+## Icon
 
 Display icons inside the input group to provide visual context.
 
@@ -156,7 +154,7 @@ Display icons inside the input group to provide visual context.
 
 </ComponentPreview>
 
-### Text
+## Text
 
 Display additional text information alongside inputs.
 
@@ -166,7 +164,7 @@ Display additional text information alongside inputs.
 
 </ComponentPreview>
 
-### Button
+## Button
 
 Add buttons to perform actions within the input group.
 
@@ -176,7 +174,7 @@ Add buttons to perform actions within the input group.
 
 </ComponentPreview>
 
-### Kbd
+## Kbd
 
 Display keyboard shortcuts within the input group.
 
@@ -186,7 +184,7 @@ Display keyboard shortcuts within the input group.
 
 </ComponentPreview>
 
-### Dropdown
+## Dropdown
 
 Pair input groups with dropdown menus for complex interactions.
 
@@ -196,7 +194,7 @@ Pair input groups with dropdown menus for complex interactions.
 
 </ComponentPreview>
 
-### Spinner
+## Spinner
 
 Show loading indicators while processing input.
 
@@ -206,7 +204,7 @@ Show loading indicators while processing input.
 
 </ComponentPreview>
 
-### Textarea
+## Textarea
 
 Input groups also work with textarea components. Use `block-start` or `block-end` for alignment.
 
@@ -216,7 +214,7 @@ Input groups also work with textarea components. Use `block-start` or `block-end
 
 </ComponentPreview>
 
-### Custom Input
+## Custom Input
 
 Add the `data-slot="input-group-control"` attribute to your custom input for automatic behavior and focus state handling.
 

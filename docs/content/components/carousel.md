@@ -98,9 +98,7 @@ Carousel.Root
 └── Carousel.Next
 ```
 
-## Examples
-
-### Sizes
+## Sizes
 
 To set the size of the items, you can use the `basis` utility class on the `<Carousel.Item />`.
 
@@ -132,7 +130,7 @@ To set the size of the items, you can use the `basis` utility class on the `<Car
 </Carousel.Root>
 ```
 
-### Spacing
+## Spacing
 
 To set the spacing between the items, we use a `ps-[VALUE]` utility on the `<Carousel.Item />` and a negative `-ms-[VALUE]` on the `<Carousel.Content />`.
 
@@ -162,7 +160,7 @@ To set the spacing between the items, we use a `ps-[VALUE]` utility on the `<Car
 </Carousel.Root>
 ```
 
-### Orientation
+## Orientation
 
 Use the `orientation` prop to set the orientation of the carousel.
 

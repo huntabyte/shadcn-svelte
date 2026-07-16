@@ -74,9 +74,7 @@ Update the import paths to match your project setup.
 <Toggle>Toggle</Toggle>
 ```
 
-## Examples
-
-### Outline
+## Outline
 
 Use `variant="outline"` for an outline style.
 
@@ -86,7 +84,7 @@ Use `variant="outline"` for an outline style.
 
 </ComponentPreview>
 
-### With Text
+## With Text
 
 <ComponentPreview name="toggle-with-text">
 
@@ -94,7 +92,7 @@ Use `variant="outline"` for an outline style.
 
 </ComponentPreview>
 
-### Size
+## Size
 
 Use the `size` prop to change the size of the toggle.
 
@@ -104,7 +102,7 @@ Use the `size` prop to change the size of the toggle.
 
 </ComponentPreview>
 
-### Disabled
+## Disabled
 
 <ComponentPreview name="toggle-disabled">
 

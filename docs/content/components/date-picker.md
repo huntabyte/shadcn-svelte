@@ -77,9 +77,7 @@ Popover.Root
     └── Calendar
 ```
 
-## Examples
-
-### Basic
+## Basic
 
 A basic date picker component.
 
@@ -89,7 +87,7 @@ A basic date picker component.
 
 </ComponentPreview>
 
-### Range Picker
+## Range Picker
 
 A date picker component for selecting a range of dates.
 
@@ -99,7 +97,7 @@ A date picker component for selecting a range of dates.
 
 </ComponentPreview>
 
-### Date of Birth
+## Date of Birth
 
 A date picker component for selecting a date of birth. Includes a dropdown caption layout and closes on selection.
 
@@ -109,7 +107,7 @@ A date picker component for selecting a date of birth. Includes a dropdown capti
 
 </ComponentPreview>
 
-### Input
+## Input
 
 A date picker component with an input field for selecting a date.
 
@@ -119,7 +117,7 @@ A date picker component with an input field for selecting a date.
 
 </ComponentPreview>
 
-### Time Picker
+## Time Picker
 
 A date picker component with a time input field.
 
@@ -129,7 +127,7 @@ A date picker component with a time input field.
 
 </ComponentPreview>
 
-### Natural Language Picker
+## Natural Language Picker
 
 This component uses the `chrono-node` library to parse natural language dates.
 

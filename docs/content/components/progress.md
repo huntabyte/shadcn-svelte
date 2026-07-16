@@ -88,9 +88,7 @@ Progress.Root
 └── Progress.Value
 ```
 
-## Examples
-
-### Label
+## Label
 
 Use a `Field` component to add a label to the progress bar.
 
@@ -100,7 +98,7 @@ Use a `Field` component to add a label to the progress bar.
 
 </ComponentPreview>
 
-### Controlled
+## Controlled
 
 A progress bar that can be controlled by a slider.
 

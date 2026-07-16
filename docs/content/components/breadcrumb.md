@@ -97,9 +97,7 @@ Breadcrumb.Root
 
 Use `Breadcrumb.Ellipsis` inside a `Breadcrumb.Item` to represent collapsed items.
 
-## Examples
-
-### Basic
+## Basic
 
 <ComponentPreview name="breadcrumb-basic">
 
@@ -107,7 +105,7 @@ Use `Breadcrumb.Ellipsis` inside a `Breadcrumb.Item` to represent collapsed item
 
 </ComponentPreview>
 
-### Custom separator
+## Custom separator
 
 Pass a custom component as children of `<Breadcrumb.Separator />` to create a custom separator.
 
@@ -117,7 +115,7 @@ Pass a custom component as children of `<Breadcrumb.Separator />` to create a cu
 
 </ComponentPreview>
 
-### Dropdown
+## Dropdown
 
 You can compose `<Breadcrumb.Item />` with a `<DropdownMenu />` to create a dropdown in the breadcrumb.
 
@@ -127,7 +125,7 @@ You can compose `<Breadcrumb.Item />` with a `<DropdownMenu />` to create a drop
 
 </ComponentPreview>
 
-### Collapsed
+## Collapsed
 
 We provide a `<Breadcrumb.Ellipsis />` component to show a collapsed state when the breadcrumb is too long.
 
@@ -137,7 +135,7 @@ We provide a `<Breadcrumb.Ellipsis />` component to show a collapsed state when 
 
 </ComponentPreview>
 
-### Link component
+## Link component
 
 To use a link just add the `href` prop to `<Breadcrumb.Link />`.
 

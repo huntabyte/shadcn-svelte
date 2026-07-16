@@ -64,9 +64,7 @@ Update the import paths to match your project setup.
 <Badge variant="outline">Badge</Badge>
 ```
 
-## Examples
-
-### Variants
+## Variants
 
 Use the `variant` prop to change the variant of the badge.
 
@@ -76,7 +74,7 @@ Use the `variant` prop to change the variant of the badge.
 
 </ComponentPreview>
 
-### With Icon
+## With Icon
 
 You can render an icon inside the badge. Use `data-icon="inline-start"` to render the icon on the left and `data-icon="inline-end"` to render the icon on the right.
 
@@ -86,7 +84,7 @@ You can render an icon inside the badge. Use `data-icon="inline-start"` to rende
 
 </ComponentPreview>
 
-### With Spinner
+## With Spinner
 
 You can render a spinner inside the badge. Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` prop to the spinner.
 
@@ -96,7 +94,7 @@ You can render a spinner inside the badge. Remember to add the `data-icon="inlin
 
 </ComponentPreview>
 
-### Link
+## Link
 
 Use the `href` prop to render the badge as a link.
 
@@ -106,7 +104,7 @@ Use the `href` prop to render the badge as a link.
 
 </ComponentPreview>
 
-### Custom Colors
+## Custom Colors
 
 You can customize the colors of a badge by adding custom classes such as `bg-green-50 dark:bg-green-800` to the `Badge` component.
 

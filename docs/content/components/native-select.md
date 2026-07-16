@@ -106,9 +106,7 @@ NativeSelect.Root
     └── NativeSelect.Option
 ```
 
-## Examples
-
-### Groups
+## Groups
 
 Use `NativeSelect.OptGroup` to organize options into categories.
 
@@ -118,7 +116,7 @@ Use `NativeSelect.OptGroup` to organize options into categories.
 
 </ComponentPreview>
 
-### Disabled
+## Disabled
 
 Add the `disabled` prop to the `NativeSelect` component to disable the select.
 
@@ -128,7 +126,7 @@ Add the `disabled` prop to the `NativeSelect` component to disable the select.
 
 </ComponentPreview>
 
-### Invalid
+## Invalid
 
 Use `aria-invalid` to show validation errors and the `data-invalid` attribute to the `Field` component for styling.
 

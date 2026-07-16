@@ -88,9 +88,7 @@ ToggleGroup.Root
 └── ToggleGroup.Item
 ```
 
-## Examples
-
-### Outline
+## Outline
 
 Use `variant="outline"` for an outline style.
 
@@ -100,7 +98,7 @@ Use `variant="outline"` for an outline style.
 
 </ComponentPreview>
 
-### Size
+## Size
 
 Use the `size` prop to change the size of the toggle group.
 
@@ -110,7 +108,7 @@ Use the `size` prop to change the size of the toggle group.
 
 </ComponentPreview>
 
-### Spacing
+## Spacing
 
 Use `spacing` to add spacing between toggle group items.
 
@@ -120,7 +118,7 @@ Use `spacing` to add spacing between toggle group items.
 
 </ComponentPreview>
 
-### Vertical
+## Vertical
 
 Use `orientation="vertical"` for vertical toggle groups.
 
@@ -130,7 +128,7 @@ Use `orientation="vertical"` for vertical toggle groups.
 
 </ComponentPreview>
 
-### Disabled
+## Disabled
 
 <ComponentPreview name="toggle-group-disabled">
 
@@ -138,7 +136,7 @@ Use `orientation="vertical"` for vertical toggle groups.
 
 </ComponentPreview>
 
-### Custom
+## Custom
 
 A custom toggle group example.
 

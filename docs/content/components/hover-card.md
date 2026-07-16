@@ -112,9 +112,7 @@ Use the `side` and `align` props on `HoverCard.Content` to control placement.
 </HoverCard.Root>
 ```
 
-## Examples
-
-### Basic
+## Basic
 
 <ComponentPreview name="hover-card-demo" previewClassName="h-80">
 
@@ -122,7 +120,7 @@ Use the `side` and `align` props on `HoverCard.Content` to control placement.
 
 </ComponentPreview>
 
-### Sides
+## Sides
 
 <ComponentPreview name="hover-card-sides" previewClassName="h-[22rem]">
 

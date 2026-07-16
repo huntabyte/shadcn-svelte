@@ -123,9 +123,7 @@ Use the `pattern` prop to restrict input to a specific pattern. The `REGEXP_ONLY
 
 </ComponentPreview>
 
-## Examples
-
-### Separator
+## Separator
 
 You can use the `InputOTP.Separator` component to add a separator between the groups of cells.
 
@@ -135,7 +133,7 @@ You can use the `InputOTP.Separator` component to add a separator between the gr
 
 </ComponentPreview>
 
-### Disabled
+## Disabled
 
 Use the `disabled` prop to prevent user interaction with the input.
 
@@ -145,7 +143,7 @@ Use the `disabled` prop to prevent user interaction with the input.
 
 </ComponentPreview>
 
-### Controlled
+## Controlled
 
 Use `bind:value` to control the input value programmatically.
 
@@ -155,7 +153,7 @@ Use `bind:value` to control the input value programmatically.
 
 </ComponentPreview>
 
-### Invalid
+## Invalid
 
 Use the `aria-invalid` attribute on slots to display an error state.
 
@@ -165,7 +163,7 @@ Use the `aria-invalid` attribute on slots to display an error state.
 
 </ComponentPreview>
 
-### Four Digits
+## Four Digits
 
 A common pattern for PIN codes using a 4-digit numeric input.
 
@@ -175,7 +173,7 @@ A common pattern for PIN codes using a 4-digit numeric input.
 
 </ComponentPreview>
 
-### Alphanumeric
+## Alphanumeric
 
 Use the `REGEXP_ONLY_DIGITS_AND_CHARS` pattern to accept both letters and numbers.
 
@@ -185,7 +183,7 @@ Use the `REGEXP_ONLY_DIGITS_AND_CHARS` pattern to accept both letters and number
 
 </ComponentPreview>
 
-### Form
+## Form
 
 Use the input in a form with a label and description.
 

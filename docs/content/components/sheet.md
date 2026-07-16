@@ -99,9 +99,7 @@ Sheet.Root
     └── Sheet.Footer
 ```
 
-## Examples
-
-### Side
+## Side
 
 Use the `side` prop on `Sheet.Content` to set the edge of the screen where the sheet appears. Values are `top`, `right`, `bottom`, or `left`.
 
@@ -111,7 +109,7 @@ Use the `side` prop on `Sheet.Content` to set the edge of the screen where the s
 
 </ComponentPreview>
 
-### No Close Button
+## No Close Button
 
 Use `showCloseButton={false}` on `Sheet.Content` to hide the close button.
 

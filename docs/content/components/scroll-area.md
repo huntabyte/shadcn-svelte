@@ -88,9 +88,7 @@ ScrollArea
 └── ScrollBar
 ```
 
-## Examples
-
-### Horizontal
+## Horizontal
 
 Set the `orientation` prop to `"horizontal"` to enable horizontal scrolling.
 

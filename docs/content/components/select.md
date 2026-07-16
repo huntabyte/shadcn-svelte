@@ -102,9 +102,7 @@ Select.Root
         └── Select.Item
 ```
 
-## Examples
-
-### Align Item With Trigger
+## Align Item With Trigger
 
 Use `Select.Item` contents that match the trigger width and alignment.
 
@@ -114,7 +112,7 @@ Use `Select.Item` contents that match the trigger width and alignment.
 
 </ComponentPreview>
 
-### Groups
+## Groups
 
 Use `Select.Group`, `Select.Label`, and `Select.Separator` to organize items.
 
@@ -124,7 +122,7 @@ Use `Select.Group`, `Select.Label`, and `Select.Separator` to organize items.
 
 </ComponentPreview>
 
-### Scrollable
+## Scrollable
 
 A select with many items that scrolls.
 
@@ -134,7 +132,7 @@ A select with many items that scrolls.
 
 </ComponentPreview>
 
-### Disabled
+## Disabled
 
 <ComponentPreview name="select-disabled">
 
@@ -142,7 +140,7 @@ A select with many items that scrolls.
 
 </ComponentPreview>
 
-### Invalid
+## Invalid
 
 Add the `data-invalid` attribute to the `Field.Field` component and the `aria-invalid` attribute to the `Select.Trigger` component to show an error state.
 
@@ -152,7 +150,7 @@ Add the `data-invalid` attribute to the `Field.Field` component and the `aria-in
 
 </ComponentPreview>
 
-### Form
+## Form
 
 <ComponentPreview name="select-form">
 

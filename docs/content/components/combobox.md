@@ -140,9 +140,7 @@ Popover.Root
                 └── Command.Item
 ```
 
-## Examples
-
-### Combobox
+## Combobox
 
 <ComponentPreview name="combobox-demo" description="A combobox with a list of frameworks.">
 
@@ -150,7 +148,7 @@ Popover.Root
 
 </ComponentPreview>
 
-### Basic
+## Basic
 
 A simple combobox with a list of frameworks.
 
@@ -160,7 +158,7 @@ A simple combobox with a list of frameworks.
 
 </ComponentPreview>
 
-### Multiple
+## Multiple
 
 A combobox with multiple selection using chips.
 
@@ -170,7 +168,7 @@ A combobox with multiple selection using chips.
 
 </ComponentPreview>
 
-### Clear Button
+## Clear Button
 
 A combobox with a clear button to reset the selection.
 
@@ -180,7 +178,7 @@ A combobox with a clear button to reset the selection.
 
 </ComponentPreview>
 
-### Groups
+## Groups
 
 Use grouped items with separators between groups.
 
@@ -190,7 +188,7 @@ Use grouped items with separators between groups.
 
 </ComponentPreview>
 
-### Custom Items
+## Custom Items
 
 You can render a custom component inside each item.
 
@@ -200,7 +198,7 @@ You can render a custom component inside each item.
 
 </ComponentPreview>
 
-### Invalid
+## Invalid
 
 Use `aria-invalid` to indicate an invalid state.
 
@@ -210,7 +208,7 @@ Use `aria-invalid` to indicate an invalid state.
 
 </ComponentPreview>
 
-### Disabled
+## Disabled
 
 Use the `disabled` prop to disable the combobox.
 
@@ -220,7 +218,7 @@ Use the `disabled` prop to disable the combobox.
 
 </ComponentPreview>
 
-### Auto Highlight
+## Auto Highlight
 
 Automatically highlight the first filtered item on input.
 
@@ -230,7 +228,7 @@ Automatically highlight the first filtered item on input.
 
 </ComponentPreview>
 
-### Popup
+## Popup
 
 Trigger a combobox from a button with a country list.
 
@@ -240,7 +238,7 @@ Trigger a combobox from a button with a country list.
 
 </ComponentPreview>
 
-### Input Group
+## Input Group
 
 Add an icon addon to the combobox using the `InputGroup` component.
 
@@ -250,7 +248,7 @@ Add an icon addon to the combobox using the `InputGroup` component.
 
 </ComponentPreview>
 
-### Popover
+## Popover
 
 <ComponentPreview name="combobox-popover">
 
@@ -258,7 +256,7 @@ Add an icon addon to the combobox using the `InputGroup` component.
 
 </ComponentPreview>
 
-### Dropdown menu
+## Dropdown menu
 
 <ComponentPreview name="combobox-dropdown-menu">
 
@@ -266,7 +264,7 @@ Add an icon addon to the combobox using the `InputGroup` component.
 
 </ComponentPreview>
 
-### Responsive
+## Responsive
 
 You can create a responsive combobox by using the `<Popover />` on desktop and the `<Drawer />` components on mobile.
 
@@ -276,7 +274,7 @@ You can create a responsive combobox by using the `<Popover />` on desktop and t
 
 </ComponentPreview>
 
-### Form
+## Form
 
 <ComponentPreview name="combobox-form">
 

@@ -106,9 +106,7 @@ AlertDialog.Root
         └── AlertDialog.Action
 ```
 
-## Examples
-
-### Basic
+## Basic
 
 A basic alert dialog with a title, description, and cancel and continue buttons.
 
@@ -118,7 +116,7 @@ A basic alert dialog with a title, description, and cancel and continue buttons.
 
 </ComponentPreview>
 
-### Small
+## Small
 
 Use the `size="sm"` prop to make the alert dialog smaller.
 
@@ -128,7 +126,7 @@ Use the `size="sm"` prop to make the alert dialog smaller.
 
 </ComponentPreview>
 
-### Media
+## Media
 
 Use the `AlertDialog.Media` component to add a media element such as an icon or image to the alert dialog.
 
@@ -138,7 +136,7 @@ Use the `AlertDialog.Media` component to add a media element such as an icon or 
 
 </ComponentPreview>
 
-### Small with Media
+## Small with Media
 
 Use the `size="sm"` prop to make the alert dialog smaller and the `AlertDialog.Media` component to add a media element such as an icon or image to the alert dialog.
 
@@ -148,7 +146,7 @@ Use the `size="sm"` prop to make the alert dialog smaller and the `AlertDialog.M
 
 </ComponentPreview>
 
-### Destructive
+## Destructive
 
 Use the `AlertDialog.Action` component to add a destructive action button to the alert dialog.
 

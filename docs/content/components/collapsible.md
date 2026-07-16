@@ -90,9 +90,7 @@ Collapsible.Root
 └── Collapsible.Content
 ```
 
-## Examples
-
-### Basic
+## Basic
 
 <ComponentPreview name="collapsible-basic" align="start">
 
@@ -100,7 +98,7 @@ Collapsible.Root
 
 </ComponentPreview>
 
-### Settings Panel
+## Settings Panel
 
 Use a trigger button to reveal additional settings.
 
@@ -110,7 +108,7 @@ Use a trigger button to reveal additional settings.
 
 </ComponentPreview>
 
-### File Tree
+## File Tree
 
 Use nested collapsibles to build a file tree.
 

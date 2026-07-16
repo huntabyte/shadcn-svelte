@@ -78,9 +78,7 @@ Update the import paths to match your project setup.
 </div>
 ```
 
-## Examples
-
-### Square
+## Square
 
 A square aspect ratio component using the `ratio={1 / 1}` prop. This is useful for displaying images in a square format.
 
@@ -90,7 +88,7 @@ A square aspect ratio component using the `ratio={1 / 1}` prop. This is useful f
 
 </ComponentPreview>
 
-### Portrait
+## Portrait
 
 A portrait aspect ratio component using the `ratio={9 / 16}` prop. This is useful for displaying images in a portrait format.
 

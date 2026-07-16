@@ -86,9 +86,7 @@ If you're looking for a range calendar, check out the [Range Calendar](/docs/com
 
 You can use the `<Calendar />` component to build a date picker. See the [Date Picker](/docs/components/date-picker) page for more information.
 
-## Examples
-
-### Basic
+## Basic
 
 A basic calendar component with a border. We used `class="rounded-lg border"` to style the calendar.
 
@@ -98,7 +96,7 @@ A basic calendar component with a border. We used `class="rounded-lg border"` to
 
 </ComponentPreview>
 
-### Range Calendar
+## Range Calendar
 
 Use the `RangeCalendar` component to enable range selection.
 
@@ -108,7 +106,7 @@ Use the `RangeCalendar` component to enable range selection.
 
 </ComponentPreview>
 
-### Month and Year Selector
+## Month and Year Selector
 
 Use `captionLayout="dropdown"` to show month and year dropdowns.
 
@@ -118,7 +116,7 @@ Use `captionLayout="dropdown"` to show month and year dropdowns.
 
 </ComponentPreview>
 
-### Presets
+## Presets
 
 <ComponentPreview name="calendar-presets" class="**:[.preview]:h-[650px]" previewClassName="h-[650px]">
 
@@ -126,7 +124,7 @@ Use `captionLayout="dropdown"` to show month and year dropdowns.
 
 </ComponentPreview>
 
-### Date and Time Picker
+## Date and Time Picker
 
 <ComponentPreview name="calendar-time" class="**:[.preview]:h-[600px]" previewClassName="h-[600px]">
 
@@ -134,7 +132,7 @@ Use `captionLayout="dropdown"` to show month and year dropdowns.
 
 </ComponentPreview>
 
-### Booked Dates
+## Booked Dates
 
 <ComponentPreview name="calendar-booked-dates" previewClassName="h-96">
 
@@ -142,7 +140,7 @@ Use `captionLayout="dropdown"` to show month and year dropdowns.
 
 </ComponentPreview>
 
-### Custom Cell Size
+## Custom Cell Size
 
 A calendar with custom cell content — useful for showing prices or other per-day data.
 
@@ -174,7 +172,7 @@ Or use fixed values:
 />
 ```-->
 
-### Week Numbers
+## Week Numbers
 
 <!--Use `showWeekNumber` to show week numbers.-->
 

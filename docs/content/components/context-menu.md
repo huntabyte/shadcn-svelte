@@ -113,9 +113,7 @@ ContextMenu.Root
                 └── ContextMenu.Item
 ```
 
-## Examples
-
-### Basic
+## Basic
 
 A simple context menu with a few actions.
 
@@ -125,7 +123,7 @@ A simple context menu with a few actions.
 
 </ComponentPreview>
 
-### Submenu
+## Submenu
 
 Use `ContextMenuSub` to nest secondary actions.
 
@@ -135,7 +133,7 @@ Use `ContextMenuSub` to nest secondary actions.
 
 </ComponentPreview>
 
-### Shortcuts
+## Shortcuts
 
 Add `ContextMenuShortcut` to show keyboard hints.
 
@@ -145,7 +143,7 @@ Add `ContextMenuShortcut` to show keyboard hints.
 
 </ComponentPreview>
 
-### Groups
+## Groups
 
 Group related actions and separate them with dividers.
 
@@ -155,7 +153,7 @@ Group related actions and separate them with dividers.
 
 </ComponentPreview>
 
-### Icons
+## Icons
 
 Combine icons with labels for quick scanning.
 
@@ -165,7 +163,7 @@ Combine icons with labels for quick scanning.
 
 </ComponentPreview>
 
-### Checkboxes
+## Checkboxes
 
 Use `ContextMenuCheckboxItem` for toggles.
 
@@ -175,7 +173,7 @@ Use `ContextMenuCheckboxItem` for toggles.
 
 </ComponentPreview>
 
-### Radio
+## Radio
 
 Use `ContextMenuRadioItem` for exclusive choices.
 
@@ -185,7 +183,7 @@ Use `ContextMenuRadioItem` for exclusive choices.
 
 </ComponentPreview>
 
-### Destructive
+## Destructive
 
 Use `variant="destructive"` to style the menu item as destructive.
 

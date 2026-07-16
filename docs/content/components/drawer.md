@@ -104,9 +104,7 @@ Drawer.Root
     └── Drawer.Footer
 ```
 
-## Examples
-
-### Scrollable Content
+## Scrollable Content
 
 Keep actions visible while the content scrolls.
 
@@ -116,7 +114,7 @@ Keep actions visible while the content scrolls.
 
 </ComponentPreview>
 
-### Sides
+## Sides
 
 Use the `direction` prop to set the side of the drawer. Available options are `top`, `right`, `bottom`, and `left`.
 
@@ -126,7 +124,7 @@ Use the `direction` prop to set the side of the drawer. Available options are `t
 
 </ComponentPreview>
 
-### Responsive Dialog
+## Responsive Dialog
 
 You can combine the `Dialog` and `Drawer` components to create a responsive dialog. This renders a `Dialog` on desktop and a `Drawer` on mobile.
 

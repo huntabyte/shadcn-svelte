@@ -94,9 +94,7 @@ Set `aria-invalid` on the checkbox and `data-invalid` on the field wrapper to sh
 
 <ComponentPreview name="checkbox-invalid" />
 
-## Examples
-
-### Basic
+## Basic
 
 Pair the checkbox with `Field` and `Field.Label` for proper layout and labeling.
 
@@ -106,7 +104,7 @@ Pair the checkbox with `Field` and `Field.Label` for proper layout and labeling.
 
 </ComponentPreview>
 
-### Description
+## Description
 
 Use `Field.Content` and `Field.Description` for helper text.
 
@@ -116,7 +114,7 @@ Use `Field.Content` and `Field.Description` for helper text.
 
 </ComponentPreview>
 
-### Disabled
+## Disabled
 
 Use the `disabled` prop to prevent interaction and add the `data-disabled` attribute to the `<Field.Field>` component for disabled styles.
 
@@ -126,7 +124,7 @@ Use the `disabled` prop to prevent interaction and add the `data-disabled` attri
 
 </ComponentPreview>
 
-### Group
+## Group
 
 Use multiple fields to create a checkbox list.
 
@@ -136,7 +134,7 @@ Use multiple fields to create a checkbox list.
 
 </ComponentPreview>
 
-### Table
+## Table
 
 <ComponentPreview name="checkbox-table" previewClassName="p-4 md:p-8">
 
@@ -144,7 +142,7 @@ Use multiple fields to create a checkbox list.
 
 </ComponentPreview>
 
-### Form
+## Form
 
 <ComponentPreview name="checkbox-form-multiple">
 

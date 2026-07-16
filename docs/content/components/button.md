@@ -87,9 +87,7 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 }
 ```
 
-## Examples
-
-### Size
+## Size
 
 <ComponentPreview name="button-size" class="mb-4" >
 
@@ -97,7 +95,7 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 
 </ComponentPreview>
 
-### Default
+## Default
 
 <ComponentPreview name="button-default" description="A primary button" class="mb-4">
 
@@ -105,7 +103,7 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 
 </ComponentPreview>
 
-### Outline
+## Outline
 
 <ComponentPreview name="button-outline" description="A button using the outline variant." class="mb-4">
   
@@ -113,7 +111,7 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 
 </ComponentPreview>
 
-### Secondary
+## Secondary
 
 <ComponentPreview name="button-secondary" description="A secondary button" class="mb-4">
   
@@ -121,7 +119,7 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
   
 </ComponentPreview>
 
-### Ghost
+## Ghost
 
 <ComponentPreview name="button-ghost" description="A button using the ghost variant" class="mb-4">
   
@@ -129,7 +127,7 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 
 </ComponentPreview>
 
-### Destructive
+## Destructive
 
 <ComponentPreview name="button-destructive" description="A destructive button" class="mb-4">
 
@@ -137,7 +135,7 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 
 </ComponentPreview>
 
-### Link
+## Link
 
 <ComponentPreview name="button-link" description="A button using the link variant." class="mb-4">
 
@@ -145,7 +143,7 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 
 </ComponentPreview>
 
-### Icon
+## Icon
 
 <ComponentPreview name="button-icon" description="An icon button" class="mb-4">
 
@@ -153,7 +151,7 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 
 </ComponentPreview>
 
-### With Icon
+## With Icon
 
 Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` attribute to the icon for the correct spacing.
 
@@ -163,7 +161,7 @@ Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` attri
 
 </ComponentPreview>
 
-### Rounded
+## Rounded
 
 Use the `rounded-full` class to make the button rounded.
 
@@ -173,7 +171,7 @@ Use the `rounded-full` class to make the button rounded.
 
 </ComponentPreview>
 
-### Spinner
+## Spinner
 
 Render a `<Spinner />` component inside the button to show a loading state. Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` attribute to the spinner for the correct spacing.
 
@@ -183,7 +181,7 @@ Render a `<Spinner />` component inside the button to show a loading state. Reme
 
 </ComponentPreview>
 
-### Button Group
+## Button Group
 
 To create a button group, use the `ButtonGroup` component. See the [Button Group](/docs/components/button-group) documentation for more details.
 
@@ -193,7 +191,7 @@ To create a button group, use the `ButtonGroup` component. See the [Button Group
 
 </ComponentPreview>
 
-### Child Snippet
+## Child Snippet
 
 You can use `buttonVariants` helper on `<Button />` to make another component look like a button. Here's an example of a link that looks like a button.
 

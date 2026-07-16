@@ -99,9 +99,7 @@ Dialog.Root
     └── Dialog.Footer
 ```
 
-## Examples
-
-### Custom close button
+## Custom close button
 
 Replace the default close control with your own button.
 
@@ -111,7 +109,7 @@ Replace the default close control with your own button.
 
 </ComponentPreview>
 
-### No Close Button
+## No Close Button
 
 Use `showCloseButton={false}` to hide the close button.
 
@@ -121,7 +119,7 @@ Use `showCloseButton={false}` to hide the close button.
 
 </ComponentPreview>
 
-### Sticky Footer
+## Sticky Footer
 
 Keep actions visible while the content scrolls.
 
@@ -131,7 +129,7 @@ Keep actions visible while the content scrolls.
 
 </ComponentPreview>
 
-### Scrollable Content
+## Scrollable Content
 
 Long content can scroll while the header stays in view.
 
