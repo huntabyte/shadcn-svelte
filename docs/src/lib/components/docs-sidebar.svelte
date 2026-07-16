@@ -144,7 +144,7 @@
 	></div>
 
 	<div
-		class="bg-border via-border absolute top-12 right-2 bottom-0 hidden h-full w-px bg-linear-to-b from-transparent to-transparent lg:flex"
+		class="absolute top-12 right-2 bottom-0 hidden h-full w-px bg-[linear-gradient(to_bottom,transparent_0%,var(--border)_10%,var(--border)_90%,transparent_100%)] lg:flex"
 	></div>
 	<Sidebar.Content
 		bind:ref={content}
