@@ -87,3 +87,48 @@
 		display: none;
 	}
 }
+
+/* Streaming and scroll utilities ported from shadcn/ui. */
+@theme inline {
+	@keyframes shimmer {
+		from { background-position: 100% 0; }
+		to { background-position: -100% 0; }
+	}
+}
+
+@utility shimmer {
+	--shimmer-color: color-mix(in oklab, currentColor 35%, transparent);
+	background-image: linear-gradient(100deg, currentColor 35%, var(--shimmer-color) 50%, currentColor 65%);
+	background-size: 200% 100%;
+	background-clip: text;
+	color: transparent;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	animation: shimmer var(--shimmer-duration, 2s) linear infinite;
+
+	@media (prefers-reduced-motion: reduce) {
+		animation: none;
+		background-image: none;
+		color: currentColor;
+		-webkit-text-fill-color: currentColor;
+	}
+}
+
+@utility shimmer-once { animation-iteration-count: 1; }
+@utility shimmer-reverse { animation-direction: reverse; }
+@utility shimmer-none { background-image: none; color: currentColor; -webkit-text-fill-color: currentColor; }
+
+@utility scroll-fade {
+	--scroll-fade-size: min(12%, calc(var(--spacing) * 10));
+	mask-image: linear-gradient(to bottom, transparent 0, #000 var(--scroll-fade-size), #000 calc(100% - var(--scroll-fade-size)), transparent 100%);
+	-webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 var(--scroll-fade-size), #000 calc(100% - var(--scroll-fade-size)), transparent 100%);
+}
+
+@utility scroll-fade-y { @apply scroll-fade; }
+@utility scroll-fade-x {
+	--scroll-fade-size: min(12%, calc(var(--spacing) * 10));
+	mask-image: linear-gradient(to right, transparent 0, #000 var(--scroll-fade-size), #000 calc(100% - var(--scroll-fade-size)), transparent 100%);
+	-webkit-mask-image: linear-gradient(to right, transparent 0, #000 var(--scroll-fade-size), #000 calc(100% - var(--scroll-fade-size)), transparent 100%);
+}
+@utility scroll-fade-t { mask-image: linear-gradient(to bottom, transparent, #000 var(--scroll-fade-size, min(12%, calc(var(--spacing) * 10)))); -webkit-mask-image: linear-gradient(to bottom, transparent, #000 var(--scroll-fade-size, min(12%, calc(var(--spacing) * 10)))); }
+@utility scroll-fade-b { mask-image: linear-gradient(to bottom, #000 calc(100% - var(--scroll-fade-size, min(12%, calc(var(--spacing) * 10)))), transparent); -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - var(--scroll-fade-size, min(12%, calc(var(--spacing) * 10)))), transparent); }

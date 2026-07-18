@@ -26,6 +26,14 @@
 		"relativeUrl": "aspect-ratio.json"
 	},
 	{
+		"name": "attachment",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"button"
+		],
+		"relativeUrl": "attachment.json"
+	},
+	{
 		"name": "avatar",
 		"type": "registry:ui",
 		"registryDependencies": [],
@@ -42,6 +50,12 @@
 		"type": "registry:ui",
 		"registryDependencies": [],
 		"relativeUrl": "breadcrumb.json"
+	},
+	{
+		"name": "bubble",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "bubble.json"
 	},
 	{
 		"name": "button",
@@ -125,6 +139,12 @@
 			"button"
 		],
 		"relativeUrl": "dialog.json"
+	},
+	{
+		"name": "direction",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "direction.json"
 	},
 	{
 		"name": "drawer",
@@ -211,10 +231,28 @@
 		"relativeUrl": "label.json"
 	},
 	{
+		"name": "marker",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "marker.json"
+	},
+	{
 		"name": "menubar",
 		"type": "registry:ui",
 		"registryDependencies": [],
 		"relativeUrl": "menubar.json"
+	},
+	{
+		"name": "message",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "message.json"
+	},
+	{
+		"name": "message-scroller",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "message-scroller.json"
 	},
 	{
 		"name": "native-select",
@@ -377,6 +415,12 @@
 		"type": "registry:ui",
 		"registryDependencies": [],
 		"relativeUrl": "tooltip.json"
+	},
+	{
+		"name": "typeset",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "typeset.json"
 	},
 	{
 		"name": "calendar-01",

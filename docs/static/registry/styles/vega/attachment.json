@@ -1,0 +1,63 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "attachment",
+	"type": "registry:ui",
+	"devDependencies": [
+		"tailwind-variants@^3.2.2"
+	],
+	"registryDependencies": [
+		"button"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport { Button } from \"$UI$/button/index.js\";\n\timport type { ComponentProps } from \"svelte\";\n\n\tlet { variant = \"ghost\", size = \"icon-sm\", ...restProps }: ComponentProps<typeof Button> = $props();\n</script>\n\n<Button data-slot=\"attachment-action\" {variant} {size} {...restProps} />\n",
+			"type": "registry:file",
+			"target": "attachment/attachment-action.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet { ref = $bindable(null), class: className, children, ...restProps }: WithElementRef<\n\t\tHTMLAttributes<HTMLDivElement>\n\t> = $props();\n</script>\n\n<div bind:this={ref} data-slot=\"attachment-actions\" class={cn(\"relative z-20 flex shrink-0 items-center gap-1\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "attachment/attachment-actions.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet { ref = $bindable(null), class: className, children, ...restProps }: WithElementRef<\n\t\tHTMLAttributes<HTMLDivElement>\n\t> = $props();\n</script>\n\n<div bind:this={ref} data-slot=\"attachment-content\" class={cn(\"min-w-0 flex-1\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "attachment/attachment-content.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet { ref = $bindable(null), class: className, children, ...restProps }: WithElementRef<\n\t\tHTMLAttributes<HTMLSpanElement>\n\t> = $props();\n</script>\n\n<span bind:this={ref} data-slot=\"attachment-description\" class={cn(\"block max-w-full truncate text-muted-foreground group-data-[state=error]/attachment:text-destructive/80\", className)} {...restProps}>\n\t{@render children?.()}\n</span>\n",
+			"type": "registry:file",
+			"target": "attachment/attachment-description.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet { ref = $bindable(null), class: className, children, ...restProps }: WithElementRef<\n\t\tHTMLAttributes<HTMLDivElement>\n\t> = $props();\n</script>\n\n<div bind:this={ref} data-slot=\"attachment-group\" class={cn(\"flex min-w-0 snap-x snap-mandatory gap-2 overflow-x-auto overscroll-x-contain [&>[data-slot=attachment]]:flex-none [&>[data-slot=attachment]]:snap-start\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "attachment/attachment-group.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tvariant = \"icon\",\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> & { variant?: \"icon\" | \"image\" } = $props();\n</script>\n\n<div bind:this={ref} data-slot=\"attachment-media\" data-variant={variant} class={cn(\"flex aspect-square size-10 shrink-0 items-center justify-center overflow-hidden rounded-md bg-muted text-muted-foreground group-data-[state=error]/attachment:bg-destructive/10 group-data-[state=error]/attachment:text-destructive [&_img]:size-full [&_img]:object-cover\", variant === \"image\" && \"size-24\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "attachment/attachment-media.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet { ref = $bindable(null), class: className, children, ...restProps }: WithElementRef<\n\t\tHTMLAttributes<HTMLSpanElement>\n\t> = $props();\n</script>\n\n<span bind:this={ref} data-slot=\"attachment-title\" class={cn(\"block max-w-full truncate font-medium group-data-[state=processing]/attachment:animate-pulse group-data-[state=uploading]/attachment:animate-pulse\", className)} {...restProps}>\n\t{@render children?.()}\n</span>\n",
+			"type": "registry:file",
+			"target": "attachment/attachment-title.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLButtonAttributes } from \"svelte/elements\";\n\n\tlet { ref = $bindable(null), class: className, type = \"button\", ...restProps }: WithElementRef<\n\t\tHTMLButtonAttributes\n\t> = $props();\n</script>\n\n<button bind:this={ref} data-slot=\"attachment-trigger\" {type} class={cn(\"absolute inset-0 z-10 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-ring\", className)} {...restProps}></button>\n",
+			"type": "registry:file",
+			"target": "attachment/attachment-trigger.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\" module>\n\timport { tv, type VariantProps } from \"tailwind-variants\";\n\n\texport const attachmentVariants = tv({\n\t\tbase: \"group/attachment relative flex max-w-full min-w-0 shrink-0 flex-wrap overflow-hidden rounded-lg border bg-card text-card-foreground transition-colors has-[>a,>button]:hover:bg-muted/50 data-[state=error]:border-destructive/30 data-[state=idle]:border-dashed\",\n\t\tvariants: {\n\t\t\tsize: {\n\t\t\t\tdefault: \"gap-3 p-3 text-sm\",\n\t\t\t\tsm: \"gap-2 p-2 text-sm\",\n\t\t\t\txs: \"gap-1.5 p-1.5 text-xs\",\n\t\t\t},\n\t\t\torientation: { horizontal: \"items-center\", vertical: \"flex-col\" },\n\t\t},\n\t\tdefaultVariants: { size: \"default\", orientation: \"horizontal\" },\n\t});\n\n\texport type AttachmentSize = VariantProps<typeof attachmentVariants>[\"size\"];\n\texport type AttachmentOrientation = VariantProps<typeof attachmentVariants>[\"orientation\"];\n</script>\n\n<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tstate = \"done\",\n\t\tsize = \"default\",\n\t\torientation = \"horizontal\",\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {\n\t\tstate?: \"idle\" | \"uploading\" | \"processing\" | \"error\" | \"done\";\n\t\tsize?: AttachmentSize;\n\t\torientation?: AttachmentOrientation;\n\t} = $props();\n</script>\n\n<div bind:this={ref} data-slot=\"attachment\" data-state={state} data-size={size} data-orientation={orientation} class={cn(attachmentVariants({ size, orientation }), className)} {...restProps}>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "attachment/attachment.svelte"
+		},
+		{
+			"content": "import Root, { attachmentVariants, type AttachmentOrientation, type AttachmentSize } from \"./attachment.svelte\";\nimport Group from \"./attachment-group.svelte\";\nimport Media from \"./attachment-media.svelte\";\nimport Content from \"./attachment-content.svelte\";\nimport Title from \"./attachment-title.svelte\";\nimport Description from \"./attachment-description.svelte\";\nimport Actions from \"./attachment-actions.svelte\";\nimport Action from \"./attachment-action.svelte\";\nimport Trigger from \"./attachment-trigger.svelte\";\n\nexport {\n\tRoot,\n\tGroup,\n\tMedia,\n\tContent,\n\tTitle,\n\tDescription,\n\tActions,\n\tAction,\n\tTrigger,\n\tRoot as Attachment,\n\tGroup as AttachmentGroup,\n\tMedia as AttachmentMedia,\n\tContent as AttachmentContent,\n\tTitle as AttachmentTitle,\n\tDescription as AttachmentDescription,\n\tActions as AttachmentActions,\n\tAction as AttachmentAction,\n\tTrigger as AttachmentTrigger,\n\tattachmentVariants,\n\ttype AttachmentOrientation,\n\ttype AttachmentSize,\n};\n",
+			"type": "registry:file",
+			"target": "attachment/index.ts"
+		}
+	]
+}
