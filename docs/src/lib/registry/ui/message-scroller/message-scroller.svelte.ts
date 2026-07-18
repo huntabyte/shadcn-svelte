@@ -3,8 +3,8 @@ import { getContext } from "svelte";
 export type ScrollDirection = "start" | "end";
 
 export interface MessageScrollerState {
-	viewport: HTMLDivElement | null;
-	content: HTMLDivElement | null;
+	viewport: HTMLElement | null;
+	content: HTMLElement | null;
 	items: Map<string, HTMLElement>;
 	autoScroll: boolean;
 	follow: boolean;
@@ -15,7 +15,7 @@ export interface MessageScrollerState {
 
 export interface MessageScrollerContext {
 	state: MessageScrollerState;
-	setViewport: (viewport: HTMLDivElement | null) => void;
+	setViewport: (viewport: HTMLElement | null) => void;
 	registerItem: (id: string, item: HTMLElement) => () => void;
 	scrollToStart: (behavior?: ScrollBehavior) => void;
 	scrollToEnd: (behavior?: ScrollBehavior) => void;

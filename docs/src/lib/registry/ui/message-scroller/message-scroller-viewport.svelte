@@ -13,7 +13,7 @@
 		context.state.canScrollEnd = ref.scrollTop + ref.clientHeight < ref.scrollHeight - 1;
 	}
 
-	function handleScroll(event: Event) {
+	function handleScroll(event: UIEvent & { currentTarget: EventTarget & HTMLDivElement }) {
 		refresh();
 		if (!context.state.programmatic) context.state.follow = context.state.autoScroll && !context.state.canScrollEnd;
 		onscroll?.(event);
@@ -29,6 +29,7 @@
 	});
 </script>
 
+<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 <div
 	bind:this={ref}
 	data-slot="message-scroller-viewport"

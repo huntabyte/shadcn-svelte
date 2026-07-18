@@ -45,7 +45,7 @@
 			"target": "attachment/attachment-title.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLButtonAttributes } from \"svelte/elements\";\n\n\tlet { ref = $bindable(null), class: className, type = \"button\", ...restProps }: WithElementRef<\n\t\tHTMLButtonAttributes\n\t> = $props();\n</script>\n\n<button bind:this={ref} data-slot=\"attachment-trigger\" {type} class={cn(\"absolute inset-0 z-10 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-ring\", className)} {...restProps} />\n",
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLButtonAttributes } from \"svelte/elements\";\n\n\tlet { ref = $bindable(null), class: className, type = \"button\", ...restProps }: WithElementRef<\n\t\tHTMLButtonAttributes\n\t> = $props();\n</script>\n\n<button bind:this={ref} data-slot=\"attachment-trigger\" {type} class={cn(\"absolute inset-0 z-10 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-ring\", className)} {...restProps}></button>\n",
 			"type": "registry:file",
 			"target": "attachment/attachment-trigger.svelte"
 		},

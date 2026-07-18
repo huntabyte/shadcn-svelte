@@ -9,6 +9,11 @@
 			"target": "message/index.ts"
 		},
 		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet { ref = $bindable(null), class: className, children, ...restProps }: WithElementRef<\n\t\tHTMLAttributes<HTMLDivElement>\n\t> = $props();\n</script>\n\n<div bind:this={ref} data-slot=\"message-avatar\" class={cn(\"flex size-8 shrink-0 items-center justify-center self-end overflow-hidden rounded-full bg-muted\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "message/message-avatar.svelte"
+		},
+		{
 			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet { ref = $bindable(null), class: className, children, ...restProps }: WithElementRef<\n\t\tHTMLAttributes<HTMLDivElement>\n\t> = $props();\n</script>\n\n<div bind:this={ref} data-slot=\"message-content\" class={cn(\"flex w-full min-w-0 flex-col gap-1 wrap-break-word\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n",
 			"type": "registry:file",
 			"target": "message/message-content.svelte"

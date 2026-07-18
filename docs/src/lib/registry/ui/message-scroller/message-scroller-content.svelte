@@ -8,13 +8,14 @@
 		HTMLAttributes<HTMLDivElement>
 	> = $props();
 	$effect(() => {
-		context.state.content = ref;
-		if (!ref) return;
-		let previousHeight = ref.scrollHeight;
+		const content = ref;
+		context.state.content = content;
+		if (!content) return;
+		let previousHeight = content.scrollHeight;
 		const observer = new MutationObserver((records) => {
 			const viewport = context.state.viewport;
 			if (!viewport) return;
-			const nextHeight = ref.scrollHeight;
+			const nextHeight = content.scrollHeight;
 			const addedAboveViewport = records.some((record) =>
 				Array.from(record.addedNodes).some(
 					(node) => node instanceof HTMLElement && node.getBoundingClientRect().bottom <= viewport.getBoundingClientRect().top
@@ -24,7 +25,7 @@
 			else if (addedAboveViewport) viewport.scrollTop += nextHeight - previousHeight;
 			previousHeight = nextHeight;
 		});
-		observer.observe(ref, { childList: true, subtree: true, characterData: true });
+		observer.observe(content, { childList: true, subtree: true, characterData: true });
 		return () => observer.disconnect();
 	});
 </script>
