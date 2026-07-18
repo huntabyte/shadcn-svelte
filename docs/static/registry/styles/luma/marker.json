@@ -1,0 +1,30 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "marker",
+	"type": "registry:ui",
+	"devDependencies": [
+		"tailwind-variants@^3.2.2"
+	],
+	"files": [
+		{
+			"content": "import Root, { type MarkerVariant, markerVariants } from \"./marker.svelte\";\nimport Icon from \"./marker-icon.svelte\";\nimport Content from \"./marker-content.svelte\";\n\nexport {\n\tRoot,\n\tIcon,\n\tContent,\n\tRoot as Marker,\n\tIcon as MarkerIcon,\n\tContent as MarkerContent,\n\tmarkerVariants,\n\ttype MarkerVariant,\n};\n",
+			"type": "registry:file",
+			"target": "marker/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet { ref = $bindable(null), class: className, children, ...restProps }: WithElementRef<\n\t\tHTMLAttributes<HTMLSpanElement>\n\t> = $props();\n</script>\n\n<span bind:this={ref} data-slot=\"marker-content\" class={cn(\"min-w-0 wrap-break-word\", className)} {...restProps}>\n\t{@render children?.()}\n</span>\n",
+			"type": "registry:file",
+			"target": "marker/marker-content.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet { ref = $bindable(null), class: className, children, ...restProps }: WithElementRef<\n\t\tHTMLAttributes<HTMLSpanElement>\n\t> = $props();\n</script>\n\n<span bind:this={ref} data-slot=\"marker-icon\" aria-hidden=\"true\" class={cn(\"shrink-0\", className)} {...restProps}>\n\t{@render children?.()}\n</span>\n",
+			"type": "registry:file",
+			"target": "marker/marker-icon.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\" module>\n\timport { tv, type VariantProps } from \"tailwind-variants\";\n\n\texport const markerVariants = tv({\n\t\tbase: \"group/marker relative flex w-full items-center gap-2 text-sm text-muted-foreground\",\n\t\tvariants: {\n\t\t\tvariant: {\n\t\t\t\tdefault: \"\",\n\t\t\t\tborder: \"border-b py-3\",\n\t\t\t\tseparator: \"before:bg-border after:bg-border before:h-px before:flex-1 after:h-px after:flex-1 justify-center gap-3 py-2 text-xs\",\n\t\t\t},\n\t\t},\n\t\tdefaultVariants: { variant: \"default\" },\n\t});\n\n\texport type MarkerVariant = VariantProps<typeof markerVariants>[\"variant\"];\n</script>\n\n<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { Snippet } from \"svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tvariant = \"default\",\n\t\tchild,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {\n\t\tvariant?: MarkerVariant;\n\t\tchild?: Snippet<[{ props: Record<string, unknown> }]>;\n\t} = $props();\n\n\tconst mergedProps = $derived({\n\t\tclass: cn(markerVariants({ variant }), className),\n\t\t\"data-slot\": \"marker\",\n\t\t\"data-variant\": variant,\n\t\t...restProps,\n\t});\n</script>\n\n{#if child}\n\t{@render child({ props: mergedProps })}\n{:else}\n\t<div bind:this={ref} {...mergedProps}>\n\t\t{@render children?.()}\n\t</div>\n{/if}\n",
+			"type": "registry:file",
+			"target": "marker/marker.svelte"
+		}
+	]
+}
