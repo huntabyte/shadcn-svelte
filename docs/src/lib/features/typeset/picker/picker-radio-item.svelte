@@ -5,15 +5,22 @@
 
 	let {
 		ref = $bindable(null),
+		value,
+		onItemPreview,
 		class: className,
 		children: childrenProp,
 		...restProps
-	}: WithoutChild<DropdownMenuPrimitive.RadioItemProps> = $props();
+	}: WithoutChild<DropdownMenuPrimitive.RadioItemProps> & {
+		onItemPreview?: (value: string) => void;
+	} = $props();
 </script>
 
 <DropdownMenuPrimitive.RadioItem
 	bind:ref
+	{value}
 	data-slot="dropdown-menu-radio-item"
+	onmousemove={() => onItemPreview?.(value as string)}
+	onfocus={() => onItemPreview?.(value as string)}
 	class={cn(
 		"[[data-slot=dropdown-menu-sub-content]_&]:focus:bg-accent [[data-slot=dropdown-menu-sub-content]_&]:focus:text-accent-foreground [[data-slot=dropdown-menu-sub-content]_&]:focus:**:text-accent-foreground relative flex cursor-default items-center gap-2 rounded-lg py-1.5 pr-8 pl-2 text-sm font-medium outline-hidden select-none focus:bg-neutral-600 focus:text-neutral-100 focus:**:text-neutral-100 data-disabled:pointer-events-none data-disabled:opacity-50 data-inset:pl-8 dark:focus:bg-neutral-700/80 pointer-coarse:gap-3 pointer-coarse:py-2.5 pointer-coarse:pl-3 pointer-coarse:text-base [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
 		className

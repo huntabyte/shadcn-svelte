@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from "svelte";
+	import { onDestroy, onMount } from "svelte";
 	import { mode, setMode } from "mode-watcher";
 	import ExternalLink from "@lucide/svelte/icons/external-link";
 	import ArrowLeftRight from "@lucide/svelte/icons/arrow-left-right";
@@ -25,8 +25,15 @@
 		findFont,
 		serializeTypesetParams,
 	} from "$lib/features/typeset/typeset.svelte.js";
+	import {
+		provideTypesetPreviewOverride,
+		TypesetPreviewOverrideState,
+	} from "$lib/features/typeset/preview-override.svelte.js";
 
 	const typeset = new TypesetState();
+	const previewOverride = new TypesetPreviewOverrideState();
+	provideTypesetPreviewOverride(previewOverride);
+	onDestroy(() => previewOverride.destroy());
 	let iframe: HTMLIFrameElement;
 	let customizerAnchor = $state<HTMLElement | null>(null);
 	let pickerScroll = $state<HTMLElement | null>(null);
@@ -60,8 +67,9 @@
 	let previewItem = typeset.params.item;
 
 	function sendPreviewParams() {
+		const params = { ...typeset.params, ...(previewOverride.override ?? {}) };
 		iframe?.contentWindow?.postMessage(
-			{ type: "typeset-params", data: { ...typeset.params } },
+			{ type: "typeset-params", data: params },
 			typeof window === "undefined" ? "*" : window.location.origin
 		);
 	}

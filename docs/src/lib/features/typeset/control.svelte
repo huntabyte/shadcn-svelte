@@ -7,6 +7,7 @@
 	import { tick } from "svelte";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import * as Picker from "./picker/index.js";
+	import { useTypesetPreviewOverride } from "./preview-override.svelte.js";
 
 	let {
 		typeset,
@@ -36,6 +37,7 @@
 	} = $props();
 
 	const isMobile = new IsMobile();
+	const previewOverride = useTypesetPreviewOverride();
 	let open = $state(false);
 	const value = $derived(typeset.params[param]);
 	const current = $derived(options.find((option) => option.value === value));
@@ -45,6 +47,10 @@
 	const ungroupedOptions = $derived(
 		groups ? options.filter((option) => !groupedValues.has(option.value)) : []
 	);
+
+	$effect(() => {
+		if (!open) previewOverride?.clear();
+	});
 
 	async function updateValue(next: string) {
 		const scrollLeft = scrollContainer?.scrollLeft;
@@ -100,6 +106,7 @@
 			align={isMobile.current ? "center" : "start"}
 			customAnchor={isMobile.current ? anchor : undefined}
 			class="cn-menu-translucent max-h-96 max-md:w-(--bits-dropdown-menu-anchor-width)"
+			onmouseleave={() => previewOverride?.clear()}
 		>
 			<Picker.RadioGroup {value} onValueChange={updateValue}>
 				{#if groups}
@@ -109,6 +116,9 @@
 								<Picker.RadioItem
 									value={option.value}
 									closeOnSelect={isMobile.current}
+									onItemPreview={isMobile.current
+										? undefined
+										: (next) => previewOverride?.set({ [param]: next })}
 								>
 									{option.menuLabel ?? option.label}
 								</Picker.RadioItem>
@@ -123,6 +133,9 @@
 								<Picker.RadioItem
 									value={option.value}
 									closeOnSelect={isMobile.current}
+									onItemPreview={isMobile.current
+										? undefined
+										: (next) => previewOverride?.set({ [param]: next })}
 								>
 									{option.menuLabel ?? option.label}
 								</Picker.RadioItem>
@@ -131,7 +144,13 @@
 					{/each}
 				{:else}
 					{#each options as option (option.value)}
-						<Picker.RadioItem value={option.value} closeOnSelect={isMobile.current}>
+						<Picker.RadioItem
+							value={option.value}
+							closeOnSelect={isMobile.current}
+							onItemPreview={isMobile.current
+								? undefined
+								: (next) => previewOverride?.set({ [param]: next })}
+						>
 							{option.menuLabel ?? option.label}
 						</Picker.RadioItem>
 					{/each}
