@@ -10,6 +10,7 @@
 		type BaseTheme,
 		type Theme,
 	} from "$lib/registry/config.js";
+	import { usePreviewOverride } from "./preview-override-context.svelte.js";
 
 	type Props = {
 		submenu?: boolean;
@@ -18,6 +19,7 @@
 	let { submenu = false }: Props = $props();
 
 	const designSystem = useDesignSystem();
+	const previewOverride = usePreviewOverride();
 
 	const isMobile = new IsMobile();
 
@@ -66,7 +68,15 @@
 			sideOffset={submenu ? 5 : 20}
 			{submenu}
 		>
-			<Picker.RadioGroup bind:value={designSystem.chartColor}>
+			<Picker.RadioGroup
+				bind:value={designSystem.chartColor}
+				onItemPreview={isMobile.current
+					? undefined
+					: (value) =>
+							previewOverride.setOverride({
+								chartColor: value as typeof designSystem.chartColor,
+							})}
+			>
 				<Picker.Group>
 					{#each availableChartColors.filter( (theme) => BASE_THEMES.some((baseColor) => baseColor.name === theme.name) ) as theme (theme.name)}
 						<Picker.RadioItem value={theme.name} closeOnSelect={false}>

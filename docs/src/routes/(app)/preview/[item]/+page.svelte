@@ -3,6 +3,7 @@
 	import TailwindIndicator from "$lib/components/tailwind-indicator.svelte";
 	import Button from "$lib/registry/ui/button/button.svelte";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import DesignSystemProvider from "$lib/features/design-system/components/design-system-provider.svelte";
 	import type { Component } from "svelte";
 
 	let { data } = $props();
@@ -52,6 +53,8 @@
 	</Button>
 {/if}
 {#await ComponentPromise then { default: Component }}
-	<Component />
+	<DesignSystemProvider>
+		<Component />
+	</DesignSystemProvider>
 {/await}
 <TailwindIndicator />

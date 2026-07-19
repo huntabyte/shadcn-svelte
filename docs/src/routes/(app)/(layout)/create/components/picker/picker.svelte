@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
+	import { usePreviewOverride } from "../preview-override-context.svelte.js";
 	import { preservePickerScroll } from "./picker-scroll.js";
 
 	type Props =
@@ -11,10 +12,18 @@
 		  } & DropdownMenuPrimitive.SubProps);
 
 	let { open = $bindable(false), submenu, onOpenChange, ...restProps }: Props = $props();
+	const previewOverride = usePreviewOverride();
+
+	$effect(() => {
+		if (!open) {
+			previewOverride.clearOverride();
+		}
+	});
 
 	function handleOpenChange(nextOpen: boolean) {
 		if (!nextOpen) {
 			preservePickerScroll();
+			previewOverride.clearOverride();
 		}
 
 		onOpenChange?.(nextOpen);
@@ -27,6 +36,7 @@
 
 		const onBlur = () => {
 			// window.blur fires when focus leaves the document (e.g. into an iframe)
+			previewOverride.clearOverride();
 			open = false;
 		};
 

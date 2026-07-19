@@ -9,6 +9,7 @@
 	import HugeiconsLogo from "$lib/registry/icons/logos/hugeicons.svelte";
 	import PhosphorLogo from "$lib/registry/icons/logos/phosphor.svelte";
 	import RemixiconLogo from "$lib/registry/icons/logos/remixicon.svelte";
+	import { usePreviewOverride } from "./preview-override-context.svelte.js";
 
 	type Props = {
 		submenu?: boolean;
@@ -17,6 +18,7 @@
 	let { submenu = false }: Props = $props();
 
 	const designSystem = useDesignSystem();
+	const previewOverride = usePreviewOverride();
 	const isMobile = new IsMobile();
 
 	const currentIconLibrary = $derived(iconLibraries[designSystem.iconLibrary]);
@@ -53,7 +55,15 @@
 			sideOffset={submenu ? 5 : 20}
 			{submenu}
 		>
-			<Picker.RadioGroup bind:value={designSystem.iconLibrary}>
+			<Picker.RadioGroup
+				bind:value={designSystem.iconLibrary}
+				onItemPreview={isMobile.current
+					? undefined
+					: (value) =>
+							previewOverride.setOverride({
+								iconLibrary: value as typeof designSystem.iconLibrary,
+							})}
+			>
 				<Picker.Group>
 					{#each Object.values(iconLibraries) as iconLibrary (iconLibrary.name)}
 						<Picker.RadioItem closeOnSelect={false} value={iconLibrary.name}>

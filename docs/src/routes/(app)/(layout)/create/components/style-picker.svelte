@@ -4,6 +4,7 @@
 	import * as Picker from "./picker/index.js";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
+	import { usePreviewOverride } from "./preview-override-context.svelte.js";
 
 	type Props = {
 		submenu?: boolean;
@@ -12,6 +13,7 @@
 	let { submenu = false }: Props = $props();
 
 	const designSystem = useDesignSystem();
+	const previewOverride = usePreviewOverride();
 
 	const currentStyle = $derived(
 		STYLES.find((style) => style.name === designSystem.style) ?? STYLES[0]
@@ -41,7 +43,15 @@
 			sideOffset={submenu ? 5 : 20}
 			{submenu}
 		>
-			<Picker.RadioGroup bind:value={designSystem.style}>
+			<Picker.RadioGroup
+				bind:value={designSystem.style}
+				onItemPreview={isMobile.current
+					? undefined
+					: (value) =>
+							previewOverride.setOverride({
+								style: value as typeof designSystem.style,
+							})}
+			>
 				<Picker.Group>
 					{#each STYLES as style (style.name)}
 						<Picker.RadioItem value={style.name} closeOnSelect={false}>

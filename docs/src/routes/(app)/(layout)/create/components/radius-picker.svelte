@@ -4,6 +4,7 @@
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import LockButton from "./lock-button.svelte";
+	import { usePreviewOverride } from "./preview-override-context.svelte.js";
 
 	type Props = {
 		submenu?: boolean;
@@ -12,6 +13,7 @@
 	let { submenu = false }: Props = $props();
 
 	const designSystem = useDesignSystem();
+	const previewOverride = usePreviewOverride();
 
 	const isRadiusLocked = $derived(designSystem.style === "lyra" || designSystem.style === "sera");
 
@@ -70,6 +72,12 @@
 						designSystem.radius = value as RadiusValue;
 					}
 				}
+				onItemPreview={isMobile.current || isRadiusLocked
+					? undefined
+					: (value) =>
+							previewOverride.setOverride({
+								radius: value as typeof designSystem.radius,
+							})}
 			>
 				<Picker.Group>
 					{#each RADII as radius (radius.name)}

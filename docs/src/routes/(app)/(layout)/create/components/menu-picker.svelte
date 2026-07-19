@@ -8,6 +8,7 @@
 	import { browser } from "$app/environment";
 	import { Menu02Icon } from "@hugeicons/core-free-icons";
 	import { HugeiconsIcon } from "@hugeicons/svelte";
+	import { usePreviewOverride } from "./preview-override-context.svelte.js";
 
 	type ColorChoice = "default" | "inverted";
 	type SurfaceChoice = "solid" | "translucent";
@@ -19,6 +20,7 @@
 	let { submenu = false }: Props = $props();
 
 	const designSystem = useDesignSystem();
+	const previewOverride = usePreviewOverride();
 	const isMobile = new IsMobile();
 
 	const MENU_OPTIONS: { value: MenuColorValue; label: string }[] = [
@@ -81,6 +83,22 @@
 		designSystem.menuColor = nextMenuColor;
 		designSystem.menuAccent = isTranslucent ? "subtle" : lastSolidMenuAccent;
 	}
+
+	function previewColor(color: ColorChoice) {
+		const nextMenuColor = getMenuColorValue(color, surfaceChoice === "translucent");
+		previewOverride.setOverride({
+			menuColor: nextMenuColor,
+			...(isTranslucentMenuColor(nextMenuColor) ? { menuAccent: "subtle" } : {}),
+		});
+	}
+
+	function previewSurface(choice: SurfaceChoice) {
+		const isTranslucent = choice === "translucent";
+		previewOverride.setOverride({
+			menuColor: getMenuColorValue(colorChoice, isTranslucent),
+			menuAccent: isTranslucent ? "subtle" : lastSolidMenuAccent,
+		});
+	}
 </script>
 
 <div class="group/picker relative">
@@ -113,6 +131,9 @@
 				<Picker.RadioGroup
 					value={colorChoice}
 					onValueChange={(value) => setColor(value as ColorChoice)}
+					onItemPreview={isMobile.current
+						? undefined
+						: (value) => previewColor(value as ColorChoice)}
 				>
 					<Picker.RadioItem value="default" closeOnSelect={isMobile.current}>
 						Default
@@ -132,6 +153,9 @@
 				<Picker.RadioGroup
 					value={surfaceChoice}
 					onValueChange={(value) => setSurface(value as SurfaceChoice)}
+					onItemPreview={isMobile.current
+						? undefined
+						: (value) => previewSurface(value as SurfaceChoice)}
 				>
 					<Picker.RadioItem value="solid" closeOnSelect={isMobile.current}>
 						Solid

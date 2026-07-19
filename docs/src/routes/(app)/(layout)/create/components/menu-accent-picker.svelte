@@ -4,6 +4,7 @@
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import LockButton from "./lock-button.svelte";
 	import { MENU_ACCENTS, type MenuAccentValue } from "$lib/registry/config.js";
+	import { usePreviewOverride } from "./preview-override-context.svelte.js";
 
 	type Props = {
 		submenu?: boolean;
@@ -12,6 +13,7 @@
 	let { submenu = false }: Props = $props();
 
 	const designSystem = useDesignSystem();
+	const previewOverride = usePreviewOverride();
 	const isMobile = new IsMobile();
 
 	const currentAccent = $derived(
@@ -71,6 +73,10 @@
 				onValueChange={(value) => {
 					designSystem.menuAccent = value as MenuAccentValue;
 				}}
+				onItemPreview={isMobile.current
+					? undefined
+					: (value) =>
+							previewOverride.setOverride({ menuAccent: value as MenuAccentValue })}
 			>
 				<Picker.Group>
 					{#each MENU_ACCENTS as accent (accent.value)}

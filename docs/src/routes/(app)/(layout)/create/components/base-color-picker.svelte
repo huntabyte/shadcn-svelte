@@ -5,6 +5,7 @@
 	import LockButton from "./lock-button.svelte";
 	import { BASE_THEMES, type BaseColorName } from "$lib/registry/config.js";
 	import { mode, setMode } from "mode-watcher";
+	import { usePreviewOverride } from "./preview-override-context.svelte.js";
 
 	type Props = {
 		submenu?: boolean;
@@ -13,6 +14,7 @@
 	let { submenu = false }: Props = $props();
 
 	const designSystem = useDesignSystem();
+	const previewOverride = usePreviewOverride();
 
 	const isMobile = new IsMobile();
 
@@ -44,6 +46,9 @@
 		>
 			<Picker.RadioGroup
 				bind:value={designSystem.baseColor}
+				onItemPreview={isMobile.current
+					? undefined
+					: (value) => previewOverride.setOverride({ baseColor: value as BaseColorName })}
 				onValueChange={(value) => {
 					if (value === "dark") {
 						setMode(mode.current === "dark" ? "light" : "dark");

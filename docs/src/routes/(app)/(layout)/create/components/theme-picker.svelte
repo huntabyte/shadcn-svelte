@@ -5,6 +5,7 @@
 	import LockButton from "./lock-button.svelte";
 	import { mode } from "mode-watcher";
 	import { BASE_THEMES, THEMES, type BaseTheme, type Theme } from "$lib/registry/config.js";
+	import { usePreviewOverride } from "./preview-override-context.svelte.js";
 
 	type Props = {
 		submenu?: boolean;
@@ -13,6 +14,7 @@
 	let { submenu = false }: Props = $props();
 
 	const designSystem = useDesignSystem();
+	const previewOverride = usePreviewOverride();
 
 	const isMobile = new IsMobile();
 
@@ -53,7 +55,15 @@
 			sideOffset={submenu ? 5 : 20}
 			{submenu}
 		>
-			<Picker.RadioGroup bind:value={designSystem.theme}>
+			<Picker.RadioGroup
+				bind:value={designSystem.theme}
+				onItemPreview={isMobile.current
+					? undefined
+					: (value) =>
+							previewOverride.setOverride({
+								theme: value as typeof designSystem.theme,
+							})}
+			>
 				<Picker.Group>
 					{#each THEMES.filter( (theme) => BASE_THEMES.find((baseColor) => baseColor.name === theme.name) ) as theme (theme.name)}
 						{#if theme.name === designSystem.baseColor}

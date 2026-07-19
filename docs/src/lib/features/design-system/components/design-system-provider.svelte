@@ -134,11 +134,17 @@
 		cssText += "}\n";
 
 		styleElement.textContent = cssText;
+
+		if (window.self !== window.top && document.body) {
+			document.documentElement.style.backgroundColor = "var(--background)";
+			document.body.style.backgroundColor = "var(--background)";
+		}
 	});
 
 	$effect.pre(() => {
 		const menuColor = designSystem.menuColor;
 		if (!browser || !menuColor) return;
+		if (!document.body) return;
 
 		const isInvertedMenu = menuColor === "inverted" || menuColor === "inverted-translucent";
 		const isTranslucentMenu =
@@ -207,6 +213,28 @@
 				window.cancelAnimationFrame(menuFrameId);
 			}
 		};
+	});
+
+	$effect(() => {
+		if (!browser || window.self === window.top) return;
+
+		const handleMessage = (event: MessageEvent) => {
+			if (
+				event.origin !== window.location.origin ||
+				event.source !== window.parent ||
+				!event.data ||
+				typeof event.data !== "object" ||
+				event.data.type !== "design-system-preset" ||
+				typeof event.data.data !== "string"
+			) {
+				return;
+			}
+
+			designSystem.preset = event.data.data;
+		};
+
+		window.addEventListener("message", handleMessage);
+		return () => window.removeEventListener("message", handleMessage);
 	});
 
 	function handleKeyDown(e: KeyboardEvent) {

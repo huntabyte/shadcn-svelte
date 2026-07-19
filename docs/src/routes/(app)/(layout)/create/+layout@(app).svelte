@@ -4,6 +4,7 @@
 	import Metadata from "$lib/components/metadata.svelte";
 	import SiteHeader from "$lib/components/site-header.svelte";
 	import Customizer from "./components/customizer.svelte";
+	import PreviewOverrideProvider from "./components/preview-override-provider.svelte";
 	import ActionMenu from "./components/action-menu.svelte";
 	import { OG_IMAGE_BASE_URL } from "../../../og/og.js";
 	import { cn } from "$lib/utils.js";
@@ -32,13 +33,15 @@
 		)}
 	>
 		<SiteHeader />
-		<main
-			data-slot="designer"
-			class="flex min-h-0 flex-1 flex-col gap-(--gap) p-(--gap) pt-[calc(var(--gap)*0.25)] md:flex-row-reverse"
-		>
-			{@render children?.()}
-			<Customizer />
-			<WelcomeDialog />
-		</main>
+		<PreviewOverrideProvider>
+			<main
+				data-slot="designer"
+				class="flex min-h-0 flex-1 flex-col gap-(--gap) p-(--gap) pt-[calc(var(--gap)*0.25)] md:flex-row-reverse"
+			>
+				{@render children?.()}
+				<Customizer />
+				<WelcomeDialog />
+			</main>
+		</PreviewOverrideProvider>
 	</div>
 </ActionMenu>

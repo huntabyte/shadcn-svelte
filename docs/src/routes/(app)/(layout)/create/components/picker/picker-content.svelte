@@ -3,6 +3,7 @@
 	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
 	import { setContext } from "svelte";
 	import type { Snippet } from "svelte";
+	import { usePreviewOverride } from "../preview-override-context.svelte.js";
 
 	let {
 		ref = $bindable(null),
@@ -20,6 +21,7 @@
 
 	// Submenu items are theme-aware; standalone (non-submenu) items always use dark hardcoded colors.
 	setContext("picker-is-submenu", () => submenu);
+	const previewOverride = usePreviewOverride();
 
 	// On mobile, floating-ui positions via `transform: translate(X, Y)` with left/top both at 0.
 	// We intercept style mutations to neutralize the X offset and center the dropdown instead.
@@ -54,6 +56,8 @@
 			{sideOffset}
 			preventScroll={false}
 			updatePositionStrategy="always"
+			onmouseleave={previewOverride.clearOverride}
+			onpointerleave={previewOverride.clearOverride}
 			class={cn(
 				"bg-popover/90 text-popover-foreground ring-foreground/10 z-50 w-52 overflow-x-hidden rounded-md p-1 shadow-lg ring-1 backdrop-blur-xs",
 				className
@@ -71,10 +75,17 @@
 			{sideOffset}
 			preventScroll={false}
 			updatePositionStrategy="always"
+			onmouseleave={previewOverride.clearOverride}
+			onpointerleave={previewOverride.clearOverride}
 			{...restProps}
 		>
 			{#snippet child({ props, wrapperProps })}
-				<div use:mobileCenterDropdown {...wrapperProps}>
+				<div
+					use:mobileCenterDropdown
+					onmouseleave={previewOverride.clearOverride}
+					onpointerleave={previewOverride.clearOverride}
+					{...wrapperProps}
+				>
 					<div
 						{...props}
 						class={cn(

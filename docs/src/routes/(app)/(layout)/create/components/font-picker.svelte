@@ -4,6 +4,7 @@
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import LockButton from "./lock-button.svelte";
+	import { usePreviewOverride } from "./preview-override-context.svelte.js";
 
 	type FontPickerOption = {
 		name: string;
@@ -26,6 +27,7 @@
 	let { submenu = false, fonts, label, param }: Props = $props();
 
 	const designSystem = useDesignSystem();
+	const previewOverride = usePreviewOverride();
 
 	const isMobile = new IsMobile();
 
@@ -85,7 +87,12 @@
 			sideOffset={submenu ? 5 : 20}
 			{submenu}
 		>
-			<Picker.RadioGroup bind:value={designSystem[param]}>
+			<Picker.RadioGroup
+				bind:value={designSystem[param]}
+				onItemPreview={isMobile.current
+					? undefined
+					: (value) => previewOverride.setOverride({ [param]: value })}
+			>
 				{#if param === "fontHeading"}
 					<Picker.Group>
 						<Picker.RadioItem value="inherit" closeOnSelect={isMobile.current}>

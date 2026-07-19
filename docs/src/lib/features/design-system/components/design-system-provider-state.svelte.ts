@@ -54,9 +54,10 @@ class DesignSystemState implements IDesignSystemState {
 	#preset: PersistedState<string>;
 	#locks: PersistedState<Lockable>;
 	constructor() {
+		const isEmbeddedPreview = browser && window.self !== window.top;
 		const initialPreset = this.#getSearchParam("preset");
 		this.#preset = new PersistedState<string>(
-			"design-system-preset",
+			isEmbeddedPreview ? "design-system-preview-preset" : "design-system-preset",
 			initialPreset ?? encodePreset(DEFAULT_PRESET_CONFIG)
 		);
 		this.#locks = new PersistedState<Lockable>("locks", {
@@ -84,7 +85,7 @@ class DesignSystemState implements IDesignSystemState {
 			}
 		);
 
-		if (browser && !hasSyncedPresetToUrl && !initialPreset) {
+		if (browser && !isEmbeddedPreview && !hasSyncedPresetToUrl && !initialPreset) {
 			hasSyncedPresetToUrl = true;
 			queueMicrotask(() => this.#replacePresetParam(this.#preset.current));
 		}
@@ -106,7 +107,7 @@ class DesignSystemState implements IDesignSystemState {
 	}
 
 	#replacePresetParam(code: string) {
-		if (!browser) return;
+		if (!browser || window.self !== window.top) return;
 
 		const searchParams = new SvelteURLSearchParams(page.url.searchParams);
 		searchParams.set("preset", code);
