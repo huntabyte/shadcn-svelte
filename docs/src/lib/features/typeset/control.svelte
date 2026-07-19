@@ -115,7 +115,6 @@
 							{#each ungroupedOptions as option (option.value)}
 								<Picker.RadioItem
 									value={option.value}
-									closeOnSelect={isMobile.current}
 									onItemPreview={isMobile.current
 										? undefined
 										: (next) => previewOverride?.set({ [param]: next })}
@@ -132,7 +131,6 @@
 							{#each group.options as option (option.value)}
 								<Picker.RadioItem
 									value={option.value}
-									closeOnSelect={isMobile.current}
 									onItemPreview={isMobile.current
 										? undefined
 										: (next) => previewOverride?.set({ [param]: next })}
@@ -146,7 +144,6 @@
 					{#each options as option (option.value)}
 						<Picker.RadioItem
 							value={option.value}
-							closeOnSelect={isMobile.current}
 							onItemPreview={isMobile.current
 								? undefined
 								: (next) => previewOverride?.set({ [param]: next })}
