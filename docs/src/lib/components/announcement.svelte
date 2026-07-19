@@ -4,6 +4,6 @@
 	import { ArrowRightIcon } from "@lucide/svelte";
 </script>
 
-<a href="/docs/changelog" class={cn(badgeVariants({ variant: "secondary", class: "bg-muted" }))}>
-	Introducing Rhea <ArrowRightIcon />
+<a href="/docs/typeset" class={cn(badgeVariants({ variant: "secondary", class: "bg-muted" }))}>
+	Introducing shadcn-svelte/typeset <ArrowRightIcon />
 </a>

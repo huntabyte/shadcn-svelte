@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn-svelte/tailwind.css";
+@import "./lib/styles/typeset.css";
 
 @import "./lib/registry/styles/style-vega.css" layer(base);
 @import "./lib/registry/styles/style-nova.css" layer(base);
@@ -206,6 +207,7 @@
 
 	html {
 		@apply overscroll-none;
+		scroll-padding-top: var(--header-height);
 	}
 
 	body {
@@ -283,6 +285,10 @@
 }
 
 @layer components {
+	.typeset a[data-slot] {
+		font-weight: inherit;
+		text-decoration-line: none;
+	}
 	.steps {
 		&:first-child {
 			@apply !mt-0;
@@ -368,9 +374,9 @@
 	}
 
 	[data-line] {
-		padding-top: calc(var(--spacing) * 0.5);
-		padding-bottom: calc(var(--spacing) * 0.5);
-		min-height: calc(var(--spacing) * 1);
+		padding-top: calc(var(--spacing) * 0.25);
+		padding-bottom: calc(var(--spacing) * 0.25);
+		min-height: calc(var(--spacing) * 0.875);
 		width: 100%;
 		display: inline-block;
 	}

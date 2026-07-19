@@ -142,7 +142,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 				{/if}
 			</div>
 			<CtaMobile />
-			<div class="w-full flex-1 pb-16 *:data-[slot=alert]:first:mt-0 sm:pb-0">
+			<div class="typeset w-full flex-1 pb-16 *:data-[slot=alert]:first:mt-0 sm:pb-0">
 				<Markdown viewerData={data.viewerData} />
 			</div>
 			{#if !isChangelog}
