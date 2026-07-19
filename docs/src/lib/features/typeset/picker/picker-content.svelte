@@ -5,6 +5,7 @@
 	let {
 		ref = $bindable(null),
 		sideOffset = 20,
+		preventScroll = false,
 		portalProps,
 		class: className,
 		submenu = false,
@@ -32,6 +33,7 @@
 			bind:ref
 			data-slot="dropdown-menu-content"
 			{sideOffset}
+			{preventScroll}
 			class={cn(
 				"cn-menu-target no-scrollbar z-50 max-h-(--available-height) w-[calc(var(--available-width)-(--spacing(6)))] min-w-32 origin-(--transform-origin) translate-y-2 overflow-x-hidden overflow-y-auto rounded-xl border-0 bg-neutral-950 p-1.5 text-neutral-100 ring-1 ring-neutral-950/80 outline-none data-[state=closed]:overflow-hidden md:w-52 dark:bg-neutral-800 dark:ring-neutral-700/50 [&.cn-menu-translucent]:bg-neutral-950/80 [&.cn-menu-translucent]:backdrop-blur-xl dark:[&.cn-menu-translucent]:bg-neutral-800/90",
 				className
