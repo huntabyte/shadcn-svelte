@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 	import NativeSelectBasic from "./native-select-basic.svelte";
 	import NativeSelectWithGroups from "./native-select-with-groups.svelte";
 	import NativeSelectSizes from "./native-select-sizes.svelte";

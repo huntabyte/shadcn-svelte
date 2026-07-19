@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Avatar from "$lib/registry/ui/avatar/index.js";
 	import { Badge } from "$lib/registry/ui/badge/index.js";
@@ -35,7 +35,11 @@
 			<div class="flex flex-wrap gap-2">
 				{#each usernames as username (username)}
 					<Avatar.Root>
-						<Avatar.Image src={`https://github.com/${username}.png`} alt={username} />
+						<Avatar.Image
+							src={`https://github.com/${username}.png`}
+							alt={username}
+							class="grayscale"
+						/>
 						<Avatar.Fallback>{username.charAt(0)}</Avatar.Fallback>
 					</Avatar.Root>
 				{/each}

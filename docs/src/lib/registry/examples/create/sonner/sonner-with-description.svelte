@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import { toast } from "svelte-sonner";
 	import { Button } from "$lib/registry/ui/button/index.js";
 </script>

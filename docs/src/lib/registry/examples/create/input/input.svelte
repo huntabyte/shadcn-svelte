@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 	import InputBasic from "./input-basic.svelte";
 	import InputInvalid from "./input-invalid.svelte";
 	import InputWithLabel from "./input-with-label.svelte";

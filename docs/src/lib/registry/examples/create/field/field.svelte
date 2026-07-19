@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 	import FieldInputFields from "./field-input-fields.svelte";
 	import FieldTextareaFields from "./field-textarea-fields.svelte";
 	import FieldSelectFields from "./field-select-fields.svelte";

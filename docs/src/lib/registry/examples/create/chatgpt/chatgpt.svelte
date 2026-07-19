@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 	import PromptForm from "./prompt-form.svelte";
 	import ModelSelector from "./model-selector.svelte";
 	import GroupChatDialog from "./group-chat-dialog.svelte";

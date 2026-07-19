@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 	import AlertDialogBasic from "./alert-dialog-basic.svelte";
 	import AlertDialogSmall from "./alert-dialog-small.svelte";
 	import AlertDialogWithMedia from "./alert-dialog-with-media.svelte";

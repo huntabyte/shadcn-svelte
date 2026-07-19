@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as InputOTP from "$lib/registry/ui/input-otp/index.js";
 	import { REGEXP_ONLY_DIGITS_AND_CHARS } from "bits-ui";

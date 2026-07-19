@@ -1,0 +1,90 @@
+<script lang="ts">
+	import * as Picker from "./picker/index.js";
+	import { useDesignSystem } from "$lib/features/design-system/index.js";
+	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
+	import LockButton from "./lock-button.svelte";
+	import { mode } from "mode-watcher";
+	import { BASE_THEMES, THEMES, type BaseTheme, type Theme } from "$lib/registry/config.js";
+	import { usePreviewOverride } from "./preview-override-context.svelte.js";
+
+	type Props = {
+		submenu?: boolean;
+	};
+
+	let { submenu = false }: Props = $props();
+
+	const designSystem = useDesignSystem();
+	const previewOverride = usePreviewOverride();
+
+	const isMobile = new IsMobile();
+
+	const currentTheme = $derived(
+		THEMES.find((theme) => theme.name === designSystem.theme) ?? THEMES[0]
+	);
+
+	function isBaseColor(theme: Theme): theme is BaseTheme {
+		return BASE_THEMES.find((baseColor) => baseColor.name === theme.name) !== undefined;
+	}
+
+	function getColorForTheme(theme: Theme) {
+		if (isBaseColor(theme)) {
+			return theme.cssVars[mode.current ?? "light"]["muted-foreground"];
+		}
+		return theme.cssVars[mode.current ?? "light"]["primary"];
+	}
+</script>
+
+<div class="group/picker relative">
+	<Picker.Root {submenu}>
+		<Picker.Trigger {submenu}>
+			<div class="flex flex-col justify-start text-left">
+				<div class="text-muted-foreground text-xs">Theme</div>
+				<div class="text-foreground text-sm font-medium">
+					{currentTheme?.title}
+				</div>
+			</div>
+			<div
+				style="--color: {getColorForTheme(currentTheme)};"
+				class="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 rounded-full bg-(--color) select-none md:right-2.5"
+			></div>
+		</Picker.Trigger>
+		<Picker.Content
+			side={isMobile.current ? "top" : submenu ? "left" : "right"}
+			align={isMobile.current ? "center" : "start"}
+			class="max-h-96 overflow-y-auto"
+			sideOffset={submenu ? 5 : 20}
+			{submenu}
+		>
+			<Picker.RadioGroup
+				bind:value={designSystem.theme}
+				onItemPreview={isMobile.current
+					? undefined
+					: (value) =>
+							previewOverride.setOverride({
+								theme: value as typeof designSystem.theme,
+							})}
+			>
+				<Picker.Group>
+					{#each THEMES.filter( (theme) => BASE_THEMES.find((baseColor) => baseColor.name === theme.name) ) as theme (theme.name)}
+						{#if theme.name === designSystem.baseColor}
+							<Picker.RadioItem value={theme.name} closeOnSelect={false}>
+								{theme.title}
+							</Picker.RadioItem>
+						{/if}
+					{/each}
+				</Picker.Group>
+				<Picker.Separator />
+				<Picker.Group>
+					{#each THEMES.filter((theme) => !BASE_THEMES.find((baseColor) => baseColor.name === theme.name)) as theme (theme.name)}
+						<Picker.RadioItem value={theme.name} closeOnSelect={false}>
+							<div class="flex items-center gap-2">
+								{theme.title}
+							</div>
+						</Picker.RadioItem>
+					{/each}
+				</Picker.Group>
+			</Picker.RadioGroup>
+		</Picker.Content>
+	</Picker.Root>
+	<LockButton prop="theme" class="absolute top-1/2 right-10 -translate-y-1/2" />
+</div>

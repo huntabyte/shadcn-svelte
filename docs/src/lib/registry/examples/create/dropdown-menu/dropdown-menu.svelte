@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 	import DropdownMenuBasic from "./dropdown-menu-basic.svelte";
 	import DropdownMenuComplex from "./dropdown-menu-complex.svelte";
 	import DropdownMenuWithIcons from "./dropdown-menu-with-icons.svelte";

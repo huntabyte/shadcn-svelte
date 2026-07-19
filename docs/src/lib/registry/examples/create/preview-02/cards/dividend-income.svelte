@@ -103,7 +103,7 @@
 								},
 							]}
 							props={{
-								bars: { rounded: "top" },
+								bars: { stroke: "none", strokeWidth: 0, rounded: "top" },
 							}}
 						>
 							{#snippet tooltip()}

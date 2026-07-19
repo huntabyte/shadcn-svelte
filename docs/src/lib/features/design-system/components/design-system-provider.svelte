@@ -12,6 +12,8 @@
 	import { setupDesignSystem } from "./design-system-provider-state.svelte.js";
 	import { cn } from "$lib/registry/lib/utils.js";
 	import { toggleMode } from "mode-watcher";
+	import * as AlertDialog from "$lib/registry/ui/alert-dialog/index.js";
+	import { ResetDialogContext, ResetDialogCtx } from "./reset-dialog-context.svelte.js";
 
 	const uid = $props.id();
 
@@ -22,6 +24,7 @@
 	let { children }: Props = $props();
 
 	const designSystem = setupDesignSystem();
+	const resetDialogCtx = ResetDialogCtx.set(new ResetDialogContext());
 
 	const effectiveRadius = $derived(designSystem.style === "lyra" ? "none" : designSystem.radius);
 
@@ -131,27 +134,22 @@
 		cssText += "}\n";
 
 		styleElement.textContent = cssText;
+
+		if (window.self !== window.top && document.body) {
+			document.documentElement.style.backgroundColor = "var(--background)";
+			document.body.style.backgroundColor = "var(--background)";
+		}
 	});
 
-	let menuObserver: MutationObserver | null = null;
-	let menuFrameId = 0;
-
-	watch([() => designSystem.menuColor, () => browser], ([menuColor, browser]) => {
-		if (menuObserver) {
-			menuObserver.disconnect();
-			menuObserver = null;
-		}
-		if (menuFrameId) {
-			window.cancelAnimationFrame(menuFrameId);
-			menuFrameId = 0;
-		}
-
-		if (!browser) return;
-		if (!menuColor) return;
+	$effect.pre(() => {
+		const menuColor = designSystem.menuColor;
+		if (!browser || !menuColor) return;
+		if (!document.body) return;
 
 		const isInvertedMenu = menuColor === "inverted" || menuColor === "inverted-translucent";
 		const isTranslucentMenu =
 			menuColor === "default-translucent" || menuColor === "inverted-translucent";
+		let menuFrameId = 0;
 
 		const updateMenuElements = () => {
 			const allElements = document.querySelectorAll<HTMLElement>(
@@ -200,7 +198,7 @@
 
 		updateMenuElements();
 
-		menuObserver = new MutationObserver(() => {
+		const menuObserver = new MutationObserver(() => {
 			scheduleMenuUpdate();
 		});
 
@@ -208,6 +206,35 @@
 			childList: true,
 			subtree: true,
 		});
+
+		return () => {
+			menuObserver.disconnect();
+			if (menuFrameId) {
+				window.cancelAnimationFrame(menuFrameId);
+			}
+		};
+	});
+
+	$effect(() => {
+		if (!browser || window.self === window.top) return;
+
+		const handleMessage = (event: MessageEvent) => {
+			if (
+				event.origin !== window.location.origin ||
+				event.source !== window.parent ||
+				!event.data ||
+				typeof event.data !== "object" ||
+				event.data.type !== "design-system-preset" ||
+				typeof event.data.data !== "string"
+			) {
+				return;
+			}
+
+			designSystem.preset = event.data.data;
+		};
+
+		window.addEventListener("message", handleMessage);
+		return () => window.removeEventListener("message", handleMessage);
 	});
 
 	function handleKeyDown(e: KeyboardEvent) {
@@ -225,7 +252,7 @@
 			e.preventDefault();
 
 			if (e.shiftKey) {
-				designSystem.reset();
+				resetDialogCtx.open = true;
 				return;
 			}
 
@@ -268,3 +295,23 @@
 >
 	{@render children?.()}
 </div>
+
+<AlertDialog.Root bind:open={resetDialogCtx.open}>
+	<AlertDialog.Content size="sm">
+		<AlertDialog.Header>
+			<AlertDialog.Title>Reset to defaults?</AlertDialog.Title>
+			<AlertDialog.Description>
+				This will reset all customization options to their default values.
+			</AlertDialog.Description>
+		</AlertDialog.Header>
+		<AlertDialog.Footer>
+			<AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
+			<AlertDialog.Action
+				onclick={() => {
+					designSystem.reset();
+					resetDialogCtx.open = false;
+				}}>Reset</AlertDialog.Action
+			>
+		</AlertDialog.Footer>
+	</AlertDialog.Content>
+</AlertDialog.Root>

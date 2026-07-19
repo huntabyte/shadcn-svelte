@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { Spinner } from "$lib/registry/ui/spinner/index.js";
 </script>
