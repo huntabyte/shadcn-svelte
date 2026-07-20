@@ -2,8 +2,9 @@ import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
 import { exec } from "tinyexec";
 import type { PackageJson } from "type-fest";
-import { detect, resolveCommand } from "package-manager-detector";
+import { detect, getUserAgent, resolveCommand } from "package-manager-detector";
 import { readJSONSync } from "./get-package-info.js";
+import { isPackageManagerInstalled } from "./auto-detect.js";
 import { CLIError } from "./errors.js";
 import type * as cliConfig from "./config/schema.js";
 import type * as registry from "./registry/index.js";
@@ -51,7 +52,11 @@ export async function syncSvelteKit(cwd: string) {
 		// we'll exit early since syncing is rather slow
 		if (existsSync(path.join(cwd, ".svelte-kit"))) return;
 
-		const agent = (await detect({ cwd }))?.agent ?? "npm";
+		let agent = (await detect({ cwd }))?.agent ?? "npm";
+		// fall back to the running PM if the detected one isn't installed
+		if (!(await isPackageManagerInstalled(agent))) {
+			agent = getUserAgent() ?? "npm";
+		}
 		const cmd = resolveCommand(agent, "execute-local", ["svelte-kit", "sync"])!;
 
 		try {

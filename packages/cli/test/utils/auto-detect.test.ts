@@ -1,7 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { describe, it, expect, afterAll, beforeEach } from "vitest";
-import { detectConfigs } from "../../src/utils/auto-detect";
+import { detectConfigs, isPackageManagerInstalled } from "../../src/utils/auto-detect";
+import type { Agent } from "package-manager-detector";
 
 describe("detectConfigs", () => {
 	const tmpDir = path.join(process.cwd(), "test-fixtures");
@@ -92,5 +93,23 @@ describe("detectConfigs", () => {
 
 		const result = detectConfigs(tmpDir);
 		expect(result.tsconfigPath).toBe(path.join(tmpDir, "tsconfig.json"));
+	});
+});
+
+describe("isPackageManagerInstalled", () => {
+	it("returns true for a binary that exists (node)", async () => {
+		// `node` is guaranteed to be present since the tests run on it
+		await expect(isPackageManagerInstalled("node" as Agent)).resolves.toBe(true);
+	});
+
+	it("returns false for a binary that does not exist", async () => {
+		await expect(isPackageManagerInstalled("definitely-not-a-real-pm" as Agent)).resolves.toBe(
+			false
+		);
+	});
+
+	it("strips the version suffix before probing the binary", async () => {
+		// `node@99` should still resolve to the real `node` binary
+		await expect(isPackageManagerInstalled("node@99" as Agent)).resolves.toBe(true);
 	});
 });
