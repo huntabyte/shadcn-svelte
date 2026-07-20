@@ -1,9 +1,9 @@
 import semver from "semver";
 import * as p from "@clack/prompts";
-import { detectPM } from "./auto-detect.js";
+import { detectPM, isPackageManagerInstalled } from "./auto-detect.js";
 import * as project from "./project.js";
 import { exec } from "tinyexec";
-import { resolveCommand } from "package-manager-detector";
+import { getUserAgent, resolveCommand } from "package-manager-detector";
 import { error } from "./errors.js";
 import { silentOutput } from "./node-utils.js";
 
@@ -21,8 +21,20 @@ export async function installDependencies({
 	devDependencies,
 	silent,
 }: InstallOptions): Promise<void> {
-	const pm = await detectPM(cwd, prompt);
+	let pm = await detectPM(cwd, prompt);
 	if (!pm) return;
+
+	// Detected PM may not be installed (e.g. a stale `packageManager` field); fall
+	// back to the PM running the CLI, then npm.
+	if (!(await isPackageManagerInstalled(pm))) {
+		const fallback = getUserAgent() ?? "npm";
+		if (fallback !== pm) {
+			p.log.warn(
+				`The detected package manager (${pm}) is not installed. Falling back to ${fallback}.`
+			);
+			pm = fallback;
+		}
+	}
 
 	// Deno requires the `npm:` specifier
 	const pkgSpecifier = pm === "deno" ? "npm:" : "";

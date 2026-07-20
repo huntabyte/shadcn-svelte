@@ -3,6 +3,7 @@ import path from "node:path";
 import * as p from "@clack/prompts";
 import * as find from "empathic/find";
 import ignore, { type Ignore } from "ignore";
+import { exec } from "tinyexec";
 import { AGENTS, detect, getUserAgent, type Agent, type AgentName } from "package-manager-detector";
 import { cancel } from "./prompt-helpers.js";
 
@@ -110,4 +111,18 @@ export async function detectPM(cwd: string, prompt: boolean): Promise<Agent | un
 	}
 
 	return agent;
+}
+
+/** Checks whether the given package manager's binary is installed. */
+export async function isPackageManagerInstalled(agent: Agent): Promise<boolean> {
+	const bin = agent.split("@")[0] ?? agent; // strip version suffix (e.g. yarn@berry)
+	try {
+		await exec(bin, ["--version"], {
+			throwOnError: true,
+			nodeOptions: { stdio: "ignore" },
+		});
+		return true;
+	} catch {
+		return false;
+	}
 }
