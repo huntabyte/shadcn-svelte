@@ -52,6 +52,27 @@ describe("resolveImportAlias", () => {
 		expect(toPosixPath(result!)).toBe("/project/src/components/Button");
 	});
 
+	it("returns the root of a wildcard tsconfig path", () => {
+		const mockTsconfig: TsConfigResult = {
+			config: {
+				compilerOptions: {
+					paths: {
+						"$lib/*": ["./src/lib/*"],
+					},
+				},
+			},
+			path: path.posix.normalize("/project/tsconfig.json"),
+		};
+
+		const result = resolveImportAlias({
+			importPath: "$lib",
+			tsconfig: mockTsconfig,
+			cwd: "/project",
+		});
+		expect(result).toBeDefined();
+		expect(toPosixPath(result!)).toBe("/project/src/lib");
+	});
+
 	it("returns first path match from import map", () => {
 		const mockTsconfig: TsConfigResult = {
 			config: { compilerOptions: {} },
