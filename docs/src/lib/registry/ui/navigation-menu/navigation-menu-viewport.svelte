@@ -14,7 +14,7 @@
 		bind:ref
 		data-slot="navigation-menu-viewport"
 		class={cn(
-			"cn-navigation-menu-viewport origin-top-center relative mt-1.5 h-[calc(var(--bits-navigation-menu-viewport-height)+1rem)] w-full overflow-hidden md:w-[calc(var(--bits-navigation-menu-viewport-width)+1rem)]",
+			"cn-navigation-menu-viewport origin-top-center relative mt-1.5 h-[var(--bits-navigation-menu-viewport-height)] w-full overflow-hidden md:w-[var(--bits-navigation-menu-viewport-width)]",
 			className
 		)}
 		{...restProps}
