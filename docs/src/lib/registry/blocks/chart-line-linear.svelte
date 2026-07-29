@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { LineChart } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { scaleUtc } from "d3-scale";
 	import { curveLinear } from "d3-shape";
-	import * as Chart from "$lib/registry/ui/chart/index.js";
+	import { LineChart } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Chart from "$lib/registry/ui/chart/index.js";
 
 	const chartData = [
 		{ date: new Date("2024-01-01"), desktop: 186 },
@@ -59,7 +59,7 @@
 				<div class="flex items-center gap-2 leading-none font-medium">
 					Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
 				</div>
-				<div class="text-muted-foreground flex items-center gap-2 leading-none">
+				<div class="flex items-center gap-2 leading-none text-muted-foreground">
 					January - June 2024
 				</div>
 			</div>

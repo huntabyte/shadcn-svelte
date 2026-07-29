@@ -1,8 +1,4 @@
 <script lang="ts">
-	import * as Breadcrumb from "$lib/registry/ui/breadcrumb/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import * as Dialog from "$lib/registry/ui/dialog/index.js";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import BellIcon from "@lucide/svelte/icons/bell";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import GlobeIcon from "@lucide/svelte/icons/globe";
@@ -15,6 +11,10 @@
 	import PaintbrushIcon from "@lucide/svelte/icons/paintbrush";
 	import SettingsIcon from "@lucide/svelte/icons/settings";
 	import VideoIcon from "@lucide/svelte/icons/video";
+	import * as Breadcrumb from "$lib/registry/ui/breadcrumb/index.js";
+	import * as Dialog from "$lib/registry/ui/dialog/index.js";
+	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const data = {
 		nav: [
@@ -56,9 +56,7 @@
 							<Sidebar.Menu>
 								{#each data.nav as item (item.name)}
 									<Sidebar.MenuItem>
-										<Sidebar.MenuButton
-											isActive={item.name === "Messages & media"}
-										>
+										<Sidebar.MenuButton isActive={item.name === "Messages & media"}>
 											{#snippet child({ props })}
 												<a href="##" {...props}>
 													<item.icon />
@@ -93,7 +91,7 @@
 				</header>
 				<div class="flex flex-1 flex-col gap-4 overflow-y-auto p-4 pt-0">
 					{#each Array.from({ length: 10 }) as _, i (i)}
-						<div class="bg-muted/50 aspect-video max-w-3xl rounded-xl"></div>
+						<div class="aspect-video max-w-3xl rounded-xl bg-muted/50"></div>
 					{/each}
 				</div>
 			</main>

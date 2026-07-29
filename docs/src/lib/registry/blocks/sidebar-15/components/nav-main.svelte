@@ -2,9 +2,8 @@
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import type { Component } from "svelte";
 
-	let {
-		items,
-	}: { items: { title: string; url: string; icon: Component; isActive?: boolean }[] } = $props();
+	let { items }: { items: { title: string; url: string; icon: Component; isActive?: boolean }[] } =
+		$props();
 </script>
 
 <Sidebar.Menu>
