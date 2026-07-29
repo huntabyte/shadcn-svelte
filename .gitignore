@@ -105,6 +105,7 @@ docs/src/__registry__
 docs/static/docs
 docs/static/llms.txt
 docs/static/docs.md
+docs/static/registry/temp
 
 registry-template/static/r
 repro/src/lib/hooks
