@@ -34,7 +34,7 @@
 	"prettier.enable": false, // prettier is persistent and annoying
 	"oxc.fmt.configPath": "oxfmt.config.ts",
 	"editor.defaultFormatter": "oxc.oxc-vscode",
-	"[typescript][javascript][json][svelte][jsonc][css]": {
+	"[typescript][javascript][json][jsonc][css][yaml][yml]": {
 		"editor.defaultFormatter": "oxc.oxc-vscode"
 	},
 	"[svelte]": { "editor.defaultFormatter": "oxc.oxc-vscode" },

@@ -1,5 +1,5 @@
-import type { PageLoad } from "./$types.js";
 import type { HighlightedBlock } from "../../../api/block/[block]/+server.js";
+import type { PageLoad } from "./$types.js";
 
 export const prerender = true;
 

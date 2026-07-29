@@ -1,12 +1,12 @@
 <script lang="ts">
+	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import SiteFooter from "$lib/components/site-footer.svelte";
 	import SiteHeader from "$lib/components/site-header.svelte";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 
 	let { children } = $props();
 </script>
 
-<div class="bg-background relative z-10 flex min-h-svh flex-col">
+<div class="relative z-10 flex min-h-svh flex-col bg-background">
 	<SiteHeader />
 	<main class="flex flex-1 flex-col">
 		<Tooltip.Provider>

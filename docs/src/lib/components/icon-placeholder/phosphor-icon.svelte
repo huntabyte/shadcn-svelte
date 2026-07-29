@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { Snippet } from "svelte";
-	import type { SVGAttributes } from "svelte/elements";
 	import type { PhosphorIconName } from "$lib/registry/icons/__phosphor__/index.js";
 	import { phosphorIconLoader } from "./icon-loader.js";
+	import type { Snippet } from "svelte";
+	import type { SVGAttributes } from "svelte/elements";
 
 	type Props = SVGAttributes<SVGSVGElement> & {
 		icon: PhosphorIconName;
