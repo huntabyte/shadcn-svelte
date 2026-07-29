@@ -24,6 +24,7 @@ export function resolveImportAlias(opts: ResolveImportOpts): string | undefined 
 	const resolvedPath = matcher?.(opts.importPath)?.[0];
 	if (resolvedPath) return resolvedPath;
 
+	// resolves the path if it's a wildcard (e.g. `$lib` resolves to `$lib/*`)
 	if (opts.tsconfig.config.compilerOptions?.paths?.[`${opts.importPath}/*`]) {
 		const resolvedPath = matcher?.(`${opts.importPath}${NOOP}`)?.[0];
 		if (resolvedPath) return path.dirname(resolvedPath);
