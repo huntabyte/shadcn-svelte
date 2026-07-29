@@ -16,11 +16,11 @@
 		"preview": "pnpm -F docs preview",
 		"test": "pnpm -F shadcn-svelte test",
 		"build:registry-template": "pnpm build:cli && pnpm -F registry-template build:registry",
-		"check": "pnpm -F docs check && pnpm -F \"./packages/**\" check",
+		"check": "pnpm --parallel -F docs -F \"./packages/**\" check",
 		"lint": "prettier --check . && eslint . --no-config-lookup --config eslint.config.js",
 		"format": "prettier --write .",
 		"preinstall": "npx only-allow pnpm",
-		"postinstall": "pnpm build:cli && pnpm -r sync",
+		"postinstall": "node scripts/postinstall.mjs",
 		"ci:publish": "changeset publish",
 		"ci:build": "pnpm build:cli",
 		"ci:release": "pnpm ci:build && pnpm ci:publish"
