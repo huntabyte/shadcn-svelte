@@ -1,5 +1,25 @@
 # shadcn-svelte
 
+## 1.4.2
+
+### Patch Changes
+
+- fix: detect the nearest `tsconfig.json`/`jsconfig.json` so a nested JS project no longer picks up an unrelated parent `tsconfig.json` (fixes false `$lib` path alias errors in monorepos) ([#2806](https://github.com/huntabyte/shadcn-svelte/pull/2806))
+
+## 1.4.1
+
+### Patch Changes
+
+- fix: provide default value to deprecated --overrite option ([#2796](https://github.com/huntabyte/shadcn-svelte/pull/2796))
+
+## 1.4.0
+
+### Minor Changes
+
+- feat: Add `apply` command ([#2751](https://github.com/huntabyte/shadcn-svelte/pull/2751))
+
+- feat: `--[no]-reinstall` flags for the `init` command ([#2751](https://github.com/huntabyte/shadcn-svelte/pull/2751))
+
 ## 1.3.0
 
 ### Minor Changes

@@ -1,22 +1,20 @@
 <script lang="ts">
-	import type { Color, ColorPalette } from "$lib/colors.js";
-	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
-	import { getCommand } from "$lib/package-manager.js";
-	import * as Command from "$lib/registry/ui/command/index.js";
-	import * as Dialog from "$lib/registry/ui/dialog/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Separator } from "$lib/registry/ui/separator/index.js";
-	import { cn } from "$lib/utils.js";
-
-	import { sidebarNavItems } from "$lib/navigation.js";
-
+	import { goto } from "$app/navigation";
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
 	import CornerDownLeftIcon from "@lucide/svelte/icons/corner-down-left";
 	import SquareDashedIcon from "@lucide/svelte/icons/square-dashed";
-	import CommandMenuItem from "./command-menu-item.svelte";
-	import { goto } from "$app/navigation";
-	import { UserConfigContext } from "$lib/user-config.svelte.js";
+	import * as Command from "$lib/registry/ui/command/index.js";
+	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import * as Kbd from "$lib/registry/ui/kbd/index.js";
+	import type { Color, ColorPalette } from "$lib/colors.js";
+	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
+	import { mainNavItems, sidebarNavItems } from "$lib/navigation.js";
+	import { getCommand } from "$lib/package-manager.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Separator } from "$lib/registry/ui/separator/index.js";
+	import { UserConfigContext } from "$lib/user-config.svelte.js";
+	import { cn } from "$lib/utils.js";
+	import CommandMenuItem from "./command-menu-item.svelte";
 
 	let {
 		colors,
@@ -34,6 +32,22 @@
 
 	const userConfig = UserConfigContext.get();
 	const clipboard = new UseClipboard();
+
+	const COMMAND_MENU_GROUP_ORDER = [
+		"Components",
+		"Get Started",
+		"Installation",
+		"Dark Mode",
+		"Registry",
+		"Forms",
+		"Migration",
+	] as const;
+
+	const orderedSidebarGroups = $derived(
+		COMMAND_MENU_GROUP_ORDER.map((title) =>
+			sidebarNavItems.find((group) => group.title === title)
+		).filter((group): group is (typeof sidebarNavItems)[number] => group !== undefined)
+	);
 
 	function handlePageHighlight(isComponent: boolean, item: { href: string; title?: string }) {
 		if (isComponent) {
@@ -134,7 +148,7 @@
 				{...props}
 				variant="outline"
 				class={cn(
-					"bg-muted text-foreground hover:bg-muted/50 dark:bg-card relative h-8 w-full justify-start rounded-lg border-none pl-3 shadow-none transition-colors md:w-48 lg:w-40 xl:w-64"
+					"relative h-8 w-full justify-start rounded-lg border-none bg-muted pl-3 text-foreground shadow-none transition-colors hover:bg-muted/50 md:w-48 lg:w-40 xl:w-64 dark:bg-card"
 				)}
 				onclick={() => openCommandMenu()}
 			>
@@ -154,10 +168,36 @@
 		<Command.Root class="rounded-none bg-transparent">
 			<Command.Input placeholder="Search documentation..." />
 			<Command.List tabindex={-1} class="no-scrollbar min-h-80 scroll-pt-2 scroll-pb-1.5">
-				<Command.Empty class="text-muted-foreground py-12 text-center text-sm">
+				<Command.Empty class="py-12 text-center text-sm text-muted-foreground">
 					No results found.
 				</Command.Empty>
-				{#each sidebarNavItems as group (group.title)}
+				<Command.Group
+					heading="Pages"
+					class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
+				>
+					{#each mainNavItems as item (item.href)}
+						<CommandMenuItem
+							value={`Pages ${item.title}`}
+							keywords={["page", item.title.toLowerCase()]}
+							onHighlight={() =>
+								handlePageHighlight(false, {
+									href: item.href ?? "",
+									title: item.title,
+								})}
+							onSelect={() => {
+								runCommand(() => {
+									if (item.href) {
+										goto(item.href);
+									}
+								});
+							}}
+						>
+							<ArrowRightIcon />
+							{item.title}
+						</CommandMenuItem>
+					{/each}
+				</Command.Group>
+				{#each orderedSidebarGroups as group (group.title)}
 					<Command.Group
 						heading={group.title}
 						class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
@@ -183,7 +223,7 @@
 							>
 								{#if isComponent}
 									<div
-										class="border-muted-foreground aspect-square size-4 rounded-full border border-dashed"
+										class="aspect-square size-4 rounded-full border border-dashed border-muted-foreground"
 									></div>
 								{:else}
 									<ArrowRightIcon />
@@ -193,10 +233,33 @@
 						{/each}
 					</Command.Group>
 				{/each}
+				{#if blocks?.length}
+					<Command.Group heading="Blocks" class="!p-0 [&_[data-command-group-heading]]:!p-3">
+						{#each blocks as block (block.name)}
+							<CommandMenuItem
+								value={block.name}
+								onHighlight={() => handleBlockHighlight(block)}
+								keywords={["block", block.name, block.description, ...block.categories]}
+								onSelect={() => {
+									runCommand(() => {
+										goto(`/blocks/${block.categories[0]}#${block.name}`);
+									});
+								}}
+							>
+								<SquareDashedIcon />
+								{block.description}
+								<span
+									class="ms-auto font-mono text-xs font-normal text-muted-foreground tabular-nums"
+								>
+									{block.name}
+								</span>
+							</CommandMenuItem>
+						{/each}
+					</Command.Group>
+				{/if}
 				{#each colors as colorPalette (colorPalette.name)}
 					<Command.Group
-						heading={colorPalette.name.charAt(0).toUpperCase() +
-							colorPalette.name.slice(1)}
+						heading={colorPalette.name.charAt(0).toUpperCase() + colorPalette.name.slice(1)}
 						class="!p-0 [&_[data-command-group-heading]]:!p-3"
 					>
 						{#each colorPalette.colors as color (color.hex)}
@@ -214,7 +277,7 @@
 								></div>
 								{color.class}
 								<span
-									class="text-muted-foreground ms-auto font-mono text-xs font-normal tabular-nums"
+									class="ms-auto font-mono text-xs font-normal text-muted-foreground tabular-nums"
 								>
 									{color.oklch}
 								</span>
@@ -222,45 +285,13 @@
 						{/each}
 					</Command.Group>
 				{/each}
-				{#if blocks?.length}
-					<Command.Group
-						heading="Blocks"
-						class="!p-0 [&_[data-command-group-heading]]:!p-3"
-					>
-						{#each blocks as block (block.name)}
-							<CommandMenuItem
-								value={block.name}
-								onHighlight={() => handleBlockHighlight(block)}
-								keywords={[
-									"block",
-									block.name,
-									block.description,
-									...block.categories,
-								]}
-								onSelect={() => {
-									runCommand(() => {
-										goto(`/blocks/${block.categories[0]}#${block.name}`);
-									});
-								}}
-							>
-								<SquareDashedIcon />
-								{block.description}
-								<span
-									class="text-muted-foreground ms-auto font-mono text-xs font-normal tabular-nums"
-								>
-									{block.name}
-								</span>
-							</CommandMenuItem>
-						{/each}
-					</Command.Group>
-				{/if}
 			</Command.List>
 		</Command.Root>
 		<div
-			class="text-muted-foreground absolute inset-x-0 bottom-0 z-20 flex h-10 items-center gap-2 rounded-b-xl border-t border-t-neutral-100 bg-neutral-50 px-4 text-xs font-medium dark:border-t-neutral-700 dark:bg-neutral-800"
+			class="absolute inset-x-0 bottom-0 z-20 flex h-10 items-center gap-2 rounded-b-xl border-t border-t-neutral-100 bg-neutral-50 px-4 text-xs font-medium text-muted-foreground dark:border-t-neutral-700 dark:bg-neutral-800"
 		>
 			<div class="flex items-center gap-2">
-				<Kbd.Root class="bg-background border"><CornerDownLeftIcon /></Kbd.Root>
+				<Kbd.Root class="border bg-background"><CornerDownLeftIcon /></Kbd.Root>
 				{#if selectedType === "page" || selectedType === "component"}
 					Go to Page
 				{/if}
@@ -272,8 +303,8 @@
 				<Separator orientation="vertical" class="!h-4" />
 				<div class="flex items-center gap-1">
 					<Kbd.Group
-						><Kbd.Root class="bg-background border">⌘</Kbd.Root>
-						<Kbd.Root class="bg-background border">C</Kbd.Root>
+						><Kbd.Root class="border bg-background">⌘</Kbd.Root>
+						<Kbd.Root class="border bg-background">C</Kbd.Root>
 					</Kbd.Group>
 					{copyPayload}
 				</div>

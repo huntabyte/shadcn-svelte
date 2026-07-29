@@ -1,22 +1,25 @@
-import semver from "semver";
 import * as p from "@clack/prompts";
-import { detectPM } from "./auto-detect.js";
-import * as project from "./project.js";
-import { exec } from "tinyexec";
+import semver from "semver";
 import { resolveCommand } from "package-manager-detector";
+import { exec } from "tinyexec";
+import * as project from "./project.js";
+import { detectPM } from "./auto-detect.js";
 import { error } from "./errors.js";
+import { silentOutput } from "./node-utils.js";
 
 type InstallOptions = {
 	dependencies: string[];
 	devDependencies: string[];
 	cwd: string;
 	prompt: boolean;
+	silent?: boolean;
 };
 export async function installDependencies({
 	cwd,
 	prompt,
 	dependencies,
 	devDependencies,
+	silent,
 }: InstallOptions): Promise<void> {
 	const pm = await detectPM(cwd, prompt);
 	if (!pm) return;
@@ -37,9 +40,11 @@ export async function installDependencies({
 	};
 
 	const devDeps = devDependencies.map(validateDep).filter((d) => d !== undefined);
-	const addDevDeps = resolveCommand(pm, "add", ["-D", ...devDeps]);
-
 	const deps = dependencies.map(validateDep).filter((d) => d !== undefined);
+
+	if (deps.length === 0 && devDeps.length === 0) return;
+
+	const addDevDeps = resolveCommand(pm, "add", ["-D", ...devDeps]);
 	const addDeps = resolveCommand(pm, "add", deps);
 
 	if (!addDevDeps || !addDeps) throw error(`Could not detect a package manager in ${cwd}.`);
@@ -49,6 +54,7 @@ export async function installDependencies({
 		limit: Math.ceil(process.stdout.rows / 2),
 		spacing: 0,
 		retainLog: true,
+		output: silent ? silentOutput : process.stdout,
 	});
 
 	const install = (cmd: string, args: string[]) => {

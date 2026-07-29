@@ -1,10 +1,10 @@
 <script lang="ts">
 	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Field from "$lib/registry/ui/field/index.js";
+	import * as Select from "$lib/registry/ui/select/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
-	import * as Select from "$lib/registry/ui/select/index.js";
 
 	const states = [
 		{ value: "CA", label: "California" },
@@ -66,8 +66,7 @@
 					<Field.Label for="shipping-country">Country</Field.Label>
 					<Select.Root type="single" bind:value={selectedCountry}>
 						<Select.Trigger id="shipping-country" class="w-full">
-							{countries.find((c) => c.value === selectedCountry)?.label ??
-								"Select Country"}
+							{countries.find((c) => c.value === selectedCountry)?.label ?? "Select Country"}
 						</Select.Trigger>
 						<Select.Content>
 							{#each countries as country (country.value)}
@@ -79,9 +78,7 @@
 			</Field.Group>
 			<Field.Field orientation="horizontal">
 				<Checkbox id="shipping-save" bind:checked={saveDefault} />
-				<Field.Label for="shipping-save" class="font-normal">
-					Save as default address
-				</Field.Label>
+				<Field.Label for="shipping-save" class="font-normal">Save as default address</Field.Label>
 			</Field.Field>
 		</Field.Group>
 	</Card.Content>

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { siteConfig } from "$lib/config.js";
-	import Button from "$lib/registry/ui/button/button.svelte";
-	import GithubIcon from "./github.svelte";
-	import { FALLBACK_STAR_COUNT } from "$lib/constants.js";
 	import { onMount } from "svelte";
+	import Button from "$lib/registry/ui/button/button.svelte";
+	import { siteConfig } from "$lib/config.js";
+	import { FALLBACK_STAR_COUNT } from "$lib/constants.js";
+	import GithubIcon from "./github.svelte";
 
 	async function getGithubStarCount() {
 		try {
@@ -32,7 +32,7 @@
 	class="h-8 shadow-none"
 >
 	<GithubIcon />
-	<span class="text-muted-foreground w-8 text-xs tabular-nums">
+	<span class="w-8 text-xs text-muted-foreground tabular-nums">
 		{stars >= 1000 ? `${(stars / 1000).toFixed(1)}k` : stars.toLocaleString()}
 	</span>
 </Button>

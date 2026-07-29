@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { WithoutChildren } from "bits-ui";
-	import { getEmblaContext } from "./context.js";
-	import { cn } from "$lib/utils.js";
-	import { Button, type Props } from "$lib/registry/ui/button/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button, type Props } from "$lib/registry/ui/button/index.js";
+	import { cn } from "$lib/utils.js";
+	import { getEmblaContext } from "./context.js";
+	import type { WithoutChildren } from "bits-ui";
 
 	let {
 		ref = $bindable(null),
@@ -25,7 +25,7 @@
 	class={cn(
 		"cn-carousel-previous absolute touch-manipulation",
 		emblaCtx.orientation === "horizontal"
-			? "-start-12 top-1/2 -translate-y-1/2"
+			? "inset-y-0 -start-12 my-auto"
 			: "start-1/2 -top-12 -translate-x-1/2 rotate-90",
 		className
 	)}

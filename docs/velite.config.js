@@ -1,10 +1,36 @@
 // @ts-check
 import { defineCollection, defineConfig, s } from "velite";
 
+const dateSchema = s.union([s.string(), s.date()]).transform((date) => {
+	/** @param {Date} value */
+	function formatDate(value) {
+		const year = value.getUTCFullYear();
+		const month = String(value.getUTCMonth() + 1).padStart(2, "0");
+		const day = String(value.getUTCDate()).padStart(2, "0");
+		return `${year}-${month}-${day}`;
+	}
+
+	if (date instanceof Date) {
+		return formatDate(date);
+	}
+
+	if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+		throw new Error(`Invalid date "${date}". Expected YYYY-MM-DD.`);
+	}
+
+	const parsedDate = new Date(`${date}T00:00:00Z`);
+	if (Number.isNaN(parsedDate.getTime()) || formatDate(parsedDate) !== date) {
+		throw new Error(`Invalid date "${date}". Expected a valid YYYY-MM-DD date.`);
+	}
+
+	return date;
+});
+
 const docSchema = s
 	.object({
 		title: s.string(),
 		description: s.string(),
+		date: dateSchema.optional(),
 		path: s.path(),
 		navLabel: s.string().optional(),
 		links: s
@@ -61,6 +87,18 @@ const registry = defineCollection({
 	schema: docSchema,
 });
 
+const forms = defineCollection({
+	name: "forms",
+	pattern: "./forms/**/*.md",
+	schema: docSchema,
+});
+
+const changelog = defineCollection({
+	name: "changelog",
+	pattern: "./changelog/**/*.md",
+	schema: docSchema,
+});
+
 export default defineConfig({
 	root: "./content",
 	collections: {
@@ -70,6 +108,8 @@ export default defineConfig({
 		installation,
 		darkMode,
 		registry,
+		forms,
+		changelog,
 	},
 	output: { assets: "static" },
 });

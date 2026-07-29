@@ -67,16 +67,9 @@
 <Card>
 	<CardHeader>
 		<CardTitle>Q2 Dividend Income</CardTitle>
-		<CardDescription>
-			Quarterly dividend payouts across your portfolio holdings.
-		</CardDescription>
+		<CardDescription>Quarterly dividend payouts across your portfolio holdings.</CardDescription>
 		<CardAction>
-			<Button
-				variant="ghost"
-				size="icon-sm"
-				class="bg-muted"
-				aria-label="Dismiss dividend income"
-			>
+			<Button variant="ghost" size="icon-sm" class="bg-muted" aria-label="Dismiss dividend income">
 				<IconPlaceholder
 					lucide="XIcon"
 					tabler="IconX"
@@ -90,6 +83,7 @@
 	<CardContent>
 		<ItemGroup>
 			{#each HOLDINGS as holding (holding.name)}
+				{@const maxDividend = Math.max(1, ...holding.data.map((point) => point.value))}
 				<Item role="listitem" variant="muted">
 					<ItemContent>
 						<ItemTitle>{holding.name}</ItemTitle>
@@ -102,8 +96,8 @@
 					>
 						{#each holding.data as item (item.q)}
 							<div
-								class="bg-chart-2 min-h-1 flex-1 rounded-t-sm"
-								style={`height: ${(item.value / Math.max(...holding.data.map((point) => point.value))) * 100}%`}
+								class="min-h-1 flex-1 rounded-t-sm bg-chart-2"
+								style={`height: ${(item.value / maxDividend) * 100}%`}
 							></div>
 						{/each}
 					</div>

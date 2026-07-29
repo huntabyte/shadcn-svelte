@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import * as Checkbox from "$lib/registry/ui/checkbox/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 
 <Example title="Group">
@@ -9,9 +9,7 @@
 		<Field.Label>Show these items on the desktop:</Field.Label>
 		<Field.Field orientation="horizontal">
 			<Checkbox.Root id="finder-pref-9k2-hard-disks-ljj" />
-			<Field.Label for="finder-pref-9k2-hard-disks-ljj" class="font-normal">
-				Hard disks
-			</Field.Label>
+			<Field.Label for="finder-pref-9k2-hard-disks-ljj" class="font-normal">Hard disks</Field.Label>
 		</Field.Field>
 		<Field.Field orientation="horizontal">
 			<Checkbox.Root id="finder-pref-9k2-external-disks-1yg" />

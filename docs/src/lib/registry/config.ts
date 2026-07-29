@@ -1,17 +1,16 @@
 // Adapted from https://github.com/shadcn-ui/ui/tree/main/apps/v4/registry/config.ts
 
 import { iconLibraries, type IconLibrary, type IconLibraryName } from "shadcn-svelte/icons";
-import { z } from "zod";
-
-import { fonts } from "./fonts.js";
-import { STYLES, type Style } from "./styles/index.js";
-import { BASE_THEMES, THEMES, type BaseTheme, type Theme } from "./themes.js";
 import {
 	PRESET_BASE_COLOR_KEYS,
 	PRESET_CHART_COLORS,
 	PRESET_FONTS,
 	type PresetConfig,
 } from "shadcn-svelte/preset";
+import { z } from "zod";
+import { fonts } from "./fonts.js";
+import { STYLES, type Style } from "./styles/index.js";
+import { BASE_THEMES, THEMES, type BaseTheme, type Theme } from "./themes.js";
 export { STYLES, type Style };
 export { THEMES, type Theme };
 export { BASE_THEMES, type BaseTheme };
@@ -73,9 +72,7 @@ export const designSystemConfigSchema = z
 		menuColor: z
 			.enum(MENU_COLORS.map((m) => m.value) as [MenuColorValue, ...MenuColorValue[]])
 			.default("default"),
-		radius: z
-			.enum(RADII.map((r) => r.name) as [RadiusValue, ...RadiusValue[]])
-			.default("default"),
+		radius: z.enum(RADII.map((r) => r.name) as [RadiusValue, ...RadiusValue[]]).default("default"),
 	})
 	.refine((data) => {
 		const availableThemes = getThemesForBaseColor(data.baseColor);
