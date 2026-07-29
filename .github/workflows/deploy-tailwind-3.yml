@@ -33,10 +33,15 @@ jobs:
         run: pnpm build
 
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
+        uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          wranglerVersion: "4"
           workingDirectory: sites/docs
-          command: pages deploy ./.svelte-kit/cloudflare --project-name=shadcn-svelte-tw-3
+          command: >-
+            pages deploy ./.svelte-kit/cloudflare
+            --project-name=shadcn-svelte-tw-3
+            --branch="${{ github.ref_name }}"
+            --commit-hash="${{ github.sha }}"

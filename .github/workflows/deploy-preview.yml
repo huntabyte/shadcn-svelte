@@ -27,9 +27,15 @@ jobs:
           run-id: ${{ github.event.workflow_run.id }}
 
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
+        uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          command: pages deploy ${{ steps.preview-build-artifact.outputs.download-path }}/cloudflare --project-name=shadcn-svelte
+          # Do not pass gitHubToken here: workflow_run refs point to main, not the preview branch.
+          wranglerVersion: "4"
+          command: >-
+            pages deploy
+            ${{ steps.preview-build-artifact.outputs.download-path }}/cloudflare
+            --project-name=shadcn-svelte
+            --branch="${{ github.event.workflow_run.head_branch }}"
+            --commit-hash="${{ github.event.workflow_run.head_sha }}"
