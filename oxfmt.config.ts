@@ -69,7 +69,7 @@ export default defineConfig({
 			"parent",
 			"named-parent",
 			// All types
-			"type",
+			"type", // TODO: types should have a group order of their own - built-in > external > internal, etc
 			// Miscellaneous
 			"unknown",
 		],
