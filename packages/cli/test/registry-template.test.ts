@@ -138,7 +138,7 @@ it("should accurately build the registry template", async () => {
 		  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 		  "description": "A complex component showing hooks, libs and components.",
 		  "devDependencies": [
-		    "zod@^4.2.1",
+		    "zod@^4.4.3",
 		  ],
 		  "files": [
 		    {
@@ -288,7 +288,7 @@ it("should accurately build the registry template", async () => {
 		  ],
 		  "description": "A contact form with Zod validation.",
 		  "devDependencies": [
-		    "zod@^4.2.1",
+		    "zod@^4.4.3",
 		  ],
 		  "files": [
 		    {

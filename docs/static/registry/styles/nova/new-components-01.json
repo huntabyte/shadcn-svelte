@@ -4,7 +4,7 @@
 	"type": "registry:block",
 	"devDependencies": [
 		"@tabler/icons-svelte@^3.40.0",
-		"@lucide/svelte@^0.577.0"
+		"@lucide/svelte@^1.27.0"
 	],
 	"registryDependencies": [
 		"checkbox",
