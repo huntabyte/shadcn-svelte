@@ -3,7 +3,7 @@
 	"name": "item",
 	"type": "registry:ui",
 	"devDependencies": [
-		"tailwind-variants@^3.2.2"
+		"tailwind-variants@^3.3.0"
 	],
 	"registryDependencies": [
 		"separator"
