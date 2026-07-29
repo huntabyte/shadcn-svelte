@@ -1,5 +1,5 @@
-import process from "node:process";
 // @ts-check
+import process from "node:process";
 import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
