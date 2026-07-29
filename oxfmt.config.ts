@@ -82,19 +82,6 @@ export default defineConfig({
 		"/.cursor/",
 		"/.changeset/",
 		"CHANGELOG.md",
-		// "registry-template",
-
-		// // docs site specific
-		// "docs/other/themes/dark.json",
-		// "docs/other/themes/light.json",
-		// "docs/static",
-		// "docs/.velite",
-		// "docs/src/__registry__",
-		// "packages/cli/test/fixtures",
-		// "playgrounds",
-		// "registry-template/static",
-		// "docs/src/routes/og/*-otf.json",
-		// "**/__*__/**/*",
 	],
 	svelte: true,
 	overrides: [
