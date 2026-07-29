@@ -15,7 +15,7 @@ import { u } from "unist-builder";
 import { visit } from "unist-util-visit";
 import { Index } from "./src/__registry__/index.js";
 
-/** @type {import('prettier').Config} */
+/** @type {Parameters<typeof prettier.format>[1]} */
 const codeBlockPrettierConfig = {
 	useTabs: false,
 	tabWidth: 2,
@@ -294,10 +294,7 @@ function getComponentSourceFileContent(src = "") {
 	// Read the source file.
 	const filePath = join(process.cwd(), newSrc);
 
-	const formattedSource = prettier.format(
-		readFileSync(filePath, "utf-8"),
-		/** @type {any} */ (codeBlockPrettierConfig)
-	);
+	const formattedSource = prettier.format(readFileSync(filePath, "utf-8"), codeBlockPrettierConfig);
 
 	return formattedSource.trim();
 }
