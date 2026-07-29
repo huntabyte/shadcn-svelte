@@ -25,5 +25,18 @@
 		"yaml",
 		"toml",
 		"astro"
-	]
+	],
+
+	// Force using the local typescript binary
+	"js/ts.tsdk.path": "node_modules/typescript/lib",
+
+	// Oxfmt
+	"prettier.enable": false, // prettier is persistent and annoying
+	"oxc.fmt.configPath": "oxfmt.config.ts",
+	"editor.defaultFormatter": "oxc.oxc-vscode",
+	"[typescript][javascript][json][svelte][jsonc][css]": {
+		"editor.defaultFormatter": "oxc.oxc-vscode"
+	},
+	"[svelte]": { "editor.defaultFormatter": "oxc.oxc-vscode" },
+	"tailwindCSS.classFunctions": ["cn", "clsx", "tv"]
 }

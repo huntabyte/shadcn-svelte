@@ -1,11 +1,11 @@
-import prettier from "eslint-config-prettier";
 import path from "node:path";
-import { includeIgnoreFile } from "@eslint/compat";
 import js from "@eslint/js";
+import prettier from "eslint-config-prettier";
 import svelte from "eslint-plugin-svelte";
-import { defineConfig } from "eslint/config";
 import globals from "globals";
 import ts from "typescript-eslint";
+import { includeIgnoreFile } from "@eslint/compat";
+import { defineConfig } from "eslint/config";
 
 const gitignorePath = path.resolve(import.meta.dirname, ".gitignore");
 
@@ -41,8 +41,7 @@ export default defineConfig(
 		files: ["**/*.svelte", "**/*.svelte.ts", "**/*.svelte.js"],
 		languageOptions: {
 			parserOptions: {
-				// Only uncomment this if you want it to take 3 minutes https://github.com/sveltejs/eslint-plugin-svelte/issues/1084
-				// projectService: true,
+				projectService: true,
 				extraFileExtensions: [".svelte"],
 				parser: ts.parser,
 			},
