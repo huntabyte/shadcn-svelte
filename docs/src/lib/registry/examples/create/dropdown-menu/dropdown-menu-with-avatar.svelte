@@ -37,7 +37,7 @@
 					</Button>
 				{/snippet}
 			</DropdownMenu.Trigger>
-			<DropdownMenu.Content class="w-(--anchor-width) min-w-56">
+			<DropdownMenu.Content class="w-(--bits-dropdown-menu-anchor-width) min-w-56">
 				<DropdownMenu.Group>
 					<DropdownMenu.Item>
 						<IconPlaceholder
