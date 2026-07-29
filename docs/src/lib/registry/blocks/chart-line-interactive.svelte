@@ -2,7 +2,7 @@
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { scaleUtc } from "d3-scale";
-	import { LineChart } from "layerchart";
+	import { LineChart, Spline, ChartClipPath } from "layerchart";
 	import { curveNatural } from "d3-shape";
 
 	const chartData = [
@@ -121,7 +121,7 @@
 	]);
 </script>
 
-<Card.Root>
+<Card.Root class="pt-0">
 	<Card.Header class="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
 		<div class="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
 			<Card.Title>Line Chart - Interactive</Card.Title>
@@ -153,8 +153,8 @@
 				xScale={scaleUtc()}
 				axis="x"
 				series={activeSeries}
+				yPadding={[0, 25]}
 				props={{
-					spline: { curve: curveNatural, motion: "tween", strokeWidth: 2 },
 					xAxis: {
 						format: (v: Date) => {
 							return v.toLocaleDateString("en-US", {
@@ -166,6 +166,18 @@
 					highlight: { points: { r: 4 } },
 				}}
 			>
+				{#snippet marks({ context })}
+					<ChartClipPath initialWidth={0} motion={Chart.defaultClipMotion}>
+						{#each context.series.visibleSeries as s (s.key)}
+							<Spline
+								seriesKey={s.key}
+								curve={curveNatural}
+								strokeWidth={2}
+								{...s.props}
+							/>
+						{/each}
+					</ChartClipPath>
+				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel />
 				{/snippet}

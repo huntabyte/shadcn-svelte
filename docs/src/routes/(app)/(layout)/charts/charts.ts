@@ -36,7 +36,7 @@ import ChartPieLabelCustom from "$lib/registry/blocks/chart-pie-label-custom.sve
 import ChartPieLabelList from "$lib/registry/blocks/chart-pie-label-list.svelte";
 import ChartPieLabel from "$lib/registry/blocks/chart-pie-label.svelte";
 import ChartPieLegend from "$lib/registry/blocks/chart-pie-legend.svelte";
-// import ChartPieSeparatorNone from "$lib/registry/blocks/chart-pie-separator-none.svelte";
+import ChartPieSeparatorNone from "$lib/registry/blocks/chart-pie-separator-none.svelte";
 import ChartPieSimple from "$lib/registry/blocks/chart-pie-simple.svelte";
 import ChartPieStacked from "$lib/registry/blocks/chart-pie-stacked.svelte";
 import ChartRadarDefault from "$lib/registry/blocks/chart-radar-default.svelte";
@@ -53,7 +53,7 @@ import ChartRadarLegend from "$lib/registry/blocks/chart-radar-legend.svelte";
 import ChartRadarLinesOnly from "$lib/registry/blocks/chart-radar-lines-only.svelte";
 import ChartRadarMultiple from "$lib/registry/blocks/chart-radar-multiple.svelte";
 import ChartRadarRadius from "$lib/registry/blocks/chart-radar-radius.svelte";
-// import ChartRadialGrid from "$lib/registry/blocks/chart-radial-grid.svelte";
+import ChartRadialGrid from "$lib/registry/blocks/chart-radial-grid.svelte";
 import ChartRadialLabel from "$lib/registry/blocks/chart-radial-label.svelte";
 import ChartRadialShape from "$lib/registry/blocks/chart-radial-shape.svelte";
 import ChartRadialSimple from "$lib/registry/blocks/chart-radial-simple.svelte";
@@ -137,7 +137,7 @@ export const charts: ChartGroups = {
 	],
 	pie: [
 		{ id: "chart-pie-simple", component: ChartPieSimple },
-		// { id: "chart-pie-separator-none", component: ChartPieSeparatorNone },
+		{ id: "chart-pie-separator-none", component: ChartPieSeparatorNone },
 		{ id: "chart-pie-label", component: ChartPieLabel },
 		{ id: "chart-pie-label-custom", component: ChartPieLabelCustom },
 		{ id: "chart-pie-label-list", component: ChartPieLabelList },
@@ -170,7 +170,7 @@ export const charts: ChartGroups = {
 	radial: [
 		{ id: "chart-radial-simple", component: ChartRadialSimple },
 		{ id: "chart-radial-label", component: ChartRadialLabel },
-		// { id: "chart-radial-grid", component: ChartRadialGrid },
+		{ id: "chart-radial-grid", component: ChartRadialGrid },
 		{ id: "chart-radial-text", component: ChartRadialText },
 		{ id: "chart-radial-shape", component: ChartRadialShape },
 		{ id: "chart-radial-stacked", component: ChartRadialStacked },

@@ -15,7 +15,7 @@
 <Card.Root>
 	<Card.Header class="items-center">
 		<Card.Title>Radial Chart - Text</Card.Title>
-		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
+		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content class="flex-1">
 		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
@@ -34,7 +34,7 @@
 					data: [d],
 				}))}
 				props={{
-					arc: { track: { fill: "var(--muted)" }, motion: "tween" },
+					arc: { track: { fill: "var(--muted)" }, motion: Chart.defaultMotion },
 					tooltip: { context: { hideDelay: 350 } },
 				}}
 				tooltipContext={false}
@@ -67,7 +67,7 @@
 			Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
 		</div>
 		<div class="text-muted-foreground flex items-center gap-2 leading-none">
-			January - June 2024
+			Showing total visitors for the last 6 months
 		</div>
 	</Card.Footer>
 </Card.Root>

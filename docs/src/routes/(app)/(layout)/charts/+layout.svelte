@@ -7,7 +7,6 @@
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import PageNav from "$lib/components/page-nav.svelte";
 	import ChartsNav from "$lib/components/charts-nav.svelte";
-	import ThemeSelector from "$lib/components/theme-selector.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
 
 	let { children } = $props();
@@ -35,7 +34,6 @@
 </PageHeader>
 <PageNav id="charts">
 	<ChartsNav />
-	<ThemeSelector class="me-4 hidden md:flex" />
 </PageNav>
 <div class="container-wrapper section-soft flex-1">
 	<div class="container pb-6">
