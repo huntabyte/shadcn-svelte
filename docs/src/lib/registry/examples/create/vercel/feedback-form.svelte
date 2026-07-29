@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as NativeSelect from "$lib/registry/ui/native-select/index.js";
-	import { Textarea } from "$lib/registry/ui/textarea/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Textarea } from "$lib/registry/ui/textarea/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 
 <Example title="Feedback Form" class="items-center justify-center">
@@ -21,9 +21,7 @@
 								Accounts and Access Controls
 							</NativeSelect.Option>
 							<NativeSelect.Option value="billing">Billing</NativeSelect.Option>
-							<NativeSelect.Option value="cdn">
-								CDN (Firewall, Caching)
-							</NativeSelect.Option>
+							<NativeSelect.Option value="cdn">CDN (Firewall, Caching)</NativeSelect.Option>
 							<NativeSelect.Option value="ci-cd">
 								CI/CD (Builds, Deployments, Environment Variables)
 							</NativeSelect.Option>
