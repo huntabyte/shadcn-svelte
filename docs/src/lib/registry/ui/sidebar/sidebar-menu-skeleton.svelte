@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { cn, type WithElementRef } from "$lib/utils.js";
 	import { Skeleton } from "$lib/registry/ui/skeleton/index.js";
+	import { hydratable } from "svelte";
 	import type { HTMLAttributes } from "svelte/elements";
 
 	let {
@@ -12,9 +13,11 @@
 	}: WithElementRef<HTMLAttributes<HTMLElement>> & {
 		showIcon?: boolean;
 	} = $props();
+	const uid = $props.id();
 
 	// Random width between 50% and 90%
-	const width = `${Math.floor(Math.random() * 40) + 50}%`;
+	const rand = hydratable(`${uid}-skeleton-width`, () => Math.random());
+	const width = `${Math.floor(rand * 40) + 50}%`;
 </script>
 
 <div
