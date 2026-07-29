@@ -14,8 +14,7 @@ catalog:
     zod: ^4.3.6
 
 onlyBuiltDependencies:
-  - "@tailwindcss/oxide"
-  - esbuild
-  - sharp
-  - workerd
-
+    - "@tailwindcss/oxide"
+    - esbuild
+    - sharp
+    - workerd
