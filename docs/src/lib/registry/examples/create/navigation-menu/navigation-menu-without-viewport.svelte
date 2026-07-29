@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import CircleAlertIcon from "@lucide/svelte/icons/circle-alert";
 	import * as NavigationMenu from "$lib/registry/ui/navigation-menu/index.js";
 	import { navigationMenuTriggerStyle } from "$lib/registry/ui/navigation-menu/navigation-menu-trigger.svelte";
-	import CircleAlertIcon from "@lucide/svelte/icons/circle-alert";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 
 <Example title="Without Viewport">
@@ -23,25 +23,19 @@
 							<NavigationMenu.Link href="#/">
 								<div class="flex flex-col">
 									<div class="font-medium">Components</div>
-									<div class="text-muted-foreground">
-										Browse all components in the library.
-									</div>
+									<div class="text-muted-foreground">Browse all components in the library.</div>
 								</div>
 							</NavigationMenu.Link>
 							<NavigationMenu.Link href="#/">
 								<div class="flex flex-col">
 									<div class="font-medium">Documentation</div>
-									<div class="text-muted-foreground">
-										Learn how to use the library.
-									</div>
+									<div class="text-muted-foreground">Learn how to use the library.</div>
 								</div>
 							</NavigationMenu.Link>
 							<NavigationMenu.Link href="#/">
 								<div class="flex flex-col">
 									<div class="font-medium">Blog</div>
-									<div class="text-muted-foreground">
-										Read our latest blog posts.
-									</div>
+									<div class="text-muted-foreground">Read our latest blog posts.</div>
 								</div>
 							</NavigationMenu.Link>
 						</li>

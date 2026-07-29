@@ -9,9 +9,9 @@
 </script>
 
 <script lang="ts">
+	import { toast } from "svelte-sonner";
 	import { defaults, superForm } from "sveltekit-superforms";
 	import { zod4 } from "sveltekit-superforms/adapters";
-	import { toast } from "svelte-sonner";
 	import * as Form from "$lib/registry/ui/form/index.js";
 	import { Textarea } from "$lib/registry/ui/textarea/index.js";
 

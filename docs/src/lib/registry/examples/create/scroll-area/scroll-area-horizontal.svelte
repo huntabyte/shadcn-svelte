@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import * as ScrollArea from "$lib/registry/ui/scroll-area/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const works = [
 		{
@@ -21,7 +21,7 @@
 <Example title="Horizontal">
 	<ScrollArea.Root
 		orientation="horizontal"
-		class="style-luma:rounded-2xl style-rhea:rounded-2xl mx-auto w-full max-w-96 rounded-md border p-4"
+		class="mx-auto w-full max-w-96 rounded-md border p-4 style-luma:rounded-2xl style-rhea:rounded-2xl"
 	>
 		<div class="flex gap-4">
 			{#each works as artwork (artwork.artist)}
@@ -35,8 +35,8 @@
 							height={400}
 						/>
 					</div>
-					<figcaption class="text-muted-foreground pt-2 text-xs">
-						Photo by <span class="text-foreground font-semibold">{artwork.artist}</span>
+					<figcaption class="pt-2 text-xs text-muted-foreground">
+						Photo by <span class="font-semibold text-foreground">{artwork.artist}</span>
 					</figcaption>
 				</figure>
 			{/each}

@@ -1,12 +1,12 @@
 <script lang="ts">
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import { useSidebar } from "$lib/registry/ui/sidebar/index.js";
 	import ArrowUpRightIcon from "@lucide/svelte/icons/arrow-up-right";
 	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
 	import LinkIcon from "@lucide/svelte/icons/link";
 	import StarOffIcon from "@lucide/svelte/icons/star-off";
 	import Trash2Icon from "@lucide/svelte/icons/trash-2";
+	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
+	import { useSidebar } from "$lib/registry/ui/sidebar/index.js";
 
 	let {
 		favorites,

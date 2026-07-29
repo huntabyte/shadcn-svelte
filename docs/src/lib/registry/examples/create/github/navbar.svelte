@@ -1,11 +1,11 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import * as Avatar from "$lib/registry/ui/avatar/index.js";
 	import * as Drawer from "$lib/registry/ui/drawer/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
-	import * as Avatar from "$lib/registry/ui/avatar/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 
 <Example title="Account Menu">
@@ -265,18 +265,13 @@
 						<Item.Root class="px-2 py-1 pb-0.5" size="sm">
 							<Item.Media>
 								<Avatar.Root>
-									<Avatar.Image
-										src="https://github.com/shadcn.png"
-										alt="shadcn"
-									/>
+									<Avatar.Image src="https://github.com/shadcn.png" alt="shadcn" />
 									<Avatar.Fallback>SC</Avatar.Fallback>
 								</Avatar.Root>
 							</Item.Media>
 							<Item.Content class="gap-0">
-								<Item.Title class="text-foreground text-sm">shadcn</Item.Title>
-								<Item.Description class="text-xs">
-									shadcn@example.com
-								</Item.Description>
+								<Item.Title class="text-sm text-foreground">shadcn</Item.Title>
+								<Item.Description class="text-xs">shadcn@example.com</Item.Description>
 							</Item.Content>
 						</Item.Root>
 					</DropdownMenu.Label>

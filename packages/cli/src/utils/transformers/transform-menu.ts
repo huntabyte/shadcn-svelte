@@ -1,9 +1,9 @@
 // !! BROWSER SAFE !!
 
-import type { Transformer } from "./index.js";
-import { parse as parseSvelte } from "svelte/compiler";
 import MagicString from "magic-string";
+import { parse as parseSvelte } from "svelte/compiler";
 import { twMerge } from "tailwind-merge";
+import type { Transformer } from "./index.js";
 
 // Hardcoded translucent classes inlined at install time.
 const TRANSLUCENT_CLASSES =
@@ -65,8 +65,7 @@ function walkNodes(nodes: SvelteNode[] | undefined, visit: (node: SvelteNode) =>
  */
 export const transformMenu: Transformer = async ({ content, filePath, config }) => {
 	const menuColor = config.menuColor ?? "default";
-	const isTranslucent =
-		menuColor === "default-translucent" || menuColor === "inverted-translucent";
+	const isTranslucent = menuColor === "default-translucent" || menuColor === "inverted-translucent";
 
 	if (!content.includes("cn-menu-target") && !content.includes("cn-menu-translucent")) {
 		return { content };
@@ -96,17 +95,12 @@ export const transformMenu: Transformer = async ({ content, filePath, config }) 
 			if (Array.isArray(value)) {
 				const textChunks = value
 					.filter(
-						(
-							chunk
-						): chunk is { type: string; data?: string; start?: number; end?: number } =>
+						(chunk): chunk is { type: string; data?: string; start?: number; end?: number } =>
 							typeof chunk === "object" && chunk !== null && "data" in chunk
 					)
 					.map((c) => c.data ?? "")
 					.join("");
-				if (
-					!textChunks.includes("cn-menu-target") &&
-					!textChunks.includes("cn-menu-translucent")
-				) {
+				if (!textChunks.includes("cn-menu-target") && !textChunks.includes("cn-menu-translucent")) {
 					continue;
 				}
 				const { newText } = transformClassText(textChunks, menuColor, isTranslucent);
@@ -126,8 +120,7 @@ export const transformMenu: Transformer = async ({ content, filePath, config }) 
 
 			// Dynamic: class={cn(...)}
 			if (typeof value === "object" && value !== null && "expression" in value) {
-				const expr = (value as { expression?: { type: string; arguments?: unknown[] } })
-					.expression;
+				const expr = (value as { expression?: { type: string; arguments?: unknown[] } }).expression;
 				if (!expr || expr.type !== "CallExpression") continue;
 				const args = expr.arguments as {
 					type: string;
@@ -143,10 +136,7 @@ export const transformMenu: Transformer = async ({ content, filePath, config }) 
 				if (exprStart == null || exprEnd == null) continue;
 
 				const fullExpr = content.slice(exprStart, exprEnd);
-				if (
-					!fullExpr.includes("cn-menu-target") &&
-					!fullExpr.includes("cn-menu-translucent")
-				) {
+				if (!fullExpr.includes("cn-menu-target") && !fullExpr.includes("cn-menu-translucent")) {
 					continue;
 				}
 

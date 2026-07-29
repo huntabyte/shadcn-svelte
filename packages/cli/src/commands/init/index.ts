@@ -1,25 +1,25 @@
-import color from "picocolors";
-import { Command, Option } from "commander";
-import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
 import process from "node:process";
-import { z } from "zod";
+import { existsSync, promises as fs } from "node:fs";
 import * as p from "@clack/prompts";
-import type { TsConfigResult } from "get-tsconfig";
-import { detectConfigs } from "../../utils/auto-detect.js";
-import { error } from "../../utils/errors.js";
-import * as cliConfig from "../../utils/config/index.js";
-import { cancel, intro, prettifyList, handleError } from "../../utils/prompt-helpers.js";
-import * as registry from "../../utils/registry/index.js";
+import color from "picocolors";
+import { Command, Option } from "commander";
+import { z } from "zod";
 import { preflightInit } from "./preflight.js";
-import { addRegistryItems } from "../../utils/add-registry-items.js";
-import { getEnvProxy } from "../../utils/get-env-proxy.js";
-import { highlight } from "../../utils/colors.js";
-import { installDependencies } from "../../utils/install-deps.js";
-import { checkPreconditions } from "../../utils/preconditions.js";
+import * as cliConfig from "../../utils/config/index.js";
+import * as project from "../../utils/project.js";
+import * as registry from "../../utils/registry/index.js";
 import { type PresetConfig, decodePreset, encodePreset } from "../../preset/index.js";
 import { promptForPreset } from "../../preset/presets.js";
-import * as project from "../../utils/project.js";
+import { addRegistryItems } from "../../utils/add-registry-items.js";
+import { detectConfigs } from "../../utils/auto-detect.js";
+import { highlight } from "../../utils/colors.js";
+import { error } from "../../utils/errors.js";
+import { getEnvProxy } from "../../utils/get-env-proxy.js";
+import { installDependencies } from "../../utils/install-deps.js";
+import { checkPreconditions } from "../../utils/preconditions.js";
+import { cancel, intro, prettifyList, handleError } from "../../utils/prompt-helpers.js";
+import type { TsConfigResult } from "get-tsconfig";
 
 const baseColors = registry.getBaseColors();
 
@@ -47,9 +47,7 @@ export const init = new Command()
 	.description("initialize your project and install dependencies")
 	.option("--preset <preset>", "the preset to use")
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
-	.addOption(
-		new Option("-o, --overwrite", "deprecated: use --reinstall").default(false).hideHelp()
-	)
+	.addOption(new Option("-o, --overwrite", "deprecated: use --reinstall").default(false).hideHelp())
 	.option("--no-deps", "disable adding & installing dependencies")
 	.option("--skip-preflight", "ignore preflight checks and continue", false)
 	.option("--reinstall", "reinstall existing components when style changes")
@@ -288,9 +286,7 @@ export async function runInit({
 			// Ensure all resolved paths directories exist.
 			for (const [key, resolvedPath] of Object.entries(config.resolvedPaths)) {
 				// Determine if the path is a file or directory.
-				let dirname = path.extname(resolvedPath)
-					? path.dirname(resolvedPath)
-					: resolvedPath;
+				let dirname = path.extname(resolvedPath) ? path.dirname(resolvedPath) : resolvedPath;
 
 				// If the utils alias is set to something like "@/lib/utils",
 				// assume this is a file and remove the "utils" file name.

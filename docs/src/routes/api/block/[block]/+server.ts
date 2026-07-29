@@ -1,15 +1,8 @@
 import path from "node:path";
-import { z } from "zod";
 import { json } from "@sveltejs/kit";
 import { registryItemSchema } from "shadcn-svelte/schema";
+import { z } from "zod";
 import { highlightCode } from "$lib/highlight-code.js";
-import { blockMeta } from "$lib/registry/registry-block-meta.js";
-import {
-	transformBlockPath,
-	transformDesignSystem,
-	transformImportPaths,
-} from "$lib/registry/registry-utils.js";
-import type { RequestHandler } from "./$types.js";
 import {
 	DEFAULT_CONFIG,
 	MENU_COLORS,
@@ -19,6 +12,13 @@ import {
 	type MenuColorValue,
 	type StyleName,
 } from "$lib/registry/config.js";
+import { blockMeta } from "$lib/registry/registry-block-meta.js";
+import {
+	transformBlockPath,
+	transformDesignSystem,
+	transformImportPaths,
+} from "$lib/registry/registry-utils.js";
+import type { RequestHandler } from "./$types.js";
 
 export interface HighlightedBlock {
 	name: string;
@@ -126,8 +126,7 @@ export const GET: RequestHandler = async ({ params, url }) => {
 		designSystem: {
 			style: getStyle((style ?? "") as StyleName)?.name ?? DEFAULT_CONFIG.style,
 			iconLibrary:
-				getIconLibrary((iconLibrary ?? "") as IconLibraryName)?.name ??
-				DEFAULT_CONFIG.iconLibrary,
+				getIconLibrary((iconLibrary ?? "") as IconLibraryName)?.name ?? DEFAULT_CONFIG.iconLibrary,
 			menuColor: menuColorValues.includes((menuColor ?? "") as MenuColorValue)
 				? (menuColor as MenuColorValue)
 				: DEFAULT_CONFIG.menuColor,

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import * as Chart from "$lib/registry/ui/chart/index.js";
-	import * as Card from "$lib/registry/ui/card/index.js";
 	import { scaleUtc } from "d3-scale";
-	import { LineChart } from "layerchart";
 	import { curveNatural } from "d3-shape";
+	import { LineChart } from "layerchart";
+	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Chart from "$lib/registry/ui/chart/index.js";
 
 	const chartData = [
 		{ date: new Date("2024-04-01"), desktop: 222, mobile: 150 },
@@ -132,10 +132,10 @@
 				{@const chart = key as keyof typeof chartConfig}
 				<button
 					data-active={activeChart === chart}
-					class="data-[active=true]:bg-muted/50 relative z-30 flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-start even:border-s sm:border-s sm:border-t-0 sm:px-8 sm:py-6"
+					class="relative z-30 flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-start even:border-s data-[active=true]:bg-muted/50 sm:border-s sm:border-t-0 sm:px-8 sm:py-6"
 					onclick={() => (activeChart = chart)}
 				>
-					<span class="text-muted-foreground text-xs">
+					<span class="text-xs text-muted-foreground">
 						{chartConfig[chart].label}
 					</span>
 					<span class="text-lg leading-none font-bold sm:text-3xl">

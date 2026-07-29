@@ -23,7 +23,7 @@
 			"target": "collapsible/collapsible.svelte"
 		},
 		{
-			"content": "import Root from \"./collapsible.svelte\";\nimport Trigger from \"./collapsible-trigger.svelte\";\nimport Content from \"./collapsible-content.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tTrigger,\n\t//\n\tRoot as Collapsible,\n\tContent as CollapsibleContent,\n\tTrigger as CollapsibleTrigger,\n};\n",
+			"content": "import Content from \"./collapsible-content.svelte\";\nimport Trigger from \"./collapsible-trigger.svelte\";\nimport Root from \"./collapsible.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tTrigger,\n\t//\n\tRoot as Collapsible,\n\tContent as CollapsibleContent,\n\tTrigger as CollapsibleTrigger,\n};\n",
 			"type": "registry:file",
 			"target": "collapsible/index.ts"
 		}

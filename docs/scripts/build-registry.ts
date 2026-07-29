@@ -1,9 +1,10 @@
 import fs from "node:fs";
+import path from "node:path";
 import { exec } from "node:child_process";
 import { promisify } from "node:util";
-import path from "node:path";
 import postcss from "postcss";
 import { rimraf } from "rimraf";
+import { PRESET_STYLES, type PresetConfig } from "shadcn-svelte/preset";
 import {
 	componentsJsonSchema,
 	registryItemSchema,
@@ -11,11 +12,10 @@ import {
 	type Registry,
 	type RegistryItemType,
 } from "shadcn-svelte/schema";
-import { PRESET_STYLES, type PresetConfig } from "shadcn-svelte/preset";
-import { buildRegistry } from "./registry.js";
-import { THEMES } from "../src/lib/registry/themes.js";
-import { getColorsData } from "../src/lib/components/colors/colors.js";
 import { toJSONSchema } from "zod";
+import { buildRegistry } from "./registry.js";
+import { getColorsData } from "../src/lib/components/colors/colors.js";
+import { THEMES } from "../src/lib/registry/themes.js";
 
 interface BuildRegistryItem {
 	name: string;

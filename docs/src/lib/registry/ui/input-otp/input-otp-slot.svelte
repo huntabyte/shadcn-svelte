@@ -25,7 +25,7 @@
 		<div
 			class="cn-input-otp-caret pointer-events-none absolute inset-0 flex items-center justify-center"
 		>
-			<div class="cn-input-otp-caret-line bg-foreground h-4 w-px"></div>
+			<div class="cn-input-otp-caret-line h-4 w-px bg-foreground"></div>
 		</div>
 	{/if}
 </InputOTPPrimitive.Cell>

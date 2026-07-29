@@ -1,13 +1,13 @@
 <script lang="ts">
+	import ChartPieIcon from "@lucide/svelte/icons/chart-pie";
+	import FrameIcon from "@lucide/svelte/icons/frame";
+	import LifeBuoyIcon from "@lucide/svelte/icons/life-buoy";
+	import MapIcon from "@lucide/svelte/icons/map";
+	import PanelLeftCloseIcon from "@lucide/svelte/icons/panel-left-close";
+	import PanelLeftOpenIcon from "@lucide/svelte/icons/panel-left-open";
+	import SendIcon from "@lucide/svelte/icons/send";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import PanelLeftOpenIcon from "@lucide/svelte/icons/panel-left-open";
-	import PanelLeftCloseIcon from "@lucide/svelte/icons/panel-left-close";
-	import LifeBuoyIcon from "@lucide/svelte/icons/life-buoy";
-	import SendIcon from "@lucide/svelte/icons/send";
-	import FrameIcon from "@lucide/svelte/icons/frame";
-	import ChartPieIcon from "@lucide/svelte/icons/chart-pie";
-	import MapIcon from "@lucide/svelte/icons/map";
 
 	const projects = [
 		{

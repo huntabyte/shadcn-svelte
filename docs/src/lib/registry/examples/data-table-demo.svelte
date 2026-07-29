@@ -13,19 +13,19 @@
 		getSortedRowModel,
 	} from "@tanstack/table-core";
 	import { createRawSnippet } from "svelte";
-	import DataTableCheckbox from "./data-table/data-table-checkbox.svelte";
-	import DataTableEmailButton from "./data-table/data-table-email-button.svelte";
-	import DataTableActions from "./data-table/data-table-actions.svelte";
+	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Table from "$lib/registry/ui/table/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
 	import {
 		FlexRender,
 		createSvelteTable,
 		renderComponent,
 		renderSnippet,
 	} from "$lib/registry/ui/data-table/index.js";
+	import { Input } from "$lib/registry/ui/input/index.js";
+	import DataTableActions from "./data-table/data-table-actions.svelte";
+	import DataTableCheckbox from "./data-table/data-table-checkbox.svelte";
+	import DataTableEmailButton from "./data-table/data-table-email-button.svelte";
 
 	type Payment = {
 		id: string;
@@ -73,8 +73,7 @@
 			header: ({ table }) =>
 				renderComponent(DataTableCheckbox, {
 					checked: table.getIsAllPageRowsSelected(),
-					indeterminate:
-						table.getIsSomePageRowsSelected() && !table.getIsAllPageRowsSelected(),
+					indeterminate: table.getIsSomePageRowsSelected() && !table.getIsAllPageRowsSelected(),
 					onCheckedChange: (value) => table.toggleAllPageRowsSelected(!!value),
 					"aria-label": "Select all",
 				}),
@@ -249,9 +248,7 @@
 				{#each table.getAllColumns().filter((col) => col.getCanHide()) as column (column)}
 					<DropdownMenu.CheckboxItem
 						class="capitalize"
-						bind:checked={
-							() => column.getIsVisible(), (v) => column.toggleVisibility(!!v)
-						}
+						bind:checked={() => column.getIsVisible(), (v) => column.toggleVisibility(!!v)}
 					>
 						{column.id}
 					</DropdownMenu.CheckboxItem>
@@ -282,25 +279,20 @@
 					<Table.Row data-state={row.getIsSelected() && "selected"}>
 						{#each row.getVisibleCells() as cell (cell.id)}
 							<Table.Cell class="[&:has([role=checkbox])]:ps-3">
-								<FlexRender
-									content={cell.column.columnDef.cell}
-									context={cell.getContext()}
-								/>
+								<FlexRender content={cell.column.columnDef.cell} context={cell.getContext()} />
 							</Table.Cell>
 						{/each}
 					</Table.Row>
 				{:else}
 					<Table.Row>
-						<Table.Cell colspan={columns.length} class="h-24 text-center">
-							No results.
-						</Table.Cell>
+						<Table.Cell colspan={columns.length} class="h-24 text-center">No results.</Table.Cell>
 					</Table.Row>
 				{/each}
 			</Table.Body>
 		</Table.Root>
 	</div>
 	<div class="flex items-center justify-end space-x-2 pt-4">
-		<div class="text-muted-foreground flex-1 text-sm">
+		<div class="flex-1 text-sm text-muted-foreground">
 			{table.getFilteredSelectedRowModel().rows.length} of
 			{table.getFilteredRowModel().rows.length} row(s) selected.
 		</div>

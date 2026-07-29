@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { apply, runApply } from "../../src/commands/apply";
 import * as cliConfig from "../../src/utils/config/index.js";
 import * as registry from "../../src/utils/registry/index.js";
+import { apply, runApply } from "../../src/commands/apply";
 import { addRegistryItems } from "../../src/utils/add-registry-items.js";
 import type { PresetConfig } from "../../src/preset/index.js";
 import type { ResolvedConfig } from "../../src/utils/config/index.js";

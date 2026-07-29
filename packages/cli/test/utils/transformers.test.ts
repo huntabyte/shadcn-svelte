@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+import { transformCss } from "../../src/utils/transform-css";
 import {
 	transform,
 	transformIcons,
@@ -6,7 +7,6 @@ import {
 	transformMenu,
 	transformStripTypes,
 } from "../../src/utils/transformers";
-import { transformCss } from "../../src/utils/transform-css";
 import type { ResolvedConfig } from "../../src/utils/config/index";
 
 const mockConfig: ResolvedConfig = {
