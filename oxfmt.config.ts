@@ -81,7 +81,7 @@ export default defineConfig({
 		"/.agents/",
 		"/.cursor/",
 		"/.changeset/",
-		// "CHANGELOG.md",
+		"CHANGELOG.md",
 		// "registry-template",
 
 		// // docs site specific
@@ -104,6 +104,13 @@ export default defineConfig({
 				tabWidth: 2,
 				useTabs: false,
 				printWidth: 79,
+			},
+		},
+		{
+			files: ["*.yaml", "*.yml"],
+			options: {
+				tabWidth: 4,
+				useTabs: false,
 			},
 		},
 		{

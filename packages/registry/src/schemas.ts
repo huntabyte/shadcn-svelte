@@ -57,9 +57,7 @@ const baseIndexItemSchema = z.object({
 	title: z
 		.string()
 		.optional()
-		.describe(
-			"The human-readable title for your registry item. Keep it short and descriptive."
-		),
+		.describe("The human-readable title for your registry item. Keep it short and descriptive."),
 	type: registryItemTypeSchema,
 	author: z
 		.string()
@@ -126,15 +124,11 @@ const registryItemCssVarsSchema = z
 export type CssSchema = { [x: string]: string | CssSchema };
 const registryItemCssSchema: z.ZodType<CssSchema, CssSchema> = z
 	.record(
-		z
-			.string()
-			.describe("Direct CSS string (e.g., 'font-family: sans-serif; line-height: 1.5;')"),
+		z.string().describe("Direct CSS string (e.g., 'font-family: sans-serif; line-height: 1.5;')"),
 		z
 			.lazy(() =>
 				z.union([
-					z
-						.string()
-						.describe("CSS property value (e.g., 'blue', 'var(--color-primary)')"),
+					z.string().describe("CSS property value (e.g., 'blue', 'var(--color-primary)')"),
 					registryItemCssSchema.describe("CSS property value for nested rule"),
 				])
 			)
@@ -188,17 +182,13 @@ export const registrySchema = z.object({
 			hooks: z.string().optional(),
 		})
 		.optional()
-		.describe(
-			"Defines which internal import paths should be transformed during registry `build`."
-		),
+		.describe("Defines which internal import paths should be transformed during registry `build`."),
 	items: baseIndexItemSchema
 		.extend({
 			files: registryItemFileSchema
 				.partial()
 				.extend({
-					path: z
-						.string()
-						.describe("The path to the file relative to the registry root."),
+					path: z.string().describe("The path to the file relative to the registry root."),
 					type: registryItemFileTypeSchema,
 				})
 				.array()
@@ -223,9 +213,7 @@ export const componentsJsonSchema = z.object({
 			"DEPRECATED IN TAILWIND v4! The style for your components. This cannot be changed after initialization."
 		),
 	tailwind: z.object({
-		css: z
-			.string()
-			.describe("Path to the CSS file that imports Tailwind CSS into your project."),
+		css: z.string().describe("Path to the CSS file that imports Tailwind CSS into your project."),
 		baseColor: z
 			.string()
 			.describe(
@@ -234,9 +222,7 @@ export const componentsJsonSchema = z.object({
 		config: z
 			.string()
 			.optional()
-			.describe(
-				"DEPRECATED IN TAILWIND v4! The path to your `tailwind.config.[js|ts]` file."
-			),
+			.describe("DEPRECATED IN TAILWIND v4! The path to your `tailwind.config.[js|ts]` file."),
 		// cssVariables: z.boolean().default(true)
 	}),
 	aliases: z

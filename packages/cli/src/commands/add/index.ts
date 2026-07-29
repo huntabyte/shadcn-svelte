@@ -1,19 +1,19 @@
 import path from "node:path";
 import process from "node:process";
 import { existsSync } from "node:fs";
-import color from "picocolors";
-import { z } from "zod";
-import { Command } from "commander";
-import { ConfigError, error } from "../../utils/errors.js";
-import * as cliConfig from "../../utils/config/index.js";
-import { getEnvProxy } from "../../utils/get-env-proxy.js";
-import { cancel, intro, prettifyList, handleError } from "../../utils/prompt-helpers.js";
 import * as p from "@clack/prompts";
+import color from "picocolors";
+import { Command } from "commander";
+import { z } from "zod";
+import * as cliConfig from "../../utils/config/index.js";
 import * as registry from "../../utils/registry/index.js";
 import { addRegistryItems } from "../../utils/add-registry-items.js";
 import { highlight } from "../../utils/colors.js";
+import { ConfigError, error } from "../../utils/errors.js";
+import { getEnvProxy } from "../../utils/get-env-proxy.js";
 import { installDependencies } from "../../utils/install-deps.js";
 import { checkPreconditions } from "../../utils/preconditions.js";
+import { cancel, intro, prettifyList, handleError } from "../../utils/prompt-helpers.js";
 
 const addOptionsSchema = z.object({
 	components: z.string().array().optional(),

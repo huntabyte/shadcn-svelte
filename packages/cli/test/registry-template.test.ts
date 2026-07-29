@@ -6,9 +6,10 @@
  * Whether this is a good idea or not, idk but seems like a good start.
  */
 
-import { it, expect } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
+import { it, expect } from "vitest";
+
 const registryTemplateStaticRegistryPath = path.join(
 	__dirname,
 	"..",

@@ -1,10 +1,10 @@
 import path from "node:path";
 import { beforeEach, describe, it, expect, vi } from "vitest";
-import type { TsConfigResult } from "get-tsconfig";
 import { toPosixPath } from "./test-helpers.js";
-import { resolveImportAlias } from "../../src/utils/resolve-imports.js";
-import { getDependencyPackageInfo } from "../../src/utils/get-package-info.js";
 import * as project from "../../src/utils/project.js";
+import { getDependencyPackageInfo } from "../../src/utils/get-package-info.js";
+import { resolveImportAlias } from "../../src/utils/resolve-imports.js";
+import type { TsConfigResult } from "get-tsconfig";
 
 vi.mock("../../src/utils/project.js");
 vi.mock("../../src/utils/get-package-info.js");
@@ -100,9 +100,7 @@ describe("resolveImportAlias", () => {
 			cwd: "/project",
 		});
 		expect(result).toBeDefined();
-		expect(toPosixPath(result!)).toBe(
-			"/project/node_modules/@workspace/ui/src/components/Button"
-		);
+		expect(toPosixPath(result!)).toBe("/project/node_modules/@workspace/ui/src/components/Button");
 	});
 
 	it("returns undefined when the path alias being used is not defined in the tsconfig", () => {

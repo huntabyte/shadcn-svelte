@@ -1,15 +1,9 @@
-import color from "picocolors";
-import { getTsconfig, type TsConfigResult } from "get-tsconfig";
 import fs from "node:fs";
 import path from "node:path";
-import { z } from "zod";
-import { highlight } from "../colors.js";
-import { SITE_BASE_URL } from "../../constants.js";
-import { ConfigError, error } from "../errors.js";
-import { resolveImportAlias } from "../resolve-imports.js";
-import * as project from "../project.js";
 import * as p from "@clack/prompts";
-import { cancel } from "../prompt-helpers.js";
+import color from "picocolors";
+import { getTsconfig, type TsConfigResult } from "get-tsconfig";
+import { z } from "zod";
 import {
 	DEFAULT_CONFIG,
 	newConfigSchema,
@@ -19,7 +13,13 @@ import {
 	type RawConfig,
 	type ResolvedConfig,
 } from "./schema.js";
+import * as project from "../project.js";
+import { SITE_BASE_URL } from "../../constants.js";
 import { DEFAULT_PRESET_CONFIG, PRESET_STYLES } from "../../preset/preset.js";
+import { highlight } from "../colors.js";
+import { ConfigError, error } from "../errors.js";
+import { cancel } from "../prompt-helpers.js";
+import { resolveImportAlias } from "../resolve-imports.js";
 
 export async function getConfig(cwd: string): Promise<ResolvedConfig | undefined> {
 	const config = loadConfig(cwd);

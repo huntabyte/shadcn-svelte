@@ -1,9 +1,9 @@
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { type TsConfigResult, createPathsMatcher } from "get-tsconfig";
 import * as resolve from "resolve.exports";
-import { getDependencyPackageInfo } from "./get-package-info.js";
+import { type TsConfigResult, createPathsMatcher } from "get-tsconfig";
 import * as project from "./project.js";
+import { getDependencyPackageInfo } from "./get-package-info.js";
 import type { PackageJson } from "type-fest";
 
 const NOOP = "/noop.js";
