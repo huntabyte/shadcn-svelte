@@ -46,6 +46,14 @@ describe("resolveDepsFromImport", () => {
 		expect(result).toEqual(["foo@1.2.3", "peer-a", "peer-b"]);
 	});
 
+	it("does not treat unrelated package name prefixes as deep imports", () => {
+		mockDeps.versions.re = "re@1.0.0";
+		mockDeps.deps["re@1.0.0"] = [];
+		expect(resolveDepsFromImport("react", mockDeps)).toEqual([]);
+		expect(resolveDepsFromImport("re", mockDeps)).toEqual(["re@1.0.0"]);
+		expect(resolveDepsFromImport("re/utils", mockDeps)).toEqual(["re@1.0.0"]);
+	});
+
 	it("ignores deps listed in IGNORE_DEPS even if present", () => {
 		for (const dep of IGNORE_DEPS) {
 			const src = dep;
