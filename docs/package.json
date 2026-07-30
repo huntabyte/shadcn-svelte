@@ -103,6 +103,7 @@
 		"paneforge": "^1.0.2",
 		"phosphor-svelte": "^3.0.1",
 		"postcss": "^8.5.8",
+		"prettier-plugin-svelte": "^4.1.1",
 		"qrcode": "^1.5.4",
 		"rehype-parse": "^9.0.1",
 		"rehype-pretty-code": "^0.14.1",
