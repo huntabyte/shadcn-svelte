@@ -3,13 +3,14 @@
 	"version": "0.0.1",
 	"description": "sv add-on that initializes shadcn-svelte and adds components",
 	"keywords": [
-		"shadcn-svelte",
 		"sv-add",
 		"svelte",
-		"sveltekit"
+		"sveltekit",
+		"shadcn-svelte"
 	],
-	"homepage": "https://shadcn-svelte.com/docs",
+	"type": "module",
 	"license": "MIT",
+	"homepage": "https://shadcn-svelte.com/docs",
 	"author": {
 		"name": "huntabyte & CokaKoala",
 		"url": "https://twitter.com/huntabyte"
@@ -19,30 +20,28 @@
 		"url": "https://github.com/huntabyte/shadcn-svelte.git",
 		"directory": "sv-addons/sv"
 	},
-	"files": [
-		"dist"
-	],
-	"type": "module",
-	"exports": {
-		".": {
-			"default": "./dist/index.mjs"
-		}
-	},
 	"scripts": {
 		"demo:create": "sv create demo --types ts --template minimal --no-add-ons --no-install && cd demo && pnpm install --ignore-workspace",
 		"demo:add": "pnpm build && sv add file:../ --cwd demo --no-git-check",
 		"demo:add:ci": "pnpm build && sv add file:../ --cwd demo --no-git-check --no-download-check --no-install",
 		"build": "tsdown",
-		"prepublishOnly": "pnpm build",
 		"check": "tsc --noEmit"
+	},
+	"files": [
+		"dist"
+	],
+	"exports": {
+		".": {
+			"default": "./dist/index.mjs"
+		}
+	},
+	"peerDependencies": {
+		"sv": "^0.16.6"
 	},
 	"devDependencies": {
 		"@sveltejs/sv-utils": "^0.3.2",
 		"sv": "^0.16.6",
 		"tsdown": "catalog:",
 		"typescript": "catalog:"
-	},
-	"peerDependencies": {
-		"sv": "^0.16.6"
 	}
 }
