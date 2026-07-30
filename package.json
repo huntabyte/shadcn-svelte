@@ -14,7 +14,7 @@
 		"dev": "concurrently -n packages,apps --kill-others=false -c \"blue,green\" \"pnpm -r -parallel -F './packages/**' dev\" \"wait-on packages/cli/dist/index.mjs && pnpm -r -parallel -F docs dev\"",
 		"dev:cli": "pnpm -F  \"./packages/**\" --parallel --reporter append-only --color dev",
 		"preview": "pnpm -F docs preview",
-		"test": "pnpm -F shadcn-svelte test",
+		"test": "pnpm --color --parallel --reporter append-only -F \"./packages/*\" -F \"./sv-addons/*\" test",
 		"check": "pnpm --parallel check",
 		"lint": "oxfmt --check && eslint . --no-config-lookup --config eslint.config.js",
 		"format": "oxfmt",
