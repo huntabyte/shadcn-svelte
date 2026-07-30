@@ -5,9 +5,10 @@
 ## Usage
 
 ```sh
+# add it during project creation
+npx sv create my-project --add @shadcn-svelte
+# or add it afterwards
 npx sv add @shadcn-svelte
-# same as:
-npx sv add @shadcn-svelte/sv
 ```
 
 This add-on:

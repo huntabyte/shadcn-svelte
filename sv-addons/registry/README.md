@@ -5,7 +5,10 @@
 ## Usage
 
 ```sh
-pnpx sv add @shadcn-svelte/registry
+# add it during project creation
+npx sv create my-project --add @shadcn-svelte/registry
+# or add it afterwards
+npx sv add @shadcn-svelte/registry
 ```
 
 This add-on:
@@ -25,7 +28,7 @@ Include the registry preview page.
 Default: `true`
 
 ```sh
-pnpx sv add @shadcn-svelte/registry="demo:true"
+npx sv add @shadcn-svelte/registry="demo:true"
 ```
 
 ## Local development
