@@ -31,13 +31,13 @@ export default defineAddon({
 	},
 
 	nextSteps: ({ packageManager }) => {
-		const cmds = resolveCommandArray(packageManager, "execute", [
+		const cmd = resolveCommandArray(packageManager, "execute", [
 			"shadcn-svelte@latest",
 			"add",
 			"<component>",
 		]);
 		return [
-			`Add more components with ${color.command(cmds.join(" "))}`,
+			`Add more components with ${color.command(cmd.join(" "))}`,
 			`Docs: ${color.website("https://shadcn-svelte.com/docs")}`,
 		];
 	},

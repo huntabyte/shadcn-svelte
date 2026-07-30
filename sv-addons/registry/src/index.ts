@@ -67,14 +67,15 @@ export default defineAddon({
 	},
 
 	nextSteps: ({ packageManager }) => {
-		const cmds = resolveCommandArray(packageManager, "execute", [
+		const runCmd = resolveCommandArray(packageManager, "run", ["build:registry"]);
+		const execCmd = resolveCommandArray(packageManager, "execute", [
 			"shadcn-svelte@latest",
 			"add",
 			"http://localhost:5173/r/<name>.json",
 		]);
 		return [
-			`Run ${color.command(`${packageManager} run build:registry`)} to build your registry JSON files`,
-			`Serve the project and install items with ${color.command(cmds.join(" "))}`,
+			`Run ${color.command(runCmd.join(" "))} to build your registry JSON files`,
+			`Serve the project and install items with ${color.command(execCmd.join(" "))}`,
 			`Docs: ${color.website("https://shadcn-svelte.com/docs/registry")}`,
 		];
 	},
