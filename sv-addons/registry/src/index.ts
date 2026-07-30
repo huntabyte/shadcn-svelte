@@ -1,5 +1,5 @@
 import { defineAddon, defineAddonOptions } from "sv";
-import { color, transforms } from "./sv-utils.js";
+import { color, resolveCommandArray, transforms } from "./sv-utils.js";
 import { mergeThemeCss } from "./utils/css.js";
 import { listTemplatePaths, readTemplateFile, resolveProjectPath } from "./utils/templates.js";
 
@@ -66,9 +66,16 @@ export default defineAddon({
 		}
 	},
 
-	nextSteps: ({ packageManager }) => [
-		`Run ${color.command(`${packageManager} run build:registry`)} to build your registry JSON files`,
-		`Serve the project and install items with ${color.command("npx shadcn-svelte@latest add http://localhost:5173/r/<name>.json")}`,
-		`Docs: ${color.website("https://shadcn-svelte.com/docs/registry")}`,
-	],
+	nextSteps: ({ packageManager }) => {
+		const cmds = resolveCommandArray(packageManager, "execute", [
+			"shadcn-svelte@latest",
+			"add",
+			"http://localhost:5173/r/<name>.json",
+		]);
+		return [
+			`Run ${color.command(`${packageManager} run build:registry`)} to build your registry JSON files`,
+			`Serve the project and install items with ${color.command(cmds.join(" "))}`,
+			`Docs: ${color.website("https://shadcn-svelte.com/docs/registry")}`,
+		];
+	},
 });

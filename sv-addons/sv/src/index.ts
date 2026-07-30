@@ -31,8 +31,13 @@ export default defineAddon({
 	},
 
 	nextSteps: ({ packageManager }) => {
+		const cmds = resolveCommandArray(packageManager, "execute", [
+			"shadcn-svelte@latest",
+			"add",
+			"<component>",
+		]);
 		return [
-			`Add more components with ${color.command(`${packageManager} shadcn-svelte@latest add <component>`)}`,
+			`Add more components with ${color.command(cmds.join(" "))}`,
 			`Docs: ${color.website("https://shadcn-svelte.com/docs")}`,
 		];
 	},

@@ -22,9 +22,7 @@ function resolveTemplateRoot(): string {
 	throw new Error(`Template directory not found near ${here}`);
 }
 
-/**
- * Recursively collect files under `dir` as forward-slash paths relative to `dir`.
- */
+/** Recursively collect files under `dir` as forward-slash paths relative to `dir`. */
 function collectFiles(dir: string): string[] {
 	const files = fs
 		.readdirSync(dir, { recursive: true, withFileTypes: true })
