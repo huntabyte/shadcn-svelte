@@ -2,4 +2,4 @@
 "@shadcn-svelte/sv": patch
 ---
 
-chore: release `@shadcn-svelte/sv` as a community `sv` add-on
+chore: release `@shadcn-svelte/sv` as an `sv` community add-on

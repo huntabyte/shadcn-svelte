@@ -28,4 +28,4 @@ If you'd like to see an example of a registry, use the [`@shadcn-svelte/registry
 
 <PMExecute command="sv add @shadcn-svelte/registry" />
 
-It scaffolds a SvelteKit-ready registry authoring setup (example components, `registry.json`, theme CSS, and a `build:registry` script) into your project.
+It scaffolds a SvelteKit-ready registry authoring setup (example components, `registry.json`, a CSS theme, and a `build:registry` script) into your project.

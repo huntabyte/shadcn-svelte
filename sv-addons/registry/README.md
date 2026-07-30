@@ -5,7 +5,7 @@
 ## Usage
 
 ```sh
-npx sv add @shadcn-svelte/registry
+pnpx sv add @shadcn-svelte/registry
 ```
 
 This add-on:
@@ -25,7 +25,7 @@ Include the registry preview page.
 Default: `true`
 
 ```sh
-npx sv add @shadcn-svelte/registry="demo:true"
+pnpx sv add @shadcn-svelte/registry="demo:true"
 ```
 
 ## Local development
@@ -44,7 +44,7 @@ pnpm test
 You can also install a local build into any project with:
 
 ```sh
-npx sv add file:../path/to/registry
+pnpx sv add file:../path/to/registry
 ```
 
 ## Building the registry (in a generated project)
