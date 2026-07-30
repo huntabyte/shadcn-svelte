@@ -1,13 +1,13 @@
 import { describe, it, expect } from "vitest";
-import { transformCss } from "../../src/utils/transform-css";
+import { transformCss } from "../../src/utils/transform-css.js";
 import {
 	transform,
 	transformIcons,
 	transformImports,
 	transformMenu,
 	transformStripTypes,
-} from "../../src/utils/transformers";
-import type { ResolvedConfig } from "../../src/utils/config/index";
+} from "../../src/utils/transformers/index.js";
+import type { ResolvedConfig } from "../../src/utils/config/index.js";
 
 const mockConfig: ResolvedConfig = {
 	tailwind: {

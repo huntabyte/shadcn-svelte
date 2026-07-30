@@ -199,7 +199,7 @@ describe("resolveTypeDeps", () => {
 	it("only pushes the package name, not the version string", () => {
 		resolveTypeDeps(projectDeps);
 		const peers = projectDeps.dependencies.deps["foo@1.0.0"];
-		expect(peers.includes("@types/foo@1.0.0")).toBe(false);
+		expect(peers?.includes("@types/foo@1.0.0")).toBe(false);
 	});
 });
 

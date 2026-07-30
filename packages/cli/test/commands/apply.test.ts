@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import * as cliConfig from "../../src/utils/config/index.js";
 import * as registry from "../../src/utils/registry/index.js";
-import { apply, runApply } from "../../src/commands/apply";
+import { apply, runApply } from "../../src/commands/apply/index.js";
 import { addRegistryItems } from "../../src/utils/add-registry-items.js";
 import type { PresetConfig } from "../../src/preset/index.js";
 import type { ResolvedConfig } from "../../src/utils/config/index.js";
@@ -115,7 +115,7 @@ describe("runApply", () => {
 		expect(config.style).toBe("vega");
 		expect(config.tailwind.baseColor).toBe("zinc");
 
-		const [args] = vi.mocked(addRegistryItems).mock.calls[0];
+		const [args] = vi.mocked(addRegistryItems).mock.calls[0]!;
 		expect(args.only).toBeUndefined();
 		// only the preset item is sent — existing project files (utils/components)
 		// are never re-added
@@ -139,7 +139,7 @@ describe("runApply", () => {
 		expect(cliConfig.writeConfig).toHaveBeenCalledTimes(1);
 		expect(config.style).toBe("vega");
 
-		const [args] = vi.mocked(addRegistryItems).mock.calls[0];
+		const [args] = vi.mocked(addRegistryItems).mock.calls[0]!;
 		expect(args.only).toEqual(["theme"]);
 		expect(args.selectedItems).toHaveLength(1);
 		expect(args.skipExisting).toBe(true);
@@ -163,7 +163,7 @@ describe("runApply", () => {
 		expect(config.style).toBe(originalStyle);
 		expect(config.tailwind.baseColor).toBe(originalBaseColor);
 
-		const [args] = vi.mocked(addRegistryItems).mock.calls[0];
+		const [args] = vi.mocked(addRegistryItems).mock.calls[0]!;
 		expect(args.only).toEqual(["font"]);
 		expect(args.selectedItems).toHaveLength(1);
 	});
@@ -179,7 +179,7 @@ describe("runApply", () => {
 		});
 
 		expect(cliConfig.writeConfig).toHaveBeenCalledTimes(1);
-		const [args] = vi.mocked(addRegistryItems).mock.calls[0];
+		const [args] = vi.mocked(addRegistryItems).mock.calls[0]!;
 		expect(args.only).toBeUndefined();
 	});
 });

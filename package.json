@@ -15,7 +15,7 @@
 		"dev:cli": "pnpm -F  \"./packages/**\" --parallel --reporter append-only --color dev",
 		"preview": "pnpm -F docs preview",
 		"test": "pnpm -F shadcn-svelte test",
-		"check": "pnpm -F docs check && pnpm -F \"./packages/**\" check",
+		"check": "pnpm --parallel check",
 		"lint": "oxfmt --check && eslint . --no-config-lookup --config eslint.config.js",
 		"format": "oxfmt",
 		"preinstall": "npx only-allow pnpm",

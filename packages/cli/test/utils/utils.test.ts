@@ -1,10 +1,10 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { z } from "zod";
-import { transformAliases, transformLocal } from "../../src/commands/registry/build";
-import { ALIAS_DEFAULTS, ALIASES } from "../../src/constants";
+import { transformAliases, transformLocal } from "../../src/commands/registry/build.js";
+import { ALIAS_DEFAULTS, ALIASES } from "../../src/constants.js";
 import { parseDependency } from "../../src/utils/install-deps.js";
 import { naiveDeepPartialify } from "../../src/utils/registry/schema.js";
-import { resolveURL } from "../../src/utils/utils";
+import { resolveURL } from "../../src/utils/utils.js";
 
 describe("resolveURL", () => {
 	it("Correctly resolves the relative url path", () => {
