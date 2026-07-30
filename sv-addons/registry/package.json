@@ -27,7 +27,7 @@
 		"demo:add": "pnpm build && sv add file:../ --cwd demo --no-download-check --no-git-check --no-install tailwindcss=plugins:none",
 		"demo:add:ci": "pnpm build && sv add file:../=demo:true --cwd demo --no-git-check --no-download-check --no-install tailwindcss=plugins:none && pnpm demo:install-deps",
 		"demo:build:registry-template": "cd demo && pnpm build:registry",
-		"demo:install-deps": "cd demo && pnpm install --ignore-workspace",
+		"demo:install-deps": "cd demo && pnpm install --ignore-workspace --no-lockfile",
 		"build": "tsdown",
 		"check": "tsc --noEmit",
 		"test": "pnpm build && vitest run"
