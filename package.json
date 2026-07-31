@@ -17,8 +17,8 @@
 		"test": "pnpm -F shadcn-svelte test",
 		"build:registry-template": "pnpm build:cli && pnpm -F registry-template build:registry",
 		"check": "pnpm -F docs check && pnpm -F \"./packages/**\" check",
-		"lint": "prettier --check . && eslint . --no-config-lookup --config eslint.config.js",
-		"format": "prettier --write .",
+		"lint": "oxfmt --check && eslint . --no-config-lookup --config eslint.config.js",
+		"format": "oxfmt",
 		"preinstall": "npx only-allow pnpm",
 		"postinstall": "pnpm build:cli && pnpm -r sync",
 		"ci:publish": "changeset publish",
@@ -44,34 +44,15 @@
 		"@types/node": "^25.5.0",
 		"concurrently": "^9.2.1",
 		"eslint": "^10.0.3",
-		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.15.2",
 		"globals": "^17.4.0",
 		"minimatch": "^10.2.4",
-		"prettier": "~3.8.1",
-		"prettier-plugin-svelte": "^3.5.1",
-		"prettier-plugin-tailwindcss": "^0.7.2",
+		"oxfmt": "^0.61.0",
 		"pretty-quick": "^4.2.2",
 		"svelte": "^5.54.0",
-		"typescript": "5.9.3",
-		"typescript-eslint": "^8.57.1",
+		"typescript": "catalog:",
+		"typescript-eslint": "^8.65.0",
 		"wait-on": "^9.0.4",
 		"wrangler": "^4.75.0"
-	},
-	"pnpm": {
-		"onlyBuiltDependencies": [
-			"@tailwindcss/oxide",
-			"esbuild",
-			"sharp",
-			"workerd"
-		],
-		"overrides": {
-			"brace-expansion@>=2.0.0 <=2.0.1": ">=2.0.2",
-			"cookie@<0.7.0": ">=0.7.0",
-			"glob@>=10.2.0 <10.5.0": ">=10.5.0",
-			"js-yaml@>=4.0.0 <4.1.1": ">=4.1.1",
-			"mdast-util-to-hast@>=13.0.0 <13.2.1": ">=13.2.1",
-			"tar@=7.5.1": ">=7.5.11"
-		}
 	}
 }

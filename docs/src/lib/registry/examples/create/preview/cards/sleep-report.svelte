@@ -1,10 +1,10 @@
 <script lang="ts">
+	import { scaleBand } from "d3-scale";
+	import { BarChart } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import { scaleBand } from "d3-scale";
-	import { BarChart } from "layerchart";
 
 	const sleepChartData = [
 		{ hour: "10pm", deep: 0, light: 30, rem: 0 },
@@ -85,7 +85,7 @@
 			{#each stats as { label, value } (label)}
 				<div class="text-center">
 					<div class="text-sm font-medium tabular-nums">{value}</div>
-					<div class="text-muted-foreground text-xs">{label}</div>
+					<div class="text-xs text-muted-foreground">{label}</div>
 				</div>
 			{/each}
 		</div>

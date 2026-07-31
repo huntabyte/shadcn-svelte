@@ -8,10 +8,6 @@
 </script>
 
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
-	import * as Table from "$lib/registry/ui/table/index.js";
 	import {
 		getCoreRowModel,
 		getFilteredRowModel,
@@ -24,12 +20,16 @@
 		type SortingState,
 		type VisibilityState,
 	} from "@tanstack/table-core";
-	import { renderComponent, renderSnippet } from "$lib/registry/ui/data-table/render-helpers.js";
 	import { createRawSnippet } from "svelte";
+	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Table from "$lib/registry/ui/table/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
 	import { createSvelteTable } from "$lib/registry/ui/data-table/data-table.svelte.js";
 	import { FlexRender } from "$lib/registry/ui/data-table/index.js";
-	import EmailHeader from "./payments-email-header.svelte";
+	import { renderComponent, renderSnippet } from "$lib/registry/ui/data-table/render-helpers.js";
 	import ActionsCell from "./payments-actions-cell.svelte";
+	import EmailHeader from "./payments-email-header.svelte";
 
 	const data: Payment[] = [
 		{
@@ -252,26 +252,21 @@
 										class="data-[name=actions]:w-10 data-[name=amount]:w-24 data-[name=select]:w-10 data-[name=status]:w-24 [&:has([role=checkbox])]:ps-3"
 										data-name={cell.column.id}
 									>
-										<FlexRender
-											context={cell.getContext()}
-											content={cell.column.columnDef.cell}
-										/>
+										<FlexRender context={cell.getContext()} content={cell.column.columnDef.cell} />
 									</Table.Cell>
 								{/each}
 							</Table.Row>
 						{/each}
 					{:else}
 						<Table.Row>
-							<Table.Cell colspan={columns.length} class="h-24 text-center">
-								No results.
-							</Table.Cell>
+							<Table.Cell colspan={columns.length} class="h-24 text-center">No results.</Table.Cell>
 						</Table.Row>
 					{/if}
 				</Table.Body>
 			</Table.Root>
 		</div>
 		<div class="flex items-center justify-end gap-2">
-			<div class="text-muted-foreground flex-1 text-sm">
+			<div class="flex-1 text-sm text-muted-foreground">
 				{table.getFilteredSelectedRowModel().rows.length} of
 				{table.getFilteredRowModel().rows.length} row(s) selected.
 			</div>

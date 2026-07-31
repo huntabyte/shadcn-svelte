@@ -17,11 +17,7 @@
 </script>
 
 <Alert.Root
-	data-variant={variant}
-	class={cn(
-		"border-surface bg-surface text-surface-foreground mt-6 w-auto rounded-2xl md:-mx-1 **:[code]:border",
-		className
-	)}
+	class={cn("w-auto border bg-background text-foreground md:-mx-1", className)}
 	{...restProps}
 >
 	{#if Icon}

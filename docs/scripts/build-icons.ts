@@ -1,7 +1,7 @@
 #!/usr/bin/env tsx
-import * as fs from "fs/promises";
-import { watch } from "fs";
-import * as path from "path";
+import * as fs from "node:fs/promises";
+import * as path from "node:path";
+import { watch } from "node:fs";
 import { iconLibraries, type IconLibraryName } from "shadcn-svelte/icons";
 
 const SEARCH_BASE = "src/";
@@ -92,10 +92,7 @@ export type ${typeName} = ${typeUnion};
 		}
 
 		// clean unused icon files
-		const iconFileSet = new Set([
-			"index.ts",
-			...iconFiles.map((iconFile) => iconFile.fileName),
-		]);
+		const iconFileSet = new Set(["index.ts", ...iconFiles.map((iconFile) => iconFile.fileName)]);
 		for (const existingIconFile of await fs.readdir(iconOutputDir)) {
 			if (!iconFileSet.has(existingIconFile)) {
 				await fs.rm(path.join(iconOutputDir, existingIconFile));

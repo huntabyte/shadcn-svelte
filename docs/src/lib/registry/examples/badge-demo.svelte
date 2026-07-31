@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import BadgeCheckIcon from "@lucide/svelte/icons/badge-check";
+	import { Badge } from "$lib/registry/ui/badge/index.js";
 </script>
 
 <div class="flex flex-col items-center gap-2">

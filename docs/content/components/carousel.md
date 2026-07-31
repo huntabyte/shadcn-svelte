@@ -4,8 +4,8 @@ description: A carousel with motion and swipe built using Embla.
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/carousel
-  doc: https://www.embla-carousel.com/get-started/svelte
-  api: https://www.embla-carousel.com/api
+  doc: https://www.embla-carousel.com/docs/v8/get-started/svelte
+  api: https://www.embla-carousel.com/docs/v8/api
 ---
 
 <script>
@@ -28,7 +28,7 @@ links:
 
 ## About
 
-The carousel component is built using the [Embla Carousel](https://www.embla-carousel.com/get-started/svelte/) library.
+The carousel component is built using the [Embla Carousel](https://www.embla-carousel.com/docs/v8/get-started/svelte) library.
 
 ## Installation
 
@@ -166,7 +166,7 @@ Use the `orientation` prop to set the orientation of the carousel.
 
 ## Options
 
-You can pass options to the carousel using the `opts` prop. See the [Embla Carousel docs](https://www.embla-carousel.com/api/options/) for more information.
+You can pass options to the carousel using the `opts` prop. See the [Embla Carousel docs](https://www.embla-carousel.com/docs/v8/api/options) for more information.
 
 ```svelte showLineNumbers {2-5}
 <Carousel.Root
@@ -277,4 +277,4 @@ You can use the `plugins` prop to add plugins to the carousel.
 
 </ComponentPreview>
 
-See the [Embla Carousel docs](https://www.embla-carousel.com/api/plugins/) for more information on using plugins.
+See the [Embla Carousel docs](https://www.embla-carousel.com/docs/v8/plugins) for more information on using plugins.
