@@ -40,7 +40,10 @@
 {/snippet}
 
 <div
-	class={cn("group relative mt-4 mb-12 flex flex-col overflow-hidden rounded-xl border", className)}
+	class={cn(
+		"group relative mt-4 mb-12 flex flex-col overflow-hidden rounded-2xl border",
+		className
+	)}
 	{...restProps}
 >
 	<div

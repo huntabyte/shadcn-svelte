@@ -153,7 +153,7 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 		</DropdownMenu.Root>
 		<Separator
 			orientation="vertical"
-			class="absolute end-8 top-0 z-0 h-8! bg-foreground/10! peer-focus-visible:opacity-0 sm:end-7 sm:h-7!"
+			class="absolute end-8 top-1 z-0 h-6! bg-foreground/5! peer-focus-visible:opacity-0 sm:end-7 sm:h-5!"
 		/>
 		<Popover.Trigger class="flex sm:hidden">
 			{#snippet child({ props })}
@@ -161,7 +161,7 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 			{/snippet}
 		</Popover.Trigger>
 		<Popover.Content
-			class="w-52 origin-center! rounded-lg bg-background/70 p-1 shadow-sm backdrop-blur-sm dark:bg-background/60"
+			class="w-52 origin-center! rounded-lg bg-background/70 p-1 shadow-none backdrop-blur-sm dark:bg-background/60"
 			align="start"
 			{customAnchor}
 		>
