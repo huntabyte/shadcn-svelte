@@ -79,7 +79,8 @@
 		"start": "node dist/index.mjs",
 		"start:dev": "cross-env REGISTRY_URL=http://localhost:5173/registry node dist/index.mjs",
 		"start:proxy": "pnpm dlx straightforward@latest --port 9000",
-		"test": "pnpm -w build:registry-template && vitest"
+		"test:setup": "pnpm -F @shadcn-svelte/registry demo:clean && pnpm -F @shadcn-svelte/registry demo:create && pnpm -F @shadcn-svelte/registry demo:add:ci && pnpm -F @shadcn-svelte/registry demo:build:registry-template",
+		"test": "pnpm test:setup && vitest"
 	},
 	"peerDependencies": {
 		"svelte": "^5.0.0"
@@ -94,7 +95,6 @@
 		"@clack/prompts": "^1.1.0",
 		"@svecosystem/strip-types": "^0.0.4",
 		"@sveltejs/acorn-typescript": "^1.0.5",
-		"@types/node": "^20.19.0",
 		"@types/semver": "^7.5.8",
 		"acorn": "^8.15.0",
 		"cross-env": "^7.0.3",

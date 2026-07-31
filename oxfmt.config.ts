@@ -82,6 +82,10 @@ export default defineConfig({
 		"/.cursor/",
 		"/.changeset/",
 		"CHANGELOG.md",
+		"packages/cli/test/fixtures",
+		"/docs/static/",
+		"**/__*__/**/*",
+		"sv-addons/registry/template",
 	],
 	svelte: true,
 	overrides: [

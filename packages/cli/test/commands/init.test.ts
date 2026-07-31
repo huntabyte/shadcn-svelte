@@ -2,14 +2,15 @@ import fs from "node:fs";
 import path from "node:path";
 import { exec } from "tinyexec";
 import { afterEach, expect, it, vi } from "vitest";
-import * as registry from "../../src/utils/registry";
-import { runInit } from "../../src/commands/init";
-import { getConfig } from "../../src/utils/config/index";
+import * as registry from "../../src/utils/registry/index.js";
+import { runInit } from "../../src/commands/init/index.js";
+import { getConfig } from "../../src/utils/config/index.js";
 
 vi.mock("fs/promises", () => ({ writeFile: vi.fn(), mkdir: vi.fn(), readFile: vi.fn() }));
 
 vi.mock("tinyexec", () => ({ exec: vi.fn(() => ({})) }));
 
+// @ts-expect-error - TODO: not exactly sure why this is yelling
 vi.mock(import("@clack/prompts"), async (importOriginal) => {
 	const actual = await importOriginal();
 	return {
@@ -20,10 +21,6 @@ vi.mock(import("@clack/prompts"), async (importOriginal) => {
 
 it("init (config-full)", async () => {
 	vi.spyOn(registry, "getRegistryTheme").mockResolvedValue({
-		inlineColors: {
-			light: {},
-			dark: {},
-		},
 		cssVars: {
 			light: {},
 			dark: {},
@@ -104,6 +101,7 @@ it("init (config-full)", async () => {
 			iconLibrary: "lucide",
 			menuColor: "default",
 			menuAccent: "subtle",
+			fontHeading: "inter",
 		},
 		options: {
 			cwd: targetDir,
@@ -111,6 +109,7 @@ it("init (config-full)", async () => {
 			overwrite: true,
 			skipPreflight: false,
 		},
+		styleChanged: false,
 	});
 
 	// mkDir mocks

@@ -1,0 +1,54 @@
+{
+	"name": "@shadcn-svelte/registry",
+	"version": "0.0.2",
+	"description": "sv add-on that scaffolds a shadcn-svelte custom registry template",
+	"keywords": [
+		"sv-add",
+		"svelte",
+		"sveltekit",
+		"shadcn-svelte",
+		"registry"
+	],
+	"type": "module",
+	"license": "MIT",
+	"homepage": "https://shadcn-svelte.com/docs/registry",
+	"author": {
+		"name": "huntabyte & CokaKoala",
+		"url": "https://twitter.com/huntabyte"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/huntabyte/shadcn-svelte.git",
+		"directory": "sv-addons/registry"
+	},
+	"scripts": {
+		"demo:clean": "rimraf ./demo",
+		"demo:create": "sv create demo --types ts --template minimal --no-add-ons --no-install && pnpm demo:install-deps",
+		"demo:add": "pnpm build && sv add file:../ --cwd demo --no-download-check --no-git-check --no-install tailwindcss=plugins:none",
+		"demo:add:ci": "pnpm build && sv add file:../=demo:true --cwd demo --no-git-check --no-download-check --no-install tailwindcss=plugins:none && pnpm demo:install-deps",
+		"demo:build:registry-template": "cd demo && pnpm build:registry",
+		"demo:install-deps": "cd demo && pnpm install --ignore-workspace --no-lockfile",
+		"build": "tsdown",
+		"check": "tsc --noEmit",
+		"test": "pnpm build && vitest run"
+	},
+	"files": [
+		"dist"
+	],
+	"exports": {
+		".": {
+			"default": "./dist/index.mjs"
+		}
+	},
+	"peerDependencies": {
+		"sv": "^0.16.6"
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.56.0",
+		"@sveltejs/sv-utils": "^0.3.2",
+		"sv": "^0.16.6",
+		"tsdown": "catalog:",
+		"typescript": "catalog:",
+		"vitest": "^4.1.10"
+	}
+}
