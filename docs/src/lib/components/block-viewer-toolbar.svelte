@@ -90,7 +90,7 @@
 						ctx.iframeKey = ctx.iframeKey + 1;
 					}}
 				>
-					<RotateCwIcon />
+					<RotateCcwIcon />
 					<span class="sr-only">Refresh Preview</span>
 				</Button>
 			</ToggleGroup.Root>
