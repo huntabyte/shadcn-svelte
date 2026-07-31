@@ -1,16 +1,16 @@
 <script lang="ts">
-	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import SquareIcon from "@lucide/svelte/icons/square";
-	import LucideIcon from "./lucide-icon.svelte";
-	import TablerIcon from "./tabler-icon.svelte";
-	import PhosphorIcon from "./phosphor-icon.svelte";
-	import HugeiconsIcon from "./hugeicons-icon.svelte";
-	import RemixiconIcon from "./remixicon-icon.svelte";
+	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import type { HugeIconsIconName } from "$lib/registry/icons/__hugeicons__/index.js";
 	import type { LucideIconName } from "$lib/registry/icons/__lucide__/index.js";
-	import type { TablerIconName } from "$lib/registry/icons/__tabler__/index.js";
 	import type { PhosphorIconName } from "$lib/registry/icons/__phosphor__/index.js";
 	import type { RemixIconIconName } from "$lib/registry/icons/__remixicon__/index.js";
+	import type { TablerIconName } from "$lib/registry/icons/__tabler__/index.js";
+	import HugeiconsIcon from "./hugeicons-icon.svelte";
+	import LucideIcon from "./lucide-icon.svelte";
+	import PhosphorIcon from "./phosphor-icon.svelte";
+	import RemixiconIcon from "./remixicon-icon.svelte";
+	import TablerIcon from "./tabler-icon.svelte";
 	import type { SVGAttributes } from "svelte/elements";
 
 	type SvgProps = SVGAttributes<SVGSVGElement>;

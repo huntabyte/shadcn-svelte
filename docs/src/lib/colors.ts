@@ -1,5 +1,4 @@
 import { z } from "zod";
-
 import { colors } from "$lib/registry/registry-colors.js";
 
 const colorSchema = z.object({
@@ -62,10 +61,7 @@ export function getColors(): ColorPalette[] {
 							class: `${name}-${color.scale}`,
 							var: `--color-${name}-${color.scale}`,
 							rgb,
-							hsl: color.hsl.replace(
-								/^hsl\(([\d.]+),([\d.]+%),([\d.]+%)\)$/,
-								"$1 $2 $3"
-							),
+							hsl: color.hsl.replace(/^hsl\(([\d.]+),([\d.]+%),([\d.]+%)\)$/, "$1 $2 $3"),
 							oklch: `oklch(${color.oklch.replace(
 								/^oklch\(([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\)$/,
 								"$1 $2 $3"

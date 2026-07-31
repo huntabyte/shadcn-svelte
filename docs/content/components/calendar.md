@@ -21,7 +21,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="calendar-demo">
+<ComponentPreview name="calendar-demo" previewClassName="h-96">
 
 <div></div>
 
@@ -77,7 +77,7 @@ You can use the `<Calendar />` component to build a date picker. See the [Date P
 
 ### Range Calendar
 
-<ComponentPreview name="calendar-02" class="**:[.preview]:h-auto lg:**:[.preview]:h-[450px]">
+<ComponentPreview name="calendar-02" previewClassName="h-[36rem] md:h-96">
 
 <div></div>
 
@@ -85,7 +85,7 @@ You can use the `<Calendar />` component to build a date picker. See the [Date P
 
 ### Month and Year Selector
 
-<ComponentPreview name="calendar-13">
+<ComponentPreview name="calendar-13" previewClassName="h-[28rem]">
 
 <div></div>
 
@@ -93,7 +93,7 @@ You can use the `<Calendar />` component to build a date picker. See the [Date P
 
 ### Date of Birth Picker
 
-<ComponentPreview name="calendar-22">
+<ComponentPreview name="calendar-22" previewClassName="h-[500px]">
 
 <div></div>
 
@@ -101,7 +101,7 @@ You can use the `<Calendar />` component to build a date picker. See the [Date P
 
 ### Date and Time Picker
 
-<ComponentPreview name="calendar-24">
+<ComponentPreview name="calendar-24" previewClassName="h-[600px]">
 
 <div></div>
 
@@ -111,7 +111,7 @@ You can use the `<Calendar />` component to build a date picker. See the [Date P
 
 This component uses the `chrono-node` library to parse natural language dates.
 
-<ComponentPreview name="calendar-29">
+<ComponentPreview name="calendar-29" previewClassName="h-[600px]">
 
 <div></div>
 

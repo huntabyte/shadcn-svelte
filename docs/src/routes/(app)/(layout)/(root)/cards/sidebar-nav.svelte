@@ -1,6 +1,5 @@
 <script lang="ts">
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-
 	import { SidebarMenuButton, SidebarMenuItem } from "$lib/registry/ui/sidebar/index.js";
 	import SidebarSection from "./sidebar-section.svelte";
 </script>

@@ -1,14 +1,14 @@
 <script lang="ts">
+	import { page } from "$app/state";
 	import CheckIcon from "@tabler/icons-svelte/icons/check";
 	import ChevronDownIcon from "@tabler/icons-svelte/icons/chevron-down";
 	import CopyIcon from "@tabler/icons-svelte/icons/copy";
-	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import { Separator } from "$lib/registry/ui/separator/index.js";
 	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
+	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
+	import { Separator } from "$lib/registry/ui/separator/index.js";
 	import { cn } from "$lib/utils.js";
-	import { page } from "$app/state";
 
 	const pageUrl = $derived(page.url.origin + page.url.pathname);
 
@@ -45,10 +45,7 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 		{...props}
 		variant="secondary"
 		size="sm"
-		class={cn(
-			"peer -ms-0.5 size-8 shadow-none md:size-7 md:text-[0.8rem]",
-			props.class as string
-		)}
+		class={cn("peer -ms-0.5 size-8 shadow-none md:size-7 md:text-[0.8rem]", props.class as string)}
 	>
 		<ChevronDownIcon class="rotate-180 sm:rotate-0" />
 	</Button>
@@ -116,14 +113,14 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 
 <Popover.Root>
 	<div
-		class="bg-secondary group/buttons relative flex rounded-lg *:data-[slot=button]:focus-visible:relative *:data-[slot=button]:focus-visible:z-10"
+		class="group/buttons relative flex rounded-lg bg-secondary *:data-[slot=button]:focus-visible:relative *:data-[slot=button]:focus-visible:z-10"
 		data-llm-ignore
 	>
 		<div bind:this={customAnchor}></div>
 		<Button
 			variant="secondary"
 			size="sm"
-			class="h-8 shadow-none select-none md:h-7 md:text-[0.8rem]"
+			class="h-8 shadow-none md:h-7 md:text-[0.8rem]"
 			onclick={copyPage}
 		>
 			{#if clipboard.copied}
@@ -156,7 +153,7 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 		</DropdownMenu.Root>
 		<Separator
 			orientation="vertical"
-			class="bg-foreground/10! absolute end-8 top-0 z-0 h-8! peer-focus-visible:opacity-0 sm:end-7 sm:h-7!"
+			class="absolute end-8 top-0 z-0 h-8! bg-foreground/10! peer-focus-visible:opacity-0 sm:end-7 sm:h-7!"
 		/>
 		<Popover.Trigger class="flex sm:hidden">
 			{#snippet child({ props })}
@@ -164,7 +161,7 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 			{/snippet}
 		</Popover.Trigger>
 		<Popover.Content
-			class="bg-background/70 dark:bg-background/60 w-52 origin-center! rounded-lg p-1 shadow-sm backdrop-blur-sm"
+			class="w-52 origin-center! rounded-lg bg-background/70 p-1 shadow-sm backdrop-blur-sm dark:bg-background/60"
 			align="start"
 			{customAnchor}
 		>

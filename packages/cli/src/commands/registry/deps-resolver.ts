@@ -1,11 +1,11 @@
 import * as acorn from "acorn";
 import * as svelte from "svelte/compiler";
-import { walk, type Node } from "estree-walker";
 import { tsPlugin } from "@sveltejs/acorn-typescript";
-import type { PackageJson } from "type-fest";
-import { toArray } from "../../utils/utils.js";
+import { walk, type Node } from "estree-walker";
 import * as project from "../../utils/project.js";
 import { getDependencyPackageInfo } from "../../utils/get-package-info.js";
+import { toArray } from "../../utils/utils.js";
+import type { PackageJson } from "type-fest";
 
 export type ResolvedDependencies = {
 	/** `<Dep@Version, Peers[]>` */
@@ -68,8 +68,7 @@ export function resolvePeerVersions(projectDeps: ProjectDependencies): ProjectDe
 			dependencies.deps[name] = peers
 				.map(
 					(peer) =>
-						projectDeps.dependencies.versions[peer] ||
-						projectDeps.devDependencies.versions[peer]
+						projectDeps.dependencies.versions[peer] || projectDeps.devDependencies.versions[peer]
 				)
 				.filter((peer) => peer !== undefined);
 		}
@@ -104,8 +103,7 @@ function resolvePeerDeps(
 		const { peerDependencies = {}, peerDependenciesMeta = {} } = pkg;
 		for (const [peerName] of Object.entries(peerDependencies)) {
 			// ignores certain peer deps and optional peer deps
-			if (IGNORE_DEPS.includes(peerName) || peerDependenciesMeta[peerName]?.optional)
-				continue;
+			if (IGNORE_DEPS.includes(peerName) || peerDependenciesMeta[peerName]?.optional) continue;
 			peers.push(peerName);
 		}
 	}

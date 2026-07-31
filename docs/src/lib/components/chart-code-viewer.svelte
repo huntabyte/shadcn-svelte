@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
 	import { MediaQuery } from "svelte/reactivity";
-	import ChartCopyButton from "./chart-copy-button.svelte";
 	import * as Drawer from "$lib/registry/ui/drawer/index.js";
 	import * as Sheet from "$lib/registry/ui/sheet/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import type { HTMLAttributes } from "svelte/elements";
+	import { cn } from "$lib/utils.js";
+	import ChartCopyButton from "./chart-copy-button.svelte";
 	import { getIconForLanguageExtension } from "./icons/icons.js";
 	import type { HighlightedBlock } from "../../routes/api/block/[block]/+server.js";
+	import type { HTMLAttributes } from "svelte/elements";
 
 	const isDesktop = new MediaQuery("min-width: 768px");
 
@@ -24,7 +24,7 @@
 {#snippet Content()}
 	<div class="flex min-h-0 flex-1 flex-col gap-0">
 		<div
-			class="chart-wrapper theme-container hidden **:data-chart:mx-auto **:data-chart:max-h-[35vh] sm:block [&>div]:rounded-none [&>div]:border-0 [&>div]:border-b [&>div]:shadow-none"
+			class="chart-wrapper hidden theme-container **:data-chart:mx-auto **:data-chart:max-h-[35vh] sm:block [&>div]:rounded-none [&>div]:border-0 [&>div]:border-b [&>div]:shadow-none"
 		>
 			{@render children?.()}
 		</div>
@@ -34,7 +34,7 @@
 				class="mt-0 flex h-auto min-w-0 flex-1 flex-col overflow-hidden"
 			>
 				<figcaption
-					class="text-foreground [&>svg]:text-foreground flex h-12 shrink-0 items-center gap-2 border-b py-2 ps-4 pe-2 [&>svg]:size-4 [&>svg]:opacity-70"
+					class="flex h-12 shrink-0 items-center gap-2 border-b py-2 ps-4 pe-2 text-foreground [&>svg]:size-4 [&>svg]:text-foreground [&>svg]:opacity-70"
 					data-language="tsx"
 				>
 					<Icon />
@@ -57,7 +57,7 @@
 		size="sm"
 		variant="outline"
 		{...props}
-		class="text-foreground hover:bg-muted dark:text-foreground h-6 rounded-[6px] border bg-transparent px-2 text-xs shadow-none"
+		class="h-6 rounded-[6px] border bg-transparent px-2 text-xs text-foreground shadow-none hover:bg-muted dark:text-foreground"
 	>
 		View Code
 	</Button>
@@ -71,10 +71,7 @@
 			{/snippet}
 		</Drawer.Trigger>
 		<Drawer.Content
-			class={cn(
-				"flex max-h-[80vh] flex-col sm:max-h-[90vh] [&>div.bg-muted]:shrink-0",
-				className
-			)}
+			class={cn("flex max-h-[80vh] flex-col sm:max-h-[90vh] [&>div.bg-muted]:shrink-0", className)}
 		>
 			<Drawer.Header class="sr-only">
 				<Drawer.Title>Code</Drawer.Title>

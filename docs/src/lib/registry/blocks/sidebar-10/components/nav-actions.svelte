@@ -78,12 +78,12 @@
 </script>
 
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
 	import StarIcon from "@lucide/svelte/icons/star";
 	import { untrack } from "svelte";
+	import * as Popover from "$lib/registry/ui/popover/index.js";
+	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	let open = $state(false);
 
@@ -95,19 +95,14 @@
 </script>
 
 <div class="flex items-center gap-2 text-sm">
-	<div class="text-muted-foreground hidden font-medium md:inline-block">Edit Oct 08</div>
+	<div class="hidden font-medium text-muted-foreground md:inline-block">Edit Oct 08</div>
 	<Button variant="ghost" size="icon" class="size-7">
 		<StarIcon />
 	</Button>
 	<Popover.Root bind:open>
 		<Popover.Trigger>
 			{#snippet child({ props })}
-				<Button
-					{...props}
-					variant="ghost"
-					size="icon"
-					class="data-[state=open]:bg-accent size-7"
-				>
+				<Button {...props} variant="ghost" size="icon" class="size-7 data-[state=open]:bg-accent">
 					<EllipsisIcon />
 				</Button>
 			{/snippet}
@@ -121,9 +116,7 @@
 								<Sidebar.Menu>
 									{#each group as item, index (index)}
 										<Sidebar.MenuItem>
-											<Sidebar.MenuButton
-												class="hover:bg-accent hover:text-accent-foreground"
-											>
+											<Sidebar.MenuButton class="hover:bg-accent hover:text-accent-foreground">
 												<item.icon /> <span>{item.label}</span>
 											</Sidebar.MenuButton>
 										</Sidebar.MenuItem>

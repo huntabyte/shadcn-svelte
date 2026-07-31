@@ -234,7 +234,7 @@
 }
 
 @utility section-soft {
-	@apply from-background to-surface/40 dark:bg-background 3xl:fixed:bg-none bg-gradient-to-b;
+	@apply bg-gradient-to-b from-background to-surface/40 dark:bg-background 3xl:fixed:bg-none;
 }
 
 @utility theme-container {
@@ -242,11 +242,11 @@
 }
 
 @utility container-wrapper {
-	@apply 3xl:fixed:max-w-[calc(var(--breakpoint-2xl)+2rem)] mx-auto w-full px-2;
+	@apply mx-auto w-full px-2 3xl:fixed:max-w-[calc(var(--breakpoint-2xl)+2rem)];
 }
 
 @utility container {
-	@apply 3xl:max-w-screen-2xl mx-auto max-w-[1400px] px-4 lg:px-8;
+	@apply mx-auto max-w-[1400px] px-4 3xl:max-w-screen-2xl lg:px-8;
 }
 
 @utility no-scrollbar {
@@ -259,7 +259,7 @@
 }
 
 @utility border-ghost {
-	@apply after:border-border relative after:absolute after:inset-0 after:border after:mix-blend-darken dark:after:mix-blend-lighten;
+	@apply relative after:absolute after:inset-0 after:border after:border-border after:mix-blend-darken dark:after:mix-blend-lighten;
 }
 
 @utility bg-svelte-orange {
@@ -268,10 +268,9 @@
 
 @utility step {
 	counter-increment: step;
-	@apply relative;
 
 	&:before {
-		@apply text-muted-foreground end-0 me-2 hidden size-7 items-center justify-center rounded-full text-center -indent-px font-mono text-sm font-medium md:absolute;
+		@apply end-0 me-2 hidden size-7 items-center justify-center rounded-full text-center -indent-px font-mono text-sm font-medium text-muted-foreground md:absolute;
 		content: counter(step);
 	}
 }
@@ -288,15 +287,15 @@
 			@apply !mt-0;
 		}
 
-		&:first-child > *[aria-level="3"]:first-child {
+		&:first-child > h3:first-child {
 			@apply !mt-0;
 		}
 
-		> *[aria-level="3"] {
-			@apply !mt-16;
+		> h3 {
+			@apply !mt-8;
 		}
 
-		> *[aria-level="3"] + p {
+		> h3 + p {
 			@apply !mt-2;
 		}
 	}
@@ -304,7 +303,7 @@
 	[data-rehype-pretty-code-figure] {
 		background-color: var(--color-code);
 		color: var(--color-code-foreground);
-		border-radius: var(--radius-xl);
+		border-radius: var(--radius-2xl);
 		border-width: 0px;
 		border-color: var(--border);
 		margin-top: calc(var(--spacing) * 6);
@@ -436,7 +435,7 @@
 	}
 
 	.mdsx code:not(pre code) {
-		@apply bg-muted relative rounded-md px-[0.3rem] py-[0.2rem] font-mono text-[0.8rem] break-words outline-none;
+		@apply relative rounded-md bg-muted px-[0.3rem] py-[0.2rem] font-mono text-[0.8rem] break-words outline-none;
 	}
 
 	.super-debug {

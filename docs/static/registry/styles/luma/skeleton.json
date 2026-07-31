@@ -9,7 +9,7 @@
 			"target": "skeleton/index.ts"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef, type WithoutChildren } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildren<WithElementRef<HTMLAttributes<HTMLDivElement>>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"skeleton\"\n\tclass={cn(\"bg-muted rounded-2xl animate-pulse\", className)}\n\t{...restProps}\n></div>\n",
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef, type WithoutChildren } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildren<WithElementRef<HTMLAttributes<HTMLDivElement>>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"skeleton\"\n\tclass={cn(\"rounded-2xl bg-muted animate-pulse\", className)}\n\t{...restProps}\n></div>\n",
 			"type": "registry:file",
 			"target": "skeleton/skeleton.svelte"
 		}

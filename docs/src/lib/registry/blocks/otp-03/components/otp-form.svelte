@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as InputOTP from "$lib/registry/ui/input-otp/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import type { ComponentProps } from "svelte";
 
 	let { ...restProps }: ComponentProps<typeof Card.Root> = $props();

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { type InstallationType } from "$lib/user-config.svelte.js";
 	import * as Tabs from "$lib/registry/ui/tabs/index.js";
+	import { type InstallationType } from "$lib/user-config.svelte.js";
 	import { UserConfigContext } from "$lib/user-config.svelte.js";
 	import type { ComponentProps } from "svelte";
 
@@ -12,7 +12,7 @@
 <Tabs.Root
 	value={userConfig.current.installationType}
 	onValueChange={(v) => userConfig.setConfig({ installationType: v as InstallationType })}
-	class="relative mt-6 w-full"
+	class="relative mt-6 w-full *:data-[slot=tabs-list]:gap-6"
 >
 	{@render children?.()}
 </Tabs.Root>

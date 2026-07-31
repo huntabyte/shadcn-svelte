@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { cn } from "$lib/utils.js";
 	import type { SVGAttributes } from "svelte/elements";
 
 	let {

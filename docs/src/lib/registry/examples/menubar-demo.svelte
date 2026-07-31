@@ -61,12 +61,9 @@
 	<Menubar.Menu>
 		<Menubar.Trigger>View</Menubar.Trigger>
 		<Menubar.Content>
-			<Menubar.CheckboxItem bind:checked={bookmarks}
-				>Always Show Bookmarks Bar</Menubar.CheckboxItem
+			<Menubar.CheckboxItem bind:checked={bookmarks}>Always Show Bookmarks Bar</Menubar.CheckboxItem
 			>
-			<Menubar.CheckboxItem bind:checked={fullUrls}>
-				Always Show Full URLs
-			</Menubar.CheckboxItem>
+			<Menubar.CheckboxItem bind:checked={fullUrls}>Always Show Full URLs</Menubar.CheckboxItem>
 			<Menubar.Separator />
 			<Menubar.Item inset>
 				Reload <Menubar.Shortcut>⌘R</Menubar.Shortcut>

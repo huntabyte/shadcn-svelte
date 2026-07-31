@@ -1,13 +1,13 @@
 <script lang="ts">
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import { Separator } from "$lib/registry/ui/separator/index.js";
-	import SearchIcon from "@lucide/svelte/icons/search";
 	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
+	import CheckIcon from "@lucide/svelte/icons/check";
 	import InfoIcon from "@lucide/svelte/icons/info";
 	import PlusIcon from "@lucide/svelte/icons/plus";
-	import CheckIcon from "@lucide/svelte/icons/check";
+	import SearchIcon from "@lucide/svelte/icons/search";
+	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
+	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
+	import { Separator } from "$lib/registry/ui/separator/index.js";
 </script>
 
 <div class="grid w-full max-w-sm gap-6">
@@ -66,7 +66,7 @@
 		<InputGroup.Input placeholder="@shadcn" />
 		<InputGroup.Addon align="inline-end">
 			<div
-				class="bg-primary text-primary-foreground flex size-4 items-center justify-center rounded-full"
+				class="flex size-4 items-center justify-center rounded-full bg-primary text-primary-foreground"
 			>
 				<CheckIcon class="size-3" />
 			</div>

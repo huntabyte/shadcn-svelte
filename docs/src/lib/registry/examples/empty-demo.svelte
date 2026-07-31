@@ -1,8 +1,8 @@
 <script lang="ts">
+	import ArrowUpRightIcon from "@lucide/svelte/icons/arrow-up-right";
+	import FolderCodeIcon from "@tabler/icons-svelte/icons/folder-code";
 	import * as Empty from "$lib/registry/ui/empty/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import FolderCodeIcon from "@tabler/icons-svelte/icons/folder-code";
-	import ArrowUpRightIcon from "@lucide/svelte/icons/arrow-up-right";
 </script>
 
 <Empty.Root>
