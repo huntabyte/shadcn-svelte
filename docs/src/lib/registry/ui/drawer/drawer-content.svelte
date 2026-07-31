@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { Drawer as DrawerPrimitive } from "vaul-svelte";
-	import DrawerPortal from "./drawer-portal.svelte";
-	import DrawerOverlay from "./drawer-overlay.svelte";
 	import { cn } from "$lib/utils.js";
-	import type { ComponentProps } from "svelte";
 	import type { WithoutChildrenOrChild } from "$lib/utils.js";
+	import DrawerOverlay from "./drawer-overlay.svelte";
+	import DrawerPortal from "./drawer-portal.svelte";
+	import type { ComponentProps } from "svelte";
 
 	let {
 		ref = $bindable(null),
@@ -26,7 +26,7 @@
 		{...restProps}
 	>
 		<div
-			class="cn-drawer-handle bg-muted mx-auto hidden shrink-0 group-data-[vaul-drawer-direction=bottom]/drawer-content:block"
+			class="cn-drawer-handle mx-auto hidden shrink-0 bg-muted group-data-[vaul-drawer-direction=bottom]/drawer-content:block"
 		></div>
 		{@render children?.()}
 	</DrawerPrimitive.Content>

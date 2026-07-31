@@ -1,19 +1,19 @@
 <script lang="ts">
-	import { BlockViewerContext } from "./block-viewer.svelte";
-	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
+	import CheckIcon from "@lucide/svelte/icons/check";
+	import FullscreenIcon from "@lucide/svelte/icons/fullscreen";
+	import MonitorIcon from "@lucide/svelte/icons/monitor";
+	import RotateCcwIcon from "@lucide/svelte/icons/rotate-ccw";
+	import SmartphoneIcon from "@lucide/svelte/icons/smartphone";
+	import TabletIcon from "@lucide/svelte/icons/tablet";
+	import TerminalIcon from "@lucide/svelte/icons/terminal";
 	import * as Tabs from "$lib/registry/ui/tabs/index.js";
+	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
+	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
+	import { getCommand } from "$lib/package-manager.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
-	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
-	import MonitorIcon from "@lucide/svelte/icons/monitor";
-	import TabletIcon from "@lucide/svelte/icons/tablet";
-	import SmartphoneIcon from "@lucide/svelte/icons/smartphone";
-	import FullscreenIcon from "@lucide/svelte/icons/fullscreen";
-	import CheckIcon from "@lucide/svelte/icons/check";
-	import TerminalIcon from "@lucide/svelte/icons/terminal";
-	import RotateCcwIcon from "@lucide/svelte/icons/rotate-ccw";
-	import { getCommand } from "$lib/package-manager.js";
 	import { UserConfigContext } from "$lib/user-config.svelte.js";
+	import { BlockViewerContext } from "./block-viewer.svelte";
 
 	const ctx = BlockViewerContext.get();
 	const userConfig = UserConfigContext.get();
@@ -34,7 +34,7 @@
 <div class="hidden w-full items-center gap-2 ps-2 md:pe-6 lg:flex">
 	<Tabs.Root bind:value={ctx.view} class="hidden lg:flex">
 		<Tabs.List
-			class="grid h-8 grid-cols-2 items-center rounded-md p-1 *:data-[slot=tabs-trigger]:h-6 *:data-[slot=tabs-trigger]:rounded-sm *:data-[slot=tabs-trigger]:px-2 *:data-[slot=tabs-trigger]:text-xs"
+			class="grid !h-8 grid-cols-2 items-center rounded-lg p-1 *:data-[slot=tabs-trigger]:h-6 *:data-[slot=tabs-trigger]:rounded-sm *:data-[slot=tabs-trigger]:px-2 *:data-[slot=tabs-trigger]:text-xs"
 		>
 			<Tabs.Trigger value="preview">Preview</Tabs.Trigger>
 			<Tabs.Trigger value="code">Code</Tabs.Trigger>
@@ -48,7 +48,7 @@
 		{ctx.item.description?.replace(/\.$/, "")}
 	</a>
 	<div class="ms-auto flex items-center gap-2">
-		<div class="h-8 items-center gap-1.5 rounded-md border p-1 shadow-none">
+		<div class="h-8 items-center gap-1.5 rounded-md border p-[3px] shadow-none">
 			<ToggleGroup.Root
 				type="single"
 				value="100"
@@ -90,7 +90,7 @@
 						ctx.iframeKey = ctx.iframeKey + 1;
 					}}
 				>
-					<RotateCcwIcon />
+					<RotateCwIcon />
 					<span class="sr-only">Refresh Preview</span>
 				</Button>
 			</ToggleGroup.Root>

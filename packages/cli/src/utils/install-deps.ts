@@ -1,9 +1,9 @@
-import semver from "semver";
 import * as p from "@clack/prompts";
-import { detectPM } from "./auto-detect.js";
-import * as project from "./project.js";
-import { exec } from "tinyexec";
+import semver from "semver";
 import { resolveCommand } from "package-manager-detector";
+import { exec } from "tinyexec";
+import * as project from "./project.js";
+import { detectPM } from "./auto-detect.js";
 import { error } from "./errors.js";
 import { silentOutput } from "./node-utils.js";
 

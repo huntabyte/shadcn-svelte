@@ -1,5 +1,4 @@
 <script lang="ts">
-	import * as Tabs from "$lib/registry/ui/tabs/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 </script>
 

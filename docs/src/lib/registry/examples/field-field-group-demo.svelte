@@ -8,8 +8,8 @@
 		<Field.Set>
 			<Field.Label>Responses</Field.Label>
 			<Field.Description>
-				Get notified when ChatGPT responds to requests that take time, like research or
-				image generation.
+				Get notified when ChatGPT responds to requests that take time, like research or image
+				generation.
 			</Field.Description>
 			<Field.Group data-slot="checkbox-group">
 				<Field.Field orientation="horizontal">
@@ -28,15 +28,11 @@
 			<Field.Group data-slot="checkbox-group">
 				<Field.Field orientation="horizontal">
 					<Checkbox id="push-tasks" />
-					<Field.Label for="push-tasks" class="font-normal">
-						Push notifications
-					</Field.Label>
+					<Field.Label for="push-tasks" class="font-normal">Push notifications</Field.Label>
 				</Field.Field>
 				<Field.Field orientation="horizontal">
 					<Checkbox id="email-tasks" />
-					<Field.Label for="email-tasks" class="font-normal">
-						Email notifications
-					</Field.Label>
+					<Field.Label for="email-tasks" class="font-normal">Email notifications</Field.Label>
 				</Field.Field>
 			</Field.Group>
 		</Field.Set>

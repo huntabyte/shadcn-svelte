@@ -1,6 +1,5 @@
 <script lang="ts">
 	import CalendarIcon from "@lucide/svelte/icons/calendar";
-	import type { DateRange } from "bits-ui";
 	import {
 		CalendarDate,
 		DateFormatter,
@@ -10,7 +9,8 @@
 	import { cn } from "$lib/utils.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { RangeCalendar } from "$lib/registry/ui/range-calendar/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
+	import { cn } from "$lib/utils.js";
+	import type { DateRange } from "bits-ui";
 
 	const df = new DateFormatter("en-US", {
 		month: "short",

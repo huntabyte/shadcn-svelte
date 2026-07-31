@@ -1,22 +1,24 @@
 import path from "node:path";
 import process from "node:process";
 import { existsSync, promises as fs } from "node:fs";
-import color from "picocolors";
-import { z } from "zod";
-import merge from "deepmerge";
-import { Command } from "commander";
-import { error } from "../../utils/errors.js";
-import * as cliConfig from "../../utils/config/index.js";
-import { getEnvProxy } from "../../utils/get-env-proxy.js";
-import { cancel, intro, prettifyList, handleError } from "../../utils/prompt-helpers.js";
 import * as p from "@clack/prompts";
+import merge from "deepmerge";
+import color from "picocolors";
+import { Command } from "commander";
+import { z } from "zod";
+import * as cliConfig from "../../utils/config/index.js";
+import * as project from "../../utils/project.js";
 import * as registry from "../../utils/registry/index.js";
-import { shadcnSvelteTailwindCssImport } from "../../utils/css.js";
-import { transformCss } from "../../utils/transform-css.js";
-import { setupFonts, type Font } from "../../utils/fonts.js";
-import { checkPreconditions } from "../../utils/preconditions.js";
 import { highlight } from "../../utils/colors.js";
+import { shadcnSvelteTailwindCssImport } from "../../utils/css.js";
+import { error } from "../../utils/errors.js";
+import { getSupportedFontMarkers, type FontMarkerSource } from "../../utils/font-markers.js";
+import { setupFonts, type Font } from "../../utils/fonts.js";
+import { getEnvProxy } from "../../utils/get-env-proxy.js";
 import { installDependencies } from "../../utils/install-deps.js";
+import { checkPreconditions } from "../../utils/preconditions.js";
+import { cancel, intro, prettifyList, handleError } from "../../utils/prompt-helpers.js";
+import { transformCss } from "../../utils/transform-css.js";
 import {
 	transform,
 	transformFont,
@@ -25,8 +27,6 @@ import {
 	transformMenu,
 	transformStripTypes,
 } from "../../utils/transformers/index.js";
-import { getSupportedFontMarkers, type FontMarkerSource } from "../../utils/font-markers.js";
-import * as project from "../../utils/project.js";
 
 const updateOptionsSchema = z.object({
 	all: z.boolean(),

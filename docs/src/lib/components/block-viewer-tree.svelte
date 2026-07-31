@@ -1,12 +1,12 @@
 <script lang="ts">
-	import type { FileTree } from "$lib/registry/registry-utils.js";
-	import BlockViewerTree from "./block-viewer-tree.svelte";
-	import { BlockViewerContext } from "./block-viewer.svelte";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
 	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 	import FileIcon from "@lucide/svelte/icons/file";
 	import FolderIcon from "@lucide/svelte/icons/folder";
+	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
+	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
+	import type { FileTree } from "$lib/registry/registry-utils.js";
+	import BlockViewerTree from "./block-viewer-tree.svelte";
+	import { BlockViewerContext } from "./block-viewer.svelte";
 
 	const ctx = BlockViewerContext.get();
 
@@ -22,7 +22,7 @@
 				if (!item.path) return;
 				ctx.activeFile = item.path;
 			}}
-			class="hover:bg-muted-foreground/15 focus:bg-muted-foreground/15 focus-visible:bg-muted-foreground/15 active:bg-muted-foreground/15 data-[active=true]:bg-muted-foreground/15 rounded-none ps-(--index) whitespace-nowrap"
+			class="rounded-none ps-(--index) whitespace-nowrap hover:bg-muted-foreground/15 focus:bg-muted-foreground/15 focus-visible:bg-muted-foreground/15 active:bg-muted-foreground/15 data-[active=true]:bg-muted-foreground/15"
 			data-index={index}
 		>
 			<ChevronRightIcon class="invisible" />
@@ -38,7 +38,7 @@
 		>
 			<Collapsible.Trigger
 				style="--index: {index * (index === 1 ? 1 : 1.2)}rem"
-				class="hover:bg-muted-foreground/15 focus:bg-muted-foreground/15 focus-visible:bg-muted-foreground/15 active:bg-muted-foreground/15 data-[active=true]:bg-muted-foreground/15 rounded-none ps-(--index) whitespace-nowrap"
+				class="rounded-none ps-(--index) whitespace-nowrap hover:bg-muted-foreground/15 focus:bg-muted-foreground/15 focus-visible:bg-muted-foreground/15 active:bg-muted-foreground/15 data-[active=true]:bg-muted-foreground/15"
 			>
 				{#snippet child({ props })}
 					<Sidebar.MenuButton {...props}>

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Toggle } from "$lib/registry/ui/toggle/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 
 <Example title="With Button Icon">

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import { page } from "$app/state";
 	import { afterNavigate } from "$app/navigation";
 	import { onMount, tick } from "svelte";
@@ -140,7 +139,7 @@
 	{...restProps}
 	><div class="h-9"></div>
 	<div
-		class="from-background via-background/80 to-background/50 absolute top-8 z-10 h-8 w-(--sidebar-menu-width) shrink-0 bg-linear-to-b blur-xs"
+		class="absolute top-8 z-10 h-8 w-(--sidebar-menu-width) shrink-0 bg-linear-to-b from-background via-background/80 to-background/50 blur-xs"
 	></div>
 
 	<div
@@ -152,9 +151,7 @@
 		class="no-scrollbar w-(--sidebar-menu-width) overflow-x-hidden px-2.5"
 	>
 		<Sidebar.Group class="pt-6">
-			<Sidebar.GroupLabel class="text-muted-foreground font-medium">
-				Sections
-			</Sidebar.GroupLabel>
+			<Sidebar.GroupLabel class="font-medium text-muted-foreground">Sections</Sidebar.GroupLabel>
 			<Sidebar.GroupContent>
 				<Sidebar.Menu>
 					{#each TOP_LEVEL_SECTIONS as item (item.href)}
@@ -163,19 +160,15 @@
 								isActive={item.href === "/docs"
 									? pathname === item.href
 									: pathname.startsWith(item.href)}
-								class="data-[active=true]:bg-accent data-[active=true]:border-accent 3xl:fixed:w-full 3xl:fixed:max-w-48 relative h-[30px] w-fit overflow-visible border border-transparent text-[0.8rem] font-medium after:absolute after:inset-x-0 after:-inset-y-1 after:z-0 after:rounded-md"
+								class="relative h-[30px] w-fit overflow-visible border border-transparent text-[0.8rem] font-medium after:absolute after:inset-x-0 after:-inset-y-1 after:z-0 after:rounded-md data-[active=true]:border-accent data-[active=true]:bg-accent 3xl:fixed:w-full 3xl:fixed:max-w-48"
 							>
 								{#snippet child({ props })}
 									<a href={item.href} {...props}>
-										<span
-											class="absolute inset-0 flex w-(--sidebar-menu-width) bg-transparent"
+										<span class="absolute inset-0 flex w-(--sidebar-menu-width) bg-transparent"
 										></span>
 										{item.title}
 										{#if item.href && PAGES_NEW.includes(item.href)}
-											<span
-												class="bg-svelte-orange flex size-2 rounded-full"
-												title="New"
-											></span>
+											<span class="flex size-2 rounded-full bg-blue-500" title="New"></span>
 										{/if}
 									</a>
 								{/snippet}
@@ -187,7 +180,7 @@
 		</Sidebar.Group>
 		{#each renderedNavItems as item (item.title)}
 			<Sidebar.Group>
-				<Sidebar.GroupLabel class="text-muted-foreground font-medium">
+				<Sidebar.GroupLabel class="font-medium text-muted-foreground">
 					{item.title}
 				</Sidebar.GroupLabel>
 				<Sidebar.GroupContent>
@@ -197,9 +190,8 @@
 								{#if subItem.items.length === 0 && subItem.href && !EXCLUDED_PAGES.has(subItem.href)}
 									<Sidebar.MenuItem class="w-full">
 										<Sidebar.MenuButton
-											isActive={normalizePath(subItem.href) ===
-												normalizePath(pathname)}
-											class="data-[active=true]:bg-accent data-[active=true]:border-accent 3xl:fixed:w-full 3xl:fixed:max-w-48 relative h-[30px] w-fit overflow-visible border border-transparent text-[0.8rem] font-medium after:absolute after:inset-x-0 after:-inset-y-1 after:z-0 after:rounded-md"
+											isActive={normalizePath(subItem.href) === normalizePath(pathname)}
+											class="relative h-[30px] w-fit overflow-visible border border-transparent text-[0.8rem] font-medium after:absolute after:inset-x-0 after:-inset-y-1 after:z-0 after:rounded-md data-[active=true]:border-accent data-[active=true]:bg-accent 3xl:fixed:w-full 3xl:fixed:max-w-48"
 										>
 											{#snippet child({ props })}
 												<a href={subItem.href} {...props}>
@@ -208,10 +200,7 @@
 													></span>
 													{subItem.title}
 													{#if subItem.href && PAGES_NEW.includes(subItem.href)}
-														<span
-															class="bg-svelte-orange flex size-2 rounded-full"
-															title="New"
-														></span>
+														<span class="flex size-2 rounded-full bg-blue-500" title="New"></span>
 													{/if}
 												</a>
 											{/snippet}
@@ -225,7 +214,7 @@
 			</Sidebar.Group>
 		{/each}
 		<div
-			class="from-background via-background/80 to-background/50 sticky -bottom-1 z-10 h-16 shrink-0 bg-linear-to-t blur-xs"
+			class="sticky -bottom-1 z-10 h-16 shrink-0 bg-linear-to-t from-background via-background/80 to-background/50 blur-xs"
 		></div>
 	</Sidebar.Content>
 </Sidebar.Root>

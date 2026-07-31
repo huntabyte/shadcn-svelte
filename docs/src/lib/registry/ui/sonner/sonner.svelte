@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Toaster as Sonner, type ToasterProps as SonnerProps } from "svelte-sonner";
 	import { mode } from "mode-watcher";
+	import { Toaster as Sonner, type ToasterProps as SonnerProps } from "svelte-sonner";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 
 	let { ...restProps }: SonnerProps = $props();

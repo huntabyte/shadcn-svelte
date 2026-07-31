@@ -1,21 +1,21 @@
 // @ts-check
-import { readFileSync } from "node:fs";
 import process from "node:process";
+import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import prettier from "@prettier/sync";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
-import { codeImport } from "remark-code-import";
 import remarkGfm from "remark-gfm";
-import { visit } from "unist-util-visit";
-import { u } from "unist-builder";
+import { defineConfig } from "mdsx";
+import { codeImport } from "remark-code-import";
 import { createHighlighterCore } from "shiki/core";
 import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
-import { defineConfig } from "mdsx";
+import { u } from "unist-builder";
+import { visit } from "unist-util-visit";
 import { Index } from "./src/__registry__/index.js";
 
-/** @type {import('prettier').Config} */
+/** @type {Parameters<typeof prettier.format>[1]} */
 const codeBlockPrettierConfig = {
 	useTabs: false,
 	tabWidth: 2,
@@ -295,10 +295,7 @@ function getComponentSourceFileContent(src = "") {
 	// Read the source file.
 	const filePath = join(process.cwd(), newSrc);
 
-	const formattedSource = prettier.format(
-		readFileSync(filePath, "utf-8"),
-		/** @type {any} */ (codeBlockPrettierConfig)
-	);
+	const formattedSource = prettier.format(readFileSync(filePath, "utf-8"), codeBlockPrettierConfig);
 
 	return formattedSource.trim();
 }

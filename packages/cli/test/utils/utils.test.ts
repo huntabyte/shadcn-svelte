@@ -1,18 +1,16 @@
 import { describe, it, expect, beforeEach } from "vitest";
-import { ALIAS_DEFAULTS, ALIASES } from "../../src/constants";
-import { resolveURL } from "../../src/utils/utils";
-import { transformAliases, transformLocal } from "../../src/commands/registry/build";
 import { z } from "zod";
-import { naiveDeepPartialify } from "../../src/utils/registry/schema.js";
+import { transformAliases, transformLocal } from "../../src/commands/registry/build";
+import { ALIAS_DEFAULTS, ALIASES } from "../../src/constants";
 import { parseDependency } from "../../src/utils/install-deps.js";
+import { naiveDeepPartialify } from "../../src/utils/registry/schema.js";
+import { resolveURL } from "../../src/utils/utils";
 
 describe("resolveURL", () => {
 	it("Correctly resolves the relative url path", () => {
 		const base = "https://example.com/registry";
 
-		expect(resolveURL(base, "index.json").href).toEqual(
-			"https://example.com/registry/index.json"
-		);
+		expect(resolveURL(base, "index.json").href).toEqual("https://example.com/registry/index.json");
 
 		expect(resolveURL(base, "../index.json").href).toEqual("https://example.com/index.json");
 
@@ -28,16 +26,12 @@ describe("resolveURL", () => {
 
 	it("works with URL objects", () => {
 		const base = new URL("https://example.com/registry");
-		expect(resolveURL(base, "index.json").href).toEqual(
-			"https://example.com/registry/index.json"
-		);
+		expect(resolveURL(base, "index.json").href).toEqual("https://example.com/registry/index.json");
 	});
 
 	it("handles absolute paths", () => {
 		const base = "https://example.com/registry";
-		expect(resolveURL(base, "/absolute/path").href).toEqual(
-			"https://example.com/absolute/path"
-		);
+		expect(resolveURL(base, "/absolute/path").href).toEqual("https://example.com/absolute/path");
 	});
 
 	it("handles empty paths", () => {
@@ -47,16 +41,12 @@ describe("resolveURL", () => {
 
 	it("works with different protocols", () => {
 		const base = "http://example.com/registry";
-		expect(resolveURL(base, "index.json").href).toEqual(
-			"http://example.com/registry/index.json"
-		);
+		expect(resolveURL(base, "index.json").href).toEqual("http://example.com/registry/index.json");
 	});
 
 	it("works with query parameters", () => {
 		const base = "http://example.com/registry?foo=bar";
-		expect(resolveURL(base, "index.json").href).toEqual(
-			"http://example.com/registry/index.json"
-		);
+		expect(resolveURL(base, "index.json").href).toEqual("http://example.com/registry/index.json");
 	});
 
 	it("works with port numbers", () => {

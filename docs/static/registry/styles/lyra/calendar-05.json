@@ -11,7 +11,7 @@
 	],
 	"files": [
 		{
-			"content": "<script lang=\"ts\">\n\timport RangeCalendar from \"$UI$/range-calendar/range-calendar.svelte\";\n\timport { CalendarDate } from \"@internationalized/date\";\n\timport type { DateRange } from \"bits-ui\";\n\n\tlet value = $state<DateRange>({\n\t\tstart: new CalendarDate(2025, 6, 12),\n\t\tend: new CalendarDate(2025, 7, 15),\n\t});\n</script>\n\n<RangeCalendar bind:value class=\"rounded-lg border shadow-sm\" numberOfMonths={2} />\n",
+			"content": "<script lang=\"ts\">\n\timport { CalendarDate } from \"@internationalized/date\";\n\timport RangeCalendar from \"$UI$/range-calendar/range-calendar.svelte\";\n\timport type { DateRange } from \"bits-ui\";\n\n\tlet value = $state<DateRange>({\n\t\tstart: new CalendarDate(2025, 6, 12),\n\t\tend: new CalendarDate(2025, 7, 15),\n\t});\n</script>\n\n<RangeCalendar bind:value class=\"rounded-lg border shadow-sm\" numberOfMonths={2} />\n",
 			"type": "registry:component",
 			"target": "calendar-05.svelte"
 		}

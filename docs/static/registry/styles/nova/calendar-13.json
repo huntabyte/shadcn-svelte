@@ -6,8 +6,8 @@
 		"@internationalized/date@^3.12.0"
 	],
 	"registryDependencies": [
-		"calendar",
 		"select",
+		"calendar",
 		"label"
 	],
 	"files": [

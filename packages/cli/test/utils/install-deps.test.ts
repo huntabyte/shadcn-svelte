@@ -1,8 +1,8 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
 import { exec } from "tinyexec";
-import { installDependencies } from "../../src/utils/install-deps.js";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import * as autoDetect from "../../src/utils/auto-detect.js";
 import * as project from "../../src/utils/project.js";
+import { installDependencies } from "../../src/utils/install-deps.js";
 
 vi.mock("tinyexec", () => ({ exec: vi.fn(() => ({})) }));
 

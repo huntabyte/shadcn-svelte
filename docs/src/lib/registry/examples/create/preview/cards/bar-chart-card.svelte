@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { scaleBand } from "d3-scale";
+	import { BarChart } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
@@ -81,19 +83,19 @@
 		</Chart.Container>
 		<div class="divide-border/60 mt-4 grid w-full grid-cols-3 divide-x">
 			<div class="px-2 text-center">
-				<div class="text-muted-foreground text-[0.65rem] uppercase">Desktop</div>
+				<div class="text-[0.65rem] text-muted-foreground uppercase">Desktop</div>
 				<div class="text-sm font-medium tabular-nums">
 					{desktopTotal.toLocaleString()}
 				</div>
 			</div>
 			<div class="px-2 text-center">
-				<div class="text-muted-foreground text-[0.65rem] uppercase">Mobile</div>
+				<div class="text-[0.65rem] text-muted-foreground uppercase">Mobile</div>
 				<div class="text-sm font-medium tabular-nums">
 					{mobileTotal.toLocaleString()}
 				</div>
 			</div>
 			<div class="px-2 text-center">
-				<div class="text-muted-foreground text-[0.65rem] uppercase">Mix Delta</div>
+				<div class="text-[0.65rem] text-muted-foreground uppercase">Mix Delta</div>
 				<div class="text-sm font-medium tabular-nums">
 					{desktopDeltaPrefix}
 					{desktopDelta}%

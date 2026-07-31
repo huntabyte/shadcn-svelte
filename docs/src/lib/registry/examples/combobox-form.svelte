@@ -19,18 +19,18 @@
 </script>
 
 <script lang="ts">
-	import { defaults, superForm } from "sveltekit-superforms";
-	import { tick } from "svelte";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
-	import { zod4 } from "sveltekit-superforms/adapters";
-	import { toast } from "svelte-sonner";
 	import { useId } from "bits-ui";
+	import { tick } from "svelte";
+	import { toast } from "svelte-sonner";
+	import { defaults, superForm } from "sveltekit-superforms";
+	import { zod4 } from "sveltekit-superforms/adapters";
+	import * as Command from "$lib/registry/ui/command/index.js";
 	import * as Form from "$lib/registry/ui/form/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import * as Command from "$lib/registry/ui/command/index.js";
-	import { cn } from "$lib/utils.js";
 	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import { cn } from "$lib/utils.js";
 
 	const form = superForm(defaults(zod4(formSchema)), {
 		validators: zod4(formSchema),
@@ -75,8 +75,7 @@
 						role="combobox"
 						{...props}
 					>
-						{languages.find((f) => f.value === $formData.language)?.label ??
-							"Select language"}
+						{languages.find((f) => f.value === $formData.language)?.label ?? "Select language"}
 						<ChevronsUpDownIcon class="opacity-50" />
 					</Popover.Trigger>
 					<input hidden value={$formData.language} name={props.name} />
@@ -97,10 +96,7 @@
 							>
 								{language.label}
 								<CheckIcon
-									class={cn(
-										"ms-auto",
-										language.value !== $formData.language && "text-transparent"
-									)}
+									class={cn("ms-auto", language.value !== $formData.language && "text-transparent")}
 								/>
 							</Command.Item>
 						{/each}
@@ -108,9 +104,7 @@
 				</Command.Root>
 			</Popover.Content>
 		</Popover.Root>
-		<Form.Description>
-			This is the language that will be used in the dashboard.
-		</Form.Description>
+		<Form.Description>This is the language that will be used in the dashboard.</Form.Description>
 		<Form.FieldErrors />
 	</Form.Field>
 	<Form.Button>Submit</Form.Button>

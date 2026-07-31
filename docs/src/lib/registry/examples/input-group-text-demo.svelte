@@ -30,9 +30,7 @@
 	<InputGroup.Root>
 		<InputGroup.Textarea placeholder="Enter your message" />
 		<InputGroup.Addon align="block-end">
-			<InputGroup.Text class="text-muted-foreground text-xs">
-				120 characters left
-			</InputGroup.Text>
+			<InputGroup.Text class="text-xs text-muted-foreground">120 characters left</InputGroup.Text>
 		</InputGroup.Addon>
 	</InputGroup.Root>
 </div>

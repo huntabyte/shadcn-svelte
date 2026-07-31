@@ -106,7 +106,7 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 ## Outline
 
 <ComponentPreview name="button-outline" description="A button using the outline variant." class="mb-4">
-  
+
 <div></div>
 
 </ComponentPreview>
@@ -114,15 +114,15 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 ## Secondary
 
 <ComponentPreview name="button-secondary" description="A secondary button" class="mb-4">
-  
+
 <div></div>
-  
+
 </ComponentPreview>
 
 ## Ghost
 
 <ComponentPreview name="button-ghost" description="A button using the ghost variant" class="mb-4">
-  
+
 <div></div>
 
 </ComponentPreview>

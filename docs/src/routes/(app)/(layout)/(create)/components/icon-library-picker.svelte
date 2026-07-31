@@ -1,26 +1,26 @@
 <script lang="ts">
-	import * as Picker from "./picker/index.js";
-	import * as Item from "$lib/registry/ui/item/index.js";
-	import { useDesignSystem } from "$lib/features/design-system/index.js";
-	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
-	import LockButton from "./lock-button.svelte";
-	import { iconLibraries, type IconLibraryName } from "$lib/registry/config.js";
-	import LucideLogo from "$lib/registry/icons/logos/lucide.svelte";
-	import TablerLogo from "$lib/registry/icons/logos/tabler.svelte";
-	import HugeiconsLogo from "$lib/registry/icons/logos/hugeicons.svelte";
-	import PhosphorLogo from "$lib/registry/icons/logos/phosphor.svelte";
-	import RemixiconLogo from "$lib/registry/icons/logos/remixicon.svelte";
 	import LucideSquareIcon from "@lucide/svelte/icons/square";
-	import LucideIcon from "$lib/components/icon-placeholder/lucide-icon.svelte";
-	import TablerIcon from "$lib/components/icon-placeholder/tabler-icon.svelte";
+	import * as Item from "$lib/registry/ui/item/index.js";
 	import HugeiconsIcon from "$lib/components/icon-placeholder/hugeicons-icon.svelte";
+	import LucideIcon from "$lib/components/icon-placeholder/lucide-icon.svelte";
 	import PhosphorIcon from "$lib/components/icon-placeholder/phosphor-icon.svelte";
 	import RemixiconIcon from "$lib/components/icon-placeholder/remixicon-icon.svelte";
-	import type { LucideIconName } from "$lib/registry/icons/__lucide__/index.js";
-	import type { TablerIconName } from "$lib/registry/icons/__tabler__/index.js";
+	import TablerIcon from "$lib/components/icon-placeholder/tabler-icon.svelte";
+	import HugeiconsLogo from "$lib/registry/icons/logos/hugeicons.svelte";
+	import LucideLogo from "$lib/registry/icons/logos/lucide.svelte";
+	import PhosphorLogo from "$lib/registry/icons/logos/phosphor.svelte";
+	import RemixiconLogo from "$lib/registry/icons/logos/remixicon.svelte";
+	import TablerLogo from "$lib/registry/icons/logos/tabler.svelte";
+	import { useDesignSystem } from "$lib/features/design-system/index.js";
+	import { iconLibraries, type IconLibraryName } from "$lib/registry/config.js";
+	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import type { HugeIconsIconName } from "$lib/registry/icons/__hugeicons__/index.js";
+	import type { LucideIconName } from "$lib/registry/icons/__lucide__/index.js";
 	import type { PhosphorIconName } from "$lib/registry/icons/__phosphor__/index.js";
 	import type { RemixIconIconName } from "$lib/registry/icons/__remixicon__/index.js";
+	import type { TablerIconName } from "$lib/registry/icons/__tabler__/index.js";
+	import * as Picker from "./picker/index.js";
+	import LockButton from "./lock-button.svelte";
 
 	type Props = {
 		submenu?: boolean;
@@ -139,13 +139,13 @@
 	<Picker.Root {submenu}>
 		<Picker.Trigger {submenu}>
 			<div class="flex flex-col justify-start text-left">
-				<div class="text-muted-foreground text-xs">Icon Library</div>
-				<div class="text-foreground text-sm font-medium">
+				<div class="text-xs text-muted-foreground">Icon Library</div>
+				<div class="text-sm font-medium text-foreground">
 					{currentIconLibrary?.title}
 				</div>
 			</div>
 			<div
-				class="text-foreground *:[svg]:text-foreground! pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base select-none"
+				class="pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base text-foreground select-none *:[svg]:text-foreground!"
 			>
 				<CurrentLogo class="size-4" />
 			</div>
@@ -166,7 +166,7 @@
 						>
 							<Item.Root size="sm">
 								<Item.Content class="gap-1">
-									<Item.Title class="text-muted-foreground text-xs font-medium">
+									<Item.Title class="text-xs font-medium text-muted-foreground">
 										{iconLibrary.title}
 									</Item.Title>
 									{@render IconLibraryPreview(iconLibrary.name)}

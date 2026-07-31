@@ -4,7 +4,7 @@
 	"type": "registry:lib",
 	"devDependencies": [
 		"clsx@^2.1.1",
-		"tailwind-merge@^3.5.0"
+		"tailwind-merge@^3.6.0"
 	],
 	"files": [
 		{

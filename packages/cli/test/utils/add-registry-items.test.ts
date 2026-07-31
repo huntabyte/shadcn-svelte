@@ -103,14 +103,8 @@ describe("addRegistryItems", () => {
 			return path.toString().includes("button");
 		});
 
-		vi.mocked(registry.resolveRegistryItems).mockResolvedValue([
-			customComponent,
-			buttonComponent,
-		]);
-		vi.mocked(registry.fetchRegistryItems).mockResolvedValue([
-			customComponent,
-			buttonComponent,
-		]);
+		vi.mocked(registry.resolveRegistryItems).mockResolvedValue([customComponent, buttonComponent]);
+		vi.mocked(registry.fetchRegistryItems).mockResolvedValue([customComponent, buttonComponent]);
 		vi.mocked(registry.resolveItemFilePath).mockImplementation((config, item, file) => {
 			return `/path/to/${item.name}/${file.target}`;
 		});

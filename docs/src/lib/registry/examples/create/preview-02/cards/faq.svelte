@@ -1,8 +1,8 @@
 <script lang="ts">
 	import * as Accordion from "$lib/registry/ui/accordion/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Tabs from "$lib/registry/ui/tabs/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const GENERAL_QUESTIONS = [
 		{

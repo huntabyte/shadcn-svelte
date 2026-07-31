@@ -13,9 +13,7 @@
 				<Field.Field orientation="responsive">
 					<Field.Content>
 						<Field.Label for="name">Name</Field.Label>
-						<Field.Description>
-							Provide your full name for identification
-						</Field.Description>
+						<Field.Description>Provide your full name for identification</Field.Description>
 					</Field.Content>
 					<Input id="name" placeholder="Evil Rabbit" required />
 				</Field.Field>

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
+	import * as Select from "$lib/registry/ui/select/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
-	import * as Select from "$lib/registry/ui/select/index.js";
 	import { Textarea } from "$lib/registry/ui/textarea/index.js";
 
 	const severities = [
@@ -40,8 +40,7 @@
 					<Field.Label for="bug-severity">Severity</Field.Label>
 					<Select.Root type="single" bind:value={severity}>
 						<Select.Trigger id="bug-severity" class="w-full">
-							{severities.find((s) => s.value === severity)?.label ??
-								"Select Severity"}
+							{severities.find((s) => s.value === severity)?.label ?? "Select Severity"}
 						</Select.Trigger>
 						<Select.Content>
 							<Select.Group>
@@ -58,8 +57,7 @@
 					<Field.Label for="bug-component">Component</Field.Label>
 					<Select.Root type="single" bind:value={component}>
 						<Select.Trigger id="bug-component" class="w-full">
-							{components.find((c) => c.value === component)?.label ??
-								"Select Component"}
+							{components.find((c) => c.value === component)?.label ?? "Select Component"}
 						</Select.Trigger>
 						<Select.Content>
 							<Select.Group>

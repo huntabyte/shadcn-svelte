@@ -40,9 +40,9 @@
 		{@const Component = component}
 		<Component />
 	{:else}
-		<p class="text-muted-foreground text-sm">
+		<p class="text-sm text-muted-foreground">
 			Component
-			<code class="bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm">
+			<code class="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm">
 				{name}
 			</code>
 			not found in registry.

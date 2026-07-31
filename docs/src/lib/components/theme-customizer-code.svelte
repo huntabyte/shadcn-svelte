@@ -1,10 +1,10 @@
 <script lang="ts">
+	import CheckIcon from "@tabler/icons-svelte/icons/check";
+	import CopyIcon from "@tabler/icons-svelte/icons/copy";
 	import * as Tabs from "$lib/registry/ui/tabs/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import CopyIcon from "@tabler/icons-svelte/icons/copy";
-	import CheckIcon from "@tabler/icons-svelte/icons/check";
-	import Css from "./icons/css.svelte";
 	import ColorIndicator from "./color-indicator.svelte";
+	import Css from "./icons/css.svelte";
 	import {
 		type BaseColor,
 		type BaseColorOKLCH,
@@ -39,7 +39,7 @@
 	<Tabs.Content value="v4-oklch">
 		<figure data-rehype-pretty-code-figure class="mx-0! mt-0 rounded-xl">
 			<figcaption
-				class="text-code-foreground [&_svg]:text-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70"
+				class="flex items-center gap-2 text-code-foreground [&_svg]:size-4 [&_svg]:text-code-foreground [&_svg]:opacity-70"
 				data-rehype-pretty-code-title=""
 				data-language="css"
 				data-theme="github-dark github-light-default"
@@ -53,7 +53,7 @@
 					data-slot="copy-button"
 					size="icon"
 					variant="ghost"
-					class="bg-code text-code-foreground absolute top-3 right-2 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
+					class="absolute top-3 right-2 z-10 size-7 bg-code text-code-foreground shadow-none hover:opacity-100 focus-visible:opacity-100"
 					onclick={() => {
 						copyToClipboard(getThemeCodeOKLCH(activeThemeOKLCH, 0.65));
 					}}>
@@ -69,9 +69,7 @@
 					<span data-line class="line text-code-foreground">&nbsp;&nbsp;&nbsp;--radius: 0.65rem;</span>
 					{#each Object.entries(activeThemeOKLCH?.light || {}) as [key, value] (key)}
 						<span data-line class="line text-code-foreground"
-							>&nbsp;&nbsp;&nbsp;--{key}: <ColorIndicator
-								color={value}
-							/> {value};</span
+							>&nbsp;&nbsp;&nbsp;--{key}: <ColorIndicator color={value} /> {value};</span
 						>
 					{/each}
 					<span data-line class="line text-code-foreground">&nbsp;&#125;</span>
@@ -79,9 +77,7 @@
 					<span data-line class="line text-code-foreground">&nbsp;.dark &#123;</span>
 					{#each Object.entries(activeThemeOKLCH?.dark || {}) as [key, value] (key)}
 						<span data-line class="line text-code-foreground"
-							>&nbsp;&nbsp;&nbsp;--{key}: <ColorIndicator
-								color={value}
-							/> {value};</span
+							>&nbsp;&nbsp;&nbsp;--{key}: <ColorIndicator color={value} /> {value};</span
 						>
 					{/each}
 					<span data-line class="line text-code-foreground">&nbsp;&#125;</span>
@@ -93,7 +89,7 @@
 	<Tabs.Content value="v4-hsl">
 		<figure data-rehype-pretty-code-figure class="mx-0! mt-0 rounded-xl">
 			<figcaption
-				class="text-code-foreground [&_svg]:text-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70"
+				class="flex items-center gap-2 text-code-foreground [&_svg]:size-4 [&_svg]:text-code-foreground [&_svg]:opacity-70"
 				data-rehype-pretty-code-title=""
 				data-language="css"
 				data-theme="github-dark github-light-default"
@@ -107,7 +103,7 @@
 					data-slot="copy-button"
 					size="icon"
 					variant="ghost"
-					class="bg-code text-code-foreground absolute top-3 right-2 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
+					class="absolute top-3 right-2 z-10 size-7 bg-code text-code-foreground shadow-none hover:opacity-100 focus-visible:opacity-100"
 					onclick={() => {
 						copyToClipboard(getThemeCodeHSLV4(activeTheme, 0.65));
 					}}>
@@ -147,7 +143,7 @@
 	<Tabs.Content value="v3">
 		<figure data-rehype-pretty-code-figure class="mx-0! mt-0 rounded-xl">
 			<figcaption
-				class="text-code-foreground [&_svg]:text-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70"
+				class="flex items-center gap-2 text-code-foreground [&_svg]:size-4 [&_svg]:text-code-foreground [&_svg]:opacity-70"
 				data-rehype-pretty-code-title=""
 				data-language="css"
 				data-theme="github-dark github-light-default"
@@ -161,7 +157,7 @@
 					data-slot="copy-button"
 					size="icon"
 					variant="ghost"
-					class="bg-code text-code-foreground absolute top-3 right-2 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
+					class="absolute top-3 right-2 z-10 size-7 bg-code text-code-foreground shadow-none hover:opacity-100 focus-visible:opacity-100"
 					onclick={() => {
 						copyToClipboard(getThemeCode(activeTheme, 0.5));
 					}}>

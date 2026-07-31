@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { cn } from "$lib/utils.js";
 	import type { SVGAttributes } from "svelte/elements";
 
 	let {
@@ -21,6 +21,7 @@
 	hugeicons="Loading03Icon"
 	phosphor="SpinnerIcon"
 	remixicon="RiLoaderLine"
+	data-slot="spinner"
 	{role}
 	name={name === null ? undefined : name}
 	color={color === null ? undefined : color}
