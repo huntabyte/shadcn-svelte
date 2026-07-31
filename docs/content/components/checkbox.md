@@ -92,7 +92,11 @@ Use `defaultChecked` for uncontrolled checkboxes, or `checked` and
 
 Set `aria-invalid` on the checkbox and `data-invalid` on the field wrapper to show the invalid styles.
 
-<ComponentPreview name="checkbox-invalid" />
+<ComponentPreview name="checkbox-invalid">
+
+<div></div>
+
+</ComponentPreview>
 
 ## Basic
 

@@ -22,6 +22,8 @@ links:
 
 <ComponentPreview name="navigation-menu-demo" previewClassName="h-96" class="overflow-visible">
 
+<div></div>
+
 </ComponentPreview>
 
 ## Installation
