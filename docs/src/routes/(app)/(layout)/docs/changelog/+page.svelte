@@ -88,8 +88,8 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 			class="mx-auto flex w-full max-w-[40rem] min-w-0 flex-1 flex-col gap-6 px-4 py-6 text-foreground md:px-0 lg:py-8 dark:text-foreground"
 		>
 			<div class="flex flex-col gap-2">
-				<div class="flex items-center justify-between md:items-start">
-					<h1 class="scroll-m-24 text-3xl font-semibold tracking-tight sm:text-3xl">Changelog</h1>
+				<div class="flex items-center justify-between">
+					<h1 class="scroll-m-24 text-4xl font-semibold tracking-tight sm:text-3xl">Changelog</h1>
 					<div class="docs-nav flex items-center gap-2" data-llm-ignore>
 						<Button
 							variant="secondary"
