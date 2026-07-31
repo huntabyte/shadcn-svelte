@@ -5,6 +5,6 @@
 
 <div class="grid w-full gap-1.5">
 	<Label for="textarea-message">Message</Label>
-	<p class="text-muted-foreground text-sm">Enter your message below.</p>
+	<p class="text-sm text-muted-foreground">Enter your message below.</p>
 	<Textarea id="textarea-message" placeholder="Type your message here." />
 </div>

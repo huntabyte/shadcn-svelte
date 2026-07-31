@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
+	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
 </script>
 
 <RadioGroup.Root value="plus" class="max-w-sm">

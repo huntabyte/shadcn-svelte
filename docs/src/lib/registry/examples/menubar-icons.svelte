@@ -1,9 +1,9 @@
 <script lang="ts">
+	import HelpCircleIcon from "@lucide/svelte/icons/circle-help";
 	import FileIcon from "@lucide/svelte/icons/file";
 	import FolderIcon from "@lucide/svelte/icons/folder";
 	import SaveIcon from "@lucide/svelte/icons/save";
 	import SettingsIcon from "@lucide/svelte/icons/settings";
-	import HelpCircleIcon from "@lucide/svelte/icons/circle-help";
 	import TrashIcon from "@lucide/svelte/icons/trash-2";
 	import * as Menubar from "$lib/registry/ui/menubar/index.js";
 </script>

@@ -27,7 +27,7 @@
 			<Button
 				{...props}
 				variant="outline"
-				class="border-destructive text-destructive hover:border-destructive hover:text-destructive aria-expanded:border-destructive aria-expanded:text-destructive w-[200px] justify-between"
+				class="w-[200px] justify-between border-destructive text-destructive hover:border-destructive hover:text-destructive aria-expanded:border-destructive aria-expanded:text-destructive"
 				role="combobox"
 				aria-expanded={open}
 				aria-invalid="true"

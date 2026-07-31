@@ -9,7 +9,6 @@
 	<AlertTriangleIcon />
 	<Alert.Title>Your subscription will expire in 3 days.</Alert.Title>
 	<Alert.Description>
-		Renew now to avoid service interruption or upgrade to a paid plan to continue using the
-		service.
+		Renew now to avoid service interruption or upgrade to a paid plan to continue using the service.
 	</Alert.Description>
 </Alert.Root>

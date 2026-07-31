@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import * as Accordion from "$lib/registry/ui/accordion/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 
 <Example title="Basic">
@@ -33,8 +33,8 @@
 			</Accordion.Trigger>
 			<Accordion.Content class="flex flex-col gap-4 text-balance">
 				<p>
-					Yes. It supports custom keyboard shortcuts. Check out the component
-					documentation for more details.
+					Yes. It supports custom keyboard shortcuts. Check out the component documentation for more
+					details.
 				</p>
 			</Accordion.Content>
 		</Accordion.Item>

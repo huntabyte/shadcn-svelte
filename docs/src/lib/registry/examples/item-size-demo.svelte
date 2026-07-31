@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Item from "$lib/registry/ui/item/index.js";
 	import InboxIcon from "@lucide/svelte/icons/inbox";
+	import * as Item from "$lib/registry/ui/item/index.js";
 </script>
 
 <div class="flex w-full max-w-md flex-col gap-6">

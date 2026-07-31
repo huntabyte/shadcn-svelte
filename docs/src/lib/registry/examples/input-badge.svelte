@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
+	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
 </script>
 

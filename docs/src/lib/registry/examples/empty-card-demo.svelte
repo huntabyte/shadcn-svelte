@@ -1,9 +1,9 @@
 <script lang="ts">
-	import * as Empty from "$lib/registry/ui/empty/index.js";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import FolderIcon from "@lucide/svelte/icons/folder";
 	import ArrowUpRightIcon from "@lucide/svelte/icons/arrow-up-right";
+	import FolderIcon from "@lucide/svelte/icons/folder";
+	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Empty from "$lib/registry/ui/empty/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
 <Card.Root class="w-full max-w-sm">
@@ -15,8 +15,7 @@
 				</Empty.Media>
 				<Empty.Title>No projects yet</Empty.Title>
 				<Empty.Description>
-					You haven't created any projects yet. Get started by creating your first
-					project.
+					You haven't created any projects yet. Get started by creating your first project.
 				</Empty.Description>
 			</Empty.Header>
 			<Empty.Content>

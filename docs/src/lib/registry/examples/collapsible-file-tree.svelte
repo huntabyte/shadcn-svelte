@@ -65,7 +65,8 @@
 				class={buttonVariants({
 					variant: "ghost",
 					size: "sm",
-					class: "group hover:bg-accent hover:text-accent-foreground w-full justify-start transition-none",
+					class:
+						"group w-full justify-start transition-none hover:bg-accent hover:text-accent-foreground",
 				})}
 			>
 				<ChevronRightIcon class="transition-transform group-data-[state=open]:rotate-90" />
@@ -81,7 +82,7 @@
 			</Collapsible.Content>
 		</Collapsible.Root>
 	{:else}
-		<Button variant="link" size="sm" class="text-foreground w-full justify-start gap-2">
+		<Button variant="link" size="sm" class="w-full justify-start gap-2 text-foreground">
 			<FileIcon />
 			<span>{item.name}</span>
 		</Button>

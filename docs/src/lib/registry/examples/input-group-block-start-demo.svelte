@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import CopyIcon from "@lucide/svelte/icons/copy";
 	import FileCodeIcon from "@lucide/svelte/icons/file-code";
+	import * as Field from "$lib/registry/ui/field/index.js";
+	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 </script>
 
 <Field.Group class="max-w-sm">

@@ -62,12 +62,7 @@
 		</Popover.Content>
 	</Popover.Root>
 	{#if value}
-		<Button
-			variant="ghost"
-			size="icon"
-			onclick={() => (value = "")}
-			aria-label="Clear selection"
-		>
+		<Button variant="ghost" size="icon" onclick={() => (value = "")} aria-label="Clear selection">
 			<XIcon class="size-4" />
 		</Button>
 	{/if}

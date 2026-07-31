@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { SvelteSet } from "svelte/reactivity";
-	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
 	import * as Table from "$lib/registry/ui/table/index.js";
+	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
 
 	const tableData = [
 		{

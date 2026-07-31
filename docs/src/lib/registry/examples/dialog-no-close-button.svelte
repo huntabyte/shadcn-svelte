@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 </script>
 
 <Dialog.Root>

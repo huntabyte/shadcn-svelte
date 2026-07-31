@@ -15,6 +15,6 @@
 	<HoverCard.Content class="flex w-64 flex-col gap-0.5">
 		<div class="font-semibold">@sveltejs</div>
 		<div>web development for the rest of us</div>
-		<div class="text-muted-foreground mt-1 text-xs">Joined September 2022</div>
+		<div class="mt-1 text-xs text-muted-foreground">Joined September 2022</div>
 	</HoverCard.Content>
 </HoverCard.Root>

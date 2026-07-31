@@ -7,7 +7,7 @@
 
 <Card.Root class="mx-auto w-full max-w-sm">
 	<Card.Content>
-		<Collapsible.Root class="data-[state=open]:bg-muted rounded-md">
+		<Collapsible.Root class="rounded-md data-[state=open]:bg-muted">
 			<Collapsible.Trigger>
 				{#snippet child({ props })}
 					<Button variant="ghost" class="group w-full" {...props}>

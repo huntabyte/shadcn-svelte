@@ -11,9 +11,7 @@
 
 	let value = $state("banana");
 
-	const triggerContent = $derived(
-		fruits.find((f) => f.value === value)?.label ?? "Select a fruit"
-	);
+	const triggerContent = $derived(fruits.find((f) => f.value === value)?.label ?? "Select a fruit");
 </script>
 
 <div class="flex w-full max-w-xs flex-col gap-6">

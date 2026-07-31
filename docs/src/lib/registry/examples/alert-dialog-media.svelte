@@ -1,7 +1,7 @@
 <script lang="ts">
+	import CircleFadingPlusIcon from "@lucide/svelte/icons/circle-fading-plus";
 	import * as AlertDialog from "$lib/registry/ui/alert-dialog/index.js";
 	import { buttonVariants } from "$lib/registry/ui/button/index.js";
-	import CircleFadingPlusIcon from "@lucide/svelte/icons/circle-fading-plus";
 </script>
 
 <AlertDialog.Root>

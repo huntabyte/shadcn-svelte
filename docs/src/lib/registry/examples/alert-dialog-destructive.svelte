@@ -1,7 +1,7 @@
 <script lang="ts">
+	import Trash2Icon from "@lucide/svelte/icons/trash-2";
 	import * as AlertDialog from "$lib/registry/ui/alert-dialog/index.js";
 	import { buttonVariants } from "$lib/registry/ui/button/index.js";
-	import Trash2Icon from "@lucide/svelte/icons/trash-2";
 </script>
 
 <AlertDialog.Root>
@@ -22,9 +22,7 @@
 			</AlertDialog.Description>
 		</AlertDialog.Header>
 		<AlertDialog.Footer>
-			<AlertDialog.Cancel class={buttonVariants({ variant: "outline" })}>
-				Cancel
-			</AlertDialog.Cancel>
+			<AlertDialog.Cancel class={buttonVariants({ variant: "outline" })}>Cancel</AlertDialog.Cancel>
 			<AlertDialog.Action class={buttonVariants({ variant: "destructive" })}>
 				Delete
 			</AlertDialog.Action>

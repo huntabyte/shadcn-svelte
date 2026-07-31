@@ -1,7 +1,7 @@
 <script lang="ts">
+	import SearchIcon from "@lucide/svelte/icons/search";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
-	import SearchIcon from "@lucide/svelte/icons/search";
 </script>
 
 <Field.Field class="max-w-sm">

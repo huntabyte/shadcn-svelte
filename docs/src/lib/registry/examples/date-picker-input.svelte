@@ -6,10 +6,10 @@
 		type DateValue,
 		getLocalTimeZone,
 	} from "@internationalized/date";
-	import { Calendar } from "$lib/registry/ui/calendar/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
+	import { Calendar } from "$lib/registry/ui/calendar/index.js";
 
 	const df = new DateFormatter("en-US", {
 		day: "2-digit",
@@ -65,12 +65,7 @@
 			<Popover.Root bind:open>
 				<Popover.Trigger>
 					{#snippet child({ props })}
-						<InputGroup.Button
-							{...props}
-							variant="ghost"
-							size="icon-xs"
-							aria-label="Select date"
-						>
+						<InputGroup.Button {...props} variant="ghost" size="icon-xs" aria-label="Select date">
 							<CalendarIcon />
 							<span class="sr-only">Select date</span>
 						</InputGroup.Button>

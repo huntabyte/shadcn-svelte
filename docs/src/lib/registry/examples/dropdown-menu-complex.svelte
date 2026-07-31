@@ -3,8 +3,8 @@
 	import CreditCardIcon from "@lucide/svelte/icons/credit-card";
 	import DownloadIcon from "@lucide/svelte/icons/download";
 	import EyeIcon from "@lucide/svelte/icons/eye";
-	import FileCodeIcon from "@lucide/svelte/icons/file-code";
 	import FileIcon from "@lucide/svelte/icons/file";
+	import FileCodeIcon from "@lucide/svelte/icons/file-code";
 	import FileTextIcon from "@lucide/svelte/icons/file-text";
 	import FolderIcon from "@lucide/svelte/icons/folder";
 	import FolderOpenIcon from "@lucide/svelte/icons/folder-open";
@@ -24,8 +24,8 @@
 	import ShieldIcon from "@lucide/svelte/icons/shield";
 	import SunIcon from "@lucide/svelte/icons/sun";
 	import UserIcon from "@lucide/svelte/icons/user";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	let notifications = $state({
 		email: true,
@@ -189,18 +189,12 @@
 								<DropdownMenu.Portal>
 									<DropdownMenu.SubContent>
 										<DropdownMenu.Group>
-											<DropdownMenu.Label
-												>Notification Types</DropdownMenu.Label
-											>
-											<DropdownMenu.CheckboxItem
-												bind:checked={notifications.push}
-											>
+											<DropdownMenu.Label>Notification Types</DropdownMenu.Label>
+											<DropdownMenu.CheckboxItem bind:checked={notifications.push}>
 												<BellIcon />
 												Push Notifications
 											</DropdownMenu.CheckboxItem>
-											<DropdownMenu.CheckboxItem
-												bind:checked={notifications.email}
-											>
+											<DropdownMenu.CheckboxItem bind:checked={notifications.email}>
 												<MailIcon />
 												Email Notifications
 											</DropdownMenu.CheckboxItem>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { today, getLocalTimeZone } from "@internationalized/date";
-	import { RangeCalendar } from "$lib/registry/ui/range-calendar/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
+	import { RangeCalendar } from "$lib/registry/ui/range-calendar/index.js";
 	import type { DateRange } from "bits-ui";
 
 	const now = today(getLocalTimeZone());

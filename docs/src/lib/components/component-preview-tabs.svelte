@@ -1,8 +1,8 @@
 <script lang="ts">
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { cn } from "$lib/utils.js";
 	import type { Component, Snippet } from "svelte";
 	import type { HTMLAttributes } from "svelte/elements";
-	import { cn } from "$lib/utils.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 
 	let {
 		class: className,
@@ -95,7 +95,7 @@
 								type="button"
 								size="sm"
 								variant="outline"
-								class="bg-background text-foreground dark:bg-background dark:text-foreground hover:bg-muted dark:hover:bg-muted relative z-10 rounded-lg shadow-none"
+								class="relative z-10 rounded-lg bg-background text-foreground shadow-none hover:bg-muted dark:bg-background dark:text-foreground dark:hover:bg-muted"
 								onclick={() => (isMobileCodeVisible = true)}
 							>
 								View Code

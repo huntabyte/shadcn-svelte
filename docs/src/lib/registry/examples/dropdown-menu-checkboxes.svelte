@@ -16,9 +16,7 @@
 	<DropdownMenu.Content class="w-40">
 		<DropdownMenu.Group>
 			<DropdownMenu.Label>Appearance</DropdownMenu.Label>
-			<DropdownMenu.CheckboxItem bind:checked={showStatusBar}>
-				Status Bar
-			</DropdownMenu.CheckboxItem>
+			<DropdownMenu.CheckboxItem bind:checked={showStatusBar}>Status Bar</DropdownMenu.CheckboxItem>
 			<DropdownMenu.CheckboxItem bind:checked={showActivityBar} disabled>
 				Activity Bar
 			</DropdownMenu.CheckboxItem>

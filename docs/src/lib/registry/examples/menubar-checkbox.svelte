@@ -15,9 +15,7 @@
 			<Menubar.CheckboxItem bind:checked={showBookmarks}>
 				Always Show Bookmarks Bar
 			</Menubar.CheckboxItem>
-			<Menubar.CheckboxItem bind:checked={showFullUrls}>
-				Always Show Full URLs
-			</Menubar.CheckboxItem>
+			<Menubar.CheckboxItem bind:checked={showFullUrls}>Always Show Full URLs</Menubar.CheckboxItem>
 			<Menubar.Separator />
 			<Menubar.Item inset>
 				Reload <Menubar.Shortcut>⌘R</Menubar.Shortcut>

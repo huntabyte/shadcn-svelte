@@ -36,9 +36,7 @@
 					<Form.Label>Email</Form.Label>
 					<Select.Root type="single" bind:value={$formData.email} name={props.name}>
 						<Select.Trigger {...props}>
-							{$formData.email
-								? $formData.email
-								: "Select a verified email to display"}
+							{$formData.email ? $formData.email : "Select a verified email to display"}
 						</Select.Trigger>
 						<Select.Content>
 							<Select.Group>

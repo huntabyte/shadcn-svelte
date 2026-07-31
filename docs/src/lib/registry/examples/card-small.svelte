@@ -10,8 +10,8 @@
 	</Card.Header>
 	<Card.Content>
 		<p>
-			The card component supports a size prop that can be set to &quot;sm&quot; for a more
-			compact appearance.
+			The card component supports a size prop that can be set to &quot;sm&quot; for a more compact
+			appearance.
 		</p>
 	</Card.Content>
 	<Card.Footer>

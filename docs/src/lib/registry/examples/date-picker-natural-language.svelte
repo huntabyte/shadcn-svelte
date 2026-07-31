@@ -5,12 +5,12 @@
 		type DateValue,
 		getLocalTimeZone,
 	} from "@internationalized/date";
+	import { DateFormatter } from "@internationalized/date";
 	import { parseDate as chronoParse } from "chrono-node";
-	import { Calendar } from "$lib/registry/ui/calendar/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import { DateFormatter } from "@internationalized/date";
+	import { Calendar } from "$lib/registry/ui/calendar/index.js";
 
 	const df = new DateFormatter("en-US", {
 		day: "2-digit",
@@ -69,12 +69,7 @@
 			<Popover.Root bind:open>
 				<Popover.Trigger>
 					{#snippet child({ props })}
-						<InputGroup.Button
-							{...props}
-							variant="ghost"
-							size="icon-xs"
-							aria-label="Select date"
-						>
+						<InputGroup.Button {...props} variant="ghost" size="icon-xs" aria-label="Select date">
 							<CalendarIcon />
 							<span class="sr-only">Select date</span>
 						</InputGroup.Button>
@@ -94,7 +89,7 @@
 			</Popover.Root>
 		</InputGroup.Addon>
 	</InputGroup.Root>
-	<div class="text-muted-foreground px-1 text-sm">
+	<div class="px-1 text-sm text-muted-foreground">
 		Your post will be published on
 		<span class="font-medium">{formatDateValue(value)}</span>.
 	</div>

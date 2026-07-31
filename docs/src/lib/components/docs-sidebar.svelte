@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { page } from "$app/state";
 	import { afterNavigate } from "$app/navigation";
+	import { page } from "$app/state";
 	import { onMount, tick } from "svelte";
+	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import { PAGES_NEW, type SidebarNavItem } from "$lib/navigation.js";
 	import type { ComponentProps } from "svelte";
 

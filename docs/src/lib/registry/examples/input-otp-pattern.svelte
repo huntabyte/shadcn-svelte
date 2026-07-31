@@ -1,7 +1,7 @@
 <script lang="ts">
+	import { REGEXP_ONLY_DIGITS } from "bits-ui";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as InputOTP from "$lib/registry/ui/input-otp/index.js";
-	import { REGEXP_ONLY_DIGITS } from "bits-ui";
 </script>
 
 <Field.Field class="w-fit">

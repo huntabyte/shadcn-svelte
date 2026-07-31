@@ -77,11 +77,7 @@
 								closeAndFocusTrigger();
 							}}
 						>
-							<CheckIcon
-								class={cn(
-									selectedCountry?.code !== country.code && "text-transparent"
-								)}
-							/>
+							<CheckIcon class={cn(selectedCountry?.code !== country.code && "text-transparent")} />
 							{country.label}
 						</Command.Item>
 					{/each}

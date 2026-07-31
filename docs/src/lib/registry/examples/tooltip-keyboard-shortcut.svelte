@@ -1,8 +1,8 @@
 <script lang="ts">
 	import Save from "@lucide/svelte/icons/save";
+	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Kbd } from "$lib/registry/ui/kbd/index.js";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 </script>
 
 <Tooltip.Root>

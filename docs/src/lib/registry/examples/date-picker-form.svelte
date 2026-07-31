@@ -81,9 +81,7 @@
 						/>
 					</Popover.Content>
 				</Popover.Root>
-				<Form.Description>
-					Your date of birth is used to calculate your age.
-				</Form.Description>
+				<Form.Description>Your date of birth is used to calculate your age.</Form.Description>
 				<Form.FieldErrors />
 				<input hidden value={$formData.dob} name={props.name} />
 			{/snippet}

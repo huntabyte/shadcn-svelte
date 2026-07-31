@@ -3,7 +3,7 @@
 </script>
 
 <div class="w-full max-w-[12rem]">
-	<AspectRatio ratio={1 / 1} class="bg-muted rounded-lg">
+	<AspectRatio ratio={1 / 1} class="rounded-lg bg-muted">
 		<img
 			src="https://avatar.vercel.sh/shadcn1"
 			alt="Square"

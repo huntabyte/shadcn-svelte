@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { today, getLocalTimeZone, type DateValue } from "@internationalized/date";
-	import { Calendar } from "$lib/registry/ui/calendar/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Calendar } from "$lib/registry/ui/calendar/index.js";
 
 	const presets = [
 		{ label: "Today", days: 0 },

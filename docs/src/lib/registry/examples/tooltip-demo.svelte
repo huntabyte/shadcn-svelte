@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import { buttonVariants } from "../ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 </script>
 
 <Tooltip.Provider>

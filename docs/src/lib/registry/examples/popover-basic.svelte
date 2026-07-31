@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
 <Popover.Root>

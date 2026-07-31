@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { CalendarDate, getLocalTimeZone } from "@internationalized/date";
-	import { RangeCalendar } from "$lib/registry/ui/range-calendar/index.js";
-	import CalendarDayButton from "$lib/registry/ui/range-calendar/range-calendar-day.svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
+	import CalendarDayButton from "$lib/registry/ui/range-calendar/range-calendar-day.svelte";
+	import { RangeCalendar } from "$lib/registry/ui/range-calendar/index.js";
 	import type { DateRange } from "bits-ui";
 
 	const currentYear = new Date().getFullYear();

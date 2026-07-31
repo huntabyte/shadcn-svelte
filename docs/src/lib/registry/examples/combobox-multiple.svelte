@@ -41,13 +41,13 @@
 					<div class="flex flex-wrap gap-1">
 						{#each selected as framework (framework)}
 							<span
-								class="bg-secondary text-secondary-foreground inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-xs font-medium"
+								class="inline-flex items-center gap-1 rounded bg-secondary px-1.5 py-0.5 text-xs font-medium text-secondary-foreground"
 							>
 								{framework}
 								<button
 									type="button"
 									onclick={(e) => removeFramework(framework, e)}
-									class="hover:text-foreground text-muted-foreground"
+									class="text-muted-foreground hover:text-foreground"
 									aria-label="Remove {framework}"
 								>
 									<XIcon class="size-3" />
@@ -56,7 +56,7 @@
 						{/each}
 					</div>
 				{:else}
-					<span class="text-muted-foreground font-normal">Add framework</span>
+					<span class="font-normal text-muted-foreground">Add framework</span>
 				{/if}
 				<ChevronsUpDownIcon class="ms-auto shrink-0 opacity-50" />
 			</Button>
@@ -75,9 +75,7 @@
 								toggleFramework(framework);
 							}}
 						>
-							<CheckIcon
-								class={cn(!selected.includes(framework) && "text-transparent")}
-							/>
+							<CheckIcon class={cn(!selected.includes(framework) && "text-transparent")} />
 							{framework}
 						</Command.Item>
 					{/each}

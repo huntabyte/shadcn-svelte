@@ -2,7 +2,7 @@
 	import { cn } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 
-	let { children, class: className, ...props }: HTMLAttributes<HTMLHeadingElement> = $props();
+	let { children, class: className, ...props }: HTMLAttributes<HTMLElement> = $props();
 </script>
 
 <div
@@ -12,4 +12,4 @@
 	{...props}
 >
 	{@render children?.()}
-</h3>
+</div>

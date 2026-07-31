@@ -6,8 +6,8 @@
 	<Accordion.Item value="shipping">
 		<Accordion.Trigger>What are your shipping options?</Accordion.Trigger>
 		<Accordion.Content>
-			We offer standard (5-7 days), express (2-3 days), and overnight shipping. Free shipping
-			on international orders.
+			We offer standard (5-7 days), express (2-3 days), and overnight shipping. Free shipping on
+			international orders.
 		</Accordion.Content>
 	</Accordion.Item>
 	<Accordion.Item value="returns">
@@ -20,8 +20,7 @@
 	<Accordion.Item value="support">
 		<Accordion.Trigger>How can I contact customer support?</Accordion.Trigger>
 		<Accordion.Content>
-			Reach us via email, live chat, or phone. We respond within 24 hours during business
-			days.
+			Reach us via email, live chat, or phone. We respond within 24 hours during business days.
 		</Accordion.Content>
 	</Accordion.Item>
 </Accordion.Root>

@@ -7,11 +7,10 @@
 </script>
 
 <script lang="ts">
+	import RefreshCwIcon from "@lucide/svelte/icons/refresh-cw";
 	import { toast } from "svelte-sonner";
 	import { defaults, superForm } from "sveltekit-superforms";
 	import { zod4 } from "sveltekit-superforms/adapters";
-	import { toast } from "svelte-sonner";
-	import RefreshCwIcon from "@lucide/svelte/icons/refresh-cw";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as InputOTP from "$lib/registry/ui/input-otp/index.js";
@@ -50,12 +49,7 @@
 						Resend Code
 					</Button>
 				</div>
-				<InputOTP.Root
-					id="otp-verification"
-					maxlength={6}
-					bind:value={$formData.pin}
-					required
-				>
+				<InputOTP.Root id="otp-verification" maxlength={6} bind:value={$formData.pin} required>
 					{#snippet children({ cells })}
 						<InputOTP.Group
 							class="*:data-[slot=input-otp-slot]:h-12 *:data-[slot=input-otp-slot]:w-11 *:data-[slot=input-otp-slot]:text-xl"
@@ -85,11 +79,11 @@
 		<Card.Footer>
 			<Field.Field>
 				<Button type="submit" class="w-full">Verify</Button>
-				<div class="text-muted-foreground text-sm">
+				<div class="text-sm text-muted-foreground">
 					Having trouble signing in?
 					<button
 						type="button"
-						class="hover:text-primary underline underline-offset-4 transition-colors"
+						class="underline underline-offset-4 transition-colors hover:text-primary"
 					>
 						Contact support
 					</button>

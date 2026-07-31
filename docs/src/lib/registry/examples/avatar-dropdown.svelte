@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Avatar from "$lib/registry/ui/avatar/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
 <DropdownMenu.Root>

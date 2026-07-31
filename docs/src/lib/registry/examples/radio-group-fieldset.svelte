@@ -1,4 +1,5 @@
 <script lang="ts">
+	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
 	import {
 		FieldSet,
 		FieldLegend,
@@ -6,7 +7,6 @@
 		Field,
 		FieldLabel,
 	} from "$lib/registry/ui/field/index.js";
-	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
 </script>
 
 <FieldSet class="w-full max-w-xs">

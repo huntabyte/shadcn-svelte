@@ -8,21 +8,21 @@
 		<RadioGroup.Item value="default" id="desc-r1" />
 		<div>
 			<Label for="desc-r1">Default</Label>
-			<p class="text-muted-foreground text-sm">Standard spacing for most use cases.</p>
+			<p class="text-sm text-muted-foreground">Standard spacing for most use cases.</p>
 		</div>
 	</div>
 	<div class="flex items-start space-x-2">
 		<RadioGroup.Item value="comfortable" id="desc-r2" />
 		<div>
 			<Label for="desc-r2">Comfortable</Label>
-			<p class="text-muted-foreground text-sm">More space between elements.</p>
+			<p class="text-sm text-muted-foreground">More space between elements.</p>
 		</div>
 	</div>
 	<div class="flex items-start space-x-2">
 		<RadioGroup.Item value="compact" id="desc-r3" />
 		<div>
 			<Label for="desc-r3">Compact</Label>
-			<p class="text-muted-foreground text-sm">Minimal spacing for dense layouts.</p>
+			<p class="text-sm text-muted-foreground">Minimal spacing for dense layouts.</p>
 		</div>
 	</div>
 </RadioGroup.Root>

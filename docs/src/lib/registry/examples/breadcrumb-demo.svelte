@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Breadcrumb from "$lib/registry/ui/breadcrumb/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
 <Breadcrumb.Root>

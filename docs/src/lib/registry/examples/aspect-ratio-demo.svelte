@@ -3,7 +3,7 @@
 </script>
 
 <div class="w-full max-w-sm">
-	<AspectRatio ratio={16 / 9} class="bg-muted rounded-lg">
+	<AspectRatio ratio={16 / 9} class="rounded-lg bg-muted">
 		<img
 			src="https://avatar.vercel.sh/shadcn1"
 			alt="Landscape"

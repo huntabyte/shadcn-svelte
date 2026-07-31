@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as InputOTP from "$lib/registry/ui/input-otp/index.js";
 	import { REGEXP_ONLY_DIGITS } from "bits-ui";
+	import * as InputOTP from "$lib/registry/ui/input-otp/index.js";
 </script>
 
 <InputOTP.Root maxlength={4} pattern={REGEXP_ONLY_DIGITS}>

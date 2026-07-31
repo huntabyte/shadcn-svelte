@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
+	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
 	import { Label } from "$lib/registry/ui/label/index.js";
 </script>
 
@@ -13,9 +13,7 @@
 		<Checkbox id="terms-checkbox-2" name="terms-checkbox-2" checked />
 		<Field.Content>
 			<Field.Label for="terms-checkbox-2">Accept terms and conditions</Field.Label>
-			<Field.Description>
-				By clicking this checkbox, you agree to the terms.
-			</Field.Description>
+			<Field.Description>By clicking this checkbox, you agree to the terms.</Field.Description>
 		</Field.Content>
 	</Field.Field>
 	<Field.Field orientation="horizontal" data-disabled>
@@ -27,9 +25,7 @@
 			<Checkbox id="toggle-checkbox-2" name="toggle-checkbox-2" />
 			<Field.Content>
 				<Field.Title>Enable notifications</Field.Title>
-				<Field.Description>
-					You can enable or disable notifications at any time.
-				</Field.Description>
+				<Field.Description>You can enable or disable notifications at any time.</Field.Description>
 			</Field.Content>
 		</Field.Field>
 	</Field.Label>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as NavigationMenu from "$lib/registry/ui/navigation-menu/index.js";
-	import { cn } from "$lib/utils.js";
 	import { navigationMenuTriggerStyle } from "$lib/registry/ui/navigation-menu/navigation-menu-trigger.svelte";
+	import { cn } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 
 	const components: { title: string; href: string; description: string }[] = [
@@ -61,7 +61,7 @@
 					{...restProps}
 				>
 					<div class="leading-none font-medium">{title}</div>
-					<p class="text-muted-foreground line-clamp-2 text-sm">
+					<p class="line-clamp-2 text-sm text-muted-foreground">
 						{content}
 					</p>
 				</a>

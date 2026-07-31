@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as HoverCard from "$lib/registry/ui/hover-card/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const sides = ["left", "top", "bottom", "right"] as const;
 </script>

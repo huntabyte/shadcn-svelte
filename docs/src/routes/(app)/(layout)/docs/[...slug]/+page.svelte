@@ -2,13 +2,7 @@
 	import { page } from "$app/state";
 	import ArrowLeftIcon from "@lucide/svelte/icons/arrow-left";
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
-	import DocsToc from "$lib/components/docs-toc.svelte";
-	import { findNeighbors } from "$lib/navigation.js";
-	import { page } from "$app/state";
-	import Cta from "$lib/components/cta.svelte";
-	import Metadata from "$lib/components/metadata.svelte";
-	import Ethical from "$lib/components/ethical.svelte";
-	import DocsCopyPage from "$lib/components/docs-copy-page.svelte";
+	import ArrowUpRight from "@lucide/svelte/icons/arrow-up-right";
 	import CtaMobile from "$lib/components/cta-mobile.svelte";
 	import Cta from "$lib/components/cta.svelte";
 	import DocsCopyPage from "$lib/components/docs-copy-page.svelte";
