@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import type { Row } from "@tanstack/table-core";
 	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
+	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import type { Row } from "@tanstack/table-core";
 
 	type Payment = {
 		id: string;

@@ -1,26 +1,25 @@
 import fs from "node:fs/promises";
-import prettier from "prettier";
+import * as oxfmt from "oxfmt";
 import { PRESET_STYLES } from "shadcn-svelte/preset";
-
-const prettierConfig = await prettier.resolveConfig(import.meta.url);
-if (!prettierConfig) throw new Error("Failed to resolve prettier config.");
+import oxfmtConfig from "../../oxfmt.config.js";
 
 async function pullStyles() {
 	await Promise.all(
 		PRESET_STYLES.map(async (style) => {
 			console.log(`Pulling upstream style ${style}...`);
-			const stylePath = `https://raw.githubusercontent.com/shadcn-ui/ui/refs/heads/main/apps/v4/registry/styles/style-${style}.css`;
-			const styleContent = await fetch(stylePath).then((res) => res.text());
-			const styleFilePath = `src/lib/registry/styles/style-${style}.css`;
+			const url = `https://raw.githubusercontent.com/shadcn-ui/ui/refs/heads/main/apps/v4/registry/styles/style-${style}.css`;
+			const content = await fetch(url).then((res) => res.text());
+			const filepath = `src/lib/registry/styles/style-${style}.css`;
 
-			const formatted = await prettier.format(styleContent, {
-				parser: "css",
-				filepath: styleFilePath,
-				...prettierConfig,
-			});
+			const formatted = await oxfmt.format(filepath, content, oxfmtConfig);
+			if (formatted.errors.length) {
+				console.error(`Failed to format style ${style}:`);
+				console.error(formatted.errors);
+				return;
+			}
 
-			await fs.writeFile(styleFilePath, formatted);
-			console.log(`Wrote style ${style} to ${styleFilePath}`);
+			await fs.writeFile(filepath, formatted.code);
+			console.log(`Wrote style ${style} to ${filepath}`);
 		})
 	);
 }

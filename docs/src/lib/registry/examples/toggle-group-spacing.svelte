@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
 	import BookmarkIcon from "@lucide/svelte/icons/bookmark";
 	import HeartIcon from "@lucide/svelte/icons/heart";
 	import StarIcon from "@lucide/svelte/icons/star";
+	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
 </script>
 
 <ToggleGroup.Root type="multiple" variant="outline" spacing={2} size="sm">

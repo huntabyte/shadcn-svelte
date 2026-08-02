@@ -1,10 +1,6 @@
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
 import { z } from "zod";
-import { error } from "../utils/errors.js";
-import * as registry from "../utils/registry/index.js";
-import * as cliConfig from "../utils/config/index.js";
-import type { RegistryIndexItem, RegistryItemType } from "../utils/registry/schema.js";
 import {
 	findUnknownTypesMessage,
 	formatAddCommand,
@@ -13,6 +9,10 @@ import {
 	formatSearchResults,
 	searchRegistryItems,
 } from "./utils.js";
+import * as cliConfig from "../utils/config/index.js";
+import * as registry from "../utils/registry/index.js";
+import { error } from "../utils/errors.js";
+import type { RegistryIndexItem, RegistryItemType } from "../utils/registry/schema.js";
 
 export const server = new Server(
 	{
@@ -179,12 +179,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 				const registryUrl = registry.getRegistryUrl(config);
 				const index = await registry.getRegistryIndex(registryUrl);
 				const examples = searchRegistryItems(index, input.query).filter((item) =>
-					[
-						"registry:example",
-						"registry:block",
-						"registry:component",
-						"registry:page",
-					].includes(item.type)
+					["registry:example", "registry:block", "registry:component", "registry:page"].includes(
+						item.type
+					)
 				);
 
 				if (examples.length === 0) {

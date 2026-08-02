@@ -40,12 +40,8 @@
 			</ContextMenu.SubContent>
 		</ContextMenu.Sub>
 		<ContextMenu.Separator />
-		<ContextMenu.CheckboxItem bind:checked={showBookmarks}>
-			Show Bookmarks
-		</ContextMenu.CheckboxItem>
-		<ContextMenu.CheckboxItem bind:checked={showFullURLs}>
-			Show Full URLs
-		</ContextMenu.CheckboxItem>
+		<ContextMenu.CheckboxItem bind:checked={showBookmarks}>Show Bookmarks</ContextMenu.CheckboxItem>
+		<ContextMenu.CheckboxItem bind:checked={showFullURLs}>Show Full URLs</ContextMenu.CheckboxItem>
 		<ContextMenu.Separator />
 		<ContextMenu.RadioGroup bind:value>
 			<ContextMenu.Group>

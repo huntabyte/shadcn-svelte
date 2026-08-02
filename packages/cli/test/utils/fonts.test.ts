@@ -4,12 +4,14 @@ import type { RegistryFont } from "../../src/utils/registry/schema.js";
 
 function font(
 	overrides: Partial<RegistryFont> & { name: string }
-): RegistryFont & { name: string } {
+): RegistryFont & { name: string; type: "registry:font" } {
 	return {
 		type: "registry:font",
 		dependency: "@fontsource-variable/inter",
 		variable: "--font-sans",
 		family: "'Inter Variable', sans-serif",
+		import: "@fontsource-variable/inter",
+		provider: "google",
 		...overrides,
 	};
 }
@@ -26,9 +28,8 @@ describe("setupFonts", () => {
 			}),
 		]);
 
-		expect(css["@layer base"]?.html).toEqual({
-			"@apply font-sans": {},
-		});
+		// @ts-expect-error - css is a record of string keys to string or CssSchema values
+		expect(css["@layer base"]?.html).toEqual({ "@apply font-sans": {} });
 		expect(css['@import "@fontsource-variable/playfair-display"']).toEqual({});
 	});
 

@@ -10,12 +10,7 @@
 		CardHeader,
 		CardTitle,
 	} from "$lib/registry/ui/card/index.js";
-	import {
-		Field,
-		FieldDescription,
-		FieldGroup,
-		FieldLabel,
-	} from "$lib/registry/ui/field/index.js";
+	import { Field, FieldDescription, FieldGroup, FieldLabel } from "$lib/registry/ui/field/index.js";
 	import { Progress } from "$lib/registry/ui/progress/index.js";
 	import {
 		Select,
@@ -40,12 +35,7 @@
 			Set the minimum balance required before a payout is triggered.
 		</CardDescription>
 		<CardAction>
-			<Button
-				variant="ghost"
-				size="icon-sm"
-				class="bg-muted"
-				aria-label="Dismiss payout threshold"
-			>
+			<Button variant="ghost" size="icon-sm" class="bg-muted" aria-label="Dismiss payout threshold">
 				<IconPlaceholder
 					lucide="XIcon"
 					tabler="IconX"
@@ -80,10 +70,7 @@
 					<FieldLabel id="min-payout-label">Minimum Payout Amount</FieldLabel>
 					<span class="text-2xl font-semibold tabular-nums"> $2500.00 </span>
 				</div>
-				<Progress
-					value={25}
-					aria-labelledby="min-payout-label"
-					aria-valuetext="$2,500 of $10,000"
+				<Progress value={25} aria-labelledby="min-payout-label" aria-valuetext="$2,500 of $10,000"
 				></Progress>
 				<div class="flex items-center justify-between">
 					<FieldDescription>$50 (MIN)</FieldDescription>

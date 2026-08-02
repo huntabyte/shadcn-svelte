@@ -1,26 +1,21 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
-	import { Textarea } from "$lib/registry/ui/textarea/index.js";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
+	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Textarea } from "$lib/registry/ui/textarea/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 
 <Example title="Textarea">
 	<Field.Group>
 		<Field.Field>
-			<Field.Label for="textarea-header-footer-12"
-				>Default Textarea (No Input Group)</Field.Label
-			>
+			<Field.Label for="textarea-header-footer-12">Default Textarea (No Input Group)</Field.Label>
 			<Textarea id="textarea-header-footer-12" placeholder="Enter your text here..." />
 		</Field.Field>
 		<Field.Field>
 			<Field.Label for="textarea-header-footer-13">Input Group</Field.Label>
 			<InputGroup.Root>
-				<InputGroup.Textarea
-					id="textarea-header-footer-13"
-					placeholder="Enter your text here..."
-				/>
+				<InputGroup.Textarea id="textarea-header-footer-13" placeholder="Enter your text here..." />
 			</InputGroup.Root>
 			<Field.Description>This is a description of the input group.</Field.Description>
 		</Field.Field>
@@ -58,7 +53,7 @@
 						hugeicons="AlertCircleIcon"
 						phosphor="InfoIcon"
 						remixicon="RiInformationLine"
-						class="text-muted-foreground ml-auto"
+						class="ml-auto text-muted-foreground"
 					/>
 				</InputGroup.Addon>
 			</InputGroup.Root>
@@ -67,17 +62,10 @@
 		<Field.Field>
 			<Field.Label for="textarea-header-footer-30">Addon (block-end)</Field.Label>
 			<InputGroup.Root>
-				<InputGroup.Textarea
-					id="textarea-header-footer-30"
-					placeholder="Enter your text here..."
-				/>
+				<InputGroup.Textarea id="textarea-header-footer-30" placeholder="Enter your text here..." />
 				<InputGroup.Addon align="block-end">
 					<InputGroup.Text>0/280 characters</InputGroup.Text>
-					<InputGroup.Button
-						variant="default"
-						size="icon-xs"
-						class="ml-auto rounded-full"
-					>
+					<InputGroup.Button variant="default" size="icon-xs" class="ml-auto rounded-full">
 						<IconPlaceholder
 							lucide="ArrowUpIcon"
 							tabler="IconArrowUp"
@@ -99,9 +87,7 @@
 					class="min-h-[120px]"
 				/>
 				<InputGroup.Addon align="block-end">
-					<InputGroup.Button variant="ghost" class="ml-auto" size="sm"
-						>Cancel</InputGroup.Button
-					>
+					<InputGroup.Button variant="ghost" class="ml-auto" size="sm">Cancel</InputGroup.Button>
 					<InputGroup.Button variant="default" size="sm">Post Comment</InputGroup.Button>
 				</InputGroup.Addon>
 			</InputGroup.Root>

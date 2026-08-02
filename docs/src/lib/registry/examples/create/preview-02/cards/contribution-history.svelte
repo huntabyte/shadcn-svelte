@@ -1,11 +1,11 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Chart from "$lib/registry/ui/chart/index.js";
-	import { Badge } from "$lib/registry/ui/badge/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import * as Item from "$lib/registry/ui/item/index.js";
 	import { scaleBand } from "d3-scale";
 	import { BarChart } from "layerchart";
+	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Chart from "$lib/registry/ui/chart/index.js";
+	import * as Item from "$lib/registry/ui/item/index.js";
+	import { Badge } from "$lib/registry/ui/badge/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const chartData = [
 		{ month: "Dec", amount: 800 },
@@ -63,23 +63,23 @@
 			<Item.Root variant="muted" class="flex-col items-stretch">
 				<Item.Content class="gap-1">
 					<Item.Description
-						class="text-muted-foreground text-xs font-medium tracking-wider uppercase"
+						class="text-xs font-medium tracking-wider text-muted-foreground uppercase"
 					>
 						Upcoming
 					</Item.Description>
 					<span class="cn-font-heading text-lg font-semibold">May 25, 2024</span>
-					<span class="text-muted-foreground text-sm">$1,000 scheduled</span>
+					<span class="text-sm text-muted-foreground">$1,000 scheduled</span>
 				</Item.Content>
 			</Item.Root>
 			<Item.Root variant="muted" class="flex-col items-stretch">
 				<Item.Content class="gap-1">
 					<Item.Description
-						class="text-muted-foreground text-xs font-medium tracking-wider uppercase"
+						class="text-xs font-medium tracking-wider text-muted-foreground uppercase"
 					>
 						Auto-Save Plan
 					</Item.Description>
 					<span class="cn-font-heading text-lg font-semibold">Accelerated</span>
-					<span class="text-muted-foreground text-sm">Recurring weekly</span>
+					<span class="text-sm text-muted-foreground">Recurring weekly</span>
 				</Item.Content>
 			</Item.Root>
 		</div>

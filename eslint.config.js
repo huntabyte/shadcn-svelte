@@ -1,11 +1,10 @@
-import prettier from "eslint-config-prettier";
 import path from "node:path";
-import { includeIgnoreFile } from "@eslint/compat";
 import js from "@eslint/js";
 import svelte from "eslint-plugin-svelte";
-import { defineConfig } from "eslint/config";
 import globals from "globals";
 import ts from "typescript-eslint";
+import { includeIgnoreFile } from "@eslint/compat";
+import { defineConfig } from "eslint/config";
 
 const gitignorePath = path.resolve(import.meta.dirname, ".gitignore");
 
@@ -14,8 +13,6 @@ export default defineConfig(
 	js.configs.recommended,
 	...ts.configs.recommended,
 	...svelte.configs["flat/recommended"],
-	prettier,
-	...svelte.configs["flat/prettier"],
 	{
 		languageOptions: {
 			globals: {
@@ -55,14 +52,13 @@ export default defineConfig(
 	{
 		ignores: [
 			"build/",
-			".svelte-kit/",
 			"dist/",
-			".svelte-kit/**/*",
-			"docs/.svelte-kit/**/*",
-			".svelte-kit",
+			"**/.svelte-kit/**/*",
 			"playgrounds/**/*",
 			"packages/cli/dist/**/*",
-			"registry-template/**/*",
+			"**/.test-output/**/*",
+			"**/demo/**/*",
+			"sv-addons/registry/template",
 		],
 	}
 );

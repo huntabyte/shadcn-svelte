@@ -4,13 +4,13 @@ import process from "node:process";
 import * as p from "@clack/prompts";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { Command } from "commander";
-import { detectPM } from "../utils/auto-detect.js";
-import { highlight } from "../utils/colors.js";
-import { handleError } from "../utils/prompt-helpers.js";
-import { server } from "../mcp/index.js";
 import { resolveCommand } from "package-manager-detector";
 import { exec } from "tinyexec";
 import { z } from "zod";
+import { server } from "../mcp/index.js";
+import { detectPM } from "../utils/auto-detect.js";
+import { highlight } from "../utils/colors.js";
+import { handleError } from "../utils/prompt-helpers.js";
 
 const SHADCN_SVELTE_MCP_VERSION = "latest";
 
@@ -101,7 +101,8 @@ export const mcp = new Command()
 		}
 	});
 
-mcp.command("init")
+mcp
+	.command("init")
 	.description("initialize MCP configuration for your client")
 	.option("--client <client>", `MCP client (${CLIENTS.map((client) => client.name).join(", ")})`)
 	.action(async (opts, command) => {
@@ -131,9 +132,7 @@ mcp.command("init")
 
 			if (options.client === "codex") {
 				await installDependencies(options.cwd);
-				p.log.info(
-					`Add the following configuration to ${highlight("~/.codex/config.toml")}:`
-				);
+				p.log.info(`Add the following configuration to ${highlight("~/.codex/config.toml")}:`);
 				p.log.message(CLIENTS.find((client) => client.name === "codex")!.config);
 				p.log.info("Restart Codex to load the MCP server.");
 				process.exit(0);

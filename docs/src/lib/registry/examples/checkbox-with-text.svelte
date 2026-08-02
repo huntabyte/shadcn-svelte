@@ -12,7 +12,7 @@
 		>
 			Accept terms and conditions
 		</Label>
-		<p class="text-muted-foreground text-sm">
+		<p class="text-sm text-muted-foreground">
 			You agree to our Terms of Service and Privacy Policy.
 		</p>
 	</div>

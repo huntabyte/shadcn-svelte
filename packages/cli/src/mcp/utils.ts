@@ -1,9 +1,9 @@
+import fuzzysort from "fuzzysort";
 import type {
 	RegistryIndexItem,
 	RegistryItem,
 	RegistryItemType,
 } from "../utils/registry/schema.js";
-import fuzzysort from "fuzzysort";
 
 const SEARCHABLE_TYPES = [
 	"registry:ui",
@@ -76,9 +76,7 @@ export function formatRegistryItems(items: RegistryItem[]) {
 				`## ${item.name}`,
 				item.description ? `\n${item.description}` : "",
 				`**Type:** ${item.type}`,
-				item.dependencies?.length
-					? `**Dependencies:** ${item.dependencies.join(", ")}`
-					: "",
+				item.dependencies?.length ? `**Dependencies:** ${item.dependencies.join(", ")}` : "",
 				item.devDependencies?.length
 					? `**Dev Dependencies:** ${item.devDependencies.join(", ")}`
 					: "",

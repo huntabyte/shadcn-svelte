@@ -1,11 +1,11 @@
 <script lang="ts">
-	import Calendar from "$lib/registry/ui/calendar/calendar.svelte";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
 	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
 	import { getLocalTimeZone } from "@internationalized/date";
+	import * as Popover from "$lib/registry/ui/popover/index.js";
+	import Calendar from "$lib/registry/ui/calendar/calendar.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Input } from "$lib/registry/ui/input/index.js";
+	import { Label } from "$lib/registry/ui/label/index.js";
 	import type { CalendarDate } from "@internationalized/date";
 
 	const id = $props.id();
@@ -21,9 +21,7 @@
 			<Popover.Trigger id="{id}-date">
 				{#snippet child({ props })}
 					<Button {...props} variant="outline" class="w-full justify-between font-normal">
-						{value
-							? value.toDate(getLocalTimeZone()).toLocaleDateString()
-							: "Select date"}
+						{value ? value.toDate(getLocalTimeZone()).toLocaleDateString() : "Select date"}
 						<ChevronDownIcon />
 					</Button>
 				{/snippet}
@@ -48,7 +46,7 @@
 				id="{id}-time-from"
 				step="1"
 				value="10:30:00"
-				class="bg-background appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
+				class="appearance-none bg-background [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
 			/>
 		</div>
 		<div class="flex flex-col gap-3">
@@ -58,7 +56,7 @@
 				id="{id}-time-to"
 				step="1"
 				value="12:30:00"
-				class="bg-background appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
+				class="appearance-none bg-background [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
 			/>
 		</div>
 	</div>

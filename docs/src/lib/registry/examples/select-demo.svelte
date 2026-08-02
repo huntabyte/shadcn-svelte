@@ -11,9 +11,7 @@
 
 	let value = $state("");
 
-	const triggerContent = $derived(
-		fruits.find((f) => f.value === value)?.label ?? "Select a fruit"
-	);
+	const triggerContent = $derived(fruits.find((f) => f.value === value)?.label ?? "Select a fruit");
 </script>
 
 <Select.Root type="single" name="favoriteFruit" bind:value>
@@ -24,11 +22,7 @@
 		<Select.Group>
 			<Select.Label>Fruits</Select.Label>
 			{#each fruits as fruit (fruit.value)}
-				<Select.Item
-					value={fruit.value}
-					label={fruit.label}
-					disabled={fruit.value === "grapes"}
-				>
+				<Select.Item value={fruit.value} label={fruit.label} disabled={fruit.value === "grapes"}>
 					{fruit.label}
 				</Select.Item>
 			{/each}
