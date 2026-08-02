@@ -1,27 +1,27 @@
 <script lang="ts">
-	import { buttonVariants } from "$lib/registry/ui/button/button.svelte";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import IconPlaceholder from "./icon-placeholder/icon-placeholder.svelte";
-	import StylePicker from "../../routes/(app)/(layout)/create/components/style-picker.svelte";
-	import BaseColorPicker from "../../routes/(app)/(layout)/create/components/base-color-picker.svelte";
-	import ThemePicker from "../../routes/(app)/(layout)/create/components/theme-picker.svelte";
-	import ChartColorPicker from "../../routes/(app)/(layout)/create/components/chart-color-picker.svelte";
-	import IconLibraryPicker from "../../routes/(app)/(layout)/create/components/icon-library-picker.svelte";
-	import FontPicker from "../../routes/(app)/(layout)/create/components/font-picker.svelte";
-	import RadiusPicker from "../../routes/(app)/(layout)/create/components/radius-picker.svelte";
-	import MenuColorPicker from "../../routes/(app)/(layout)/create/components/menu-color-picker.svelte";
-	import MenuAccentPicker from "../../routes/(app)/(layout)/create/components/menu-accent-picker.svelte";
-	import CustomizerControls from "../../routes/(app)/(layout)/create/components/customizer-controls.svelte";
-	import { FONT_HEADING_OPTIONS, FONTS } from "$lib/fonts.js";
-	import { cn } from "$lib/utils.js";
-	import ModeSwitcher from "./mode-switcher.svelte";
-	import { setMode, mode } from "mode-watcher";
-	import * as Kbd from "$lib/registry/ui/kbd/index.js";
-	import UndoIcon from "@lucide/svelte/icons/undo";
 	import RedoIcon from "@lucide/svelte/icons/redo";
+	import UndoIcon from "@lucide/svelte/icons/undo";
+	import { setMode, mode } from "mode-watcher";
+	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import * as Kbd from "$lib/registry/ui/kbd/index.js";
+	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
+	import { FONT_HEADING_OPTIONS, FONTS } from "$lib/fonts.js";
 	import { useIsMac } from "$lib/hooks/use-is-mac.svelte.js";
+	import { buttonVariants } from "$lib/registry/ui/button/button.svelte";
+	import { cn } from "$lib/utils.js";
+	import IconPlaceholder from "./icon-placeholder/icon-placeholder.svelte";
+	import ModeSwitcher from "./mode-switcher.svelte";
+	import BaseColorPicker from "../../routes/(app)/(layout)/(create)/components/base-color-picker.svelte";
+	import ChartColorPicker from "../../routes/(app)/(layout)/(create)/components/chart-color-picker.svelte";
+	import CustomizerControls from "../../routes/(app)/(layout)/(create)/components/customizer-controls.svelte";
+	import FontPicker from "../../routes/(app)/(layout)/(create)/components/font-picker.svelte";
+	import IconLibraryPicker from "../../routes/(app)/(layout)/(create)/components/icon-library-picker.svelte";
+	import MenuAccentPicker from "../../routes/(app)/(layout)/(create)/components/menu-accent-picker.svelte";
+	import MenuColorPicker from "../../routes/(app)/(layout)/(create)/components/menu-color-picker.svelte";
+	import RadiusPicker from "../../routes/(app)/(layout)/(create)/components/radius-picker.svelte";
+	import StylePicker from "../../routes/(app)/(layout)/(create)/components/style-picker.svelte";
+	import ThemePicker from "../../routes/(app)/(layout)/(create)/components/theme-picker.svelte";
 
 	const isMac = useIsMac();
 	const designSystem = useDesignSystem();
@@ -50,12 +50,7 @@
 				<ThemePicker submenu />
 				<ChartColorPicker submenu />
 				<IconLibraryPicker submenu />
-				<FontPicker
-					submenu
-					label="Heading"
-					param="fontHeading"
-					fonts={FONT_HEADING_OPTIONS}
-				/>
+				<FontPicker submenu label="Heading" param="fontHeading" fonts={FONT_HEADING_OPTIONS} />
 				<FontPicker submenu label="Font" param="font" fonts={FONTS} />
 				<RadiusPicker submenu />
 				<MenuColorPicker submenu />
@@ -70,11 +65,11 @@
 					onclick={() => {
 						setMode(mode.current === "dark" ? "light" : "dark");
 					}}
-					class="border-foreground/10 bg-muted/50 h-[calc(--spacing(13.5))] w-[140px] touch-manipulation justify-between rounded-xl border select-none focus-visible:border-transparent focus-visible:ring-1 sm:rounded-lg md:w-full md:rounded-lg md:border-transparent md:bg-transparent md:pr-3.5! md:pl-2!"
+					class="h-[calc(--spacing(13.5))] w-[140px] touch-manipulation justify-between rounded-xl border border-foreground/10 bg-muted/50 select-none focus-visible:border-transparent focus-visible:ring-1 sm:rounded-lg md:w-full md:rounded-lg md:border-transparent md:bg-transparent md:pr-3.5! md:pl-2!"
 				>
 					<div class="flex flex-col justify-start text-left">
-						<div class="text-muted-foreground text-xs">Mode</div>
-						<div class="text-foreground text-sm font-medium">
+						<div class="text-xs text-muted-foreground">Mode</div>
+						<div class="text-sm font-medium text-foreground">
 							Switch to {mode.current === "dark" ? "Light" : "Dark"} Mode
 						</div>
 					</div>
@@ -100,7 +95,7 @@
 						</svg>
 						<span class="sr-only">Toggle theme</span>
 					</div>
-					<Kbd.Root class="bg-foreground/10 text-foreground hidden md:flex">D</Kbd.Root>
+					<Kbd.Root class="hidden bg-foreground/10 text-foreground md:flex">D</Kbd.Root>
 				</DropdownMenu.Item>
 			</DropdownMenu.Group>
 			<DropdownMenu.Separator />
@@ -116,9 +111,7 @@
 						<span>Undo</span>
 					</div>
 					<Kbd.Group class="hidden md:flex">
-						<Kbd.Root class="bg-foreground/10 text-foreground"
-							>{isMac.cmdOrCtrl}</Kbd.Root
-						>
+						<Kbd.Root class="bg-foreground/10 text-foreground">{isMac.cmdOrCtrl}</Kbd.Root>
 						<Kbd.Root class="bg-foreground/10 text-foreground">z</Kbd.Root>
 					</Kbd.Group>
 				</DropdownMenu.Item>
@@ -134,9 +127,7 @@
 					</div>
 					<Kbd.Group class="hidden md:flex">
 						<Kbd.Root class="bg-foreground/10 text-foreground">⇧</Kbd.Root>
-						<Kbd.Root class="bg-foreground/10 text-foreground"
-							>{isMac.cmdOrCtrl}</Kbd.Root
-						>
+						<Kbd.Root class="bg-foreground/10 text-foreground">{isMac.cmdOrCtrl}</Kbd.Root>
 						<Kbd.Root class="bg-foreground/10 text-foreground">Z</Kbd.Root>
 					</Kbd.Group>
 				</DropdownMenu.Item>

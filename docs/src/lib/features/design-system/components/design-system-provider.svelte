@@ -1,5 +1,7 @@
 <script lang="ts">
-	import type { Snippet } from "svelte";
+	import { browser } from "$app/environment";
+	import { toggleMode } from "mode-watcher";
+	import { watch } from "runed";
 	import {
 		buildRegistryTheme,
 		DEFAULT_CONFIG,
@@ -7,13 +9,12 @@
 		RADII,
 		type DesignSystemConfig,
 	} from "$lib/registry/config.js";
-	import { browser } from "$app/environment";
-	import { watch } from "runed";
-	import { setupDesignSystem } from "./design-system-provider-state.svelte.js";
 	import { cn } from "$lib/registry/lib/utils.js";
 	import { toggleMode } from "mode-watcher";
 	import * as AlertDialog from "$lib/registry/ui/alert-dialog/index.js";
 	import { ResetDialogContext, ResetDialogCtx } from "./reset-dialog-context.svelte.js";
+	import { setupDesignSystem } from "./design-system-provider-state.svelte.js";
+	import type { Snippet } from "svelte";
 
 	const uid = $props.id();
 
@@ -83,14 +84,13 @@
 		body.classList.add(`base-color-${designSystem.baseColor}`);
 
 		const selectedFont =
-			fonts.find((font) => font.name.replace("font-", "") === designSystem.font)?.font
-				.family ?? fonts[0].font.family;
+			fonts.find((font) => font.name.replace("font-", "") === designSystem.font)?.font.family ??
+			fonts[0].font.family;
 		document.documentElement.style.setProperty("--font-sans", selectedFont);
 
 		const selectedHeadingFont =
-			fonts.find(
-				(font) => font.name.replace("font-heading-", "") === designSystem.fontHeading
-			)?.font.family ?? fonts[0].font.family;
+			fonts.find((font) => font.name.replace("font-heading-", "") === designSystem.fontHeading)
+				?.font.family ?? fonts[0].font.family;
 		document.documentElement.style.setProperty("--font-heading", selectedHeadingFont);
 
 		const styleId = uid;

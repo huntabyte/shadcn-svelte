@@ -1,11 +1,11 @@
 import { browser } from "$app/environment";
 import { replaceState } from "$app/navigation";
 import { page } from "$app/state";
-import { BASE_THEMES, getThemesForBaseColor } from "$lib/registry/config.js";
-import { Context, PersistedState } from "runed";
-import { SvelteURLSearchParams } from "svelte/reactivity";
-import { SHUFFLE_PRESETS } from "../../../../routes/(app)/(layout)/create/lib/shuffle-presets.js";
-import { StateHistory } from "runed";
+	import { BASE_THEMES, getThemesForBaseColor } from "$lib/registry/config.js";
+	import { Context, PersistedState } from "runed";
+	import { SvelteURLSearchParams } from "svelte/reactivity";
+	import { SHUFFLE_PRESETS } from "../../../../routes/(app)/(layout)/create/lib/shuffle-presets.js";
+	import { StateHistory } from "runed";
 import {
 	decodePreset,
 	encodePreset,
@@ -183,8 +183,7 @@ class DesignSystemState implements IDesignSystemState {
 		const shouldUpdateTheme = BASE_THEMES.some((base) => base.name === this.theme);
 		const nextTheme = shouldUpdateTheme ? value : this.system.theme;
 		const availableChart = getThemesForBaseColor(value);
-		const currentChart =
-			this.system.chartColor ?? DEFAULT_PRESET_CONFIG.chartColor ?? "neutral";
+		const currentChart = this.system.chartColor ?? DEFAULT_PRESET_CONFIG.chartColor ?? "neutral";
 		const nextChartColor = availableChart.some((t) => t.name === currentChart)
 			? currentChart
 			: availableChart[0]!.name;

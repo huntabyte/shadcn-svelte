@@ -1,11 +1,6 @@
 <script lang="ts">
+	import { DateFormatter, getLocalTimeZone, today, type DateValue } from "@internationalized/date";
 	import { Calendar as CalendarPrimitive } from "bits-ui";
-	import {
-		DateFormatter,
-		getLocalTimeZone,
-		today,
-		type DateValue,
-	} from "@internationalized/date";
 	import * as Calendar from "$lib/registry/ui/calendar/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import { cn } from "$lib/utils.js";

@@ -1,10 +1,10 @@
 <script lang="ts">
 	import * as Select from "$lib/registry/ui/select/index.js";
-	import type { HTMLAttributes } from "svelte/elements";
-	import { cn } from "$lib/utils.js";
 	import Label from "$lib/registry/ui/label/label.svelte";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { THEMES } from "$lib/registry/themes.js";
+	import { cn } from "$lib/utils.js";
+	import type { HTMLAttributes } from "svelte/elements";
 
 	let { class: className, ...restProps }: HTMLAttributes<HTMLElement> = $props();
 
@@ -17,9 +17,7 @@
 		})).sort((a, b) => a.name.localeCompare(b.name))
 	);
 
-	const label = $derived(
-		themesList.find((t) => t.value === designSystem.theme)?.name ?? "Neutral"
-	);
+	const label = $derived(themesList.find((t) => t.value === designSystem.theme)?.name ?? "Neutral");
 </script>
 
 <div class={cn("flex items-center gap-2", className)} {...restProps}>
@@ -28,7 +26,7 @@
 	<Select.Root type="single" bind:value={designSystem.theme}>
 		<Select.Trigger
 			size="sm"
-			class="bg-secondary text-secondary-foreground border-secondary justify-start shadow-none"
+			class="justify-start border-secondary bg-secondary text-secondary-foreground shadow-none"
 			id="theme-selector"
 		>
 			<span class="font-medium"> Theme: </span>
@@ -39,10 +37,8 @@
 		<Select.Content align="end" class="max-h-80">
 			<Select.Group>
 				{#each themesList as theme (theme.value)}
-					<Select.Item
-						value={theme.value}
-						label={theme.name}
-						class="data-[selected]:opacity-50">{theme.name}</Select.Item
+					<Select.Item value={theme.value} label={theme.name} class="data-[selected]:opacity-50"
+						>{theme.name}</Select.Item
 					>
 				{/each}
 			</Select.Group>

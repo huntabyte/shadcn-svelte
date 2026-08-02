@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Label } from "$lib/registry/ui/label/index.js";
 
 	let fileInput: HTMLInputElement | undefined = $state();
 
@@ -16,22 +16,19 @@
 	<Card.Content class="flex flex-col gap-3">
 		<Label
 			for="cover-art"
-			class="text-muted-foreground text-center text-xs font-normal tracking-wider uppercase"
+			class="text-center text-xs font-normal tracking-wider text-muted-foreground uppercase"
 		>
 			Cover Art
 		</Label>
 		<Item.Root class="aspect-square" variant="outline">
-			<label
-				for="cover-art"
-				class="flex size-full cursor-pointer items-center justify-center"
-			>
+			<label for="cover-art" class="flex size-full cursor-pointer items-center justify-center">
 				<IconPlaceholder
 					lucide="ImageIcon"
 					tabler="IconPhoto"
 					hugeicons="Image01Icon"
 					phosphor="ImageIcon"
 					remixicon="RiImageLine"
-					class="text-muted-foreground/50 size-10"
+					class="size-10 text-muted-foreground/50"
 				/>
 			</label>
 		</Item.Root>

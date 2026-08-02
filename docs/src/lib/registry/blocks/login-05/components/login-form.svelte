@@ -1,6 +1,6 @@
 <script lang="ts">
 	import GalleryVerticalEndIcon from "@lucide/svelte/icons/gallery-vertical-end";
-	import type { HTMLAttributes } from "svelte/elements";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import {
 		FieldGroup,
 		Field,
@@ -9,8 +9,8 @@
 		FieldSeparator,
 	} from "$lib/registry/ui/field/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import { cn, type WithElementRef } from "$lib/utils.js";
+	import type { HTMLAttributes } from "svelte/elements";
 
 	let {
 		ref = $bindable(null),

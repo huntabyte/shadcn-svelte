@@ -1,16 +1,16 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import MainNav from "./main-nav.svelte";
+	import { page } from "$app/state";
+	import PlusIcon from "@lucide/svelte/icons/plus";
 	import Separator from "$lib/registry/ui/separator/separator.svelte";
-	import GithubLink from "./github-link.svelte";
-	import MobileNav from "./mobile-nav.svelte";
-	import LayoutToggle from "./layout-toggle.svelte";
-	import CommandMenu from "./command-menu/command-menu.svelte";
 	import { getColors } from "$lib/colors.js";
 	import { mainNavItems } from "$lib/navigation.js";
-	import PlusIcon from "@lucide/svelte/icons/plus";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import CommandMenu from "./command-menu/command-menu.svelte";
 	import Customizer from "./customizer.svelte";
-	import { page } from "$app/state";
+	import GithubLink from "./github-link.svelte";
+	import LayoutToggle from "./layout-toggle.svelte";
+	import MainNav from "./main-nav.svelte";
+	import MobileNav from "./mobile-nav.svelte";
 	import ModeSwitcher from "./mode-switcher.svelte";
 	import ProjectForm from "../../routes/(app)/(layout)/create/components/project-form.svelte";
 
@@ -25,12 +25,12 @@
 	}
 </script>
 
-<header class="bg-background sticky top-0 z-50 w-full">
+<header class="sticky top-0 z-50 w-full bg-background">
 	<div
-		class="container-wrapper 3xl:fixed:px-0 px-6 group-has-data-[slot=designer]/layout:max-w-none"
+		class="container-wrapper px-6 group-has-data-[slot=designer]/layout:max-w-none 3xl:fixed:px-0"
 	>
 		<div
-			class="group-has-data-[slot=designer]/layout:fixed:max-w-none 3xl:fixed:container flex h-(--header-height) items-center **:data-[slot=separator]:h-4!"
+			class="flex h-(--header-height) items-center **:data-[slot=separator]:h-4! group-has-data-[slot=designer]/layout:fixed:max-w-none 3xl:fixed:container"
 		>
 			<MobileNav bind:this={mobileNavRef} class="flex lg:hidden" />
 
@@ -41,8 +41,8 @@
 				</div>
 				<Separator orientation="vertical" class="ml-2 hidden lg:block" />
 				<GithubLink />
-				<Separator orientation="vertical" class="3xl:flex hidden" />
-				<LayoutToggle class="3xl:flex hidden" />
+				<Separator orientation="vertical" class="hidden 3xl:flex" />
+				<LayoutToggle class="hidden 3xl:flex" />
 				<Separator orientation="vertical" />
 				{#if page.url.pathname.startsWith("/create")}
 					<ModeSwitcher />

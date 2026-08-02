@@ -33,12 +33,12 @@
 	</div>
 
 	<div class="relative z-10 min-w-0 flex-1">
-		<h3 class="text-foreground text-sm font-semibold tracking-tight">Epicenter</h3>
-		<p class="text-foreground/70 truncate text-xs">Local-first, open source apps</p>
+		<h3 class="text-sm font-semibold tracking-tight text-foreground">Epicenter</h3>
+		<p class="truncate text-xs text-foreground/70">Local-first, open source apps</p>
 	</div>
 
 	<span
-		class="text-muted-foreground relative z-10 shrink-0 text-[10px] font-medium tracking-wide uppercase"
+		class="relative z-10 shrink-0 text-[10px] font-medium tracking-wide text-muted-foreground uppercase"
 		>Special Sponsor</span
 	>
 </a>
