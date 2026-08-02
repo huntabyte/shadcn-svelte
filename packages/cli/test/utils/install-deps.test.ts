@@ -72,6 +72,7 @@ describe("installDependencies", () => {
 		});
 
 		expect(exec).toHaveBeenCalledTimes(1);
+		expect(args()[0]).toContain("-D");
 		expect(args()[0]).toContain("tailwind-variants@^1.0.0");
 	});
 
@@ -86,6 +87,45 @@ describe("installDependencies", () => {
 		});
 
 		expect(exec).not.toHaveBeenCalled();
+	});
+
+	it("preserves the existing section when installing an unsatisfied package", async () => {
+		vi.mocked(project.getPackageInfo).mockReturnValue({
+			dependencies: { "tailwind-variants": "^0.3.0" },
+			devDependencies: {},
+		} as ReturnType<typeof project.getPackageInfo>);
+
+		await installDependencies({
+			cwd: "/test",
+			prompt: false,
+			silent: true,
+			dependencies: [],
+			// registry targets this as a devDependency, but it's already in dependencies
+			devDependencies: ["tailwind-variants@^1.0.0"],
+		});
+
+		expect(exec).toHaveBeenCalledTimes(1);
+		expect(args()[0]).not.toContain("-D");
+		expect(args()[0]).toContain("tailwind-variants@^1.0.0");
+	});
+
+	it("installs with -D when the package already lives in devDependencies", async () => {
+		vi.mocked(project.getPackageInfo).mockReturnValue({
+			dependencies: {},
+			devDependencies: { clsx: "^1.0.0" },
+		} as ReturnType<typeof project.getPackageInfo>);
+
+		await installDependencies({
+			cwd: "/test",
+			prompt: false,
+			silent: true,
+			dependencies: ["clsx@^2.0.0"],
+			devDependencies: [],
+		});
+
+		expect(exec).toHaveBeenCalledTimes(1);
+		expect(args()[0]).toContain("-D");
+		expect(args()[0]).toContain("clsx@^2.0.0");
 	});
 
 	it("writes package.json without running pm add when install is false", async () => {

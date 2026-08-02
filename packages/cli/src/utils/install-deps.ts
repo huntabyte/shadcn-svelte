@@ -27,7 +27,7 @@ type InstallOptions = {
 type NeededDep = {
 	name: string;
 	version: string;
-	section?: DepSection;
+	section: DepSection;
 };
 
 type DepSection = "dependencies" | "devDependencies";
@@ -44,7 +44,7 @@ export async function installDependencies({
 
 	const pkg = project.getPackageInfo(cwd);
 
-	const mapNeededDep = (dep: string, preferred?: DepSection): NeededDep | undefined => {
+	const mapNeededDep = (dep: string, preferred: DepSection): NeededDep | undefined => {
 		const { name, version } = parseDependency(dep);
 		const inDeps = pkg.dependencies?.[name];
 		const inDevDeps = pkg.devDependencies?.[name];
@@ -63,28 +63,28 @@ export async function installDependencies({
 		return { name, version, section: preferred };
 	};
 
+	const needed = [
+		...dependencies.map((dep) => mapNeededDep(dep, "dependencies")),
+		...devDependencies.map((dep) => mapNeededDep(dep, "devDependencies")),
+	].filter((dep) => dep !== undefined);
+
+	if (needed.length === 0) return;
+
+	const neededDeps = needed.filter((d) => d.section === "dependencies");
+	const neededDevDeps = needed.filter((d) => d.section === "devDependencies");
+
 	if (!install) {
-		const needed = [
-			...dependencies.map((dep) => mapNeededDep(dep, "dependencies")),
-			...devDependencies.map((dep) => mapNeededDep(dep, "devDependencies")),
-		].filter((dep) => dep !== undefined);
-
-		if (needed.length === 0) return;
-
 		await writeDependencies({
 			cwd,
 			pm,
-			dependencies: needed.filter((d) => d.section === "dependencies"),
-			devDependencies: needed.filter((d) => d.section === "devDependencies"),
+			dependencies: neededDeps,
+			devDependencies: neededDevDeps,
 			silent,
 		});
 		return;
 	}
 
-	const neededDevDeps = devDependencies.map((d) => mapNeededDep(d)).filter((d) => d !== undefined);
-	const neededDeps = dependencies.map((d) => mapNeededDep(d)).filter((d) => d !== undefined);
-
-	if (!pm || (neededDeps.length === 0 && neededDevDeps.length === 0)) return;
+	if (!pm) return;
 
 	// Deno requires the `npm:` specifier
 	const pkgSpecifier = pm === "deno" ? "npm:" : "";
@@ -187,8 +187,8 @@ async function writeDependencies({
 
 function writePackageDependencies(
 	cwd: string,
-	dependencies: NeededDep[],
-	devDependencies: NeededDep[]
+	dependencies: Array<{ name: string; version: string }>,
+	devDependencies: Array<{ name: string; version: string }>
 ): void {
 	// TODO: perhaps use find.up("package.json", { cwd }) instead?
 	const packageJsonPath = path.resolve(cwd, "package.json");
