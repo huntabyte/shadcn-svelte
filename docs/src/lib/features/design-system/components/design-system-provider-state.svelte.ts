@@ -60,6 +60,11 @@ class DesignSystemState implements IDesignSystemState {
 			isEmbeddedPreview ? "design-system-preview-preset" : "design-system-preset",
 			initialPreset ?? encodePreset(DEFAULT_PRESET_CONFIG)
 		);
+		// A shared URL must take precedence over a previously persisted local preset.
+		// PersistedState otherwise treats the constructor value as a fallback only.
+		if (!isEmbeddedPreview && initialPreset && decodePreset(initialPreset)) {
+			this.#preset.current = initialPreset;
+		}
 		this.#locks = new PersistedState<Lockable>("locks", {
 			style: false,
 			baseColor: false,
