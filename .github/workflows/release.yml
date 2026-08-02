@@ -27,7 +27,9 @@ jobs:
           node-version: 24
           cache: pnpm
 
-      - run: npm install -g npm@latest
+      # npm 12 ships `sigstore` nested under workspaces/libnpmpublish, where
+      # provenance.js can't resolve it. https://github.com/npm/cli/issues/9722
+      - run: npm install -g npm@11
 
       - name: Install dependencies
         run: pnpm install

@@ -15,10 +15,7 @@
 		<span class="underline-offset-4 group-hover:underline">
 			{@render children?.()}
 		</span>
-		<span
-			aria-hidden="true"
-			class="text-muted-foreground ml-2 opacity-0 group-hover:opacity-100"
-		>
+		<span aria-hidden="true" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100">
 			#
 		</span>
 	</a>

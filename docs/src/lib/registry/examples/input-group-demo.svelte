@@ -1,14 +1,13 @@
 <script lang="ts">
+	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
+	import SearchIcon from "@lucide/svelte/icons/search";
 	import IconCheck from "@tabler/icons-svelte/icons/check";
 	import IconInfoCircle from "@tabler/icons-svelte/icons/info-circle";
 	import IconPlus from "@tabler/icons-svelte/icons/plus";
-
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
-	import SearchIcon from "@lucide/svelte/icons/search";
-	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
 </script>
 
 <div class="grid w-full max-w-sm gap-6">
@@ -67,7 +66,7 @@
 		<InputGroup.Input placeholder="@shadcn" />
 		<InputGroup.Addon align="inline-end">
 			<div
-				class="bg-primary text-primary-foreground flex size-4 items-center justify-center rounded-full"
+				class="flex size-4 items-center justify-center rounded-full bg-primary text-primary-foreground"
 			>
 				<IconCheck class="size-3" />
 			</div>

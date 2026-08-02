@@ -116,10 +116,7 @@ export function searchContentIndex(query: string): SearchResult[] {
 		content.forEach((item, idx) => {
 			if (substringMatch(item.title, query)) {
 				resultMap.set(idx, { score: 8, source: "substring-title" });
-			} else if (
-				substringMatch(item.content, query) ||
-				substringMatch(item.description, query)
-			) {
+			} else if (substringMatch(item.content, query) || substringMatch(item.description, query)) {
 				resultMap.set(idx, { score: 3, source: "substring-content" });
 			}
 		});

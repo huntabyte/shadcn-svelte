@@ -80,9 +80,7 @@
 					</ItemMedia>
 					<ItemContent>
 						<ItemTitle>Change transfer limit</ItemTitle>
-						<ItemDescription>
-							Adjust how much you can send from your balance.
-						</ItemDescription>
+						<ItemDescription>Adjust how much you can send from your balance.</ItemDescription>
 					</ItemContent>
 					<IconPlaceholder
 						lucide="ArrowRightIcon"
@@ -90,7 +88,7 @@
 						hugeicons="ArrowRight01Icon"
 						phosphor="ArrowRightIcon"
 						remixicon="RiArrowRightLine"
-						class="text-muted-foreground size-4 shrink-0"
+						class="size-4 shrink-0 text-muted-foreground"
 					/>
 				</Item>
 			</div>
@@ -107,9 +105,7 @@
 					</ItemMedia>
 					<ItemContent>
 						<ItemTitle>Scheduled transfers</ItemTitle>
-						<ItemDescription>
-							Set up a transfer to send at a later date.
-						</ItemDescription>
+						<ItemDescription>Set up a transfer to send at a later date.</ItemDescription>
 					</ItemContent>
 					<IconPlaceholder
 						lucide="ArrowRightIcon"
@@ -117,7 +113,7 @@
 						hugeicons="ArrowRight01Icon"
 						phosphor="ArrowRightIcon"
 						remixicon="RiArrowRightLine"
-						class="text-muted-foreground size-4 shrink-0"
+						class="size-4 shrink-0 text-muted-foreground"
 					/>
 				</Item>
 			</div>
@@ -142,7 +138,7 @@
 						hugeicons="ArrowRight01Icon"
 						phosphor="ArrowRightIcon"
 						remixicon="RiArrowRightLine"
-						class="text-muted-foreground size-4 shrink-0"
+						class="size-4 shrink-0 text-muted-foreground"
 					/>
 				</Item>
 			</div>

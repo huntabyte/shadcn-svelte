@@ -1,8 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { globby } from "globby";
 import removeMd from "remove-markdown";
+import { globby } from "globby";
 
 const CONTENT_DIR = path.resolve(process.cwd(), "content");
 const OUTPUT_PATH = path.resolve(process.cwd(), "src/routes/api/search.json/search.json");

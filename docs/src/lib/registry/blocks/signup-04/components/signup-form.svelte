@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
+	import { cn } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 
 	let { class: className, ...restProps }: HTMLAttributes<HTMLDivElement> = $props();
@@ -16,7 +16,7 @@
 				<Field.Group>
 					<div class="flex flex-col items-center gap-2 text-center">
 						<h1 class="text-2xl font-bold">Create your account</h1>
-						<p class="text-muted-foreground text-sm text-balance">
+						<p class="text-sm text-balance text-muted-foreground">
 							Enter your email below to create your account
 						</p>
 					</div>
@@ -24,8 +24,7 @@
 						<Field.Label for="email">Email</Field.Label>
 						<Input id="email" type="email" placeholder="m@example.com" required />
 						<Field.Description>
-							We'll use this to contact you. We will not share your email with anyone
-							else.
+							We'll use this to contact you. We will not share your email with anyone else.
 						</Field.Description>
 					</Field.Field>
 					<Field.Field>
@@ -81,7 +80,7 @@
 					</Field.Description>
 				</Field.Group>
 			</form>
-			<div class="bg-muted relative hidden md:block">
+			<div class="relative hidden bg-muted md:block">
 				<img
 					src="/placeholder.svg"
 					alt=""

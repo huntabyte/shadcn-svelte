@@ -75,13 +75,15 @@ function walkDir(dirPath: string, ignores: { dirPath: string; ig: Ignore }[]): s
 }
 
 /**
- * Returns the absolute path to the nearest typescript config file.
+ * Returns the absolute path to the nearest typescript/javascript config file.
+ *
+ * Walks up the directory tree checking each level for a `tsconfig.json` or
+ * `jsconfig.json` and returns the first match found. This ensures the config
+ * closest to the project is used (e.g. a nested JS project's `jsconfig.json`)
+ * rather than an unrelated `tsconfig.json` in a parent directory.
  */
 function findTSConfig(cwd: string): string | undefined {
-	for (const type of ["tsconfig.json", "jsconfig.json"] as const) {
-		const path = find.up(type, { cwd });
-		if (path) return path;
-	}
+	return find.any(["tsconfig.json", "jsconfig.json"], { cwd });
 }
 
 const AGENT_NAMES = AGENTS.filter((agent) => !agent.includes("@")) as AgentName[];
