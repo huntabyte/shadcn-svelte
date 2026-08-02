@@ -1,4 +1,8 @@
 <script lang="ts">
+	import ChevronLeftIcon from "@lucide/svelte/icons/chevron-left";
+	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
+	import ChevronsLeftIcon from "@lucide/svelte/icons/chevrons-left";
+	import ChevronsRightIcon from "@lucide/svelte/icons/chevrons-right";
 	import {
 		type ColumnDef,
 		type ColumnFiltersState,
@@ -14,25 +18,21 @@
 		getPaginationRowModel,
 		getSortedRowModel,
 	} from "@tanstack/table-core";
-	import DataTableToolbar from "./data-table-toolbar.svelte";
-	import { createSvelteTable } from "$lib/registry/ui/data-table/data-table.svelte.js";
-	import FlexRender from "$lib/registry/ui/data-table/flex-render.svelte";
-	import * as Table from "$lib/registry/ui/table/index.js";
-	import { type Task } from "../data/schemas.js";
-	import { renderComponent, renderSnippet } from "$lib/registry/ui/data-table/render-helpers.js";
-	import Checkbox from "$lib/registry/ui/checkbox/checkbox.svelte";
 	import { createRawSnippet } from "svelte";
+	import * as Select from "$lib/registry/ui/select/index.js";
+	import * as Table from "$lib/registry/ui/table/index.js";
+	import Checkbox from "$lib/registry/ui/checkbox/checkbox.svelte";
+	import FlexRender from "$lib/registry/ui/data-table/flex-render.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
+	import { createSvelteTable } from "$lib/registry/ui/data-table/data-table.svelte.js";
+	import { renderComponent, renderSnippet } from "$lib/registry/ui/data-table/render-helpers.js";
 	import ColumnHeader from "./data-table-column-header.svelte";
-	import TitleCell from "./data-table-title-cell.svelte";
-	import StatusCell from "./data-table-status-cell.svelte";
 	import PriorityCell from "./data-table-priority-cell.svelte";
 	import RowActions from "./data-table-row-actions.svelte";
-	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
-	import ChevronLeftIcon from "@lucide/svelte/icons/chevron-left";
-	import ChevronsLeftIcon from "@lucide/svelte/icons/chevrons-left";
-	import ChevronsRightIcon from "@lucide/svelte/icons/chevrons-right";
-	import * as Select from "$lib/registry/ui/select/index.js";
+	import StatusCell from "./data-table-status-cell.svelte";
+	import TitleCell from "./data-table-title-cell.svelte";
+	import DataTableToolbar from "./data-table-toolbar.svelte";
+	import { type Task } from "../data/schemas.js";
 
 	let { data }: { data: Task[] } = $props();
 
@@ -49,8 +49,7 @@
 				renderComponent(Checkbox, {
 					checked: table.getIsAllPageRowsSelected(),
 					onCheckedChange: (value) => table.toggleAllPageRowsSelected(value),
-					indeterminate:
-						table.getIsSomePageRowsSelected() && !table.getIsAllPageRowsSelected(),
+					indeterminate: table.getIsSomePageRowsSelected() && !table.getIsAllPageRowsSelected(),
 					"aria-label": "Select all",
 				}),
 			cell: ({ row }) =>
@@ -203,7 +202,7 @@
 
 {#snippet Pagination({ table }: { table: TableType<Task> })}
 	<div class="flex items-center justify-between px-2">
-		<div class="text-muted-foreground flex-1 text-sm">
+		<div class="flex-1 text-sm text-muted-foreground">
 			{table.getFilteredSelectedRowModel().rows.length} of
 			{table.getFilteredRowModel().rows.length} row(s) selected.
 		</div>
@@ -301,18 +300,13 @@
 					<Table.Row data-state={row.getIsSelected() && "selected"}>
 						{#each row.getVisibleCells() as cell (cell.id)}
 							<Table.Cell>
-								<FlexRender
-									content={cell.column.columnDef.cell}
-									context={cell.getContext()}
-								/>
+								<FlexRender content={cell.column.columnDef.cell} context={cell.getContext()} />
 							</Table.Cell>
 						{/each}
 					</Table.Row>
 				{:else}
 					<Table.Row>
-						<Table.Cell colspan={columns.length} class="h-24 text-center">
-							No results.
-						</Table.Cell>
+						<Table.Cell colspan={columns.length} class="h-24 text-center">No results.</Table.Cell>
 					</Table.Row>
 				{/each}
 			</Table.Body>

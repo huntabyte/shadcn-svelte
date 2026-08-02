@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
-	import { Switch } from "$lib/registry/ui/switch/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Switch } from "$lib/registry/ui/switch/index.js";
 
 	const CURRENCIES = [
 		{ label: "USD — United States Dollar", value: "usd" },
@@ -63,9 +63,7 @@
 			<Field.Field orientation="horizontal">
 				<Field.Content>
 					<Field.Label for="email-notifications">Email Notifications</Field.Label>
-					<Field.Description
-						>Monthly royalty reports and distribution updates</Field.Description
-					>
+					<Field.Description>Monthly royalty reports and distribution updates</Field.Description>
 				</Field.Content>
 				<Switch id="email-notifications" checked={true} />
 			</Field.Field>

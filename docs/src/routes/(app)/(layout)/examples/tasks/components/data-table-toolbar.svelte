@@ -1,10 +1,10 @@
 <script lang="ts" generics="TData">
 	import XIcon from "@lucide/svelte/icons/x";
-	import type { Table } from "@tanstack/table-core";
-	import { DataTableFacetedFilter, DataTableViewOptions } from "./index.js";
 	import Button from "$lib/registry/ui/button/button.svelte";
 	import { Input } from "$lib/registry/ui/input/index.js";
+	import { DataTableFacetedFilter, DataTableViewOptions } from "./index.js";
 	import { priorities, statuses } from "../data/data.js";
+	import type { Table } from "@tanstack/table-core";
 
 	let { table }: { table: Table<TData> } = $props();
 
@@ -35,11 +35,7 @@
 		{/if}
 
 		{#if isFiltered}
-			<Button
-				variant="ghost"
-				onclick={() => table.resetColumnFilters()}
-				class="h-8 px-2 lg:px-3"
-			>
+			<Button variant="ghost" onclick={() => table.resetColumnFilters()} class="h-8 px-2 lg:px-3">
 				Reset
 				<XIcon />
 			</Button>

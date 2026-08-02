@@ -1,13 +1,13 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
-import { sveltekit } from "@sveltejs/kit/vite";
-import { build } from "./scripts/build-registry.js";
-import { visualizer } from "rollup-plugin-visualizer";
 import { enhancedImages } from "@sveltejs/enhanced-img";
+import { sveltekit } from "@sveltejs/kit/vite";
+import { visualizer } from "rollup-plugin-visualizer";
+import { defineConfig } from "vite";
 import packageJson from "./package.json" with { type: "json" };
+import { build } from "./scripts/build-registry.js";
 
 // don't build when we're running `vite preview`
 if (!process.argv.includes("preview")) {

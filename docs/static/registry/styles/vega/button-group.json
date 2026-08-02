@@ -3,19 +3,19 @@
 	"name": "button-group",
 	"type": "registry:ui",
 	"devDependencies": [
-		"tailwind-variants@^3.2.2"
+		"tailwind-variants@^3.3.0"
 	],
 	"registryDependencies": [
 		"separator"
 	],
 	"files": [
 		{
-			"content": "<script lang=\"ts\">\n\timport { cn } from \"$UTILS$.js\";\n\timport type { ComponentProps } from \"svelte\";\n\timport { Separator } from \"$UI$/separator/index.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\torientation = \"vertical\",\n\t\t...restProps\n\t}: ComponentProps<typeof Separator> = $props();\n</script>\n\n<Separator\n\tbind:ref\n\tdata-slot=\"button-group-separator\"\n\t{orientation}\n\tclass={cn(\n\t\t\"bg-input relative self-stretch data-[orientation=horizontal]:mx-px data-[orientation=horizontal]:w-auto data-[orientation=vertical]:my-px data-[orientation=vertical]:h-auto\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+			"content": "<script lang=\"ts\">\n\timport { Separator } from \"$UI$/separator/index.js\";\n\timport { cn } from \"$UTILS$.js\";\n\timport type { ComponentProps } from \"svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\torientation = \"vertical\",\n\t\t...restProps\n\t}: ComponentProps<typeof Separator> = $props();\n</script>\n\n<Separator\n\tbind:ref\n\tdata-slot=\"button-group-separator\"\n\t{orientation}\n\tclass={cn(\n\t\t\"bg-input relative self-stretch data-[orientation=horizontal]:mx-px data-[orientation=horizontal]:w-auto data-[orientation=vertical]:my-px data-[orientation=vertical]:h-auto\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
 			"type": "registry:file",
 			"target": "button-group/button-group-separator.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { Snippet } from \"svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchild,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {\n\t\tchild?: Snippet<[{ props: Record<string, unknown> }]>;\n\t} = $props();\n\n\tconst mergedProps = $derived({\n\t\t...restProps,\n\t\tclass: cn(\"bg-muted gap-2 rounded-md border px-2.5 text-sm font-medium shadow-xs [&_svg:not([class*='size-'])]:size-4 flex items-center [&_svg]:pointer-events-none\", className),\n\t\t\"data-slot\": \"button-group-text\",\n\t});\n</script>\n\n{#if child}\n\t{@render child({ props: mergedProps })}\n{:else}\n\t<div bind:this={ref} {...mergedProps}>\n\t\t{@render mergedProps.children?.()}\n\t</div>\n{/if}\n",
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { Snippet } from \"svelte\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchild,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {\n\t\tchild?: Snippet<[{ props: Record<string, unknown> }]>;\n\t} = $props();\n\n\tconst mergedProps = $derived({\n\t\t...restProps,\n\t\tclass: cn(\"gap-2 rounded-md border bg-muted px-2.5 text-sm font-medium shadow-xs [&_svg:not([class*='size-'])]:size-4 flex items-center [&_svg]:pointer-events-none\", className),\n\t\t\"data-slot\": \"button-group-text\",\n\t});\n</script>\n\n{#if child}\n\t{@render child({ props: mergedProps })}\n{:else}\n\t<div bind:this={ref} {...mergedProps}>\n\t\t{@render mergedProps.children?.()}\n\t</div>\n{/if}\n",
 			"type": "registry:file",
 			"target": "button-group/button-group-text.svelte"
 		},
@@ -25,7 +25,7 @@
 			"target": "button-group/button-group.svelte"
 		},
 		{
-			"content": "import Root, { buttonGroupVariants, type ButtonGroupOrientation } from \"./button-group.svelte\";\nimport Text from \"./button-group-text.svelte\";\nimport Separator from \"./button-group-separator.svelte\";\n\nexport {\n\tRoot,\n\tText,\n\tSeparator,\n\tbuttonGroupVariants,\n\ttype ButtonGroupOrientation,\n\t//\n\tRoot as ButtonGroup,\n\tText as ButtonGroupText,\n\tSeparator as ButtonGroupSeparator,\n};\n",
+			"content": "import Separator from \"./button-group-separator.svelte\";\nimport Text from \"./button-group-text.svelte\";\nimport Root, { buttonGroupVariants, type ButtonGroupOrientation } from \"./button-group.svelte\";\n\nexport {\n\tRoot,\n\tText,\n\tSeparator,\n\tbuttonGroupVariants,\n\ttype ButtonGroupOrientation,\n\t//\n\tRoot as ButtonGroup,\n\tText as ButtonGroupText,\n\tSeparator as ButtonGroupSeparator,\n};\n",
 			"type": "registry:file",
 			"target": "button-group/index.ts"
 		}

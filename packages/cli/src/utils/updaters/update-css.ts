@@ -189,9 +189,7 @@ export function updateCss(root: Root, css: CssSchema): void {
 				// Check if a keyframe with the same name already exists
 				const existingKeyframesRule = themeInline.nodes?.find(
 					(node): node is AtRule =>
-						node.type === "atrule" &&
-						node.name === "keyframes" &&
-						node.params === params
+						node.type === "atrule" && node.name === "keyframes" && node.params === params
 				);
 
 				let keyframesRule: AtRule;
@@ -298,8 +296,7 @@ export function updateCss(root: Root, css: CssSchema): void {
 						for (const [prop, value] of Object.entries(properties)) {
 							if (typeof value === "string") {
 								const existingDecl = utilityAtRule.nodes?.find(
-									(node): node is Declaration =>
-										node.type === "decl" && node.prop === prop
+									(node): node is Declaration => node.type === "decl" && node.prop === prop
 								);
 
 								const decl = postcss.decl({
@@ -311,9 +308,7 @@ export function updateCss(root: Root, css: CssSchema): void {
 									},
 								});
 
-								existingDecl
-									? existingDecl.replaceWith(decl)
-									: utilityAtRule.append(decl);
+								existingDecl ? existingDecl.replaceWith(decl) : utilityAtRule.append(decl);
 							} else if (
 								prop.startsWith("@") &&
 								typeof value === "object" &&
@@ -374,8 +369,7 @@ function processAtRule(
 ) {
 	// Find or create the at-rule
 	let atRule = root.nodes?.find(
-		(node): node is AtRule =>
-			node.type === "atrule" && node.name === name && node.params === params
+		(node): node is AtRule => node.type === "atrule" && node.name === name && node.params === params
 	) as AtRule | undefined;
 
 	if (!atRule) {
@@ -481,17 +475,14 @@ function processRule(parent: Root | AtRule, selector: string, properties: CssSch
 					// Check if this at-rule already exists in the rule.
 					const existingAtRule = rule.nodes?.find(
 						(node): node is AtRule =>
-							node.type === "atrule" &&
-							node.name === atRuleName &&
-							node.params === atRuleParams
+							node.type === "atrule" && node.name === atRuleName && node.params === atRuleParams
 					);
 
 					if (!existingAtRule) {
 						// For @apply, merge with existing @apply instead of creating a duplicate.
 						if (atRuleName === "apply") {
 							const existingApply = rule.nodes?.find(
-								(node): node is AtRule =>
-									node.type === "atrule" && node.name === "apply"
+								(node): node is AtRule => node.type === "atrule" && node.name === "apply"
 							);
 							if (existingApply) {
 								existingApply.params = twMerge(existingApply.params, atRuleParams);

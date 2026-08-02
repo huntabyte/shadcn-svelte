@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { ModeWatcher } from "mode-watcher";
-	import { DesignSystemProvider } from "$lib/features/design-system/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
+	import { DesignSystemProvider } from "$lib/features/design-system/index.js";
 
 	let { children } = $props();
 </script>
