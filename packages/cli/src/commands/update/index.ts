@@ -36,6 +36,7 @@ const updateOptionsSchema = z.object({
 	yes: z.boolean(),
 	skipPreflight: z.boolean(),
 	deps: z.boolean(),
+	depsInstall: z.boolean(),
 });
 
 type UpdateOptions = z.infer<typeof updateOptionsSchema>;
@@ -47,6 +48,7 @@ export const update = new Command()
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
 	.option("--skip-preflight", "ignore preflight checks and continue", false)
 	.option("--no-deps", "skips adding & installing package dependencies")
+	.option("--no-deps-install", "add dependencies to package.json without running install")
 	.option("-a, --all", "update all existing components", false)
 	.option("-y, --yes", "skip confirmation prompt", false)
 	.option("--proxy <proxy>", "fetch components from registry using a proxy", getEnvProxy())
@@ -292,6 +294,7 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 			dependencies: Array.from(dependencies),
 			devDependencies: Array.from(devDependencies),
 			prompt: true,
+			install: options.depsInstall,
 		});
 	} else if (dependencies.size > 0 || devDependencies.size > 0) {
 		const prettyList = prettifyList([...dependencies, ...devDependencies], 7);

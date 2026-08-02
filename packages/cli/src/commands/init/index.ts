@@ -34,6 +34,7 @@ const initOptionsSchema = z.object({
 	hooksAlias: z.string().optional(),
 	uiAlias: z.string().optional(),
 	deps: z.boolean(),
+	depsInstall: z.boolean(),
 	overwrite: z.boolean(),
 	proxy: z.string().optional(),
 	skipPreflight: z.boolean(),
@@ -49,6 +50,7 @@ export const init = new Command()
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
 	.addOption(new Option("-o, --overwrite", "deprecated: use --reinstall").default(false).hideHelp())
 	.option("--no-deps", "disable adding & installing dependencies")
+	.option("--no-deps-install", "add dependencies to package.json without running install")
 	.option("--skip-preflight", "ignore preflight checks and continue", false)
 	.option("--reinstall", "reinstall existing components when style changes")
 	.option("--no-reinstall", "skip reinstalling existing components when style changes")
@@ -353,6 +355,7 @@ export async function runInit({
 			prompt: options.deps,
 			dependencies: Array.from(result.dependencies),
 			devDependencies: Array.from(result.devDependencies),
+			install: options.depsInstall,
 		});
 	} else if (result.skippedDeps.size) {
 		const prettyList = prettifyList([...result.skippedDeps], 7);

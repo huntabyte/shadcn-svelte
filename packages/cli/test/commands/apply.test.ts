@@ -52,6 +52,7 @@ const baseOptions = {
 	yes: true,
 	silent: true,
 	skipPreflight: false,
+	depsInstall: true,
 };
 
 function makeConfig(): ResolvedConfig {

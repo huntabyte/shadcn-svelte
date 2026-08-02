@@ -10,9 +10,8 @@ vi.mock("fs/promises", () => ({ writeFile: vi.fn(), mkdir: vi.fn(), readFile: vi
 
 vi.mock("tinyexec", () => ({ exec: vi.fn(() => ({})) }));
 
-// @ts-expect-error - TODO: not exactly sure why this is yelling
-vi.mock(import("@clack/prompts"), async (importOriginal) => {
-	const actual = await importOriginal();
+vi.mock("@clack/prompts", async (importOriginal) => {
+	const actual = await importOriginal<typeof import("@clack/prompts")>();
 	return {
 		...actual,
 		taskLog: vi.fn(() => ({ message: vi.fn(), error: vi.fn(), success: vi.fn() })),
@@ -106,6 +105,7 @@ it("init (config-full)", async () => {
 		options: {
 			cwd: targetDir,
 			deps: true,
+			depsInstall: true,
 			overwrite: true,
 			skipPreflight: false,
 		},

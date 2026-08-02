@@ -22,6 +22,7 @@ const addOptionsSchema = z.object({
 	overwrite: z.boolean(),
 	cwd: z.string(),
 	deps: z.boolean(),
+	depsInstall: z.boolean(),
 	proxy: z.string().optional(),
 	skipPreflight: z.boolean(),
 });
@@ -34,6 +35,7 @@ export const add = new Command()
 	.argument("[components...]", "the components to add or a url to the component")
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
 	.option("--no-deps", "skips adding & installing package dependencies")
+	.option("--no-deps-install", "add dependencies to package.json without running install")
 	.option("--skip-preflight", "ignore preflight checks and continue", false)
 	.option("-a, --all", "install all components to your project", false)
 	.option("-y, --yes", "skip confirmation prompt", false)
@@ -132,6 +134,7 @@ async function runAdd(cwd: string, config: cliConfig.ResolvedConfig, options: Ad
 			prompt: options.deps,
 			dependencies: Array.from(result.dependencies),
 			devDependencies: Array.from(result.devDependencies),
+			install: options.depsInstall,
 		});
 	} else if (result.skippedDeps.size) {
 		const prettyList = prettifyList([...result.skippedDeps], 7);
