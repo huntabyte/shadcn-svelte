@@ -1,15 +1,13 @@
-import { unified } from "unified";
-import rehypeParse from "rehype-parse";
-import rehypeRemark from "rehype-remark";
-import remarkStringify from "remark-stringify";
-import remarkGfm from "remark-gfm";
+import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import { basename, dirname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
-import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
-import { JSDOM } from "jsdom";
 import consola from "consola";
-import type { Plugin } from "unified";
-import type { Root, Link, Node, Paragraph, Text } from "mdast";
+import rehypeParse from "rehype-parse";
+import rehypeRemark from "rehype-remark";
+import remarkGfm from "remark-gfm";
+import remarkStringify from "remark-stringify";
+import { JSDOM } from "jsdom";
+import { unified } from "unified";
 import {
 	components,
 	installation,
@@ -18,6 +16,8 @@ import {
 	darkMode,
 	registry,
 } from "../.velite";
+import type { Root, Link, Node, Paragraph, Text } from "mdast";
+import type { Plugin } from "unified";
 
 consola.wrapConsole();
 

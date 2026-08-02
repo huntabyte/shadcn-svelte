@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { UserConfig, UserConfigContext } from "$lib/user-config.svelte.js";
 	import { ModeWatcher } from "mode-watcher";
-	import { Toaster } from "$lib/registry/ui/sonner/index.js";
-	import { DesignSystemProvider } from "$lib/features/design-system/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
+	import { DesignSystemProvider } from "$lib/features/design-system/index.js";
+	import { Toaster } from "$lib/registry/ui/sonner/index.js";
+	import { UserConfig, UserConfigContext } from "$lib/user-config.svelte.js";
 
 	let { children, data } = $props();
 

@@ -2,16 +2,16 @@ import fs from "node:fs";
 import path from "node:path";
 import { exec } from "tinyexec";
 import { afterEach, expect, it, vi } from "vitest";
-import { runInit } from "../../src/commands/init";
-import * as registry from "../../src/utils/registry";
-import { getConfig } from "../../src/utils/config/index";
+import * as registry from "../../src/utils/registry/index.js";
+import { runInit } from "../../src/commands/init/index.js";
+import { getConfig } from "../../src/utils/config/index.js";
 
 vi.mock("fs/promises", () => ({ writeFile: vi.fn(), mkdir: vi.fn(), readFile: vi.fn() }));
 
 vi.mock("tinyexec", () => ({ exec: vi.fn(() => ({})) }));
 
-vi.mock(import("@clack/prompts"), async (importOriginal) => {
-	const actual = await importOriginal();
+vi.mock("@clack/prompts", async (importOriginal) => {
+	const actual = await importOriginal<typeof import("@clack/prompts")>();
 	return {
 		...actual,
 		taskLog: vi.fn(() => ({ message: vi.fn(), error: vi.fn(), success: vi.fn() })),
@@ -20,10 +20,6 @@ vi.mock(import("@clack/prompts"), async (importOriginal) => {
 
 it("init (config-full)", async () => {
 	vi.spyOn(registry, "getRegistryTheme").mockResolvedValue({
-		inlineColors: {
-			light: {},
-			dark: {},
-		},
 		cssVars: {
 			light: {},
 			dark: {},
@@ -104,13 +100,16 @@ it("init (config-full)", async () => {
 			iconLibrary: "lucide",
 			menuColor: "default",
 			menuAccent: "subtle",
+			fontHeading: "inter",
 		},
 		options: {
 			cwd: targetDir,
 			deps: true,
+			depsInstall: true,
 			overwrite: true,
 			skipPreflight: false,
 		},
+		styleChanged: false,
 	});
 
 	// mkDir mocks

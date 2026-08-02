@@ -10,8 +10,7 @@
 			header: ({ table }) =>
 				renderComponent(DataTableCheckbox, {
 					checked: table.getIsAllPageRowsSelected(),
-					indeterminate:
-						table.getIsSomePageRowsSelected() && !table.getIsAllPageRowsSelected(),
+					indeterminate: table.getIsSomePageRowsSelected() && !table.getIsAllPageRowsSelected(),
 					onCheckedChange: (value) => table.toggleAllPageRowsSelected(!!value),
 					"aria-label": "Select all",
 				}),
@@ -63,6 +62,17 @@
 </script>
 
 <script lang="ts">
+	import ChevronDownIcon from "@tabler/icons-svelte/icons/chevron-down";
+	import ChevronLeftIcon from "@tabler/icons-svelte/icons/chevron-left";
+	import ChevronRightIcon from "@tabler/icons-svelte/icons/chevron-right";
+	import ChevronsLeftIcon from "@tabler/icons-svelte/icons/chevrons-left";
+	import ChevronsRightIcon from "@tabler/icons-svelte/icons/chevrons-right";
+	import LayoutColumnsIcon from "@tabler/icons-svelte/icons/layout-columns";
+	import PlusIcon from "@tabler/icons-svelte/icons/plus";
+	import { DragDropProvider } from "@dnd-kit-svelte/svelte";
+	import { useSortable } from "@dnd-kit-svelte/svelte/sortable";
+	import { RestrictToVerticalAxis } from "@dnd-kit/abstract/modifiers";
+	import { move } from "@dnd-kit/helpers";
 	import {
 		getCoreRowModel,
 		getFacetedRowModel,
@@ -78,38 +88,27 @@
 		type SortingState,
 		type VisibilityState,
 	} from "@tanstack/table-core";
-	import type { Schema } from "./schemas.js";
-	import { RestrictToVerticalAxis } from "@dnd-kit/abstract/modifiers";
-	import { createSvelteTable } from "$lib/registry/ui/data-table/data-table.svelte.js";
-	import * as Tabs from "$lib/registry/ui/tabs/index.js";
-	import * as Table from "$lib/registry/ui/table/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
+	import * as Table from "$lib/registry/ui/table/index.js";
+	import * as Tabs from "$lib/registry/ui/tabs/index.js";
+	import { Badge } from "$lib/registry/ui/badge/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { createSvelteTable } from "$lib/registry/ui/data-table/data-table.svelte.js";
 	import { FlexRender, renderComponent } from "$lib/registry/ui/data-table/index.js";
-	import LayoutColumnsIcon from "@tabler/icons-svelte/icons/layout-columns";
-	import ChevronDownIcon from "@tabler/icons-svelte/icons/chevron-down";
-	import PlusIcon from "@tabler/icons-svelte/icons/plus";
-	import ChevronsLeftIcon from "@tabler/icons-svelte/icons/chevrons-left";
-	import ChevronLeftIcon from "@tabler/icons-svelte/icons/chevron-left";
-	import ChevronRightIcon from "@tabler/icons-svelte/icons/chevron-right";
-	import ChevronsRightIcon from "@tabler/icons-svelte/icons/chevrons-right";
-	import DataTableCheckbox from "./data-table-checkbox.svelte";
-	import DataTableCellViewer from "./data-table-cell-viewer.svelte";
-	import DataTableReviewer from "./data-table-reviewer.svelte";
+	import { Label } from "$lib/registry/ui/label/index.js";
 	import DataTableActions from "./data-table-actions.svelte";
+	import DataTableCellViewer from "./data-table-cell-viewer.svelte";
+	import DataTableCheckbox from "./data-table-checkbox.svelte";
 	import DataTableDragHandle from "./data-table-drag-handle.svelte";
-	import DataTableType from "./data-table-type.svelte";
+	import DataTableHeaderLimit from "./data-table-header-limit.svelte";
+	import DataTableHeaderTarget from "./data-table-header-target.svelte";
+	import DataTableLimit from "./data-table-limit.svelte";
+	import DataTableReviewer from "./data-table-reviewer.svelte";
 	import DataTableStatus from "./data-table-status.svelte";
 	import DataTableTarget from "./data-table-target.svelte";
-	import DataTableLimit from "./data-table-limit.svelte";
-	import DataTableHeaderTarget from "./data-table-header-target.svelte";
-	import DataTableHeaderLimit from "./data-table-header-limit.svelte";
-	import { DragDropProvider } from "@dnd-kit-svelte/svelte";
-	import { move } from "@dnd-kit/helpers";
-	import { useSortable } from "@dnd-kit-svelte/svelte/sortable";
-	import { Badge } from "$lib/registry/ui/badge/index.js";
+	import DataTableType from "./data-table-type.svelte";
+	import type { Schema } from "./schemas.js";
 
 	let { data }: { data: Schema[] } = $props();
 	let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
@@ -227,7 +226,7 @@
 			</Select.Content>
 		</Select.Root>
 		<Tabs.List
-			class="**:data-[slot=badge]:bg-muted-foreground/30 hidden **:data-[slot=badge]:size-5 **:data-[slot=badge]:rounded-full **:data-[slot=badge]:px-1 @4xl/main:flex"
+			class="hidden **:data-[slot=badge]:size-5 **:data-[slot=badge]:rounded-full **:data-[slot=badge]:bg-muted-foreground/30 **:data-[slot=badge]:px-1 @4xl/main:flex"
 		>
 			{#each views as view (view.id)}
 				<Tabs.Trigger value={view.id}>
@@ -280,7 +279,7 @@
 				onDragEnd={(e) => (data = move(data, e))}
 			>
 				<Table.Root>
-					<Table.Header class="bg-muted sticky top-0 z-10">
+					<Table.Header class="sticky top-0 z-10 bg-muted">
 						{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
 							<Table.Row>
 								{#each headerGroup.headers as header (header.id)}
@@ -313,7 +312,7 @@
 			</DragDropProvider>
 		</div>
 		<div class="flex items-center justify-between px-4">
-			<div class="text-muted-foreground hidden flex-1 text-sm lg:flex">
+			<div class="hidden flex-1 text-sm text-muted-foreground lg:flex">
 				{table.getFilteredSelectedRowModel().rows.length} of
 				{table.getFilteredRowModel().rows.length} row(s) selected.
 			</div>
@@ -323,8 +322,7 @@
 					<Select.Root
 						type="single"
 						bind:value={
-							() => `${table.getState().pagination.pageSize}`,
-							(v) => table.setPageSize(Number(v))
+							() => `${table.getState().pagination.pageSize}`, (v) => table.setPageSize(Number(v))
 						}
 					>
 						<Select.Trigger size="sm" class="w-20" id="rows-per-page">

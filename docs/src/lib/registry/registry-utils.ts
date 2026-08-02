@@ -1,8 +1,8 @@
-import type { RegistryItemFile } from "shadcn-svelte/schema";
-import { transformMenu } from "shadcn-svelte/transformers/menu";
 import { transformIcons } from "shadcn-svelte/transformers/icons";
+import { transformMenu } from "shadcn-svelte/transformers/menu";
 import { type IconLibraryName } from "./config.js";
 import type { MenuColorValue, StyleName } from "./config.js";
+import type { RegistryItemFile } from "shadcn-svelte/schema";
 
 export type FileTree = {
 	name: string;
@@ -54,9 +54,7 @@ export function createFileTreeForRegistryItemFiles(
 					currentLevel = existingNode.children!;
 				}
 			} else {
-				const newNode: FileTree = isFile
-					? { name: part, path }
-					: { name: part, children: [] };
+				const newNode: FileTree = isFile ? { name: part, path } : { name: part, children: [] };
 
 				currentLevel.push(newNode);
 

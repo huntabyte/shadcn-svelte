@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
-import { SITE_BASE_URL } from "../../src/constants";
-import { getConf, resolvePath } from "./test-helpers";
+import { getConf, resolvePath } from "./test-helpers.js";
+import { SITE_BASE_URL } from "../../src/constants.js";
 
 vi.mock("tinyexec");
 

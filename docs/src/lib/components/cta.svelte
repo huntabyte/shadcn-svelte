@@ -1,6 +1,6 @@
 <a
 	href="https://github.com/EpicenterHQ/epicenter"
-	class="bg-muted/40 dark:bg-background border-foreground/5 hover:border-foreground/10 group relative block h-[150px] w-full overflow-hidden rounded-xl border transition-all select-none"
+	class="group relative block h-[150px] w-full overflow-hidden rounded-xl border border-foreground/5 bg-muted/40 transition-all select-none hover:border-foreground/10 dark:bg-background"
 >
 	<div
 		class="absolute -top-12 -right-12 h-32 w-32 rounded-full bg-[#FFD4B2] opacity-10 blur-[50px] transition-opacity group-hover:opacity-20"
@@ -11,7 +11,7 @@
 
 	<div class="relative z-10 flex h-full flex-col justify-between p-3.5">
 		<div class="flex items-center justify-between">
-			<span class="text-muted-foreground text-[10px] font-medium tracking-wide uppercase"
+			<span class="text-[10px] font-medium tracking-wide text-muted-foreground uppercase"
 				>Special Sponsor</span
 			>
 			<div
@@ -25,8 +25,8 @@
 			</div>
 		</div>
 		<div>
-			<h3 class="text-foreground text-lg font-semibold tracking-tight">Epicenter</h3>
-			<p class="text-foreground/85 text-xs leading-relaxed">Local-first, open source apps</p>
+			<h3 class="text-lg font-semibold tracking-tight text-foreground">Epicenter</h3>
+			<p class="text-xs leading-relaxed text-foreground/85">Local-first, open source apps</p>
 		</div>
 	</div>
 </a>

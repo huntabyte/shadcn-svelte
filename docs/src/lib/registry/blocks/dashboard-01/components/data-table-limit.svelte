@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Label } from "$lib/registry/ui/label/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
 	import { toast } from "svelte-sonner";
-	import type { Row } from "@tanstack/table-core";
+	import { Input } from "$lib/registry/ui/input/index.js";
+	import { Label } from "$lib/registry/ui/label/index.js";
 	import type { Schema } from "./schemas.js";
+	import type { Row } from "@tanstack/table-core";
 
 	let { row }: { row: Row<Schema> } = $props();
 </script>
@@ -20,7 +20,7 @@
 >
 	<Label for="{row.original.id}-limit" class="sr-only">Limit</Label>
 	<Input
-		class="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-16 border-transparent bg-transparent text-end shadow-none focus-visible:border dark:bg-transparent"
+		class="h-8 w-16 border-transparent bg-transparent text-end shadow-none hover:bg-input/30 focus-visible:border focus-visible:bg-background dark:bg-transparent dark:hover:bg-input/30 dark:focus-visible:bg-input/30"
 		value={row.original.limit}
 		id="{row.original.id}-limit"
 	/>

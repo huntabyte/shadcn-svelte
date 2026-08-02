@@ -2,11 +2,7 @@
 	import { cn } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 
-	let {
-		class: className,
-		children,
-		...restProps
-	}: HTMLAttributes<HTMLParagraphElement> = $props();
+	let { class: className, children, ...restProps }: HTMLAttributes<HTMLParagraphElement> = $props();
 </script>
 
 <p class={cn("leading-relaxed [&:not(:first-child)]:mt-6", className)} {...restProps}>

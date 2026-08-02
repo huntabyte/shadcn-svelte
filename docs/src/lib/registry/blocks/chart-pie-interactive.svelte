@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Arc, PieChart, Text } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
-	import * as Chart from "$lib/registry/ui/chart/index.js";
+	import { Arc, PieChart, Text } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import ChartStyle from "../ui/chart/chart-style.svelte";
 
@@ -48,20 +48,14 @@
 					class="flex h-3 w-3 shrink-0 rounded-sm"
 					style:background-color={`var(--color-${activeMonth})`}
 				></span>
-				{activeMonth
-					? chartConfig[activeMonth as keyof typeof chartConfig].label
-					: "Select month"}
+				{activeMonth ? chartConfig[activeMonth as keyof typeof chartConfig].label : "Select month"}
 			</Select.Trigger>
 			<Select.Content align="end" class="rounded-xl">
 				{#each months as month (month)}
 					{@const config = chartConfig[month as keyof typeof chartConfig]}
 
 					{#if config}
-						<Select.Item
-							value={month}
-							label={config.label}
-							class="rounded-lg [&_span]:flex"
-						>
+						<Select.Item value={month} label={config.label} class="rounded-lg [&_span]:flex">
 							<div class="flex items-center gap-2 text-xs">
 								{config?.label}
 							</div>
@@ -109,9 +103,7 @@
 				{/snippet}
 				{#snippet arc({ props, index })}
 					{@const isActive = index === activeIndex}
-					{@const arcProps = isActive
-						? { ...props, outerRadius: 60, innerRadius: 105 }
-						: props}
+					{@const arcProps = isActive ? { ...props, outerRadius: 60, innerRadius: 105 } : props}
 
 					{#if isActive}
 						<g>
@@ -139,7 +131,7 @@
 		<div class="flex items-center gap-2 leading-none font-medium">
 			Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
 		</div>
-		<div class="text-muted-foreground leading-none">
+		<div class="leading-none text-muted-foreground">
 			Showing total visitors for the last 6 months
 		</div>
 	</Card.Footer>

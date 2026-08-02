@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
 	import { page } from "$app/state";
 	import ScrollArea from "$lib/registry/ui/scroll-area/scroll-area.svelte";
+	import { cn } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 
 	const examples = [
@@ -61,7 +61,7 @@
 	{#if !example.hidden}
 		<a
 			href={example.href}
-			class="text-muted-foreground hover:text-primary data-[active=true]:text-primary flex h-7 items-center justify-center px-4 text-center text-base font-medium transition-colors"
+			class="flex h-7 items-center justify-center px-4 text-center text-base font-medium text-muted-foreground transition-colors hover:text-primary data-[active=true]:text-primary"
 			data-active={isActive}
 		>
 			{example.name}

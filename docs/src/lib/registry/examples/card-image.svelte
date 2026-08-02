@@ -1,7 +1,7 @@
 <script lang="ts">
+	import * as Card from "$lib/registry/ui/card/index.js";
 	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import * as Card from "$lib/registry/ui/card/index.js";
 </script>
 
 <Card.Root class="relative mx-auto w-full max-w-sm pt-0">

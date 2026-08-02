@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import type { Row } from "@tanstack/table-core";
 	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
+	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import { labels } from "../data/data.js";
 	import { taskSchema, type Task } from "../data/schemas.js";
+	import type { Row } from "@tanstack/table-core";
 
 	let { row }: { row: Row<Task> } = $props();
 
@@ -14,7 +14,7 @@
 <DropdownMenu.Root>
 	<DropdownMenu.Trigger>
 		{#snippet child({ props })}
-			<Button {...props} variant="ghost" class="data-[state=open]:bg-muted flex h-8 w-8 p-0">
+			<Button {...props} variant="ghost" class="flex h-8 w-8 p-0 data-[state=open]:bg-muted">
 				<EllipsisIcon />
 				<span class="sr-only">Open Menu</span>
 			</Button>

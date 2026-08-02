@@ -1,11 +1,11 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import { CalendarDate, DateFormatter, getLocalTimeZone } from "@internationalized/date";
+	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { CalendarDate, DateFormatter, getLocalTimeZone } from "@internationalized/date";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const billingItems = [
 		{
@@ -42,10 +42,7 @@
 				<Item.Content>
 					<Item.Title>
 						{item.month}
-						<Badge
-							variant="secondary"
-							class="bg-green-100 text-green-700 hover:bg-green-100"
-						>
+						<Badge variant="secondary" class="bg-green-100 text-green-700 hover:bg-green-100">
 							{item.status}
 						</Badge>
 					</Item.Title>
@@ -91,9 +88,7 @@
 					</Item.Content>
 					<Item.Content>
 						<Item.Description>
-							Invoiced {dateFormatter.format(
-								item.invoiceDate.toDate(getLocalTimeZone())
-							)}
+							Invoiced {dateFormatter.format(item.invoiceDate.toDate(getLocalTimeZone()))}
 						</Item.Description>
 					</Item.Content>
 				</Item.Footer>

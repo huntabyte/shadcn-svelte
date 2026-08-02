@@ -105,8 +105,9 @@ docs/src/__registry__
 docs/static/docs
 docs/static/llms.txt
 docs/static/docs.md
+docs/static/registry/temp
 
-registry-template/static/r
+sv-addons/registry/static/r
 repro/src/lib/hooks
 repro/src/lib/components/ui
 !repro/src/lib/components/ui/light-switch

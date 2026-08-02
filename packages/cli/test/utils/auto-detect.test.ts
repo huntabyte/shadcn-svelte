@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { describe, it, expect, afterAll, beforeEach } from "vitest";
-import { detectConfigs } from "../../src/utils/auto-detect";
+import { detectConfigs } from "../../src/utils/auto-detect.js";
 
 describe("detectConfigs", () => {
 	const tmpDir = path.join(process.cwd(), "test-fixtures");
@@ -72,5 +72,25 @@ describe("detectConfigs", () => {
 
 		const result = detectConfigs(tmpDir);
 		expect(result.cssPath).toBeUndefined();
+	});
+
+	it("should detect the nearest jsconfig.json even when a parent has a tsconfig.json", () => {
+		// monorepo-like structure: a JS Svelte child project nested inside a TS parent project
+		const parentDir = path.join(tmpDir, "parent");
+		const childDir = path.join(parentDir, "child");
+		fs.mkdirSync(childDir, { recursive: true });
+		fs.writeFileSync(path.join(parentDir, "tsconfig.json"), "{}");
+		fs.writeFileSync(path.join(childDir, "jsconfig.json"), "{}");
+
+		const result = detectConfigs(childDir);
+		expect(result.tsconfigPath).toBe(path.join(childDir, "jsconfig.json"));
+	});
+
+	it("should prefer tsconfig.json over jsconfig.json in the same directory", () => {
+		fs.writeFileSync(path.join(tmpDir, "tsconfig.json"), "{}");
+		fs.writeFileSync(path.join(tmpDir, "jsconfig.json"), "{}");
+
+		const result = detectConfigs(tmpDir);
+		expect(result.tsconfigPath).toBe(path.join(tmpDir, "tsconfig.json"));
 	});
 });

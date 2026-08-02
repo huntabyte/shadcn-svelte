@@ -1,7 +1,7 @@
 <script lang="ts">
+	import LoaderIcon from "@lucide/svelte/icons/loader";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import { Spinner } from "$lib/registry/ui/spinner/index.js";
-	import LoaderIcon from "@lucide/svelte/icons/loader";
 </script>
 
 <div class="grid w-full max-w-sm gap-4">
