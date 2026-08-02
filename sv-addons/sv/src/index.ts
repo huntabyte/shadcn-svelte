@@ -26,8 +26,8 @@ export default defineAddon({
 		}
 
 		// Interactive CLI: init first, then add components.
-		await sv.execute(["shadcn-svelte@latest", "init"], "inherit");
-		await sv.execute(["shadcn-svelte@latest", "add"], "inherit");
+		await sv.execute(["shadcn-svelte@latest", "init", "--no-deps-install"], "inherit");
+		await sv.execute(["shadcn-svelte@latest", "add", "--no-deps-install"], "inherit");
 	},
 
 	nextSteps: ({ packageManager }) => {
