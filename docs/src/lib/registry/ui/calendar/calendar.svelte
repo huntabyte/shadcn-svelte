@@ -1,11 +1,11 @@
 <script lang="ts">
+	import { isEqualMonth, type DateValue } from "@internationalized/date";
 	import { Calendar as CalendarPrimitive } from "bits-ui";
-	import type { RangeCalendar as RangeCalendarPrimitive } from "bits-ui";
-	import * as Calendar from "./index.js";
 	import { RangeCalendar } from "$lib/registry/ui/range-calendar/index.js";
 	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
+	import * as Calendar from "./index.js";
 	import type { ButtonVariant } from "../button/button.svelte";
-	import { isEqualMonth, type DateValue } from "@internationalized/date";
+	import type { RangeCalendar as RangeCalendarPrimitive } from "bits-ui";
 	import type { Snippet } from "svelte";
 
 	type CalendarRootProps = WithoutChildrenOrChild<CalendarPrimitive.RootProps>;
@@ -109,7 +109,7 @@ get along, so we shut typescript up by casting `value` to `never`.
 		{weekdayFormat}
 		{disableDaysOutsideMonth}
 		class={cn(
-			"cn-calendar bg-background group/calendar p-3 in-data-[slot=card-content]:bg-transparent in-data-[slot=popover-content]:bg-transparent",
+			"cn-calendar group/calendar bg-background p-3 in-data-[slot=card-content]:bg-transparent in-data-[slot=popover-content]:bg-transparent",
 			className
 		)}
 		{locale}
@@ -156,10 +156,7 @@ get along, so we shut typescript up by casting `value` to `never`.
 												{#if day}
 													{@render day({
 														day: date,
-														outsideMonth: !isEqualMonth(
-															date,
-															month.value
-														),
+														outsideMonth: !isEqualMonth(date, month.value),
 													})}
 												{:else}
 													<Calendar.Day />
