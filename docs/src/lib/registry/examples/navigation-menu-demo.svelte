@@ -1,13 +1,12 @@
 <script lang="ts">
-	import * as NavigationMenu from "$lib/registry/ui/navigation-menu/index.js";
-	import { cn } from "$lib/utils.js";
-	import { navigationMenuTriggerStyle } from "$lib/registry/ui/navigation-menu/navigation-menu-trigger.svelte";
-	import type { HTMLAttributes } from "svelte/elements";
-	import CircleHelpIcon from "@lucide/svelte/icons/circle-help";
 	import CircleIcon from "@lucide/svelte/icons/circle";
 	import CircleCheckIcon from "@lucide/svelte/icons/circle-check";
-
+	import CircleHelpIcon from "@lucide/svelte/icons/circle-help";
+	import * as NavigationMenu from "$lib/registry/ui/navigation-menu/index.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
+	import { navigationMenuTriggerStyle } from "$lib/registry/ui/navigation-menu/navigation-menu-trigger.svelte";
+	import { cn } from "$lib/utils.js";
+	import type { HTMLAttributes } from "svelte/elements";
 
 	const isMobile = new IsMobile();
 
@@ -62,13 +61,13 @@
 				<a
 					{href}
 					class={cn(
-						"hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none",
+						"block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
 						className
 					)}
 					{...restProps}
 				>
 					<div class="text-sm leading-none font-medium">{title}</div>
-					<p class="text-muted-foreground line-clamp-2 text-sm leading-snug">
+					<p class="line-clamp-2 text-sm leading-snug text-muted-foreground">
 						{content}
 					</p>
 				</a>
@@ -85,12 +84,12 @@
 				<ul class="grid gap-2 p-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
 					<li class="row-span-3">
 						<NavigationMenu.Link
-							class="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-4 no-underline outline-hidden select-none focus:shadow-md md:p-6"
+							class="flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b from-muted/50 to-muted p-4 no-underline outline-hidden select-none focus:shadow-md md:p-6"
 						>
 							{#snippet child({ props })}
 								<a {...props} href="/">
 									<div class="mt-4 mb-2 text-lg font-medium">shadcn-svelte</div>
-									<p class="text-muted-foreground text-sm leading-tight">
+									<p class="text-sm leading-tight text-muted-foreground">
 										Beautifully designed components built with Tailwind CSS.
 									</p>
 								</a>
@@ -118,9 +117,7 @@
 		<NavigationMenu.Item>
 			<NavigationMenu.Trigger>Components</NavigationMenu.Trigger>
 			<NavigationMenu.Content>
-				<ul
-					class="grid w-[300px] gap-2 p-2 sm:w-[400px] md:w-[500px] md:grid-cols-2 lg:w-[600px]"
-				>
+				<ul class="grid w-[300px] gap-2 p-2 sm:w-[400px] md:w-[500px] md:grid-cols-2 lg:w-[600px]">
 					{#each components as component, i (i)}
 						{@render ListItem({
 							href: component.href,
@@ -146,9 +143,7 @@
 					<li>
 						<NavigationMenu.Link href="##">
 							<div class="font-medium">Components</div>
-							<div class="text-muted-foreground">
-								Browse all components in the library.
-							</div>
+							<div class="text-muted-foreground">Browse all components in the library.</div>
 						</NavigationMenu.Link>
 						<NavigationMenu.Link href="##">
 							<div class="font-medium">Documentation</div>

@@ -43,8 +43,8 @@
 					Sync Desktop & Documents folders
 				</Field.Label>
 				<Field.Description>
-					Your Desktop & Documents folders are being synced with iCloud Drive. You can
-					access them from other devices.
+					Your Desktop & Documents folders are being synced with iCloud Drive. You can access them
+					from other devices.
 				</Field.Description>
 			</Field.Content>
 		</Field.Field>

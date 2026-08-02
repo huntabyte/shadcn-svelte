@@ -23,13 +23,13 @@ Use the `sv` CLI to add Tailwind CSS to your project.
 
 Add the following dependencies to your project:
 
-<PMInstall command="tailwind-variants clsx tailwind-merge tw-animate-css" />
+<PMInstall command="tailwind-variants clsx tailwind-merge tw-animate-css -D" />
 
 ### Add icon library
 
 Install `@lucide/svelte`:
 
-<PMInstall command="@lucide/svelte" />
+<PMInstall command="@lucide/svelte -D" />
 
 ### Configure path aliases
 

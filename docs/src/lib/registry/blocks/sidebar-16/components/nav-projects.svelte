@@ -1,11 +1,11 @@
 <script lang="ts">
-	import type { Component } from "svelte";
-	import FolderIcon from "@lucide/svelte/icons/folder";
 	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
+	import FolderIcon from "@lucide/svelte/icons/folder";
 	import ShareIcon from "@lucide/svelte/icons/share";
 	import Trash2Icon from "@lucide/svelte/icons/trash-2";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
+	import type { Component } from "svelte";
 
 	let {
 		projects,

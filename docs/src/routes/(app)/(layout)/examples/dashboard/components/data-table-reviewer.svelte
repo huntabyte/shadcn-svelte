@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { Row } from "@tanstack/table-core";
-	import type { Schema } from "./schemas.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
+	import { Label } from "$lib/registry/ui/label/index.js";
+	import type { Schema } from "./schemas.js";
+	import type { Row } from "@tanstack/table-core";
 
 	let { row }: { row: Row<Schema> } = $props();
 

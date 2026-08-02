@@ -2,9 +2,9 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Empty from "$lib/registry/ui/empty/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Kbd } from "$lib/registry/ui/kbd/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 </script>
 
 <Card.Root>
@@ -13,8 +13,7 @@
 			<Empty.Header>
 				<Empty.Title>404 - Not Found</Empty.Title>
 				<Empty.Description>
-					The page you're looking for doesn't exist. Try searching for what you need
-					below.
+					The page you're looking for doesn't exist. Try searching for what you need below.
 				</Empty.Description>
 			</Empty.Header>
 			<Empty.Content>
