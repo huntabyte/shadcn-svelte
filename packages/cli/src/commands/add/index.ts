@@ -3,7 +3,7 @@ import process from "node:process";
 import { existsSync } from "node:fs";
 import * as p from "@clack/prompts";
 import color from "picocolors";
-import { Command } from "commander";
+import { Command, Option } from "commander";
 import { z } from "zod";
 import * as cliConfig from "../../utils/config/index.js";
 import * as registry from "../../utils/registry/index.js";
@@ -34,7 +34,7 @@ export const add = new Command()
 	.description("add components to your project")
 	.argument("[components...]", "the components to add or a url to the component")
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
-	.option("--no-deps", "skips adding & installing package dependencies")
+	.addOption(new Option("--no-deps", "skips adding & installing package dependencies").hideHelp())
 	.option("--no-deps-install", "add dependencies to package.json without running install")
 	.option("--skip-preflight", "ignore preflight checks and continue", false)
 	.option("-a, --all", "install all components to your project", false)
