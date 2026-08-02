@@ -1,6 +1,6 @@
 {
 	"name": "@shadcn-svelte/sv",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"description": "sv add-on that initializes shadcn-svelte and adds components",
 	"keywords": [
 		"sv-add",

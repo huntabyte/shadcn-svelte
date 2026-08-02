@@ -1,5 +1,11 @@
 # shadcn-svelte@registry
 
+## 0.1.0
+
+### Minor Changes
+
+- breaking: convert `@shadcn-svelte/registry` to an `sv` community add-on for bootstrapping registry projects ([#2826](https://github.com/huntabyte/shadcn-svelte/pull/2826))
+
 ## 0.0.2
 
 ### Patch Changes
