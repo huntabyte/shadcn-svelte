@@ -218,4 +218,58 @@ describe("installDependencies", () => {
 		};
 		expect(written.dependencies.clsx).toBe("^2.1.1");
 	});
+
+	it("leaves a package in dependencies when a satisfied version is targeted as a devDependency", async () => {
+		vi.mocked(project.getPackageInfo).mockReturnValue({
+			dependencies: { clsx: "^2.1.0" },
+			devDependencies: {},
+		} as ReturnType<typeof project.getPackageInfo>);
+		vi.mocked(fs.readFileSync).mockReturnValue(
+			packageJson({
+				dependencies: { clsx: "^2.1.0" },
+				devDependencies: {},
+			})
+		);
+
+		await installDependencies({
+			cwd: "/test",
+			prompt: false,
+			silent: true,
+			install: false,
+			dependencies: [],
+			devDependencies: ["clsx@^2.0.0"],
+		});
+
+		expect(exec).not.toHaveBeenCalled();
+		expect(fs.writeFileSync).not.toHaveBeenCalled();
+	});
+
+	it("updates the version in place when the package is in the other section and unsatisfied", async () => {
+		vi.mocked(project.getPackageInfo).mockReturnValue({
+			dependencies: { "tailwind-variants": "^0.3.0" },
+			devDependencies: {},
+		} as ReturnType<typeof project.getPackageInfo>);
+		vi.mocked(fs.readFileSync).mockReturnValue(
+			packageJson({
+				dependencies: { "tailwind-variants": "^0.3.0" },
+				devDependencies: {},
+			})
+		);
+
+		await installDependencies({
+			cwd: "/test",
+			prompt: false,
+			silent: true,
+			install: false,
+			dependencies: [],
+			devDependencies: ["tailwind-variants@^1.0.0"],
+		});
+
+		const written = JSON.parse(vi.mocked(fs.writeFileSync).mock.calls[0]![1] as string) as {
+			dependencies: Record<string, string>;
+			devDependencies?: Record<string, string>;
+		};
+		expect(written.dependencies["tailwind-variants"]).toBe("^1.0.0");
+		expect(written.devDependencies?.["tailwind-variants"]).toBeUndefined();
+	});
 });

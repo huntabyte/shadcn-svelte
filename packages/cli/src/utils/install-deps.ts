@@ -27,7 +27,10 @@ type InstallOptions = {
 type NeededDep = {
 	name: string;
 	version: string;
+	section?: DepSection;
 };
+
+type DepSection = "dependencies" | "devDependencies";
 
 export async function installDependencies({
 	cwd,
@@ -40,34 +43,48 @@ export async function installDependencies({
 	const pm = await detectPM(cwd, prompt);
 
 	const pkg = project.getPackageInfo(cwd);
-	const projectDeps = { ...pkg.dependencies, ...pkg.devDependencies };
 
-	const mapNeededDep = (dep: string): NeededDep | undefined => {
+	const mapNeededDep = (dep: string, preferred?: DepSection): NeededDep | undefined => {
 		const { name, version } = parseDependency(dep);
-		const depVersion = semver.coerce(projectDeps[name]);
+		const inDeps = pkg.dependencies?.[name];
+		const inDevDeps = pkg.devDependencies?.[name];
+		const existing = inDeps ?? inDevDeps;
+		const depVersion = semver.coerce(existing);
+
+		// If the dependency is already installed and satisfies the requested version, skip it.
 		if (depVersion && semver.satisfies(depVersion, version, { loose: true })) {
 			return;
 		}
-		return { name, version };
+
+		// Stay in the existing section when present; otherwise use the preferred target.
+		if (inDeps !== undefined) return { name, version, section: "dependencies" };
+		if (inDevDeps !== undefined) return { name, version, section: "devDependencies" };
+
+		return { name, version, section: preferred };
 	};
 
-	const neededDevDeps = devDependencies.map(mapNeededDep).filter((d) => d !== undefined);
-	const neededDeps = dependencies.map(mapNeededDep).filter((d) => d !== undefined);
-
-	if (neededDeps.length === 0 && neededDevDeps.length === 0) return;
-
 	if (!install) {
+		const needed = [
+			...dependencies.map((dep) => mapNeededDep(dep, "dependencies")),
+			...devDependencies.map((dep) => mapNeededDep(dep, "devDependencies")),
+		].filter((dep) => dep !== undefined);
+
+		if (needed.length === 0) return;
+
 		await writeDependencies({
 			cwd,
 			pm,
-			dependencies: neededDeps,
-			devDependencies: neededDevDeps,
+			dependencies: needed.filter((d) => d.section === "dependencies"),
+			devDependencies: needed.filter((d) => d.section === "devDependencies"),
 			silent,
 		});
 		return;
 	}
 
-	if (!pm) return;
+	const neededDevDeps = devDependencies.map((d) => mapNeededDep(d)).filter((d) => d !== undefined);
+	const neededDeps = dependencies.map((d) => mapNeededDep(d)).filter((d) => d !== undefined);
+
+	if (!pm || (neededDeps.length === 0 && neededDevDeps.length === 0)) return;
 
 	// Deno requires the `npm:` specifier
 	const pkgSpecifier = pm === "deno" ? "npm:" : "";
@@ -141,9 +158,9 @@ async function writeDependencies({
 				return version;
 			}
 
-			const resolved = await resolveDependencyVersion({ cwd, pm, name, version: version });
-			const writeVersion = resolved ? `^${resolved}` : version;
-			console.log("writeVersion", writeVersion);
+			const resolved = await resolveDependencyVersion({ cwd, pm, name, version });
+			// If the dependency's version is resolvable via the package manager,
+			// then we'll return the resolved version with a caret prefix.
 			return resolved ? `^${resolved}` : version;
 		};
 
