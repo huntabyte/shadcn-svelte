@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import { Slider } from "$lib/registry/ui/slider/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	let brightness = $state(75);
 	let temperature = $state([0.3, 0.7]);
@@ -17,13 +17,7 @@
 		</Field.Field>
 		<Field.Field>
 			<Field.Label for="slider-brightness">Screen Brightness</Field.Label>
-			<Slider
-				type="single"
-				id="slider-brightness"
-				bind:value={brightness}
-				max={100}
-				step={5}
-			/>
+			<Slider type="single" id="slider-brightness" bind:value={brightness} max={100} step={5} />
 			<Field.Description>Current brightness: {brightness}%</Field.Description>
 		</Field.Field>
 		<Field.Field>
@@ -47,13 +41,7 @@
 		</Field.Field>
 		<Field.Field>
 			<Field.Label for="slider-price-range">Price Range</Field.Label>
-			<Slider
-				type="multiple"
-				id="slider-price-range"
-				bind:value={priceRange}
-				max={100}
-				step={5}
-			/>
+			<Slider type="multiple" id="slider-price-range" bind:value={priceRange} max={100} step={5} />
 			<Field.Description>${priceRange[0]} - ${priceRange[1]}</Field.Description>
 		</Field.Field>
 		<Field.Field>

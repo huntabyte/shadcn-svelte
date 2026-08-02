@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import * as Tabs from "$lib/registry/ui/tabs/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="Disabled">

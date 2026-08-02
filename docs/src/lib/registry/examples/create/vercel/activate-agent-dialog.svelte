@@ -1,11 +1,11 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as Alert from "$lib/registry/ui/alert/index.js";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
-	import * as Alert from "$lib/registry/ui/alert/index.js";
-	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Badge } from "$lib/registry/ui/badge/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const agentFeatures = [
 		{
@@ -56,12 +56,12 @@
 									hugeicons="CheckmarkCircle02Icon"
 									phosphor="CheckCircleIcon"
 									remixicon="RiCheckboxCircleLine"
-									class="fill-primary text-primary-foreground size-5"
+									class="size-5 fill-primary text-primary-foreground"
 								/>
 							</Item.Media>
 							<Item.Content>
 								<Item.Title
-									class="text-muted-foreground *:[strong]:text-foreground inline leading-relaxed font-normal *:[strong]:font-medium"
+									class="inline leading-relaxed font-normal text-muted-foreground *:[strong]:font-medium *:[strong]:text-foreground"
 								>
 									<strong>{feature.title}</strong>
 									{feature.description}
@@ -69,10 +69,7 @@
 										<strong>{feature.highlight}</strong> {feature.endText}
 									{/if}
 									{#if feature.hasBadge}
-										<Badge
-											variant="secondary"
-											class="bg-blue-100 text-blue-700 hover:bg-blue-100"
-										>
+										<Badge variant="secondary" class="bg-blue-100 text-blue-700 hover:bg-blue-100">
 											Requires Observability Plus
 										</Badge>
 									{/if}

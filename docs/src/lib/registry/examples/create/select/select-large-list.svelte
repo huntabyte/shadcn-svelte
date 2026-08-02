@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import * as Select from "$lib/registry/ui/select/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const items = [
 		...Array.from({ length: 100 }).map((_, i) => ({

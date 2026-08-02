@@ -1,19 +1,19 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
+	import { setMode } from "mode-watcher";
+	import { tick } from "svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as Command from "$lib/registry/ui/command/index.js";
+	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
+	import * as Popover from "$lib/registry/ui/popover/index.js";
+	import * as Select from "$lib/registry/ui/select/index.js";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
 	import { Textarea } from "$lib/registry/ui/textarea/index.js";
-	import * as Select from "$lib/registry/ui/select/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as Command from "$lib/registry/ui/command/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { tick } from "svelte";
 	import { cn } from "$lib/utils.js";
-	import { setMode } from "mode-watcher";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"] as const;
 
@@ -46,9 +46,7 @@
 		});
 	}
 
-	const roleLabel = $derived(
-		roleItems.find((item) => item.value === role)?.label ?? "Select role"
-	);
+	const roleLabel = $derived(roleItems.find((item) => item.value === role)?.label ?? "Select role");
 </script>
 
 <Example title="Form">
@@ -74,7 +72,7 @@
 					</DropdownMenu.Trigger>
 					<DropdownMenu.Content
 						align="end"
-						class="style-maia:w-56 style-mira:w-48 style-nova:w-48 style-vega:w-56 style-lyra:w-48"
+						class="style-vega:w-56 style-nova:w-48 style-lyra:w-48 style-maia:w-56 style-mira:w-48"
 					>
 						<DropdownMenu.Group>
 							<DropdownMenu.Label>File</DropdownMenu.Label>
@@ -360,9 +358,7 @@
 								<Select.Content>
 									<Select.Group>
 										{#each roleItems as item (item.value)}
-											<Select.Item value={item.value}
-												>{item.label}</Select.Item
-											>
+											<Select.Item value={item.value}>{item.label}</Select.Item>
 										{/each}
 									</Select.Group>
 								</Select.Content>
@@ -399,8 +395,7 @@
 											{#each frameworks as framework (framework)}
 												<Command.Item
 													value={framework}
-													data-checked={frameworkValue ===
-														framework.toLowerCase()}
+													data-checked={frameworkValue === framework.toLowerCase()}
 													onSelect={() => {
 														frameworkValue = framework.toLowerCase();
 														closeAndFocusTrigger();
@@ -417,10 +412,7 @@
 					</Field.Field>
 					<Field.Field>
 						<Field.Label for="small-form-comments">Comments</Field.Label>
-						<Textarea
-							id="small-form-comments"
-							placeholder="Add any additional comments"
-						/>
+						<Textarea id="small-form-comments" placeholder="Add any additional comments" />
 					</Field.Field>
 					<Field.Field orientation="horizontal">
 						<Button type="submit">Submit</Button>

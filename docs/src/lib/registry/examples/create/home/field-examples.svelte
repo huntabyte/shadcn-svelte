@@ -1,14 +1,14 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
+	import * as ButtonGroup from "$lib/registry/ui/button-group/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
+	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
-	import { Switch } from "$lib/registry/ui/switch/index.js";
+	import { Input } from "$lib/registry/ui/input/index.js";
 	import { Slider } from "$lib/registry/ui/slider/index.js";
-	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
-	import * as ButtonGroup from "$lib/registry/ui/button-group/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Switch } from "$lib/registry/ui/switch/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	let gpuCount = $state(8);
 	let value = $state([200, 800]);
@@ -31,24 +31,17 @@
 		<Field.Group>
 			<Field.Set>
 				<Field.Legend>Compute Environment</Field.Legend>
-				<Field.Description
-					>Select the compute environment for your cluster.</Field.Description
-				>
+				<Field.Description>Select the compute environment for your cluster.</Field.Description>
 				<RadioGroup.Root value="kubernetes">
 					<Field.Label for="kubernetes-r2h">
 						<Field.Field orientation="horizontal">
 							<Field.Content>
 								<Field.Title>Kubernetes</Field.Title>
 								<Field.Description>
-									Run GPU workloads on a K8s configured cluster. This is the
-									default.
+									Run GPU workloads on a K8s configured cluster. This is the default.
 								</Field.Description>
 							</Field.Content>
-							<RadioGroup.Item
-								value="kubernetes"
-								id="kubernetes-r2h"
-								aria-label="Kubernetes"
-							/>
+							<RadioGroup.Item value="kubernetes" id="kubernetes-r2h" aria-label="Kubernetes" />
 						</Field.Field>
 					</Field.Label>
 					<Field.Label for="vm-z4k">

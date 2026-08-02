@@ -1,11 +1,11 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import * as Command from "$lib/registry/ui/command/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
-	import { Badge } from "$lib/registry/ui/badge/index.js";
+	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { cn } from "$lib/utils.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"] as const;
 
@@ -17,13 +17,9 @@
 	function toggleValue(framework: (typeof frameworks)[number], target: "default" | "invalid") {
 		const current = target === "default" ? values : valuesInvalid;
 		const setter =
-			target === "default"
-				? (v: string[]) => (values = v)
-				: (v: string[]) => (valuesInvalid = v);
+			target === "default" ? (v: string[]) => (values = v) : (v: string[]) => (valuesInvalid = v);
 		setter(
-			current.includes(framework)
-				? current.filter((v) => v !== framework)
-				: [...current, framework]
+			current.includes(framework) ? current.filter((v) => v !== framework) : [...current, framework]
 		);
 	}
 
@@ -47,7 +43,7 @@
 						role="combobox"
 						aria-expanded={open}
 						aria-invalid={true}
-						class="border-input bg-background aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 flex min-h-9 w-64 cursor-pointer flex-wrap items-center gap-1.5 rounded-md border px-2.5 py-1.5 text-sm shadow-xs transition-colors focus-within:ring-[3px] focus-within:ring-offset-2 aria-invalid:ring-[3px]"
+						class="flex min-h-9 w-64 cursor-pointer flex-wrap items-center gap-1.5 rounded-md border border-input bg-background px-2.5 py-1.5 text-sm shadow-xs transition-colors focus-within:ring-[3px] focus-within:ring-offset-2 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40"
 					>
 						{#each values as framework (framework)}
 							<Badge
@@ -76,19 +72,14 @@
 						<Command.Empty>No items found.</Command.Empty>
 						<Command.Group value="frameworks">
 							{#each frameworks as framework (framework)}
-								<Command.Item
-									value={framework}
-									onSelect={() => toggleValue(framework, "default")}
-								>
+								<Command.Item value={framework} onSelect={() => toggleValue(framework, "default")}>
 									<IconPlaceholder
 										lucide="CheckIcon"
 										tabler="IconCheck"
 										hugeicons="Tick02Icon"
 										phosphor="CheckIcon"
 										remixicon="RiCheckLine"
-										class={cn(
-											!values.includes(framework) && "text-transparent"
-										)}
+										class={cn(!values.includes(framework) && "text-transparent")}
 									/>
 									{framework}
 								</Command.Item>
@@ -109,7 +100,7 @@
 							aria-expanded={openInvalid}
 							aria-invalid={true}
 							id="combobox-multiple-invalid"
-							class="border-input bg-background aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 flex min-h-9 w-64 cursor-pointer flex-wrap items-center gap-1.5 rounded-md border px-2.5 py-1.5 text-sm shadow-xs transition-colors focus-within:ring-[3px] focus-within:ring-offset-2 aria-invalid:ring-[3px]"
+							class="flex min-h-9 w-64 cursor-pointer flex-wrap items-center gap-1.5 rounded-md border border-input bg-background px-2.5 py-1.5 text-sm shadow-xs transition-colors focus-within:ring-[3px] focus-within:ring-offset-2 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40"
 						>
 							{#each valuesInvalid as framework (framework)}
 								<Badge
@@ -148,10 +139,7 @@
 											hugeicons="Tick02Icon"
 											phosphor="CheckIcon"
 											remixicon="RiCheckLine"
-											class={cn(
-												!valuesInvalid.includes(framework) &&
-													"text-transparent"
-											)}
+											class={cn(!valuesInvalid.includes(framework) && "text-transparent")}
 										/>
 										{framework}
 									</Command.Item>

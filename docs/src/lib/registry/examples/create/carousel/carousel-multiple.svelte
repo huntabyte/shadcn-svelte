@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
-	import * as Carousel from "$lib/registry/ui/carousel/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Carousel from "$lib/registry/ui/carousel/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="Multiple">
@@ -16,9 +16,7 @@
 				<Carousel.Item class="sm:basis-1/2 lg:basis-1/3">
 					<div class="p-1">
 						<Card.Root>
-							<Card.Content
-								class="flex aspect-square items-center justify-center p-6"
-							>
+							<Card.Content class="flex aspect-square items-center justify-center p-6">
 								<span class="text-3xl font-semibold">{index + 1}</span>
 							</Card.Content>
 						</Card.Root>

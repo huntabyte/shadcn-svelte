@@ -1,11 +1,8 @@
 import { browser } from "$app/environment";
 import { replaceState } from "$app/navigation";
 import { page } from "$app/state";
-	import { BASE_THEMES, getThemesForBaseColor } from "$lib/registry/config.js";
-	import { Context, PersistedState } from "runed";
-	import { SvelteURLSearchParams } from "svelte/reactivity";
-	import { SHUFFLE_PRESETS } from "../../../../routes/(app)/(layout)/create/lib/shuffle-presets.js";
-	import { StateHistory } from "runed";
+import { Context, PersistedState } from "runed";
+import { StateHistory } from "runed";
 import {
 	decodePreset,
 	encodePreset,
@@ -14,6 +11,9 @@ import {
 	type PresetConfig,
 	PRESET_CHART_COLORS,
 } from "shadcn-svelte/preset";
+import { SvelteURLSearchParams } from "svelte/reactivity";
+import { BASE_THEMES, getThemesForBaseColor } from "$lib/registry/config.js";
+import { SHUFFLE_PRESETS } from "../../../../routes/(app)/(layout)/create/lib/shuffle-presets.js";
 
 type ChartColorName = (typeof PRESET_CHART_COLORS)[number];
 

@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { cn } from "$lib/utils.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"] as const;
 
@@ -31,7 +31,7 @@
 					{...props}
 					role="combobox"
 					aria-expanded={open}
-					class="border-input bg-background focus-within:ring-ring flex min-h-9 w-64 cursor-pointer flex-wrap items-center gap-1.5 rounded-md border px-2.5 py-1.5 text-sm shadow-xs transition-colors focus-within:ring-2 focus-within:ring-offset-2"
+					class="flex min-h-9 w-64 cursor-pointer flex-wrap items-center gap-1.5 rounded-md border border-input bg-background px-2.5 py-1.5 text-sm shadow-xs transition-colors focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2"
 				>
 					{#each values as framework (framework)}
 						<Badge
@@ -39,8 +39,7 @@
 							class="gap-1 pr-0.5"
 							onclick={(e) => removeValue(e, framework)}
 							onkeydown={(e) =>
-								e.key === "Enter" &&
-								removeValue(e as unknown as MouseEvent, framework)}
+								e.key === "Enter" && removeValue(e as unknown as MouseEvent, framework)}
 						>
 							{framework}
 							<IconPlaceholder
@@ -53,9 +52,7 @@
 							/>
 						</Badge>
 					{/each}
-					<span class="text-muted-foreground flex-1 py-1 text-sm"
-						>Select frameworks...</span
-					>
+					<span class="flex-1 py-1 text-sm text-muted-foreground">Select frameworks...</span>
 				</div>
 			{/snippet}
 		</Popover.Trigger>

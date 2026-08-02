@@ -1,16 +1,14 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
-	import { Calendar } from "$lib/registry/ui/calendar/index.js";
+	import { CalendarDate, getLocalTimeZone, today } from "@internationalized/date";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import { CalendarDate, getLocalTimeZone, today } from "@internationalized/date";
+	import { Calendar } from "$lib/registry/ui/calendar/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const currentDate = today(getLocalTimeZone());
 	let date = $state<CalendarDate | undefined>(new CalendarDate(currentDate.year, 1, 12));
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	let currentMonth = $state<CalendarDate>(
-		new CalendarDate(currentDate.year, currentDate.month, 1)
-	);
+	let currentMonth = $state<CalendarDate>(new CalendarDate(currentDate.year, currentDate.month, 1));
 
 	const presets = [
 		{ label: "Today", value: 0 },

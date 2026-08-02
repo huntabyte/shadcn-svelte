@@ -1,10 +1,10 @@
 <script lang="ts">
-	import * as Picker from "./picker/index.js";
-	import { useDesignSystem } from "$lib/features/design-system/index.js";
-	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
-	import LockButton from "./lock-button.svelte";
 	import { mode } from "mode-watcher";
+	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { BASE_THEMES, THEMES, type BaseTheme, type Theme } from "$lib/registry/config.js";
+	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
+	import * as Picker from "./picker/index.js";
+	import LockButton from "./lock-button.svelte";
 	import { usePreviewOverride } from "./preview-override-context.svelte.js";
 
 	type Props = {
@@ -38,8 +38,8 @@
 	<Picker.Root {submenu}>
 		<Picker.Trigger {submenu}>
 			<div class="flex flex-col justify-start text-left">
-				<div class="text-muted-foreground text-xs">Theme</div>
-				<div class="text-foreground text-sm font-medium">
+				<div class="text-xs text-muted-foreground">Theme</div>
+				<div class="text-sm font-medium text-foreground">
 					{currentTheme?.title}
 				</div>
 			</div>

@@ -1,17 +1,17 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Tabs from "$lib/registry/ui/tabs/index.js";
-	import * as Item from "$lib/registry/ui/item/index.js";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Empty from "$lib/registry/ui/empty/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
+	import * as Item from "$lib/registry/ui/item/index.js";
+	import * as Tabs from "$lib/registry/ui/tabs/index.js";
+	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
 	import { Spinner } from "$lib/registry/ui/spinner/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	let isCreatingCodespace = $state(false);
 </script>
@@ -45,9 +45,7 @@
 										</Button>
 									{/snippet}
 								</Tooltip.Trigger>
-								<Tooltip.Content side="bottom">
-									Create a codespace on main
-								</Tooltip.Content>
+								<Tooltip.Content side="bottom">Create a codespace on main</Tooltip.Content>
 							</Tooltip.Root>
 							<DropdownMenu.Root>
 								<Tooltip.Root>
@@ -55,11 +53,7 @@
 										{#snippet child({ props })}
 											<DropdownMenu.Trigger {...props}>
 												{#snippet child({ props: triggerProps })}
-													<Button
-														variant="ghost"
-														size="icon-sm"
-														{...triggerProps}
-													>
+													<Button variant="ghost" size="icon-sm" {...triggerProps}>
 														<IconPlaceholder
 															lucide="MoreHorizontalIcon"
 															tabler="IconDots"
@@ -181,14 +175,14 @@
 							</Button>
 							<a
 								href="#learn-more"
-								class="text-muted-foreground text-xs underline underline-offset-4"
+								class="text-xs text-muted-foreground underline underline-offset-4"
 							>
 								Learn more about codespaces
 							</a>
 						</Empty.Content>
 					</Empty.Root>
 					<Separator class="-mx-2 my-2 w-auto!" />
-					<div class="text-muted-foreground p-1.5 text-xs">
+					<div class="p-1.5 text-xs text-muted-foreground">
 						Codespace usage for this repository is paid for by
 						<span class="font-medium">shadcn</span>.
 					</div>
@@ -223,27 +217,20 @@
 										</Button>
 									{/snippet}
 								</Tooltip.Trigger>
-								<Tooltip.Content side="left">
-									Which remote URL should I use?
-								</Tooltip.Content>
+								<Tooltip.Content side="left">Which remote URL should I use?</Tooltip.Content>
 							</Tooltip.Root>
 						</Item.Actions>
 					</Item.Root>
 					<Tabs.Root value="https">
-						<Tabs.List
-							variant="line"
-							class="w-full justify-start border-b *:[button]:flex-0"
-						>
+						<Tabs.List variant="line" class="w-full justify-start border-b *:[button]:flex-0">
 							<Tabs.Trigger value="https">HTTPS</Tabs.Trigger>
 							<Tabs.Trigger value="ssh">SSH</Tabs.Trigger>
 							<Tabs.Trigger value="cli">GitHub CLI</Tabs.Trigger>
 						</Tabs.List>
-						<div class="bg-muted/30 rounded-md border p-2">
+						<div class="rounded-md border bg-muted/30 p-2">
 							<Tabs.Content value="https">
 								<Field.Field class="gap-2">
-									<Field.Label for="https-url" class="sr-only">
-										HTTPS URL
-									</Field.Label>
+									<Field.Label for="https-url" class="sr-only">HTTPS URL</Field.Label>
 									<InputGroup.Root>
 										<InputGroup.Addon align="inline-end">
 											<InputGroup.Button variant="ghost" size="icon-xs">
@@ -286,16 +273,12 @@
 											readonly
 										/>
 									</InputGroup.Root>
-									<Field.Description>
-										Use a password-protected SSH key.
-									</Field.Description>
+									<Field.Description>Use a password-protected SSH key.</Field.Description>
 								</Field.Field>
 							</Tabs.Content>
 							<Tabs.Content value="cli">
 								<Field.Field class="gap-2">
-									<Field.Label for="cli-command" class="sr-only">
-										CLI Command
-									</Field.Label>
+									<Field.Label for="cli-command" class="sr-only">CLI Command</Field.Label>
 									<InputGroup.Root>
 										<InputGroup.Addon align="inline-end">
 											<InputGroup.Button variant="ghost" size="icon-xs">

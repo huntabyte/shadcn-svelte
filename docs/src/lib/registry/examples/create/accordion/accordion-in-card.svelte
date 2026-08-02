@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
-	import * as Accordion from "$lib/registry/ui/accordion/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import * as Card from "$lib/registry/ui/card/index.js";
 	import ArrowUpRightIcon from "@lucide/svelte/icons/arrow-up-right";
+	import * as Accordion from "$lib/registry/ui/accordion/index.js";
+	import * as Card from "$lib/registry/ui/card/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const items = [
 		{
@@ -53,9 +53,7 @@
 	<Card.Root class="mx-auto w-full max-w-lg gap-4">
 		<Card.Header>
 			<Card.Title>Subscription & Billing</Card.Title>
-			<Card.Description>
-				Common questions about your account, plans, and payments
-			</Card.Description>
+			<Card.Description>Common questions about your account, plans, and payments</Card.Description>
 		</Card.Header>
 		<Card.Content>
 			<Accordion.Root
@@ -72,8 +70,8 @@
 							{/each}
 							{#if item.hasButton}
 								<p>
-									<a href="#/">Annual billing is available</a> with a 20% discount.
-									All plans include a 14-day free trial with no credit card required.
+									<a href="#/">Annual billing is available</a> with a 20% discount. All plans include
+									a 14-day free trial with no credit card required.
 								</p>
 								<Button size="sm">
 									View plans

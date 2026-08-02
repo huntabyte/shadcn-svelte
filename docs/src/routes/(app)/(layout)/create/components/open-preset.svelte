@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { decodePreset } from "shadcn-svelte/preset";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import * as Drawer from "$lib/registry/ui/drawer/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
-	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
+	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Input } from "$lib/registry/ui/input/index.js";
 	import { cn } from "$lib/utils.js";
-	import { decodePreset } from "shadcn-svelte/preset";
 
 	type Props = {
 		class?: string;
@@ -56,7 +56,7 @@
 
 	const triggerClassName = $derived(
 		cn(
-			"hover:bg-muted! touch-manipulation bg-transparent! px-2! py-0! text-sm! transition-none select-none pointer-coarse:h-10!",
+			"touch-manipulation bg-transparent! px-2! py-0! text-sm! transition-none select-none hover:bg-muted! pointer-coarse:h-10!",
 			className
 		)
 	);
@@ -96,9 +96,7 @@
 					<Button type="submit" class="h-10" disabled={!nextPreset}>Open</Button>
 					<Drawer.Close>
 						{#snippet child({ props })}
-							<Button variant="outline" type="button" {...props} class="h-10"
-								>Cancel</Button
-							>
+							<Button variant="outline" type="button" {...props} class="h-10">Cancel</Button>
 						{/snippet}
 					</Drawer.Close>
 				</Drawer.Footer>

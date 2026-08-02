@@ -1,11 +1,11 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as ButtonGroup from "$lib/registry/ui/button-group/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import { Textarea } from "$lib/registry/ui/textarea/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Textarea } from "$lib/registry/ui/textarea/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	let label = $state("personal");
 </script>
@@ -33,12 +33,7 @@
 				<DropdownMenu.Root>
 					<DropdownMenu.Trigger>
 						{#snippet child({ props })}
-							<Button
-								variant="outline"
-								size="icon-sm"
-								aria-label="More Options"
-								{...props}
-							>
+							<Button variant="outline" size="icon-sm" aria-label="More Options" {...props}>
 								<IconPlaceholder
 									lucide="ChevronDownIcon"
 									tabler="IconChevronDown"
@@ -119,15 +114,9 @@
 									<DropdownMenu.SubContent>
 										<DropdownMenu.Group>
 											<DropdownMenu.RadioGroup bind:value={label}>
-												<DropdownMenu.RadioItem value="personal">
-													Personal
-												</DropdownMenu.RadioItem>
-												<DropdownMenu.RadioItem value="work"
-													>Work</DropdownMenu.RadioItem
-												>
-												<DropdownMenu.RadioItem value="other"
-													>Other</DropdownMenu.RadioItem
-												>
+												<DropdownMenu.RadioItem value="personal">Personal</DropdownMenu.RadioItem>
+												<DropdownMenu.RadioItem value="work">Work</DropdownMenu.RadioItem>
+												<DropdownMenu.RadioItem value="other">Other</DropdownMenu.RadioItem>
 											</DropdownMenu.RadioGroup>
 										</DropdownMenu.Group>
 									</DropdownMenu.SubContent>
@@ -294,12 +283,7 @@
 					<Popover.Root>
 						<Popover.Trigger>
 							{#snippet child({ props })}
-								<Button
-									variant="outline"
-									size="icon"
-									aria-label="Open Popover"
-									{...props}
-								>
+								<Button variant="outline" size="icon" aria-label="Open Popover" {...props}>
 									<IconPlaceholder
 										lucide="ChevronDownIcon"
 										tabler="IconChevronDown"
@@ -314,8 +298,8 @@
 							<Popover.Header>
 								<Popover.Title>Agent Tasks</Popover.Title>
 								<Popover.Description>
-									Describe your task in natural language. Copilot will work in the
-									background and open a pull request.
+									Describe your task in natural language. Copilot will work in the background and
+									open a pull request.
 								</Popover.Description>
 							</Popover.Header>
 							<div class="text-sm *:[p:not(:last-child)]:mb-2">

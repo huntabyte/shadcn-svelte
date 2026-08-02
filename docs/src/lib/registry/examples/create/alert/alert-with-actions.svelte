@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import * as Alert from "$lib/registry/ui/alert/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Badge } from "$lib/registry/ui/badge/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="With Actions">
@@ -31,8 +31,8 @@
 			/>
 			<Alert.Title>The selected emails have been marked as spam.</Alert.Title>
 			<Alert.Description>
-				This is a very long alert title that demonstrates how the component handles extended
-				text content.
+				This is a very long alert title that demonstrates how the component handles extended text
+				content.
 			</Alert.Description>
 			<Alert.Action>
 				<Badge variant="secondary">Badge</Badge>

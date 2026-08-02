@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as Input from "$lib/registry/ui/input/index.js";
 	import { Badge } from "$lib/registry/ui/badge/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="Input Fields">

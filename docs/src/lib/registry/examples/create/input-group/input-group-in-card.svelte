@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
+	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="In Card">
@@ -18,11 +18,7 @@
 				<Field.Field>
 					<Field.Label for="email-input">Email Address</Field.Label>
 					<InputGroup.Root>
-						<InputGroup.Input
-							id="email-input"
-							type="email"
-							placeholder="you@example.com"
-						/>
+						<InputGroup.Input id="email-input" type="email" placeholder="you@example.com" />
 						<InputGroup.Addon align="inline-end">
 							<IconPlaceholder
 								lucide="MailIcon"

@@ -2,8 +2,8 @@
 	import { page } from "$app/state";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import TailwindIndicator from "$lib/components/tailwind-indicator.svelte";
-	import Button from "$lib/registry/ui/button/button.svelte";
 	import DesignSystemProvider from "$lib/features/design-system/components/design-system-provider.svelte";
+	import Button from "$lib/registry/ui/button/button.svelte";
 	import type { Component } from "svelte";
 
 	let { data } = $props();

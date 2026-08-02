@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="With Icons">
@@ -9,7 +9,7 @@
 		<ToggleGroup.Item
 			value="star"
 			aria-label="Toggle star"
-			class="data-[state=on]:*:[svg]:fill-foreground data-[state=on]:*:[svg]:stroke-foreground data-[state=on]:bg-transparent"
+			class="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-foreground data-[state=on]:*:[svg]:stroke-foreground"
 		>
 			<IconPlaceholder
 				lucide="StarIcon"
@@ -23,7 +23,7 @@
 		<ToggleGroup.Item
 			value="heart"
 			aria-label="Toggle heart"
-			class="data-[state=on]:*:[svg]:fill-foreground data-[state=on]:*:[svg]:stroke-foreground data-[state=on]:bg-transparent"
+			class="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-foreground data-[state=on]:*:[svg]:stroke-foreground"
 		>
 			<IconPlaceholder
 				lucide="HeartIcon"
@@ -37,7 +37,7 @@
 		<ToggleGroup.Item
 			value="bookmark"
 			aria-label="Toggle bookmark"
-			class="data-[state=on]:*:[svg]:fill-foreground data-[state=on]:*:[svg]:stroke-foreground data-[state=on]:bg-transparent"
+			class="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-foreground data-[state=on]:*:[svg]:stroke-foreground"
 		>
 			<IconPlaceholder
 				lucide="BookmarkIcon"

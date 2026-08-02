@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
+	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 
 	type Props = {
@@ -24,7 +24,7 @@
 	variant="outline"
 	onclick={handleCopy}
 	class={cn(
-		"hover:bg-muted! touch-manipulation overflow-hidden bg-transparent! px-2! py-0! text-sm! transition-none select-none pointer-coarse:h-10!",
+		"touch-manipulation overflow-hidden bg-transparent! px-2! py-0! text-sm! transition-none select-none hover:bg-muted! pointer-coarse:h-10!",
 		className
 	)}
 >

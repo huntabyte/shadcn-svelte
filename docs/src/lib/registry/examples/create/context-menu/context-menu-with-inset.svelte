@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import * as ContextMenu from "$lib/registry/ui/context-menu/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	let showBookmarks = $state(true);
 	let showUrls = $state(false);
@@ -46,9 +46,7 @@
 				<ContextMenu.CheckboxItem inset bind:checked={showBookmarks}>
 					Bookmarks
 				</ContextMenu.CheckboxItem>
-				<ContextMenu.CheckboxItem inset bind:checked={showUrls}>
-					Full URLs
-				</ContextMenu.CheckboxItem>
+				<ContextMenu.CheckboxItem inset bind:checked={showUrls}>Full URLs</ContextMenu.CheckboxItem>
 			</ContextMenu.Group>
 			<ContextMenu.Separator />
 			<ContextMenu.Group>

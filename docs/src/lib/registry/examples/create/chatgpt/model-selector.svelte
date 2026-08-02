@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	let mode = $state("auto");
 	let model = $state("gpt-5.1");
@@ -20,12 +20,12 @@
 				hugeicons="ArrowDown01Icon"
 				phosphor="CaretDownIcon"
 				remixicon="RiArrowDownSLine"
-				class="text-muted-foreground size-4"
+				class="size-4 text-muted-foreground"
 			/>
 		</DropdownMenu.Trigger>
 		<DropdownMenu.Content class="w-60" align="start">
 			<DropdownMenu.Group>
-				<DropdownMenu.Label class="text-muted-foreground text-xs font-normal">
+				<DropdownMenu.Label class="text-xs font-normal text-muted-foreground">
 					GPT-5.1
 				</DropdownMenu.Label>
 				<DropdownMenu.RadioGroup bind:value={mode}>
@@ -33,9 +33,7 @@
 						<Item.Root size="xs" class="p-0">
 							<Item.Content>
 								<Item.Title>Auto</Item.Title>
-								<Item.Description class="text-xs">
-									Decides how long to think
-								</Item.Description>
+								<Item.Description class="text-xs">Decides how long to think</Item.Description>
 							</Item.Content>
 						</Item.Root>
 					</DropdownMenu.RadioItem>
@@ -43,9 +41,7 @@
 						<Item.Root size="xs" class="p-0">
 							<Item.Content>
 								<Item.Title>Instant</Item.Title>
-								<Item.Description class="text-xs">
-									Answers right away
-								</Item.Description>
+								<Item.Description class="text-xs">Answers right away</Item.Description>
 							</Item.Content>
 						</Item.Root>
 					</DropdownMenu.RadioItem>
@@ -71,12 +67,8 @@
 						<DropdownMenu.Group>
 							<DropdownMenu.RadioGroup bind:value={model}>
 								<DropdownMenu.RadioItem value="gpt-4">GPT-4</DropdownMenu.RadioItem>
-								<DropdownMenu.RadioItem value="gpt-4-turbo"
-									>GPT-4 Turbo</DropdownMenu.RadioItem
-								>
-								<DropdownMenu.RadioItem value="gpt-3.5"
-									>GPT-3.5</DropdownMenu.RadioItem
-								>
+								<DropdownMenu.RadioItem value="gpt-4-turbo">GPT-4 Turbo</DropdownMenu.RadioItem>
+								<DropdownMenu.RadioItem value="gpt-3.5">GPT-3.5</DropdownMenu.RadioItem>
 							</DropdownMenu.RadioGroup>
 						</DropdownMenu.Group>
 					</DropdownMenu.SubContent>

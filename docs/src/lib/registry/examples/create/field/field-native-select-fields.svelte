@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as NativeSelect from "$lib/registry/ui/native-select/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="Native Select Fields">
@@ -27,9 +27,7 @@
 		</Field.Field>
 		<Field.Field>
 			<Field.Label for="native-select-timezone">Timezone</Field.Label>
-			<Field.Description
-				>Choose your local timezone for accurate scheduling.</Field.Description
-			>
+			<Field.Description>Choose your local timezone for accurate scheduling.</Field.Description>
 			<NativeSelect.Root id="native-select-timezone">
 				<NativeSelect.Option value="">Select timezone</NativeSelect.Option>
 				<NativeSelect.Option value="utc">UTC</NativeSelect.Option>
@@ -52,8 +50,7 @@
 					<NativeSelect.Option value="de">Germany</NativeSelect.Option>
 				</NativeSelect.OptGroup>
 			</NativeSelect.Root>
-			<Field.Description>Native select with grouped options using optgroup.</Field.Description
-			>
+			<Field.Description>Native select with grouped options using optgroup.</Field.Description>
 		</Field.Field>
 		<Field.Field data-invalid>
 			<Field.Label for="native-select-invalid">Invalid Native Select</Field.Label>

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
+	import { ArcChart, Text } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
-	import { ArcChart, Text } from "layerchart";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const radialChartData = [{ browser: "safari", visitors: 1260, fill: "var(--color-safari)" }];
 
@@ -81,7 +81,7 @@
 					class="size-4"
 				/>
 			</div>
-			<div class="text-muted-foreground leading-none">
+			<div class="leading-none text-muted-foreground">
 				Showing total visitors for the last 6 months
 			</div>
 		</Card.Footer>

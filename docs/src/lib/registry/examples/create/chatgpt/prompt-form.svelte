@@ -1,11 +1,11 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
+	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import * as Kbd from "$lib/registry/ui/kbd/index.js";
+	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	let dictateEnabled = $state(false);
 </script>
@@ -104,7 +104,7 @@
 									</Tooltip.Trigger>
 									<Tooltip.Content side="right">
 										<div class="font-medium">35 left</div>
-										<div class="text-primary-foreground/80 text-xs">
+										<div class="text-xs text-primary-foreground/80">
 											More available for purchase
 										</div>
 									</Tooltip.Content>

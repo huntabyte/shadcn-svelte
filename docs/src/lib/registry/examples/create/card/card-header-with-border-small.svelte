@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="Header with Border (Small)">
@@ -13,8 +13,8 @@
 		</Card.Header>
 		<Card.Content>
 			<p>
-				The header has a border-b class applied, creating a visual separation between the
-				header and content sections.
+				The header has a border-b class applied, creating a visual separation between the header and
+				content sections.
 			</p>
 		</Card.Content>
 	</Card.Root>

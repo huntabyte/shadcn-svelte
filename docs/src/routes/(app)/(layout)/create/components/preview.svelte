@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { browser } from "$app/environment";
-	import { untrack } from "svelte";
 	import { decodePreset, encodePreset, DEFAULT_PRESET_CONFIG } from "shadcn-svelte/preset";
+	import { untrack } from "svelte";
 	import CtaMobile from "$lib/components/cta-mobile.svelte";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
-	import { usePreviewOverride } from "./preview-override-context.svelte.js";
 	import PreviewSwitcher from "./preview-switcher.svelte";
+	import { usePreviewOverride } from "./preview-override-context.svelte.js";
 
 	type Props = {
 		item: string;
@@ -47,10 +47,10 @@
 		<CtaMobile class="xl:flex" />
 	</div>
 	<div
-		class="ring-foreground/10 md:ring-muted dark:ring-foreground/10 relative flex min-h-0 flex-1 flex-col justify-center overflow-hidden rounded-2xl ring"
+		class="relative flex min-h-0 flex-1 flex-col justify-center overflow-hidden rounded-2xl ring ring-foreground/10 md:ring-muted dark:ring-foreground/10"
 	>
 		<div class="relative z-0 mx-auto flex w-full flex-1 flex-col overflow-hidden">
-			<div class="bg-muted dark:bg-muted/30 absolute inset-0"></div>
+			<div class="absolute inset-0 bg-muted dark:bg-muted/30"></div>
 			<!--<Button
 			href="/preview/{item}{new URL(designSystem.shareUrl).search}&fromPreview=true"
 			class="absolute top-2 right-2 isolate z-10"

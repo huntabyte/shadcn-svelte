@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import { Switch } from "$lib/registry/ui/switch/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="Switch Fields">
@@ -9,9 +9,7 @@
 		<Field.Field orientation="horizontal">
 			<Field.Content>
 				<Field.Label for="switch-airplane">Airplane Mode</Field.Label>
-				<Field.Description
-					>Turn on airplane mode to disable all connections.</Field.Description
-				>
+				<Field.Description>Turn on airplane mode to disable all connections.</Field.Description>
 			</Field.Content>
 			<Switch id="switch-airplane" />
 		</Field.Field>
@@ -42,9 +40,7 @@
 			<Field.Field orientation="horizontal">
 				<Switch id="switch-email" />
 				<Field.Content>
-					<Field.Label for="switch-email" class="font-normal"
-						>Show email on profile</Field.Label
-					>
+					<Field.Label for="switch-email" class="font-normal">Show email on profile</Field.Label>
 				</Field.Content>
 			</Field.Field>
 		</Field.Field>

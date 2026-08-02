@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
-	import { usePreviewOverride } from "../preview-override-context.svelte.js";
 	import { preservePickerScroll } from "./picker-scroll.js";
+	import { usePreviewOverride } from "../preview-override-context.svelte.js";
 
 	type Props =
 		| ({

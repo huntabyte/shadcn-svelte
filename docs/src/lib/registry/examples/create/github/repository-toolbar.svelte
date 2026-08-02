@@ -1,15 +1,15 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
+	import * as Command from "$lib/registry/ui/command/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import * as Empty from "$lib/registry/ui/empty/index.js";
+	import * as Field from "$lib/registry/ui/field/index.js";
+	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import * as Command from "$lib/registry/ui/command/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import * as Empty from "$lib/registry/ui/empty/index.js";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Kbd } from "$lib/registry/ui/kbd/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	let selectedBranch = $state("main");
 
@@ -132,11 +132,7 @@
 										{#snippet child({ props })}
 											<Tooltip.Trigger {...props}>
 												{#snippet child({ props: triggerProps })}
-													<InputGroup.Button
-														variant="outline"
-														size="icon-sm"
-														{...triggerProps}
-													>
+													<InputGroup.Button variant="outline" size="icon-sm" {...triggerProps}>
 														<IconPlaceholder
 															lucide="GitBranchIcon"
 															hugeicons="GitBranchIcon"
@@ -153,22 +149,16 @@
 								</Tooltip.Root>
 								<Popover.Content side="bottom" align="start" class="p-1">
 									<Field.Field>
-										<Field.Label for="select-branch" class="sr-only">
-											Select a Branch
-										</Field.Label>
+										<Field.Label for="select-branch" class="sr-only">Select a Branch</Field.Label>
 										<Command.Root>
-											<Command.Input
-												id="select-branch"
-												placeholder="Find a branch"
-											/>
+											<Command.Input id="select-branch" placeholder="Find a branch" />
 											<Command.Empty>No branches found</Command.Empty>
 											<Command.List>
 												<Command.Group>
 													{#each branches as branch (branch)}
 														<Command.Item
 															value={branch}
-															onSelect={() =>
-																(selectedBranch = branch)}
+															onSelect={() => (selectedBranch = branch)}
 															data-checked={selectedBranch === branch}
 														>
 															{branch}
@@ -186,11 +176,7 @@
 										{#snippet child({ props })}
 											<Tooltip.Trigger {...props}>
 												{#snippet child({ props: triggerProps })}
-													<InputGroup.Button
-														variant="outline"
-														size="icon-sm"
-														{...triggerProps}
-													>
+													<InputGroup.Button variant="outline" size="icon-sm" {...triggerProps}>
 														<IconPlaceholder
 															lucide="BotIcon"
 															hugeicons="RoboticIcon"
@@ -212,14 +198,11 @@
 												This repository has no custom agents
 											</Empty.Title>
 											<Empty.Description class="text-xs">
-												Custom agents are reusable instructions and tools in
-												your repository.
+												Custom agents are reusable instructions and tools in your repository.
 											</Empty.Description>
 										</Empty.Header>
 										<Empty.Content>
-											<Button variant="outline" size="sm">
-												Create Custom Agent
-											</Button>
+											<Button variant="outline" size="sm">Create Custom Agent</Button>
 										</Empty.Content>
 									</Empty.Root>
 								</Popover.Content>
@@ -227,12 +210,7 @@
 							<Tooltip.Root>
 								<Tooltip.Trigger>
 									{#snippet child({ props })}
-										<InputGroup.Button
-											variant="ghost"
-											size="icon-sm"
-											class="ml-auto"
-											{...props}
-										>
+										<InputGroup.Button variant="ghost" size="icon-sm" class="ml-auto" {...props}>
 											<IconPlaceholder
 												lucide="SendIcon"
 												hugeicons="SentIcon"

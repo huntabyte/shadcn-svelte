@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
-	import * as Select from "$lib/registry/ui/select/index.js";
-	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import * as Button from "$lib/registry/ui/button/index.js";
+	import * as Dialog from "$lib/registry/ui/dialog/index.js";
+	import * as Select from "$lib/registry/ui/select/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const items = [
 		{ label: "Apple", value: "apple" },

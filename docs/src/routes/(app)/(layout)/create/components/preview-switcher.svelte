@@ -19,14 +19,14 @@
 
 {#if visible}
 	<div
-		class="dark bg-card/90 absolute right-3 bottom-3 z-20 flex items-center gap-1 rounded-xl p-1 shadow-xl backdrop-blur-xl"
+		class="dark absolute right-3 bottom-3 z-20 flex items-center gap-1 rounded-xl bg-card/90 p-1 shadow-xl backdrop-blur-xl"
 	>
 		{#each PREVIEW_ITEMS as previewItem (previewItem.value)}
 			<Button
 				variant="ghost"
 				size="sm"
 				data-active={item === previewItem.value}
-				class="text-muted-foreground hover:text-foreground data-[active=true]:bg-accent data-[active=true]:text-accent-foreground h-7 min-w-8 cursor-pointer rounded-lg px-2.5 text-xs font-medium transition-colors"
+				class="h-7 min-w-8 cursor-pointer rounded-lg px-2.5 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground data-[active=true]:bg-accent data-[active=true]:text-accent-foreground"
 				onclick={() => goto(itemHref(previewItem.value))}
 			>
 				{previewItem.label}

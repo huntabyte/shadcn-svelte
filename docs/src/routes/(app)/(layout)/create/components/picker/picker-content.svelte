@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
 	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
 	import { setContext } from "svelte";
-	import type { Snippet } from "svelte";
+	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
 	import { usePreviewOverride } from "../preview-override-context.svelte.js";
+	import type { Snippet } from "svelte";
 
 	let {
 		ref = $bindable(null),
@@ -59,7 +59,7 @@
 			onmouseleave={previewOverride.clearOverride}
 			onpointerleave={previewOverride.clearOverride}
 			class={cn(
-				"bg-popover/90 text-popover-foreground ring-foreground/10 z-50 w-52 overflow-x-hidden rounded-md p-1 shadow-lg ring-1 backdrop-blur-xs",
+				"z-50 w-52 overflow-x-hidden rounded-md bg-popover/90 p-1 text-popover-foreground shadow-lg ring-1 ring-foreground/10 backdrop-blur-xs",
 				className
 			)}
 			{...restProps}
@@ -89,7 +89,7 @@
 					<div
 						{...props}
 						class={cn(
-							"cn-menu-target no-scrollbar z-50 max-h-(--bits-dropdown-menu-content-available-height) origin-(--bits-dropdown-menu-content-transform-origin) overflow-x-hidden overflow-y-auto rounded-xl border-0 bg-neutral-950/80 p-1.5 text-neutral-100 ring-1 ring-neutral-950/80 backdrop-blur-xl outline-none data-closed:overflow-hidden md:w-52 md:min-w-32 md:translate-y-2 dark:bg-neutral-800/90 dark:ring-neutral-700/50",
+							"cn-menu-target z-50 no-scrollbar max-h-(--bits-dropdown-menu-content-available-height) origin-(--bits-dropdown-menu-content-transform-origin) overflow-x-hidden overflow-y-auto rounded-xl border-0 bg-neutral-950/80 p-1.5 text-neutral-100 ring-1 ring-neutral-950/80 backdrop-blur-xl outline-none md:w-52 md:min-w-32 md:translate-y-2 dark:bg-neutral-800/90 dark:ring-neutral-700/50 data-closed:overflow-hidden",
 							className
 						)}
 					>

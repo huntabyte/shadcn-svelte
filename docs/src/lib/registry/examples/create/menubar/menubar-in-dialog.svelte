@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import * as Menubar from "$lib/registry/ui/menubar/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="In Dialog">
@@ -16,9 +16,7 @@
 		<Dialog.Content>
 			<Dialog.Header>
 				<Dialog.Title>Menubar Example</Dialog.Title>
-				<Dialog.Description>
-					Use the menubar below to see the menu options.
-				</Dialog.Description>
+				<Dialog.Description>Use the menubar below to see the menu options.</Dialog.Description>
 			</Dialog.Header>
 			<Menubar.Root>
 				<Menubar.Menu>

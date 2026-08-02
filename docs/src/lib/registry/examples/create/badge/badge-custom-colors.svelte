@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import { Badge } from "$lib/registry/ui/badge/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="Custom Colors" class="max-w-fit">
@@ -12,9 +12,7 @@
 			Purple
 		</Badge>
 		<Badge class="bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300">Blue</Badge>
-		<Badge class="bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300">
-			Green
-		</Badge>
+		<Badge class="bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300">Green</Badge>
 		<Badge class="bg-sky-50 text-sky-700 dark:bg-sky-950 dark:text-sky-300">Sky</Badge>
 		<Badge class="bg-purple-50 text-purple-700 dark:bg-purple-950 dark:text-purple-300">
 			Purple

@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
-	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
 	import * as Button from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
 	import * as Tabs from "$lib/registry/ui/tabs/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	type FileTreeItem = { name: string } | { name: string; items: FileTreeItem[] };
 
@@ -93,7 +93,7 @@
 					<Button.Root
 						variant="ghost"
 						size="sm"
-						class="group hover:bg-accent hover:text-accent-foreground w-full justify-start transition-none"
+						class="group w-full justify-start transition-none hover:bg-accent hover:text-accent-foreground"
 						{...props}
 					>
 						<IconPlaceholder
@@ -115,7 +115,7 @@
 					</Button.Root>
 				{/snippet}
 			</Collapsible.Trigger>
-			<Collapsible.Content class="style-lyra:ml-4 mt-1 ml-5">
+			<Collapsible.Content class="mt-1 ml-5 style-lyra:ml-4">
 				<div class="flex flex-col gap-1">
 					{#each item.items as subItem (subItem.name)}
 						{@render FileTreeItem({ item: subItem })}
@@ -124,7 +124,7 @@
 			</Collapsible.Content>
 		</Collapsible.Root>
 	{:else}
-		<Button.Root variant="link" size="sm" class="text-foreground w-full justify-start gap-2">
+		<Button.Root variant="link" size="sm" class="w-full justify-start gap-2 text-foreground">
 			<IconPlaceholder
 				lucide="FileIcon"
 				tabler="IconFile"

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="With Form" class="w-full items-center justify-center">
@@ -18,8 +18,8 @@
 				<Dialog.Header>
 					<Dialog.Title>Edit profile</Dialog.Title>
 					<Dialog.Description>
-						Make changes to your profile here. Click save when you&apos;re done. Your
-						profile will be updated immediately.
+						Make changes to your profile here. Click save when you&apos;re done. Your profile will
+						be updated immediately.
 					</Dialog.Description>
 				</Dialog.Header>
 				<Field.Group>

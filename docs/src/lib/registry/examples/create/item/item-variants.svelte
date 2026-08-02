@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import * as Item from "$lib/registry/ui/item/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import type { ItemVariant, ItemSize } from "$lib/registry/ui/item/item.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	type VariantConfig = {
 		title: string;
@@ -44,9 +44,7 @@
 		<Item.Root {variant} {size}>
 			<Item.Content>
 				<Item.Title>Title + Description</Item.Title>
-				<Item.Description>
-					This is a description that provides additional context.
-				</Item.Description>
+				<Item.Description>This is a description that provides additional context.</Item.Description>
 			</Item.Content>
 		</Item.Root>
 		<Item.Root {variant} {size}>
@@ -105,9 +103,7 @@
 			</Item.Media>
 			<Item.Content>
 				<Item.Title>Media + Title + Description</Item.Title>
-				<Item.Description
-					>This item includes media, title, and description.</Item.Description
-				>
+				<Item.Description>This item includes media, title, and description.</Item.Description>
 			</Item.Content>
 		</Item.Root>
 		<Item.Root {variant} {size}>
@@ -133,9 +129,7 @@
 		<Item.Root {variant} {size}>
 			<Item.Content>
 				<Item.Title>Multiple Actions</Item.Title>
-				<Item.Description>
-					Item with multiple action buttons in the actions area.
-				</Item.Description>
+				<Item.Description>Item with multiple action buttons in the actions area.</Item.Description>
 			</Item.Content>
 			<Item.Actions>
 				<Button variant="outline" size="sm">Cancel</Button>

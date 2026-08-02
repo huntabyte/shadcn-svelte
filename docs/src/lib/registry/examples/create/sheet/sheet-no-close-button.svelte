@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Sheet from "$lib/registry/ui/sheet/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="No Close Button">
@@ -15,8 +15,8 @@
 			<Sheet.Header>
 				<Sheet.Title>No Close Button</Sheet.Title>
 				<Sheet.Description>
-					This sheet doesn't have a close button in the top-right corner. You can only
-					close it using the button below.
+					This sheet doesn't have a close button in the top-right corner. You can only close it
+					using the button below.
 				</Sheet.Description>
 			</Sheet.Header>
 		</Sheet.Content>

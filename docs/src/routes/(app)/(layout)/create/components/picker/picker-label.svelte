@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
 	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
 	import { getContext } from "svelte";
+	import { cn } from "$lib/utils.js";
 
 	let {
 		inset,

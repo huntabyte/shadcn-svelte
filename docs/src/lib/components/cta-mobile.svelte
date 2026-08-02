@@ -11,7 +11,7 @@
 <a
 	href="https://github.com/EpicenterHQ/epicenter"
 	class={cn(
-		"bg-muted/60 dark:bg-background border-foreground/5 hover:border-foreground/10 group relative flex w-full items-center gap-3 overflow-hidden rounded-xl border px-4 py-3 transition-all select-none xl:hidden",
+		"group relative flex w-full items-center gap-3 overflow-hidden rounded-xl border border-foreground/5 bg-muted/60 px-4 py-3 transition-all select-none hover:border-foreground/10 xl:hidden dark:bg-background",
 		className
 	)}
 >

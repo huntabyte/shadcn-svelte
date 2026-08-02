@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Avatar from "$lib/registry/ui/avatar/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="With Avatar">
@@ -11,20 +11,14 @@
 		<DropdownMenu.Root>
 			<DropdownMenu.Trigger>
 				{#snippet child({ props })}
-					<Button
-						variant="outline"
-						class="h-12 justify-start px-2 md:max-w-[200px]"
-						{...props}
-					>
+					<Button variant="outline" class="h-12 justify-start px-2 md:max-w-[200px]" {...props}>
 						<Avatar.Root>
 							<Avatar.Image src="https://github.com/shadcn.png" alt="Shadcn" />
 							<Avatar.Fallback class="rounded-lg">CN</Avatar.Fallback>
 						</Avatar.Root>
 						<div class="grid flex-1 text-left text-sm leading-tight">
 							<span class="truncate font-semibold">shadcn</span>
-							<span class="text-muted-foreground truncate text-xs">
-								shadcn@example.com
-							</span>
+							<span class="truncate text-xs text-muted-foreground"> shadcn@example.com </span>
 						</div>
 						<IconPlaceholder
 							lucide="ChevronsUpDownIcon"
@@ -32,7 +26,7 @@
 							hugeicons="UnfoldMoreIcon"
 							phosphor="CaretUpDownIcon"
 							remixicon="RiArrowUpDownLine"
-							class="text-muted-foreground ml-auto"
+							class="ml-auto text-muted-foreground"
 						/>
 					</Button>
 				{/snippet}

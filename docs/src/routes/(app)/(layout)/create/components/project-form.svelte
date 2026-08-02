@@ -1,18 +1,18 @@
 <script lang="ts">
-	import { buttonVariants, Button } from "$lib/registry/ui/button/index.js";
+	import BookOpenIcon from "@lucide/svelte/icons/book-open";
+	import { Copy01Icon, Tick02Icon } from "@hugeicons/core-free-icons";
+	import { HugeiconsIcon } from "@hugeicons/svelte";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import * as Tabs from "$lib/registry/ui/tabs/index.js";
 	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
 	import Callout from "$lib/components/callout.svelte";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
-	import { buildRegistryTheme, type DesignSystemConfig } from "$lib/registry/config.js";
-	import { cn } from "$lib/utils.js";
 	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
-	import { UserConfigContext } from "$lib/user-config.svelte.js";
 	import { getCommand, PACKAGE_MANAGERS } from "$lib/package-manager.js";
-	import { HugeiconsIcon } from "@hugeicons/svelte";
-	import { Copy01Icon, Tick02Icon } from "@hugeicons/core-free-icons";
-	import BookOpenIcon from "@lucide/svelte/icons/book-open";
+	import { buildRegistryTheme, type DesignSystemConfig } from "$lib/registry/config.js";
+	import { buttonVariants, Button } from "$lib/registry/ui/button/index.js";
+	import { UserConfigContext } from "$lib/user-config.svelte.js";
+	import { cn } from "$lib/utils.js";
 
 	type ProjectFormTab = "existing-project" | "theme";
 
@@ -71,7 +71,7 @@
 		Get Code
 	</Dialog.Trigger>
 	<Dialog.Content
-		class="dark no-scrollbar top-[64px] flex max-h-[calc(100svh-2rem)] translate-y-0 flex-col rounded-2xl p-0 shadow-xl **:data-[slot=dialog-close]:top-4.5 **:data-[slot=dialog-close]:right-4 **:data-[slot=field-separator]:h-2 sm:max-w-md"
+		class="dark top-[64px] no-scrollbar flex max-h-[calc(100svh-2rem)] translate-y-0 flex-col rounded-2xl p-0 shadow-xl **:data-[slot=dialog-close]:top-4.5 **:data-[slot=dialog-close]:right-4 **:data-[slot=field-separator]:h-2 sm:max-w-md"
 	>
 		<div class="flex min-w-0 flex-1 flex-col gap-0 overflow-hidden rounded-2xl">
 			<Dialog.Header class="border-b px-6 py-5">
@@ -90,15 +90,11 @@
 			{#if activeTab === "existing-project"}
 				<div class="no-scrollbar overflow-y-auto">
 					<div class="flex flex-col gap-6 px-6 py-4">
-						<Callout
-							class="w-full md:mx-0"
-							icon={BookOpenIcon}
-							title="Set up your project first"
-						>
+						<Callout class="w-full md:mx-0" icon={BookOpenIcon} title="Set up your project first">
 							Refer to the
 							<a
 								href="/docs/installation"
-								class="hover:text-primary font-medium underline underline-offset-4"
+								class="font-medium underline underline-offset-4 hover:text-primary"
 							>
 								installation docs
 							</a>
@@ -109,9 +105,9 @@
 								() => userConfig.current.packageManager,
 								(v) => userConfig.setConfig({ packageManager: v })
 							}
-							class="ring-border min-w-0 gap-0 overflow-hidden rounded-xl ring-1"
+							class="min-w-0 gap-0 overflow-hidden rounded-xl ring-1 ring-border"
 						>
-							<div class="bg-muted/50 flex items-center gap-2 py-1 pr-1.5 pl-1">
+							<div class="flex items-center gap-2 bg-muted/50 py-1 pr-1.5 pl-1">
 								<Tabs.List class="bg-transparent font-mono">
 									{#each PACKAGE_MANAGERS as pm (pm)}
 										<Tabs.Trigger
@@ -138,11 +134,9 @@
 							</div>
 							{#each PACKAGE_MANAGERS as pm (pm)}
 								<Tabs.Content value={pm} class="mt-0">
-									<div class="bg-popover relative overflow-hidden border-t p-3">
+									<div class="relative overflow-hidden border-t bg-popover p-3">
 										<div class="no-scrollbar overflow-x-auto">
-											<code class="font-mono text-sm whitespace-nowrap"
-												>{getCommandText(pm)}</code
-											>
+											<code class="font-mono text-sm whitespace-nowrap">{getCommandText(pm)}</code>
 										</div>
 									</div>
 								</Tabs.Content>
@@ -151,10 +145,7 @@
 					</div>
 					<Dialog.Footer class="m-0 min-w-0 p-6">
 						<div class="flex w-full min-w-0 flex-col gap-3">
-							<Button
-								onclick={() => commandClipboard.copy(commandText)}
-								class="h-9 w-full"
-							>
+							<Button onclick={() => commandClipboard.copy(commandText)} class="h-9 w-full">
 								{commandClipboard.copied ? "Copied" : "Copy Command"}
 							</Button>
 						</div>
@@ -165,17 +156,11 @@
 					<div class="flex min-w-0 flex-col gap-3 px-6 py-4">
 						<div class="space-y-1.5">
 							<h3 class="text-sm font-medium">Theme Tokens</h3>
-							<p class="text-muted-foreground text-sm">
-								Copy the CSS variables for this preset.
-							</p>
+							<p class="text-sm text-muted-foreground">Copy the CSS variables for this preset.</p>
 						</div>
-						<div class="ring-border w-full min-w-0 overflow-hidden rounded-xl ring-1">
-							<div class="bg-muted/50 flex items-center gap-2 py-1 pr-1.5 pl-3">
-								<div
-									class="text-muted-foreground min-w-0 truncate font-mono text-sm"
-								>
-									app.css
-								</div>
+						<div class="w-full min-w-0 overflow-hidden rounded-xl ring-1 ring-border">
+							<div class="flex items-center gap-2 bg-muted/50 py-1 pr-1.5 pl-3">
+								<div class="min-w-0 truncate font-mono text-sm text-muted-foreground">app.css</div>
 								<Button
 									size="icon-sm"
 									variant="ghost"
@@ -191,10 +176,9 @@
 								</Button>
 							</div>
 							<div
-								class="bg-popover no-scrollbar relative max-h-[45svh] overflow-auto border-t p-3"
+								class="relative no-scrollbar max-h-[45svh] overflow-auto border-t bg-popover p-3"
 							>
-								<pre
-									class="min-w-max font-mono text-sm leading-normal whitespace-pre"><code
+								<pre class="min-w-max font-mono text-sm leading-normal whitespace-pre"><code
 										>{themeCss}</code
 									></pre>
 							</div>

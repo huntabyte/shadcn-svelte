@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="Radio Fields">
@@ -46,21 +46,17 @@
 				<RadioGroup.Item value="option1" id="radio-content-1" />
 				<Field.Content>
 					<Field.Label for="radio-content-1">Enable Touch ID</Field.Label>
-					<Field.Description
-						>Enable Touch ID to quickly unlock your device.</Field.Description
-					>
+					<Field.Description>Enable Touch ID to quickly unlock your device.</Field.Description>
 				</Field.Content>
 			</Field.Field>
 			<Field.Field orientation="horizontal">
 				<RadioGroup.Item value="option2" id="radio-content-2" />
 				<Field.Content>
 					<Field.Label for="radio-content-2">
-						Enable Touch ID and Face ID to make it even faster to unlock your device.
-						This is a long label to test the layout.
+						Enable Touch ID and Face ID to make it even faster to unlock your device. This is a long
+						label to test the layout.
 					</Field.Label>
-					<Field.Description
-						>Enable Touch ID to quickly unlock your device.</Field.Description
-					>
+					<Field.Description>Enable Touch ID to quickly unlock your device.</Field.Description>
 				</Field.Content>
 			</Field.Field>
 		</RadioGroup.Root>
@@ -70,9 +66,7 @@
 					<RadioGroup.Item value="title1" id="radio-title-1" />
 					<Field.Content>
 						<Field.Title>Enable Touch ID</Field.Title>
-						<Field.Description
-							>Enable Touch ID to quickly unlock your device.</Field.Description
-						>
+						<Field.Description>Enable Touch ID to quickly unlock your device.</Field.Description>
 					</Field.Content>
 				</Field.Field>
 			</Field.Label>
@@ -81,12 +75,10 @@
 					<RadioGroup.Item value="title2" id="radio-title-2" />
 					<Field.Content>
 						<Field.Title>
-							Enable Touch ID and Face ID to make it even faster to unlock your
-							device. This is a long label to test the layout.
+							Enable Touch ID and Face ID to make it even faster to unlock your device. This is a
+							long label to test the layout.
 						</Field.Title>
-						<Field.Description
-							>Enable Touch ID to quickly unlock your device.</Field.Description
-						>
+						<Field.Description>Enable Touch ID to quickly unlock your device.</Field.Description>
 					</Field.Content>
 				</Field.Field>
 			</Field.Label>

@@ -12,16 +12,16 @@
 	import { cn } from "$lib/utils.js";
 	import IconPlaceholder from "./icon-placeholder/icon-placeholder.svelte";
 	import ModeSwitcher from "./mode-switcher.svelte";
-	import BaseColorPicker from "../../routes/(app)/(layout)/(create)/components/base-color-picker.svelte";
-	import ChartColorPicker from "../../routes/(app)/(layout)/(create)/components/chart-color-picker.svelte";
-	import CustomizerControls from "../../routes/(app)/(layout)/(create)/components/customizer-controls.svelte";
-	import FontPicker from "../../routes/(app)/(layout)/(create)/components/font-picker.svelte";
-	import IconLibraryPicker from "../../routes/(app)/(layout)/(create)/components/icon-library-picker.svelte";
-	import MenuAccentPicker from "../../routes/(app)/(layout)/(create)/components/menu-accent-picker.svelte";
-	import MenuColorPicker from "../../routes/(app)/(layout)/(create)/components/menu-color-picker.svelte";
-	import RadiusPicker from "../../routes/(app)/(layout)/(create)/components/radius-picker.svelte";
-	import StylePicker from "../../routes/(app)/(layout)/(create)/components/style-picker.svelte";
-	import ThemePicker from "../../routes/(app)/(layout)/(create)/components/theme-picker.svelte";
+	import BaseColorPicker from "../../routes/(app)/(layout)/create/components/base-color-picker.svelte";
+	import ChartColorPicker from "../../routes/(app)/(layout)/create/components/chart-color-picker.svelte";
+	import CustomizerControls from "../../routes/(app)/(layout)/create/components/customizer-controls.svelte";
+	import FontPicker from "../../routes/(app)/(layout)/create/components/font-picker.svelte";
+	import IconLibraryPicker from "../../routes/(app)/(layout)/create/components/icon-library-picker.svelte";
+	import MenuAccentPicker from "../../routes/(app)/(layout)/create/components/menu-accent-picker.svelte";
+	import MenuColorPicker from "../../routes/(app)/(layout)/create/components/menu-color-picker.svelte";
+	import RadiusPicker from "../../routes/(app)/(layout)/create/components/radius-picker.svelte";
+	import StylePicker from "../../routes/(app)/(layout)/create/components/style-picker.svelte";
+	import ThemePicker from "../../routes/(app)/(layout)/create/components/theme-picker.svelte";
 
 	const isMac = useIsMac();
 	const designSystem = useDesignSystem();

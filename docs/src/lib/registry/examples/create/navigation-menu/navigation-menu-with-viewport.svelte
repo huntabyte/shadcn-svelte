@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import * as NavigationMenu from "$lib/registry/ui/navigation-menu/index.js";
 	import { navigationMenuTriggerStyle } from "$lib/registry/ui/navigation-menu/navigation-menu-trigger.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const components: { title: string; href: string; description: string }[] = [
 		{
@@ -56,7 +56,7 @@
 				<a {...props} {href}>
 					<div class="flex flex-col gap-1 text-sm">
 						<div class="leading-none font-medium">{title}</div>
-						<div class="text-muted-foreground line-clamp-2">
+						<div class="line-clamp-2 text-muted-foreground">
 							{description}
 						</div>
 					</div>

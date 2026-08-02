@@ -1,16 +1,16 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import { badgeVariants } from "$lib/registry/ui/badge/index.js";
-	import { Alert, AlertDescription } from "$lib/registry/ui/alert/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
+	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Alert, AlertDescription } from "$lib/registry/ui/alert/index.js";
+	import { badgeVariants } from "$lib/registry/ui/badge/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const categories = [
 		{
@@ -68,8 +68,7 @@
 										<Item.Content>
 											<Item.Title>Default</Item.Title>
 											<Item.Description class="text-xs">
-												Project can access memories from outside chats, and
-												vice versa.
+												Project can access memories from outside chats, and vice versa.
 											</Item.Description>
 										</Item.Content>
 									</Item.Root>
@@ -79,8 +78,8 @@
 										<Item.Content>
 											<Item.Title>Project Only</Item.Title>
 											<Item.Description class="text-xs">
-												Project can only access its own memories. Its
-												memories are hidden from outside chats.
+												Project can only access its own memories. Its memories are hidden from
+												outside chats.
 											</Item.Description>
 										</Item.Content>
 									</Item.Root>
@@ -114,11 +113,7 @@
 							<Popover.Root>
 								<Popover.Trigger>
 									{#snippet child({ props })}
-										<InputGroup.Button
-											variant="ghost"
-											size="icon-xs"
-											{...props}
-										>
+										<InputGroup.Button variant="ghost" size="icon-xs" {...props}>
 											<IconPlaceholder
 												style={`--color: ${selectedColor}`}
 												lucide="FolderIcon"
@@ -145,7 +140,7 @@
 												}}
 											>
 												<span
-													class="group-data-[checked=true]/button:ring-offset-background size-5 rounded-full bg-(--color) ring-2 ring-transparent ring-offset-2 ring-offset-(--color) group-data-[checked=true]/button:ring-(--color)"
+													class="size-5 rounded-full bg-(--color) ring-2 ring-transparent ring-offset-2 ring-offset-(--color) group-data-[checked=true]/button:ring-(--color) group-data-[checked=true]/button:ring-offset-background"
 												></span>
 												<span class="sr-only">{color}</span>
 											</Button>
@@ -160,16 +155,12 @@
 							<button
 								type="button"
 								onclick={() => {
-									selectedCategory =
-										selectedCategory === category.id ? null : category.id;
+									selectedCategory = selectedCategory === category.id ? null : category.id;
 								}}
 								data-checked={selectedCategory === category.id}
 								class={cn(
 									badgeVariants({
-										variant:
-											selectedCategory === category.id
-												? "default"
-												: "outline",
+										variant: selectedCategory === category.id ? "default" : "outline",
 									}),
 									"group/badge cursor-pointer"
 								)}
@@ -198,8 +189,8 @@
 							remixicon="RiLightbulbLine"
 						/>
 						<AlertDescription class="text-xs">
-							Projects keep chats, files, and custom instructions in one place. Use
-							them for ongoing work, or just to keep things tidy.
+							Projects keep chats, files, and custom instructions in one place. Use them for ongoing
+							work, or just to keep things tidy.
 						</AlertDescription>
 					</Alert>
 				</Field.Field>

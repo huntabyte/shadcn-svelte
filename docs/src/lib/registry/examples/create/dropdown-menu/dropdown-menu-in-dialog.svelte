@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="In Dialog">
@@ -16,9 +16,7 @@
 		<Dialog.Content>
 			<Dialog.Header>
 				<Dialog.Title>Dropdown Menu Example</Dialog.Title>
-				<Dialog.Description>
-					Click the button below to see the dropdown menu.
-				</Dialog.Description>
+				<Dialog.Description>Click the button below to see the dropdown menu.</Dialog.Description>
 			</Dialog.Header>
 			<DropdownMenu.Root>
 				<DropdownMenu.Trigger>

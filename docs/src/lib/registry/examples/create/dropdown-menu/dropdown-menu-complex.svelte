@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	let notifications = $state({
 		email: true,
@@ -20,7 +20,7 @@
 			{/snippet}
 		</DropdownMenu.Trigger>
 		<DropdownMenu.Content
-			class="style-maia:w-56 style-mira:w-48 style-nova:w-48 style-vega:w-56 style-lyra:w-48"
+			class="style-vega:w-56 style-nova:w-48 style-lyra:w-48 style-maia:w-56 style-mira:w-48"
 		>
 			<DropdownMenu.Group>
 				<DropdownMenu.Label>File</DropdownMenu.Label>
@@ -314,9 +314,7 @@
 									<DropdownMenu.Portal>
 										<DropdownMenu.SubContent>
 											<DropdownMenu.Group>
-												<DropdownMenu.Label>
-													Notification Types
-												</DropdownMenu.Label>
+												<DropdownMenu.Label>Notification Types</DropdownMenu.Label>
 												<DropdownMenu.CheckboxItem
 													checked={notifications.push}
 													onCheckedChange={(checked) =>

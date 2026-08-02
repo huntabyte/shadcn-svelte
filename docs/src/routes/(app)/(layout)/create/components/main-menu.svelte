@@ -3,12 +3,12 @@
 <script lang="ts">
 	import { setMode, mode } from "mode-watcher";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { ResetDialogCtx } from "$lib/features/design-system/components/reset-dialog-context.svelte.js";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { useIsMac } from "$lib/hooks/use-is-mac.svelte.js";
 	import { cn } from "$lib/utils.js";
 	import * as Picker from "./picker/index.js";
 	import { ActionMenuCtx } from "./action-menu-context.svelte.js";
-	import { ResetDialogCtx } from "$lib/features/design-system/components/reset-dialog-context.svelte.js";
 
 	type Props = {
 		class?: string;

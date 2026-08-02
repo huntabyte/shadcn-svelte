@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
-	import { Calendar } from "$lib/registry/ui/calendar/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Calendar } from "$lib/registry/ui/calendar/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="With Time">
@@ -12,7 +12,7 @@
 		<Card.Content>
 			<Calendar type="single" class="p-0" />
 		</Card.Content>
-		<Card.Footer class="bg-card border-t">
+		<Card.Footer class="border-t bg-card">
 			<Field.Group>
 				<Field.Field>
 					<Field.Label for="time-from">Start Time</Field.Label>

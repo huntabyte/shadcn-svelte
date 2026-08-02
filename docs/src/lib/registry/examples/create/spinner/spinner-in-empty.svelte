@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import * as Empty from "$lib/registry/ui/empty/index.js";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Spinner } from "$lib/registry/ui/spinner/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="In Empty State" containerClass="lg:col-span-full">
@@ -14,8 +14,7 @@
 			</Empty.Media>
 			<Empty.Title>No projects yet</Empty.Title>
 			<Empty.Description>
-				You haven&apos;t created any projects yet. Get started by creating your first
-				project.
+				You haven&apos;t created any projects yet. Get started by creating your first project.
 			</Empty.Description>
 		</Empty.Header>
 		<Empty.Content>

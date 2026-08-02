@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
-	import { preservePickerScroll } from "./picker-scroll.js";
 	import { setContext } from "svelte";
+	import { preservePickerScroll } from "./picker-scroll.js";
 
 	type Props = DropdownMenuPrimitive.RadioGroupProps & {
 		onItemPreview?: (value: string) => void;

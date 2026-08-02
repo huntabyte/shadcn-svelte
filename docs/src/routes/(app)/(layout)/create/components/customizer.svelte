@@ -2,22 +2,22 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as FieldGroup from "$lib/registry/ui/field/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import RadiusPicker from "./radius-picker.svelte";
-	import StylePicker from "./style-picker.svelte";
-	import ThemePicker from "./theme-picker.svelte";
-	import ChartColorPicker from "./chart-color-picker.svelte";
-	import BaseColorPicker from "./base-color-picker.svelte";
-	import IconLibraryPicker from "./icon-library-picker.svelte";
-	import FontPicker from "./font-picker.svelte";
-	import MenuColorPicker from "./menu-picker.svelte";
-	import MenuAccentPicker from "./menu-accent-picker.svelte";
-	import RandomButton from "./random-button.svelte";
-	import CopyPreset from "./copy-preset.svelte";
-	import OpenPreset from "./open-preset.svelte";
-	import MainMenu from "./main-menu.svelte";
 	import _Ethical from "$lib/components/ethical.svelte";
 	import { FONT_HEADING_OPTIONS, FONTS } from "$lib/fonts.js";
+	import BaseColorPicker from "./base-color-picker.svelte";
+	import ChartColorPicker from "./chart-color-picker.svelte";
+	import CopyPreset from "./copy-preset.svelte";
+	import FontPicker from "./font-picker.svelte";
+	import IconLibraryPicker from "./icon-library-picker.svelte";
+	import MainMenu from "./main-menu.svelte";
+	import MenuAccentPicker from "./menu-accent-picker.svelte";
+	import MenuColorPicker from "./menu-picker.svelte";
+	import OpenPreset from "./open-preset.svelte";
 	import ProjectForm from "./project-form.svelte";
+	import RadiusPicker from "./radius-picker.svelte";
+	import RandomButton from "./random-button.svelte";
+	import StylePicker from "./style-picker.svelte";
+	import ThemePicker from "./theme-picker.svelte";
 </script>
 
 <Tooltip.Provider>
@@ -25,7 +25,7 @@
 		class="top-24 right-12 isolate z-10 flex min-h-0 w-full flex-col gap-2 md:w-(--customizer-width)"
 	>
 		<Card.Root
-			class="dark bg-card/90 top-24 right-12 isolate z-10 max-h-full min-h-0 w-full self-start rounded-2xl shadow-xl backdrop-blur-xl md:w-(--customizer-width)"
+			class="dark top-24 right-12 isolate z-10 max-h-full min-h-0 w-full self-start rounded-2xl bg-card/90 shadow-xl backdrop-blur-xl md:w-(--customizer-width)"
 			size="sm"
 		>
 			<Card.Header
@@ -56,16 +56,12 @@
 					<MenuAccentPicker />
 				</FieldGroup.Group>
 			</Card.Content>
-			<Card.Footer
-				class="flex min-w-0 gap-2 md:flex-col md:rounded-b-none md:**:[button,a]:w-full"
-			>
+			<Card.Footer class="flex min-w-0 gap-2 md:flex-col md:rounded-b-none md:**:[button,a]:w-full">
 				<CopyPreset class="min-w-0 flex-1 md:flex-none" />
 				<OpenPreset class="max-w-20 min-w-0 flex-1 sm:max-w-none md:flex-none" />
 				<RandomButton class="max-w-20 min-w-0 flex-1 sm:max-w-none md:flex-none" />
 			</Card.Footer>
-			<Card.Footer
-				class="-mt-3 hidden min-w-0 gap-2 md:flex md:flex-col md:**:[button,a]:w-full"
-			>
+			<Card.Footer class="-mt-3 hidden min-w-0 gap-2 md:flex md:flex-col md:**:[button,a]:w-full">
 				<ProjectForm />
 			</Card.Footer>
 		</Card.Root>

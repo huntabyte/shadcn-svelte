@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { Snippet } from "svelte";
 	import { setupPreviewOverride } from "./preview-override-context.svelte.js";
+	import type { Snippet } from "svelte";
 
 	let { children }: { children: Snippet } = $props();
 
