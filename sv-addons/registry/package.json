@@ -1,6 +1,6 @@
 {
 	"name": "@shadcn-svelte/registry",
-	"version": "0.0.2",
+	"version": "0.1.0",
 	"description": "sv add-on that scaffolds a shadcn-svelte custom registry template",
 	"keywords": [
 		"sv-add",
