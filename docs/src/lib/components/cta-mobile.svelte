@@ -11,7 +11,7 @@
 <a
 	href="https://github.com/EpicenterHQ/epicenter"
 	class={cn(
-		"bg-muted/60 dark:bg-background border-foreground/5 hover:border-foreground/10 group relative flex w-full items-center gap-3 overflow-hidden rounded-xl border px-4 py-3 transition-all select-none",
+		"group relative flex w-full items-center gap-3 overflow-hidden rounded-xl border border-foreground/5 bg-muted/60 px-4 py-3 transition-all select-none hover:border-foreground/10 dark:bg-background",
 		!showOnDesktop && "xl:hidden"
 	)}
 >
@@ -33,12 +33,12 @@
 	</div>
 
 	<div class="relative z-10 min-w-0 flex-1">
-		<h3 class="text-foreground text-sm font-semibold tracking-tight">Epicenter</h3>
-		<p class="text-foreground/70 truncate text-xs">Local-first, open source apps</p>
+		<h3 class="text-sm font-semibold tracking-tight text-foreground">Epicenter</h3>
+		<p class="truncate text-xs text-foreground/70">Local-first, open source apps</p>
 	</div>
 
 	<span
-		class="text-muted-foreground relative z-10 shrink-0 text-[10px] font-medium tracking-wide uppercase"
+		class="relative z-10 shrink-0 text-[10px] font-medium tracking-wide text-muted-foreground uppercase"
 		>Special Sponsor</span
 	>
 </a>

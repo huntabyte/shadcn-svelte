@@ -1,15 +1,15 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import * as ButtonGroup from "$lib/registry/ui/button-group/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { Separator } from "$lib/registry/ui/separator/index.js";
+	import * as Field from "$lib/registry/ui/field/index.js";
+	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
+	import * as Popover from "$lib/registry/ui/popover/index.js";
+	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Label } from "$lib/registry/ui/label/index.js";
+	import { Separator } from "$lib/registry/ui/separator/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	let isFavorite = $state(false);
 	let voiceEnabled = $state(false);
@@ -39,12 +39,7 @@
 				<Tooltip.Root>
 					<Tooltip.Trigger>
 						{#snippet child({ props })}
-							<InputGroup.Button
-								class="rounded-full"
-								size="icon-xs"
-								aria-label="Info"
-								{...props}
-							>
+							<InputGroup.Button class="rounded-full" size="icon-xs" aria-label="Info" {...props}>
 								<IconPlaceholder
 									lucide="InfoIcon"
 									tabler="IconInfoCircle"
@@ -67,12 +62,7 @@
 					<Popover.Root>
 						<Popover.Trigger>
 							{#snippet child({ props })}
-								<InputGroup.Button
-									variant="secondary"
-									size="icon-xs"
-									aria-label="Info"
-									{...props}
-								>
+								<InputGroup.Button variant="secondary" size="icon-xs" aria-label="Info" {...props}>
 									<IconPlaceholder
 										lucide="InfoIcon"
 										tabler="IconInfoCircle"
@@ -93,7 +83,7 @@
 						</Popover.Content>
 					</Popover.Root>
 				</InputGroup.Addon>
-				<InputGroup.Addon class="text-muted-foreground pl-1!">https://</InputGroup.Addon>
+				<InputGroup.Addon class="pl-1! text-muted-foreground">https://</InputGroup.Addon>
 				<InputGroup.Addon align="inline-end">
 					<InputGroup.Button
 						onclick={() => (isFavorite = !isFavorite)}
@@ -128,9 +118,7 @@
 			<ButtonGroup.Root class="flex-1">
 				<InputGroup.Root>
 					<InputGroup.Input
-						placeholder={voiceEnabled
-							? "Record and send audio..."
-							: "Send a message..."}
+						placeholder={voiceEnabled ? "Record and send audio..." : "Send a message..."}
 						disabled={voiceEnabled}
 					/>
 					<InputGroup.Addon align="inline-end">
@@ -167,7 +155,7 @@
 			<InputGroup.Addon align="block-end">
 				<InputGroup.Button
 					variant="outline"
-					class="style-lyra:rounded-none rounded-full"
+					class="rounded-full style-lyra:rounded-none"
 					size="icon-xs"
 					aria-label="Add"
 				>
@@ -197,7 +185,7 @@
 				<Separator orientation="vertical" class="h-4!" />
 				<InputGroup.Button
 					variant="default"
-					class="style-lyra:rounded-none rounded-full"
+					class="rounded-full style-lyra:rounded-none"
 					size="icon-xs"
 				>
 					<IconPlaceholder

@@ -19,7 +19,7 @@
 		>
 			{component.title}
 			{#if PAGES_NEW.includes("/docs" + component.slugFull)}
-				<span class="bg-svelte-orange flex size-2 rounded-full" title="New"></span>
+				<span class="flex size-2 rounded-full bg-svelte-orange" title="New"></span>
 			{/if}
 		</a>
 	{/each}

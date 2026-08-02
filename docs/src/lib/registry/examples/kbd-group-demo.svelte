@@ -3,7 +3,7 @@
 </script>
 
 <div class="flex flex-col items-center gap-4">
-	<p class="text-muted-foreground text-sm">
+	<p class="text-sm text-muted-foreground">
 		Use
 		<Kbd.Group>
 			<Kbd.Root>Ctrl + B</Kbd.Root>

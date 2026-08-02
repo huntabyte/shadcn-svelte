@@ -1,19 +1,22 @@
 <script lang="ts">
-	import { onDestroy, onMount } from "svelte";
-	import { mode, setMode } from "mode-watcher";
-	import ExternalLink from "@lucide/svelte/icons/external-link";
+	import AlignJustify from "@lucide/svelte/icons/align-justify";
 	import ArrowLeftRight from "@lucide/svelte/icons/arrow-left-right";
 	import CaseUpper from "@lucide/svelte/icons/case-upper";
-	import AlignJustify from "@lucide/svelte/icons/align-justify";
+	import ExternalLink from "@lucide/svelte/icons/external-link";
 	import MoveVertical from "@lucide/svelte/icons/move-vertical";
+	import { mode, setMode } from "mode-watcher";
+	import { onDestroy, onMount } from "svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import CtaMobile from "$lib/components/cta-mobile.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
 	import Control from "$lib/features/typeset/control.svelte";
 	import DocsPanel from "$lib/features/typeset/docs-panel.svelte";
-	import MainMenu from "$lib/features/typeset/main-menu.svelte";
 	import GetCodeDrawer from "$lib/features/typeset/get-code-drawer.svelte";
-	import CtaMobile from "$lib/components/cta-mobile.svelte";
+	import MainMenu from "$lib/features/typeset/main-menu.svelte";
+	import {
+		provideTypesetPreviewOverride,
+		TypesetPreviewOverrideState,
+	} from "$lib/features/typeset/preview-override.svelte.js";
 	import {
 		CONTENT_OPTIONS,
 		FONTS,
@@ -25,10 +28,7 @@
 		findFont,
 		serializeTypesetParams,
 	} from "$lib/features/typeset/typeset.svelte.js";
-	import {
-		provideTypesetPreviewOverride,
-		TypesetPreviewOverrideState,
-	} from "$lib/features/typeset/preview-override.svelte.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const typeset = new TypesetState();
 	const previewOverride = new TypesetPreviewOverrideState();
@@ -103,8 +103,7 @@
 		typeset.init();
 		document.addEventListener("keydown", handleShortcut);
 		const onMessage = (event: MessageEvent) => {
-			if (event.origin !== window.location.origin || event.source !== iframe?.contentWindow)
-				return;
+			if (event.origin !== window.location.origin || event.source !== iframe?.contentWindow) return;
 			if (event.data?.type !== "typeset-command") return;
 			const actions: Record<string, () => void> = {
 				shuffle: () => typeset.shuffle(),
@@ -136,7 +135,7 @@
 <Metadata title="Typeset" description="Typography for markdown you don't control." />
 
 <div
-	class="section-soft relative z-10 flex min-h-0 flex-1 flex-col overflow-hidden [--customizer-width:--spacing(48)] [--gap:--spacing(4)] md:[--gap:--spacing(6)] 2xl:[--customizer-width:--spacing(56)]"
+	class="relative z-10 flex min-h-0 flex-1 flex-col overflow-hidden section-soft [--customizer-width:--spacing(48)] [--gap:--spacing(4)] md:[--gap:--spacing(6)] 2xl:[--customizer-width:--spacing(56)]"
 >
 	<div
 		data-slot="designer"
@@ -149,7 +148,7 @@
 				<CtaMobile showOnDesktop />
 			</div>
 			<div
-				class="bg-background ring-foreground/10 relative isolate flex min-h-0 w-full flex-1 flex-col self-stretch overflow-hidden rounded-2xl ring-1"
+				class="relative isolate flex min-h-0 w-full flex-1 flex-col self-stretch overflow-hidden rounded-2xl bg-background ring-1 ring-foreground/10"
 			>
 				<iframe
 					bind:this={iframe}
@@ -162,21 +161,21 @@
 					class="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 items-center justify-center gap-1.5"
 				>
 					<div
-						class="dark bg-card/90 flex items-center gap-1 rounded-xl p-1 shadow-xl backdrop-blur-xl"
+						class="dark flex items-center gap-1 rounded-xl bg-card/90 p-1 shadow-xl backdrop-blur-xl"
 					>
 						{#each CONTENT_OPTIONS as option, index (option.value)}
 							<button
 								type="button"
 								title={option.label}
 								data-active={typeset.params.item === option.value}
-								class="text-muted-foreground hover:text-foreground data-[active=true]:bg-accent data-[active=true]:text-accent-foreground h-7 min-w-7 cursor-pointer rounded-lg px-2 text-xs font-medium transition-colors"
+								class="h-7 min-w-7 cursor-pointer rounded-lg px-2 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground data-[active=true]:bg-accent data-[active=true]:text-accent-foreground"
 								onclick={() => typeset.update({ item: option.value })}
 								>{String(index + 1).padStart(2, "0")}</button
 							>
 						{/each}
 					</div>
 					<div
-						class="dark bg-card/90 flex items-center gap-1 rounded-xl p-1 shadow-xl backdrop-blur-xl"
+						class="dark flex items-center gap-1 rounded-xl bg-card/90 p-1 shadow-xl backdrop-blur-xl"
 					>
 						<Button
 							href={openInNewTabHref}
@@ -184,7 +183,7 @@
 							rel="noreferrer"
 							variant="ghost"
 							size="sm"
-							class="text-muted-foreground hover:text-foreground h-7 cursor-pointer rounded-lg px-2.5 text-xs font-medium transition-colors"
+							class="h-7 cursor-pointer rounded-lg px-2.5 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
 						>
 							<ExternalLink class="size-3.5 md:hidden" />
 							<span class="max-md:sr-only">Open in New Tab</span>
@@ -196,7 +195,7 @@
 
 		<Card.Root
 			bind:ref={customizerAnchor}
-			class="dark bg-card/90 isolate z-10 max-h-full min-h-0 w-full self-start rounded-2xl backdrop-blur-xl md:w-(--customizer-width)"
+			class="dark isolate z-10 max-h-full min-h-0 w-full self-start rounded-2xl bg-card/90 backdrop-blur-xl md:w-(--customizer-width)"
 			size="sm"
 		>
 			<Card.Header class="hidden items-center justify-between gap-2 border-b md:flex">
@@ -218,7 +217,7 @@
 						scrollContainer={pickerScroll}
 						class="max-[28rem]:hidden"
 					/>
-					<div class="bg-border -mx-3 my-1 hidden h-px md:block"></div>
+					<div class="-mx-3 my-1 hidden h-px bg-border md:block"></div>
 					<Control
 						{typeset}
 						param="heading"
@@ -249,7 +248,7 @@
 						anchor={customizerAnchor}
 						scrollContainer={pickerScroll}
 					/>
-					<div class="bg-border -mx-3 my-1 hidden h-px md:block"></div>
+					<div class="-mx-3 my-1 hidden h-px bg-border md:block"></div>
 					<Control
 						{typeset}
 						param="scale"
@@ -290,7 +289,7 @@
 				>
 				<GetCodeDrawer
 					{typeset}
-					class="hover:bg-muted! min-w-0 flex-1 touch-manipulation bg-transparent! px-2! py-0! text-sm! transition-none select-none md:flex-none xl:hidden pointer-coarse:h-10!"
+					class="min-w-0 flex-1 touch-manipulation bg-transparent! px-2! py-0! text-sm! transition-none select-none hover:bg-muted! md:flex-none xl:hidden pointer-coarse:h-10!"
 				/>
 			</Card.Footer>
 		</Card.Root>

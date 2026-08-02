@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { Snippet } from "svelte";
-	import type { SVGAttributes } from "svelte/elements";
 	import type { LucideIconName } from "$lib/registry/icons/__lucide__/index.js";
 	import { lucideIconLoader } from "./icon-loader.js";
+	import type { Snippet } from "svelte";
+	import type { SVGAttributes } from "svelte/elements";
 
 	type Props = SVGAttributes<SVGSVGElement> & {
 		icon: LucideIconName;

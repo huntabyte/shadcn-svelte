@@ -1,13 +1,13 @@
 <script lang="ts">
 	import Lock from "@lucide/svelte/icons/lock-keyhole";
 	import Unlock from "@lucide/svelte/icons/lock-keyhole-open";
-	import type { LockableParam, TypesetState } from "./typeset.svelte.js";
-	import { cn } from "$lib/utils.js";
-	import type { Component } from "svelte";
 	import { tick } from "svelte";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
+	import { cn } from "$lib/utils.js";
 	import * as Picker from "./picker/index.js";
 	import { useTypesetPreviewOverride } from "./preview-override.svelte.js";
+	import type { LockableParam, TypesetState } from "./typeset.svelte.js";
+	import type { Component } from "svelte";
 
 	let {
 		typeset,
@@ -39,6 +39,7 @@
 	const isMobile = new IsMobile();
 	const previewOverride = useTypesetPreviewOverride();
 	let open = $state(false);
+	let mobileScrollLeft = 0;
 	const value = $derived(typeset.params[param]);
 	const current = $derived(options.find((option) => option.value === value));
 	const groupedValues = $derived(
@@ -52,50 +53,58 @@
 		if (!open) previewOverride?.clear();
 	});
 
-	async function updateValue(next: string) {
-		const scrollLeft = scrollContainer?.scrollLeft;
-		typeset.update({ [param]: next });
-		if (scrollLeft === undefined || !scrollContainer || !isMobile.current) return;
+	function captureMobileScroll() {
+		if (isMobile.current && scrollContainer) mobileScrollLeft = scrollContainer.scrollLeft;
+	}
 
-		let cancelled = false;
-		const cancel = () => (cancelled = true);
+	async function restoreMobileScroll() {
+		if (!isMobile.current || !scrollContainer) return;
 		const restore = () => {
-			if (!cancelled && scrollContainer) scrollContainer.scrollLeft = scrollLeft;
+			if (scrollContainer) scrollContainer.scrollLeft = mobileScrollLeft;
 		};
-		scrollContainer.addEventListener("pointerdown", cancel, { once: true });
-		scrollContainer.addEventListener("touchstart", cancel, { once: true, passive: true });
-		scrollContainer.addEventListener("wheel", cancel, { once: true, passive: true });
 		await tick();
 		restore();
 		requestAnimationFrame(() => {
 			restore();
 			requestAnimationFrame(restore);
 		});
-		setTimeout(() => {
-			scrollContainer?.removeEventListener("pointerdown", cancel);
-			scrollContainer?.removeEventListener("touchstart", cancel);
-			scrollContainer?.removeEventListener("wheel", cancel);
-		}, 150);
+	}
+
+	$effect(() => {
+		if (open) void restoreMobileScroll();
+	});
+
+	async function updateValue(next: string) {
+		captureMobileScroll();
+		typeset.update({ [param]: next });
+		await restoreMobileScroll();
 	}
 </script>
 
 <div class={cn("group/picker relative", className)}>
 	<Picker.Root submenu={false} bind:open>
-		<Picker.Trigger submenu={false} class="w-36 md:w-full">
+		<Picker.Trigger
+			submenu={false}
+			class="w-36 md:w-full"
+			onpointerdown={captureMobileScroll}
+			onkeydown={(event) => {
+				if (event.key === "Enter" || event.key === " ") captureMobileScroll();
+			}}
+		>
 			<div class="flex min-w-0 flex-col justify-start pr-8 text-left">
-				<div class="text-muted-foreground text-xs">{label}</div>
-				<div class="text-foreground line-clamp-1 text-sm font-medium">{current?.label}</div>
+				<div class="text-xs text-muted-foreground">{label}</div>
+				<div class="line-clamp-1 text-sm font-medium text-foreground">{current?.label}</div>
 			</div>
 			{#if preview}
 				<div
-					class="text-foreground pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base select-none md:right-2.5"
+					class="pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base text-foreground select-none md:right-2.5"
 					style:font-family={preview}
 				>
 					Aa
 				</div>
 			{:else if Icon}
 				<div
-					class="text-foreground pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center md:right-2.5"
+					class="pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-foreground md:right-2.5"
 				>
 					<Icon class="size-4" />
 				</div>
@@ -168,7 +177,7 @@
 		title={typeset.locks.has(param) ? "Unlock" : "Lock"}
 		aria-label={typeset.locks.has(param) ? "Unlock" : "Lock"}
 		onclick={() => typeset.toggleLock(param)}
-		class="ring-foreground/60 absolute top-1/2 right-8 z-20 hidden size-4 -translate-y-1/2 cursor-pointer items-center justify-center rounded opacity-0 transition-opacity outline-none group-hover/picker:opacity-100 focus:opacity-100 focus-visible:ring-1 data-[locked=true]:opacity-100 md:flex"
+		class="absolute top-1/2 right-8 z-20 hidden size-4 -translate-y-1/2 cursor-pointer items-center justify-center rounded opacity-0 ring-foreground/60 transition-opacity outline-none group-hover/picker:opacity-100 focus:opacity-100 focus-visible:ring-1 data-[locked=true]:opacity-100 md:flex"
 		data-locked={typeset.locks.has(param)}
 	>
 		{#if typeset.locks.has(param)}<Lock class="size-4" />{:else}<Unlock class="size-4" />{/if}

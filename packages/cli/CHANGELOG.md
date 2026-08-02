@@ -1,5 +1,27 @@
 # shadcn-svelte
 
+## 1.5.0
+
+### Minor Changes
+
+- feat: add `--no-deps-install` flag to `add`, `init`, `update`, and `apply` to write dependencies to `package.json` without running install ([#2828](https://github.com/huntabyte/shadcn-svelte/pull/2828))
+
+- feat: if present, preserve the dependency's location in the `package.json` ([#2828](https://github.com/huntabyte/shadcn-svelte/pull/2828))
+
+### Patch Changes
+
+- fix: resolve wildcard path alias roots for components.json directory aliases ([#2822](https://github.com/huntabyte/shadcn-svelte/pull/2822))
+
+- fix: match deep imports with a path boundary and ignore `sv` / `shadcn-svelte` tooling deps ([#2826](https://github.com/huntabyte/shadcn-svelte/pull/2826))
+
+- chore: deprecate the `--no-deps` flag (use `--no-deps-install` instead) ([#2828](https://github.com/huntabyte/shadcn-svelte/pull/2828))
+
+## 1.4.2
+
+### Patch Changes
+
+- fix: detect the nearest `tsconfig.json`/`jsconfig.json` so a nested JS project no longer picks up an unrelated parent `tsconfig.json` (fixes false `$lib` path alias errors in monorepos) ([#2806](https://github.com/huntabyte/shadcn-svelte/pull/2806))
+
 ## 1.4.1
 
 ### Patch Changes

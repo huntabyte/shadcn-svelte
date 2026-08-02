@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Preview from "../../components/preview.svelte";
 	import CtaMobile from "$lib/components/cta-mobile.svelte";
+	import Preview from "../../components/preview.svelte";
 
 	let { data } = $props();
 </script>

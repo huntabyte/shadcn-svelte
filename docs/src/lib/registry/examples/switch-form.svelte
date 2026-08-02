@@ -7,9 +7,9 @@
 </script>
 
 <script lang="ts">
+	import { toast } from "svelte-sonner";
 	import { defaults, superForm } from "sveltekit-superforms";
 	import { zod4 } from "sveltekit-superforms/adapters";
-	import { toast } from "svelte-sonner";
 	import * as Form from "$lib/registry/ui/form/index.js";
 	import { Switch } from "$lib/registry/ui/switch/index.js";
 
@@ -58,16 +58,9 @@
 					{#snippet children({ props })}
 						<div class="space-y-0.5">
 							<Form.Label>Security emails</Form.Label>
-							<Form.Description>
-								Receive emails about your account security.
-							</Form.Description>
+							<Form.Description>Receive emails about your account security.</Form.Description>
 						</div>
-						<Switch
-							{...props}
-							aria-readonly
-							disabled
-							bind:checked={$formData.security_emails}
-						/>
+						<Switch {...props} aria-readonly disabled bind:checked={$formData.security_emails} />
 					{/snippet}
 				</Form.Control>
 			</Form.Field>

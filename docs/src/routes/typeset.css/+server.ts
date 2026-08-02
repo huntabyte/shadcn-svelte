@@ -1,5 +1,5 @@
-import type { RequestHandler } from "./$types.js";
 import stylesheet from "$lib/styles/typeset.css?raw";
+import type { RequestHandler } from "./$types.js";
 
 export const GET: RequestHandler = () => {
 	return new Response(stylesheet, {

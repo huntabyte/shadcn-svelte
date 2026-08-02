@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { onMount } from "svelte";
 	import { page } from "$app/state";
+	import { onMount } from "svelte";
 	import { CHAT_QUESTION } from "$lib/features/typeset/fixtures/chat.js";
 	import {
 		FIXTURES,
@@ -66,10 +66,7 @@
 				command = event.shiftKey ? "redo" : "undo";
 			if (command) {
 				event.preventDefault();
-				window.parent.postMessage(
-					{ type: "typeset-command", command },
-					window.location.origin
-				);
+				window.parent.postMessage({ type: "typeset-command", command }, window.location.origin);
 			}
 		};
 		window.addEventListener("message", onMessage);
@@ -90,7 +87,7 @@
 	<div class="preview-params w-full" style="font-size: {params.scale}px; max-width: {measure};">
 		{#if name === "chat"}
 			<div class="flex w-full flex-col gap-10">
-				<div class="bg-muted ml-auto w-fit max-w-[65%] rounded-3xl px-4 py-2.5">
+				<div class="ml-auto w-fit max-w-[65%] rounded-3xl bg-muted px-4 py-2.5">
 					{CHAT_QUESTION}
 				</div>
 				<div

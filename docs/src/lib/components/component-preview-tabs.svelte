@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { Component, Snippet } from "svelte";
-	import type { HTMLAttributes } from "svelte/elements";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
+	import type { Component, Snippet } from "svelte";
+	import type { HTMLAttributes } from "svelte/elements";
 
 	let {
 		class: className,
@@ -29,9 +29,9 @@
 		{@const Component = component}
 		<Component />
 	{:else}
-		<p class="text-muted-foreground text-sm">
+		<p class="text-sm text-muted-foreground">
 			Component
-			<code class="bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm">
+			<code class="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm">
 				{name}
 			</code>
 			not found in registry.
@@ -41,10 +41,7 @@
 
 <div
 	data-not-typeset
-	class={cn(
-		"group relative mt-4 mb-12 flex flex-col overflow-hidden rounded-xl border",
-		className
-	)}
+	class={cn("group relative mt-4 mb-12 flex flex-col overflow-hidden rounded-xl border", className)}
 	{...restProps}
 >
 	<div
@@ -80,7 +77,7 @@
 						type="button"
 						size="sm"
 						variant="outline"
-						class="bg-background text-foreground hover:bg-muted dark:bg-background dark:text-foreground dark:hover:bg-muted relative z-10 rounded-lg shadow-none"
+						class="relative z-10 rounded-lg bg-background text-foreground shadow-none hover:bg-muted dark:bg-background dark:text-foreground dark:hover:bg-muted"
 						onclick={() => {
 							codeVisible = true;
 						}}

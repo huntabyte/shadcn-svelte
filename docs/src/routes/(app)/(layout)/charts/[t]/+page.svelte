@@ -26,9 +26,7 @@
 					<chart.component />
 				</ChartDisplay>
 			{:else}
-				<div
-					class="hidden aspect-square w-full rounded-lg border border-dashed xl:block"
-				></div>
+				<div class="hidden aspect-square w-full rounded-lg border border-dashed xl:block"></div>
 			{/if}
 		{/each}
 	</div>

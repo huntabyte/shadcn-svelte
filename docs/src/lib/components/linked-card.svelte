@@ -9,7 +9,7 @@
 	{href}
 	data-not-typeset
 	class={cn(
-		"bg-surface text-surface-foreground hover:bg-surface/80 flex w-full flex-col items-center rounded-xl p-6 transition-colors sm:p-10",
+		"flex w-full flex-col items-center rounded-xl bg-surface p-6 text-surface-foreground transition-colors hover:bg-surface/80 sm:p-10",
 		className
 	)}
 	{...restProps}

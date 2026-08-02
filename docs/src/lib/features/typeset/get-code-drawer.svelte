@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
-	import { buttonVariants } from "$lib/registry/ui/button/button.svelte";
 	import * as Drawer from "$lib/registry/ui/drawer/index.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
+	import { buttonVariants } from "$lib/registry/ui/button/button.svelte";
+	import { cn } from "$lib/utils.js";
 	import DocsPanel from "./docs-panel.svelte";
 	import type { TypesetState } from "./typeset.svelte.js";
 

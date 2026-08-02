@@ -21,11 +21,11 @@
 	<Card.Content class="flex flex-col gap-4">
 		<div class="grid grid-cols-7 gap-1.5">
 			{#each FITNESS_WEEKLY_LOAD as { day, load }, index (index)}
-				<div class="ring-border rounded-md p-1.5 text-center ring">
-					<div class="text-muted-foreground text-sm">{day}</div>
-					<div class="bg-muted relative mt-1 h-16 overflow-hidden rounded-sm">
+				<div class="rounded-md p-1.5 text-center ring ring-border">
+					<div class="text-sm text-muted-foreground">{day}</div>
+					<div class="relative mt-1 h-16 overflow-hidden rounded-sm bg-muted">
 						<div
-							class="bg-chart-3 absolute inset-x-0 bottom-0 rounded-sm"
+							class="absolute inset-x-0 bottom-0 rounded-sm bg-chart-3"
 							style="height: {load}%"
 						></div>
 					</div>
