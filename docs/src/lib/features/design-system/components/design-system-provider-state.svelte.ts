@@ -6,6 +6,7 @@ import { StateHistory } from "runed";
 import {
 	decodePreset,
 	encodePreset,
+	isValidPreset,
 	DEFAULT_PRESET_CONFIG,
 	DEFAULT_PRESETS,
 	type PresetConfig,
@@ -55,15 +56,15 @@ class DesignSystemState implements IDesignSystemState {
 	#locks: PersistedState<Lockable>;
 	constructor() {
 		const isEmbeddedPreview = browser && window.self !== window.top;
-		const initialPreset = this.#getSearchParam("preset");
+		const presetFromUrl = this.#getSearchParam("preset");
 		this.#preset = new PersistedState<string>(
 			isEmbeddedPreview ? "design-system-preview-preset" : "design-system-preset",
-			initialPreset ?? encodePreset(DEFAULT_PRESET_CONFIG)
+			presetFromUrl ?? encodePreset(DEFAULT_PRESET_CONFIG)
 		);
-		// A shared URL must take precedence over a previously persisted local preset.
-		// PersistedState otherwise treats the constructor value as a fallback only.
-		if (!isEmbeddedPreview && initialPreset && decodePreset(initialPreset)) {
-			this.#preset.current = initialPreset;
+		// PersistedState treats the constructor value as a fallback only, so explicitly
+		// apply valid URL presets over any previously persisted value.
+		if (presetFromUrl && isValidPreset(presetFromUrl)) {
+			this.#preset.current = presetFromUrl;
 		}
 		this.#locks = new PersistedState<Lockable>("locks", {
 			style: false,
@@ -90,7 +91,7 @@ class DesignSystemState implements IDesignSystemState {
 			}
 		);
 
-		if (browser && !isEmbeddedPreview && !hasSyncedPresetToUrl && !initialPreset) {
+		if (browser && !isEmbeddedPreview && !hasSyncedPresetToUrl && !presetFromUrl) {
 			hasSyncedPresetToUrl = true;
 			queueMicrotask(() => this.#replacePresetParam(this.#preset.current));
 		}
