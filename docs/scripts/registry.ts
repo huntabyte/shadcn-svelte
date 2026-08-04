@@ -242,8 +242,10 @@ async function getFileDependencies(
 		if (result.module) {
 			moduleAst = result.module;
 		}
-	} else {
+	} else if (/\.[cm]?[jt]s$/.test(filename)) {
 		ast = tsParser.parse(content, { ecmaVersion: "latest", sourceType: "module" });
+	} else {
+		return { registryDependencies: new Set() };
 	}
 
 	const registryDependencies = new Set<string>();

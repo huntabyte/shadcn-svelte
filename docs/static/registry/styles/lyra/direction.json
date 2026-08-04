@@ -1,0 +1,22 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "direction",
+	"type": "registry:ui",
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport { setContext } from \"svelte\";\n\timport { DIRECTION_CONTEXT, type Direction, type DirectionContext } from \"./direction.svelte.js\";\n\timport type { Snippet } from \"svelte\";\n\n\tlet { direction = \"ltr\", children }: { direction?: Direction; children?: Snippet } = $props();\n\n\tconst context: DirectionContext = {\n\t\tdirection: () => direction,\n\t};\n\n\tsetContext(DIRECTION_CONTEXT, context);\n</script>\n\n{@render children?.()}\n",
+			"type": "registry:file",
+			"target": "direction/direction-provider.svelte"
+		},
+		{
+			"content": "import { getContext } from \"svelte\";\n\nexport type Direction = \"ltr\" | \"rtl\";\n\nexport interface DirectionContext {\n\tdirection: () => Direction;\n}\n\nexport const DIRECTION_CONTEXT = Symbol(\"shadcn-svelte.direction\");\n\nexport function useDirection(): Direction {\n\treturn getContext<DirectionContext>(DIRECTION_CONTEXT).direction();\n}\n",
+			"type": "registry:file",
+			"target": "direction/direction.svelte.ts"
+		},
+		{
+			"content": "import Provider from \"./direction-provider.svelte\";\n\nexport { Provider, Provider as DirectionProvider };\nexport { useDirection, type Direction } from \"./direction.svelte.js\";\n",
+			"type": "registry:file",
+			"target": "direction/index.ts"
+		}
+	]
+}
