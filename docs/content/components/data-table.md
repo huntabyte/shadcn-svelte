@@ -3,8 +3,7 @@ title: Data Table
 description: Powerful table and datagrids built using TanStack Table.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/data-table
-  doc: https://tanstack.com/table/v8/docs/introduction
+  doc: https://tanstack.com/table/latest/docs/framework/svelte
 ---
 
 <script>
@@ -51,13 +50,13 @@ This guide will show you how to use [TanStack Table](https://tanstack.com/table)
 
 ## Installation
 
-1. Add the `<Table />` component to your project along with the `data-table` helpers. These helpers enable TanStack Table v8 to work with Svelte 5 Snippets, Components, etc.
+1. Add the `<Table />` component to your project.
 
-<PMAddComp name="table data-table" />
+<PMAddComp name="table" />
 
-2. Add `@tanstack/table-core` as a dependency:
+2. Add the official TanStack Table adapter for Svelte 5:
 
-<PMInstall command="@tanstack/table-core" />
+<PMInstall command="@tanstack/svelte-table" />
 
 ## Prerequisites
 
@@ -96,6 +95,7 @@ Start by creating a route where your data table will live (we'll call ours payme
 routes
 └── payments
 	├── columns.ts
+	├── table-features.ts
     ├── data-table.svelte
     ├── data-table-actions.svelte
     ├── data-table-checkbox.svelte
@@ -104,6 +104,7 @@ routes
 ```
 
 - `columns.ts` will contain our column definitions.
+- `table-features.ts` will register only the TanStack Table features our table uses.
 - `data-table.svelte` will contain the `<Table />` component and the complete `<DataTable />` component.
 - `data-table-actions.svelte` will contain the actions menu for each row.
 - `data-table-checkbox.svelte` will contain the checkbox for each row.
@@ -116,12 +117,42 @@ Let's start by building a basic table.
 
 <Steps>
 
+### Table Features
+
+TanStack Table v9 uses explicit feature registration. This keeps the table tree-shakeable and makes its TypeScript types reflect the APIs you enabled.
+
+```ts showLineNumbers title="routes/payments/table-features.ts"
+import {
+  columnFilteringFeature,
+  columnVisibilityFeature,
+  createFilteredRowModel,
+  createPaginatedRowModel,
+  createSortedRowModel,
+  rowPaginationFeature,
+  rowSelectionFeature,
+  rowSortingFeature,
+  tableFeatures,
+} from "@tanstack/svelte-table";
+
+export const features = tableFeatures({
+  columnFilteringFeature,
+  filteredRowModel: createFilteredRowModel(),
+  columnVisibilityFeature,
+  rowPaginationFeature,
+  paginatedRowModel: createPaginatedRowModel(),
+  rowSelectionFeature,
+  rowSortingFeature,
+  sortedRowModel: createSortedRowModel(),
+});
+```
+
 ### Column Definitions
 
 First, we'll define our columns.
 
 ```ts showLineNumbers {1,12-25} title="routes/payments/columns.ts"
-import type { ColumnDef } from "@tanstack/table-core";
+import type { ColumnDef } from "@tanstack/svelte-table";
+import type { features } from "./table-features.js";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -132,7 +163,7 @@ export type Payment = {
   email: string;
 };
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<typeof features, Payment>[] = [
   {
     accessorKey: "status",
     header: "Status",
@@ -159,27 +190,30 @@ export const columns: ColumnDef<Payment>[] = [
 Next, we'll create a `<DataTable />` component to render our table.
 
 ```svelte showLineNumbers title="routes/payments/data-table.svelte"
-<script lang="ts" generics="TData, TValue">
-  import { type ColumnDef, getCoreRowModel } from "@tanstack/table-core";
+<script lang="ts" generics="TData extends RowData, TValue extends CellData">
   import {
-    createSvelteTable,
     FlexRender,
-  } from "$lib/components/ui/data-table/index.js";
+    createTable,
+    type CellData,
+    type ColumnDef,
+    type RowData,
+  } from "@tanstack/svelte-table";
   import * as Table from "$lib/components/ui/table/index.js";
+  import { features } from "./table-features.js";
 
   type DataTableProps<TData, TValue> = {
-    columns: ColumnDef<TData, TValue>[];
+    columns: ColumnDef<typeof features, TData, TValue>[];
     data: TData[];
   };
 
   let { data, columns }: DataTableProps<TData, TValue> = $props();
 
-  const table = createSvelteTable({
+  const table = createTable({
+    features,
     get data() {
       return data;
     },
     columns,
-    getCoreRowModel: getCoreRowModel(),
   });
 </script>
 
@@ -191,10 +225,7 @@ Next, we'll create a `<DataTable />` component to render our table.
           {#each headerGroup.headers as header (header.id)}
             <Table.Head colspan={header.colSpan}>
               {#if !header.isPlaceholder}
-                <FlexRender
-                  content={header.column.columnDef.header}
-                  context={header.getContext()}
-                />
+                <FlexRender {header} />
               {/if}
             </Table.Head>
           {/each}
@@ -206,10 +237,7 @@ Next, we'll create a `<DataTable />` component to render our table.
         <Table.Row data-state={row.getIsSelected() && "selected"}>
           {#each row.getVisibleCells() as cell (cell.id)}
             <Table.Cell>
-              <FlexRender
-                content={cell.column.columnDef.cell}
-                context={cell.getContext()}
-              />
+              <FlexRender {cell} />
             </Table.Cell>
           {/each}
         </Table.Row>
@@ -271,11 +299,12 @@ Let's format the amount cell to display the dollar amount. We'll also align the 
 Update the `header` and `cell` definitions for amount as follows:
 
 ```ts showLineNumbers title="routes/payments/columns.ts"
-import type { ColumnDef } from "@tanstack/table-core";
+import type { ColumnDef } from "@tanstack/svelte-table";
+import type { features } from "./table-features.js";
 import { createRawSnippet } from "svelte";
-import { renderSnippet } from "$lib/components/ui/data-table/index.js";
+import { renderSnippet } from "@tanstack/svelte-table";
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<typeof features, Payment>[] = [
   {
     accessorKey: "amount",
     header: () => {
@@ -369,11 +398,12 @@ We'll start by defining the actions menu in our `data-table-actions.svelte` comp
 Now that we've defined the `<DataTableActions />` component, let's update our `actions` column definition to use it.
 
 ```ts showLineNumbers title="routes/payments/columns.ts"
-import type { ColumnDef } from "@tanstack/table-core";
-import { renderComponent } from "$lib/components/ui/data-table/index.js";
+import type { ColumnDef } from "@tanstack/svelte-table";
+import type { features } from "./table-features.js";
+import { renderComponent } from "@tanstack/svelte-table";
 import DataTableActions from "./data-table-actions.svelte";
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<typeof features, Payment>[] = [
   // ...
   {
     id: "actions",
@@ -398,79 +428,74 @@ Next, we'll add pagination to our table.
 ### Update `<DataTable />`
 
 ```svelte showLineNumbers title="routes/payments/data-table.svelte"
-<script lang="ts" generics="TData, TValue">
+<script lang="ts" generics="TData extends RowData, TValue extends CellData">
   import {
+    createTable,
+    createTableState,
+    type CellData,
     type ColumnDef,
     type PaginationState,
-    getCoreRowModel,
-    getPaginationRowModel,
-  } from "@tanstack/table-core";
+    type RowData,
+  } from "@tanstack/svelte-table";
+  import { features } from "./table-features.js";
 
-  type DataTableProps<TData, TValue> = {
+  type DataTableProps<TData extends RowData, TValue extends CellData> = {
     data: TData[];
-    columns: ColumnDef<TData, TValue>[];
+    columns: ColumnDef<typeof features, TData, TValue>[];
   };
 
   let { data, columns }: DataTableProps<TData, TValue> = $props();
 
-  let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
+  const [pagination, setPagination] = createTableState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
+  });
 
-  const table = createSvelteTable({
+  const table = createTable({
+    features,
     get data() {
       return data;
     },
     columns,
     state: {
       get pagination() {
-        return pagination;
+        return pagination();
       },
     },
-    onPaginationChange: (updater) => {
-      if (typeof updater === "function") {
-        pagination = updater(pagination);
-      } else {
-        pagination = updater;
-      }
-    },
-    getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
+    onPaginationChange: setPagination,
   });
 </script>
 ```
 
-This will automatically paginate your rows into pages of 10. See the [pagination docs](https://tanstack.com/table/v8/docs/api/features/pagination) for more information on customizing page size and implementing manual pagination.
+This will automatically paginate your rows into pages of 10. See the [pagination docs](https://tanstack.com/table/latest/docs/api/features/pagination) for more information on customizing page size and implementing manual pagination.
 
 ### Adding pagination controls
 
 We can add pagination controls to our table using the `<Button />` component and the `table.previousPage()`, `table.nextPage()` API methods.
 
 ```svelte showLineNumbers title="routes/payments/data-table.svelte"
-<script lang="ts" generics="TData, TValue">
+<script lang="ts" generics="TData extends RowData, TValue extends CellData">
   import { Button } from "$lib/components/ui/button/index.js";
 
   let { columns, data }: DataTableProps<TData, TValue> = $props();
 
-  let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
+  const [pagination, setPagination] = createTableState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
+  });
 
-  const table = createSvelteTable({
+  const table = createTable({
+    features,
     get data() {
       return data;
     },
     columns,
     state: {
       get pagination() {
-        return pagination;
+        return pagination();
       },
     },
-    onPaginationChange: (updater) => {
-      if (typeof updater === "function") {
-        pagination = updater(pagination);
-      } else {
-        pagination = updater;
-      }
-    },
-    getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
+    onPaginationChange: setPagination,
   });
 </script>
 
@@ -534,49 +559,40 @@ We'll start by creating a component to render a sortable email header button.
 ### Update `<DataTable />`
 
 ```svelte showLineNumbers title="routes/payments/data-table.svelte"
-<script lang="ts" generics="TData, TValue">
+<script lang="ts" generics="TData extends RowData, TValue extends CellData">
   import {
+    createTable,
+    createTableState,
+    type CellData,
     type ColumnDef,
     type PaginationState,
+    type RowData,
     type SortingState,
-    getCoreRowModel,
-    getPaginationRowModel,
-    getSortedRowModel,
-  } from "@tanstack/table-core";
+  } from "@tanstack/svelte-table";
+  import { features } from "./table-features.js";
 
   let { columns, data }: DataTableProps<TData, TValue> = $props();
 
-  let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
-  let sorting = $state<SortingState>([]);
+  const [pagination, setPagination] = createTableState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
+  });
+  const [sorting, setSorting] = createTableState<SortingState>([]);
 
-  const table = createSvelteTable({
+  const table = createTable({
+    features,
     get data() {
       return data;
     },
     columns,
-    getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    onSortingChange: (updater) => {
-      if (typeof updater === "function") {
-        sorting = updater(sorting);
-      } else {
-        sorting = updater;
-      }
-    },
-    onPaginationChange: (updater) => {
-      if (typeof updater === "function") {
-        pagination = updater(pagination);
-      } else {
-        pagination = updater;
-      }
-    },
+    onSortingChange: setSorting,
+    onPaginationChange: setPagination,
     state: {
       get pagination() {
-        return pagination;
+        return pagination();
       },
       get sorting() {
-        return sorting;
+        return sorting();
       },
     },
   });
@@ -588,11 +604,12 @@ We'll start by creating a component to render a sortable email header button.
 We can now update the `email` header cell to add sorting controls.
 
 ```ts showLineNumbers title="src/routes/payments/columns.ts"
-import type { ColumnDef } from "@tanstack/table-core";
-import { renderComponent } from "$lib/components/ui/data-table/index.js";
+import type { ColumnDef } from "@tanstack/svelte-table";
+import type { features } from "./table-features.js";
+import { renderComponent } from "@tanstack/svelte-table";
 import DataTableEmailButton from "./data-table-email-button.svelte";
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<typeof features, Payment>[] = [
   // ...
   {
     accessorKey: "email",
@@ -617,64 +634,48 @@ Let's add a search input to filter emails in our table.
 ### Update `<DataTable />`
 
 ```svelte showLineNumbers title="routes/payments/data-table.svelte"
-<script lang="ts" generics="TData, TValue">
+<script lang="ts" generics="TData extends RowData, TValue extends CellData">
   import {
+    createTable,
+    createTableState,
+    type CellData,
     type ColumnDef,
-    type PaginationState,
-    type SortingState,
     type ColumnFiltersState,
-    getCoreRowModel,
-    getPaginationRowModel,
-    getSortedRowModel,
-    getFilteredRowModel,
-  } from "@tanstack/table-core";
+    type PaginationState,
+    type RowData,
+    type SortingState,
+  } from "@tanstack/svelte-table";
   import { Input } from "$lib/components/ui/input/index.js";
+  import { features } from "./table-features.js";
 
   let { columns, data }: DataTableProps<TData, TValue> = $props();
 
-  let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
-  let sorting = $state<SortingState>([]);
-  let columnFilters = $state<ColumnFiltersState>([]);
+  const [pagination, setPagination] = createTableState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
+  });
+  const [sorting, setSorting] = createTableState<SortingState>([]);
+  const [columnFilters, setColumnFilters] =
+    createTableState<ColumnFiltersState>([]);
 
-  const table = createSvelteTable({
+  const table = createTable({
+    features,
     get data() {
       return data;
     },
     columns,
-    getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    onPaginationChange: (updater) => {
-      if (typeof updater === "function") {
-        pagination = updater(pagination);
-      } else {
-        pagination = updater;
-      }
-    },
-    onSortingChange: (updater) => {
-      if (typeof updater === "function") {
-        sorting = updater(sorting);
-      } else {
-        sorting = updater;
-      }
-    },
-    onColumnFiltersChange: (updater) => {
-      if (typeof updater === "function") {
-        columnFilters = updater(columnFilters);
-      } else {
-        columnFilters = updater;
-      }
-    },
+    onPaginationChange: setPagination,
+    onSortingChange: setSorting,
+    onColumnFiltersChange: setColumnFilters,
     state: {
       get pagination() {
-        return pagination;
+        return pagination();
       },
       get sorting() {
-        return sorting;
+        return sorting();
       },
       get columnFilters() {
-        return columnFilters;
+        return columnFilters();
       },
     },
   });
@@ -700,89 +701,68 @@ Let's add a search input to filter emails in our table.
 </div>
 ```
 
-Filtering is now enabled for the `email` column. You can add filters to other columns as well. See the [filtering docs](https://tanstack.com/table/v8/docs/guide/filters) for more information on customizing filters.
+Filtering is now enabled for the `email` column. You can add filters to other columns as well. See the [filtering docs](https://tanstack.com/table/latest/docs/guide/filters) for more information on customizing filters.
 
 </Steps>
 
 ## Visibility
 
-Adding column visibility is fairly simple using `@tanstack/table-core` visibility API.
+Adding column visibility is fairly simple using `@tanstack/svelte-table` visibility API.
 
 <Steps>
 
 ### Update `<DataTable />`
 
 ```svelte showLineNumbers title="routes/payments/data-table.svelte"
-<script lang="ts" generics="TData, TValue">
+<script lang="ts" generics="TData extends RowData, TValue extends CellData">
   import {
+    createTable,
+    createTableState,
+    type CellData,
     type ColumnDef,
-    type PaginationState,
-    type SortingState,
     type ColumnFiltersState,
-    type VisibilityState,
-    getCoreRowModel,
-    getPaginationRowModel,
-    getSortedRowModel,
-    getFilteredRowModel,
-  } from "@tanstack/table-core";
+    type PaginationState,
+    type RowData,
+    type SortingState,
+    type ColumnVisibilityState,
+  } from "@tanstack/svelte-table";
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
+  import { features } from "./table-features.js";
 
   let { columns, data }: DataTableProps<TData, TValue> = $props();
 
-  let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
-  let sorting = $state<SortingState>([]);
-  let columnFilters = $state<ColumnFiltersState>([]);
-  let columnVisibility = $state<VisibilityState>({});
+  const [pagination, setPagination] = createTableState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
+  });
+  const [sorting, setSorting] = createTableState<SortingState>([]);
+  const [columnFilters, setColumnFilters] =
+    createTableState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] =
+    createTableState<ColumnVisibilityState>({});
 
-  const table = createSvelteTable({
+  const table = createTable({
+    features,
     get data() {
       return data;
     },
     columns,
-    getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    onPaginationChange: (updater) => {
-      if (typeof updater === "function") {
-        pagination = updater(pagination);
-      } else {
-        pagination = updater;
-      }
-    },
-    onSortingChange: (updater) => {
-      if (typeof updater === "function") {
-        sorting = updater(sorting);
-      } else {
-        sorting = updater;
-      }
-    },
-    onColumnFiltersChange: (updater) => {
-      if (typeof updater === "function") {
-        columnFilters = updater(columnFilters);
-      } else {
-        columnFilters = updater;
-      }
-    },
-    onColumnVisibilityChange: (updater) => {
-      if (typeof updater === "function") {
-        columnVisibility = updater(columnVisibility);
-      } else {
-        columnVisibility = updater;
-      }
-    },
+    onPaginationChange: setPagination,
+    onSortingChange: setSorting,
+    onColumnFiltersChange: setColumnFilters,
+    onColumnVisibilityChange: setColumnVisibility,
     state: {
       get pagination() {
-        return pagination;
+        return pagination();
       },
       get sorting() {
-        return sorting;
+        return sorting();
       },
       get columnFilters() {
-        return columnFilters;
+        return columnFilters();
       },
       get columnVisibility() {
-        return columnVisibility;
+        return columnVisibility();
       },
     },
   });
@@ -861,11 +841,12 @@ We'll start by defining the checkbox component in our `data-table-checkbox.svelt
 Now that we have a new component, we can add a `select` column definition to render a checkbox.
 
 ```ts showLineNumbers title="routes/payments/columns.ts"
-import type { ColumnDef } from "@tanstack/table-core";
-import { renderComponent } from "$lib/components/ui/data-table/index.js";
+import type { ColumnDef } from "@tanstack/svelte-table";
+import type { features } from "./table-features.js";
+import { renderComponent } from "@tanstack/svelte-table";
 import { Checkbox } from "$lib/components/ui/checkbox/index.js";
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<typeof features, Payment>[] = [
   // ...
   {
     id: "select",
@@ -875,13 +856,14 @@ export const columns: ColumnDef<Payment>[] = [
         indeterminate:
           table.getIsSomePageRowsSelected() &&
           !table.getIsAllPageRowsSelected(),
-        onCheckedChange: (value) => table.toggleAllPageRowsSelected(!!value),
+        onCheckedChange: (value: boolean) =>
+          table.toggleAllPageRowsSelected(!!value),
         "aria-label": "Select all",
       }),
     cell: ({ row }) =>
       renderComponent(Checkbox, {
         checked: row.getIsSelected(),
-        onCheckedChange: (value) => row.toggleSelected(!!value),
+        onCheckedChange: (value: boolean) => row.toggleSelected(!!value),
         "aria-label": "Select row",
       }),
     enableSorting: false,
@@ -893,88 +875,63 @@ export const columns: ColumnDef<Payment>[] = [
 ### Update `<DataTable />`
 
 ```svelte showLineNumbers title="routes/payments/data-table.svelte"
-<script lang="ts" generics="TData, TValue">
+<script lang="ts" generics="TData extends RowData, TValue extends CellData">
   import {
+    createTable,
+    createTableState,
+    type CellData,
     type ColumnDef,
-    type PaginationState,
-    type SortingState,
     type ColumnFiltersState,
-    type VisibilityState,
+    type PaginationState,
+    type RowData,
     type RowSelectionState,
-    getCoreRowModel,
-    getPaginationRowModel,
-    getSortedRowModel,
-    getFilteredRowModel,
-  } from "@tanstack/table-core";
+    type SortingState,
+    type ColumnVisibilityState,
+  } from "@tanstack/svelte-table";
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
+  import { features } from "./table-features.js";
 
   let { columns, data }: DataTableProps<TData, TValue> = $props();
 
-  let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
-  let sorting = $state<SortingState>([]);
-  let columnFilters = $state<ColumnFiltersState>([]);
-  let columnVisibility = $state<VisibilityState>({});
-  let rowSelection = $state<RowSelectionState>({});
+  const [pagination, setPagination] = createTableState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
+  });
+  const [sorting, setSorting] = createTableState<SortingState>([]);
+  const [columnFilters, setColumnFilters] =
+    createTableState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] =
+    createTableState<ColumnVisibilityState>({});
+  const [rowSelection, setRowSelection] = createTableState<RowSelectionState>(
+    {}
+  );
 
-  const table = createSvelteTable({
+  const table = createTable({
+    features,
     get data() {
       return data;
     },
     columns,
-    getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    onPaginationChange: (updater) => {
-      if (typeof updater === "function") {
-        pagination = updater(pagination);
-      } else {
-        pagination = updater;
-      }
-    },
-    onSortingChange: (updater) => {
-      if (typeof updater === "function") {
-        sorting = updater(sorting);
-      } else {
-        sorting = updater;
-      }
-    },
-    onColumnFiltersChange: (updater) => {
-      if (typeof updater === "function") {
-        columnFilters = updater(columnFilters);
-      } else {
-        columnFilters = updater;
-      }
-    },
-    onColumnVisibilityChange: (updater) => {
-      if (typeof updater === "function") {
-        columnVisibility = updater(columnVisibility);
-      } else {
-        columnVisibility = updater;
-      }
-    },
-    onRowSelectionChange: (updater) => {
-      if (typeof updater === "function") {
-        rowSelection = updater(rowSelection);
-      } else {
-        rowSelection = updater;
-      }
-    },
+    onPaginationChange: setPagination,
+    onSortingChange: setSorting,
+    onColumnFiltersChange: setColumnFilters,
+    onColumnVisibilityChange: setColumnVisibility,
+    onRowSelectionChange: setRowSelection,
     state: {
       get pagination() {
-        return pagination;
+        return pagination();
       },
       get sorting() {
-        return sorting;
+        return sorting();
       },
       get columnFilters() {
-        return columnFilters;
+        return columnFilters();
       },
       get columnVisibility() {
-        return columnVisibility;
+        return columnVisibility();
       },
       get rowSelection() {
-        return rowSelection;
+        return rowSelection();
       },
     },
   });

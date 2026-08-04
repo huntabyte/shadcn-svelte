@@ -113,12 +113,6 @@
 		"relativeUrl": "context-menu.json"
 	},
 	{
-		"name": "data-table",
-		"type": "registry:ui",
-		"registryDependencies": [],
-		"relativeUrl": "data-table.json"
-	},
-	{
 		"name": "dialog",
 		"type": "registry:ui",
 		"registryDependencies": [
@@ -1336,7 +1330,6 @@
 			"badge",
 			"table",
 			"tabs",
-			"data-table",
 			"avatar"
 		],
 		"relativeUrl": "dashboard-01.json"

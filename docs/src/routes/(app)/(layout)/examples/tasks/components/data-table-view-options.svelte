@@ -1,10 +1,11 @@
-<script lang="ts" generics="TData">
+<script lang="ts" generics="TData extends RowData">
 	import Settings2Icon from "@lucide/svelte/icons/settings-2";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import { buttonVariants } from "$lib/registry/ui/button/index.js";
-	import type { Table } from "@tanstack/table-core";
+	import type { features } from "./data-table.svelte";
+	import type { RowData, Table } from "@tanstack/svelte-table";
 
-	let { table }: { table: Table<TData> } = $props();
+	let { table }: { table: Table<typeof features, TData> } = $props();
 </script>
 
 <DropdownMenu.Root>

@@ -7,7 +7,8 @@
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 	import type { Task } from "../data/schemas.js";
-	import type { Column } from "@tanstack/table-core";
+	import type { features } from "./data-table.svelte";
+	import type { Column } from "@tanstack/svelte-table";
 	import type { HTMLAttributes } from "svelte/elements";
 
 	let {
@@ -15,7 +16,10 @@
 		title,
 		class: className,
 		...restProps
-	}: { column: Column<Task>; title: string } & HTMLAttributes<HTMLDivElement> = $props();
+	}: {
+		column: Column<typeof features, Task>;
+		title: string;
+	} & HTMLAttributes<HTMLDivElement> = $props();
 </script>
 
 {#if !column?.getCanSort()}

@@ -1,33 +1,54 @@
 <script lang="ts" module>
+	import {
+		columnFilteringFeature,
+		columnVisibilityFeature,
+		createFilteredRowModel,
+		createPaginatedRowModel,
+		createSortedRowModel,
+		rowPaginationFeature,
+		rowSelectionFeature,
+		rowSortingFeature,
+		tableFeatures,
+	} from "@tanstack/svelte-table";
+
 	export type Payment = {
 		id: string;
 		amount: number;
 		status: "pending" | "processing" | "success" | "failed";
 		email: string;
 	};
+
+	export const features = tableFeatures({
+		columnFilteringFeature,
+		filteredRowModel: createFilteredRowModel(),
+		columnVisibilityFeature,
+		rowPaginationFeature,
+		paginatedRowModel: createPaginatedRowModel(),
+		rowSelectionFeature,
+		rowSortingFeature,
+		sortedRowModel: createSortedRowModel(),
+	});
 </script>
 
 <script lang="ts">
 	import {
-		getCoreRowModel,
-		getFilteredRowModel,
-		getPaginationRowModel,
-		getSortedRowModel,
+		FlexRender,
+		createTable,
+		createTableState,
+		renderComponent,
+		renderSnippet,
 		type ColumnDef,
 		type ColumnFiltersState,
 		type PaginationState,
 		type RowSelectionState,
 		type SortingState,
-		type VisibilityState,
-	} from "@tanstack/table-core";
+		type ColumnVisibilityState,
+	} from "@tanstack/svelte-table";
 	import { createRawSnippet } from "svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Table from "$lib/registry/ui/table/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
-	import { createSvelteTable } from "$lib/registry/ui/data-table/data-table.svelte.js";
-	import { FlexRender } from "$lib/registry/ui/data-table/index.js";
-	import { renderComponent, renderSnippet } from "$lib/registry/ui/data-table/render-helpers.js";
 	import ActionsCell from "./payments-actions-cell.svelte";
 	import EmailHeader from "./payments-email-header.svelte";
 
@@ -70,20 +91,20 @@
 		},
 	];
 
-	const columns: ColumnDef<Payment>[] = [
+	const columns: ColumnDef<typeof features, Payment>[] = [
 		{
 			id: "select",
 			header: ({ table }) =>
 				renderComponent(Checkbox, {
 					checked: table.getIsAllPageRowsSelected(),
 					indeterminate: table.getIsSomeRowsSelected() && !table.getIsAllRowsSelected(),
-					onCheckedChange: (v) => table.toggleAllPageRowsSelected(!!v),
+					onCheckedChange: (v: boolean) => table.toggleAllPageRowsSelected(!!v),
 					"aria-label": "Select all",
 				}),
 			cell: ({ row }) =>
 				renderComponent(Checkbox, {
 					checked: row.getIsSelected(),
-					onCheckedChange: (v) => row.toggleSelected(!!v),
+					onCheckedChange: (v: boolean) => row.toggleSelected(!!v),
 				}),
 			enableSorting: false,
 			enableHiding: false,
@@ -143,73 +164,43 @@
 		},
 	];
 
-	let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
-	let sorting = $state<SortingState>([]);
-	let columnFilters = $state<ColumnFiltersState>([]);
-	let rowSelection = $state<RowSelectionState>({});
-	let columnVisibility = $state<VisibilityState>({});
+	const [pagination, setPagination] = createTableState<PaginationState>({
+		pageIndex: 0,
+		pageSize: 10,
+	});
+	const [sorting, setSorting] = createTableState<SortingState>([]);
+	const [columnFilters, setColumnFilters] = createTableState<ColumnFiltersState>([]);
+	const [rowSelection, setRowSelection] = createTableState<RowSelectionState>({});
+	const [columnVisibility, setColumnVisibility] = createTableState<ColumnVisibilityState>({});
 
-	const table = createSvelteTable({
+	const table = createTable({
+		features,
 		get data() {
 			return data;
 		},
 		columns,
 		state: {
 			get pagination() {
-				return pagination;
+				return pagination();
 			},
 			get sorting() {
-				return sorting;
+				return sorting();
 			},
 			get columnVisibility() {
-				return columnVisibility;
+				return columnVisibility();
 			},
 			get rowSelection() {
-				return rowSelection;
+				return rowSelection();
 			},
 			get columnFilters() {
-				return columnFilters;
+				return columnFilters();
 			},
 		},
-		getCoreRowModel: getCoreRowModel(),
-		getPaginationRowModel: getPaginationRowModel(),
-		getSortedRowModel: getSortedRowModel(),
-		getFilteredRowModel: getFilteredRowModel(),
-		onPaginationChange: (updater) => {
-			if (typeof updater === "function") {
-				pagination = updater(pagination);
-			} else {
-				pagination = updater;
-			}
-		},
-		onSortingChange: (updater) => {
-			if (typeof updater === "function") {
-				sorting = updater(sorting);
-			} else {
-				sorting = updater;
-			}
-		},
-		onColumnFiltersChange: (updater) => {
-			if (typeof updater === "function") {
-				columnFilters = updater(columnFilters);
-			} else {
-				columnFilters = updater;
-			}
-		},
-		onColumnVisibilityChange: (updater) => {
-			if (typeof updater === "function") {
-				columnVisibility = updater(columnVisibility);
-			} else {
-				columnVisibility = updater;
-			}
-		},
-		onRowSelectionChange: (updater) => {
-			if (typeof updater === "function") {
-				rowSelection = updater(rowSelection);
-			} else {
-				rowSelection = updater;
-			}
-		},
+		onPaginationChange: setPagination,
+		onSortingChange: setSorting,
+		onColumnFiltersChange: setColumnFilters,
+		onColumnVisibilityChange: setColumnVisibility,
+		onRowSelectionChange: setRowSelection,
 	});
 </script>
 
@@ -233,10 +224,7 @@
 									data-name={header.id}
 								>
 									{#if !header.isPlaceholder}
-										<FlexRender
-											context={header.getContext()}
-											content={header.column.columnDef.header}
-										/>
+										<FlexRender {header} />
 									{/if}
 								</Table.Head>
 							{/each}
@@ -252,7 +240,7 @@
 										class="data-[name=actions]:w-10 data-[name=amount]:w-24 data-[name=select]:w-10 data-[name=status]:w-24 [&:has([role=checkbox])]:ps-3"
 										data-name={cell.column.id}
 									>
-										<FlexRender context={cell.getContext()} content={cell.column.columnDef.cell} />
+										<FlexRender {cell} />
 									</Table.Cell>
 								{/each}
 							</Table.Row>

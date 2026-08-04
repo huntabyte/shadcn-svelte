@@ -125,12 +125,6 @@
 		"relativeUrl": "context-menu.json"
 	},
 	{
-		"name": "data-table",
-		"type": "registry:ui",
-		"registryDependencies": [],
-		"relativeUrl": "data-table.json"
-	},
-	{
 		"name": "dialog",
 		"type": "registry:ui",
 		"registryDependencies": [],
@@ -1340,7 +1334,6 @@
 			"input",
 			"separator",
 			"checkbox",
-			"data-table",
 			"tabs",
 			"table",
 			"dropdown-menu",

@@ -1,9 +1,23 @@
 <script lang="ts" module>
-	export const columns: ColumnDef<Schema>[] = [
+	export const features = tableFeatures({
+		columnFacetingFeature,
+		facetedRowModel: createFacetedRowModel(),
+		facetedUniqueValues: createFacetedUniqueValues(),
+		columnFilteringFeature,
+		filteredRowModel: createFilteredRowModel(),
+		columnVisibilityFeature,
+		rowPaginationFeature,
+		paginatedRowModel: createPaginatedRowModel(),
+		rowSelectionFeature,
+		rowSortingFeature,
+		sortedRowModel: createSortedRowModel(),
+	});
+
+	export const columns: ColumnDef<typeof features, Schema>[] = [
 		{
 			id: "drag",
 			header: () => null,
-			cell: () => renderComponent(DataTableDragHandle, {}),
+			cell: () => null,
 		},
 		{
 			id: "select",
@@ -11,13 +25,13 @@
 				renderComponent(DataTableCheckbox, {
 					checked: table.getIsAllPageRowsSelected(),
 					indeterminate: table.getIsSomePageRowsSelected() && !table.getIsAllPageRowsSelected(),
-					onCheckedChange: (value) => table.toggleAllPageRowsSelected(!!value),
+					onCheckedChange: (value: boolean) => table.toggleAllPageRowsSelected(!!value),
 					"aria-label": "Select all",
 				}),
 			cell: ({ row }) =>
 				renderComponent(DataTableCheckbox, {
 					checked: row.getIsSelected(),
-					onCheckedChange: (value) => row.toggleSelected(!!value),
+					onCheckedChange: (value: boolean) => row.toggleSelected(!!value),
 					"aria-label": "Select row",
 				}),
 			enableSorting: false,
@@ -74,28 +88,36 @@
 	import { RestrictToVerticalAxis } from "@dnd-kit/abstract/modifiers";
 	import { move } from "@dnd-kit/helpers";
 	import {
-		getCoreRowModel,
-		getFacetedRowModel,
-		getFacetedUniqueValues,
-		getFilteredRowModel,
-		getPaginationRowModel,
-		getSortedRowModel,
+		FlexRender,
+		columnFacetingFeature,
+		columnFilteringFeature,
+		columnVisibilityFeature,
+		createFacetedRowModel,
+		createFacetedUniqueValues,
+		createFilteredRowModel,
+		createPaginatedRowModel,
+		createSortedRowModel,
+		createTable,
+		createTableState,
+		renderComponent,
+		rowPaginationFeature,
+		rowSelectionFeature,
+		rowSortingFeature,
+		tableFeatures,
 		type ColumnDef,
 		type ColumnFiltersState,
 		type PaginationState,
 		type Row,
 		type RowSelectionState,
 		type SortingState,
-		type VisibilityState,
-	} from "@tanstack/table-core";
+		type ColumnVisibilityState,
+	} from "@tanstack/svelte-table";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import * as Table from "$lib/registry/ui/table/index.js";
 	import * as Tabs from "$lib/registry/ui/tabs/index.js";
 	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import { createSvelteTable } from "$lib/registry/ui/data-table/data-table.svelte.js";
-	import { FlexRender, renderComponent } from "$lib/registry/ui/data-table/index.js";
 	import { Label } from "$lib/registry/ui/label/index.js";
 	import DataTableActions from "./data-table-actions.svelte";
 	import DataTableCellViewer from "./data-table-cell-viewer.svelte";
@@ -111,78 +133,46 @@
 	import type { Schema } from "./schemas.js";
 
 	let { data }: { data: Schema[] } = $props();
-	let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
-	let sorting = $state<SortingState>([]);
-	let columnFilters = $state<ColumnFiltersState>([]);
-	let rowSelection = $state<RowSelectionState>({});
-	let columnVisibility = $state<VisibilityState>({});
+	const [pagination, setPagination] = createTableState<PaginationState>({
+		pageIndex: 0,
+		pageSize: 10,
+	});
+	const [sorting, setSorting] = createTableState<SortingState>([]);
+	const [columnFilters, setColumnFilters] = createTableState<ColumnFiltersState>([]);
+	const [rowSelection, setRowSelection] = createTableState<RowSelectionState>({});
+	const [columnVisibility, setColumnVisibility] = createTableState<ColumnVisibilityState>({});
 
-	const table = createSvelteTable({
+	const table = createTable({
+		features,
 		get data() {
 			return data;
 		},
 		columns,
 		state: {
 			get pagination() {
-				return pagination;
+				return pagination();
 			},
 			get sorting() {
-				return sorting;
+				return sorting();
 			},
 			get columnVisibility() {
-				return columnVisibility;
+				return columnVisibility();
 			},
 			get rowSelection() {
-				return rowSelection;
+				return rowSelection();
 			},
 			get columnFilters() {
-				return columnFilters;
+				return columnFilters();
 			},
 		},
 		getRowId: (row) => row.id.toString(),
 		enableRowSelection: true,
-		getCoreRowModel: getCoreRowModel(),
-		getPaginationRowModel: getPaginationRowModel(),
-		getSortedRowModel: getSortedRowModel(),
-		getFacetedRowModel: getFacetedRowModel(),
-		getFacetedUniqueValues: getFacetedUniqueValues(),
-		getFilteredRowModel: getFilteredRowModel(),
 		autoResetPageIndex: false,
-		onPaginationChange: (updater) => {
-			if (typeof updater === "function") {
-				pagination = updater(pagination);
-			} else {
-				pagination = updater;
-			}
-		},
-		onSortingChange: (updater) => {
-			if (typeof updater === "function") {
-				sorting = updater(sorting);
-			} else {
-				sorting = updater;
-			}
-		},
-		onColumnFiltersChange: (updater) => {
-			if (typeof updater === "function") {
-				columnFilters = updater(columnFilters);
-			} else {
-				columnFilters = updater;
-			}
-		},
-		onColumnVisibilityChange: (updater) => {
-			if (typeof updater === "function") {
-				columnVisibility = updater(columnVisibility);
-			} else {
-				columnVisibility = updater;
-			}
-		},
-		onRowSelectionChange: (updater) => {
-			if (typeof updater === "function") {
-				rowSelection = updater(rowSelection);
-			} else {
-				rowSelection = updater;
-			}
-		},
+		onPaginationChange: setPagination,
+		onSortingChange: setSorting,
+		onColumnFiltersChange: setColumnFilters,
+		onColumnVisibilityChange: setColumnVisibility,
+		onRowSelectionChange: setRowSelection,
 	});
 
 	let views = [
@@ -285,10 +275,7 @@
 								{#each headerGroup.headers as header (header.id)}
 									<Table.Head colspan={header.colSpan}>
 										{#if !header.isPlaceholder}
-											<FlexRender
-												content={header.column.columnDef.header}
-												context={header.getContext()}
-											/>
+											<FlexRender {header} />
 										{/if}
 									</Table.Head>
 								{/each}
@@ -322,11 +309,11 @@
 					<Select.Root
 						type="single"
 						bind:value={
-							() => `${table.getState().pagination.pageSize}`, (v) => table.setPageSize(Number(v))
+							() => `${table.atoms.pagination.get().pageSize}`, (v) => table.setPageSize(Number(v))
 						}
 					>
 						<Select.Trigger size="sm" class="w-20" id="rows-per-page">
-							{table.getState().pagination.pageSize}
+							{table.atoms.pagination.get().pageSize}
 						</Select.Trigger>
 						<Select.Content side="top">
 							{#each [10, 20, 30, 40, 50] as pageSize (pageSize)}
@@ -338,7 +325,7 @@
 					</Select.Root>
 				</div>
 				<div class="flex w-fit items-center justify-center text-sm font-medium">
-					Page {table.getState().pagination.pageIndex + 1} of
+					Page {table.atoms.pagination.get().pageIndex + 1} of
 					{table.getPageCount()}
 				</div>
 				<div class="ms-auto flex items-center gap-2 lg:ms-0">
@@ -396,7 +383,7 @@
 	</Tabs.Content>
 </Tabs.Root>
 
-{#snippet DraggableRow({ row }: { row: Row<Schema> })}
+{#snippet DraggableRow({ row }: { row: Row<typeof features, Schema> })}
 	{@const { ref, isDragging, handleRef } = useSortable({
 		id: row.original.id,
 		index: () => row.index,
@@ -410,11 +397,11 @@
 	>
 		{#each row.getVisibleCells() as cell (cell.id)}
 			<Table.Cell>
-				<FlexRender
-					attach={handleRef}
-					content={cell.column.columnDef.cell}
-					context={cell.getContext()}
-				/>
+				{#if cell.column.id === "drag"}
+					<DataTableDragHandle attach={handleRef} />
+				{:else}
+					<FlexRender {cell} />
+				{/if}
 			</Table.Cell>
 		{/each}
 	</Table.Row>
