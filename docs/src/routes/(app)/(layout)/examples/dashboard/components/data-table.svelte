@@ -1,10 +1,11 @@
 <script lang="ts" module>
 	export const features = tableFeatures({
+		columnFilteringFeature,
+		filteredRowModel: createFilteredRowModel(),
+		filterFns: { includesString: filterFn_includesString },
 		columnFacetingFeature,
 		facetedRowModel: createFacetedRowModel(),
 		facetedUniqueValues: createFacetedUniqueValues(),
-		columnFilteringFeature,
-		filteredRowModel: createFilteredRowModel(),
 		columnVisibilityFeature,
 		rowPaginationFeature,
 		paginatedRowModel: createPaginatedRowModel(),
@@ -99,6 +100,7 @@
 		createSortedRowModel,
 		createTable,
 		createTableState,
+		filterFn_includesString,
 		renderComponent,
 		rowPaginationFeature,
 		rowSelectionFeature,

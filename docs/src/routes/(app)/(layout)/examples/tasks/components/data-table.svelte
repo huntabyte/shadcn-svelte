@@ -8,6 +8,7 @@
 		createFilteredRowModel,
 		createPaginatedRowModel,
 		createSortedRowModel,
+		filterFn_includesString,
 		rowPaginationFeature,
 		rowSelectionFeature,
 		rowSortingFeature,
@@ -15,11 +16,12 @@
 	} from "@tanstack/svelte-table";
 
 	export const features = tableFeatures({
+		columnFilteringFeature,
+		filteredRowModel: createFilteredRowModel(),
+		filterFns: { includesString: filterFn_includesString },
 		columnFacetingFeature,
 		facetedRowModel: createFacetedRowModel(),
 		facetedUniqueValues: createFacetedUniqueValues(),
-		columnFilteringFeature,
-		filteredRowModel: createFilteredRowModel(),
 		columnVisibilityFeature,
 		rowPaginationFeature,
 		paginatedRowModel: createPaginatedRowModel(),
@@ -187,6 +189,7 @@
 		},
 		columns,
 		enableRowSelection: true,
+		autoResetPageIndex: false,
 		onRowSelectionChange: setRowSelection,
 		onSortingChange: setSorting,
 		onColumnFiltersChange: setColumnFilters,

@@ -5,6 +5,7 @@
 		createFilteredRowModel,
 		createPaginatedRowModel,
 		createSortedRowModel,
+		filterFn_includesString,
 		rowPaginationFeature,
 		rowSelectionFeature,
 		rowSortingFeature,
@@ -21,6 +22,7 @@
 	export const features = tableFeatures({
 		columnFilteringFeature,
 		filteredRowModel: createFilteredRowModel(),
+		filterFns: { includesString: filterFn_includesString },
 		columnVisibilityFeature,
 		rowPaginationFeature,
 		paginatedRowModel: createPaginatedRowModel(),
@@ -196,6 +198,7 @@
 				return columnFilters();
 			},
 		},
+		autoResetPageIndex: false,
 		onPaginationChange: setPagination,
 		onSortingChange: setSorting,
 		onColumnFiltersChange: setColumnFilters,

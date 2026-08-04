@@ -128,6 +128,7 @@ import {
   createFilteredRowModel,
   createPaginatedRowModel,
   createSortedRowModel,
+  filterFn_includesString,
   rowPaginationFeature,
   rowSelectionFeature,
   rowSortingFeature,
@@ -137,6 +138,7 @@ import {
 export const features = tableFeatures({
   columnFilteringFeature,
   filteredRowModel: createFilteredRowModel(),
+  filterFns: { includesString: filterFn_includesString },
   columnVisibilityFeature,
   rowPaginationFeature,
   paginatedRowModel: createPaginatedRowModel(),
@@ -214,6 +216,7 @@ Next, we'll create a `<DataTable />` component to render our table.
       return data;
     },
     columns,
+    autoResetPageIndex: false,
   });
 </script>
 
@@ -457,6 +460,7 @@ Next, we'll add pagination to our table.
       return data;
     },
     columns,
+    autoResetPageIndex: false,
     state: {
       get pagination() {
         return pagination();
@@ -490,6 +494,7 @@ We can add pagination controls to our table using the `<Button />` component and
       return data;
     },
     columns,
+    autoResetPageIndex: false,
     state: {
       get pagination() {
         return pagination();
@@ -585,6 +590,7 @@ We'll start by creating a component to render a sortable email header button.
       return data;
     },
     columns,
+    autoResetPageIndex: false,
     onSortingChange: setSorting,
     onPaginationChange: setPagination,
     state: {
@@ -664,6 +670,7 @@ Let's add a search input to filter emails in our table.
       return data;
     },
     columns,
+    autoResetPageIndex: false,
     onPaginationChange: setPagination,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -747,6 +754,7 @@ Adding column visibility is fairly simple using `@tanstack/svelte-table` visibil
       return data;
     },
     columns,
+    autoResetPageIndex: false,
     onPaginationChange: setPagination,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -912,6 +920,7 @@ export const columns: ColumnDef<typeof features, Payment>[] = [
       return data;
     },
     columns,
+    autoResetPageIndex: false,
     onPaginationChange: setPagination,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
