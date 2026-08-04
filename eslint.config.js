@@ -52,14 +52,13 @@ export default defineConfig(
 	{
 		ignores: [
 			"build/",
-			".svelte-kit/",
 			"dist/",
-			".svelte-kit/**/*",
-			"docs/.svelte-kit/**/*",
-			".svelte-kit",
+			"**/.svelte-kit/**/*",
 			"playgrounds/**/*",
 			"packages/cli/dist/**/*",
-			"registry-template/**/*",
+			"**/.test-output/**/*",
+			"**/demo/**/*",
+			"sv-addons/registry/template",
 		],
 	}
 );

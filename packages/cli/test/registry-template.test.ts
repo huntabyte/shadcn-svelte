@@ -11,11 +11,13 @@ import path from "node:path";
 import { it, expect } from "vitest";
 
 const registryTemplateStaticRegistryPath = path.join(
-	__dirname,
+	import.meta.dirname,
 	"..",
 	"..",
 	"..",
-	"registry-template",
+	"sv-addons",
+	"registry",
+	"demo",
 	"static",
 	"r"
 );
