@@ -7,14 +7,17 @@
 	import PlusIcon from "@lucide/svelte/icons/plus";
 	import RotateCwIcon from "@lucide/svelte/icons/rotate-cw";
 	import TelescopeIcon from "@lucide/svelte/icons/telescope";
+	import { onDestroy } from "svelte";
 	import * as Bubble from "$lib/registry/ui/bubble/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Empty from "$lib/registry/ui/empty/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
+	import * as Marker from "$lib/registry/ui/marker/index.js";
 	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
 	import * as Message from "$lib/registry/ui/message/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Spinner } from "$lib/registry/ui/spinner/index.js";
 
 	type DemoMessage = { id: string; role: "user" | "assistant"; text: string };
 
@@ -42,36 +45,62 @@
 	] as const;
 
 	let messages = $state<DemoMessage[]>([]);
-	let status = $state<"ready" | "submitted">("ready");
-	let timeout: ReturnType<typeof setTimeout> | undefined;
+	let status = $state<"ready" | "submitted" | "streaming">("ready");
+	let replyTimeout: ReturnType<typeof setTimeout> | undefined;
+	let streamInterval: ReturnType<typeof setInterval> | undefined;
 	const nextTurn = $derived(turns[Math.floor(messages.length / 2)]);
-	const isBusy = $derived(status === "submitted");
+	const isBusy = $derived(status !== "ready");
+
+	function stopPlayback() {
+		if (replyTimeout) clearTimeout(replyTimeout);
+		if (streamInterval) clearInterval(streamInterval);
+		replyTimeout = undefined;
+		streamInterval = undefined;
+	}
 
 	function reset() {
-		if (timeout) clearTimeout(timeout);
+		stopPlayback();
 		status = "ready";
 		messages = [];
+	}
+
+	function streamReply(turnIndex: number, text: string) {
+		const assistantId = `assistant-${turnIndex}`;
+		let cursor = 0;
+		status = "streaming";
+		messages = [...messages, { id: assistantId, role: "assistant", text: "" }];
+
+		streamInterval = setInterval(() => {
+			const nextSpace = text.indexOf(" ", cursor + 1);
+			cursor = nextSpace === -1 ? text.length : nextSpace + 1;
+			messages = messages.map((message) =>
+				message.id === assistantId ? { ...message, text: text.slice(0, cursor) } : message
+			);
+
+			if (cursor >= text.length) {
+				if (streamInterval) clearInterval(streamInterval);
+				streamInterval = undefined;
+				status = "ready";
+			}
+		}, 34);
 	}
 
 	function send(event: SubmitEvent) {
 		event.preventDefault();
 		if (!nextTurn || isBusy) return;
 
+		stopPlayback();
 		const turn = nextTurn;
 		const turnIndex = Math.floor(messages.length / 2);
 		status = "submitted";
 		messages = [...messages, { id: `user-${turnIndex}`, role: "user", text: turn.user }];
-		timeout = setTimeout(() => {
-			messages = [
-				...messages,
-				{ id: `assistant-${turnIndex}`, role: "assistant", text: turn.assistant },
-			];
-			status = "ready";
-		}, 500);
+		replyTimeout = setTimeout(() => streamReply(turnIndex, turn.assistant), 450);
 	}
+
+	onDestroy(stopPlayback);
 </script>
 
-<MessageScroller.Provider>
+<MessageScroller.Provider autoScroll={true}>
 	<div class="relative flex flex-col gap-4">
 		<Card.Root class="mx-auto h-140 w-full max-w-sm gap-0">
 			<Card.Header class="gap-1 border-b">
@@ -109,6 +138,7 @@
 									<MessageScroller.Item
 										messageId={message.id}
 										scrollAnchor={message.role === "user"}
+										class="message-scroller-demo-item"
 									>
 										<Message.Root align={message.role === "user" ? "end" : "start"}>
 											<Message.Content>
@@ -123,6 +153,14 @@
 										</Message.Root>
 									</MessageScroller.Item>
 								{/each}
+								{#if status === "submitted"}
+									<MessageScroller.Item class="message-scroller-demo-item">
+										<Marker.Root role="status">
+											<Marker.Icon><Spinner /></Marker.Icon>
+											<Marker.Content>Thinking...</Marker.Content>
+										</Marker.Root>
+									</MessageScroller.Item>
+								{/if}
 							</MessageScroller.Content>
 						</MessageScroller.Viewport>
 						<MessageScroller.Button />
@@ -189,3 +227,26 @@
 		</div>
 	</div>
 </MessageScroller.Provider>
+
+<style>
+	@keyframes message-scroller-demo-item-in {
+		from {
+			opacity: 0;
+			transform: translateY(0.5rem);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	:global(.message-scroller-demo-item) {
+		animation: message-scroller-demo-item-in 240ms cubic-bezier(0.16, 1, 0.3, 1) both;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		:global(.message-scroller-demo-item) {
+			animation: none;
+		}
+	}
+</style>

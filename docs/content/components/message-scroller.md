@@ -77,7 +77,7 @@ Anchors are role-independent: a message, system marker, handoff, or join event c
 
 ## Following streamed output
 
-With `autoScroll`, streamed content stays visible only while the reader remains at the live edge. Wheel, touch, keyboard scrolling, scrollbar dragging, and explicit message jumps release follow mode. Calling `scrollToEnd` or activating the end button resumes it.
+`MessageScroller` does not generate or transport text. Your chat state must append the assistant row and update its text as chunks arrive; the scroller observes those layout changes. With `autoScroll`, streamed content stays visible only while the reader remains at the live edge. Wheel, touch, keyboard scrolling, scrollbar dragging, and explicit message jumps release follow mode. Calling `scrollToEnd` or activating the end button resumes it.
 
 The root and viewport expose `data-autoscrolling` during a programmatic jump and `data-scrollable="start end"` for styling.
 
