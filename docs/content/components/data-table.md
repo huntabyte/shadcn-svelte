@@ -3,7 +3,7 @@ title: Data Table
 description: Powerful table and datagrids built using TanStack Table.
 component: true
 links:
-  doc: https://tanstack.com/table/latest/docs/framework/svelte
+  doc: https://tanstack.com/table/v9/docs/framework/svelte
 ---
 
 <script>
@@ -56,7 +56,7 @@ This guide will show you how to use [TanStack Table](https://tanstack.com/table)
 
 2. Add the official TanStack Table adapter for Svelte 5:
 
-<PMInstall command="@tanstack/svelte-table" />
+<PMInstall command="@tanstack/svelte-table@9" />
 
 ## Prerequisites
 
@@ -467,7 +467,7 @@ Next, we'll add pagination to our table.
 </script>
 ```
 
-This will automatically paginate your rows into pages of 10. See the [pagination docs](https://tanstack.com/table/latest/docs/api/features/pagination) for more information on customizing page size and implementing manual pagination.
+This will automatically paginate your rows into pages of 10. See the [TanStack Table v9 docs](https://tanstack.com/table/v9/docs/framework/svelte) for more information on customizing page size and implementing manual pagination.
 
 ### Adding pagination controls
 
@@ -701,7 +701,7 @@ Let's add a search input to filter emails in our table.
 </div>
 ```
 
-Filtering is now enabled for the `email` column. You can add filters to other columns as well. See the [filtering docs](https://tanstack.com/table/latest/docs/guide/filters) for more information on customizing filters.
+Filtering is now enabled for the `email` column. You can add filters to other columns as well. See the [TanStack Table v9 docs](https://tanstack.com/table/v9/docs/framework/svelte) for more information on customizing filters.
 
 </Steps>
 
