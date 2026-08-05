@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { afterNavigate } from "$app/navigation";
 	import { page } from "$app/state";
 	import { onMount, tick } from "svelte";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
@@ -118,17 +117,13 @@
 
 	$effect(() => {
 		pathname;
+		renderedNavItems;
 		void restoreScroll();
 	});
 
-	afterNavigate(() => void restoreScroll());
-
 	onMount(() => {
-		const observer = new MutationObserver(() => void restoreScroll());
-		if (content) observer.observe(content, { childList: true, subtree: true });
 		content?.addEventListener("scroll", saveScrollState, { passive: true });
 		return () => {
-			observer.disconnect();
 			content?.removeEventListener("scroll", saveScrollState);
 		};
 	});
