@@ -25,7 +25,7 @@
 			<DropdownMenu.Separator />
 			{#each table
 				.getAllColumns()
-				.filter((col) => typeof col.accessorFn !== "undefined" && col.getCanHide()) as column (column)}
+				.filter((col) => typeof col.accessorFn !== "undefined" && col.getCanHide()) as column (column.id)}
 				<DropdownMenu.CheckboxItem
 					bind:checked={() => column.getIsVisible(), (v) => column.toggleVisibility(!!v)}
 					class="capitalize"
