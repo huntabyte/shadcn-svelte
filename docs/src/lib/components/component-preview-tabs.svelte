@@ -84,7 +84,7 @@
 				{#if isMobileCodeVisible}
 					{@render children?.()}
 				{:else}
-					<div class="relative h-24">
+					<div class="relative h-28">
 						{@render children?.()}
 						<div class="absolute inset-0 flex items-center justify-center pb-4">
 							<div
