@@ -177,6 +177,20 @@
 		onRowSelectionChange: setRowSelection,
 	});
 
+	const paginationState = $derived(table.atoms.pagination.get());
+	const hideableColumns = $derived(
+		table
+			.getAllColumns()
+			.filter((column) => typeof column.accessorFn !== "undefined" && column.getCanHide())
+	);
+	const headerGroups = $derived(table.getHeaderGroups());
+	const rows = $derived(table.getRowModel().rows);
+	const selectedRowCount = $derived(table.getFilteredSelectedRowModel().rows.length);
+	const filteredRowCount = $derived(table.getFilteredRowModel().rows.length);
+	const pageCount = $derived(table.getPageCount());
+	const canPreviousPage = $derived(table.getCanPreviousPage());
+	const canNextPage = $derived(table.getCanNextPage());
+
 	let views = [
 		{
 			id: "outline",
@@ -242,9 +256,7 @@
 					{/snippet}
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content align="end" class="w-56">
-					{#each table
-						.getAllColumns()
-						.filter((col) => typeof col.accessorFn !== "undefined" && col.getCanHide()) as column (column.id)}
+					{#each hideableColumns as column (column.id)}
 						<DropdownMenu.CheckboxItem
 							class="capitalize"
 							checked={column.getIsVisible()}
@@ -272,7 +284,7 @@
 			>
 				<Table.Root>
 					<Table.Header class="sticky top-0 z-10 bg-muted">
-						{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
+						{#each headerGroups as headerGroup (headerGroup.id)}
 							<Table.Row>
 								{#each headerGroup.headers as header (header.id)}
 									<Table.Head colspan={header.colSpan}>
@@ -285,8 +297,8 @@
 						{/each}
 					</Table.Header>
 					<Table.Body class="**:data-[slot=table-cell]:first:w-8">
-						{#if table.getRowModel().rows?.length}
-							{#each table.getRowModel().rows as row (row.id)}
+						{#if rows.length}
+							{#each rows as row (row.id)}
 								{@render DraggableRow({ row })}
 							{/each}
 						{:else}
@@ -302,20 +314,17 @@
 		</div>
 		<div class="flex items-center justify-between px-4">
 			<div class="hidden flex-1 text-sm text-muted-foreground lg:flex">
-				{table.getFilteredSelectedRowModel().rows.length} of
-				{table.getFilteredRowModel().rows.length} row(s) selected.
+				{selectedRowCount} of {filteredRowCount} row(s) selected.
 			</div>
 			<div class="flex w-full items-center gap-8 lg:w-fit">
 				<div class="hidden items-center gap-2 lg:flex">
 					<Label for="rows-per-page" class="text-sm font-medium">Rows per page</Label>
 					<Select.Root
 						type="single"
-						bind:value={
-							() => `${table.atoms.pagination.get().pageSize}`, (v) => table.setPageSize(Number(v))
-						}
+						bind:value={() => `${paginationState.pageSize}`, (v) => table.setPageSize(Number(v))}
 					>
 						<Select.Trigger size="sm" class="w-20" id="rows-per-page">
-							{table.atoms.pagination.get().pageSize}
+							{paginationState.pageSize}
 						</Select.Trigger>
 						<Select.Content side="top">
 							{#each [10, 20, 30, 40, 50] as pageSize (pageSize)}
@@ -327,15 +336,14 @@
 					</Select.Root>
 				</div>
 				<div class="flex w-fit items-center justify-center text-sm font-medium">
-					Page {table.atoms.pagination.get().pageIndex + 1} of
-					{table.getPageCount()}
+					Page {paginationState.pageIndex + 1} of {pageCount}
 				</div>
 				<div class="ms-auto flex items-center gap-2 lg:ms-0">
 					<Button
 						variant="outline"
 						class="hidden h-8 w-8 p-0 lg:flex"
 						onclick={() => table.setPageIndex(0)}
-						disabled={!table.getCanPreviousPage()}
+						disabled={!canPreviousPage}
 					>
 						<span class="sr-only">Go to first page</span>
 						<ChevronsLeftIcon />
@@ -345,7 +353,7 @@
 						class="size-8"
 						size="icon"
 						onclick={() => table.previousPage()}
-						disabled={!table.getCanPreviousPage()}
+						disabled={!canPreviousPage}
 					>
 						<span class="sr-only">Go to previous page</span>
 						<ChevronLeftIcon />
@@ -355,7 +363,7 @@
 						class="size-8"
 						size="icon"
 						onclick={() => table.nextPage()}
-						disabled={!table.getCanNextPage()}
+						disabled={!canNextPage}
 					>
 						<span class="sr-only">Go to next page</span>
 						<ChevronRightIcon />
@@ -364,8 +372,8 @@
 						variant="outline"
 						class="hidden size-8 lg:flex"
 						size="icon"
-						onclick={() => table.setPageIndex(table.getPageCount() - 1)}
-						disabled={!table.getCanNextPage()}
+						onclick={() => table.setPageIndex(pageCount - 1)}
+						disabled={!canNextPage}
 					>
 						<span class="sr-only">Go to last page</span>
 						<ChevronsRightIcon />

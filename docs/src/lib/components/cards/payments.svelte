@@ -99,7 +99,7 @@
 			header: ({ table }) =>
 				renderComponent(Checkbox, {
 					checked: table.getIsAllPageRowsSelected(),
-					indeterminate: table.getIsSomeRowsSelected() && !table.getIsAllRowsSelected(),
+					indeterminate: table.getIsSomePageRowsSelected() && !table.getIsAllPageRowsSelected(),
 					onCheckedChange: (v: boolean) => table.toggleAllPageRowsSelected(!!v),
 					"aria-label": "Select all",
 				}),
@@ -205,6 +205,13 @@
 		onColumnVisibilityChange: setColumnVisibility,
 		onRowSelectionChange: setRowSelection,
 	});
+
+	const headerGroups = $derived(table.getHeaderGroups());
+	const rows = $derived(table.getRowModel().rows);
+	const selectedRowCount = $derived(table.getFilteredSelectedRowModel().rows.length);
+	const filteredRowCount = $derived(table.getFilteredRowModel().rows.length);
+	const canPreviousPage = $derived(table.getCanPreviousPage());
+	const canNextPage = $derived(table.getCanNextPage());
 </script>
 
 <Card.Root>
@@ -219,7 +226,7 @@
 		<div class="rounded-md border">
 			<Table.Root>
 				<Table.Header>
-					{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
+					{#each headerGroups as headerGroup (headerGroup.id)}
 						<Table.Row>
 							{#each headerGroup.headers as header (header.id)}
 								<Table.Head
@@ -235,8 +242,8 @@
 					{/each}
 				</Table.Header>
 				<Table.Body>
-					{#if table.getRowModel().rows?.length}
-						{#each table.getRowModel().rows as row (row.id)}
+					{#if rows.length}
+						{#each rows as row (row.id)}
 							<Table.Row data-state={row.getIsSelected() && "selected"}>
 								{#each row.getVisibleCells() as cell (cell.id)}
 									<Table.Cell
@@ -258,15 +265,14 @@
 		</div>
 		<div class="flex items-center justify-end gap-2">
 			<div class="flex-1 text-sm text-muted-foreground">
-				{table.getFilteredSelectedRowModel().rows.length} of
-				{table.getFilteredRowModel().rows.length} row(s) selected.
+				{selectedRowCount} of {filteredRowCount} row(s) selected.
 			</div>
 			<div class="flex gap-2">
 				<Button
 					variant="outline"
 					size="sm"
 					onclick={() => table.previousPage()}
-					disabled={!table.getCanPreviousPage()}
+					disabled={!canPreviousPage}
 				>
 					Previous
 				</Button>
@@ -274,7 +280,7 @@
 					variant="outline"
 					size="sm"
 					onclick={() => table.nextPage()}
-					disabled={!table.getCanNextPage()}
+					disabled={!canNextPage}
 				>
 					Next
 				</Button>

@@ -211,6 +211,14 @@
 		onColumnVisibilityChange: setColumnVisibility,
 		onRowSelectionChange: setRowSelection,
 	});
+
+	const hideableColumns = $derived(table.getAllColumns().filter((column) => column.getCanHide()));
+	const headerGroups = $derived(table.getHeaderGroups());
+	const rows = $derived(table.getRowModel().rows);
+	const selectedRowCount = $derived(table.getFilteredSelectedRowModel().rows.length);
+	const filteredRowCount = $derived(table.getFilteredRowModel().rows.length);
+	const canPreviousPage = $derived(table.getCanPreviousPage());
+	const canNextPage = $derived(table.getCanNextPage());
 </script>
 
 <div class="-mb-8 w-full">
@@ -233,7 +241,7 @@
 				{/snippet}
 			</DropdownMenu.Trigger>
 			<DropdownMenu.Content align="end">
-				{#each table.getAllColumns().filter((col) => col.getCanHide()) as column (column)}
+				{#each hideableColumns as column (column.id)}
 					<DropdownMenu.CheckboxItem
 						class="capitalize"
 						bind:checked={() => column.getIsVisible(), (v) => column.toggleVisibility(!!v)}
@@ -247,7 +255,7 @@
 	<div class="rounded-md border">
 		<Table.Root>
 			<Table.Header>
-				{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
+				{#each headerGroups as headerGroup (headerGroup.id)}
 					<Table.Row>
 						{#each headerGroup.headers as header (header.id)}
 							<Table.Head class="[&:has([role=checkbox])]:ps-3">
@@ -260,7 +268,7 @@
 				{/each}
 			</Table.Header>
 			<Table.Body>
-				{#each table.getRowModel().rows as row (row.id)}
+				{#each rows as row (row.id)}
 					<Table.Row data-state={row.getIsSelected() && "selected"}>
 						{#each row.getVisibleCells() as cell (cell.id)}
 							<Table.Cell class="[&:has([role=checkbox])]:ps-3">
@@ -278,24 +286,18 @@
 	</div>
 	<div class="flex items-center justify-end space-x-2 pt-4">
 		<div class="flex-1 text-sm text-muted-foreground">
-			{table.getFilteredSelectedRowModel().rows.length} of
-			{table.getFilteredRowModel().rows.length} row(s) selected.
+			{selectedRowCount} of {filteredRowCount} row(s) selected.
 		</div>
 		<div class="space-x-2">
 			<Button
 				variant="outline"
 				size="sm"
 				onclick={() => table.previousPage()}
-				disabled={!table.getCanPreviousPage()}
+				disabled={!canPreviousPage}
 			>
 				Previous
 			</Button>
-			<Button
-				variant="outline"
-				size="sm"
-				onclick={() => table.nextPage()}
-				disabled={!table.getCanNextPage()}
-			>
+			<Button variant="outline" size="sm" onclick={() => table.nextPage()} disabled={!canNextPage}>
 				Next
 			</Button>
 		</div>

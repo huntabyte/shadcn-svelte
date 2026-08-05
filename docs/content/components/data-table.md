@@ -218,12 +218,15 @@ Next, we'll create a `<DataTable />` component to render our table.
     columns,
     autoResetPageIndex: false,
   });
+
+  const headerGroups = $derived(table.getHeaderGroups());
+  const rows = $derived(table.getRowModel().rows);
 </script>
 
 <div class="rounded-md border">
   <Table.Root>
     <Table.Header>
-      {#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
+      {#each headerGroups as headerGroup (headerGroup.id)}
         <Table.Row>
           {#each headerGroup.headers as header (header.id)}
             <Table.Head colspan={header.colSpan}>
@@ -236,7 +239,7 @@ Next, we'll create a `<DataTable />` component to render our table.
       {/each}
     </Table.Header>
     <Table.Body>
-      {#each table.getRowModel().rows as row (row.id)}
+      {#each rows as row (row.id)}
         <Table.Row data-state={row.getIsSelected() && "selected"}>
           {#each row.getVisibleCells() as cell (cell.id)}
             <Table.Cell>
@@ -468,8 +471,13 @@ Next, we'll add pagination to our table.
     },
     onPaginationChange: setPagination,
   });
+
+  const paginationState = $derived(table.atoms.pagination.get());
+  const pageCount = $derived(table.getPageCount());
 </script>
 ```
+
+`createTableState` owns the controlled slice in Svelte's rune system, while the narrow `table.atoms.pagination` read participates in the same dependency tracking. Projecting it through `$derived` gives the UI a native Svelte value without subscribing to unrelated table state.
 
 This will automatically paginate your rows into pages of 10. See the [TanStack Table v9 docs](https://tanstack.com/table/v9/docs/framework/svelte) for more information on customizing page size and implementing manual pagination.
 
@@ -502,6 +510,9 @@ We can add pagination controls to our table using the `<Button />` component and
     },
     onPaginationChange: setPagination,
   });
+
+  const paginationState = $derived(table.atoms.pagination.get());
+  const pageCount = $derived(table.getPageCount());
 </script>
 
 <div>
@@ -511,6 +522,9 @@ We can add pagination controls to our table using the `<Button />` component and
     </Table.Root>
   </div>
   <div class="flex items-center justify-end space-x-2 py-4">
+    <span class="text-sm">
+      Page {paginationState.pageIndex + 1} of {pageCount}
+    </span>
     <Button
       variant="outline"
       size="sm"
@@ -951,12 +965,18 @@ This adds a checkbox to each row and a checkbox in the header to select all rows
 
 ### Show selected rows
 
-You can show the number of selected rows using the `table.getFilteredSelectedRowModel()` API.
+Table API and atom reads participate in Svelte's dependency tracking. Use native `$derived` values for projections that are reused in your UI.
 
 ```svelte
+<script lang="ts">
+  const selectedRowCount = $derived(
+    table.getFilteredSelectedRowModel().rows.length
+  );
+  const filteredRowCount = $derived(table.getFilteredRowModel().rows.length);
+</script>
+
 <div class="text-muted-foreground flex-1 text-sm">
-  {table.getFilteredSelectedRowModel().rows.length} of{" "}
-  {table.getFilteredRowModel().rows.length} row(s) selected.
+  {selectedRowCount} of {filteredRowCount} row(s) selected.
 </div>
 ```
 
