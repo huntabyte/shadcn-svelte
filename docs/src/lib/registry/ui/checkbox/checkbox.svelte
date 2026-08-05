@@ -28,7 +28,15 @@
 			data-slot="checkbox-indicator"
 			class="cn-checkbox-indicator grid place-content-center text-current transition-none"
 		>
-			{#if checked || indeterminate}
+			{#if indeterminate}
+				<IconPlaceholder
+					lucide="MinusIcon"
+					tabler="IconMinus"
+					hugeicons="MinusSignIcon"
+					phosphor="MinusIcon"
+					remixicon="RiSubtractLine"
+				/>
+			{:else if checked}
 				<IconPlaceholder
 					lucide="CheckIcon"
 					tabler="IconCheck"

@@ -3,7 +3,7 @@ title: Table
 description: A responsive table component.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/table
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/table
 ---
 
 <script>
@@ -78,7 +78,7 @@ Copy and paste the following code into your project.
 
 ## Data Table
 
-You can use the `<Table />` component to build more complex data tables. Combine it with [@tanstack/table](https://tanstack.com/table) to create tables with sorting, filtering and pagination.
+You can use the `<Table />` component to build more complex data tables. Combine it with [`@tanstack/svelte-table@9`](https://tanstack.com/table/v9/docs/framework/svelte) to create tables with sorting, filtering and pagination.
 
 See the [Data Table](/docs/components/data-table) documentation for more information.
 
