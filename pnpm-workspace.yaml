@@ -1,7 +1,7 @@
 packages:
     - packages/*
     - docs
-    - registry-template
+    - sv-addons/*
 
 catalog:
     "@sveltejs/kit": ^2.60.1
