@@ -14,6 +14,9 @@ export type QuestionnaireContext = {
 	activeItem: string;
 	current: number;
 	total: number;
+	first: boolean;
+	last: boolean;
+	activeRequired: boolean;
 	setItem: (name: string) => void;
 	next: () => void;
 	previous: () => void;

@@ -24,6 +24,12 @@
 	let variant = $derived(
 		variantProp ?? (action === "previous" || action === "skip" ? "outline" : "default")
 	);
+	let visible = $derived(
+		(action === "previous" && context.total > 1 && !context.first) ||
+			(action === "skip" && !context.activeRequired) ||
+			(action === "next" && context.total > 1 && !context.last) ||
+			(action === "submit" && context.total > 0 && context.last)
+	);
 	function click() {
 		if (action === "previous") context.previous();
 		else if (action === "next") context.next();
@@ -31,14 +37,12 @@
 	}
 </script>
 
-<button
-	type={action === "submit" ? "submit" : "button"}
-	onclick={click}
-	class={cn(
-		buttonVariants({ size, variant }),
-		`cn-questionnaire-${action} col-start-${action === "previous" ? 1 : action === "skip" ? 2 : 3} row-start-1 min-h-11 justify-self-${action === "previous" ? "start" : "end"} sm:min-h-0`,
-		className
-	)}
-	disabled={(action === "previous" && context.current === 0) ||
-		(action === "next" && context.current === context.total - 1)}>{@render children?.()}</button
->
+{#if visible}<button
+		type={action === "submit" ? "submit" : "button"}
+		onclick={click}
+		class={cn(
+			buttonVariants({ size, variant }),
+			`cn-questionnaire-${action} col-start-${action === "previous" ? 1 : action === "skip" ? 2 : 3} row-start-1 min-h-11 justify-self-${action === "previous" ? "start" : "end"} sm:min-h-0`,
+			className
+		)}>{@render children?.()}</button
+	>{/if}

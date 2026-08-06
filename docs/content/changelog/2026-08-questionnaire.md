@@ -4,6 +4,10 @@ description: A new component for building multi-step question flows with fixed, 
 date: 2026-08-05
 ---
 
+<script>
+	import ComponentPreview from "$lib/components/component-preview.svelte";
+</script>
+
 Today, we're releasing [**Questionnaire**](/docs/components/questionnaire), a new component for multi-step question flows. Use it for agent clarification prompts, onboarding, surveys, intake forms, and configuration.
 
 <ComponentPreview name="questionnaire-demo" class="**:[.preview]:min-h-[560px]" />

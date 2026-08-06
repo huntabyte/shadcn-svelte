@@ -20,10 +20,11 @@
 
 	let form = $state<HTMLFormElement | null>(null);
 	let activeItem = $state("");
+	let initialItem = $derived(defaultItem ?? items.find((item) => !item.disabled)?.name ?? "");
 	let touched = $state<Record<string, boolean>>({});
 	let enabledItems = $derived.by(() => items.filter((item) => !item.disabled));
-	$effect(() => {
-		if (!activeItem) activeItem = defaultItem ?? enabledItems[0]?.name ?? "";
+	$effect.pre(() => {
+		if (!activeItem) activeItem = initialItem;
 	});
 	let current = $derived(
 		Math.max(
@@ -117,6 +118,15 @@
 		},
 		get total() {
 			return enabledItems.length;
+		},
+		get first() {
+			return current === 0;
+		},
+		get last() {
+			return enabledItems.length > 0 && current === enabledItems.length - 1;
+		},
+		get activeRequired() {
+			return !!items.find((entry) => entry.name === activeItem)?.required;
 		},
 		setItem,
 		next,
