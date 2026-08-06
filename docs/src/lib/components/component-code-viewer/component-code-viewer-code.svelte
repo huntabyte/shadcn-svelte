@@ -27,7 +27,7 @@
 
 {#if file}
 	<div
-		class="flex h-(--height) overflow-hidden rounded-xl border bg-code text-code-foreground group-data-[view=preview]/block-view-wrapper:hidden"
+		class="flex h-(--height) overflow-hidden rounded-xl bg-code text-code-foreground group-data-[view=preview]/block-view-wrapper:hidden"
 	>
 		{#if showFileTree}
 			<div class="hidden w-72 md:block">
