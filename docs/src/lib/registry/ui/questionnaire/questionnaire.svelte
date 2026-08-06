@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { untrack } from "svelte";
 	import { cn } from "$lib/utils.js";
 	import { createQuestionnaireContext, type QuestionnaireItem } from "./context.js";
 
@@ -19,13 +20,11 @@
 	} = $props();
 
 	let form = $state<HTMLFormElement | null>(null);
-	let activeItem = $state("");
-	let initialItem = $derived(defaultItem ?? items.find((item) => !item.disabled)?.name ?? "");
+	let activeItem = $state(
+		untrack(() => defaultItem ?? items.find((item) => !item.disabled)?.name ?? "")
+	);
 	let touched = $state<Record<string, boolean>>({});
 	let enabledItems = $derived.by(() => items.filter((item) => !item.disabled));
-	$effect.pre(() => {
-		if (!activeItem) activeItem = initialItem;
-	});
 	let current = $derived(
 		Math.max(
 			0,
