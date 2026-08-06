@@ -3,6 +3,55 @@
 	.cn-accordion {
 		@apply overflow-hidden rounded-2xl border;
 	}
+	/* MARK: Questionnaire */
+	.cn-questionnaire {
+		@apply gap-4;
+	}
+	.cn-questionnaire-progress {
+		@apply text-xs;
+	}
+	.cn-questionnaire-item {
+		@apply flex flex-col gap-4;
+	}
+	.cn-questionnaire-title {
+		@apply text-base leading-snug font-medium [&:not(:has(~[data-slot=questionnaire-description]))]:mb-4;
+	}
+	.cn-questionnaire-description {
+		@apply text-sm text-muted-foreground;
+	}
+	.cn-questionnaire-choices {
+		@apply gap-2;
+	}
+	.cn-questionnaire-choice {
+		@apply gap-2.5 rounded-lg border border-input bg-transparent px-3 py-2.5 text-sm hover:bg-muted/50 has-[>input:focus-visible]:border-ring has-[>input:focus-visible]:ring-3 has-[>input:focus-visible]:ring-ring/50 data-invalid:border-destructive dark:bg-input/20 data-checked:border-primary/40 data-checked:bg-muted dark:data-checked:bg-muted;
+	}
+	.cn-questionnaire-choice-indicator {
+		@apply size-4 rounded-[4px] border-input group-data-checked/questionnaire-choice:border-primary group-data-checked/questionnaire-choice:bg-primary group-data-checked/questionnaire-choice:text-primary-foreground dark:bg-input/30 dark:group-data-checked/questionnaire-choice:bg-primary;
+	}
+	.cn-questionnaire-choice-indicator-dot {
+		@apply size-2 bg-primary-foreground;
+	}
+	.cn-questionnaire-choice-indicator-check {
+		@apply size-3.5;
+	}
+	.cn-questionnaire-choice-content {
+		@apply gap-0.5;
+	}
+	.cn-questionnaire-shortcut {
+		@apply size-5 items-center justify-center rounded-md border border-input bg-background font-mono text-[0.625rem] leading-none font-medium text-muted-foreground;
+	}
+	.cn-questionnaire-input-wrapper {
+		@apply w-full;
+	}
+	.cn-questionnaire-input {
+		@apply h-8 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:bg-input/50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40;
+	}
+	.cn-questionnaire-error {
+		@apply text-sm;
+	}
+	.cn-questionnaire-actions {
+		@apply gap-2 sm:min-h-8;
+	}
 
 	.cn-accordion-item {
 		@apply not-last:border-b data-open:bg-muted/50;

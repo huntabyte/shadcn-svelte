@@ -4,4 +4,9 @@
 		$props();
 </script>
 
-<h2 class={cn("text-lg font-semibold tracking-tight", className)}>{@render children?.()}</h2>
+<h2
+	data-slot="questionnaire-title"
+	class={cn("cn-questionnaire-title cn-font-heading text-pretty", className)}
+>
+	{@render children?.()}
+</h2>

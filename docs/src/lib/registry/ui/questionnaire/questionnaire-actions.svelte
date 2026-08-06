@@ -4,6 +4,12 @@
 		$props();
 </script>
 
-<div class={cn("flex flex-wrap items-center justify-between gap-2 pt-2", className)}>
+<div
+	data-slot="questionnaire-actions"
+	class={cn(
+		"cn-questionnaire-actions grid min-h-11 w-full grid-cols-[minmax(0,1fr)_auto_auto] items-center",
+		className
+	)}
+>
 	{@render children?.()}
 </div>

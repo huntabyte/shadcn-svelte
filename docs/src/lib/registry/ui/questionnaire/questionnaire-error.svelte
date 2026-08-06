@@ -6,7 +6,13 @@
 		class: className,
 	}: { message?: string; class?: string } = $props();
 	let context = useQuestionnaireContext();
-	let visible = $derived(!context.validate());
+	let visible = $derived(context.touched() && !context.validate());
 </script>
 
-{#if visible}<p role="alert" class={cn("text-sm text-destructive", className)}>{message}</p>{/if}
+{#if visible}<p
+		data-slot="questionnaire-error"
+		role="alert"
+		class={cn("cn-questionnaire-error text-destructive", className)}
+	>
+		{message}
+	</p>{/if}

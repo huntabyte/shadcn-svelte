@@ -11,15 +11,18 @@
 	let context = useQuestionnaireContext();
 </script>
 
-<label class="grid gap-2 text-sm">
+<div
+	data-slot="questionnaire-input-wrapper"
+	class="cn-questionnaire-input-wrapper group/questionnaire-input relative min-w-0"
+>
 	{#if label}<span class="font-medium">{label}</span>{/if}
 	<input
 		name={context.activeItem}
 		{placeholder}
 		class={cn(
-			"h-9 rounded-md border border-input bg-background px-3 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50",
+			"cn-questionnaire-input min-h-11 w-full min-w-0 transition-[color,box-shadow,background-color] outline-none selection:bg-primary selection:text-primary-foreground placeholder:text-muted-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 sm:min-h-0",
 			className
 		)}
 		{...rest}
 	/>
-</label>
+</div>

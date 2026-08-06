@@ -5,16 +5,24 @@
 	let {
 		name,
 		required = false,
+		multiple = false,
+		disabled = false,
 		class: className,
 		children,
 	}: {
 		name: string;
 		required?: boolean;
+		multiple?: boolean;
+		disabled?: boolean;
 		class?: string;
 		children?: import("svelte").Snippet;
 	} = $props();
 	let context = useQuestionnaireContext();
 	let active = $derived(context.activeItem === name);
+	let item = $derived(context.items.find((entry) => entry.name === name));
+	$effect(() => {
+		if (item) Object.assign(item, { required, multiple, disabled });
+	});
 </script>
 
 <fieldset
@@ -23,7 +31,9 @@
 	data-slot="questionnaire-item"
 	data-name={name}
 	data-required={required}
-	class={cn("min-w-0 space-y-4", className)}
+	data-multiple={multiple}
+	data-disabled={disabled}
+	class={cn("cn-questionnaire-item min-w-0 border-0 p-0 outline-none", className)}
 >
 	<legend class="sr-only">{name}</legend>
 	{@render children?.()}

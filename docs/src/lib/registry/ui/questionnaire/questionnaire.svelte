@@ -20,6 +20,7 @@
 
 	let form = $state<HTMLFormElement | null>(null);
 	let activeItem = $state("");
+	let touched = $state<Record<string, boolean>>({});
 	let enabledItems = $derived.by(() => items.filter((item) => !item.disabled));
 	$effect(() => {
 		if (!activeItem) activeItem = defaultItem ?? enabledItems[0]?.name ?? "";
@@ -48,6 +49,7 @@
 	}
 
 	function next() {
+		touched[activeItem] = true;
 		if (!validate()) return;
 		const nextItem = itemAt(current + 1);
 		if (nextItem) activeItem = nextItem.name;
@@ -61,6 +63,7 @@
 	function skip() {
 		const item = items.find((entry) => entry.name === activeItem);
 		if (item?.required) return;
+		touched[activeItem] = true;
 		next();
 	}
 
@@ -126,6 +129,18 @@
 		get shortcuts() {
 			return shortcuts;
 		},
+		item(name = activeItem) {
+			return items.find((entry) => entry.name === name);
+		},
+		value(name: string) {
+			return form ? new FormData(form).getAll(name).map(String) : [];
+		},
+		markTouched(name = activeItem) {
+			touched[name] = true;
+		},
+		touched(name = activeItem) {
+			return !!touched[name];
+		},
 	});
 </script>
 
@@ -133,7 +148,7 @@
 <form
 	bind:this={form}
 	role="application"
-	class={cn("w-full", className)}
+	class={cn("cn-questionnaire flex w-full min-w-0 flex-col", className)}
 	onsubmit={onsubmitHandler}
 	{onkeydown}
 >
