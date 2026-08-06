@@ -21,6 +21,10 @@ export type QuestionnaireContext = {
 	validate: (name?: string) => boolean;
 	form: HTMLFormElement | null;
 	shortcuts: "letters" | "numbers" | null;
+	item: (name?: string) => QuestionnaireItem | undefined;
+	value: (name: string) => string[];
+	markTouched: (name?: string) => void;
+	touched: (name?: string) => boolean;
 };
 
 const key = Symbol("questionnaire");

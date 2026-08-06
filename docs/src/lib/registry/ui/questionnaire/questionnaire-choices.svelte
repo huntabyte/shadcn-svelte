@@ -4,4 +4,10 @@
 		$props();
 </script>
 
-<div role="group" class={cn("grid gap-3", className)}>{@render children?.()}</div>
+<div
+	role="group"
+	data-slot="questionnaire-choices"
+	class={cn("cn-questionnaire-choices group/questionnaire-choices grid min-w-0", className)}
+>
+	{@render children?.()}
+</div>

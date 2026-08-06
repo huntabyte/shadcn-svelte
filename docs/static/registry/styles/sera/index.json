@@ -251,7 +251,9 @@
 	{
 		"name": "questionnaire",
 		"type": "registry:ui",
-		"registryDependencies": [],
+		"registryDependencies": [
+			"button"
+		],
 		"relativeUrl": "questionnaire.json"
 	},
 	{

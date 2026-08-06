@@ -4,4 +4,9 @@
 		$props();
 </script>
 
-<p class={cn("text-sm text-muted-foreground", className)}>{@render children?.()}</p>
+<p
+	data-slot="questionnaire-description"
+	class={cn("cn-questionnaire-description text-pretty text-muted-foreground", className)}
+>
+	{@render children?.()}
+</p>
