@@ -118,7 +118,7 @@
 		}),
 	]);
 
-	// createTableState lets you manage a state slice externally.
+	// Keep row selection outside the table so the rest of the app can read or update it.
 	const [rowSelection, setRowSelection] = createTableState<RowSelectionState>({});
 
 	// v9 manages the rest of its state internally — reads like

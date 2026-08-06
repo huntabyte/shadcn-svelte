@@ -740,7 +740,7 @@ This adds a checkbox to each row and a checkbox in the header to select all rows
 The table tracks selection internally by default. To show how a slice can live outside the table — handy when your page needs to read or drive the selection — we'll own just this one slice with `createTableState` and leave everything else internal. Add `createTableState` and `type RowSelectionState` to the `@tanstack/svelte-table` import, then update `createTable`:
 
 ```ts showLineNumbers title="routes/payments/data-table.svelte" {1-2,10-15}
-// createTableState lets you manage a state slice externally.
+// Keep row selection outside the table so the rest of the app can read or update it.
 const [rowSelection, setRowSelection] = createTableState<RowSelectionState>(
   {}
 );
