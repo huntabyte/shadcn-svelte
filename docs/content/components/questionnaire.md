@@ -13,7 +13,11 @@ component: true
 
 Questionnaire presents one question at a time and collects structured answers with native form controls. It supports fixed choices, freeform input, multiple selection, explicit skipping, validation, controlled navigation, shortcuts, and resumable defaults.
 
-<ComponentPreview name="questionnaire-demo" class="**:[.preview]:min-h-[560px]" />
+<ComponentPreview name="questionnaire-demo" class="**:[.preview]:min-h-[560px]">
+
+<div></div>
+
+</ComponentPreview>
 
 ## Installation
 
@@ -94,19 +98,31 @@ Declare the collection on `Root` when you need stable ordering, conditional item
 
 Set `multiple` on an item to render its choices as checkboxes. The submitted `FormData` contains every selected value.
 
-<ComponentPreview name="questionnaire-multiple" class="**:[.preview]:min-h-[420px]" />
+<ComponentPreview name="questionnaire-multiple" class="**:[.preview]:min-h-[420px]">
+
+<div></div>
+
+</ComponentPreview>
 
 ## Freeform answers
 
 Place `Questionnaire.Input` beside fixed choices. In a single-choice item, entering freeform text clears the fixed selection and serializes under the same item name.
 
-<ComponentPreview name="questionnaire-freeform" class="**:[.preview]:min-h-[420px]" />
+<ComponentPreview name="questionnaire-freeform" class="**:[.preview]:min-h-[420px]">
+
+<div></div>
+
+</ComponentPreview>
 
 ## Explicit skip
 
 Optional questions must be answered or explicitly skipped. `onStatusChange` reports `"unanswered"`, `"answered"`, or `"skipped"`.
 
-<ComponentPreview name="questionnaire-skip" class="**:[.preview]:min-h-[500px]" />
+<ComponentPreview name="questionnaire-skip" class="**:[.preview]:min-h-[500px]">
+
+<div></div>
+
+</ComponentPreview>
 
 ```svelte
 <Questionnaire.Item
@@ -122,13 +138,21 @@ Optional questions must be answered or explicitly skipped. `onStatusChange` repo
 
 Set `shortcuts="letters"` or `shortcuts="numbers"`. Shortcuts are assigned in enabled-choice order and shown by each styled choice.
 
-<ComponentPreview name="questionnaire-shortcuts" class="**:[.preview]:min-h-[420px]" />
+<ComponentPreview name="questionnaire-shortcuts" class="**:[.preview]:min-h-[420px]">
+
+<div></div>
+
+</ComponentPreview>
 
 ## Validation
 
 Questionnaire validates the active item before moving forward and validates every enabled item on submit. `required` handles the built-in answered-or-skipped rules. Pass `invalid` and render a custom `Error` for application validation.
 
-<ComponentPreview name="questionnaire-validation" class="**:[.preview]:min-h-[520px]" />
+<ComponentPreview name="questionnaire-validation" class="**:[.preview]:min-h-[520px]">
+
+<div></div>
+
+</ComponentPreview>
 
 ```svelte
 <Questionnaire.Item name="detail" required invalid={Boolean(errors.detail)}>
@@ -141,7 +165,11 @@ Questionnaire validates the active item before moving forward and validates ever
 
 Bind `item` when the active checkpoint belongs to application state. `onItemChange` is also available for callback-style control.
 
-<ComponentPreview name="questionnaire-controlled" class="**:[.preview]:min-h-[500px]" />
+<ComponentPreview name="questionnaire-controlled" class="**:[.preview]:min-h-[500px]">
+
+<div></div>
+
+</ComponentPreview>
 
 ```svelte
 <Questionnaire.Root bind:item {items} onsubmit={handleSubmit}>
@@ -153,43 +181,71 @@ Bind `item` when the active checkpoint belongs to application state. `onItemChan
 
 Use `defaultItem`, `defaultChecked`, and `defaultValue` to resume saved work. A native form reset restores those defaults and returns to `defaultItem`.
 
-<ComponentPreview name="questionnaire-resume" class="**:[.preview]:min-h-[520px]" />
+<ComponentPreview name="questionnaire-resume" class="**:[.preview]:min-h-[520px]">
+
+<div></div>
+
+</ComponentPreview>
 
 ## Conditional items
 
 Mark the same item disabled in the collection and on `Questionnaire.Item`. Disabled items are removed from progress and navigation.
 
-<ComponentPreview name="questionnaire-conditional" class="**:[.preview]:min-h-[500px]" />
+<ComponentPreview name="questionnaire-conditional" class="**:[.preview]:min-h-[500px]">
+
+<div></div>
+
+</ComponentPreview>
 
 ## Navigation state
 
 Navigation controls expose `data-status`, `data-visible`, `data-hidden`, and `data-shortcut`, and accept the usual button props. This allows controls to reflect or enforce the active item state.
 
-<ComponentPreview name="questionnaire-navigation-state" class="**:[.preview]:min-h-[460px]" />
+<ComponentPreview name="questionnaire-navigation-state" class="**:[.preview]:min-h-[460px]">
+
+<div></div>
+
+</ComponentPreview>
 
 ## Custom progress
 
 The `Progress` snippet receives `{ current, first, last, total }` so text, bars, steps, or other progress treatments can use the same state.
 
-<ComponentPreview name="questionnaire-progress" class="**:[.preview]:min-h-[500px]" />
+<ComponentPreview name="questionnaire-progress" class="**:[.preview]:min-h-[500px]">
+
+<div></div>
+
+</ComponentPreview>
 
 ## Animated items
 
 Active items expose `data-active`, making enter animations possible without changing the navigation model.
 
-<ComponentPreview name="questionnaire-animated" class="**:[.preview]:min-h-[500px]" />
+<ComponentPreview name="questionnaire-animated" class="**:[.preview]:min-h-[500px]">
+
+<div></div>
+
+</ComponentPreview>
 
 ## Card composition
 
 Questionnaire parts can be composed inside Card while preserving the component's spacing and navigation styles.
 
-<ComponentPreview name="questionnaire-card" class="**:[.preview]:min-h-[520px]" />
+<ComponentPreview name="questionnaire-card" class="**:[.preview]:min-h-[520px]">
+
+<div></div>
+
+</ComponentPreview>
 
 ## Dialog composition
 
 Questionnaire also composes inside Dialog. Keep the questionnaire as the form and close the dialog after a successful submit.
 
-<ComponentPreview name="questionnaire-dialog" class="**:[.preview]:min-h-[420px]" />
+<ComponentPreview name="questionnaire-dialog" class="**:[.preview]:min-h-[420px]">
+
+<div></div>
+
+</ComponentPreview>
 
 ## Native forms
 

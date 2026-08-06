@@ -12,7 +12,11 @@ Today, we're releasing [**Questionnaire**](/docs/components/questionnaire), a ne
 
 Questionnaire is available across all eight shadcn-svelte styles.
 
-<ComponentPreview name="questionnaire-demo" class="**:[.preview]:min-h-[560px]" />
+<ComponentPreview name="questionnaire-demo" class="**:[.preview]:min-h-[560px]">
+
+<div></div>
+
+</ComponentPreview>
 
 ## Features
 
