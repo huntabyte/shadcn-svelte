@@ -2,7 +2,7 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import * as Questionnaire from "$lib/registry/ui/questionnaire/index.js";
-	import Button from "$lib/registry/ui/button/button.svelte";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 
 	const items = [
 		{ name: "direction", required: true },
@@ -93,12 +93,15 @@
 			<Questionnaire.Item name="direction" required>
 				<Card.Root class="mx-auto w-full max-w-lg">
 					<Card.Header>
-						<Questionnaire.Title
-							><Card.Title>What should we prototype next?</Card.Title></Questionnaire.Title
+						<Card.Title
+							data-slot="questionnaire-title"
+							class="cn-questionnaire-title cn-font-heading text-pretty"
+							>What should we prototype next?</Card.Title
 						>
-						<Questionnaire.Description
-							><Card.Description>Choose one direction or write another answer.</Card.Description
-							></Questionnaire.Description
+						<Card.Description
+							data-slot="questionnaire-description"
+							class="cn-questionnaire-description text-pretty text-muted-foreground"
+							>Choose one direction or write another answer.</Card.Description
 						>
 						<Card.Action><Questionnaire.Progress /></Card.Action>
 					</Card.Header>
@@ -135,12 +138,77 @@
 					>
 				</Card.Root>
 			</Questionnaire.Item>
+			<Questionnaire.Item name="signals" multiple>
+				<Card.Root class="mx-auto w-full max-w-lg">
+					<Card.Header>
+						<Card.Title
+							data-slot="questionnaire-title"
+							class="cn-questionnaire-title cn-font-heading text-pretty"
+							>What should every progress update include?</Card.Title
+						>
+						<Card.Description
+							data-slot="questionnaire-description"
+							class="cn-questionnaire-description text-pretty text-muted-foreground"
+							>Select all that apply, or skip this question.</Card.Description
+						>
+						<Card.Action><Questionnaire.Progress /></Card.Action>
+					</Card.Header>
+					<Card.Content>
+						<Questionnaire.Choices
+							><Questionnaire.Choice value="progress">Progress</Questionnaire.Choice
+							><Questionnaire.Choice value="decisions">Decisions</Questionnaire.Choice
+							><Questionnaire.Choice value="risks">Risks</Questionnaire.Choice
+							></Questionnaire.Choices
+						>
+						<Questionnaire.Error />
+					</Card.Content>
+					<Card.Footer
+						><Questionnaire.Actions
+							><Questionnaire.Previous /><Questionnaire.Skip /><Questionnaire.Next
+							/><Questionnaire.Submit>Save answers</Questionnaire.Submit></Questionnaire.Actions
+						></Card.Footer
+					>
+				</Card.Root>
+			</Questionnaire.Item>
+			<Questionnaire.Item name="timing" required>
+				<Card.Root class="mx-auto w-full max-w-lg">
+					<Card.Header>
+						<Card.Title
+							data-slot="questionnaire-title"
+							class="cn-questionnaire-title cn-font-heading text-pretty"
+							>When should this be revisited?</Card.Title
+						>
+						<Card.Description
+							data-slot="questionnaire-description"
+							class="cn-questionnaire-description text-pretty text-muted-foreground"
+							>Choose when this should be revisited.</Card.Description
+						>
+						<Card.Action><Questionnaire.Progress /></Card.Action>
+					</Card.Header>
+					<Card.Content
+						><Questionnaire.Choices
+							><Questionnaire.Choice value="week">This week</Questionnaire.Choice
+							><Questionnaire.Choice value="cycle">Next cycle</Questionnaire.Choice
+							><Questionnaire.Choice value="later">Revisit later</Questionnaire.Choice
+							></Questionnaire.Choices
+						><Questionnaire.Error /></Card.Content
+					>
+					<Card.Footer
+						><Questionnaire.Actions
+							><Questionnaire.Previous /><Questionnaire.Skip /><Questionnaire.Next
+							/><Questionnaire.Submit>Save answers</Questionnaire.Submit></Questionnaire.Actions
+						></Card.Footer
+					>
+				</Card.Root>
+			</Questionnaire.Item>
 		</Questionnaire.Root>
 	</div>
 
 	<div class="flex items-center justify-center md:col-span-2">
 		<Dialog.Root>
-			<Dialog.Trigger><Button variant="outline">Open questionnaire</Button></Dialog.Trigger>
+			<Dialog.Trigger class={buttonVariants({ variant: "outline" })}
+				>Open questionnaire</Dialog.Trigger
+			>
 			<Dialog.Content>
 				<Questionnaire.Root {items} defaultItem="direction" onsubmit={submit}>
 					<Dialog.Header>
@@ -159,6 +227,30 @@
 							><Questionnaire.Choice value="delegation">Sub-agent delegation</Questionnaire.Choice
 							><Questionnaire.Choice value="questions">Question prompts</Questionnaire.Choice
 							><Questionnaire.Choice value="both">Both together</Questionnaire.Choice
+							></Questionnaire.Choices
+						>
+					</Questionnaire.Item>
+					<Questionnaire.Item name="signals" multiple>
+						<Questionnaire.Title>What should every progress update include?</Questionnaire.Title>
+						<Questionnaire.Description
+							>Select all that apply, or skip this question.</Questionnaire.Description
+						>
+						<Questionnaire.Choices
+							><Questionnaire.Choice value="progress">Progress</Questionnaire.Choice
+							><Questionnaire.Choice value="decisions">Decisions</Questionnaire.Choice
+							><Questionnaire.Choice value="risks">Risks</Questionnaire.Choice
+							></Questionnaire.Choices
+						>
+					</Questionnaire.Item>
+					<Questionnaire.Item name="timing" required>
+						<Questionnaire.Title>When should this be revisited?</Questionnaire.Title>
+						<Questionnaire.Description
+							>Choose when this should be revisited.</Questionnaire.Description
+						>
+						<Questionnaire.Choices
+							><Questionnaire.Choice value="week">This week</Questionnaire.Choice
+							><Questionnaire.Choice value="cycle">Next cycle</Questionnaire.Choice
+							><Questionnaire.Choice value="later">Revisit later</Questionnaire.Choice
 							></Questionnaire.Choices
 						>
 					</Questionnaire.Item>
