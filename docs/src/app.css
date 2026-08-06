@@ -318,10 +318,6 @@
 		}
 	}
 
-	[data-manual-install] div:has(> [data-rehype-pretty-code-figure]) {
-		border: none;
-	}
-
 	[data-rehype-pretty-code-figure] code,
 	[data-rehype-pretty-code-figure] code span {
 		font-variant-ligatures: none;
