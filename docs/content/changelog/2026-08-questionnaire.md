@@ -10,6 +10,8 @@ date: 2026-08-05
 
 Today, we're releasing [**Questionnaire**](/docs/components/questionnaire), a new component for multi-step question flows. Use it for agent clarification prompts, onboarding, surveys, intake forms, and configuration.
 
+Questionnaire is available across all eight shadcn-svelte styles.
+
 <ComponentPreview name="questionnaire-demo" class="**:[.preview]:min-h-[560px]" />
 
 ## Features
@@ -21,7 +23,7 @@ Today, we're releasing [**Questionnaire**](/docs/components/questionnaire), a ne
 - Required and custom validation.
 - Controlled navigation, saved defaults, and conditional questions.
 - Keyboard navigation with optional letter or number shortcuts.
-- Native form serialization.
+- Native form serialization and server-rendered collection state.
 - Standalone, Card, and Dialog composition.
 
 ## Installation

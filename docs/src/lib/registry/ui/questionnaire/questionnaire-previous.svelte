@@ -1,8 +1,9 @@
 <script lang="ts">
 	import Button from "./questionnaire-button.svelte";
-	let { children }: { children?: import("svelte").Snippet } = $props();
+	import type { ComponentProps } from "svelte";
+	let { children, ...restProps }: Omit<ComponentProps<typeof Button>, "action"> = $props();
 </script>
 
-<Button action="previous"
+<Button action="previous" {...restProps}
 	>{#if children}{@render children()}{:else}Previous{/if}</Button
 >

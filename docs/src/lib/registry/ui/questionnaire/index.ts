@@ -44,3 +44,10 @@ export {
 	Next as QuestionnaireNext,
 	Submit as QuestionnaireSubmit,
 };
+
+export type {
+	QuestionnaireChoiceDefinition,
+	QuestionnaireItemDefinition,
+	QuestionnaireItemStatus,
+	QuestionnaireShortcutMode,
+} from "./context.js";

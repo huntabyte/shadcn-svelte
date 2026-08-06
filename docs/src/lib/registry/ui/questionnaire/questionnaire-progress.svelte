@@ -1,10 +1,22 @@
 <script lang="ts">
 	import { cn } from "$lib/utils.js";
 	import { useQuestionnaireContext } from "./context.js";
-	let { class: className, children }: { class?: string; children?: import("svelte").Snippet } =
-		$props();
+	import type { Snippet } from "svelte";
+	import type { HTMLAttributes } from "svelte/elements";
+
+	type State = { current: number; first: boolean; last: boolean; total: number };
+	type Props = Omit<HTMLAttributes<HTMLDivElement>, "children"> & { children?: Snippet<[State]> };
+	let { class: className, children, ...restProps }: Props = $props();
 	let context = useQuestionnaireContext();
-	let value = $derived(context.current + 1);
+	let state = $derived({
+		current: context.current,
+		first: context.first,
+		last: context.last,
+		total: context.total,
+	});
+	let label = $derived(
+		context.total ? `Question ${context.current} of ${context.total}` : undefined
+	);
 </script>
 
 <div
@@ -14,10 +26,13 @@
 		className
 	)}
 	role="progressbar"
-	aria-valuemin="1"
-	aria-valuemax={context.total}
-	aria-valuenow={context.current + 1}
+	aria-label="Questionnaire progress"
+	aria-live="polite"
+	aria-valuemin={context.total ? 1 : undefined}
+	aria-valuemax={context.total || undefined}
+	aria-valuenow={context.total ? context.current : undefined}
+	aria-valuetext={label}
+	{...restProps}
 >
-	{#if children}{@render children?.({ current: value, total: context.total })}{:else}Question {value}
-		of {context.total}{/if}
+	{#if children}{@render children(state)}{:else}{label}{/if}
 </div>
