@@ -314,8 +314,12 @@ async function buildRegistryJson(
 				hooks: "$lib/registry/hooks",
 				utils: "$lib/utils",
 			},
-			// TODO: remove when moving from `next` to `latest`
-			overrideDependencies: ["vaul-svelte@next"],
+			overrideDependencies: [
+				// TODO: remove when moving from `next` to `latest`
+				"vaul-svelte@next",
+				// The docs consume the local workspace package, but registry users need the release range.
+				"@shadcn-svelte/primitives@^0.1.0",
+			],
 			items: registry,
 		} as Registry,
 		// maintains the schema defined property order

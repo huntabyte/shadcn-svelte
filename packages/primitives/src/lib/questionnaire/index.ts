@@ -1,4 +1,6 @@
-import Actions from "./questionnaire-actions.svelte";
+import ChoiceInput from "./questionnaire-choice-input.svelte";
+import ChoiceLabel from "./questionnaire-choice-label.svelte";
+import ChoiceShortcut from "./questionnaire-choice-shortcut.svelte";
 import Choice from "./questionnaire-choice.svelte";
 import Choices from "./questionnaire-choices.svelte";
 import Description from "./questionnaire-description.svelte";
@@ -8,39 +10,28 @@ import Item from "./questionnaire-item.svelte";
 import Next from "./questionnaire-next.svelte";
 import Previous from "./questionnaire-previous.svelte";
 import Progress from "./questionnaire-progress.svelte";
+import Root from "./questionnaire-root.svelte";
 import Skip from "./questionnaire-skip.svelte";
 import Submit from "./questionnaire-submit.svelte";
 import Title from "./questionnaire-title.svelte";
-import Questionnaire from "./questionnaire.svelte";
 
 export {
-	Questionnaire as Root,
+	Root,
 	Item,
-	Choice,
-	Choices,
-	Input,
+	Progress,
 	Title,
 	Description,
+	Choices,
+	Choice,
+	ChoiceInput,
+	ChoiceLabel,
+	ChoiceShortcut,
+	Input,
 	Error,
-	Actions,
-	Progress,
 	Previous,
 	Skip,
 	Next,
 	Submit,
-	Item as QuestionnaireItem,
-	Choice as QuestionnaireChoice,
-	Choices as QuestionnaireChoices,
-	Input as QuestionnaireInput,
-	Title as QuestionnaireTitle,
-	Description as QuestionnaireDescription,
-	Error as QuestionnaireError,
-	Actions as QuestionnaireActions,
-	Progress as QuestionnaireProgress,
-	Previous as QuestionnairePrevious,
-	Skip as QuestionnaireSkip,
-	Next as QuestionnaireNext,
-	Submit as QuestionnaireSubmit,
 };
 
 export type {
@@ -48,4 +39,4 @@ export type {
 	QuestionnaireItemDefinition,
 	QuestionnaireItemStatus,
 	QuestionnaireShortcutMode,
-} from "@shadcn-svelte/primitives/questionnaire";
+} from "./internal/context.js";

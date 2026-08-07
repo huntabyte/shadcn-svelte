@@ -1,16 +1,19 @@
 <script lang="ts">
+	import * as QuestionnairePrimitive from "@shadcn-svelte/primitives/questionnaire";
 	import { cn } from "$lib/utils.js";
-	import type { HTMLAttributes } from "svelte/elements";
-	type Props = Omit<HTMLAttributes<HTMLLegendElement>, "children"> & {
-		children?: import("svelte").Snippet;
-	};
-	let { class: className, children, ...restProps }: Props = $props();
+	import type { ComponentProps } from "svelte";
+
+	let {
+		class: className,
+		children,
+		...restProps
+	}: ComponentProps<typeof QuestionnairePrimitive.Title> = $props();
 </script>
 
-<legend
+<QuestionnairePrimitive.Title
 	data-slot="questionnaire-title"
 	class={cn("cn-questionnaire-title cn-font-heading text-pretty", className)}
 	{...restProps}
 >
 	{@render children?.()}
-</legend>
+</QuestionnairePrimitive.Title>

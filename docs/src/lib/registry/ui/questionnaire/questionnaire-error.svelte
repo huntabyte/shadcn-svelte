@@ -1,35 +1,18 @@
 <script lang="ts">
-	import { onMount } from "svelte";
+	import * as QuestionnairePrimitive from "@shadcn-svelte/primitives/questionnaire";
 	import { cn } from "$lib/utils.js";
-	import { useQuestionnaireContext, useQuestionnaireItemContext } from "./context.js";
-	import type { HTMLAttributes } from "svelte/elements";
+	import type { ComponentProps } from "svelte";
 
-	type Props = Omit<HTMLAttributes<HTMLParagraphElement>, "children"> & {
-		message?: string;
-		children?: import("svelte").Snippet;
-	};
-
-	let { message, id, class: className, children, ...restProps }: Props = $props();
-	let context = useQuestionnaireContext();
-	let item = useQuestionnaireItemContext();
-	const generatedId = $props.id();
-	let errorId = $derived(id ?? `${generatedId}-error`);
-	let visible = $derived(context.invalid(item.name));
-	let defaultMessage = $derived(
-		item.required ? "Choose an answer to continue." : "Choose an answer or skip this question."
-	);
-
-	onMount(() => context.registerError(item.name, errorId));
+	let {
+		class: className,
+		children,
+		...restProps
+	}: ComponentProps<typeof QuestionnairePrimitive.Error> = $props();
 </script>
 
-<p
-	hidden={!visible}
-	id={errorId}
+<QuestionnairePrimitive.Error
 	data-slot="questionnaire-error"
-	data-invalid={visible ? "" : undefined}
-	role={visible ? "alert" : undefined}
 	class={cn("cn-questionnaire-error text-destructive", className)}
+	{children}
 	{...restProps}
->
-	{#if children}{@render children()}{:else}{message ?? defaultMessage}{/if}
-</p>
+/>

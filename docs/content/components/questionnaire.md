@@ -23,6 +23,18 @@ Questionnaire presents one question at a time and collects structured answers wi
 
 <PMAddComp name="questionnaire" />
 
+The styled registry component uses the unstyled headless primitive from `@shadcn-svelte/primitives/questionnaire`. The CLI installs this dependency automatically.
+
+To use the headless primitive directly:
+
+```bash
+pnpm add @shadcn-svelte/primitives
+```
+
+```ts
+import * as Questionnaire from "@shadcn-svelte/primitives/questionnaire";
+```
+
 ## Import
 
 ```svelte

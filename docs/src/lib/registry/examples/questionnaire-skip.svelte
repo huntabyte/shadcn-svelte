@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { toast } from "svelte-sonner";
 	import * as Questionnaire from "$lib/registry/ui/questionnaire/index.js";
-	import type { QuestionnaireItemStatus } from "$lib/registry/ui/questionnaire/context.js";
+	import type { QuestionnaireItemStatus } from "$lib/registry/ui/questionnaire/index.js";
 	const items = [
 		{ name: "task", required: true },
 		{ name: "constraints" },

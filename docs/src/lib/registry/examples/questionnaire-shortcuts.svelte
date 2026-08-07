@@ -2,7 +2,7 @@
 	import { toast } from "svelte-sonner";
 	import * as NativeSelect from "$lib/registry/ui/native-select/index.js";
 	import * as Questionnaire from "$lib/registry/ui/questionnaire/index.js";
-	import type { QuestionnaireShortcutMode } from "$lib/registry/ui/questionnaire/context.js";
+	import type { QuestionnaireShortcutMode } from "$lib/registry/ui/questionnaire/index.js";
 	const items = [
 		{
 			choices: [{ value: "inspect" }, { value: "tests" }, { value: "patch" }],

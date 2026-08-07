@@ -1,25 +1,19 @@
 <script lang="ts">
-	import { onMount } from "svelte";
+	import * as QuestionnairePrimitive from "@shadcn-svelte/primitives/questionnaire";
 	import { cn } from "$lib/utils.js";
-	import { useQuestionnaireContext, useQuestionnaireItemContext } from "./context.js";
-	import type { HTMLAttributes } from "svelte/elements";
+	import type { ComponentProps } from "svelte";
 
-	type Props = Omit<HTMLAttributes<HTMLParagraphElement>, "children"> & {
-		children?: import("svelte").Snippet;
-	};
-	let { id, class: className, children, ...restProps }: Props = $props();
-	let context = useQuestionnaireContext();
-	let item = useQuestionnaireItemContext();
-	const generatedId = $props.id();
-	let descriptionId = $derived(id ?? `${generatedId}-description`);
-	onMount(() => context.registerDescription(item.name, descriptionId));
+	let {
+		class: className,
+		children,
+		...restProps
+	}: ComponentProps<typeof QuestionnairePrimitive.Description> = $props();
 </script>
 
-<p
-	id={descriptionId}
+<QuestionnairePrimitive.Description
 	data-slot="questionnaire-description"
 	class={cn("cn-questionnaire-description text-pretty text-muted-foreground", className)}
 	{...restProps}
 >
 	{@render children?.()}
-</p>
+</QuestionnairePrimitive.Description>

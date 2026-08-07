@@ -18,6 +18,8 @@ Questionnaire is available across all eight shadcn-svelte styles.
 
 </ComponentPreview>
 
+The `<Questionnaire />` component is also available as an unstyled headless primitive in `@shadcn-svelte/primitives`. Import it from `@shadcn-svelte/primitives/questionnaire`.
+
 ## Features
 
 - Single and multiple selection with native radios and checkboxes.

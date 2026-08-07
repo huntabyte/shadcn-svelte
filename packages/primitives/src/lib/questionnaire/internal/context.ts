@@ -33,6 +33,16 @@ export type QuestionnaireItemContext = {
 	disabled: boolean;
 };
 
+export type QuestionnaireChoiceContext = {
+	value: string;
+	disabled: boolean;
+	checked: boolean;
+	shortcut: string | null;
+	type: "checkbox" | "radio";
+	setControl: (control: HTMLInputElement | null) => void;
+	handleChange: (event: Event) => void;
+};
+
 export type QuestionnaireContext = {
 	items: readonly QuestionnaireItemDefinition[];
 	activeItem: string;
@@ -61,6 +71,7 @@ export type QuestionnaireContext = {
 
 const key = Symbol("questionnaire");
 const itemKey = Symbol("questionnaire-item");
+const choiceKey = Symbol("questionnaire-choice");
 
 export function createQuestionnaireContext(context: QuestionnaireContext) {
 	return setContext(key, context);
@@ -76,4 +87,12 @@ export function createQuestionnaireItemContext(context: QuestionnaireItemContext
 
 export function useQuestionnaireItemContext() {
 	return getContext<QuestionnaireItemContext>(itemKey);
+}
+
+export function createQuestionnaireChoiceContext(context: QuestionnaireChoiceContext) {
+	return setContext(choiceKey, context);
+}
+
+export function useQuestionnaireChoiceContext() {
+	return getContext<QuestionnaireChoiceContext>(choiceKey);
 }
