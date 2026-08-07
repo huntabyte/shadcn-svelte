@@ -1,10 +1,11 @@
 <script lang="ts">
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import { Label } from "$lib/registry/ui/label/index.js";
+	import type { DashboardTableFeatures } from "./data-table-features.js";
 	import type { Schema } from "./schemas.js";
-	import type { Row } from "@tanstack/table-core";
+	import type { Row } from "@tanstack/svelte-table";
 
-	let { row }: { row: Row<Schema> } = $props();
+	let { row }: { row: Row<DashboardTableFeatures, Schema> } = $props();
 
 	const isAssigned = $derived(row.original.reviewer !== "Assign reviewer");
 	let reviewer = $state("");
@@ -21,7 +22,7 @@
 			id="{row.original.id}-reviewer"
 		>
 			<span data-slot="select-value">
-				{reviewer ?? "Assign reviewer"}
+				{reviewer !== "" ? reviewer : "Assign reviewer"}
 			</span>
 		</Select.Trigger>
 		<Select.Content align="end">
