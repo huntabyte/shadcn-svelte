@@ -7,13 +7,16 @@ component: true
 <script>
 	import ComponentPreview from "$lib/components/component-preview.svelte";
 	import ComponentSource from "$lib/components/component-source.svelte";
+	import InstallTabs from "$lib/components/install-tabs.svelte";
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
+	import PMInstall from "$lib/components/pm-install.svelte";
+	import Step from "$lib/components/step.svelte";
+	import Steps from "$lib/components/steps.svelte";
+
 	let { viewerData } = $props();
 </script>
 
-Questionnaire presents one question at a time and collects structured answers with native form controls. It supports fixed choices, freeform input, multiple selection, explicit skipping, validation, controlled navigation, shortcuts, and resumable defaults.
-
-<ComponentPreview name="questionnaire-demo" class="**:[.preview]:min-h-[560px]">
+<ComponentPreview name="questionnaire-demo" align="end" class="[&_.preview>.preview]:min-h-[560px] [&_.preview>.preview]:p-4 sm:[&_.preview>.preview]:p-8">
 
 <div></div>
 
@@ -21,21 +24,49 @@ Questionnaire presents one question at a time and collects structured answers wi
 
 ## Installation
 
+<InstallTabs>
+
+{#snippet cli()}
+
 <PMAddComp name="questionnaire" />
 
-The styled registry component uses the unstyled headless primitive from `@shadcn-svelte/primitives/questionnaire`. The CLI installs this dependency automatically.
+{/snippet}
 
-To use the headless primitive directly:
+{#snippet manual()}
 
-```bash
-pnpm add @shadcn-svelte/primitives
-```
+<Steps>
 
-```ts
-import * as Questionnaire from "@shadcn-svelte/primitives/questionnaire";
-```
+<Step>
 
-## Import
+Install the following dependency:
+
+</Step>
+
+<PMInstall command="@shadcn-svelte/primitives" />
+
+<Step>
+
+Copy and paste the following code into your project.
+
+</Step>
+
+{#if viewerData}
+<ComponentSource item={viewerData} data-llm-ignore />
+{/if}
+
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
+</Steps>
+
+{/snippet}
+
+</InstallTabs>
+
+## Usage
 
 ```svelte
 <script lang="ts">
@@ -43,60 +74,76 @@ import * as Questionnaire from "@shadcn-svelte/primitives/questionnaire";
 </script>
 ```
 
-## Anatomy
-
-```svelte
-<Questionnaire.Root>
-  <Questionnaire.Progress />
-  <Questionnaire.Item name="question">
-    <Questionnaire.Title />
-    <Questionnaire.Description />
-    <Questionnaire.Choices>
-      <Questionnaire.Choice value="answer" />
-      <Questionnaire.Input />
-    </Questionnaire.Choices>
-    <Questionnaire.Error />
-  </Questionnaire.Item>
-  <Questionnaire.Actions>
-    <Questionnaire.Previous />
-    <Questionnaire.Skip />
-    <Questionnaire.Next />
-    <Questionnaire.Submit />
-  </Questionnaire.Actions>
-</Questionnaire.Root>
-```
-
-## Basic usage
-
-Declare the collection on `Root` when you need stable ordering, conditional items, or shortcuts. The rendered `Item` components provide the interactive content.
-
 ```svelte
 <script lang="ts">
   const items = [
     {
       name: "direction",
       required: true,
-      choices: [{ value: "tool-calls" }, { value: "approvals" }],
+      prompt: "What should we prototype next?",
+      description: "Choose a direction or write your own.",
+      choices: [
+        {
+          value: "delegation",
+          label: "Delegation",
+          description: "Show how work moves to a specialist.",
+        },
+        {
+          value: "questions",
+          label: "Question prompts",
+          description: "Show choices while the interface waits.",
+        },
+        { value: "both", label: "Both together" },
+      ],
+      input: { label: "Another answer", placeholder: "Type another answer…" },
     },
-    { name: "timing" },
-  ];
+    {
+      name: "detail",
+      required: false,
+      prompt: "How much detail should it include?",
+      description: "Skip this if you are not sure yet.",
+      choices: [
+        { value: "focused", label: "Focused" },
+        { value: "complete", label: "Complete flow" },
+      ],
+    },
+  ] as const;
 </script>
+```
 
-<Questionnaire.Root {items} shortcuts="letters" onsubmit={handleSubmit}>
+Define the collection once: pass it to `Questionnaire.Root` for server-rendered
+progress, actions, and shortcuts, then map it into the parts.
+
+```svelte
+<Questionnaire.Root {items} onsubmit={handleSubmit}>
   <Questionnaire.Progress />
-  <Questionnaire.Item name="direction" required>
-    <Questionnaire.Title>What should the agent build?</Questionnaire.Title>
-    <Questionnaire.Choices>
-      <Questionnaire.Choice value="tool-calls"
-        >Tool call timeline</Questionnaire.Choice
-      >
-      <Questionnaire.Choice value="approvals"
-        >Approval checkpoints</Questionnaire.Choice
-      >
-      <Questionnaire.Input aria-label="Another feature" />
-    </Questionnaire.Choices>
-    <Questionnaire.Error />
-  </Questionnaire.Item>
+  {#each items as question (question.name)}
+    <Questionnaire.Item name={question.name} required={question.required}>
+      <Questionnaire.Title>{question.prompt}</Questionnaire.Title>
+      <Questionnaire.Description>
+        {question.description}
+      </Questionnaire.Description>
+      <Questionnaire.Choices>
+        {#each question.choices as choice (choice.value)}
+          <Questionnaire.Choice value={choice.value}>
+            <span class="font-medium">{choice.label}</span>
+            {#if "description" in choice}
+              <span class="text-muted-foreground">
+                {choice.description}
+              </span>
+            {/if}
+          </Questionnaire.Choice>
+        {/each}
+        {#if "input" in question}
+          <Questionnaire.Input
+            aria-label={question.input.label}
+            placeholder={question.input.placeholder}
+          />
+        {/if}
+      </Questionnaire.Choices>
+      <Questionnaire.Error />
+    </Questionnaire.Item>
+  {/each}
   <Questionnaire.Actions>
     <Questionnaire.Previous />
     <Questionnaire.Skip />
@@ -106,175 +153,197 @@ Declare the collection on `Root` when you need stable ordering, conditional item
 </Questionnaire.Root>
 ```
 
-## Multiple selection
-
-Set `multiple` on an item to render its choices as checkboxes. The submitted `FormData` contains every selected value.
-
-<ComponentPreview name="questionnaire-multiple" class="**:[.preview]:min-h-[420px]">
-
-<div></div>
-
-</ComponentPreview>
-
-## Freeform answers
-
-Place `Questionnaire.Input` beside fixed choices. In a single-choice item, entering freeform text clears the fixed selection and serializes under the same item name.
-
-<ComponentPreview name="questionnaire-freeform" class="**:[.preview]:min-h-[420px]">
-
-<div></div>
-
-</ComponentPreview>
-
-## Explicit skip
-
-Optional questions must be answered or explicitly skipped. `onStatusChange` reports `"unanswered"`, `"answered"`, or `"skipped"`.
-
-<ComponentPreview name="questionnaire-skip" class="**:[.preview]:min-h-[500px]">
-
-<div></div>
-
-</ComponentPreview>
-
-```svelte
-<Questionnaire.Item
-  name="constraints"
-  onStatusChange={(status) => (constraintStatus = status)}
->
-  <!-- ... -->
-</Questionnaire.Item>
-<Questionnaire.Skip />
+```ts
+function handleSubmit(event: SubmitEvent) {
+  event.preventDefault();
+  const answers = new FormData(event.currentTarget as HTMLFormElement);
+  // answers.get("direction"), answers.getAll(...) for multiple items.
+}
 ```
 
-## Answer shortcuts
+## Composition
 
-Set `shortcuts="letters"` or `shortcuts="numbers"`. Shortcuts are assigned in enabled-choice order and shown by each styled choice.
-
-<ComponentPreview name="questionnaire-shortcuts" class="**:[.preview]:min-h-[420px]">
-
-<div></div>
-
-</ComponentPreview>
-
-## Validation
-
-Questionnaire validates the active item before moving forward and validates every enabled item on submit. `required` handles the built-in answered-or-skipped rules. Pass `invalid` and render a custom `Error` for application validation.
-
-<ComponentPreview name="questionnaire-validation" class="**:[.preview]:min-h-[520px]">
-
-<div></div>
-
-</ComponentPreview>
-
-```svelte
-<Questionnaire.Item name="detail" required invalid={Boolean(errors.detail)}>
-  <!-- ... -->
-  <Questionnaire.Error>{errors.detail}</Questionnaire.Error>
-</Questionnaire.Item>
+```text
+Questionnaire.Root
+├── Questionnaire.Progress
+├── Questionnaire.Item
+│   ├── Questionnaire.Title
+│   ├── Questionnaire.Description
+│   ├── Questionnaire.Choices
+│   │   ├── Questionnaire.Choice
+│   │   └── Questionnaire.Input
+│   └── Questionnaire.Error
+└── Questionnaire.Actions
+    ├── Questionnaire.Previous
+    ├── Questionnaire.Skip
+    ├── Questionnaire.Next
+    └── Questionnaire.Submit
 ```
 
-## Controlled navigation
+Questionnaire owns the ordered items, active item, answer state, validation,
+progress, and navigation. The containing page, card, dialog, or drawer owns
+close and cancellation behavior, persistence, transport, and branching.
 
-Bind `item` when the active checkpoint belongs to application state. `onItemChange` is also available for callback-style control.
+## Server Rendering
 
-<ComponentPreview name="questionnaire-controlled" class="**:[.preview]:min-h-[500px]">
+Pass `items` to server-render the active item, progress, actions, and answer
+shortcuts. See the [headless Questionnaire](#unstyled) for the complete behavior.
 
-<div></div>
+## Multiple Selection
 
-</ComponentPreview>
+Use `multiple` for an item that accepts more than one fixed answer.
 
-```svelte
-<Questionnaire.Root bind:item {items} onsubmit={handleSubmit}>
-  <!-- ... -->
-</Questionnaire.Root>
-```
-
-## Resume with defaults
-
-Use `defaultItem`, `defaultChecked`, and `defaultValue` to resume saved work. A native form reset restores those defaults and returns to `defaultItem`.
-
-<ComponentPreview name="questionnaire-resume" class="**:[.preview]:min-h-[520px]">
+<ComponentPreview name="questionnaire-multiple" align="end" class="[&_.preview>.preview]:min-h-[420px] [&_.preview>.preview]:p-4 sm:[&_.preview>.preview]:p-8">
 
 <div></div>
 
 </ComponentPreview>
 
-## Conditional items
+## Freeform Answer
 
-Mark the same item disabled in the collection and on `Questionnaire.Item`. Disabled items are removed from progress and navigation.
+Compose `Questionnaire.Input` with fixed choices when the user can provide another answer.
 
-<ComponentPreview name="questionnaire-conditional" class="**:[.preview]:min-h-[500px]">
-
-<div></div>
-
-</ComponentPreview>
-
-## Navigation state
-
-Navigation controls expose `data-status`, `data-visible`, `data-hidden`, and `data-shortcut`, and accept the usual button props. This allows controls to reflect or enforce the active item state.
-
-<ComponentPreview name="questionnaire-navigation-state" class="**:[.preview]:min-h-[460px]">
+<ComponentPreview name="questionnaire-freeform" align="end" class="[&_.preview>.preview]:min-h-[420px] [&_.preview>.preview]:p-4 sm:[&_.preview>.preview]:p-8">
 
 <div></div>
 
 </ComponentPreview>
 
-## Custom progress
+## Explicit Skip
 
-The `Progress` snippet receives `{ current, first, last, total }` so text, bars, steps, or other progress treatments can use the same state.
+Add `Questionnaire.Skip` when an optional item may be intentionally left unanswered.
 
-<ComponentPreview name="questionnaire-progress" class="**:[.preview]:min-h-[500px]">
-
-<div></div>
-
-</ComponentPreview>
-
-## Animated items
-
-Active items expose `data-active`, making enter animations possible without changing the navigation model.
-
-<ComponentPreview name="questionnaire-animated" class="**:[.preview]:min-h-[500px]">
+<ComponentPreview name="questionnaire-skip" align="end" class="[&_.preview>.preview]:min-h-[520px] [&_.preview>.preview]:p-4 sm:[&_.preview>.preview]:p-8">
 
 <div></div>
 
 </ComponentPreview>
 
-## Card composition
+## Shortcuts
 
-Questionnaire parts can be composed inside Card while preserving the component's spacing and navigation styles.
+Assign a letter or number key to each answer with `shortcuts`.
 
-<ComponentPreview name="questionnaire-card" class="**:[.preview]:min-h-[520px]">
-
-<div></div>
-
-</ComponentPreview>
-
-## Dialog composition
-
-Questionnaire also composes inside Dialog. Keep the questionnaire as the form and close the dialog after a successful submit.
-
-<ComponentPreview name="questionnaire-dialog" class="**:[.preview]:min-h-[420px]">
+<ComponentPreview name="questionnaire-shortcuts" align="end" class="[&_.preview>.preview]:min-h-[480px] [&_.preview>.preview]:p-4 sm:[&_.preview>.preview]:p-8">
 
 <div></div>
 
 </ComponentPreview>
 
-## Native forms
+## Custom Validation
 
-`Root` renders a `<form>`, choices render native radio or checkbox inputs, and freeform answers render native inputs. Read answers from `new FormData(event.currentTarget)`. Do not nest Questionnaire inside another form.
+Combine controlled navigation with an external schema such as Zod to return to an invalid item and present its error.
 
-`Root` sets `novalidate` by default so errors use `Questionnaire.Error`. Set `novalidate={false}` when native constraint validation is desired.
+<ComponentPreview name="questionnaire-validation" align="end" class="[&_.preview>.preview]:min-h-[520px] [&_.preview>.preview]:p-4 sm:[&_.preview>.preview]:p-8">
 
-## Keyboard navigation
+<div></div>
 
-- <kbd>Arrow Left</kbd> moves to the previous item when focus is not in a text input or radio group.
-- <kbd>Arrow Right</kbd> moves forward after the active item has an answer.
-- <kbd>Arrow Up</kbd> and <kbd>Arrow Down</kbd> move through answer controls.
-- <kbd>Enter</kbd> confirms a filled answer. <kbd>⌘ Enter</kbd> or <kbd>Ctrl Enter</kbd> confirms from anywhere in the active item.
-- Letter or number keys activate choices when shortcuts are enabled.
+</ComponentPreview>
+
+## Controlled
+
+Control the active item from host state, such as returning to an invalid step.
+
+<ComponentPreview name="questionnaire-controlled" align="end" class="[&_.preview>.preview]:min-h-[520px] [&_.preview>.preview]:p-4 sm:[&_.preview>.preview]:p-8">
+
+<div></div>
+
+</ComponentPreview>
+
+## Resume
+
+Restore a saved active item and default answers, then reset changes back to that saved state.
+
+<ComponentPreview name="questionnaire-resume" align="end" class="[&_.preview>.preview]:min-h-[520px] [&_.preview>.preview]:p-4 sm:[&_.preview>.preview]:p-8">
+
+<div></div>
+
+</ComponentPreview>
+
+## Conditional Items
+
+Disable items that do not apply to the user's earlier answers.
+
+<ComponentPreview name="questionnaire-conditional" align="end" class="[&_.preview>.preview]:min-h-[520px] [&_.preview>.preview]:p-4 sm:[&_.preview>.preview]:p-8">
+
+<div></div>
+
+</ComponentPreview>
+
+## Navigation State
+
+Read item status to opt into disabled navigation and custom action styling.
+
+<ComponentPreview name="questionnaire-navigation-state" align="end" class="[&_.preview>.preview]:min-h-[480px] [&_.preview>.preview]:p-4 sm:[&_.preview>.preview]:p-8">
+
+<div></div>
+
+</ComponentPreview>
+
+## Custom Progress
+
+Use the Progress snippet state to build a custom progress indicator.
+
+<ComponentPreview name="questionnaire-progress" align="end" class="[&_.preview>.preview]:min-h-[520px] [&_.preview>.preview]:p-4 sm:[&_.preview>.preview]:p-8">
+
+<div></div>
+
+</ComponentPreview>
+
+## Animated Items
+
+Animate the active item while keeping progress and navigation stationary.
+
+<ComponentPreview name="questionnaire-animated" align="end" class="[&_.preview>.preview]:min-h-[520px] [&_.preview>.preview]:p-4 sm:[&_.preview>.preview]:p-8">
+
+<div></div>
+
+</ComponentPreview>
+
+## Card
+
+Compose Questionnaire with Card slots while keeping the question title and description semantic.
+
+<ComponentPreview name="questionnaire-card" align="end" class="[&_.preview>.preview]:min-h-[560px] [&_.preview>.preview]:p-4 sm:[&_.preview>.preview]:p-8">
+
+<div></div>
+
+</ComponentPreview>
+
+## Dialog
+
+Compose Questionnaire inside a Dialog while keeping cancellation and dismissal host-owned.
+
+<ComponentPreview name="questionnaire-dialog" align="end" class="[&_.preview>.preview]:min-h-[320px] [&_.preview>.preview]:p-4 sm:[&_.preview>.preview]:p-8">
+
+<div></div>
+
+</ComponentPreview>
 
 ## Accessibility
 
-Questionnaire uses a focusable `fieldset` for each item, a `legend` title, native answer controls, progressbar semantics, live progress text, `aria-invalid`, linked descriptions and errors, and `aria-keyshortcuts`. Inactive items and navigation controls are hidden and inert, and failed validation focuses the first invalid control.
+`Questionnaire.Item` renders a `fieldset`, and `Questionnaire.Title` renders its
+`legend`. Descriptions and active errors are associated with the current item,
+and invalid items and answer controls expose `aria-invalid`.
 
-<ComponentSource item={viewerData} data-llm-ignore />
+Fixed choices preserve native radio and checkbox behavior. Progress is exposed
+as a named progressbar, navigation uses real buttons, and inactive items and
+actions are hidden and inert. Successful navigation focuses the newly active
+item; failed validation focuses an available answer control.
+
+Always give `Questionnaire.Input` an accessible name with a visible label,
+`aria-label`, or `aria-labelledby`. A placeholder is not a label. See the
+[headless Questionnaire](#unstyled) for labeling custom compositions and the
+complete keyboard behavior.
+
+## Unstyled
+
+The behavior in `Questionnaire.Root` comes from the `@shadcn-svelte/primitives`
+package. To use it directly with your own markup and styles, import
+`@shadcn-svelte/primitives/questionnaire`.
+
+## API Reference
+
+The props, data attributes, and snippet states for every part are exported by
+`@shadcn-svelte/primitives/questionnaire`. The styled components inherit the
+corresponding unstyled props. Navigation components also accept Button `size`
+and `variant` props, and `Questionnaire.Actions` is a styled-only layout helper.

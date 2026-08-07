@@ -8,17 +8,17 @@ date: 2026-08-05
 	import ComponentPreview from "$lib/components/component-preview.svelte";
 </script>
 
-Today, we're releasing [**Questionnaire**](/docs/components/questionnaire), a new component for multi-step question flows. Use it for agent clarification prompts, onboarding, surveys, intake forms, and configuration.
+Today, we're releasing [**Questionnaire**](/docs/components/questionnaire),
+a new component for multi-step question flows. Use it for agent clarification
+prompts, onboarding, surveys, intake forms, and configuration.
 
 Questionnaire is available across all eight shadcn-svelte styles.
 
-<ComponentPreview name="questionnaire-demo" class="**:[.preview]:min-h-[560px]">
+<ComponentPreview name="questionnaire-demo" align="end" class="[&_.preview>.preview]:min-h-[560px] [&_.preview>.preview]:p-4 sm:[&_.preview>.preview]:p-8">
 
 <div></div>
 
 </ComponentPreview>
-
-The `<Questionnaire />` component is also available as an unstyled headless primitive in `@shadcn-svelte/primitives`. Import it from `@shadcn-svelte/primitives/questionnaire`.
 
 ## Features
 
@@ -37,6 +37,10 @@ The `<Questionnaire />` component is also available as an unstyled headless prim
 ```bash
 pnpm dlx shadcn-svelte@latest add questionnaire
 ```
+
+## @shadcn-svelte/primitives
+
+The `<Questionnaire />` component is also available as an unstyled headless primitive in `@shadcn-svelte/primitives`. [Read the docs](/docs/components/questionnaire#unstyled) to learn more.
 
 <div class="flex flex-wrap gap-2">
 	<a href="/docs/components/questionnaire" class="mt-6 no-underline!">View Questionnaire</a>
