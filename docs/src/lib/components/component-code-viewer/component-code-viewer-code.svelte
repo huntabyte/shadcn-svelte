@@ -36,7 +36,7 @@
 		{/if}
 		<figure
 			data-rehype-pretty-code-figure
-			class="mt-0 flex min-w-0 flex-1 flex-col rounded-xl border-none"
+			class="mx-0! mt-0 flex min-w-0 flex-1 flex-col rounded-xl border-none"
 		>
 			<ComponentCodeViewerCodeTitle />
 			<div
