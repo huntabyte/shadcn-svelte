@@ -18,7 +18,7 @@
 		item.required ? "Choose an answer to continue." : "Choose an answer or skip this question."
 	);
 
-	onMount(() => context.registerError(item.name, errorId));
+	onMount(() => item.registerError(errorId));
 </script>
 
 <p

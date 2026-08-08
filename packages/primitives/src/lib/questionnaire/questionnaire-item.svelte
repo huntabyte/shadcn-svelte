@@ -36,6 +36,22 @@
 	let isInvalid = $derived(externallyInvalid || context.invalid(name));
 	let previousStatus = $state<QuestionnaireItemStatus>("unanswered");
 
+	function registerDescription(id: string) {
+		if (!descriptionIds.includes(id)) descriptionIds.push(id);
+		return () => {
+			const index = descriptionIds.indexOf(id);
+			if (index !== -1) descriptionIds.splice(index, 1);
+		};
+	}
+
+	function registerError(id: string) {
+		if (!errorIds.includes(id)) errorIds.push(id);
+		return () => {
+			const index = errorIds.indexOf(id);
+			if (index !== -1) errorIds.splice(index, 1);
+		};
+	}
+
 	createQuestionnaireItemContext({
 		get name() {
 			return name;
@@ -49,6 +65,8 @@
 		get disabled() {
 			return disabled;
 		},
+		registerDescription,
+		registerError,
 	});
 
 	$effect(() => {
@@ -78,8 +96,6 @@
 			get invalid() {
 				return externallyInvalid;
 			},
-			descriptionIds,
-			errorIds,
 		})
 	);
 

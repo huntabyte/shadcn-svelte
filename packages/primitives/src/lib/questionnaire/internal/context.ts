@@ -22,8 +22,6 @@ export type QuestionnaireItemRegistration = {
 	multiple: boolean;
 	disabled: boolean;
 	invalid: boolean;
-	descriptionIds: string[];
-	errorIds: string[];
 };
 
 export type QuestionnaireItemContext = {
@@ -31,6 +29,8 @@ export type QuestionnaireItemContext = {
 	required: boolean;
 	multiple: boolean;
 	disabled: boolean;
+	registerDescription: (id: string) => () => void;
+	registerError: (id: string) => () => void;
 };
 
 export type QuestionnaireChoiceContext = {
@@ -54,8 +54,6 @@ export type QuestionnaireContext = {
 	activeRequired: boolean | null;
 	shortcuts: QuestionnaireShortcutMode | null;
 	registerItem: (registration: QuestionnaireItemRegistration) => () => void;
-	registerDescription: (name: string, id: string) => () => void;
-	registerError: (name: string, id: string) => () => void;
 	setItem: (name: string, focus?: "item" | "invalid") => void;
 	next: () => void;
 	previous: () => void;

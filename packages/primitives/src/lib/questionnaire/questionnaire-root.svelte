@@ -77,27 +77,7 @@
 	function registerItem(next: QuestionnaireItemRegistration) {
 		registrations = [...registrations.filter((entry) => entry.name !== next.name), next];
 		return () => {
-			registrations = registrations.filter((entry) => entry !== next);
-		};
-	}
-
-	function registerDescription(name: string, id: string) {
-		const entry = registration(name);
-		if (entry && !entry.descriptionIds.includes(id)) entry.descriptionIds.push(id);
-		return () => {
-			const currentEntry = registration(name);
-			if (currentEntry)
-				currentEntry.descriptionIds = currentEntry.descriptionIds.filter((value) => value !== id);
-		};
-	}
-
-	function registerError(name: string, id: string) {
-		const entry = registration(name);
-		if (entry && !entry.errorIds.includes(id)) entry.errorIds.push(id);
-		return () => {
-			const currentEntry = registration(name);
-			if (currentEntry)
-				currentEntry.errorIds = currentEntry.errorIds.filter((value) => value !== id);
+			registrations = registrations.filter((entry) => entry.name !== next.name);
 		};
 	}
 
@@ -179,6 +159,12 @@
 		for (const control of fieldset.querySelectorAll<HTMLInputElement>("input")) {
 			if (control.type === "checkbox" || control.type === "radio") control.checked = false;
 			else control.value = "";
+		}
+		for (const control of fieldset.querySelectorAll<HTMLTextAreaElement>("textarea")) {
+			control.value = "";
+		}
+		for (const control of fieldset.querySelectorAll<HTMLSelectElement>("select")) {
+			control.value = "";
 		}
 	}
 
@@ -369,8 +355,6 @@
 			return shortcutMode ?? null;
 		},
 		registerItem,
-		registerDescription,
-		registerError,
 		setItem,
 		next,
 		previous,

@@ -6,6 +6,7 @@
 	}: {
 		onsubmit?: (event: SubmitEvent) => void;
 	} = $props();
+	let showMetadata = $state(true);
 
 	const items = [
 		{
@@ -24,7 +25,9 @@
 	<Questionnaire.Progress />
 	<Questionnaire.Item name="direction" required>
 		<Questionnaire.Title>What should we build?</Questionnaire.Title>
-		<Questionnaire.Description>Choose one.</Questionnaire.Description>
+		{#if showMetadata}
+			<Questionnaire.Description>Choose one.</Questionnaire.Description>
+		{/if}
 		<Questionnaire.Choices>
 			<Questionnaire.Choice value="dashboard">
 				<Questionnaire.ChoiceInput aria-label="Dashboard" />
@@ -37,7 +40,9 @@
 				<Questionnaire.ChoiceShortcut />
 			</Questionnaire.Choice>
 		</Questionnaire.Choices>
-		<Questionnaire.Error />
+		{#if showMetadata}
+			<Questionnaire.Error />
+		{/if}
 	</Questionnaire.Item>
 	<Questionnaire.Item name="signals" multiple>
 		<Questionnaire.Title>What should updates include?</Questionnaire.Title>
@@ -51,6 +56,11 @@
 				<Questionnaire.ChoiceLabel>Risks</Questionnaire.ChoiceLabel>
 			</Questionnaire.Choice>
 		</Questionnaire.Choices>
+		<textarea name="notes" aria-label="Notes">Keep this note</textarea>
+		<select name="priority" aria-label="Priority">
+			<option value="">Choose a priority</option>
+			<option value="high" selected>High</option>
+		</select>
 		<Questionnaire.Error />
 	</Questionnaire.Item>
 	<Questionnaire.Previous>Previous</Questionnaire.Previous>
@@ -58,3 +68,7 @@
 	<Questionnaire.Next>Next</Questionnaire.Next>
 	<Questionnaire.Submit>Submit</Questionnaire.Submit>
 </Questionnaire.Root>
+
+<button type="button" aria-label="Toggle metadata" onclick={() => (showMetadata = !showMetadata)}>
+	Toggle metadata
+</button>

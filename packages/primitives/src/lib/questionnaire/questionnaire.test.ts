@@ -11,6 +11,49 @@ afterEach(async () => {
 });
 
 describe("Questionnaire", () => {
+	it("removes unmounted descriptions and errors from aria-describedby", async () => {
+		component = mount(QuestionnaireTest, { target: document.body });
+		await tick();
+
+		const fieldset = document.querySelector('fieldset[data-name="direction"]');
+		const next = Array.from(document.querySelectorAll("button")).find(
+			(button) => button.textContent === "Next"
+		);
+		next?.click();
+		await tick();
+		expect(fieldset?.getAttribute("aria-describedby")?.split(" ")).toHaveLength(2);
+
+		document.querySelector<HTMLButtonElement>('[aria-label="Toggle metadata"]')?.click();
+		await tick();
+		expect(fieldset?.getAttribute("aria-describedby")).toBeNull();
+	});
+
+	it("clears textareas and selects when an item is skipped", async () => {
+		const onsubmit = vi.fn((event: SubmitEvent) => event.preventDefault());
+		component = mount(QuestionnaireTest, { target: document.body, props: { onsubmit } });
+		await tick();
+
+		document.querySelector<HTMLInputElement>('[aria-label="Dashboard"]')?.click();
+		const next = Array.from(document.querySelectorAll("button")).find(
+			(button) => button.textContent === "Next"
+		);
+		next?.click();
+		await tick();
+
+		const notes = document.querySelector<HTMLTextAreaElement>('[aria-label="Notes"]');
+		const priority = document.querySelector<HTMLSelectElement>('[aria-label="Priority"]');
+		expect(notes?.value).toBe("Keep this note");
+		expect(priority?.value).toBe("high");
+
+		const skip = Array.from(document.querySelectorAll("button")).find(
+			(button) => button.textContent === "Skip"
+		);
+		skip?.click();
+		await tick();
+		expect(notes?.value).toBe("");
+		expect(priority?.value).toBe("");
+	});
+
 	it("marks every choice invalid after validation fails", async () => {
 		component = mount(QuestionnaireTest, { target: document.body });
 		await tick();
