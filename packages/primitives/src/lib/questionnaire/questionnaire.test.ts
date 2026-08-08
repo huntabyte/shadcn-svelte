@@ -11,6 +11,29 @@ afterEach(async () => {
 });
 
 describe("Questionnaire", () => {
+	it("marks every choice invalid after validation fails", async () => {
+		component = mount(QuestionnaireTest, { target: document.body });
+		await tick();
+
+		const next = Array.from(document.querySelectorAll("button")).find(
+			(button) => button.textContent === "Next"
+		);
+		next?.click();
+		await tick();
+
+		const choices = document.querySelectorAll("label[data-invalid]");
+		const inputs = document.querySelectorAll('input[name="direction"][data-invalid]');
+		expect(choices).toHaveLength(2);
+		expect(inputs).toHaveLength(2);
+		expect(Array.from(inputs).every((input) => input.getAttribute("aria-invalid") === "true")).toBe(
+			true
+		);
+
+		document.querySelector<HTMLInputElement>('[aria-label="Dashboard"]')?.click();
+		await tick();
+		expect(document.querySelectorAll("label[data-invalid]")).toHaveLength(0);
+	});
+
 	it("selects choices, navigates, and submits native form data", async () => {
 		const onsubmit = vi.fn((event: SubmitEvent) => event.preventDefault());
 		component = mount(QuestionnaireTest, { target: document.body, props: { onsubmit } });

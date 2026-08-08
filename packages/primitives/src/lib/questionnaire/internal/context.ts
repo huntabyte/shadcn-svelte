@@ -37,6 +37,7 @@ export type QuestionnaireChoiceContext = {
 	value: string;
 	disabled: boolean;
 	checked: boolean;
+	invalid: boolean;
 	shortcut: string | null;
 	type: "checkbox" | "radio";
 	setControl: (control: HTMLInputElement | null) => void;

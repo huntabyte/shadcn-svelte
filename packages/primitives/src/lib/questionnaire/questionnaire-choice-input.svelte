@@ -1,12 +1,13 @@
 <script lang="ts">
-	import { useQuestionnaireChoiceContext, useQuestionnaireContext } from "./internal/context.js";
-	import { useQuestionnaireItemContext } from "./internal/context.js";
+	import {
+		useQuestionnaireChoiceContext,
+		useQuestionnaireItemContext,
+	} from "./internal/context.js";
 	import type { HTMLInputAttributes } from "svelte/elements";
 
 	type Props = Omit<HTMLInputAttributes, "checked" | "name" | "type" | "value">;
 
 	let { disabled: disabledProp, onchange, ...restProps }: Props = $props();
-	let context = useQuestionnaireContext();
 	let item = useQuestionnaireItemContext();
 	let choice = useQuestionnaireChoiceContext();
 	let control = $state<HTMLInputElement | null>(null);
@@ -30,9 +31,10 @@
 	value={choice.value}
 	checked={choice.checked}
 	data-questionnaire-shortcut={choice.shortcut ?? undefined}
+	data-invalid={choice.invalid ? "" : undefined}
 	aria-keyshortcuts={[choice.shortcut, choice.checked ? "Enter" : null].filter(Boolean).join(" ") ||
 		undefined}
-	aria-invalid={context.invalid(item.name) || undefined}
+	aria-invalid={choice.invalid || undefined}
 	{disabled}
 	onchange={handleChange}
 	{...restProps}

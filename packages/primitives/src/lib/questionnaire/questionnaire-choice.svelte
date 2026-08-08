@@ -33,6 +33,7 @@
 	let isChecked = $derived(
 		checked ?? (control ? context.selected(item.name, value) : defaultChecked)
 	);
+	let invalid = $derived(context.invalid(item.name));
 	let shortcut = $derived(shortcutProp ?? context.shortcut(item.name, value, control));
 
 	function handleChange(event: Event) {
@@ -54,6 +55,9 @@
 		get checked() {
 			return isChecked;
 		},
+		get invalid() {
+			return invalid;
+		},
 		get shortcut() {
 			return shortcut;
 		},
@@ -73,6 +77,7 @@
 	data-unchecked={!isChecked ? "" : undefined}
 	data-shortcut={shortcut ?? undefined}
 	data-disabled={disabled ? "" : undefined}
+	data-invalid={invalid ? "" : undefined}
 	{...restProps}
 >
 	{@render children?.()}
