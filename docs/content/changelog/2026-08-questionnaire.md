@@ -6,6 +6,7 @@ date: 2026-08-05
 
 <script>
 	import ComponentPreview from "$lib/components/component-preview.svelte";
+	import Button from "$lib/registry/ui/button/button.svelte";
 </script>
 
 Today, we're releasing [**Questionnaire**](/docs/components/questionnaire),
@@ -43,5 +44,7 @@ pnpm dlx shadcn-svelte@latest add questionnaire
 The `<Questionnaire />` component is also available as an unstyled headless primitive in `@shadcn-svelte/primitives`. [Read the docs](/docs/components/questionnaire#unstyled) to learn more.
 
 <div class="flex flex-wrap gap-2">
-	<a href="/docs/components/questionnaire" class="mt-6 no-underline!">View Questionnaire</a>
+	<Button size="sm" href="/docs/components/questionnaire" class="mt-6 no-underline!">
+		View Questionnaire
+	</Button>
 </div>
