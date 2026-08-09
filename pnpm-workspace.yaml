@@ -18,3 +18,5 @@ onlyBuiltDependencies:
     - esbuild
     - sharp
     - workerd
+patchedDependencies:
+    "@formisch/svelte@1.0.0-rc.0": patches/@formisch__svelte@1.0.0-rc.0.patch

@@ -1,0 +1,35 @@
+diff --git a/dist/components/index.d.ts b/dist/components/index.d.ts
+index 203a2aa1948746f2958174c66b6b1dc665a19ee0..930493b521455c5036ad141c48ef8c1708f65e19 100644
+--- a/dist/components/index.d.ts
++++ b/dist/components/index.d.ts
+@@ -1,3 +1,3 @@
+-export * from './Field/index';
+-export * from './FieldArray/index';
+-export * from './Form/index';
++export * from './Field/index.js';
++export * from './FieldArray/index.js';
++export * from './Form/index.js';
+diff --git a/dist/index.d.ts b/dist/index.d.ts
+index 71ebdb8d3cf57f448f3dbfc0ec408bd2a5c4b163..bd496f0772f53eb756b833114e54a1e35a49ab20 100644
+--- a/dist/index.d.ts
++++ b/dist/index.d.ts
+@@ -1,5 +1,5 @@
+ export type { DeepPartial, FieldElement, FormConfig, PartialValues, PathValue, RequiredPath, FormSchema, Schema, SubmitEventHandler, SubmitHandler, ValidArrayPath, ValidationMode, ValidPath, } from './core/index.svelte';
+ export * from './methods/index.svelte';
+-export * from './components/index';
+-export * from './runes/index';
+-export * from './types/index';
++export * from './components/index.js';
++export * from './runes/index.js';
++export * from './types/index.js';
+diff --git a/dist/runes/index.d.ts b/dist/runes/index.d.ts
+index bc280d937aa30bf08ca37464f2bd87dee47fc0c3..c0998adebc9eab7c41b6fc144232bb077513834b 100644
+--- a/dist/runes/index.d.ts
++++ b/dist/runes/index.d.ts
+@@ -1,3 +1,3 @@
+-export * from './createForm/index';
+-export * from './useField/index';
+-export * from './useFieldArray/index';
++export * from './createForm/index.js';
++export * from './useField/index.js';
++export * from './useFieldArray/index.js';
