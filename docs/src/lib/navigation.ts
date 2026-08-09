@@ -244,9 +244,10 @@ function generateFormsNav(): SidebarNavItem[] {
 	const formsNavItems: SidebarNavItem[] = [];
 
 	for (const doc of forms) {
+		if (doc.path === "forms") continue;
 		formsNavItems.push({
 			title: doc.title,
-			href: doc.path === "forms" ? "/docs/forms" : `/docs/forms/${doc.slug}`,
+			href: `/docs/forms/${doc.slug}`,
 			items: [],
 		});
 	}
