@@ -4,7 +4,7 @@
 	"type": "registry:ui",
 	"devDependencies": [
 		"mode-watcher@^1.1.0",
-		"svelte-sonner@^1.1.0"
+		"svelte-sonner@^1.2.0"
 	],
 	"files": [
 		{
