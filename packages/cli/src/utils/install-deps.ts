@@ -7,7 +7,7 @@ import { resolveCommand, type Agent } from "package-manager-detector";
 import { exec } from "tinyexec";
 import * as project from "./project.js";
 import { detectPM } from "./auto-detect.js";
-import { error } from "./errors.js";
+import { CLIError, error } from "./errors.js";
 import { silentOutput } from "./node-utils.js";
 import type { PackageJson } from "type-fest";
 
@@ -129,9 +129,10 @@ export async function installDependencies({
 		}
 
 		task.success("Successfully installed dependencies");
-	} catch {
+	} catch (e) {
 		task.error("Failed to install dependencies");
-		throw error("Operation failed.");
+		if (e instanceof CLIError) throw e;
+		throw error("Operation failed.", e);
 	}
 }
 

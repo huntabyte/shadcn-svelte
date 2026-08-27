@@ -1,10 +1,10 @@
 import path from "node:path";
-import { existsSync, promises as fs } from "node:fs";
+import { existsSync, promises as fs, readFileSync } from "node:fs";
 import semver from "semver";
 import { detect, resolveCommand } from "package-manager-detector";
 import { exec } from "tinyexec";
 import { CLIError } from "./errors.js";
-import { readJSONSync } from "./get-package-info.js";
+import { getDependencyPackageInfo, readJSONSync } from "./get-package-info.js";
 import type * as cliConfig from "./config/schema.js";
 import type * as registry from "./registry/index.js";
 import type { PackageJson } from "type-fest";
@@ -88,11 +88,31 @@ export function isUsingSvelteKitV3(cwd: string): boolean {
 	const declaredVersion = deps["@sveltejs/kit"];
 	if (typeof declaredVersion !== "string") return false;
 
-	try {
-		return semver.minVersion(declaredVersion)?.major === 3;
-	} catch {
-		return false;
+	const declaredRange = semver.validRange(declaredVersion);
+	if (declaredRange) {
+		const rangeOptions = { includePrerelease: true };
+		const allowsV2 = semver.intersects(declaredRange, ">=2.0.0-0 <3.0.0-0", rangeOptions);
+		const allowsV3 = semver.intersects(declaredRange, ">=3.0.0-0 <4.0.0-0", rangeOptions);
+		if (allowsV2 !== allowsV3) return allowsV3;
 	}
+
+	for (const filename of ["tsconfig.json", "jsconfig.json"]) {
+		const configPath = path.join(cwd, filename);
+		if (!existsSync(configPath)) continue;
+
+		const contents = readFileSync(configPath, "utf8");
+		if (/"extends"\s*:\s*"\$app\/tsconfig(?:\.json)?"/.test(contents)) return true;
+		if (/"extends"\s*:\s*"(?:\.\/)?\.svelte-kit\/tsconfig(?:\.json)?"/.test(contents)) {
+			return false;
+		}
+	}
+
+	const installedVersion = getDependencyPackageInfo(cwd, "@sveltejs/kit")?.pkg.version;
+	return (
+		typeof installedVersion === "string" &&
+		semver.valid(installedVersion) !== null &&
+		semver.major(installedVersion) === 3
+	);
 }
 
 export function getPackageInfo(cwd: string) {

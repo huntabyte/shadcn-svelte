@@ -33,6 +33,15 @@ async function createProject(version: string, generated: "none" | "kit2" | "kit3
 	return cwd;
 }
 
+async function installSvelteKit(cwd: string, version: string) {
+	const packageDir = path.join(cwd, "node_modules", "@sveltejs", "kit");
+	await fs.mkdir(packageDir, { recursive: true });
+	await fs.writeFile(
+		path.join(packageDir, "package.json"),
+		JSON.stringify({ name: "@sveltejs/kit", version })
+	);
+}
+
 beforeEach(() => {
 	vi.resetAllMocks();
 	vi.mocked(detect).mockResolvedValue({ agent: "npm" } as never);
@@ -92,5 +101,39 @@ describe("isUsingSvelteKitV3", () => {
 
 		expect(project.isUsingSvelteKitV3(kit2)).toBe(false);
 		expect(project.isUsingSvelteKitV3(kit3)).toBe(true);
+	});
+
+	it("uses the installed version for package manager protocols", async () => {
+		const cwd = await createProject("catalog:", "none");
+		await installSvelteKit(cwd, "3.0.0-next.25");
+
+		expect(project.isUsingSvelteKitV3(cwd)).toBe(true);
+	});
+
+	it("uses the installed version when a declared range spans Kit majors", async () => {
+		const cwd = await createProject(">=2 <4", "none");
+		await installSvelteKit(cwd, "3.0.0-next.25");
+
+		expect(project.isUsingSvelteKitV3(cwd)).toBe(true);
+	});
+
+	it("falls back to the Kit 3 tsconfig shape when dependencies are missing", async () => {
+		const cwd = await createProject("next", "none");
+		await fs.writeFile(
+			path.join(cwd, "tsconfig.json"),
+			'{\n\t"extends": "$app/tsconfig",\n\t"compilerOptions": {}\n}'
+		);
+
+		expect(project.isUsingSvelteKitV3(cwd)).toBe(true);
+	});
+
+	it("does not infer Kit 3 from a Kit 2 config with a non-semver spec", async () => {
+		const cwd = await createProject("catalog:", "none");
+		await fs.writeFile(
+			path.join(cwd, "tsconfig.json"),
+			'{\n\t"extends": "./.svelte-kit/tsconfig.json",\n\t"compilerOptions": {}\n}'
+		);
+
+		expect(project.isUsingSvelteKitV3(cwd)).toBe(false);
 	});
 });

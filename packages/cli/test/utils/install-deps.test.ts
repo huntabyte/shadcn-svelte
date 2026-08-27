@@ -3,6 +3,7 @@ import { exec } from "tinyexec";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import * as autoDetect from "../../src/utils/auto-detect.js";
 import * as project from "../../src/utils/project.js";
+import { CLIError } from "../../src/utils/errors.js";
 import { installDependencies } from "../../src/utils/install-deps.js";
 
 vi.mock("tinyexec", () => ({ exec: vi.fn(() => ({})) }));
@@ -146,6 +147,23 @@ describe("installDependencies", () => {
 		});
 
 		expect(project.syncSvelteKit).toHaveBeenCalledWith("/test");
+	});
+
+	it("preserves an actionable SvelteKit sync error after installing dependencies", async () => {
+		vi.mocked(project.isUsingSvelteKitV3).mockReturnValue(true);
+		vi.mocked(project.syncSvelteKit).mockRejectedValue(
+			new CLIError("Install dependencies and try again.")
+		);
+
+		await expect(
+			installDependencies({
+				cwd: "/test",
+				prompt: false,
+				silent: true,
+				dependencies: [],
+				devDependencies: ["tailwind-variants@^1.0.0"],
+			})
+		).rejects.toThrow("Install dependencies and try again.");
 	});
 
 	it("does not add a post-install sync for SvelteKit 2", async () => {
