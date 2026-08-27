@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { browser } from "$app/environment";
 	import { onMount } from "svelte";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import * as Drawer from "$lib/registry/ui/drawer/index.js";
@@ -43,11 +42,9 @@
 	}
 
 	onMount(() => {
-		if (browser) {
-			checkScreenSize();
-			window.addEventListener("resize", checkScreenSize);
-			return () => window.removeEventListener("resize", checkScreenSize);
-		}
+		checkScreenSize();
+		window.addEventListener("resize", checkScreenSize);
+		return () => window.removeEventListener("resize", checkScreenSize);
 	});
 
 	function handleStatusSelect(value: string) {

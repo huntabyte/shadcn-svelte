@@ -125,7 +125,8 @@ type PromptForAliasesOptions = {
 	uiAlias?: string | undefined;
 };
 export async function promptForAliases(options: PromptForAliasesOptions) {
-	const libAlias = await promptAlias("lib", "$lib", options);
+	const defaults = getDefaultAliases(options.cwd);
+	const libAlias = await promptAlias("lib", defaults.lib, options);
 	const componentAlias = await promptAlias("components", `${libAlias}/components`, options);
 	const uiAlias = await promptAlias("ui", `${componentAlias}/ui`, options);
 	const utilsAlias = await promptAlias("utils", `${libAlias}/utils`, options);
@@ -137,6 +138,17 @@ export async function promptForAliases(options: PromptForAliasesOptions) {
 		uiAlias,
 		utilsAlias,
 		hooksAlias,
+	};
+}
+
+export function getDefaultAliases(cwd: string) {
+	const lib = project.isUsingSvelteKitV3(cwd) ? "#lib" : "$lib";
+	return {
+		lib,
+		components: `${lib}/components`,
+		ui: `${lib}/components/ui`,
+		utils: `${lib}/utils`,
+		hooks: `${lib}/hooks`,
 	};
 }
 

@@ -122,6 +122,12 @@ export async function installDependencies({
 			await runInstall(addDevDeps.command, addDevDeps.args);
 		}
 
+		// npm can prune SvelteKit 3's generated node_modules/$app package while adding
+		// dependencies. Restore it so subsequent CLI commands can resolve $app/tsconfig.
+		if (project.isUsingSvelteKitV3(cwd)) {
+			await project.syncSvelteKit(cwd);
+		}
+
 		task.success("Successfully installed dependencies");
 	} catch {
 		task.error("Failed to install dependencies");

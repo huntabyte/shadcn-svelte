@@ -279,7 +279,7 @@ export const componentsJsonSchema = z.object({
 				),
 		})
 		.describe(
-			"The CLI uses these values and the `alias` config from your `svelte.config.js` file to place generated components in the correct location."
+			"The CLI uses these values and your project's configured import aliases to place generated components in the correct location."
 		),
 	registry: z
 		.string()

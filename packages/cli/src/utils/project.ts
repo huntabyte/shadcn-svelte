@@ -1,5 +1,6 @@
 import path from "node:path";
 import { existsSync, promises as fs } from "node:fs";
+import semver from "semver";
 import { detect, resolveCommand } from "package-manager-detector";
 import { exec } from "tinyexec";
 import { CLIError } from "./errors.js";
@@ -44,12 +45,15 @@ export async function getComponents({
 	return existingComponents;
 }
 
-// if it's a SvelteKit project, run `svelte-kit sync` if the `.svelte-kit` dir is missing
+// if it's a SvelteKit project, run `svelte-kit sync` if its generated config is missing
 export async function syncSvelteKit(cwd: string) {
 	const isSvelteKit = isUsingSvelteKit(cwd);
 	if (isSvelteKit) {
 		// we'll exit early since syncing is rather slow
-		if (existsSync(path.join(cwd, ".svelte-kit"))) return;
+		const generatedConfig = isUsingSvelteKitV3(cwd)
+			? path.join(cwd, "node_modules", "$app", "tsconfig.json")
+			: path.join(cwd, ".svelte-kit");
+		if (existsSync(generatedConfig)) return;
 
 		const agent = (await detect({ cwd }))?.agent ?? "npm";
 		const cmd = resolveCommand(agent, "execute-local", ["svelte-kit", "sync"])!;
@@ -76,6 +80,19 @@ export function isUsingSvelteKit(cwd: string): boolean {
 	const packageJSON = getPackageInfo(cwd);
 	const deps = { ...packageJSON.devDependencies, ...packageJSON.dependencies };
 	return deps["@sveltejs/kit"] !== undefined;
+}
+
+export function isUsingSvelteKitV3(cwd: string): boolean {
+	const packageJSON = getPackageInfo(cwd);
+	const deps = { ...packageJSON.devDependencies, ...packageJSON.dependencies };
+	const declaredVersion = deps["@sveltejs/kit"];
+	if (typeof declaredVersion !== "string") return false;
+
+	try {
+		return semver.minVersion(declaredVersion)?.major === 3;
+	} catch {
+		return false;
+	}
 }
 
 export function getPackageInfo(cwd: string) {

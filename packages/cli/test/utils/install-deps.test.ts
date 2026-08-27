@@ -9,7 +9,11 @@ vi.mock("tinyexec", () => ({ exec: vi.fn(() => ({})) }));
 
 vi.mock("../../src/utils/auto-detect.js", () => ({ detectPM: vi.fn() }));
 
-vi.mock("../../src/utils/project.js", () => ({ getPackageInfo: vi.fn() }));
+vi.mock("../../src/utils/project.js", () => ({
+	getPackageInfo: vi.fn(),
+	isUsingSvelteKitV3: vi.fn(),
+	syncSvelteKit: vi.fn(),
+}));
 
 vi.mock("node:fs", async (importOriginal) => {
 	const actual = await importOriginal<typeof import("node:fs")>();
@@ -56,6 +60,8 @@ beforeEach(() => {
 		dependencies: {},
 		devDependencies: { "tailwind-variants": "^0.3.0", "tw-animate-css": "^1.0.0" },
 	} as ReturnType<typeof project.getPackageInfo>);
+	vi.mocked(project.isUsingSvelteKitV3).mockReturnValue(false);
+	vi.mocked(project.syncSvelteKit).mockResolvedValue();
 	vi.mocked(fs.readFileSync).mockReturnValue(packageJson());
 	vi.mocked(exec).mockResolvedValue({ stdout: "", stderr: "" } as Awaited<ReturnType<typeof exec>>);
 });
@@ -126,6 +132,32 @@ describe("installDependencies", () => {
 		expect(exec).toHaveBeenCalledTimes(1);
 		expect(args()[0]).toContain("-D");
 		expect(args()[0]).toContain("clsx@^2.0.0");
+	});
+
+	it("restores SvelteKit 3 generated config after installing dependencies", async () => {
+		vi.mocked(project.isUsingSvelteKitV3).mockReturnValue(true);
+
+		await installDependencies({
+			cwd: "/test",
+			prompt: false,
+			silent: true,
+			dependencies: [],
+			devDependencies: ["tailwind-variants@^1.0.0"],
+		});
+
+		expect(project.syncSvelteKit).toHaveBeenCalledWith("/test");
+	});
+
+	it("does not add a post-install sync for SvelteKit 2", async () => {
+		await installDependencies({
+			cwd: "/test",
+			prompt: false,
+			silent: true,
+			dependencies: [],
+			devDependencies: ["tailwind-variants@^1.0.0"],
+		});
+
+		expect(project.syncSvelteKit).not.toHaveBeenCalled();
 	});
 
 	it("writes package.json without running pm add when install is false", async () => {

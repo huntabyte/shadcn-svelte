@@ -67,9 +67,11 @@ This is used to generate the default color palette for your components. **This c
 
 ## aliases
 
-The CLI uses these values and the `alias` config from your `svelte.config.js` file to place generated components in the correct location.
+The CLI uses these values and your project's configured import aliases to place generated components in the correct location.
 
-Path aliases have to be set up in your `svelte.config.js` file.
+SvelteKit 2 aliases are configured by SvelteKit or in `svelte.config.js`. SvelteKit 3 aliases use the `imports` field in `package.json`. Other Vite projects typically configure aliases in `tsconfig.json` and `vite.config.ts`.
+
+The examples below use the SvelteKit 2 `$lib` alias. In SvelteKit 3, use the corresponding `#lib` values instead; for example, `"lib": "#lib"` and `"ui": "#lib/components/ui"`.
 
 ### aliases.lib
 

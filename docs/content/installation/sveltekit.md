@@ -22,7 +22,7 @@ Use the SvelteKit CLI to create a new project with TailwindCSS
 
 ### Setup path aliases
 
-If you are not using the default alias `$lib`, you'll need to update your `svelte.config.js` file to include those aliases.
+SvelteKit 2 provides the `$lib` alias automatically. If you use a custom alias, configure it in `svelte.config.js`:
 
 ```ts title="svelte.config.js" {6} showLineNumbers
 const config = {
@@ -36,15 +36,26 @@ const config = {
 };
 ```
 
+SvelteKit 3 replaces `$lib` with the `#lib` package import declared by new projects. Your `package.json` should contain both the exact and wildcard mappings:
+
+```json title="package.json" {3-6} showLineNumbers
+{
+  "imports": {
+    "#lib": "./src/lib/index.js",
+    "#lib/*": "./src/lib/*"
+  }
+}
+```
+
 ### Run the CLI
 
 <PMExecute command="shadcn-svelte@latest init" />
 
 ### Configure components.json
 
-You will be asked a few questions to configure `components.json`:
+You will be asked a few questions to configure `components.json`. The CLI defaults to `$lib` for SvelteKit 2 and `#lib` for SvelteKit 3.
 
-```txt showLineNumbers
+```txt title="SvelteKit 2" showLineNumbers
 Which base color would you like to use? › Slate
 Where is your global CSS file? (this file will be overwritten) › src/routes/layout.css
 Configure the import alias for lib: › $lib
@@ -52,6 +63,16 @@ Configure the import alias for components: › $lib/components
 Configure the import alias for utils: › $lib/utils
 Configure the import alias for hooks: › $lib/hooks
 Configure the import alias for ui: › $lib/components/ui
+```
+
+```txt title="SvelteKit 3" showLineNumbers
+Which base color would you like to use? › Slate
+Where is your global CSS file? (this file will be overwritten) › src/app.css
+Configure the import alias for lib: › #lib
+Configure the import alias for components: › #lib/components
+Configure the import alias for utils: › #lib/utils
+Configure the import alias for hooks: › #lib/hooks
+Configure the import alias for ui: › #lib/components/ui
 ```
 
 ### That's it
@@ -64,10 +85,12 @@ The command above will add the `Button` component to your project. You can then 
 
 ```svelte {2,5} showLineNumbers
 <script lang="ts">
-  import { Button } from "$lib/components/ui/button/index.js";
+  import { Button } from "#lib/components/ui/button/index.js";
 </script>
 
 <Button>Click me</Button>
 ```
+
+Use `$lib/components/ui/button/index.js` instead in a SvelteKit 2 project.
 
 </Steps>

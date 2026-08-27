@@ -60,7 +60,7 @@
 				"utils"
 			],
 			"additionalProperties": false,
-			"description": "The CLI uses these values and the `alias` config from your `svelte.config.js` file to place generated components in the correct location."
+			"description": "The CLI uses these values and your project's configured import aliases to place generated components in the correct location."
 		},
 		"registry": {
 			"description": "The registry URL tells the CLI where to fetch the shadcn-svelte components/registry from. You can pin this to a specific preview release or your own fork of the registry.",
