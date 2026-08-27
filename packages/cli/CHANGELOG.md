@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.5.1
+
+### Patch Changes
+
+- fix: don't throw an import alias error when a subpath import is already defined ([#2853](https://github.com/huntabyte/shadcn-svelte/pull/2853))
+
 ## 1.5.0
 
 ### Minor Changes
