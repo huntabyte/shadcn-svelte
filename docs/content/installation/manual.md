@@ -33,7 +33,19 @@ Install `@lucide/svelte`:
 
 ### Configure path aliases
 
-If you are using SvelteKit and are not using the default alias `$lib`, you'll need to update your `svelte.config.js` file to include those aliases.
+SvelteKit 3 projects use package subpath imports for the `#lib` alias. Add these entries to your `package.json` if they are not already present:
+
+```json title="package.json" {3-6} showLineNumbers
+{
+  // ... other options
+  "imports": {
+    "#lib": "./src/lib/index.js",
+    "#lib/*": "./src/lib/*"
+  }
+}
+```
+
+SvelteKit 2 projects can continue using the built-in `$lib` alias. To use a custom alias in either version, update your svelte config file:
 
 ```ts title="svelte.config.js" {6} showLineNumbers
 const config = {
@@ -47,7 +59,21 @@ const config = {
 };
 ```
 
-If you are _not_ using SvelteKit, then you'll need to update your path aliases in your `tsconfig.json` and `vite.config.ts`.
+If you are _not_ using SvelteKit, can choose one of these two options:
+
+1. Use package subpath imports for the `#lib` alias (recommended):
+
+```json title="package.json" {3-6} showLineNumbers
+{
+  // ... other options
+  "imports": {
+    "#lib": "./src/lib/index.js",
+    "#lib/*": "./src/lib/*"
+  }
+}
+```
+
+2. Update your path aliases in your `tsconfig.json` and `vite.config.ts`.
 
 ```json title="tsconfig.json" {4-7} showLineNumbers
 {
