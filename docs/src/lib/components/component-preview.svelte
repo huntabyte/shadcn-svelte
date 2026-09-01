@@ -7,14 +7,18 @@
 		name,
 		type = "example",
 		class: className,
+		previewClassName,
 		align = "center",
 		hideCode = false,
+		chromeLessOnMobile = false,
 		...restProps
 	}: HTMLAttributes<HTMLElement> & {
 		name: string;
 		align?: "center" | "start" | "end";
 		description?: string;
 		hideCode?: boolean;
+		chromeLessOnMobile?: boolean;
+		previewClassName?: string;
 		type?: "block" | "component" | "example";
 		component?: Component;
 	} = $props();
@@ -22,7 +26,7 @@
 
 {#if type === "block"}
 	<div
-		class="relative aspect-[4/2.5] w-full overflow-hidden rounded-md border md:-mx-4"
+		class="relative mt-6 aspect-[4/2.5] w-full overflow-hidden rounded-2xl border md:-mx-1"
 		data-llm-ignore
 	>
 		<img
@@ -44,5 +48,13 @@
 		</div>
 	</div>
 {:else if type === "component" || type === "example"}
-	<ComponentPreviewTabs {name} class={className} {align} {hideCode} {...restProps} />
+	<ComponentPreviewTabs
+		{name}
+		class={className}
+		{previewClassName}
+		{align}
+		{hideCode}
+		{chromeLessOnMobile}
+		{...restProps}
+	/>
 {/if}

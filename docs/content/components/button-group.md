@@ -3,7 +3,7 @@ title: Button Group
 description: A container that groups related buttons together with consistent styling.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/button-group
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/button-group
 ---
 
 <script>
@@ -61,6 +61,17 @@ Copy and paste the following code into your project.
 </ButtonGroup.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `ButtonGroup`:
+
+```text
+ButtonGroup.Root
+├── Button
+├── ButtonGroup.Separator
+└── ButtonGroup.Text
+```
+
 ## Accessibility
 
 - The `ButtonGroup` component has the `role` attribute set to `group`.
@@ -79,9 +90,7 @@ Copy and paste the following code into your project.
 - Use the `ButtonGroup` component when you want to group buttons that perform an action.
 - Use the `ToggleGroup` component when you want to group buttons that toggle a state.
 
-## Examples
-
-### Orientation
+## Orientation
 
 Set the `orientation` prop to change the button group layout.
 
@@ -91,7 +100,7 @@ Set the `orientation` prop to change the button group layout.
 
 </ComponentPreview>
 
-### Size
+## Size
 
 Control the size of buttons using the `size` prop on individual buttons.
 
@@ -101,7 +110,7 @@ Control the size of buttons using the `size` prop on individual buttons.
 
 </ComponentPreview>
 
-### Nested
+## Nested
 
 Nest `ButtonGroup` components to create button groups with spacing.
 
@@ -111,7 +120,7 @@ Nest `ButtonGroup` components to create button groups with spacing.
 
 </ComponentPreview>
 
-### Separator
+## Separator
 
 The `ButtonGroupSeparator` component visually divides buttons within a group.
 
@@ -123,7 +132,7 @@ Buttons with variant `outline` do not need a separator since they have a border.
 
 </ComponentPreview>
 
-### Split
+## Split
 
 Create a split button group by adding two buttons separated by a `ButtonGroupSeparator`.
 
@@ -133,7 +142,7 @@ Create a split button group by adding two buttons separated by a `ButtonGroupSep
 
 </ComponentPreview>
 
-### Input
+## Input
 
 Wrap an `Input` component with buttons.
 
@@ -143,7 +152,7 @@ Wrap an `Input` component with buttons.
 
 </ComponentPreview>
 
-### Input Group
+## Input Group
 
 Wrap an `InputGroup` component to create complex input layouts.
 
@@ -153,7 +162,7 @@ Wrap an `InputGroup` component to create complex input layouts.
 
 </ComponentPreview>
 
-### Dropdown Menu
+## Dropdown Menu
 
 Create a split button group with a `DropdownMenu` component.
 
@@ -163,7 +172,7 @@ Create a split button group with a `DropdownMenu` component.
 
 </ComponentPreview>
 
-### Select
+## Select
 
 Pair with a `Select` component.
 
@@ -173,7 +182,7 @@ Pair with a `Select` component.
 
 </ComponentPreview>
 
-### Popover
+## Popover
 
 Use with a `Popover` component.
 
@@ -182,3 +191,74 @@ Use with a `Popover` component.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+### ButtonGroup.Root
+
+The `ButtonGroup.Root` component serves as a container that groups related buttons together with consistent styling.
+
+| Prop          | Type                         | Default        |
+| ------------- | ---------------------------- | -------------- |
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` |
+
+```svelte
+<ButtonGroup.Root>
+  <Button>Button 1</Button>
+  <Button>Button 2</Button>
+</ButtonGroup.Root>
+```
+
+You can nest multiple button groups to create complex layouts with spacing between them.
+
+```svelte
+<ButtonGroup.Root>
+  <ButtonGroup.Root />
+  <ButtonGroup.Root />
+</ButtonGroup.Root>
+```
+
+### ButtonGroup.Separator
+
+The `ButtonGroup.Separator` component provides visual division between buttons within a group.
+
+| Prop          | Type                         | Default      |
+| ------------- | ---------------------------- | ------------ |
+| `orientation` | `"horizontal" \| "vertical"` | `"vertical"` |
+
+```svelte
+<ButtonGroup.Root>
+  <Button>Button 1</Button>
+  <ButtonGroup.Separator />
+  <Button>Button 2</Button>
+</ButtonGroup.Root>
+```
+
+### ButtonGroup.Text
+
+The `ButtonGroup.Text` component displays text content within a button group.
+
+| Prop    | Type                   | Default |
+| ------- | ---------------------- | ------- |
+| `class` | `string`               | -       |
+| `child` | `Snippet<[{ props }]>` | -       |
+
+```svelte
+<ButtonGroup.Root>
+  <ButtonGroup.Text>Text</ButtonGroup.Text>
+  <Button>Button</Button>
+</ButtonGroup.Root>
+```
+
+Use the `child` snippet to render a custom element as the text, such as a label.
+
+```svelte
+<ButtonGroup.Root>
+  <ButtonGroup.Text>
+    {#snippet child({ props })}
+      <Label {...props} for="name">Text</Label>
+    {/snippet}
+  </ButtonGroup.Text>
+  <Input placeholder="Type something here..." id="name" />
+</ButtonGroup.Root>
+```

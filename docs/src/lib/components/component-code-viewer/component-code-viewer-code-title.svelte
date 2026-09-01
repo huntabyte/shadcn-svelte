@@ -29,16 +29,18 @@
 					{file.target.split("/").pop()}
 				</Select.Trigger>
 				<Select.Content>
-					{#if ctx.tree}
-						{@const tree = ctx.tree[0]}
-						{#if tree && tree.children}
-							{#each tree.children as file (file.name)}
-								<Select.Item value={file.path ?? ""}>
-									{file.name}
-								</Select.Item>
-							{/each}
+					<Select.Group>
+						{#if ctx.tree}
+							{@const tree = ctx.tree[0]}
+							{#if tree && tree.children}
+								{#each tree.children as file (file.name)}
+									<Select.Item value={file.path ?? ""}>
+										{file.name}
+									</Select.Item>
+								{/each}
+							{/if}
 						{/if}
-					{/if}
+					</Select.Group>
 				</Select.Content>
 			</Select.Root>
 			<div class="ms-auto flex items-center gap-2">
@@ -70,16 +72,18 @@
 						{file.target.split("/").pop()}
 					</Select.Trigger>
 					<Select.Content>
-						{#if ctx.tree}
-							{@const tree = ctx.tree[0]}
-							{#if tree && tree.children}
-								{#each tree.children as file (file.name)}
-									<Select.Item value={file.path ?? ""}>
-										{file.name}
-									</Select.Item>
-								{/each}
+						<Select.Group>
+							{#if ctx.tree}
+								{@const tree = ctx.tree[0]}
+								{#if tree && tree.children}
+									{#each tree.children as file (file.name)}
+										<Select.Item value={file.path ?? ""}>
+											{file.name}
+										</Select.Item>
+									{/each}
+								{/if}
 							{/if}
-						{/if}
+						</Select.Group>
 					</Select.Content>
 				</Select.Root>
 				<div class="ms-auto flex items-center gap-2">

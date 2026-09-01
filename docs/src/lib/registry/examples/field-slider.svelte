@@ -5,7 +5,7 @@
 	let value = $state([200, 800]);
 </script>
 
-<div class="w-full max-w-md">
+<div class="w-full max-w-xs">
 	<Field.Field>
 		<Field.Label>Price Range</Field.Label>
 		<Field.Description>

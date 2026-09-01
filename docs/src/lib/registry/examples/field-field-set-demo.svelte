@@ -3,7 +3,7 @@
 	import { Input } from "$lib/registry/ui/input/index.js";
 </script>
 
-<div class="w-full max-w-md space-y-6">
+<div class="w-full max-w-sm">
 	<Field.Set>
 		<Field.Legend>Address Information</Field.Legend>
 		<Field.Description>We need your address to deliver your order.</Field.Description>

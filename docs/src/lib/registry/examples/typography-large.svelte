@@ -1,1 +1,1 @@
-<div class="text-lg font-semibold">Are you sure absolutely sure?</div>
+<div class="text-lg font-semibold">Are you absolutely sure?</div>
