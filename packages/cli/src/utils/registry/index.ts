@@ -2,14 +2,14 @@ import path from "node:path";
 import { fetch } from "node-fetch-native";
 import { createProxy } from "node-fetch-native/proxy";
 import { parse as parseCss } from "postcss";
+import { resolveGitHubItemAddress } from "./address.js";
+import { fetchGitHubRegistryCatalog, fetchGitHubRegistryItem } from "./github.js";
 import * as schemas from "../../schema/index.js";
 import { OFFICIAL_REGISTRY_URL } from "../../constants.js";
 import { BASE_COLORS, type ResolvedConfig } from "../config/index.js";
 import { CLIError, error } from "../errors.js";
 import { getEnvProxy } from "../get-env-proxy.js";
 import { isUrl, resolveURL } from "../utils.js";
-import { resolveGitHubItemAddress } from "./address.js";
-import { fetchGitHubRegistryCatalog, fetchGitHubRegistryItem } from "./github.js";
 
 export function getRegistryUrl(config: { registry: string; style?: string }) {
 	// so old URL's will still work

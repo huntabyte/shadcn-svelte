@@ -1,8 +1,5 @@
 import { fetch } from "node-fetch-native";
 import { createProxy } from "node-fetch-native/proxy";
-import { error } from "../errors.js";
-import { getEnvProxy } from "../get-env-proxy.js";
-import type { GitHubItemAddress, GitHubRegistrySource } from "./address.js";
 import {
 	getGitHubAuthState,
 	selectGitHubAuthMode,
@@ -20,6 +17,9 @@ import {
 } from "./github-cli.js";
 import { resolveGitHubRef } from "./github-ref.js";
 import { loadRegistryCatalogFromSource, loadRegistryItemFromSource } from "./source.js";
+import { error } from "../errors.js";
+import { getEnvProxy } from "../get-env-proxy.js";
+import type { GitHubItemAddress, GitHubRegistrySource } from "./address.js";
 import type { RegistrySourceReader } from "./source.js";
 
 const GITHUB_RAW_URL = "https://raw.githubusercontent.com";

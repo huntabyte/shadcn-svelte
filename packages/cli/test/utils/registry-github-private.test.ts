@@ -1,10 +1,9 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { fetch } from "node-fetch-native";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { resetGitHubAuthNotices } from "../../src/utils/registry/github-auth.js";
 import {
 	buildGhEnv,
 	getEnvGitHubToken,
-	GitHubTransportError,
 	MAX_GITHUB_SOURCE_FILE_SIZE,
 	readGitHubResponseTextWithLimit,
 } from "../../src/utils/registry/github-cli.js";
@@ -112,9 +111,7 @@ describe("GitHub private registry loading", () => {
 			);
 			expect(value).toContain(`ref=${SHA}`);
 			expect(init?.headers).toMatchObject({ Authorization: "Bearer secret-token" });
-			return response(
-				value.includes("registry.json") ? registry : "export const auth = true;"
-			);
+			return response(value.includes("registry.json") ? registry : "export const auth = true;");
 		});
 
 		const item = await fetchGitHubRegistryItem(address);
@@ -135,16 +132,12 @@ describe("GitHub private registry loading", () => {
 		const failure = await fetchGitHubRegistryItem(address).catch((error: Error) => error);
 		expect(failure).toHaveProperty(
 			"cause.message",
-			expect.stringContaining(
-				"Check that the file path exists in the public GitHub repository."
-			)
+			expect.stringContaining("Check that the file path exists in the public GitHub repository.")
 		);
 		expect(
 			vi
 				.mocked(fetch)
-				.mock.calls.every(([url]) =>
-					String(url).startsWith("https://raw.githubusercontent.com/")
-				)
+				.mock.calls.every(([url]) => String(url).startsWith("https://raw.githubusercontent.com/"))
 		).toBe(true);
 	});
 
@@ -156,9 +149,7 @@ describe("GitHub private registry loading", () => {
 		const failure = await fetchGitHubRegistryItem(address).catch((error: Error) => error);
 		expect(failure).toHaveProperty(
 			"cause.message",
-			expect.stringContaining(
-				"Check that the public repository has registry.json at its root."
-			)
+			expect.stringContaining("Check that the public repository has registry.json at its root.")
 		);
 	});
 });
@@ -167,9 +158,7 @@ it("rejects GitHub source files larger than 5 MiB", async () => {
 	const oversized = {
 		headers: new Headers({ "content-length": String(MAX_GITHUB_SOURCE_FILE_SIZE + 1) }),
 	} as Response;
-	await expect(
-		readGitHubResponseTextWithLimit(oversized)
-	).rejects.toMatchObject<GitHubTransportError>({
+	await expect(readGitHubResponseTextWithLimit(oversized)).rejects.toMatchObject({
 		kind: "oversize",
 	});
 });

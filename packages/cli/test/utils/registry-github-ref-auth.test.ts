@@ -1,5 +1,5 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { fetch } from "node-fetch-native";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { resetGitHubAuthNotices } from "../../src/utils/registry/github-auth.js";
 import { resolveGitHubRef } from "../../src/utils/registry/github-ref.js";
 
@@ -15,12 +15,7 @@ beforeEach(() => {
 	resetGitHubAuthNotices();
 	vi.stubEnv("GH_TOKEN", "secret-token");
 	execFileMock.mockImplementation(
-		(
-			_command: string,
-			_args: string[],
-			_options: unknown,
-			callback: (error: Error) => void
-		) => {
+		(_command: string, _args: string[], _options: unknown, callback: (error: Error) => void) => {
 			callback(Object.assign(new Error("repository not found"), { code: 128 }));
 		}
 	);
@@ -41,10 +36,7 @@ describe("authenticated GitHub ref resolution", () => {
 		} as Response);
 
 		await expect(
-			resolveGitHubRef(
-				{ owner: "acme", repo: "private-toolkit", ref: "main" },
-				{ authAnchor: {} }
-			)
+			resolveGitHubRef({ owner: "acme", repo: "private-toolkit", ref: "main" }, { authAnchor: {} })
 		).resolves.toBe(SHA);
 
 		expect(execFileMock).toHaveBeenCalledWith(

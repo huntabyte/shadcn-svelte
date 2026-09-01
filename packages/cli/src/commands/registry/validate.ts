@@ -1,11 +1,11 @@
-import { Command } from "commander";
 import pc from "picocolors";
+import { Command } from "commander";
+import { CLIError } from "../../utils/errors.js";
 import { resolveGitHubRegistrySource } from "../../utils/registry/address.js";
 import {
 	fetchGitHubRegistryCatalog,
 	fetchGitHubRegistryItem,
 } from "../../utils/registry/github.js";
-import { CLIError } from "../../utils/errors.js";
 
 export const validate = new Command()
 	.name("validate")

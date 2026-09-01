@@ -1,5 +1,5 @@
-import { describe, expect, it, vi } from "vitest";
 import { fetch } from "node-fetch-native";
+import { describe, expect, it, vi } from "vitest";
 import {
 	resolveGitHubItemAddress,
 	resolveGitHubRegistrySource,
@@ -62,9 +62,7 @@ describe("GitHub registry source loading", () => {
 						{
 							name: "agent-rules",
 							type: "registry:file",
-							files: [
-								{ path: "agent.md", type: "registry:file", target: "~/AGENTS.md" },
-							],
+							files: [{ path: "agent.md", type: "registry:file", target: "~/AGENTS.md" }],
 							registryDependencies: [],
 						},
 					],

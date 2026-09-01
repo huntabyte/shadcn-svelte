@@ -1,8 +1,8 @@
 import path from "node:path";
 import { z } from "zod";
+import * as schemas from "../../schema/index.js";
 import { SITE_BASE_URL } from "../../constants.js";
 import { error } from "../errors.js";
-import * as schemas from "../../schema/index.js";
 import { isUrl } from "../utils.js";
 
 const MAX_INCLUDE_DEPTH = 32;
@@ -93,9 +93,7 @@ export async function loadRegistryCatalogFromSource(reader: RegistrySourceReader
 		name: result.name,
 		homepage: result.homepage,
 		items: result.items.map((item) =>
-			stripRegistryItemFileContent(
-				rewriteRegistryItemFilePaths(item, result.itemSourcesByItem)
-			)
+			stripRegistryItemFileContent(rewriteRegistryItemFilePaths(item, result.itemSourcesByItem))
 		),
 	};
 }
@@ -209,9 +207,7 @@ function rewriteRegistryItemFilePaths(
 		...item,
 		files: item.files?.map((file) => ({
 			...file,
-			target:
-				file.target ??
-				getRegistryItemFileRootPathForItem(item, file.path, itemSourcesByItem),
+			target: file.target ?? getRegistryItemFileRootPathForItem(item, file.path, itemSourcesByItem),
 		})),
 	};
 }
@@ -244,11 +240,7 @@ function getRegistryItemFileRootPathForItem(
 }
 
 function resolveIncludePath(includePath: string, registryDir: string, registryFile: string) {
-	if (
-		isUrl(includePath) ||
-		path.posix.isAbsolute(includePath) ||
-		hasParentTraversal(includePath)
-	) {
+	if (isUrl(includePath) || path.posix.isAbsolute(includePath) || hasParentTraversal(includePath)) {
 		throw error(
 			`Invalid include "${includePath}" in ${registryFile}: include paths must be relative registry.json files inside the same repository.`
 		);

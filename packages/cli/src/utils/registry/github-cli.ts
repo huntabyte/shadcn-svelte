@@ -314,9 +314,7 @@ async function resolveCommitishSha(
 ) {
 	const result = await request(`repos/${address.owner}/${address.repo}/commits/${commitish}`);
 	const sha =
-		typeof result === "object" && result !== null
-			? (result as { sha?: unknown }).sha
-			: undefined;
+		typeof result === "object" && result !== null ? (result as { sha?: unknown }).sha : undefined;
 	if (!isValidGitHubSha(sha)) throw new GitHubTransportError("invalid-response");
 	return sha.toLowerCase();
 }

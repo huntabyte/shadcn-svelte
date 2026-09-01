@@ -1,6 +1,5 @@
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
-import { error } from "../errors.js";
 import { getGitHubAuthState, selectGitHubAuthMode } from "./github-auth.js";
 import {
 	getGitHubTransportFailureGuidance,
@@ -8,6 +7,7 @@ import {
 	resolveGitHubRefViaAuth,
 	type GitHubSource,
 } from "./github-cli.js";
+import { error } from "../errors.js";
 
 const execFileAsync = promisify(execFile);
 const GITHUB_URL = "https://github.com";
