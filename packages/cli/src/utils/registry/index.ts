@@ -100,17 +100,46 @@ export async function resolveRegistryItems({
 	parentUrl,
 	sourceCache = new Map(),
 }: ResolveRegistryItemsProps): Promise<ResolvedRegistryItem[]> {
-	const resolvedItems: ResolvedRegistryItem[] = [];
+	const resolvedItems = await resolveRegistryItemsWithKeys({
+		registryUrl,
+		registryIndex,
+		items,
+		parentUrl,
+		sourceCache,
+	});
+	return resolvedItems
+		.filter((entry, index, self) => self.findIndex((other) => other.key === entry.key) === index)
+		.map((entry) => entry.item);
+}
+
+type ResolvedRegistryItemWithKey = {
+	item: ResolvedRegistryItem;
+	key: string;
+};
+
+async function resolveRegistryItemsWithKeys({
+	registryUrl,
+	registryIndex,
+	items,
+	parentUrl,
+	sourceCache,
+}: ResolveRegistryItemsProps & {
+	sourceCache: Map<string, Promise<string>>;
+}): Promise<ResolvedRegistryItemWithKey[]> {
+	const resolvedItems: ResolvedRegistryItemWithKey[] = [];
 
 	for (const item of items) {
 		let remoteUrl: URL | undefined;
 		let resolvedItem: ResolvedRegistryItem | undefined;
+		let itemKey: string;
 
 		const githubAddress = resolveGitHubItemAddress(item);
 		if (githubAddress) {
 			resolvedItem = await fetchGitHubRegistryItem(githubAddress, { sourceCache });
+			itemKey = `github:${githubAddress.owner.toLowerCase()}/${githubAddress.repo.toLowerCase()}/${githubAddress.item}#${githubAddress.ref ?? "HEAD"}`;
 		} else {
 			resolvedItem = registryIndex.find((entry) => entry.name === item);
+			itemKey = `registry:${item}`;
 		}
 
 		/**
@@ -124,6 +153,7 @@ export async function resolveRegistryItems({
 				remoteUrl = new URL(item, parentUrl);
 				const [result] = await fetchRegistry([remoteUrl]);
 				resolvedItem = schemas.registryItemSchema.parse(result);
+				itemKey = `url:${remoteUrl.toString()}`;
 			} else {
 				// diff error messages depending on whether we're resolving from the user's registry or a remote URL
 				if (parentUrl) {
@@ -140,10 +170,10 @@ export async function resolveRegistryItems({
 			}
 		}
 
-		resolvedItems.push(resolvedItem);
+		resolvedItems.push({ item: resolvedItem, key: itemKey });
 
 		if (resolvedItem.registryDependencies?.length) {
-			const registryDeps = await resolveRegistryItems({
+			const registryDeps = await resolveRegistryItemsWithKeys({
 				registryUrl,
 				registryIndex,
 				items: resolvedItem.registryDependencies,
@@ -154,10 +184,7 @@ export async function resolveRegistryItems({
 		}
 	}
 
-	// dedupes tree
-	return resolvedItems.filter(
-		(component, index, self) => self.findIndex((c) => c.name === component.name) === index
-	);
+	return resolvedItems;
 }
 
 type FetchTreeProps = { baseUrl: string; items: ResolvedRegistryItem[] };

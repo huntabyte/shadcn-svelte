@@ -1,5 +1,6 @@
 import path from "node:path";
 import { z } from "zod";
+import { RegistrySourceFileError } from "./errors.js";
 import * as schemas from "../../schema/index.js";
 import { SITE_BASE_URL } from "../../constants.js";
 import { error } from "../errors.js";
@@ -76,10 +77,23 @@ export async function loadRegistryItemFromSource(
 			try {
 				file.content = await reader.readText(sourcePath);
 			} catch (e) {
-				throw error(
-					`Failed to read file "${sourceFile.path}" for registry item "${item.name}". Make sure the file path is relative to the registry.json file that declares the item.`,
-					e
-				);
+				const source = result.itemSourcesByItem.get(item);
+				const isGitHubSourceFileError =
+					e instanceof RegistrySourceFileError && e.context?.reason === "github-source-file";
+				throw new RegistrySourceFileError(sourcePath, e, {
+					message: `Failed to read file "${sourceFile.path}" for registry item "${item.name}". Expected file at ${sourcePath}.`,
+					context: {
+						registryFile: source?.registryFile,
+						itemIndex: source?.itemIndex,
+						itemName: item.name,
+						itemFilePath: sourceFile.path,
+						sourcePath,
+					},
+					suggestion:
+						isGitHubSourceFileError && e.suggestion
+							? e.suggestion
+							: "Make sure the file path is relative to the registry.json file that declares the item.",
+				});
 			}
 		})
 	);
@@ -188,6 +202,12 @@ async function readRegistry(registryFile: string, reader: RegistrySourceReader) 
 	try {
 		json = JSON.parse(await reader.readText(registryFile));
 	} catch (e) {
+		if (
+			e instanceof RegistrySourceFileError &&
+			(e.context?.reason === "github-ref-resolution" || e.context?.reason === "github-source-file")
+		) {
+			throw e;
+		}
 		throw error(`Failed to read or parse registry file at ${registryFile}.`, e);
 	}
 

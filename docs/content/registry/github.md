@@ -371,7 +371,7 @@ When a repository is not publicly readable, the CLI reads it through `gh` using 
 The first time a command uses your credentials, it prints a notice:
 
 ```txt
-Using gh credentials.
+✔ Using gh credentials.
 ```
 
 ### Use a token in CI

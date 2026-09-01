@@ -1,3 +1,6 @@
+import * as p from "@clack/prompts";
+import color from "picocolors";
+import { getGitHubAuthNoticeFromContext } from "./context.js";
 import { getEnvGitHubToken, type GitHubAuthMode, type GitHubSource } from "./github-cli.js";
 
 export type GitHubSourceAuthState = {
@@ -30,18 +33,28 @@ export function getGitHubAuthState(anchor: object, source: GitHubSource) {
 
 export function selectGitHubAuthMode(
 	state: GitHubSourceAuthState,
+	_source: GitHubSource,
 	originalError: unknown
 ): Promise<GitHubAuthMode> {
 	if (!state.decision) {
 		state.originalError = originalError;
-		const mode: GitHubAuthMode = getEnvGitHubToken() ? "token" : "gh";
-		state.decision = Promise.resolve(mode).then((mode) => {
-			if (!notifiedModes.has(mode)) {
-				console.log(`Using ${mode === "token" ? "GH_TOKEN" : "gh"} credentials.`);
-				notifiedModes.add(mode);
-			}
-			return mode;
+		state.decision = decideAndNotify().catch((error) => {
+			state.decision = undefined;
+			throw error;
 		});
 	}
 	return state.decision;
+}
+
+async function decideAndNotify() {
+	const mode: GitHubAuthMode = getEnvGitHubToken() ? "token" : "gh";
+	if (notifiedModes.has(mode)) return mode;
+
+	const notice = `Using ${mode === "token" ? "GH_TOKEN" : "gh"} credentials.`;
+	const onNotice = getGitHubAuthNoticeFromContext();
+	if (onNotice) await onNotice(notice);
+	else p.log.success(color.gray(notice));
+	notifiedModes.add(mode);
+
+	return mode;
 }

@@ -27,9 +27,9 @@ gh auth login
 When a repository is not publicly readable, the CLI reads it through `gh` using your stored credentials. The token stays inside the GitHub CLI. It never enters the `shadcn-svelte` process.
 
 ```txt
-Using gh credentials.
-Checking registry.
-Created 1 file:
+✔ Using gh credentials.
+✔ Checking registry.
+✔ Created 1 file:
   - lib/auth.ts
 ```
 

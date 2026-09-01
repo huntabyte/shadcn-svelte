@@ -1,5 +1,6 @@
 import { fetch } from "node-fetch-native";
 import { createProxy } from "node-fetch-native/proxy";
+import { RegistryError, RegistrySourceFileError } from "./errors.js";
 import {
 	getGitHubAuthState,
 	selectGitHubAuthMode,
@@ -17,21 +18,22 @@ import {
 } from "./github-cli.js";
 import { resolveGitHubRef } from "./github-ref.js";
 import { loadRegistryCatalogFromSource, loadRegistryItemFromSource } from "./source.js";
-import { error } from "../errors.js";
 import { getEnvProxy } from "../get-env-proxy.js";
 import type { GitHubItemAddress, GitHubRegistrySource } from "./address.js";
 import type { RegistrySourceReader } from "./source.js";
 
 const GITHUB_RAW_URL = "https://raw.githubusercontent.com";
+const GITHUB_VALIDATION_CONCURRENCY = 8;
 
-class AnonymousGitHubError extends Error {
-	readonly statusCode?: number;
-
-	constructor(message: string, statusCode?: number) {
-		super(message);
-		this.statusCode = statusCode;
-	}
-}
+export type GitHubRegistryValidationDiagnostic = {
+	registryFile: string;
+	itemName?: string;
+	itemIndex?: number;
+	filePath?: string;
+	includePath?: string;
+	message: string;
+	suggestion?: string;
+};
 
 export type GitHubSourceOptions = {
 	useCache?: boolean;
@@ -55,6 +57,72 @@ export async function fetchGitHubRegistryCatalog(
 ) {
 	options = { ...options, sourceCache: options.sourceCache ?? new Map() };
 	return loadRegistryCatalogFromSource(createGitHubRegistrySourceReader(source, options));
+}
+
+export async function validateGitHubRegistrySource(
+	source: GitHubRegistrySource,
+	options: GitHubSourceOptions = {}
+) {
+	const sourceLabel = formatGitHubSource(source);
+	const registryFile = `${sourceLabel}/registry.json`;
+	const registryFiles = new Set<string>();
+	const sourceCache = options.sourceCache ?? new Map<string, Promise<string>>();
+	const sourceReader = createGitHubRegistrySourceReader(source, { ...options, sourceCache });
+	const trackingReader: RegistrySourceReader = {
+		async readText(filePath) {
+			if (filePath.endsWith("registry.json")) {
+				registryFiles.add(`${sourceLabel}/${filePath}`);
+			}
+			return sourceReader.readText(filePath);
+		},
+	};
+
+	try {
+		const registry = await loadRegistryCatalogFromSource(trackingReader);
+		const itemDiagnostics = await mapWithConcurrency(
+			registry.items,
+			GITHUB_VALIDATION_CONCURRENCY,
+			async (item, itemIndex) => {
+				try {
+					await loadRegistryItemFromSource(item.name, trackingReader);
+					return null;
+				} catch (error) {
+					return createGitHubValidationDiagnostic(error, {
+						defaultRegistryFile: registryFile,
+						itemName: item.name,
+						itemIndex,
+						sourceLabel,
+					});
+				}
+			}
+		);
+		const diagnostics = itemDiagnostics.filter(
+			(diagnostic): diagnostic is GitHubRegistryValidationDiagnostic => diagnostic !== null
+		);
+
+		return {
+			valid: diagnostics.length === 0,
+			cwd: sourceLabel,
+			registryFiles: registryFiles.size,
+			registryFilePaths: Array.from(registryFiles),
+			items: registry.items.length,
+			diagnostics,
+		};
+	} catch (error) {
+		return {
+			valid: false,
+			cwd: sourceLabel,
+			registryFiles: registryFiles.size || 1,
+			registryFilePaths: registryFiles.size ? Array.from(registryFiles) : [registryFile],
+			items: 0,
+			diagnostics: [
+				createGitHubValidationDiagnostic(error, {
+					defaultRegistryFile: registryFile,
+					sourceLabel,
+				}),
+			],
+		};
+	}
 }
 
 function createGitHubRegistrySourceReader(
@@ -112,13 +180,18 @@ function createGitHubRegistrySourceReader(
 			} catch (err) {
 				if (
 					!isRoot ||
-					!(err instanceof AnonymousGitHubError) ||
-					err.statusCode !== 404 ||
+					!(err instanceof RegistrySourceFileError) ||
+					err.context?.statusCode !== 404 ||
 					authState.anonymousLock
 				) {
 					throw err;
 				}
-				const mode = await selectGitHubAuthMode(authState, err);
+				let mode: GitHubAuthMode;
+				try {
+					mode = await selectGitHubAuthMode(authState, address, err);
+				} catch {
+					throw err;
+				}
 				try {
 					return await readAuthenticated(sha, filePath, mode);
 				} catch (authError) {
@@ -139,21 +212,56 @@ function toGitHubSourceError(
 	if (!(value instanceof GitHubTransportError)) {
 		return value instanceof Error
 			? value
-			: error(
-					`Failed to read GitHub source file "${filePath}" from ${formatGitHubSource(address)}.`
-				);
+			: new RegistrySourceFileError(filePath, undefined, {
+					message: `Failed to read GitHub source file "${filePath}" from ${formatGitHubSource(address)}.`,
+					context: {
+						reason: "github-source-file",
+						source: formatGitHubSource(address),
+						filePath,
+					},
+				});
 	}
+	const guidance = getGitHubTransportFailureGuidance(value, mode);
 	if (value.kind === "http" && value.statusCode === 404) {
 		if (filePath === "registry.json" && state.originalError instanceof Error) {
 			return state.originalError;
 		}
-		return error(
-			`Failed to read GitHub source file "${filePath}" from ${formatGitHubSource(address)}. Check that the file path exists in the GitHub repository.`
-		);
+		return new RegistrySourceFileError(filePath, undefined, {
+			message: `Failed to read GitHub source file "${filePath}" from ${formatGitHubSource(address)}.`,
+			context: {
+				reason: "github-source-file",
+				statusCode: 404,
+				source: formatGitHubSource(address),
+				filePath,
+			},
+			suggestion: "Check that the file path exists in the GitHub repository.",
+		});
 	}
-	return error(
-		`Failed to read GitHub source file "${filePath}" from ${formatGitHubSource(address)}. ${getGitHubTransportFailureGuidance(value, mode)}`
-	);
+	if (
+		(value.kind === "enoent" || value.kind === "unauthenticated") &&
+		filePath === "registry.json" &&
+		state.originalError instanceof Error
+	) {
+		return new RegistrySourceFileError(filePath, undefined, {
+			message: state.originalError.message,
+			context: {
+				reason: "github-source-file",
+				source: formatGitHubSource(address),
+				filePath,
+			},
+			suggestion: guidance.suggestion,
+		});
+	}
+	return new RegistrySourceFileError(filePath, undefined, {
+		message: `Failed to read GitHub source file "${filePath}" from ${formatGitHubSource(address)}. ${guidance.detail}`,
+		context: {
+			reason: "github-source-file",
+			...(value.statusCode ? { statusCode: value.statusCode } : {}),
+			source: formatGitHubSource(address),
+			filePath,
+		},
+		suggestion: guidance.suggestion,
+	});
 }
 
 async function fetchGitHubSourceFile(url: string, filePath: string, address: GitHubSource) {
@@ -165,26 +273,49 @@ async function fetchGitHubSourceFile(url: string, filePath: string, address: Git
 			...proxy,
 			headers: { "Accept-Encoding": "identity", "User-Agent": "shadcn-svelte" },
 		})) as Response;
-	} catch {
-		throw new AnonymousGitHubError(
-			`Failed to read GitHub source file "${filePath}" from ${formatGitHubSource(address)}. Check that raw.githubusercontent.com is accessible from this network.`
-		);
+	} catch (cause) {
+		throw new RegistrySourceFileError(filePath, cause, {
+			message: `Failed to read GitHub source file "${filePath}" from ${formatGitHubSource(address)}.`,
+			context: {
+				reason: "github-source-file",
+				url,
+				source: formatGitHubSource(address),
+				filePath,
+			},
+			suggestion:
+				"GitHub ref resolution succeeded, but the CLI could not fetch from raw.githubusercontent.com. Check that raw.githubusercontent.com is accessible from this network.",
+		});
 	}
 	if (!response.ok) {
-		throw new AnonymousGitHubError(
-			filePath === "registry.json"
-				? `Failed to read GitHub source file "${filePath}" from ${formatGitHubSource(address)}. Check that the public repository has registry.json at its root. If this is a private repository, run "gh auth login" or set GH_TOKEN to a token with read access.`
-				: `Failed to read GitHub source file "${filePath}" from ${formatGitHubSource(address)}. Check that the file path exists in the public GitHub repository.`,
-			response.status
-		);
+		throw new RegistrySourceFileError(filePath, undefined, {
+			message: `Failed to read GitHub source file "${filePath}" from ${formatGitHubSource(address)}.`,
+			context: {
+				reason: "github-source-file",
+				url,
+				statusCode: response.status,
+				source: formatGitHubSource(address),
+				filePath,
+			},
+			suggestion:
+				filePath === "registry.json"
+					? 'The GitHub repository and ref were resolved, but raw.githubusercontent.com did not return a root registry.json file. Check that the public repository has registry.json at its root and that raw.githubusercontent.com is accessible from this network. If this is a private repository, run "gh auth login" or set GH_TOKEN to a token with read access.'
+					: "Check that the file path exists in the public GitHub repository.",
+		});
 	}
 	try {
 		return await readGitHubResponseTextWithLimit(response);
 	} catch (value) {
 		if (value instanceof GitHubTransportError) {
-			throw error(
-				`Failed to read GitHub source file "${filePath}" from ${formatGitHubSource(address)}. ${getGitHubTransportFailureGuidance(value, "token")}`
-			);
+			const guidance = getGitHubTransportFailureGuidance(value, "token");
+			throw new RegistrySourceFileError(filePath, undefined, {
+				message: `Failed to read GitHub source file "${filePath}" from ${formatGitHubSource(address)}. ${guidance.detail}`,
+				context: {
+					reason: "github-source-file",
+					source: formatGitHubSource(address),
+					filePath,
+				},
+				suggestion: guidance.suggestion,
+			});
 		}
 		throw value;
 	}
@@ -200,4 +331,59 @@ function buildGitHubRawUrl(address: GitHubSource, sha: string, filePath: string)
 
 function formatGitHubSource(address: GitHubSource) {
 	return `${address.owner}/${address.repo}#${address.ref ?? "HEAD"}`;
+}
+
+async function mapWithConcurrency<T, TResult>(
+	items: T[],
+	concurrency: number,
+	mapper: (item: T, index: number) => Promise<TResult>
+) {
+	const results = new Array<TResult>(items.length);
+	let nextIndex = 0;
+	const workers = Array.from({ length: Math.min(concurrency, items.length) }, async () => {
+		while (nextIndex < items.length) {
+			const itemIndex = nextIndex++;
+			results[itemIndex] = await mapper(items[itemIndex]!, itemIndex);
+		}
+	});
+	await Promise.all(workers);
+	return results;
+}
+
+function createGitHubValidationDiagnostic(
+	error: unknown,
+	options: {
+		defaultRegistryFile: string;
+		itemName?: string;
+		itemIndex?: number;
+		sourceLabel: string;
+	}
+): GitHubRegistryValidationDiagnostic {
+	if (error instanceof RegistryError) {
+		return {
+			registryFile:
+				typeof error.context?.registryFile === "string"
+					? `${options.sourceLabel}/${error.context.registryFile}`
+					: options.defaultRegistryFile,
+			itemName: options.itemName,
+			itemIndex:
+				typeof error.context?.itemIndex === "number" ? error.context.itemIndex : options.itemIndex,
+			filePath:
+				typeof error.context?.itemFilePath === "string"
+					? error.context.itemFilePath
+					: typeof error.context?.filePath === "string"
+						? error.context.filePath
+						: undefined,
+			includePath:
+				typeof error.context?.includePath === "string" ? error.context.includePath : undefined,
+			message: error.message,
+			suggestion: error.suggestion,
+		};
+	}
+	return {
+		registryFile: options.defaultRegistryFile,
+		itemName: options.itemName,
+		itemIndex: options.itemIndex,
+		message: error instanceof Error ? error.message : "Unknown error.",
+	};
 }

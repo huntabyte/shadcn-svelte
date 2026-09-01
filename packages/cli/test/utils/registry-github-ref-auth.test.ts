@@ -1,5 +1,7 @@
 import { fetch } from "node-fetch-native";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { withRegistryContext } from "../../src/utils/registry/context.js";
+import { RegistrySourceFileError } from "../../src/utils/registry/errors.js";
 import { resetGitHubAuthNotices } from "../../src/utils/registry/github-auth.js";
 import { resolveGitHubRef } from "../../src/utils/registry/github-ref.js";
 
@@ -72,5 +74,40 @@ describe("authenticated GitHub ref resolution", () => {
 			"https://api.github.com/repos/acme/private-toolkit/commits/heads/v1.0.0",
 			"https://api.github.com/repos/acme/private-toolkit/commits/tags/v1.0.0",
 		]);
+	});
+
+	it("preserves the original public ref error when authenticated resolution returns 404", async () => {
+		vi.mocked(fetch).mockResolvedValue({ ok: false, status: 404 } as Response);
+		const failure = await withRegistryContext(
+			() =>
+				resolveGitHubRef(
+					{ owner: "acme", repo: "private-toolkit", ref: "missing" },
+					{ authAnchor: {} }
+				),
+			{ onGitHubAuthNotice: vi.fn() }
+		).catch((error) => error);
+		expect(failure).toBeInstanceOf(RegistrySourceFileError);
+		expect(failure).toMatchObject({
+			message: 'Failed to resolve GitHub ref "missing" for acme/private-toolkit.',
+			context: expect.objectContaining({ reason: "github-ref-resolution", ref: "missing" }),
+			suggestion: "Check that the public GitHub repository exists and the ref is accessible.",
+		});
+	});
+
+	it("uses sanitized status-specific guidance for authenticated ref failures", async () => {
+		vi.mocked(fetch).mockResolvedValue({ ok: false, status: 503 } as Response);
+		const failure = await withRegistryContext(
+			() =>
+				resolveGitHubRef(
+					{ owner: "acme", repo: "private-toolkit", ref: "main" },
+					{ authAnchor: {} }
+				),
+			{ onGitHubAuthNotice: vi.fn() }
+		).catch((error) => error);
+		expect(failure).toBeInstanceOf(RegistrySourceFileError);
+		expect(failure).toMatchObject({
+			message: expect.stringContaining("GitHub returned an upstream error (503)."),
+			suggestion: "GitHub may be having issues. Try again later.",
+		});
 	});
 });

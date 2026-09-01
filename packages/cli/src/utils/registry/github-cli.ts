@@ -2,6 +2,7 @@ import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { fetch } from "node-fetch-native";
 import { createProxy } from "node-fetch-native/proxy";
+import { getRegistryEnvFromContext } from "./context.js";
 import { getEnvProxy } from "../get-env-proxy.js";
 import type { GitHubItemAddress, GitHubRegistrySource } from "./address.js";
 
@@ -35,8 +36,8 @@ export class GitHubTransportError extends Error {
 	readonly kind: GitHubFailureKind;
 	readonly statusCode?: number;
 
-	constructor(kind: GitHubFailureKind, options: { statusCode?: number } = {}) {
-		super(`GitHub request failed (${kind}).`);
+	constructor(kind: GitHubFailureKind, options: { statusCode?: number; message?: string } = {}) {
+		super(options.message ?? `GitHub request failed (${kind}).`);
 		this.name = "GitHubTransportError";
 		this.kind = kind;
 		this.statusCode = options.statusCode;
@@ -45,7 +46,7 @@ export class GitHubTransportError extends Error {
 
 export function getEnvGitHubToken() {
 	for (const name of GITHUB_TOKEN_ENV_VARS) {
-		const value = process.env[name]?.trim();
+		const value = getRegistryEnvFromContext(name)?.trim();
 		if (value && HEADER_SAFE_TOKEN_PATTERN.test(value)) return value;
 	}
 	return null;
@@ -234,19 +235,84 @@ function buildContentsEndpoint(address: GitHubSource, sha: string, filePath: str
 }
 
 export function getGitHubTransportFailureGuidance(err: GitHubTransportError, mode: GitHubAuthMode) {
-	if (err.kind === "enoent")
-		return 'Install the GitHub CLI and run "gh auth login", or set GH_TOKEN to a token with read access.';
-	if (err.kind === "unauthenticated" || err.statusCode === 401)
+	if (err.kind === "enoent") {
+		return {
+			detail: "The GitHub CLI (gh) is not installed.",
+			suggestion:
+				'Install the GitHub CLI and run "gh auth login", or set GH_TOKEN to a token with read access.',
+		};
+	}
+	if (err.kind === "unauthenticated") {
 		return mode === "token"
-			? "Check that GH_TOKEN or GITHUB_TOKEN is valid and has read access to the repository."
-			: 'Run "gh auth login --hostname github.com" and try again.';
-	if (err.kind === "oversize") return "Registry source files must be smaller than 5 MiB.";
-	if (err.statusCode === 403)
-		return "Check that your credentials have read access to the repository.";
-	if (err.statusCode === 429) return "GitHub rate limited the request. Wait and try again.";
-	if (err.kind === "timeout")
-		return "The GitHub request timed out. Check your network and try again.";
-	return "Check the repository, your credentials, and your network, then try again.";
+			? {
+					detail: "The configured GitHub token was rejected.",
+					suggestion:
+						"Check that GH_TOKEN or GITHUB_TOKEN is valid and has read access to the repository.",
+				}
+			: {
+					detail: "The GitHub CLI is not authenticated.",
+					suggestion: 'Run "gh auth login --hostname github.com" and try again.',
+				};
+	}
+	if (err.kind === "timeout") {
+		return {
+			detail: "The GitHub request timed out.",
+			suggestion: "Check your network connection and try again.",
+		};
+	}
+	if (err.kind === "oversize") {
+		return {
+			detail: `The file exceeds the ${MAX_GITHUB_SOURCE_FILE_SIZE} byte registry source file limit.`,
+			suggestion:
+				"Registry source files must be smaller than 5 MiB. Reduce the file size or split the item.",
+		};
+	}
+	if (err.kind === "http") {
+		if (err.statusCode === 401) {
+			return mode === "token"
+				? {
+						detail: "GitHub rejected the configured token (401).",
+						suggestion:
+							"Check that GH_TOKEN or GITHUB_TOKEN is valid and has read access to the repository.",
+					}
+				: {
+						detail: "GitHub rejected the stored GitHub CLI credentials (401).",
+						suggestion: 'Run "gh auth login --hostname github.com" and try again.',
+					};
+		}
+		if (err.statusCode === 403) {
+			return {
+				detail: "GitHub denied access to the repository (403).",
+				suggestion: "Check that your credentials have read access to the repository.",
+			};
+		}
+		if (err.statusCode === 429) {
+			return {
+				detail: "GitHub rate limited the request (429).",
+				suggestion: "Wait a few minutes and try again.",
+			};
+		}
+		if (err.statusCode && err.statusCode >= 500) {
+			return {
+				detail: `GitHub returned an upstream error (${err.statusCode}).`,
+				suggestion: "GitHub may be having issues. Try again later.",
+			};
+		}
+		return {
+			detail: `GitHub returned an unexpected status${err.statusCode ? ` (${err.statusCode})` : ""}.`,
+			suggestion: "Check the repository and try again.",
+		};
+	}
+	if (err.kind === "invalid-response") {
+		return {
+			detail: "GitHub returned an unexpected response.",
+			suggestion: "Try again later.",
+		};
+	}
+	return {
+		detail: "The GitHub request failed.",
+		suggestion: "Check your network connection and try again.",
+	};
 }
 
 type GitHubJsonRequester = (endpoint: string) => Promise<unknown>;

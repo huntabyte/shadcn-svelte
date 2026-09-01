@@ -1,5 +1,6 @@
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
+import { RegistrySourceFileError } from "./errors.js";
 import { getGitHubAuthState, selectGitHubAuthMode } from "./github-auth.js";
 import {
 	getGitHubTransportFailureGuidance,
@@ -7,7 +8,6 @@ import {
 	resolveGitHubRefViaAuth,
 	type GitHubSource,
 } from "./github-cli.js";
-import { error } from "../errors.js";
 
 const execFileAsync = promisify(execFile);
 const GITHUB_URL = "https://github.com";
@@ -53,10 +53,7 @@ async function resolveGitHubRefUncached(
 		);
 		stdout = result.stdout;
 	} catch (cause) {
-		const refError = error(
-			`Failed to resolve GitHub ref "${ref}" for ${address.owner}/${address.repo}. Check that the public GitHub repository exists and the ref is accessible.`,
-			cause
-		);
+		const refError = createGitHubRefResolutionError(address, ref, repoUrl, cause);
 		if (!options.authAnchor) throw refError;
 		return resolveGitHubRefWithAuth(address, ref, options.authAnchor, refError);
 	}
@@ -66,26 +63,104 @@ async function resolveGitHubRefUncached(
 		const sha = refs.get(candidate);
 		if (sha) return sha;
 	}
-	throw error(
-		`Could not resolve GitHub ref "${ref}" for ${address.owner}/${address.repo}. Use an existing branch, tag, or full commit SHA.`
-	);
+	throw new RegistrySourceFileError("registry.json", undefined, {
+		message: `Could not resolve GitHub ref "${ref}" for ${address.owner}/${address.repo}.`,
+		context: {
+			reason: "github-ref-resolution",
+			source: formatGitHubSource(address),
+			ref,
+			repoUrl,
+		},
+		suggestion:
+			'Use an existing branch, tag, or full commit SHA. For example: "owner/repo/item#main" or "owner/repo/item#v1.0.0".',
+	});
 }
 
 async function resolveGitHubRefWithAuth(
 	address: GitHubSource,
 	ref: string,
 	authAnchor: object,
-	refError: Error
+	refError: RegistrySourceFileError
 ) {
 	const state = getGitHubAuthState(authAnchor, address);
-	const mode = await selectGitHubAuthMode(state, refError);
+	let mode;
+	try {
+		mode = await selectGitHubAuthMode(state, address, refError);
+	} catch {
+		throw refError;
+	}
 	try {
 		return await resolveGitHubRefViaAuth(address, ref, mode);
 	} catch (err) {
 		if (!(err instanceof GitHubTransportError)) throw refError;
 		if (err.kind === "http" && err.statusCode === 404) throw refError;
-		throw error(`${refError.message} ${getGitHubTransportFailureGuidance(err, mode)}`);
+		const guidance = getGitHubTransportFailureGuidance(err, mode);
+		if (err.kind === "enoent" || err.kind === "unauthenticated") {
+			throw new RegistrySourceFileError("registry.json", undefined, {
+				message: refError.message,
+				context: {
+					reason: "github-ref-resolution",
+					source: formatGitHubSource(address),
+					ref,
+				},
+				suggestion: guidance.suggestion,
+			});
+		}
+		throw new RegistrySourceFileError("registry.json", undefined, {
+			message: `Failed to resolve GitHub ref "${ref}" for ${address.owner}/${address.repo}. ${guidance.detail}`,
+			context: {
+				reason: "github-ref-resolution",
+				source: formatGitHubSource(address),
+				ref,
+			},
+			suggestion: guidance.suggestion,
+		});
 	}
+}
+
+function createGitHubRefResolutionError(
+	address: GitHubSource,
+	ref: string,
+	repoUrl: string,
+	cause: unknown
+) {
+	return new RegistrySourceFileError("registry.json", cause, {
+		message: `Failed to resolve GitHub ref "${ref}" for ${address.owner}/${address.repo}.`,
+		context: {
+			reason: "github-ref-resolution",
+			source: formatGitHubSource(address),
+			ref,
+			repoUrl,
+		},
+		suggestion: getGitHubRefResolutionSuggestion(cause),
+	});
+}
+
+function getGitHubRefResolutionSuggestion(cause: unknown) {
+	if (isGitNotFoundError(cause)) {
+		return "Install Git and try again. Git is required to resolve GitHub registry refs.";
+	}
+	if (isTimeoutError(cause)) {
+		return "GitHub ref resolution timed out. Check your network connection and try again.";
+	}
+	return "Check that the public GitHub repository exists and the ref is accessible.";
+}
+
+function isGitNotFoundError(cause: unknown) {
+	return typeof cause === "object" && cause !== null && "code" in cause && cause.code === "ENOENT";
+}
+
+function isTimeoutError(cause: unknown) {
+	return (
+		typeof cause === "object" &&
+		cause !== null &&
+		(("timedOut" in cause && cause.timedOut === true) ||
+			("killed" in cause && cause.killed === true))
+	);
+}
+
+function formatGitHubSource(address: GitHubSource) {
+	return `${address.owner}/${address.repo}#${address.ref ?? "HEAD"}`;
 }
 
 export function getGitHubRefCandidates(ref: string) {
