@@ -124,11 +124,12 @@ type PromptForAliasesOptions = {
 	existingConfig: RawConfig | undefined;
 	utilsAlias?: string | undefined;
 	libAlias?: string | undefined;
+	libAliasDefault?: string | undefined;
 	hooksAlias?: string | undefined;
 	uiAlias?: string | undefined;
 };
 export async function promptForAliases(options: PromptForAliasesOptions) {
-	const libAlias = await promptAlias("lib", "$lib", options);
+	const libAlias = await promptAlias("lib", options.libAliasDefault ?? "$lib", options);
 	const componentAlias = await promptAlias("components", `${libAlias}/components`, options);
 	const uiAlias = await promptAlias("ui", `${componentAlias}/ui`, options);
 	const utilsAlias = await promptAlias("utils", `${libAlias}/utils`, options);
