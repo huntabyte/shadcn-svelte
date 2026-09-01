@@ -15,9 +15,6 @@ catalogs:
     typescript:
       specifier: ^6.0.3
       version: 6.0.3
-    zod:
-      specifier: ^4.4.3
-      version: 4.4.3
 
 importers:
 
@@ -505,7 +502,7 @@ importers:
         specifier: ^4.1.10
         version: 4.1.10(@types/node@25.5.0)(jsdom@27.3.0(postcss@8.5.25))(vite@8.1.5(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.7.0)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1))
       zod:
-        specifier: 'catalog:'
+        specifier: ^4.4.3
         version: 4.4.3
 
   sv-addons/registry:
