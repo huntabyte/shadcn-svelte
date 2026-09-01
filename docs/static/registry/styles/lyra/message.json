@@ -1,0 +1,42 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "message",
+	"type": "registry:ui",
+	"files": [
+		{
+			"content": "import Group from \"./message-group.svelte\";\nimport Root from \"./message.svelte\";\nimport Avatar from \"./message-avatar.svelte\";\nimport Content from \"./message-content.svelte\";\nimport Header from \"./message-header.svelte\";\nimport Footer from \"./message-footer.svelte\";\n\nexport {\n\tGroup,\n\tRoot,\n\tAvatar,\n\tContent,\n\tHeader,\n\tFooter,\n\tGroup as MessageGroup,\n\tRoot as Message,\n\tAvatar as MessageAvatar,\n\tContent as MessageContent,\n\tHeader as MessageHeader,\n\tFooter as MessageFooter,\n};\n",
+			"type": "registry:file",
+			"target": "message/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet { ref = $bindable(null), class: className, children, ...restProps }: WithElementRef<\n\t\tHTMLAttributes<HTMLDivElement>\n\t> = $props();\n</script>\n\n<div bind:this={ref} data-slot=\"message-avatar\" class={cn(\"flex size-8 shrink-0 items-center justify-center self-end overflow-hidden rounded-full bg-muted\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "message/message-avatar.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet { ref = $bindable(null), class: className, children, ...restProps }: WithElementRef<\n\t\tHTMLAttributes<HTMLDivElement>\n\t> = $props();\n</script>\n\n<div bind:this={ref} data-slot=\"message-content\" class={cn(\"flex w-full min-w-0 flex-col gap-1 wrap-break-word\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "message/message-content.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet { ref = $bindable(null), class: className, children, ...restProps }: WithElementRef<\n\t\tHTMLAttributes<HTMLDivElement>\n\t> = $props();\n</script>\n\n<div bind:this={ref} data-slot=\"message-footer\" class={cn(\"flex max-w-full min-w-0 items-center gap-2 group-data-[align=end]/message:justify-end\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "message/message-footer.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet { ref = $bindable(null), class: className, children, ...restProps }: WithElementRef<\n\t\tHTMLAttributes<HTMLDivElement>\n\t> = $props();\n</script>\n\n<div bind:this={ref} data-slot=\"message-group\" class={cn(\"flex min-w-0 flex-col gap-3\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "message/message-group.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet { ref = $bindable(null), class: className, children, ...restProps }: WithElementRef<\n\t\tHTMLAttributes<HTMLDivElement>\n\t> = $props();\n</script>\n\n<div bind:this={ref} data-slot=\"message-header\" class={cn(\"flex max-w-full min-w-0 items-center gap-2 text-sm\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "message/message-header.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\talign = \"start\",\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> & { align?: \"start\" | \"end\" } = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"message\"\n\tdata-align={align}\n\tclass={cn(\"group/message relative flex w-full min-w-0 gap-2 data-[align=end]:flex-row-reverse\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "message/message.svelte"
+		}
+	]
+}

@@ -153,6 +153,12 @@ These are the most common patterns that differentiate correct shadcn-svelte code
 | Charts                     | `Chart` (LayerChart)                                                                                |
 | Layout                     | `Card`, `Separator`, `Resizable`, `ScrollArea`, `Accordion`, `Collapsible`                          |
 | Empty states               | `Empty`                                                                                             |
+| Chat message structure     | `Message.Group` + `Message.Root` + `Message.Content`; use `Bubble` for the visual message body    |
+| Live chat timeline         | `MessageScroller.Provider` + `Root` + `Viewport` + `Content` + keyed `Item` elements               |
+| File/media attachment      | `Attachment.Root` with `Media`, `Content`, and `Actions`                                           |
+| Rich article or markdown   | `Typeset` wrapper                                                                                   |
+| Inline status/separator    | `Marker.Root` with `Marker.Icon` and `Marker.Content`                                               |
+| RTL/LTR subtree            | `DirectionProvider direction="rtl"` (or `"ltr"`)                                                  |
 | Menus                      | `DropdownMenu`, `ContextMenu`, `Menubar`                                                            |
 | Tooltips/info              | `Tooltip`, `HoverCard`, `Popover`                                                                   |
 
@@ -172,6 +178,19 @@ See [cli.md](./cli.md) for commands and flags.
 ## Component Docs, Examples, and Usage
 
 Open `https://shadcn-svelte.com/docs/components/<name>.md` for docs and examples. **When creating, fixing, debugging, or using a component, read the official page first** so you follow the documented APIs.
+
+### Chat and content components
+
+These components are available in the registry and should be preferred over custom chat/content markup:
+
+- **Attachment** — `import * as Attachment from "$lib/components/ui/attachment"`; compose `Root`, `Media`, `Content`, `Title`, `Description`, `Actions`, and `Action`. Use `state="idle" | "uploading" | "processing" | "error" | "done"`.
+- **Bubble** — `import * as Bubble from "$lib/components/ui/bubble"`; use `Root`, `Content`, `Reactions`, and `Group`. Set `align="start" | "end"` and a semantic visual variant.
+- **Direction** — `import { DirectionProvider, useDirection } from "$lib/components/ui/direction"`; wrap RTL content in `DirectionProvider` rather than duplicating direction-specific layout logic.
+- **Marker** — `import * as Marker from "$lib/components/ui/marker"`; use it for compact labelled status, separators, and inline notices. Variants: `default`, `border`, `separator`.
+- **Message** — `import * as Message from "$lib/components/ui/message"`; use its `Group`, `Root`, `Avatar`, `Content`, `Header`, and `Footer` slots for semantic conversation structure.
+- **Message Scroller** — `import * as MessageScroller from "$lib/components/ui/message-scroller"`; always use `Provider` around a `Root`/`Viewport`/`Content` composition. Give each item a stable `messageId`; use `scrollAnchor` for unread/history anchors. Do not reproduce its scroll anchoring with ad-hoc listeners.
+- **Typeset** — `import { Typeset } from "$lib/components/ui/typeset"`; wrap article or trusted rendered markdown content instead of styling each rich-text element manually.
+- **Utilities** — `shimmer`, `scroll-fade`, `scroll-fade-x`, `scroll-fade-y`, `scroll-fade-t`, and `scroll-fade-b` are available after the normal shadcn-svelte Tailwind CSS import. Use them as utilities, not bespoke mask/animation CSS.
 
 ## Workflow
 
