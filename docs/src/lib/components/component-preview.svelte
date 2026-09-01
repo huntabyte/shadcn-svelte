@@ -15,6 +15,7 @@
 		align?: "center" | "start" | "end";
 		description?: string;
 		hideCode?: boolean;
+		previewClass?: string;
 		type?: "block" | "component" | "example";
 		component?: Component;
 	} = $props();

@@ -16,6 +16,7 @@
 </script>
 
 <IconPlaceholder
+	data-slot="spinner"
 	lucide="Loader2Icon"
 	tabler="IconLoader"
 	hugeicons="Loading03Icon"

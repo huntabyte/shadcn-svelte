@@ -1,3 +1,9 @@
+export { default as AttachmentDemo } from "./attachment-demo.svelte";
+export { default as BubbleDemo } from "./bubble-demo.svelte";
+export { default as MarkerDemo } from "./marker-demo.svelte";
+export { default as MessageDemo } from "./message-demo.svelte";
+export { default as MessageScrollerDemo } from "./message-scroller-demo.svelte";
+export { default as TypesetDemo } from "./typeset-demo.svelte";
 export { default as AccordionDemo } from "./accordion-demo.svelte";
 export { default as AlertDemo } from "./alert-demo.svelte";
 export { default as AlertDestructive } from "./alert-destructive.svelte";
