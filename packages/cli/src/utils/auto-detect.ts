@@ -41,10 +41,9 @@ export function detectConfigs(cwd: string, config?: { relative: boolean }) {
 function findPackageImportAlias(cwd: string): string | undefined {
 	try {
 		const packageJson = getPackageInfo(cwd);
-		if (!packageJson.imports) return;
 
 		const imports = packageJson.imports;
-		if (imports["#lib/*"]) return "#lib";
+		if (imports && imports["#lib/*"]) return "#lib";
 	} catch {
 		return;
 	}
