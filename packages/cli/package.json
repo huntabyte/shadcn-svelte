@@ -116,6 +116,6 @@
 		"type-fest": "^4.41.0",
 		"typescript": "catalog:",
 		"vitest": "^4.1.10",
-		"zod": "catalog:"
+		"zod": "^4.4.3"
 	}
 }
