@@ -59,7 +59,7 @@ const config = {
 };
 ```
 
-If you are _not_ using SvelteKit, can choose one of these two options:
+If you are _not_ using SvelteKit, you can choose one of these two options:
 
 1. Use package subpath imports for the `#lib` alias (recommended):
 
