@@ -1,5 +1,15 @@
 # shadcn-svelte
 
+## 1.6.0
+
+### Minor Changes
+
+- feat: auto-detect `#lib` subpath imports from `package.json` ([#2862](https://github.com/huntabyte/shadcn-svelte/pull/2862))
+
+### Patch Changes
+
+- chore: upgrade `@svecosystem/strip-types` ([#2860](https://github.com/huntabyte/shadcn-svelte/pull/2860))
+
 ## 1.5.1
 
 ### Patch Changes
