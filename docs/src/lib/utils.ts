@@ -1,9 +1,6 @@
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
+import { cn } from "cn";
 
-export function cn(...inputs: ClassValue[]): string {
-	return twMerge(clsx(inputs));
-}
+export { cn };
 
 export function getComponentName(name: string): string {
 	// convert kebab-case to title case
