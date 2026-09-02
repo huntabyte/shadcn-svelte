@@ -107,7 +107,7 @@ Use not-typeset or data-not-typeset to exclude embedded components. Verify headi
 					</Select.Content>
 				</Select.Root>
 			</div>
-			<div class="scroll-fade min-h-0 flex-1 scrollbar-none overflow-y-auto p-4 md:p-6">
+			<div class="scroll-fade no-scrollbar min-h-0 flex-1 overflow-y-auto p-4 md:p-6">
 				<Tabs.Content value="docs" class="flex flex-col gap-6">
 					<section class="flex flex-col gap-2.5">
 						<h3 class="text-sm font-medium">1. Create typeset.css</h3>
