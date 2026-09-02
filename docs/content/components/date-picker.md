@@ -20,7 +20,7 @@ links:
 
 The Date Picker is built using a composition of the `<Popover />` and `<Calendar />` components.
 
-See installations instructions for the [Popover](/docs/components/popover#installation) and [Calendar](/docs/components/calendar#installation) components. Use `mode="range"` for date range pickers.
+See installation instructions for the [Popover](/docs/components/popover#installation) and [Calendar](/docs/components/calendar#installation) components. Use `mode="range"` for date range pickers.
 
 ## Usage
 
