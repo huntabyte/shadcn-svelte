@@ -110,6 +110,7 @@ function deriveCategory(filePath: string): string {
 
 	const categories: Record<string, string> = {
 		components: "Components",
+		forms: "Forms",
 		installation: "Installation",
 		migration: "Migration",
 		"dark-mode": "Dark Mode",
