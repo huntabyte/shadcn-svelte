@@ -31,9 +31,7 @@ function parseFrontmatter(raw: string): { title: string; description: string; bo
 }
 
 function slugify(text: string): string {
-	return text
-		.toLowerCase()
-		.split("")
+	return Array.from(text.toLowerCase())
 		.filter((char) => !isGithubSlugRemovedChar(char))
 		.join("")
 		.replace(/ /g, "-");

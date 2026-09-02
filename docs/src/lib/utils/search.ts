@@ -76,14 +76,27 @@ function highlightMatches(text: string, query: string): string {
 		.toLowerCase()
 		.split(/\s+/)
 		.filter((w) => w.length > 1);
-	let highlighted = text;
+	if (words.length === 0) return escapeHtml(text);
 
-	for (const word of words) {
-		const regex = new RegExp(`(${word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "gi");
-		highlighted = highlighted.replace(regex, "<mark>$1</mark>");
-	}
+	const escapedWords = words.map((word) => word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+	const regex = new RegExp(`(${escapedWords.join("|")})`, "gi");
+	const matches = new Set(words);
 
-	return highlighted;
+	return text
+		.split(regex)
+		.map((part) =>
+			matches.has(part.toLowerCase()) ? `<mark>${escapeHtml(part)}</mark>` : escapeHtml(part)
+		)
+		.join("");
+}
+
+function escapeHtml(text: string): string {
+	return text
+		.replaceAll("&", "&amp;")
+		.replaceAll("<", "&lt;")
+		.replaceAll(">", "&gt;")
+		.replaceAll('"', "&quot;")
+		.replaceAll("'", "&#39;");
 }
 
 function substringMatch(text: string, query: string): boolean {
