@@ -10,6 +10,7 @@
 
 	type CalendarRootProps = WithoutChildrenOrChild<CalendarPrimitive.RootProps>;
 	type RangeCalendarRootProps = WithoutChildrenOrChild<RangeCalendarPrimitive.RootProps>;
+	type DistributivePartial<T> = T extends unknown ? Partial<T> : never;
 
 	type SharedCalendarProps = {
 		buttonVariant?: ButtonVariant;
@@ -29,21 +30,15 @@
 		day?: Snippet<[{ day: DateValue; outsideMonth: boolean }]>;
 	};
 
-	type SingleOrMultipleCalendarProps = Partial<CalendarRootProps> &
+	type SingleOrMultipleCalendarProps = DistributivePartial<CalendarRootProps> &
 		SharedCalendarProps & {
 			mode?: "single" | "multiple";
-			value?: CalendarRootProps["value"];
-			onValueChange?: CalendarRootProps["onValueChange"];
-			placeholder?: CalendarRootProps["placeholder"];
 		};
 
-	type RangeCalendarProps = Partial<RangeCalendarRootProps> &
+	type RangeCalendarProps = DistributivePartial<RangeCalendarRootProps> &
 		SharedCalendarProps & {
 			mode: "range";
 			type?: never;
-			value?: RangeCalendarRootProps["value"];
-			onValueChange?: RangeCalendarRootProps["onValueChange"];
-			placeholder?: RangeCalendarRootProps["placeholder"];
 		};
 
 	type CalendarProps = SingleOrMultipleCalendarProps | RangeCalendarProps;
