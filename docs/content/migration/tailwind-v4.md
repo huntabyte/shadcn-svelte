@@ -424,9 +424,14 @@ Previously, we were depending on `bits-ui` for some simple type helpers that req
 These helpers have been moved into the `utils.ts` file:
 
 ```diff title="utils.ts"
- import { cn } from "cn";
+- import { clsx, type ClassValue } from "clsx";
+- import { twMerge } from "tailwind-merge";
++ import { cn } from "cn";
 
- export { cn };
+- export function cn(...inputs: ClassValue[]) {
+-     return twMerge(clsx(inputs));
+- }
++ export { cn };
 
 + // eslint-disable-next-line @typescript-eslint/no-explicit-any
 + export type WithoutChild<T> = T extends { child?: any } ? Omit<T, "child"> : T;
