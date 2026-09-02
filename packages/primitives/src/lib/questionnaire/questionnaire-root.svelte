@@ -87,7 +87,7 @@
 		if (!entry?.element) return;
 		if (target === "invalid") {
 			const control = entry.element.querySelector<HTMLElement>(
-				"input[data-filled]:not(:disabled), input:not([type=hidden]):not(:disabled), textarea:not(:disabled)"
+				"input[data-filled]:not(:disabled), input:not([type=hidden]):not(:disabled), textarea:not(:disabled), select:not(:disabled)"
 			);
 			(control ?? entry.element).focus();
 		} else {
