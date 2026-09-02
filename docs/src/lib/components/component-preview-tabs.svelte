@@ -6,6 +6,7 @@
 
 	let {
 		class: className,
+		previewClassName,
 		align = "center",
 		component,
 		example,
@@ -14,6 +15,7 @@
 		hideCode = false,
 		...restProps
 	}: HTMLAttributes<HTMLElement> & {
+		previewClassName?: string;
 		align?: "center" | "start" | "end";
 		hideCode?: boolean;
 		example?: Snippet;
@@ -53,7 +55,10 @@
 	>
 		<div
 			data-align={align}
-			class="preview flex h-72 w-full justify-center p-10 data-[align=center]:items-center data-[align=end]:items-end data-[align=start]:items-start"
+			class={cn(
+				"preview flex h-72 w-full justify-center p-10 data-[align=center]:items-center data-[align=end]:items-end data-[align=start]:items-start",
+				previewClassName
+			)}
 		>
 			{#if example}
 				{@render example()}
