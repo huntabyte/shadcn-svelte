@@ -104,11 +104,12 @@ function substringMatch(text: string, query: string): boolean {
 }
 
 export function searchContentIndex(query: string): SearchResult[] {
-	if (!query.trim()) return [];
+	const normalizedQuery = query.trim();
+	if (!normalizedQuery) return [];
 	if (!titleIndex || !contentIndex) return [];
 
-	const titleResults = titleIndex.search(query, { limit: 20 });
-	const contentResults = contentIndex.search(query, { limit: 20 });
+	const titleResults = titleIndex.search(normalizedQuery, { limit: 20 });
+	const contentResults = contentIndex.search(normalizedQuery, { limit: 20 });
 
 	const resultMap = new Map<Id, { score: number; source: string }>();
 
@@ -127,9 +128,12 @@ export function searchContentIndex(query: string): SearchResult[] {
 
 	if (resultMap.size === 0) {
 		content.forEach((item, idx) => {
-			if (substringMatch(item.title, query)) {
+			if (substringMatch(item.title, normalizedQuery)) {
 				resultMap.set(idx, { score: 8, source: "substring-title" });
-			} else if (substringMatch(item.content, query) || substringMatch(item.description, query)) {
+			} else if (
+				substringMatch(item.content, normalizedQuery) ||
+				substringMatch(item.description, normalizedQuery)
+			) {
 				resultMap.set(idx, { score: 3, source: "substring-content" });
 			}
 		});
@@ -141,11 +145,11 @@ export function searchContentIndex(query: string): SearchResult[] {
 
 	return sortedResults.map(([idx]) => {
 		const item = content[idx as number];
-		const snippet = getContentSnippet(item.content, query);
+		const snippet = getContentSnippet(item.content, normalizedQuery);
 		return {
 			...item,
-			snippet: highlightMatches(snippet, query),
-			highlights: query
+			snippet: highlightMatches(snippet, normalizedQuery),
+			highlights: normalizedQuery
 				.toLowerCase()
 				.split(/\s+/)
 				.filter((w) => w.length > 1),

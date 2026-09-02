@@ -90,8 +90,12 @@ function splitParagraphs(raw: string): string[] {
 		.filter((paragraph) => paragraph.length > 20);
 }
 
+function relativeContentPath(filePath: string): string {
+	return path.relative(CONTENT_DIR, filePath).split(path.sep).join("/");
+}
+
 function deriveHref(filePath: string): string {
-	let rel = path.relative(CONTENT_DIR, filePath);
+	let rel = relativeContentPath(filePath);
 	rel = rel.replace(/\.md$/, "");
 	rel = rel.replace(/\/index$/, "");
 	if (rel === "index") return "/docs";
@@ -99,7 +103,7 @@ function deriveHref(filePath: string): string {
 }
 
 function deriveCategory(filePath: string): string {
-	const rel = path.relative(CONTENT_DIR, filePath);
+	const rel = relativeContentPath(filePath);
 	const firstSegment = rel.split("/")[0];
 
 	if (!firstSegment) return "Getting Started";
