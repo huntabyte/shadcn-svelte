@@ -75,7 +75,11 @@
 	});
 
 	const calendarType = $derived(mode === "single" || mode === "multiple" ? mode : type);
-	const calendarProps = $derived({ ...restProps, type: calendarType } as CalendarRootProps);
+	const calendarProps = $derived(
+		(calendarType === undefined
+			? restProps
+			: { ...restProps, type: calendarType }) as CalendarRootProps
+	);
 	const rangeCalendarProps = $derived(restProps as RangeCalendarRootProps);
 </script>
 
