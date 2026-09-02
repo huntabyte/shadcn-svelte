@@ -121,7 +121,8 @@ export class TypesetState {
 			this.history = [...this.history.slice(0, this.historyIndex + 1), { ...this.params }];
 			this.historyIndex = this.history.length - 1;
 		}
-		if (browser) history.replaceState(null, "", serializeTypesetParams("/typeset", this.params));
+		if (browser)
+			window.history.replaceState(null, "", serializeTypesetParams("/typeset", this.params));
 	}
 
 	toggleLock(param: LockableParam) {
@@ -154,14 +155,16 @@ export class TypesetState {
 		if (this.historyIndex <= 0) return;
 		this.historyIndex -= 1;
 		this.params = { ...this.history[this.historyIndex] };
-		if (browser) history.replaceState(null, "", serializeTypesetParams("/typeset", this.params));
+		if (browser)
+			window.history.replaceState(null, "", serializeTypesetParams("/typeset", this.params));
 	}
 
 	redo() {
 		if (this.historyIndex >= this.history.length - 1) return;
 		this.historyIndex += 1;
 		this.params = { ...this.history[this.historyIndex] };
-		if (browser) history.replaceState(null, "", serializeTypesetParams("/typeset", this.params));
+		if (browser)
+			window.history.replaceState(null, "", serializeTypesetParams("/typeset", this.params));
 	}
 
 	get canUndo() {
