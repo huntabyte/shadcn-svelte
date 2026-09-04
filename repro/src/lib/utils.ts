@@ -1,6 +1,4 @@
-import { cn } from "cn";
-
-export { cn };
+export { cn } from "cn";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type WithoutChild<T> = T extends { child?: any } ? Omit<T, "child"> : T;

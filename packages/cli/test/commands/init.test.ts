@@ -39,7 +39,7 @@ it("init (config-full)", async () => {
 			devDependencies: ["cn@latest"],
 			files: [
 				{
-					content: 'import { cn } from "cn";',
+					content: 'export { cn } from "cn";',
 					type: "registry:lib",
 					target: "utils.ts",
 				},

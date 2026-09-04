@@ -1,6 +1,4 @@
-import { cn } from "cn";
-
-export { cn };
+export { cn } from "cn";
 
 export function getComponentName(name: string): string {
 	// convert kebab-case to title case

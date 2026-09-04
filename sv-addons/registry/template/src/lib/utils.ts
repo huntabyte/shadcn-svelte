@@ -1,3 +1,1 @@
-import { cn } from "cn";
-
-export { cn };
+export { cn } from "cn";

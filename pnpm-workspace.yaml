@@ -12,9 +12,6 @@ catalog:
     typescript: ^6.0.3
     vite: ^7.3.1
 
-minimumReleaseAgeExclude:
-    - cn@0.2.2
-
 onlyBuiltDependencies:
     - "@tailwindcss/oxide"
     - esbuild
