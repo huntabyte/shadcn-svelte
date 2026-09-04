@@ -3,6 +3,7 @@
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
 	import CornerDownLeftIcon from "@lucide/svelte/icons/corner-down-left";
 	import SquareDashedIcon from "@lucide/svelte/icons/square-dashed";
+	import { cn } from "cn";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import * as Kbd from "$lib/registry/ui/kbd/index.js";
@@ -13,7 +14,6 @@
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
 	import { UserConfigContext } from "$lib/user-config.svelte.js";
-	import { cn } from "$lib/utils.js";
 	import CommandMenuItem from "./command-menu-item.svelte";
 
 	let {

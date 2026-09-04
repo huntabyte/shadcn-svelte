@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
+	import { cn } from "cn";
 	import { getIconForLanguageExtension } from "../icons/icons.js";
 	import type { HTMLAttributes } from "svelte/elements";
 

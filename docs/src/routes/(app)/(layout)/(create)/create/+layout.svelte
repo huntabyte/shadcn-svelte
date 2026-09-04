@@ -1,8 +1,8 @@
 <script lang="ts">
+	import { cn } from "cn";
 	import Metadata from "$lib/components/metadata.svelte";
 	import SiteHeader from "$lib/components/site-header.svelte";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
-	import { cn } from "$lib/utils.js";
 	import ActionMenu from "../components/action-menu.svelte";
 	import Customizer from "../components/customizer.svelte";
 	import InitializeDialog from "../components/initialize-dialog.svelte";

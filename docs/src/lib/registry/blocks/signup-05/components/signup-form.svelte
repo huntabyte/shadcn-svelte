@@ -1,9 +1,9 @@
 <script lang="ts">
 	import GalleryVerticalEndIcon from "@lucide/svelte/icons/gallery-vertical-end";
+	import { cn } from "cn";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
-	import { cn } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 
 	let { class: className, ...restProps }: HTMLAttributes<HTMLDivElement> = $props();

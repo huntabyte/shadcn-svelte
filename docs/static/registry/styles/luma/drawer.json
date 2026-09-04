@@ -3,7 +3,8 @@
 	"name": "drawer",
 	"type": "registry:ui",
 	"devDependencies": [
-		"vaul-svelte@next"
+		"vaul-svelte@next",
+		"cn@^0.2.2"
 	],
 	"files": [
 		{
@@ -12,22 +13,22 @@
 			"target": "drawer/drawer-close.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { Drawer as DrawerPrimitive } from \"vaul-svelte\";\n\timport { cn } from \"$UTILS$.js\";\n\timport type { WithoutChildrenOrChild } from \"$UTILS$.js\";\n\timport DrawerOverlay from \"./drawer-overlay.svelte\";\n\timport DrawerPortal from \"./drawer-portal.svelte\";\n\timport type { ComponentProps } from \"svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tportalProps,\n\t\tchildren,\n\t\t...restProps\n\t}: DrawerPrimitive.ContentProps & {\n\t\tportalProps?: WithoutChildrenOrChild<ComponentProps<typeof DrawerPortal>>;\n\t} = $props();\n</script>\n\n<DrawerPortal {...portalProps}>\n\t<DrawerOverlay />\n\t<DrawerPrimitive.Content\n\t\tbind:ref\n\t\tdata-slot=\"drawer-content\"\n\t\tclass={cn(\"relative flex h-auto flex-col bg-transparent p-4 text-sm before:absolute before:inset-2 before:-z-10 before:rounded-4xl before:border before:border-border before:bg-popover before:shadow-xl data-[vaul-drawer-direction=bottom]:inset-x-0 data-[vaul-drawer-direction=bottom]:bottom-0 data-[vaul-drawer-direction=bottom]:mt-24 data-[vaul-drawer-direction=bottom]:max-h-[80vh] data-[vaul-drawer-direction=left]:inset-y-0 data-[vaul-drawer-direction=left]:left-0 data-[vaul-drawer-direction=left]:w-3/4 data-[vaul-drawer-direction=right]:inset-y-0 data-[vaul-drawer-direction=right]:right-0 data-[vaul-drawer-direction=right]:w-3/4 data-[vaul-drawer-direction=top]:inset-x-0 data-[vaul-drawer-direction=top]:top-0 data-[vaul-drawer-direction=top]:mb-24 data-[vaul-drawer-direction=top]:max-h-[80vh] data-[vaul-drawer-direction=left]:sm:max-w-sm data-[vaul-drawer-direction=right]:sm:max-w-sm group/drawer-content fixed z-50\", className)}\n\t\t{...restProps}\n\t>\n\t\t<div\n\t\t\tclass=\"mx-auto mt-4 hidden h-1.5 w-[100px] shrink-0 rounded-full bg-muted group-data-[vaul-drawer-direction=bottom]/drawer-content:block mx-auto hidden shrink-0 bg-muted group-data-[vaul-drawer-direction=bottom]/drawer-content:block\"\n\t\t></div>\n\t\t{@render children?.()}\n\t</DrawerPrimitive.Content>\n</DrawerPortal>\n",
+			"content": "<script lang=\"ts\">\n\timport { cn } from \"cn\";\n\timport { Drawer as DrawerPrimitive } from \"vaul-svelte\";\n\timport type { WithoutChildrenOrChild } from \"$UTILS$.js\";\n\timport DrawerOverlay from \"./drawer-overlay.svelte\";\n\timport DrawerPortal from \"./drawer-portal.svelte\";\n\timport type { ComponentProps } from \"svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tportalProps,\n\t\tchildren,\n\t\t...restProps\n\t}: DrawerPrimitive.ContentProps & {\n\t\tportalProps?: WithoutChildrenOrChild<ComponentProps<typeof DrawerPortal>>;\n\t} = $props();\n</script>\n\n<DrawerPortal {...portalProps}>\n\t<DrawerOverlay />\n\t<DrawerPrimitive.Content\n\t\tbind:ref\n\t\tdata-slot=\"drawer-content\"\n\t\tclass={cn(\"relative flex h-auto flex-col bg-transparent p-4 text-sm before:absolute before:inset-2 before:-z-10 before:rounded-4xl before:border before:border-border before:bg-popover before:shadow-xl data-[vaul-drawer-direction=bottom]:inset-x-0 data-[vaul-drawer-direction=bottom]:bottom-0 data-[vaul-drawer-direction=bottom]:mt-24 data-[vaul-drawer-direction=bottom]:max-h-[80vh] data-[vaul-drawer-direction=left]:inset-y-0 data-[vaul-drawer-direction=left]:left-0 data-[vaul-drawer-direction=left]:w-3/4 data-[vaul-drawer-direction=right]:inset-y-0 data-[vaul-drawer-direction=right]:right-0 data-[vaul-drawer-direction=right]:w-3/4 data-[vaul-drawer-direction=top]:inset-x-0 data-[vaul-drawer-direction=top]:top-0 data-[vaul-drawer-direction=top]:mb-24 data-[vaul-drawer-direction=top]:max-h-[80vh] data-[vaul-drawer-direction=left]:sm:max-w-sm data-[vaul-drawer-direction=right]:sm:max-w-sm group/drawer-content fixed z-50\", className)}\n\t\t{...restProps}\n\t>\n\t\t<div\n\t\t\tclass=\"mx-auto mt-4 hidden h-1.5 w-[100px] shrink-0 rounded-full bg-muted group-data-[vaul-drawer-direction=bottom]/drawer-content:block mx-auto hidden shrink-0 bg-muted group-data-[vaul-drawer-direction=bottom]/drawer-content:block\"\n\t\t></div>\n\t\t{@render children?.()}\n\t</DrawerPrimitive.Content>\n</DrawerPortal>\n",
 			"type": "registry:file",
 			"target": "drawer/drawer-content.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { Drawer as DrawerPrimitive } from \"vaul-svelte\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: DrawerPrimitive.DescriptionProps = $props();\n</script>\n\n<DrawerPrimitive.Description\n\tbind:ref\n\tdata-slot=\"drawer-description\"\n\tclass={cn(\"text-sm text-muted-foreground\", className)}\n\t{...restProps}\n/>\n",
+			"content": "<script lang=\"ts\">\n\timport { cn } from \"cn\";\n\timport { Drawer as DrawerPrimitive } from \"vaul-svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: DrawerPrimitive.DescriptionProps = $props();\n</script>\n\n<DrawerPrimitive.Description\n\tbind:ref\n\tdata-slot=\"drawer-description\"\n\tclass={cn(\"text-sm text-muted-foreground\", className)}\n\t{...restProps}\n/>\n",
 			"type": "registry:file",
 			"target": "drawer/drawer-description.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"drawer-footer\"\n\tclass={cn(\"gap-2 p-4 mt-auto flex flex-col\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"content": "<script lang=\"ts\">\n\timport { cn } from \"cn\";\n\timport { type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"drawer-footer\"\n\tclass={cn(\"gap-2 p-4 mt-auto flex flex-col\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
 			"type": "registry:file",
 			"target": "drawer/drawer-footer.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"drawer-header\"\n\tclass={cn(\"gap-0.5 p-4 group-data-[vaul-drawer-direction=bottom]/drawer-content:text-center group-data-[vaul-drawer-direction=top]/drawer-content:text-center md:gap-1.5 md:text-left flex flex-col\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"content": "<script lang=\"ts\">\n\timport { cn } from \"cn\";\n\timport { type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"drawer-header\"\n\tclass={cn(\"gap-0.5 p-4 group-data-[vaul-drawer-direction=bottom]/drawer-content:text-center group-data-[vaul-drawer-direction=top]/drawer-content:text-center md:gap-1.5 md:text-left flex flex-col\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
 			"type": "registry:file",
 			"target": "drawer/drawer-header.svelte"
 		},
@@ -37,7 +38,7 @@
 			"target": "drawer/drawer-nested.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { Drawer as DrawerPrimitive } from \"vaul-svelte\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: DrawerPrimitive.OverlayProps = $props();\n</script>\n\n<DrawerPrimitive.Overlay\n\tbind:ref\n\tdata-slot=\"drawer-overlay\"\n\tclass={cn(\"bg-black/30 supports-backdrop-filter:backdrop-blur-sm data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0 fixed inset-0 z-50\", className)}\n\t{...restProps}\n/>\n",
+			"content": "<script lang=\"ts\">\n\timport { cn } from \"cn\";\n\timport { Drawer as DrawerPrimitive } from \"vaul-svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: DrawerPrimitive.OverlayProps = $props();\n</script>\n\n<DrawerPrimitive.Overlay\n\tbind:ref\n\tdata-slot=\"drawer-overlay\"\n\tclass={cn(\"bg-black/30 supports-backdrop-filter:backdrop-blur-sm data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0 fixed inset-0 z-50\", className)}\n\t{...restProps}\n/>\n",
 			"type": "registry:file",
 			"target": "drawer/drawer-overlay.svelte"
 		},
@@ -47,7 +48,7 @@
 			"target": "drawer/drawer-portal.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { Drawer as DrawerPrimitive } from \"vaul-svelte\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: DrawerPrimitive.TitleProps = $props();\n</script>\n\n<DrawerPrimitive.Title\n\tbind:ref\n\tdata-slot=\"drawer-title\"\n\tclass={cn(\"cn-font-heading text-base font-medium text-foreground\", className)}\n\t{...restProps}\n/>\n",
+			"content": "<script lang=\"ts\">\n\timport { cn } from \"cn\";\n\timport { Drawer as DrawerPrimitive } from \"vaul-svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: DrawerPrimitive.TitleProps = $props();\n</script>\n\n<DrawerPrimitive.Title\n\tbind:ref\n\tdata-slot=\"drawer-title\"\n\tclass={cn(\"cn-font-heading text-base font-medium text-foreground\", className)}\n\t{...restProps}\n/>\n",
 			"type": "registry:file",
 			"target": "drawer/drawer-title.svelte"
 		},

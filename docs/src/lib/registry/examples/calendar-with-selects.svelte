@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { DateFormatter, getLocalTimeZone, today, type DateValue } from "@internationalized/date";
 	import { Calendar as CalendarPrimitive } from "bits-ui";
+	import { cn } from "cn";
 	import * as Calendar from "$lib/registry/ui/calendar/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
-	import { cn } from "$lib/utils.js";
 
 	let value = $state<DateValue>();
 	let placeholder = $state<DateValue>();

@@ -3,12 +3,12 @@
 	import CheckIcon from "@tabler/icons-svelte/icons/check";
 	import ChevronDownIcon from "@tabler/icons-svelte/icons/chevron-down";
 	import CopyIcon from "@tabler/icons-svelte/icons/copy";
+	import { cn } from "cn";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
 	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
-	import { cn } from "$lib/utils.js";
 
 	const pageUrl = $derived(page.url.origin + page.url.pathname);
 

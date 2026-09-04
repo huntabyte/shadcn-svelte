@@ -1,9 +1,9 @@
 <script lang="ts">
+	import { cn } from "cn";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { buttonVariants } from "$lib/registry/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	let mode = $state("auto");

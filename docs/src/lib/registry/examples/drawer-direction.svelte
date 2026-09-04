@@ -1,7 +1,7 @@
 <script lang="ts">
+	import { cn } from "cn";
 	import * as Drawer from "$lib/registry/ui/drawer/index.js";
 	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
 
 	const DRAWER_SIDES = ["top", "right", "bottom", "left"] as const;
 </script>

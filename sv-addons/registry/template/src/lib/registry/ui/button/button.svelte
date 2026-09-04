@@ -29,7 +29,7 @@
 </script>
 
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
+	import { cn } from "cn";
 	import type { HTMLButtonAttributes } from "svelte/elements";
 	import type { Snippet } from "svelte";
 

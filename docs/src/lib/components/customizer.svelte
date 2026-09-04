@@ -1,6 +1,7 @@
 <script lang="ts">
 	import RedoIcon from "@lucide/svelte/icons/redo";
 	import UndoIcon from "@lucide/svelte/icons/undo";
+	import { cn } from "cn";
 	import { setMode, mode } from "mode-watcher";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Kbd from "$lib/registry/ui/kbd/index.js";
@@ -9,7 +10,6 @@
 	import { FONT_HEADING_OPTIONS, FONTS } from "$lib/fonts.js";
 	import { useIsMac } from "$lib/hooks/use-is-mac.svelte.js";
 	import { buttonVariants } from "$lib/registry/ui/button/button.svelte";
-	import { cn } from "$lib/utils.js";
 	import IconPlaceholder from "./icon-placeholder/icon-placeholder.svelte";
 	import ModeSwitcher from "./mode-switcher.svelte";
 	import BaseColorPicker from "../../routes/(app)/(layout)/(create)/components/base-color-picker.svelte";

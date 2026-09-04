@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { browser } from "$app/environment";
+	import { cn } from "cn";
 	import { toggleMode } from "mode-watcher";
 	import { watch } from "runed";
 	import {
@@ -9,7 +10,6 @@
 		RADII,
 		type DesignSystemConfig,
 	} from "$lib/registry/config.js";
-	import { cn } from "$lib/registry/lib/utils.js";
 	import { setupDesignSystem } from "./design-system-provider-state.svelte.js";
 	import type { Snippet } from "svelte";
 

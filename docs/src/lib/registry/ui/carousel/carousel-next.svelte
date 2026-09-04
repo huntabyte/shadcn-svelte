@@ -1,7 +1,7 @@
 <script lang="ts">
+	import { cn } from "cn";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { Button, type Props } from "$lib/registry/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
 	import { getEmblaContext } from "./context.js";
 	import type { WithoutChildren } from "bits-ui";
 

@@ -1,9 +1,9 @@
 <script lang="ts">
+	import { cn } from "cn";
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import Label from "$lib/registry/ui/label/label.svelte";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { THEMES } from "$lib/registry/themes.js";
-	import { cn } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 
 	let { class: className, ...restProps }: HTMLAttributes<HTMLElement> = $props();

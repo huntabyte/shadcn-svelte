@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { cn } from "cn";
 	import { setMode } from "mode-watcher";
 	import { tick } from "svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
@@ -12,7 +13,6 @@
 	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
 	import { Textarea } from "$lib/registry/ui/textarea/index.js";
-	import { cn } from "$lib/utils.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"] as const;

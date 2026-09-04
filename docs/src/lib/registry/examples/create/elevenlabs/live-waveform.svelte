@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { cn } from "cn";
 	import { onMount } from "svelte";
-	import { cn } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 
 	interface Props extends HTMLAttributes<HTMLDivElement> {

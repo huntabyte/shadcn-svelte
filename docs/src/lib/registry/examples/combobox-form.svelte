@@ -22,6 +22,7 @@
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
 	import { useId } from "bits-ui";
+	import { cn } from "cn";
 	import { tick } from "svelte";
 	import { toast } from "svelte-sonner";
 	import { defaults, superForm } from "sveltekit-superforms";
@@ -30,7 +31,6 @@
 	import * as Form from "$lib/registry/ui/form/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import { buttonVariants } from "$lib/registry/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
 
 	const form = superForm(defaults(zod4(formSchema)), {
 		validators: zod4(formSchema),

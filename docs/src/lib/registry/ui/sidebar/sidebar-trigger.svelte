@@ -1,7 +1,7 @@
 <script lang="ts">
+	import { cn } from "cn";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
 	import { useSidebar } from "./context.svelte.js";
 	import type { ComponentProps } from "svelte";
 

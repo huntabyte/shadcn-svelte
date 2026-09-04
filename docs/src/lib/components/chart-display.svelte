@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
+	import { cn } from "cn";
 	import ChartToolbar from "./chart-toolbar.svelte";
 	import type { HighlightedBlock } from "../../routes/api/block/[block]/+server.js";
 	import type { HTMLAttributes } from "svelte/elements";

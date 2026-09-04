@@ -205,7 +205,7 @@ Feel free to add or modify as needed to suit your project.
 
 ### Configure utils
 
-You'll want to re-export the `cn` helper to make it easier to conditionally add and merge Tailwind CSS classes.
+Components import `cn` directly from the `cn` package. Re-export it from `src/lib/utils.ts` so your own code has a single place to import helpers from.
 
 ```ts title="src/lib/utils.ts" showLineNumbers
 export { cn } from "cn";
