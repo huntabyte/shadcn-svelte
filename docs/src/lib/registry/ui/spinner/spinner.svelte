@@ -21,6 +21,7 @@
 	hugeicons="Loading03Icon"
 	phosphor="SpinnerIcon"
 	remixicon="RiLoaderLine"
+	data-slot="spinner"
 	{role}
 	name={name === null ? undefined : name}
 	color={color === null ? undefined : color}

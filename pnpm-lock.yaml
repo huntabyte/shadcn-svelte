@@ -182,9 +182,6 @@ importers:
       '@lucide/svelte':
         specifier: ^1.27.0
         version: 1.27.0(svelte@5.54.0)
-      '@prettier/sync':
-        specifier: 0.6.1
-        version: 0.6.1(prettier@3.8.3)
       '@shikijs/langs':
         specifier: ^3.20.0
         version: 3.20.0
@@ -1672,11 +1669,6 @@ packages:
 
   '@preact/signals-core@1.12.1':
     resolution: {integrity: sha512-BwbTXpj+9QutoZLQvbttRg5x3l5468qaV2kufh+51yha1c53ep5dY4kTuZR35+3pAZxpfQerGJiQqg34ZNZ6uA==}
-
-  '@prettier/sync@0.6.1':
-    resolution: {integrity: sha512-yF9G8vK/LYUTF3Cijd7VC9La3b20F20/J/fgoR4H0B8JGOWnZVZX6+I6+vODPosjmMcpdlUV+gUqJQZp3kLOcw==}
-    peerDependencies:
-      prettier: '*'
 
   '@quansync/fs@1.0.0':
     resolution: {integrity: sha512-4TJ3DFtlf1L5LDMaM6CanJ/0lckGNtJcMjQ1NAV6zDmA0tEHKZtxNKin8EgPaVX1YzljbxckyT2tJrpQKAtngQ==}
@@ -3908,9 +3900,6 @@ packages:
 
   magic-string@0.30.21:
     resolution: {integrity: sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==}
-
-  make-synchronized@0.8.0:
-    resolution: {integrity: sha512-DZu4lwc0ffoFz581BSQa/BJl+1ZqIkoRQ+VejMlH0VrP4E86StAODnZujZ4sepumQj8rcP7wUnUBGM8Gu+zKUA==}
 
   markdown-extensions@2.0.0:
     resolution: {integrity: sha512-o5vL7aDWatOTX8LzaS1WMoaoxIiLRQJuIKKe2wAw6IeULDHaqbiqiggmx+pKvZDb1Sj+pE46Sn1T7lCqfFtg1Q==}
@@ -6466,11 +6455,6 @@ snapshots:
 
   '@preact/signals-core@1.12.1': {}
 
-  '@prettier/sync@0.6.1(prettier@3.8.3)':
-    dependencies:
-      make-synchronized: 0.8.0
-      prettier: 3.8.3
-
   '@quansync/fs@1.0.0':
     dependencies:
       quansync: 1.0.0
@@ -8633,8 +8617,6 @@ snapshots:
   magic-string@0.30.21:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.5
-
-  make-synchronized@0.8.0: {}
 
   markdown-extensions@2.0.0: {}
 

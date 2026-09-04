@@ -27,7 +27,7 @@
 
 {#if file}
 	<div
-		class="flex h-(--height) overflow-hidden rounded-xl border bg-code text-code-foreground group-data-[view=preview]/block-view-wrapper:hidden"
+		class="flex h-(--height) overflow-hidden rounded-xl bg-code text-code-foreground group-data-[view=preview]/block-view-wrapper:hidden"
 	>
 		{#if showFileTree}
 			<div class="hidden w-72 md:block">
@@ -36,7 +36,7 @@
 		{/if}
 		<figure
 			data-rehype-pretty-code-figure
-			class="mt-0 flex min-w-0 flex-1 flex-col rounded-xl border-none"
+			class="mx-0! mt-0 flex min-w-0 flex-1 flex-col rounded-xl border-none"
 		>
 			<ComponentCodeViewerCodeTitle />
 			<div
