@@ -15,7 +15,7 @@
 <div class="mx-auto flex max-w-xs min-w-0 flex-col gap-6">
 	<div class="flex flex-col gap-3">
 		<div class="overflow-hidden rounded-2xl border">
-			<div class="scroll-fade no-scrollbar h-48 overflow-y-auto">
+			<div class="no-scrollbar h-48 scroll-fade overflow-y-auto">
 				{@render noneItems()}
 			</div>
 		</div>
@@ -23,12 +23,10 @@
 	</div>
 	<div class="flex flex-col gap-3">
 		<div class="overflow-hidden rounded-2xl border">
-			<div class="scroll-fade no-scrollbar h-48 overflow-y-auto scroll-fade-none">
+			<div class="no-scrollbar h-48 scroll-fade overflow-y-auto scroll-fade-none">
 				{@render noneItems()}
 			</div>
 		</div>
-		<p class="text-center font-mono text-xs text-muted-foreground">
-			scroll-fade scroll-fade-none
-		</p>
+		<p class="text-center font-mono text-xs text-muted-foreground">scroll-fade scroll-fade-none</p>
 	</div>
 </div>

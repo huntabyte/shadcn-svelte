@@ -60,6 +60,25 @@ The shimmer is built on `currentColor`, so it adapts to the element:
 
 The effect is pure CSS. The text is painted with `background-clip: text`, and the highlight sweeps across it in a seamless loop.
 
+## With Marker
+
+The shimmer composes with any component that renders text. A common pattern is a [Marker](/docs/components/marker) showing a live status while the assistant is working:
+
+<ComponentPreview name="shimmer-marker">
+
+<div></div>
+
+</ComponentPreview>
+
+```svelte
+<Marker.Root role="status">
+  <Marker.Icon>
+    <Spinner />
+  </Marker.Icon>
+  <Marker.Content class="shimmer">Thinking&hellip;</Marker.Content>
+</Marker.Root>
+```
+
 ## Color
 
 Use `shimmer-color-<color>` to set the highlight color explicitly. It accepts theme colors with an optional opacity modifier, or any arbitrary color value.
@@ -142,9 +161,7 @@ Use `shimmer-once` to play a single sweep instead of looping, useful as a reveal
 </ComponentPreview>
 
 ```svelte
-<p class="shimmer shimmer-duration-1100 shimmer-once">
-  Response generated.
-</p>
+<p class="shimmer shimmer-duration-1100 shimmer-once">Response generated.</p>
 ```
 
 ## Disabling the Shimmer
