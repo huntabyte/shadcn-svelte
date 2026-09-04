@@ -18,11 +18,7 @@
 	</Marker.Root>
 	<Marker.Root class="transition-colors hover:text-foreground">
 		{#snippet child({ props })}
-			<button
-				{...props}
-				type="button"
-				onclick={() => toast("You clicked the revert button")}
-			>
+			<button {...props} type="button" onclick={() => toast("You clicked the revert button")}>
 				<Marker.Icon>
 					<RotateCcwIcon />
 				</Marker.Icon>
