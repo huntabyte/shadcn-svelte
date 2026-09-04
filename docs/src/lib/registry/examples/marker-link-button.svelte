@@ -16,12 +16,11 @@
 			</a>
 		{/snippet}
 	</Marker.Root>
-	<Marker.Root>
+	<Marker.Root class="transition-colors hover:text-foreground">
 		{#snippet child({ props })}
 			<button
 				{...props}
 				type="button"
-				class="transition-colors hover:text-foreground"
 				onclick={() => toast("You clicked the revert button")}
 			>
 				<Marker.Icon>
