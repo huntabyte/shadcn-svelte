@@ -2,6 +2,8 @@ import path from "node:path";
 import { fetch } from "node-fetch-native";
 import { createProxy } from "node-fetch-native/proxy";
 import { parse as parseCss } from "postcss";
+import { resolveGitHubItemAddress } from "./address.js";
+import { fetchGitHubRegistryCatalog, fetchGitHubRegistryItem } from "./github.js";
 import * as schemas from "../../schema/index.js";
 import { OFFICIAL_REGISTRY_URL } from "../../constants.js";
 import { BASE_COLORS, type ResolvedConfig } from "../config/index.js";
@@ -87,6 +89,7 @@ type ResolveRegistryItemsProps = {
 	registryIndex: schemas.RegistryIndex;
 	items: string[];
 	parentUrl?: URL;
+	sourceCache?: Map<string, Promise<string>>;
 };
 
 type ResolvedRegistryItem = schemas.RegistryItem | schemas.RegistryIndexItem;
@@ -95,14 +98,49 @@ export async function resolveRegistryItems({
 	registryIndex,
 	items,
 	parentUrl,
+	sourceCache = new Map(),
 }: ResolveRegistryItemsProps): Promise<ResolvedRegistryItem[]> {
-	const resolvedItems: ResolvedRegistryItem[] = [];
+	const resolvedItems = await resolveRegistryItemsWithKeys({
+		registryUrl,
+		registryIndex,
+		items,
+		parentUrl,
+		sourceCache,
+	});
+	return resolvedItems
+		.filter((entry, index, self) => self.findIndex((other) => other.key === entry.key) === index)
+		.map((entry) => entry.item);
+}
+
+type ResolvedRegistryItemWithKey = {
+	item: ResolvedRegistryItem;
+	key: string;
+};
+
+async function resolveRegistryItemsWithKeys({
+	registryUrl,
+	registryIndex,
+	items,
+	parentUrl,
+	sourceCache,
+}: ResolveRegistryItemsProps & {
+	sourceCache: Map<string, Promise<string>>;
+}): Promise<ResolvedRegistryItemWithKey[]> {
+	const resolvedItems: ResolvedRegistryItemWithKey[] = [];
 
 	for (const item of items) {
 		let remoteUrl: URL | undefined;
-		let resolvedItem: ResolvedRegistryItem | undefined = registryIndex.find(
-			(entry) => entry.name === item
-		);
+		let resolvedItem: ResolvedRegistryItem | undefined;
+		let itemKey: string;
+
+		const githubAddress = resolveGitHubItemAddress(item);
+		if (githubAddress) {
+			resolvedItem = await fetchGitHubRegistryItem(githubAddress, { sourceCache });
+			itemKey = `github:${githubAddress.owner.toLowerCase()}/${githubAddress.repo.toLowerCase()}/${githubAddress.item}#${githubAddress.ref ?? "HEAD"}`;
+		} else {
+			resolvedItem = registryIndex.find((entry) => entry.name === item);
+			itemKey = `registry:${item}`;
+		}
 
 		/**
 		 * The `item` doesn't exist in the registry's `index`, so it can be one of two things:
@@ -115,6 +153,7 @@ export async function resolveRegistryItems({
 				remoteUrl = new URL(item, parentUrl);
 				const [result] = await fetchRegistry([remoteUrl]);
 				resolvedItem = schemas.registryItemSchema.parse(result);
+				itemKey = `url:${remoteUrl.toString()}`;
 			} else {
 				// diff error messages depending on whether we're resolving from the user's registry or a remote URL
 				if (parentUrl) {
@@ -131,23 +170,21 @@ export async function resolveRegistryItems({
 			}
 		}
 
-		resolvedItems.push(resolvedItem);
+		resolvedItems.push({ item: resolvedItem, key: itemKey });
 
 		if (resolvedItem.registryDependencies?.length) {
-			const registryDeps = await resolveRegistryItems({
+			const registryDeps = await resolveRegistryItemsWithKeys({
 				registryUrl,
 				registryIndex,
 				items: resolvedItem.registryDependencies,
 				parentUrl: remoteUrl,
+				sourceCache,
 			});
 			resolvedItems.push(...registryDeps);
 		}
 	}
 
-	// dedupes tree
-	return resolvedItems.filter(
-		(component, index, self) => self.findIndex((c) => c.name === component.name) === index
-	);
+	return resolvedItems;
 }
 
 type FetchTreeProps = { baseUrl: string; items: ResolvedRegistryItem[] };
@@ -167,6 +204,32 @@ export async function fetchRegistryItems({
 		if (e instanceof CLIError) throw e;
 		throw error(`Failed to fetch tree from registry.`, e);
 	}
+}
+
+export async function getGitHubRegistryIndex(source: string) {
+	const { resolveGitHubRegistrySource } = await import("./address.js");
+	const githubSource = resolveGitHubRegistrySource(source);
+	if (!githubSource) {
+		throw error(
+			`Invalid GitHub registry source '${source}'. Expected owner/repo or owner/repo#ref.`
+		);
+	}
+
+	const catalog = await fetchGitHubRegistryCatalog(githubSource);
+	return schemas.registryIndexSchema.parse(
+		catalog.items.map((item) => ({
+			name: item.name,
+			title: item.title,
+			type: item.type,
+			author: item.author,
+			description: item.description,
+			dependencies: item.dependencies,
+			devDependencies: item.devDependencies,
+			registryDependencies: item.registryDependencies,
+			meta: item.meta,
+			relativeUrl: `${item.name}.json`,
+		}))
+	);
 }
 
 async function fetchRegistry(urls: Array<URL | string>): Promise<unknown[]> {
