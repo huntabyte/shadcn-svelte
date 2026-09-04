@@ -15,6 +15,7 @@ import {
 	migration,
 	darkMode,
 	registry,
+	utils,
 } from "../.velite";
 import type { Root, Link, Node, Paragraph, Text } from "mdast";
 import type { Plugin } from "unified";
@@ -113,7 +114,8 @@ type VeliteData =
 	| (typeof gettingStarted)[number]
 	| (typeof migration)[number]
 	| (typeof darkMode)[number]
-	| (typeof registry)[number];
+	| (typeof registry)[number]
+	| (typeof utils)[number];
 
 type CategorizedLinks = {
 	overview: LinkData[];
@@ -129,6 +131,7 @@ type CategorizedLinks = {
 	darkMode: LinkData[];
 	migration: LinkData[];
 	registry: LinkData[];
+	utils: LinkData[];
 	other: LinkData[];
 };
 
@@ -227,6 +230,7 @@ async function createLLMsIndex(files: FileMap) {
 		migration,
 		darkMode,
 		registry,
+		utils,
 	};
 	const categorizedLinks: CategorizedLinks = {
 		overview: [],
@@ -242,6 +246,7 @@ async function createLLMsIndex(files: FileMap) {
 		darkMode: [],
 		migration: [],
 		registry: [],
+		utils: [],
 		other: [],
 	};
 
@@ -346,6 +351,8 @@ async function createLLMsIndex(files: FileMap) {
 			categorizedLinks.migration.push(linkData);
 		} else if (dirPath.includes("registry")) {
 			categorizedLinks.registry.push(linkData);
+		} else if (dirPath.includes("utils")) {
+			categorizedLinks.utils.push(linkData);
 		} else if (dirPath.includes("components")) {
 			let categorized = false;
 			if (componentCategories.formInput.includes(outputName)) {
@@ -381,6 +388,7 @@ async function createLLMsIndex(files: FileMap) {
 	categorizedLinks.darkMode.sort((a, b) => a.name.localeCompare(b.name));
 	categorizedLinks.migration.sort((a, b) => a.name.localeCompare(b.name));
 	categorizedLinks.registry.sort((a, b) => a.name.localeCompare(b.name));
+	categorizedLinks.utils.sort((a, b) => a.name.localeCompare(b.name));
 	categorizedLinks.other.sort((a, b) => a.name.localeCompare(b.name));
 
 	categorizedLinks.components.formInput.sort((a, b) => a.name.localeCompare(b.name));
@@ -459,6 +467,12 @@ ${categorizedLinks.migration
 ## Registry
 
 ${categorizedLinks.registry
+	.map((link) => `- [${link.title || formatName(link.name)}](${link.path}): ${link.description}`)
+	.join("\n")}
+
+## Utilities
+
+${categorizedLinks.utils
 	.map((link) => `- [${link.title || formatName(link.name)}](${link.path}): ${link.description}`)
 	.join("\n")}
 `;
