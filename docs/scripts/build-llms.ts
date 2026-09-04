@@ -306,6 +306,10 @@ async function createLLMsIndex(files: FileMap) {
 			"typography",
 			"item",
 			"kbd",
+			"message",
+			"bubble",
+			"attachment",
+			"marker",
 		],
 		misc: ["collapsible", "toggle", "toggle-group", "pagination"],
 	};

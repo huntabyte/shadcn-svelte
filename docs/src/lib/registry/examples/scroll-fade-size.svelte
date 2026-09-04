@@ -15,7 +15,7 @@
 <div class="mx-auto flex w-full max-w-xs flex-col gap-6">
 	<div class="flex flex-col gap-3">
 		<div class="overflow-hidden rounded-2xl border">
-			<div class="scroll-fade no-scrollbar h-48 overflow-y-auto scroll-fade-4">
+			<div class="no-scrollbar h-48 scroll-fade overflow-y-auto scroll-fade-4">
 				{@render sizeItems()}
 			</div>
 		</div>
@@ -23,7 +23,7 @@
 	</div>
 	<div class="flex flex-col gap-3">
 		<div class="overflow-hidden rounded-2xl border">
-			<div class="scroll-fade no-scrollbar h-48 overflow-y-auto scroll-fade-24">
+			<div class="no-scrollbar h-48 scroll-fade overflow-y-auto scroll-fade-24">
 				{@render sizeItems()}
 			</div>
 		</div>

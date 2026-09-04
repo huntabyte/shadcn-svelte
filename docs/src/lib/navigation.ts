@@ -23,6 +23,10 @@ export const PAGES_NEW = [
 	"/docs/changelog",
 	"/docs/utils/scroll-fade",
 	"/docs/utils/shimmer",
+	"/docs/components/message",
+	"/docs/components/bubble",
+	"/docs/components/attachment",
+	"/docs/components/marker",
 ];
 
 export const PAGES_UPDATED: string[] = [];

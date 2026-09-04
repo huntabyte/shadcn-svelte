@@ -43,7 +43,7 @@
 <div class="mx-auto flex max-w-xs min-w-0 flex-col gap-6">
 	<div class="flex flex-col gap-3">
 		<div class="overflow-hidden rounded-2xl border">
-			<div class="scroll-fade-t no-scrollbar h-36 overflow-y-auto">
+			<div class="no-scrollbar h-36 scroll-fade-t overflow-y-auto">
 				{@render edgeItems()}
 			</div>
 		</div>
@@ -51,7 +51,7 @@
 	</div>
 	<div class="flex flex-col gap-3">
 		<div class="overflow-hidden rounded-2xl border">
-			<div class="scroll-fade-b no-scrollbar h-36 overflow-y-auto">
+			<div class="no-scrollbar h-36 scroll-fade-b overflow-y-auto">
 				{@render edgeItems()}
 			</div>
 		</div>
@@ -59,7 +59,7 @@
 	</div>
 	<div class="flex flex-col gap-3">
 		<div class="overflow-hidden rounded-2xl border">
-			<div class="scroll-fade-s no-scrollbar overflow-x-auto">
+			<div class="no-scrollbar scroll-fade-s overflow-x-auto">
 				{@render edgeTags()}
 			</div>
 		</div>
@@ -67,7 +67,7 @@
 	</div>
 	<div class="flex flex-col gap-3">
 		<div class="overflow-hidden rounded-2xl border">
-			<div class="scroll-fade-e no-scrollbar overflow-x-auto">
+			<div class="no-scrollbar scroll-fade-e overflow-x-auto">
 				{@render edgeTags()}
 			</div>
 		</div>
