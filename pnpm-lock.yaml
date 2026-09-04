@@ -363,8 +363,8 @@ importers:
         specifier: 'catalog:'
         version: 4.7.4(picomatch@4.0.5)(svelte@5.54.0)(typescript@5.9.3)
       svelte-sonner:
-        specifier: ^1.1.0
-        version: 1.1.0(svelte@5.54.0)
+        specifier: ^1.2.0
+        version: 1.2.1(svelte@5.54.0)
       svelte-toolbelt:
         specifier: ^0.10.6
         version: 0.10.6(@sveltejs/kit@2.70.1(@sveltejs/vite-plugin-svelte@7.2.0(svelte@5.54.0)(vite@8.1.5(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.7.0)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1)))(svelte@5.54.0)(typescript@5.9.3)(vite@8.1.5(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.7.0)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1)))(svelte@5.54.0)
@@ -4847,8 +4847,8 @@ packages:
     peerDependencies:
       svelte: ^3.0.0 || ^4.0.0 || ^5.0.0-next.1
 
-  svelte-sonner@1.1.0:
-    resolution: {integrity: sha512-3lYM6ZIqWe+p9vwwWHGWP/ZdvHiUtzURsud2quIxivrX4rvpXh6i+geBGn0m3JS6KwW6W8VgbOl3xQMcDuh6gg==}
+  svelte-sonner@1.2.1:
+    resolution: {integrity: sha512-N00LOWb60fjKXULbpngku+7E9Krb16KpNq4/Eax5Vu7o1Dpbca55QpaLPsB+yp82JIEdFhfJuv5cVXLoe0ZtVA==}
     peerDependencies:
       svelte: ^5.0.0
 
@@ -9947,7 +9947,7 @@ snapshots:
     dependencies:
       svelte: 5.54.0
 
-  svelte-sonner@1.1.0(svelte@5.54.0):
+  svelte-sonner@1.2.1(svelte@5.54.0):
     dependencies:
       runed: 0.28.0(svelte@5.54.0)
       svelte: 5.54.0

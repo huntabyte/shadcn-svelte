@@ -119,7 +119,7 @@
 		"shiki": "^3.20.0",
 		"svelte": "^5.54.0",
 		"svelte-check": "catalog:",
-		"svelte-sonner": "^1.1.0",
+		"svelte-sonner": "^1.2.0",
 		"svelte-toolbelt": "^0.10.6",
 		"sveltekit-superforms": "^2.30.0",
 		"tailwind-merge": "^3.6.0",
