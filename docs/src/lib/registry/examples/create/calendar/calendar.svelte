@@ -13,7 +13,7 @@
 	import DatePickerSimple from "./date-picker-simple.svelte";
 	import DataPickerWithDropdowns from "./date-picker-with-dropdowns.svelte";
 	import DatePickerWithRange from "./date-picker-with-range.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

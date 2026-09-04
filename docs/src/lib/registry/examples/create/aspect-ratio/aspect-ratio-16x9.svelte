@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { AspectRatio } from "$lib/registry/ui/aspect-ratio/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="16:9" class="items-center justify-center">

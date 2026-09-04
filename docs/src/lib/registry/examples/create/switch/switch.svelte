@@ -3,7 +3,7 @@
 	import SwitchDisabled from "./switch-disabled.svelte";
 	import SwitchSizes from "./switch-sizes.svelte";
 	import SwitchWithDescription from "./switch-with-description.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

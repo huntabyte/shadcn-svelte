@@ -2,6 +2,7 @@
 	import { page } from "$app/state";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import TailwindIndicator from "$lib/components/tailwind-indicator.svelte";
+	import DesignSystemProvider from "$lib/features/design-system/components/design-system-provider.svelte";
 	import Button from "$lib/registry/ui/button/button.svelte";
 	import type { Component } from "svelte";
 
@@ -18,6 +19,20 @@
 			: Promise.reject(new Error(`Missing preview component: ${exampleComponentPath}`))
 	);
 </script>
+
+<svelte:head>
+	<style>
+		html,
+		body {
+			scrollbar-width: none;
+			-ms-overflow-style: none;
+		}
+		html::-webkit-scrollbar,
+		body::-webkit-scrollbar {
+			display: none;
+		}
+	</style>
+</svelte:head>
 
 {#if page.url.searchParams.get("fromPreview") === "true"}
 	<Button
@@ -36,6 +51,8 @@
 	</Button>
 {/if}
 {#await ComponentPromise then { default: Component }}
-	<Component />
+	<DesignSystemProvider>
+		<Component />
+	</DesignSystemProvider>
 {/await}
 <TailwindIndicator />

@@ -6,7 +6,7 @@
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	let country = $state("+1");
 </script>

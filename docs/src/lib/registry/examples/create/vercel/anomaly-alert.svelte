@@ -2,7 +2,7 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Empty from "$lib/registry/ui/empty/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="Anomaly Alert" class="items-center justify-center">

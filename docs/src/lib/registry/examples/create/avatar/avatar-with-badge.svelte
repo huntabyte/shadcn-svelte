@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as Avatar from "$lib/registry/ui/avatar/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="Badge">

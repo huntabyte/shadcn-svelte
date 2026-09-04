@@ -9,7 +9,7 @@
 	import ObservabilityCard from "./observability-card.svelte";
 	import SheetExample from "./sheet-example.svelte";
 	import SmallFormExample from "./small-form-example.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

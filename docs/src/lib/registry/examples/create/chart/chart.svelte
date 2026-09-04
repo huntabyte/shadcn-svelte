@@ -4,7 +4,7 @@
 	import ChartLineExample from "./chart-line-example.svelte";
 	import ChartRadarExample from "./chart-radar-example.svelte";
 	import ChartRadialExample from "./chart-radial-example.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

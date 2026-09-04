@@ -10,7 +10,7 @@
 	import MenubarWithRadio from "./menubar-with-radio.svelte";
 	import MenubarWithShortcuts from "./menubar-with-shortcuts.svelte";
 	import MenubarWithSubmenu from "./menubar-with-submenu.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

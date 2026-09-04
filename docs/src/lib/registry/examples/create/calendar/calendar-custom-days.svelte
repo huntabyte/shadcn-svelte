@@ -3,7 +3,7 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import CalendarDayButton from "$lib/registry/ui/range-calendar/range-calendar-day.svelte";
 	import { RangeCalendar } from "$lib/registry/ui/range-calendar/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import type { DateRange } from "bits-ui";
 
 	const currentDate = new CalendarDate(2022, 1, 20);

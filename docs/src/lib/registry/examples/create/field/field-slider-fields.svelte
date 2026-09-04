@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import { Slider } from "$lib/registry/ui/slider/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	let brightness = $state(75);
 	let temperature = $state([0.3, 0.7]);

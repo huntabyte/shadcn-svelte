@@ -12,7 +12,7 @@
 	import { Kbd } from "$lib/registry/ui/kbd/index.js";
 	import { Switch } from "$lib/registry/ui/switch/index.js";
 	import { Textarea } from "$lib/registry/ui/textarea/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const spokenLanguages = [
 		{ label: "Auto", value: "auto" },

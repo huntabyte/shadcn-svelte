@@ -5,7 +5,7 @@
 	import AlertDialogSmallWithMedia from "./alert-dialog-small-with-media.svelte";
 	import AlertDialogSmall from "./alert-dialog-small.svelte";
 	import AlertDialogWithMedia from "./alert-dialog-with-media.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

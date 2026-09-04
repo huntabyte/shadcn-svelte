@@ -16,7 +16,7 @@
 	import ButtonGroupWithSelectAndInput from "./button-group-with-select-and-input.svelte";
 	import ButtonGroupWithSelect from "./button-group-with-select.svelte";
 	import ButtonGroupWithText from "./button-group-with-text.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

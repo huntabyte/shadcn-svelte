@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { ScrollArea } from "$lib/registry/ui/scroll-area/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const tags = Array.from({ length: 50 }).map((_, i, a) => `v1.2.0-beta.${a.length - i}`);
 </script>

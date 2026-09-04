@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Skeleton } from "$lib/registry/ui/skeleton/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="Table">

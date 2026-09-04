@@ -9,7 +9,7 @@
 	import CardSmall from "./card-small.svelte";
 	import CardWithImageSmall from "./card-with-image-small.svelte";
 	import CardWithImage from "./card-with-image.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>
