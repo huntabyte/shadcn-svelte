@@ -36,6 +36,7 @@
 	const COMMAND_MENU_GROUP_ORDER = [
 		"Components",
 		"Get Started",
+		"Utilities",
 		"Installation",
 		"Dark Mode",
 		"Registry",
