@@ -18,7 +18,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="input-group-demo">
+<ComponentPreview name="input-group-demo" previewClassName="h-96">
 
 <div></div>
 
@@ -89,7 +89,7 @@ Copy and paste the following code into your project.
 
 Display additional text information alongside inputs.
 
-<ComponentPreview name="input-group-text-demo">
+<ComponentPreview name="input-group-text-demo" previewClassName="h-96">
 
 <div></div>
 
@@ -119,7 +119,7 @@ Add tooltips to provide additional context or help.
 
 Input groups also work with textarea components. Use `block-start` or `block-end` for alignment.
 
-<ComponentPreview name="input-group-textarea-demo">
+<ComponentPreview name="input-group-textarea-demo" previewClassName="h-96">
 
 <div></div>
 
