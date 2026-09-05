@@ -1,0 +1,3 @@
+docs/static/registry/**/*.json linguist-generated=true
+docs/static/schema.json linguist-generated=true
+docs/src/routes/api/search.json/search.json linguist-generated=true

@@ -272,6 +272,9 @@ importers:
       estree-walker:
         specifier: ^3.0.3
         version: 3.0.3
+      flexsearch:
+        specifier: ^0.8.212
+        version: 0.8.212
       formsnap:
         specifier: ^2.0.1
         version: 2.0.1(svelte@5.54.0)(sveltekit-superforms@2.30.0(@sveltejs/kit@2.70.1(@sveltejs/vite-plugin-svelte@7.2.0(svelte@5.54.0)(vite@8.1.5(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.7.0)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1)))(svelte@5.54.0)(typescript@5.9.3)(vite@8.1.5(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.7.0)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1)))(@types/json-schema@7.0.15)(svelte@5.54.0)(typescript@5.9.3))
@@ -281,6 +284,9 @@ importers:
       hast-util-to-html:
         specifier: ^9.0.5
         version: 9.0.5
+      hast-util-to-string:
+        specifier: ^3.0.1
+        version: 3.0.1
       jsdom:
         specifier: ^27.3.0
         version: 27.3.0(postcss@8.5.25)
@@ -338,12 +344,24 @@ importers:
       remark-gfm:
         specifier: ^4.0.1
         version: 4.0.1
+      remark-parse:
+        specifier: ^11.0.0
+        version: 11.0.0
+      remark-rehype:
+        specifier: ^11.1.2
+        version: 11.1.2
       remark-stringify:
         specifier: ^11.0.0
         version: 11.0.0
       remixicon-svelte:
         specifier: ^0.0.5
         version: 0.0.5(svelte@5.54.0)
+      remove-markdown:
+        specifier: ^0.6.3
+        version: 0.6.4
+      rimraf:
+        specifier: ^6.1.3
+        version: 6.1.3
       rollup-plugin-visualizer:
         specifier: ^6.0.5
         version: 6.0.5(rolldown@1.2.1)(rollup@4.53.3)
@@ -3322,6 +3340,9 @@ packages:
   flatted@3.3.3:
     resolution: {integrity: sha512-GX+ysw4PBCz0PzosHDepZGANEuFCMLrnRTiEy9McGjmkCQYwRq4A/X786G/fjM/+OjsWSU1ZrY5qyARZmO/uwg==}
 
+  flexsearch@0.8.212:
+    resolution: {integrity: sha512-wSyJr1GUWoOOIISRu+X2IXiOcVfg9qqBRyCPRUdLMIGJqPzMo+jMRlvE83t14v1j0dRMEaBbER/adQjp6Du2pw==}
+
   follow-redirects@1.15.11:
     resolution: {integrity: sha512-deG2P0JfjrTxl50XGCDyfI97ZGVCxIpfKYmfyrQ54n5FO/0gfIES8C/Psl6kWVDolizcaaxZJnTS0QSMxvnsBQ==}
     engines: {node: '>=4.0'}
@@ -4518,6 +4539,9 @@ packages:
     resolution: {integrity: sha512-a7tnkBeA6P/ItRc2Q/jOgF+Xoh6Fj7hKrr/E6ZUCmOM4XBFi+mBDR95hqdRHWVf2s8sK85ycGXg+AAFZv87s+Q==}
     peerDependencies:
       svelte: ^5.0.0
+
+  remove-markdown@0.6.4:
+    resolution: {integrity: sha512-BompiLClzjfh46irZmzv+1Q61jZYlKN3iq/hzae9EOUwf7ctr/5wpD4qwgn/FWDAYE18RORO7z/yr+HXZJCY8Q==}
 
   require-directory@2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
@@ -7973,6 +7997,8 @@ snapshots:
 
   flatted@3.3.3: {}
 
+  flexsearch@0.8.212: {}
+
   follow-redirects@1.15.11: {}
 
   foreground-child@3.3.1:
@@ -9566,6 +9592,8 @@ snapshots:
   remixicon-svelte@0.0.5(svelte@5.54.0):
     dependencies:
       svelte: 5.54.0
+
+  remove-markdown@0.6.4: {}
 
   require-directory@2.1.1: {}
 
