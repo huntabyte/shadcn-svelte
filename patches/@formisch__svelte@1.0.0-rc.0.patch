@@ -1,3 +1,38 @@
+diff --git a/dist/components/Field/Field.svelte.d.ts b/dist/components/Field/Field.svelte.d.ts
+index 9222c0f30c3530ea23ca8d8588f2778e1956f01e..20d4facf251fe90ef9e00183010d8683a25f285d 100644
+--- a/dist/components/Field/Field.svelte.d.ts
++++ b/dist/components/Field/Field.svelte.d.ts
+@@ -1,6 +1,6 @@
+ import type { RequiredPath, FormSchema, ValidPath } from '../../core/index.svelte';
+ import type * as v from 'valibot';
+-import type { FieldStore, FormStore } from '../../types/index';
++import type { FieldStore, FormStore } from '../../types/index.js';
+ import type { Snippet } from 'svelte';
+ /**
+  * Field component props interface.
+diff --git a/dist/components/FieldArray/FieldArray.svelte.d.ts b/dist/components/FieldArray/FieldArray.svelte.d.ts
+index f9a86a031dcfa4bdeb518f3d1b94d1a052b11afc..aaff9582dd10b0b8138cb88af7e012082be8647d 100644
+--- a/dist/components/FieldArray/FieldArray.svelte.d.ts
++++ b/dist/components/FieldArray/FieldArray.svelte.d.ts
+@@ -1,6 +1,6 @@
+ import type { RequiredPath, FormSchema, ValidArrayPath } from '../../core/index.svelte';
+ import type * as v from 'valibot';
+-import type { FieldArrayStore, FormStore } from '../../types/index';
++import type { FieldArrayStore, FormStore } from '../../types/index.js';
+ import type { Snippet } from 'svelte';
+ /**
+  * Field array component props interface.
+diff --git a/dist/components/Form/Form.svelte.d.ts b/dist/components/Form/Form.svelte.d.ts
+index 20f270d8a3aaaaf99bd0688908882f0d36154f62..08c8baf847944fc91134240c21000350a06a1380 100644
+--- a/dist/components/Form/Form.svelte.d.ts
++++ b/dist/components/Form/Form.svelte.d.ts
+@@ -1,5 +1,5 @@
+ import { type FormSchema, type SubmitEventHandler } from '../../core/index.svelte';
+-import type { FormStore } from '../../types/index';
++import type { FormStore } from '../../types/index.js';
+ import type { Snippet } from 'svelte';
+ import type { HTMLFormAttributes } from 'svelte/elements';
+ /**
 diff --git a/dist/components/index.d.ts b/dist/components/index.d.ts
 index 203a2aa1948746f2958174c66b6b1dc665a19ee0..930493b521455c5036ad141c48ef8c1708f65e19 100644
 --- a/dist/components/index.d.ts
@@ -22,6 +57,17 @@ index 71ebdb8d3cf57f448f3dbfc0ec408bd2a5c4b163..bd496f0772f53eb756b833114e54a1e3
 +export * from './components/index.js';
 +export * from './runes/index.js';
 +export * from './types/index.js';
+diff --git a/dist/runes/createForm/createForm.svelte.d.ts b/dist/runes/createForm/createForm.svelte.d.ts
+index 8ed6c78a00ed9d3fe92cdea43823ffd8a4e83748..b6ccf2d375b0b3da0ef1cb70a9ae2a01b0a1ebb3 100644
+--- a/dist/runes/createForm/createForm.svelte.d.ts
++++ b/dist/runes/createForm/createForm.svelte.d.ts
+@@ -1,5 +1,5 @@
+ import { type FormConfig, type FormSchema } from '../../core/index.svelte';
+-import type { FormStore } from '../../types/index';
++import type { FormStore } from '../../types/index.js';
+ /**
+  * Creates a reactive form store from a form configuration. The form store
+  * manages form state and provides reactive properties.
 diff --git a/dist/runes/index.d.ts b/dist/runes/index.d.ts
 index bc280d937aa30bf08ca37464f2bd87dee47fc0c3..c0998adebc9eab7c41b6fc144232bb077513834b 100644
 --- a/dist/runes/index.d.ts
@@ -33,3 +79,62 @@ index bc280d937aa30bf08ca37464f2bd87dee47fc0c3..c0998adebc9eab7c41b6fc144232bb07
 +export * from './createForm/index.js';
 +export * from './useField/index.js';
 +export * from './useFieldArray/index.js';
+diff --git a/dist/runes/useField/useField.svelte.d.ts b/dist/runes/useField/useField.svelte.d.ts
+index 0f12d1b057a84b725b9c0cbbba4ca270c9b55225..5ed75cdc1dd608b447ce39afe773e7d6477b9be2 100644
+--- a/dist/runes/useField/useField.svelte.d.ts
++++ b/dist/runes/useField/useField.svelte.d.ts
+@@ -1,6 +1,6 @@
+ import { type FormSchema, type RequiredPath, type ValidPath } from '../../core/index.svelte';
+ import type * as v from 'valibot';
+-import type { FieldStore, FormStore, MaybeGetter } from '../../types/index';
++import type { FieldStore, FormStore, MaybeGetter } from '../../types/index.js';
+ /**
+  * Use field config interface.
+  */
+diff --git a/dist/runes/useFieldArray/useFieldArray.svelte.d.ts b/dist/runes/useFieldArray/useFieldArray.svelte.d.ts
+index 98623e92526bdf0be6b309aa0fc83dc37af916cf..81b61b3459ff52d9f472f5132a2ed7a772f905b8 100644
+--- a/dist/runes/useFieldArray/useFieldArray.svelte.d.ts
++++ b/dist/runes/useFieldArray/useFieldArray.svelte.d.ts
+@@ -1,6 +1,6 @@
+ import { type FormSchema, type RequiredPath, type ValidArrayPath } from '../../core/index.svelte';
+ import type * as v from 'valibot';
+-import type { FieldArrayStore, FormStore, MaybeGetter } from '../../types/index';
++import type { FieldArrayStore, FormStore, MaybeGetter } from '../../types/index.js';
+ /**
+  * Use field array config interface.
+  */
+diff --git a/dist/types/index.d.ts b/dist/types/index.d.ts
+index 09edb2d011b73c37af708a4b5afb5b36272b9dd4..a58ff48351adba2ccb8c60695ff82771f7295a25 100644
+--- a/dist/types/index.d.ts
++++ b/dist/types/index.d.ts
+@@ -1,3 +1,3 @@
+-export * from './field';
+-export * from './form';
+-export * from './utils';
++export * from './field.js';
++export * from './form.js';
++export * from './utils.js';
+diff --git a/dist/utils/index.d.ts b/dist/utils/index.d.ts
+index cd5e57e3ce9b8e82d47a9271cf081b0c8409aacc..649d64558f31a2b238b2c5ccdf664d91fbe6c895 100644
+--- a/dist/utils/index.d.ts
++++ b/dist/utils/index.d.ts
+@@ -1 +1 @@
+-export * from './unwrap/index';
++export * from './unwrap/index.js';
+diff --git a/dist/utils/unwrap/index.d.ts b/dist/utils/unwrap/index.d.ts
+index 0c6e649720594b32be7caaac40fd71475ade8c7c..5819db56cd5fb000125ebd9423fc3cf2561e836a 100644
+--- a/dist/utils/unwrap/index.d.ts
++++ b/dist/utils/unwrap/index.d.ts
+@@ -1 +1 @@
+-export * from './unwrap';
++export * from './unwrap.js';
+diff --git a/dist/utils/unwrap/unwrap.d.ts b/dist/utils/unwrap/unwrap.d.ts
+index be73fac0a4f2f03655edd028a50886f8253147d0..ed18c6d0c956cb7bcd78da4c5a620bc99e2a96dc 100644
+--- a/dist/utils/unwrap/unwrap.d.ts
++++ b/dist/utils/unwrap/unwrap.d.ts
+@@ -1,4 +1,4 @@
+-import type { MaybeGetter } from '../../types/index';
++import type { MaybeGetter } from '../../types/index.js';
+ /**
+  * Unwraps a value that may be a getter function.
+  *

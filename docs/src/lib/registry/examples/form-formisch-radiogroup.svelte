@@ -1,6 +1,13 @@
-<script lang="ts" module>
+<script lang="ts">
 	import * as v from "valibot";
-
+	import { Form, Field as FormischField, reset, createForm } from "@formisch/svelte";
+	import { toast } from "svelte-sonner";
+	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Field from "$lib/registry/ui/field/index.js";
+	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import FormSubmittedValues from "./form-submitted-values.svelte";
+	import type { SubmitEventHandler } from "@formisch/svelte";
 	const plans = [
 		{
 			id: "starter",
@@ -18,24 +25,25 @@
 			description: "For large teams and heavy usage.",
 		},
 	] as const;
-
 	const FormSchema = v.object({
 		plan: v.pipe(v.string(), v.minLength(1, "You must select a subscription plan to continue.")),
 	});
-</script>
-
-<script lang="ts">
-	import { createForm, Field as FormischField, Form, reset } from "@formisch/svelte";
-	import { toast } from "svelte-sonner";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import type { SubmitEventHandler } from "@formisch/svelte";
-
-	const form = createForm({ schema: FormSchema, initialInput: { plan: "" } });
+	const form = createForm({
+		schema: FormSchema,
+		initialInput: {
+			plan: "",
+		},
+	});
 	const handleSubmit: SubmitEventHandler<typeof FormSchema> = (output) => {
-		toast.success(`You submitted ${JSON.stringify(output, null, 2)}`);
+		toast("You submitted the following values:", {
+			description: FormSubmittedValues,
+			componentProps: { value: output },
+			position: "bottom-right",
+			classes: {
+				content: "flex flex-col gap-2",
+			},
+			style: "--border-radius: calc(var(--radius) + 4px)",
+		});
 	};
 </script>
 
@@ -46,40 +54,46 @@
 	</Card.Header>
 	<Card.Content>
 		<Form of={form} id="form-formisch-radiogroup" onsubmit={handleSubmit}>
-			<FormischField of={form} path={["plan"]}>
-				{#snippet children(field)}
-					<Field.Set data-invalid={field.errors !== null}>
-						<Field.Legend>Plan</Field.Legend>
-						<Field.Description>
-							You can upgrade or downgrade your plan at any time.
-						</Field.Description>
-						<RadioGroup.Root
-							value={field.input ?? ""}
-							onValueChange={field.onInput}
-							aria-invalid={field.errors !== null}
-						>
-							{#each plans as plan (plan.id)}
-								<Field.Label for={`form-formisch-radiogroup-${plan.id}`}>
-									<Field.Field orientation="horizontal" data-invalid={field.errors !== null}>
-										<Field.Content>
-											<Field.Title>{plan.title}</Field.Title>
-											<Field.Description>{plan.description}</Field.Description>
-										</Field.Content>
-										<RadioGroup.Item
-											value={plan.id}
-											id={`form-formisch-radiogroup-${plan.id}`}
-											aria-invalid={field.errors !== null}
-										/>
-									</Field.Field>
-								</Field.Label>
-							{/each}
-						</RadioGroup.Root>
-						{#if field.errors}
-							<Field.Error errors={field.errors.map((message: string) => ({ message }))} />
-						{/if}
-					</Field.Set>
-				{/snippet}
-			</FormischField>
+			<Field.Group>
+				<FormischField of={form} path={["plan"]}>
+					{#snippet children(field)}
+						<Field.Set data-invalid={field.errors !== null}>
+							<Field.Legend>Plan</Field.Legend>
+							<Field.Description>
+								You can upgrade or downgrade your plan at any time.
+							</Field.Description>
+							<RadioGroup.Root
+								value={field.input ?? ""}
+								onValueChange={(value) => field.onInput(value)}
+								aria-invalid={field.errors !== null}
+							>
+								{#each plans as plan (plan.id)}
+									<Field.Label for={`form-formisch-radiogroup-${plan.id}`}>
+										<Field.Field orientation="horizontal" data-invalid={field.errors !== null}>
+											<Field.Content>
+												<Field.Title>
+													{plan.title}
+												</Field.Title>
+												<Field.Description>
+													{plan.description}
+												</Field.Description>
+											</Field.Content>
+											<RadioGroup.Item
+												value={plan.id}
+												id={`form-formisch-radiogroup-${plan.id}`}
+												aria-invalid={field.errors !== null}
+											/>
+										</Field.Field>
+									</Field.Label>
+								{/each}
+							</RadioGroup.Root>
+							{#if field.errors}
+								<Field.Error errors={field.errors.map((message) => ({ message }))} />
+							{/if}
+						</Field.Set>
+					{/snippet}
+				</FormischField>
+			</Field.Group>
 		</Form>
 	</Card.Content>
 	<Card.Footer>

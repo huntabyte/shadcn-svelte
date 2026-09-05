@@ -1,64 +1,118 @@
 <script lang="ts">
+	import * as z from "zod";
 	import { createForm } from "@tanstack/svelte-form";
 	import { toast } from "svelte-sonner";
-	import { z } from "zod";
+	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
+	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
+	import FormSubmittedValues from "./form-submitted-values.svelte";
+	const formSchema = z.object({
+		title: z
+			.string()
+			.min(5, "Bug title must be at least 5 characters.")
+			.max(32, "Bug title must be at most 32 characters."),
+		description: z
+			.string()
+			.min(20, "Description must be at least 20 characters.")
+			.max(100, "Description must be at most 100 characters."),
+	});
 	const form = createForm(() => ({
-		defaultValues: { username: "", email: "", terms: false },
-		validators: {
-			onSubmit: z.object({
-				username: z.string().min(3),
-				email: z.email(),
-				terms: z.literal(true, "Accept the terms to continue."),
-			}),
+		defaultValues: {
+			title: "",
+			description: "",
 		},
-		onSubmit: ({ value }) => toast.success(`You submitted ${JSON.stringify(value, null, 2)}`),
+		validators: [{ run: formSchema, triggers: [] }],
+		onSubmit: async ({ value }) => {
+			toast("You submitted the following values:", {
+				description: FormSubmittedValues,
+				componentProps: { value: value },
+				position: "bottom-right",
+				classes: {
+					content: "flex flex-col gap-2",
+				},
+				style: "--border-radius: calc(var(--radius) + 4px)",
+			});
+		},
 	}));
 </script>
 
-<form
-	class="w-full max-w-md"
-	onsubmit={(event) => {
-		event.preventDefault();
-		form.handleSubmit();
-	}}
->
-	<Field.Group
-		><form.Field name="username"
-			>{#snippet children(field)}<Field.Field
-					><Field.Label for="tanstack-demo-username">Username</Field.Label><Input
-						id="tanstack-demo-username"
-						value={field.state.value}
-						onblur={field.handleBlur}
-						oninput={(event) => field.handleChange(event.currentTarget.value)}
-					/>{#if field.state.meta.isTouched && !field.state.meta.isValid}<Field.Error
-							errors={field.state.meta.errors.filter((error) => error !== undefined)}
-						/>{/if}</Field.Field
-				>{/snippet}</form.Field
-		><form.Field name="email"
-			>{#snippet children(field)}<Field.Field
-					><Field.Label for="tanstack-demo-email">Email</Field.Label><Input
-						id="tanstack-demo-email"
-						type="email"
-						value={field.state.value}
-						onblur={field.handleBlur}
-						oninput={(event) => field.handleChange(event.currentTarget.value)}
-					/>{#if field.state.meta.isTouched && !field.state.meta.isValid}<Field.Error
-							errors={field.state.meta.errors.filter((error) => error !== undefined)}
-						/>{/if}</Field.Field
-				>{/snippet}</form.Field
-		><form.Field name="terms"
-			>{#snippet children(field)}<Field.Field orientation="horizontal"
-					><Checkbox
-						id="tanstack-demo-terms"
-						checked={field.state.value}
-						onCheckedChange={(value) => field.handleChange(value)}
-					/><Field.Label for="tanstack-demo-terms">Accept the terms and conditions</Field.Label
-					></Field.Field
-				>{/snippet}</form.Field
-		><Button type="submit">Create account</Button></Field.Group
-	>
-</form>
+<Card.Root class="w-full sm:max-w-md">
+	<Card.Header>
+		<Card.Title>Bug Report</Card.Title>
+		<Card.Description>Help us improve by reporting bugs you encounter.</Card.Description>
+	</Card.Header>
+	<Card.Content>
+		<form
+			novalidate
+			id="bug-report-form"
+			onsubmit={(e) => {
+				e.preventDefault();
+				form.handleSubmit();
+			}}
+		>
+			<Field.Group>
+				<form.Field name="title">
+					{#snippet children(field)}
+						{@const isInvalid = field.meta.isTouched && field.meta.isInvalid}
+						<Field.Field data-invalid={isInvalid}>
+							<Field.Label for={field.name}>Bug Title</Field.Label>
+							<Input
+								id={field.name}
+								name={field.name}
+								value={field.value}
+								onblur={field.handleBlur}
+								oninput={(e) => field.handleChange(e.currentTarget.value)}
+								aria-invalid={isInvalid}
+								placeholder="Login button not working on mobile"
+								autocomplete="off"
+							/>
+							{#if isInvalid}
+								<Field.Error errors={field.meta.errors} />
+							{/if}
+						</Field.Field>
+					{/snippet}
+				</form.Field>
+				<form.Field name="description">
+					{#snippet children(field)}
+						{@const isInvalid = field.meta.isTouched && field.meta.isInvalid}
+						<Field.Field data-invalid={isInvalid}>
+							<Field.Label for={field.name}>Description</Field.Label>
+							<InputGroup.Root>
+								<InputGroup.Textarea
+									id={field.name}
+									name={field.name}
+									value={field.value}
+									onblur={field.handleBlur}
+									oninput={(e) => field.handleChange(e.currentTarget.value)}
+									placeholder="I'm having an issue with the login button on mobile."
+									rows={6}
+									class="min-h-24 resize-none"
+									aria-invalid={isInvalid}
+								/>
+								<InputGroup.Addon align="block-end">
+									<InputGroup.Text class="tabular-nums">
+										{field.value.length}/100 characters
+									</InputGroup.Text>
+								</InputGroup.Addon>
+							</InputGroup.Root>
+							<Field.Description>
+								Include steps to reproduce, expected behavior, and what actually happened.
+							</Field.Description>
+							{#if isInvalid}
+								<Field.Error errors={field.meta.errors} />
+							{/if}
+						</Field.Field>
+					{/snippet}
+				</form.Field>
+			</Field.Group>
+		</form>
+	</Card.Content>
+	<Card.Footer>
+		<Field.Field orientation="horizontal">
+			<Button type="button" variant="outline" onclick={() => form.reset()}>Reset</Button>
+			<Button type="submit" form="bug-report-form">Submit</Button>
+		</Field.Field>
+	</Card.Footer>
+</Card.Root>
