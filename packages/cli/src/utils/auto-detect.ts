@@ -4,6 +4,7 @@ import * as p from "@clack/prompts";
 import * as find from "empathic/find";
 import ignore, { type Ignore } from "ignore";
 import { AGENTS, detect, getUserAgent, type Agent, type AgentName } from "package-manager-detector";
+import { getPackageInfo } from "./project.js";
 import { cancel } from "./prompt-helpers.js";
 
 const STYLESHEETS = ["app.css", "main.css", "globals.css", "global.css", "layout.css"];
@@ -28,11 +29,24 @@ export function detectConfigs(cwd: string, config?: { relative: boolean }) {
 	const tsconfigPath = findTSConfig(cwd);
 	const resolvedTsconfigPath =
 		tsconfigPath && config?.relative ? path.relative(cwd, tsconfigPath) : tsconfigPath;
+	const packageImportAlias = findPackageImportAlias(cwd);
 
 	return {
 		cssPath,
 		tsconfigPath: resolvedTsconfigPath,
+		packageImportAlias,
 	};
+}
+
+function findPackageImportAlias(cwd: string): string | undefined {
+	try {
+		const packageJson = getPackageInfo(cwd);
+
+		const imports = packageJson.imports;
+		if (imports && imports["#lib/*"]) return "#lib";
+	} catch {
+		return;
+	}
 }
 
 /**

@@ -15,9 +15,6 @@ catalogs:
     typescript:
       specifier: ^6.0.3
       version: 6.0.3
-    zod:
-      specifier: ^4.4.3
-      version: 4.4.3
 
 importers:
 
@@ -408,7 +405,7 @@ importers:
         specifier: ^8.1.5
         version: 8.1.5(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.7.0)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1)
       zod:
-        specifier: 'catalog:'
+        specifier: ^4.4.3
         version: 4.4.3
 
   packages/cli:
@@ -433,8 +430,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0
       '@svecosystem/strip-types':
-        specifier: ^0.0.4
-        version: 0.0.4
+        specifier: ^0.0.5
+        version: 0.0.5
       '@sveltejs/acorn-typescript':
         specifier: ^1.0.5
         version: 1.0.9(acorn@8.16.0)
@@ -502,7 +499,7 @@ importers:
         specifier: ^4.1.10
         version: 4.1.10(@types/node@25.5.0)(jsdom@27.3.0(postcss@8.5.25))(vite@8.1.5(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.7.0)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1))
       zod:
-        specifier: 'catalog:'
+        specifier: ^4.4.3
         version: 4.4.3
 
   sv-addons/registry:
@@ -2042,8 +2039,8 @@ packages:
   '@standard-schema/spec@1.1.0':
     resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
 
-  '@svecosystem/strip-types@0.0.4':
-    resolution: {integrity: sha512-TmIXHp09ZAjdP14xjtdwJZuF+sKF+PqZackrAdiSK6lPZ+KuQAZciV12PlcPNBMDAYQeC+dvBJ6AGPsEbJfRgQ==}
+  '@svecosystem/strip-types@0.0.5':
+    resolution: {integrity: sha512-GwWEIblDBUpVSwV2u7/W/Paaj1rlpwUm8SWKwOIePSvyuT1KIgg4ppGawoLhV6MtUkhMWPISxK3zQICIbVy19g==}
 
   '@sveltejs/acorn-typescript@1.0.9':
     resolution: {integrity: sha512-lVJX6qEgs/4DOcRTpo56tmKzVPtoWAaVbL4hfO7t7NVwl9AAXzQR6cihesW1BmNMPl+bK6dreu2sOKBP2Q9CIA==}
@@ -6688,7 +6685,7 @@ snapshots:
 
   '@standard-schema/spec@1.1.0': {}
 
-  '@svecosystem/strip-types@0.0.4':
+  '@svecosystem/strip-types@0.0.5':
     dependencies:
       estree-walker: 3.0.3
       magic-string: 0.30.21
