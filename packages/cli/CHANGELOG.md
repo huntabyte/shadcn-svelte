@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.6.1
+
+### Patch Changes
+
+- feat: update `tailwind.css` with `scroll-fade` and `shimmer` utils ([#2868](https://github.com/huntabyte/shadcn-svelte/pull/2868))
+
 ## 1.6.0
 
 ### Minor Changes
