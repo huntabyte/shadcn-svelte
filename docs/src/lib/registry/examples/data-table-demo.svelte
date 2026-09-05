@@ -1,27 +1,30 @@
 <script lang="ts">
 	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
 	import {
-		type ColumnDef,
-		type ColumnFiltersState,
-		type PaginationState,
+		FlexRender,
 		type RowSelectionState,
-		type SortingState,
-		type VisibilityState,
-		getCoreRowModel,
-		getFilteredRowModel,
-		getPaginationRowModel,
-		getSortedRowModel,
-	} from "@tanstack/table-core";
+		columnFilteringFeature,
+		columnVisibilityFeature,
+		createColumnHelper,
+		createFilteredRowModel,
+		createPaginatedRowModel,
+		createSortedRowModel,
+		createTable,
+		createTableState,
+		filterFn_includesString,
+		renderComponent,
+		renderSnippet,
+		rowPaginationFeature,
+		rowSelectionFeature,
+		rowSortingFeature,
+		sortFn_alphanumeric,
+		sortFn_text,
+		tableFeatures,
+	} from "@tanstack/svelte-table";
 	import { createRawSnippet } from "svelte";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Table from "$lib/registry/ui/table/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import {
-		FlexRender,
-		createSvelteTable,
-		renderComponent,
-		renderSnippet,
-	} from "$lib/registry/ui/data-table/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
 	import DataTableActions from "./data-table/data-table-actions.svelte";
 	import DataTableCheckbox from "./data-table/data-table-checkbox.svelte";
@@ -33,6 +36,23 @@
 		status: "Pending" | "Processing" | "Success" | "Failed";
 		email: string;
 	};
+
+	// New in v9: declare the features this table uses — anything you don't
+	// register is tree-shaken out of the bundle.
+	const features = tableFeatures({
+		columnFilteringFeature,
+		columnVisibilityFeature,
+		rowPaginationFeature,
+		rowSelectionFeature,
+		rowSortingFeature,
+		filteredRowModel: createFilteredRowModel(),
+		paginatedRowModel: createPaginatedRowModel(),
+		sortedRowModel: createSortedRowModel(),
+		filterFns: { includesString: filterFn_includesString },
+		sortFns: { alphanumeric: sortFn_alphanumeric, text: sortFn_text },
+	});
+
+	const columnHelper = createColumnHelper<typeof features, Payment>();
 
 	const data: Payment[] = [
 		{
@@ -67,27 +87,26 @@
 		},
 	];
 
-	const columns: ColumnDef<Payment>[] = [
-		{
+	const columns = columnHelper.columns([
+		columnHelper.display({
 			id: "select",
 			header: ({ table }) =>
 				renderComponent(DataTableCheckbox, {
 					checked: table.getIsAllPageRowsSelected(),
 					indeterminate: table.getIsSomePageRowsSelected() && !table.getIsAllPageRowsSelected(),
-					onCheckedChange: (value) => table.toggleAllPageRowsSelected(!!value),
+					onCheckedChange: (value: boolean) => table.toggleAllPageRowsSelected(!!value),
 					"aria-label": "Select all",
 				}),
 			cell: ({ row }) =>
 				renderComponent(DataTableCheckbox, {
 					checked: row.getIsSelected(),
-					onCheckedChange: (value) => row.toggleSelected(!!value),
+					onCheckedChange: (value: boolean) => row.toggleSelected(!!value),
 					"aria-label": "Select row",
 				}),
 			enableSorting: false,
 			enableHiding: false,
-		},
-		{
-			accessorKey: "status",
+		}),
+		columnHelper.accessor("status", {
 			header: "Status",
 			cell: ({ row }) => {
 				const statusSnippet = createRawSnippet<[{ status: string }]>((getStatus) => {
@@ -100,9 +119,8 @@
 					status: row.original.status,
 				});
 			},
-		},
-		{
-			accessorKey: "email",
+		}),
+		columnHelper.accessor("email", {
 			header: ({ column }) =>
 				renderComponent(DataTableEmailButton, {
 					onclick: column.getToggleSortingHandler(),
@@ -119,9 +137,8 @@
 					email: row.original.email,
 				});
 			},
-		},
-		{
-			accessorKey: "amount",
+		}),
+		columnHelper.accessor("amount", {
 			header: () => {
 				const amountHeaderSnippet = createRawSnippet(() => {
 					return {
@@ -147,81 +164,31 @@
 					amount: row.original.amount,
 				});
 			},
-		},
-		{
+		}),
+		columnHelper.display({
 			id: "actions",
 			enableHiding: false,
 			cell: ({ row }) => renderComponent(DataTableActions, { id: row.original.id }),
-		},
-	];
+		}),
+	]);
 
-	let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
-	let sorting = $state<SortingState>([]);
-	let columnFilters = $state<ColumnFiltersState>([]);
-	let rowSelection = $state<RowSelectionState>({});
-	let columnVisibility = $state<VisibilityState>({});
+	// Keep row selection outside the table so the rest of the app can read or update it.
+	const [rowSelection, setRowSelection] = createTableState<RowSelectionState>({});
 
-	const table = createSvelteTable({
+	// v9 manages the rest of its state internally — reads like
+	// `table.getRowModel()` are rune-reactive, so no `$state` mirrors are needed.
+	const table = createTable({
+		features,
 		get data() {
 			return data;
 		},
 		columns,
 		state: {
-			get pagination() {
-				return pagination;
-			},
-			get sorting() {
-				return sorting;
-			},
-			get columnVisibility() {
-				return columnVisibility;
-			},
 			get rowSelection() {
-				return rowSelection;
-			},
-			get columnFilters() {
-				return columnFilters;
+				return rowSelection();
 			},
 		},
-		getCoreRowModel: getCoreRowModel(),
-		getPaginationRowModel: getPaginationRowModel(),
-		getSortedRowModel: getSortedRowModel(),
-		getFilteredRowModel: getFilteredRowModel(),
-		onPaginationChange: (updater) => {
-			if (typeof updater === "function") {
-				pagination = updater(pagination);
-			} else {
-				pagination = updater;
-			}
-		},
-		onSortingChange: (updater) => {
-			if (typeof updater === "function") {
-				sorting = updater(sorting);
-			} else {
-				sorting = updater;
-			}
-		},
-		onColumnFiltersChange: (updater) => {
-			if (typeof updater === "function") {
-				columnFilters = updater(columnFilters);
-			} else {
-				columnFilters = updater;
-			}
-		},
-		onColumnVisibilityChange: (updater) => {
-			if (typeof updater === "function") {
-				columnVisibility = updater(columnVisibility);
-			} else {
-				columnVisibility = updater;
-			}
-		},
-		onRowSelectionChange: (updater) => {
-			if (typeof updater === "function") {
-				rowSelection = updater(rowSelection);
-			} else {
-				rowSelection = updater;
-			}
-		},
+		onRowSelectionChange: setRowSelection,
 	});
 </script>
 
@@ -245,7 +212,7 @@
 				{/snippet}
 			</DropdownMenu.Trigger>
 			<DropdownMenu.Content align="end">
-				{#each table.getAllColumns().filter((col) => col.getCanHide()) as column (column)}
+				{#each table.getAllColumns().filter((col) => col.getCanHide()) as column (column.id)}
 					<DropdownMenu.CheckboxItem
 						class="capitalize"
 						bind:checked={() => column.getIsVisible(), (v) => column.toggleVisibility(!!v)}
@@ -264,10 +231,7 @@
 						{#each headerGroup.headers as header (header.id)}
 							<Table.Head class="[&:has([role=checkbox])]:ps-3">
 								{#if !header.isPlaceholder}
-									<FlexRender
-										content={header.column.columnDef.header}
-										context={header.getContext()}
-									/>
+									<FlexRender {header} />
 								{/if}
 							</Table.Head>
 						{/each}
@@ -279,7 +243,7 @@
 					<Table.Row data-state={row.getIsSelected() && "selected"}>
 						{#each row.getVisibleCells() as cell (cell.id)}
 							<Table.Cell class="[&:has([role=checkbox])]:ps-3">
-								<FlexRender content={cell.column.columnDef.cell} context={cell.getContext()} />
+								<FlexRender {cell} />
 							</Table.Cell>
 						{/each}
 					</Table.Row>
