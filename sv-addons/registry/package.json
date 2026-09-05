@@ -49,6 +49,6 @@
 		"sv": "^0.16.6",
 		"tsdown": "catalog:",
 		"typescript": "catalog:",
-		"vitest": "^4.1.10"
+		"vitest": "^5.0.0"
 	}
 }
