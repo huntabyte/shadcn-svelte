@@ -200,7 +200,12 @@ function parseIntoSections(
 }
 
 export async function buildSearchData(): Promise<SearchEntry[]> {
-	const files = await globby("**/*.md", { cwd: CONTENT_DIR, absolute: true });
+	const files = await globby("**/*.md", {
+		cwd: CONTENT_DIR,
+		absolute: true,
+		// The changelog route renders content/changelog/*, not the legacy overview.
+		ignore: ["changelog.md"],
+	});
 
 	const entries: SearchEntry[] = [];
 
