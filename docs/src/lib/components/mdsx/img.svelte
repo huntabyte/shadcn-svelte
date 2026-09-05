@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
+	import { cn } from "cn";
 	import type { HTMLImgAttributes } from "svelte/elements";
 
 	let { class: className, src, alt, ...restProps }: HTMLImgAttributes = $props();

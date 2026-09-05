@@ -1,10 +1,10 @@
 <script lang="ts">
+	import { cn } from "cn";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { Badge } from "$lib/registry/ui/badge/index.js";
-	import { cn } from "$lib/utils.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"] as const;

@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { Menubar as MenubarPrimitive } from "bits-ui";
+	import { cn } from "cn";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { cn, type WithoutChild } from "$lib/utils.js";
+	import { type WithoutChild } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),

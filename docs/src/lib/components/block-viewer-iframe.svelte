@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
+	import { cn } from "cn";
 	import { BlockViewerContext } from "./block-viewer.svelte";
 
 	let { class: className }: { class?: string } = $props();

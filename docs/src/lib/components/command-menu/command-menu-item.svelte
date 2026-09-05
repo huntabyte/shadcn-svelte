@@ -1,7 +1,7 @@
 <script lang="ts">
+	import { cn } from "cn";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import { useMutationObserver } from "$lib/hooks/use-mutation-observer.svelte.js";
-	import { cn } from "$lib/utils.js";
 	import type { ComponentProps } from "svelte";
 
 	let {

@@ -1,6 +1,7 @@
 <script lang="ts">
+	import { cn } from "cn";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { cn, type WithElementRef, type WithoutChildren } from "$lib/utils.js";
+	import { type WithElementRef, type WithoutChildren } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 
 	let {

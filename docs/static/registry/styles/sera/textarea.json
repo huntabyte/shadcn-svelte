@@ -2,6 +2,9 @@
 	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 	"name": "textarea",
 	"type": "registry:ui",
+	"devDependencies": [
+		"cn@^0.2.5"
+	],
 	"files": [
 		{
 			"content": "import Root from \"./textarea.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Textarea,\n};\n",
@@ -9,7 +12,7 @@
 			"target": "textarea/index.ts"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef, type WithoutChildren } from \"$UTILS$.js\";\n\timport type { HTMLTextareaAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\tclass: className,\n\t\t\"data-slot\": dataSlot = \"textarea\",\n\t\t...restProps\n\t}: WithoutChildren<WithElementRef<HTMLTextareaAttributes>> = $props();\n</script>\n\n<textarea\n\tbind:this={ref}\n\tdata-slot={dataSlot}\n\tclass={cn(\n\t\t\"resize-none rounded-none border border-transparent border-b-input bg-transparent px-0 py-3 text-base transition-[color,border-color] focus-visible:border-b-ring aria-invalid:border-b-destructive md:text-sm dark:aria-invalid:border-b-destructive/50 flex field-sizing-content min-h-16 w-full outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50\",\n\t\tclassName\n\t)}\n\tbind:value\n\t{...restProps}></textarea>\n",
+			"content": "<script lang=\"ts\">\n\timport { cn } from \"cn\";\n\timport { type WithElementRef, type WithoutChildren } from \"$UTILS$.js\";\n\timport type { HTMLTextareaAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\tclass: className,\n\t\t\"data-slot\": dataSlot = \"textarea\",\n\t\t...restProps\n\t}: WithoutChildren<WithElementRef<HTMLTextareaAttributes>> = $props();\n</script>\n\n<textarea\n\tbind:this={ref}\n\tdata-slot={dataSlot}\n\tclass={cn(\n\t\t\"resize-none rounded-none border border-transparent border-b-input bg-transparent px-0 py-3 text-base transition-[color,border-color] focus-visible:border-b-ring aria-invalid:border-b-destructive md:text-sm dark:aria-invalid:border-b-destructive/50 flex field-sizing-content min-h-16 w-full outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50\",\n\t\tclassName\n\t)}\n\tbind:value\n\t{...restProps}></textarea>\n",
 			"type": "registry:file",
 			"target": "textarea/textarea.svelte"
 		}

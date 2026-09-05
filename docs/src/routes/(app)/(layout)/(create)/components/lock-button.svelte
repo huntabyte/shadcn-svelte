@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { SquareLock01Icon, SquareUnlock01Icon } from "@hugeicons/core-free-icons";
 	import { HugeiconsIcon } from "@hugeicons/svelte";
+	import { cn } from "cn";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import { useDesignSystem, type Lockable } from "$lib/features/design-system/index.js";
-	import { cn } from "$lib/utils.js";
 
 	type Props = {
 		prop: keyof Lockable;

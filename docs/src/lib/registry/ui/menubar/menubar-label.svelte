@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { type WithElementRef } from "bits-ui";
-	import { cn } from "$lib/utils.js";
+	import { cn } from "cn";
 	import type { HTMLAttributes } from "svelte/elements";
 
 	let {

@@ -413,7 +413,7 @@ The new `size-*` utility (added in Tailwind v3.4), is now fully supported by `ta
 
 ### 4. Update your dependencies
 
-<PMInstall command="bits-ui@latest @lucide/svelte@latest tailwind-variants@latest tailwind-merge@latest clsx@latest svelte-sonner@latest paneforge@next vaul-svelte@next formsnap@latest" />
+<PMInstall command="bits-ui@latest @lucide/svelte@latest tailwind-variants@latest cn@latest svelte-sonner@latest paneforge@next vaul-svelte@next formsnap@latest" />
 
 ### 5. Update your utils (optional)
 
@@ -424,12 +424,12 @@ Previously, we were depending on `bits-ui` for some simple type helpers that req
 These helpers have been moved into the `utils.ts` file:
 
 ```diff title="utils.ts"
- import { clsx, type ClassValue } from "clsx";
- import { twMerge } from "tailwind-merge";
-
- export function cn(...inputs: ClassValue[]) {
-	 return twMerge(clsx(inputs));
- }
+- import { clsx, type ClassValue } from "clsx";
+- import { twMerge } from "tailwind-merge";
+- export function cn(...inputs: ClassValue[]) {
+-     return twMerge(clsx(inputs));
+- }
++ export { cn } from "cn";
 
 + // eslint-disable-next-line @typescript-eslint/no-explicit-any
 + export type WithoutChild<T> = T extends { child?: any } ? Omit<T, "child"> : T;

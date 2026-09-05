@@ -1,8 +1,8 @@
 <script lang="ts">
+	import { cn } from "cn";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
 
 	type Props = {
 		class?: string;

@@ -151,7 +151,13 @@ export async function getFileDependencies(opts: GetFileDepOpts) {
 	const devDependencies = new Set<string>();
 
 	const enter = (node: Node) => {
-		if (node.type !== "ImportDeclaration") return;
+		if (
+			node.type !== "ImportDeclaration" &&
+			node.type !== "ExportNamedDeclaration" &&
+			node.type !== "ExportAllDeclaration"
+		)
+			return;
+		if (!node.source) return;
 		const source = node.source.value as string;
 
 		const deps = resolveDepsFromImport(source, opts.dependencies);
