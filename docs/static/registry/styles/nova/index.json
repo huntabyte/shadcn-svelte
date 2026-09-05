@@ -269,6 +269,14 @@
 		"relativeUrl": "progress.json"
 	},
 	{
+		"name": "questionnaire",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"button"
+		],
+		"relativeUrl": "questionnaire.json"
+	},
+	{
 		"name": "radio-group",
 		"type": "registry:ui",
 		"registryDependencies": [],

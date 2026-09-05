@@ -1,0 +1,89 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "questionnaire",
+	"type": "registry:ui",
+	"devDependencies": [
+		"@shadcn-svelte/primitives@^0.1.0",
+		"@lucide/svelte@^1.27.0"
+	],
+	"registryDependencies": [
+		"button"
+	],
+	"files": [
+		{
+			"content": "import Actions from \"./questionnaire-actions.svelte\";\nimport Choice from \"./questionnaire-choice.svelte\";\nimport Choices from \"./questionnaire-choices.svelte\";\nimport Description from \"./questionnaire-description.svelte\";\nimport Error from \"./questionnaire-error.svelte\";\nimport Input from \"./questionnaire-input.svelte\";\nimport Item from \"./questionnaire-item.svelte\";\nimport Next from \"./questionnaire-next.svelte\";\nimport Previous from \"./questionnaire-previous.svelte\";\nimport Progress from \"./questionnaire-progress.svelte\";\nimport Skip from \"./questionnaire-skip.svelte\";\nimport Submit from \"./questionnaire-submit.svelte\";\nimport Title from \"./questionnaire-title.svelte\";\nimport Questionnaire from \"./questionnaire.svelte\";\n\nexport {\n\tQuestionnaire as Root,\n\tItem,\n\tChoice,\n\tChoices,\n\tInput,\n\tTitle,\n\tDescription,\n\tError,\n\tActions,\n\tProgress,\n\tPrevious,\n\tSkip,\n\tNext,\n\tSubmit,\n\tItem as QuestionnaireItem,\n\tChoice as QuestionnaireChoice,\n\tChoices as QuestionnaireChoices,\n\tInput as QuestionnaireInput,\n\tTitle as QuestionnaireTitle,\n\tDescription as QuestionnaireDescription,\n\tError as QuestionnaireError,\n\tActions as QuestionnaireActions,\n\tProgress as QuestionnaireProgress,\n\tPrevious as QuestionnairePrevious,\n\tSkip as QuestionnaireSkip,\n\tNext as QuestionnaireNext,\n\tSubmit as QuestionnaireSubmit,\n};\n\nexport type {\n\tQuestionnaireChoiceDefinition,\n\tQuestionnaireItemDefinition,\n\tQuestionnaireItemStatus,\n\tQuestionnaireShortcutMode,\n} from \"@shadcn-svelte/primitives/questionnaire\";\n",
+			"type": "registry:file",
+			"target": "questionnaire/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\ttype Props = Omit<HTMLAttributes<HTMLDivElement>, \"children\"> & {\n\t\tchildren?: import(\"svelte\").Snippet;\n\t};\n\tlet { class: className, children, ...restProps }: Props = $props();\n</script>\n\n<div\n\tdata-slot=\"questionnaire-actions\"\n\tclass={cn(\n\t\t\"gap-2 sm:min-h-8 grid min-h-11 w-full grid-cols-[minmax(0,1fr)_auto_auto] items-center\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "questionnaire/questionnaire-actions.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport * as QuestionnairePrimitive from \"@shadcn-svelte/primitives/questionnaire\";\n\timport { CheckIcon } from \"@lucide/svelte\";\n\timport { cn } from \"$UTILS$.js\";\n\timport type { ComponentProps } from \"svelte\";\n\n\ttype Props = ComponentProps<typeof QuestionnairePrimitive.Choice> & {\n\t\tlabel?: string;\n\t\tdescription?: string;\n\t};\n\n\tlet { label, description, class: className, children, ...restProps }: Props = $props();\n</script>\n\n<QuestionnairePrimitive.Choice\n\tdata-slot=\"questionnaire-choice\"\n\tclass={cn(\n\t\t\"gap-2.5 rounded-lg border border-input bg-transparent px-3 py-2.5 text-sm hover:bg-muted/50 has-[>input:focus-visible]:border-ring has-[>input:focus-visible]:ring-3 has-[>input:focus-visible]:ring-ring/50 data-invalid:border-destructive dark:bg-input/20 data-checked:border-primary/40 data-checked:bg-muted dark:data-checked:bg-muted group/questionnaire-choice relative flex min-h-11 cursor-pointer items-start text-start transition-colors outline-none select-none data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-50\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t<QuestionnairePrimitive.ChoiceInput\n\t\tdata-slot=\"questionnaire-choice-input\"\n\t\tclass=\"cn-questionnaire-choice-input absolute inset-0 z-10 size-full cursor-pointer opacity-0\"\n\t/>\n\t<span\n\t\taria-hidden=\"true\"\n\t\tdata-slot=\"questionnaire-choice-indicator\"\n\t\tclass=\"size-4 translate-y-[--spacing(0.45)] rounded-[4px] border-input group-has-data-[slot=questionnaire-choice-description]/questionnaire-choice:translate-y-0.5 group-data-checked/questionnaire-choice:border-primary group-data-checked/questionnaire-choice:bg-primary group-data-checked/questionnaire-choice:text-primary-foreground dark:bg-input/30 dark:group-data-checked/questionnaire-choice:bg-primary pointer-events-none relative flex shrink-0 items-center justify-center border group-data-[type=radio]/questionnaire-choice:rounded-full\"\n\t>\n\t\t<span\n\t\t\tdata-slot=\"questionnaire-choice-indicator-dot\"\n\t\t\tclass=\"size-2 bg-primary-foreground hidden rounded-full group-data-[type=checkbox]/questionnaire-choice:hidden group-data-checked/questionnaire-choice:block\"\n\t\t></span>\n\t\t<CheckIcon\n\t\t\tdata-slot=\"questionnaire-choice-indicator-check\"\n\t\t\tclass=\"size-3.5 hidden group-data-[type=radio]/questionnaire-choice:hidden group-data-checked/questionnaire-choice:block\"\n\t\t/>\n\t</span>\n\t<QuestionnairePrimitive.ChoiceLabel\n\t\tdata-slot=\"questionnaire-choice-label\"\n\t\tclass=\"cn-questionnaire-choice-label gap-0.5 flex min-w-0 flex-1 flex-col leading-snug\"\n\t>\n\t\t{#if label}<span>{label}</span>{/if}\n\t\t{#if description}<span class=\"text-muted-foreground\">{description}</span>{/if}\n\t\t{@render children?.()}\n\t</QuestionnairePrimitive.ChoiceLabel>\n\t<QuestionnairePrimitive.ChoiceShortcut\n\t\tdata-slot=\"questionnaire-choice-shortcut\"\n\t\tclass=\"cn-questionnaire-choice-shortcut size-5 translate-y-[--spacing(0.45)] items-center justify-center rounded-md border border-input bg-background font-mono text-[0.625rem] leading-none font-medium text-muted-foreground group-has-data-[slot=questionnaire-choice-description]/questionnaire-choice:translate-y-0.5 pointer-events-none ms-auto mt-0.5 hidden shrink-0 group-data-[shortcut]/questionnaire-choice:inline-flex\"\n\t/>\n</QuestionnairePrimitive.Choice>\n",
+			"type": "registry:file",
+			"target": "questionnaire/questionnaire-choice.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport * as QuestionnairePrimitive from \"@shadcn-svelte/primitives/questionnaire\";\n\timport { cn } from \"$UTILS$.js\";\n\timport type { ComponentProps } from \"svelte\";\n\n\tlet {\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: ComponentProps<typeof QuestionnairePrimitive.Choices> = $props();\n</script>\n\n<QuestionnairePrimitive.Choices\n\tdata-slot=\"questionnaire-choices\"\n\tclass={cn(\"gap-2 group/questionnaire-choices grid min-w-0\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</QuestionnairePrimitive.Choices>\n",
+			"type": "registry:file",
+			"target": "questionnaire/questionnaire-choices.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport * as QuestionnairePrimitive from \"@shadcn-svelte/primitives/questionnaire\";\n\timport { cn } from \"$UTILS$.js\";\n\timport type { ComponentProps } from \"svelte\";\n\n\tlet {\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: ComponentProps<typeof QuestionnairePrimitive.Description> = $props();\n</script>\n\n<QuestionnairePrimitive.Description\n\tdata-slot=\"questionnaire-description\"\n\tclass={cn(\"text-sm text-muted-foreground text-pretty text-muted-foreground\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</QuestionnairePrimitive.Description>\n",
+			"type": "registry:file",
+			"target": "questionnaire/questionnaire-description.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport * as QuestionnairePrimitive from \"@shadcn-svelte/primitives/questionnaire\";\n\timport { cn } from \"$UTILS$.js\";\n\timport type { ComponentProps } from \"svelte\";\n\n\tlet {\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: ComponentProps<typeof QuestionnairePrimitive.Error> = $props();\n</script>\n\n<QuestionnairePrimitive.Error\n\tdata-slot=\"questionnaire-error\"\n\tclass={cn(\"mt-2 text-sm text-destructive\", className)}\n\t{children}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "questionnaire/questionnaire-error.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport * as QuestionnairePrimitive from \"@shadcn-svelte/primitives/questionnaire\";\n\timport { cn } from \"$UTILS$.js\";\n\timport type { ComponentProps } from \"svelte\";\n\n\ttype Props = ComponentProps<typeof QuestionnairePrimitive.Input> & { label?: string };\n\tlet { label, class: className, ...restProps }: Props = $props();\n</script>\n\n<div\n\tdata-slot=\"questionnaire-input-wrapper\"\n\tclass=\"w-full group/questionnaire-input relative min-w-0\"\n>\n\t{#if label}<span class=\"font-medium\">{label}</span>{/if}\n\t<QuestionnairePrimitive.Input\n\t\tdata-slot=\"questionnaire-input\"\n\t\tclass={cn(\n\t\t\t\"h-8 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:bg-input/50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 min-h-11 w-full min-w-0 transition-[color,box-shadow,background-color] outline-none selection:bg-primary selection:text-primary-foreground placeholder:text-muted-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 sm:min-h-0\",\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t/>\n</div>\n",
+			"type": "registry:file",
+			"target": "questionnaire/questionnaire-input.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport * as QuestionnairePrimitive from \"@shadcn-svelte/primitives/questionnaire\";\n\timport { cn } from \"$UTILS$.js\";\n\timport type { ComponentProps } from \"svelte\";\n\n\tlet {\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: ComponentProps<typeof QuestionnairePrimitive.Item> = $props();\n</script>\n\n<QuestionnairePrimitive.Item\n\tdata-slot=\"questionnaire-item\"\n\tclass={cn(\"flex flex-col gap-4 min-w-0 border-0 p-0 outline-none\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</QuestionnairePrimitive.Item>\n",
+			"type": "registry:file",
+			"target": "questionnaire/questionnaire-item.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport * as QuestionnairePrimitive from \"@shadcn-svelte/primitives/questionnaire\";\n\timport {\n\t\tbuttonVariants,\n\t\ttype ButtonSize,\n\t\ttype ButtonVariant,\n\t} from \"$UI$/button/index.js\";\n\timport { cn } from \"$UTILS$.js\";\n\timport type { ComponentProps } from \"svelte\";\n\ttype Props = ComponentProps<typeof QuestionnairePrimitive.Next> & {\n\t\tsize?: ButtonSize;\n\t\tvariant?: ButtonVariant;\n\t};\n\tlet {\n\t\tchildren,\n\t\tclass: className,\n\t\tsize = \"default\",\n\t\tvariant = \"default\",\n\t\t...restProps\n\t}: Props = $props();\n</script>\n\n<QuestionnairePrimitive.Next\n\tdata-slot=\"questionnaire-next\"\n\tdata-size={size}\n\tdata-variant={variant}\n\tclass={cn(\n\t\tbuttonVariants({ size, variant }),\n\t\t\"cn-questionnaire-next col-start-3 row-start-1 min-h-11 justify-self-end sm:min-h-0\",\n\t\tclassName\n\t)}\n\t{...restProps}\n\t>{#if children}{@render children()}{:else}Next{/if}</QuestionnairePrimitive.Next\n>\n",
+			"type": "registry:file",
+			"target": "questionnaire/questionnaire-next.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport * as QuestionnairePrimitive from \"@shadcn-svelte/primitives/questionnaire\";\n\timport {\n\t\tbuttonVariants,\n\t\ttype ButtonSize,\n\t\ttype ButtonVariant,\n\t} from \"$UI$/button/index.js\";\n\timport { cn } from \"$UTILS$.js\";\n\timport type { ComponentProps } from \"svelte\";\n\ttype Props = ComponentProps<typeof QuestionnairePrimitive.Previous> & {\n\t\tsize?: ButtonSize;\n\t\tvariant?: ButtonVariant;\n\t};\n\tlet {\n\t\tchildren,\n\t\tclass: className,\n\t\tsize = \"default\",\n\t\tvariant = \"outline\",\n\t\t...restProps\n\t}: Props = $props();\n</script>\n\n<QuestionnairePrimitive.Previous\n\tdata-slot=\"questionnaire-previous\"\n\tdata-size={size}\n\tdata-variant={variant}\n\tclass={cn(\n\t\tbuttonVariants({ size, variant }),\n\t\t\"cn-questionnaire-previous col-start-1 row-start-1 min-h-11 justify-self-start sm:min-h-0\",\n\t\tclassName\n\t)}\n\t{...restProps}\n\t>{#if children}{@render children()}{:else}Previous{/if}</QuestionnairePrimitive.Previous\n>\n",
+			"type": "registry:file",
+			"target": "questionnaire/questionnaire-previous.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport * as QuestionnairePrimitive from \"@shadcn-svelte/primitives/questionnaire\";\n\timport { cn } from \"$UTILS$.js\";\n\timport type { ComponentProps } from \"svelte\";\n\n\tlet {\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: ComponentProps<typeof QuestionnairePrimitive.Progress> = $props();\n</script>\n\n<QuestionnairePrimitive.Progress\n\tdata-slot=\"questionnaire-progress\"\n\tclass={cn(\n\t\t\"text-xs min-h-[1lh] w-fit min-w-[14ch] font-medium text-muted-foreground tabular-nums\",\n\t\tclassName\n\t)}\n\t{children}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "questionnaire/questionnaire-progress.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport * as QuestionnairePrimitive from \"@shadcn-svelte/primitives/questionnaire\";\n\timport {\n\t\tbuttonVariants,\n\t\ttype ButtonSize,\n\t\ttype ButtonVariant,\n\t} from \"$UI$/button/index.js\";\n\timport { cn } from \"$UTILS$.js\";\n\timport type { ComponentProps } from \"svelte\";\n\ttype Props = ComponentProps<typeof QuestionnairePrimitive.Skip> & {\n\t\tsize?: ButtonSize;\n\t\tvariant?: ButtonVariant;\n\t};\n\tlet {\n\t\tchildren,\n\t\tclass: className,\n\t\tsize = \"default\",\n\t\tvariant = \"outline\",\n\t\t...restProps\n\t}: Props = $props();\n</script>\n\n<QuestionnairePrimitive.Skip\n\tdata-slot=\"questionnaire-skip\"\n\tdata-size={size}\n\tdata-variant={variant}\n\tclass={cn(\n\t\tbuttonVariants({ size, variant }),\n\t\t\"cn-questionnaire-skip col-start-2 row-start-1 min-h-11 justify-self-end sm:min-h-0\",\n\t\tclassName\n\t)}\n\t{...restProps}\n\t>{#if children}{@render children()}{:else}Skip{/if}</QuestionnairePrimitive.Skip\n>\n",
+			"type": "registry:file",
+			"target": "questionnaire/questionnaire-skip.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport * as QuestionnairePrimitive from \"@shadcn-svelte/primitives/questionnaire\";\n\timport {\n\t\tbuttonVariants,\n\t\ttype ButtonSize,\n\t\ttype ButtonVariant,\n\t} from \"$UI$/button/index.js\";\n\timport { cn } from \"$UTILS$.js\";\n\timport type { ComponentProps } from \"svelte\";\n\ttype Props = ComponentProps<typeof QuestionnairePrimitive.Submit> & {\n\t\tsize?: ButtonSize;\n\t\tvariant?: ButtonVariant;\n\t};\n\tlet {\n\t\tchildren,\n\t\tclass: className,\n\t\tsize = \"default\",\n\t\tvariant = \"default\",\n\t\t...restProps\n\t}: Props = $props();\n</script>\n\n<QuestionnairePrimitive.Submit\n\tdata-slot=\"questionnaire-submit\"\n\tdata-size={size}\n\tdata-variant={variant}\n\tclass={cn(\n\t\tbuttonVariants({ size, variant }),\n\t\t\"cn-questionnaire-submit col-start-3 row-start-1 min-h-11 justify-self-end sm:min-h-0\",\n\t\tclassName\n\t)}\n\t{...restProps}\n\t>{#if children}{@render children()}{:else}Submit{/if}</QuestionnairePrimitive.Submit\n>\n",
+			"type": "registry:file",
+			"target": "questionnaire/questionnaire-submit.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport * as QuestionnairePrimitive from \"@shadcn-svelte/primitives/questionnaire\";\n\timport { cn } from \"$UTILS$.js\";\n\timport type { ComponentProps } from \"svelte\";\n\n\tlet {\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: ComponentProps<typeof QuestionnairePrimitive.Title> = $props();\n</script>\n\n<QuestionnairePrimitive.Title\n\tdata-slot=\"questionnaire-title\"\n\tclass={cn(\"text-base leading-snug font-medium [&:not(:has(~[data-slot=questionnaire-description]))]:mb-4 cn-font-heading text-pretty\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</QuestionnairePrimitive.Title>\n",
+			"type": "registry:file",
+			"target": "questionnaire/questionnaire-title.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport * as QuestionnairePrimitive from \"@shadcn-svelte/primitives/questionnaire\";\n\timport { cn } from \"$UTILS$.js\";\n\timport type { ComponentProps } from \"svelte\";\n\n\tlet {\n\t\tclass: className,\n\t\titem = $bindable(),\n\t\tchildren,\n\t\t...restProps\n\t}: ComponentProps<typeof QuestionnairePrimitive.Root> = $props();\n</script>\n\n<QuestionnairePrimitive.Root\n\tdata-slot=\"questionnaire\"\n\tclass={cn(\"gap-4 flex w-full min-w-0 flex-col\", className)}\n\tbind:item\n\t{...restProps}\n>\n\t{@render children?.()}\n</QuestionnairePrimitive.Root>\n",
+			"type": "registry:file",
+			"target": "questionnaire/questionnaire.svelte"
+		}
+	]
+}

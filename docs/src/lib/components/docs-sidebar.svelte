@@ -70,7 +70,7 @@
 										></span>
 										{item.title}
 										{#if item.href && PAGES_NEW.includes(item.href)}
-											<span class="flex size-2 rounded-full bg-blue-500" title="New"></span>
+											<span class="flex size-2 rounded-full bg-svelte-orange" title="New"></span>
 										{/if}
 									</a>
 								{/snippet}
@@ -102,7 +102,8 @@
 													></span>
 													{subItem.title}
 													{#if subItem.href && PAGES_NEW.includes(subItem.href)}
-														<span class="flex size-2 rounded-full bg-blue-500" title="New"></span>
+														<span class="flex size-2 rounded-full bg-svelte-orange" title="New"
+														></span>
 													{/if}
 												</a>
 											{/snippet}

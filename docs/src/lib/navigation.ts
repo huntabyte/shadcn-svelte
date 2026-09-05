@@ -19,6 +19,7 @@ export type NavItemWithChildren = NavItem & {
 };
 
 export const PAGES_NEW = [
+	"/docs/components/questionnaire",
 	"/docs/skills",
 	"/docs/changelog",
 	"/docs/utils/scroll-fade",
