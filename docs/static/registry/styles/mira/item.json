@@ -3,7 +3,7 @@
 	"name": "item",
 	"type": "registry:ui",
 	"devDependencies": [
-		"cn@^0.2.2",
+		"cn@^0.2.5",
 		"tailwind-variants@^3.3.0"
 	],
 	"registryDependencies": [

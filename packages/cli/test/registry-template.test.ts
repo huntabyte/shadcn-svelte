@@ -651,7 +651,7 @@ it("should accurately build the registry template", async () => {
 		{
 		  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 		  "devDependencies": [
-		    "cn@^0.2.2",
+		    "cn@^0.2.5",
 		  ],
 		  "files": [
 		    {

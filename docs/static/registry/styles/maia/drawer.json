@@ -4,7 +4,7 @@
 	"type": "registry:ui",
 	"devDependencies": [
 		"vaul-svelte@next",
-		"cn@^0.2.2"
+		"cn@^0.2.5"
 	],
 	"files": [
 		{

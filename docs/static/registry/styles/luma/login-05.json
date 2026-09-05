@@ -4,7 +4,7 @@
 	"type": "registry:block",
 	"devDependencies": [
 		"@lucide/svelte@^1.27.0",
-		"cn@^0.2.2"
+		"cn@^0.2.5"
 	],
 	"registryDependencies": [
 		"button",

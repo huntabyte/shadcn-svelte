@@ -4,7 +4,7 @@
 	"type": "registry:ui",
 	"devDependencies": [
 		"embla-carousel-svelte@^8.6.0",
-		"cn@^0.2.2",
+		"cn@^0.2.5",
 		"bits-ui@^2.16.3",
 		"@internationalized/date@^3.12.0"
 	],

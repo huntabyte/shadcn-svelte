@@ -4,7 +4,7 @@
 	"type": "registry:ui",
 	"devDependencies": [
 		"paneforge@^1.0.2",
-		"cn@^0.2.2"
+		"cn@^0.2.5"
 	],
 	"files": [
 		{

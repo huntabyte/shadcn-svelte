@@ -5,7 +5,7 @@
 	"devDependencies": [
 		"formsnap@^2.0.1",
 		"sveltekit-superforms@^2.30.0",
-		"cn@^0.2.2"
+		"cn@^0.2.5"
 	],
 	"registryDependencies": [
 		"button",

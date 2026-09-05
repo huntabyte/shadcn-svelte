@@ -3,7 +3,7 @@
 	"name": "login-04",
 	"type": "registry:block",
 	"devDependencies": [
-		"cn@^0.2.2"
+		"cn@^0.2.5"
 	],
 	"registryDependencies": [
 		"card",

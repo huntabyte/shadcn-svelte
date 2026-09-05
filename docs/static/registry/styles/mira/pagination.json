@@ -3,7 +3,7 @@
 	"name": "pagination",
 	"type": "registry:ui",
 	"devDependencies": [
-		"cn@^0.2.2",
+		"cn@^0.2.5",
 		"bits-ui@^2.16.3",
 		"@internationalized/date@^3.12.0"
 	],

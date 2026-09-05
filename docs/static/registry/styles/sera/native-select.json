@@ -3,7 +3,7 @@
 	"name": "native-select",
 	"type": "registry:ui",
 	"devDependencies": [
-		"cn@^0.2.2"
+		"cn@^0.2.5"
 	],
 	"files": [
 		{

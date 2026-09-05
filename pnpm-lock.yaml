@@ -249,8 +249,8 @@ importers:
         specifier: ^2.9.0
         version: 2.9.0
       cn:
-        specifier: ^0.2.2
-        version: 0.2.2
+        specifier: ^0.2.5
+        version: 0.2.5
       concurrently:
         specifier: ^9.2.1
         version: 9.2.1
@@ -2755,14 +2755,14 @@ packages:
     resolution: {integrity: sha512-BSeNnyus75C4//NQ9gQt1/csTXyo/8Sb+afLAkzAptFuMsod9HFokGNudZpi/oQV73hnVK+sR+5PVRMd+Dr7YQ==}
     engines: {node: '>=12'}
 
-  cn@0.2.2:
-    resolution: {integrity: sha512-1TjHp2yGdFzu5Td2bc2bnceh/WKPEvLYVtcg6czWSifHBy5oN/bK5/I0eFNIr839Hlh5cxrV93Yh2ByrpO5Stw==}
-    engines: {node: '>=20'}
-    hasBin: true
-
   clsx@2.1.1:
     resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
     engines: {node: '>=6'}
+
+  cn@0.2.5:
+    resolution: {integrity: sha512-OCjZtMeQfXbI4Es1+EIjkd77gvWzaE689gD8KhfexlqjClC06qR1MQBR+Z35ZMSPNEBWyHiItW1Soy0UvwNv9w==}
+    engines: {node: '>=20'}
+    hasBin: true
 
   collapse-white-space@2.1.0:
     resolution: {integrity: sha512-loKTxY1zCOuG4j9f6EPnuyyYkf58RnhhWTvRoZEokgB+WbdXehfjFviyOVYkqzEWz1Q5kRiZdBYS5SwxbQYwzw==}
@@ -7378,9 +7378,9 @@ snapshots:
       strip-ansi: 6.0.1
       wrap-ansi: 7.0.0
 
-  cn@0.2.2: {}
-
   clsx@2.1.1: {}
+
+  cn@0.2.5: {}
 
   collapse-white-space@2.1.0: {}
 
