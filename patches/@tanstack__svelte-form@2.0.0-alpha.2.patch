@@ -1,0 +1,170 @@
+diff --git a/dist/AppForm/Components.lib.d.ts b/dist/AppForm/Components.lib.d.ts
+index db8e49da17f58e72bec5ad943b37fe531d04ac99..38ced8d67a90b8f279fba0aa12b074058b7336b7 100644
+--- a/dist/AppForm/Components.lib.d.ts
++++ b/dist/AppForm/Components.lib.d.ts
+@@ -1,7 +1,7 @@
+ import type { AnyInternalFormApi } from '@tanstack/form-core/internals';
+ import type { Component } from 'svelte';
+-import type { AnySvelteFormComponentMap } from './componentMap.public';
+-import type { SvelteAppFormApi } from './SvelteAppFormApi.public';
++import type { AnySvelteFormComponentMap } from './componentMap.public.js';
++import type { SvelteAppFormApi } from './SvelteAppFormApi.public.js';
+ type AnySvelteAppFormApi = SvelteAppFormApi<any, any, AnySvelteFormComponentMap>;
+ export declare function attachSvelteAppFormComponents(form: AnyInternalFormApi, formComponents: Record<string, Component<any>>, fieldComponents: Record<string, Component<any>>): AnySvelteAppFormApi;
+ export {};
+diff --git a/dist/AppForm/SvelteAppFormApi.public.d.ts b/dist/AppForm/SvelteAppFormApi.public.d.ts
+index a9fe02d7a3e65b5a8a1cc8e1447810bd27ce7a6c..9f4a507a63aac3f6fd0c17826082d5214faa9cae 100644
+--- a/dist/AppForm/SvelteAppFormApi.public.d.ts
++++ b/dist/AppForm/SvelteAppFormApi.public.d.ts
+@@ -1,7 +1,7 @@
+ import type { FormErrorTypes } from '@tanstack/form-core';
+ import type { Component, Snippet } from 'svelte';
+-import type { SvelteFormApi } from '../formApiTypes.public';
+-import type { AnySvelteFormComponentMap } from './componentMap.public';
++import type { SvelteFormApi } from '../formApiTypes.public.js';
++import type { AnySvelteFormComponentMap } from './componentMap.public.js';
+ export type AppFormComponent = Component<{
+     children: Snippet;
+ }>;
+diff --git a/dist/AppForm/createFormHook.public.d.ts b/dist/AppForm/createFormHook.public.d.ts
+index 3fdd907e7acbab3e690e178763f788d0c1576d2b..db0f88404c759b32c423efae6215631e03d8bdbb 100644
+--- a/dist/AppForm/createFormHook.public.d.ts
++++ b/dist/AppForm/createFormHook.public.d.ts
+@@ -1,4 +1,4 @@
+-import type { AppFormHookResult, CreateFormHookOptions } from './createFormHookTypes.public';
++import type { AppFormHookResult, CreateFormHookOptions } from './createFormHookTypes.public.js';
+ import type { Component } from 'svelte';
+ export declare function createFormHook<const TFormComponents extends Record<string, Component<any>>, const TFieldComponents extends Record<string, Component<any>>>(createOptions: CreateFormHookOptions<TFormComponents, TFieldComponents>): AppFormHookResult<{
+     formComponents: TFormComponents;
+diff --git a/dist/AppForm/createFormHookTypes.public.d.ts b/dist/AppForm/createFormHookTypes.public.d.ts
+index 53e5033fd12a5ffb68153da15dceacd76303ada1..b3d136b93233da0e9942bd1ea277740bcbbf4940 100644
+--- a/dist/AppForm/createFormHookTypes.public.d.ts
++++ b/dist/AppForm/createFormHookTypes.public.d.ts
+@@ -1,6 +1,6 @@
+-import type { AnySvelteFormComponentMap, SvelteFormComponentMap } from './componentMap.public';
+-import type { SvelteAppFormApi } from './SvelteAppFormApi.public';
+-import type { DefineFieldGroupFn } from '../FieldGroup/withFields.public';
++import type { AnySvelteFormComponentMap, SvelteFormComponentMap } from './componentMap.public.js';
++import type { SvelteAppFormApi } from './SvelteAppFormApi.public.js';
++import type { DefineFieldGroupFn } from '../FieldGroup/withFields.public.js';
+ import type { Component } from 'svelte';
+ import type { DefaultFieldOptions, DefaultFormGroupOptions, DefaultFormOptions, FormOptions, FormOptionsApi, FormValidators, ToFormErrorTypes } from '@tanstack/form-core';
+ /**
+diff --git a/dist/FieldGroup/FieldGroupApi.public.d.ts b/dist/FieldGroup/FieldGroupApi.public.d.ts
+index 4eeb2cfecb760c8967896005592e221d950d93c9..939b1751306f0c7e2a8a2224d72401b57d50c26b 100644
+--- a/dist/FieldGroup/FieldGroupApi.public.d.ts
++++ b/dist/FieldGroup/FieldGroupApi.public.d.ts
+@@ -1,6 +1,6 @@
+ import type { DeepKeys, DeepKeysWhereValueIncludes, DeepValue, FieldValidators, FormApiArrayMethods, FormApiFieldMethods, FormErrorTypes, FormState, ValidationIssue } from '@tanstack/form-core';
+ import type { Component, ComponentConstructorOptions, SvelteComponent } from 'svelte';
+-import type { SvelteFormFieldProps, SvelteFormSubscribeProps, WithoutFunction } from '../Components.public';
++import type { SvelteFormFieldProps, SvelteFormSubscribeProps, WithoutFunction } from '../Components.public.js';
+ import type { ReadonlyAtom } from '@tanstack/svelte-store';
+ export type FieldGroupFieldComponent<TFieldData, TFieldComponents extends Record<string, Component<any>>> = (new <const TFieldName extends DeepKeys<TFieldData>>(options: ComponentConstructorOptions<SvelteFormFieldProps<TFieldData, TFieldName, DeepValue<TFieldData, TFieldName>, FieldValidators<TFieldData, TFieldName, DeepValue<TFieldData, TFieldName>>, ValidationIssue, unknown, FormErrorTypes, TFieldComponents>>) => SvelteComponent) & Component<any> & WithoutFunction<Component>;
+ export type FieldGroupArrayFieldComponent<TFieldData, TFieldComponents extends Record<string, Component<any>>> = (new <const TFieldName extends DeepKeysWhereValueIncludes<TFieldData, Array<any>>>(options: ComponentConstructorOptions<SvelteFormFieldProps<TFieldData, TFieldName, DeepValue<TFieldData, TFieldName>, FieldValidators<TFieldData, TFieldName, DeepValue<TFieldData, TFieldName>>, ValidationIssue, unknown, FormErrorTypes, TFieldComponents>>) => SvelteComponent) & Component<any> & WithoutFunction<Component>;
+diff --git a/dist/FieldGroup/withFields.public.d.ts b/dist/FieldGroup/withFields.public.d.ts
+index 796ffb0c07c910cab4cd3076abc2b6874050e346..d07b5375c1d3982a5d46f0140910aa1bc055cc25 100644
+--- a/dist/FieldGroup/withFields.public.d.ts
++++ b/dist/FieldGroup/withFields.public.d.ts
+@@ -1,7 +1,7 @@
+ import type { DeepKeys, DeepKeysWhereValueIncludes, DeepValue, FormApi } from '@tanstack/form-core';
+ import type { Component, ComponentConstructorOptions, SvelteComponent } from 'svelte';
+-import type { SvelteTanStackFormComponents, WithoutFunction } from '../Components.public';
+-import type { FieldGroupApi } from './FieldGroupApi.public';
++import type { SvelteTanStackFormComponents, WithoutFunction } from '../Components.public.js';
++import type { FieldGroupApi } from './FieldGroupApi.public.js';
+ declare const fieldGroupFieldSlotValueSymbol: unique symbol;
+ declare const fieldGroupFieldsSymbol: unique symbol;
+ declare const fieldGroupFieldComponentsSymbol: unique symbol;
+diff --git a/dist/createForm.public.d.ts b/dist/createForm.public.d.ts
+index b2b2b4eb1e701b20c9c19eaeebbc004ffc5b080c..6ef53ea1dbc9a8ad1fcf63638f0a66ab1c03d4b4 100644
+--- a/dist/createForm.public.d.ts
++++ b/dist/createForm.public.d.ts
+@@ -1,6 +1,6 @@
+ import type { FormOptions, FormValidators, ToFormErrorTypes } from '@tanstack/form-core';
+-import type { SvelteFormApi } from './formApiTypes.public';
+-import type { DefaultSvelteFormComponentMap } from './AppForm/componentMap.public';
++import type { SvelteFormApi } from './formApiTypes.public.js';
++import type { DefaultSvelteFormComponentMap } from './AppForm/componentMap.public.js';
+ export type CreateForm = <TFormData, const TFormValidators extends FormValidators<TFormData>, TSubmitReturn>(options: () => FormOptions<TFormData, TFormValidators, TSubmitReturn, unknown>) => SvelteFormApi<TFormData, ToFormErrorTypes<TFormValidators, TSubmitReturn>, DefaultSvelteFormComponentMap>;
+ /**
+  * Creates a Svelte form whose instance and lifecycle are owned by the current
+diff --git a/dist/createForm.svelte.d.ts b/dist/createForm.svelte.d.ts
+index ad021fd3932b93d0ba02fec5577f580884842ee2..c474d86d5ab26186ea1113115b382e1f09585a82 100644
+--- a/dist/createForm.svelte.d.ts
++++ b/dist/createForm.svelte.d.ts
+@@ -1,7 +1,7 @@
+ import type { FormOptions } from '@tanstack/form-core';
+ import type { Component } from 'svelte';
+ import type { AnyInternalFormApi } from '@tanstack/form-core/internals';
+-import type { SvelteTanStackFormComponents } from './Components.public';
++import type { SvelteTanStackFormComponents } from './Components.public.js';
+ export interface InternalSvelteFormApi extends AnyInternalFormApi, SvelteTanStackFormComponents<any, any, any> {
+     _Subscribe: Component<any>;
+     useSelector: <TSelected = any>(selector?: (state: any) => TSelected) => {
+diff --git a/dist/formApiTypes.public.d.ts b/dist/formApiTypes.public.d.ts
+index ee3413e66399e674d79100ca27571f0f96c08af5..780ae8d9473467816bd40d1b6649fe4f3935ab4e 100644
+--- a/dist/formApiTypes.public.d.ts
++++ b/dist/formApiTypes.public.d.ts
+@@ -1,7 +1,7 @@
+ import type { AnyFormApi, FormApi, FormErrorTypes, FormState } from '@tanstack/form-core';
+ import type { Component } from 'svelte';
+-import type { SvelteTanStackFormComponents } from './Components.public';
+-import type { AnySvelteFormComponentMap, DefaultSvelteFormComponentMap } from './AppForm/componentMap.public';
++import type { SvelteTanStackFormComponents } from './Components.public.js';
++import type { AnySvelteFormComponentMap, DefaultSvelteFormComponentMap } from './AppForm/componentMap.public.js';
+ export interface SvelteFormSelectors<TFormData, TFormErrorTypes extends FormErrorTypes> {
+     useSelector: <TSelected = FormState<TFormData, TFormErrorTypes>>(selector?: (state: FormState<TFormData, TFormErrorTypes>) => TSelected) => {
+         readonly current: TSelected;
+@@ -34,4 +34,4 @@ export type SvelteFormApi<TFormData, TFormErrorTypes extends FormErrorTypes, TCo
+  * ```
+  */
+ export type AnySvelteFormApi = AnyFormApi & SvelteTanStackFormComponents<any, any, any> & SvelteFormSelectors<any, any>;
+-export type { SvelteFormComponentMap } from './AppForm/componentMap.public';
++export type { SvelteFormComponentMap } from './AppForm/componentMap.public.js';
+diff --git a/dist/formType.public.d.ts b/dist/formType.public.d.ts
+index bf1f881fd8e4965b2b1177c42c56ee1c80e9ffed..e258feefd78399e90ce05120d96e098ffda3971c 100644
+--- a/dist/formType.public.d.ts
++++ b/dist/formType.public.d.ts
+@@ -1,6 +1,6 @@
+ import type { AnyFormOptions, FormOptions, FormValidators, ToFormErrorTypes } from '@tanstack/form-core';
+-import type { AnySvelteFormComponentMap, DefaultSvelteFormComponentMap } from './AppForm/componentMap.public';
+-import type { SvelteFormApi } from './formApiTypes.public';
++import type { AnySvelteFormComponentMap, DefaultSvelteFormComponentMap } from './AppForm/componentMap.public.js';
++import type { SvelteFormApi } from './formApiTypes.public.js';
+ type SvelteFormTypeErrorTypes<TValidators extends FormValidators<any>, TSubmitReturn> = unknown extends TSubmitReturn ? any : ToFormErrorTypes<TValidators, TSubmitReturn>;
+ export type SvelteFormType<TOptions extends AnyFormOptions> = TOptions extends FormOptions<infer TData, infer TValidators, infer TSubmitReturn, infer TComponents> ? SvelteFormApi<TData, SvelteFormTypeErrorTypes<TValidators, TSubmitReturn>, TComponents extends AnySvelteFormComponentMap ? TComponents : DefaultSvelteFormComponentMap> : never;
+ export {};
+diff --git a/dist/index.d.ts b/dist/index.d.ts
+index bd4c1a8dcdf78a548baf3a3a6d78e97556216ef3..62df6fd68d4baa93d637288c010b996e60af3848 100644
+--- a/dist/index.d.ts
++++ b/dist/index.d.ts
+@@ -1,17 +1,17 @@
+ export * from '@tanstack/form-core';
+ export * from '@tanstack/svelte-store';
+-export * from './createForm.public';
+-export * from './formApiTypes.public';
+-export * from './formType.public';
+-export * from './Components.public';
++export * from './createForm.public.js';
++export * from './formApiTypes.public.js';
++export * from './formType.public.js';
++export * from './Components.public.js';
+ export * from './Field.svelte';
+ export { default as Field } from './Field.svelte';
+ export * from './FormGroup.svelte';
+ export { default as FormGroup } from './FormGroup.svelte';
+-export * from './FieldGroup/FieldGroupApi.public';
+-export * from './FieldGroup/withFields.public';
+-export * from './AppForm/SvelteAppFormApi.public';
+-export * from './AppForm/componentMap.public';
+-export * from './AppForm/createFormHook.public';
+-export * from './AppForm/createFormHookTypes.public';
+-export * from './AppForm/getFormHookHelpers.public';
++export * from './FieldGroup/FieldGroupApi.public.js';
++export * from './FieldGroup/withFields.public.js';
++export * from './AppForm/SvelteAppFormApi.public.js';
++export * from './AppForm/componentMap.public.js';
++export * from './AppForm/createFormHook.public.js';
++export * from './AppForm/createFormHookTypes.public.js';
++export * from './AppForm/getFormHookHelpers.public.js';
