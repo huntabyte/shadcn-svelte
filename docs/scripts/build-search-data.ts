@@ -1,8 +1,15 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import rehypeSlug from "rehype-slug";
+import remarkGfm from "remark-gfm";
+import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
 import removeMd from "remove-markdown";
 import { globby } from "globby";
+import { toString } from "hast-util-to-string";
+import { unified } from "unified";
+import { visit } from "unist-util-visit";
 
 const CONTENT_DIR = path.resolve(process.cwd(), "content");
 const OUTPUT_PATH = path.resolve(process.cwd(), "src/routes/api/search.json/search.json");
@@ -28,29 +35,6 @@ function parseFrontmatter(raw: string): { title: string; description: string; bo
 	const description = frontmatter.match(/^description:\s*(.+)$/m)?.[1]?.trim() ?? "";
 
 	return { title, description, body };
-}
-
-function slugify(text: string): string {
-	return Array.from(text.toLowerCase())
-		.filter((char) => !isGithubSlugRemovedChar(char))
-		.join("")
-		.replace(/ /g, "-");
-}
-
-function isGithubSlugRemovedChar(char: string): boolean {
-	const code = char.codePointAt(0);
-	if (code === undefined) return false;
-
-	return (
-		code <= 0x1f ||
-		(code >= 0x21 && code <= 0x2c) ||
-		code === 0x2e ||
-		code === 0x2f ||
-		(code >= 0x3a && code <= 0x40) ||
-		(code >= 0x5b && code <= 0x5e) ||
-		code === 0x60 ||
-		(code >= 0x7b && code <= 0xa9)
-	);
 }
 
 function cleanText(raw: string): string {
@@ -111,6 +95,7 @@ function deriveCategory(filePath: string): string {
 	const categories: Record<string, string> = {
 		components: "Components",
 		forms: "Forms",
+		utils: "Utilities",
 		installation: "Installation",
 		migration: "Migration",
 		"dark-mode": "Dark Mode",
@@ -134,29 +119,27 @@ function parseIntoSections(
 ): SearchEntry[] {
 	const entries: SearchEntry[] = [];
 
-	// Split on heading lines (h1–h4)
+	const processor = unified().use(remarkParse).use(remarkGfm).use(remarkRehype).use(rehypeSlug);
+	const tree = processor.runSync(processor.parse(body));
 	const lines = body.split("\n");
-	const sections: { heading: string | null; level: number; lines: string[] }[] = [];
-	let current: { heading: string | null; level: number; lines: string[] } = {
-		heading: null,
-		level: 0,
-		lines: [],
-	};
-
-	for (const line of lines) {
-		const headingMatch = line.match(/^(#{1,4})\s+(.+)$/);
-		if (headingMatch) {
-			sections.push(current);
-			current = {
-				heading: headingMatch[2].trim(),
-				level: headingMatch[1].length,
-				lines: [],
-			};
-		} else {
-			current.lines.push(line);
-		}
-	}
-	sections.push(current);
+	const headings: { title: string; anchor: string; start: number; end: number }[] = [];
+	visit(tree, "element", (node) => {
+		if (!/^h[1-6]$/.test(node.tagName) || !node.position) return;
+		headings.push({
+			title: toString(node),
+			anchor: String(node.properties.id),
+			start: node.position.start.line - 1,
+			end: node.position.end.line,
+		});
+	});
+	const sections = [
+		{ heading: null, anchor: "", lines: lines.slice(0, headings[0]?.start ?? lines.length) },
+		...headings.map((heading, index) => ({
+			heading: heading.title,
+			anchor: heading.anchor,
+			lines: lines.slice(heading.end, headings[index + 1]?.start ?? lines.length),
+		})),
+	];
 
 	let currentAnchor: string;
 
@@ -178,10 +161,10 @@ function parseIntoSections(
 			continue;
 		}
 
-		const headingText = cleanText(section.heading);
+		const headingText = section.heading;
 		if (!headingText.trim()) continue;
 
-		const anchor = slugify(headingText);
+		const anchor = section.anchor;
 		currentAnchor = anchor;
 		const href = `${pageHref}#${anchor}`;
 
@@ -247,11 +230,6 @@ async function writeSearchData() {
 }
 
 async function watchContentDirectory() {
-	const directories = await globby("**", {
-		cwd: CONTENT_DIR,
-		absolute: true,
-		onlyDirectories: true,
-	});
 	let buildTimeout: NodeJS.Timeout | undefined;
 
 	const rebuild = () => {
@@ -263,12 +241,9 @@ async function watchContentDirectory() {
 		}, 100);
 	};
 
-	for (const directory of [CONTENT_DIR, ...directories]) {
-		fs.watch(directory, (_, filename) => {
-			if (!filename?.endsWith(".md")) return;
-			rebuild();
-		});
-	}
+	fs.watch(CONTENT_DIR, { recursive: true }, () => {
+		rebuild();
+	});
 }
 
 const isWatchMode = process.argv.includes("--watch");

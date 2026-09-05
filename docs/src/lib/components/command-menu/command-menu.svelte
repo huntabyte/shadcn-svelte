@@ -44,6 +44,7 @@
 		"Get Started",
 		"Changelog",
 		"Forms",
+		"Utilities",
 		"Installation",
 		"Dark Mode",
 		"Registry",
@@ -123,7 +124,9 @@
 
 	onMount(async () => {
 		try {
-			const data = await fetch(`${base}/api/search.json`).then((res) => res.json());
+			const response = await fetch(`${base}/api/search.json`);
+			if (!response.ok) return;
+			const data = await response.json();
 			await createContentIndex(data);
 		} catch {
 			// Keep the command menu usable with local navigation results if the content index fails.
