@@ -15,9 +15,6 @@ catalogs:
     typescript:
       specifier: ^6.0.3
       version: 6.0.3
-    zod:
-      specifier: ^4.4.3
-      version: 4.4.3
 
 importers:
 
@@ -215,9 +212,9 @@ importers:
       '@tailwindcss/vite':
         specifier: ^4.3.3
         version: 4.3.3(vite@8.1.5(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.7.0)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1))
-      '@tanstack/table-core':
-        specifier: ^8.21.3
-        version: 8.21.3
+      '@tanstack/svelte-table':
+        specifier: ^9.0.0
+        version: 9.0.0(svelte@5.54.0)
       '@types/d3-scale':
         specifier: ^4.0.9
         version: 4.0.9
@@ -411,7 +408,7 @@ importers:
         specifier: ^8.1.5
         version: 8.1.5(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.7.0)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1)
       zod:
-        specifier: 'catalog:'
+        specifier: ^4.4.3
         version: 4.4.3
 
   packages/cli:
@@ -436,8 +433,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0
       '@svecosystem/strip-types':
-        specifier: ^0.0.4
-        version: 0.0.4
+        specifier: ^0.0.5
+        version: 0.0.5
       '@sveltejs/acorn-typescript':
         specifier: ^1.0.5
         version: 1.0.9(acorn@8.16.0)
@@ -505,7 +502,7 @@ importers:
         specifier: ^4.1.10
         version: 4.1.10(@types/node@25.5.0)(jsdom@27.3.0(postcss@8.5.25))(vite@8.1.5(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.7.0)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1))
       zod:
-        specifier: 'catalog:'
+        specifier: ^4.4.3
         version: 4.4.3
 
   sv-addons/registry:
@@ -2050,8 +2047,8 @@ packages:
   '@standard-schema/spec@1.1.0':
     resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
 
-  '@svecosystem/strip-types@0.0.4':
-    resolution: {integrity: sha512-TmIXHp09ZAjdP14xjtdwJZuF+sKF+PqZackrAdiSK6lPZ+KuQAZciV12PlcPNBMDAYQeC+dvBJ6AGPsEbJfRgQ==}
+  '@svecosystem/strip-types@0.0.5':
+    resolution: {integrity: sha512-GwWEIblDBUpVSwV2u7/W/Paaj1rlpwUm8SWKwOIePSvyuT1KIgg4ppGawoLhV6MtUkhMWPISxK3zQICIbVy19g==}
 
   '@sveltejs/acorn-typescript@1.0.9':
     resolution: {integrity: sha512-lVJX6qEgs/4DOcRTpo56tmKzVPtoWAaVbL4hfO7t7NVwl9AAXzQR6cihesW1BmNMPl+bK6dreu2sOKBP2Q9CIA==}
@@ -2211,9 +2208,23 @@ packages:
     peerDependencies:
       vite: ^5.2.0 || ^6 || ^7 || ^8
 
-  '@tanstack/table-core@8.21.3':
-    resolution: {integrity: sha512-ldZXEhOBb8Is7xLs01fR3YEc3DERiz5silj8tnGkFZytt1abEvl/GhUmCE0PMLaMPTa3Jk4HbKmRlHmu+gCftg==}
-    engines: {node: '>=12'}
+  '@tanstack/store@0.11.1':
+    resolution: {integrity: sha512-mzTOBhypOuDJAy/D8n2MfUZ1HFkXnmSETviRyhqEC8LUE7/IZQExOTxMANj3KjTofYTkFNpBY67qaVrT41YccA==}
+
+  '@tanstack/svelte-store@0.12.1':
+    resolution: {integrity: sha512-ZFj8gyIWHZRYLv8RHp5jhnMhvw15g86KinotrUp9RfY7ygjkU3CcaMUytIdMJ4Xzq/9GqVlAphV9gFIGKRXWSw==}
+    peerDependencies:
+      svelte: ^5.0.0
+
+  '@tanstack/svelte-table@9.0.0':
+    resolution: {integrity: sha512-hQBEup5JppVhYJZ1436b43MC7L2oL5wuSa/Yy5e1NS82WosLqHG7Bq/qhyk1sxw4BQHxTF0/9RzAIKRyBE0w9g==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      svelte: ^5.0.0
+
+  '@tanstack/table-core@9.0.0':
+    resolution: {integrity: sha512-IyKCc4D7d/+I9euQntlVDQ7lnilmFRKpIROBeI5/866adFy+65xWvCFPz76NZ5j2lXe/RFDvFVV7bfETmwHEMA==}
+    engines: {node: '>=20'}
 
   '@tybys/wasm-util@0.10.3':
     resolution: {integrity: sha512-F3fo1MYrRJYL3zER0OUOmkutjr1Vp23m7OsSgp7nq4SP6OqX6C/56XFIPAl5bt3zaBRjmW7SGz3u/6LwFpYcOg==}
@@ -6690,7 +6701,7 @@ snapshots:
 
   '@standard-schema/spec@1.1.0': {}
 
-  '@svecosystem/strip-types@0.0.4':
+  '@svecosystem/strip-types@0.0.5':
     dependencies:
       estree-walker: 3.0.3
       magic-string: 0.30.21
@@ -6839,7 +6850,22 @@ snapshots:
       tailwindcss: 4.3.3
       vite: 8.1.5(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.7.0)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1)
 
-  '@tanstack/table-core@8.21.3': {}
+  '@tanstack/store@0.11.1': {}
+
+  '@tanstack/svelte-store@0.12.1(svelte@5.54.0)':
+    dependencies:
+      '@tanstack/store': 0.11.1
+      svelte: 5.54.0
+
+  '@tanstack/svelte-table@9.0.0(svelte@5.54.0)':
+    dependencies:
+      '@tanstack/svelte-store': 0.12.1(svelte@5.54.0)
+      '@tanstack/table-core': 9.0.0
+      svelte: 5.54.0
+
+  '@tanstack/table-core@9.0.0':
+    dependencies:
+      '@tanstack/store': 0.11.1
 
   '@tybys/wasm-util@0.10.3':
     dependencies:

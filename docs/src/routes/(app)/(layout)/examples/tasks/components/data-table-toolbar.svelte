@@ -1,14 +1,15 @@
-<script lang="ts" generics="TData">
+<script lang="ts" generics="TData extends RowData">
 	import XIcon from "@lucide/svelte/icons/x";
 	import Button from "$lib/registry/ui/button/button.svelte";
 	import { Input } from "$lib/registry/ui/input/index.js";
 	import { DataTableFacetedFilter, DataTableViewOptions } from "./index.js";
 	import { priorities, statuses } from "../data/data.js";
-	import type { Table } from "@tanstack/table-core";
+	import type { TasksTableFeatures } from "./data-table-features.js";
+	import type { RowData, SvelteTable } from "@tanstack/svelte-table";
 
-	let { table }: { table: Table<TData> } = $props();
+	let { table }: { table: SvelteTable<TasksTableFeatures, TData> } = $props();
 
-	const isFiltered = $derived(table.getState().columnFilters.length > 0);
+	const isFiltered = $derived(table.atoms.columnFilters.get().length > 0);
 	const statusCol = $derived(table.getColumn("status"));
 	const priorityCol = $derived(table.getColumn("priority"));
 </script>

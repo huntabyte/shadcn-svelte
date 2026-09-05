@@ -4,9 +4,10 @@
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { labels } from "../data/data.js";
 	import { taskSchema, type Task } from "../data/schemas.js";
-	import type { Row } from "@tanstack/table-core";
+	import type { TasksTableFeatures } from "./data-table-features.js";
+	import type { Row } from "@tanstack/svelte-table";
 
-	let { row }: { row: Row<Task> } = $props();
+	let { row }: { row: Row<TasksTableFeatures, Task> } = $props();
 
 	const task = $derived(taskSchema.parse(row.original));
 </script>

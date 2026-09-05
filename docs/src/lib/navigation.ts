@@ -1,4 +1,4 @@
-import { components, forms, installation, migration } from "$content/index.js";
+import { components, forms, installation, migration, utils } from "$content/index.js";
 import type { Component } from "svelte";
 
 export type NavItem = {
@@ -18,7 +18,17 @@ export type NavItemWithChildren = NavItem & {
 	items: NavItemWithChildren[];
 };
 
-export const PAGES_NEW = ["/docs/typeset", "/docs/skills", "/docs/changelog"];
+export const PAGES_NEW = [
+	"/docs/typeset",
+	"/docs/skills",
+	"/docs/changelog",
+	"/docs/utils/scroll-fade",
+	"/docs/utils/shimmer",
+	"/docs/components/message",
+	"/docs/components/bubble",
+	"/docs/components/attachment",
+	"/docs/components/marker",
+];
 
 export const PAGES_UPDATED: string[] = [];
 
@@ -213,6 +223,22 @@ function generateDarkModeNav(): SidebarNavItem[] {
 	return darkModeNavItems;
 }
 
+function generateUtilsNav(): SidebarNavItem[] {
+	const utilsNavItems: SidebarNavItem[] = [];
+
+	const sorted = [...utils].sort((a, b) => a.title.localeCompare(b.title));
+
+	for (const doc of sorted) {
+		utilsNavItems.push({
+			title: doc.title,
+			href: `/docs/utils/${doc.slug}`,
+			items: [],
+		});
+	}
+
+	return utilsNavItems;
+}
+
 function generateRegistryNav(): SidebarNavItem[] {
 	const registryNavItems: SidebarNavItem[] = [
 		{
@@ -294,6 +320,7 @@ const componentsNav = generateComponentsNav();
 const installationNav = generateInstallationNav();
 const darkModeNav = generateDarkModeNav();
 const registryNav = generateRegistryNav();
+const utilsNav = generateUtilsNav();
 const formsNav = generateFormsNav();
 
 export const sidebarNavItems: SidebarNavItem[] = [
@@ -308,6 +335,10 @@ export const sidebarNavItems: SidebarNavItem[] = [
 	{
 		title: "Get Started",
 		items: getStartedNav,
+	},
+	{
+		title: "Utilities",
+		items: utilsNav,
 	},
 	{ title: "Changelog", href: "/docs/changelog", items: [] },
 	{
@@ -364,6 +395,7 @@ export function getFullNavItems(): Array<SidebarNavItem & { index: number }> {
 	return [
 		...componentsNav,
 		...getStartedNav,
+		...utilsNav,
 		...installationNav.filter((item) => item.title !== "Installation"),
 		...darkModeNav.filter((item) => item.title !== "Dark Mode"),
 		...registryNav,
