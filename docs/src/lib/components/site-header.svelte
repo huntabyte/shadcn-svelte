@@ -61,6 +61,8 @@
 							Initialize Project
 						</Button>
 					{/if}
+				{:else if page.url.pathname === "/typeset"}
+					<Customizer />
 				{:else}
 					<Customizer />
 					<Button href="/create" variant="default" size="sm" class="h-[31px] rounded-lg">
