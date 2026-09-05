@@ -73,7 +73,7 @@ If you're looking for a range calendar, check out the [Range Calendar](/docs/com
 
 You can use the `<Calendar />` component to build a date picker. See the [Date Picker](/docs/components/date-picker) page for more information.
 
-## Persian / Hijri / Jalali Calendar
+## Persian / Jalali Calendar
 
 The `<Calendar />` component uses `@internationalized/date`, so you can use non-Gregorian calendar systems by passing a date value with the desired calendar.
 
