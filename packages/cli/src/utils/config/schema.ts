@@ -84,6 +84,28 @@ const baseConfigSchema = z.object({
 
 const originalConfigSchema = baseConfigSchema.extend({ style: z.string().optional() });
 
+const registryUrlSchema = z.string().refine((url) => url.includes("{name}"), {
+	message: "Registry URL must include {name} placeholder",
+});
+
+export const registryConfigItemSchema = z.union([
+	registryUrlSchema,
+	z.object({
+		url: registryUrlSchema,
+		params: z.record(z.string(), z.string()).optional(),
+		headers: z.record(z.string(), z.string()).optional(),
+	}),
+]);
+export type RegistryConfigItem = z.infer<typeof registryConfigItemSchema>;
+
+export const registryConfigSchema = z.record(
+	z.string().refine((name) => name.startsWith("@"), {
+		message: "Registry names must start with @ (e.g., @acme)",
+	}),
+	registryConfigItemSchema
+);
+export type RegistryConfig = z.infer<typeof registryConfigSchema>;
+
 export const newConfigSchema = baseConfigSchema.extend({
 	aliases: baseConfigSchema.shape.aliases.extend({
 		ui: aliasSchema("ui").default(DEFAULT_CONFIG.aliases.ui),
@@ -91,6 +113,7 @@ export const newConfigSchema = baseConfigSchema.extend({
 		lib: aliasSchema("lib").default(DEFAULT_CONFIG.aliases.lib),
 	}),
 	registry: z.string().default(DEFAULT_CONFIG.registry),
+	registries: registryConfigSchema.optional(),
 	// design system
 	style: z.string().optional(),
 	iconLibrary: z.enum(ICON_LIBRARIES).optional(),
