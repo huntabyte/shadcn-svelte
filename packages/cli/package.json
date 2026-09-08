@@ -93,6 +93,7 @@
 	},
 	"devDependencies": {
 		"@clack/prompts": "^1.1.0",
+		"@dotenvx/dotenvx": "^1.75.1",
 		"@svecosystem/strip-types": "^0.0.5",
 		"@sveltejs/acorn-typescript": "^1.0.5",
 		"@types/semver": "^7.5.8",
