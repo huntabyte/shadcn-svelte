@@ -175,7 +175,14 @@ export type ClassString = {
 	source?: SourceLocation;
 };
 
-export type PairKind = "exact" | "order" | "equivalent" | "ignored" | "allowlist" | "framework" | "diff";
+export type PairKind =
+	| "exact"
+	| "order"
+	| "equivalent"
+	| "ignored"
+	| "allowlist"
+	| "framework"
+	| "diff";
 
 type KindCounts = Record<PairKind, number>;
 
@@ -762,9 +769,7 @@ function applyIgnoredTokensFromSource(json: ClassOccurrence[], source: ClassOccu
 	const ignored: { tokens: Set<string>; from: ClassString }[] = [];
 	for (const item of source) {
 		if (!item.entry.ignoredReason) continue;
-		const tokens = item.entry.ignoredTokens?.length
-			? item.entry.ignoredTokens
-			: item.entry.tokens;
+		const tokens = item.entry.ignoredTokens?.length ? item.entry.ignoredTokens : item.entry.tokens;
 		if (!tokens.length) continue;
 		ignored.push({ tokens: new Set(tokens), from: item.entry });
 	}
@@ -777,10 +782,7 @@ function applyIgnoredTokensFromSource(json: ClassOccurrence[], source: ClassOccu
 			const ignoredKeys = new Set([...candidate.tokens].map(tokenKey));
 			const overlap = item.entry.tokens.filter((token) => ignoredKeys.has(tokenKey(token)));
 			if (overlap.length === 0) continue;
-			if (
-				overlap.length === item.entry.tokens.length ||
-				!candidate.from.ignoredTokens?.length
-			) {
+			if (overlap.length === item.entry.tokens.length || !candidate.from.ignoredTokens?.length) {
 				item.entry = {
 					...copyIgnore(candidate.from, item.entry),
 					ignoredTokens: undefined,

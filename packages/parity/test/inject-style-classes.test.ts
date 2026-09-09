@@ -10,9 +10,7 @@ describe("parseStyleCss", () => {
 				}
 			}
 		`;
-		expect(parseStyleCss(css)["cn-field-title"]).toBe(
-			"gap-2 text-sm leading-snug font-medium"
-		);
+		expect(parseStyleCss(css)["cn-field-title"]).toBe("gap-2 text-sm leading-snug font-medium");
 	});
 });
 
