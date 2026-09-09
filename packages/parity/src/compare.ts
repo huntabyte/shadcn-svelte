@@ -455,7 +455,7 @@ function isClassToken(token: string): boolean {
 	// `[data-embla-container]` is a CSS selector; Tailwind arbitrary
 	// properties/variants always include `:` (`[--radius:1rem]`, `[&>svg]:size-4`).
 	if (/^\[[^\]]+\]$/.test(token) && !token.includes(":")) return false;
-	if (/[:\[\]]/.test(token)) return true;
+	if (token.includes(":") || token.includes("[") || token.includes("]")) return true;
 	if (/[@*!]/.test(token)) return true;
 	if (token.includes("/") && /[-:]/.test(token)) return true;
 	return /^(flex|grid|block|inline|inline-flex|inline-block|hidden|sr-only|truncate|relative|absolute|fixed|sticky|static|grow|shrink|italic|underline|overline|antialiased|outline-none|pointer-events-none|select-none|size-|min-|max-|w-|h-|p[xytblrse]?-|m[xytblrse]?-|gap-|inset-|top-|right-|bottom-|left-|start-|end-|z-|overflow-|overscroll-|scroll-|snap-|items-|justify-|content-|self-|place-|text-|font-|leading-|tracking-|bg-|border|rounded|shadow|opacity-|ring|outline-|transition|duration-|ease-|delay-|animate-|cursor-|select-|group|peer|shimmer|dark$)/.test(
