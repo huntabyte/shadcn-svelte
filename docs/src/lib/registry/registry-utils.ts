@@ -1,6 +1,7 @@
 import { transformIcons } from "shadcn-svelte/transformers/icons";
 import { transformMenu } from "shadcn-svelte/transformers/menu";
 import { type IconLibraryName } from "./config.js";
+import { injectStyleClasses } from "./inject-style-classes.js";
 import type { MenuColorValue, StyleName } from "./config.js";
 import type { RegistryItemFile } from "shadcn-svelte/schema";
 
@@ -163,12 +164,7 @@ async function transform(
 }
 
 function createTransformInjectStyles(styles: Record<string, string>): Transformer {
-	return async ({ content }) => {
-		for (const [className, classes] of Object.entries(styles)) {
-			content = content.replace(className, classes);
-		}
-		return { content };
-	};
+	return async ({ content }) => ({ content: injectStyleClasses(content, styles) });
 }
 
 /**
@@ -180,9 +176,9 @@ function createTransformInjectStyles(styles: Record<string, string>): Transforme
 function parseStyleCss(css: string): Record<string, string> {
 	const styles: Record<string, string> = {};
 
-	// Match .cn-* class rules and extract their @apply values
-	// This regex finds: .cn-class-name { ... @apply classes; ... }
-	const ruleRegex = /\.(cn-[\w-]+)\s*\{([^}]*)\}/g;
+	// Nested style CSS may omit the leading `.` (`cn-foo {` vs `.cn-foo {`).
+	// Compound selectors merge onto the last cn-* subject, prepending later @apply.
+	const ruleRegex = /\.?(cn-[\w-]+)(?:[^{]*?)\s*\{([^}]*)\}/g;
 	const applyRegex = /@apply\s+([^;]+);/g;
 
 	let ruleMatch;
@@ -190,17 +186,16 @@ function parseStyleCss(css: string): Record<string, string> {
 		const className = ruleMatch[1];
 		const ruleContent = ruleMatch[2];
 
-		// Find all @apply directives within this rule
 		let applyMatch;
 		const applyValues: string[] = [];
 		while ((applyMatch = applyRegex.exec(ruleContent)) !== null) {
 			applyValues.push(applyMatch[1].trim());
 		}
-		// Reset the regex lastIndex for the next rule
 		applyRegex.lastIndex = 0;
 
 		if (applyValues.length > 0) {
-			styles[className] = applyValues.join(" ");
+			const next = applyValues.join(" ");
+			styles[className] = styles[className] ? `${next} ${styles[className]}` : next;
 		}
 	}
 
