@@ -16,6 +16,7 @@ export type ParityRunOptions = {
 	check?: boolean;
 	dryRun?: boolean;
 	excludeRuntimeEquivalent?: boolean;
+	refresh?: boolean;
 	root?: string;
 };
 
@@ -25,6 +26,10 @@ export function defaultDocsRoot(): string {
 
 let ROOT = defaultDocsRoot();
 const CACHE_DIR = path.join(os.tmpdir(), "shadcn-svelte-upstream-registry");
+
+/** Cached upstream files older than this are fetched again. */
+export const CACHE_TTL_MS = 60 * 60 * 1000; // 1 hour
+
 const UPSTREAM_VARIANT_BASE = "https://ui.shadcn.com/r/styles";
 const UPSTREAM_BASE_RAW =
 	"https://raw.githubusercontent.com/shadcn-ui/ui/refs/heads/main/apps/v4/registry/bases/radix/ui";
@@ -155,6 +160,7 @@ let styleFilter: string | undefined;
 let itemFilter: string | undefined;
 let styles: string[] = [...PRESET_STYLES];
 let isFix = false;
+let refresh = false;
 let mode: "base" | "variants" = "base";
 
 type RegistryFile = { content?: string; target?: string };
@@ -1359,19 +1365,43 @@ export function pairClassStrings(ours: ClassString[], upstream: ClassString[]): 
 	return pairs;
 }
 
+export function isCacheFresh(
+	filePath: string,
+	ttlMs: number = CACHE_TTL_MS,
+	now: number = Date.now()
+): boolean {
+	if (!fs.existsSync(filePath)) return false;
+	return now - fs.statSync(filePath).mtimeMs < ttlMs;
+}
+
+function readCache(cachePath: string): string | undefined {
+	if (refresh || !isCacheFresh(cachePath)) return undefined;
+	return fs.readFileSync(cachePath, "utf8");
+}
+
+function writeCache(cachePath: string, content: string) {
+	fs.mkdirSync(path.dirname(cachePath), { recursive: true });
+	fs.writeFileSync(cachePath, content);
+}
+
+function cacheLabel(): string {
+	const hours = CACHE_TTL_MS / (60 * 60 * 1000);
+	return refresh
+		? `Upstream cache: ${CACHE_DIR} (bypassed by --refresh)`
+		: `Upstream cache: ${CACHE_DIR} (expires after ${hours}h; pass --refresh to refetch)`;
+}
+
 async function fetchUpstream(style: string, name: string): Promise<RegistryItem | null> {
 	const url = `${UPSTREAM_VARIANT_BASE}/radix-${style}/${name}.json`;
 	const cachePath = path.join(CACHE_DIR, `radix-${style}`, `${name}.json`);
-	if (fs.existsSync(cachePath)) {
-		return JSON.parse(fs.readFileSync(cachePath, "utf8")) as RegistryItem;
-	}
+	const cached = readCache(cachePath);
+	if (cached) return JSON.parse(cached) as RegistryItem;
 
 	const res = await fetch(url);
 	if (res.status === 404) return null;
 	if (!res.ok) throw new Error(`${url} -> ${res.status}`);
 	const json = (await res.json()) as RegistryItem;
-	fs.mkdirSync(path.dirname(cachePath), { recursive: true });
-	fs.writeFileSync(cachePath, JSON.stringify(json));
+	writeCache(cachePath, JSON.stringify(json));
 	return json;
 }
 
@@ -1393,14 +1423,14 @@ async function fetchUpstreamBase(name: string): Promise<string | null> {
 	}
 
 	const cachePath = path.join(CACHE_DIR, "bases", "radix", `${name}.tsx`);
-	if (fs.existsSync(cachePath)) return fs.readFileSync(cachePath, "utf8");
+	const cached = readCache(cachePath);
+	if (cached) return cached;
 	const url = `${UPSTREAM_BASE_RAW}/${name}.tsx`;
 	const res = await fetch(url);
 	if (res.status === 404) return null;
 	if (!res.ok) throw new Error(`${url} -> ${res.status}`);
 	const text = await res.text();
-	fs.mkdirSync(path.dirname(cachePath), { recursive: true });
-	fs.writeFileSync(cachePath, text);
+	writeCache(cachePath, text);
 	return text;
 }
 
@@ -1572,6 +1602,7 @@ async function runBase() {
 	} else {
 		console.log(`Comparing UI source (before style injection) to radix base`);
 		console.log(`Upstream: ${upstreamLabel}`);
+		if (!localDir) console.log(cacheLabel());
 		console.log(`Legend: ${styleText("red", "- upstream")}  ${styleText("green", "+ ours")}`);
 	}
 
@@ -1628,6 +1659,7 @@ async function runBase() {
 
 async function runVariants() {
 	console.log(`Comparing generated registries to https://ui.shadcn.com/r/styles/radix-{style}`);
+	console.log(cacheLabel());
 	console.log(`Legend: ${styleText("red", "- upstream")}  ${styleText("green", "+ ours")}`);
 
 	const summary = emptyCounts();
@@ -1683,6 +1715,7 @@ export async function runParity(options: ParityRunOptions) {
 	check = Boolean(options.check);
 	dryRun = Boolean(options.dryRun);
 	excludeRuntimeEquivalent = options.excludeRuntimeEquivalent !== false;
+	refresh = Boolean(options.refresh);
 	isFix = options.command === "fix";
 	mode = options.command === "variants" ? "variants" : "base";
 	itemFilter = options.item;

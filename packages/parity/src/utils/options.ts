@@ -13,6 +13,7 @@ export const sharedOptionsSchema = z.object({
 	includeSkipped: z.boolean().default(false),
 	docs: z.string().optional(),
 	excludeRuntimeEquivalent: z.boolean().default(true),
+	refresh: z.boolean().default(false),
 });
 
 export function applySharedOptions(cmd: Command) {
@@ -22,6 +23,7 @@ export function applySharedOptions(cmd: Command) {
 		.option("--ignored", "show ignored pairs with comments, reasons, and class diffs", false)
 		.option("--include-skipped", "include calendar, range-calendar, chart, and select", false)
 		.option("--docs <path>", "path to the docs app")
+		.option("--refresh", "ignore cached upstream files and fetch them again", false)
 		.addOption(
 			new Option(
 				"--no-exclude-runtime-equivalent",
@@ -64,6 +66,7 @@ export function toRunOptions(
 		includeSkipped: options.includeSkipped,
 		dryRun: Boolean(opts.dryRun),
 		excludeRuntimeEquivalent: options.excludeRuntimeEquivalent,
+		refresh: options.refresh,
 		root: options.docs,
 	};
 }
