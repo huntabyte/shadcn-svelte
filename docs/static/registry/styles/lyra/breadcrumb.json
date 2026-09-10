@@ -14,17 +14,17 @@
 			"target": "breadcrumb/breadcrumb-item.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { Snippet } from \"svelte\";\n\timport type { HTMLAnchorAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\thref = undefined,\n\t\tchild,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAnchorAttributes> & {\n\t\tchild?: Snippet<[{ props: HTMLAnchorAttributes }]>;\n\t} = $props();\n\n\tconst attrs = $derived({\n\t\t\"data-slot\": \"breadcrumb-link\",\n\t\tclass: cn(\"transition-colors hover:text-foreground\", className),\n\t\thref,\n\t\t...restProps,\n\t});\n</script>\n\n{#if child}\n\t{@render child({ props: attrs })}\n{:else}\n\t<a bind:this={ref} {...attrs}>\n\t\t{@render children?.()}\n\t</a>\n{/if}\n",
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { Snippet } from \"svelte\";\n\timport type { HTMLAnchorAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\thref = undefined,\n\t\tchild,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAnchorAttributes> & {\n\t\tchild?: Snippet<[{ props: HTMLAnchorAttributes }]>;\n\t} = $props();\n\n\tconst attrs = $derived({\n\t\t\"data-slot\": \"breadcrumb-link\",\n\t\tclass: cn(\"hover:text-foreground transition-colors\", className),\n\t\thref,\n\t\t...restProps,\n\t});\n</script>\n\n{#if child}\n\t{@render child({ props: attrs })}\n{:else}\n\t<a bind:this={ref} {...attrs}>\n\t\t{@render children?.()}\n\t</a>\n{/if}\n",
 			"type": "registry:file",
 			"target": "breadcrumb/breadcrumb-link.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLOlAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLOlAttributes> = $props();\n</script>\n\n<ol\n\tbind:this={ref}\n\tdata-slot=\"breadcrumb-list\"\n\tclass={cn(\"gap-1.5 text-xs text-muted-foreground flex flex-wrap items-center wrap-break-word\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</ol>\n",
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLOlAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLOlAttributes> = $props();\n</script>\n\n<ol\n\tbind:this={ref}\n\tdata-slot=\"breadcrumb-list\"\n\tclass={cn(\"text-muted-foreground gap-1.5 text-xs flex flex-wrap items-center wrap-break-word\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</ol>\n",
 			"type": "registry:file",
 			"target": "breadcrumb/breadcrumb-list.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLSpanElement>> = $props();\n</script>\n\n<span\n\tbind:this={ref}\n\tdata-slot=\"breadcrumb-page\"\n\trole=\"link\"\n\taria-disabled=\"true\"\n\taria-current=\"page\"\n\tclass={cn(\"font-normal text-foreground\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</span>\n",
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLSpanElement>> = $props();\n</script>\n\n<span\n\tbind:this={ref}\n\tdata-slot=\"breadcrumb-page\"\n\trole=\"link\"\n\taria-disabled=\"true\"\n\taria-current=\"page\"\n\tclass={cn(\"text-foreground font-normal\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</span>\n",
 			"type": "registry:file",
 			"target": "breadcrumb/breadcrumb-page.svelte"
 		},

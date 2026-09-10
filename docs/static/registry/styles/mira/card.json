@@ -14,7 +14,7 @@
 			"target": "card/card-content.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLParagraphElement>> = $props();\n</script>\n\n<p\n\tbind:this={ref}\n\tdata-slot=\"card-description\"\n\tclass={cn(\"text-xs/relaxed text-muted-foreground\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</p>\n",
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLParagraphElement>> = $props();\n</script>\n\n<p\n\tbind:this={ref}\n\tdata-slot=\"card-description\"\n\tclass={cn(\"text-muted-foreground text-xs/relaxed\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</p>\n",
 			"type": "registry:file",
 			"target": "card/card-description.svelte"
 		},
@@ -34,7 +34,7 @@
 			"target": "card/card-title.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\tsize = \"default\",\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> & { size?: \"default\" | \"sm\" } = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"card\"\n\tdata-size={size}\n\tclass={cn(\"gap-(--card-spacing) overflow-hidden rounded-lg bg-card py-(--card-spacing) text-xs/relaxed text-card-foreground ring-1 ring-foreground/10 [--card-spacing:--spacing(4)] has-[>img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] *:[img:first-child]:rounded-t-lg *:[img:last-child]:rounded-b-lg group/card flex flex-col\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\tsize = \"default\",\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> & { size?: \"default\" | \"sm\" } = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"card\"\n\tdata-size={size}\n\tclass={cn(\"ring-foreground/10 bg-card text-card-foreground gap-(--card-spacing) overflow-hidden rounded-lg py-(--card-spacing) text-xs/relaxed ring-1 [--card-spacing:--spacing(4)] has-[>img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] *:[img:first-child]:rounded-t-lg *:[img:last-child]:rounded-b-lg group/card flex flex-col\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
 			"type": "registry:file",
 			"target": "card/card.svelte"
 		},
