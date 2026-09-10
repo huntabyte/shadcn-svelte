@@ -529,9 +529,6 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3
     devDependencies:
-      tsdown:
-        specifier: 'catalog:'
-        version: 0.22.14(tsx@4.21.0)(typescript@6.0.3)
       typescript:
         specifier: 'catalog:'
         version: 6.0.3

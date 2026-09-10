@@ -1,4 +1,4 @@
-import { stripParityIgnoreComments } from "./parity-ignore.js";
+import { stripParityIgnoreComments } from "./parity-ignore.ts";
 
 const SKIP_CN_CLASSES = new Set([
 	"cn-menu-translucent",

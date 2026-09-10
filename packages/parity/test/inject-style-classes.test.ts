@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { injectStyleClasses, parseStyleCss } from "../src/inject-style-classes.js";
+import { injectStyleClasses, parseStyleCss } from "../src/inject-style-classes.ts";
 
 describe("parseStyleCss", () => {
 	it("reads nested @apply rules for cn-field-title", () => {

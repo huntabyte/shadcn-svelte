@@ -1,7 +1,7 @@
 import { Command } from "commander";
-import { runParity } from "../compare.js";
-import { handleError } from "../utils/errors.js";
-import { applySharedOptions, toRunOptions } from "../utils/options.js";
+import { runParity } from "../compare.ts";
+import { handleError } from "../utils/errors.ts";
+import { applySharedOptions, toRunOptions } from "../utils/options.ts";
 
 export const base = applySharedOptions(
 	new Command()

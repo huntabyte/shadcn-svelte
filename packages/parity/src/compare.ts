@@ -4,7 +4,7 @@ import path from "node:path";
 import { styleText } from "node:util";
 import { PRESET_STYLES } from "shadcn-svelte/preset";
 import { twMerge } from "tailwind-merge";
-import { findCommentRanges, parseParityIgnore } from "./parity-ignore.js";
+import { findCommentRanges, parseParityIgnore } from "./parity-ignore.ts";
 
 export type ParityRunOptions = {
 	command: "base" | "variants" | "fix";

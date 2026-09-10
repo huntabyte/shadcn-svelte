@@ -5,31 +5,20 @@
 	"description": "Compare shadcn-svelte registry classes against upstream shadcn/ui",
 	"type": "module",
 	"bin": {
-		"parity": "./dist/index.mjs"
+		"parity": "./src/index.ts"
 	},
 	"exports": {
-		".": {
-			"types": "./dist/compare.d.mts",
-			"default": "./dist/compare.mjs"
-		},
-		"./parity-ignore": {
-			"types": "./dist/parity-ignore.d.mts",
-			"default": "./dist/parity-ignore.mjs"
-		},
-		"./inject-style-classes": {
-			"types": "./dist/inject-style-classes.d.mts",
-			"default": "./dist/inject-style-classes.mjs"
-		}
+		".": "./src/compare.ts",
+		"./parity-ignore": "./src/parity-ignore.ts",
+		"./inject-style-classes": "./src/inject-style-classes.ts"
 	},
-	"files": [
-		"dist"
-	],
+	"engines": {
+		"node": ">=22.18"
+	},
 	"scripts": {
-		"dev": "tsdown --watch --sourcemap",
-		"build": "tsdown",
 		"check": "tsc --noEmit",
 		"test": "vitest run",
-		"parity": "node dist/index.mjs"
+		"parity": "node src/index.ts"
 	},
 	"dependencies": {
 		"commander": "^14.0.0",
@@ -39,7 +28,6 @@
 		"zod": "^4.4.3"
 	},
 	"devDependencies": {
-		"tsdown": "catalog:",
 		"typescript": "catalog:",
 		"vitest": "^4.1.10"
 	}

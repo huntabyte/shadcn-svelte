@@ -1,8 +1,8 @@
 import { Command } from "commander";
 import { PRESET_STYLES } from "shadcn-svelte/preset";
-import { runParity } from "../compare.js";
-import { handleError } from "../utils/errors.js";
-import { applySharedOptions, toRunOptions } from "../utils/options.js";
+import { runParity } from "../compare.ts";
+import { handleError } from "../utils/errors.ts";
+import { applySharedOptions, toRunOptions } from "../utils/options.ts";
 
 export const variants = applySharedOptions(
 	new Command()

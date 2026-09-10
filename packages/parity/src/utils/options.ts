@@ -3,8 +3,8 @@ import { existsSync } from "node:fs";
 import color from "picocolors";
 import { Command, Option } from "commander";
 import { z } from "zod";
-import { error } from "./errors.js";
-import { parseItemArg, type ParityRunOptions } from "../compare.js";
+import { error } from "./errors.ts";
+import { parseItemArg, type ParityRunOptions } from "../compare.ts";
 
 export const sharedOptionsSchema = z.object({
 	check: z.boolean().default(false),

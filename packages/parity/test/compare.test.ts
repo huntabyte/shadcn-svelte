@@ -13,7 +13,7 @@ import {
 	parityPercent,
 	parseItemArg,
 	sourceFileHasUpstreamCounterpart,
-} from "../src/compare.js";
+} from "../src/compare.ts";
 
 describe("parity-ignore comments", () => {
 	it("does not treat CSS attribute selectors as class lists", () => {
