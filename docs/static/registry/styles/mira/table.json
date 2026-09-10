@@ -14,7 +14,7 @@
 			"target": "table/table-body.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLElement>> = $props();\n</script>\n\n<caption\n\tbind:this={ref}\n\tdata-slot=\"table-caption\"\n\tclass={cn(\"mt-4 text-xs text-muted-foreground\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</caption>\n",
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLElement>> = $props();\n</script>\n\n<caption\n\tbind:this={ref}\n\tdata-slot=\"table-caption\"\n\tclass={cn(\"text-muted-foreground mt-4 text-xs\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</caption>\n",
 			"type": "registry:file",
 			"target": "table/table-caption.svelte"
 		},
@@ -24,12 +24,12 @@
 			"target": "table/table-cell.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLTableSectionElement>> = $props();\n</script>\n\n<tfoot\n\tbind:this={ref}\n\tdata-slot=\"table-footer\"\n\tclass={cn(\"border-t bg-muted/50 font-medium [&>tr]:last:border-b-0\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</tfoot>\n",
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLTableSectionElement>> = $props();\n</script>\n\n<tfoot\n\tbind:this={ref}\n\tdata-slot=\"table-footer\"\n\tclass={cn(\"bg-muted/50 border-t font-medium [&>tr]:last:border-b-0\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</tfoot>\n",
 			"type": "registry:file",
 			"target": "table/table-footer.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLThAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLThAttributes> = $props();\n</script>\n\n<th bind:this={ref} data-slot=\"table-head\" class={cn(\"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&:has([role=checkbox])]:pr-0\", className)} {...restProps}>\n\t{@render children?.()}\n</th>\n",
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLThAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLThAttributes> = $props();\n</script>\n\n<th bind:this={ref} data-slot=\"table-head\" class={cn(\"text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0\", className)} {...restProps}>\n\t{@render children?.()}\n</th>\n",
 			"type": "registry:file",
 			"target": "table/table-head.svelte"
 		},
@@ -39,7 +39,7 @@
 			"target": "table/table-header.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLTableRowElement>> = $props();\n</script>\n\n<tr bind:this={ref} data-slot=\"table-row\" class={cn(\"border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted\", className)} {...restProps}>\n\t{@render children?.()}\n</tr>\n",
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLTableRowElement>> = $props();\n</script>\n\n<tr\n\tbind:this={ref}\n\tdata-slot=\"table-row\"\n\tclass={cn(\"hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors has-aria-expanded:bg-muted/50\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</tr>\n",
 			"type": "registry:file",
 			"target": "table/table-row.svelte"
 		},

@@ -33,7 +33,7 @@
 		class="container-wrapper px-6 group-has-data-[slot=designer]/layout:max-w-none 3xl:fixed:px-0"
 	>
 		<div
-			class="flex h-(--header-height) items-center **:data-[slot=separator]:h-4! group-has-data-[slot=designer]/layout:fixed:max-w-none 3xl:fixed:container"
+			class="flex h-(--header-height) items-center **:data-[slot=separator]:h-4! **:data-[slot=separator]:self-center group-has-data-[slot=designer]/layout:fixed:max-w-none 3xl:fixed:container"
 		>
 			<MobileNav bind:this={mobileNavRef} class="flex lg:hidden" />
 
