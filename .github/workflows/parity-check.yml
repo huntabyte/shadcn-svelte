@@ -30,8 +30,8 @@ jobs:
     runs-on: ubuntu-latest
     # The generated registries are compared against the registry deployed at
     # ui.shadcn.com, while our base sources and style CSS follow upstream `main`.
-    # The deployed registry lags `main`, so diffs here can be upstream skew that
-    # is not ours to fix. This job reports but never blocks a PR.
+    # When the deployed registry lags `main`, diffs here can be short-lived
+    # upstream skew. This job reports but does not block a PR.
     continue-on-error: true
     steps:
       - uses: actions/checkout@v6

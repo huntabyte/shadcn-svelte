@@ -119,7 +119,7 @@ For `base` and `fix`, a local checkout of shadcn/ui is used instead of the netwo
 
 Fetched files are cached under `shadcn-svelte-upstream-registry` in the system temp directory. A cached file is reused for one hour, after which it is fetched again. `--refresh` bypasses the cache for that run.
 
-Because the deployed registry lags upstream `main`, and our style CSS is pulled from `main` with `pnpm pull:styles`, the `variants` command can report diffs that are pure upstream skew. They clear on their own when upstream deploys.
+The style CSS under `docs/src/lib/registry/styles/` is pulled verbatim from upstream `main` with `pnpm pull:styles` and is excluded from the formatter on purpose. The order of each `@apply` list is semantic: `tailwind-merge` resolves conflicts by position. Sorting those lists changes what our registry renders and shows up here as `variants` diffs that do not exist in the base check. If the deployed registry lags `main`, `variants` can also report short-lived diffs that clear when upstream deploys.
 
 ## Library exports
 
