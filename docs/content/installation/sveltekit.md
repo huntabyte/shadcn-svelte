@@ -22,7 +22,25 @@ Use the SvelteKit CLI to create a new project with TailwindCSS
 
 ### Setup path aliases
 
-If you are not using the default alias `$lib`, you'll need to update your `svelte.config.js` file to include those aliases.
+If you are not using the default alias `$lib`, you'll need to update your `vite.config.ts` file to include those aliases.
+
+```ts title="vite.config.ts" {8} showLineNumbers
+import { sveltekit } from "@sveltejs/kit/vite";
+import { defineConfig } from "vite";
+
+export default defineConfig({
+  plugins: [
+    sveltekit({
+      // ... other config
+      alias: {
+        "@/*": "./path/to/lib/*",
+      },
+    }),
+  ],
+});
+```
+
+When using SvelteKit versions older than 2.62.0, the aliases configuration will be in your `svelte.config.js` file instead.
 
 ```ts title="svelte.config.js" {6} showLineNumbers
 const config = {
@@ -34,23 +52,6 @@ const config = {
     },
   },
 };
-```
-
-Starting with `@sveltejs/kit` 2.62.0, you can alternatively pass this configuration directly to the `sveltekit()` Vite plugin in `vite.config.ts` instead of `svelte.config.js`:
-
-```ts title="vite.config.ts" {7} showLineNumbers
-import { sveltekit } from "@sveltejs/kit/vite";
-import { defineConfig } from "vite";
-
-export default defineConfig({
-  plugins: [
-    sveltekit({
-      alias: {
-        "@/*": "./path/to/lib/*",
-      },
-    }),
-  ],
-});
 ```
 
 ### Run the CLI
