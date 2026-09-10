@@ -3,6 +3,7 @@ import path from "node:path";
 import { exec } from "node:child_process";
 import { promisify } from "node:util";
 import postcss from "postcss";
+import { injectStyleClasses } from "@shadcn-svelte/parity/inject-style-classes";
 import { rimraf } from "rimraf";
 import { PRESET_STYLES, type PresetConfig } from "shadcn-svelte/preset";
 import {
@@ -15,7 +16,6 @@ import {
 import { toJSONSchema } from "zod";
 import { buildRegistry } from "./registry.js";
 import { getColorsData } from "../src/lib/components/colors/colors.js";
-import { injectStyleClasses } from "../src/lib/registry/inject-style-classes.js";
 import { THEMES } from "../src/lib/registry/themes.js";
 
 interface BuildRegistryItem {

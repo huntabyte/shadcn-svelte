@@ -1,7 +1,7 @@
+import { injectStyleClasses } from "@shadcn-svelte/parity/inject-style-classes";
 import { transformIcons } from "shadcn-svelte/transformers/icons";
 import { transformMenu } from "shadcn-svelte/transformers/menu";
 import { type IconLibraryName } from "./config.js";
-import { injectStyleClasses } from "./inject-style-classes.js";
 import type { MenuColorValue, StyleName } from "./config.js";
 import type { RegistryItemFile } from "shadcn-svelte/schema";
 

@@ -22,7 +22,6 @@
 		"preview": "vite preview",
 		"check": "svelte-check --fail-on-warnings --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
-		"test": "vitest run",
 		"parity": "parity",
 		"parity-check": "parity --check",
 		"parity:fix": "parity fix",
@@ -141,7 +140,6 @@
 		"vaul-svelte": "1.0.0-next.7",
 		"velite": "^0.3.1",
 		"vite": "^8.1.5",
-		"vitest": "^4.1.10",
 		"zod": "^4.4.3"
 	}
 }

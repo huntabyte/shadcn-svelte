@@ -23,16 +23,18 @@ export function findCommentRanges(content: string): CommentRange[] {
 /**
  * Remove `parity-ignore` / `parity-ignore-file` comments from published
  * registry output. Other comments are left untouched.
+ *
+ * Comments that occupy a whole line are removed along with the line.
+ * Trailing comments are removed together with the whitespace before them,
+ * leaving the code on that line intact.
  */
 export function stripParityIgnoreComments(content: string): string {
+	const stripIfIgnore = (full: string, inner: string) => (parseParityIgnore(inner) ? "" : full);
 	return content
-		.replace(/^[ \t]*<!--([\s\S]*?)-->[ \t]*(?:\r?\n)?/gm, (full, inner: string) =>
-			parseParityIgnore(inner) ? "" : full
-		)
-		.replace(/^[ \t]*\/\*([\s\S]*?)\*\/[ \t]*(?:\r?\n)?/gm, (full, inner: string) =>
-			parseParityIgnore(inner) ? "" : full
-		)
-		.replace(/^[ \t]*\/\/(.*)(?:\r?\n)?/gm, (full, inner: string) =>
-			parseParityIgnore(inner) ? "" : full
-		);
+		.replace(/^[ \t]*<!--([\s\S]*?)-->[ \t]*(?:\r?\n)?/gm, stripIfIgnore)
+		.replace(/^[ \t]*\/\*([\s\S]*?)\*\/[ \t]*(?:\r?\n)?/gm, stripIfIgnore)
+		.replace(/^[ \t]*\/\/(.*)(?:\r?\n)?/gm, stripIfIgnore)
+		.replace(/[ \t]*<!--([\s\S]*?)-->/g, stripIfIgnore)
+		.replace(/[ \t]*\/\*([\s\S]*?)\*\//g, stripIfIgnore)
+		.replace(/[ \t]*(?<!:)\/\/(.*)$/gm, stripIfIgnore);
 }

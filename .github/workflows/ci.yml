@@ -64,8 +64,8 @@ jobs:
       - name: Run tests
         run: pnpm -F shadcn-svelte test
 
-  docs-test:
-    name: Docs-Tests
+  parity-test:
+    name: Parity-Tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -79,4 +79,4 @@ jobs:
         run: pnpm install
 
       - name: Run tests
-        run: pnpm -F docs test
+        run: pnpm -F @shadcn-svelte/parity test
