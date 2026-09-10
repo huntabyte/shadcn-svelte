@@ -25,6 +25,28 @@ describe("parseStyleCss", () => {
 		`;
 		expect(parseStyleCss(css)["cn-field-title"]).toBe("gap-2 text-sm leading-snug font-medium");
 	});
+
+	it("accepts an @apply list with no trailing semicolon", () => {
+		const css = `
+			.cn-menu-translucent {
+				@apply animate-none! relative bg-popover/70
+			}
+
+			.cn-menu-translucent-aria {
+				@apply **:data-[slot$=-item]:data-focused:bg-foreground/10;
+			}
+		`;
+		const styles = parseStyleCss(css);
+		expect(styles["cn-menu-translucent"]).toBe("animate-none! relative bg-popover/70");
+		expect(styles["cn-menu-translucent-aria"]).toBe(
+			"**:data-[slot$=-item]:data-focused:bg-foreground/10"
+		);
+	});
+
+	it("keeps @apply lists order-sensitive, exactly as written", () => {
+		const css = `.cn-field-title { @apply gap-2 leading-snug text-sm font-medium; }`;
+		expect(parseStyleCss(css)["cn-field-title"]).toBe("gap-2 leading-snug text-sm font-medium");
+	});
 });
 
 describe("injectStyleClasses", () => {

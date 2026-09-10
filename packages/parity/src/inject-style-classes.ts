@@ -106,7 +106,8 @@ function immediateApply(body: string): string {
 		else if (char === "}") depth = Math.max(0, depth - 1);
 		else if (depth === 0) direct += char;
 	}
-	return [...direct.matchAll(/@apply\s+([^;]+);/g)]
+	// Upstream occasionally omits the `;` on the last `@apply` before `}`.
+	return [...direct.matchAll(/@apply\s+([^;]+?)\s*(?:;|$)/g)]
 		.map((match) => match[1]!.trim())
 		.filter(Boolean)
 		.join(" ");
