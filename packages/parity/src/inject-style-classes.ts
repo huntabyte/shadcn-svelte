@@ -49,7 +49,13 @@ function subjectCnClass(selector: string): string | undefined {
 	return matches.at(-1)?.[1];
 }
 
-/** Last `cn-*` ident in a selector, then merge `@apply` lists like createStyleMap. */
+/**
+ * Last `cn-*` ident in a selector, then merge `@apply` lists like upstream's
+ * `createStyleMap`. This is the single implementation used by the docs
+ * registry build and the docs site. The published CLI keeps its own
+ * postcss-based copy in `packages/cli/src/utils/registry/index.ts` so it
+ * does not depend on this private package; keep the two in sync.
+ */
 export function parseStyleCss(css: string): Record<string, string> {
 	const styles: Record<string, string> = {};
 	walkStyleRules(css.replace(/\/\*[\s\S]*?\*\//g, ""), styles);

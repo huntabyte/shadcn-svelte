@@ -2,8 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { exec } from "node:child_process";
 import { promisify } from "node:util";
-import postcss from "postcss";
-import { injectStyleClasses } from "@shadcn-svelte/parity/inject-style-classes";
+import { injectStyleClasses, parseStyleCss } from "@shadcn-svelte/parity/inject-style-classes";
 import { rimraf } from "rimraf";
 import { PRESET_STYLES, type PresetConfig } from "shadcn-svelte/preset";
 import {
@@ -193,45 +192,6 @@ export const Index = {`;
 	);
 
 	log("🎉 Done!");
-}
-
-/**
- * Last `cn-*` ident in a selector (dotted or nested/undotted).
- * Matches upstream `createStyleMap` / `findSubjectClass`.
- */
-function subjectCnClass(selector: string): string | undefined {
-	const matches = [...selector.matchAll(/(?:^|[\s.>+~])(cn-[\w-]+)/g)];
-	return matches.at(-1)?.[1];
-}
-
-/**
- * Parse style-<style>.css and extract cn-* class rules with their @apply values.
- * Compound selectors (e.g. `.cn-card-content:has(...)`) merge onto the subject
- * class, prepending later `@apply` lists like `createStyleMap`.
- */
-function parseStyleCss(css: string): Record<string, string> {
-	const styles: Record<string, string> = {};
-	const root = postcss.parse(css);
-
-	root.walkRules((rule) => {
-		for (const selector of rule.selectors) {
-			const className = subjectCnClass(selector.trim());
-			if (!className) continue;
-
-			const applyValues: string[] = [];
-
-			rule.walkAtRules("apply", (atRule) => {
-				applyValues.push(atRule.params.trim());
-			});
-
-			if (applyValues.length === 0) continue;
-
-			const next = applyValues.join(" ");
-			styles[className] = styles[className] ? `${next} ${styles[className]}` : next;
-		}
-	});
-
-	return styles;
 }
 
 function transformContentWithStyle(content: string, styleMap: Record<string, string>): string {

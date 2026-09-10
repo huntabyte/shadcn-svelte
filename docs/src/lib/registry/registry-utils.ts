@@ -1,4 +1,4 @@
-import { injectStyleClasses } from "@shadcn-svelte/parity/inject-style-classes";
+import { injectStyleClasses, parseStyleCss } from "@shadcn-svelte/parity/inject-style-classes";
 import { transformIcons } from "shadcn-svelte/transformers/icons";
 import { transformMenu } from "shadcn-svelte/transformers/menu";
 import { type IconLibraryName } from "./config.js";
@@ -165,39 +165,4 @@ async function transform(
 
 function createTransformInjectStyles(styles: Record<string, string>): Transformer {
 	return async ({ content }) => ({ content: injectStyleClasses(content, styles) });
-}
-
-/**
- * Duplicate of the parseStyleCss function from the CLI. Albeit a bit more brittle but since this is just for highlighting and not for the actual transformation I think it will work just fine.
- *
- * @param css
- * @returns
- */
-function parseStyleCss(css: string): Record<string, string> {
-	const styles: Record<string, string> = {};
-
-	// Nested style CSS may omit the leading `.` (`cn-foo {` vs `.cn-foo {`).
-	// Compound selectors merge onto the last cn-* subject, prepending later @apply.
-	const ruleRegex = /\.?(cn-[\w-]+)(?:[^{]*?)\s*\{([^}]*)\}/g;
-	const applyRegex = /@apply\s+([^;]+);/g;
-
-	let ruleMatch;
-	while ((ruleMatch = ruleRegex.exec(css)) !== null) {
-		const className = ruleMatch[1];
-		const ruleContent = ruleMatch[2];
-
-		let applyMatch;
-		const applyValues: string[] = [];
-		while ((applyMatch = applyRegex.exec(ruleContent)) !== null) {
-			applyValues.push(applyMatch[1].trim());
-		}
-		applyRegex.lastIndex = 0;
-
-		if (applyValues.length > 0) {
-			const next = applyValues.join(" ");
-			styles[className] = styles[className] ? `${next} ${styles[className]}` : next;
-		}
-	}
-
-	return styles;
 }
