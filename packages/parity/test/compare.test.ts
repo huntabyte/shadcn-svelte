@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
 	applySourceIgnores,
 	canonicalizeRuntimeToken,
+	collectUpstreamIgnores,
 	extractClassStrings,
 	extractUpstreamComponentNames,
 	fixClassString,
@@ -239,6 +240,60 @@ describe("parity-ignore comments", () => {
 		expect(pairs).toHaveLength(1);
 		expect(pairs[0]?.kind).toBe("ignored");
 		expect(pairs[0]?.ours?.ignoredReason).toBe("Bits Arrow positioning");
+	});
+
+	it("ignores an upstream-only class string declared by parity-ignore-upstream", () => {
+		const source = `
+			<!-- parity-ignore-upstream: data-[side=bottom]:translate-y-1 data-[side=top]:-translate-y-1 | Bits takes the gap as the sideOffset prop -->
+			class={cn("cn-select-content z-50 overflow-y-auto")}
+		`;
+		const ours = extractClassStrings(source);
+		const upstream = extractClassStrings(`
+			className={cn(
+				"cn-select-content z-50 overflow-y-auto",
+				position === "popper" && "data-[side=bottom]:translate-y-1 data-[side=top]:-translate-y-1"
+			)}
+		`);
+		const pairs = pairClassStrings(ours, upstream, collectUpstreamIgnores(source));
+		const unpaired = pairs.find((pair) => !pair.ours);
+		expect(pairs.filter((pair) => pair.kind === "diff")).toEqual([]);
+		expect(unpaired?.kind).toBe("ignored");
+		expect(unpaired?.upstream?.ignoredReason).toBe("Bits takes the gap as the sideOffset prop");
+	});
+
+	it("ignores a declared upstream token inside an otherwise matching pair", () => {
+		const source = `
+			<!-- parity-ignore-upstream: data-[align-trigger=true]:animate-none | Bits has no item-aligned mode -->
+			class={cn("flex items-center gap-2")}
+		`;
+		const ours = extractClassStrings(source);
+		const upstream = extractClassStrings(
+			`className="flex items-center gap-2 data-[align-trigger=true]:animate-none"`
+		);
+		const [pair] = pairClassStrings(ours, upstream, collectUpstreamIgnores(source));
+		expect(pair?.kind).toBe("ignored");
+		expect(pair?.removed).toEqual(["data-[align-trigger=true]:animate-none"]);
+	});
+
+	it("still reports a diff when only part of the upstream difference is declared", () => {
+		const source = `
+			<!-- parity-ignore-upstream: data-[align-trigger=true]:animate-none | Bits has no item-aligned mode -->
+			class={cn("flex items-center gap-2")}
+		`;
+		const ours = extractClassStrings(source);
+		const upstream = extractClassStrings(
+			`className="flex items-center gap-2 rounded-md data-[align-trigger=true]:animate-none"`
+		);
+		const [pair] = pairClassStrings(ours, upstream, collectUpstreamIgnores(source));
+		expect(pair?.kind).toBe("diff");
+		expect(pair?.removed).toEqual(["rounded-md"]);
+	});
+
+	it("requires both a token list and a reason", () => {
+		expect(collectUpstreamIgnores("<!-- parity-ignore-upstream: no separator here -->")).toEqual(
+			[]
+		);
+		expect(collectUpstreamIgnores("<!-- parity-ignore-upstream: shrink-0 | -->")).toEqual([]);
 	});
 
 	it("concatenates a split rtl fragment back onto the shared class list", () => {

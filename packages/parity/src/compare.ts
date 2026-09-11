@@ -4,7 +4,11 @@ import path from "node:path";
 import { styleText } from "node:util";
 import { PRESET_STYLES } from "shadcn-svelte/preset";
 import { twMerge } from "tailwind-merge";
-import { findCommentRanges, parseParityIgnore } from "./parity-ignore.ts";
+import {
+	findCommentRanges,
+	parseParityIgnore,
+	parseParityIgnoreUpstream,
+} from "./parity-ignore.ts";
 
 export type ParityRunOptions = {
 	command: "base" | "variants" | "fix";
@@ -71,7 +75,7 @@ const ALLOWLIST_CN = new Set([
 ]);
 
 /** Ports that diverge too much from Radix to be useful in this class-string compare. */
-const SKIP_STRUCTURAL_ITEMS = new Set(["calendar", "range-calendar", "chart", "select"]);
+const SKIP_STRUCTURAL_ITEMS = new Set(["calendar", "range-calendar", "chart"]);
 
 const NAME_ALIASES: [RegExp, string][] = [
 	[/Pane(?!l)/g, "Panel"],
@@ -397,7 +401,8 @@ export function formatIgnoredComment(
 
 function printClassDiff(pair: Pair) {
 	if (pair.kind === "ignored") {
-		const comment = pair.ours ? formatIgnoredComment(pair.ours) : undefined;
+		const entry = pair.ours?.ignoredReason ? pair.ours : (pair.upstream ?? pair.ours);
+		const comment = entry ? formatIgnoredComment(entry) : undefined;
 		if (comment) console.log(`    ${styleText("dim", comment)}`);
 	}
 	if (pair.removed.length) {
@@ -867,12 +872,17 @@ function listUiSourceFiles(name: string): string[] {
 	return files;
 }
 
-function loadOursBase(name: string, upstreamContent: string): ClassString[] {
+function loadOursBase(
+	name: string,
+	upstreamContent: string
+): { entries: ClassString[]; upstreamIgnores: UpstreamIgnoreRule[] } {
 	const upstreamNames = extractUpstreamComponentNames(upstreamContent);
 	const seen = new Map<string, ClassString>();
+	const upstreamIgnores: UpstreamIgnoreRule[] = [];
 	for (const sourcePath of listUiSourceFiles(name)) {
 		if (!sourceFileHasUpstreamCounterpart(sourcePath, name, upstreamNames)) continue;
 		const content = fs.readFileSync(sourcePath, "utf8");
+		upstreamIgnores.push(...collectUpstreamIgnores(content));
 		for (const entry of collectFromContent(content, path.relative(ROOT, sourcePath))) {
 			const existing = seen.get(entry.key);
 			if (!existing) {
@@ -884,22 +894,24 @@ function loadOursBase(name: string, upstreamContent: string): ClassString[] {
 			}
 		}
 	}
-	return [...seen.values()];
+	return { entries: [...seen.values()], upstreamIgnores };
 }
 
 function extractItemContent(
 	item: RegistryItem,
 	name: string,
 	upstreamContent: string
-): ClassString[] {
+): { entries: ClassString[]; upstreamIgnores: UpstreamIgnoreRule[] } {
 	const upstreamNames = extractUpstreamComponentNames(upstreamContent);
 	const seen = new Map<string, ClassString>();
+	const upstreamIgnores: UpstreamIgnoreRule[] = [];
 	for (const file of item.files ?? []) {
 		const checkPath = file.target ?? "";
 		if (checkPath && !sourceFileHasUpstreamCounterpart(checkPath, name, upstreamNames)) continue;
 		const jsonContent = file.content ?? "";
 		const sourcePath = file.target ? resolveUiSourcePath(file.target) : undefined;
 		const source = sourcePath ? fs.readFileSync(sourcePath, "utf8") : undefined;
+		if (source) upstreamIgnores.push(...collectUpstreamIgnores(source));
 		const entries = source
 			? applySourceIgnores(jsonContent, source)
 			: extractClassStrings(jsonContent);
@@ -922,7 +934,7 @@ function extractItemContent(
 			}
 		}
 	}
-	return [...seen.values()];
+	return { entries: [...seen.values()], upstreamIgnores };
 }
 
 function locateOursOccurrence(
@@ -1163,6 +1175,52 @@ function dropRuntimeEquivalentDiffs(added: string[], removed: string[]) {
 	return { added: remainingAdded, removed: remainingRemoved };
 }
 
+export type UpstreamIgnoreRule = { tokens: string[]; reason: string; comment: string };
+
+let upstreamIgnoreRules: UpstreamIgnoreRule[] = [];
+
+/** Collect `parity-ignore-upstream` declarations from one of our source files. */
+export function collectUpstreamIgnores(content: string): UpstreamIgnoreRule[] {
+	const rules: UpstreamIgnoreRule[] = [];
+	for (const comment of findCommentRanges(content)) {
+		const parsed = parseParityIgnoreUpstream(comment.text);
+		if (!parsed) continue;
+		rules.push({
+			tokens: parsed.tokens,
+			reason: parsed.reason,
+			comment: content.slice(comment.start, comment.end).trim(),
+		});
+	}
+	return rules;
+}
+
+/** The rule covering an upstream token we deliberately do not carry, if any. */
+function upstreamIgnoreRuleFor(token: string): UpstreamIgnoreRule | undefined {
+	const canonical = canonicalizeRuntimeToken(token);
+	return upstreamIgnoreRules.find((rule) =>
+		rule.tokens.some((declared) => canonicalizeRuntimeToken(declared) === canonical)
+	);
+}
+
+function isUpstreamIgnoredToken(token: string): boolean {
+	return upstreamIgnoreRuleFor(token) !== undefined;
+}
+
+/** Merge the reasons and comments of every rule covering these tokens. */
+function upstreamIgnoreFor(tokens: string[]): { reason: string; comment: string } | undefined {
+	if (tokens.length === 0) return undefined;
+	const rules: UpstreamIgnoreRule[] = [];
+	for (const token of tokens) {
+		const rule = upstreamIgnoreRuleFor(token);
+		if (!rule) return undefined;
+		if (!rules.includes(rule)) rules.push(rule);
+	}
+	return {
+		reason: [...new Set(rules.map((rule) => rule.reason))].join("; "),
+		comment: [...new Set(rules.map((rule) => rule.comment))].join(" "),
+	};
+}
+
 function isAllowlistToken(token: string): boolean {
 	return ALLOWLIST_CN.has(token) || /^cn-.+-logical$/.test(token);
 }
@@ -1202,10 +1260,28 @@ function dropIgnoredAdded(added: string[], ours: ClassString): string[] {
 }
 
 function toPair(ours: ClassString, upstream: ClassString): Pair {
-	const raw = diffTokens(ours.tokens, upstream.tokens);
-	if (isFullIgnore(ours) && (raw.added.length || raw.removed.length)) {
-		return { kind: "ignored", ours, upstream, ...raw };
+	const diffed = diffTokens(ours.tokens, upstream.tokens);
+	if (isFullIgnore(ours) && (diffed.added.length || diffed.removed.length)) {
+		return { kind: "ignored", ours, upstream, ...diffed };
 	}
+
+	const upstreamIgnoredRemoved = diffed.removed.filter(isUpstreamIgnoredToken);
+	const raw = upstreamIgnoredRemoved.length
+		? {
+				added: diffed.added,
+				removed: diffed.removed.filter((token) => !isUpstreamIgnoredToken(token)),
+			}
+		: diffed;
+	const withUpstreamIgnore = (pair: Pair): Pair => {
+		if (upstreamIgnoredRemoved.length === 0 || pair.kind === "diff") return pair;
+		const ignore = upstreamIgnoreFor(upstreamIgnoredRemoved)!;
+		return {
+			...pair,
+			kind: "ignored",
+			upstream: { ...upstream, ignoredReason: ignore.reason, ignoredComment: ignore.comment },
+			removed: [...pair.removed, ...upstreamIgnoredRemoved],
+		};
+	};
 
 	const addedWithoutIgnored = dropIgnoredAdded(raw.added, ours);
 	const ignoredAdded = raw.added.filter((token) => !addedWithoutIgnored.includes(token));
@@ -1213,15 +1289,21 @@ function toPair(ours: ClassString, upstream: ClassString): Pair {
 	if (!excludeRuntimeEquivalent) {
 		const kind = classifyDiff(addedWithoutIgnored, raw.removed);
 		if (kind === "order" && ignoredAdded.length) {
-			return { kind: "ignored", ours, upstream, added: ignoredAdded, removed: [] };
+			return withUpstreamIgnore({
+				kind: "ignored",
+				ours,
+				upstream,
+				added: ignoredAdded,
+				removed: [],
+			});
 		}
-		return {
+		return withUpstreamIgnore({
 			kind,
 			ours,
 			upstream,
 			added: addedWithoutIgnored,
 			removed: raw.removed,
-		};
+		});
 	}
 
 	const filtered = dropRuntimeEquivalentDiffs(addedWithoutIgnored, raw.removed);
@@ -1231,25 +1313,42 @@ function toPair(ours: ClassString, upstream: ClassString): Pair {
 		!filtered.removed.length
 	) {
 		if (ignoredAdded.length) {
-			return { kind: "ignored", ours, upstream, added: ignoredAdded, removed: [] };
+			return withUpstreamIgnore({
+				kind: "ignored",
+				ours,
+				upstream,
+				added: ignoredAdded,
+				removed: [],
+			});
 		}
-		return { kind: "equivalent", ours, upstream, added: [], removed: [] };
+		return withUpstreamIgnore({ kind: "equivalent", ours, upstream, added: [], removed: [] });
 	}
 
 	const kind = classifyDiff(filtered.added, filtered.removed);
 	if (kind === "order" && ignoredAdded.length) {
-		return { kind: "ignored", ours, upstream, added: ignoredAdded, removed: [] };
+		return withUpstreamIgnore({
+			kind: "ignored",
+			ours,
+			upstream,
+			added: ignoredAdded,
+			removed: [],
+		});
 	}
 
-	return {
+	return withUpstreamIgnore({
 		kind,
 		ours,
 		upstream,
 		...filtered,
-	};
+	});
 }
 
-export function pairClassStrings(ours: ClassString[], upstream: ClassString[]): Pair[] {
+export function pairClassStrings(
+	ours: ClassString[],
+	upstream: ClassString[],
+	upstreamIgnores: UpstreamIgnoreRule[] = []
+): Pair[] {
+	upstreamIgnoreRules = upstreamIgnores;
 	const pairs: Pair[] = [];
 	const usedOurs = new Set<number>();
 	const usedUpstream = new Set<number>();
@@ -1316,9 +1415,12 @@ export function pairClassStrings(ours: ClassString[], upstream: ClassString[]): 
 
 	for (const [ui, up] of upstream.entries()) {
 		if (usedUpstream.has(ui)) continue;
+		const ignore = upstreamIgnoreFor(up.tokens);
 		pairs.push({
-			kind: classifyDiff([], up.tokens),
-			upstream: up,
+			kind: ignore ? "ignored" : classifyDiff([], up.tokens),
+			upstream: ignore
+				? { ...up, ignoredReason: ignore.reason, ignoredComment: ignore.comment }
+				: up,
 			added: [],
 			removed: up.tokens,
 		});
@@ -1515,7 +1617,10 @@ function printInterestingPairs(heading: string, counts: KindCounts, pairs: Pair[
 			pair.kind === "allowlist" ||
 			pair.kind === "framework"
 		) {
-			const reason = pair.kind === "ignored" ? pair.ours?.ignoredReason : undefined;
+			const reason =
+				pair.kind === "ignored"
+					? (pair.ours?.ignoredReason ?? pair.upstream?.ignoredReason)
+					: undefined;
 			printPairLabel(`${pair.kind}${reason ? ` (${reason})` : ""}`, pair);
 			printClassDiff(pair);
 			continue;
@@ -1621,9 +1726,11 @@ async function runBase() {
 		}
 
 		items++;
+		const base = loadOursBase(name, upstreamContent);
 		const pairs = pairClassStrings(
-			loadOursBase(name, upstreamContent),
-			extractClassStrings(upstreamContent)
+			base.entries,
+			extractClassStrings(upstreamContent),
+			base.upstreamIgnores
 		);
 		const counts = countsFromPairs(pairs);
 		addCounts(summary, counts);
@@ -1685,7 +1792,7 @@ async function runVariants() {
 				.join("\n");
 			const ours = extractItemContent(loadOurs(style, name), name, upstreamContent);
 			const upstream = extractClassStrings(upstreamContent);
-			const pairs = pairClassStrings(ours, upstream);
+			const pairs = pairClassStrings(ours.entries, upstream, ours.upstreamIgnores);
 			const counts = countsFromPairs(pairs);
 			addCounts(summary, counts);
 			rows.push(rowFromCounts(name, counts));

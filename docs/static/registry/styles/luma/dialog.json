@@ -3,7 +3,7 @@
 	"name": "dialog",
 	"type": "registry:ui",
 	"devDependencies": [
-		"bits-ui@^2.16.3",
+		"bits-ui@^2.18.0",
 		"@internationalized/date@^3.12.0"
 	],
 	"registryDependencies": [
