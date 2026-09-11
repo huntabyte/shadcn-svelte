@@ -237,6 +237,14 @@
 		"relativeUrl": "message.json"
 	},
 	{
+		"name": "message-scroller",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"button"
+		],
+		"relativeUrl": "message-scroller.json"
+	},
+	{
 		"name": "native-select",
 		"type": "registry:ui",
 		"registryDependencies": [],
@@ -267,6 +275,14 @@
 		"type": "registry:ui",
 		"registryDependencies": [],
 		"relativeUrl": "progress.json"
+	},
+	{
+		"name": "questionnaire",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"button"
+		],
+		"relativeUrl": "questionnaire.json"
 	},
 	{
 		"name": "radio-group",

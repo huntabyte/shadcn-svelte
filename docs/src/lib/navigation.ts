@@ -27,6 +27,8 @@ export const PAGES_NEW = [
 	"/docs/components/bubble",
 	"/docs/components/attachment",
 	"/docs/components/marker",
+	"/docs/components/questionnaire",
+	"/docs/components/message-scroller",
 ];
 
 export const PAGES_UPDATED: string[] = [];

@@ -35,6 +35,7 @@
 		"@dnd-kit/collision": "^0.1.21",
 		"@dnd-kit/helpers": "^0.1.21",
 		"@shadcn-svelte/parity": "workspace:*",
+		"@shadcn/svelte": "workspace:*",
 		"@fontsource-variable/dm-sans": "^5.2.8",
 		"@fontsource-variable/eb-garamond": "^5.2.7",
 		"@fontsource-variable/figtree": "^5.2.10",
