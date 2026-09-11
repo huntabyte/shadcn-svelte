@@ -200,7 +200,7 @@ importers:
       '@shadcn-svelte/parity':
         specifier: workspace:*
         version: link:../packages/parity
-      '@shadcn/svelte':
+      '@shadcn-svelte/primitives':
         specifier: workspace:*
         version: link:../packages/svelte
       '@shikijs/langs':
@@ -550,6 +550,9 @@ importers:
 
   packages/svelte:
     dependencies:
+      '@tanstack/virtual-core':
+        specifier: ^3.17.10
+        version: 3.17.10
       esm-env:
         specifier: ^1.1.2
         version: 1.2.2
@@ -2421,6 +2424,9 @@ packages:
   '@tanstack/table-core@9.0.0':
     resolution: {integrity: sha512-IyKCc4D7d/+I9euQntlVDQ7lnilmFRKpIROBeI5/866adFy+65xWvCFPz76NZ5j2lXe/RFDvFVV7bfETmwHEMA==}
     engines: {node: '>=20'}
+
+  '@tanstack/virtual-core@3.17.10':
+    resolution: {integrity: sha512-eMorKWIi2nekElu+8DgSMJR4iR+sTDeh+W8VjKiMH79yUfEDJ3W9aL/96/wwbxNjyV6EfN39HKszSxjd90zAqQ==}
 
   '@testing-library/dom@10.4.1':
     resolution: {integrity: sha512-o4PXJQidqJl82ckFaXUeoAW+XysPLauYI43Abki5hABd853iMhitooc6znOnczgbTYmEP6U6/y1ZyKAIsvMKGg==}
@@ -7465,6 +7471,8 @@ snapshots:
   '@tanstack/table-core@9.0.0':
     dependencies:
       '@tanstack/store': 0.11.1
+
+  '@tanstack/virtual-core@3.17.10': {}
 
   '@testing-library/dom@10.4.1':
     dependencies:

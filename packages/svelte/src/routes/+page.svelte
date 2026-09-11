@@ -1,1 +1,1 @@
-<p>@shadcn/svelte</p>
+<p>@shadcn-svelte/primitives</p>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Questionnaire as QuestionnairePrimitive } from "@shadcn/svelte/questionnaire";
+	import { Questionnaire as QuestionnairePrimitive } from "@shadcn-svelte/primitives/questionnaire";
 	import { cn } from "$lib/utils.js";
 
 	let {

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { toast } from "svelte-sonner";
-	import type { QuestionnaireItemStatus } from "@shadcn/svelte/questionnaire";
+	import type { QuestionnaireItemStatus } from "@shadcn-svelte/primitives/questionnaire";
 	import * as Questionnaire from "$lib/registry/ui/questionnaire/index.js";
 
 	const items = [

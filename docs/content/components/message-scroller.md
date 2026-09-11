@@ -85,11 +85,11 @@ markdown.
 
 <Step>
 
-Install `@shadcn/svelte`:
+Install `@shadcn-svelte/primitives`:
 
 </Step>
 
-<PMInstall command="@shadcn/svelte -D" />
+<PMInstall command="@shadcn-svelte/primitives -D" />
 
 <Step>
 
@@ -523,7 +523,7 @@ rows.
 
 ```svelte showLineNumbers
 <script lang="ts">
-  import { createVirtualizer } from "@tanstack/svelte-virtual";
+  import { useVirtualizer } from "@shadcn-svelte/primitives/svelte-virtual";
   import * as Message from "$lib/components/ui/message/index.js";
   import * as MessageScroller from "$lib/components/ui/message-scroller/index.js";
 
@@ -535,7 +535,7 @@ rows.
 
   let viewport = $state<HTMLDivElement | null>(null);
 
-  const virtualizer = createVirtualizer({
+  const virtualizer = useVirtualizer({
     get count() {
       return messages.length;
     },
@@ -558,6 +558,7 @@ rows.
                 data-index={virtualItem.index}
                 class="absolute start-0 top-0 w-full"
                 style="transform: translateY({virtualItem.start}px)"
+                {@attach (node) => virtualizer.measureElement(node)}
               >
                 <Message.Root>{@render message.content()}</Message.Root>
               </div>
@@ -599,12 +600,12 @@ so inactive scroll controls do not create extra focus stops.
 
 ## Unstyled
 
-The behavior in `MessageScroller` comes from the `@shadcn/svelte` package. Import the
-headless parts from `@shadcn/svelte/message-scroller` when you want your own markup
+The behavior in `MessageScroller` comes from the `@shadcn-svelte/primitives` package. Import the
+headless parts from `@shadcn-svelte/primitives/message-scroller` when you want your own markup
 and styles.
 
 ## API Reference
 
 The props, data attributes, and hooks for every part live on the unstyled
-`MessageScroller` primitives in `@shadcn/svelte/message-scroller`. They are identical
+`MessageScroller` primitives in `@shadcn-svelte/primitives/message-scroller`. They are identical
 for the styled component and the unstyled parts.

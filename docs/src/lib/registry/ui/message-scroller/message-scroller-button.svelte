@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { MessageScroller as MessageScrollerPrimitive } from "@shadcn/svelte/message-scroller";
+	import { MessageScroller as MessageScrollerPrimitive } from "@shadcn-svelte/primitives/message-scroller";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import type { ButtonSize, ButtonVariant } from "$lib/registry/ui/button/index.js";

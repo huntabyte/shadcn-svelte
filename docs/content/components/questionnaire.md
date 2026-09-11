@@ -35,11 +35,11 @@ links:
 
 <Step>
 
-Install `@shadcn/svelte`:
+Install `@shadcn-svelte/primitives`:
 
 </Step>
 
-<PMInstall command="@shadcn/svelte -D" />
+<PMInstall command="@shadcn-svelte/primitives -D" />
 
 <Step>
 
@@ -164,7 +164,7 @@ close and cancellation behavior, persistence, transport, and branching.
 ## Server Rendering
 
 Pass `items` to server-render the active item, progress, actions, and answer
-shortcuts. See `@shadcn/svelte/questionnaire` for the complete behavior.
+shortcuts. See `@shadcn-svelte/primitives/questionnaire` for the complete behavior.
 
 ## Multiple Selection
 
@@ -312,12 +312,12 @@ Always give `Questionnaire.Input` an accessible name with a visible label,
 
 ## Unstyled
 
-The behavior in `Questionnaire` comes from the `@shadcn/svelte` package. Import the
-headless parts from `@shadcn/svelte/questionnaire` when you want your own markup and styles.
+The behavior in `Questionnaire` comes from the `@shadcn-svelte/primitives` package. Import the
+headless parts from `@shadcn-svelte/primitives/questionnaire` when you want your own markup and styles.
 
 ## API Reference
 
 The props, data attributes, and render states for every part live on the unstyled
-`Questionnaire` primitives in `@shadcn/svelte/questionnaire`. The styled components
+`Questionnaire` primitives in `@shadcn-svelte/primitives/questionnaire`. The styled components
 inherit the corresponding unstyled props. Navigation components also accept Button
 `size` and `variant` props, and `Questionnaire.Actions` is a styled-only layout helper.

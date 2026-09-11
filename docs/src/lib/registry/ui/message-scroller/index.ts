@@ -9,7 +9,7 @@ export {
 	useMessageScroller,
 	useMessageScrollerScrollable,
 	useMessageScrollerVisibility,
-} from "@shadcn/svelte/message-scroller";
+} from "@shadcn-svelte/primitives/message-scroller";
 
 export {
 	Provider,

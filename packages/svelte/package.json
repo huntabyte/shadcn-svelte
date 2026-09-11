@@ -1,5 +1,5 @@
 {
-	"name": "@shadcn/svelte",
+	"name": "@shadcn-svelte/primitives",
 	"version": "0.0.0",
 	"description": "Unstyled components for Svelte.",
 	"license": "MIT",
@@ -45,6 +45,11 @@
 			"types": "./dist/message-scroller/index.d.ts",
 			"svelte": "./dist/message-scroller/index.js",
 			"default": "./dist/message-scroller/index.js"
+		},
+		"./svelte-virtual": {
+			"types": "./dist/svelte-virtual/index.d.ts",
+			"svelte": "./dist/svelte-virtual/index.js",
+			"default": "./dist/svelte-virtual/index.js"
 		}
 	},
 	"scripts": {
@@ -61,6 +66,7 @@
 		"svelte": "^5.33.0"
 	},
 	"dependencies": {
+		"@tanstack/virtual-core": "^3.17.10",
 		"esm-env": "^1.1.2",
 		"runed": "^0.37.1",
 		"svelte-toolbelt": "^0.10.6"
