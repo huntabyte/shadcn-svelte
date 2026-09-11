@@ -67,6 +67,16 @@ describe("buildRegistryRequest", () => {
 		expect(request?.url.href).not.toContain("do-not-send");
 	});
 
+	it("does not replace placeholders inside environment values or item names", () => {
+		const request = buildRegistryRequest(
+			"@acme/{style}",
+			{ registries: { "@acme": "https://acme.com/{name}.json?key=${REGISTRY_TOKEN}" } },
+			{ REGISTRY_TOKEN: "{name}-${OTHER_TOKEN}" }
+		);
+		expect(request?.url.pathname).toBe("/%7Bstyle%7D.json");
+		expect(request?.url.searchParams.get("key")).toBe("{name}-${OTHER_TOKEN}");
+	});
+
 	it.each(["@acme", "@acme/", "@-acme/button"])("rejects malformed references: %s", (name) => {
 		expect(() => buildRegistryRequest(name)).toThrow("Use @namespace/name");
 	});
