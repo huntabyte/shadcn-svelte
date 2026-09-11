@@ -45,9 +45,13 @@ export function buildRegistryRequest(
 	let url: URL;
 	try {
 		url = new URL(
-			interpolate(registry.url)
-				.replaceAll("{name}", () => item)
-				.replaceAll("{style}", () => config.style ?? DEFAULT_CONFIG.style)
+			registry.url.replace(
+				/\$\{(\w+)\}|\{(name|style)\}/g,
+				(_, key: string | undefined, placeholder: string | undefined) => {
+					if (key) return env[key] ?? "";
+					return placeholder === "name" ? item : (config.style ?? DEFAULT_CONFIG.style);
+				}
+			)
 		);
 		if (url.protocol !== "https:" && url.protocol !== "http:") throw new Error();
 		for (const [key, value] of Object.entries(registry.params ?? {})) {
