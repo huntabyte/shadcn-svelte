@@ -179,10 +179,13 @@ describe("injectStyleClasses", () => {
 class="flex"
 <!-- parity-ignore-file: whole file -->
 class="grid"
+<!-- parity-ignore-upstream: data-[align-trigger=true]:animate-none | no item-aligned mode -->
+class="inline-flex"
 // keep this comment
 class="cn-badge"`;
 		expect(injectStyleClasses(input, styleMap)).toBe(`class="flex"
 class="grid"
+class="inline-flex"
 // keep this comment
 class="h-5 gap-1 transition-all"`);
 	});

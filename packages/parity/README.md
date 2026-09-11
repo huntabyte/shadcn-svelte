@@ -77,7 +77,7 @@ Only files that have an upstream counterpart are compared. A file counts when it
 | `exact`      | Same tokens.                                                                                                                                                                                                                                                                            |
 | `order`      | Same tokens in a different order.                                                                                                                                                                                                                                                       |
 | `equivalent` | Differs only by tokens that are runtime-equivalent between Bits UI and Radix, such as `data-[state=open]` vs `data-open`, physical vs logical sides (`pl-2` vs `ps-2`), or `aria-[orientation=…]` vs `data-horizontal`. Hidden unless `--verbose` or `--no-exclude-runtime-equivalent`. |
-| `ignored`    | Covered by a `parity-ignore` comment. Never counts as a diff.                                                                                                                                                                                                                           |
+| `ignored`    | Covered by a `parity-ignore`, `parity-ignore-file`, or `parity-ignore-upstream` comment. Never counts as a diff.                                                                                                                                                                        |
 | `allowlist`  | Differs only by tokens we intentionally keep: `cn-menu-target`, `cn-menu-translucent`, `cn-logical-sides`, `cn-rtl-flip`, `cn-font-heading`, and any `cn-*-logical`.                                                                                                                    |
 | `framework`  | Differs only by tokens tied to the underlying library, matched on `radix`, `bits-`, `--bits-`, `--radix-`, `data-bits-`, `data-radix-`, or `--transform-origin`.                                                                                                                        |
 | `diff`       | A real difference. Only this kind fails `--check`.                                                                                                                                                                                                                                      |
@@ -86,11 +86,11 @@ Unpaired strings are reported as `only-ours` or `only-upstream` and classified t
 
 ### Skipped structural ports
 
-`calendar`, `range-calendar`, `chart`, and `select` diverge too much from their Radix originals for a class-string comparison to be meaningful. They are skipped unless you pass `--include-skipped` or name one of them as `item`.
+`calendar`, `range-calendar`, and `chart` diverge too much from their Radix originals for a class-string comparison to be meaningful. They are skipped unless you pass `--include-skipped` or name one of them as `item`.
 
 ## Ignore comments
 
-Where parity is impossible or not yet reached, add a comment in the source. Both forms take a required reason.
+Where parity is impossible or not yet reached, add a comment in the source. Every form takes a required reason.
 
 ```svelte
 <!-- parity-ignore: Bits GroupHeading; cmdk heading styles live on cn-command-group -->
@@ -102,10 +102,15 @@ Where parity is impossible or not yet reached, add a comment in the source. Both
 "rtl:rotate-180",
 ```
 
+```svelte
+<!-- parity-ignore-upstream: data-[align-trigger=true]:animate-none | Radix marks its item-aligned mode with data-align-trigger; Bits only positions the content as a popper -->
+```
+
 - `parity-ignore: <reason>` applies to the next class string that follows the comment. A trailing comment therefore covers the string on the following line, not the one before it.
 - `parity-ignore-file: <reason>` applies to every class string in the file.
+- `parity-ignore-upstream: <tokens> | <reason>` covers upstream tokens our port deliberately does not carry. The other two forms hang off a class string of ours, so they cannot reach an upstream token that has no counterpart here: an upstream-only class string, or a token upstream keeps inside a string we otherwise match. List the upstream tokens before the `|` and the reason after it. The declaration applies to the whole item, not only the file it sits in, and it silences just the tokens it names; anything else in the same pair is classified as usual.
 - `//`, `/* */`, and `<!-- -->` comments are all recognised.
-- Both forms are stripped from the published registry JSON by `injectStyleClasses`, whether they occupy a whole line or trail code on the same line. Other comments are left alone.
+- All three forms are stripped from the published registry JSON by `injectStyleClasses`, whether they occupy a whole line or trail code on the same line. Other comments are left alone.
 - Use `--ignored` to list what is being ignored and why.
 
 ## Upstream sources and caching
@@ -128,7 +133,7 @@ The docs app imports this package as a library as well:
 | Export                                       | Contents                                                                                                                                                                                                       |
 | -------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `@shadcn-svelte/parity`                      | `runParity` and the comparison helpers from `src/compare.ts`.                                                                                                                                                  |
-| `@shadcn-svelte/parity/parity-ignore`        | `parseParityIgnore`, `findCommentRanges`, `stripParityIgnoreComments`.                                                                                                                                         |
+| `@shadcn-svelte/parity/parity-ignore`        | `parseParityIgnore`, `parseParityIgnoreUpstream`, `findCommentRanges`, `stripParityIgnoreComments`.                                                                                                            |
 | `@shadcn-svelte/parity/inject-style-classes` | `parseStyleCss`, `injectStyleClasses`, `toTailwindArbitraryCalc`. Used by `docs/scripts/build-registry.ts` to generate the style registries and by `docs/src/lib/registry/registry-utils.ts` in the docs site. |
 
 `parseStyleCss` is the single implementation of the style-map parser for the docs. The published CLI keeps its own postcss-based copy in `packages/cli/src/utils/registry/index.ts` so that it does not depend on this private package. Keep the two in sync.
