@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { createChat, getMessageText } from "$lib/ai.js";
+	import CommandsMenu from "$lib/components/message-scroller/commands-menu.svelte";
 	import * as Bubble from "$lib/registry/ui/bubble/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Message from "$lib/registry/ui/message/index.js";
 	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
-	import CommandMenu from "$lib/components/message-scroller/commands-menu.svelte";
 
 	const chat = createChat()
 		.user("We're seeing activation dip after workspace creation. Can you help me find the likely step?", {
@@ -43,7 +43,7 @@
 				<Card.Title>Commands</Card.Title>
 				<Card.Description>Drive the transcript from outside.</Card.Description>
 				<Card.Action>
-					<CommandMenu {userMessages} />
+					<CommandsMenu {userMessages} />
 				</Card.Action>
 			</Card.Header>
 			<Card.Content class="flex-1 overflow-hidden p-0">

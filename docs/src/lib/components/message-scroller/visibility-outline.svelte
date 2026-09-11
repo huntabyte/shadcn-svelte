@@ -2,15 +2,12 @@
 	import type { DemoMessage } from "$lib/ai.js";
 	import { getMessageText } from "$lib/ai.js";
 	import * as HoverCard from "$lib/registry/ui/hover-card/index.js";
-	import {
-		useMessageScroller,
-		useMessageScrollerVisibility,
-	} from "$lib/registry/ui/message-scroller/index.js";
+	import { useMessageScroller, useMessageScrollerVisibility } from "$lib/registry/ui/message-scroller/index.js";
 
 	let { userMessages }: { userMessages: DemoMessage[] } = $props();
 
 	const { scrollToMessage } = useMessageScroller();
-	const visibility = useMessageScrollerVisibility();
+	const { currentAnchorId } = useMessageScrollerVisibility();
 
 	function getTrimmedMessageText(message: DemoMessage) {
 		const text = getMessageText(message);
@@ -30,7 +27,7 @@
 			>
 				{#each userMessages as message (message.id)}
 					<span
-						data-current={message.id === visibility.currentAnchorId}
+						data-current={message.id === currentAnchorId}
 						class="h-0.5 w-4 rounded-full bg-muted-foreground/40 data-[current=true]:bg-foreground"
 					></span>
 				{/each}
@@ -46,7 +43,7 @@
 		{#each userMessages as message (message.id)}
 			<button
 				type="button"
-				aria-current={visibility.currentAnchorId === message.id ? "location" : undefined}
+				aria-current={currentAnchorId === message.id ? "location" : undefined}
 				class="flex min-h-7 items-center rounded-xl px-2 py-1.5 text-left text-sm transition-colors outline-none hover:bg-accent hover:text-accent-foreground focus-visible:bg-accent focus-visible:text-accent-foreground aria-current:bg-accent aria-current:text-accent-foreground"
 				onclick={() =>
 					scrollToMessage(message.id, {

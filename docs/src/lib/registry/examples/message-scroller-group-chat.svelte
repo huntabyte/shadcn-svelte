@@ -1,11 +1,12 @@
 <script lang="ts">
 	import RotateCwIcon from "@lucide/svelte/icons/rotate-cw";
-	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Bubble from "$lib/registry/ui/bubble/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Marker from "$lib/registry/ui/marker/index.js";
+	import * as Message from "$lib/registry/ui/message/index.js";
 	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import GroupChatMarker from "$lib/components/message-scroller/group-chat-marker.svelte";
-	import GroupChatMessage from "$lib/components/message-scroller/group-chat-message.svelte";
 
 	const currentUser = "Grace";
 
@@ -25,7 +26,7 @@
 				scrollAnchor?: boolean;
 		  };
 
-	const initialItems = [
+	const initialItems: GroupChatItem[] = [
 		{
 			id: "group-1",
 			type: "message",
@@ -48,22 +49,22 @@
 			text: "ping @rocky",
 			scrollAnchor: true,
 		},
-	] satisfies GroupChatItem[];
+	];
 
-	const rockyMarker = {
+	const rockyMarker: GroupChatItem = {
 		id: "group-4",
 		type: "event",
 		text: "Rocky has joined the chat",
 		scrollAnchor: true,
-	} satisfies GroupChatItem;
+	};
 
-	const rockyMessage = {
+	const rockyMessage: GroupChatItem = {
 		id: "group-5",
 		type: "message",
 		sender: "Rocky",
 		role: "participant",
 		text: "Amaze. Astrophage eats light, makes heat, goes to carbon dioxide. Rocky has fuel model. Grace is smart.",
-	} satisfies GroupChatItem;
+	};
 
 	let demoKey = $state(0);
 	let rockyTurn = $state<"idle" | "marker" | "message">("idle");
@@ -113,24 +114,43 @@
 				</Card.Action>
 			</Card.Header>
 			<Card.Content class="min-h-0 flex-1 p-0">
-				<MessageScroller.Provider>
-					{#key demoKey}
-						<MessageScroller.Root>
-							<MessageScroller.Viewport>
-								<MessageScroller.Content class="p-(--card-spacing)">
-									{#each items as item (item.id)}
-										{#if item.type === "message"}
-											<GroupChatMessage {item} {currentUser} />
-										{:else}
-											<GroupChatMarker {item} scrollAnchor={item.scrollAnchor} />
-										{/if}
-									{/each}
-								</MessageScroller.Content>
-							</MessageScroller.Viewport>
-							<MessageScroller.Button />
-						</MessageScroller.Root>
-					{/key}
-				</MessageScroller.Provider>
+				{#key demoKey}
+					<MessageScroller.Root>
+						<MessageScroller.Viewport>
+							<MessageScroller.Content class="p-(--card-spacing)">
+								{#each items as item (item.id)}
+									{#if item.type === "message"}
+										{@const isCurrentUser = item.sender === currentUser}
+										{@const variant = isCurrentUser
+											? "muted"
+											: item.role === "assistant"
+												? "ghost"
+												: "tinted"}
+										<MessageScroller.Item messageId={item.id} scrollAnchor={item.scrollAnchor}>
+											<Message.Root align={isCurrentUser ? "end" : "start"}>
+												<Message.Content>
+													{#if !isCurrentUser}
+														<Message.Header>{item.sender}</Message.Header>
+													{/if}
+													<Bubble.Root {variant}>
+														<Bubble.Content>{item.text}</Bubble.Content>
+													</Bubble.Root>
+												</Message.Content>
+											</Message.Root>
+										</MessageScroller.Item>
+									{:else}
+										<MessageScroller.Item scrollAnchor={item.scrollAnchor}>
+											<Marker.Root variant="separator">
+												<Marker.Content>{item.text}</Marker.Content>
+											</Marker.Root>
+										</MessageScroller.Item>
+									{/if}
+								{/each}
+							</MessageScroller.Content>
+						</MessageScroller.Viewport>
+						<MessageScroller.Button />
+					</MessageScroller.Root>
+				{/key}
 			</Card.Content>
 			<Card.Footer class="flex flex-col items-center gap-2 border-t">
 				<Button

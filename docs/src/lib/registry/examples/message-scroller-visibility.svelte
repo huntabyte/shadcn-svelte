@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { createChat, getMessageText } from "$lib/ai.js";
+	import VisibilityOutline from "$lib/components/message-scroller/visibility-outline.svelte";
 	import * as Bubble from "$lib/registry/ui/bubble/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Message from "$lib/registry/ui/message/index.js";
 	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
-	import TranscriptOutline from "$lib/components/message-scroller/visibility-outline.svelte";
 
 	const chat = createChat()
 		.user("Review the incident handoff and tell me what to read first.", {
@@ -76,7 +76,7 @@
 				</Card.Content>
 			</Card.Root>
 			<div class="absolute top-1/2 -right-12 -translate-y-1/2">
-				<TranscriptOutline {userMessages} />
+				<VisibilityOutline {userMessages} />
 			</div>
 		</div>
 		<div class="mx-auto max-w-sm px-0.5 text-center text-xs text-muted-foreground">
