@@ -6,6 +6,7 @@
 		autoScroll?: boolean;
 		defaultScrollPosition?: MessageScrollerDefaultScrollPosition;
 		items: BrowserTestItem[];
+		itemClass?: string;
 		scrollPreviousItemPeek?: number;
 		showButton?: boolean;
 		showJumpButton?: boolean;

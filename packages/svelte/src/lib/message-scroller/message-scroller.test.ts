@@ -549,6 +549,37 @@ describe("MessageScroller", () => {
 		expect(rendered.state().end).toBe(false);
 	});
 
+	it("from an empty autoScroll transcript, follows the assistant once it overflows the viewport", async () => {
+		const rendered = await renderTestScroller({
+			autoScroll: true,
+			messages: [],
+		});
+
+		await rendered.rerender(
+			[{ id: "user", height: 40, scrollAnchor: true }],
+			{ autoScroll: true }
+		);
+
+		expect(rendered.viewport().scrollTop).toBe(0);
+
+		await rendered.rerender(
+			[
+				{ id: "user", height: 40, scrollAnchor: true },
+				{ id: "assistant", height: 20 },
+			],
+			{ autoScroll: true }
+		);
+		await triggerResize(rendered.content());
+
+		expect(rendered.viewport().scrollTop).toBe(0);
+
+		rendered.message("assistant").dataset.testHeight = "140";
+		await triggerResize(rendered.content());
+
+		expect(rendered.viewport().scrollTop).toBe(80);
+		expect(rendered.state().end).toBe(false);
+	});
+
 	it("applies the default end target after async messages mount", async () => {
 		const rendered = await renderTestScroller({
 			messages: [],

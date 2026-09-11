@@ -123,6 +123,136 @@ test("keeps auto-scroll pinned when the final message grows", async () => {
 	expect(getDistanceToBottom(viewport)).toBeLessThanOrEqual(1);
 });
 
+test("follows a single unanchored append while autoScroll is following", async () => {
+	const initial = createItems(6);
+
+	await renderThread({ autoScroll: true, items: initial });
+
+	const viewport = getViewport();
+
+	expect(getDistanceToBottom(viewport)).toBeLessThanOrEqual(1);
+
+	updateThread({
+		autoScroll: true,
+		items: [...initial, { id: "assistant" }],
+	});
+	await settle();
+
+	expect(getDistanceToBottom(viewport)).toBeLessThanOrEqual(1);
+});
+
+test("holds a new scrollAnchor at the reading line, then follows once the reply fills the viewport", async () => {
+	const initial = createItems(6);
+
+	await renderThread({ autoScroll: true, items: initial });
+
+	const viewport = getViewport();
+
+	expect(getDistanceToBottom(viewport)).toBeLessThanOrEqual(1);
+
+	updateThread({
+		autoScroll: true,
+		items: [...initial, { id: "user", height: 20, scrollAnchor: true }],
+	});
+	await settle();
+
+	// The tail spacer fills the rest of the viewport so this still reads as
+	// "at the end", but the new user turn is held at the reading line.
+	expect(viewportOffsetOf("user", viewport)).toBe(64);
+
+	updateThread({
+		autoScroll: true,
+		items: [
+			...initial,
+			{ id: "user", height: 20, scrollAnchor: true },
+			{ id: "assistant", height: 8 },
+		],
+	});
+	await settle();
+
+	expect(viewportOffsetOf("user", viewport)).toBe(64);
+
+	updateThread({
+		autoScroll: true,
+		items: [
+			...initial,
+			{ id: "user", height: 20, scrollAnchor: true },
+			{ id: "assistant", height: 80 },
+		],
+	});
+	await settle();
+
+	expect(viewportOffsetOf("user", viewport)).toBe(64);
+
+	updateThread({
+		autoScroll: true,
+		items: [
+			...initial,
+			{ id: "user", height: 20, scrollAnchor: true },
+			{ id: "assistant", height: 160 },
+		],
+	});
+	await settle();
+
+	expect(getDistanceToBottom(viewport)).toBeLessThanOrEqual(1);
+	expect(viewportOffsetOf("user", viewport)).toBeLessThan(64);
+});
+
+test("follows in-place growth of an unanchored row while autoScroll is following", async () => {
+	const initial = createItems(6);
+
+	await renderThread({ autoScroll: true, items: initial });
+
+	const viewport = getViewport();
+
+	updateThread({
+		autoScroll: true,
+		items: [...initial, { id: "assistant", height: 24 }],
+	});
+	await settle();
+
+	expect(getDistanceToBottom(viewport)).toBeLessThanOrEqual(1);
+
+	updateThread({
+		autoScroll: true,
+		items: [...initial, { id: "assistant", height: 240 }],
+	});
+	await settle();
+
+	expect(getDistanceToBottom(viewport)).toBeLessThanOrEqual(1);
+});
+
+const STYLED_ITEM_CLASS =
+	"min-w-0 shrink-0 [contain-intrinsic-size:auto_10rem] [content-visibility:auto]";
+
+test("follows streamed growth on styled items with content-visibility", async () => {
+	const initial = createItems(6);
+
+	await renderThread({ autoScroll: true, itemClass: STYLED_ITEM_CLASS, items: initial });
+
+	const viewport = getViewport();
+
+	expect(getDistanceToBottom(viewport)).toBeLessThanOrEqual(1);
+
+	updateThread({
+		autoScroll: true,
+		itemClass: STYLED_ITEM_CLASS,
+		items: [...initial, { id: "assistant", height: 24 }],
+	});
+	await settle();
+
+	expect(getDistanceToBottom(viewport)).toBeLessThanOrEqual(1);
+
+	updateThread({
+		autoScroll: true,
+		itemClass: STYLED_ITEM_CLASS,
+		items: [...initial, { id: "assistant", height: 240 }],
+	});
+	await settle();
+
+	expect(getDistanceToBottom(viewport)).toBeLessThanOrEqual(1);
+});
+
 test("keeps the end pinned when bulk appending anchored turns with autoScroll", async () => {
 	const initial = createItems(6);
 

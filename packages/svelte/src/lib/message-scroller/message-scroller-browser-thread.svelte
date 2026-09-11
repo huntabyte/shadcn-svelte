@@ -15,6 +15,7 @@
 		defaultScrollPosition,
 		items,
 		itemHeight = 80,
+		itemClass,
 		scrollPreviousItemPeek,
 		showButton = false,
 		showJumpButton = false,
@@ -24,6 +25,7 @@
 		defaultScrollPosition?: MessageScrollerDefaultScrollPosition;
 		items: BrowserTestItem[];
 		itemHeight?: number;
+		itemClass?: string;
 		scrollPreviousItemPeek?: number;
 		showButton?: boolean;
 		showJumpButton?: boolean;
@@ -40,6 +42,7 @@
 						messageId={item.id}
 						scrollAnchor={item.scrollAnchor}
 						style="height: {item.height ?? itemHeight}px; flex: none;"
+						class={itemClass}
 					>
 						{item.id}
 					</MessageScroller.Item>
