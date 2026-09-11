@@ -7,7 +7,6 @@
 	import { THEMES } from "$lib/registry/themes.js";
 	import { UserConfigContext } from "$lib/user-config.svelte.js";
 
-	const uid = $props.id();
 	const userConfig = UserConfigContext.get();
 
 	const theme = $derived(THEMES.find((t) => t.name === userConfig.current.activeTheme));
@@ -24,18 +23,12 @@
 			? `.theme-container {\n${toDeclarations(theme.cssVars?.light as Record<string, string>)}\n}\n.dark .theme-container {\n${toDeclarations(theme.cssVars?.dark as Record<string, string>)}\n}`
 			: ""
 	);
-
-	$effect(() => {
-		let styleElement = document.getElementById(uid) as HTMLStyleElement | null;
-		if (!styleElement) {
-			styleElement = document.createElement("style");
-			styleElement.id = uid;
-			document.head.appendChild(styleElement);
-		}
-		styleElement.textContent = css;
-
-		return () => {
-			styleElement.remove();
-		};
-	});
 </script>
+
+<svelte:head>
+	{#if css}
+		<!-- The CSS is generated from our own static theme table, so it is safe to inject. -->
+		<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+		{@html `<style>${css}</style>`}
+	{/if}
+</svelte:head>
