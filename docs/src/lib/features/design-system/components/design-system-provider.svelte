@@ -2,6 +2,7 @@
 	import { browser } from "$app/environment";
 	import { toggleMode } from "mode-watcher";
 	import { watch } from "runed";
+	import { onDestroy, type Snippet } from "svelte";
 	import {
 		buildRegistryTheme,
 		DEFAULT_CONFIG,
@@ -11,7 +12,6 @@
 	} from "$lib/registry/config.js";
 	import { cn } from "$lib/registry/lib/utils.js";
 	import { setupDesignSystem } from "./design-system-provider-state.svelte.js";
-	import type { Snippet } from "svelte";
 
 	const uid = $props.id();
 
@@ -138,21 +138,19 @@
 	// The provider only lives on the design-system routes. When it unmounts (e.g. navigating
 	// from /create to the docs) restore the document to the default style so the rest of the
 	// site is not left wearing the last preset.
-	$effect(() => {
-		return () => {
-			if (!browser) return;
-			removeManagedBodyClasses(document.body);
-			document.body.classList.add(`style-${DEFAULT_CONFIG.style}`);
-			document.getElementById(uid)?.remove();
-			document.documentElement.style.removeProperty("--font-sans");
-			document.documentElement.style.removeProperty("--font-heading");
-			menuObserver?.disconnect();
-			menuObserver = null;
-			if (menuFrameId) {
-				window.cancelAnimationFrame(menuFrameId);
-				menuFrameId = 0;
-			}
-		};
+	onDestroy(() => {
+		if (!browser) return;
+		removeManagedBodyClasses(document.body);
+		document.body.classList.add(`style-${DEFAULT_CONFIG.style}`);
+		document.getElementById(uid)?.remove();
+		document.documentElement.style.removeProperty("--font-sans");
+		document.documentElement.style.removeProperty("--font-heading");
+		menuObserver?.disconnect();
+		menuObserver = null;
+		if (menuFrameId) {
+			window.cancelAnimationFrame(menuFrameId);
+			menuFrameId = 0;
+		}
 	});
 
 	watch([() => designSystem.menuColor, () => browser], ([menuColor, browser]) => {
