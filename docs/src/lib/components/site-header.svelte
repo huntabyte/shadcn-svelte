@@ -7,7 +7,6 @@
 	import { mainNavItems } from "$lib/navigation.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import CommandMenu from "./command-menu/command-menu.svelte";
-	import Customizer from "./customizer.svelte";
 	import GithubLink from "./github-link.svelte";
 	import LayoutToggle from "./layout-toggle.svelte";
 	import MainNav from "./main-nav.svelte";
@@ -62,7 +61,7 @@
 						</Button>
 					{/if}
 				{:else}
-					<Customizer />
+					<ModeSwitcher />
 					<Button href="/create" variant="default" size="sm" class="h-[31px] rounded-lg">
 						<PlusIcon />
 						New
