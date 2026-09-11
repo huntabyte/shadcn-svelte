@@ -1,4 +1,5 @@
 <script lang="ts">
+	import ActiveTheme from "$lib/components/active-theme.svelte";
 	import Announcement from "$lib/components/announcement.svelte";
 	import ExamplesNav from "$lib/components/examples-nav.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
@@ -24,6 +25,7 @@
 	}}
 />
 
+<ActiveTheme />
 <PageHeader>
 	<Announcement />
 	<PageHeaderHeading>The Foundation for your Design System</PageHeaderHeading>
