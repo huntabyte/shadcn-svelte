@@ -30,6 +30,13 @@ import {
 type ChartColorName = (typeof PRESET_CHART_COLORS)[number];
 import { FONTS } from "$lib/fonts.js";
 
+const DEFAULT_DOCS_PRESET = {
+	...DEFAULT_PRESET_CONFIG,
+	style: "vega",
+	font: "geist",
+	fontHeading: "geist",
+} satisfies PresetConfig;
+
 export interface IDesignSystemState extends PresetConfig {
 	preset: string;
 	chartColor: ChartColorName;
@@ -68,7 +75,7 @@ class DesignSystemState implements IDesignSystemState {
 		const presetFromUrl = this.#getSearchParam("preset");
 		this.#preset = new PersistedState<string>(
 			"design-system-preset",
-			presetFromUrl ?? encodePreset(DEFAULT_PRESET_CONFIG)
+			presetFromUrl ?? encodePreset(DEFAULT_DOCS_PRESET)
 		);
 		// PersistedState only falls back to the initial value when nothing is stored yet, so a
 		// shared ?preset= link is ignored for anyone who has already used the editor.
@@ -103,7 +110,7 @@ class DesignSystemState implements IDesignSystemState {
 
 	private get system(): PresetConfig {
 		const preset = decodePreset(this.#preset.current);
-		if (!preset) return DEFAULT_PRESET_CONFIG;
+		if (!preset) return DEFAULT_DOCS_PRESET;
 		return preset;
 	}
 
@@ -271,7 +278,7 @@ class DesignSystemState implements IDesignSystemState {
 	}
 
 	reset() {
-		this.system = DEFAULT_PRESET_CONFIG;
+		this.system = DEFAULT_DOCS_PRESET;
 	}
 
 	randomize() {
