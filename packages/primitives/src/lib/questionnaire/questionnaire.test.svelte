@@ -56,6 +56,7 @@
 				<Questionnaire.ChoiceLabel>Risks</Questionnaire.ChoiceLabel>
 			</Questionnaire.Choice>
 		</Questionnaire.Choices>
+		<Questionnaire.Input aria-label="Other signals" />
 		<textarea name="notes" aria-label="Notes">Keep this note</textarea>
 		<select name="priority" aria-label="Priority">
 			<option value="">Choose a priority</option>

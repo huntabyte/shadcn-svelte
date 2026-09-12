@@ -77,6 +77,34 @@ describe("Questionnaire", () => {
 		expect(document.querySelectorAll("label[data-invalid]")).toHaveLength(0);
 	});
 
+	it("keeps skipped freeform answers cleared when revisiting an item", async () => {
+		component = mount(QuestionnaireTest, {
+			target: document.body,
+			props: { onsubmit: (event: SubmitEvent) => event.preventDefault() },
+		});
+		await tick();
+		const button = (text: string) =>
+			Array.from(document.querySelectorAll("button")).find((entry) => entry.textContent === text);
+		document.querySelector<HTMLInputElement>('[aria-label="Dashboard"]')?.click();
+		button("Next")?.click();
+		await tick();
+		const input = document.querySelector<HTMLInputElement>('[aria-label="Other signals"]')!;
+		input.value = "Keep me informed";
+		input.dispatchEvent(new Event("input", { bubbles: true }));
+		await tick();
+		expect(input.hasAttribute("data-filled")).toBe(true);
+		button("Skip")?.click();
+		await tick();
+		button("Previous")?.click();
+		await tick();
+		button("Next")?.click();
+		await tick();
+		expect(input.value).toBe("");
+		expect(input.hasAttribute("data-empty")).toBe(true);
+		expect(input.hasAttribute("name")).toBe(false);
+		expect(new FormData(document.querySelector("form")!).getAll("signals")).toEqual([]);
+	});
+
 	it("selects choices, navigates, and submits native form data", async () => {
 		const onsubmit = vi.fn((event: SubmitEvent) => event.preventDefault());
 		component = mount(QuestionnaireTest, { target: document.body, props: { onsubmit } });

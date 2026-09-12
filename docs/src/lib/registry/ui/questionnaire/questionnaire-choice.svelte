@@ -15,7 +15,8 @@
 <QuestionnairePrimitive.Choice
 	data-slot="questionnaire-choice"
 	class={cn(
-		"cn-questionnaire-choice group/questionnaire-choice relative flex min-h-11 cursor-pointer items-start text-start transition-colors outline-none select-none data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-50",
+		"cn-questionnaire-choice group/questionnaire-choice relative flex min-h-11 cursor-pointer items-start text-start transition-colors outline-none select-none",
+		"data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-50",
 		className
 	)}
 	{...restProps}
@@ -43,11 +44,11 @@
 		class="cn-questionnaire-choice-label cn-questionnaire-choice-content flex min-w-0 flex-1 flex-col leading-snug"
 	>
 		{#if label}<span>{label}</span>{/if}
-		{#if description}<span class="text-muted-foreground">{description}</span>{/if}
+		{#if description}<span class="cn-questionnaire-choice-description">{description}</span>{/if}
 		{@render children?.()}
 	</QuestionnairePrimitive.ChoiceLabel>
 	<QuestionnairePrimitive.ChoiceShortcut
 		data-slot="questionnaire-choice-shortcut"
-		class="cn-questionnaire-choice-shortcut cn-questionnaire-shortcut pointer-events-none ms-auto mt-0.5 hidden shrink-0 group-data-[shortcut]/questionnaire-choice:inline-flex"
+		class="cn-questionnaire-choice-shortcut cn-questionnaire-shortcut pointer-events-none ms-auto hidden shrink-0 group-data-[shortcut]/questionnaire-choice:inline-flex"
 	/>
 </QuestionnairePrimitive.Choice>

@@ -156,15 +156,19 @@
 	function clearItem(name: string) {
 		const fieldset = registration(name)?.element;
 		if (!fieldset) return;
-		for (const control of fieldset.querySelectorAll<HTMLInputElement>("input")) {
-			if (control.type === "checkbox" || control.type === "radio") control.checked = false;
-			else control.value = "";
-		}
-		for (const control of fieldset.querySelectorAll<HTMLTextAreaElement>("textarea")) {
-			control.value = "";
-		}
-		for (const control of fieldset.querySelectorAll<HTMLSelectElement>("select")) {
-			control.value = "";
+		for (const control of fieldset.querySelectorAll<
+			HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+		>("input, textarea, select")) {
+			if (
+				control instanceof HTMLInputElement &&
+				(control.type === "checkbox" || control.type === "radio")
+			) {
+				control.checked = false;
+			} else {
+				control.value = "";
+			}
+			control.dispatchEvent(new Event("input", { bubbles: true }));
+			control.dispatchEvent(new Event("change", { bubbles: true }));
 		}
 	}
 

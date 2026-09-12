@@ -11,11 +11,12 @@
 	data-slot="questionnaire-input-wrapper"
 	class="cn-questionnaire-input-wrapper group/questionnaire-input relative min-w-0"
 >
-	{#if label}<span class="font-medium">{label}</span>{/if}
+	{#if label}<span>{label}</span>{/if}
 	<QuestionnairePrimitive.Input
 		data-slot="questionnaire-input"
 		class={cn(
-			"cn-questionnaire-input min-h-11 w-full min-w-0 transition-[color,box-shadow,background-color] outline-none selection:bg-primary selection:text-primary-foreground placeholder:text-muted-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 sm:min-h-0",
+			"cn-questionnaire-input min-h-11 w-full min-w-0 transition-[color,box-shadow,background-color] outline-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 sm:min-h-0",
+			"selection:bg-primary selection:text-primary-foreground placeholder:text-muted-foreground",
 			className
 		)}
 		{...restProps}
