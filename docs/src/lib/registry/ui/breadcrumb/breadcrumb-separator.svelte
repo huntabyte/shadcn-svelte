@@ -29,6 +29,7 @@
 			hugeicons="ArrowRight01Icon"
 			phosphor="CaretRightIcon"
 			remixicon="RiArrowRightSLine"
+			class="cn-rtl-flip"
 		/>
 	{/if}
 </li>

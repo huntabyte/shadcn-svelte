@@ -11,6 +11,11 @@
 	}: WithElementRef<HTMLAttributes<HTMLTableRowElement>> = $props();
 </script>
 
-<tr bind:this={ref} data-slot="table-row" class={cn("cn-table-row", className)} {...restProps}>
+<tr
+	bind:this={ref}
+	data-slot="table-row"
+	class={cn("cn-table-row has-aria-expanded:bg-muted/50", className)}
+	{...restProps}
+>
 	{@render children?.()}
 </tr>

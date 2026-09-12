@@ -14,7 +14,7 @@
 <SelectPrimitive.ScrollUpButton
 	bind:ref
 	data-slot="select-scroll-up-button"
-	class={cn("cn-select-scroll-up-button top-0 w-full", className)}
+	class={cn("cn-select-scroll-up-button", className)}
 	{...restProps}
 >
 	<IconPlaceholder

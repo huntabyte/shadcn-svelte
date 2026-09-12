@@ -15,7 +15,7 @@
 	bind:this={ref}
 	data-slot="alert-title"
 	class={cn(
-		"cn-font-heading cn-alert-title [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground",
+		"cn-alert-title [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground",
 		className
 	)}
 	{...restProps}

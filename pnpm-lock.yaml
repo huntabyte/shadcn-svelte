@@ -185,6 +185,9 @@ importers:
       '@prettier/sync':
         specifier: 0.6.1
         version: 0.6.1(prettier@3.8.3)
+      '@shadcn-svelte/parity':
+        specifier: workspace:*
+        version: link:../packages/parity
       '@shikijs/langs':
         specifier: ^3.20.0
         version: 3.20.0
@@ -243,8 +246,8 @@ importers:
         specifier: ^8.16.0
         version: 8.16.0
       bits-ui:
-        specifier: ^2.16.3
-        version: 2.16.3(@internationalized/date@3.12.0)(@sveltejs/kit@2.70.1(@sveltejs/vite-plugin-svelte@7.2.0(svelte@5.54.0)(vite@8.1.5(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.7.0)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1)))(svelte@5.54.0)(typescript@5.9.3)(vite@8.1.5(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.7.0)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1)))(svelte@5.54.0)
+        specifier: ^2.18.0
+        version: 2.19.2(@internationalized/date@3.12.0)(@sveltejs/kit@2.70.1(@sveltejs/vite-plugin-svelte@7.2.0(svelte@5.54.0)(vite@8.1.5(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.7.0)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1)))(svelte@5.54.0)(typescript@5.9.3)(vite@8.1.5(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.7.0)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1)))(svelte@5.54.0)
       chrono-node:
         specifier: ^2.9.0
         version: 2.9.0
@@ -501,6 +504,31 @@ importers:
       zod:
         specifier: ^4.4.3
         version: 4.4.3
+
+  packages/parity:
+    dependencies:
+      commander:
+        specifier: ^14.0.0
+        version: 14.0.0
+      picocolors:
+        specifier: ^1.1.1
+        version: 1.1.1
+      shadcn-svelte:
+        specifier: workspace:*
+        version: link:../cli
+      tailwind-merge:
+        specifier: ^3.6.0
+        version: 3.6.0
+      zod:
+        specifier: ^4.4.3
+        version: 4.4.3
+    devDependencies:
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.3
+      vitest:
+        specifier: ^4.1.10
+        version: 4.1.10(@types/node@25.5.0)(jsdom@27.3.0(postcss@8.5.25))(vite@8.1.5(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.7.0)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1))
 
   sv-addons/registry:
     devDependencies:
@@ -2667,8 +2695,8 @@ packages:
   bidi-js@1.0.3:
     resolution: {integrity: sha512-RKshQI1R3YQ+n9YJz2QQ147P66ELpa1FQEg20Dk8oW9t2KgLbpDLLp9aGZ7y8WHSshDknG0bknqGw5/tyCs5tw==}
 
-  bits-ui@2.16.3:
-    resolution: {integrity: sha512-5hJ5dEhf5yPzkRFcxzgQHScGodeo0gK0MUUXrdLlRHWaBOBGZiacWLG96j/wwFatKwZvouw7q+sn14i0fx3RIg==}
+  bits-ui@2.19.2:
+    resolution: {integrity: sha512-W9upilTmLTIWjuVAD6Ta7XoS6gxRflmCQnXamj+WN1eYxZecghqGENpuSMAKQmVENMLXhh85BZb04LCrBd2+Ng==}
     engines: {node: '>=20'}
     peerDependencies:
       '@internationalized/date': ^3.8.1
@@ -7289,7 +7317,7 @@ snapshots:
     dependencies:
       require-from-string: 2.0.2
 
-  bits-ui@2.16.3(@internationalized/date@3.12.0)(@sveltejs/kit@2.70.1(@sveltejs/vite-plugin-svelte@7.2.0(svelte@5.54.0)(vite@8.1.5(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.7.0)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1)))(svelte@5.54.0)(typescript@5.9.3)(vite@8.1.5(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.7.0)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1)))(svelte@5.54.0):
+  bits-ui@2.19.2(@internationalized/date@3.12.0)(@sveltejs/kit@2.70.1(@sveltejs/vite-plugin-svelte@7.2.0(svelte@5.54.0)(vite@8.1.5(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.7.0)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1)))(svelte@5.54.0)(typescript@5.9.3)(vite@8.1.5(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.7.0)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1)))(svelte@5.54.0):
     dependencies:
       '@floating-ui/core': 1.7.3
       '@floating-ui/dom': 1.7.4
