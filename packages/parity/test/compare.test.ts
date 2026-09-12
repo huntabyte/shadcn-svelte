@@ -544,3 +544,29 @@ describe("fixClassString", () => {
 		).toBe("z-50 origin-(--transform-origin)");
 	});
 });
+
+describe("calendar slot parity", () => {
+	it.each(["calendar", "range-calendar"])("includes every split %s slot", (item) => {
+		const upstream = new Set(["Calendar", "CalendarDayButton"]);
+		for (const slot of ["day", "cell", "caption", "month-select", "grid", "head-cell"]) {
+			expect(sourceFileHasUpstreamCounterpart(`${item}-${slot}.svelte`, item, upstream)).toBe(true);
+		}
+		expect(sourceFileHasUpstreamCounterpart("index.ts", item, upstream)).toBe(false);
+	});
+
+	it.each([
+		["group-data-[focused=true]/day:ring-[3px]", "group-data-focused/day:ring-[3px]"],
+		["data-[range-start=true]:bg-primary", "data-range-start:bg-primary"],
+		["data-[range-middle=true]:rounded-none", "data-range-middle:rounded-none"],
+		["data-[range-end=true]:text-primary-foreground", "data-range-end:text-primary-foreground"],
+		[
+			"[&:first-child[data-selected=true]_button]:rounded-l-(--cell-radius)",
+			"[&:first-child[data-selected]_[data-bits-day]]:rounded-l-(--cell-radius)",
+		],
+	])("recognizes DayPicker and Bits selectors: %s", (upstream, bits) => {
+		expect(canonicalizeRuntimeToken(upstream)).toBe(canonicalizeRuntimeToken(bits));
+		expect(canonicalizeRuntimeToken(upstream)).not.toBe(
+			canonicalizeRuntimeToken(bits.replace(/:[^:]+$/, ":bg-destructive"))
+		);
+	});
+});

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { DateFormatter, getLocalTimeZone, type DateValue } from "@internationalized/date";
+	import { cn } from "$lib/utils.js";
 	import RangeCalendarMonthSelect from "./range-calendar-month-select.svelte";
 	import RangeCalendarYearSelect from "./range-calendar-year-select.svelte";
 	import type RangeCalendar from "./range-calendar.svelte";
@@ -58,19 +59,24 @@
 	<RangeCalendarYearSelect {years} {yearFormat} value={month.year} />
 {/snippet}
 
-{#if captionLayout === "dropdown"}
-	{@render MonthSelect()}
-	{@render YearSelect()}
-{:else if captionLayout === "dropdown-months"}
-	{@render MonthSelect()}
-	{#if placeholder}
-		{formatYear(placeholder)}
+<div class="flex h-(--cell-size) w-full items-center justify-center gap-1.5 text-sm font-medium">
+	{#if captionLayout === "dropdown"}
+		{@render MonthSelect()}
+		{@render YearSelect()}
+	{:else if captionLayout === "dropdown-months"}
+		{@render MonthSelect()}
+		{#if placeholder}
+			{formatYear(placeholder)}
+		{/if}
+	{:else if captionLayout === "dropdown-years"}
+		{#if placeholder}
+			{formatMonth(placeholder)}
+		{/if}
+		{@render YearSelect()}
+	{:else}
+		<span class={cn("font-medium select-none", "cn-calendar-caption text-sm")}>
+			{formatMonth(month)}
+			{formatYear(month)}
+		</span>
 	{/if}
-{:else if captionLayout === "dropdown-years"}
-	{#if placeholder}
-		{formatMonth(placeholder)}
-	{/if}
-	{@render YearSelect()}
-{:else}
-	{formatMonth(month)} {formatYear(month)}
-{/if}
+</div>

@@ -78,6 +78,8 @@
 	const rangeCalendarProps = $derived(restProps as RangeCalendarRootProps);
 </script>
 
+<!-- parity-ignore-upstream: w-(--cell-size) select-none text-[0.8rem] text-muted-foreground [&:nth-child(2)[data-selected=true]_button]:rounded-l-(--cell-radius) flex size-(--cell-size) items-center justify-center text-center | Bits Calendar has no week-number column; these classes only style upstream week numbers and their adjacent first day -->
+
 <!--
 Discriminated Unions + Destructing (required for bindable) do not
 get along, so we shut typescript up by casting `value` to `never`.
@@ -102,12 +104,14 @@ get along, so we shut typescript up by casting `value` to `never`.
 	/>
 {:else}
 	<CalendarPrimitive.Root
+		data-slot="calendar"
 		bind:value={value as never}
 		bind:ref
 		bind:placeholder
 		{weekdayFormat}
 		{disableDaysOutsideMonth}
 		class={cn(
+			"w-fit",
 			"cn-calendar group/calendar bg-background in-data-[slot=card-content]:bg-transparent in-data-[slot=popover-content]:bg-transparent",
 			className
 		)}
@@ -139,7 +143,7 @@ get along, so we shut typescript up by casting `value` to `never`.
 						</Calendar.Header>
 						<Calendar.Grid>
 							<Calendar.GridHead>
-								<Calendar.GridRow class="select-none">
+								<Calendar.GridRow>
 									{#each weekdays as weekday, i (i)}
 										<Calendar.HeadCell>
 											{weekday.slice(0, 2)}
@@ -149,7 +153,7 @@ get along, so we shut typescript up by casting `value` to `never`.
 							</Calendar.GridHead>
 							<Calendar.GridBody>
 								{#each month.weeks as weekDates (weekDates)}
-									<Calendar.GridRow class="mt-2 w-full">
+									<Calendar.GridRow class="mt-2 flex w-full">
 										{#each weekDates as date (date)}
 											<Calendar.Cell {date} month={month.value}>
 												{#if day}

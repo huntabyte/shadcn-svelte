@@ -30,7 +30,7 @@
 	bind:ref
 	class={cn(
 		buttonVariants({ variant }),
-		"size-(--cell-size) bg-transparent p-0 select-none disabled:opacity-50",
+		"size-(--cell-size) p-0 select-none aria-disabled:opacity-50",
 		// parity-ignore: keep rtl utilities until the CLI rewrites them
 		"rtl:rotate-180",
 		className
