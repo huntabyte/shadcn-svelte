@@ -5,7 +5,7 @@
 	let { class: className, children, ...restProps }: HTMLAttributes<HTMLTableElement> = $props();
 </script>
 
-<div class="my-6 no-scrollbar w-full overflow-y-auto rounded-lg border">
+<div class="typeset-scroll no-scrollbar w-full scroll-fade-x overflow-y-auto rounded-lg border">
 	<table
 		class={cn(
 			"relative w-full overflow-hidden border-none text-sm [&_tbody_tr:last-child]:border-b-0",
