@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
+	import { cn } from "cn";
 	import RandomButton from "./random-button.svelte";
 	import ResetButton from "./reset-button.svelte";
 

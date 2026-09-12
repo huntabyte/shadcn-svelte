@@ -1,9 +1,9 @@
 <script lang="ts">
 	import CheckIcon from "@tabler/icons-svelte/icons/check";
 	import CopyIcon from "@tabler/icons-svelte/icons/copy";
+	import { cn } from "cn";
 	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
 	import { ComponentCodeViewerContext } from "./component-code-viewer.svelte";
 	import type { ComponentProps } from "svelte";
 

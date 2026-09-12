@@ -1,8 +1,8 @@
 <script lang="ts">
+	import { cn } from "cn";
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import { getColorFormat, type Color } from "$lib/colors.js";
 	import { UserConfigContext } from "$lib/user-config.svelte.js";
-	import { cn } from "$lib/utils.js";
 	import type { ComponentProps } from "svelte";
 
 	let {

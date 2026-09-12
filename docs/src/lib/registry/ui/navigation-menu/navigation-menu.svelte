@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { NavigationMenu as NavigationMenuPrimitive } from "bits-ui";
-	import { cn } from "$lib/utils.js";
+	import { cn } from "cn";
 	import NavigationMenuViewport from "./navigation-menu-viewport.svelte";
 
 	let {

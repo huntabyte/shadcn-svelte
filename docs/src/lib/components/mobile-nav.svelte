@@ -1,8 +1,8 @@
 <script lang="ts">
+	import { cn } from "cn";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import { mainNavItems, PAGES_NEW, sidebarNavItems } from "$lib/navigation.js";
 	import { Button, type ButtonProps } from "$lib/registry/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
 	import type { HTMLAnchorAttributes } from "svelte/elements";
 
 	type MobileLinkProps = HTMLAnchorAttributes & {

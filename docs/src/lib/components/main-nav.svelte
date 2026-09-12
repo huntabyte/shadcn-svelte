@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { page } from "$app/state";
+	import { cn } from "cn";
 	import Button from "$lib/registry/ui/button/button.svelte";
 	import type { NavItem } from "$lib/navigation.js";
-	import { cn } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 
 	let {

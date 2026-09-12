@@ -23,7 +23,7 @@ Use the `sv` CLI to add Tailwind CSS to your project.
 
 Add the following dependencies to your project:
 
-<PMInstall command="tailwind-variants clsx tailwind-merge tw-animate-css -D" />
+<PMInstall command="tailwind-variants cn tw-animate-css -D" />
 
 ### Add icon library
 
@@ -205,15 +205,10 @@ Feel free to add or modify as needed to suit your project.
 
 ### Configure utils
 
-You'll want to create a `cn` helper to make it easier to conditionally add and merge Tailwind CSS classes.
+Components import `cn` directly from the `cn` package. Re-export it from `src/lib/utils.ts` so your own code has a single place to import helpers from.
 
 ```ts title="src/lib/utils.ts" showLineNumbers
-import { type ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+export { cn } from "cn";
 ```
 
 ### Import styles to your app

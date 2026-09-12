@@ -4,7 +4,8 @@
 	"type": "registry:ui",
 	"devDependencies": [
 		"bits-ui@^2.18.0",
-		"@internationalized/date@^3.12.0"
+		"@internationalized/date@^3.12.0",
+		"cn@^0.2.5"
 	],
 	"files": [
 		{
@@ -13,7 +14,7 @@
 			"target": "separator/index.ts"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { Separator as SeparatorPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t\"data-slot\": dataSlot = \"separator\",\n\t\t...restProps\n\t}: SeparatorPrimitive.RootProps = $props();\n</script>\n\n<SeparatorPrimitive.Root\n\tbind:ref\n\tdata-slot={dataSlot}\n\tclass={cn(\n\t\t\"shrink-0 bg-border data-horizontal:h-px data-horizontal:w-full data-vertical:w-px data-vertical:self-stretch\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+			"content": "<script lang=\"ts\">\n\timport { Separator as SeparatorPrimitive } from \"bits-ui\";\n\timport { cn } from \"cn\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t\"data-slot\": dataSlot = \"separator\",\n\t\t...restProps\n\t}: SeparatorPrimitive.RootProps = $props();\n</script>\n\n<SeparatorPrimitive.Root\n\tbind:ref\n\tdata-slot={dataSlot}\n\tclass={cn(\n\t\t\"shrink-0 bg-border data-horizontal:h-px data-horizontal:w-full data-vertical:w-px data-vertical:self-stretch\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
 			"type": "registry:file",
 			"target": "separator/separator.svelte"
 		}

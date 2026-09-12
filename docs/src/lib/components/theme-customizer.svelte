@@ -155,6 +155,7 @@
 
 <script lang="ts">
 	import IconCopy from "@tabler/icons-svelte/icons/copy";
+	import { cn } from "cn";
 	import { setTheme } from "mode-watcher";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import * as Drawer from "$lib/registry/ui/drawer/index.js";
@@ -164,7 +165,6 @@
 	import { Label } from "$lib/registry/ui/label/index.js";
 	import { ScrollArea } from "$lib/registry/ui/scroll-area/index.js";
 	import { UserConfigContext, type ActiveTheme } from "$lib/user-config.svelte.js";
-	import { cn } from "$lib/utils.js";
 	import ThemeCustomizerCode from "./theme-customizer-code.svelte";
 	import type { HTMLAttributes } from "svelte/elements";
 	interface Props extends HTMLAttributes<HTMLElement> {

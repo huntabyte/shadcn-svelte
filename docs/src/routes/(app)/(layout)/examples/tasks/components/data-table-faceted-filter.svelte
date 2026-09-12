@@ -1,13 +1,13 @@
 <script lang="ts" generics="TData extends RowData, TValue">
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import CirclePlusIcon from "@lucide/svelte/icons/circle-plus";
+	import { cn } from "cn";
 	import { SvelteSet } from "svelte/reactivity";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
-	import { cn } from "$lib/utils.js";
 	import type { TasksTableFeatures } from "./data-table-features.js";
 	import type { Column, RowData } from "@tanstack/svelte-table";
 	import type { Component } from "svelte";

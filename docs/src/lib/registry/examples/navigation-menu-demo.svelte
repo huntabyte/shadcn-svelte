@@ -2,10 +2,10 @@
 	import CircleIcon from "@lucide/svelte/icons/circle";
 	import CircleCheckIcon from "@lucide/svelte/icons/circle-check";
 	import CircleHelpIcon from "@lucide/svelte/icons/circle-help";
+	import { cn } from "cn";
 	import * as NavigationMenu from "$lib/registry/ui/navigation-menu/index.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import { navigationMenuTriggerStyle } from "$lib/registry/ui/navigation-menu/navigation-menu-trigger.svelte";
-	import { cn } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 
 	const isMobile = new IsMobile();

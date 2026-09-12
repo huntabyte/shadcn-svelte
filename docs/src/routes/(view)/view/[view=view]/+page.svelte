@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { cn } from "cn";
 	import Metadata from "$lib/components/metadata.svelte";
-	import { cn } from "$lib/utils.js";
 	import type { PageProps } from "./$types.js";
 
 	let { data }: PageProps = $props();

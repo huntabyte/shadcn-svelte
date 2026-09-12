@@ -36,10 +36,10 @@ it("init (config-full)", async () => {
 		{
 			name: "utils",
 			type: "registry:lib",
-			devDependencies: ["clsx@latest", "tailwind-merge@latest"],
+			devDependencies: ["cn@latest"],
 			files: [
 				{
-					content: 'import { clsx, type ClassValue } from "clsx";',
+					content: 'export { cn } from "cn";',
 					type: "registry:lib",
 					target: "utils.ts",
 				},
@@ -74,7 +74,7 @@ it("init (config-full)", async () => {
 		{
 			name: "utils",
 			type: "registry:lib",
-			devDependencies: ["clsx", "tailwind-merge"],
+			devDependencies: ["cn"],
 			files: [{ content: "<UTILS CONTENT>", type: "registry:lib", target: "utils.ts" }],
 			$schema: "...",
 		},
@@ -150,8 +150,7 @@ it("init (config-full)", async () => {
 			"tailwind-variants@latest",
 			"@lucide/svelte@latest",
 			"tw-animate-css@latest",
-			"clsx@latest",
-			"tailwind-merge@latest",
+			"cn@latest",
 		],
 		{ throwOnError: true, nodeOptions: { cwd: targetDir } }
 	);

@@ -650,6 +650,9 @@ it("should accurately build the registry template", async () => {
 	expect(stepper).toMatchInlineSnapshot(`
 		{
 		  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+		  "devDependencies": [
+		    "cn@^0.2.5",
+		  ],
 		  "files": [
 		    {
 		      "content": "<!--
@@ -657,7 +660,7 @@ it("should accurately build the registry template", async () => {
 		-->
 
 		<script lang="ts">
-			import { cn } from "$UTILS$.js";
+			import { cn } from "cn";
 			import type { HTMLAttributes } from "svelte/elements";
 
 			let { class: className, children, ...restProps }: HTMLAttributes<HTMLDivElement> = $props();
@@ -676,7 +679,7 @@ it("should accurately build the registry template", async () => {
 		-->
 
 		<script lang="ts">
-			import { cn } from "$UTILS$";
+			import { cn } from "cn";
 			import type { HTMLButtonAttributes } from "svelte/elements";
 
 			let { class: className, step, ...props }: HTMLButtonAttributes & { step: number } = $props();

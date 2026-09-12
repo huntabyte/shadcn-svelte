@@ -6,8 +6,8 @@
 	import MousePointer2Icon from "@lucide/svelte/icons/mouse-pointer-2";
 	import PieChartIcon from "@lucide/svelte/icons/pie-chart";
 	import RadarIcon from "@lucide/svelte/icons/radar";
+	import { cn } from "cn";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
-	import { cn } from "$lib/utils.js";
 	import ChartCodeViewer from "./chart-code-viewer.svelte";
 	import ChartCopyButton from "./chart-copy-button.svelte";
 	import type { HighlightedBlock } from "../../routes/api/block/[block]/+server.js";

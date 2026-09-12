@@ -1,11 +1,11 @@
 <svelte:options runes />
 
 <script lang="ts">
+	import { cn } from "cn";
 	import { setMode, mode } from "mode-watcher";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { useIsMac } from "$lib/hooks/use-is-mac.svelte.js";
-	import { cn } from "$lib/utils.js";
 	import * as Picker from "./picker/index.js";
 	import { ActionMenuCtx } from "./action-menu-context.svelte.js";
 

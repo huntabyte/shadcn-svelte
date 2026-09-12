@@ -1,8 +1,8 @@
 <script lang="ts">
+	import { cn } from "cn";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as InputOTP from "$lib/registry/ui/input-otp/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
 
 	let className: string | undefined = undefined;
 	export { className as class };

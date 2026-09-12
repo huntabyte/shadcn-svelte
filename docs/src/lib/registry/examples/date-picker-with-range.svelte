@@ -6,10 +6,10 @@
 		type DateValue,
 		getLocalTimeZone,
 	} from "@internationalized/date";
+	import { cn } from "cn";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { RangeCalendar } from "$lib/registry/ui/range-calendar/index.js";
-	import { cn } from "$lib/utils.js";
 	import type { DateRange } from "bits-ui";
 
 	const df = new DateFormatter("en-US", {

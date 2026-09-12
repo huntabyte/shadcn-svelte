@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { cn } from "cn";
 	import * as Avatar from "$lib/registry/ui/avatar/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Command from "$lib/registry/ui/command/index.js";
@@ -7,7 +8,6 @@
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
 
 	const users = [
 		"shadcn",

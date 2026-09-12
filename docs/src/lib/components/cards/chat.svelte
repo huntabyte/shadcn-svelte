@@ -2,6 +2,7 @@
 	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import PlusIcon from "@lucide/svelte/icons/plus";
+	import { cn } from "cn";
 	import * as Avatar from "$lib/registry/ui/avatar/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Command from "$lib/registry/ui/command/index.js";
@@ -9,7 +10,6 @@
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
 
 	const users = [
 		{

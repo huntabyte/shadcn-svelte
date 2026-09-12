@@ -25,7 +25,7 @@ test.concurrent.for(testCases)("registry-template $kind.type $variant", async (t
 
 	const utilsPath = path.resolve(cwd, "src/lib/utils.ts");
 	expect(fs.existsSync(utilsPath)).toBe(true);
-	expect(fs.readFileSync(utilsPath, "utf8")).toContain("twMerge");
+	expect(fs.readFileSync(utilsPath, "utf8")).toContain('export { cn } from "cn";');
 
 	const registryPath = path.resolve(cwd, "registry.json");
 	expect(fs.existsSync(registryPath)).toBe(true);
@@ -52,6 +52,7 @@ test.concurrent.for(testCases)("registry-template $kind.type $variant", async (t
 	expect(
 		pkg.devDependencies?.["tw-animate-css"] || pkg.dependencies?.["tw-animate-css"]
 	).toBeTruthy();
+	expect(pkg.devDependencies?.cn || pkg.dependencies?.cn).toBeTruthy();
 	expect(pkg.devDependencies?.zod || pkg.dependencies?.zod).toBeTruthy();
 
 	const stylesheetCandidates = [

@@ -29,8 +29,7 @@ export default defineAddon({
 	run: ({ sv, options, directory, file }) => {
 		sv.devDependency("shadcn-svelte", "^1.4.2");
 		sv.devDependency("bits-ui", "^2.7.0");
-		sv.devDependency("clsx", "^2.1.1");
-		sv.devDependency("tailwind-merge", "^3.6.0");
+		sv.devDependency("cn", "^0.2.5");
 		sv.devDependency("tailwind-variants", "^3.3.0");
 		sv.devDependency("tw-animate-css", "^1.3.3");
 		sv.devDependency("zod", "^4.4.3");

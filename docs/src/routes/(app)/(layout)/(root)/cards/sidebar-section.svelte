@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { cn } from "cn";
 	import { Card } from "$lib/registry/ui/card/index.js";
 	import {
 		Sidebar,
@@ -9,7 +10,6 @@
 		SidebarMenu,
 		SidebarProvider,
 	} from "$lib/registry/ui/sidebar/index.js";
-	import { cn } from "$lib/utils.js";
 	import type { Snippet } from "svelte";
 
 	let {

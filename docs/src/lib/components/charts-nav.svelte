@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from "$app/state";
+	import { cn } from "cn";
 	import { ScrollArea } from "$lib/registry/ui/scroll-area/index.js";
-	import { cn } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 
 	let { class: className, ...restProps }: HTMLAttributes<HTMLElement> = $props();

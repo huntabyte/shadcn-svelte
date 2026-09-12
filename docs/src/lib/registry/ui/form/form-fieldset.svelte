@@ -1,6 +1,7 @@
 <script lang="ts" generics="T extends Record<string, unknown>, U extends FormPath<T>">
 	import * as FormPrimitive from "formsnap";
-	import { cn, type WithoutChild } from "$lib/utils.js";
+	import { cn } from "cn";
+	import { type WithoutChild } from "$lib/utils.js";
 	import type { FormPath } from "sveltekit-superforms";
 
 	let {

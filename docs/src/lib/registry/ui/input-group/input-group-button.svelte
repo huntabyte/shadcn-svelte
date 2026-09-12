@@ -20,8 +20,8 @@
 </script>
 
 <script lang="ts">
+	import { cn } from "cn";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
 	import type { ComponentProps } from "svelte";
 
 	let {

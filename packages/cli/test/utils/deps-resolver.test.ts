@@ -266,6 +266,20 @@ describe("getFileDependencies", () => {
 		expect(result.devDependencies).toBeUndefined();
 	});
 
+	it("extracts dependencies from re-exports", async () => {
+		const src = `
+		export { foo } from 'foo';
+		export * from 'bar';
+		export const local = true;
+	  `;
+		const result = await getFileDependencies(
+			mkOpts("index.ts", src, { foo: [], bar: ["bar-peer"] }, {})
+		);
+
+		expect(result.dependencies).toEqual(["foo@1.0.0", "bar@1.0.0", "bar-peer@1.0.0"]);
+		expect(result.devDependencies).toBeUndefined();
+	});
+
 	it('parses <script> and <script context="module"> in .svelte', async () => {
 		const svelteSrc = `
 		<script>

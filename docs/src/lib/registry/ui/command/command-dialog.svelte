@@ -1,6 +1,7 @@
 <script lang="ts">
+	import { cn } from "cn";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
-	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
+	import { type WithoutChildrenOrChild } from "$lib/utils.js";
 	import Command from "./command.svelte";
 	import type { Command as CommandPrimitive, Dialog as DialogPrimitive } from "bits-ui";
 	import type { Snippet } from "svelte";
