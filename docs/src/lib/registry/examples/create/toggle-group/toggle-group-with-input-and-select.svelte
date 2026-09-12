@@ -2,7 +2,7 @@
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const items = [
 		{ label: "All", value: "all" },

@@ -13,7 +13,7 @@
 	import { Input } from "$lib/registry/ui/input/index.js";
 	import { Textarea } from "$lib/registry/ui/textarea/index.js";
 	import { cn } from "$lib/utils.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"] as const;
 

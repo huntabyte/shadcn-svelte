@@ -6,7 +6,7 @@
 	import TableWithFooter from "./table-with-footer.svelte";
 	import TableWithInput from "./table-with-input.svelte";
 	import TableWithSelect from "./table-with-select.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

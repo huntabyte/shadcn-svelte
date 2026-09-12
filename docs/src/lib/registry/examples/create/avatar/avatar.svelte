@@ -6,7 +6,7 @@
 	import AvatarSizes from "./avatar-sizes.svelte";
 	import AvatarWithBadgeIcon from "./avatar-with-badge-icon.svelte";
 	import AvatarWithBadge from "./avatar-with-badge.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

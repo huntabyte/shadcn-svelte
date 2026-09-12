@@ -5,7 +5,7 @@
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const largeListItems = Array.from({ length: 100 }, (_, i) => `Item ${i + 1}`);
 

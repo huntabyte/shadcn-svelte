@@ -6,7 +6,7 @@
 	import InputGroupWithButtons from "./input-group-with-buttons.svelte";
 	import InputGroupWithKbd from "./input-group-with-kbd.svelte";
 	import InputGroupWithTooltip from "./input-group-with-tooltip.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper class="min-w-0">

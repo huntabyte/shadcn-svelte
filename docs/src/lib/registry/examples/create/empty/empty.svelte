@@ -5,7 +5,7 @@
 	import EmptyWithIcon from "./empty-with-icon.svelte";
 	import EmptyWithMutedBackgroundAlt from "./empty-with-muted-background-alt.svelte";
 	import EmptyWithMutedBackground from "./empty-with-muted-background.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

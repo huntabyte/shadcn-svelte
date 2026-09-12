@@ -4,7 +4,7 @@
 	import * as NativeSelect from "$lib/registry/ui/native-select/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Textarea } from "$lib/registry/ui/textarea/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="Feedback Form" class="items-center justify-center">

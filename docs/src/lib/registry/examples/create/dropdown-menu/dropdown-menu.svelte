@@ -11,7 +11,7 @@
 	import DropdownMenuWithRadio from "./dropdown-menu-with-radio.svelte";
 	import DropdownMenuWithShortcuts from "./dropdown-menu-with-shortcuts.svelte";
 	import DropdownMenuWithSubmenu from "./dropdown-menu-with-submenu.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from "$app/state";
 	import PlusIcon from "@lucide/svelte/icons/plus";
-	import SquareTerminal from "@lucide/svelte/icons/square-terminal";
 	import Separator from "$lib/registry/ui/separator/separator.svelte";
 	import { getColors } from "$lib/colors.js";
 	import { mainNavItems } from "$lib/navigation.js";
@@ -12,9 +11,7 @@
 	import MainNav from "./main-nav.svelte";
 	import MobileNav from "./mobile-nav.svelte";
 	import ModeSwitcher from "./mode-switcher.svelte";
-	import { InitializeProjectCtx } from "../../routes/(app)/(layout)/(create)/components/initialize-project-context.svelte.js";
-
-	const initializeProjectCtx = InitializeProjectCtx.getOr(null);
+	import ProjectForm from "../../routes/(app)/(layout)/create/components/project-form.svelte";
 
 	const colors = getColors();
 
@@ -47,19 +44,9 @@
 				<LayoutToggle class="hidden 3xl:flex" />
 				<Separator orientation="vertical" />
 				{#if page.url.pathname.startsWith("/create")}
-					<ModeSwitcher class="md:hidden" />
-					<Separator orientation="vertical" />
-					{#if initializeProjectCtx}
-						<Button
-							onclick={() => (initializeProjectCtx.open = true)}
-							variant="default"
-							size="sm"
-							class="hidden md:flex"
-						>
-							<SquareTerminal />
-							Initialize Project
-						</Button>
-					{/if}
+					<ModeSwitcher />
+					<Separator orientation="vertical" class="hidden md:flex" />
+					<ProjectForm class="hidden h-[31px] rounded-lg md:flex" />
 				{:else}
 					<ModeSwitcher />
 					<Button href="/create" variant="default" size="sm" class="h-[31px] rounded-lg">

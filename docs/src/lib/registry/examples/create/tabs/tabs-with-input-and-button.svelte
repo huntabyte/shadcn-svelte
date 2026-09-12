@@ -2,7 +2,7 @@
 	import * as Tabs from "$lib/registry/ui/tabs/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="With Input and Button" containerClass="col-span-full">

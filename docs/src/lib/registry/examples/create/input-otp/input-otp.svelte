@@ -7,7 +7,7 @@
 	import InputOTPPattern from "./input-otp-pattern.svelte";
 	import InputOTPSimple from "./input-otp-simple.svelte";
 	import InputOTPWithSeparator from "./input-otp-with-separator.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>
