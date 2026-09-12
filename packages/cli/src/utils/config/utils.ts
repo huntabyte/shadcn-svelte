@@ -35,18 +35,21 @@ export async function resolveConfig(cwd: string, config: RawConfig): Promise<Res
 	const tsconfig = resolveTSConfig(cwd, config);
 
 	const tsconfigFilename = path.basename(tsconfig.path);
-	if (!tsconfig.config.compilerOptions?.paths) {
-		throw error(
-			`Missing ${highlight("paths")} field in your ${highlight(tsconfigFilename)} for path aliases. See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}`
-		);
-	}
 
-	const aliasError = (type: string, alias: string) =>
-		new ConfigError(
+	const aliasError = (type: string, alias: string) => {
+		// aliases may also resolve via `package.json` import maps, so only surface the
+		// missing `paths` error when the tsconfig has no `paths` field at all
+		if (!tsconfig.config.compilerOptions?.paths) {
+			return error(
+				`Missing ${highlight("paths")} field in your ${highlight(tsconfigFilename)} for path aliases. See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}`
+			);
+		}
+		return new ConfigError(
 			`Invalid import alias found: (${highlight(`"${type}": "${alias}"`)}) in ${highlight("components.json")}.
    - Import aliases ${color.underline("must use")} existing path aliases defined in your ${highlight(tsconfigFilename)} (e.g. "${type}": "$lib/${type}").
    - See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}.`
 		);
+	};
 
 	const resolvedPaths: Record<string, string> = {
 		cwd,
@@ -121,11 +124,12 @@ type PromptForAliasesOptions = {
 	existingConfig: RawConfig | undefined;
 	utilsAlias?: string | undefined;
 	libAlias?: string | undefined;
+	libAliasDefault?: string | undefined;
 	hooksAlias?: string | undefined;
 	uiAlias?: string | undefined;
 };
 export async function promptForAliases(options: PromptForAliasesOptions) {
-	const libAlias = await promptAlias("lib", "$lib", options);
+	const libAlias = await promptAlias("lib", options.libAliasDefault ?? "$lib", options);
 	const componentAlias = await promptAlias("components", `${libAlias}/components`, options);
 	const uiAlias = await promptAlias("ui", `${componentAlias}/ui`, options);
 	const utilsAlias = await promptAlias("utils", `${libAlias}/utils`, options);

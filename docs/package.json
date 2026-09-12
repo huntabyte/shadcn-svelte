@@ -21,7 +21,12 @@
 		"sync": "pnpm build:registry && pnpm build:content && svelte-kit sync",
 		"preview": "vite preview",
 		"check": "svelte-check --fail-on-warnings --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
+		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
+		"parity": "parity",
+		"parity-check": "parity --check",
+		"parity:fix": "parity fix",
+		"parity:variants": "parity variants",
+		"parity-check:variants": "parity variants --check"
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20260317.1",
@@ -29,6 +34,7 @@
 		"@dnd-kit/abstract": "^0.1.21",
 		"@dnd-kit/collision": "^0.1.21",
 		"@dnd-kit/helpers": "^0.1.21",
+		"@shadcn-svelte/parity": "workspace:*",
 		"@fontsource-variable/dm-sans": "^5.2.8",
 		"@fontsource-variable/eb-garamond": "^5.2.7",
 		"@fontsource-variable/figtree": "^5.2.10",
@@ -69,7 +75,7 @@
 		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"@tabler/icons-svelte": "^3.40.0",
 		"@tailwindcss/vite": "^4.3.3",
-		"@tanstack/table-core": "^8.21.3",
+		"@tanstack/svelte-table": "^9.0.0",
 		"@types/d3-scale": "^4.0.9",
 		"@types/d3-shape": "^3.1.8",
 		"@types/hast": "^3.0.4",
@@ -79,7 +85,7 @@
 		"@types/mdast": "^4.0.4",
 		"@types/qrcode": "^1.5.6",
 		"acorn": "^8.16.0",
-		"bits-ui": "^2.16.3",
+		"bits-ui": "^2.18.0",
 		"chrono-node": "^2.9.0",
 		"clsx": "^2.1.1",
 		"concurrently": "^9.2.1",
@@ -134,6 +140,6 @@
 		"vaul-svelte": "1.0.0-next.7",
 		"velite": "^0.3.1",
 		"vite": "^8.1.5",
-		"zod": "catalog:"
+		"zod": "^4.4.3"
 	}
 }

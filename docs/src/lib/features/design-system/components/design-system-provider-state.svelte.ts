@@ -4,6 +4,7 @@ import { StateHistory, Context, PersistedState } from "runed";
 import {
 	decodePreset,
 	encodePreset,
+	isValidPreset,
 	DEFAULT_PRESET_CONFIG,
 	type PresetConfig,
 	PRESET_BASE_COLOR_KEYS,
@@ -64,10 +65,16 @@ class DesignSystemState implements IDesignSystemState {
 	#preset: PersistedState<string>;
 	#locks: PersistedState<Lockable>;
 	constructor() {
+		const presetFromUrl = this.#getSearchParam("preset");
 		this.#preset = new PersistedState<string>(
 			"design-system-preset",
-			this.#getSearchParam("preset") ?? encodePreset(DEFAULT_PRESET_CONFIG)
+			presetFromUrl ?? encodePreset(DEFAULT_PRESET_CONFIG)
 		);
+		// PersistedState only falls back to the initial value when nothing is stored yet, so a
+		// shared ?preset= link is ignored for anyone who has already used the editor.
+		if (presetFromUrl && isValidPreset(presetFromUrl)) {
+			this.#preset.current = presetFromUrl;
+		}
 		this.#locks = new PersistedState<Lockable>("locks", {
 			style: false,
 			baseColor: false,

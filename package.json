@@ -18,6 +18,7 @@
 		"check": "pnpm --parallel check",
 		"lint": "oxfmt --check && eslint . --no-config-lookup --config eslint.config.js",
 		"format": "oxfmt",
+		"pull:styles": "pnpm -F './docs' pull:styles",
 		"preinstall": "npx only-allow pnpm",
 		"postinstall": "pnpm build:cli && pnpm -r sync",
 		"ci:publish": "changeset publish",

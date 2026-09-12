@@ -23,7 +23,7 @@
 		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"@tabler/icons-svelte": "^3.36.0",
 		"@tailwindcss/vite": "^4.3.3",
-		"@tanstack/table-core": "^8.21.3",
+		"@tanstack/svelte-table": "^9.0.0",
 		"bits-ui": "^2.14.4",
 		"clsx": "^2.1.1",
 		"embla-carousel-svelte": "^8.6.0",

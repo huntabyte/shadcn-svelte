@@ -192,7 +192,7 @@ The following dependencies have been updated to support Svelte 5:
 - `vaul-svelte` - `^1.0.0-next.7`
 - `mode-watcher` - `^1.0.0`
 - `cmdk-sv` - deprecated in favor of Bits UI's `Command` component
-- `svelte-headless-table` - deprecated in favor of `@tanstack/table-core`
+- `svelte-headless-table` - deprecated in favor of `@tanstack/svelte-table`
 - `svelte-radix` - icons deprecated in favor of `@lucide/svelte`
 - `lucide-svelte` - replaced with `@lucide/svelte`
 
@@ -227,7 +227,7 @@ Once you've updated all your components, you can remove the old dependencies fro
 
 ### svelte-headless-table
 
-`svelte-headless-table` has been replaced with `@tanstack/table-core`.
+`svelte-headless-table` has been replaced with `@tanstack/svelte-table`.
 
 <PMRemove command="svelte-headless-table" />
 
