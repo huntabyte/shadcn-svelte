@@ -20,11 +20,11 @@ You will be asked a few questions to configure `components.json`:
 ```txt showLineNumbers
 Which base color would you like to use? › Slate
 Where is your global CSS file? (this file will be overwritten) › src/routes/layout.css
-Configure the import alias for lib: › $lib
-Configure the import alias for components: › $lib/components
-Configure the import alias for utils: › $lib/utils
-Configure the import alias for hooks: › $lib/hooks
-Configure the import alias for ui: › $lib/components/ui
+Configure the import alias for lib: › #lib
+Configure the import alias for components: › #lib/components
+Configure the import alias for utils: › #lib/utils
+Configure the import alias for hooks: › #lib/hooks
+Configure the import alias for ui: › #lib/components/ui
 ```
 
 **Options**
