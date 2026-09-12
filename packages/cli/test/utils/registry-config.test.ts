@@ -2,6 +2,7 @@ import os from "node:os";
 import path from "node:path";
 import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { z } from "zod";
 import {
 	DEFAULT_CONFIG,
 	loadConfig,
@@ -29,6 +30,22 @@ describe("registry configuration", () => {
 
 	it("keeps existing configurations unchanged", () => {
 		expect(parseRawConfig(DEFAULT_CONFIG)).not.toHaveProperty("registries");
+	});
+
+	it("includes namespace and URL validation in the generated JSON schema", () => {
+		const schema = z.toJSONSchema(registryConfigSchema);
+		const names = schema.propertyNames;
+		if (!names || typeof names === "boolean") throw new Error("Missing registry name schema");
+		const namespacePattern = names.pattern;
+		expect(namespacePattern).toBeDefined();
+		expect(new RegExp(namespacePattern!).test("@acme")).toBe(true);
+		expect(new RegExp(namespacePattern!).test("acme")).toBe(false);
+		const entry = schema.additionalProperties;
+		if (!entry || typeof entry === "boolean") throw new Error("Missing registry entry schema");
+		const pattern = entry.anyOf?.[0]?.pattern;
+		expect(pattern).toBeDefined();
+		expect(new RegExp(pattern!).test("https://acme.com/{name}.json")).toBe(true);
+		expect(new RegExp(pattern!).test("https://acme.com/button.json")).toBe(false);
 	});
 
 	it.each([

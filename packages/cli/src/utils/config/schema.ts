@@ -84,7 +84,7 @@ const baseConfigSchema = z.object({
 
 const originalConfigSchema = baseConfigSchema.extend({ style: z.string().optional() });
 
-const registryUrlSchema = z.string().refine((url) => url.includes("{name}"), {
+const registryUrlSchema = z.string().includes("{name}", {
 	message: "Registry URL must include {name} placeholder",
 });
 
@@ -99,7 +99,7 @@ export const registryConfigItemSchema = z.union([
 export type RegistryConfigItem = z.infer<typeof registryConfigItemSchema>;
 
 export const registryConfigSchema = z.record(
-	z.string().refine((name) => name.startsWith("@"), {
+	z.string().startsWith("@", {
 		message: "Registry names must start with @ (e.g., @acme)",
 	}),
 	registryConfigItemSchema
