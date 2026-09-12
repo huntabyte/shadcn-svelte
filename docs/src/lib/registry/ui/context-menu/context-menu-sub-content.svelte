@@ -12,6 +12,9 @@
 <ContextMenuPrimitive.SubContent
 	bind:ref
 	data-slot="context-menu-sub-content"
-	class={cn("cn-context-menu-sub-content cn-menu-target cn-menu-translucent", className)}
+	class={cn(
+		"cn-context-menu-sub-content cn-menu-target cn-menu-translucent z-50 origin-(--bits-context-menu-content-transform-origin) overflow-hidden",
+		className
+	)}
 	{...restProps}
 />

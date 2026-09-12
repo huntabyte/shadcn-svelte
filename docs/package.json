@@ -23,7 +23,12 @@
 		"sync": "pnpm build:registry && pnpm build:content && svelte-kit sync",
 		"preview": "vite preview",
 		"check": "pnpm build:search-data && svelte-check --fail-on-warnings --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
+		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
+		"parity": "parity",
+		"parity-check": "parity --check",
+		"parity:fix": "parity fix",
+		"parity:variants": "parity variants",
+		"parity-check:variants": "parity variants --check"
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20260317.1",
@@ -31,6 +36,7 @@
 		"@dnd-kit/abstract": "^0.1.21",
 		"@dnd-kit/collision": "^0.1.21",
 		"@dnd-kit/helpers": "^0.1.21",
+		"@shadcn-svelte/parity": "workspace:*",
 		"@fontsource-variable/dm-sans": "^5.2.8",
 		"@fontsource-variable/eb-garamond": "^5.2.7",
 		"@fontsource-variable/figtree": "^5.2.10",
@@ -81,7 +87,7 @@
 		"@types/mdast": "^4.0.4",
 		"@types/qrcode": "^1.5.6",
 		"acorn": "^8.16.0",
-		"bits-ui": "^2.16.3",
+		"bits-ui": "^2.18.0",
 		"chrono-node": "^2.9.0",
 		"clsx": "^2.1.1",
 		"concurrently": "^9.2.1",

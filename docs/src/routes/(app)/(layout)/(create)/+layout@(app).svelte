@@ -1,5 +1,10 @@
 <script lang="ts">
+	import { DesignSystemProvider } from "$lib/features/design-system/index.js";
+	import "../../../../styles-registry.css";
+
 	let { children } = $props();
 </script>
 
-{@render children()}
+<DesignSystemProvider>
+	{@render children()}
+</DesignSystemProvider>

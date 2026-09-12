@@ -9,15 +9,15 @@
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import * as Kbd from "$lib/registry/ui/kbd/index.js";
-	import type { Color, ColorPalette } from "$lib/colors.js";
+	import type { ColorPalette } from "$lib/colors.js";
 	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
-	import { sidebarNavItems, mainNavItems } from "$lib/navigation.js";
+	import { mainNavItems, sidebarNavItems } from "$lib/navigation.js";
 	import { getCommand } from "$lib/package-manager.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
-	import { UserConfigContext } from "$lib/user-config.svelte.js";
+	import { UserConfigContext, type PackageManager } from "$lib/user-config.svelte.js";
 	import { cn } from "$lib/utils.js";
-	import { type SearchResult, createContentIndex, searchContentIndex } from "$lib/utils/search.js";
+	import { createContentIndex, searchContentIndex } from "$lib/utils/search.js";
 	import CommandMenuItem from "./command-menu-item.svelte";
 
 	let {
@@ -31,172 +31,188 @@
 	} = $props();
 
 	let open = $state(false);
-	let selectedType = $state<"color" | "page" | "component" | "block" | "search" | null>(null);
-	let copyPayload = $state("");
-	let searchQuery = $state("");
-	let searchResults = $state<SearchResult[]>([]);
-	let searchState = $state<"loading" | "ready">("loading");
+	// The currently highlighted item's value (bound to the command). Everything the footer
+	// shows is derived from it, which is far cheaper than observing every item for changes.
+	let value = $state("");
 
-	const hasSearchQuery = $derived(searchQuery.trim().length > 0);
+	const userConfig = UserConfigContext.get();
+	const clipboard = new UseClipboard();
 
 	const COMMAND_MENU_GROUP_ORDER = [
 		"Components",
 		"Get Started",
 		"Changelog",
-		"Forms",
 		"Utilities",
 		"Installation",
 		"Dark Mode",
 		"Registry",
+		"Forms",
 		"Migration",
 	] as const;
 
-	const orderedSidebarGroups = $derived(
-		COMMAND_MENU_GROUP_ORDER.map((title) => sidebarNavItems.find((g) => g.title === title))
-			.filter((g): g is (typeof sidebarNavItems)[number] => g !== undefined)
+	const orderedSidebarGroups = COMMAND_MENU_GROUP_ORDER.map((title) =>
+		sidebarNavItems.find((group) => group.title === title)
+	)
+		.filter((group): group is (typeof sidebarNavItems)[number] => group !== undefined)
+		.map((group) => ({
+			...group,
+			items:
+				group.items.length > 0
+					? group.items
+					: group.href
+						? [{ title: group.title, href: group.href, items: [] }]
+						: [],
+		}));
+
+	type SelectedType = "color" | "page" | "component" | "block" | "search";
+
+	function pageValue(groupTitle: string, title: string | undefined) {
+		return title?.toString() ? `${groupTitle} ${title}` : "";
+	}
+
+	function addCommandPayload(pm: PackageManager, name: string) {
+		const cmd = getCommand(pm, "execute", `shadcn-svelte add ${name}`);
+		return `${cmd.command} ${cmd.args.join(" ")}`.trim();
+	}
+
+	// Maps each item's command value to what the footer should show when it is highlighted.
+	const selections = $derived.by(() => {
+		const pm = userConfig.current.packageManager;
+		const map: Record<string, { type: SelectedType; payload: string }> = {};
+		for (const item of mainNavItems) {
+			map[pageValue("Pages", item.title)] = { type: "page", payload: "" };
+		}
+		for (const group of orderedSidebarGroups) {
+			for (const item of group.items) {
+				const isComponent = item.href?.includes("/components/") ?? false;
+				map[pageValue(group.title, item.title)] = isComponent
+					? { type: "component", payload: addCommandPayload(pm, item.href?.split("/").pop() ?? "") }
+					: { type: "page", payload: "" };
+			}
+		}
+		for (const block of blocks ?? []) {
+			map[block.name] = { type: "block", payload: addCommandPayload(pm, block.name) };
+		}
+		for (const palette of colors) {
+			for (const color of palette.colors) {
+				map[color.class] = { type: "color", payload: color.class };
+			}
+		}
+		for (const result of contentResults) {
+			map[`Search ${result.href}`] = { type: "search", payload: "" };
+		}
+		return map;
+	});
+
+	const selected = $derived(selections[value]);
+	const selectedType = $derived(selected?.type ?? null);
+	const copyPayload = $derived(selected?.payload ?? "");
+	// Only the small "Pages" group is rendered in the frame the dialog opens (like shadcn/ui);
+	// the docs groups mount right after that frame paints so opening the menu is instant.
+	let renderDelayedGroups = $state(false);
+	// Bound to the input. Reset on open rather than close so the dialog never remounts items
+	// it is about to tear down.
+	let search = $state("");
+
+	$effect(() => {
+		if (!open) {
+			renderDelayedGroups = false;
+			return;
+		}
+		let timeout: ReturnType<typeof setTimeout> | undefined;
+		const frame = requestAnimationFrame(() => {
+			timeout = setTimeout(() => {
+				renderDelayedGroups = true;
+			});
+		});
+		return () => {
+			cancelAnimationFrame(frame);
+			clearTimeout(timeout);
+		};
+	});
+
+	// Filtering is done here instead of by the command primitive so that only matching items
+	// are ever mounted. The primitive would mount all ~340 items (250 of them colors) and
+	// re-filter/re-sort every one of them on each keystroke, which is what made the menu lag.
+	// Matching is the same plain substring check shadcn/ui uses.
+	const normalizedSearch = $derived(search.trim().toLowerCase());
+
+	function matches(haystack: string) {
+		return normalizedSearch === "" || haystack.includes(normalizedSearch);
+	}
+
+	const pageResults = $derived(
+		mainNavItems.filter((item) => matches(`pages ${item.title} page`.toLowerCase()))
+	);
+
+	const groupResults = $derived(
+		orderedSidebarGroups
 			.map((group) => ({
-				title: group.title,
-				items:
-					group.items.length > 0
-						? group.items
-						: group.href
-							? [{ title: group.title, href: group.href, items: [] }]
-							: [],
+				...group,
+				items: group.items.filter((item) => {
+					const isComponent = item.href?.includes("/components/") ?? false;
+					return matches(
+						`${group.title} ${item.title}${isComponent ? " component" : ""}`.toLowerCase()
+					);
+				}),
 			}))
 			.filter((group) => group.items.length > 0)
 	);
 
-	const filteredPages = $derived.by(() => {
-		if (!searchQuery.trim()) return [];
-		const q = searchQuery.trim().toLowerCase();
-		return mainNavItems.filter((item) => item.title.toLowerCase().includes(q));
-	});
-
-	const filteredSidebarGroups = $derived.by(() => {
-		if (!searchQuery.trim()) return [];
-		const q = searchQuery.trim().toLowerCase();
-		return orderedSidebarGroups
-			.map((group) => {
-				const groupMatches = group.title.toLowerCase().includes(q);
-				return {
-					title: group.title,
-					items: groupMatches
-						? group.items
-						: group.items.filter((item) => item.title?.toLowerCase().includes(q)),
-				};
-			})
-			.filter((group) => group.items.length > 0);
-	});
-
-	const sidebarMatchHrefs = $derived(
-		new Set(filteredSidebarGroups.flatMap((g) => g.items.map((i) => i.href)))
+	const blockResults = $derived(
+		(blocks ?? []).filter((block) =>
+			matches(
+				`${block.name} block ${block.description} ${block.categories.join(" ")}`.toLowerCase()
+			)
+		)
 	);
 
-	const deduplicatedSearchResults = $derived.by(() => {
-		const seen = new SvelteSet<string>();
-		return searchResults.filter((r) => {
-			if (sidebarMatchHrefs.has(r.href.split("#")[0])) return false;
-			if (seen.has(r.href)) return false;
-			seen.add(r.href);
-			return true;
-		});
-	});
-
-	const filteredColors = $derived.by(() => {
-		if (!searchQuery.trim()) return [];
-		const q = searchQuery.trim().toLowerCase();
-		return colors
-			.map((palette) => ({
-				...palette,
-				colors: palette.colors.filter(
-					(c) => c.name.toLowerCase().includes(q) || c.class.toLowerCase().includes(q)
-				),
-			}))
-			.filter((palette) => palette.colors.length > 0);
-	});
-
-	const hasAnyResults = $derived(
-		filteredPages.length > 0 ||
-			filteredSidebarGroups.length > 0 ||
-			deduplicatedSearchResults.length > 0 ||
-			filteredColors.length > 0
+	// Colors are only shown while searching, and only the ones whose class name matches, so a
+	// query like "c" does not mount every color in the palette.
+	const colorResults = $derived(
+		normalizedSearch === ""
+			? []
+			: colors
+					.map((palette) => ({
+						...palette,
+						colors: palette.colors.filter((color) => color.class.includes(normalizedSearch)),
+					}))
+					.filter((palette) => palette.colors.length > 0)
 	);
 
+	let searchReady = $state(false);
 	onMount(async () => {
 		try {
 			const response = await fetch(`${base}/api/search.json`);
 			if (!response.ok) return;
-			const data = await response.json();
-			await createContentIndex(data);
+			await createContentIndex(await response.json());
 		} catch {
-			// Keep the command menu usable with local navigation results if the content index fails.
+			// Navigation search remains usable if the content index fails to load.
 		} finally {
-			searchState = "ready";
+			searchReady = true;
 		}
 	});
 
-	$effect(() => {
-		if (searchState !== "ready") return;
-		searchResults = searchContentIndex(searchQuery);
-		if (searchQuery.trim()) {
-			selectedType = "search";
-			copyPayload = "";
-		}
-	});
-
-	let clearTimeoutId: number | undefined;
-
-	function cancelClearSearch() {
-		if (!clearTimeoutId) return;
-		window.clearTimeout(clearTimeoutId);
-		clearTimeoutId = undefined;
-	}
-
-	function clearSearchWithDelay() {
-		cancelClearSearch();
-		clearTimeoutId = window.setTimeout(() => {
-			searchQuery = "";
-			clearTimeoutId = undefined;
-		}, 300);
-	}
-
-	const userConfig = UserConfigContext.get();
-	const clipboard = new UseClipboard();
-
-	function handlePageHighlight(isComponent: boolean, item: { href: string; title?: string }) {
-		if (isComponent) {
-			const componentName = item.href.split("/").pop();
-			selectedType = "component";
-			const cmd = getCommand(
-				userConfig.current.packageManager,
-				"execute",
-				`shadcn-svelte add ${componentName}`
-			);
-			copyPayload = `${cmd.command} ${cmd.args.join(" ")}`.trim();
-		} else {
-			selectedType = "page";
-			copyPayload = "";
-		}
-	}
-
-	function handleBlockHighlight(block: {
-		name: string;
-		description: string;
-		categories: string[];
-	}) {
-		selectedType = "block";
-		const cmd = getCommand(
-			userConfig.current.packageManager,
-			"execute",
-			`shadcn-svelte add ${block.name}`
+	const contentResults = $derived.by(() => {
+		if (!searchReady || !normalizedSearch) return [];
+		const pageHrefs = new Set(
+			groupResults.flatMap((group) => group.items.map((item) => item.href))
 		);
-		copyPayload = `${cmd.command} ${cmd.args.join(" ")}`.trim();
-	}
+		const seen = new SvelteSet<string>();
+		return searchContentIndex(search).filter((result) => {
+			if (pageHrefs.has(result.href.split("#")[0]) || seen.has(result.href)) return false;
+			seen.add(result.href);
+			return true;
+		});
+	});
 
-	function handleColorHighlight(color: Color) {
-		selectedType = "color";
-		copyPayload = color.class;
-	}
+	const hasResults = $derived(
+		contentResults.length > 0 ||
+			pageResults.length > 0 ||
+			groupResults.length > 0 ||
+			blockResults.length > 0 ||
+			colorResults.length > 0
+	);
 
 	function runCommand(command: () => unknown) {
 		open = false;
@@ -204,6 +220,7 @@
 	}
 
 	function openCommandMenu() {
+		search = "";
 		// Close mobile menu first if callback is provided
 		if (closeMobileMenu) {
 			closeMobileMenu();
@@ -255,16 +272,7 @@
 
 <svelte:document onkeydown={handleKeydown} />
 
-<Dialog.Root
-	bind:open
-	onOpenChange={(o) => {
-		if (o) {
-			cancelClearSearch();
-			return;
-		}
-		clearSearchWithDelay();
-	}}
->
+<Dialog.Root bind:open>
 	<Dialog.Trigger>
 		{#snippet child({ props })}
 			<Button
@@ -288,173 +296,47 @@
 			<Dialog.Title>Search documentation...</Dialog.Title>
 			<Dialog.Description>Search for a command to run...</Dialog.Description>
 		</Dialog.Header>
-		<Command.Root class="rounded-none bg-transparent" shouldFilter={!hasSearchQuery}>
-			<Command.Input placeholder="Search documentation..." bind:value={searchQuery} />
+		<Command.Root class="rounded-none bg-transparent" bind:value shouldFilter={false}>
+			<Command.Input bind:value={search} placeholder="Search documentation..." />
 			<Command.List tabindex={-1} class="no-scrollbar min-h-80 scroll-pt-2 scroll-pb-1.5">
-				{#if hasSearchQuery}
-					{#if !hasAnyResults}
-						<Command.Empty class="py-12 text-center text-sm text-muted-foreground">
-							No results found.
-						</Command.Empty>
-					{/if}
-
-					{#if filteredPages.length > 0}
-						<Command.Group
-							heading="Pages"
-							class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
-						>
-							{#each filteredPages as item (item.href)}
-								<CommandMenuItem
-									value={`Pages ${item.title}`}
-									keywords={["page", item.title.toLowerCase()]}
-									onHighlight={() =>
-										handlePageHighlight(false, {
-											href: item.href ?? "",
-											title: item.title,
-										})}
-									onSelect={() => {
-										runCommand(() => {
-											if (item.href) goto(item.href);
-										});
-									}}
-								>
-									<ArrowRightIcon />
-									{item.title}
-								</CommandMenuItem>
-							{/each}
-						</Command.Group>
-					{/if}
-
-					{#each filteredSidebarGroups as group (group.title)}
+				{#if !hasResults}
+					<div class="py-12 text-center text-sm text-muted-foreground">No results found.</div>
+				{/if}
+				{#if pageResults.length}
+					<Command.Group
+						heading="Pages"
+						class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
+					>
+						{#each pageResults as item (item.href)}
+							<CommandMenuItem
+								value={pageValue("Pages", item.title)}
+								keywords={["page", item.title.toLowerCase()]}
+								onSelect={() => {
+									runCommand(() => {
+										if (item.href) {
+											goto(item.href);
+										}
+									});
+								}}
+							>
+								<ArrowRightIcon />
+								{item.title}
+							</CommandMenuItem>
+						{/each}
+					</Command.Group>
+				{/if}
+				{#if renderDelayedGroups}
+					{#each groupResults as group (group.title)}
 						<Command.Group
 							heading={group.title}
 							class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
 						>
-							{#each group.items as item (item.href)}
-								{@const isComponent = item.href?.includes("/components/") ?? false}
-								<CommandMenuItem
-									value={`${group.title} ${item.title}`}
-									keywords={isComponent ? ["component"] : undefined}
-									onHighlight={() =>
-										handlePageHighlight(isComponent, {
-											href: item.href ?? "",
-											title: item.title,
-										})}
-									onSelect={() => {
-										runCommand(() => {
-											if (item.href) goto(item.href);
-										});
-									}}
-								>
-									{#if isComponent}
-										<div
-											class="aspect-square size-4 rounded-full border border-dashed border-muted-foreground"
-										></div>
-									{:else}
-										<ArrowRightIcon />
-									{/if}
-									{item.title}
-								</CommandMenuItem>
-							{/each}
-						</Command.Group>
-					{/each}
-
-					{#each filteredColors as colorPalette (colorPalette.name)}
-						<Command.Group
-							heading={colorPalette.name.charAt(0).toUpperCase() + colorPalette.name.slice(1)}
-							class="!p-0 [&_[data-command-group-heading]]:!p-3"
-						>
-							{#each colorPalette.colors as color (color.hex)}
-								<CommandMenuItem
-									value={color.class}
-									keywords={["color", color.name, color.class]}
-									onHighlight={() => handleColorHighlight(color)}
-									onSelect={() => {
-										runCommand(() => clipboard.copy(color.oklch));
-									}}
-								>
-									<div
-										class="border-ghost aspect-square size-4 rounded-sm bg-(--color) after:rounded-sm"
-										style="--color: {color.oklch};"
-									></div>
-									{color.class}
-									<span
-										class="ms-auto font-mono text-xs font-normal text-muted-foreground tabular-nums"
-									>
-										{color.oklch}
-									</span>
-								</CommandMenuItem>
-							{/each}
-						</Command.Group>
-					{/each}
-
-					{#if deduplicatedSearchResults.length > 0}
-						<Command.Group
-							heading="Search Results"
-							class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
-						>
-							{#each deduplicatedSearchResults as result (result.href)}
-								<CommandMenuItem
-									value={result.title + " " + result.href}
-									onHighlight={() => {
-										selectedType = "search";
-										copyPayload = "";
-									}}
-									onSelect={() => {
-										runCommand(() => goto(result.href));
-									}}
-								>
-									<div class="line-clamp-1 text-sm">{result.title}</div>
-								</CommandMenuItem>
-							{/each}
-						</Command.Group>
-					{/if}
-				{:else}
-					<Command.Empty class="py-12 text-center text-sm text-muted-foreground">
-						No results found.
-					</Command.Empty>
-					{#if mainNavItems.length > 0}
-						<Command.Group
-							heading="Pages"
-							class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
-						>
-							{#each mainNavItems as item (item.href)}
-								<CommandMenuItem
-									value={`Pages ${item.title}`}
-									keywords={["nav", "navigation", item.title.toLowerCase()]}
-									onHighlight={() =>
-										handlePageHighlight(false, {
-											href: item.href ?? "",
-											title: item.title,
-										})}
-									onSelect={() => {
-										runCommand(() => {
-											if (item.href) goto(item.href);
-										});
-									}}
-								>
-									<ArrowRightIcon />
-									{item.title}
-								</CommandMenuItem>
-							{/each}
-						</Command.Group>
-					{/if}
-					{#each orderedSidebarGroups as group (group.title)}
-						<Command.Group
-							heading={group.title}
-							class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
-						>
-							{#each group.items as item, i (i)}
+							{#each group.items as item (item.href ?? item.title)}
 								{@const isComponent = item.href?.includes("/components/") ?? false}
 
 								<CommandMenuItem
-									value={item.title?.toString() ? `${group.title} ${item.title}` : ""}
+									value={pageValue(group.title, item.title)}
 									keywords={isComponent ? ["component"] : undefined}
-									onHighlight={() =>
-										handlePageHighlight(isComponent, {
-											href: item.href ?? "",
-											title: item.title,
-										})}
 									onSelect={() => {
 										runCommand(() => {
 											if (item.href) {
@@ -475,40 +357,11 @@
 							{/each}
 						</Command.Group>
 					{/each}
-					{#each colors as colorPalette (colorPalette.name)}
-						<Command.Group
-							heading={colorPalette.name.charAt(0).toUpperCase() + colorPalette.name.slice(1)}
-							class="!p-0 [&_[data-command-group-heading]]:!p-3"
-						>
-							{#each colorPalette.colors as color (color.hex)}
-								<CommandMenuItem
-									value={color.class}
-									keywords={["color", color.name, color.class]}
-									onHighlight={() => handleColorHighlight(color)}
-									onSelect={() => {
-										runCommand(() => clipboard.copy(color.oklch));
-									}}
-								>
-									<div
-										class="border-ghost aspect-square size-4 rounded-sm bg-(--color) after:rounded-sm"
-										style="--color: {color.oklch};"
-									></div>
-									{color.class}
-									<span
-										class="ms-auto font-mono text-xs font-normal text-muted-foreground tabular-nums"
-									>
-										{color.oklch}
-									</span>
-								</CommandMenuItem>
-							{/each}
-						</Command.Group>
-					{/each}
-					{#if blocks?.length}
+					{#if blockResults.length}
 						<Command.Group heading="Blocks" class="!p-0 [&_[data-command-group-heading]]:!p-3">
-							{#each blocks as block (block.name)}
+							{#each blockResults as block (block.name)}
 								<CommandMenuItem
 									value={block.name}
-									onHighlight={() => handleBlockHighlight(block)}
 									keywords={["block", block.name, block.description, ...block.categories]}
 									onSelect={() => {
 										runCommand(() => {
@@ -528,6 +381,48 @@
 						</Command.Group>
 					{/if}
 				{/if}
+				{#if contentResults.length}
+					<Command.Group
+						heading="Search Results"
+						class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
+					>
+						{#each contentResults as result (result.href)}
+							<CommandMenuItem
+								value={`Search ${result.href}`}
+								onSelect={() => runCommand(() => goto(result.href))}
+							>
+								<div class="line-clamp-1 text-sm">{result.title}</div>
+							</CommandMenuItem>
+						{/each}
+					</Command.Group>
+				{/if}
+				{#each colorResults as colorPalette (colorPalette.name)}
+					<Command.Group
+						heading={colorPalette.name.charAt(0).toUpperCase() + colorPalette.name.slice(1)}
+						class="!p-0 [&_[data-command-group-heading]]:!p-3"
+					>
+						{#each colorPalette.colors as color (color.hex)}
+							<CommandMenuItem
+								value={color.class}
+								keywords={["color", color.name, color.class]}
+								onSelect={() => {
+									runCommand(() => clipboard.copy(color.oklch));
+								}}
+							>
+								<div
+									class="border-ghost aspect-square size-4 rounded-sm bg-(--color) after:rounded-sm"
+									style="--color: {color.oklch};"
+								></div>
+								{color.class}
+								<span
+									class="ms-auto font-mono text-xs font-normal text-muted-foreground tabular-nums"
+								>
+									{color.oklch}
+								</span>
+							</CommandMenuItem>
+						{/each}
+					</Command.Group>
+				{/each}
 			</Command.List>
 		</Command.Root>
 		<div
@@ -543,7 +438,10 @@
 				{/if}
 			</div>
 			{#if copyPayload}
-				<Separator orientation="vertical" class="!h-4" />
+				<Separator
+					orientation="vertical"
+					class="!h-4 !self-center bg-neutral-200 dark:bg-neutral-700"
+				/>
 				<div class="flex items-center gap-1">
 					<Kbd.Group
 						><Kbd.Root class="border bg-background">⌘</Kbd.Root>
