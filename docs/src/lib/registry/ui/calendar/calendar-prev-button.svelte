@@ -22,7 +22,7 @@
 		hugeicons="ArrowLeftIcon"
 		phosphor="CaretLeftIcon"
 		remixicon="RiArrowLeftSLine"
-		class={cn("size-4", className)}
+		class={cn("cn-rtl-flip size-4", className)}
 	/>
 {/snippet}
 
@@ -30,7 +30,9 @@
 	bind:ref
 	class={cn(
 		buttonVariants({ variant }),
-		"size-(--cell-size) bg-transparent p-0 select-none disabled:opacity-50 rtl:rotate-180",
+		"size-(--cell-size) bg-transparent p-0 select-none disabled:opacity-50",
+		// parity-ignore: keep rtl utilities until the CLI rewrites them
+		"rtl:rotate-180",
 		className
 	)}
 	{...restProps}

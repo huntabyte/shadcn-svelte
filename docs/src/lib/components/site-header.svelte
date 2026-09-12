@@ -6,7 +6,6 @@
 	import { mainNavItems } from "$lib/navigation.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import CommandMenu from "./command-menu/command-menu.svelte";
-	import Customizer from "./customizer.svelte";
 	import GithubLink from "./github-link.svelte";
 	import LayoutToggle from "./layout-toggle.svelte";
 	import MainNav from "./main-nav.svelte";
@@ -30,7 +29,7 @@
 		class="container-wrapper px-6 group-has-data-[slot=designer]/layout:max-w-none 3xl:fixed:px-0"
 	>
 		<div
-			class="flex h-(--header-height) items-center **:data-[slot=separator]:h-4! group-has-data-[slot=designer]/layout:fixed:max-w-none 3xl:fixed:container"
+			class="flex h-(--header-height) items-center **:data-[slot=separator]:h-4! **:data-[slot=separator]:self-center group-has-data-[slot=designer]/layout:fixed:max-w-none 3xl:fixed:container"
 		>
 			<MobileNav bind:this={mobileNavRef} class="flex lg:hidden" />
 
@@ -49,7 +48,7 @@
 					<Separator orientation="vertical" class="hidden md:flex" />
 					<ProjectForm class="hidden h-[31px] rounded-lg md:flex" />
 				{:else}
-					<Customizer />
+					<ModeSwitcher />
 					<Button href="/create" variant="default" size="sm" class="h-[31px] rounded-lg">
 						<PlusIcon />
 						New

@@ -7,14 +7,14 @@
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import * as Kbd from "$lib/registry/ui/kbd/index.js";
-	import type { Color, ColorPalette } from "$lib/colors.js";
+	import type { ColorPalette } from "$lib/colors.js";
 	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
 	import { mainNavItems, sidebarNavItems } from "$lib/navigation.js";
 	import { getCommand } from "$lib/package-manager.js";
 	import { STYLES } from "$lib/registry/config.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
-	import { UserConfigContext } from "$lib/user-config.svelte.js";
+	import { UserConfigContext, type PackageManager } from "$lib/user-config.svelte.js";
 	import { cn } from "$lib/utils.js";
 	import CommandMenuItem from "./command-menu-item.svelte";
 
@@ -29,8 +29,9 @@
 	} = $props();
 
 	let open = $state(false);
-	let selectedType = $state<"color" | "page" | "component" | "block" | "style" | null>(null);
-	let copyPayload = $state("");
+	// The currently highlighted item's value (bound to the command). Everything the footer
+	// shows is derived from it, which is far cheaper than observing every item for changes.
+	let value = $state("");
 
 	const userConfig = UserConfigContext.get();
 	const clipboard = new UseClipboard();
@@ -38,6 +39,7 @@
 	const COMMAND_MENU_GROUP_ORDER = [
 		"Components",
 		"Get Started",
+		"Utilities",
 		"Installation",
 		"Dark Mode",
 		"Registry",
@@ -45,51 +47,139 @@
 		"Migration",
 	] as const;
 
-	const orderedSidebarGroups = $derived(
-		COMMAND_MENU_GROUP_ORDER.map((title) =>
-			sidebarNavItems.find((group) => group.title === title)
-		).filter((group): group is (typeof sidebarNavItems)[number] => group !== undefined)
+	const orderedSidebarGroups = COMMAND_MENU_GROUP_ORDER.map((title) =>
+		sidebarNavItems.find((group) => group.title === title)
+	).filter((group): group is (typeof sidebarNavItems)[number] => group !== undefined);
+
+	type SelectedType = "color" | "page" | "component" | "block" | "style";
+
+	function pageValue(groupTitle: string, title: string | undefined) {
+		return title?.toString() ? `${groupTitle} ${title}` : "";
+	}
+
+	function addCommandPayload(pm: PackageManager, name: string) {
+		const cmd = getCommand(pm, "execute", `shadcn-svelte add ${name}`);
+		return `${cmd.command} ${cmd.args.join(" ")}`.trim();
+	}
+
+	// Maps each item's command value to what the footer should show when it is highlighted.
+	const selections = $derived.by(() => {
+		const pm = userConfig.current.packageManager;
+		const map: Record<string, { type: SelectedType; payload: string }> = {};
+		for (const item of mainNavItems) {
+			map[pageValue("Pages", item.title)] = { type: "page", payload: "" };
+		}
+		for (const group of orderedSidebarGroups) {
+			for (const item of group.items) {
+				const isComponent = item.href?.includes("/components/") ?? false;
+				map[pageValue(group.title, item.title)] = isComponent
+					? { type: "component", payload: addCommandPayload(pm, item.href?.split("/").pop() ?? "") }
+					: { type: "page", payload: "" };
+			}
+		}
+		for (const block of blocks ?? []) {
+			map[block.name] = { type: "block", payload: addCommandPayload(pm, block.name) };
+		}
+		for (const palette of colors) {
+			for (const color of palette.colors) {
+				map[color.class] = { type: "color", payload: color.class };
+			}
+		}
+		for (const style of STYLES) {
+			map[`Style ${style.title} ${style.description}`] = { type: "style", payload: "" };
+		}
+		return map;
+	});
+
+	const selected = $derived(selections[value]);
+	const selectedType = $derived(selected?.type ?? null);
+	const copyPayload = $derived(selected?.payload ?? "");
+	// Only the small "Pages" group is rendered in the frame the dialog opens (like shadcn/ui);
+	// the docs groups mount right after that frame paints so opening the menu is instant.
+	let renderDelayedGroups = $state(false);
+	// Bound to the input. Reset on open rather than close so the dialog never remounts items
+	// it is about to tear down.
+	let search = $state("");
+
+	$effect(() => {
+		if (!open) {
+			renderDelayedGroups = false;
+			return;
+		}
+		let timeout: ReturnType<typeof setTimeout> | undefined;
+		const frame = requestAnimationFrame(() => {
+			timeout = setTimeout(() => {
+				renderDelayedGroups = true;
+			});
+		});
+		return () => {
+			cancelAnimationFrame(frame);
+			clearTimeout(timeout);
+		};
+	});
+
+	// Filtering is done here instead of by the command primitive so that only matching items
+	// are ever mounted. The primitive would mount all ~340 items (250 of them colors) and
+	// re-filter/re-sort every one of them on each keystroke, which is what made the menu lag.
+	// Matching is the same plain substring check shadcn/ui uses.
+	const normalizedSearch = $derived(search.trim().toLowerCase());
+
+	function matches(haystack: string) {
+		return normalizedSearch === "" || haystack.includes(normalizedSearch);
+	}
+
+	const pageResults = $derived(
+		mainNavItems.filter((item) => matches(`pages ${item.title} page`.toLowerCase()))
 	);
 
-	function handlePageHighlight(isComponent: boolean, item: { href: string; title?: string }) {
-		if (isComponent) {
-			const componentName = item.href.split("/").pop();
-			selectedType = "component";
-			const cmd = getCommand(
-				userConfig.current.packageManager,
-				"execute",
-				`shadcn-svelte add ${componentName}`
-			);
-			copyPayload = `${cmd.command} ${cmd.args.join(" ")}`.trim();
-		} else {
-			selectedType = "page";
-			copyPayload = "";
-		}
-	}
+	const groupResults = $derived(
+		orderedSidebarGroups
+			.map((group) => ({
+				...group,
+				items: group.items.filter((item) => {
+					const isComponent = item.href?.includes("/components/") ?? false;
+					return matches(
+						`${group.title} ${item.title}${isComponent ? " component" : ""}`.toLowerCase()
+					);
+				}),
+			}))
+			.filter((group) => group.items.length > 0)
+	);
 
-	function handleBlockHighlight(block: {
-		name: string;
-		description: string;
-		categories: string[];
-	}) {
-		selectedType = "block";
-		const cmd = getCommand(
-			userConfig.current.packageManager,
-			"execute",
-			`shadcn-svelte add ${block.name}`
-		);
-		copyPayload = `${cmd.command} ${cmd.args.join(" ")}`.trim();
-	}
+	const blockResults = $derived(
+		(blocks ?? []).filter((block) =>
+			matches(
+				`${block.name} block ${block.description} ${block.categories.join(" ")}`.toLowerCase()
+			)
+		)
+	);
 
-	function handleColorHighlight(color: Color) {
-		selectedType = "color";
-		copyPayload = color.class;
-	}
+	// Colors are only shown while searching, and only the ones whose class name matches, so a
+	// query like "c" does not mount every color in the palette.
+	const colorResults = $derived(
+		normalizedSearch === ""
+			? []
+			: colors
+					.map((palette) => ({
+						...palette,
+						colors: palette.colors.filter((color) => color.class.includes(normalizedSearch)),
+					}))
+					.filter((palette) => palette.colors.length > 0)
+	);
 
-	function handleStyleHighlight() {
-		selectedType = "style";
-		copyPayload = "";
-	}
+	const styleResults = $derived(
+		STYLES.filter((style) =>
+			matches(`style preset ${style.name} ${style.title} ${style.description}`.toLowerCase())
+		)
+	);
+
+	const hasResults = $derived(
+		styleResults.length > 0 ||
+			pageResults.length > 0 ||
+			groupResults.length > 0 ||
+			blockResults.length > 0 ||
+			colorResults.length > 0
+	);
 
 	function runCommand(command: () => unknown) {
 		open = false;
@@ -97,6 +187,7 @@
 	}
 
 	function openCommandMenu() {
+		search = "";
 		// Close mobile menu first if callback is provided
 		if (closeMobileMenu) {
 			closeMobileMenu();
@@ -172,78 +263,21 @@
 			<Dialog.Title>Search documentation...</Dialog.Title>
 			<Dialog.Description>Search for a command to run...</Dialog.Description>
 		</Dialog.Header>
-		<Command.Root class="rounded-none bg-transparent">
-			<Command.Input placeholder="Search documentation..." />
+		<Command.Root class="rounded-none bg-transparent" bind:value shouldFilter={false}>
+			<Command.Input bind:value={search} placeholder="Search documentation..." />
 			<Command.List tabindex={-1} class="no-scrollbar min-h-80 scroll-pt-2 scroll-pb-1.5">
-				<Command.Empty class="py-12 text-center text-sm text-muted-foreground">
-					No results found.
-				</Command.Empty>
-				<Command.Group
-					heading="Pages"
-					class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
-				>
-					{#each mainNavItems as item (item.href)}
-						<CommandMenuItem
-							value={`Pages ${item.title}`}
-							keywords={["page", item.title.toLowerCase()]}
-							onHighlight={() =>
-								handlePageHighlight(false, {
-									href: item.href ?? "",
-									title: item.title,
-								})}
-							onSelect={() => {
-								runCommand(() => {
-									if (item.href) {
-										goto(item.href);
-									}
-								});
-							}}
-						>
-							<ArrowRightIcon />
-							{item.title}
-						</CommandMenuItem>
-					{/each}
-				</Command.Group>
-				<Command.Group
-					heading="Styles"
-					class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
-				>
-					{#each STYLES as style (style.name)}
-						{@const Icon = style.icon}
-						<CommandMenuItem
-							value={`Style ${style.title} ${style.description}`}
-							keywords={["style", "preset", style.name, style.title]}
-							onHighlight={handleStyleHighlight}
-							onSelect={() => {
-								runCommand(() => {
-									goto(`/create?preset=${encodePreset({ style: style.name })}`);
-								});
-							}}
-						>
-							<Icon />
-							{style.title}
-							<span class="ms-auto text-xs font-normal text-muted-foreground">
-								Open style in shadcn/create
-							</span>
-						</CommandMenuItem>
-					{/each}
-				</Command.Group>
-				{#each orderedSidebarGroups as group (group.title)}
+				{#if !hasResults}
+					<div class="py-12 text-center text-sm text-muted-foreground">No results found.</div>
+				{/if}
+				{#if pageResults.length}
 					<Command.Group
-						heading={group.title}
+						heading="Pages"
 						class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
 					>
-						{#each group.items as item, i (i)}
-							{@const isComponent = item.href?.includes("/components/") ?? false}
-
+						{#each pageResults as item (item.href)}
 							<CommandMenuItem
-								value={item.title?.toString() ? `${group.title} ${item.title}` : ""}
-								keywords={isComponent ? ["component"] : undefined}
-								onHighlight={() =>
-									handlePageHighlight(isComponent, {
-										href: item.href ?? "",
-										title: item.title,
-									})}
+								value={pageValue("Pages", item.title)}
+								keywords={["page", item.title.toLowerCase()]}
 								onSelect={() => {
 									runCommand(() => {
 										if (item.href) {
@@ -252,43 +286,94 @@
 									});
 								}}
 							>
-								{#if isComponent}
-									<div
-										class="aspect-square size-4 rounded-full border border-dashed border-muted-foreground"
-									></div>
-								{:else}
-									<ArrowRightIcon />
-								{/if}
+								<ArrowRightIcon />
 								{item.title}
 							</CommandMenuItem>
 						{/each}
 					</Command.Group>
-				{/each}
-				{#if blocks?.length}
-					<Command.Group heading="Blocks" class="!p-0 [&_[data-command-group-heading]]:!p-3">
-						{#each blocks as block (block.name)}
+				{/if}
+				{#if styleResults.length}
+					<Command.Group
+						heading="Styles"
+						class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
+					>
+						{#each styleResults as style (style.name)}
+							{@const Icon = style.icon}
 							<CommandMenuItem
-								value={block.name}
-								onHighlight={() => handleBlockHighlight(block)}
-								keywords={["block", block.name, block.description, ...block.categories]}
+								value={`Style ${style.title} ${style.description}`}
+								keywords={["style", "preset", style.name, style.title]}
 								onSelect={() => {
 									runCommand(() => {
-										goto(`/blocks/${block.categories[0]}#${block.name}`);
+										goto(`/create?preset=${encodePreset({ style: style.name })}`);
 									});
 								}}
 							>
-								<SquareDashedIcon />
-								{block.description}
-								<span
-									class="ms-auto font-mono text-xs font-normal text-muted-foreground tabular-nums"
-								>
-									{block.name}
+								<Icon />
+								{style.title}
+								<span class="ms-auto text-xs font-normal text-muted-foreground">
+									Open style in shadcn/create
 								</span>
 							</CommandMenuItem>
 						{/each}
 					</Command.Group>
 				{/if}
-				{#each colors as colorPalette (colorPalette.name)}
+				{#if renderDelayedGroups}
+					{#each groupResults as group (group.title)}
+						<Command.Group
+							heading={group.title}
+							class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
+						>
+							{#each group.items as item (item.href ?? item.title)}
+								{@const isComponent = item.href?.includes("/components/") ?? false}
+
+								<CommandMenuItem
+									value={pageValue(group.title, item.title)}
+									keywords={isComponent ? ["component"] : undefined}
+									onSelect={() => {
+										runCommand(() => {
+											if (item.href) {
+												goto(item.href);
+											}
+										});
+									}}
+								>
+									{#if isComponent}
+										<div
+											class="aspect-square size-4 rounded-full border border-dashed border-muted-foreground"
+										></div>
+									{:else}
+										<ArrowRightIcon />
+									{/if}
+									{item.title}
+								</CommandMenuItem>
+							{/each}
+						</Command.Group>
+					{/each}
+					{#if blockResults.length}
+						<Command.Group heading="Blocks" class="!p-0 [&_[data-command-group-heading]]:!p-3">
+							{#each blockResults as block (block.name)}
+								<CommandMenuItem
+									value={block.name}
+									keywords={["block", block.name, block.description, ...block.categories]}
+									onSelect={() => {
+										runCommand(() => {
+											goto(`/blocks/${block.categories[0]}#${block.name}`);
+										});
+									}}
+								>
+									<SquareDashedIcon />
+									{block.description}
+									<span
+										class="ms-auto font-mono text-xs font-normal text-muted-foreground tabular-nums"
+									>
+										{block.name}
+									</span>
+								</CommandMenuItem>
+							{/each}
+						</Command.Group>
+					{/if}
+				{/if}
+				{#each colorResults as colorPalette (colorPalette.name)}
 					<Command.Group
 						heading={colorPalette.name.charAt(0).toUpperCase() + colorPalette.name.slice(1)}
 						class="!p-0 [&_[data-command-group-heading]]:!p-3"
@@ -297,7 +382,6 @@
 							<CommandMenuItem
 								value={color.class}
 								keywords={["color", color.name, color.class]}
-								onHighlight={() => handleColorHighlight(color)}
 								onSelect={() => {
 									runCommand(() => clipboard.copy(color.oklch));
 								}}
@@ -323,18 +407,21 @@
 		>
 			<div class="flex items-center gap-2">
 				<Kbd.Root class="border bg-background"><CornerDownLeftIcon /></Kbd.Root>
+				{#if selectedType === "style"}
+					Open Style
+				{/if}
 				{#if selectedType === "page" || selectedType === "component"}
 					Go to Page
 				{/if}
 				{#if selectedType === "color"}
 					Copy OKLCH
 				{/if}
-				{#if selectedType === "style"}
-					Open in shadcn/create
-				{/if}
 			</div>
 			{#if copyPayload}
-				<Separator orientation="vertical" class="!h-4" />
+				<Separator
+					orientation="vertical"
+					class="!h-4 !self-center bg-neutral-200 dark:bg-neutral-700"
+				/>
 				<div class="flex items-center gap-1">
 					<Kbd.Group
 						><Kbd.Root class="border bg-background">⌘</Kbd.Root>

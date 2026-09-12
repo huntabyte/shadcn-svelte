@@ -93,6 +93,12 @@ const forms = defineCollection({
 	schema: docSchema,
 });
 
+const utils = defineCollection({
+	name: "utils",
+	pattern: "./utils/**/*.md",
+	schema: docSchema,
+});
+
 const changelog = defineCollection({
 	name: "changelog",
 	pattern: "./changelog/**/*.md",
@@ -109,6 +115,7 @@ export default defineConfig({
 		darkMode,
 		registry,
 		forms,
+		utils,
 		changelog,
 	},
 	output: { assets: "static" },

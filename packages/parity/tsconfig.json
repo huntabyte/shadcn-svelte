@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+		"strict": true,
+		"module": "Node18",
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"isolatedModules": true,
+		"skipLibCheck": true,
+		"noEmit": true,
+		"verbatimModuleSyntax": true,
+		"erasableSyntaxOnly": true,
+		"allowImportingTsExtensions": true,
+		"noUncheckedIndexedAccess": true,
+		"types": ["node"]
+	},
+	"include": ["src", "test"]
+}

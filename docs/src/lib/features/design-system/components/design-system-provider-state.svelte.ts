@@ -12,6 +12,7 @@ import {
 	type PresetConfig,
 	PRESET_CHART_COLORS,
 } from "shadcn-svelte/preset";
+import { onMount } from "svelte";
 import { SvelteURLSearchParams } from "svelte/reactivity";
 import { BASE_THEMES, getThemesForBaseColor } from "$lib/registry/config.js";
 import { SHUFFLE_PRESETS } from "../../../../routes/(app)/(layout)/create/lib/shuffle-presets.js";
@@ -92,8 +93,15 @@ class DesignSystemState implements IDesignSystemState {
 		);
 
 		if (browser && !isEmbeddedPreview && !hasSyncedPresetToUrl && !presetFromUrl) {
-			hasSyncedPresetToUrl = true;
-			queueMicrotask(() => this.#replacePresetParam(this.#preset.current));
+			onMount(() => {
+				// Let SvelteKit finish hydration and start its router before shallow routing.
+				const timeout = setTimeout(() => {
+					if (hasSyncedPresetToUrl) return;
+					hasSyncedPresetToUrl = true;
+					this.#replacePresetParam(this.#preset.current);
+				});
+				return () => clearTimeout(timeout);
+			});
 		}
 	}
 

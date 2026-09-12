@@ -153,7 +153,7 @@ async function promptForConfig({
 	// if it's a SvelteKit project, run sync so that the aliases are always up to date
 	await project.syncSvelteKit(cwd);
 
-	const { cssPath, tsconfigPath } = detectConfigs(cwd, { relative: true });
+	const { cssPath, tsconfigPath, packageImportAlias } = detectConfigs(cwd, { relative: true });
 
 	let tsconfig;
 	if (existingConfig) {
@@ -213,6 +213,7 @@ async function promptForConfig({
 	const { utilsAlias, libAlias, componentAlias, hooksAlias, uiAlias } =
 		await cliConfig.promptForAliases({
 			...options,
+			libAliasDefault: packageImportAlias,
 			tsconfig,
 			cwd,
 			existingConfig,

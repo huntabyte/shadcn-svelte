@@ -12,6 +12,9 @@
 <DrawerPrimitive.Overlay
 	bind:ref
 	data-slot="drawer-overlay"
-	class={cn("cn-drawer-overlay fixed inset-0 z-50", className)}
+	class={cn(
+		"cn-drawer-overlay fixed inset-0 z-50 data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0",
+		className
+	)}
 	{...restProps}
 />

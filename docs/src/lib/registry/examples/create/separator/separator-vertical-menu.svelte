@@ -7,15 +7,15 @@
 	<div class="flex items-center gap-2 text-sm md:gap-4 style-lyra:text-xs/relaxed">
 		<div class="flex flex-col gap-1">
 			<span class="font-medium">Settings</span>
-			<span class="text-xs text-muted-foreground"> Manage preferences </span>
+			<span class="text-xs text-muted-foreground">Manage preferences</span>
 		</div>
 		<Separator orientation="vertical" />
 		<div class="flex flex-col gap-1">
 			<span class="font-medium">Account</span>
-			<span class="text-xs text-muted-foreground"> Profile & security </span>
+			<span class="text-xs text-muted-foreground">Profile & security</span>
 		</div>
-		<Separator orientation="vertical" />
-		<div class="flex flex-col gap-1">
+		<Separator orientation="vertical" class="hidden md:block" />
+		<div class="hidden flex-col gap-1 md:flex">
 			<span class="font-medium">Help</span>
 			<span class="text-xs text-muted-foreground">Support & docs</span>
 		</div>

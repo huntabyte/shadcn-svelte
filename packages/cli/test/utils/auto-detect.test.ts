@@ -93,4 +93,14 @@ describe("detectConfigs", () => {
 		const result = detectConfigs(tmpDir);
 		expect(result.tsconfigPath).toBe(path.join(tmpDir, "tsconfig.json"));
 	});
+
+	it("should detect the #lib package subpath import alias", () => {
+		fs.writeFileSync(
+			path.join(tmpDir, "package.json"),
+			JSON.stringify({ imports: { "#lib/*": "./src/lib/*" } })
+		);
+
+		const result = detectConfigs(tmpDir);
+		expect(result.packageImportAlias).toBe("#lib");
+	});
 });

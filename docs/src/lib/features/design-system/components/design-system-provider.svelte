@@ -2,6 +2,7 @@
 	import { browser } from "$app/environment";
 	import { toggleMode } from "mode-watcher";
 	import { watch } from "runed";
+	import { onDestroy, type Snippet } from "svelte";
 	import * as AlertDialog from "$lib/registry/ui/alert-dialog/index.js";
 	import {
 		buildRegistryTheme,
@@ -13,7 +14,6 @@
 	import { cn } from "$lib/registry/lib/utils.js";
 	import { setupDesignSystem } from "./design-system-provider-state.svelte.js";
 	import { ResetDialogContext, ResetDialogCtx } from "./reset-dialog-context.svelte.js";
-	import type { Snippet } from "svelte";
 
 	const uid = $props.id();
 
@@ -25,6 +25,17 @@
 
 	const designSystem = setupDesignSystem();
 	const resetDialogCtx = ResetDialogCtx.set(new ResetDialogContext());
+
+	const MANAGED_BODY_CLASS_PREFIXES = ["style-", "base-color-"] as const;
+
+	// `classList.forEach` skips entries when removing during iteration, so snapshot first.
+	function removeManagedBodyClasses(body: HTMLElement) {
+		for (const className of Array.from(body.classList)) {
+			if (MANAGED_BODY_CLASS_PREFIXES.some((prefix) => className.startsWith(prefix))) {
+				body.classList.remove(className);
+			}
+		}
+	}
 
 	const effectiveRadius = $derived(designSystem.style === "lyra" ? "none" : designSystem.radius);
 
@@ -66,20 +77,9 @@
 
 		const body = document.body;
 
-		// Update style class in place (remove old, add new).
-		body.classList.forEach((className) => {
-			if (className.startsWith("style-")) {
-				body.classList.remove(className);
-			}
-		});
+		// Update style / base color classes in place (remove old, add new).
+		removeManagedBodyClasses(body);
 		body.classList.add(`style-${designSystem.style}`);
-
-		// Update base color class in place.
-		body.classList.forEach((className) => {
-			if (className.startsWith("base-color-")) {
-				body.classList.remove(className);
-			}
-		});
 		body.classList.add(`base-color-${designSystem.baseColor}`);
 
 		const selectedFont =
@@ -138,6 +138,15 @@
 			document.documentElement.style.backgroundColor = "var(--background)";
 			document.body.style.backgroundColor = "var(--background)";
 		}
+	});
+
+	onDestroy(() => {
+		if (!browser) return;
+		removeManagedBodyClasses(document.body);
+		document.body.classList.add(`style-${DEFAULT_CONFIG.style}`);
+		document.getElementById(uid)?.remove();
+		document.documentElement.style.removeProperty("--font-sans");
+		document.documentElement.style.removeProperty("--font-heading");
 	});
 
 	$effect.pre(() => {
