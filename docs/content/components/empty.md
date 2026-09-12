@@ -18,7 +18,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="empty-demo">
+<ComponentPreview name="empty-demo" previewClassName="h-96">
 
 <div></div>
 
@@ -96,7 +96,7 @@ Use the `bg-*` and `bg-gradient-*` utilities to add a background to the empty st
 
 Use the `EmptyMedia` component to display an avatar in the empty state.
 
-<ComponentPreview name="empty-avatar-demo">
+<ComponentPreview name="empty-avatar-demo" previewClassName="h-80">
 
 <div></div>
 

@@ -22,7 +22,7 @@
 
 {#if type === "block"}
 	<div
-		class="relative aspect-[4/2.5] w-full overflow-hidden rounded-md border md:-mx-4"
+		class="relative mt-6 aspect-[4/2.5] w-full overflow-hidden rounded-2xl border md:-mx-1"
 		data-llm-ignore
 	>
 		<img
