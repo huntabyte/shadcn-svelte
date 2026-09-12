@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { exec } from "node:child_process";
 import { promisify } from "node:util";
-import postcss from "postcss";
+import { injectStyleClasses, parseStyleCss } from "@shadcn-svelte/parity/inject-style-classes";
 import { rimraf } from "rimraf";
 import { PRESET_STYLES, type PresetConfig } from "shadcn-svelte/preset";
 import {
@@ -194,50 +194,8 @@ export const Index = {`;
 	log("🎉 Done!");
 }
 
-const CN_CLASS_SELECTOR = /^\.(cn-[\w-]+)$/;
-
-/**
- * Parse style-<style>.css and extract .cn-* class rules with their @apply values.
- * Returns a map of cn-class-name -> tailwind utility classes string.
- */
-function parseStyleCss(css: string): Record<string, string> {
-	const styles: Record<string, string> = {};
-	const root = postcss.parse(css);
-
-	root.walkRules((rule) => {
-		for (const selector of rule.selectors) {
-			const match = selector.trim().match(CN_CLASS_SELECTOR);
-			if (!match) continue;
-
-			const className = match[1];
-			const applyValues: string[] = [];
-
-			rule.walkAtRules("apply", (atRule) => {
-				applyValues.push(atRule.params.trim());
-			});
-
-			if (applyValues.length > 0) {
-				styles[className] = applyValues.join(" ");
-			}
-		}
-	});
-
-	return styles;
-}
-
 function transformContentWithStyle(content: string, styleMap: Record<string, string>): string {
-	// Replace longer class names first to avoid "cn-foo" matching inside "cn-foo-bar"
-	// Use negative lookahead (?![-\\w]) so we only match whole class names, not substrings
-	const entries = Object.entries(styleMap).sort(([a], [b]) => b.length - a.length);
-	for (const [className, classes] of entries) {
-		// don't replace cn-menu-translucent or cn-menu-target
-		// they anchor the menu styles for transform-menu
-		if (["cn-menu-translucent", "cn-menu-target"].includes(className)) continue;
-		const escaped = className.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-		const regex = new RegExp(escaped + "(?![\\w-])", "g");
-		content = content.replace(regex, classes);
-	}
-	return content;
+	return injectStyleClasses(content, styleMap);
 }
 
 const TEXT_EXTENSIONS = new Set([".svelte", ".ts", ".svelte.ts"]);
