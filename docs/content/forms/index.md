@@ -1,222 +1,67 @@
 ---
-title: Formsnap
-description: Building forms with Formsnap, Superforms, & Zod.
-links:
-  doc: https://formsnap.dev
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/form
+title: Forms
+description: Build forms with Svelte and shadcn-svelte.
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
-	import PMInstall from "$lib/components/pm-install.svelte";
-	import Steps from "$lib/components/steps.svelte";
+	import LinkedCard from "$lib/components/linked-card.svelte";
 </script>
 
-Forms are tricky. They are one of the most common things you'll build in a web application, but also one of the most complex.
+## Pick Your Form Library
 
-Well-designed HTML forms are:
+Start by selecting your form library. Then follow the instructions to learn how to build forms with shadcn-svelte and the form library of your choice.
 
-- Well-structured and semantically correct.
-- Easy to use and navigate (keyboard).
-- Accessible with ARIA attributes and proper labels.
-- Has support for client and server side validation.
-- Well-styled and consistent with the rest of the application.
-
-In this guide, we will take a look at building forms with [formsnap](https://formsnap.dev), [sveltekit-superforms](https://superforms.rocks) and [zod](https://zod.dev).
-
-## Features
-
-The `Form` components offered by `shadcn-svelte` are wrappers around `formsnap` & `sveltekit-superforms` which provide a few things:
-
-- Composable components for building forms.
-- Form field components for scoping form state.
-- Form validation using [Zod](https://zod.dev) or any other validation library supported by [Superforms](https://superforms.rocks).
-- Applies the correct `aria` attributes to form fields based on states.
-- Enables you to easily use various components like [Select](/docs/components/select), [RadioGroup](/docs/components/radio-group), [Switch](/docs/components/switch), [Checkbox](/docs/components/checkbox) and other form components with forms.
-
-If you aren't familiar with [Superforms](https://superforms.rocks) & [Formsnap](https://formsnap.dev), you should check out their documentation first, as this guide assumes you have a basic understanding of how they work together.
-
-## Anatomy
-
-```svelte showLineNumbers
-<form>
-  <Form.Field>
-    <Form.Control>
-      <Form.Label />
-      <!-- Any Form input component -->
-    </Form.Control>
-    <Form.Description />
-    <Form.FieldErrors />
-  </Form.Field>
-</form>
-```
-
-## Example
-
-```svelte showLineNumbers
-<form method="POST" use:enhance>
-  <Form.Field {form} name="email">
-    <Form.Control>
-      {#snippet children({ props })}
-        <Form.Label>Email</Form.Label>
-        <Input {...props} bind:value={$formData.email} />
-      {/snippet}
-    </Form.Control>
-    <Form.Description />
-    <Form.FieldErrors />
-  </Form.Field>
-</form>
-```
-
-## Installation
-
-<PMAddComp name="form" />
-
-## Usage
-
-<Steps>
-
-### Create a form schema
-
-Define the shape of your form using a Zod schema. You can read more about using Zod in the [Zod documentation](https://zod.dev). We're going to define it in a file called `schema.ts` in the same directory as our page component, but you can put it anywhere you like.
-
-```ts title="src/routes/settings/schema.ts" showLineNumbers
-import { z } from "zod";
-
-export const formSchema = z.object({
-  username: z.string().min(2).max(50),
-});
-
-export type FormSchema = typeof formSchema;
-```
-
-### Setup the load function
-
-```ts title="src/routes/settings/+page.server.ts" showLineNumbers
-import type { PageServerLoad } from "./$types.js";
-import { superValidate } from "sveltekit-superforms";
-import { formSchema } from "./schema";
-import { zod4 } from "sveltekit-superforms/adapters";
-
-export const load: PageServerLoad = async () => {
-  return {
-    form: await superValidate(zod4(formSchema)),
-  };
-};
-```
-
-### Create form component
-
-For this example, we'll be passing the `form` returned from the load function as a prop to this component. To ensure it's typed properly, we'll use the `SuperValidated` type from `sveltekit-superforms`, and pass in the type of our form schema.
-
-```svelte title="src/routes/settings/settings-form.svelte" showLineNumbers
-<script lang="ts">
-  import * as Form from "$lib/components/ui/form/index.js";
-  import { Input } from "$lib/components/ui/input/index.js";
-  import { formSchema, type FormSchema } from "./schema";
-  import {
-    type SuperValidated,
-    type Infer,
-    superForm,
-  } from "sveltekit-superforms";
-  import { zod4Client } from "sveltekit-superforms/adapters";
-
-  let { form: initialForm }: { form: SuperValidated<Infer<FormSchema>> } =
-    $props();
-
-  const form = superForm(initialForm, {
-    validators: zod4Client(formSchema),
-  });
-
-  const { form: formData, enhance } = form;
-</script>
-
-<form method="POST" use:enhance>
-  <Form.Field {form} name="username">
-    <Form.Control>
-      {#snippet children({ props })}
-        <Form.Label>Username</Form.Label>
-        <Input {...props} bind:value={$formData.username} />
-      {/snippet}
-    </Form.Control>
-    <Form.Description>This is your public display name.</Form.Description>
-    <Form.FieldErrors />
-  </Form.Field>
-  <Form.Button>Submit</Form.Button>
-</form>
-```
-
-The `name`, `id`, and all accessibility attributes are applied to the input by spreading the `attrs` object from the `Form.Control` component. The `Form.Label` will automatically be associated with the input using the `for` attribute, so you don't have to worry about that.
-
-### Use the component
-
-We'll pass the `form` from the data returned from the load function to the form component we created above.
-
-```svelte title="src/routes/settings/+page.svelte" showLineNumbers
-<script lang="ts">
-  import type { PageData } from "./$types.js";
-  import SettingsForm from "./settings-form.svelte";
-  let { data }: { data: PageData } = $props();
-</script>
-
-<SettingsForm form={data.form} />
-```
-
-### Create an Action
-
-```ts title="src/routes/settings/+page.server.ts" showLineNumbers {1-2,13-25}
-import type { PageServerLoad, Actions } from "./$types.js";
-import { fail } from "@sveltejs/kit";
-import { superValidate } from "sveltekit-superforms";
-import { zod4 } from "sveltekit-superforms/adapters";
-import { formSchema } from "./schema";
-
-export const load: PageServerLoad = async () => {
-  return {
-    form: await superValidate(zod4(formSchema)),
-  };
-};
-
-export const actions: Actions = {
-  default: async (event) => {
-    const form = await superValidate(event, zod4(formSchema));
-    if (!form.valid) {
-      return fail(400, {
-        form,
-      });
-    }
-    return {
-      form,
-    };
-  },
-};
-```
-
-### Done
-
-That's it. You now have a fully accessible form that is type-safe and has client & server side validation.
-
-<ComponentPreview name="form-demo">
-
-<div></div>
-
-</ComponentPreview>
-
-</Steps>
-
-## Next Steps
-
-Be sure to check out the [Formsnap](https://formsnap.dev) and [Superforms](https://superforms.rocks) documentation for more information on how to use them.
-
-## Examples
-
-See the following links for more examples on how to use the other `Form` components:
-
-- [Checkbox](/docs/components/checkbox#form)
-- [Date Picker](/docs/components/date-picker#form)
-- [Input](/docs/components/input#form)
-- [Radio Group](/docs/components/radio-group#form)
-- [Select](/docs/components/select#form)
-- [Switch](/docs/components/switch#form)
-- [Textarea](/docs/components/textarea#form)
+<div class="mt-8 grid gap-4 sm:grid-cols-2 sm:gap-6">
+  <LinkedCard href="/docs/forms/formsnap">
+    <svg
+      role="img"
+      viewBox="0 0 123 123"
+      class="size-10"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <title>Formsnap</title>
+      <path
+        d="M101.243 3.2627C74.5494 -0.329442 47.4958 -0.338885 20.7999 3.23462C16.237 3.82902 11.9953 5.90446 8.72581 9.14235C5.45634 12.3802 3.33983 16.6016 2.70117 21.1585C-0.891322 47.8521 -0.900408 74.906 2.67415 101.602C3.26836 106.165 5.34367 110.407 8.58148 113.676C11.8193 116.946 16.0407 119.062 20.5975 119.701C33.9631 121.499 47.4341 122.402 60.9201 122.402C74.3381 122.402 87.7411 121.509 101.04 119.728C105.603 119.134 109.845 117.058 113.115 113.821C116.384 110.583 118.501 106.361 119.139 101.804C120.938 88.4387 121.841 74.9678 121.841 61.4817C121.841 48.0637 120.947 34.6607 119.167 21.3614C118.572 16.7985 116.497 12.5568 113.259 9.28733C110.021 6.01787 105.8 3.90136 101.243 3.2627ZM88.1368 66.8475L62.3218 98.9813C61.764 99.6819 61.0549 100.247 60.2476 100.635C59.4403 101.023 58.5557 101.224 57.6601 101.222C56.9443 101.22 56.234 101.097 55.5597 100.857C54.4257 100.482 53.4385 99.7596 52.7375 98.7926C52.0366 97.8257 51.6575 96.6628 51.6538 95.4685V70.3109H41.0653C39.3141 70.3411 37.5905 69.8713 36.0968 68.9566C34.6031 68.042 33.4011 66.7205 32.6318 65.147C31.9327 63.6959 31.662 62.0755 31.8517 60.476C32.0413 58.8765 32.6833 57.3643 33.7024 56.1169L59.5174 23.9831C60.3066 23.0027 61.3836 22.2919 62.5965 21.9559C63.8095 21.62 65.0973 21.6731 66.2785 22.1078C67.4124 22.4828 68.3997 23.2048 69.1006 24.1718C69.8016 25.1387 70.1807 26.3016 70.1843 27.4959V52.6535H80.7739C82.5249 52.6234 84.2481 53.0932 85.7416 54.0076C87.2351 54.922 88.437 56.2432 89.2064 57.8164C89.9058 59.2673 90.1767 60.8877 89.9872 62.4872C89.7977 64.0867 89.1558 65.6 88.1368 66.8475Z"
+        fill="currentColor"
+      />
+      <path
+        d="M80.7749 57.9511H67.5366C66.8341 57.9511 66.1604 57.672 65.6637 57.1753C65.167 56.6786 64.8879 56.0049 64.8879 55.3024V27.4961C64.8879 27.4314 64.8879 27.2349 64.5208 27.1051C64.3731 27.041 64.209 27.0252 64.0519 27.0601C63.8947 27.0951 63.7527 27.1789 63.6462 27.2995L37.8317 59.4333C37.4363 59.9009 37.1856 60.4736 37.1103 61.0813C37.0351 61.6891 37.1385 62.3056 37.4079 62.8555C37.7492 63.5258 38.2747 64.0848 38.9226 64.4669C39.5706 64.8489 40.314 65.0383 41.0658 65.0126H54.3041C55.0066 65.0126 55.6803 65.2917 56.177 65.7884C56.6738 66.2851 56.9528 66.9588 56.9528 67.6613V95.4676C56.9528 95.5323 56.9528 95.7288 57.32 95.8586C57.4683 95.9199 57.6319 95.9339 57.7885 95.8987C57.9451 95.8634 58.0869 95.7806 58.1946 95.6615L84.009 63.5304C84.4045 63.0628 84.6551 62.4901 84.7304 61.8824C84.8057 61.2747 84.7023 60.6581 84.4328 60.1082C84.0915 59.4379 83.5661 58.8789 82.9181 58.4968C82.2702 58.1147 81.5267 57.9254 80.7749 57.9511Z"
+        fill="currentColor"
+      />
+    </svg>
+    <p class="mt-2 font-medium">Formsnap</p>
+  </LinkedCard>
+  <LinkedCard href="/docs/forms/tanstack-form">
+    <svg
+      role="img"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      class="size-10"
+      fill="currentColor"
+    >
+      <title>TanStack Form</title>
+      <path d="M6.93 13.688a.343.343 0 0 1 .468.132l.063.106c.48.851.98 1.66 1.5 2.426a35.65 35.65 0 0 0 2.074 2.742.345.345 0 0 1-.039.484l-.074.066c-2.543 2.223-4.191 2.665-4.953 1.333-.746-1.305-.477-3.672.808-7.11a.344.344 0 0 1 .153-.18ZM17.75 16.3a.34.34 0 0 1 .395.27l.02.1c.628 3.286.187 4.93-1.325 4.93-1.48 0-3.36-1.402-5.649-4.203a.327.327 0 0 1-.074-.222c0-.188.156-.34.344-.34h.121a32.984 32.984 0 0 0 2.809-.098c1.07-.086 2.191-.23 3.359-.437zm.871-6.977a.353.353 0 0 1 .445-.21l.102.034c3.262 1.11 4.504 2.332 3.719 3.664-.766 1.305-2.993 2.254-6.684 2.848a.362.362 0 0 1-.238-.047.343.343 0 0 1-.125-.476l.062-.106a34.07 34.07 0 0 0 1.367-2.523c.477-.989.93-2.051 1.352-3.184zM7.797 8.34a.362.362 0 0 1 .238.047.343.343 0 0 1 .125.476l-.062.106a34.088 34.088 0 0 0-1.367 2.523c-.477.988-.93 2.051-1.352 3.184a.353.353 0 0 1-.445.21l-.102-.034C1.57 13.742.328 12.52 1.113 11.188 1.88 9.883 4.106 8.934 7.797 8.34Zm5.281-3.984c2.543-2.223 4.192-2.664 4.953-1.332.746 1.304.477 3.671-.808 7.109a.344.344 0 0 1-.153.18.343.343 0 0 1-.468-.133l-.063-.106a34.64 34.64 0 0 0-1.5-2.426 35.65 35.65 0 0 0-2.074-2.742.345.345 0 0 1 .039-.484ZM7.285 2.274c1.48 0 3.364 1.402 5.649 4.203a.349.349 0 0 1 .078.218.348.348 0 0 1-.348.344l-.117-.004a34.584 34.584 0 0 0-2.809.102 35.54 35.54 0 0 0-3.363.437.343.343 0 0 1-.394-.273l-.02-.098c-.629-3.285-.188-4.93 1.324-4.93Zm2.871 5.812h3.688a.638.638 0 0 1 .55.316l1.848 3.22a.644.644 0 0 1 0 .628l-1.847 3.223a.638.638 0 0 1-.551.316h-3.688a.627.627 0 0 1-.547-.316L7.758 12.25a.644.644 0 0 1 0-.629L9.61 8.402a.627.627 0 0 1 .546-.316Zm3.23.793a.638.638 0 0 1 .552.316l1.39 2.426a.644.644 0 0 1 0 .629l-1.39 2.43a.638.638 0 0 1-.551.316h-2.774a.627.627 0 0 1-.546-.316l-1.395-2.43a.644.644 0 0 1 0-.629l1.395-2.426a.627.627 0 0 1 .546-.316Zm-.491.867h-1.79a.624.624 0 0 0-.546.316l-.899 1.56a.644.644 0 0 0 0 .628l.899 1.563a.632.632 0 0 0 .547.316h1.789a.632.632 0 0 0 .547-.316l.898-1.563a.644.644 0 0 0 0-.629l-.898-1.558a.624.624 0 0 0-.547-.317Zm-.477.828c.227 0 .438.121.547.317l.422.73a.625.625 0 0 1 0 .629l-.422.734a.627.627 0 0 1-.547.317h-.836a.632.632 0 0 1-.547-.317l-.422-.734a.625.625 0 0 1 0-.629l.422-.73a.632.632 0 0 1 .547-.317zm-.418.817a.548.548 0 0 0-.473.273.547.547 0 0 0 0 .547.544.544 0 0 0 .473.27.544.544 0 0 0 .473-.27.547.547 0 0 0 0-.547.548.548 0 0 0-.473-.273Zm-4.422.546h.98M18.98 7.75c.391-1.895.477-3.344.223-4.398-.148-.63-.422-1.137-.84-1.508-.441-.39-1-.582-1.625-.582-1.035 0-2.12.472-3.281 1.367a14.9 14.9 0 0 0-1.473 1.316 1.206 1.206 0 0 0-.136-.144c-1.446-1.285-2.66-2.082-3.7-2.39-.617-.184-1.195-.2-1.722-.024-.559.187-1.004.574-1.317 1.117-.515.894-.652 2.074-.46 3.527.078.59.214 1.235.402 1.934a1.119 1.119 0 0 0-.215.047C3.008 8.62 1.71 9.269.926 10.015c-.465.442-.77.938-.883 1.481-.113.578 0 1.156.312 1.7.516.894 1.465 1.597 2.817 2.155.543.223 1.156.426 1.844.61a1.023 1.023 0 0 0-.07.226c-.391 1.891-.477 3.344-.223 4.395.148.629.425 1.14.84 1.508.44.39 1 .582 1.625.582 1.035 0 2.12-.473 3.28-1.364.477-.37.973-.816 1.489-1.336a1.2 1.2 0 0 0 .195.227c1.446 1.285 2.66 2.082 3.7 2.39.617.184 1.195.2 1.722.024.559-.187 1.004-.574 1.317-1.117.515-.894.652-2.074.46-3.527a14.941 14.941 0 0 0-.425-2.012 1.225 1.225 0 0 0 .238-.047c1.828-.61 3.125-1.258 3.91-2.004.465-.441.77-.937.883-1.48.113-.578 0-1.157-.313-1.7-.515-.894-1.464-1.597-2.816-2.156a14.576 14.576 0 0 0-1.906-.625.865.865 0 0 0 .059-.195z" />
+    </svg>
+    <p class="mt-2 font-medium">TanStack Form</p>
+  </LinkedCard>
+  <LinkedCard href="/docs/forms/formisch">
+    <svg
+      role="img"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      class="size-10"
+      fill="currentColor"
+    >
+      <title>Formisch</title>
+      <path
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="20"
+        d="M90.9 291.7 49 299.4v125.5l193.3 63.8 221-63.8V304.7l-62-13.7m-352.2 8.6 193.2 53.6V488m221-183.2-221.1 48.4m-171-67.7 147.5 47 212.7-48.3L437 76 271.9 25 72.1 66.3Zm1-219.3L220.5 118l-1.8 214m1.8-214.3 216.2-41.6m-84.4 159.6-.9 1.9c-5.2 11.3-16.2 34.8-33.5 35.5h-1a22 22 0 0 1-9.7-2.2 26 26 0 0 1-7.4-5.5c-4.3-4.4-7.4-10-10-14.5q-1.2-2.4-2.7-4.7a54 54 0 0 0 21.7 4.1 74 74 0 0 0 23.6-4 70 70 0 0 0 11.4-5 64 64 0 0 0 8.5-5.6M247.6 168c19.5-20.8 34.8-12.3 36-18.4 1.5-7-12.2-7.7-22.2-2.6s-18 17.7-13.8 21m101.2-33.2c1.6 2.6 8.7-1.6 19.5-1.2s15.8 5.7 18 4.1-4.6-14.7-17.1-15.2-22 9.7-20.4 12.3m21.2 16.3c9.4.6 17.1 12.8 16.1 27.6s-10.4 25.9-19.8 25.2-17.1-12.9-16.1-27.7 10.4-25.8 19.8-25.1m-97.4 19c11 1.2 19 15.1 17.4 30.5s-12.3 27.4-23.4 26.2-19-15-17.4-30.5 12.3-27.3 23.4-26.2"
+      />
+    </svg>
+    <p class="mt-2 font-medium">Formisch</p>
+  </LinkedCard>
+</div>
