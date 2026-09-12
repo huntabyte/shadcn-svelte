@@ -5,12 +5,12 @@ packages:
 
 catalog:
     "@sveltejs/kit": ^2.60.1
-    "@sveltejs/vite-plugin-svelte": ^6.2.4
+    "@sveltejs/vite-plugin-svelte": ^7.2.0
     svelte: ^5.54.0
     svelte-check: ^4.7.4
     tsdown: ^0.22.14
     typescript: ^6.0.3
-    vite: ^7.3.1
+    vite: ^8.1.5
 
 onlyBuiltDependencies:
     - "@tailwindcss/oxide"
