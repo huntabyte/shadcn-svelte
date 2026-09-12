@@ -77,6 +77,11 @@ export default defineConfig({
 	sortPackageJson: false,
 	ignorePatterns: [
 		"pnpm-lock.yaml",
+		// Verbatim copies of upstream shadcn/ui style CSS. Do not sort their
+		// `@apply` lists: tailwind-merge resolves conflicts by order (for example
+		// `text-sm` after `leading-snug` drops the line-height), so reordering
+		// changes what our registry renders compared to upstream.
+		"docs/src/lib/registry/styles/*.css",
 		"/static/",
 		"/.agents/",
 		"/.cursor/",

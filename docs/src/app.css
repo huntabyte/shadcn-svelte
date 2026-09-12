@@ -3,40 +3,9 @@
 @import "shadcn-svelte/tailwind.css";
 
 @import "./lib/registry/styles/style-vega.css" layer(base);
-@import "./lib/registry/styles/style-nova.css" layer(base);
-@import "./lib/registry/styles/style-lyra.css" layer(base);
-@import "./lib/registry/styles/style-maia.css" layer(base);
-@import "./lib/registry/styles/style-mira.css" layer(base);
-@import "./lib/registry/styles/style-luma.css" layer(base);
-@import "./lib/registry/styles/style-sera.css" layer(base);
-@import "./lib/registry/styles/style-rhea.css" layer(base);
 
 @import "@fontsource-variable/geist/index.css";
-@import "@fontsource-variable/inter/index.css";
-@import "@fontsource-variable/noto-sans/index.css";
-@import "@fontsource-variable/nunito-sans/index.css";
-@import "@fontsource-variable/figtree/index.css";
-@import "@fontsource-variable/roboto/index.css";
-@import "@fontsource-variable/raleway/index.css";
-@import "@fontsource-variable/dm-sans/index.css";
-@import "@fontsource-variable/public-sans/index.css";
-@import "@fontsource-variable/outfit/index.css";
-@import "@fontsource-variable/oxanium/index.css";
-@import "@fontsource-variable/manrope/index.css";
-@import "@fontsource-variable/space-grotesk/index.css";
-@import "@fontsource-variable/montserrat/index.css";
-@import "@fontsource-variable/ibm-plex-sans/index.css";
-@import "@fontsource-variable/source-sans-3/index.css";
-@import "@fontsource-variable/instrument-sans/index.css";
-@import "@fontsource-variable/jetbrains-mono/index.css";
 @import "@fontsource-variable/geist-mono/index.css";
-@import "@fontsource-variable/noto-serif/index.css";
-@import "@fontsource-variable/roboto-slab/index.css";
-@import "@fontsource-variable/merriweather/index.css";
-@import "@fontsource-variable/lora/index.css";
-@import "@fontsource-variable/playfair-display/index.css";
-@import "@fontsource-variable/eb-garamond/index.css";
-@import "@fontsource/instrument-serif/index.css";
 
 @custom-variant style-vega (&:where(.style-vega *));
 @custom-variant style-nova (&:where(.style-nova *));

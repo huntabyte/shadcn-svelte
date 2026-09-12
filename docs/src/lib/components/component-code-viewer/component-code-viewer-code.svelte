@@ -10,6 +10,19 @@
 
 	function handleKeydown(event: KeyboardEvent) {
 		if (!codeContainer) return;
+		// Only take over select-all when the user is not typing somewhere else (e.g. the command
+		// menu input) and this code block is actually on screen.
+		if (
+			(event.target instanceof HTMLElement && event.target.isContentEditable) ||
+			event.target instanceof HTMLInputElement ||
+			event.target instanceof HTMLTextAreaElement ||
+			event.target instanceof HTMLSelectElement
+		) {
+			return;
+		}
+		if (typeof codeContainer.checkVisibility === "function" && !codeContainer.checkVisibility()) {
+			return;
+		}
 		if (event.key === "a" && (event.metaKey || event.ctrlKey)) {
 			event.preventDefault();
 			const range = document.createRange();
