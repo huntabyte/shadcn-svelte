@@ -75,7 +75,7 @@ const ALLOWLIST_CN = new Set([
 ]);
 
 /** Ports that diverge too much from Radix to be useful in this class-string compare. */
-const SKIP_STRUCTURAL_ITEMS = new Set(["chart"]);
+const SKIP_STRUCTURAL_ITEMS = new Set(["calendar", "range-calendar", "chart"]);
 
 const NAME_ALIASES: [RegExp, string][] = [
 	[/Pane(?!l)/g, "Panel"],
@@ -145,10 +145,6 @@ export function sourceFileHasUpstreamCounterpart(
 	upstreamNames: Set<string>
 ): boolean {
 	if (isRootSourceFile(item, filePath)) return true;
-	// DayPicker defines its slots inline; our Bits ports split them into files.
-	if (item === "calendar" || item === "range-calendar") {
-		return path.basename(filePath).startsWith(`${item}-`);
-	}
 	const filePascal = toPascalCase(path.basename(filePath).replace(/\.(svelte|ts|js)$/, ""));
 	if (!filePascal) return false;
 	const itemPascal = toPascalCase(item);
@@ -347,7 +343,6 @@ function canonicalizeStateVariants(token: string): string {
 		.replace(/data-\[state=active\](?=[:/])/g, "data-active")
 		.replace(/data-\[state=selected\](?=[:/])/g, "data-selected")
 		.replace(/data-\[selected=true\](?=[:/])/g, "data-selected")
-		.replace(/data-\[(focused|range-start|range-end|range-middle)=true\](?=[:/])/g, "data-$1")
 		.replace(/data-\[checked=true\](?=[:/])/g, "data-checked")
 		.replace(/data-\[disabled=true\](?=[:/])/g, "data-disabled")
 		.replace(/aria-selected(?=:)/g, "data-selected")
@@ -374,8 +369,6 @@ export function canonicalizeRuntimeToken(token: string): string {
 				.replace(/\[aria-orientation=(horizontal|vertical)\]/g, "[data-orientation=$1]")
 				.replace(/(^|:)(\*:)/g, "$1[&>*]:")
 				.replace(/z-\[1\]/g, "z-1")
-				// DayPicker renders a button; Bits renders a div with role=button.
-				.replace(/\[data-selected=true\]_button/g, "[data-selected]_[data-bits-day]")
 		)
 	);
 }
@@ -1501,7 +1494,6 @@ function cacheLabel(): string {
 }
 
 async function fetchUpstream(style: string, name: string): Promise<RegistryItem | null> {
-	if (name === "range-calendar") name = "calendar";
 	const url = `${UPSTREAM_VARIANT_BASE}/radix-${style}/${name}.json`;
 	const cachePath = path.join(CACHE_DIR, `radix-${style}`, `${name}.json`);
 	const cached = readCache(cachePath);
@@ -1526,7 +1518,6 @@ function resolveUpstreamRadixUiDir(): string | undefined {
 }
 
 async function fetchUpstreamBase(name: string): Promise<string | null> {
-	if (name === "range-calendar") name = "calendar";
 	const localDir = resolveUpstreamRadixUiDir();
 	if (localDir) {
 		const file = path.join(localDir, `${name}.tsx`);

@@ -11,10 +11,15 @@
 	}: WithoutChildrenOrChild<CalendarPrimitive.YearSelectProps> = $props();
 </script>
 
-<span class={cn("cn-calendar-dropdown-root relative rounded-(--cell-radius)", className)}>
+<span
+	class={cn(
+		"relative flex rounded-md border border-input shadow-xs has-focus:border-ring has-focus:ring-[3px] has-focus:ring-ring/50",
+		className
+	)}
+>
 	<CalendarPrimitive.YearSelect
 		bind:ref
-		class="absolute inset-0 bg-popover opacity-0"
+		class="absolute inset-0 opacity-0 dark:bg-popover dark:text-popover-foreground"
 		{...restProps}
 	>
 		{#snippet child({ props, yearItems, selectedYearItem })}
@@ -31,7 +36,7 @@
 				{/each}
 			</select>
 			<span
-				class="cn-calendar-caption-label flex items-center gap-1 rounded-(--cell-radius) text-sm [&>svg]:size-3.5 [&>svg]:text-muted-foreground"
+				class="flex h-(--cell-size) items-center gap-1 rounded-md ps-2 pe-1 text-sm font-medium select-none [&>svg]:size-3.5 [&>svg]:text-muted-foreground"
 				aria-hidden="true"
 			>
 				{yearItems.find((item) => item.value === value)?.label || selectedYearItem.label}

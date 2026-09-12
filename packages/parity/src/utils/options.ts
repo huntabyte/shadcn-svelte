@@ -21,7 +21,7 @@ export function applySharedOptions(cmd: Command) {
 		.option("-c, --check", "exit 1 if remaining class diffs > 0", false)
 		.option("--verbose", "include equivalent, ignored, framework, and allowlist pairs", false)
 		.option("--ignored", "show ignored pairs with comments, reasons, and class diffs", false)
-		.option("--include-skipped", "include chart", false)
+		.option("--include-skipped", "include calendar, range-calendar, chart, and select", false)
 		.option("--docs <path>", "path to the docs app")
 		.option("--refresh", "ignore cached upstream files and fetch them again", false)
 		.addOption(

@@ -39,18 +39,14 @@
 	});
 </script>
 
-<!-- parity-ignore-upstream: w-(--cell-size) select-none text-[0.8rem] text-muted-foreground [&:nth-child(2)[data-selected=true]_button]:rounded-l-(--cell-radius) flex size-(--cell-size) items-center justify-center text-center | Bits Calendar has no week-number column; these classes only style upstream week numbers and their adjacent first day -->
-
 <RangeCalendarPrimitive.Root
-	data-slot="calendar"
 	bind:ref
 	bind:value
 	bind:placeholder
 	{weekdayFormat}
 	{disableDaysOutsideMonth}
 	class={cn(
-		"w-fit",
-		"cn-calendar group/calendar bg-background in-data-[slot=card-content]:bg-transparent in-data-[slot=popover-content]:bg-transparent",
+		"cn-calendar group/calendar bg-background p-3 [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent",
 		className
 	)}
 	{locale}
@@ -82,7 +78,7 @@
 
 					<RangeCalendar.Grid>
 						<RangeCalendar.GridHead>
-							<RangeCalendar.GridRow>
+							<RangeCalendar.GridRow class="select-none">
 								{#each weekdays as weekday, i (i)}
 									<RangeCalendar.HeadCell>
 										{weekday.slice(0, 2)}
@@ -92,7 +88,7 @@
 						</RangeCalendar.GridHead>
 						<RangeCalendar.GridBody>
 							{#each month.weeks as weekDates (weekDates)}
-								<RangeCalendar.GridRow class="mt-2 flex w-full">
+								<RangeCalendar.GridRow class="mt-2 w-full">
 									{#each weekDates as date (date)}
 										<RangeCalendar.Cell {date} month={month.value}>
 											{#if day}
