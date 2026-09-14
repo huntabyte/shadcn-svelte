@@ -3,6 +3,8 @@
 @import "shadcn-svelte/tailwind.css";
 
 @import "./lib/registry/styles/style-vega.css" layer(base);
+@import "./lib/registry/styles/style-luma.css" layer(base);
+@import "./lib/registry/styles/style-rhea.css" layer(base);
 
 @import "@fontsource-variable/geist/index.css";
 @import "@fontsource-variable/geist-mono/index.css";

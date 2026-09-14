@@ -54,10 +54,7 @@
 			</section>
 			{#if !mobile.current}
 				<section class="hidden md:block">
-					<div
-						class="style-rhea theme-neutral"
-						style="--radius: 0.625rem; font-family: 'Inter Variable', sans-serif;"
-					>
+					<div class="style-rhea theme-neutral">
 						<CardsDemo />
 					</div>
 				</section>
