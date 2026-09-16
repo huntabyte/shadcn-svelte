@@ -6,7 +6,7 @@
 	import CheckboxInvalid from "./checkbox-invalid.svelte";
 	import CheckboxWithDescription from "./checkbox-with-description.svelte";
 	import CheckboxWithTitle from "./checkbox-with-title.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

@@ -2,7 +2,7 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="Inline">

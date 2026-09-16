@@ -4,7 +4,7 @@
 	import SkeletonForm from "./skeleton-form.svelte";
 	import SkeletonTable from "./skeleton-table.svelte";
 	import SkeletonText from "./skeleton-text.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

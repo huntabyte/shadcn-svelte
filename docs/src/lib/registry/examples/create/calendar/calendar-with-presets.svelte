@@ -3,7 +3,7 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Calendar } from "$lib/registry/ui/calendar/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const currentDate = today(getLocalTimeZone());
 	let date = $state<CalendarDate | undefined>(new CalendarDate(currentDate.year, 1, 12));

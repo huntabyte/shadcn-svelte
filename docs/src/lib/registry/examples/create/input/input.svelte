@@ -9,7 +9,7 @@
 	import InputWithLabel from "./input-with-label.svelte";
 	import InputWithNativeSelect from "./input-with-native-select.svelte";
 	import InputWithSelect from "./input-with-select.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

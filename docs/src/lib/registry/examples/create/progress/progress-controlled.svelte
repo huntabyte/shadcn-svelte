@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Progress } from "$lib/registry/ui/progress/index.js";
 	import { Slider } from "$lib/registry/ui/slider/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	let value = $state(50);
 </script>
