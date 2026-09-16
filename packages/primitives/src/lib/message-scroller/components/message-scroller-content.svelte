@@ -51,19 +51,13 @@
 	watch(
 		[() => contentElement, () => child, () => spacerClassName],
 		([content, child]) => {
-			if (!content) {
-				return;
-			}
+			if (!content) return;
 
-			if (child) {
-				ensureSpacer(content);
-			}
+			if (child) ensureSpacer(content);
 
 			root.handleContentChange();
 
-			if (typeof MutationObserver === "undefined") {
-				return;
-			}
+			if (typeof MutationObserver === "undefined") return;
 
 			const observer = new MutationObserver(() => {
 				root.handleContentChange();
