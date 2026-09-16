@@ -14,8 +14,7 @@ export default defineConfig({
 		conditions: ["development", "browser"],
 	},
 	test: {
-		include: ["src/**/*.browser.test.{ts,tsx}"],
-		setupFiles: ["./vitest.browser.setup.ts"],
+		include: ["src/**/*.browser.test.ts"],
 		browser: {
 			enabled: true,
 			provider: "playwright",
