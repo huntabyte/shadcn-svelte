@@ -1,19 +1,17 @@
 <script lang="ts">
-	import { onMount } from "svelte";
-	import { mergeProps } from "svelte-toolbelt";
+	import { boxWith, mergeProps } from "svelte-toolbelt";
 	import type { QuestionnaireDescriptionProps } from "../types.js";
-	import { QuestionnaireItemStateClass } from "../questionnaire.svelte.js";
+	import { QuestionnaireDescriptionStateClass } from "../questionnaire.svelte.js";
 	import { createId } from "$lib/internal/create-id.js";
 
 	const uid = $props.id();
 
 	let { children, child, id = createId(uid), ...restProps }: QuestionnaireDescriptionProps = $props();
 
-	const item = QuestionnaireItemStateClass.get();
-
-	onMount(() => item.registerDescription(id));
-
-	const mergedProps = $derived(mergeProps(restProps, { id }));
+	const descriptionState = QuestionnaireDescriptionStateClass.create({
+		id: boxWith(() => id),
+	});
+	const mergedProps = $derived(mergeProps(restProps, descriptionState.props));
 </script>
 
 {#if child}

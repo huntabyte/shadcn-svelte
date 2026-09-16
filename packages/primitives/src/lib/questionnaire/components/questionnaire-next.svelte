@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { mergeProps } from "svelte-toolbelt";
+	import { boxWith, mergeProps } from "svelte-toolbelt";
 	import type { QuestionnaireNextProps } from "../types.js";
-	import { getNavigationProps, QuestionnaireRootState } from "../questionnaire.svelte.js";
+	import { QuestionnaireActionState } from "../questionnaire.svelte.js";
 
 	let {
 		children,
@@ -13,27 +13,17 @@
 		...restProps
 	}: QuestionnaireNextProps = $props();
 
-	const root = QuestionnaireRootState.get();
-	const visible = $derived(root.total > 1 && !root.last);
-	const navigation = $derived(
-		getNavigationProps({
-			disabled,
-			onClick: (event) => {
-				onclick?.(event as unknown as MouseEvent & { currentTarget: HTMLButtonElement });
-				if (!event.defaultPrevented) root.goNext();
-			},
-			shortcut: "Enter",
-			status: root.activeItemStatus,
-			tabIndex: tabindex,
-			type,
-			visible,
-		})
-	);
-	const mergedProps = $derived(mergeProps(restProps, navigation.props));
+	const actionState = QuestionnaireActionState.create("next", {
+		disabled: boxWith(() => disabled),
+		onclick: boxWith(() => onclick),
+		tabindex: boxWith(() => tabindex),
+		type: boxWith(() => type),
+	});
+	const mergedProps = $derived(mergeProps(restProps, actionState.props));
 </script>
 
 {#if child}
-	{@render child({ props: mergedProps, ...navigation.state })}
+	{@render child({ props: mergedProps, ...actionState.state })}
 {:else}
 	<button {...mergedProps}>
 		{#if children}

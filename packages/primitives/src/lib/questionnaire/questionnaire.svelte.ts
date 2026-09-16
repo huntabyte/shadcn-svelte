@@ -22,6 +22,7 @@ import type {
 	QuestionnaireItemState,
 	QuestionnaireItemStatus,
 	QuestionnaireNavigationState,
+	QuestionnaireNextProps,
 	QuestionnaireRootState as QuestionnaireRootViewState,
 	QuestionnaireShortcutMode,
 } from "./types.js";
@@ -1225,6 +1226,246 @@ export class QuestionnaireInputStateClass {
 	});
 }
 
+export class QuestionnaireProgressStateClass {
+	static create() {
+		return new QuestionnaireProgressStateClass(QuestionnaireRootState.get());
+	}
+
+	readonly root: QuestionnaireRootState;
+
+	constructor(root: QuestionnaireRootState) {
+		this.root = root;
+	}
+
+	readonly label = $derived.by(() =>
+		this.root.total ? `Question ${this.root.current} of ${this.root.total}` : undefined
+	);
+
+	readonly viewState = $derived.by(() => this.root.viewState);
+
+	readonly props = $derived.by(
+		() =>
+			({
+				"aria-label": "Questionnaire progress",
+				"aria-live": "polite" as const,
+				"aria-valuemax": this.root.total || undefined,
+				"aria-valuemin": this.root.total ? 1 : undefined,
+				"aria-valuenow": this.root.total ? this.root.current : undefined,
+				"aria-valuetext": this.label,
+				role: "progressbar" as const,
+				"data-current": this.root.current ? String(this.root.current) : undefined,
+				"data-first": boolToEmptyStrOrUndef(this.root.first),
+				"data-last": boolToEmptyStrOrUndef(this.root.last),
+				"data-total": this.root.total ? String(this.root.total) : undefined,
+			}) as const
+	);
+}
+
+export class QuestionnaireChoicesStateClass {
+	static create() {
+		return new QuestionnaireChoicesStateClass(QuestionnaireItemStateClass.get());
+	}
+
+	readonly item: QuestionnaireItemStateClass;
+
+	constructor(item: QuestionnaireItemStateClass) {
+		this.item = item;
+	}
+
+	readonly snippetProps = $derived.by(() => ({ shortcuts: this.item.root.shortcuts }));
+
+	readonly props = $derived.by(() => ({
+		"data-shortcuts": this.item.root.shortcuts ?? undefined,
+	}));
+}
+
+interface QuestionnaireDescriptionStateOpts extends ReadableBoxedValues<{
+	id: string;
+}> {}
+
+export class QuestionnaireDescriptionStateClass {
+	static create(opts: QuestionnaireDescriptionStateOpts) {
+		return new QuestionnaireDescriptionStateClass(opts, QuestionnaireItemStateClass.get());
+	}
+
+	readonly opts: QuestionnaireDescriptionStateOpts;
+	readonly item: QuestionnaireItemStateClass;
+
+	constructor(opts: QuestionnaireDescriptionStateOpts, item: QuestionnaireItemStateClass) {
+		this.opts = opts;
+		this.item = item;
+
+		watch(
+			() => this.opts.id.current,
+			(id) => this.item.registerDescription(id)
+		);
+	}
+
+	readonly props = $derived.by(() => ({
+		id: this.opts.id.current,
+	}));
+}
+
+interface QuestionnaireErrorStateOpts extends ReadableBoxedValues<{
+	id: string;
+}> {}
+
+export class QuestionnaireErrorStateClass {
+	static create(opts: QuestionnaireErrorStateOpts) {
+		return new QuestionnaireErrorStateClass(opts, QuestionnaireItemStateClass.get());
+	}
+
+	readonly opts: QuestionnaireErrorStateOpts;
+	readonly item: QuestionnaireItemStateClass;
+
+	constructor(opts: QuestionnaireErrorStateOpts, item: QuestionnaireItemStateClass) {
+		this.opts = opts;
+		this.item = item;
+
+		watch(
+			() => this.opts.id.current,
+			(id) => this.item.registerError(id)
+		);
+	}
+
+	readonly defaultMessage = $derived.by(() =>
+		this.item.opts.required.current
+			? "Choose an answer to continue."
+			: "Choose an answer or skip this question."
+	);
+
+	readonly snippetProps = $derived.by(() => ({ invalid: this.item.invalid }));
+
+	readonly props = $derived.by(() => ({
+		hidden: !this.item.invalid,
+		id: this.opts.id.current,
+		role: this.item.invalid ? ("alert" as const) : undefined,
+		"data-invalid": boolToEmptyStrOrUndef(this.item.invalid),
+	}));
+}
+
+export class QuestionnaireChoiceShortcutStateClass {
+	static create() {
+		return new QuestionnaireChoiceShortcutStateClass(QuestionnaireChoiceStateClass.get());
+	}
+
+	readonly choice: QuestionnaireChoiceStateClass;
+
+	constructor(choice: QuestionnaireChoiceStateClass) {
+		this.choice = choice;
+	}
+
+	readonly shortcut = $derived.by(() => this.choice.shortcut);
+
+	readonly snippetProps = $derived.by(() => ({ shortcut: this.shortcut }));
+
+	readonly props = $derived.by(() => ({
+		"aria-hidden": true as const,
+		hidden: this.shortcut === null,
+		"data-shortcut": this.shortcut ?? undefined,
+	}));
+}
+
+interface QuestionnaireChoiceInputStateOpts extends WritableBoxedValues<{
+	ref: HTMLElement | null;
+}> {}
+
+export class QuestionnaireChoiceInputStateClass {
+	static create(opts: QuestionnaireChoiceInputStateOpts) {
+		return new QuestionnaireChoiceInputStateClass(opts, QuestionnaireChoiceStateClass.get());
+	}
+
+	readonly opts: QuestionnaireChoiceInputStateOpts;
+	readonly choice: QuestionnaireChoiceStateClass;
+	readonly attachment: RefAttachment<HTMLElement>;
+
+	constructor(opts: QuestionnaireChoiceInputStateOpts, choice: QuestionnaireChoiceStateClass) {
+		this.opts = opts;
+		this.choice = choice;
+		this.attachment = attachRef(this.opts.ref, (node) => {
+			this.choice.inputElement = node as HTMLInputElement | null;
+		});
+	}
+
+	readonly checked = $derived.by(() => this.choice.checked);
+	readonly snippetProps = $derived.by(() => this.choice.viewState);
+	readonly props = $derived.by(() => this.choice.inputProps);
+}
+
+type QuestionnaireAction = "next" | "previous" | "skip" | "submit";
+
+interface QuestionnaireActionStateOpts extends ReadableBoxedValues<{
+	disabled: boolean;
+	onclick: QuestionnaireNextProps["onclick"];
+	tabindex: QuestionnaireNextProps["tabindex"];
+	type: QuestionnaireNextProps["type"];
+}> {}
+
+export class QuestionnaireActionState {
+	static create(action: QuestionnaireAction, opts: QuestionnaireActionStateOpts) {
+		return new QuestionnaireActionState(action, opts, QuestionnaireRootState.get());
+	}
+
+	readonly action: QuestionnaireAction;
+	readonly opts: QuestionnaireActionStateOpts;
+	readonly root: QuestionnaireRootState;
+
+	constructor(
+		action: QuestionnaireAction,
+		opts: QuestionnaireActionStateOpts,
+		root: QuestionnaireRootState
+	) {
+		this.action = action;
+		this.opts = opts;
+		this.root = root;
+		this.handleClick = this.handleClick.bind(this);
+	}
+
+	readonly visible = $derived.by(() => {
+		switch (this.action) {
+			case "next":
+				return this.root.total > 1 && !this.root.last;
+			case "previous":
+				return this.root.total > 1 && !this.root.first;
+			case "skip":
+				return this.root.activeItemRequired === false;
+			case "submit":
+				return this.root.total > 0 && this.root.last;
+		}
+	});
+
+	handleClick(event: MouseEvent & { currentTarget: EventTarget & HTMLButtonElement }) {
+		this.opts.onclick.current?.(event);
+
+		if (event.defaultPrevented) {
+			return;
+		}
+
+		if (this.action === "next") {
+			this.root.goNext();
+		} else if (this.action === "previous") {
+			this.root.goPrevious();
+		} else if (this.action === "skip") {
+			this.root.skipCurrent();
+		}
+	}
+
+	readonly navigation = $derived.by(() =>
+		getNavigationProps({
+			disabled: this.opts.disabled.current,
+			onClick: this.action === "submit" ? undefined : this.handleClick,
+			shortcut: this.action === "next" || this.action === "submit" ? "Enter" : undefined,
+			status: this.root.activeItemStatus,
+			tabIndex: typeof this.opts.tabindex.current === "number" ? this.opts.tabindex.current : undefined,
+			type: this.opts.type.current ?? (this.action === "submit" ? "submit" : "button"),
+			visible: this.visible,
+		})
+	);
+
+	readonly props = $derived.by(() => this.navigation.props);
+	readonly state = $derived.by(() => this.navigation.state);
+}
+
 export function getNavigationState(opts: {
 	disabled: boolean;
 	shortcut?: "Enter";
@@ -1241,7 +1482,7 @@ export function getNavigationState(opts: {
 
 export function getNavigationProps(opts: {
 	disabled: boolean;
-	onClick?: (event: MouseEvent) => void;
+	onClick?: QuestionnaireNextProps["onclick"];
 	shortcut?: "Enter";
 	status: QuestionnaireItemStatus | null;
 	tabIndex: number | undefined;

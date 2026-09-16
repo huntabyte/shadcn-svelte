@@ -1,17 +1,13 @@
 <script lang="ts">
 	import { mergeProps } from "svelte-toolbelt";
 	import type { QuestionnaireChoicesProps } from "../types.js";
-	import { QuestionnaireItemStateClass } from "../questionnaire.svelte.js";
+	import { QuestionnaireChoicesStateClass } from "../questionnaire.svelte.js";
 
 	let { children, child, ...restProps }: QuestionnaireChoicesProps = $props();
 
-	const item = QuestionnaireItemStateClass.get();
-	const snippetProps = $derived({ shortcuts: item.root.shortcuts });
-	const mergedProps = $derived(
-		mergeProps(restProps, {
-			"data-shortcuts": item.root.shortcuts ?? undefined,
-		})
-	);
+	const choicesState = QuestionnaireChoicesStateClass.create();
+	const snippetProps = $derived(choicesState.snippetProps);
+	const mergedProps = $derived(mergeProps(restProps, choicesState.props));
 </script>
 
 {#if child}
