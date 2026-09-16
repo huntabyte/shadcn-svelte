@@ -28,8 +28,8 @@
 			() => ref,
 			(v) => (ref = v)
 		),
-		ariaDescribedBy: boxWith(() => ariaDescribedBy),
-		ariaKeyShortcuts: boxWith(() => ariaKeyShortcuts),
+		ariaDescribedBy: boxWith(() => ariaDescribedBy ?? undefined),
+		ariaKeyShortcuts: boxWith(() => ariaKeyShortcuts ?? undefined),
 		disabled: boxWith(() => disabled),
 		invalid: boxWith(() => invalid),
 		multiple: boxWith(() => multiple),

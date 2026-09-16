@@ -12,7 +12,7 @@ export type StyleProperties = Record<string, string | number | undefined> & {
 };
 
 export type WithChild<
-	Props extends Record<PropertyKey, unknown> = {},
+	Props extends Record<PropertyKey, unknown> = Record<never, never>,
 	SnippetProps extends Record<PropertyKey, unknown> = { _default: never },
 	Ref = HTMLElement,
 > = Omit<Props, "child" | "children"> & {
@@ -25,7 +25,7 @@ export type WithChild<
 };
 
 export type WithChildNoChildrenSnippetProps<
-	Props extends Record<PropertyKey, unknown> = {},
+	Props extends Record<PropertyKey, unknown> = Record<never, never>,
 	SnippetProps extends Record<PropertyKey, unknown> = { _default: never },
 	Ref = HTMLElement,
 > = Omit<Props, "child" | "children"> & {
@@ -39,8 +39,9 @@ export type WithChildNoChildrenSnippetProps<
 
 export type Without<T extends object, U extends object> = Omit<T, keyof U>;
 
-export type WithRefOpts<T = {}, Ref extends HTMLElement = HTMLElement> = T &
-	ReadableBoxedValues<{ id: string }> &
+export type WithRefOpts<Ref extends HTMLElement = HTMLElement> = ReadableBoxedValues<{
+	id: string;
+}> &
 	WritableBoxedValues<{ ref: Ref | null }>;
 
 export type BitsEvent<T extends Event = Event, U extends HTMLElement = HTMLElement> = T & {

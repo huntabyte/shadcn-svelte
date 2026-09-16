@@ -10,7 +10,7 @@
 	],
 	"files": [
 		{
-			"content": "import Button from \"./message-scroller-button.svelte\";\nimport Content from \"./message-scroller-content.svelte\";\nimport Item from \"./message-scroller-item.svelte\";\nimport Provider from \"./message-scroller-provider.svelte\";\nimport Root from \"./message-scroller.svelte\";\nimport Viewport from \"./message-scroller-viewport.svelte\";\n\nexport {\n\tuseMessageScroller,\n\tuseMessageScrollerScrollable,\n\tuseMessageScrollerVisibility,\n} from \"@shadcn-svelte/primitives/message-scroller\";\n\nexport {\n\tProvider,\n\tRoot,\n\tViewport,\n\tContent,\n\tItem,\n\tButton,\n\t//\n\tProvider as MessageScrollerProvider,\n\tRoot as MessageScroller,\n\tViewport as MessageScrollerViewport,\n\tContent as MessageScrollerContent,\n\tItem as MessageScrollerItem,\n\tButton as MessageScrollerButton,\n};\n",
+			"content": "import Button from \"./message-scroller-button.svelte\";\nimport Content from \"./message-scroller-content.svelte\";\nimport Item from \"./message-scroller-item.svelte\";\nimport Provider from \"./message-scroller-provider.svelte\";\nimport Viewport from \"./message-scroller-viewport.svelte\";\nimport Root from \"./message-scroller.svelte\";\n\nexport {\n\tuseMessageScroller,\n\tuseMessageScrollerScrollable,\n\tuseMessageScrollerVisibility,\n} from \"@shadcn-svelte/primitives/message-scroller\";\n\nexport {\n\tProvider,\n\tRoot,\n\tViewport,\n\tContent,\n\tItem,\n\tButton,\n\t//\n\tProvider as MessageScrollerProvider,\n\tRoot as MessageScroller,\n\tViewport as MessageScrollerViewport,\n\tContent as MessageScrollerContent,\n\tItem as MessageScrollerItem,\n\tButton as MessageScrollerButton,\n};\n",
 			"type": "registry:file",
 			"target": "message-scroller/index.ts"
 		},

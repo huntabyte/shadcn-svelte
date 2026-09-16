@@ -445,13 +445,13 @@ function createMessageScrollerCommands({
 	};
 }
 
-interface MessageScrollerProviderStateOpts extends ReadableBoxedValues<{
+type MessageScrollerProviderStateOpts = ReadableBoxedValues<{
 	autoScroll: boolean;
 	defaultScrollPosition: MessageScrollerDefaultScrollPosition;
 	scrollEdgeThreshold: number;
 	scrollPreviousItemPeek: number;
 	scrollMargin: number;
-}> {}
+}>;
 
 const MessageScrollerContext = new Context<MessageScrollerProviderState>("MessageScroller");
 
@@ -836,7 +836,7 @@ export class MessageScrollerProviderState {
 			return false;
 		}
 
-		let handled = false;
+		let handled: boolean;
 
 		if (defaultScrollPosition === "last-anchor") {
 			const content = this.refs.contentRef.current;
@@ -1156,9 +1156,9 @@ export class MessageScrollerProviderState {
 	}
 }
 
-interface MessageScrollerRootStateOpts extends WritableBoxedValues<{
+type MessageScrollerRootStateOpts = WritableBoxedValues<{
 	ref: HTMLElement | null;
-}> {}
+}>;
 
 export class MessageScrollerRootState {
 	static create(opts: MessageScrollerRootStateOpts) {

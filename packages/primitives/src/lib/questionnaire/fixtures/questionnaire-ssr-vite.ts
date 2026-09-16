@@ -1,7 +1,7 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { TextDecoder as NodeTextDecoder } from "node:util";
-import type { QuestionnaireTestModel } from "./questionnaire-test-model.svelte.ts";
+import type { QuestionnaireTestModel } from "./questionnaire-test-model.svelte.js";
 import type { ViteDevServer } from "vite";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));

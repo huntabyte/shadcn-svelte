@@ -1,7 +1,7 @@
 <script lang="ts">
 	import TestChoice from "./questionnaire-test-choice.svelte";
 	import TestItem from "./questionnaire-test-item.svelte";
-	import { QuestionnaireTestModel, ssrItems } from "./questionnaire-test-model.svelte.ts";
+	import { QuestionnaireTestModel, ssrItems } from "./questionnaire-test-model.svelte.js";
 	import { Questionnaire } from "../index.js";
 
 	let { model }: { model: QuestionnaireTestModel } = $props();

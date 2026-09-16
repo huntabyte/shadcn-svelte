@@ -49,7 +49,8 @@ export type QuestionnaireRootPropsWithoutHTML = WithChildNoChildrenSnippetProps<
 		onSubmit?: (event: SubmitEvent) => void;
 		shortcuts?: QuestionnaireShortcutMode;
 	},
-	QuestionnaireRootState
+	QuestionnaireRootState,
+	HTMLFormElement
 >;
 
 export type QuestionnaireRootProps = QuestionnaireRootPropsWithoutHTML &
@@ -58,7 +59,7 @@ export type QuestionnaireRootProps = QuestionnaireRootPropsWithoutHTML &
 export type QuestionnaireProgressState = QuestionnaireRootState;
 
 export type QuestionnaireProgressPropsWithoutHTML = WithChildNoChildrenSnippetProps<
-	Record<string, never>,
+	Record<never, never>,
 	QuestionnaireProgressState
 >;
 
@@ -83,7 +84,8 @@ export type QuestionnaireItemPropsWithoutHTML = WithChildNoChildrenSnippetProps<
 		required?: boolean;
 		disabled?: boolean;
 	},
-	QuestionnaireItemState
+	QuestionnaireItemState,
+	HTMLFieldSetElement
 >;
 
 export type QuestionnaireItemProps = QuestionnaireItemPropsWithoutHTML &
@@ -102,14 +104,14 @@ export type QuestionnaireChoicesState = {
 };
 
 export type QuestionnaireChoicesPropsWithoutHTML = WithChildNoChildrenSnippetProps<
-	Record<string, never>,
+	Record<never, never>,
 	QuestionnaireChoicesState
 >;
 export type QuestionnaireChoicesProps = QuestionnaireChoicesPropsWithoutHTML &
 	Without<PrimitiveDivAttributes, QuestionnaireChoicesPropsWithoutHTML>;
 
 export type QuestionnaireErrorPropsWithoutHTML = WithChildNoChildrenSnippetProps<
-	Record<string, never>,
+	Record<never, never>,
 	Pick<QuestionnaireItemState, "invalid">
 >;
 export type QuestionnaireErrorProps = QuestionnaireErrorPropsWithoutHTML &
@@ -137,8 +139,9 @@ export type QuestionnaireChoiceProps = QuestionnaireChoicePropsWithoutHTML &
 	Without<PrimitiveLabelAttributes, QuestionnaireChoicePropsWithoutHTML>;
 
 export type QuestionnaireChoiceInputPropsWithoutHTML = WithChildNoChildrenSnippetProps<
-	Record<string, never>,
-	QuestionnaireChoiceState
+	Record<never, never>,
+	QuestionnaireChoiceState,
+	HTMLInputElement
 >;
 export type QuestionnaireChoiceInputProps = QuestionnaireChoiceInputPropsWithoutHTML &
 	Without<PrimitiveInputAttributes, QuestionnaireChoiceInputPropsWithoutHTML>;
@@ -149,7 +152,7 @@ export type QuestionnaireChoiceLabelProps = QuestionnaireChoiceLabelPropsWithout
 
 export type QuestionnaireChoiceShortcutState = Pick<QuestionnaireChoiceState, "shortcut">;
 export type QuestionnaireChoiceShortcutPropsWithoutHTML = WithChildNoChildrenSnippetProps<
-	Record<string, never>,
+	Record<never, never>,
 	QuestionnaireChoiceShortcutState
 >;
 export type QuestionnaireChoiceShortcutProps = QuestionnaireChoiceShortcutPropsWithoutHTML &
@@ -183,7 +186,8 @@ export type QuestionnaireInputPropsWithoutHTML = WithChildNoChildrenSnippetProps
 		defaultValue?: string;
 		onChange?: (event: Event) => void;
 	},
-	QuestionnaireInputState
+	QuestionnaireInputState,
+	HTMLInputElement
 >;
 export type QuestionnaireInputProps = QuestionnaireInputPropsWithoutHTML &
 	Without<PrimitiveInputAttributes, QuestionnaireInputPropsWithoutHTML>;

@@ -25,7 +25,7 @@ import {
 	type,
 	unmountApp,
 } from "./fixtures/questionnaire-test-utils.js";
-import type { QuestionnaireTestModel } from "./fixtures/questionnaire-test-model.svelte.ts";
+import type { QuestionnaireTestModel } from "./fixtures/questionnaire-test-model.svelte.js";
 
 beforeEach(() => {
 	const nextContainer = document.createElement("div");

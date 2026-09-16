@@ -10,7 +10,7 @@ import {
 	type VirtualizerOptions,
 } from "@tanstack/virtual-core";
 import { untrack } from "svelte";
-import { createSubscriber } from "svelte/reactivity";
+import { createSubscriber, SvelteMap } from "svelte/reactivity";
 
 export * from "@tanstack/virtual-core";
 
@@ -26,7 +26,7 @@ function useVirtualizerBase<TScrollElement extends Element | Window, TItemElemen
 ): SvelteVirtualizer<TScrollElement, TItemElement> {
 	const virtualizer = new Virtualizer(initialOptions);
 	const originalSetOptions = virtualizer.setOptions.bind(virtualizer);
-	const boundFns = new Map<PropertyKey, (...args: unknown[]) => unknown>();
+	const boundFns = new SvelteMap<PropertyKey, (...args: unknown[]) => unknown>();
 	let notify = () => {};
 	let version = $state(0);
 	let lastScrollElement: TScrollElement | null = null;

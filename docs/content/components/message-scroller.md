@@ -550,7 +550,10 @@ rows.
   <MessageScroller.Root>
     <MessageScroller.Viewport bind:ref={viewport}>
       <MessageScroller.Content class="block min-h-full">
-        <div class="relative w-full" style="height: {virtualizer.getTotalSize()}px">
+        <div
+          class="relative w-full"
+          style="height: {virtualizer.getTotalSize()}px"
+        >
           {#each virtualizer.getVirtualItems() as virtualItem (virtualItem.key)}
             {@const message = messages[virtualItem.index]}
             {#if message}

@@ -2,6 +2,7 @@ import type {
 	MessageScrollerDefaultScrollPosition,
 	MessageScrollerScrollOptions,
 	MessageScrollerScrollable,
+	MessageScrollerContentProps,
 	MessageScrollerVisibilityState,
 } from "../types.js";
 
@@ -17,7 +18,7 @@ export type TestMessage = {
 export type TestScrollerOptions = {
 	autoScroll?: boolean;
 	contentAriaBusy?: boolean | "true" | "false";
-	contentAriaRelevant?: string;
+	contentAriaRelevant?: MessageScrollerContentProps["aria-relevant"];
 	contentPaddingEnd?: number;
 	contentPaddingStart?: number;
 	contentRole?: string;

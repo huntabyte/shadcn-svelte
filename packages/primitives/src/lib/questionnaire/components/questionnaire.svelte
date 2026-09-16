@@ -37,8 +37,14 @@
 		items: boxWith(() => items),
 		noValidate: boxWith(() => noValidate),
 		onItemChange: boxWith(() => onItemChange),
-		onReset: boxWith(() => onReset),
-		onSubmit: boxWith(() => onSubmit ?? onsubmit),
+		onReset: boxWith(() => onReset ?? undefined),
+		onSubmit: boxWith(() => {
+			if (onSubmit) return onSubmit;
+			if (!onsubmit) return undefined;
+			return (event: SubmitEvent) => {
+				onsubmit(event as SubmitEvent & { currentTarget: EventTarget & HTMLFormElement });
+			};
+		}),
 		shortcuts: boxWith(() => shortcuts),
 	});
 

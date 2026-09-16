@@ -25,7 +25,7 @@ import {
 	shortcut,
 	unmountApp,
 } from "./fixtures/questionnaire-test-utils.js";
-import type { QuestionnaireTestModel } from "./fixtures/questionnaire-test-model.svelte.ts";
+import type { QuestionnaireTestModel } from "./fixtures/questionnaire-test-model.svelte.js";
 
 let hydrated: ReturnType<typeof hydrate> | null = null;
 

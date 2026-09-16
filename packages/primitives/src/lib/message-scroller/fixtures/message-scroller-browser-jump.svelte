@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { MessageScroller, useMessageScroller } from "../index.js";
+	import { useMessageScroller } from "../index.js";
 
 	let { messageId }: { messageId: string } = $props();
 

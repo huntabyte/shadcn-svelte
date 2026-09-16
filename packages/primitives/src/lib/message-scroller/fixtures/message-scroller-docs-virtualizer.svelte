@@ -18,7 +18,6 @@
 		estimateSize: () => 86,
 		getItemKey: (index) => messages[index]?.id ?? index,
 		overscan: 24,
-		shouldAdjustScrollPositionOnItemSizeChange: () => false,
 	});
 </script>
 

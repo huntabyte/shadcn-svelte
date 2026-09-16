@@ -2,6 +2,7 @@ import { DEV } from "esm-env";
 import { Context, watch } from "runed";
 import { flushSync, onMount, untrack } from "svelte";
 import { attachRef, type ReadableBoxedValues, type WritableBoxedValues } from "svelte-toolbelt";
+import { SvelteMap, SvelteSet } from "svelte/reactivity";
 import { boolToEmptyStrOrUndef, boolToTrueOrUndef } from "$lib/internal/attrs.js";
 import type { RefAttachment, WithRefOpts } from "$lib/internal/types.js";
 import {
@@ -47,7 +48,7 @@ const QuestionnaireChoiceContext = new Context<QuestionnaireChoiceStateClass>(
 
 interface QuestionnaireRootStateOpts
 	extends
-		WithRefOpts<{}, HTMLFormElement>,
+		WithRefOpts<HTMLFormElement>,
 		ReadableBoxedValues<{
 			defaultItem: string | undefined;
 			items: readonly QuestionnaireItemDefinition[] | undefined;
@@ -78,7 +79,7 @@ export class QuestionnaireRootState {
 	domVersion = $state(0);
 	pendingFocus: PendingFocus | null = null;
 	previousActiveItemName: string | null | undefined = undefined;
-	activeWarnings = new Set<string>();
+	activeWarnings = new SvelteSet<string>();
 
 	constructor(opts: QuestionnaireRootStateOpts) {
 		this.opts = opts;
@@ -129,7 +130,7 @@ export class QuestionnaireRootState {
 							...getCollectionDefinitionWarnings(collection, defaultItem),
 							...getCollectionRegistrationWarnings(collection, registrations, shortcuts),
 						];
-						const nextWarnings = new Set(warnings);
+						const nextWarnings = new SvelteSet(warnings);
 						for (const warning of nextWarnings) {
 							if (!this.activeWarnings.has(warning)) {
 								console.warn(`[Questionnaire] ${warning}`);
@@ -207,7 +208,7 @@ export class QuestionnaireRootState {
 	});
 
 	readonly runtimeItemByName = $derived.by(
-		() => new Map(this.runtimeItems.map((runtimeItem) => [runtimeItem.name, runtimeItem]))
+		() => new SvelteMap(this.runtimeItems.map((runtimeItem) => [runtimeItem.name, runtimeItem]))
 	);
 
 	readonly logicalItems = $derived.by(() => this.collection?.enabledItems ?? this.runtimeItems);
@@ -458,7 +459,7 @@ export class QuestionnaireRootState {
 
 interface QuestionnaireItemStateOpts
 	extends
-		WithRefOpts<{}, HTMLFieldSetElement>,
+		WithRefOpts<HTMLFieldSetElement>,
 		ReadableBoxedValues<{
 			ariaDescribedBy: string | undefined;
 			ariaKeyShortcuts: string | undefined;
@@ -529,38 +530,41 @@ export class QuestionnaireItemStateClass {
 			() => this.element,
 			(element) => {
 				if (!element) return;
-				const item = this;
+				const choices = () =>
+					this.answerControls.flatMap((answer) =>
+						answer.type === "choice" ? [{ disabled: answer.ownDisabled, value: answer.value }] : []
+					);
+				const disabled = () => this.opts.disabled.current;
+				const name = () => this.opts.name.current;
+				const required = () => this.opts.required.current;
+				const status = () => this.status;
 				return untrack(() =>
 					this.root.registerItem({
 						get choices() {
-							return item.answerControls.flatMap((answer) =>
-								answer.type === "choice"
-									? [{ disabled: answer.ownDisabled, value: answer.value }]
-									: []
-							);
+							return choices();
 						},
 						get disabled() {
-							return item.opts.disabled.current;
+							return disabled();
 						},
 						element,
-						focus: () => item.focus(),
-						focusInvalid: () => item.focusInvalid(),
-						getAnswerByElement: (answerElement) => item.getAnswerByElement(answerElement),
-						getAnswerByShortcut: (shortcut) => item.getAnswerByShortcut(shortcut),
+						focus: () => this.focus(),
+						focusInvalid: () => this.focusInvalid(),
+						getAnswerByElement: (answerElement) => this.getAnswerByElement(answerElement),
+						getAnswerByShortcut: (shortcut) => this.getAnswerByShortcut(shortcut),
 						moveAnswerFocus: (currentElement, direction) =>
-							item.moveAnswerFocus(currentElement, direction),
+							this.moveAnswerFocus(currentElement, direction),
 						get name() {
-							return item.opts.name.current;
+							return name();
 						},
 						get required() {
-							return item.opts.required.current;
+							return required();
 						},
-						reset: () => item.reset(),
-						skip: () => item.skip(),
+						reset: () => this.reset(),
+						skip: () => this.skip(),
 						get status() {
-							return item.status;
+							return status();
 						},
-						validate: () => item.validate(),
+						validate: () => this.validate(),
 					})
 				);
 			}
@@ -620,10 +624,10 @@ export class QuestionnaireItemStateClass {
 	);
 
 	readonly shortcutByAnswerId = $derived.by(() => {
-		if (this.shortcutByChoiceValue) return new Map<string, string>();
+		if (this.shortcutByChoiceValue) return new SvelteMap<string, string>();
 		const keys = getShortcutKeys(this.root.shortcuts);
 		const shortcutAnswers = this.answers.filter((answer) => answer.type === "choice");
-		return new Map(
+		return new SvelteMap(
 			shortcutAnswers.slice(0, keys.length).map((answer, index) => [answer.id, keys[index]!])
 		);
 	});
@@ -897,14 +901,14 @@ export class QuestionnaireItemStateClass {
 	);
 }
 
-interface QuestionnaireChoiceStateOpts extends ReadableBoxedValues<{
+type QuestionnaireChoiceStateOpts = ReadableBoxedValues<{
 	checked: boolean | undefined;
 	defaultChecked: boolean;
 	disabled: boolean;
 	onChange: ((event: Event) => void) | undefined;
 	value: string;
 	answerId: string;
-}> {}
+}>;
 
 export class QuestionnaireChoiceStateClass {
 	static create(opts: QuestionnaireChoiceStateOpts) {
@@ -939,22 +943,25 @@ export class QuestionnaireChoiceStateClass {
 			() => this.inputElement,
 			(input) => {
 				if (!input) return;
-				const choice = this;
+				const disabled = () => this.disabled;
+				const id = () => this.opts.answerId.current;
+				const ownDisabled = () => this.opts.disabled.current;
+				const value = () => this.opts.value.current;
 				return untrack(() =>
 					this.item.registerAnswerControl({
 						get disabled() {
-							return choice.disabled;
+							return disabled();
 						},
 						element: input,
 						get id() {
-							return choice.opts.answerId.current;
+							return id();
 						},
 						get ownDisabled() {
-							return choice.opts.disabled.current;
+							return ownDisabled();
 						},
 						type: "choice",
 						get value() {
-							return choice.opts.value.current;
+							return value();
 						},
 					})
 				);
@@ -1083,7 +1090,7 @@ export class QuestionnaireChoiceStateClass {
 
 interface QuestionnaireInputStateOpts
 	extends
-		WithRefOpts<{}, HTMLInputElement>,
+		WithRefOpts<HTMLInputElement>,
 		ReadableBoxedValues<{
 			defaultValue: string | undefined;
 			disabled: boolean;
@@ -1124,15 +1131,16 @@ export class QuestionnaireInputStateClass {
 			() => this.inputElement,
 			(input) => {
 				if (!input) return;
-				const answer = this;
+				const disabled = () => this.disabled;
+				const id = () => this.opts.answerId.current;
 				return untrack(() =>
 					this.item.registerAnswerControl({
 						get disabled() {
-							return answer.disabled;
+							return disabled();
 						},
 						element: input,
 						get id() {
-							return answer.opts.answerId.current;
+							return id();
 						},
 						type: "input",
 					})
@@ -1297,9 +1305,9 @@ export class QuestionnaireChoicesStateClass {
 	}));
 }
 
-interface QuestionnaireDescriptionStateOpts extends ReadableBoxedValues<{
+type QuestionnaireDescriptionStateOpts = ReadableBoxedValues<{
 	id: string;
-}> {}
+}>;
 
 export class QuestionnaireDescriptionStateClass {
 	static create(opts: QuestionnaireDescriptionStateOpts) {
@@ -1324,9 +1332,9 @@ export class QuestionnaireDescriptionStateClass {
 	}));
 }
 
-interface QuestionnaireErrorStateOpts extends ReadableBoxedValues<{
+type QuestionnaireErrorStateOpts = ReadableBoxedValues<{
 	id: string;
-}> {}
+}>;
 
 export class QuestionnaireErrorStateClass {
 	static create(opts: QuestionnaireErrorStateOpts) {
@@ -1384,9 +1392,9 @@ export class QuestionnaireChoiceShortcutStateClass {
 	}));
 }
 
-interface QuestionnaireChoiceInputStateOpts extends WritableBoxedValues<{
+type QuestionnaireChoiceInputStateOpts = WritableBoxedValues<{
 	ref: HTMLElement | null;
-}> {}
+}>;
 
 export class QuestionnaireChoiceInputStateClass {
 	static create(opts: QuestionnaireChoiceInputStateOpts) {
@@ -1412,12 +1420,12 @@ export class QuestionnaireChoiceInputStateClass {
 
 type QuestionnaireAction = "next" | "previous" | "skip" | "submit";
 
-interface QuestionnaireActionStateOpts extends ReadableBoxedValues<{
+type QuestionnaireActionStateOpts = ReadableBoxedValues<{
 	disabled: boolean;
 	onclick: QuestionnaireNextProps["onclick"];
 	tabindex: QuestionnaireNextProps["tabindex"];
 	type: QuestionnaireNextProps["type"];
-}> {}
+}>;
 
 export class QuestionnaireActionState {
 	static create(action: QuestionnaireAction, opts: QuestionnaireActionStateOpts) {
