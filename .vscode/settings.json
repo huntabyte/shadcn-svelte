@@ -38,5 +38,5 @@
 		"editor.defaultFormatter": "oxc.oxc-vscode"
 	},
 	"[svelte]": { "editor.defaultFormatter": "oxc.oxc-vscode" },
-	"tailwindCSS.classFunctions": ["cn","tv"]
+	"tailwindCSS.classFunctions": ["cn", "tv"]
 }
