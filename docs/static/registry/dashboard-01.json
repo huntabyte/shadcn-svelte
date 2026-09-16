@@ -11,7 +11,7 @@
 		"@types/d3-shape@^3.1.7",
 		"@tanstack/table-core@^8.21.3",
 		"@dnd-kit/abstract@^0.1.21",
-		"svelte-sonner@^1.0.7",
+		"svelte-sonner@^1.2.0",
 		"@dnd-kit-svelte/svelte@^0.1.5",
 		"@dnd-kit/helpers@^0.1.21",
 		"zod@^4.1.13"

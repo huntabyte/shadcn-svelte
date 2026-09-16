@@ -10,7 +10,7 @@
 		"@types/d3-shape@^3.1.8",
 		"layerchart@^2.0.0",
 		"@tanstack/svelte-table@^9.0.0",
-		"svelte-sonner@^1.1.0",
+		"svelte-sonner@^1.2.0",
 		"@dnd-kit-svelte/svelte@^0.1.5",
 		"@dnd-kit/abstract@^0.1.21",
 		"@dnd-kit/helpers@^0.1.21",
