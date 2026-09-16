@@ -1,3 +1,4 @@
+// Adapted from https://github.com/shadcn-ui/ui/blob/main/packages/react/src/questionnaire/utils.ts
 import type {
 	AnswerControlRegistration,
 	ItemRegistration,

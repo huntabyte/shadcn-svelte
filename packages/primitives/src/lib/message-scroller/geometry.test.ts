@@ -1,4 +1,5 @@
 // @vitest-environment jsdom
+// Adapted from https://github.com/shadcn-ui/ui/blob/main/packages/react/src/message-scroller/geometry.test.ts
 
 import { afterEach, describe, expect, it } from "vitest"
 

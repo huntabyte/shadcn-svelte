@@ -1,3 +1,4 @@
+// Adapted from https://github.com/shadcn-ui/ui/blob/main/packages/react/src/message-scroller/geometry.ts
 import {
   EMPTY_MESSAGE_SCROLLER_SCROLLABLE,
   EMPTY_MESSAGE_SCROLLER_VISIBILITY_STATE,
