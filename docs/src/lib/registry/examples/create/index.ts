@@ -246,11 +246,6 @@ export const examples: Example[] = [
 		type: "registry:example",
 	},
 	{
-		title: "Scroll Fade",
-		name: "scroll-fade",
-		type: "registry:example",
-	},
-	{
 		title: "Select",
 		name: "select",
 		type: "registry:example",
@@ -263,11 +258,6 @@ export const examples: Example[] = [
 	{
 		title: "Sheet",
 		name: "sheet",
-		type: "registry:example",
-	},
-	{
-		title: "Shimmer",
-		name: "shimmer",
 		type: "registry:example",
 	},
 	{
