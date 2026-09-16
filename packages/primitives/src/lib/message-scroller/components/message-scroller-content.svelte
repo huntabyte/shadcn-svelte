@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { watch } from "runed";
 	import { attachRef, boxWith, mergeProps } from "svelte-toolbelt";
 	import type { MessageScrollerContentProps } from "../types.js";
 	import { MessageScrollerProviderState } from "../message-scroller.svelte.js";
@@ -42,63 +43,63 @@
 			content.appendChild(spacer);
 		}
 
-		if (spacerClassName) {
-			spacer.className = spacerClassName;
-		}
+		spacer.className = spacerClassName ?? "";
 
 		root.setSpacerElement(spacer);
 	}
 
-	$effect(() => {
-		const content = contentElement;
+	watch(
+		[() => contentElement, () => child, () => spacerClassName],
+		([content, child]) => {
+			if (!content) {
+				return;
+			}
 
-		if (!content) {
-			return;
-		}
+			if (child) {
+				ensureSpacer(content);
+			}
 
-		if (child) {
-			ensureSpacer(content);
-		}
-
-		root.handleContentChange();
-
-		if (typeof MutationObserver === "undefined") {
-			return;
-		}
-
-		const observer = new MutationObserver(() => {
 			root.handleContentChange();
-		});
 
-		observer.observe(content, { childList: true });
+			if (typeof MutationObserver === "undefined") {
+				return;
+			}
 
-		return () => observer.disconnect();
-	});
+			const observer = new MutationObserver(() => {
+				root.handleContentChange();
+			});
 
-	$effect(() => {
-		const content = contentElement;
+			observer.observe(content, { childList: true });
 
-		if (!content || typeof ResizeObserver === "undefined") {
-			return;
+			return () => observer.disconnect();
 		}
+	);
 
-		// Coalesce into rAF: handleResize mutates the spacer inside this observed
-		// element, and resizing an observed element during delivery fires
-		// "ResizeObserver loop completed with undelivered notifications".
-		let frame = 0;
+	watch(
+		() => contentElement,
+		(content) => {
+			if (!content || typeof ResizeObserver === "undefined") {
+				return;
+			}
 
-		const observer = new ResizeObserver(() => {
-			window.cancelAnimationFrame(frame);
-			frame = window.requestAnimationFrame(root.handleResize);
-		});
+			// Coalesce into rAF: handleResize mutates the spacer inside this observed
+			// element, and resizing an observed element during delivery fires
+			// "ResizeObserver loop completed with undelivered notifications".
+			let frame = 0;
 
-		observer.observe(content);
+			const observer = new ResizeObserver(() => {
+				window.cancelAnimationFrame(frame);
+				frame = window.requestAnimationFrame(root.handleResize);
+			});
 
-		return () => {
-			window.cancelAnimationFrame(frame);
-			observer.disconnect();
-		};
-	});
+			observer.observe(content);
+
+			return () => {
+				window.cancelAnimationFrame(frame);
+				observer.disconnect();
+			};
+		}
+	);
 
 	const mergedProps = $derived(
 		mergeProps(restProps, {

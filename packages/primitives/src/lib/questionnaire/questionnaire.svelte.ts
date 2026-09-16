@@ -1,7 +1,7 @@
 import { DEV } from "esm-env";
-import { flushSync, untrack } from "svelte";
+import { flushSync, onMount, untrack } from "svelte";
 import { attachRef, type ReadableBoxedValues, type WritableBoxedValues } from "svelte-toolbelt";
-import { Context } from "runed";
+import { Context, watch } from "runed";
 import { boolToEmptyStrOrUndef, boolToTrueOrUndef } from "$lib/internal/attrs.js";
 import type { RefAttachment, WithRefOpts } from "$lib/internal/types.js";
 import {
@@ -88,96 +88,114 @@ export class QuestionnaireRootState {
 		this.handleReset = this.handleReset.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 
-		$effect(() => {
-			const node = this.opts.ref.current as HTMLFormElement | null;
-			if (this.rootElement !== node) this.rootElement = node;
-		});
-
-		$effect(() => {
-			const root = this.rootElement;
-			if (!root || typeof MutationObserver === "undefined") return;
-
-			let pending = false;
-			const observer = new MutationObserver(() => {
-				if (pending) return;
-				pending = true;
-				queueMicrotask(() => {
-					pending = false;
-					this.domVersion += 1;
-				});
-			});
-			observer.observe(root, { childList: true, subtree: true });
-			return () => observer.disconnect();
-		});
-
-		$effect(() => {
-			if (!DEV) return;
-			const collection = this.collection;
-			const root = this.rootElement;
-			if (!collection || !root) {
-				this.activeWarnings.clear();
-				return;
+		watch(
+			() => this.opts.ref.current as HTMLFormElement | null,
+			(node) => {
+				if (this.rootElement !== node) this.rootElement = node;
 			}
+		);
 
-			let cancelled = false;
-			queueMicrotask(() => {
-				if (cancelled) return;
-				const warnings = [
-					...getCollectionDefinitionWarnings(collection, this.opts.defaultItem.current),
-					...getCollectionRegistrationWarnings(collection, this.registrations, this.shortcuts),
-				];
-				const nextWarnings = new Set(warnings);
-				for (const warning of nextWarnings) {
-					if (!this.activeWarnings.has(warning)) {
-						console.warn(`[Questionnaire] ${warning}`);
+		watch(
+			() => this.rootElement,
+			(root) => {
+				if (!root || typeof MutationObserver === "undefined") return;
+
+				let pending = false;
+				const observer = new MutationObserver(() => {
+					if (pending) return;
+					pending = true;
+					queueMicrotask(() => {
+						pending = false;
+						this.domVersion += 1;
+					});
+				});
+				observer.observe(root, { childList: true, subtree: true });
+				return () => observer.disconnect();
+			}
+		);
+
+		if (DEV) {
+			watch(
+				[
+					() => this.collection,
+					() => this.rootElement,
+					() => this.opts.defaultItem.current,
+					() => this.registrations,
+					() => this.shortcuts,
+				],
+				([collection, root, defaultItem, registrations, shortcuts]) => {
+					if (!collection || !root) {
+						this.activeWarnings.clear();
+						return;
 					}
+
+					let cancelled = false;
+					queueMicrotask(() => {
+						if (cancelled) return;
+						const warnings = [
+							...getCollectionDefinitionWarnings(collection, defaultItem),
+							...getCollectionRegistrationWarnings(collection, registrations, shortcuts),
+						];
+						const nextWarnings = new Set(warnings);
+						for (const warning of nextWarnings) {
+							if (!this.activeWarnings.has(warning)) {
+								console.warn(`[Questionnaire] ${warning}`);
+							}
+						}
+						this.activeWarnings = nextWarnings;
+					});
+
+					return () => {
+						cancelled = true;
+					};
 				}
-				this.activeWarnings = nextWarnings;
-			});
+			);
+		}
 
-			return () => {
-				cancelled = true;
-			};
-		});
+		watch.pre(
+			[
+				() => this.total,
+				() => this.currentIndex,
+				() => this.activeItemName,
+				() => this.logicalItems,
+				() => this.controlled,
+			],
+			([total, currentIndex, activeItemName, logicalItems, controlled]) => {
+				if (total === 0) return;
 
-		$effect.pre(() => {
-			const total = this.total;
-			if (total === 0) return;
+				if (currentIndex < 0) {
+					if (!controlled && activeItemName === null) {
+						this.uncontrolledItem = logicalItems[0]!.name;
+						return;
+					}
+					this.setItem(logicalItems[0]!.name);
+				}
+			}
+		);
 
-			const currentIndex = this.currentIndex;
-			const activeItemName = this.activeItemName;
-			const logicalItems = this.logicalItems;
+		watch(
+			[() => this.activeItemName, () => this.controlled, () => this.activeItem],
+			([activeItemName, controlled, activeItem]) => {
+				const pendingFocus = this.pendingFocus;
+				const activeItemChanged = this.previousActiveItemName !== activeItemName;
+				this.previousActiveItemName = activeItemName;
 
-			if (currentIndex < 0) {
-				if (!this.controlled && activeItemName === null) {
-					this.uncontrolledItem = logicalItems[0]!.name;
+				if (!pendingFocus || pendingFocus.name !== activeItemName) {
+					if (controlled && activeItemChanged) {
+						this.pendingFocus = null;
+						activeItem?.focus();
+					}
 					return;
 				}
-				this.setItem(logicalItems[0]!.name);
-			}
-		});
 
-		$effect(() => {
-			const pendingFocus = this.pendingFocus;
-			const activeItemName = this.activeItemName;
-			const activeItemChanged = this.previousActiveItemName !== activeItemName;
-			this.previousActiveItemName = activeItemName;
-
-			if (!pendingFocus || pendingFocus.name !== activeItemName) {
-				if (this.controlled && activeItemChanged) {
-					this.pendingFocus = null;
-					this.activeItem?.focus();
+				if (pendingFocus.target === "invalid") {
+					activeItem?.focusInvalid();
+				} else {
+					activeItem?.focus();
 				}
-				return;
+				this.pendingFocus = null;
 			}
-
-			if (pendingFocus.target === "invalid") {
-				this.activeItem?.focusInvalid();
-			} else {
-				this.activeItem?.focus();
-			}
-			this.pendingFocus = null;
-		});
+		);
 	}
 
 	readonly collection = $derived.by(() => createQuestionnaireCollection(this.opts.items.current));
@@ -487,35 +505,43 @@ export class QuestionnaireItemStateClass {
 			this.element = node as HTMLFieldSetElement | null;
 		});
 
-		$effect(() => {
-			const node = this.opts.ref.current as HTMLFieldSetElement | null;
-			if (this.element !== node) this.element = node;
-		});
+		watch(
+			() => this.opts.ref.current as HTMLFieldSetElement | null,
+			(node) => {
+				if (this.element !== node) this.element = node;
+			}
+		);
 
-		$effect.pre(() => {
-			this.emitStatusChange();
-		});
+		watch.pre(
+			() => this.status,
+			() => {
+				this.emitStatusChange();
+			}
+		);
 
-		$effect.pre(() => {
-			const multiple = this.opts.multiple.current;
-			const wasMultiple = this.previousMultiple;
-			this.previousMultiple = multiple;
-			if (!wasMultiple || multiple) return;
-			const answers = this.answers;
-			this.selectedAnswerIds = (() => {
-				const selectedAnswer = answers.find((answer) =>
-					this.selectedAnswerIds.includes(answer.id)
-				);
-				return selectedAnswer ? [selectedAnswer.id] : [];
-			})();
-		});
+		watch.pre(
+			() => this.opts.multiple.current,
+			(multiple) => {
+				const wasMultiple = this.previousMultiple;
+				this.previousMultiple = multiple;
+				if (!wasMultiple || multiple) return;
+				const answers = this.answers;
+				this.selectedAnswerIds = (() => {
+					const selectedAnswer = answers.find((answer) =>
+						this.selectedAnswerIds.includes(answer.id)
+					);
+					return selectedAnswer ? [selectedAnswer.id] : [];
+				})();
+			}
+		);
 
-		$effect.pre(() => {
-			const element = this.element;
-			if (!element) return;
-			const item = this;
-			return untrack(() =>
-				this.root.registerItem({
+		watch.pre(
+			() => this.element,
+			(element) => {
+				if (!element) return;
+				const item = this;
+				return untrack(() =>
+					this.root.registerItem({
 				get choices() {
 					return item.answerControls.flatMap((answer) =>
 						answer.type === "choice" ? [{ disabled: answer.ownDisabled, value: answer.value }] : []
@@ -913,63 +939,70 @@ export class QuestionnaireChoiceStateClass {
 		this.item = item;
 		this.initialDefaultChecked = opts.defaultChecked.current;
 
-		$effect.pre(() =>
-			untrack(() =>
-				this.item.registerAnswerSelection(this.opts.answerId.current, this.initialDefaultChecked)
-			)
-		);
-		$effect.pre(() =>
-			this.item.setAnswerDefault(this.opts.answerId.current, this.opts.defaultChecked.current)
-		);
-
-		$effect.pre(() => {
-			const input = this.inputElement;
-			if (!input) return;
-			const choice = this;
-			return untrack(() =>
-				this.item.registerAnswerControl({
-					get disabled() {
-						return choice.disabled;
-					},
-					element: input,
-					get id() {
-						return choice.opts.answerId.current;
-					},
-					get ownDisabled() {
-						return choice.opts.disabled.current;
-					},
-					type: "choice",
-					get value() {
-						return choice.opts.value.current;
-					},
-				})
-			);
+		onMount(() => {
+			this.item.registerAnswerSelection(this.opts.answerId.current, this.initialDefaultChecked);
 		});
+		watch.pre(
+			() => this.opts.defaultChecked.current,
+			(defaultChecked) => this.item.setAnswerDefault(this.opts.answerId.current, defaultChecked)
+		);
 
-		$effect.pre(() => {
-			const controlled = this.controlled;
-			const answerId = this.opts.answerId.current;
-			const checked = this.opts.checked.current;
-			void this.item.resetVersion;
-			if (!controlled) return;
-			untrack(() => this.item.syncControlledAnswerSelection(answerId, checked!));
-		});
-
-		$effect.pre(() => {
-			const input = this.inputElement;
-			if (!input) return;
-			const controlled = this.controlled;
-			const controlledChecked = this.opts.checked.current;
-			const defaultChecked = this.opts.defaultChecked.current;
-			const resetVersion = this.item.resetVersion;
-			const skipped = this.item.status === "skipped";
-			input.defaultChecked = controlled ? Boolean(controlledChecked) : defaultChecked;
-			if (resetVersion > 0 || skipped) {
-				untrack(() => {
-					if (input.checked !== this.checked) input.checked = this.checked;
-				});
+		watch.pre(
+			() => this.inputElement,
+			(input) => {
+				if (!input) return;
+				const choice = this;
+				return untrack(() =>
+					this.item.registerAnswerControl({
+						get disabled() {
+							return choice.disabled;
+						},
+						element: input,
+						get id() {
+							return choice.opts.answerId.current;
+						},
+						get ownDisabled() {
+							return choice.opts.disabled.current;
+						},
+						type: "choice",
+						get value() {
+							return choice.opts.value.current;
+						},
+					})
+				);
 			}
-		});
+		);
+
+		watch.pre(
+			[() => this.controlled, () => this.opts.checked.current, () => this.item.resetVersion],
+			([controlled, checked]) => {
+				if (!controlled) return;
+				untrack(() =>
+					this.item.syncControlledAnswerSelection(this.opts.answerId.current, checked!)
+				);
+			}
+		);
+
+		watch.pre(
+			[
+				() => this.inputElement,
+				() => this.controlled,
+				() => this.opts.checked.current,
+				() => this.opts.defaultChecked.current,
+				() => this.item.resetVersion,
+				() => this.item.status,
+			],
+			([input, controlled, controlledChecked, defaultChecked, resetVersion, status]) => {
+				if (!input) return;
+				const skipped = status === "skipped";
+				input.defaultChecked = controlled ? Boolean(controlledChecked) : defaultChecked;
+				if (resetVersion > 0 || skipped) {
+					untrack(() => {
+						if (input.checked !== this.checked) input.checked = this.checked;
+					});
+				}
+			}
+		);
 	}
 
 	readonly controlled = $derived.by(() => this.opts.checked.current !== undefined);
@@ -1083,68 +1116,83 @@ export class QuestionnaireInputStateClass {
 			this.inputElement = node as HTMLInputElement | null;
 		});
 
-		$effect(() => {
-			const node = this.opts.ref.current as HTMLInputElement | null;
-			if (this.inputElement !== node) this.inputElement = node;
-		});
-
-		$effect.pre(() =>
-			untrack(() =>
-				this.item.registerAnswerSelection(this.opts.answerId.current, this.initialDefaultFilled)
-			)
-		);
-		$effect.pre(() =>
-			this.item.setAnswerDefault(this.opts.answerId.current, this.defaultFilled)
+		watch(
+			() => this.opts.ref.current as HTMLInputElement | null,
+			(node) => {
+				if (this.inputElement !== node) this.inputElement = node;
+			}
 		);
 
-		$effect.pre(() => {
-			const input = this.inputElement;
-			if (!input) return;
-			const answer = this;
-			return untrack(() =>
-				this.item.registerAnswerControl({
-					get disabled() {
-						return answer.disabled;
-					},
-					element: input,
-					get id() {
-						return answer.opts.answerId.current;
-					},
-					type: "input",
-				})
-			);
+		onMount(() => {
+			this.item.registerAnswerSelection(this.opts.answerId.current, this.initialDefaultFilled);
 		});
+		watch.pre(
+			() => this.defaultFilled,
+			(defaultFilled) => this.item.setAnswerDefault(this.opts.answerId.current, defaultFilled)
+		);
 
-		$effect.pre(() => {
-			const controlled = this.controlled;
-			const answerId = this.opts.answerId.current;
-			const filled = this.controlledFilled;
-			const resetVersion = this.item.resetVersion;
-			const defaultFilled = this.defaultFilled;
-			if (controlled) {
-				untrack(() => this.item.syncControlledAnswerSelection(answerId, filled));
-				return;
+		watch.pre(
+			() => this.inputElement,
+			(input) => {
+				if (!input) return;
+				const answer = this;
+				return untrack(() =>
+					this.item.registerAnswerControl({
+						get disabled() {
+							return answer.disabled;
+						},
+						element: input,
+						get id() {
+							return answer.opts.answerId.current;
+						},
+						type: "input",
+					})
+				);
 			}
-			if (resetVersion > 0) {
-				this.uncontrolledFilled = defaultFilled;
-			}
-		});
+		);
 
-		$effect.pre(() => {
-			const input = this.inputElement;
-			if (!input) return;
-			if (this.controlled) {
-				const nextValue = String(this.opts.value.current ?? "");
-				input.defaultValue = nextValue;
-				if (input.value !== nextValue) input.value = nextValue;
-				return;
+		watch.pre(
+			[
+				() => this.controlled,
+				() => this.controlledFilled,
+				() => this.item.resetVersion,
+				() => this.defaultFilled,
+			],
+			([controlled, filled, resetVersion, defaultFilled]) => {
+				if (controlled) {
+					untrack(() =>
+						this.item.syncControlledAnswerSelection(this.opts.answerId.current, filled)
+					);
+					return;
+				}
+				if (resetVersion > 0) {
+					this.uncontrolledFilled = defaultFilled;
+				}
 			}
-			const defaultValue = this.opts.defaultValue.current;
-			if (defaultValue !== undefined) input.defaultValue = String(defaultValue);
-			if (this.item.resetVersion > 0) {
-				input.value = String(defaultValue ?? "");
+		);
+
+		watch.pre(
+			[
+				() => this.inputElement,
+				() => this.controlled,
+				() => this.opts.value.current,
+				() => this.opts.defaultValue.current,
+				() => this.item.resetVersion,
+			],
+			([input, controlled, value, defaultValue, resetVersion]) => {
+				if (!input) return;
+				if (controlled) {
+					const nextValue = String(value ?? "");
+					input.defaultValue = nextValue;
+					if (input.value !== nextValue) input.value = nextValue;
+					return;
+				}
+				if (defaultValue !== undefined) input.defaultValue = String(defaultValue);
+				if (resetVersion > 0) {
+					input.value = String(defaultValue ?? "");
+				}
 			}
-		});
+		);
 	}
 
 	readonly controlled = $derived.by(() => this.opts.value.current !== undefined);

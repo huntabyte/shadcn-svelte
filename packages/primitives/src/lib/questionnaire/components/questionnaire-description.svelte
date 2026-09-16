@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { untrack } from "svelte";
+	import { onMount } from "svelte";
 	import { mergeProps } from "svelte-toolbelt";
 	import type { QuestionnaireDescriptionProps } from "../types.js";
 	import { QuestionnaireItemStateClass } from "../questionnaire.svelte.js";
@@ -11,10 +11,7 @@
 
 	const item = QuestionnaireItemStateClass.get();
 
-	$effect.pre(() => {
-		const descriptionId = id;
-		return untrack(() => item.registerDescription(descriptionId));
-	});
+	onMount(() => item.registerDescription(id));
 
 	const mergedProps = $derived(mergeProps(restProps, { id }));
 </script>

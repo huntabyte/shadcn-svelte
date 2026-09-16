@@ -1,4 +1,5 @@
-// oxlint-disable no-explicit-any
+// Adapted from bits-ui:
+// https://github.com/huntabyte/bits-ui/blob/main/packages/bits-ui/src/lib/internal/types.ts
 import type { Snippet } from "svelte";
 import type { attachRef, Box, ReadableBoxedValues, WritableBoxedValues } from "svelte-toolbelt";
 

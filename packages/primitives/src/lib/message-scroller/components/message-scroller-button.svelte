@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { watch } from "runed";
 	import { attachRef, boxWith, mergeProps } from "svelte-toolbelt";
 	import type { MessageScrollerButtonProps } from "../types.js";
 	import { MessageScrollerProviderState } from "../message-scroller.svelte.js";
@@ -18,34 +19,35 @@
 	const root = MessageScrollerProviderState.get();
 	let isActive = $state(false);
 
-	$effect.pre(() => {
-		const getSnapshot = () => {
-			const state = root.stateStore.getSnapshot();
-			return direction === "start" ? state.start : state.end;
-		};
+	watch.pre(
+		() => direction,
+		(direction) => {
+			const read = () => {
+				const state = root.stateStore.getSnapshot();
+				return direction === "start" ? state.start : state.end;
+			};
 
-		isActive = getSnapshot();
+			isActive = read();
 
-		return root.stateStore.subscribe(() => {
-			isActive = getSnapshot();
-		});
-	});
+			return root.stateStore.subscribe(() => {
+				isActive = read();
+			});
+		}
+	);
 
 	function handleClick(event: MouseEvent & { currentTarget: EventTarget & HTMLButtonElement }) {
-		if (!isActive) {
-			return;
-		}
+		if (!isActive) return;
 
 		onclick?.(event);
 
-		if (!event.defaultPrevented) {
-			event.currentTarget.blur();
+		if (event.defaultPrevented) return;
 
-			if (direction === "start") {
-				root.scrollToStart({ behavior });
-			} else {
-				root.scrollToEnd({ behavior });
-			}
+		event.currentTarget.blur();
+
+		if (direction === "start") {
+			root.scrollToStart({ behavior });
+		} else {
+			root.scrollToEnd({ behavior });
 		}
 	}
 

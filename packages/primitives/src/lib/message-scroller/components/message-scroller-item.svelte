@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { watch } from "runed";
 	import { attachRef, boxWith, mergeProps } from "svelte-toolbelt";
 	import type { MessageScrollerItemProps } from "../types.js";
 	import { MessageScrollerProviderState } from "../message-scroller.svelte.js";
@@ -25,20 +26,20 @@
 		}
 	);
 
-	$effect(() => {
-		const currentMessageId = messageId;
-		const currentElement = element;
+	watch(
+		() => element,
+		(currentElement) => {
+			if (!messageId || !currentElement) {
+				return;
+			}
 
-		if (!currentMessageId || !currentElement) {
-			return;
+			root.registerMessage(messageId, currentElement);
+
+			return () => {
+				root.registerMessage(messageId, null, currentElement);
+			};
 		}
-
-		root.registerMessage(currentMessageId, currentElement);
-
-		return () => {
-			root.registerMessage(currentMessageId, null, currentElement);
-		};
-	});
+	);
 
 	const mergedProps = $derived(
 		mergeProps(restProps, {

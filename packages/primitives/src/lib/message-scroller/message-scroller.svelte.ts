@@ -1,5 +1,5 @@
-import { tick } from "svelte";
-import { Context } from "runed";
+import { onDestroy, onMount, tick } from "svelte";
+import { Context, watch } from "runed";
 import type { ReadableBoxedValues } from "svelte-toolbelt";
 import {
 	getContentBottom,
@@ -485,90 +485,100 @@ export class MessageScrollerProviderState {
 		this.setSpacerElement = this.setSpacerElement.bind(this);
 		this.syncAfterScroll = this.syncAfterScroll.bind(this);
 
-		$effect.pre(() => {
-			this.refs.autoScrollRef.current = this.opts.autoScroll.current;
-			this.refs.scrollEdgeThresholdRef.current = this.opts.scrollEdgeThreshold.current;
-			this.refs.scrollMarginRef.current = this.opts.scrollMargin.current;
-			this.refs.scrollPreviousItemPeekRef.current = this.opts.scrollPreviousItemPeek.current;
-		});
-
-		$effect.pre(() => {
-			const defaultScrollPosition = this.opts.defaultScrollPosition.current;
-
-			if (this.previousDefaultScrollPosition !== defaultScrollPosition) {
-				this.previousDefaultScrollPosition = defaultScrollPosition;
-				this.refs.defaultScrollPositionAppliedRef.current = false;
-				// The pending-scroll hold is mount-only. A live prop change re-applies the
-				// opening position in layout; it does not hide the viewport again.
+		watch.pre(
+			[
+				() => this.opts.autoScroll.current,
+				() => this.opts.scrollEdgeThreshold.current,
+				() => this.opts.scrollMargin.current,
+				() => this.opts.scrollPreviousItemPeek.current,
+			],
+			([autoScroll, scrollEdgeThreshold, scrollMargin, scrollPreviousItemPeek]) => {
+				this.refs.autoScrollRef.current = autoScroll;
+				this.refs.scrollEdgeThresholdRef.current = scrollEdgeThreshold;
+				this.refs.scrollMarginRef.current = scrollMargin;
+				this.refs.scrollPreviousItemPeekRef.current = scrollPreviousItemPeek;
 			}
-		});
+		);
 
-		$effect(() => {
-			void this.opts.defaultScrollPosition.current;
-			let cancelled = false;
+		watch.pre(
+			() => this.opts.defaultScrollPosition.current,
+			(defaultScrollPosition) => {
+				if (this.previousDefaultScrollPosition !== defaultScrollPosition) {
+					this.previousDefaultScrollPosition = defaultScrollPosition;
+					this.refs.defaultScrollPositionAppliedRef.current = false;
+					// The pending-scroll hold is mount-only. A live prop change re-applies the
+					// opening position in layout; it does not hide the viewport again.
+				}
+			}
+		);
 
-			void tick().then(() => {
-				if (cancelled) {
+		watch(
+			() => this.opts.defaultScrollPosition.current,
+			() => {
+				let cancelled = false;
+
+				void tick().then(() => {
+					if (cancelled) {
+						return;
+					}
+
+					if (this.applyDefaultScrollPosition()) {
+						return;
+					}
+
+					if (this.refs.itemCountRef.current === 0) {
+						clearPendingDefaultScroll(this.refs);
+					}
+				});
+
+				return () => {
+					cancelled = true;
+				};
+			}
+		);
+
+		watch(
+			() => this.opts.autoScroll.current,
+			(autoScroll) => {
+				if (
+					autoScroll &&
+					this.refs.modeRef.current === "following-bottom" &&
+					this.refs.itemCountRef.current > 0
+				) {
+					this.commands.scrollToEnd({ behavior: "auto" });
 					return;
 				}
 
-				if (this.applyDefaultScrollPosition()) {
-					return;
-				}
+				this.commitScrollState();
+			}
+		);
 
-				if (this.refs.itemCountRef.current === 0) {
-					clearPendingDefaultScroll(this.refs);
-				}
-			});
-
-			return () => {
-				cancelled = true;
-			};
-		});
-
-		$effect(() => {
-			const autoScroll = this.opts.autoScroll.current;
-
-			if (
-				autoScroll &&
-				this.refs.modeRef.current === "following-bottom" &&
-				this.refs.itemCountRef.current > 0
-			) {
-				this.commands.scrollToEnd({ behavior: "auto" });
-				return;
+		onDestroy(() => {
+			// Reset every ref after cancelling. StrictMode replays effects on the same
+			// refs (unmount then remount), so a frame id left non-null here makes the
+			// scheduler on remount think a frame is still pending and never reschedule.
+			if (this.refs.stateFrameRef.current !== null) {
+				window.cancelAnimationFrame(this.refs.stateFrameRef.current);
+				this.refs.stateFrameRef.current = null;
 			}
 
-			this.commitScrollState();
-		});
+			if (this.refs.visibilityFrameRef.current !== null) {
+				window.cancelAnimationFrame(this.refs.visibilityFrameRef.current);
+				this.refs.visibilityFrameRef.current = null;
+			}
 
-		$effect(() => {
-			return () => {
-				// Reset every ref after cancelling. StrictMode replays effects on the same
-				// refs (unmount then remount), so a frame id left non-null here makes the
-				// scheduler on remount think a frame is still pending and never reschedule.
-				if (this.refs.stateFrameRef.current !== null) {
-					window.cancelAnimationFrame(this.refs.stateFrameRef.current);
-					this.refs.stateFrameRef.current = null;
-				}
+			if (this.refs.autoscrollingTimeoutRef.current !== null) {
+				window.clearTimeout(this.refs.autoscrollingTimeoutRef.current);
+				this.refs.autoscrollingTimeoutRef.current = null;
+			}
 
-				if (this.refs.visibilityFrameRef.current !== null) {
-					window.cancelAnimationFrame(this.refs.visibilityFrameRef.current);
-					this.refs.visibilityFrameRef.current = null;
-				}
+			if (this.refs.pendingScrollFrameRef.current !== null) {
+				window.cancelAnimationFrame(this.refs.pendingScrollFrameRef.current);
+				this.refs.pendingScrollFrameRef.current = null;
+			}
 
-				if (this.refs.autoscrollingTimeoutRef.current !== null) {
-					window.clearTimeout(this.refs.autoscrollingTimeoutRef.current);
-					this.refs.autoscrollingTimeoutRef.current = null;
-				}
-
-				if (this.refs.pendingScrollFrameRef.current !== null) {
-					window.cancelAnimationFrame(this.refs.pendingScrollFrameRef.current);
-					this.refs.pendingScrollFrameRef.current = null;
-				}
-
-				this.refs.visibilityObserverRef.current?.disconnect();
-				this.refs.visibilityObserverRef.current = null;
-			};
+			this.refs.visibilityObserverRef.current?.disconnect();
+			this.refs.visibilityObserverRef.current = null;
 		});
 	}
 
@@ -1161,7 +1171,7 @@ export function useMessageScrollerScrollable(): MessageScrollerScrollable {
 		end: initial.end,
 	});
 
-	$effect.pre(() => {
+	onMount(() => {
 		const sync = () => {
 			const next = stateStore.getSnapshot();
 			snapshot.start = next.start;
@@ -1184,7 +1194,7 @@ export function useMessageScrollerVisibility(): MessageScrollerVisibilityState {
 		visibleMessageIds: initial.visibleMessageIds,
 	});
 
-	$effect.pre(() => {
+	onMount(() => {
 		const sync = () => {
 			const next = visibilityStore.getSnapshot();
 			snapshot.currentAnchorId = next.currentAnchorId;
@@ -1202,7 +1212,7 @@ export function usePendingDefaultScroll() {
 	const { pendingDefaultScrollStore } = MessageScrollerProviderState.get();
 	let pending = $state(pendingDefaultScrollStore.getSnapshot());
 
-	$effect.pre(() => {
+	onMount(() => {
 		const sync = () => {
 			pending = pendingDefaultScrollStore.getSnapshot();
 		};

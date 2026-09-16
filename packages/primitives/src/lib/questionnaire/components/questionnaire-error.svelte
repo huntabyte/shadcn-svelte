@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { untrack } from "svelte";
+	import { onMount } from "svelte";
 	import { mergeProps } from "svelte-toolbelt";
 	import type { QuestionnaireErrorProps } from "../types.js";
 	import { QuestionnaireItemStateClass } from "../questionnaire.svelte.js";
@@ -11,10 +11,7 @@
 
 	const item = QuestionnaireItemStateClass.get();
 
-	$effect.pre(() => {
-		const errorId = id;
-		return untrack(() => item.registerError(errorId));
-	});
+	onMount(() => item.registerError(id));
 
 	const snippetProps = $derived({ invalid: item.invalid });
 	const defaultMessage = $derived(

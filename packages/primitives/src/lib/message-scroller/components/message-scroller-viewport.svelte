@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { watch } from "runed";
 	import { attachRef, boxWith, mergeProps } from "svelte-toolbelt";
 	import type { MessageScrollerViewportProps } from "../types.js";
 	import { USER_SCROLL_KEYS } from "../types.js";
@@ -26,9 +27,12 @@
 	const pendingDefaultScroll = usePendingDefaultScroll();
 	let viewportElement = $state<HTMLDivElement | null>(null);
 
-	$effect.pre(() => {
-		root.preserveScrollOnPrependRef.current = preserveScrollOnPrepend;
-	});
+	watch.pre(
+		() => preserveScrollOnPrepend,
+		(preserveScrollOnPrepend) => {
+			root.preserveScrollOnPrependRef.current = preserveScrollOnPrepend;
+		}
+	);
 
 	const attachment = attachRef(
 		boxWith(
@@ -41,30 +45,31 @@
 		}
 	);
 
-	$effect(() => {
-		const viewport = viewportElement;
+	watch(
+		() => viewportElement,
+		(viewport) => {
+			if (!viewport || typeof ResizeObserver === "undefined") {
+				return;
+			}
 
-		if (!viewport || typeof ResizeObserver === "undefined") {
-			return;
+			// Coalesce into rAF: handleResize mutates the spacer inside the observed
+			// content, and resizing an observed element during delivery fires
+			// "ResizeObserver loop completed with undelivered notifications".
+			let frame = 0;
+
+			const observer = new ResizeObserver(() => {
+				window.cancelAnimationFrame(frame);
+				frame = window.requestAnimationFrame(root.handleResize);
+			});
+
+			observer.observe(viewport);
+
+			return () => {
+				window.cancelAnimationFrame(frame);
+				observer.disconnect();
+			};
 		}
-
-		// Coalesce into rAF: handleResize mutates the spacer inside the observed
-		// content, and resizing an observed element during delivery fires
-		// "ResizeObserver loop completed with undelivered notifications".
-		let frame = 0;
-
-		const observer = new ResizeObserver(() => {
-			window.cancelAnimationFrame(frame);
-			frame = window.requestAnimationFrame(root.handleResize);
-		});
-
-		observer.observe(viewport);
-
-		return () => {
-			window.cancelAnimationFrame(frame);
-			observer.disconnect();
-		};
-	});
+	);
 
 	function handleScroll(event: Event) {
 		root.syncAfterScroll();
