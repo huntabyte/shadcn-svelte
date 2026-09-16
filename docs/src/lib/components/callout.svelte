@@ -15,7 +15,7 @@
 </script>
 
 <Alert.Root
-	class={cn("w-auto border bg-background text-foreground md:-mx-1", className)}
+	class={cn("not-typeset w-auto border bg-background text-foreground md:-mx-1", className)}
 	{...restProps}
 >
 	{#if Icon}
