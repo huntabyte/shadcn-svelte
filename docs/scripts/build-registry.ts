@@ -114,7 +114,7 @@ export const Index = {`;
 
 	// TODO: fix later - we should either add these calendar examples to
 	// the `lib/registry/examples` dir, or... do something else?
-	const CALENDAR_EXAMPLES = ["02", "13", "22", "24", "29"].map((n) => `calendar-${n}`);
+	const CALENDAR_EXAMPLES = ["02", "04", "13", "22", "24", "29"].map((n) => `calendar-${n}`);
 
 	for (const item of registry as BuildRegistryItem[]) {
 		if (item.type !== "registry:example" && !CALENDAR_EXAMPLES.includes(item.name)) {
