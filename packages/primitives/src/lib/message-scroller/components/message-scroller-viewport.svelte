@@ -1,9 +1,7 @@
 <script lang="ts">
-	import { watch } from "runed";
-	import { attachRef, boxWith, mergeProps } from "svelte-toolbelt";
+	import { boxWith, mergeProps } from "svelte-toolbelt";
 	import type { MessageScrollerViewportProps } from "../types.js";
-	import { USER_SCROLL_KEYS } from "../types.js";
-	import { MessageScrollerProviderState } from "../message-scroller.svelte.js";
+	import { MessageScrollerViewportState } from "../message-scroller.svelte.js";
 
 	let {
 		children,
@@ -20,83 +18,23 @@
 		...restProps
 	}: MessageScrollerViewportProps = $props();
 
-	const root = MessageScrollerProviderState.get();
-	let viewportElement = $state<HTMLDivElement | null>(null);
-
-	root.bindPreserveScrollOnPrepend(() => preserveScrollOnPrepend);
-
-	const attachment = attachRef(
-		boxWith(
+	const viewportState = MessageScrollerViewportState.create({
+		ref: boxWith(
 			() => ref,
 			(v) => (ref = v)
 		),
-		(node) => {
-			viewportElement = node as HTMLDivElement | null;
-			root.setViewportElement(viewportElement);
-		}
-	);
-
-	watch(
-		() => viewportElement,
-		(viewport) => {
-			if (!viewport || typeof ResizeObserver === "undefined") {
-				return;
-			}
-
-			// Coalesce into rAF: handleResize mutates the spacer inside the observed
-			// content, and resizing an observed element during delivery fires
-			// "ResizeObserver loop completed with undelivered notifications".
-			let frame = 0;
-
-			const observer = new ResizeObserver(() => {
-				window.cancelAnimationFrame(frame);
-				frame = window.requestAnimationFrame(root.handleResize);
-			});
-
-			observer.observe(viewport);
-
-			return () => {
-				window.cancelAnimationFrame(frame);
-				observer.disconnect();
-			};
-		}
-	);
-
-	function handleScroll(event: Event) {
-		root.syncAfterScroll();
-		onscroll?.(event as UIEvent & { currentTarget: EventTarget & HTMLDivElement });
-	}
-
-	function handleWheel(event: WheelEvent) {
-		root.userScrollIntent();
-		onwheel?.(event as WheelEvent & { currentTarget: EventTarget & HTMLDivElement });
-	}
-
-	function handleTouchMove(event: TouchEvent) {
-		root.userScrollIntent();
-		ontouchmove?.(event as TouchEvent & { currentTarget: EventTarget & HTMLDivElement });
-	}
-
-	function handleKeyDown(event: KeyboardEvent) {
-		if (USER_SCROLL_KEYS.has(event.key)) {
-			root.userScrollIntent();
-		}
-
-		onkeydown?.(event as KeyboardEvent & { currentTarget: EventTarget & HTMLDivElement });
-	}
+		ariaLabel: boxWith(() => ariaLabel),
+		onkeydown: boxWith(() => onkeydown),
+		onscroll: boxWith(() => onscroll),
+		ontouchmove: boxWith(() => ontouchmove),
+		onwheel: boxWith(() => onwheel),
+		preserveScrollOnPrepend: boxWith(() => preserveScrollOnPrepend),
+		role: boxWith(() => role),
+		tabindex: boxWith(() => tabindex),
+	});
 
 	const mergedProps = $derived(
-		mergeProps(restProps, {
-			role: role ?? "region",
-			"aria-label": ariaLabel ?? "Messages",
-			tabindex: tabindex ?? 0,
-			onkeydown: handleKeyDown,
-			onscroll: handleScroll,
-			ontouchmove: handleTouchMove,
-			onwheel: handleWheel,
-			"data-pending-scroll": root.pendingDefaultScroll ? "" : undefined,
-			...attachment,
-		})
+		mergeProps(restProps, viewportState.props, viewportState.attachment)
 	);
 </script>
 

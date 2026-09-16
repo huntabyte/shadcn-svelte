@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { attachRef, boxWith, mergeProps } from "svelte-toolbelt";
+	import { boxWith, mergeProps } from "svelte-toolbelt";
 	import type { MessageScrollerButtonProps } from "../types.js";
-	import { MessageScrollerProviderState } from "../message-scroller.svelte.js";
+	import { MessageScrollerButtonState } from "../message-scroller.svelte.js";
 
 	let {
 		children,
@@ -15,44 +15,21 @@
 		...restProps
 	}: MessageScrollerButtonProps = $props();
 
-	const root = MessageScrollerProviderState.get();
-	const isActive = $derived(direction === "start" ? root.scrollable.start : root.scrollable.end);
-
-	function handleClick(event: MouseEvent & { currentTarget: EventTarget & HTMLButtonElement }) {
-		if (!isActive) return;
-
-		onclick?.(event);
-
-		if (event.defaultPrevented) return;
-
-		event.currentTarget.blur();
-
-		if (direction === "start") {
-			root.scrollToStart({ behavior });
-		} else {
-			root.scrollToEnd({ behavior });
-		}
-	}
-
-	const attachment = attachRef(
-		boxWith(
+	const buttonState = MessageScrollerButtonState.create({
+		ref: boxWith(
 			() => ref,
 			(v) => (ref = v)
-		)
-	);
-	const snippetProps = $derived({
-		active: isActive,
-		direction,
+		),
+		behavior: boxWith(() => behavior),
+		direction: boxWith(() => direction),
+		onclick: boxWith(() => onclick),
+		tabindex: boxWith(() => tabindex),
+		type: boxWith(() => type),
 	});
+
+	const snippetProps = $derived(buttonState.snippetProps);
 	const mergedProps = $derived(
-		mergeProps(restProps, {
-			type,
-			inert: isActive ? undefined : true,
-			tabindex: isActive ? tabindex : -1,
-			onclick: handleClick,
-			"data-active": isActive ? "true" : "false",
-			...attachment,
-		})
+		mergeProps(restProps, buttonState.props, buttonState.attachment)
 	);
 </script>
 

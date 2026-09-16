@@ -1,7 +1,8 @@
 import { onDestroy, tick } from "svelte";
 import { createSubscriber } from "svelte/reactivity";
 import { Context, watch } from "runed";
-import type { ReadableBoxedValues } from "svelte-toolbelt";
+import { attachRef, type ReadableBoxedValues, type WritableBoxedValues } from "svelte-toolbelt";
+import type { RefAttachment } from "$lib/internal/types.js";
 import {
 	getContentBottom,
 	getElementScrollTop,
@@ -24,14 +25,19 @@ import {
 	EMPTY_MESSAGE_SCROLLER_VISIBILITY_STATE,
 	EMPTY_VISIBLE_MESSAGE_IDS,
 	SCROLL_POSITION_EPSILON,
+	USER_SCROLL_KEYS,
 } from "./types.js";
 import type {
+	MessageScrollerButtonDirection,
+	MessageScrollerButtonProps,
+	MessageScrollerContentProps,
 	MessageScrollerDefaultScrollPosition,
 	MessageScrollerMode,
 	MessageScrollerRef,
 	MessageScrollerRegisterMessage,
 	MessageScrollerScrollable,
 	MessageScrollerScrollOptions,
+	MessageScrollerViewportProps,
 	MessageScrollerVisibilityState,
 } from "./types.js";
 
@@ -44,6 +50,29 @@ function createGetterRef<T>(get: () => T): MessageScrollerRef<T> {
 		get current() {
 			return get();
 		},
+	};
+}
+
+function observeResize(element: Element | null, onResize: () => void) {
+	if (!element || typeof ResizeObserver === "undefined") {
+		return;
+	}
+
+	// Coalesce into rAF: handleResize mutates the spacer inside the observed
+	// content, and resizing an observed element during delivery fires
+	// "ResizeObserver loop completed with undelivered notifications".
+	let frame = 0;
+
+	const observer = new ResizeObserver(() => {
+		window.cancelAnimationFrame(frame);
+		frame = window.requestAnimationFrame(onResize);
+	});
+
+	observer.observe(element);
+
+	return () => {
+		window.cancelAnimationFrame(frame);
+		observer.disconnect();
 	};
 }
 
@@ -1158,6 +1187,322 @@ export class MessageScrollerProviderState {
 		this.scheduleVisibilitySync();
 		this.capturePrependAnchor();
 	}
+}
+
+interface MessageScrollerRootStateOpts extends WritableBoxedValues<{
+	ref: HTMLElement | null;
+}> {}
+
+export class MessageScrollerRootState {
+	static create(opts: MessageScrollerRootStateOpts) {
+		return new MessageScrollerRootState(opts, MessageScrollerProviderState.get());
+	}
+
+	readonly opts: MessageScrollerRootStateOpts;
+	readonly root: MessageScrollerProviderState;
+	readonly attachment: RefAttachment<HTMLElement>;
+
+	constructor(opts: MessageScrollerRootStateOpts, root: MessageScrollerProviderState) {
+		this.opts = opts;
+		this.root = root;
+		this.attachment = attachRef(this.opts.ref, (node) => {
+			this.root.setRootElement(node as HTMLDivElement | null);
+		});
+	}
+
+	readonly props = $derived.by(() => ({
+		"data-pending-scroll": this.root.pendingDefaultScroll ? "" : undefined,
+	}));
+}
+
+interface MessageScrollerViewportStateOpts
+	extends WritableBoxedValues<{
+		ref: HTMLElement | null;
+	}>,
+		ReadableBoxedValues<{
+			ariaLabel: string | null | undefined;
+			onkeydown: MessageScrollerViewportProps["onkeydown"];
+			onscroll: MessageScrollerViewportProps["onscroll"];
+			ontouchmove: MessageScrollerViewportProps["ontouchmove"];
+			onwheel: MessageScrollerViewportProps["onwheel"];
+			preserveScrollOnPrepend: boolean;
+			role: MessageScrollerViewportProps["role"];
+			tabindex: MessageScrollerViewportProps["tabindex"];
+		}> {}
+
+export class MessageScrollerViewportState {
+	static create(opts: MessageScrollerViewportStateOpts) {
+		return new MessageScrollerViewportState(opts, MessageScrollerProviderState.get());
+	}
+
+	readonly opts: MessageScrollerViewportStateOpts;
+	readonly root: MessageScrollerProviderState;
+	readonly attachment: RefAttachment<HTMLElement>;
+	readonly element = $derived.by(() => this.opts.ref.current);
+
+	constructor(opts: MessageScrollerViewportStateOpts, root: MessageScrollerProviderState) {
+		this.opts = opts;
+		this.root = root;
+		this.handleKeyDown = this.handleKeyDown.bind(this);
+		this.handleScroll = this.handleScroll.bind(this);
+		this.handleTouchMove = this.handleTouchMove.bind(this);
+		this.handleWheel = this.handleWheel.bind(this);
+		this.root.bindPreserveScrollOnPrepend(() => this.opts.preserveScrollOnPrepend.current);
+		this.attachment = attachRef(this.opts.ref, (node) => {
+			this.root.setViewportElement(node as HTMLDivElement | null);
+		});
+
+		watch(
+			() => this.element,
+			(viewport) => observeResize(viewport, this.root.handleResize)
+		);
+	}
+
+	handleScroll(event: Event) {
+		this.root.syncAfterScroll();
+		this.opts.onscroll.current?.(
+			event as UIEvent & { currentTarget: EventTarget & HTMLDivElement }
+		);
+	}
+
+	handleWheel(event: WheelEvent) {
+		this.root.userScrollIntent();
+		this.opts.onwheel.current?.(
+			event as WheelEvent & { currentTarget: EventTarget & HTMLDivElement }
+		);
+	}
+
+	handleTouchMove(event: TouchEvent) {
+		this.root.userScrollIntent();
+		this.opts.ontouchmove.current?.(
+			event as TouchEvent & { currentTarget: EventTarget & HTMLDivElement }
+		);
+	}
+
+	handleKeyDown(event: KeyboardEvent) {
+		if (USER_SCROLL_KEYS.has(event.key)) {
+			this.root.userScrollIntent();
+		}
+
+		this.opts.onkeydown.current?.(
+			event as KeyboardEvent & { currentTarget: EventTarget & HTMLDivElement }
+		);
+	}
+
+	readonly props = $derived.by(() => ({
+		role: this.opts.role.current ?? "region",
+		"aria-label": this.opts.ariaLabel.current ?? "Messages",
+		tabindex: this.opts.tabindex.current ?? 0,
+		onkeydown: this.handleKeyDown,
+		onscroll: this.handleScroll,
+		ontouchmove: this.handleTouchMove,
+		onwheel: this.handleWheel,
+		"data-pending-scroll": this.root.pendingDefaultScroll ? "" : undefined,
+	}));
+}
+
+interface MessageScrollerContentStateOpts
+	extends WritableBoxedValues<{
+		ref: HTMLElement | null;
+	}>,
+		ReadableBoxedValues<{
+			ariaRelevant: MessageScrollerContentProps["aria-relevant"];
+			role: MessageScrollerContentProps["role"];
+			spacerClassName: string | undefined;
+			useChildSnippet: boolean;
+		}> {}
+
+export class MessageScrollerContentState {
+	static create(opts: MessageScrollerContentStateOpts) {
+		return new MessageScrollerContentState(opts, MessageScrollerProviderState.get());
+	}
+
+	readonly opts: MessageScrollerContentStateOpts;
+	readonly root: MessageScrollerProviderState;
+	readonly attachment: RefAttachment<HTMLElement>;
+	readonly spacerAttachment: RefAttachment<HTMLDivElement>;
+	readonly element = $derived.by(() => this.opts.ref.current);
+
+	constructor(opts: MessageScrollerContentStateOpts, root: MessageScrollerProviderState) {
+		this.opts = opts;
+		this.root = root;
+		this.attachment = attachRef(this.opts.ref, (node) => {
+			this.root.setContentElement(node as HTMLDivElement | null);
+		});
+		this.spacerAttachment = attachRef((node) => {
+			this.root.setSpacerElement(node as HTMLDivElement | null);
+		});
+
+		watch(
+			[
+				() => this.element,
+				() => this.opts.useChildSnippet.current,
+				() => this.opts.spacerClassName.current,
+			],
+			([content, useChildSnippet]) => {
+				if (!content) {
+					return;
+				}
+
+				if (useChildSnippet) {
+					this.ensureSpacer(content as HTMLDivElement);
+				}
+
+				this.root.handleContentChange();
+
+				if (typeof MutationObserver === "undefined") {
+					return;
+				}
+
+				const observer = new MutationObserver(() => {
+					this.root.handleContentChange();
+				});
+
+				observer.observe(content, { childList: true });
+
+				return () => observer.disconnect();
+			}
+		);
+
+		watch(
+			() => this.element,
+			(content) => observeResize(content, this.root.handleResize)
+		);
+	}
+
+	ensureSpacer(content: HTMLDivElement) {
+		let spacer = content.querySelector<HTMLDivElement>("[data-message-scroller-spacer]");
+
+		if (!spacer) {
+			spacer = document.createElement("div");
+			spacer.setAttribute("aria-hidden", "true");
+			spacer.setAttribute("data-message-scroller-spacer", "");
+			spacer.hidden = true;
+			content.appendChild(spacer);
+		}
+
+		spacer.className = this.opts.spacerClassName.current ?? "";
+		this.root.setSpacerElement(spacer);
+	}
+
+	readonly props = $derived.by(() => ({
+		role: this.opts.role.current ?? "log",
+		"aria-relevant": this.opts.ariaRelevant.current ?? "additions",
+	}));
+}
+
+interface MessageScrollerItemStateOpts
+	extends WritableBoxedValues<{
+		ref: HTMLElement | null;
+	}>,
+		ReadableBoxedValues<{
+			messageId: string | undefined;
+			scrollAnchor: boolean;
+		}> {}
+
+export class MessageScrollerItemState {
+	static create(opts: MessageScrollerItemStateOpts) {
+		return new MessageScrollerItemState(opts, MessageScrollerProviderState.get());
+	}
+
+	readonly opts: MessageScrollerItemStateOpts;
+	readonly root: MessageScrollerProviderState;
+	readonly attachment: RefAttachment<HTMLElement>;
+	readonly element = $derived.by(() => this.opts.ref.current);
+
+	constructor(opts: MessageScrollerItemStateOpts, root: MessageScrollerProviderState) {
+		this.opts = opts;
+		this.root = root;
+		this.attachment = attachRef(this.opts.ref);
+
+		watch(
+			() => this.element,
+			(currentElement) => {
+				const messageId = this.opts.messageId.current;
+
+				if (!messageId || !currentElement) {
+					return;
+				}
+
+				this.root.registerMessage(messageId, currentElement);
+
+				return () => {
+					this.root.registerMessage(messageId, null, currentElement);
+				};
+			}
+		);
+	}
+
+	readonly props = $derived.by(() => ({
+		"data-message-id": this.opts.messageId.current,
+		"data-scroll-anchor": this.opts.scrollAnchor.current ? "true" : "false",
+	}));
+}
+
+interface MessageScrollerButtonStateOpts
+	extends WritableBoxedValues<{
+		ref: HTMLElement | null;
+	}>,
+		ReadableBoxedValues<{
+			behavior: ScrollBehavior;
+			direction: MessageScrollerButtonDirection;
+			onclick: MessageScrollerButtonProps["onclick"];
+			tabindex: MessageScrollerButtonProps["tabindex"];
+			type: MessageScrollerButtonProps["type"];
+		}> {}
+
+export class MessageScrollerButtonState {
+	static create(opts: MessageScrollerButtonStateOpts) {
+		return new MessageScrollerButtonState(opts, MessageScrollerProviderState.get());
+	}
+
+	readonly opts: MessageScrollerButtonStateOpts;
+	readonly root: MessageScrollerProviderState;
+	readonly attachment: RefAttachment<HTMLElement>;
+
+	constructor(opts: MessageScrollerButtonStateOpts, root: MessageScrollerProviderState) {
+		this.opts = opts;
+		this.root = root;
+		this.handleClick = this.handleClick.bind(this);
+		this.attachment = attachRef(this.opts.ref);
+	}
+
+	readonly isActive = $derived.by(() =>
+		this.opts.direction.current === "start" ? this.root.scrollable.start : this.root.scrollable.end
+	);
+
+	handleClick(event: MouseEvent & { currentTarget: EventTarget & HTMLButtonElement }) {
+		if (!this.isActive) {
+			return;
+		}
+
+		this.opts.onclick.current?.(event);
+
+		if (event.defaultPrevented) {
+			return;
+		}
+
+		event.currentTarget.blur();
+
+		if (this.opts.direction.current === "start") {
+			this.root.scrollToStart({ behavior: this.opts.behavior.current });
+		} else {
+			this.root.scrollToEnd({ behavior: this.opts.behavior.current });
+		}
+	}
+
+	readonly snippetProps = $derived.by(() => ({
+		active: this.isActive,
+		direction: this.opts.direction.current,
+	}));
+
+	readonly props = $derived.by(() => ({
+		type: this.opts.type.current,
+		inert: this.isActive ? undefined : true,
+		tabindex: this.isActive ? this.opts.tabindex.current : -1,
+		onclick: this.handleClick,
+		"data-active": this.isActive ? "true" : "false",
+	}));
 }
 
 export function useMessageScroller() {

@@ -1,24 +1,18 @@
 <script lang="ts">
-	import { attachRef, boxWith, mergeProps } from "svelte-toolbelt";
+	import { boxWith, mergeProps } from "svelte-toolbelt";
 	import type { MessageScrollerRootProps } from "../types.js";
-	import { MessageScrollerProviderState } from "../message-scroller.svelte.js";
+	import { MessageScrollerRootState } from "../message-scroller.svelte.js";
 
 	let { children, child, ref = $bindable(null), ...restProps }: MessageScrollerRootProps = $props();
 
-	const root = MessageScrollerProviderState.get();
-	const attachment = attachRef(
-		boxWith(
+	const rootState = MessageScrollerRootState.create({
+		ref: boxWith(
 			() => ref,
 			(v) => (ref = v)
 		),
-		(node) => root.setRootElement(node as HTMLDivElement | null)
-	);
-	const mergedProps = $derived(
-		mergeProps(restProps, {
-			"data-pending-scroll": root.pendingDefaultScroll ? "" : undefined,
-			...attachment,
-		})
-	);
+	});
+
+	const mergedProps = $derived(mergeProps(restProps, rootState.props, rootState.attachment));
 </script>
 
 {#if child}

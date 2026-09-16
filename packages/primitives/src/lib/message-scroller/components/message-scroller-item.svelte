@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { watch } from "runed";
-	import { attachRef, boxWith, mergeProps } from "svelte-toolbelt";
+	import { boxWith, mergeProps } from "svelte-toolbelt";
 	import type { MessageScrollerItemProps } from "../types.js";
-	import { MessageScrollerProviderState } from "../message-scroller.svelte.js";
+	import { MessageScrollerItemState } from "../message-scroller.svelte.js";
 
 	let {
 		children,
@@ -13,41 +12,16 @@
 		...restProps
 	}: MessageScrollerItemProps = $props();
 
-	const root = MessageScrollerProviderState.get();
-	let element = $state<HTMLDivElement | null>(null);
-
-	const attachment = attachRef(
-		boxWith(
+	const itemState = MessageScrollerItemState.create({
+		ref: boxWith(
 			() => ref,
 			(v) => (ref = v)
 		),
-		(node) => {
-			element = node as HTMLDivElement | null;
-		}
-	);
+		messageId: boxWith(() => messageId),
+		scrollAnchor: boxWith(() => scrollAnchor),
+	});
 
-	watch(
-		() => element,
-		(currentElement) => {
-			if (!messageId || !currentElement) {
-				return;
-			}
-
-			root.registerMessage(messageId, currentElement);
-
-			return () => {
-				root.registerMessage(messageId, null, currentElement);
-			};
-		}
-	);
-
-	const mergedProps = $derived(
-		mergeProps(restProps, {
-			"data-message-id": messageId,
-			"data-scroll-anchor": scrollAnchor ? "true" : "false",
-			...attachment,
-		})
-	);
+	const mergedProps = $derived(mergeProps(restProps, itemState.props, itemState.attachment));
 </script>
 
 {#if child}
