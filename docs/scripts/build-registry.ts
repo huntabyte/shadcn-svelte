@@ -191,6 +191,12 @@ export const Index = {`;
 		JSON.stringify(toJSONSchema(registryItemSchema), null, "\t")
 	);
 
+	// ----------------------------------------------------------------------------
+	// Mirror static/registry into src/__registry__/json so routes can `import.meta.glob` it.
+	// ----------------------------------------------------------------------------
+	log("📁 Copying static/registry -> src/__registry__/json...");
+	fs.cpSync(REGISTRY_PATH, path.resolve("src", "__registry__", "json"), { recursive: true });
+
 	log("🎉 Done!");
 }
 
@@ -308,6 +314,57 @@ async function runRegistryBuild(style: PresetConfig["style"]) {
 	);
 }
 
+const WATCH_DEBOUNCE_MS = 300;
+
+/**
+ * Rebuilds the registry once, then again (debounced) whenever a file under
+ * `src/lib/registry` changes. Generated icon wrappers are ignored since they are
+ * rewritten by `build-icons.ts` and are not registry items.
+ */
+async function watchAndBuild() {
+	let building = false;
+	let pending = false;
+	let timer: NodeJS.Timeout | undefined;
+
+	const run = async () => {
+		if (building) {
+			pending = true;
+			return;
+		}
+		building = true;
+		try {
+			await build();
+		} catch (error) {
+			console.error("❌ Registry build failed:", error);
+		} finally {
+			building = false;
+			if (pending) {
+				pending = false;
+				schedule();
+			}
+		}
+	};
+
+	const schedule = () => {
+		clearTimeout(timer);
+		timer = setTimeout(run, WATCH_DEBOUNCE_MS);
+	};
+
+	await run();
+
+	log(`👀 Watching ${path.relative(process.cwd(), INTERNAL_REGISTRY_PATH)} for changes...`);
+	fs.watch(INTERNAL_REGISTRY_PATH, { recursive: true }, (_, filename) => {
+		if (!filename) return;
+		const normalized = filename.split(path.sep).join("/");
+		if (normalized.startsWith("icons/__")) return;
+		schedule();
+	});
+}
+
 if (process.argv.includes("build-registry")) {
-	build();
+	if (process.argv.includes("--watch")) {
+		watchAndBuild();
+	} else {
+		build();
+	}
 }
