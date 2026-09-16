@@ -1,4 +1,5 @@
-import { onDestroy, onMount, tick } from "svelte";
+import { onDestroy, tick } from "svelte";
+import { createSubscriber } from "svelte/reactivity";
 import { Context, watch } from "runed";
 import type { ReadableBoxedValues } from "svelte-toolbelt";
 import {
@@ -19,14 +20,9 @@ import {
 	hasMultipleNewScrollAnchors,
 } from "./geometry.js";
 import {
-	areScrollStatesEqual,
-	createMessageScrollerStore,
-	createMessageScrollerVisibilityStore,
-} from "./stores.js";
-import {
 	AUTOSCROLLING_CLEAR_DELAY,
-	EMPTY_MESSAGE_SCROLLER_SCROLLABLE,
 	EMPTY_MESSAGE_SCROLLER_VISIBILITY_STATE,
+	EMPTY_VISIBLE_MESSAGE_IDS,
 	SCROLL_POSITION_EPSILON,
 } from "./types.js";
 import type {
@@ -36,9 +32,7 @@ import type {
 	MessageScrollerRegisterMessage,
 	MessageScrollerScrollable,
 	MessageScrollerScrollOptions,
-	MessageScrollerStore,
 	MessageScrollerVisibilityState,
-	MessageScrollerVisibilityStore,
 } from "./types.js";
 
 function createRef<T>(initial: T): MessageScrollerRef<T> {
@@ -75,7 +69,6 @@ type MessageScrollerRefs = {
 		viewportTop: number;
 	} | null>;
 	preserveScrollOnPrependRef: MessageScrollerRef<boolean>;
-	pendingDefaultScrollStore: MessageScrollerStore<boolean>;
 	rootRef: MessageScrollerRef<HTMLDivElement | null>;
 	scrollEdgeThresholdRef: MessageScrollerRef<number>;
 	scrollMarginRef: MessageScrollerRef<number>;
@@ -84,25 +77,21 @@ type MessageScrollerRefs = {
 	spacerHeightRef: MessageScrollerRef<number>;
 	spacerRef: MessageScrollerRef<HTMLDivElement | null>;
 	stateFrameRef: MessageScrollerRef<number | null>;
-	stateStore: MessageScrollerStore<MessageScrollerScrollable>;
 	viewportRef: MessageScrollerRef<HTMLDivElement | null>;
 	visibilityFrameRef: MessageScrollerRef<number | null>;
 	visibilityObserverRef: MessageScrollerRef<IntersectionObserver | null>;
-	visibilityStore: MessageScrollerVisibilityStore;
 	visibleMessageIdsRef: MessageScrollerRef<Set<string>>;
 	handledScrollAnchorsRef: MessageScrollerRef<WeakSet<HTMLElement>>;
 };
 
 function createMessageScrollerRefs({
 	getAutoScroll,
-	defaultScrollPosition,
 	getScrollEdgeThreshold,
 	getScrollMargin,
 	getScrollPreviousItemPeek,
 	getPreserveScrollOnPrepend,
 }: {
 	getAutoScroll: () => boolean;
-	defaultScrollPosition: MessageScrollerDefaultScrollPosition;
 	getScrollEdgeThreshold: () => number;
 	getScrollMargin: () => number;
 	getScrollPreviousItemPeek: () => number;
@@ -132,10 +121,6 @@ function createMessageScrollerRefs({
 			viewportTop: number;
 		} | null>(null),
 		preserveScrollOnPrependRef: createGetterRef(getPreserveScrollOnPrepend),
-		pendingDefaultScrollStore: createMessageScrollerStore(
-			defaultScrollPosition === "end" || defaultScrollPosition === "last-anchor",
-			(current, next) => current === next
-		),
 		rootRef: createRef<HTMLDivElement | null>(null),
 		scrollEdgeThresholdRef: createGetterRef(getScrollEdgeThreshold),
 		scrollMarginRef: createGetterRef(getScrollMargin),
@@ -144,36 +129,24 @@ function createMessageScrollerRefs({
 		spacerHeightRef: createRef(0),
 		spacerRef: createRef<HTMLDivElement | null>(null),
 		stateFrameRef: createRef<number | null>(null),
-		stateStore: createMessageScrollerStore(
-			EMPTY_MESSAGE_SCROLLER_SCROLLABLE,
-			areScrollStatesEqual
-		),
 		viewportRef: createRef<HTMLDivElement | null>(null),
 		visibilityFrameRef: createRef<number | null>(null),
 		visibilityObserverRef: createRef<IntersectionObserver | null>(null),
-		visibilityStore: createMessageScrollerVisibilityStore(),
 		visibleMessageIdsRef: createRef(new Set<string>()),
 		handledScrollAnchorsRef: createRef(new WeakSet<HTMLElement>()),
 	};
 }
 
-function clearPendingDefaultScroll(refs: MessageScrollerRefs) {
-	refs.pendingDefaultScrollStore.setSnapshot(false);
-}
-
-function markDefaultScrollPositionApplied(refs: MessageScrollerRefs) {
-	refs.defaultScrollPositionAppliedRef.current = true;
-	clearPendingDefaultScroll(refs);
-}
-
 function createMessageScrollerCommands({
 	refs,
 	commitScrollState,
+	markDefaultScrollPositionApplied,
 	scheduleStateCommit,
 	scheduleVisibilitySync,
 }: {
 	refs: MessageScrollerRefs;
 	commitScrollState: () => void;
+	markDefaultScrollPositionApplied: () => void;
 	scheduleStateCommit: () => void;
 	scheduleVisibilitySync: () => void;
 }) {
@@ -385,7 +358,7 @@ function createMessageScrollerCommands({
 					messageId,
 					options,
 				};
-				markDefaultScrollPositionApplied(refs);
+				markDefaultScrollPositionApplied();
 
 				return true;
 			}
@@ -393,7 +366,7 @@ function createMessageScrollerCommands({
 			return false;
 		}
 
-		markDefaultScrollPositionApplied(refs);
+		markDefaultScrollPositionApplied();
 
 		if (scrollToElement(element, options)) {
 			pendingScrollToMessageRef.current = null;
@@ -428,7 +401,7 @@ function createMessageScrollerCommands({
 		}
 
 		pendingScrollToMessageRef.current = null;
-		markDefaultScrollPositionApplied(refs);
+		markDefaultScrollPositionApplied();
 
 		return true;
 	};
@@ -467,14 +440,31 @@ export class MessageScrollerProviderState {
 	readonly refs: MessageScrollerRefs;
 	readonly commands: ReturnType<typeof createMessageScrollerCommands>;
 	previousDefaultScrollPosition: MessageScrollerDefaultScrollPosition;
+	pendingDefaultScroll = $state(false);
+	scrollable = $state<MessageScrollerScrollable>({ start: false, end: false });
 	#getPreserveScrollOnPrepend = () => true;
+	#visibilityState = $state<MessageScrollerVisibilityState>({
+		currentAnchorId: null,
+		visibleMessageIds: EMPTY_VISIBLE_MESSAGE_IDS,
+	});
+	#visibilityTracking = false;
+	#subscribeVisibility = createSubscriber(() => {
+		this.#visibilityTracking = true;
+		this.observeVisibility();
+		return () => {
+			this.#visibilityTracking = false;
+			this.unobserveVisibility();
+		};
+	});
 
 	constructor(opts: MessageScrollerProviderStateOpts) {
 		this.opts = opts;
 		this.previousDefaultScrollPosition = opts.defaultScrollPosition.current;
+		this.pendingDefaultScroll =
+			opts.defaultScrollPosition.current === "end" ||
+			opts.defaultScrollPosition.current === "last-anchor";
 		this.refs = createMessageScrollerRefs({
 			getAutoScroll: () => this.opts.autoScroll.current,
-			defaultScrollPosition: opts.defaultScrollPosition.current,
 			getScrollEdgeThreshold: () => this.opts.scrollEdgeThreshold.current,
 			getScrollMargin: () => this.opts.scrollMargin.current,
 			getScrollPreviousItemPeek: () => this.opts.scrollPreviousItemPeek.current,
@@ -483,6 +473,7 @@ export class MessageScrollerProviderState {
 		this.commands = createMessageScrollerCommands({
 			refs: this.refs,
 			commitScrollState: () => this.commitScrollState(),
+			markDefaultScrollPositionApplied: () => this.markDefaultScrollPositionApplied(),
 			scheduleStateCommit: () => this.scheduleStateCommit(),
 			scheduleVisibilitySync: () => this.scheduleVisibilitySync(),
 		});
@@ -526,7 +517,7 @@ export class MessageScrollerProviderState {
 					}
 
 					if (this.refs.itemCountRef.current === 0) {
-						clearPendingDefaultScroll(this.refs);
+						this.pendingDefaultScroll = false;
 					}
 				});
 
@@ -581,16 +572,9 @@ export class MessageScrollerProviderState {
 		});
 	}
 
-	get pendingDefaultScrollStore() {
-		return this.refs.pendingDefaultScrollStore;
-	}
-
-	get stateStore() {
-		return this.refs.stateStore;
-	}
-
-	get visibilityStore() {
-		return this.refs.visibilityStore;
+	get visibility() {
+		this.#subscribeVisibility();
+		return this.#visibilityState;
 	}
 
 	get preserveScrollOnPrependRef() {
@@ -599,6 +583,11 @@ export class MessageScrollerProviderState {
 
 	bindPreserveScrollOnPrepend(getPreserveScrollOnPrepend: () => boolean) {
 		this.#getPreserveScrollOnPrepend = getPreserveScrollOnPrepend;
+	}
+
+	markDefaultScrollPositionApplied() {
+		this.refs.defaultScrollPositionAppliedRef.current = true;
+		this.pendingDefaultScroll = false;
 	}
 
 	get viewportRef() {
@@ -693,7 +682,13 @@ export class MessageScrollerProviderState {
 				: nextState;
 
 		this.writeStateAttributes(publishedState);
-		this.refs.stateStore.setSnapshot(publishedState);
+
+		if (areScrollStatesEqual(this.scrollable, publishedState)) {
+			return;
+		}
+
+		this.scrollable.start = publishedState.start;
+		this.scrollable.end = publishedState.end;
 	}
 
 	scheduleStateCommit() {
@@ -708,7 +703,7 @@ export class MessageScrollerProviderState {
 	}
 
 	scheduleVisibilitySync() {
-		if (!this.refs.visibilityStore.hasListeners()) {
+		if (!this.#visibilityTracking) {
 			return;
 		}
 
@@ -722,11 +717,11 @@ export class MessageScrollerProviderState {
 			// A frame can outlive the last unsubscribe. Recomputing here would
 			// overwrite the EMPTY snapshot that teardown just wrote, leaving a stale
 			// value for the next subscriber to read.
-			if (!this.refs.visibilityStore.hasListeners()) {
+			if (!this.#visibilityTracking) {
 				return;
 			}
 
-			this.refs.visibilityStore.setSnapshot(
+			this.writeVisibilityState(
 				getMessageScrollerVisibilityState({
 					content: this.refs.contentRef.current,
 					scrollMargin: this.refs.scrollMarginRef.current,
@@ -859,7 +854,7 @@ export class MessageScrollerProviderState {
 			return false;
 		}
 
-		markDefaultScrollPositionApplied(this.refs);
+		this.markDefaultScrollPositionApplied();
 
 		return true;
 	}
@@ -1018,7 +1013,7 @@ export class MessageScrollerProviderState {
 	observeVisibility() {
 		const viewport = this.refs.viewportRef.current;
 
-		if (!viewport || !this.refs.visibilityStore.hasListeners()) {
+		if (!viewport || !this.#visibilityTracking) {
 			return;
 		}
 
@@ -1076,7 +1071,7 @@ export class MessageScrollerProviderState {
 		this.refs.visibilityObserverRef.current?.disconnect();
 		this.refs.visibilityObserverRef.current = null;
 		this.refs.visibleMessageIdsRef.current.clear();
-		this.refs.visibilityStore.setSnapshot(EMPTY_MESSAGE_SCROLLER_VISIBILITY_STATE);
+		this.writeVisibilityState(EMPTY_MESSAGE_SCROLLER_VISIBILITY_STATE);
 	}
 
 	registerMessage: MessageScrollerRegisterMessage = (messageId, element, removedElement) => {
@@ -1116,8 +1111,17 @@ export class MessageScrollerProviderState {
 		}
 	}
 
+	writeVisibilityState(next: MessageScrollerVisibilityState) {
+		if (areVisibilityStatesEqual(this.#visibilityState, next)) {
+			return;
+		}
+
+		this.#visibilityState.currentAnchorId = next.currentAnchorId;
+		this.#visibilityState.visibleMessageIds = next.visibleMessageIds;
+	}
+
 	mirrorStateAttributes() {
-		this.writeStateAttributes(this.refs.stateStore.getSnapshot());
+		this.writeStateAttributes(this.scrollable);
 	}
 
 	setRootElement(element: HTMLDivElement | null) {
@@ -1134,7 +1138,7 @@ export class MessageScrollerProviderState {
 		if (element) {
 			this.mirrorStateAttributes();
 
-			if (this.refs.visibilityStore.hasListeners()) {
+			if (this.#visibilityTracking) {
 				this.observeVisibility();
 			}
 		}
@@ -1167,66 +1171,41 @@ export function useMessageScroller() {
 }
 
 export function useMessageScrollerScrollable(): MessageScrollerScrollable {
-	const { stateStore } = MessageScrollerProviderState.get();
-	const initial = stateStore.getSnapshot();
-	const snapshot = $state({
-		start: initial.start,
-		end: initial.end,
-	});
-
-	onMount(() => {
-		const sync = () => {
-			const next = stateStore.getSnapshot();
-			snapshot.start = next.start;
-			snapshot.end = next.end;
-		};
-
-		sync();
-		return stateStore.subscribe(sync);
-	});
-
-	return snapshot;
+	return MessageScrollerProviderState.get().scrollable;
 }
 
 export function useMessageScrollerVisibility(): MessageScrollerVisibilityState {
-	const { observeVisibility, unobserveVisibility, visibilityStore } =
-		MessageScrollerProviderState.get();
-	const initial = visibilityStore.getSnapshot();
-	const snapshot = $state({
-		currentAnchorId: initial.currentAnchorId,
-		visibleMessageIds: initial.visibleMessageIds,
+	const root = MessageScrollerProviderState.get();
+
+	// Reading `visibility` in an effect is what arms IntersectionObserver: the
+	// getter is inert until a component actually tracks it.
+	$effect(() => {
+		void root.visibility;
 	});
 
-	onMount(() => {
-		const sync = () => {
-			const next = visibilityStore.getSnapshot();
-			snapshot.currentAnchorId = next.currentAnchorId;
-			snapshot.visibleMessageIds = next.visibleMessageIds;
-		};
-
-		sync();
-		return visibilityStore.subscribe(sync, observeVisibility, unobserveVisibility);
-	});
-
-	return snapshot;
+	return root.visibility;
 }
 
-export function usePendingDefaultScroll() {
-	const { pendingDefaultScrollStore } = MessageScrollerProviderState.get();
-	let pending = $state(pendingDefaultScrollStore.getSnapshot());
+function areScrollStatesEqual(
+	current: MessageScrollerScrollable,
+	next: MessageScrollerScrollable
+) {
+	return current.start === next.start && current.end === next.end;
+}
 
-	onMount(() => {
-		const sync = () => {
-			pending = pendingDefaultScrollStore.getSnapshot();
-		};
+function areVisibilityStatesEqual(
+	current: MessageScrollerVisibilityState,
+	next: MessageScrollerVisibilityState
+) {
+	if (current.currentAnchorId !== next.currentAnchorId) {
+		return false;
+	}
 
-		sync();
-		return pendingDefaultScrollStore.subscribe(sync);
-	});
+	if (current.visibleMessageIds.length !== next.visibleMessageIds.length) {
+		return false;
+	}
 
-	return {
-		get current() {
-			return pending;
-		},
-	};
+	return current.visibleMessageIds.every(
+		(messageId, index) => messageId === next.visibleMessageIds[index]
+	);
 }

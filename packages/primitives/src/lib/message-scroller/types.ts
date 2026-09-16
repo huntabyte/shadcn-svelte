@@ -141,26 +141,6 @@ type MessageScrollerButtonPropsWithoutHTML = WithChildNoChildrenSnippetProps<
 type MessageScrollerButtonProps = MessageScrollerButtonPropsWithoutHTML &
 	Without<PrimitiveButtonAttributes, MessageScrollerButtonPropsWithoutHTML>;
 
-// Minimal external store backing useMessageScrollerScrollable.
-type MessageScrollerStore<T> = {
-	getSnapshot: () => T;
-	setSnapshot: (nextSnapshot: T) => void;
-	subscribe: (listener: () => void) => () => void;
-};
-
-// External store backing useMessageScrollerVisibility. Adds reference-counting so
-// tracking stays lazy.
-type MessageScrollerVisibilityStore = {
-	getSnapshot: () => MessageScrollerVisibilityState;
-	hasListeners: () => boolean;
-	setSnapshot: (nextSnapshot: MessageScrollerVisibilityState) => void;
-	subscribe: (
-		listener: () => void,
-		onFirstSubscribe: () => void,
-		onLastUnsubscribe: () => void
-	) => () => void;
-};
-
 // Registers (or, with removedElement, unregisters) a MessageScrollerItem node by
 // messageId.
 type MessageScrollerRegisterMessage = (
@@ -181,13 +161,10 @@ type MessageScrollerContextValue = {
 	setRootElement: (element: HTMLDivElement | null) => void;
 	setSpacerElement: (element: HTMLDivElement | null) => void;
 	setViewportElement: (element: HTMLDivElement | null) => void;
-	pendingDefaultScrollStore: MessageScrollerStore<boolean>;
-	stateStore: MessageScrollerStore<MessageScrollerScrollable>;
 	syncAfterScroll: () => void;
 	unobserveVisibility: () => void;
 	userScrollIntent: () => void;
 	viewportRef: MessageScrollerRef<HTMLDivElement | null>;
-	visibilityStore: MessageScrollerVisibilityStore;
 };
 
 // Initial MessageScrollerScrollable before measurement. Stable reference for the
@@ -234,8 +211,6 @@ export type {
 	MessageScrollerScrollAlign,
 	MessageScrollerScrollOptions,
 	MessageScrollerScrollable,
-	MessageScrollerStore,
 	MessageScrollerViewportProps,
 	MessageScrollerVisibilityState,
-	MessageScrollerVisibilityStore,
 };

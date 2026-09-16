@@ -1,10 +1,7 @@
 <script lang="ts">
 	import { attachRef, boxWith, mergeProps } from "svelte-toolbelt";
 	import type { MessageScrollerButtonProps } from "../types.js";
-	import {
-		MessageScrollerProviderState,
-		useMessageScrollerScrollable,
-	} from "../message-scroller.svelte.js";
+	import { MessageScrollerProviderState } from "../message-scroller.svelte.js";
 
 	let {
 		children,
@@ -19,8 +16,7 @@
 	}: MessageScrollerButtonProps = $props();
 
 	const root = MessageScrollerProviderState.get();
-	const scrollable = useMessageScrollerScrollable();
-	const isActive = $derived(direction === "start" ? scrollable.start : scrollable.end);
+	const isActive = $derived(direction === "start" ? root.scrollable.start : root.scrollable.end);
 
 	function handleClick(event: MouseEvent & { currentTarget: EventTarget & HTMLButtonElement }) {
 		if (!isActive) return;

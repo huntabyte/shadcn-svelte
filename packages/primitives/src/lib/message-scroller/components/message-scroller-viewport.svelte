@@ -3,10 +3,7 @@
 	import { attachRef, boxWith, mergeProps } from "svelte-toolbelt";
 	import type { MessageScrollerViewportProps } from "../types.js";
 	import { USER_SCROLL_KEYS } from "../types.js";
-	import {
-		MessageScrollerProviderState,
-		usePendingDefaultScroll,
-	} from "../message-scroller.svelte.js";
+	import { MessageScrollerProviderState } from "../message-scroller.svelte.js";
 
 	let {
 		children,
@@ -24,7 +21,6 @@
 	}: MessageScrollerViewportProps = $props();
 
 	const root = MessageScrollerProviderState.get();
-	const pendingDefaultScroll = usePendingDefaultScroll();
 	let viewportElement = $state<HTMLDivElement | null>(null);
 
 	root.bindPreserveScrollOnPrepend(() => preserveScrollOnPrepend);
@@ -98,7 +94,7 @@
 			onscroll: handleScroll,
 			ontouchmove: handleTouchMove,
 			onwheel: handleWheel,
-			"data-pending-scroll": pendingDefaultScroll.current ? "" : undefined,
+			"data-pending-scroll": root.pendingDefaultScroll ? "" : undefined,
 			...attachment,
 		})
 	);
