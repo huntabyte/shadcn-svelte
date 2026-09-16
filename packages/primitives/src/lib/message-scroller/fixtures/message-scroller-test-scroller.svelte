@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { MessageScroller } from "../index.js";
 	import ApiProbe from "./message-scroller-test-api-probe.svelte";
 	import RestoreMessageTarget from "./message-scroller-test-restore.svelte";
 	import StateProbe from "./message-scroller-test-state-probe.svelte";
 	import VisibilityProbe from "./message-scroller-test-visibility-probe.svelte";
+	import { MessageScroller } from "../index.js";
 	import type { TestScrollerOptions, TestScrollerRefs } from "./message-scroller-test-types.js";
 
 	let {

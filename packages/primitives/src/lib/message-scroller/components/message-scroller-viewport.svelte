@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { boxWith, mergeProps } from "svelte-toolbelt";
-	import type { MessageScrollerViewportProps } from "../types.js";
 	import { MessageScrollerViewportState } from "../message-scroller.svelte.js";
+	import type { MessageScrollerViewportProps } from "../types.js";
 
 	let {
 		children,

@@ -2,7 +2,6 @@
 
 import { flushSync, mount, tick, unmount } from "svelte";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-
 import TestHost from "./fixtures/message-scroller-test-host.svelte";
 import PendingScrollTree from "./fixtures/message-scroller-test-pending.svelte";
 import type {
@@ -555,10 +554,7 @@ describe("MessageScroller", () => {
 			messages: [],
 		});
 
-		await rendered.rerender(
-			[{ id: "user", height: 40, scrollAnchor: true }],
-			{ autoScroll: true }
-		);
+		await rendered.rerender([{ id: "user", height: 40, scrollAnchor: true }], { autoScroll: true });
 
 		expect(rendered.viewport().scrollTop).toBe(0);
 
@@ -1502,8 +1498,7 @@ function getContentHeight(element: HTMLElement) {
 		0
 	);
 	const spacer = content.querySelector<HTMLElement>("[data-message-scroller-spacer]");
-	const spacerHeight =
-		spacer && !spacer.hidden ? Number.parseFloat(spacer.style.height) || 0 : 0;
+	const spacerHeight = spacer && !spacer.hidden ? Number.parseFloat(spacer.style.height) || 0 : 0;
 
 	return paddingStart + messagesHeight + paddingEnd + spacerHeight;
 }

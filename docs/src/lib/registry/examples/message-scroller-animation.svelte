@@ -2,15 +2,15 @@
 	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
 	import MessageCircleDashedIcon from "@lucide/svelte/icons/message-circle-dashed";
 	import RotateCwIcon from "@lucide/svelte/icons/rotate-cw";
-	import { createChat } from "$lib/ai.js";
-	import { createScriptedChat } from "$lib/ai.svelte.js";
-	import { MESSAGE_ANIMATIONS, type MessageAnimationId } from "$lib/message-animations.js";
-	import MessageAnimated from "$lib/components/message-animated.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Empty from "$lib/registry/ui/empty/index.js";
 	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
+	import MessageAnimated from "$lib/components/message-animated.svelte";
+	import { createChat } from "$lib/ai.js";
+	import { createScriptedChat } from "$lib/ai.svelte.js";
+	import { MESSAGE_ANIMATIONS, type MessageAnimationId } from "$lib/message-animations.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const chat = createChat()
 		.user("Can user messages pop in like iMessage without breaking anchoring?")
@@ -96,7 +96,8 @@
 				<Select.Content align="start" side="top">
 					<Select.Group>
 						{#each Object.values(MESSAGE_ANIMATIONS) as animation (animation.id)}
-							<Select.Item value={animation.id} label={animation.name}>{animation.name}</Select.Item>
+							<Select.Item value={animation.id} label={animation.name}>{animation.name}</Select.Item
+							>
 						{/each}
 					</Select.Group>
 				</Select.Content>

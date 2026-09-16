@@ -341,7 +341,7 @@ viewport. Give the viewport an `id`, scroll it to the bottom, and remove
     }
     viewport.scrollTop = viewport.scrollHeight
     viewport.removeAttribute("data-pending-scroll")
-  })()`
+  })()`;
 </script>
 
 <MessageScroller.Root>

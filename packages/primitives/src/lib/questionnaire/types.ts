@@ -1,10 +1,4 @@
 import type {
-	OnChangeFn,
-	WithChild,
-	WithChildNoChildrenSnippetProps,
-	Without,
-} from "$lib/internal/types.js";
-import type {
 	PrimitiveButtonAttributes,
 	PrimitiveDivAttributes,
 	PrimitiveFieldsetAttributes,
@@ -15,6 +9,12 @@ import type {
 	PrimitiveParagraphAttributes,
 	PrimitiveSpanAttributes,
 } from "$lib/internal/attributes.js";
+import type {
+	OnChangeFn,
+	WithChild,
+	WithChildNoChildrenSnippetProps,
+	Without,
+} from "$lib/internal/types.js";
 
 export type QuestionnaireItemStatus = "unanswered" | "answered" | "skipped";
 export type QuestionnaireShortcutMode = "letters" | "numbers";

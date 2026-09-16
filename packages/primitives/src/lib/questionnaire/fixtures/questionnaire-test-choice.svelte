@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { Snippet } from "svelte";
 	import { Questionnaire } from "../index.js";
 	import type { QuestionnaireChoiceProps } from "../types.js";
+	import type { Snippet } from "svelte";
 
 	let {
 		children,

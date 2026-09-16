@@ -109,7 +109,9 @@ Define the collection once: pass it to `Questionnaire.Root` for progress, action
   {#each items as question (question.name)}
     <Questionnaire.Item name={question.name} required={question.required}>
       <Questionnaire.Title>{question.prompt}</Questionnaire.Title>
-      <Questionnaire.Description>{question.description}</Questionnaire.Description>
+      <Questionnaire.Description
+        >{question.description}</Questionnaire.Description
+      >
       <Questionnaire.Choices>
         {#each question.choices as choice (choice.value)}
           <Questionnaire.Choice value={choice.value}>

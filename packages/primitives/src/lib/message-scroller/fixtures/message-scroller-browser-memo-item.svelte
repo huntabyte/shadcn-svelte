@@ -12,10 +12,6 @@
 	} = $props();
 </script>
 
-<MessageScroller.Item
-	messageId={id}
-	scrollAnchor={anchor}
-	style="height: {height}px; flex: none;"
->
+<MessageScroller.Item messageId={id} scrollAnchor={anchor} style="height: {height}px; flex: none;">
 	{id}
 </MessageScroller.Item>

@@ -43,7 +43,7 @@
 <Questionnaire.Root
 	class="mx-auto max-w-md"
 	defaultItem="direction"
-	items={items}
+	{items}
 	shortcuts="letters"
 	onSubmit={handleSubmit}
 >
@@ -69,14 +69,19 @@
 					Make delegated work and results easier to follow.
 				</span>
 			</Questionnaire.Choice>
-			<Questionnaire.Input aria-label="Another agent feature" placeholder="Describe another feature…" />
+			<Questionnaire.Input
+				aria-label="Another agent feature"
+				placeholder="Describe another feature…"
+			/>
 		</Questionnaire.Choices>
 		<Questionnaire.Error />
 	</Questionnaire.Item>
 
 	<Questionnaire.Item name="signals" multiple>
 		<Questionnaire.Title>What should every progress update include?</Questionnaire.Title>
-		<Questionnaire.Description>Select all that apply, or skip this question.</Questionnaire.Description>
+		<Questionnaire.Description
+			>Select all that apply, or skip this question.</Questionnaire.Description
+		>
 		<Questionnaire.Choices>
 			<Questionnaire.Choice value="progress">Progress</Questionnaire.Choice>
 			<Questionnaire.Choice value="decisions">Decisions</Questionnaire.Choice>
@@ -88,7 +93,9 @@
 
 	<Questionnaire.Item name="timing" required>
 		<Questionnaire.Title>When should work begin?</Questionnaire.Title>
-		<Questionnaire.Description>Choose when the agent should begin the work.</Questionnaire.Description>
+		<Questionnaire.Description
+			>Choose when the agent should begin the work.</Questionnaire.Description
+		>
 		<Questionnaire.Choices>
 			<Questionnaire.Choice value="now">Start now</Questionnaire.Choice>
 			<Questionnaire.Choice value="next-cycle">Next development cycle</Questionnaire.Choice>

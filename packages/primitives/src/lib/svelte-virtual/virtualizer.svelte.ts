@@ -1,5 +1,3 @@
-import { untrack } from "svelte";
-import { createSubscriber } from "svelte/reactivity";
 import {
 	Virtualizer,
 	elementScroll,
@@ -11,6 +9,8 @@ import {
 	type PartialKeys,
 	type VirtualizerOptions,
 } from "@tanstack/virtual-core";
+import { untrack } from "svelte";
+import { createSubscriber } from "svelte/reactivity";
 
 export * from "@tanstack/virtual-core";
 
@@ -21,15 +21,48 @@ export type SvelteVirtualizer<
 	setOptions: (options: Partial<VirtualizerOptions<TScrollElement, TItemElement>>) => void;
 };
 
-function useVirtualizerBase<
-	TScrollElement extends Element | Window,
-	TItemElement extends Element,
->(
+function useVirtualizerBase<TScrollElement extends Element | Window, TItemElement extends Element>(
 	initialOptions: VirtualizerOptions<TScrollElement, TItemElement>
 ): SvelteVirtualizer<TScrollElement, TItemElement> {
 	const virtualizer = new Virtualizer(initialOptions);
 	const originalSetOptions = virtualizer.setOptions.bind(virtualizer);
+	const boundFns = new Map<PropertyKey, (...args: unknown[]) => unknown>();
 	let notify = () => {};
+	let version = $state(0);
+	let lastScrollElement: TScrollElement | null = null;
+	let lastRangeKey = "";
+	let notifyQueued = false;
+
+	const notifyChange = () => {
+		version += 1;
+		notify();
+	};
+
+	const rangeKey = (instance: Virtualizer<TScrollElement, TItemElement>) => {
+		const range = instance.range;
+
+		return `${instance.options.count}:${range?.startIndex ?? ""}:${range?.endIndex ?? ""}:${instance.getTotalSize()}`;
+	};
+
+	const scheduleNotify = (instance: Virtualizer<TScrollElement, TItemElement>) => {
+		const nextRangeKey = rangeKey(instance);
+
+		if (nextRangeKey === lastRangeKey) {
+			return;
+		}
+
+		lastRangeKey = nextRangeKey;
+
+		if (notifyQueued) {
+			return;
+		}
+
+		notifyQueued = true;
+		queueMicrotask(() => {
+			notifyQueued = false;
+			notifyChange();
+		});
+	};
 
 	const setOptions = (options: Partial<VirtualizerOptions<TScrollElement, TItemElement>>) => {
 		const resolvedOptions = {
@@ -41,7 +74,7 @@ function useVirtualizerBase<
 		originalSetOptions({
 			...resolvedOptions,
 			onChange: (instance, sync) => {
-				notify();
+				scheduleNotify(instance);
 				resolvedOptions.onChange?.(instance, sync);
 			},
 		});
@@ -52,7 +85,13 @@ function useVirtualizerBase<
 	const subscribe = createSubscriber((update) => {
 		notify = update;
 		setOptions(initialOptions);
-		return virtualizer._didMount();
+		lastScrollElement = (initialOptions.getScrollElement?.() ?? null) as TScrollElement | null;
+		lastRangeKey = rangeKey(virtualizer);
+		const unmount = virtualizer._didMount();
+
+		return () => {
+			unmount();
+		};
 	});
 
 	return new Proxy(virtualizer, {
@@ -62,15 +101,33 @@ function useVirtualizerBase<
 			}
 
 			subscribe();
+			void version;
 			void initialOptions.count;
-			void initialOptions.getScrollElement?.();
 
-			untrack(() => {
-				setOptions(initialOptions);
-			});
+			const scrollElement = (initialOptions.getScrollElement?.() ?? null) as TScrollElement | null;
+
+			if (scrollElement !== lastScrollElement) {
+				lastScrollElement = scrollElement;
+				untrack(() => {
+					virtualizer._willUpdate();
+				});
+			}
 
 			const value = Reflect.get(target, prop, receiver);
-			return typeof value === "function" ? value.bind(target) : value;
+
+			if (typeof value === "function") {
+				const cached = boundFns.get(prop);
+
+				if (cached) {
+					return cached;
+				}
+
+				const bound = value.bind(target);
+				boundFns.set(prop, bound);
+				return bound;
+			}
+
+			return value;
 		},
 	}) as SvelteVirtualizer<TScrollElement, TItemElement>;
 }

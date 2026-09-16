@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { toast } from "svelte-sonner";
-	import type { QuestionnaireItemStatus } from "@shadcn-svelte/primitives/questionnaire";
 	import * as Questionnaire from "$lib/registry/ui/questionnaire/index.js";
+	import type { QuestionnaireItemStatus } from "@shadcn-svelte/primitives/questionnaire";
 
 	const items = [
 		{ name: "permission", required: true },
@@ -72,7 +72,11 @@
 
 	<Questionnaire.Actions>
 		<Questionnaire.Previous />
-		<Questionnaire.Next class="data-[status=unanswered]:opacity-50" disabled={unanswered} variant="secondary">
+		<Questionnaire.Next
+			class="data-[status=unanswered]:opacity-50"
+			disabled={unanswered}
+			variant="secondary"
+		>
 			Next
 		</Questionnaire.Next>
 		<Questionnaire.Submit disabled={unanswered}>Save permissions</Questionnaire.Submit>

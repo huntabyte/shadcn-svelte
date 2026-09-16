@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { createChat, getMessageText } from "$lib/ai.js";
-	import VisibilityOutline from "$lib/components/message-scroller/visibility-outline.svelte";
 	import * as Bubble from "$lib/registry/ui/bubble/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Message from "$lib/registry/ui/message/index.js";
 	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
+	import * as Message from "$lib/registry/ui/message/index.js";
+	import VisibilityOutline from "$lib/components/message-scroller/visibility-outline.svelte";
+	import { createChat, getMessageText } from "$lib/ai.js";
 
 	const chat = createChat()
 		.user("Review the incident handoff and tell me what to read first.", {

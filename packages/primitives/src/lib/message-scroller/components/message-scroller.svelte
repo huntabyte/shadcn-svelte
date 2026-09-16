@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { boxWith, mergeProps } from "svelte-toolbelt";
-	import type { MessageScrollerRootProps } from "../types.js";
 	import { MessageScrollerRootState } from "../message-scroller.svelte.js";
+	import type { MessageScrollerRootProps } from "../types.js";
 
 	let { children, child, ref = $bindable(null), ...restProps }: MessageScrollerRootProps = $props();
 

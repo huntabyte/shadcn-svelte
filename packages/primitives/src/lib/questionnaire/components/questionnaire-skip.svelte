@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { boxWith, mergeProps } from "svelte-toolbelt";
-	import type { QuestionnaireSkipProps } from "../types.js";
 	import { QuestionnaireActionState } from "../questionnaire.svelte.js";
+	import type { QuestionnaireSkipProps } from "../types.js";
 
 	let {
 		children,

@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { boxWith } from "svelte-toolbelt";
-	import type { MessageScrollerProviderProps } from "../types.js";
+	import { MessageScrollerProviderState } from "../message-scroller.svelte.js";
 	import {
 		DEFAULT_SCROLL_EDGE_THRESHOLD,
 		DEFAULT_SCROLL_MARGIN,
 		DEFAULT_SCROLL_PREVIOUS_ITEM_PEEK,
 	} from "../types.js";
-	import { MessageScrollerProviderState } from "../message-scroller.svelte.js";
+	import type { MessageScrollerProviderProps } from "../types.js";
 
 	let {
 		children,

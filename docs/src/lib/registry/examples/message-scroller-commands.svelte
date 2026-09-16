@@ -1,15 +1,18 @@
 <script lang="ts">
-	import { createChat, getMessageText } from "$lib/ai.js";
-	import CommandsMenu from "$lib/components/message-scroller/commands-menu.svelte";
 	import * as Bubble from "$lib/registry/ui/bubble/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Message from "$lib/registry/ui/message/index.js";
 	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
+	import * as Message from "$lib/registry/ui/message/index.js";
+	import CommandsMenu from "$lib/components/message-scroller/commands-menu.svelte";
+	import { createChat, getMessageText } from "$lib/ai.js";
 
 	const chat = createChat()
-		.user("We're seeing activation dip after workspace creation. Can you help me find the likely step?", {
-			id: "command-activation",
-		})
+		.user(
+			"We're seeing activation dip after workspace creation. Can you help me find the likely step?",
+			{
+				id: "command-activation",
+			}
+		)
 		.assistant(
 			"The sharpest drop is between creating the workspace and inviting the first teammate.\n\nWorkspace creation is still healthy, but the invite step is where users pause. That suggests the product is asking for collaboration before the user has enough confidence in the workspace."
 		)

@@ -1,8 +1,11 @@
 <script lang="ts">
+	import * as HoverCard from "$lib/registry/ui/hover-card/index.js";
 	import type { DemoMessage } from "$lib/ai.js";
 	import { getMessageText } from "$lib/ai.js";
-	import * as HoverCard from "$lib/registry/ui/hover-card/index.js";
-	import { useMessageScroller, useMessageScrollerVisibility } from "$lib/registry/ui/message-scroller/index.js";
+	import {
+		useMessageScroller,
+		useMessageScrollerVisibility,
+	} from "$lib/registry/ui/message-scroller/index.js";
 
 	let { userMessages }: { userMessages: DemoMessage[] } = $props();
 

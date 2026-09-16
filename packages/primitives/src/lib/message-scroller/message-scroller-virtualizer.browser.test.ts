@@ -1,6 +1,5 @@
 import { flushSync, mount, unmount } from "svelte";
 import { afterEach, expect, test } from "vitest";
-
 import DocsVirtualizer from "./fixtures/message-scroller-docs-virtualizer.svelte";
 
 let app: Record<string, unknown> | null = null;
@@ -56,8 +55,8 @@ test("documented virtualizer snippet renders a window of rows", async () => {
 
 	viewport.scrollTop = viewport.scrollHeight;
 	viewport.dispatchEvent(new Event("scroll"));
+	await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
 	flushSync();
-	await settle();
 
 	const scrolledRows = [...viewport.querySelectorAll("[data-message-id]")];
 	expect(scrolledRows.some((row) => row.getAttribute("data-message-id") === "m199")).toBe(true);

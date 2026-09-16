@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { toast } from "svelte-sonner";
-	import type { QuestionnaireShortcutMode } from "@shadcn-svelte/primitives/questionnaire";
 	import * as NativeSelect from "$lib/registry/ui/native-select/index.js";
 	import * as Questionnaire from "$lib/registry/ui/questionnaire/index.js";
+	import type { QuestionnaireShortcutMode } from "@shadcn-svelte/primitives/questionnaire";
 
 	const items = [
 		{

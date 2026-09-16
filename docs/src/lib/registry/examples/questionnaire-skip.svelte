@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { toast } from "svelte-sonner";
-	import type { QuestionnaireItemStatus } from "@shadcn-svelte/primitives/questionnaire";
 	import * as Questionnaire from "$lib/registry/ui/questionnaire/index.js";
+	import type { QuestionnaireItemStatus } from "@shadcn-svelte/primitives/questionnaire";
 
 	const items = [
 		{ name: "task", required: true },
@@ -23,9 +23,7 @@
 
 		toast("Agent brief submitted", {
 			description: `Task: ${answers.task ?? "None"} · Constraints: ${
-				answers.constraintStatus === "skipped"
-					? "Skipped"
-					: (answers.constraints ?? "None")
+				answers.constraintStatus === "skipped" ? "Skipped" : (answers.constraints ?? "None")
 			} · Review: ${answers.review ?? "None"}`,
 		});
 	}

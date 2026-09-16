@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { toast } from "svelte-sonner";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import * as Questionnaire from "$lib/registry/ui/questionnaire/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const items = [
 		{ name: "scope", required: true },

@@ -1,10 +1,7 @@
 import { flushSync, mount, unmount } from "svelte";
 import { afterEach, expect, test } from "vitest";
-
-import BrowserHost, {
-	type ThreadProps,
-} from "./fixtures/message-scroller-browser-host.svelte";
 import MemoTree from "./fixtures/message-scroller-browser-memo-tree.svelte";
+import BrowserHost, { type ThreadProps } from "./fixtures/message-scroller-browser-host.svelte";
 
 const ITEM_HEIGHT = 80;
 

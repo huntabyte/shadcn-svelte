@@ -1,6 +1,6 @@
 import Actions from "./questionnaire-actions.svelte";
-import Choice from "./questionnaire-choice.svelte";
 import ChoiceDescription from "./questionnaire-choice-description.svelte";
+import Choice from "./questionnaire-choice.svelte";
 import Choices from "./questionnaire-choices.svelte";
 import Description from "./questionnaire-description.svelte";
 import Error from "./questionnaire-error.svelte";

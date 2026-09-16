@@ -3,7 +3,6 @@
 import { flushSync, hydrate, unmount } from "svelte";
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import QuestionnaireCases from "./fixtures/questionnaire-cases.svelte";
-import type { QuestionnaireTestModel } from "./fixtures/questionnaire-test-model.svelte.ts";
 import {
 	closeQuestionnaireSsrVite,
 	renderQuestionnaireToString,
@@ -26,6 +25,7 @@ import {
 	shortcut,
 	unmountApp,
 } from "./fixtures/questionnaire-test-utils.js";
+import type { QuestionnaireTestModel } from "./fixtures/questionnaire-test-model.svelte.ts";
 
 let hydrated: ReturnType<typeof hydrate> | null = null;
 
@@ -282,11 +282,7 @@ describe("Questionnaire hydration", () => {
 		expect(progress().textContent).toBe("Question 1 of 3");
 		expect(action("previous").hidden).toBe(true);
 
-		model.definitions = [
-			{ disabled: true, name: "second" },
-			{ name: "first" },
-			{ name: "third" },
-		];
+		model.definitions = [{ disabled: true, name: "second" }, { name: "first" }, { name: "third" }];
 		await flushEffects();
 
 		expect(progress().textContent).toBe("Question 1 of 2");

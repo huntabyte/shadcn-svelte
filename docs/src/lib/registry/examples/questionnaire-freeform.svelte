@@ -28,7 +28,9 @@
 		<Questionnaire.Choices>
 			<Questionnaire.Choice value="incremental">Make the smallest safe change</Questionnaire.Choice>
 			<Questionnaire.Choice value="module">Refactor one module at a time</Questionnaire.Choice>
-			<Questionnaire.Choice value="rewrite">Replace the implementation completely</Questionnaire.Choice>
+			<Questionnaire.Choice value="rewrite"
+				>Replace the implementation completely</Questionnaire.Choice
+			>
 			<Questionnaire.Input
 				aria-label="Another refactoring approach"
 				placeholder="Describe another approach…"

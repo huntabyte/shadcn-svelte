@@ -1,19 +1,21 @@
 <script lang="ts">
 	import BrainIcon from "@lucide/svelte/icons/brain";
 	import { MediaQuery } from "svelte/reactivity";
-	import { MESSAGE_ANIMATIONS, type MessageAnimationPreset } from "$lib/message-animations.js";
-	import type { DemoMessage } from "$lib/ai.js";
 	import * as Bubble from "$lib/registry/ui/bubble/index.js";
-	import type { BubbleVariant } from "$lib/registry/ui/bubble/index.js";
-	import * as Message from "$lib/registry/ui/message/index.js";
 	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
+	import * as Message from "$lib/registry/ui/message/index.js";
+	import type { DemoMessage } from "$lib/ai.js";
+	import { MESSAGE_ANIMATIONS, type MessageAnimationPreset } from "$lib/message-animations.js";
+	import type { BubbleVariant } from "$lib/registry/ui/bubble/index.js";
 
-	type AnimatedMessage = DemoMessage | {
-		id: string;
-		role: string;
-		text?: string;
-		parts?: DemoMessage["parts"];
-	};
+	type AnimatedMessage =
+		| DemoMessage
+		| {
+				id: string;
+				role: string;
+				text?: string;
+				parts?: DemoMessage["parts"];
+		  };
 
 	let {
 		message,

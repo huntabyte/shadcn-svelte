@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { mergeProps } from "svelte-toolbelt";
-	import type { QuestionnaireChoicesProps } from "../types.js";
 	import { QuestionnaireChoicesStateClass } from "../questionnaire.svelte.js";
+	import type { QuestionnaireChoicesProps } from "../types.js";
 
 	let { children, child, ...restProps }: QuestionnaireChoicesProps = $props();
 

@@ -7,16 +7,16 @@
 	import PlusIcon from "@lucide/svelte/icons/plus";
 	import RotateCwIcon from "@lucide/svelte/icons/rotate-cw";
 	import TelescopeIcon from "@lucide/svelte/icons/telescope";
-	import { createChat, getMessageText } from "$lib/ai.js";
-	import { createScriptedChat } from "$lib/ai.svelte.js";
-	import MessageAnimated from "$lib/components/message-animated.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Empty from "$lib/registry/ui/empty/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
+	import MessageAnimated from "$lib/components/message-animated.svelte";
+	import { createChat, getMessageText } from "$lib/ai.js";
+	import { createScriptedChat } from "$lib/ai.svelte.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const chat = createChat()
 		.user(
@@ -33,7 +33,9 @@
 		.assistant(
 			"MessageScrollerItem fixes that with turn anchoring. Set `scrollAnchor` on the turn that should settle near the top instead of blindly snapping to the document bottom.\n\nIt also leaves a small peek of the previous exchange visible above the anchor, so context isn't lost. The reply starts in view without that disorienting jump you get from a plain overflow container."
 		)
-		.user("And if they've scrolled up to re-read an older answer? I don't want to yank them back down.")
+		.user(
+			"And if they've scrolled up to re-read an older answer? I don't want to yank them back down."
+		)
 		.sleep(1000)
 		.assistant(
 			"You won't. Auto-scroll only runs when the viewport is already pinned to the bottom, so scrolling up is a deliberate opt-out — their place in the thread stays put even as new tokens keep arriving below.\n\nWhen there is content they haven't seen yet, `MessageScrollerButton` appears at the bottom of the viewport. One tap jumps them back to the newest message and re-engages auto-scroll. Same pattern as Slack or iMessage: quiet when you're caught up, helpful when you're not."

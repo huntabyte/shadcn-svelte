@@ -1,10 +1,10 @@
+import { getShortcutKeys } from "./utils.js";
 // Adapted from https://github.com/shadcn-ui/ui/blob/main/packages/react/src/questionnaire/collection.ts
 import type {
 	ItemRegistration,
 	QuestionnaireItemDefinition,
 	QuestionnaireShortcutMode,
 } from "./types.js";
-import { getShortcutKeys } from "./utils.js";
 
 export type QuestionnaireCollection = {
 	enabledItems: readonly QuestionnaireItemDefinition[];

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { boxWith, mergeProps } from "svelte-toolbelt";
-	import type { MessageScrollerButtonProps } from "../types.js";
 	import { MessageScrollerButtonState } from "../message-scroller.svelte.js";
+	import type { MessageScrollerButtonProps } from "../types.js";
 
 	let {
 		children,
@@ -28,9 +28,7 @@
 	});
 
 	const snippetProps = $derived(buttonState.snippetProps);
-	const mergedProps = $derived(
-		mergeProps(restProps, buttonState.props, buttonState.attachment)
-	);
+	const mergedProps = $derived(mergeProps(restProps, buttonState.props, buttonState.attachment));
 </script>
 
 {#if child}

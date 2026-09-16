@@ -1,7 +1,7 @@
-import { onDestroy, tick } from "svelte";
-import { createSubscriber } from "svelte/reactivity";
 import { Context, watch } from "runed";
+import { onDestroy, tick } from "svelte";
 import { attachRef, type ReadableBoxedValues, type WritableBoxedValues } from "svelte-toolbelt";
+import { createSubscriber } from "svelte/reactivity";
 import type { RefAttachment } from "$lib/internal/types.js";
 import {
 	getContentBottom,
@@ -445,14 +445,13 @@ function createMessageScrollerCommands({
 	};
 }
 
-interface MessageScrollerProviderStateOpts
-	extends ReadableBoxedValues<{
-		autoScroll: boolean;
-		defaultScrollPosition: MessageScrollerDefaultScrollPosition;
-		scrollEdgeThreshold: number;
-		scrollPreviousItemPeek: number;
-		scrollMargin: number;
-	}> {}
+interface MessageScrollerProviderStateOpts extends ReadableBoxedValues<{
+	autoScroll: boolean;
+	defaultScrollPosition: MessageScrollerDefaultScrollPosition;
+	scrollEdgeThreshold: number;
+	scrollPreviousItemPeek: number;
+	scrollMargin: number;
+}> {}
 
 const MessageScrollerContext = new Context<MessageScrollerProviderState>("MessageScroller");
 
@@ -706,9 +705,7 @@ export class MessageScrollerProviderState {
 		// raw geometry first, so a commit that releases follow still publishes the
 		// gap it released over.
 		const publishedState =
-			this.refs.modeRef.current === "following-bottom"
-				? { ...nextState, end: false }
-				: nextState;
+			this.refs.modeRef.current === "following-bottom" ? { ...nextState, end: false } : nextState;
 
 		this.writeStateAttributes(publishedState);
 
@@ -846,9 +843,7 @@ export class MessageScrollerProviderState {
 			const viewport = this.refs.viewportRef.current;
 			const anchor =
 				content && viewport
-					? getLastScrollAnchor(
-							getMessageScrollerItems(content, this.refs.spacerRef.current)
-						)
+					? getLastScrollAnchor(getMessageScrollerItems(content, this.refs.spacerRef.current))
 					: null;
 
 			if (!content || !viewport || !anchor) {
@@ -866,11 +861,7 @@ export class MessageScrollerProviderState {
 
 				handled = lastTurnFits
 					? this.commands.scrollToEnd({ behavior: "auto" })
-					: this.commands.scrollToElement(
-							anchor,
-							{ align: "start" },
-							{ keepPreviousPeek: true }
-						);
+					: this.commands.scrollToElement(anchor, { align: "start" }, { keepPreviousPeek: true });
 			}
 		} else {
 			handled =
@@ -929,11 +920,8 @@ export class MessageScrollerProviderState {
 				return;
 			}
 
-			const previousFirstItemIndex = previousFirstItem
-				? items.indexOf(previousFirstItem)
-				: -1;
-			const didPrepend =
-				this.refs.preserveScrollOnPrependRef.current && previousFirstItemIndex > 0;
+			const previousFirstItemIndex = previousFirstItem ? items.indexOf(previousFirstItem) : -1;
+			const didPrepend = this.refs.preserveScrollOnPrependRef.current && previousFirstItemIndex > 0;
 
 			if (didPrepend) {
 				// Prepended rows are not new appends. Restore the prior scroll position.
@@ -959,28 +947,17 @@ export class MessageScrollerProviderState {
 						return;
 					}
 
-					this.commands.scrollToElement(
-						anchor,
-						{ align: "start" },
-						{ keepPreviousPeek: true }
-					);
+					this.commands.scrollToElement(anchor, { align: "start" }, { keepPreviousPeek: true });
 					this.refs.handledScrollAnchorsRef.current.add(anchor);
 					return;
 				}
 			}
 
 			if (items.length === previousItemCount) {
-				const anchor = getUnanchoredScrollAnchor(
-					items,
-					this.refs.handledScrollAnchorsRef.current
-				);
+				const anchor = getUnanchoredScrollAnchor(items, this.refs.handledScrollAnchorsRef.current);
 
 				if (anchor) {
-					this.commands.scrollToElement(
-						anchor,
-						{ align: "start" },
-						{ keepPreviousPeek: true }
-					);
+					this.commands.scrollToElement(anchor, { align: "start" }, { keepPreviousPeek: true });
 					this.refs.handledScrollAnchorsRef.current.add(anchor);
 					return;
 				}
@@ -988,10 +965,7 @@ export class MessageScrollerProviderState {
 
 			// Appends with no new anchor (and content-only updates) fall through here:
 			// keep following the end if we still are, otherwise just recommit state.
-			if (
-				this.refs.modeRef.current === "following-bottom" &&
-				this.refs.autoScrollRef.current
-			) {
+			if (this.refs.modeRef.current === "following-bottom" && this.refs.autoScrollRef.current) {
 				this.commands.scrollToEnd({ behavior: "auto" });
 			} else {
 				this.commitScrollState();
@@ -1004,10 +978,7 @@ export class MessageScrollerProviderState {
 	}
 
 	handleResize() {
-		if (
-			this.refs.modeRef.current === "following-bottom" &&
-			this.refs.autoScrollRef.current
-		) {
+		if (this.refs.modeRef.current === "following-bottom" && this.refs.autoScrollRef.current) {
 			this.commands.scrollToEnd({ behavior: "auto" });
 			return;
 		}
@@ -1077,8 +1048,7 @@ export class MessageScrollerProviderState {
 					// keeping visibleMessageIds consistent with currentAnchorId. Captured
 					// at observe time; a prop change rebuilds the observer on resubscribe.
 					rootMargin: `${-(
-						this.refs.scrollMarginRef.current +
-						this.refs.scrollPreviousItemPeekRef.current
+						this.refs.scrollMarginRef.current + this.refs.scrollPreviousItemPeekRef.current
 					)}px 0px 0px 0px`,
 					threshold: [0, 0.01, 0.5, 1],
 				}
@@ -1116,10 +1086,7 @@ export class MessageScrollerProviderState {
 			return;
 		}
 
-		if (
-			removedElement &&
-			this.refs.messageElementsRef.current.get(messageId) === removedElement
-		) {
+		if (removedElement && this.refs.messageElementsRef.current.get(messageId) === removedElement) {
 			this.refs.messageElementsRef.current.delete(messageId);
 			this.refs.visibleMessageIdsRef.current.delete(messageId);
 			this.refs.visibilityObserverRef.current?.unobserve(removedElement);
@@ -1216,9 +1183,10 @@ export class MessageScrollerRootState {
 }
 
 interface MessageScrollerViewportStateOpts
-	extends WritableBoxedValues<{
-		ref: HTMLElement | null;
-	}>,
+	extends
+		WritableBoxedValues<{
+			ref: HTMLElement | null;
+		}>,
 		ReadableBoxedValues<{
 			ariaLabel: string | null | undefined;
 			onkeydown: MessageScrollerViewportProps["onkeydown"];
@@ -1302,9 +1270,10 @@ export class MessageScrollerViewportState {
 }
 
 interface MessageScrollerContentStateOpts
-	extends WritableBoxedValues<{
-		ref: HTMLElement | null;
-	}>,
+	extends
+		WritableBoxedValues<{
+			ref: HTMLElement | null;
+		}>,
 		ReadableBoxedValues<{
 			ariaRelevant: MessageScrollerContentProps["aria-relevant"];
 			role: MessageScrollerContentProps["role"];
@@ -1392,9 +1361,10 @@ export class MessageScrollerContentState {
 }
 
 interface MessageScrollerItemStateOpts
-	extends WritableBoxedValues<{
-		ref: HTMLElement | null;
-	}>,
+	extends
+		WritableBoxedValues<{
+			ref: HTMLElement | null;
+		}>,
 		ReadableBoxedValues<{
 			messageId: string | undefined;
 			scrollAnchor: boolean;
@@ -1440,9 +1410,10 @@ export class MessageScrollerItemState {
 }
 
 interface MessageScrollerButtonStateOpts
-	extends WritableBoxedValues<{
-		ref: HTMLElement | null;
-	}>,
+	extends
+		WritableBoxedValues<{
+			ref: HTMLElement | null;
+		}>,
 		ReadableBoxedValues<{
 			behavior: ScrollBehavior;
 			direction: MessageScrollerButtonDirection;
@@ -1531,10 +1502,7 @@ export function useMessageScrollerVisibility(): MessageScrollerVisibilityState {
 	return root.visibility;
 }
 
-function areScrollStatesEqual(
-	current: MessageScrollerScrollable,
-	next: MessageScrollerScrollable
-) {
+function areScrollStatesEqual(current: MessageScrollerScrollable, next: MessageScrollerScrollable) {
 	return current.start === next.start && current.end === next.end;
 }
 

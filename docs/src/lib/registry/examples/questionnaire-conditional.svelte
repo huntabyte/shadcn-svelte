@@ -31,10 +31,18 @@
 			Cloud runs add an environment question to this flow.
 		</Questionnaire.Description>
 		<Questionnaire.Choices>
-			<Questionnaire.Choice checked={runtime === "local"} value="local" onChange={() => (runtime = "local")}>
+			<Questionnaire.Choice
+				checked={runtime === "local"}
+				value="local"
+				onChange={() => (runtime = "local")}
+			>
 				Local workspace
 			</Questionnaire.Choice>
-			<Questionnaire.Choice checked={runtime === "cloud"} value="cloud" onChange={() => (runtime = "cloud")}>
+			<Questionnaire.Choice
+				checked={runtime === "cloud"}
+				value="cloud"
+				onChange={() => (runtime = "cloud")}
+			>
 				Cloud workspace
 			</Questionnaire.Choice>
 		</Questionnaire.Choices>

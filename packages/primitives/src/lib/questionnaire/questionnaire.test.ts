@@ -2,7 +2,6 @@
 
 import { flushSync } from "svelte";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import type { QuestionnaireTestModel } from "./fixtures/questionnaire-test-model.svelte.ts";
 import {
 	choose,
 	choice,
@@ -26,6 +25,7 @@ import {
 	type,
 	unmountApp,
 } from "./fixtures/questionnaire-test-utils.js";
+import type { QuestionnaireTestModel } from "./fixtures/questionnaire-test-model.svelte.ts";
 
 beforeEach(() => {
 	const nextContainer = document.createElement("div");
@@ -876,19 +876,18 @@ describe("Questionnaire", () => {
 	it.each([
 		{ count: 27, lastShortcut: "Z", shortcuts: "letters" as const },
 		{ count: 10, lastShortcut: "9", shortcuts: "numbers" as const },
-	])("leaves answers beyond the $shortcuts shortcut range unassigned", async ({
-		count,
-		lastShortcut,
-		shortcuts,
-	}) => {
-		renderCase("shortcut-overflow", (model) => {
-			model.shortcutCount = count;
-			model.shortcuts = shortcuts;
-		});
+	])(
+		"leaves answers beyond the $shortcuts shortcut range unassigned",
+		async ({ count, lastShortcut, shortcuts }) => {
+			renderCase("shortcut-overflow", (model) => {
+				model.shortcutCount = count;
+				model.shortcuts = shortcuts;
+			});
 
-		expect(choice(`answer-${count - 2}`).dataset.shortcut).toBe(lastShortcut);
-		expect(choice(`answer-${count - 1}`).hasAttribute("data-shortcut")).toBe(false);
-	});
+			expect(choice(`answer-${count - 2}`).dataset.shortcut).toBe(lastShortcut);
+			expect(choice(`answer-${count - 1}`).hasAttribute("data-shortcut")).toBe(false);
+		}
+	);
 
 	it("assigns letter shortcuts to enabled answers in DOM order", async () => {
 		const onSubmit = vi.fn((event: SubmitEvent) => {
@@ -900,7 +899,9 @@ describe("Questionnaire", () => {
 		});
 
 		expect(form().dataset.shortcuts).toBe("letters");
-		expect(requiredElement<HTMLElement>('[data-testid="choices"]').dataset.shortcuts).toBe("letters");
+		expect(requiredElement<HTMLElement>('[data-testid="choices"]').dataset.shortcuts).toBe(
+			"letters"
+		);
 		expect(choice("disabled-answer").hasAttribute("data-shortcut")).toBe(false);
 		expect(choice("first-answer").dataset.shortcut).toBe("A");
 		expect(choice("second-answer").dataset.shortcut).toBe("B");

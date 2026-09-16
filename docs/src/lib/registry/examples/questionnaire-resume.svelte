@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { toast } from "svelte-sonner";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Questionnaire from "$lib/registry/ui/questionnaire/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const items = [
 		{ name: "change", required: true },
@@ -39,7 +39,9 @@
 			This answer was saved during the previous session.
 		</Questionnaire.Description>
 		<Questionnaire.Choices>
-			<Questionnaire.Choice value="incremental" defaultChecked>Incremental migration</Questionnaire.Choice>
+			<Questionnaire.Choice value="incremental" defaultChecked
+				>Incremental migration</Questionnaire.Choice
+			>
 			<Questionnaire.Choice value="cutover">Single cutover</Questionnaire.Choice>
 		</Questionnaire.Choices>
 		<Questionnaire.Error />
@@ -52,7 +54,8 @@
 		</Questionnaire.Description>
 		<Questionnaire.Choices>
 			<Questionnaire.Choice value="tests" defaultChecked>Run migration tests</Questionnaire.Choice>
-			<Questionnaire.Choice value="typecheck" defaultChecked>Run the typecheck</Questionnaire.Choice>
+			<Questionnaire.Choice value="typecheck" defaultChecked>Run the typecheck</Questionnaire.Choice
+			>
 			<Questionnaire.Choice value="manual">Perform a manual smoke test</Questionnaire.Choice>
 		</Questionnaire.Choices>
 		<Questionnaire.Error />

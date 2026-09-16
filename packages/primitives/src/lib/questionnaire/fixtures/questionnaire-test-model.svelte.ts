@@ -56,11 +56,7 @@ export class QuestionnaireTestModel {
 	numericChoices = $state<{ value: string }[]>(
 		Array.from({ length: 10 }, (_, index) => ({ value: `choice-${index + 1}` }))
 	);
-	middleItems = $state([
-		{ name: "first" },
-		{ name: "middle" },
-		{ name: "last" },
-	]);
+	middleItems = $state([{ name: "first" }, { name: "middle" }, { name: "last" }]);
 
 	onSubmit: ((event: SubmitEvent) => void) | undefined = undefined;
 	onItemChange: ((item: string) => void) | undefined = undefined;

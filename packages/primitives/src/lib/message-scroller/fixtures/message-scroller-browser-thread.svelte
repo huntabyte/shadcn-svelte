@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { MessageScroller } from "../index.js";
-	import type { MessageScrollerDefaultScrollPosition } from "../types.js";
 	import JumpButton from "./message-scroller-browser-jump.svelte";
 	import VisibilityProbe from "./message-scroller-browser-visibility.svelte";
+	import { MessageScroller } from "../index.js";
+	import type { MessageScrollerDefaultScrollPosition } from "../types.js";
 
 	export type BrowserTestItem = {
 		height?: number;

@@ -46,7 +46,9 @@
 				</Questionnaire.Title>
 				<Questionnaire.Description>
 					{#snippet child({ props })}
-						<Card.Description {...props}>Choose the task that should be handled next.</Card.Description>
+						<Card.Description {...props}
+							>Choose the task that should be handled next.</Card.Description
+						>
 					{/snippet}
 				</Questionnaire.Description>
 				<Card.Action>
@@ -72,7 +74,9 @@
 				</Questionnaire.Title>
 				<Questionnaire.Description>
 					{#snippet child({ props })}
-						<Card.Description {...props}>Pick the level of detail needed for review.</Card.Description>
+						<Card.Description {...props}
+							>Pick the level of detail needed for review.</Card.Description
+						>
 					{/snippet}
 				</Questionnaire.Description>
 				<Card.Action>

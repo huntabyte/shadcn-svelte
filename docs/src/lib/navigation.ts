@@ -19,8 +19,6 @@ export type NavItemWithChildren = NavItem & {
 };
 
 export const PAGES_NEW = [
-	"/docs/skills",
-	"/docs/changelog",
 	"/docs/utils/scroll-fade",
 	"/docs/utils/shimmer",
 	"/docs/components/message",

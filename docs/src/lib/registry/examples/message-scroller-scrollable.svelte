@@ -1,8 +1,8 @@
 <script lang="ts">
-	import MessageAnimated from "$lib/components/message-animated.svelte";
-	import ScrollStateFooter from "$lib/components/message-scroller/scrollable-footer.svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
+	import MessageAnimated from "$lib/components/message-animated.svelte";
+	import ScrollStateFooter from "$lib/components/message-scroller/scrollable-footer.svelte";
 
 	const messages = Array.from({ length: 12 }, (_, index) => ({
 		id: `scrollable-${index + 1}`,

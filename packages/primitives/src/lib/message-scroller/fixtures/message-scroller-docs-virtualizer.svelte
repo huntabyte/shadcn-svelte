@@ -17,7 +17,8 @@
 		getScrollElement: () => viewport,
 		estimateSize: () => 86,
 		getItemKey: (index) => messages[index]?.id ?? index,
-		overscan: 8,
+		overscan: 24,
+		shouldAdjustScrollPositionOnItemSizeChange: () => false,
 	});
 </script>
 
@@ -26,7 +27,7 @@
 		<MessageScroller.Viewport
 			bind:ref={viewport}
 			aria-label="viewport"
-			style="height: 320px; overflow-y: auto;"
+			style="height: 320px; overflow-y: auto; overflow-anchor: none;"
 		>
 			<MessageScroller.Content class="block min-h-full">
 				<div class="relative w-full" style="height: {virtualizer.getTotalSize()}px">
@@ -38,7 +39,7 @@
 								data-message-id={message.id}
 								class="absolute start-0 top-0 w-full"
 								style="transform: translateY({virtualItem.start}px); height: 86px;"
-								{@attach (node) => virtualizer.measureElement(node)}
+								{@attach virtualizer.measureElement}
 							>
 								{message.text}
 							</div>

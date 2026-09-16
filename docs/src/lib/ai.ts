@@ -14,9 +14,14 @@ type ScriptedTurn =
 	| { kind: "user" | "assistant"; id: string; text: string; delayMs: number }
 	| { kind: "sleep"; delayMs: number };
 
-export function getMessageText(message: Pick<DemoMessage, "parts"> | { text?: string; parts?: DemoMessagePart[] }) {
+export function getMessageText(
+	message: Pick<DemoMessage, "parts"> | { text?: string; parts?: DemoMessagePart[] }
+) {
 	if (message.parts?.length) {
-		return message.parts.reduce((text, part) => (part.type === "text" ? text + part.text : text), "");
+		return message.parts.reduce(
+			(text, part) => (part.type === "text" ? text + part.text : text),
+			""
+		);
 	}
 
 	return typeof message.text === "string" ? message.text : "";
@@ -61,15 +66,23 @@ export function createChat() {
 		},
 		get(count?: number) {
 			const messages = turns
-				.filter((turn): turn is Extract<ScriptedTurn, { kind: "user" | "assistant" }> => turn.kind !== "sleep")
+				.filter(
+					(turn): turn is Extract<ScriptedTurn, { kind: "user" | "assistant" }> =>
+						turn.kind !== "sleep"
+				)
 				.map(toMessage);
-			return count === undefined ? messages.map(cloneMessage) : messages.slice(0, count).map(cloneMessage);
+			return count === undefined
+				? messages.map(cloneMessage)
+				: messages.slice(0, count).map(cloneMessage);
 		},
 		next(messages: readonly DemoMessage[]) {
 			const ids = new Set(messages.map((message) => message.id));
-			const texts = new Set(messages.map((message) => `${message.role}:${getMessageText(message)}`));
+			const texts = new Set(
+				messages.map((message) => `${message.role}:${getMessageText(message)}`)
+			);
 			const scripted = turns.filter(
-				(turn): turn is Extract<ScriptedTurn, { kind: "user" | "assistant" }> => turn.kind !== "sleep"
+				(turn): turn is Extract<ScriptedTurn, { kind: "user" | "assistant" }> =>
+					turn.kind !== "sleep"
 			);
 
 			for (const turn of scripted) {

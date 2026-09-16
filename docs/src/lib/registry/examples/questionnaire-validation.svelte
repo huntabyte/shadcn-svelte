@@ -97,7 +97,9 @@
 		<Questionnaire.Item invalid={Boolean(errors.audience)} name="audience" required>
 			<Card.Header>
 				<Questionnaire.Title>Who will read the answer?</Questionnaire.Title>
-				<Questionnaire.Description>Public answers require complete context.</Questionnaire.Description>
+				<Questionnaire.Description
+					>Public answers require complete context.</Questionnaire.Description
+				>
 				<Card.Action>
 					<Questionnaire.Progress class="min-w-0">
 						{#snippet child({ props, current, total })}

@@ -1,12 +1,12 @@
 <script lang="ts">
 	import RotateCwIcon from "@lucide/svelte/icons/rotate-cw";
 	import * as Bubble from "$lib/registry/ui/bubble/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Marker from "$lib/registry/ui/marker/index.js";
-	import * as Message from "$lib/registry/ui/message/index.js";
 	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
+	import * as Message from "$lib/registry/ui/message/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const currentUser = "Grace";
 

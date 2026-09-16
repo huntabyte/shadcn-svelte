@@ -1,6 +1,9 @@
-import type { Snippet } from "svelte";
+import type {
+	PrimitiveButtonAttributes,
+	PrimitiveDivAttributes,
+} from "$lib/internal/attributes.js";
 import type { WithChild, WithChildNoChildrenSnippetProps, Without } from "$lib/internal/types.js";
-import type { PrimitiveButtonAttributes, PrimitiveDivAttributes } from "$lib/internal/attributes.js";
+import type { Snippet } from "svelte";
 
 // Default scrollEdgeThreshold. Sub-pixel tolerance so edge detection does not
 // flicker across engines that round scrollTop differently.

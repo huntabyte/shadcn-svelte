@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Questionnaire } from "../index.js";
 	import TestChoice from "./questionnaire-test-choice.svelte";
+	import { Questionnaire } from "../index.js";
 	import type { QuestionnaireItemProps } from "../types.js";
 
 	let { disabled, name, onStatusChange, required, ...props }: QuestionnaireItemProps = $props();

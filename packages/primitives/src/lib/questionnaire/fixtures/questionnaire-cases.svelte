@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Questionnaire } from "../index.js";
 	import TestChoice from "./questionnaire-test-choice.svelte";
 	import TestItem from "./questionnaire-test-item.svelte";
 	import { QuestionnaireTestModel, ssrItems } from "./questionnaire-test-model.svelte.ts";
+	import { Questionnaire } from "../index.js";
 
 	let { model }: { model: QuestionnaireTestModel } = $props();
 
@@ -102,7 +102,11 @@
 			<Questionnaire.Error data-testid="answers-error" />
 		</Questionnaire.Item>
 		<Questionnaire.Submit data-testid="submit" />
-		<button data-testid="toggle" type="button" onclick={() => (model.answersDisabled = !model.answersDisabled)}>
+		<button
+			data-testid="toggle"
+			type="button"
+			onclick={() => (model.answersDisabled = !model.answersDisabled)}
+		>
 			Toggle answers
 		</button>
 	</Questionnaire.Root>
@@ -117,12 +121,7 @@
 			model.item = "first";
 		}}
 	>
-		<Questionnaire.Item
-			data-testid="first"
-			invalid={model.firstInvalid}
-			name="first"
-			required
-		>
+		<Questionnaire.Item data-testid="first" invalid={model.firstInvalid} name="first" required>
 			<Questionnaire.Title>First</Questionnaire.Title>
 			<TestChoice data-testid="first-choice" value="first">First answer</TestChoice>
 			<TestChoice
@@ -227,12 +226,7 @@
 	<Questionnaire.Root data-testid="root" defaultItem="answer" onSubmit={model.onSubmit}>
 		<Questionnaire.Item data-testid="answer" onStatusChange={model.onStatusChange} name="answer">
 			<Questionnaire.Title>Answer</Questionnaire.Title>
-			<TestChoice
-				data-testid="controlled-answer"
-				checked
-				value="controlled"
-				onChange={() => {}}
-			>
+			<TestChoice data-testid="controlled-answer" checked value="controlled" onChange={() => {}}>
 				Controlled
 			</TestChoice>
 		</Questionnaire.Item>
@@ -240,7 +234,12 @@
 		<Questionnaire.Submit data-testid="submit" />
 	</Questionnaire.Root>
 {:else if model.scenario === "native-freeform"}
-	<Questionnaire.Root data-testid="root" defaultItem="answer" noValidate={false} onSubmit={model.onSubmit}>
+	<Questionnaire.Root
+		data-testid="root"
+		defaultItem="answer"
+		noValidate={false}
+		onSubmit={model.onSubmit}
+	>
 		<Questionnaire.Item data-testid="answer" required name="answer">
 			<Questionnaire.Title>Answer</Questionnaire.Title>
 			<TestChoice data-testid="fixed" value="fixed">Fixed</TestChoice>
@@ -288,7 +287,9 @@
 		<Questionnaire.Item data-testid="optional" invalid name="optional">
 			<Questionnaire.Title>Optional</Questionnaire.Title>
 			<TestChoice data-testid="optional-choice" value="answer">Answer</TestChoice>
-			<Questionnaire.Error data-testid="optional-error">This answer is not valid.</Questionnaire.Error>
+			<Questionnaire.Error data-testid="optional-error"
+				>This answer is not valid.</Questionnaire.Error
+			>
 		</Questionnaire.Item>
 		<TestItem required name="required" />
 		<Questionnaire.Previous data-testid="previous" />
@@ -315,7 +316,11 @@
 	<Questionnaire.Root data-testid="root" defaultItem="defaults">
 		<Questionnaire.Item data-testid="defaults" multiple required name="defaults">
 			<Questionnaire.Title>Defaults</Questionnaire.Title>
-			<TestChoice data-testid="primary-choice" defaultChecked={model.defaultsChanged} value="primary">
+			<TestChoice
+				data-testid="primary-choice"
+				defaultChecked={model.defaultsChanged}
+				value="primary"
+			>
 				Primary
 			</TestChoice>
 			<TestChoice data-testid="secondary-choice" value="secondary">Secondary</TestChoice>
@@ -347,7 +352,9 @@
 			<Questionnaire.Title>Answer</Questionnaire.Title>
 			<Questionnaire.Description id="description-one">First description</Questionnaire.Description>
 			{#if model.showAdditionalDetails}
-				<Questionnaire.Description id="description-two">Second description</Questionnaire.Description>
+				<Questionnaire.Description id="description-two"
+					>Second description</Questionnaire.Description
+				>
 			{/if}
 			<TestChoice value="answer">Answer</TestChoice>
 			<Questionnaire.Error id="error-one">First error</Questionnaire.Error>
@@ -488,7 +495,11 @@
 				<Questionnaire.ChoiceShortcut />
 			</Questionnaire.Choice>
 		</Questionnaire.Item>
-		<button data-testid="toggle-input" type="button" onclick={() => (model.showInput = !model.showInput)}>
+		<button
+			data-testid="toggle-input"
+			type="button"
+			onclick={() => (model.showInput = !model.showInput)}
+		>
 			Toggle input
 		</button>
 	</Questionnaire.Root>
@@ -749,7 +760,11 @@
 
 		<Questionnaire.Item data-testid="detail" multiple name="detail" required>
 			<Questionnaire.Title>Detail</Questionnaire.Title>
-			<Questionnaire.Input data-testid="detail-input" aria-label="Detail" defaultValue="Default detail" />
+			<Questionnaire.Input
+				data-testid="detail-input"
+				aria-label="Detail"
+				defaultValue="Default detail"
+			/>
 			<Questionnaire.Input
 				data-testid="controlled-detail-input"
 				aria-label="Controlled detail"
@@ -796,7 +811,10 @@
 		<Questionnaire.Submit data-testid="submit" />
 	</Questionnaire.Root>
 {:else if model.scenario === "ssr-numeric"}
-	<Questionnaire.Root items={[{ choices: model.numericChoices, name: "numeric" }]} shortcuts="numbers">
+	<Questionnaire.Root
+		items={[{ choices: model.numericChoices, name: "numeric" }]}
+		shortcuts="numbers"
+	>
 		<Questionnaire.Item name="numeric">
 			<Questionnaire.Title>Choose a number</Questionnaire.Title>
 			{#each model.numericChoices as choice (choice.value)}
@@ -842,7 +860,9 @@
 		</Questionnaire.Item>
 	</Questionnaire.Root>
 {:else if model.scenario === "ssr-metadata"}
-	<Questionnaire.Root items={[{ choices: [{ disabled: true, value: "fixed" }], name: "answer", required: true }]}>
+	<Questionnaire.Root
+		items={[{ choices: [{ disabled: true, value: "fixed" }], name: "answer", required: true }]}
+	>
 		<Questionnaire.Item name="answer">
 			<TestChoice value="fixed" />
 		</Questionnaire.Item>

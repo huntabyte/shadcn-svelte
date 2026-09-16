@@ -1,6 +1,5 @@
 import { userEvent } from "@vitest/browser/context";
 import { afterEach, expect, test, vi } from "vitest";
-import type { QuestionnaireItemStatus } from "./types.js";
 import {
 	choiceInput,
 	container,
@@ -11,6 +10,7 @@ import {
 	setContainer,
 	unmountApp,
 } from "./fixtures/questionnaire-test-utils.js";
+import type { QuestionnaireItemStatus } from "./types.js";
 
 afterEach(() => {
 	unmountApp();
@@ -743,9 +743,9 @@ test("preserves inactive answers and restores native defaults on reset", async (
 	expect(requiredElement<HTMLInputElement>('[data-testid="detail-input"]').value).toBe(
 		"Default detail"
 	);
-	expect(
-		requiredElement<HTMLInputElement>('[data-testid="controlled-detail-input"]').value
-	).toBe("Controlled detail");
+	expect(requiredElement<HTMLInputElement>('[data-testid="controlled-detail-input"]').value).toBe(
+		"Controlled detail"
+	);
 });
 
 async function renderBrowser(scenario: string, setup?: (next: typeof model) => void) {

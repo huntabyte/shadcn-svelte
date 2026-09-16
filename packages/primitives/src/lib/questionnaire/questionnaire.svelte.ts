@@ -1,7 +1,7 @@
 import { DEV } from "esm-env";
+import { Context, watch } from "runed";
 import { flushSync, onMount, untrack } from "svelte";
 import { attachRef, type ReadableBoxedValues, type WritableBoxedValues } from "svelte-toolbelt";
-import { Context, watch } from "runed";
 import { boolToEmptyStrOrUndef, boolToTrueOrUndef } from "$lib/internal/attrs.js";
 import type { RefAttachment, WithRefOpts } from "$lib/internal/types.js";
 import {
@@ -11,6 +11,18 @@ import {
 	getInitialItemName,
 	getShortcutByChoiceValue,
 } from "./collection.js";
+import {
+	compareAnswerOrder,
+	compareItemOrder,
+	getAnswerKeyShortcuts,
+	getShortcutFromKey,
+	getShortcutKeys,
+	hasInputValue,
+	isAnswerFilled,
+	isEmptyNavigableInput,
+	isRadioTarget,
+	isTextEntryTarget,
+} from "./utils.js";
 import type {
 	AnswerControlRegistration,
 	ItemRegistration,
@@ -26,18 +38,6 @@ import type {
 	QuestionnaireRootState as QuestionnaireRootViewState,
 	QuestionnaireShortcutMode,
 } from "./types.js";
-import {
-	compareAnswerOrder,
-	compareItemOrder,
-	getAnswerKeyShortcuts,
-	getShortcutFromKey,
-	getShortcutKeys,
-	hasInputValue,
-	isAnswerFilled,
-	isEmptyNavigableInput,
-	isRadioTarget,
-	isTextEntryTarget,
-} from "./utils.js";
 
 const QuestionnaireRootContext = new Context<QuestionnaireRootState>("Questionnaire.Root");
 const QuestionnaireItemContext = new Context<QuestionnaireItemStateClass>("Questionnaire.Item");
@@ -46,7 +46,8 @@ const QuestionnaireChoiceContext = new Context<QuestionnaireChoiceStateClass>(
 );
 
 interface QuestionnaireRootStateOpts
-	extends WithRefOpts<{}, HTMLFormElement>,
+	extends
+		WithRefOpts<{}, HTMLFormElement>,
 		ReadableBoxedValues<{
 			defaultItem: string | undefined;
 			items: readonly QuestionnaireItemDefinition[] | undefined;
@@ -73,9 +74,7 @@ export class QuestionnaireRootState {
 	readonly attachment: RefAttachment<HTMLFormElement>;
 	registrations = $state.raw<ItemRegistration[]>([]);
 	uncontrolledItem = $state<string | null>(null);
-	readonly rootElement = $derived.by(
-		() => this.opts.ref.current as HTMLFormElement | null
-	);
+	readonly rootElement = $derived.by(() => this.opts.ref.current as HTMLFormElement | null);
 	domVersion = $state(0);
 	pendingFocus: PendingFocus | null = null;
 	previousActiveItemName: string | null | undefined = undefined;
@@ -202,7 +201,9 @@ export class QuestionnaireRootState {
 
 	readonly runtimeItems = $derived.by(() => {
 		void this.domVersion;
-		return this.registrations.filter((registration) => !registration.disabled).sort(compareItemOrder);
+		return this.registrations
+			.filter((registration) => !registration.disabled)
+			.sort(compareItemOrder);
 	});
 
 	readonly runtimeItemByName = $derived.by(
@@ -225,7 +226,9 @@ export class QuestionnaireRootState {
 		const activeDefinition = this.activeItemName
 			? this.collection?.itemByName.get(this.activeItemName)
 			: undefined;
-		return activeDefinition ? Boolean(activeDefinition.required) : (this.activeItem?.required ?? false);
+		return activeDefinition
+			? Boolean(activeDefinition.required)
+			: (this.activeItem?.required ?? false);
 	});
 
 	readonly activeItemStatus = $derived.by(() => {
@@ -335,8 +338,9 @@ export class QuestionnaireRootState {
 
 		const resetItemName = this.collection
 			? getInitialItemName(this.collection, this.opts.defaultItem.current)
-			: (this.runtimeItems.find((registration) => registration.name === this.opts.defaultItem.current)
-					?.name ?? this.runtimeItems[0]?.name);
+			: (this.runtimeItems.find(
+					(registration) => registration.name === this.opts.defaultItem.current
+				)?.name ?? this.runtimeItems[0]?.name);
 
 		if (resetItemName) {
 			this.setItem(resetItemName);
@@ -453,7 +457,8 @@ export class QuestionnaireRootState {
 }
 
 interface QuestionnaireItemStateOpts
-	extends WithRefOpts<{}, HTMLFieldSetElement>,
+	extends
+		WithRefOpts<{}, HTMLFieldSetElement>,
 		ReadableBoxedValues<{
 			ariaDescribedBy: string | undefined;
 			ariaKeyShortcuts: string | undefined;
@@ -479,9 +484,7 @@ export class QuestionnaireItemStateClass {
 	readonly opts: QuestionnaireItemStateOpts;
 	readonly root: QuestionnaireRootState;
 	readonly attachment: RefAttachment<HTMLFieldSetElement>;
-	readonly element = $derived.by(
-		() => this.opts.ref.current as HTMLFieldSetElement | null
-	);
+	readonly element = $derived.by(() => this.opts.ref.current as HTMLFieldSetElement | null);
 	answerControlRegistrations = $state.raw<AnswerControlRegistration[]>([]);
 	validationAttempted = $state(false);
 	selectedAnswerIds = $state.raw<string[]>([]);
@@ -529,36 +532,39 @@ export class QuestionnaireItemStateClass {
 				const item = this;
 				return untrack(() =>
 					this.root.registerItem({
-				get choices() {
-					return item.answerControls.flatMap((answer) =>
-						answer.type === "choice" ? [{ disabled: answer.ownDisabled, value: answer.value }] : []
-					);
-				},
-				get disabled() {
-					return item.opts.disabled.current;
-				},
-				element,
-				focus: () => item.focus(),
-				focusInvalid: () => item.focusInvalid(),
-				getAnswerByElement: (answerElement) => item.getAnswerByElement(answerElement),
-				getAnswerByShortcut: (shortcut) => item.getAnswerByShortcut(shortcut),
-				moveAnswerFocus: (currentElement, direction) =>
-					item.moveAnswerFocus(currentElement, direction),
-				get name() {
-					return item.opts.name.current;
-				},
-				get required() {
-					return item.opts.required.current;
-				},
-				reset: () => item.reset(),
-				skip: () => item.skip(),
-				get status() {
-					return item.status;
-				},
-				validate: () => item.validate(),
-			})
-			);
-		});
+						get choices() {
+							return item.answerControls.flatMap((answer) =>
+								answer.type === "choice"
+									? [{ disabled: answer.ownDisabled, value: answer.value }]
+									: []
+							);
+						},
+						get disabled() {
+							return item.opts.disabled.current;
+						},
+						element,
+						focus: () => item.focus(),
+						focusInvalid: () => item.focusInvalid(),
+						getAnswerByElement: (answerElement) => item.getAnswerByElement(answerElement),
+						getAnswerByShortcut: (shortcut) => item.getAnswerByShortcut(shortcut),
+						moveAnswerFocus: (currentElement, direction) =>
+							item.moveAnswerFocus(currentElement, direction),
+						get name() {
+							return item.opts.name.current;
+						},
+						get required() {
+							return item.opts.required.current;
+						},
+						reset: () => item.reset(),
+						skip: () => item.skip(),
+						get status() {
+							return item.status;
+						},
+						validate: () => item.validate(),
+					})
+				);
+			}
+		);
 	}
 
 	readonly active = $derived.by(
@@ -601,16 +607,16 @@ export class QuestionnaireItemStateClass {
 			(this.opts.invalid.current || (this.validationAttempted && !this.valid))
 	);
 
-	readonly hasInputAnswer = $derived.by(() => this.answers.some((answer) => answer.type === "input"));
+	readonly hasInputAnswer = $derived.by(() =>
+		this.answers.some((answer) => answer.type === "input")
+	);
 
 	readonly itemDefinition = $derived.by(() =>
 		this.root.collection?.itemByName.get(this.opts.name.current)
 	);
 
 	readonly shortcutByChoiceValue = $derived.by(() =>
-		this.root.collection
-			? getShortcutByChoiceValue(this.itemDefinition, this.root.shortcuts)
-			: null
+		this.root.collection ? getShortcutByChoiceValue(this.itemDefinition, this.root.shortcuts) : null
 	);
 
 	readonly shortcutByAnswerId = $derived.by(() => {
@@ -824,11 +830,7 @@ export class QuestionnaireItemStateClass {
 
 		if (!nextAnswer || nextAnswer.element === currentElement) return false;
 
-		if (
-			currentIndex >= 0 &&
-			isRadioTarget(currentElement) &&
-			isRadioTarget(nextAnswer.element)
-		) {
+		if (currentIndex >= 0 && isRadioTarget(currentElement) && isRadioTarget(nextAnswer.element)) {
 			return false;
 		}
 
@@ -895,15 +897,14 @@ export class QuestionnaireItemStateClass {
 	);
 }
 
-interface QuestionnaireChoiceStateOpts
-	extends ReadableBoxedValues<{
-		checked: boolean | undefined;
-		defaultChecked: boolean;
-		disabled: boolean;
-		onChange: ((event: Event) => void) | undefined;
-		value: string;
-		answerId: string;
-	}> {}
+interface QuestionnaireChoiceStateOpts extends ReadableBoxedValues<{
+	checked: boolean | undefined;
+	defaultChecked: boolean;
+	disabled: boolean;
+	onChange: ((event: Event) => void) | undefined;
+	value: string;
+	answerId: string;
+}> {}
 
 export class QuestionnaireChoiceStateClass {
 	static create(opts: QuestionnaireChoiceStateOpts) {
@@ -993,8 +994,12 @@ export class QuestionnaireChoiceStateClass {
 	}
 
 	readonly controlled = $derived.by(() => this.opts.checked.current !== undefined);
-	readonly disabled = $derived.by(() => this.item.opts.disabled.current || this.opts.disabled.current);
-	readonly selected = $derived.by(() => this.item.selectedAnswerIds.includes(this.opts.answerId.current));
+	readonly disabled = $derived.by(
+		() => this.item.opts.disabled.current || this.opts.disabled.current
+	);
+	readonly selected = $derived.by(() =>
+		this.item.selectedAnswerIds.includes(this.opts.answerId.current)
+	);
 	readonly checked = $derived.by(() =>
 		this.controlled
 			? this.item.status === "skipped"
@@ -1021,7 +1026,10 @@ export class QuestionnaireChoiceStateClass {
 			return;
 		}
 		if (this.item.status === "skipped" && this.opts.checked.current === target.checked) {
-			this.item.setAnswerSelectionFromInteraction(this.opts.answerId.current, Boolean(this.opts.checked.current));
+			this.item.setAnswerSelectionFromInteraction(
+				this.opts.answerId.current,
+				Boolean(this.opts.checked.current)
+			);
 		}
 	}
 
@@ -1046,7 +1054,9 @@ export class QuestionnaireChoiceStateClass {
 				name: this.item.status === "skipped" ? undefined : this.item.opts.name.current,
 				onchange: (event: Event) => this.handleChange(event),
 				required:
-					this.item.opts.required.current && !this.item.opts.multiple.current && !this.item.hasInputAnswer,
+					this.item.opts.required.current &&
+					!this.item.opts.multiple.current &&
+					!this.item.hasInputAnswer,
 				type: this.type,
 				value: this.opts.value.current,
 				"data-checked": boolToEmptyStrOrUndef(this.checked),
@@ -1072,7 +1082,8 @@ export class QuestionnaireChoiceStateClass {
 }
 
 interface QuestionnaireInputStateOpts
-	extends WithRefOpts<{}, HTMLInputElement>,
+	extends
+		WithRefOpts<{}, HTMLInputElement>,
 		ReadableBoxedValues<{
 			defaultValue: string | undefined;
 			disabled: boolean;
@@ -1090,9 +1101,7 @@ export class QuestionnaireInputStateClass {
 	readonly opts: QuestionnaireInputStateOpts;
 	readonly item: QuestionnaireItemStateClass;
 	readonly attachment: RefAttachment<HTMLInputElement>;
-	readonly inputElement = $derived.by(
-		() => this.opts.ref.current as HTMLInputElement | null
-	);
+	readonly inputElement = $derived.by(() => this.opts.ref.current as HTMLInputElement | null);
 	uncontrolledFilled = $state(false);
 	readonly initialDefaultFilled: boolean;
 
@@ -1178,9 +1187,15 @@ export class QuestionnaireInputStateClass {
 	readonly controlled = $derived.by(() => this.opts.value.current !== undefined);
 	readonly defaultFilled = $derived.by(() => hasInputValue(this.opts.defaultValue.current));
 	readonly controlledFilled = $derived.by(() => hasInputValue(this.opts.value.current));
-	readonly disabled = $derived.by(() => this.item.opts.disabled.current || this.opts.disabled.current);
-	readonly filled = $derived.by(() => (this.controlled ? this.controlledFilled : this.uncontrolledFilled));
-	readonly selected = $derived.by(() => this.item.selectedAnswerIds.includes(this.opts.answerId.current));
+	readonly disabled = $derived.by(
+		() => this.item.opts.disabled.current || this.opts.disabled.current
+	);
+	readonly filled = $derived.by(() =>
+		this.controlled ? this.controlledFilled : this.uncontrolledFilled
+	);
+	readonly selected = $derived.by(() =>
+		this.item.selectedAnswerIds.includes(this.opts.answerId.current)
+	);
 
 	handleInput(event: Event) {
 		const target = event.currentTarget as HTMLInputElement;
@@ -1211,7 +1226,10 @@ export class QuestionnaireInputStateClass {
 		return {
 			id: this.opts.answerId.current,
 			"aria-invalid": boolToTrueOrUndef(this.item.invalid),
-			"aria-keyshortcuts": getAnswerKeyShortcuts(null, !this.disabled && this.filled && this.selected),
+			"aria-keyshortcuts": getAnswerKeyShortcuts(
+				null,
+				!this.disabled && this.filled && this.selected
+			),
 			disabled: this.disabled,
 			form: this.selected ? undefined : "",
 			name: this.selected ? this.item.opts.name.current : undefined,
@@ -1456,7 +1474,8 @@ export class QuestionnaireActionState {
 			onClick: this.action === "submit" ? undefined : this.handleClick,
 			shortcut: this.action === "next" || this.action === "submit" ? "Enter" : undefined,
 			status: this.root.activeItemStatus,
-			tabIndex: typeof this.opts.tabindex.current === "number" ? this.opts.tabindex.current : undefined,
+			tabIndex:
+				typeof this.opts.tabindex.current === "number" ? this.opts.tabindex.current : undefined,
 			type: this.opts.type.current ?? (this.action === "submit" ? "submit" : "button"),
 			visible: this.visible,
 		})

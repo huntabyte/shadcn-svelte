@@ -1,14 +1,14 @@
 <script lang="ts">
 	import RotateCwIcon from "@lucide/svelte/icons/rotate-cw";
 	import { toast } from "svelte-sonner";
-	import { createChat, getMessageText } from "$lib/ai.js";
 	import * as Bubble from "$lib/registry/ui/bubble/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Marker from "$lib/registry/ui/marker/index.js";
-	import * as Message from "$lib/registry/ui/message/index.js";
 	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
+	import * as Message from "$lib/registry/ui/message/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
+	import { createChat, getMessageText } from "$lib/ai.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const chat = createChat()
 		.user("Can you summarize the incident channel?")
@@ -124,7 +124,9 @@
 				>
 					{canLoadHistory ? "Load History" : "History Loaded"}
 				</Button>
-				<p class="text-xs text-muted-foreground">Restore earlier messages while keeping your place.</p>
+				<p class="text-xs text-muted-foreground">
+					Restore earlier messages while keeping your place.
+				</p>
 			</Card.Footer>
 		</Card.Root>
 		<div class="mx-auto max-w-sm px-0.5 text-center text-xs text-balance text-muted-foreground">

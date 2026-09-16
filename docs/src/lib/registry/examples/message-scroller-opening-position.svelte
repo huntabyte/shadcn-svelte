@@ -1,8 +1,8 @@
 <script lang="ts">
-	import OpeningPositionScroller from "$lib/components/message-scroller/opening-position-scroller.svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
 	import * as Tabs from "$lib/registry/ui/tabs/index.js";
+	import OpeningPositionScroller from "$lib/components/message-scroller/opening-position-scroller.svelte";
 
 	const positions = [
 		{ value: "start", label: "start" },

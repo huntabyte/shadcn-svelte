@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { boxWith, mergeProps } from "svelte-toolbelt";
-	import type { QuestionnaireChoiceProps } from "../types.js";
-	import { QuestionnaireChoiceStateClass } from "../questionnaire.svelte.js";
 	import { createId } from "$lib/internal/create-id.js";
+	import { QuestionnaireChoiceStateClass } from "../questionnaire.svelte.js";
+	import type { QuestionnaireChoiceProps } from "../types.js";
 
 	const uid = $props.id();
 	const answerId = createId(uid);
