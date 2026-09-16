@@ -54,7 +54,7 @@ export default defineConfig(
 							name: "remixicon-svelte",
 							message: "Import icons individually, e.g. `remixicon-svelte/icons/<icon-name>`.",
 						},
-// `@hugeicons/core-free-icons` is intentionally left out of this check as they
+						// `@hugeicons/core-free-icons` is intentionally left out of this check as they
 						// do not provide proper types for their deep imports.
 					].map((entry) => ({ ...entry, allowTypeImports: true })),
 				},
