@@ -57,7 +57,7 @@
 						: part.type === "text"
 							? "text"
 							: null;
-				const text = typeof part.text === "string" ? part.text : null;
+				const text = "text" in part && typeof part.text === "string" ? part.text : null;
 
 				if (!type || text === null) {
 					return [];
