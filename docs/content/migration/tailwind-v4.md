@@ -424,20 +424,20 @@ Previously, we were depending on `bits-ui` for some simple type helpers that req
 These helpers have been moved into the `utils.ts` file:
 
 ```diff title="utils.ts"
--import { clsx, type ClassValue } from "clsx";
--import { twMerge } from "tailwind-merge";
+- import { clsx, type ClassValue } from "clsx";
+- import { twMerge } from "tailwind-merge";
 -
--export function cn(...inputs: ClassValue[]) {
--	return twMerge(clsx(inputs));
--}
-+export { cn } from "cn";
+- export function cn(...inputs: ClassValue[]) {
+-	  return twMerge(clsx(inputs));
+- }
++ export { cn } from "cn";
 +
-+// eslint-disable-next-line @typescript-eslint/no-explicit-any
-+export type WithoutChild<T> = T extends { child?: any } ? Omit<T, "child"> : T;
-+// eslint-disable-next-line @typescript-eslint/no-explicit-any
-+export type WithoutChildren<T> = T extends { children?: any } ? Omit<T, "children"> : T;
-+export type WithoutChildrenOrChild<T> = WithoutChildren<WithoutChild<T>>;
-+export type WithElementRef<T, U extends HTMLElement = HTMLElement> = T & { ref?: U | null };
++ // eslint-disable-next-line @typescript-eslint/no-explicit-any
++ export type WithoutChild<T> = T extends { child?: any } ? Omit<T, "child"> : T;
++ // eslint-disable-next-line @typescript-eslint/no-explicit-any
++ export type WithoutChildren<T> = T extends { children?: any } ? Omit<T, "children"> : T;
++ export type WithoutChildrenOrChild<T> = WithoutChildren<WithoutChild<T>>;
++ export type WithElementRef<T, U extends HTMLElement = HTMLElement> = T & { ref?: U | null };
 ```
 
 And then you can incrementally replace these imports in your existing components:
