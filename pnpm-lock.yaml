@@ -413,6 +413,9 @@ importers:
 
   packages/cli:
     dependencies:
+      cn:
+        specifier: ^0.3.0
+        version: 0.3.0
       commander:
         specifier: ^14.0.0
         version: 14.0.0
@@ -425,9 +428,6 @@ importers:
       svelte:
         specifier: ^5.0.0
         version: 5.54.0
-      tailwind-merge:
-        specifier: ^3.6.0
-        version: 3.6.0
     devDependencies:
       '@clack/prompts':
         specifier: ^1.1.0
@@ -507,6 +507,9 @@ importers:
 
   packages/parity:
     dependencies:
+      cn:
+        specifier: ^0.3.0
+        version: 0.3.0
       commander:
         specifier: ^14.0.0
         version: 14.0.0
@@ -516,9 +519,6 @@ importers:
       shadcn-svelte:
         specifier: workspace:*
         version: link:../cli
-      tailwind-merge:
-        specifier: ^3.6.0
-        version: 3.6.0
       zod:
         specifier: ^4.4.3
         version: 4.4.3
