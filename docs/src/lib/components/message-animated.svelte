@@ -8,13 +8,18 @@
 	import { MESSAGE_ANIMATIONS, type MessageAnimationPreset } from "$lib/message-animations.js";
 	import type { BubbleVariant } from "$lib/registry/ui/bubble/index.js";
 
+	type AnimatedMessagePart = {
+		type: string;
+		text?: string;
+	};
+
 	type AnimatedMessage =
 		| DemoMessage
 		| {
 				id: string;
 				role: string;
 				text?: string;
-				parts?: DemoMessage["parts"];
+				parts?: AnimatedMessagePart[];
 		  };
 
 	let {

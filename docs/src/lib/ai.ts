@@ -15,7 +15,7 @@ type ScriptedTurn =
 	| { kind: "sleep"; delayMs: number };
 
 export function getMessageText(
-	message: Pick<DemoMessage, "parts"> | { text?: string; parts?: DemoMessagePart[] }
+	message: Pick<DemoMessage, "parts" | "text"> | { text?: string; parts?: DemoMessagePart[] }
 ) {
 	if (message.parts?.length) {
 		return message.parts.reduce(
