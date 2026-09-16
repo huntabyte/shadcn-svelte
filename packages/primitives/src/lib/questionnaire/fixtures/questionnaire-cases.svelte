@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Questionnaire } from "./index.js";
+	import { Questionnaire } from "../index.js";
 	import TestChoice from "./questionnaire-test-choice.svelte";
 	import TestItem from "./questionnaire-test-item.svelte";
 	import { QuestionnaireTestModel, ssrItems } from "./questionnaire-test-model.svelte.ts";

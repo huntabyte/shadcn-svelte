@@ -2,7 +2,7 @@
 
 import { flushSync } from "svelte";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import type { QuestionnaireTestModel } from "./questionnaire-test-model.svelte.ts";
+import type { QuestionnaireTestModel } from "./fixtures/questionnaire-test-model.svelte.ts";
 import {
 	choose,
 	choice,
@@ -25,7 +25,7 @@ import {
 	submit,
 	type,
 	unmountApp,
-} from "./questionnaire-test-utils.js";
+} from "./fixtures/questionnaire-test-utils.js";
 
 beforeEach(() => {
 	const nextContainer = document.createElement("div");

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Questionnaire } from "./index.js";
+	import { Questionnaire } from "../index.js";
 
 	let {
 		onSubmit,

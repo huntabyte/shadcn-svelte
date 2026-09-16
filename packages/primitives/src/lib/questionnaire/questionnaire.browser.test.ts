@@ -10,7 +10,7 @@ import {
 	requiredElement,
 	setContainer,
 	unmountApp,
-} from "./questionnaire-test-utils.js";
+} from "./fixtures/questionnaire-test-utils.js";
 
 afterEach(() => {
 	unmountApp();

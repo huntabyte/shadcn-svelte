@@ -3,7 +3,7 @@ import type {
 	QuestionnaireItemDefinition,
 	QuestionnaireItemStatus,
 	QuestionnaireShortcutMode,
-} from "./types.js";
+} from "../types.js";
 
 export const ssrItems = [
 	{

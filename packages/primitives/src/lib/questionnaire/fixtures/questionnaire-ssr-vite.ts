@@ -5,7 +5,7 @@ import type { ViteDevServer } from "vite";
 import type { QuestionnaireTestModel } from "./questionnaire-test-model.svelte.ts";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
-const packageRoot = path.resolve(dirname, "../..");
+const packageRoot = path.resolve(dirname, "../../..");
 const casesPath = path.resolve(dirname, "questionnaire-cases.svelte");
 
 let server: ViteDevServer | undefined;
@@ -32,7 +32,7 @@ async function getServer() {
 			plugins: [svelte()],
 			resolve: {
 				alias: {
-					$lib: path.resolve(dirname, ".."),
+					$lib: path.resolve(dirname, "../.."),
 				},
 			},
 			server: {

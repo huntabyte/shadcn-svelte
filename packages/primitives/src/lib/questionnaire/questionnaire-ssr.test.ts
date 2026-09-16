@@ -2,12 +2,12 @@
 
 import { flushSync, hydrate, unmount } from "svelte";
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import QuestionnaireCases from "./questionnaire-cases.svelte";
-import type { QuestionnaireTestModel } from "./questionnaire-test-model.svelte.ts";
+import QuestionnaireCases from "./fixtures/questionnaire-cases.svelte";
+import type { QuestionnaireTestModel } from "./fixtures/questionnaire-test-model.svelte.ts";
 import {
 	closeQuestionnaireSsrVite,
 	renderQuestionnaireToString,
-} from "./questionnaire-ssr-vite.js";
+} from "./fixtures/questionnaire-ssr-vite.js";
 import {
 	action,
 	actionsMarkup,
@@ -25,7 +25,7 @@ import {
 	ssrChoiceInput,
 	shortcut,
 	unmountApp,
-} from "./questionnaire-test-utils.js";
+} from "./fixtures/questionnaire-test-utils.js";
 
 let hydrated: ReturnType<typeof hydrate> | null = null;
 
