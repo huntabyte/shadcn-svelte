@@ -1,12 +1,12 @@
 import path from "node:path";
-import { fetch } from "node-fetch-native";
-import { createProxy } from "node-fetch-native/proxy";
 import { parse as parseCss } from "postcss";
+import { buildRegistryRequest } from "./builder.js";
+import { fetchRegistry, type RegistryRequest } from "./fetcher.js";
 import * as schemas from "../../schema/index.js";
 import { OFFICIAL_REGISTRY_URL } from "../../constants.js";
 import { BASE_COLORS, type ResolvedConfig } from "../config/index.js";
+import { loadEnvFiles } from "../env-loader.js";
 import { CLIError, error } from "../errors.js";
-import { getEnvProxy } from "../get-env-proxy.js";
 import { isUrl, resolveURL } from "../utils.js";
 
 export function getRegistryUrl(config: { registry: string; style?: string }) {
@@ -87,9 +87,10 @@ export function parseStyleCss(css: string): Record<string, string> {
 
 type ResolveRegistryItemsProps = {
 	registryUrl: string;
-	registryIndex: schemas.RegistryIndex;
+	registryIndex?: schemas.RegistryIndex;
 	items: string[];
 	parentUrl?: URL;
+	config?: ResolvedConfig;
 };
 
 type ResolvedRegistryItem = schemas.RegistryItem | schemas.RegistryIndexItem;
@@ -98,59 +99,81 @@ export async function resolveRegistryItems({
 	registryIndex,
 	items,
 	parentUrl,
+	config,
 }: ResolveRegistryItemsProps): Promise<ResolvedRegistryItem[]> {
 	const resolvedItems: ResolvedRegistryItem[] = [];
+	const visited = new Set<string>();
+	const env = config?.registries ? loadEnvFiles(config.resolvedPaths.cwd) : process.env;
 
-	for (const item of items) {
-		let remoteUrl: URL | undefined;
-		let resolvedItem: ResolvedRegistryItem | undefined = registryIndex.find(
-			(entry) => entry.name === item
-		);
-
-		/**
-		 * The `item` doesn't exist in the registry's `index`, so it can be one of two things:
-		 * 1. a remote registry item (URL)
-		 * 2. a `local:registryDep` of a _remote_  item (relative path from that item to the dep)
-		 */
-		if (!resolvedItem) {
+	async function resolveItems(items: string[], parent?: URL | RegistryRequest) {
+		for (const item of items) {
+			let request: URL | RegistryRequest | undefined = buildRegistryRequest(item, config, env);
+			let resolvedItem: ResolvedRegistryItem | undefined;
+			const parentUrl = parent instanceof URL ? parent : parent?.url;
 			const isRelative = item.startsWith("./") || item.startsWith("../");
-			if (isUrl(item) || (parentUrl && isRelative)) {
-				remoteUrl = new URL(item, parentUrl);
-				const [result] = await fetchRegistry([remoteUrl]);
-				resolvedItem = schemas.registryItemSchema.parse(result);
-			} else {
-				// diff error messages depending on whether we're resolving from the user's registry or a remote URL
-				if (parentUrl) {
-					throw error(
-						`Registry item '${item}' does not exist in the remote registry at '${parentUrl.origin}', nor is it a valid URL or relative path.`
-					);
-				}
 
-				let message = `Registry item '${item}' does not exist in the registry at '${registryUrl}'.`;
-				if (registryUrl !== OFFICIAL_REGISTRY_URL) {
-					message += `\n\nIf you're trying to use shadcn-svelte components, ensure your 'registry' property in components.json is set to '${OFFICIAL_REGISTRY_URL}'.`;
-				}
-				throw error(message);
+			if (!request && (isUrl(item) || (parentUrl && isRelative))) {
+				const url = new URL(item, parentUrl);
+				// Only relative dependencies inherit the credentials of their parent registry.
+				request =
+					isRelative && parent && !(parent instanceof URL)
+						? {
+								url,
+								headers: url.origin === parent.url.origin ? parent.headers : {},
+								label: `${parent.label} dependency`,
+							}
+						: url;
 			}
-		}
 
-		resolvedItems.push(resolvedItem);
+			if (!request) {
+				registryIndex ??= await getRegistryIndex(registryUrl);
+				resolvedItem = registryIndex.find((entry) => entry.name === item);
+				if (!resolvedItem) {
+					if (parentUrl) {
+						throw error(
+							`Registry item '${item}' does not exist in the remote registry at '${parentUrl.origin}', nor is it a valid URL or relative path.`
+						);
+					}
 
-		if (resolvedItem.registryDependencies?.length) {
-			const registryDeps = await resolveRegistryItems({
-				registryUrl,
-				registryIndex,
-				items: resolvedItem.registryDependencies,
-				parentUrl: remoteUrl,
-			});
-			resolvedItems.push(...registryDeps);
+					let message = `Registry item '${item}' does not exist in the registry at '${registryUrl}'.`;
+					if (registryUrl !== OFFICIAL_REGISTRY_URL) {
+						message += `\n\nIf you're trying to use shadcn-svelte components, ensure your 'registry' property in components.json is set to '${OFFICIAL_REGISTRY_URL}'.`;
+					}
+					throw error(message);
+				}
+			}
+
+			const url = request instanceof URL ? request : request?.url;
+			const headers = request && !(request instanceof URL) ? request.headers : {};
+			const key = JSON.stringify([
+				url?.href ??
+					resolveURL(registryUrl, (resolvedItem as schemas.RegistryIndexItem).relativeUrl).href,
+				Object.entries(headers).sort(([a], [b]) => a.localeCompare(b)),
+			]);
+			// Track the source, not the item's name: two registries may both publish "button".
+			if (visited.has(key)) continue;
+			visited.add(key);
+
+			if (request) {
+				const [result] = await fetchRegistry([request]);
+				try {
+					resolvedItem = schemas.registryItemSchema.parse(result);
+				} catch (e) {
+					if (!(request instanceof URL))
+						throw error(`Invalid registry item received for ${request.label}.`);
+					throw e;
+				}
+			}
+
+			resolvedItems.push(resolvedItem!);
+			if (resolvedItem!.registryDependencies?.length) {
+				await resolveItems(resolvedItem!.registryDependencies, request);
+			}
 		}
 	}
 
-	// dedupes tree
-	return resolvedItems.filter(
-		(component, index, self) => self.findIndex((c) => c.name === component.name) === index
-	);
+	await resolveItems(items, parentUrl);
+	return resolvedItems;
 }
 
 type FetchTreeProps = { baseUrl: string; items: ResolvedRegistryItem[] };
@@ -169,34 +192,6 @@ export async function fetchRegistryItems({
 	} catch (e) {
 		if (e instanceof CLIError) throw e;
 		throw error(`Failed to fetch tree from registry.`, e);
-	}
-}
-
-async function fetchRegistry(urls: Array<URL | string>): Promise<unknown[]> {
-	const proxyUrl = getEnvProxy();
-	const proxy = proxyUrl ? createProxy({ url: proxyUrl }) : {};
-
-	const loaders = urls.map(async (url) => {
-		const response = await fetch(url, { ...proxy });
-		if (!response.ok) {
-			throw error(
-				`Failed to fetch registry from ${url}: ${response.status} ${response.statusText}`
-			);
-		}
-
-		try {
-			return await response.json();
-		} catch (e) {
-			throw error(`Error parsing json response from ${url}: Error ${e}`);
-		}
-	});
-
-	try {
-		const results = await Promise.all(loaders);
-		return results;
-	} catch (e) {
-		if (e instanceof CLIError) throw e;
-		throw error(`Failed to fetch registry.`, e);
 	}
 }
 
