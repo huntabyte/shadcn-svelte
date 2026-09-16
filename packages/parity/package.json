@@ -1,7 +1,7 @@
 {
 	"name": "@shadcn-svelte/parity",
 	"private": true,
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"description": "Compare shadcn-svelte registry classes against upstream shadcn/ui",
 	"type": "module",
 	"bin": {
