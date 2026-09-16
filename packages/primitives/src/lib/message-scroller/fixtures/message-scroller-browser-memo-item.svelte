@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { MessageScroller } from "./index.js";
+	import { MessageScroller } from "../index.js";
 
 	let {
 		id,

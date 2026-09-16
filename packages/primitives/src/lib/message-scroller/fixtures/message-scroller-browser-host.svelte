@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Thread, { type BrowserTestItem } from "./message-scroller-browser-thread.svelte";
-	import type { MessageScrollerDefaultScrollPosition } from "./types.js";
+	import type { MessageScrollerDefaultScrollPosition } from "../types.js";
 
 	export type ThreadProps = {
 		autoScroll?: boolean;

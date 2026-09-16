@@ -22,7 +22,8 @@
 	"files": [
 		"dist",
 		"!dist/**/*.test.*",
-		"!dist/**/*.spec.*"
+		"!dist/**/*.spec.*",
+		"!dist/**/fixtures/**"
 	],
 	"keywords": [
 		"svelte",

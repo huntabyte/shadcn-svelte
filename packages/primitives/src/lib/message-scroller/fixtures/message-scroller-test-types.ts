@@ -3,7 +3,7 @@ import type {
 	MessageScrollerScrollOptions,
 	MessageScrollerScrollable,
 	MessageScrollerVisibilityState,
-} from "./types.js";
+} from "../types.js";
 
 export type TestMessage = {
 	height?: number;

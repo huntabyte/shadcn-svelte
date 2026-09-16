@@ -3,8 +3,8 @@ import { afterEach, expect, test } from "vitest";
 
 import BrowserHost, {
 	type ThreadProps,
-} from "./message-scroller-browser-host.svelte";
-import MemoTree from "./message-scroller-browser-memo-tree.svelte";
+} from "./fixtures/message-scroller-browser-host.svelte";
+import MemoTree from "./fixtures/message-scroller-browser-memo-tree.svelte";
 
 const ITEM_HEIGHT = 80;
 

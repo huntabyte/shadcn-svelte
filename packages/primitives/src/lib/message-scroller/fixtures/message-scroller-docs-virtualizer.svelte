@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { useVirtualizer } from "../svelte-virtual/index.js";
-	import { MessageScroller } from "./index.js";
+	import { useVirtualizer } from "../../svelte-virtual/index.js";
+	import { MessageScroller } from "../index.js";
 
 	let {
 		messages,

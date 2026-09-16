@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { MessageScroller } from "./index.js";
+	import { MessageScroller } from "../index.js";
 	import MemoMessageItem from "./message-scroller-browser-memo-item.svelte";
 	import VisibilityProbe from "./message-scroller-browser-visibility.svelte";
 

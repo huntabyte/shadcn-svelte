@@ -3,15 +3,15 @@
 import { flushSync, mount, tick, unmount } from "svelte";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import TestHost from "./message-scroller-test-host.svelte";
-import PendingScrollTree from "./message-scroller-test-pending.svelte";
+import TestHost from "./fixtures/message-scroller-test-host.svelte";
+import PendingScrollTree from "./fixtures/message-scroller-test-pending.svelte";
 import type {
 	PendingScrollTreeProps,
 	TestMessage,
 	TestRef,
 	TestScrollerApi,
 	TestScrollerOptions,
-} from "./message-scroller-test-types.js";
+} from "./fixtures/message-scroller-test-types.js";
 import type {
 	MessageScrollerScrollable,
 	MessageScrollerScrollOptions,

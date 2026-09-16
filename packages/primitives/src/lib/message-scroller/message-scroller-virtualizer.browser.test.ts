@@ -1,7 +1,7 @@
 import { flushSync, mount, unmount } from "svelte";
 import { afterEach, expect, test } from "vitest";
 
-import DocsVirtualizer from "./message-scroller-docs-virtualizer.svelte";
+import DocsVirtualizer from "./fixtures/message-scroller-docs-virtualizer.svelte";
 
 let app: Record<string, unknown> | null = null;
 let container: HTMLDivElement | null = null;

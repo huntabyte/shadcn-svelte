@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { useMessageScrollerVisibility } from "./index.js";
+	import { useMessageScrollerVisibility } from "../index.js";
 
 	const visibility = useMessageScrollerVisibility();
 </script>
