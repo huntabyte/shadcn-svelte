@@ -45,6 +45,14 @@ function createRef<T>(initial: T): MessageScrollerRef<T> {
 	return { current: initial };
 }
 
+function createGetterRef<T>(get: () => T): MessageScrollerRef<T> {
+	return {
+		get current() {
+			return get();
+		},
+	};
+}
+
 type MessageScrollerRefs = {
 	autoScrollRef: MessageScrollerRef<boolean>;
 	autoscrollingRef: MessageScrollerRef<boolean>;
@@ -86,20 +94,22 @@ type MessageScrollerRefs = {
 };
 
 function createMessageScrollerRefs({
-	autoScroll,
+	getAutoScroll,
 	defaultScrollPosition,
-	scrollEdgeThreshold,
-	scrollMargin,
-	scrollPreviousItemPeek,
+	getScrollEdgeThreshold,
+	getScrollMargin,
+	getScrollPreviousItemPeek,
+	getPreserveScrollOnPrepend,
 }: {
-	autoScroll: boolean;
+	getAutoScroll: () => boolean;
 	defaultScrollPosition: MessageScrollerDefaultScrollPosition;
-	scrollEdgeThreshold: number;
-	scrollMargin: number;
-	scrollPreviousItemPeek: number;
+	getScrollEdgeThreshold: () => number;
+	getScrollMargin: () => number;
+	getScrollPreviousItemPeek: () => number;
+	getPreserveScrollOnPrepend: () => boolean;
 }): MessageScrollerRefs {
 	return {
-		autoScrollRef: createRef(autoScroll),
+		autoScrollRef: createGetterRef(getAutoScroll),
 		autoscrollingRef: createRef(false),
 		autoscrollingTimeoutRef: createRef<number | null>(null),
 		streamingTurnRef: createRef<HTMLElement | null>(null),
@@ -109,7 +119,9 @@ function createMessageScrollerRefs({
 		itemCountRef: createRef(0),
 		lastScrollTopRef: createRef(0),
 		messageElementsRef: createRef(new Map<string, HTMLElement>()),
-		modeRef: createRef<MessageScrollerMode>(autoScroll ? "following-bottom" : "free-scrolling"),
+		modeRef: createRef<MessageScrollerMode>(
+			getAutoScroll() ? "following-bottom" : "free-scrolling"
+		),
 		pendingScrollFrameRef: createRef<number | null>(null),
 		pendingScrollToMessageRef: createRef<{
 			messageId: string;
@@ -119,15 +131,15 @@ function createMessageScrollerRefs({
 			element: HTMLElement;
 			viewportTop: number;
 		} | null>(null),
-		preserveScrollOnPrependRef: createRef(true),
+		preserveScrollOnPrependRef: createGetterRef(getPreserveScrollOnPrepend),
 		pendingDefaultScrollStore: createMessageScrollerStore(
 			defaultScrollPosition === "end" || defaultScrollPosition === "last-anchor",
 			(current, next) => current === next
 		),
 		rootRef: createRef<HTMLDivElement | null>(null),
-		scrollEdgeThresholdRef: createRef(scrollEdgeThreshold),
-		scrollMarginRef: createRef(scrollMargin),
-		scrollPreviousItemPeekRef: createRef(scrollPreviousItemPeek),
+		scrollEdgeThresholdRef: createGetterRef(getScrollEdgeThreshold),
+		scrollMarginRef: createGetterRef(getScrollMargin),
+		scrollPreviousItemPeekRef: createGetterRef(getScrollPreviousItemPeek),
 		spacerGapRef: createRef(0),
 		spacerHeightRef: createRef(0),
 		spacerRef: createRef<HTMLDivElement | null>(null),
@@ -455,16 +467,18 @@ export class MessageScrollerProviderState {
 	readonly refs: MessageScrollerRefs;
 	readonly commands: ReturnType<typeof createMessageScrollerCommands>;
 	previousDefaultScrollPosition: MessageScrollerDefaultScrollPosition;
+	#getPreserveScrollOnPrepend = () => true;
 
 	constructor(opts: MessageScrollerProviderStateOpts) {
 		this.opts = opts;
 		this.previousDefaultScrollPosition = opts.defaultScrollPosition.current;
 		this.refs = createMessageScrollerRefs({
-			autoScroll: opts.autoScroll.current,
+			getAutoScroll: () => this.opts.autoScroll.current,
 			defaultScrollPosition: opts.defaultScrollPosition.current,
-			scrollEdgeThreshold: opts.scrollEdgeThreshold.current,
-			scrollMargin: opts.scrollMargin.current,
-			scrollPreviousItemPeek: opts.scrollPreviousItemPeek.current,
+			getScrollEdgeThreshold: () => this.opts.scrollEdgeThreshold.current,
+			getScrollMargin: () => this.opts.scrollMargin.current,
+			getScrollPreviousItemPeek: () => this.opts.scrollPreviousItemPeek.current,
+			getPreserveScrollOnPrepend: () => this.#getPreserveScrollOnPrepend(),
 		});
 		this.commands = createMessageScrollerCommands({
 			refs: this.refs,
@@ -484,21 +498,6 @@ export class MessageScrollerProviderState {
 		this.setContentElement = this.setContentElement.bind(this);
 		this.setSpacerElement = this.setSpacerElement.bind(this);
 		this.syncAfterScroll = this.syncAfterScroll.bind(this);
-
-		watch.pre(
-			[
-				() => this.opts.autoScroll.current,
-				() => this.opts.scrollEdgeThreshold.current,
-				() => this.opts.scrollMargin.current,
-				() => this.opts.scrollPreviousItemPeek.current,
-			],
-			([autoScroll, scrollEdgeThreshold, scrollMargin, scrollPreviousItemPeek]) => {
-				this.refs.autoScrollRef.current = autoScroll;
-				this.refs.scrollEdgeThresholdRef.current = scrollEdgeThreshold;
-				this.refs.scrollMarginRef.current = scrollMargin;
-				this.refs.scrollPreviousItemPeekRef.current = scrollPreviousItemPeek;
-			}
-		);
 
 		watch.pre(
 			() => this.opts.defaultScrollPosition.current,
@@ -596,6 +595,10 @@ export class MessageScrollerProviderState {
 
 	get preserveScrollOnPrependRef() {
 		return this.refs.preserveScrollOnPrependRef;
+	}
+
+	bindPreserveScrollOnPrepend(getPreserveScrollOnPrepend: () => boolean) {
+		this.#getPreserveScrollOnPrepend = getPreserveScrollOnPrepend;
 	}
 
 	get viewportRef() {

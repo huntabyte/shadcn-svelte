@@ -27,12 +27,7 @@
 	const pendingDefaultScroll = usePendingDefaultScroll();
 	let viewportElement = $state<HTMLDivElement | null>(null);
 
-	watch.pre(
-		() => preserveScrollOnPrepend,
-		(preserveScrollOnPrepend) => {
-			root.preserveScrollOnPrependRef.current = preserveScrollOnPrepend;
-		}
-	);
+	root.bindPreserveScrollOnPrepend(() => preserveScrollOnPrepend);
 
 	const attachment = attachRef(
 		boxWith(

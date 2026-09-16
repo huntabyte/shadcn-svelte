@@ -72,7 +72,9 @@ export class QuestionnaireRootState {
 	readonly attachment: RefAttachment<HTMLFormElement>;
 	registrations = $state.raw<ItemRegistration[]>([]);
 	uncontrolledItem = $state<string | null>(null);
-	rootElement = $state<HTMLFormElement | null>(null);
+	readonly rootElement = $derived.by(
+		() => this.opts.ref.current as HTMLFormElement | null
+	);
 	domVersion = $state(0);
 	pendingFocus: PendingFocus | null = null;
 	previousActiveItemName: string | null | undefined = undefined;
@@ -80,20 +82,11 @@ export class QuestionnaireRootState {
 
 	constructor(opts: QuestionnaireRootStateOpts) {
 		this.opts = opts;
-		this.attachment = attachRef(this.opts.ref, (node) => {
-			this.rootElement = node as HTMLFormElement | null;
-		});
+		this.attachment = attachRef(this.opts.ref);
 		this.uncontrolledItem = getInitialItemName(this.collection, this.opts.defaultItem.current);
 		this.handleKeyDown = this.handleKeyDown.bind(this);
 		this.handleReset = this.handleReset.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-
-		watch(
-			() => this.opts.ref.current as HTMLFormElement | null,
-			(node) => {
-				if (this.rootElement !== node) this.rootElement = node;
-			}
-		);
 
 		watch(
 			() => this.rootElement,
@@ -485,7 +478,9 @@ export class QuestionnaireItemStateClass {
 	readonly opts: QuestionnaireItemStateOpts;
 	readonly root: QuestionnaireRootState;
 	readonly attachment: RefAttachment<HTMLFieldSetElement>;
-	element = $state<HTMLFieldSetElement | null>(null);
+	readonly element = $derived.by(
+		() => this.opts.ref.current as HTMLFieldSetElement | null
+	);
 	answerControlRegistrations = $state.raw<AnswerControlRegistration[]>([]);
 	validationAttempted = $state(false);
 	selectedAnswerIds = $state.raw<string[]>([]);
@@ -501,16 +496,7 @@ export class QuestionnaireItemStateClass {
 		this.opts = opts;
 		this.root = root;
 		this.previousMultiple = opts.multiple.current;
-		this.attachment = attachRef(this.opts.ref, (node) => {
-			this.element = node as HTMLFieldSetElement | null;
-		});
-
-		watch(
-			() => this.opts.ref.current as HTMLFieldSetElement | null,
-			(node) => {
-				if (this.element !== node) this.element = node;
-			}
-		);
+		this.attachment = attachRef(this.opts.ref);
 
 		watch.pre(
 			() => this.status,
@@ -1103,7 +1089,9 @@ export class QuestionnaireInputStateClass {
 	readonly opts: QuestionnaireInputStateOpts;
 	readonly item: QuestionnaireItemStateClass;
 	readonly attachment: RefAttachment<HTMLInputElement>;
-	inputElement = $state<HTMLInputElement | null>(null);
+	readonly inputElement = $derived.by(
+		() => this.opts.ref.current as HTMLInputElement | null
+	);
 	uncontrolledFilled = $state(false);
 	readonly initialDefaultFilled: boolean;
 
@@ -1112,16 +1100,7 @@ export class QuestionnaireInputStateClass {
 		this.item = item;
 		this.initialDefaultFilled = hasInputValue(opts.defaultValue.current);
 		this.uncontrolledFilled = this.initialDefaultFilled;
-		this.attachment = attachRef(this.opts.ref, (node) => {
-			this.inputElement = node as HTMLInputElement | null;
-		});
-
-		watch(
-			() => this.opts.ref.current as HTMLInputElement | null,
-			(node) => {
-				if (this.inputElement !== node) this.inputElement = node;
-			}
-		);
+		this.attachment = attachRef(this.opts.ref);
 
 		onMount(() => {
 			this.item.registerAnswerSelection(this.opts.answerId.current, this.initialDefaultFilled);

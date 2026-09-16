@@ -1,8 +1,10 @@
 <script lang="ts">
-	import { watch } from "runed";
 	import { attachRef, boxWith, mergeProps } from "svelte-toolbelt";
 	import type { MessageScrollerButtonProps } from "../types.js";
-	import { MessageScrollerProviderState } from "../message-scroller.svelte.js";
+	import {
+		MessageScrollerProviderState,
+		useMessageScrollerScrollable,
+	} from "../message-scroller.svelte.js";
 
 	let {
 		children,
@@ -17,23 +19,8 @@
 	}: MessageScrollerButtonProps = $props();
 
 	const root = MessageScrollerProviderState.get();
-	let isActive = $state(false);
-
-	watch.pre(
-		() => direction,
-		(direction) => {
-			const read = () => {
-				const state = root.stateStore.getSnapshot();
-				return direction === "start" ? state.start : state.end;
-			};
-
-			isActive = read();
-
-			return root.stateStore.subscribe(() => {
-				isActive = read();
-			});
-		}
-	);
+	const scrollable = useMessageScrollerScrollable();
+	const isActive = $derived(direction === "start" ? scrollable.start : scrollable.end);
 
 	function handleClick(event: MouseEvent & { currentTarget: EventTarget & HTMLButtonElement }) {
 		if (!isActive) return;
