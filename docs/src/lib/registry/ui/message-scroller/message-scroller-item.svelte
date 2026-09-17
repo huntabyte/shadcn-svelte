@@ -3,6 +3,7 @@
 	import { cn } from "$lib/utils.js";
 
 	let {
+		ref = $bindable(null),
 		class: className,
 		scrollAnchor = false,
 		...restProps
@@ -10,6 +11,7 @@
 </script>
 
 <MessageScrollerPrimitive.Item
+	bind:ref
 	data-slot="message-scroller-item"
 	{scrollAnchor}
 	class={cn(
