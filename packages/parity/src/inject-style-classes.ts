@@ -113,6 +113,60 @@ function immediateApply(body: string): string {
 		.join(" ");
 }
 
+function escapeRegExp(value: string): string {
+	return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+type PreparedEntry = {
+	className: string;
+	classes: string;
+	tokenRegex: RegExp;
+	dedupeRegex: RegExp | undefined;
+};
+
+type PreparedStyleMap = {
+	/** Inlineable entries, longest token first, with their regexes compiled once. */
+	entries: PreparedEntry[];
+	/**
+	 * Whether any `@apply` list itself contains a `cn-*` token. If so, a replacement can
+	 * introduce a token for a later entry, and we must iterate every entry for every file.
+	 */
+	valuesContainTokens: boolean;
+};
+
+const preparedStyleMaps = new WeakMap<Record<string, string>, PreparedStyleMap>();
+
+/**
+ * The style map is shared across every file in a registry build, so the sorted entry
+ * list and per-entry regexes are computed once per map rather than once per file.
+ */
+function prepareStyleMap(styleMap: Record<string, string>): PreparedStyleMap {
+	const cached = preparedStyleMaps.get(styleMap);
+	if (cached) return cached;
+
+	const entries = Object.entries(styleMap)
+		.filter(([className]) => shouldInlineToken(className))
+		.sort(([a], [b]) => b.length - a.length)
+		.map(([className, rawClasses]): PreparedEntry => {
+			const classes = toTailwindArbitraryCalc(rawClasses);
+			return {
+				className,
+				classes,
+				tokenRegex: new RegExp(`(?<![\\w-])${escapeRegExp(className)}(?![\\w-])`, "g"),
+				dedupeRegex: classes
+					? new RegExp(`(?<![\\w-])(?:${escapeRegExp(classes)}\\s*){2,}(?![\\w-])`, "g")
+					: undefined,
+			};
+		});
+
+	const prepared: PreparedStyleMap = {
+		entries,
+		valuesContainTokens: entries.some((entry) => entry.classes.includes("cn-")),
+	};
+	preparedStyleMaps.set(styleMap, prepared);
+	return prepared;
+}
+
 /**
  * Replace `cn-*` tokens with the matching style `@apply` utilities.
  *
@@ -122,27 +176,24 @@ function immediateApply(body: string): string {
  * utilities are collapsed — otherwise inlined output repeats CSS that is
  * already on the component (e.g. Attachment.Trigger).
  *
+ * Only the entries whose token actually appears in `content` are processed. Most
+ * registry files contain no `cn-*` token at all, and those that do use a handful of
+ * the ~400 mappings, so this avoids hundreds of full-content regex passes per file.
+ *
  * `parity-ignore` comments are removed so they never ship in registry JSON.
  */
 export function injectStyleClasses(content: string, styleMap: Record<string, string>): string {
 	content = stripParityIgnoreComments(content);
-	const entries = Object.entries(styleMap)
-		.filter(([className]) => shouldInlineToken(className))
-		.sort(([a], [b]) => b.length - a.length);
+	const { entries, valuesContainTokens } = prepareStyleMap(styleMap);
 
-	for (const [className, rawClasses] of entries) {
-		const classes = toTailwindArbitraryCalc(rawClasses);
-		const escaped = className.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-		const regex = new RegExp(`(?<![\\w-])${escaped}(?![\\w-])`, "g");
-		content = content.replace(regex, classes);
+	// `cn-[\w-]+` is greedy, so each match is a whole token: exactly what `tokenRegex`
+	// (bounded by non-word, non-hyphen characters) can match.
+	const presentTokens = new Set(content.match(/cn-[\w-]+/g));
 
-		if (classes) {
-			const escapedClasses = classes.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-			content = content.replace(
-				new RegExp(`(?<![\\w-])(?:${escapedClasses}\\s*){2,}(?![\\w-])`, "g"),
-				classes
-			);
-		}
+	for (const entry of entries) {
+		if (!valuesContainTokens && !presentTokens.has(entry.className)) continue;
+		content = content.replace(entry.tokenRegex, entry.classes);
+		if (entry.dedupeRegex) content = content.replace(entry.dedupeRegex, entry.classes);
 	}
 
 	content = content.replace(/(?<![\w-])(cn-[\w-]+)(?![\w-])/g, (token) =>
