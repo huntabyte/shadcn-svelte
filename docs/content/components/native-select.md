@@ -25,7 +25,11 @@ For a styled select component, see the [Select](/docs/components/select) compone
 
 </Callout>
 
-<ComponentPreview name="native-select-demo" />
+<ComponentPreview name="native-select-demo">
+
+<div></div>
+
+</ComponentPreview>
 
 ## Installation
 
