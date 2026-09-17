@@ -10,9 +10,6 @@ import {
 	type VirtualizerOptions,
 } from "@tanstack/virtual-core";
 import { untrack } from "svelte";
-import { createSubscriber, SvelteMap } from "svelte/reactivity";
-
-export * from "@tanstack/virtual-core";
 
 export type SvelteVirtualizer<
 	TScrollElement extends Element | Window,
@@ -25,44 +22,12 @@ function useVirtualizerBase<TScrollElement extends Element | Window, TItemElemen
 	initialOptions: VirtualizerOptions<TScrollElement, TItemElement>
 ): SvelteVirtualizer<TScrollElement, TItemElement> {
 	const virtualizer = new Virtualizer(initialOptions);
-	const originalSetOptions = virtualizer.setOptions.bind(virtualizer);
-	const boundFns = new SvelteMap<PropertyKey, (...args: unknown[]) => unknown>();
-	let notify = () => {};
+	const originalSetOptions = virtualizer.setOptions;
+
+	// Bumped every time the virtualizer reports a change. Reading it inside the
+	// proxy's `get` trap is what makes property access on the returned object
+	// reactive, so templates re-run whenever the virtualizer updates.
 	let version = $state(0);
-	let lastScrollElement: TScrollElement | null = null;
-	let lastRangeKey = "";
-	let notifyQueued = false;
-
-	const notifyChange = () => {
-		version += 1;
-		notify();
-	};
-
-	const rangeKey = (instance: Virtualizer<TScrollElement, TItemElement>) => {
-		const range = instance.range;
-
-		return `${instance.options.count}:${range?.startIndex ?? ""}:${range?.endIndex ?? ""}:${instance.getTotalSize()}`;
-	};
-
-	const scheduleNotify = (instance: Virtualizer<TScrollElement, TItemElement>) => {
-		const nextRangeKey = rangeKey(instance);
-
-		if (nextRangeKey === lastRangeKey) {
-			return;
-		}
-
-		lastRangeKey = nextRangeKey;
-
-		if (notifyQueued) {
-			return;
-		}
-
-		notifyQueued = true;
-		queueMicrotask(() => {
-			notifyQueued = false;
-			notifyChange();
-		});
-	};
 
 	const setOptions = (options: Partial<VirtualizerOptions<TScrollElement, TItemElement>>) => {
 		const resolvedOptions = {
@@ -70,64 +35,40 @@ function useVirtualizerBase<TScrollElement extends Element | Window, TItemElemen
 			...options,
 			onChange: options.onChange,
 		};
-
 		originalSetOptions({
 			...resolvedOptions,
 			onChange: (instance, sync) => {
-				scheduleNotify(instance);
+				version += 1;
 				resolvedOptions.onChange?.(instance, sync);
 			},
 		});
-
 		virtualizer._willUpdate();
+		// Force an update in case the range didn't change (e.g. count increased
+		// but scroll position stayed the same). Without this, `version` only
+		// bumps when onChange fires (on range change), so changes like a new
+		// count that don't shift the visible range would not trigger a re-render.
+		version += 1;
 	};
 
-	const subscribe = createSubscriber((update) => {
-		notify = update;
-		setOptions(initialOptions);
-		lastScrollElement = (initialOptions.getScrollElement?.() ?? null) as TScrollElement | null;
-		lastRangeKey = rangeKey(virtualizer);
-		const unmount = virtualizer._didMount();
-
-		return () => {
-			unmount();
-		};
+	$effect(() => {
+		// Spreading evaluates any reactive getters on the options object (e.g.
+		// `get count() { return items.length }`), so this effect re-runs whenever
+		// one of those values changes.
+		const options = { ...initialOptions };
+		// Read the scroll element too, so binding it after mount (e.g. via
+		// `bind:this`) re-runs `_willUpdate` and attaches the observers.
+		options.getScrollElement();
+		untrack(() => setOptions(options));
 	});
+
+	$effect(() => virtualizer._didMount());
 
 	return new Proxy(virtualizer, {
 		get(target, prop, receiver) {
-			if (prop === "setOptions") {
-				return setOptions;
-			}
-
-			subscribe();
+			if (prop === "setOptions") return setOptions;
+			// Subscribe the caller to changes.
 			void version;
-			void initialOptions.count;
-
-			const scrollElement = (initialOptions.getScrollElement?.() ?? null) as TScrollElement | null;
-
-			if (scrollElement !== lastScrollElement) {
-				lastScrollElement = scrollElement;
-				untrack(() => {
-					virtualizer._willUpdate();
-				});
-			}
-
-			const value = Reflect.get(target, prop, receiver);
-
-			if (typeof value === "function") {
-				const cached = boundFns.get(prop);
-
-				if (cached) {
-					return cached;
-				}
-
-				const bound = value.bind(target);
-				boundFns.set(prop, bound);
-				return bound;
-			}
-
-			return value;
+			return Reflect.get(target, prop, receiver);
 		},
 	}) as SvelteVirtualizer<TScrollElement, TItemElement>;
 }
