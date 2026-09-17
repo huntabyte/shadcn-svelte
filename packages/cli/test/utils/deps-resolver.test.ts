@@ -266,6 +266,17 @@ describe("getFileDependencies", () => {
 		expect(result.devDependencies).toBeUndefined();
 	});
 
+	it("extracts packages from re-exports", async () => {
+		const src = `
+		export { cn } from "cn";
+		export * from "foo";
+	  `;
+		const result = await getFileDependencies(mkOpts("utils.ts", src, {}, { cn: [], foo: [] }));
+
+		expect(result.dependencies).toBeUndefined();
+		expect(result.devDependencies).toEqual(["cn@1.0.0", "foo@1.0.0"]);
+	});
+
 	it('parses <script> and <script context="module"> in .svelte', async () => {
 		const svelteSrc = `
 		<script>

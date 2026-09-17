@@ -2,8 +2,8 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { styleText } from "node:util";
+import { twMerge } from "cn";
 import { PRESET_STYLES } from "shadcn-svelte/preset";
-import { twMerge } from "tailwind-merge";
 import {
 	findCommentRanges,
 	parseParityIgnore,
