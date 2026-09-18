@@ -2,7 +2,7 @@ export const MESSAGE_ANIMATIONS = {
 	fade: {
 		id: "fade",
 		name: "Fade",
-		class: "animate-in fade-in duration-200",
+		class: "animate-in fade-in duration-300",
 	},
 	"slide-up": {
 		id: "slide-up",
@@ -17,12 +17,12 @@ export const MESSAGE_ANIMATIONS = {
 	pop: {
 		id: "pop",
 		name: "Pop",
-		class: "animate-in fade-in zoom-in-95 slide-in-from-bottom-1 duration-200",
+		class: "animate-in fade-in zoom-in-95 duration-200 origin-bottom-right",
 	},
 	"spring-bounce": {
 		id: "spring-bounce",
 		name: "Spring Bounce",
-		class: "animate-in fade-in zoom-in-95 slide-in-from-bottom-2 duration-300",
+		class: "animate-in fade-in zoom-in-95 slide-in-from-bottom-3 duration-300 ease-in-out",
 	},
 	"blur-fade": {
 		id: "blur-fade",
