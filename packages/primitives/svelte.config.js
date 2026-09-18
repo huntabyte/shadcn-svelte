@@ -7,12 +7,6 @@ const config = {
 	kit: {
 		adapter: adapter(),
 	},
-	compilerOptions: {
-		warningFilter: (w) => {
-			if (w.code === "state_referenced_locally") return false;
-			return true;
-		},
-	},
 };
 
 export default config;
