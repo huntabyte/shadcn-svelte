@@ -12,7 +12,7 @@
 		),
 	});
 
-	const mergedProps = $derived(mergeProps(restProps, rootState.props, rootState.attachment));
+	const mergedProps = $derived(mergeProps(restProps, rootState.props));
 </script>
 
 {#if child}

@@ -6,6 +6,7 @@
 	let {
 		children,
 		child,
+		ref = $bindable(null),
 		disabled = false,
 		onclick,
 		tabindex,
@@ -14,6 +15,10 @@
 	}: QuestionnairePreviousProps = $props();
 
 	const actionState = QuestionnaireActionState.create("previous", {
+		ref: boxWith(
+			() => ref,
+			(v) => (ref = v)
+		),
 		disabled: boxWith(() => disabled),
 		onclick: boxWith(() => onclick),
 		tabindex: boxWith(() => tabindex),

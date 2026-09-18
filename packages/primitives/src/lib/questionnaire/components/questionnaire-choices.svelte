@@ -1,11 +1,21 @@
 <script lang="ts">
-	import { mergeProps } from "svelte-toolbelt";
-	import { QuestionnaireChoicesStateClass } from "../questionnaire.svelte.js";
+	import { boxWith, mergeProps } from "svelte-toolbelt";
+	import { QuestionnaireChoicesState } from "../questionnaire.svelte.js";
 	import type { QuestionnaireChoicesProps } from "../types.js";
 
-	let { children, child, ...restProps }: QuestionnaireChoicesProps = $props();
+	let {
+		children,
+		child,
+		ref = $bindable(null),
+		...restProps
+	}: QuestionnaireChoicesProps = $props();
 
-	const choicesState = QuestionnaireChoicesStateClass.create();
+	const choicesState = QuestionnaireChoicesState.create({
+		ref: boxWith(
+			() => ref,
+			(v) => (ref = v)
+		),
+	});
 	const snippetProps = $derived(choicesState.snippetProps);
 	const mergedProps = $derived(mergeProps(restProps, choicesState.props));
 </script>

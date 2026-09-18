@@ -17,7 +17,7 @@
 		),
 	});
 	const snippetProps = $derived(inputState.snippetProps);
-	const mergedProps = $derived(mergeProps(restProps, inputState.props, inputState.attachment));
+	const mergedProps = $derived(mergeProps(restProps, inputState.props));
 </script>
 
 {#if child}
