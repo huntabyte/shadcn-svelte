@@ -27,7 +27,7 @@ export const MESSAGE_ANIMATIONS = {
 	"blur-fade": {
 		id: "blur-fade",
 		name: "Blur Fade",
-		class: "animate-in fade-in slide-in-from-bottom-1 duration-300",
+		class: "animate-in fade-in blur-in-xs slide-in-from-bottom-1 duration-300",
 	},
 	"scale-fade": {
 		id: "scale-fade",
