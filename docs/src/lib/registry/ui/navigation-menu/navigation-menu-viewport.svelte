@@ -18,6 +18,7 @@
 		bind:ref
 		data-slot="navigation-menu-viewport"
 		class={cn(
+			// parity-ignore: Bits viewport is sized 1rem larger than the measured content (kept from the initial port)
 			"cn-navigation-menu-viewport origin-top-center relative mt-1.5 h-[calc(var(--bits-navigation-menu-viewport-height)+1rem)] w-full overflow-hidden md:w-[calc(var(--bits-navigation-menu-viewport-width)+1rem)]",
 			className
 		)}
