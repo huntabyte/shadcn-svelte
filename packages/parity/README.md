@@ -40,7 +40,7 @@ Compares the generated registries in `docs/static/registry/styles/<style>/*.json
 
 ### `parity fix <item> [--dry-run]`
 
-Runs the base comparison for one item and rewrites the differing quoted class strings in our source so they match upstream. It only edits existing quoted strings. It cannot add props, elements, or files, and it never removes `cn-*` or framework tokens.
+Runs the base comparison for one item and rewrites the differing quoted class strings in our source so they match upstream. It only edits existing quoted strings. It cannot add props, elements, or files, and it never removes `cn-*` or framework tokens. Missing upstream `--radix-*` variables are written in their `--bits-*` spelling.
 
 Pass `--dry-run` to print the patches without writing.
 
@@ -79,7 +79,7 @@ Only files that have an upstream counterpart are compared. A file counts when it
 | `equivalent` | Differs only by tokens that are runtime-equivalent between Bits UI and Radix, such as `data-[state=open]` vs `data-open`, physical vs logical sides (`pl-2` vs `ps-2`), or `aria-[orientation=…]` vs `data-horizontal`. Hidden unless `--verbose` or `--no-exclude-runtime-equivalent`. |
 | `ignored`    | Covered by a `parity-ignore`, `parity-ignore-file`, or `parity-ignore-upstream` comment. Never counts as a diff.                                                                                                                                                                        |
 | `allowlist`  | Differs only by tokens we intentionally keep: `cn-menu-target`, `cn-menu-translucent`, `cn-logical-sides`, `cn-rtl-flip`, `cn-font-heading`, and any `cn-*-logical`.                                                                                                                    |
-| `framework`  | Differs only by tokens tied to the underlying library, matched on `radix`, `bits-`, `--bits-`, `--radix-`, `data-bits-`, `data-radix-`, or `--transform-origin`.                                                                                                                        |
+| `framework`  | Differs only by library tokens (`radix`, `bits-`, `--bits-`, `--radix-`, `data-bits-`, `data-radix-`) where each `--bits-*` token pairs with an upstream `--radix-*` twin (`link-preview`↔`hover-card`, `anchor-width`↔`trigger-width`). An unpaired library token is a `diff`.         |
 | `diff`       | A real difference. Only this kind fails `--check`.                                                                                                                                                                                                                                      |
 
 Unpaired strings are reported as `only-ours` or `only-upstream` and classified the same way.
