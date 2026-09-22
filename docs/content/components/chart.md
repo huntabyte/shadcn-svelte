@@ -77,7 +77,7 @@ Install `layerchart`:
 
 </Step>
 
-<PMInstall command="layerchart@next -D" />
+<PMInstall command="layerchart@latest -D" />
 
 <Step>
 
