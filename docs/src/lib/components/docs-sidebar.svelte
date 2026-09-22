@@ -18,6 +18,7 @@
 		{ title: "Theming", href: "/docs/theming", items: [] },
 		{ title: "CLI", href: "/docs/cli", items: [] },
 		{ title: "Skills", href: "/docs/skills", items: [] },
+		{ title: "MCP Server", href: "/docs/mcp", items: [] },
 		{ title: "Registry", href: "/docs/registry", items: [] },
 		{ title: "Forms", href: "/docs/forms", items: [] },
 		{ title: "Changelog", href: "/docs/changelog", items: [] },
