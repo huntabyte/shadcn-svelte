@@ -1,7 +1,16 @@
 // !! BROWSER SAFE !!
 
 import { z } from "zod";
-import { ICON_LIBRARIES, MENU_ACCENTS, MENU_COLORS, rawConfigSchema } from "../config/schema.js";
+import {
+	ICON_LIBRARIES,
+	MENU_ACCENTS,
+	MENU_COLORS,
+	rawConfigSchema,
+	registryConfigSchema,
+} from "../config/schema.js";
+
+export { registryConfigItemSchema, registryConfigSchema } from "../config/schema.js";
+export type { RegistryConfigItem, RegistryConfig } from "../config/schema.js";
 
 const registryItemFileType = [
 	"registry:lib",
@@ -286,6 +295,11 @@ export const componentsJsonSchema = z.object({
 		.optional()
 		.describe(
 			"The registry URL tells the CLI where to fetch the shadcn-svelte components/registry from. You can pin this to a specific preview release or your own fork of the registry."
+		),
+	registries: registryConfigSchema
+		.optional()
+		.describe(
+			"Named registries for installing items with @namespace/name. Supports URLs, headers, and query parameters with environment variables."
 		),
 	typescript: z
 		.union([

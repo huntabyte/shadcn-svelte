@@ -246,6 +246,16 @@ function generateRegistryNav(): SidebarNavItem[] {
 			items: [],
 		},
 		{
+			title: "Namespaced Registries",
+			href: "/docs/registry/namespace",
+			items: [],
+		},
+		{
+			title: "Authentication",
+			href: "/docs/registry/authentication",
+			items: [],
+		},
+		{
 			title: "Examples",
 			href: "/docs/registry/examples",
 			items: [],
