@@ -13,11 +13,13 @@
 		children,
 		name,
 		hideCode = false,
+		chromeLessOnMobile = false,
 		...restProps
 	}: HTMLAttributes<HTMLElement> & {
 		previewClassName?: string;
 		align?: "center" | "start" | "end";
 		hideCode?: boolean;
+		chromeLessOnMobile?: boolean;
 		example?: Snippet;
 		component?: Component;
 		name: string;
@@ -42,21 +44,19 @@
 {/snippet}
 
 <div
+	data-slot="component-preview"
 	class={cn(
 		"group relative mt-4 mb-12 flex flex-col overflow-hidden rounded-2xl border",
 		className
 	)}
 	{...restProps}
 >
-	<div
-		data-slot="preview"
-		class="preview flex w-full justify-center data-[align=center]:items-center data-[align=end]:items-end data-[align=start]:items-start"
-		data-llm-ignore
-	>
+	<div data-slot="preview" data-llm-ignore>
 		<div
 			data-align={align}
+			data-chromeless={chromeLessOnMobile}
 			class={cn(
-				"preview flex h-72 w-full justify-center p-10 data-[align=center]:items-center data-[align=end]:items-end data-[align=start]:items-start",
+				"preview relative flex h-72 w-full justify-center p-10 data-[align=center]:items-center data-[align=end]:items-start data-[align=start]:items-start data-[chromeless=true]:h-auto data-[chromeless=true]:p-0 sm:data-[align=end]:items-end",
 				previewClassName
 			)}
 		>

@@ -12,6 +12,8 @@ From the repo root, through the `docs` package scripts:
 pnpm -F docs parity                    # base comparison, all items
 pnpm -F docs parity base empty         # base comparison, one item
 pnpm -F docs parity-check              # base comparison, exit 1 on diffs (CI)
+pnpm -F docs parity:docs               # docs UI class contracts
+pnpm -F docs parity-check:docs         # docs UI contracts, exit 1 on diffs (CI)
 pnpm -F docs parity:variants           # generated registries, all styles
 pnpm -F docs parity-check:variants     # generated registries, exit 1 on diffs
 pnpm -F docs parity:fix empty          # patch base source for one item
@@ -38,6 +40,12 @@ Compares the generated registries in `docs/static/registry/styles/<style>/*.json
 
 `item` accepts `name` or `style/name`. `parity variants mira/empty` checks a single variant. The `-s, --style <style>` option restricts the run to one style; it cannot be use in conjunction with a `style/` prefix on `item` naming a different style.
 
+### `parity docs [surface]`
+
+Checks named Tailwind class contracts for the docs UI against the current shadcn/ui source. The contracts intentionally cover the pieces that should stay visually identical while ignoring framework-specific React and Svelte markup. Current surfaces are `component-preview`, `docs-sidebar`, `homepage`, and `attachment`.
+
+Pass a surface to focus a run, for example `parity docs component-preview --check`. Without a surface, every contract runs. `--upstream <path>` uses a local shadcn/ui checkout; otherwise the command uses `SHADCN_UI`, a sibling `shadcn-ui` checkout, or cached raw files from upstream `main`, in that order. `--verbose` prints added and removed tokens for a differing contract.
+
 ### `parity fix <item> [--dry-run]`
 
 Runs the base comparison for one item and rewrites the differing quoted class strings in our source so they match upstream. It only edits existing quoted strings. It cannot add props, elements, or files, and it never removes `cn-*` or framework tokens. Missing upstream `--radix-*` variables are written in their `--bits-*` spelling.
@@ -60,6 +68,8 @@ Every command accepts these:
 | `--refresh`                       | Ignore cached upstream files and fetch them again.                                    |
 | `--no-exclude-runtime-equivalent` | Report Bits-vs-Radix runtime-equivalent tokens as diffs instead of folding them away. |
 | `-v, --version`                   | Print the package version.                                                            |
+
+The docs command has the focused subset `--check`, `--docs <path>`, `--refresh`, and `--verbose`, plus `--upstream <path>` for selecting a local shadcn/ui checkout.
 
 ## How a comparison works
 
@@ -119,6 +129,7 @@ Where parity is impossible or not yet reached, add a comment in the source. Ever
 | ------------- | ------------------------------------------------------------------------------------------------- |
 | `base`, `fix` | `apps/v4/registry/bases/radix/ui/<item>.tsx` from the `main` branch on raw.githubusercontent.com. |
 | `variants`    | `https://ui.shadcn.com/r/styles/radix-<style>/<item>.json`, the deployed registry.                |
+| `docs`        | The mapped files under `apps/v4` on the shadcn/ui `main` branch.                                  |
 
 For `base` and `fix`, a local checkout of shadcn/ui is used instead of the network when either `SHADCN_UI=/path/to/ui` is set or a sibling `shadcn-ui` directory exists next to this repository.
 
@@ -133,6 +144,7 @@ The docs app imports this package as a library as well:
 | Export                                       | Contents                                                                                                                                                                                                       |
 | -------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `@shadcn-svelte/parity`                      | `runParity` and the comparison helpers from `src/compare.ts`.                                                                                                                                                  |
+| `@shadcn-svelte/parity/docs`                 | Docs UI contract definitions, comparison helper, and `runDocsParity`.                                                                                                                                          |
 | `@shadcn-svelte/parity/parity-ignore`        | `parseParityIgnore`, `parseParityIgnoreUpstream`, `findCommentRanges`, `stripParityIgnoreComments`.                                                                                                            |
 | `@shadcn-svelte/parity/inject-style-classes` | `parseStyleCss`, `injectStyleClasses`, `toTailwindArbitraryCalc`. Used by `docs/scripts/build-registry.ts` to generate the style registries and by `docs/src/lib/registry/registry-utils.ts` in the docs site. |
 
@@ -140,7 +152,7 @@ The docs app imports this package as a library as well:
 
 ## CI
 
-- `.github/workflows/parity-check.yml` runs `parity-check` as a blocking job and `parity-check:variants` as a non-blocking job, for the skew reason above.
+- `.github/workflows/parity-check.yml` runs `parity-check` and `parity-check:docs` as blocking jobs, and `parity-check:variants` as a non-blocking job for the skew reason above.
 - `.github/workflows/ci.yml` runs this package's test suite.
 
 ## Development

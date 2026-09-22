@@ -18,7 +18,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="input-group-demo" previewClassName="h-96">
+<ComponentPreview name="input-group-demo" previewClassName="h-[26rem]">
 
 <div></div>
 
@@ -89,7 +89,7 @@ Copy and paste the following code into your project.
 
 Display additional text information alongside inputs.
 
-<ComponentPreview name="input-group-text-demo" previewClassName="h-96">
+<ComponentPreview name="input-group-text-demo" previewClassName="h-80">
 
 <div></div>
 

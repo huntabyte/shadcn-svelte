@@ -115,7 +115,7 @@ The `Item` component has different sizes for different use cases. For example, y
 
 ### Image
 
-<ComponentPreview name="item-image-demo" previewClassName="h-80">
+<ComponentPreview name="item-image-demo">
 
 <div></div>
 
@@ -149,7 +149,7 @@ To render an item as a link, use the the `child` snippet. The hover and focus st
 
 ### Dropdown
 
-<ComponentPreview name="item-dropdown-demo" previewClassName="h-[28rem]">
+<ComponentPreview name="item-dropdown-demo">
 
 <div></div>
 

@@ -85,7 +85,7 @@ You can use the `<Calendar />` component to build a date picker. See the [Date P
 
 ### Month and Year Selector
 
-<ComponentPreview name="calendar-13" previewClassName="h-[28rem]">
+<ComponentPreview name="calendar-13" previewClassName="h-96">
 
 <div></div>
 
@@ -93,7 +93,7 @@ You can use the `<Calendar />` component to build a date picker. See the [Date P
 
 ### Date of Birth Picker
 
-<ComponentPreview name="calendar-22" previewClassName="h-[500px]">
+<ComponentPreview name="calendar-22" previewClassName="h-[650px]">
 
 <div></div>
 

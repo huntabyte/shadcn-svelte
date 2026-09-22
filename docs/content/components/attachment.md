@@ -17,7 +17,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="attachment-demo" class="bg-surface dark:bg-background">
+<ComponentPreview name="attachment-demo" previewClassName="h-auto theme-blue bg-surface dark:bg-background">
 
 <div></div>
 
@@ -116,7 +116,7 @@ Attachment.Group
 
 Set `variant="image"` on `Attachment.Media` and render an `<img>` inside it. Use `orientation="vertical"` to stack the media above the content.
 
-<ComponentPreview name="attachment-image" class="bg-surface dark:bg-background">
+<ComponentPreview name="attachment-image" previewClassName="h-auto theme-blue bg-surface dark:bg-background">
 
 <div></div>
 
@@ -126,7 +126,7 @@ Set `variant="image"` on `Attachment.Media` and render an `<img>` inside it. Use
 
 Set `state` to reflect the upload lifecycle. `uploading` and `processing` shimmer the title, and `error` switches to a destructive treatment.
 
-<ComponentPreview name="attachment-states" class="bg-surface dark:bg-background">
+<ComponentPreview name="attachment-states" previewClassName="h-auto theme-blue bg-surface dark:bg-background">
 
 <div></div>
 
@@ -136,7 +136,7 @@ Set `state` to reflect the upload lifecycle. `uploading` and `processing` shimme
 
 Use `size` to switch between `default`, `sm`, and `xs`.
 
-<ComponentPreview name="attachment-sizes" class="bg-surface dark:bg-background">
+<ComponentPreview name="attachment-sizes" previewClassName="h-auto theme-blue bg-surface dark:bg-background">
 
 <div></div>
 
@@ -146,7 +146,7 @@ Use `size` to switch between `default`, `sm`, and `xs`.
 
 Wrap attachments in `Attachment.Group` to lay them out in a horizontally scrollable, snapping row with an edge fade.
 
-<ComponentPreview name="attachment-group" class="bg-surface dark:bg-background">
+<ComponentPreview name="attachment-group" previewClassName="h-auto theme-blue bg-surface dark:bg-background">
 
 <div></div>
 
@@ -156,7 +156,7 @@ Wrap attachments in `Attachment.Group` to lay them out in a horizontally scrolla
 
 Add an `Attachment.Trigger` to make the whole card open a link or dialog. It fills the card behind the actions, so the actions stay clickable.
 
-<ComponentPreview name="attachment-trigger" class="bg-surface dark:bg-background">
+<ComponentPreview name="attachment-trigger" previewClassName="h-auto theme-blue bg-surface dark:bg-background">
 
 <div></div>
 
