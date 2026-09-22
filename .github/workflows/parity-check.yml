@@ -51,15 +51,50 @@ jobs:
     name: Parity Check (docs UI)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v5
-      - uses: actions/setup-node@v6
+      - name: Check for docs UI parity changes
+        id: changes
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+              per_page: 100,
+            })
+            const inputs = new Set([
+              ".github/workflows/parity-check.yml",
+              "docs/content/components/attachment.md",
+              "docs/package.json",
+              "docs/src/lib/components/component-preview-tabs.svelte",
+              "docs/src/lib/components/docs-sidebar.svelte",
+              "docs/src/routes/(app)/(layout)/(root)/+page.svelte",
+              "packages/parity/package.json",
+              "packages/parity/src/commands/docs.ts",
+              "packages/parity/src/commands/index.ts",
+              "packages/parity/src/compare.ts",
+              "packages/parity/src/docs.ts",
+              "packages/parity/src/index.ts",
+              "packages/parity/src/utils/errors.ts",
+              "packages/parity/test/docs.test.ts",
+              "pnpm-lock.yaml",
+            ])
+            return files.some(({ filename }) => inputs.has(filename))
+
+      - if: steps.changes.outputs.result == 'true'
+        uses: actions/checkout@v6
+      - if: steps.changes.outputs.result == 'true'
+        uses: pnpm/action-setup@v5
+      - if: steps.changes.outputs.result == 'true'
+        uses: actions/setup-node@v6
         with:
           node-version: 24
           cache: pnpm
 
-      - name: Install dependencies
+      - if: steps.changes.outputs.result == 'true'
+        name: Install dependencies
         run: pnpm install
 
-      - name: Check docs UI parity
+      - if: steps.changes.outputs.result == 'true'
+        name: Check docs UI parity
         run: pnpm -F docs parity-check:docs
