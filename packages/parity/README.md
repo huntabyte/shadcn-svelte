@@ -152,7 +152,7 @@ The docs app imports this package as a library as well:
 
 ## CI
 
-- `.github/workflows/parity-check.yml` runs `parity-check` as a blocking job and `parity-check:variants` as a non-blocking job for the skew reason above. Its `parity-check:docs` job only invokes the checker when a pull request changes one of the docs UI contract inputs or the checker itself.
+- `.github/workflows/parity-check.yml` runs `parity-check` as a blocking job and `parity-check:variants` as a non-blocking job for the skew reason above. Its `parity-check:docs` job is skipped unless a pull request changes one of the docs UI contract inputs or the checker itself.
 - `.github/workflows/ci.yml` runs this package's test suite.
 
 ## Development

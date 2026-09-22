@@ -47,9 +47,11 @@ jobs:
       - name: Check generated registry parity
         run: pnpm -F docs parity-check:variants
 
-  docs-ui:
-    name: Parity Check (docs UI)
+  docs-ui-changes:
+    name: Detect docs UI parity changes
     runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.changes.outputs.result }}
     steps:
       - name: Check for docs UI parity changes
         id: changes
@@ -81,20 +83,21 @@ jobs:
             ])
             return files.some(({ filename }) => inputs.has(filename))
 
-      - if: steps.changes.outputs.result == 'true'
-        uses: actions/checkout@v6
-      - if: steps.changes.outputs.result == 'true'
-        uses: pnpm/action-setup@v5
-      - if: steps.changes.outputs.result == 'true'
-        uses: actions/setup-node@v6
+  docs-ui:
+    name: Parity Check (docs UI)
+    needs: docs-ui-changes
+    if: needs.docs-ui-changes.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v5
+      - uses: actions/setup-node@v6
         with:
           node-version: 24
           cache: pnpm
 
-      - if: steps.changes.outputs.result == 'true'
-        name: Install dependencies
+      - name: Install dependencies
         run: pnpm install
 
-      - if: steps.changes.outputs.result == 'true'
-        name: Check docs UI parity
+      - name: Check docs UI parity
         run: pnpm -F docs parity-check:docs
