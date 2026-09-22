@@ -1179,6 +1179,7 @@ export class MessageScrollerRootState {
 
 	readonly props = $derived.by(() => ({
 		"data-pending-scroll": this.root.pendingDefaultScroll ? "" : undefined,
+		...this.attachment,
 	}));
 }
 
@@ -1266,6 +1267,7 @@ export class MessageScrollerViewportState {
 		ontouchmove: this.handleTouchMove,
 		onwheel: this.handleWheel,
 		"data-pending-scroll": this.root.pendingDefaultScroll ? "" : undefined,
+		...this.attachment,
 	}));
 }
 
@@ -1357,6 +1359,7 @@ export class MessageScrollerContentState {
 	readonly props = $derived.by(() => ({
 		role: this.opts.role.current ?? "log",
 		"aria-relevant": this.opts.ariaRelevant.current ?? "additions",
+		...this.attachment,
 	}));
 }
 
@@ -1385,11 +1388,11 @@ export class MessageScrollerItemState {
 		this.root = root;
 		this.attachment = attachRef(this.opts.ref);
 
+		// Track messageId alongside the element so a row whose id changes while
+		// mounted is re-registered under the new id (and released from the old).
 		watch(
-			() => this.element,
-			(currentElement) => {
-				const messageId = this.opts.messageId.current;
-
+			[() => this.element, () => this.opts.messageId.current],
+			([currentElement, messageId]) => {
 				if (!messageId || !currentElement) {
 					return;
 				}
@@ -1406,6 +1409,7 @@ export class MessageScrollerItemState {
 	readonly props = $derived.by(() => ({
 		"data-message-id": this.opts.messageId.current,
 		"data-scroll-anchor": this.opts.scrollAnchor.current ? "true" : "false",
+		...this.attachment,
 	}));
 }
 
@@ -1473,6 +1477,7 @@ export class MessageScrollerButtonState {
 		tabindex: this.isActive ? this.opts.tabindex.current : -1,
 		onclick: this.handleClick,
 		"data-active": this.isActive ? "true" : "false",
+		...this.attachment,
 	}));
 }
 

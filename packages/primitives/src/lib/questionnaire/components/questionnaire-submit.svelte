@@ -6,6 +6,7 @@
 	let {
 		children,
 		child,
+		ref = $bindable(null),
 		disabled = false,
 		tabindex,
 		type = "submit",
@@ -13,6 +14,10 @@
 	}: QuestionnaireSubmitProps = $props();
 
 	const actionState = QuestionnaireActionState.create("submit", {
+		ref: boxWith(
+			() => ref,
+			(v) => (ref = v)
+		),
 		disabled: boxWith(() => disabled),
 		onclick: boxWith(() => undefined),
 		tabindex: boxWith(() => tabindex),

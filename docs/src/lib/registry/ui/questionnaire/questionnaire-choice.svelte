@@ -3,10 +3,16 @@
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { cn } from "$lib/utils.js";
 
-	let { children, class: className, ...restProps }: QuestionnairePrimitive.ChoiceProps = $props();
+	let {
+		ref = $bindable(null),
+		children,
+		class: className,
+		...restProps
+	}: QuestionnairePrimitive.ChoiceProps = $props();
 </script>
 
 <QuestionnairePrimitive.Choice
+	bind:ref
 	data-slot="questionnaire-choice"
 	class={cn(
 		"cn-questionnaire-choice group/questionnaire-choice relative flex min-h-11 cursor-pointer items-start text-start transition-colors outline-none select-none",

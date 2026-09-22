@@ -1,10 +1,12 @@
-import { describe, it, expect, beforeEach, vi } from "vitest";
+import fs from "node:fs";
+import { describe, it, expect, afterEach, beforeEach, vi } from "vitest";
 import {
 	resolveDepsFromImport,
 	IGNORE_DEPS,
 	resolvePeerVersions,
 	resolveTypeDeps,
 	getFileDependencies,
+	toVersionedName,
 	type ResolvedDependencies,
 	type ProjectDependencies,
 } from "../../src/commands/registry/deps-resolver.js";
@@ -295,5 +297,58 @@ describe("getFileDependencies", () => {
 		// module script: b@1.0.0 then its peer b-dev@1.0.0 in devDependencies
 		expect(result.dependencies).toEqual(["a@1.0.0", "b@1.0.0"]);
 		expect(result.devDependencies).toEqual(["b@1.0.0", "b-dev@1.0.0"]);
+	});
+});
+
+describe("toVersionedName", () => {
+	const cwd = "/project";
+
+	function mockInstalledVersion(version: string) {
+		vi.spyOn(fs, "existsSync").mockReturnValue(true);
+		vi.spyOn(fs, "readFileSync").mockReturnValue(JSON.stringify({ version }));
+	}
+
+	afterEach(() => {
+		vi.restoreAllMocks();
+	});
+
+	it("appends the version when one is present", () => {
+		expect(toVersionedName("foo", "^1.2.3", cwd)).toBe("foo@^1.2.3");
+	});
+
+	it("returns the bare name when the version is missing", () => {
+		expect(toVersionedName("foo", undefined, cwd)).toBe("foo");
+		expect(toVersionedName("foo", "", cwd)).toBe("foo");
+	});
+
+	it("resolves `workspace:*` to the installed package's exact version", () => {
+		mockInstalledVersion("1.2.3");
+		expect(toVersionedName("@shadcn-svelte/primitives", "workspace:*", cwd)).toBe(
+			"@shadcn-svelte/primitives@1.2.3"
+		);
+	});
+
+	it("keeps the range prefix for `workspace:^` and `workspace:~`", () => {
+		mockInstalledVersion("1.2.3");
+		expect(toVersionedName("@shadcn-svelte/primitives", "workspace:^", cwd)).toBe(
+			"@shadcn-svelte/primitives@^1.2.3"
+		);
+		expect(toVersionedName("@shadcn-svelte/primitives", "workspace:~", cwd)).toBe(
+			"@shadcn-svelte/primitives@~1.2.3"
+		);
+	});
+
+	it("keeps an explicit workspace range as-is", () => {
+		mockInstalledVersion("1.6.0");
+		expect(toVersionedName("@shadcn-svelte/primitives", "workspace:^1.5.0", cwd)).toBe(
+			"@shadcn-svelte/primitives@^1.5.0"
+		);
+	});
+
+	it("falls back to the bare name when the workspace package is not installed", () => {
+		vi.spyOn(fs, "existsSync").mockReturnValue(false);
+		expect(toVersionedName("@shadcn-svelte/primitives", "workspace:*", cwd)).toBe(
+			"@shadcn-svelte/primitives"
+		);
 	});
 });

@@ -8,6 +8,7 @@
 	import { cn } from "$lib/utils.js";
 
 	let {
+		ref = $bindable(null),
 		class: className,
 		size = "default",
 		variant = "outline",
@@ -19,6 +20,7 @@
 </script>
 
 <QuestionnairePrimitive.Previous
+	bind:ref
 	data-slot="questionnaire-previous"
 	data-size={size}
 	data-variant={variant}

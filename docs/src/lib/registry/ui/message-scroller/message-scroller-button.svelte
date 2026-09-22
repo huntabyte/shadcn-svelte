@@ -6,6 +6,7 @@
 	import { cn } from "$lib/utils.js";
 
 	let {
+		ref = $bindable(null),
 		direction = "end",
 		class: className,
 		children,
@@ -19,6 +20,7 @@
 </script>
 
 <MessageScrollerPrimitive.Button
+	bind:ref
 	data-slot="message-scroller-button"
 	data-direction={direction}
 	data-variant={variant}

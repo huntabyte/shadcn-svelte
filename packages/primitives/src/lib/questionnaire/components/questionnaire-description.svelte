@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { boxWith, mergeProps } from "svelte-toolbelt";
 	import { createId } from "$lib/internal/create-id.js";
-	import { QuestionnaireDescriptionStateClass } from "../questionnaire.svelte.js";
+	import { QuestionnaireDescriptionState } from "../questionnaire.svelte.js";
 	import type { QuestionnaireDescriptionProps } from "../types.js";
 
 	const uid = $props.id();
@@ -10,11 +10,16 @@
 		children,
 		child,
 		id = createId(uid),
+		ref = $bindable(null),
 		...restProps
 	}: QuestionnaireDescriptionProps = $props();
 
-	const descriptionState = QuestionnaireDescriptionStateClass.create({
+	const descriptionState = QuestionnaireDescriptionState.create({
 		id: boxWith(() => id),
+		ref: boxWith(
+			() => ref,
+			(v) => (ref = v)
+		),
 	});
 	const mergedProps = $derived(mergeProps(restProps, descriptionState.props));
 </script>

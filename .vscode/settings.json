@@ -38,5 +38,8 @@
 		"editor.defaultFormatter": "oxc.oxc-vscode"
 	},
 	"[svelte]": { "editor.defaultFormatter": "oxc.oxc-vscode" },
-	"tailwindCSS.classFunctions": ["cn", "tv"]
+	"tailwindCSS.classFunctions": ["cn", "tv"],
+	// Enables LSP for object properties with name "class"
+	"tailwindCSS.experimental.classRegex": [["\\bclass\\s*:\\s*[\"'`]([^\"'`]*)[\"'`]"]],
+	"tailwindCSS.experimental.configFile": "docs/src/app.css"
 }

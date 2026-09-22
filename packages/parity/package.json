@@ -24,7 +24,7 @@
 		"cn": "^0.3.0",
 		"commander": "^14.0.0",
 		"picocolors": "^1.1.1",
-		"shadcn-svelte": "workspace:*",
+		"shadcn-svelte": "workspace:^",
 		"zod": "^4.4.3"
 	},
 	"devDependencies": {

@@ -24,7 +24,7 @@
 		useChildSnippet: boxWith(() => Boolean(child)),
 	});
 
-	const mergedProps = $derived(mergeProps(restProps, contentState.props, contentState.attachment));
+	const mergedProps = $derived(mergeProps(restProps, contentState.props));
 </script>
 
 {#if child}
