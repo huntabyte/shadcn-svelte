@@ -11,6 +11,7 @@
 		name,
 		color,
 		stroke,
+		className: legacyClassName,
 		"aria-label": ariaLabel = "Loading",
 		...restProps
 	}: SVGAttributes<SVGSVGElement> = $props();
@@ -26,6 +27,7 @@
 	{...name != null ? { name } : {}}
 	{...color != null ? { color } : {}}
 	{...stroke != null ? { stroke } : {}}
+	{...legacyClassName != null ? { className: legacyClassName } : {}}
 	aria-label={ariaLabel}
 	class={cn("size-4 animate-spin", className)}
 	{...restProps}
