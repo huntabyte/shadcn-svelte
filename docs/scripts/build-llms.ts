@@ -6,7 +6,6 @@ import rehypeParse from "rehype-parse";
 import rehypeRemark from "rehype-remark";
 import remarkGfm from "remark-gfm";
 import remarkStringify from "remark-stringify";
-import { JSDOM } from "jsdom";
 import { unified } from "unified";
 import {
 	components,
@@ -17,6 +16,7 @@ import {
 	registry,
 	utils,
 } from "../.velite";
+import type { Element, Root as HastRoot, RootContent } from "hast";
 import type { Root, Link, Node, Paragraph, Text } from "mdast";
 import type { Plugin } from "unified";
 
@@ -152,30 +152,7 @@ const REGEX_PATTERNS = {
 } as const;
 
 async function toMarkdown(rawHtml: string) {
-	const dom = new JSDOM(rawHtml);
-	const document = dom.window.document;
-	const codeTags = document?.querySelectorAll("code");
-	if (codeTags) {
-		for (const code of codeTags) {
-			const language = code.getAttribute("data-language");
-			if (language) {
-				code.className = `${code.className || ""} language-${language}`.trim();
-			}
-		}
-	}
-	const targetElement = document.getElementById("main-content");
-
-	const elementsToRemove = Array.from(
-		document.querySelectorAll<HTMLElement>("[data-llm-ignore], [aria-hidden='true']")
-	);
-
-	for (const element of elementsToRemove) {
-		element.remove();
-	}
-
-	const html = targetElement ? targetElement.innerHTML : "";
-
-	const file = await unified()
+	const processor = unified()
 		.use(rehypeParse)
 		.use(rehypeRemark)
 		.use(remarkGfm)
@@ -186,8 +163,49 @@ async function toMarkdown(rawHtml: string) {
 			listItemIndent: "one",
 			tightDefinitions: true,
 			fences: true,
-		})
-		.process(html);
+		});
+	const tree = processor.parse(rawHtml);
+
+	const findMain = (node: HastRoot | RootContent): Element | undefined => {
+		if (node.type === "element" && node.properties.id === "main-content") return node;
+		if ("children" in node) {
+			for (const child of node.children) {
+				const main = findMain(child);
+				if (main) return main;
+			}
+		}
+	};
+
+	const clean = (node: HastRoot | RootContent) => {
+		if (node.type === "element" && node.tagName === "code") {
+			const language = node.properties.dataLanguage;
+			if (typeof language === "string" && language) {
+				const classes = node.properties.className;
+				node.properties.className = [
+					...(Array.isArray(classes) ? classes : []),
+					`language-${language}`,
+				];
+			}
+		}
+		if ("children" in node) {
+			for (let i = node.children.length - 1; i >= 0; i--) {
+				const child = node.children[i];
+				if (
+					child.type === "element" &&
+					(child.properties.dataLlmIgnore !== undefined || child.properties.ariaHidden === "true")
+				) {
+					node.children.splice(i, 1);
+				} else {
+					clean(child);
+				}
+			}
+		}
+	};
+
+	const targetElement = findMain(tree);
+	if (targetElement) clean(targetElement);
+	const root: HastRoot = { type: "root", children: targetElement?.children ?? [] };
+	const file = processor.stringify(await processor.run(root));
 
 	const sanitizedFile = String(file)
 		.replace(REGEX_PATTERNS.htmlComments, "")
