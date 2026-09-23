@@ -75,7 +75,8 @@
 		"name": "calendar",
 		"type": "registry:ui",
 		"registryDependencies": [
-			"button"
+			"button",
+			"range-calendar"
 		],
 		"relativeUrl": "calendar.json"
 	},
@@ -426,7 +427,7 @@
 		"name": "calendar-04",
 		"type": "registry:block",
 		"registryDependencies": [
-			"range-calendar"
+			"calendar"
 		],
 		"relativeUrl": "calendar-04.json"
 	},
@@ -493,7 +494,8 @@
 		"type": "registry:block",
 		"registryDependencies": [
 			"card",
-			"select"
+			"select",
+			"range-calendar"
 		],
 		"relativeUrl": "calendar-12.json"
 	},

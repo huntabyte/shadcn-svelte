@@ -65,9 +65,9 @@ Copy and paste the following code into your project.
 
 ## About
 
-The `<Calendar />` component is built on top of the [Bits UI Calendar](https://www.bits-ui.com/docs/components/calendar) component, which uses the [@internationalized/date](https://react-spectrum.adobe.com/internationalized/date/index.html) package to handle dates.
+The `<Calendar />` component is built on top of the [Bits UI Calendar](https://www.bits-ui.com/docs/components/calendar) and [Bits UI Range Calendar](https://www.bits-ui.com/docs/components/range-calendar) components, which use the [@internationalized/date](https://react-spectrum.adobe.com/internationalized/date/index.html) package to handle dates.
 
-If you're looking for a range calendar, check out the [Range Calendar](/docs/components/range-calendar) component.
+Use `mode="range"` when you need a date range. The standalone [Range Calendar](/docs/components/range-calendar) component is still available for existing projects.
 
 ## Date Picker
 
@@ -77,7 +77,7 @@ You can use the `<Calendar />` component to build a date picker. See the [Date P
 
 ### Range Calendar
 
-<ComponentPreview name="calendar-02" class="**:[.preview]:h-auto lg:**:[.preview]:h-[450px]">
+<ComponentPreview name="calendar-04" class="**:[.preview]:h-auto lg:**:[.preview]:h-[450px]">
 
 <div></div>
 
@@ -129,6 +129,6 @@ When you're prompted to overwrite the existing files, select `Yes`. **If you hav
 
 After upgrading the `Calendar` component, you can add the new blocks with the following:
 
-<PMAddComp name="calendar-02" />
+<PMAddComp name="calendar-04" />
 
 This will add the latest version of the calendar blocks.
