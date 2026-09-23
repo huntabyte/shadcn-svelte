@@ -16,7 +16,7 @@ import {
 	registry,
 	utils,
 } from "../.velite";
-import type { Element, Root, RootContent } from "hast";
+import type { Element, Root as HastRoot, RootContent } from "hast";
 import type { Root, Link, Node, Paragraph, Text } from "mdast";
 import type { Plugin } from "unified";
 
@@ -166,7 +166,7 @@ async function toMarkdown(rawHtml: string) {
 		});
 	const tree = processor.parse(rawHtml);
 
-	const findMain = (node: Root | RootContent): Element | undefined => {
+	const findMain = (node: HastRoot | RootContent): Element | undefined => {
 		if (node.type === "element" && node.properties.id === "main-content") return node;
 		if ("children" in node) {
 			for (const child of node.children) {
@@ -176,7 +176,7 @@ async function toMarkdown(rawHtml: string) {
 		}
 	};
 
-	const clean = (node: Root | RootContent) => {
+	const clean = (node: HastRoot | RootContent) => {
 		if (node.type === "element" && node.tagName === "code") {
 			const language = node.properties.dataLanguage;
 			if (typeof language === "string" && language) {
@@ -204,7 +204,7 @@ async function toMarkdown(rawHtml: string) {
 
 	const targetElement = findMain(tree);
 	if (targetElement) clean(targetElement);
-	const root: Root = { type: "root", children: targetElement?.children ?? [] };
+	const root: HastRoot = { type: "root", children: targetElement?.children ?? [] };
 	const file = processor.stringify(await processor.run(root));
 
 	const sanitizedFile = String(file)
