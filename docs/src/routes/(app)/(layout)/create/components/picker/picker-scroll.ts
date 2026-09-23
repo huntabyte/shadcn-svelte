@@ -1,7 +1,13 @@
 let cancelActivePreservation: (() => void) | undefined;
 
-export function preservePickerScroll(target?: EventTarget | null) {
-	if (typeof document === "undefined") return;
+type PickerScrollPosition = {
+	scroller: HTMLElement;
+	scrollLeft: number;
+	scrollTop: number;
+};
+
+export function capturePickerScroll(target?: EventTarget | null): PickerScrollPosition[] {
+	if (typeof document === "undefined") return [];
 
 	const scrollers = new Set<HTMLElement>();
 	const element = target instanceof HTMLElement ? target : null;
@@ -15,15 +21,21 @@ export function preservePickerScroll(target?: EventTarget | null) {
 			.forEach((scroller) => scrollers.add(scroller));
 	}
 
-	if (scrollers.size === 0) return;
-
-	cancelActivePreservation?.();
-
-	const positions = Array.from(scrollers, (scroller) => ({
+	return Array.from(scrollers, (scroller) => ({
 		scroller,
 		scrollLeft: scroller.scrollLeft,
 		scrollTop: scroller.scrollTop,
 	}));
+}
+
+export function preservePickerScroll(
+	target?: EventTarget | null,
+	captured?: PickerScrollPosition[]
+) {
+	const positions = captured ?? capturePickerScroll(target);
+	if (positions.length === 0) return;
+
+	cancelActivePreservation?.();
 	const startedAt = performance.now();
 	let cancelled = false;
 
@@ -59,5 +71,5 @@ export function preservePickerScroll(target?: EventTarget | null) {
 		}
 	}
 
-	requestAnimationFrame(restore);
+	restore();
 }

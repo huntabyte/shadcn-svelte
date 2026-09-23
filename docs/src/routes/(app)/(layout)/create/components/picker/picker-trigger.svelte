@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils.js";
-	import { preservePickerScroll } from "./picker-scroll.js";
+	import { capturePickerScroll, preservePickerScroll } from "./picker-scroll.js";
 
 	let {
 		ref = $bindable(null),
@@ -16,8 +16,7 @@
 		submenu?: boolean;
 	} = $props();
 
-	const preserveTriggerScroll = (target?: EventTarget | null) =>
-		preservePickerScroll(target ?? ref);
+	let pointerScroll: ReturnType<typeof capturePickerScroll> | undefined;
 </script>
 
 {#if submenu}
@@ -41,15 +40,22 @@
 			className
 		)}
 		disabled={restProps.disabled}
+		onpointerdowncapture={(event) => {
+			pointerScroll = capturePickerScroll(event.currentTarget);
+		}}
 		onpointerdown={(event) => {
 			onpointerdown?.(event);
 		}}
+		onpointercancel={() => {
+			pointerScroll = undefined;
+		}}
 		onclick={(event) => {
-			preserveTriggerScroll(event.currentTarget);
+			preservePickerScroll(event.currentTarget, pointerScroll);
+			pointerScroll = undefined;
 			onclick?.(event);
 		}}
 		onfocus={(event) => {
-			preserveTriggerScroll(event.currentTarget);
+			if (!pointerScroll) preservePickerScroll(event.currentTarget);
 			onfocus?.(event);
 		}}
 	>

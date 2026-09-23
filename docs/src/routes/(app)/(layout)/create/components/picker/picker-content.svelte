@@ -50,7 +50,7 @@
 		<DropdownMenuPrimitive.Content
 			bind:ref
 			data-slot="dropdown-menu-content"
-			{sideOffset}
+			sideOffset={isMobile.current ? 16 : sideOffset}
 			customAnchor={isMobile.current ? '[data-slot="customizer-card"]' : undefined}
 			preventScroll={false}
 			updatePositionStrategy="always"
