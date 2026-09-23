@@ -141,9 +141,51 @@ You can use the `InputOTP.Separator` component to add a separator between the gr
 </InputOTP.Root>
 ```
 
+### Disabled
+
+Use the `disabled` prop to disable the input.
+
+<ComponentPreview name="input-otp-disabled">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Controlled
 
+Use `bind:value` to control the input value.
+
 <ComponentPreview name="input-otp-controlled">
+
+<div></div>
+
+</ComponentPreview>
+
+### Invalid
+
+Use `aria-invalid` on the slots to show an error state.
+
+<ComponentPreview name="input-otp-invalid">
+
+<div></div>
+
+</ComponentPreview>
+
+### Four Digits
+
+A common pattern for PIN codes. This uses the `pattern={REGEXP_ONLY_DIGITS}` prop.
+
+<ComponentPreview name="input-otp-four-digits">
+
+<div></div>
+
+</ComponentPreview>
+
+### Alphanumeric
+
+Use `REGEXP_ONLY_DIGITS_AND_CHARS` to accept both letters and numbers.
+
+<ComponentPreview name="input-otp-alphanumeric">
 
 <div></div>
 

@@ -101,6 +101,36 @@ You can nest providers to create groups with different settings. Tooltips use th
 
 ---
 
+## Examples
+
+### Side
+
+Use the `side` prop to change the position of the tooltip.
+
+<ComponentPreview name="tooltip-sides">
+
+<div></div>
+
+</ComponentPreview>
+
+### With Keyboard Shortcut
+
+<ComponentPreview name="tooltip-keyboard">
+
+<div></div>
+
+</ComponentPreview>
+
+### Disabled Button
+
+Show a tooltip on a disabled button by wrapping it with a span.
+
+<ComponentPreview name="tooltip-disabled">
+
+<div></div>
+
+</ComponentPreview>
+
 ## Changelog
 
 ### 2025-12 Update tooltip colors

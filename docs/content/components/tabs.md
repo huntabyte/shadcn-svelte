@@ -76,3 +76,41 @@ Copy and paste the following code into your project.
   <Tabs.Content value="password">Change your password here.</Tabs.Content>
 </Tabs.Root>
 ```
+
+## Examples
+
+### Line
+
+Use the `variant="line"` prop on `Tabs.List` for a line style.
+
+<ComponentPreview name="tabs-line">
+
+<div></div>
+
+</ComponentPreview>
+
+### Vertical
+
+Use `orientation="vertical"` for vertical tabs.
+
+<ComponentPreview name="tabs-vertical">
+
+<div></div>
+
+</ComponentPreview>
+
+### Disabled
+
+<ComponentPreview name="tabs-disabled">
+
+<div></div>
+
+</ComponentPreview>
+
+### Icons
+
+<ComponentPreview name="tabs-icons">
+
+<div></div>
+
+</ComponentPreview>

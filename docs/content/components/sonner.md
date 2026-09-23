@@ -113,7 +113,27 @@ Copy and paste the following code into your project.
 
 ## Examples
 
+### Types
+
 <ComponentPreview name="sonner-types">
+
+<div></div>
+
+</ComponentPreview>
+
+### Description
+
+<ComponentPreview name="sonner-description">
+
+<div></div>
+
+</ComponentPreview>
+
+### Position
+
+Use the `position` prop to change the position of the toast.
+
+<ComponentPreview name="sonner-position">
 
 <div></div>
 

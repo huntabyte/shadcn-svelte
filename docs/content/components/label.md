@@ -67,3 +67,20 @@ Copy and paste the following code into your project.
 ```svelte
 <Label for="email">Your email address</Label>
 ```
+
+## Label in Field
+
+For form fields, use the [Field](/docs/components/field) component which includes built-in `Field.Label`, `Field.Description`, and `Field.Error` components.
+
+```svelte
+<Field.Field>
+  <Field.Label for="email">Your email address</Field.Label>
+  <Input id="email" />
+</Field.Field>
+```
+
+<ComponentPreview name="field-demo" class="**:[.preview]:h-[44rem]">
+
+<div></div>
+
+</ComponentPreview>

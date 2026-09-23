@@ -57,14 +57,54 @@ Copy and paste the following code into your project.
 <Badge variant="outline">Badge</Badge>
 ```
 
+## Examples
+
+### Variants
+
+Use the `variant` prop to change the variant of the badge.
+
+<ComponentPreview name="badge-variants">
+
+<div></div>
+
+</ComponentPreview>
+
+### With Icon
+
+You can render an icon inside the badge. Use `data-icon="inline-start"` to render the icon on the left and `data-icon="inline-end"` to render the icon on the right.
+
+<ComponentPreview name="badge-icon">
+
+<div></div>
+
+</ComponentPreview>
+
+### With Spinner
+
+You can render a spinner inside the badge. Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` prop to the spinner.
+
+<ComponentPreview name="badge-spinner">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Link
 
-You can use the `badgeVariants` helper to create a link that looks like a badge.
+Use the `href` prop to render a link as a badge.
 
-```svelte
-<script lang="ts">
-  import { badgeVariants } from "$lib/components/ui/badge/index.js";
-</script>
+<ComponentPreview name="badge-link">
 
-<a href="/dashboard" class={badgeVariants({ variant: "outline" })}>Badge</a>
-```
+<div></div>
+
+</ComponentPreview>
+
+### Custom Colors
+
+You can customize the colors of a badge by adding custom classes such as `bg-green-50 dark:bg-green-800` to the `Badge` component.
+
+<ComponentPreview name="badge-colors">
+
+<div></div>
+
+</ComponentPreview>

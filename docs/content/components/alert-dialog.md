@@ -82,3 +82,55 @@ Copy and paste the following code into your project.
   </AlertDialog.Content>
 </AlertDialog.Root>
 ```
+
+## Examples
+
+### Basic
+
+A basic alert dialog with a title, description, and cancel and continue buttons.
+
+<ComponentPreview name="alert-dialog-basic">
+
+<div></div>
+
+</ComponentPreview>
+
+### Small
+
+Use the `size="sm"` prop to make the alert dialog smaller.
+
+<ComponentPreview name="alert-dialog-small">
+
+<div></div>
+
+</ComponentPreview>
+
+### Media
+
+Use the `AlertDialog.Media` component to add a media element such as an icon or image to the alert dialog.
+
+<ComponentPreview name="alert-dialog-media">
+
+<div></div>
+
+</ComponentPreview>
+
+### Small with Media
+
+Use the `size="sm"` prop to make the alert dialog smaller and the `AlertDialog.Media` component to add a media element such as an icon or image to the alert dialog.
+
+<ComponentPreview name="alert-dialog-small-media">
+
+<div></div>
+
+</ComponentPreview>
+
+### Destructive
+
+Use the `AlertDialog.Action` component to add a destructive action button to the alert dialog.
+
+<ComponentPreview name="alert-dialog-destructive">
+
+<div></div>
+
+</ComponentPreview>

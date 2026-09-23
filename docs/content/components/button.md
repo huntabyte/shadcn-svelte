@@ -224,6 +224,8 @@ Use the `rounded-full` class to make the button rounded.
 
 ### Spinner
 
+Render a `<Spinner />` component inside the button to show a loading state. Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` attribute to the spinner for the correct spacing.
+
 <ComponentPreview name="button-loading" description="A button with a loading state." class="mb-4">
 
 <div></div>
@@ -231,9 +233,9 @@ Use the `rounded-full` class to make the button rounded.
 </ComponentPreview>
 
 ```svelte showLineNumbers
-<Button size="sm" variant="outline" disabled>
-  <Spinner />
-  Submit
+<Button variant="outline" disabled>
+  <Spinner data-icon="inline-start" />
+  Generating
 </Button>
 ```
 
@@ -334,6 +336,12 @@ To create a button group, use the `ButtonGroup` component. See the [Button Group
 ### Link
 
 You can convert the `<button>` into an `<a>` element by simply passing an `href` as a prop.
+
+<ComponentPreview name="button-as-link" class="mb-4">
+
+<div></div>
+
+</ComponentPreview>
 
 ```svelte
 <script lang="ts">

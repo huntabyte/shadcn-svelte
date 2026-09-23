@@ -74,6 +74,16 @@ Copy and paste the following code into your project.
 
 ## Examples
 
+### Basic
+
+A basic breadcrumb with a home link and a components link.
+
+<ComponentPreview name="breadcrumb-basic">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Custom separator
 
 Use a custom component in the `<slot>` of `<Breadcrumb.Separator />` to create a custom separator.

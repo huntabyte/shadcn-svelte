@@ -67,3 +67,25 @@ Copy and paste the following code into your project.
 ```svelte showLineNumbers
 <Progress value={33} />
 ```
+
+## Examples
+
+### Label
+
+Use a `Field` component to add a label to the progress bar.
+
+<ComponentPreview name="progress-label">
+
+<div></div>
+
+</ComponentPreview>
+
+### Controlled
+
+A progress bar that can be controlled by a slider.
+
+<ComponentPreview name="progress-controlled">
+
+<div></div>
+
+</ComponentPreview>

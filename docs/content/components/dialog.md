@@ -89,6 +89,36 @@ Copy and paste the following code into your project.
 
 </ComponentPreview>
 
+### No Close Button
+
+Use `showCloseButton={false}` to hide the close button.
+
+<ComponentPreview name="dialog-no-close-button">
+
+<div></div>
+
+</ComponentPreview>
+
+### Sticky Footer
+
+Keep actions visible while the content scrolls.
+
+<ComponentPreview name="dialog-sticky-footer">
+
+<div></div>
+
+</ComponentPreview>
+
+### Scrollable Content
+
+Long content can scroll while the header stays in view.
+
+<ComponentPreview name="dialog-scrollable-content">
+
+<div></div>
+
+</ComponentPreview>
+
 <!-- Need to convert to svelte component
 ## Notes
 

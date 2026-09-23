@@ -70,3 +70,87 @@ Copy and paste the following code into your project.
   <Avatar.Fallback>CN</Avatar.Fallback>
 </Avatar.Root>
 ```
+
+## Examples
+
+### Basic
+
+A basic avatar component with an image and a fallback.
+
+<ComponentPreview name="avatar-basic">
+
+<div></div>
+
+</ComponentPreview>
+
+### Badge
+
+Use the `Avatar.Badge` component to add a badge to the avatar. The badge is positioned at the bottom right of the avatar.
+
+<ComponentPreview name="avatar-badge">
+
+<div></div>
+
+</ComponentPreview>
+
+Use the `class` prop to add custom styles to the badge such as custom colors, sizes, etc.
+
+### Badge with Icon
+
+You can also use an icon inside `<Avatar.Badge>`.
+
+<ComponentPreview name="avatar-badge-icon">
+
+<div></div>
+
+</ComponentPreview>
+
+### Avatar Group
+
+Use the `Avatar.Group` component to add a group of avatars.
+
+<ComponentPreview name="avatar-group">
+
+<div></div>
+
+</ComponentPreview>
+
+### Avatar Group Count
+
+Use `<Avatar.GroupCount>` to add a count to the group.
+
+<ComponentPreview name="avatar-group-count">
+
+<div></div>
+
+</ComponentPreview>
+
+### Avatar Group with Icon
+
+You can also use an icon inside `<Avatar.GroupCount>`.
+
+<ComponentPreview name="avatar-group-count-icon">
+
+<div></div>
+
+</ComponentPreview>
+
+### Sizes
+
+Use the `size` prop to change the size of the avatar.
+
+<ComponentPreview name="avatar-size">
+
+<div></div>
+
+</ComponentPreview>
+
+### Dropdown
+
+You can use the `Avatar` component as a trigger for a dropdown menu.
+
+<ComponentPreview name="avatar-dropdown">
+
+<div></div>
+
+</ComponentPreview>

@@ -10,7 +10,7 @@ links:
 	import ComponentPreview from "$lib/components/component-preview.svelte";
 </script>
 
-<ComponentPreview name="calendar-22">
+<ComponentPreview name="date-picker-demo">
 
 <div></div>
 
@@ -66,9 +66,42 @@ See installations instructions for the [Popover](/docs/components/popover#instal
 </Popover.Root>
 ```
 
+## Composition
+
+A date picker is built from `Popover` and `Calendar` (there is no `DatePicker` root component):
+
+```text
+Popover.Root
+├── Popover.Trigger
+└── Popover.Content
+    └── Calendar
+```
+
 ## Examples
 
+### Basic
+
+A basic date picker component.
+
+<ComponentPreview name="date-picker-basic">
+
+<div></div>
+
+</ComponentPreview>
+
+### Range Picker
+
+A date picker component for selecting a range of dates.
+
+<ComponentPreview name="date-picker-range">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Date of Birth Picker
+
+A date picker component for selecting a date of birth. This component includes a dropdown caption layout for date and month selection.
 
 <ComponentPreview name="calendar-22" description="A calendar with date of birth picker." >
 

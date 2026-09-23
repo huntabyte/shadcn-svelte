@@ -127,6 +127,44 @@ To show the command menu in a dialog, use the `<Command.Dialog />` component ins
 </Command.Dialog>
 ```
 
+### Basic
+
+A simple command menu in a dialog.
+
+<ComponentPreview name="command-basic">
+
+<div></div>
+
+</ComponentPreview>
+
+### Shortcuts
+
+<ComponentPreview name="command-shortcuts">
+
+<div></div>
+
+</ComponentPreview>
+
+### Groups
+
+A command menu with groups, icons and separators.
+
+<ComponentPreview name="command-groups">
+
+<div></div>
+
+</ComponentPreview>
+
+### Scrollable
+
+Scrollable command menu with multiple items.
+
+<ComponentPreview name="command-scrollable">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Combobox
 
 You can use the `<Command />` component as a combobox. See the [Combobox](/docs/components/combobox) page for more information.

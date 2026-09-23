@@ -3,9 +3,8 @@
 </script>
 
 <NativeSelect.Root disabled>
-	<NativeSelect.Option value="">Select priority</NativeSelect.Option>
-	<NativeSelect.Option value="low">Low</NativeSelect.Option>
-	<NativeSelect.Option value="medium">Medium</NativeSelect.Option>
-	<NativeSelect.Option value="high">High</NativeSelect.Option>
-	<NativeSelect.Option value="critical">Critical</NativeSelect.Option>
+	<NativeSelect.Option value="">Disabled</NativeSelect.Option>
+	<NativeSelect.Option value="apple">Apple</NativeSelect.Option>
+	<NativeSelect.Option value="banana">Banana</NativeSelect.Option>
+	<NativeSelect.Option value="blueberry">Blueberry</NativeSelect.Option>
 </NativeSelect.Root>

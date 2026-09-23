@@ -62,3 +62,45 @@ Copy and paste the following code into your project.
   </Alert.Description>
 </Alert.Root>
 ```
+
+## Examples
+
+### Basic
+
+A basic alert with an icon, title and description.
+
+<ComponentPreview name="alert-basic">
+
+<div></div>
+
+</ComponentPreview>
+
+### Destructive
+
+Use `variant="destructive"` to create a destructive alert.
+
+<ComponentPreview name="alert-destructive">
+
+<div></div>
+
+</ComponentPreview>
+
+### Action
+
+Use `Alert.Action` to add a button or other action element to the alert.
+
+<ComponentPreview name="alert-action">
+
+<div></div>
+
+</ComponentPreview>
+
+### Custom Colors
+
+You can customize the alert colors by adding custom classes such as `bg-amber-50 dark:bg-amber-950` to the `Alert.Root` component.
+
+<ComponentPreview name="alert-colors">
+
+<div></div>
+
+</ComponentPreview>

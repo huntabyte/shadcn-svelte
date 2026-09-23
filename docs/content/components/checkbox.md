@@ -67,3 +67,77 @@ Copy and paste the following code into your project.
 ```svelte
 <Checkbox />
 ```
+
+### Checked State
+
+Use `bind:checked` to control the checkbox state, or `onCheckedChange` to listen for changes.
+
+```svelte showLineNumbers
+<script lang="ts">
+  import { Checkbox } from "$lib/components/ui/checkbox/index.js";
+
+  let checked = $state(false);
+</script>
+
+<Checkbox bind:checked />
+```
+
+### Invalid State
+
+Set `aria-invalid` on the checkbox and `data-invalid` on the field wrapper to show the invalid styles.
+
+<ComponentPreview name="checkbox-invalid">
+
+<div></div>
+
+</ComponentPreview>
+
+## Examples
+
+### Basic
+
+Pair the checkbox with `Field.Field` and `Field.Label` for proper layout and labeling.
+
+<ComponentPreview name="checkbox-basic">
+
+<div></div>
+
+</ComponentPreview>
+
+### Description
+
+Use `Field.Content` and `Field.Description` for helper text.
+
+<ComponentPreview name="checkbox-description">
+
+<div></div>
+
+</ComponentPreview>
+
+### Disabled
+
+Use the `disabled` prop to prevent interaction and add the `data-disabled` attribute to the `<Field.Field>` component for disabled styles.
+
+<ComponentPreview name="checkbox-disabled">
+
+<div></div>
+
+</ComponentPreview>
+
+### Group
+
+Use multiple fields to create a checkbox list.
+
+<ComponentPreview name="checkbox-group">
+
+<div></div>
+
+</ComponentPreview>
+
+### Table
+
+<ComponentPreview name="checkbox-table">
+
+<div></div>
+
+</ComponentPreview>

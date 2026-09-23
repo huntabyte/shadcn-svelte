@@ -16,6 +16,7 @@ links:
 
 	let { viewerData } = $props();
 	import Step from "$lib/components/step.svelte";
+	import Callout from "$lib/components/callout.svelte";
 </script>
 
 <ComponentPreview name="input-group-demo">
@@ -77,6 +78,48 @@ Copy and paste the following code into your project.
 
 ## Examples
 
+### Align
+
+Use the `align` prop on `InputGroup.Addon` to position the addon relative to the input.
+
+<Callout>
+
+For proper focus management, `InputGroup.Addon` should always be placed after `InputGroup.Input` or `InputGroup.Textarea` in the DOM. Use the `align` prop to visually position the addon.
+
+</Callout>
+
+#### inline-start
+
+<ComponentPreview name="input-group-inline-start">
+
+<div></div>
+
+</ComponentPreview>
+
+#### inline-end
+
+<ComponentPreview name="input-group-inline-end">
+
+<div></div>
+
+</ComponentPreview>
+
+#### block-start
+
+<ComponentPreview name="input-group-block-start">
+
+<div></div>
+
+</ComponentPreview>
+
+#### block-end
+
+<ComponentPreview name="input-group-block-end">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Icon
 
 <ComponentPreview name="input-group-icon-demo">
@@ -100,6 +143,14 @@ Display additional text information alongside inputs.
 Add buttons to perform actions within the input group.
 
 <ComponentPreview name="input-group-button-demo">
+
+<div></div>
+
+</ComponentPreview>
+
+### Kbd
+
+<ComponentPreview name="input-group-kbd">
 
 <div></div>
 

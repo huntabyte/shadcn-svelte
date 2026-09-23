@@ -85,6 +85,16 @@ Copy and paste the following code into your project.
 
 ## Examples
 
+### Scrollable Content
+
+Keep actions visible while the content scrolls.
+
+<ComponentPreview name="drawer-scrollable-content">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Sides
 
 Use the `direction` prop to set the side of the drawer. Available options are `top`, `right`, `bottom`, and `left`.

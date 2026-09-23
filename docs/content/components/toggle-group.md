@@ -20,7 +20,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="toggle-group-spacing">
+<ComponentPreview name="toggle-group-demo">
 
 <div></div>
 
@@ -76,31 +76,39 @@ Copy and paste the following code into your project.
 
 ### Outline
 
+Use `variant="outline"` for an outline style.
+
 <ComponentPreview name="toggle-group-outline">
 
 <div></div>
 
 </ComponentPreview>
 
-### Single
+### Size
 
-<ComponentPreview name="toggle-group-single">
+Use the `size` prop to change the size of the toggle group.
 
-<div></div>
-
-</ComponentPreview>
-
-### Small
-
-<ComponentPreview name="toggle-group-sm">
+<ComponentPreview name="toggle-group-sizes">
 
 <div></div>
 
 </ComponentPreview>
 
-### Large
+### Spacing
 
-<ComponentPreview name="toggle-group-lg">
+Use `spacing` to add spacing between toggle group items.
+
+<ComponentPreview name="toggle-group-spacing">
+
+<div></div>
+
+</ComponentPreview>
+
+### Vertical
+
+Use `orientation="vertical"` for vertical toggle groups.
+
+<ComponentPreview name="toggle-group-vertical">
 
 <div></div>
 
@@ -114,11 +122,11 @@ Copy and paste the following code into your project.
 
 </ComponentPreview>
 
-### Spacing
+### Custom
 
-Use `spacing={2}` to add spacing between toggle group items.
+A custom toggle group example.
 
-<ComponentPreview name="toggle-group-spacing">
+<ComponentPreview name="toggle-group-font-weight-selector">
 
 <div></div>
 

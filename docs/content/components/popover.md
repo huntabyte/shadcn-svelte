@@ -70,3 +70,35 @@ Copy and paste the following code into your project.
   <Popover.Content>Place content for the popover here.</Popover.Content>
 </Popover.Root>
 ```
+
+## Examples
+
+### Basic
+
+A simple popover with a header, title, and description.
+
+<ComponentPreview name="popover-basic">
+
+<div></div>
+
+</ComponentPreview>
+
+### Align
+
+Use the `align` prop on `Popover.Content` to control the horizontal alignment.
+
+<ComponentPreview name="popover-alignments">
+
+<div></div>
+
+</ComponentPreview>
+
+### With Form
+
+A popover with form fields inside.
+
+<ComponentPreview name="popover-form">
+
+<div></div>
+
+</ComponentPreview>

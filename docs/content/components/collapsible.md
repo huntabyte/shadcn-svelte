@@ -73,3 +73,50 @@ Copy and paste the following code into your project.
   </Collapsible.Content>
 </Collapsible.Root>
 ```
+
+### Controlled State
+
+Use `bind:open` to control the state.
+
+```svelte showLineNumbers
+<script lang="ts">
+  import * as Collapsible from "$lib/components/ui/collapsible/index.js";
+
+  let open = $state(false);
+</script>
+
+<Collapsible.Root bind:open>
+  <Collapsible.Trigger>Toggle</Collapsible.Trigger>
+  <Collapsible.Content>Content</Collapsible.Content>
+</Collapsible.Root>
+```
+
+## Examples
+
+### Basic
+
+<ComponentPreview name="collapsible-basic">
+
+<div></div>
+
+</ComponentPreview>
+
+### Settings Panel
+
+Use a trigger button to reveal additional settings.
+
+<ComponentPreview name="collapsible-settings">
+
+<div></div>
+
+</ComponentPreview>
+
+### File Tree
+
+Use nested collapsibles to build a file tree.
+
+<ComponentPreview name="collapsible-file-tree" class="**:[.preview]:h-[600px]">
+
+<div></div>
+
+</ComponentPreview>

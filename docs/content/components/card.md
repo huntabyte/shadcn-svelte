@@ -77,6 +77,16 @@ Copy and paste the following code into your project.
 
 </ComponentPreview>
 
+### Size
+
+Use the `size="sm"` prop to set the size of the card to small. The small size variant uses smaller spacing.
+
+<ComponentPreview name="card-small">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Spacing
 
 In addition to the `size` prop, you can use the `--card-spacing` CSS variable to control the spacing between sections and the inset of card parts.

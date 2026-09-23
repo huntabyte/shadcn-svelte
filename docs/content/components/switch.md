@@ -67,3 +67,53 @@ Copy and paste the following code into your project.
 ```svelte
 <Switch />
 ```
+
+## Examples
+
+### Description
+
+<ComponentPreview name="switch-description">
+
+<div></div>
+
+</ComponentPreview>
+
+### Choice Card
+
+Card-style selection where `Field.Label` wraps the entire `Field.Field` for a clickable card pattern.
+
+<ComponentPreview name="switch-choice-card">
+
+<div></div>
+
+</ComponentPreview>
+
+### Disabled
+
+Add the `disabled` prop to the `Switch` component to disable the switch. Add the `data-disabled` prop to the `Field.Field` component for styling.
+
+<ComponentPreview name="switch-disabled">
+
+<div></div>
+
+</ComponentPreview>
+
+### Invalid
+
+Add the `aria-invalid` prop to the `Switch` component to indicate an invalid state. Add the `data-invalid` prop to the `Field.Field` component for styling.
+
+<ComponentPreview name="switch-invalid">
+
+<div></div>
+
+</ComponentPreview>
+
+### Size
+
+Use the `size` prop to change the size of the switch.
+
+<ComponentPreview name="switch-sizes">
+
+<div></div>
+
+</ComponentPreview>

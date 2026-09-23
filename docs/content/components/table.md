@@ -76,6 +76,28 @@ Copy and paste the following code into your project.
 </Table.Root>
 ```
 
+## Examples
+
+### Footer
+
+Use the `<Table.Footer />` component to add a footer to the table.
+
+<ComponentPreview name="table-footer">
+
+<div></div>
+
+</ComponentPreview>
+
+### Actions
+
+A table showing actions for each row using a `<DropdownMenu />` component.
+
+<ComponentPreview name="table-actions">
+
+<div></div>
+
+</ComponentPreview>
+
 ## Data Table
 
 You can use the `<Table />` component to build more complex data tables. Combine it with [@tanstack/table](https://tanstack.com/table) to create tables with sorting, filtering and pagination.

@@ -75,7 +75,19 @@ You can use the `<Calendar />` component to build a date picker. See the [Date P
 
 ## Examples
 
+### Basic
+
+A basic calendar component. We used `class="rounded-lg border"` to style the calendar.
+
+<ComponentPreview name="calendar-01">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Range Calendar
+
+Use the `RangeCalendar` component to enable range selection.
 
 <ComponentPreview name="calendar-02" class="**:[.preview]:h-auto lg:**:[.preview]:h-[450px]">
 
@@ -85,7 +97,17 @@ You can use the `<Calendar />` component to build a date picker. See the [Date P
 
 ### Month and Year Selector
 
+Use `captionLayout="dropdown"` to show month and year dropdowns.
+
 <ComponentPreview name="calendar-13">
+
+<div></div>
+
+</ComponentPreview>
+
+### Presets
+
+<ComponentPreview name="calendar-19">
 
 <div></div>
 
@@ -106,6 +128,42 @@ You can use the `<Calendar />` component to build a date picker. See the [Date P
 <div></div>
 
 </ComponentPreview>
+
+### Booked dates
+
+<ComponentPreview name="calendar-14">
+
+<div></div>
+
+</ComponentPreview>
+
+### Custom Cell Size
+
+<ComponentPreview name="calendar-21" class="**:[.preview]:h-[560px]">
+
+<div></div>
+
+</ComponentPreview>
+
+You can customize the size of calendar cells using the `--cell-size` CSS variable. You can also make it responsive by using breakpoint-specific values:
+
+```svelte showLineNumbers
+<Calendar
+  type="single"
+  bind:value
+  class="rounded-lg border [--cell-size:--spacing(11)] md:[--cell-size:--spacing(12)]"
+/>
+```
+
+Or use fixed values:
+
+```svelte showLineNumbers
+<Calendar
+  type="single"
+  bind:value
+  class="rounded-lg border [--cell-size:2.75rem] md:[--cell-size:3rem]"
+/>
+```
 
 ### Natural Language Picker
 

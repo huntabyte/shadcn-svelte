@@ -21,7 +21,7 @@ links:
 
 </script>
 
-<ComponentPreview name="accordion-demo" class="[&_.preview>[data-orientation=vertical]]:sm:max-w-[80%] **:[.preview]:min-h-[400px]" description="An accordion with three items" align="start">
+<ComponentPreview name="accordion-demo" class="**:[.preview]:min-h-[300px] [&_.preview>[data-slot=accordion]]:max-w-sm" description="An accordion with three items" align="start">
 
 <div></div>
 
@@ -83,3 +83,55 @@ Copy and paste the following code into your project.
   </Accordion.Item>
 </Accordion.Root>
 ```
+
+## Examples
+
+### Basic
+
+A basic accordion that shows one item at a time. The first item is open by default.
+
+<ComponentPreview name="accordion-basic" align="start" class="**:[.preview]:min-h-[300px] [&_.preview>[data-slot=accordion]]:max-w-sm">
+
+<div></div>
+
+</ComponentPreview>
+
+### Multiple
+
+Use `type="multiple"` to allow multiple items to be open at the same time.
+
+<ComponentPreview name="accordion-multiple" align="start" class="**:[.preview]:min-h-[450px] [&_.preview>[data-slot=accordion]]:max-w-sm">
+
+<div></div>
+
+</ComponentPreview>
+
+### Disabled
+
+Use the `disabled` prop on `Accordion.Item` to disable individual items.
+
+<ComponentPreview name="accordion-disabled" align="start" class="**:[.preview]:min-h-[300px] [&_.preview>[data-slot=accordion]]:max-w-sm">
+
+<div></div>
+
+</ComponentPreview>
+
+### Borders
+
+Add `border` to the `Accordion.Root` and `border-b last:border-b-0` to the `Accordion.Item` to add borders to the items.
+
+<ComponentPreview name="accordion-borders" align="start" class="**:[.preview]:min-h-[300px] [&_.preview>[data-slot=accordion]]:max-w-sm">
+
+<div></div>
+
+</ComponentPreview>
+
+### Card
+
+Wrap the `Accordion.Root` in a `Card` component.
+
+<ComponentPreview name="accordion-card" align="start" class="**:[.preview]:min-h-[435px] [&_.preview>[data-slot=accordion]]:max-w-sm">
+
+<div></div>
+
+</ComponentPreview>

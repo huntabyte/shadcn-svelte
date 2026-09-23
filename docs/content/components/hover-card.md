@@ -72,3 +72,15 @@ Copy and paste the following code into your project.
   </HoverCard.Content>
 </HoverCard.Root>
 ```
+
+## Examples
+
+### Sides
+
+Use the `side` prop on `HoverCard.Content` to control which side of the trigger the card opens on.
+
+<ComponentPreview name="hover-card-sides">
+
+<div></div>
+
+</ComponentPreview>

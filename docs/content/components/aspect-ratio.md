@@ -71,3 +71,25 @@ Copy and paste the following code into your project.
   </AspectRatio>
 </div>
 ```
+
+## Examples
+
+### Square
+
+A square aspect ratio component using the `ratio={1 / 1}` prop. This is useful for displaying images in a square format.
+
+<ComponentPreview name="aspect-ratio-square">
+
+<div></div>
+
+</ComponentPreview>
+
+### Portrait
+
+A portrait aspect ratio component using the `ratio={9 / 16}` prop. This is useful for displaying images in a portrait format.
+
+<ComponentPreview name="aspect-ratio-portrait">
+
+<div></div>
+
+</ComponentPreview>

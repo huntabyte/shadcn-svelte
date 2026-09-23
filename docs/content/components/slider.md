@@ -68,3 +68,53 @@ Copy and paste the following code into your project.
 ```svelte
 <Slider type="single" bind:value max={100} step={1} />
 ```
+
+## Examples
+
+### Range
+
+Use `type="multiple"` with an array of two values for a range slider.
+
+<ComponentPreview name="slider-range">
+
+<div></div>
+
+</ComponentPreview>
+
+### Multiple Thumbs
+
+Use an array with multiple values for multiple thumbs.
+
+<ComponentPreview name="slider-multiple">
+
+<div></div>
+
+</ComponentPreview>
+
+### Vertical
+
+Use `orientation="vertical"` for a vertical slider.
+
+<ComponentPreview name="slider-vertical">
+
+<div></div>
+
+</ComponentPreview>
+
+### Controlled
+
+<ComponentPreview name="slider-controlled">
+
+<div></div>
+
+</ComponentPreview>
+
+### Disabled
+
+Use the `disabled` prop to disable the slider.
+
+<ComponentPreview name="slider-disabled">
+
+<div></div>
+
+</ComponentPreview>
