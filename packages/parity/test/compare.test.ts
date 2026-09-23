@@ -534,13 +534,91 @@ describe("fixClassString", () => {
 		);
 	});
 
-	it("does not strip framework origin tokens or copy radix names", () => {
+	it("rewrites upstream radix variables to their bits spelling", () => {
 		expect(
 			fixClassString(
 				"z-50 origin-(--transform-origin)",
 				["origin-(--transform-origin)"],
 				["origin-(--radix-popover-content-transform-origin)"]
 			)
-		).toBe("z-50 origin-(--transform-origin)");
+		).toBe("z-50 origin-(--bits-popover-content-transform-origin)");
+		expect(
+			fixClassString("z-50", [], ["origin-(--radix-hover-card-content-transform-origin)"])
+		).toBe("z-50 origin-(--bits-link-preview-content-transform-origin)");
+		expect(fixClassString("z-50", [], ["w-(--radix-dropdown-menu-trigger-width)"])).toBe(
+			"z-50 w-(--bits-dropdown-menu-anchor-width)"
+		);
+	});
+
+	it("does not strip or duplicate framework tokens that already pair with upstream", () => {
+		expect(
+			fixClassString(
+				"z-50 origin-(--bits-popover-content-transform-origin)",
+				["origin-(--bits-popover-content-transform-origin)"],
+				["origin-(--radix-popover-content-transform-origin)"]
+			)
+		).toBe("z-50 origin-(--bits-popover-content-transform-origin)");
+	});
+});
+
+describe("framework tokens", () => {
+	// Padded with common utilities so the short strings still read as class lists.
+	const pairKind = (ours: string, upstream: string) =>
+		pairClassStrings(
+			extractClassStrings(`class="relative flex ${ours}"`),
+			extractClassStrings(`class="relative flex ${upstream}"`)
+		)[0]?.kind;
+
+	it("treats matching --bits-/--radix- variables as a framework difference", () => {
+		expect(
+			pairKind(
+				"z-50 origin-(--bits-popover-content-transform-origin)",
+				"z-50 origin-(--radix-popover-content-transform-origin)"
+			)
+		).toBe("framework");
+		expect(
+			pairKind(
+				"z-50 max-h-(--bits-select-content-available-height) w-(--bits-select-anchor-width)",
+				"z-50 max-h-(--radix-select-content-available-height) w-(--radix-select-trigger-width)"
+			)
+		).toBe("framework");
+		expect(
+			pairKind(
+				"cn-popover-content-logical origin-(--bits-popover-content-transform-origin)",
+				"origin-(--radix-popover-content-transform-origin)"
+			)
+		).toBe("framework");
+	});
+
+	it("maps bits part names onto their radix counterparts", () => {
+		expect(
+			pairKind(
+				"origin-(--bits-link-preview-content-transform-origin)",
+				"origin-(--radix-hover-card-content-transform-origin)"
+			)
+		).toBe("framework");
+	});
+
+	it("reports a variable that bits never sets as a diff", () => {
+		expect(
+			pairKind(
+				"z-50 origin-(--transform-origin)",
+				"z-50 origin-(--radix-popover-content-transform-origin)"
+			)
+		).toBe("diff");
+	});
+
+	it("reports an upstream framework variable we dropped as a diff", () => {
+		expect(pairKind("z-50", "z-50 h-(--radix-accordion-content-height)")).toBe("diff");
+		expect(
+			pairKind(
+				"h-[calc(var(--bits-navigation-menu-viewport-height)+1rem)]",
+				"h-(--radix-navigation-menu-viewport-height)"
+			)
+		).toBe("diff");
+	});
+
+	it("reports a bits variable upstream never reads as a diff", () => {
+		expect(pairKind("z-50 w-(--bits-select-anchor-width)", "z-50")).toBe("diff");
 	});
 });

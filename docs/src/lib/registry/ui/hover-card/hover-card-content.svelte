@@ -22,7 +22,10 @@
 		data-slot="hover-card-content"
 		{align}
 		{sideOffset}
-		class={cn("cn-hover-card-content z-50 origin-(--transform-origin) outline-hidden", className)}
+		class={cn(
+			"cn-hover-card-content z-50 origin-(--bits-link-preview-content-transform-origin) outline-hidden",
+			className
+		)}
 		{...restProps}
 	/>
 </HoverCardPortal>
