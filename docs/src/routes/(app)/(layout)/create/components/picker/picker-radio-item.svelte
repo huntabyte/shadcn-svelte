@@ -2,6 +2,7 @@
 	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
 	import { getContext } from "svelte";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import { cn, type WithoutChild } from "$lib/utils.js";
 	import { preservePickerScroll } from "./picker-scroll.js";
 	import { usePreviewOverride } from "../preview-override-context.svelte.js";
@@ -16,12 +17,14 @@
 		onfocus,
 		onmousemove,
 		onSelect,
+		closeOnSelect,
 		...restProps
 	}: WithoutChild<DropdownMenuPrimitive.RadioItemProps> = $props();
 
 	const isSubmenu = (getContext<() => boolean>("picker-is-submenu") ?? (() => false))();
 	const getPreview = getContext<() => ((value: string) => void) | undefined>("picker-preview");
 	const previewOverride = usePreviewOverride();
+	const isMobile = new IsMobile();
 
 	function preview() {
 		getPreview?.()?.(value as string);
@@ -32,6 +35,7 @@
 	bind:ref
 	{value}
 	data-slot="dropdown-menu-radio-item"
+	closeOnSelect={isMobile.current || closeOnSelect}
 	class={cn(
 		"relative flex cursor-default items-center gap-2 rounded-lg py-1.5 pr-8 pl-2 text-sm font-medium outline-hidden select-none data-inset:pl-8 pointer-coarse:gap-3 pointer-coarse:py-2.5 pointer-coarse:pl-3 pointer-coarse:text-base data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
 		isSubmenu

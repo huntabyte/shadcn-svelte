@@ -25,6 +25,7 @@
 		class="top-24 right-12 isolate z-10 flex min-h-0 w-full flex-col gap-2 md:w-(--customizer-width)"
 	>
 		<Card.Root
+			data-slot="customizer-card"
 			class="dark top-24 right-12 isolate z-10 max-h-full min-h-0 w-full self-start rounded-2xl bg-card/90 shadow-xl backdrop-blur-xl md:w-(--customizer-width)"
 			size="sm"
 		>

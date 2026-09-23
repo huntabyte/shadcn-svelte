@@ -1,3 +1,5 @@
+let cancelActivePreservation: (() => void) | undefined;
+
 export function preservePickerScroll(target?: EventTarget | null) {
 	if (typeof document === "undefined") return;
 
@@ -15,21 +17,26 @@ export function preservePickerScroll(target?: EventTarget | null) {
 
 	if (scrollers.size === 0) return;
 
+	cancelActivePreservation?.();
+
 	const positions = Array.from(scrollers, (scroller) => ({
 		scroller,
 		scrollLeft: scroller.scrollLeft,
+		scrollTop: scroller.scrollTop,
 	}));
 	const startedAt = performance.now();
 	let cancelled = false;
 
 	function cancel() {
 		cancelled = true;
+		if (cancelActivePreservation === cancel) cancelActivePreservation = undefined;
 		for (const { scroller } of positions) {
 			scroller.removeEventListener("pointerdown", cancel);
 			scroller.removeEventListener("touchstart", cancel);
 			scroller.removeEventListener("wheel", cancel);
 		}
 	}
+	cancelActivePreservation = cancel;
 
 	for (const { scroller } of positions) {
 		scroller.addEventListener("pointerdown", cancel, { passive: true, once: true });
@@ -40,8 +47,9 @@ export function preservePickerScroll(target?: EventTarget | null) {
 	function restore() {
 		if (cancelled) return;
 
-		for (const { scroller, scrollLeft } of positions) {
+		for (const { scroller, scrollLeft, scrollTop } of positions) {
 			scroller.scrollLeft = scrollLeft;
+			scroller.scrollTop = scrollTop;
 		}
 
 		if (performance.now() - startedAt < 2000) {

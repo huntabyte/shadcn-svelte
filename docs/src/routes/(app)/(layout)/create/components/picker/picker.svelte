@@ -1,5 +1,11 @@
+<script module lang="ts">
+	let activeMobilePicker: { close: () => void } | null = null;
+</script>
+
 <script lang="ts">
 	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
+	import { onDestroy } from "svelte";
+	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import { preservePickerScroll } from "./picker-scroll.js";
 	import { usePreviewOverride } from "../preview-override-context.svelte.js";
 
@@ -13,14 +19,28 @@
 
 	let { open = $bindable(false), submenu, onOpenChange, ...restProps }: Props = $props();
 	const previewOverride = usePreviewOverride();
+	const isMobile = new IsMobile();
+	const picker = { close: () => (open = false) };
+
+	onDestroy(() => {
+		if (activeMobilePicker === picker) activeMobilePicker = null;
+	});
 
 	$effect(() => {
 		if (!open) {
 			previewOverride.clearOverride();
+			if (activeMobilePicker === picker) activeMobilePicker = null;
 		}
 	});
 
 	function handleOpenChange(nextOpen: boolean) {
+		if (nextOpen && !submenu && isMobile.current) {
+			if (activeMobilePicker !== picker) activeMobilePicker?.close();
+			activeMobilePicker = picker;
+		} else if (!nextOpen && activeMobilePicker === picker) {
+			activeMobilePicker = null;
+		}
+
 		if (!nextOpen) {
 			preservePickerScroll();
 			previewOverride.clearOverride();
