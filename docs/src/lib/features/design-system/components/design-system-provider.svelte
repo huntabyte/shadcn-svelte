@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { browser } from "$app/environment";
-	import { toggleMode } from "mode-watcher";
 	import { watch } from "runed";
 	import { onDestroy, type Snippet } from "svelte";
 	import {
@@ -247,21 +246,6 @@
 			}
 
 			designSystem.randomize();
-		}
-
-		// toggle theme on d/D
-		if ((e.key === "d" || e.key === "D") && !e.metaKey && !e.ctrlKey) {
-			if (
-				(e.target instanceof HTMLElement && e.target.isContentEditable) ||
-				e.target instanceof HTMLInputElement ||
-				e.target instanceof HTMLTextAreaElement ||
-				e.target instanceof HTMLSelectElement
-			) {
-				return;
-			}
-
-			e.preventDefault();
-			toggleMode();
 		}
 
 		// undo/redo on z/Z
