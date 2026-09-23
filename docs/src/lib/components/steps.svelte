@@ -6,10 +6,7 @@
 </script>
 
 <div
-	class={cn(
-		"steps mb-12 [counter-reset:step] *:[aria-level='3']:first:!mt-0 [&>[aria-level='3']]:step",
-		className
-	)}
+	class={cn("steps mb-12 [counter-reset:step] md:ms-4 md:border-s md:ps-8 [&>h3]:step", className)}
 	{...restProps}
 >
 	{@render children?.()}

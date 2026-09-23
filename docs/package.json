@@ -25,6 +25,8 @@
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
 		"parity": "parity",
 		"parity-check": "parity --check",
+		"parity:docs": "parity docs",
+		"parity-check:docs": "parity docs --check",
 		"parity:fix": "parity fix",
 		"parity:variants": "parity variants",
 		"parity-check:variants": "parity variants --check"
