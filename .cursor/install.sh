@@ -19,3 +19,6 @@ echo "Using node $(node -v) / pnpm $(pnpm -v)"
 
 # `postinstall` builds the CLI and syncs the docs registry/content.
 pnpm install
+
+# Set up skilless (skill manager). Best-effort: never block the core install.
+"$(dirname "$0")/skilless.sh" || echo "skilless setup skipped (non-fatal); see .cursor/skilless.sh"
