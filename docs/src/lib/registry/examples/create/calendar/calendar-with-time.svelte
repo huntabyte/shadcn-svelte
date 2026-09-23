@@ -4,7 +4,7 @@
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { Calendar } from "$lib/registry/ui/calendar/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="With Time">

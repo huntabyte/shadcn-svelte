@@ -4,7 +4,7 @@
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	let mode = $state("auto");
 	let model = $state("gpt-5.1");

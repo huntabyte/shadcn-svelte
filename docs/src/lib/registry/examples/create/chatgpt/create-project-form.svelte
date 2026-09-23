@@ -10,7 +10,7 @@
 	import { badgeVariants } from "$lib/registry/ui/badge/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const categories = [
 		{

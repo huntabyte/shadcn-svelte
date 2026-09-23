@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as Alert from "$lib/registry/ui/alert/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="Basic">

@@ -6,7 +6,7 @@
 	import Navbar from "./navbar.svelte";
 	import Profile from "./profile.svelte";
 	import RepositoryToolbar from "./repository-toolbar.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

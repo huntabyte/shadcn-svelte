@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as Menubar from "$lib/registry/ui/menubar/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	let user = $state("benoit");
 	let theme = $state("system");

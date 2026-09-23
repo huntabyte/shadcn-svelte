@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Progress } from "$lib/registry/ui/progress/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="Progress Bar">
