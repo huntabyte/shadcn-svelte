@@ -467,7 +467,7 @@ const chartData = [
 
 A chart tooltip contains a label, name, indicator and value. You can use a combination of these to customize your tooltip.
 
-<ComponentPreview name="chart-tooltip-demo" hideCode>
+<ComponentPreview name="chart-tooltip-demo" previewClassName="h-auto min-h-72" hideCode>
 
 <div></div>
 

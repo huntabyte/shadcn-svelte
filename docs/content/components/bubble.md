@@ -17,7 +17,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="bubble-demo">
+<ComponentPreview name="bubble-demo" previewClassName="h-auto min-h-72">
 
 <div></div>
 
@@ -101,7 +101,7 @@ Bubble.Group
 
 Use `variant` to change the visual treatment of the bubble.
 
-<ComponentPreview name="bubble-variants">
+<ComponentPreview name="bubble-variants" previewClassName="h-auto min-h-72">
 
 <div></div>
 
@@ -123,7 +123,7 @@ A bubble sizes to its content, up to 80% of the container width. The `ghost` var
 
 Use `align` on `Bubble.Root` to align the bubble to the start or end of the conversation.
 
-<ComponentPreview name="bubble-alignment">
+<ComponentPreview name="bubble-alignment" previewClassName="h-auto min-h-72">
 
 <div></div>
 
@@ -148,7 +148,7 @@ Bubble.Group
     └── Bubble.Content
 ```
 
-<ComponentPreview name="bubble-group-demo">
+<ComponentPreview name="bubble-group-demo" previewClassName="h-auto min-h-72">
 
 <div></div>
 
@@ -158,7 +158,7 @@ Bubble.Group
 
 You can turn a bubble into a link or button by using the `child` snippet on `Bubble.Content`.
 
-<ComponentPreview name="bubble-link-button">
+<ComponentPreview name="bubble-link-button" previewClassName="h-auto min-h-72">
 
 <div></div>
 
@@ -182,7 +182,7 @@ You can turn a bubble into a link or button by using the `child` snippet on `Bub
 
 Use `Bubble.Reactions` for bubble reactions. You can use it to display reactions or quick action buttons. Use `side` and `align` to position the row. `side="top"` anchors it to the upper edge. Reactions overlap the bubble edge, so leave vertical space between rows. The examples below use a larger `gap` for this reason.
 
-<ComponentPreview name="bubble-reactions">
+<ComponentPreview name="bubble-reactions" previewClassName="h-auto min-h-72">
 
 <div></div>
 
@@ -192,7 +192,7 @@ Use `Bubble.Reactions` for bubble reactions. You can use it to display reactions
 
 Long bubble content can be composed with [`Collapsible`](/docs/components/collapsible) to allow for a show more or show less interaction. Use the `Collapsible.Trigger` component to trigger the collapsible content.
 
-<ComponentPreview name="bubble-collapsible">
+<ComponentPreview name="bubble-collapsible" previewClassName="h-auto min-h-72">
 
 <div></div>
 

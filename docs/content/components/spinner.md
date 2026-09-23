@@ -130,7 +130,7 @@ Input Group can have spinners inside `<InputGroup.Addon>`.
 
 ### Empty
 
-<ComponentPreview name="spinner-empty-demo">
+<ComponentPreview name="spinner-empty-demo" previewClassName="h-auto min-h-72">
 
 <div></div>
 

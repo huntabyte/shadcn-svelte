@@ -123,7 +123,7 @@ The `Item` component has different sizes for different use cases. For example, y
 
 ### Group
 
-<ComponentPreview name="item-group-demo" previewClassName="h-96">
+<ComponentPreview name="item-group-demo" previewClassName="h-auto min-h-96">
 
 <div></div>
 

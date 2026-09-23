@@ -76,7 +76,7 @@ Copy and paste the following code into your project.
 
 Use the `border` utility class to create an outline empty state.
 
-<ComponentPreview name="empty-outline-demo">
+<ComponentPreview name="empty-outline-demo" previewClassName="h-auto min-h-72">
 
 <div></div>
 
@@ -106,7 +106,7 @@ Use the `EmptyMedia` component to display an avatar in the empty state.
 
 Use the `EmptyMedia` component to display an avatar group in the empty state.
 
-<ComponentPreview name="empty-avatar-group-demo">
+<ComponentPreview name="empty-avatar-group-demo" previewClassName="h-auto min-h-72">
 
 <div></div>
 
@@ -116,7 +116,7 @@ Use the `EmptyMedia` component to display an avatar group in the empty state.
 
 You can add an `InputGroup` component to the `EmptyContent` component.
 
-<ComponentPreview name="empty-input-group-demo">
+<ComponentPreview name="empty-input-group-demo" previewClassName="h-auto min-h-72">
 
 <div></div>
 
