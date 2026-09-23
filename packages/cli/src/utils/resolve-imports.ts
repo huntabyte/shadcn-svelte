@@ -1,9 +1,9 @@
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { type TsConfigResult, createPathsMatcher } from "get-tsconfig";
 import * as resolve from "resolve.exports";
-import { getDependencyPackageInfo } from "./get-package-info.js";
+import { type TsConfigResult, createPathsMatcher } from "get-tsconfig";
 import * as project from "./project.js";
+import { getDependencyPackageInfo } from "./get-package-info.js";
 import type { PackageJson } from "type-fest";
 
 const NOOP = "/noop.js";
@@ -23,6 +23,12 @@ export function resolveImportAlias(opts: ResolveImportOpts): string | undefined 
 	// resolves the path if it's defined in the tsconfig
 	const resolvedPath = matcher?.(opts.importPath)?.[0];
 	if (resolvedPath) return resolvedPath;
+
+	// resolves the path if it's a wildcard (e.g. `$lib` resolves to `$lib/*`)
+	if (opts.tsconfig.config.compilerOptions?.paths?.[`${opts.importPath}/*`]) {
+		const resolvedPath = matcher?.(`${opts.importPath}${NOOP}`)?.[0];
+		if (resolvedPath) return path.dirname(resolvedPath);
+	}
 
 	// resolves the path if it's in the project's import map
 	const pkg = project.getPackageInfo(opts.cwd);

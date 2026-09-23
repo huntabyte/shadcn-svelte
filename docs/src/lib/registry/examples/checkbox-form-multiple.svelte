@@ -36,9 +36,9 @@
 </script>
 
 <script lang="ts">
+	import { toast } from "svelte-sonner";
 	import { defaults, superForm } from "sveltekit-superforms";
 	import { zod4 } from "sveltekit-superforms/adapters";
-	import { toast } from "svelte-sonner";
 	import * as Form from "$lib/registry/ui/form/index.js";
 	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
 
@@ -69,9 +69,7 @@
 	<Form.Fieldset {form} name="items" class="space-y-0">
 		<div class="mb-4">
 			<Form.Legend class="text-base">Sidebar</Form.Legend>
-			<Form.Description>
-				Select the items you want to display in the sidebar.
-			</Form.Description>
+			<Form.Description>Select the items you want to display in the sidebar.</Form.Description>
 		</div>
 		<div class="space-y-2">
 			{#each items as item (item.id)}

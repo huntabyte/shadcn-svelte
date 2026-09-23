@@ -1,9 +1,9 @@
 <script lang="ts">
-	import * as Item from "$lib/registry/ui/item/index.js";
+	import ChevronDown from "@lucide/svelte/icons/chevron-down";
 	import * as Avatar from "$lib/registry/ui/avatar/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import * as Item from "$lib/registry/ui/item/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import ChevronDown from "@lucide/svelte/icons/chevron-down";
 
 	const people = [
 		{

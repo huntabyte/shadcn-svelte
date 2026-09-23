@@ -22,7 +22,8 @@ export const data = [
 	},
 	{
 		id: "TASK-5562",
-		title: "The SAS interface is down, bypass the open-source pixel so we can back up the PNG bandwidth!",
+		title:
+			"The SAS interface is down, bypass the open-source pixel so we can back up the PNG bandwidth!",
 		status: "backlog",
 		label: "feature",
 		priority: "medium",
@@ -43,7 +44,8 @@ export const data = [
 	},
 	{
 		id: "TASK-7262",
-		title: "The UTF8 application is down, parse the neural bandwidth so we can back up the PNG firewall!",
+		title:
+			"The UTF8 application is down, parse the neural bandwidth so we can back up the PNG firewall!",
 		status: "done",
 		label: "feature",
 		priority: "high",
@@ -113,7 +115,8 @@ export const data = [
 	},
 	{
 		id: "TASK-1780",
-		title: "The CSS feed is down, index the bluetooth transmitter so we can compress the CLI protocol!",
+		title:
+			"The CSS feed is down, index the bluetooth transmitter so we can compress the CLI protocol!",
 		status: "todo",
 		label: "documentation",
 		priority: "high",
@@ -134,7 +137,8 @@ export const data = [
 	},
 	{
 		id: "TASK-3216",
-		title: "Transmitting the transmitter won't do anything, we need to compress the virtual HDD sensor!",
+		title:
+			"Transmitting the transmitter won't do anything, we need to compress the virtual HDD sensor!",
 		status: "backlog",
 		label: "documentation",
 		priority: "medium",
@@ -148,7 +152,8 @@ export const data = [
 	},
 	{
 		id: "TASK-1024",
-		title: "Overriding the microchip won't do anything, we need to transmit the digital OCR transmitter!",
+		title:
+			"Overriding the microchip won't do anything, we need to transmit the digital OCR transmitter!",
 		status: "in progress",
 		label: "documentation",
 		priority: "low",
@@ -190,7 +195,8 @@ export const data = [
 	},
 	{
 		id: "TASK-9518",
-		title: "Compressing the interface won't do anything, we need to compress the online SDD matrix!",
+		title:
+			"Compressing the interface won't do anything, we need to compress the online SDD matrix!",
 		status: "canceled",
 		label: "documentation",
 		priority: "medium",
@@ -218,7 +224,8 @@ export const data = [
 	},
 	{
 		id: "TASK-9892",
-		title: "If we back up the application, we can get to the UDP application through the multi-byte THX capacitor!",
+		title:
+			"If we back up the application, we can get to the UDP application through the multi-byte THX capacitor!",
 		status: "done",
 		label: "documentation",
 		priority: "high",
@@ -246,7 +253,8 @@ export const data = [
 	},
 	{
 		id: "TASK-7382",
-		title: "If we back up the firewall, we can get to the RAM alarm through the primary UTF8 pixel!",
+		title:
+			"If we back up the firewall, we can get to the RAM alarm through the primary UTF8 pixel!",
 		status: "todo",
 		label: "feature",
 		priority: "low",
@@ -267,7 +275,8 @@ export const data = [
 	},
 	{
 		id: "TASK-4920",
-		title: "Bypassing the hard drive won't do anything, we need to input the bluetooth JSON program!",
+		title:
+			"Bypassing the hard drive won't do anything, we need to input the bluetooth JSON program!",
 		status: "in progress",
 		label: "bug",
 		priority: "high",
@@ -288,7 +297,8 @@ export const data = [
 	},
 	{
 		id: "TASK-4314",
-		title: "If we compress the program, we can get to the XML alarm through the multi-byte COM matrix!",
+		title:
+			"If we compress the program, we can get to the XML alarm through the multi-byte COM matrix!",
 		status: "in progress",
 		label: "bug",
 		priority: "high",
@@ -316,14 +326,16 @@ export const data = [
 	},
 	{
 		id: "TASK-8053",
-		title: "If we connect the program, we can get to the UTF8 matrix through the digital UDP protocol!",
+		title:
+			"If we connect the program, we can get to the UTF8 matrix through the digital UDP protocol!",
 		status: "todo",
 		label: "feature",
 		priority: "medium",
 	},
 	{
 		id: "TASK-4336",
-		title: "If we synthesize the microchip, we can get to the SAS sensor through the optical UDP program!",
+		title:
+			"If we synthesize the microchip, we can get to the SAS sensor through the optical UDP program!",
 		status: "todo",
 		label: "documentation",
 		priority: "low",
@@ -477,7 +489,8 @@ export const data = [
 	},
 	{
 		id: "TASK-3586",
-		title: "If we quantify the circuit, we can get to the CLI feed through the mobile SMS hard drive!",
+		title:
+			"If we quantify the circuit, we can get to the CLI feed through the mobile SMS hard drive!",
 		status: "in progress",
 		label: "bug",
 		priority: "low",
@@ -491,7 +504,8 @@ export const data = [
 	},
 	{
 		id: "TASK-3652",
-		title: "The SQL interface is down, override the optical bus so we can program the ASCII interface!",
+		title:
+			"The SQL interface is down, override the optical bus so we can program the ASCII interface!",
 		status: "backlog",
 		label: "feature",
 		priority: "low",
@@ -519,7 +533,8 @@ export const data = [
 	},
 	{
 		id: "TASK-7253",
-		title: "Programming the capacitor won't do anything, we need to bypass the neural IB hard drive!",
+		title:
+			"Programming the capacitor won't do anything, we need to bypass the neural IB hard drive!",
 		status: "backlog",
 		label: "bug",
 		priority: "high",
@@ -561,7 +576,8 @@ export const data = [
 	},
 	{
 		id: "TASK-2645",
-		title: "Synthesizing the system won't do anything, we need to navigate the multi-byte HDD firewall!",
+		title:
+			"Synthesizing the system won't do anything, we need to navigate the multi-byte HDD firewall!",
 		status: "todo",
 		label: "documentation",
 		priority: "medium",
@@ -582,7 +598,8 @@ export const data = [
 	},
 	{
 		id: "TASK-9745",
-		title: "If we connect the protocol, we can get to the GB system through the bluetooth PCI microchip!",
+		title:
+			"If we connect the protocol, we can get to the GB system through the bluetooth PCI microchip!",
 		status: "canceled",
 		label: "feature",
 		priority: "high",
@@ -610,14 +627,16 @@ export const data = [
 	},
 	{
 		id: "TASK-6665",
-		title: "If we parse the monitor, we can get to the SSD hard drive through the cross-platform AGP alarm!",
+		title:
+			"If we parse the monitor, we can get to the SSD hard drive through the cross-platform AGP alarm!",
 		status: "canceled",
 		label: "feature",
 		priority: "low",
 	},
 	{
 		id: "TASK-7585",
-		title: "If we calculate the hard drive, we can get to the SSL program through the multi-byte CSS microchip!",
+		title:
+			"If we calculate the hard drive, we can get to the SSL program through the multi-byte CSS microchip!",
 		status: "backlog",
 		label: "feature",
 		priority: "low",

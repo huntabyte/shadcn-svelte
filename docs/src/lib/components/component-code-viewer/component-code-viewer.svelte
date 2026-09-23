@@ -1,14 +1,13 @@
 <script lang="ts" module>
-	import { createFileTreeForRegistryItemFiles } from "$lib/registry/registry-utils.js";
-	import type { Pane } from "paneforge";
-	import { Context } from "runed";
-	import ComponentCodeViewerCode from "./component-code-viewer-code.svelte";
 	import CodeIcon from "@lucide/svelte/icons/code";
-
-	import * as Dialog from "$lib/registry/ui/dialog/index.js";
+	import { Context } from "runed";
 	import { MediaQuery } from "svelte/reactivity";
+	import * as Dialog from "$lib/registry/ui/dialog/index.js";
+	import { createFileTreeForRegistryItemFiles } from "$lib/registry/registry-utils.js";
 	import { badgeVariants } from "$lib/registry/ui/badge/badge.svelte";
+	import ComponentCodeViewerCode from "./component-code-viewer-code.svelte";
 	import type { HighlightedBlock } from "../../../routes/api/block/[block]/+server.js";
+	import type { Pane } from "paneforge";
 
 	type ComponentCodeViewerContextType = {
 		item: HighlightedBlock;
@@ -87,9 +86,7 @@
 	});
 
 	const isMobile = new MediaQuery("(max-width: 768px)");
-	const height = $derived(
-		isMobile.current ? "75dvh" : "calc(100svh - (var(--header-height) * 2))"
-	);
+	const height = $derived(isMobile.current ? "75dvh" : "calc(100svh - (var(--header-height) * 2))");
 	let contentRef = $state<HTMLElement | null>(null);
 </script>
 
@@ -103,9 +100,7 @@
 		showCloseButton={false}
 		onOpenAutoFocus={(e) => {
 			if (!contentRef) return;
-			const activeItem = contentRef.querySelector(
-				"button[data-active=true]"
-			) as HTMLElement | null;
+			const activeItem = contentRef.querySelector("button[data-active=true]") as HTMLElement | null;
 			if (activeItem) {
 				e.preventDefault();
 				activeItem.focus();

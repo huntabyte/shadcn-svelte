@@ -1,7 +1,7 @@
 <script lang="ts">
 	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	let { id }: { id: string } = $props();
 </script>

@@ -29,19 +29,16 @@
 			<div class="text-2xl font-medium">
 				{currentStyle?.title ?? "Vega"} - {currentFont?.title ?? "Inter"}
 			</div>
-			<div class="text-muted-foreground line-clamp-2 text-base">
-				Designers love packing quirky glyphs into test phrases. This is a preview of the
-				typography styles.
+			<div class="line-clamp-2 text-base text-muted-foreground">
+				Designers love packing quirky glyphs into test phrases. This is a preview of the typography
+				styles.
 			</div>
 		</div>
 		<div class="grid grid-cols-6 gap-3">
 			{#each colorVariants as variant (variant)}
-				<div
-					class="flex flex-col flex-wrap items-center gap-2"
-					style="--color: var({variant})"
-				>
+				<div class="flex flex-col flex-wrap items-center gap-2" style="--color: var({variant})">
 					<div
-						class="after:border-border relative aspect-square w-full rounded-lg bg-(--color) after:absolute after:inset-0 after:rounded-lg after:border after:mix-blend-darken dark:after:mix-blend-lighten"
+						class="relative aspect-square w-full rounded-lg bg-(--color) after:absolute after:inset-0 after:rounded-lg after:border after:border-border after:mix-blend-darken dark:after:mix-blend-lighten"
 					></div>
 					<div class="hidden max-w-14 truncate font-mono text-[0.60rem] md:block">
 						{variant}

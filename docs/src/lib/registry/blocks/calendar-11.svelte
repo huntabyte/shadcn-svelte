@@ -1,6 +1,6 @@
 <script lang="ts">
-	import RangeCalendar from "$lib/registry/ui/range-calendar/range-calendar.svelte";
 	import { CalendarDate } from "@internationalized/date";
+	import RangeCalendar from "$lib/registry/ui/range-calendar/range-calendar.svelte";
 	import type { DateRange } from "bits-ui";
 
 	let value = $state<DateRange>({
@@ -17,5 +17,5 @@
 		maxValue={new CalendarDate(2025, 7, 31)}
 		class="rounded-lg border shadow-sm"
 	/>
-	<div class="text-muted-foreground text-center text-xs">We are open in June and July only.</div>
+	<div class="text-center text-xs text-muted-foreground">We are open in June and July only.</div>
 </div>

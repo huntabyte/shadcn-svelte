@@ -1,9 +1,9 @@
 <script lang="ts">
 	import ArrowRight from "@lucide/svelte/icons/arrow-right";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as ButtonGroup from "$lib/registry/ui/button-group/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Input } from "$lib/registry/ui/input/index.js";
 
 	const CURRENCIES = [
 		{

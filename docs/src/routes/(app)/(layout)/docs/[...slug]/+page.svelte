@@ -1,18 +1,18 @@
 <script lang="ts">
-	import { Badge } from "$lib/registry/ui/badge/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import ArrowUpRight from "@lucide/svelte/icons/arrow-up-right";
+	import { page } from "$app/state";
 	import ArrowLeftIcon from "@lucide/svelte/icons/arrow-left";
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
-	import DocsToc from "$lib/components/docs-toc.svelte";
-	import { findNeighbors } from "$lib/navigation.js";
-	import { page } from "$app/state";
-	import Cta from "$lib/components/cta.svelte";
+	import ArrowUpRight from "@lucide/svelte/icons/arrow-up-right";
 	import ComponentCodeViewer from "$lib/components/component-code-viewer/component-code-viewer.svelte";
-	import Metadata from "$lib/components/metadata.svelte";
-	import Ethical from "$lib/components/ethical.svelte";
-	import DocsCopyPage from "$lib/components/docs-copy-page.svelte";
 	import CtaMobile from "$lib/components/cta-mobile.svelte";
+	import Cta from "$lib/components/cta.svelte";
+	import DocsCopyPage from "$lib/components/docs-copy-page.svelte";
+	import DocsToc from "$lib/components/docs-toc.svelte";
+	import Ethical from "$lib/components/ethical.svelte";
+	import Metadata from "$lib/components/metadata.svelte";
+	import { findNeighbors } from "$lib/navigation.js";
+	import { Badge } from "$lib/registry/ui/badge/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	let { data } = $props();
 
@@ -64,7 +64,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 	<div class="flex min-w-0 flex-1 flex-col">
 		<div class="h-(--top-spacing) shrink-0"></div>
 		<div
-			class="text-foreground dark:text-foreground mx-auto flex w-full max-w-[40rem] min-w-0 flex-1 flex-col gap-6 px-4 py-6 md:px-0 lg:py-8"
+			class="mx-auto flex w-full max-w-[40rem] min-w-0 flex-1 flex-col gap-6 px-4 py-6 text-foreground md:px-0 lg:py-8 dark:text-foreground"
 		>
 			<div class="flex flex-col gap-2">
 				<div class="flex flex-col gap-2">
@@ -104,7 +104,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 					</div>
 					{#if data.metadata.description}
 						<p
-							class="text-muted-foreground text-[1.05rem] sm:text-base sm:text-balance md:max-w-[80%]"
+							class="text-[1.05rem] text-muted-foreground sm:text-base sm:text-balance md:max-w-[80%]"
 						>
 							{doc.description}
 						</p>
@@ -113,23 +113,13 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 				{#if apiLink || docLink || source}
 					<div class="flex items-center space-x-2 pt-4">
 						{#if docLink}
-							<Badge
-								href={docLink}
-								variant="secondary"
-								target="_blank"
-								rel="noreferrer"
-							>
+							<Badge href={docLink} variant="secondary" target="_blank" rel="noreferrer">
 								Docs
 								<ArrowUpRight aria-hidden="true" />
 							</Badge>
 						{/if}
 						{#if apiLink}
-							<Badge
-								href={apiLink}
-								variant="secondary"
-								target="_blank"
-								rel="noreferrer"
-							>
+							<Badge href={apiLink} variant="secondary" target="_blank" rel="noreferrer">
 								API Reference <ArrowUpRight aria-hidden="true" />
 							</Badge>
 						{/if}
@@ -146,10 +136,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 				<Markdown viewerData={data.viewerData} />
 			</div>
 			{#if !isChangelog}
-				<div
-					class="hidden h-16 w-full items-center gap-2 px-4 sm:flex sm:px-0"
-					data-llm-ignore
-				>
+				<div class="hidden h-16 w-full items-center gap-2 px-4 sm:flex sm:px-0" data-llm-ignore>
 					{#if neighbors.previous}
 						<Button
 							size="sm"

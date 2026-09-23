@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
-	import * as Empty from "$lib/registry/ui/empty/index.js";
-	import * as Avatar from "$lib/registry/ui/avatar/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as AlertDialog from "$lib/registry/ui/alert-dialog/index.js";
+	import * as Avatar from "$lib/registry/ui/avatar/index.js";
+	import * as Empty from "$lib/registry/ui/empty/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 
 <Example title="Empty">
@@ -41,8 +41,8 @@
 						<AlertDialog.Header>
 							<AlertDialog.Title>Are you absolutely sure?</AlertDialog.Title>
 							<AlertDialog.Description>
-								This action cannot be undone. This will permanently delete your
-								account and remove your data from our servers.
+								This action cannot be undone. This will permanently delete your account and remove
+								your data from our servers.
 							</AlertDialog.Description>
 						</AlertDialog.Header>
 						<AlertDialog.Footer>

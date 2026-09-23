@@ -1,9 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
 import * as acorn from "acorn";
+import * as svelte from "svelte/compiler";
 import { tsPlugin } from "@sveltejs/acorn-typescript";
 import { walk, type Node } from "estree-walker";
-import * as svelte from "svelte/compiler";
 import { registryItemSchema, type Registry } from "shadcn-svelte/schema";
 import { fonts } from "../src/lib/registry/fonts.js";
 
@@ -128,9 +128,7 @@ async function buildBlockRegistry(
 
 			// TODO: fix
 			const compPath =
-				isPage || isFile
-					? dirent.name
-					: path.join(path.basename(dirent.parentPath), dirent.name);
+				isPage || isFile ? dirent.name : path.join(path.basename(dirent.parentPath), dirent.name);
 			const filepath = path.join(blockPath, compPath);
 			const relativePath = path.relative(process.cwd(), filepath);
 			const source = fs.readFileSync(filepath, { encoding: "utf8" });

@@ -1,7 +1,7 @@
-import path from "node:path";
 import fs from "node:fs";
-import { fileURLToPath } from "node:url";
+import path from "node:path";
 import { createRequire } from "node:module";
+import { fileURLToPath } from "node:url";
 import type { PackageJson } from "type-fest";
 
 export function getCLIPackageInfo(): PackageJson {

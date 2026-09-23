@@ -1,11 +1,11 @@
 import * as p from "@clack/prompts";
-import color from "picocolors";
 import * as semver from "semver";
-import { CLIError, error } from "../../utils/errors.js";
-import { highlight } from "../../utils/colors.js";
-import { TW3_SITE_BASE_URL, SITE_BASE_URL } from "../../constants.js";
-import { getDependencyPackageInfo } from "../../utils/get-package-info.js";
+import color from "picocolors";
 import * as project from "../../utils/project.js";
+import { TW3_SITE_BASE_URL, SITE_BASE_URL } from "../../constants.js";
+import { highlight } from "../../utils/colors.js";
+import { CLIError, error } from "../../utils/errors.js";
+import { getDependencyPackageInfo } from "../../utils/get-package-info.js";
 
 /**
  * Runs preflight checks for the `init` command.

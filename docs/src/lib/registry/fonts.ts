@@ -1,5 +1,4 @@
 import { type RegistryItem } from "shadcn-svelte/schema";
-
 import { FONT_DEFINITIONS, type FontDefinition } from "../font-definitions.js";
 
 function createFontItem(definition: FontDefinition, role: "body" | "heading") {

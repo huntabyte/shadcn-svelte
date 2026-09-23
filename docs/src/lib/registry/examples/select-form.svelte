@@ -7,9 +7,9 @@
 </script>
 
 <script lang="ts">
+	import { toast } from "svelte-sonner";
 	import { defaults, superForm } from "sveltekit-superforms";
 	import { zod4 } from "sveltekit-superforms/adapters";
-	import { toast } from "svelte-sonner";
 	import * as Form from "$lib/registry/ui/form/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
 
@@ -35,7 +35,7 @@
 				<Form.Label>Email</Form.Label>
 				<Select.Root type="single" bind:value={$formData.email} name={props.name}>
 					<Select.Trigger {...props}>
-						{$formData.email ? $formData.email : "Select a verified email to display"}
+						<Select.Value placeholder="Select a verified email to display" />
 					</Select.Trigger>
 					<Select.Content>
 						<Select.Item value="m@example.com" label="m@example.com" />

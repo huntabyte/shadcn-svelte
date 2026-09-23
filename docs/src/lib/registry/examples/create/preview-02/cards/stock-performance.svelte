@@ -1,16 +1,16 @@
 <script lang="ts">
+	import { scaleBand } from "d3-scale";
+	import { curveNatural } from "d3-shape";
+	import { AreaChart } from "layerchart";
 	import { tick } from "svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { AreaChart } from "layerchart";
-	import { curveNatural } from "d3-shape";
-	import { scaleBand } from "d3-scale";
 
 	const TICKERS = ["VOO", "VIG", "AAPL", "MSFT", "GOOGL", "AMZN", "TSLA"] as const;
 
@@ -74,7 +74,7 @@
 								{...props}
 								variant="outline"
 								id="ticker-select"
-								class="bg-muted w-full justify-between font-normal"
+								class="w-full justify-between bg-muted font-normal"
 								role="combobox"
 								aria-expanded={open}
 							>
@@ -85,7 +85,7 @@
 									hugeicons="ArrowDown01Icon"
 									phosphor="CaretDownIcon"
 									remixicon="RiArrowDownSLine"
-									class="text-muted-foreground size-4 opacity-50"
+									class="size-4 text-muted-foreground opacity-50"
 								/>
 							</Button>
 						{/snippet}

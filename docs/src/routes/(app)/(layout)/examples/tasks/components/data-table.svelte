@@ -1,69 +1,56 @@
 <script lang="ts">
-	import {
-		type ColumnDef,
-		type ColumnFiltersState,
-		type PaginationState,
-		type RowSelectionState,
-		type SortingState,
-		type VisibilityState,
-		type Table as TableType,
-		getCoreRowModel,
-		getFacetedRowModel,
-		getFacetedUniqueValues,
-		getFilteredRowModel,
-		getPaginationRowModel,
-		getSortedRowModel,
-	} from "@tanstack/table-core";
-	import DataTableToolbar from "./data-table-toolbar.svelte";
-	import { createSvelteTable } from "$lib/registry/ui/data-table/data-table.svelte.js";
-	import FlexRender from "$lib/registry/ui/data-table/flex-render.svelte";
-	import * as Table from "$lib/registry/ui/table/index.js";
-	import { type Task } from "../data/schemas.js";
-	import { renderComponent, renderSnippet } from "$lib/registry/ui/data-table/render-helpers.js";
-	import Checkbox from "$lib/registry/ui/checkbox/checkbox.svelte";
-	import { createRawSnippet } from "svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import ColumnHeader from "./data-table-column-header.svelte";
-	import TitleCell from "./data-table-title-cell.svelte";
-	import StatusCell from "./data-table-status-cell.svelte";
-	import PriorityCell from "./data-table-priority-cell.svelte";
-	import RowActions from "./data-table-row-actions.svelte";
-	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 	import ChevronLeftIcon from "@lucide/svelte/icons/chevron-left";
+	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 	import ChevronsLeftIcon from "@lucide/svelte/icons/chevrons-left";
 	import ChevronsRightIcon from "@lucide/svelte/icons/chevrons-right";
+	import {
+		FlexRender,
+		type RowSelectionState,
+		createColumnHelper,
+		createTable,
+		createTableState,
+		renderComponent,
+		renderSnippet,
+		type SvelteTable,
+	} from "@tanstack/svelte-table";
+	import { createRawSnippet } from "svelte";
 	import * as Select from "$lib/registry/ui/select/index.js";
+	import * as Table from "$lib/registry/ui/table/index.js";
+	import Checkbox from "$lib/registry/ui/checkbox/checkbox.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import ColumnHeader from "./data-table-column-header.svelte";
+	import PriorityCell from "./data-table-priority-cell.svelte";
+	import RowActions from "./data-table-row-actions.svelte";
+	import StatusCell from "./data-table-status-cell.svelte";
+	import TitleCell from "./data-table-title-cell.svelte";
+	import DataTableToolbar from "./data-table-toolbar.svelte";
+	import { features, type TasksTableFeatures } from "./data-table-features.js";
+	import { type Task } from "../data/schemas.js";
 
 	let { data }: { data: Task[] } = $props();
 
-	let rowSelection = $state<RowSelectionState>({});
-	let columnVisibility = $state<VisibilityState>({});
-	let columnFilters = $state<ColumnFiltersState>([]);
-	let sorting = $state<SortingState>([]);
-	let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
+	const columnHelper = createColumnHelper<TasksTableFeatures, Task>();
 
-	const columns: ColumnDef<Task>[] = [
-		{
+	const columns = columnHelper.columns([
+		columnHelper.display({
 			id: "select",
 			header: ({ table }) =>
 				renderComponent(Checkbox, {
 					checked: table.getIsAllPageRowsSelected(),
-					onCheckedChange: (value) => table.toggleAllPageRowsSelected(value),
-					indeterminate:
-						table.getIsSomePageRowsSelected() && !table.getIsAllPageRowsSelected(),
+					onCheckedChange: (value: boolean) => table.toggleAllPageRowsSelected(value),
+					indeterminate: table.getIsSomePageRowsSelected() && !table.getIsAllPageRowsSelected(),
 					"aria-label": "Select all",
 				}),
 			cell: ({ row }) =>
 				renderComponent(Checkbox, {
 					checked: row.getIsSelected(),
-					onCheckedChange: (value) => row.toggleSelected(value),
+					onCheckedChange: (value: boolean) => row.toggleSelected(value),
 					"aria-label": "Select row",
 				}),
 			enableSorting: false,
 			enableHiding: false,
-		},
-		{
-			accessorKey: "id",
+		}),
+		columnHelper.accessor("id", {
 			header: ({ column }) => {
 				return renderComponent(ColumnHeader, {
 					column,
@@ -84,9 +71,8 @@
 			},
 			enableSorting: false,
 			enableHiding: false,
-		},
-		{
-			accessorKey: "title",
+		}),
+		columnHelper.accessor("title", {
 			header: ({ column }) => renderComponent(ColumnHeader, { column, title: "Title" }),
 			cell: ({ row }) => {
 				return renderComponent(TitleCell, {
@@ -94,9 +80,8 @@
 					value: row.original.title,
 				});
 			},
-		},
-		{
-			accessorKey: "status",
+		}),
+		columnHelper.accessor("status", {
 			header: ({ column }) =>
 				renderComponent(ColumnHeader, {
 					column,
@@ -110,9 +95,8 @@
 			filterFn: (row, id, value) => {
 				return value.includes(row.getValue(id));
 			},
-		},
-		{
-			accessorKey: "priority",
+		}),
+		columnHelper.accessor("priority", {
 			header: ({ column }) => {
 				return renderComponent(ColumnHeader, {
 					title: "Priority",
@@ -127,83 +111,36 @@
 			filterFn: (row, id, value) => {
 				return value.includes(row.getValue(id));
 			},
-		},
-		{
+		}),
+		columnHelper.display({
 			id: "actions",
 			cell: ({ row }) => renderComponent(RowActions, { row }),
-		},
-	];
+		}),
+	]);
 
-	const table = createSvelteTable({
+	// Keep row selection outside the table so the rest of the app can read or update it.
+	const [rowSelection, setRowSelection] = createTableState<RowSelectionState>({});
+
+	// v9 manages the rest of its state internally — reads like
+	// `table.getRowModel()` are rune-reactive, so no `$state` mirrors are needed.
+	const table = createTable({
+		features,
 		get data() {
 			return data;
 		},
-		state: {
-			get sorting() {
-				return sorting;
-			},
-			get columnVisibility() {
-				return columnVisibility;
-			},
-			get rowSelection() {
-				return rowSelection;
-			},
-			get columnFilters() {
-				return columnFilters;
-			},
-			get pagination() {
-				return pagination;
-			},
-		},
 		columns,
-		enableRowSelection: true,
-		onRowSelectionChange: (updater) => {
-			if (typeof updater === "function") {
-				rowSelection = updater(rowSelection);
-			} else {
-				rowSelection = updater;
-			}
+		state: {
+			get rowSelection() {
+				return rowSelection();
+			},
 		},
-		onSortingChange: (updater) => {
-			if (typeof updater === "function") {
-				sorting = updater(sorting);
-			} else {
-				sorting = updater;
-			}
-		},
-		onColumnFiltersChange: (updater) => {
-			if (typeof updater === "function") {
-				columnFilters = updater(columnFilters);
-			} else {
-				columnFilters = updater;
-			}
-		},
-		onColumnVisibilityChange: (updater) => {
-			if (typeof updater === "function") {
-				columnVisibility = updater(columnVisibility);
-			} else {
-				columnVisibility = updater;
-			}
-		},
-		onPaginationChange: (updater) => {
-			if (typeof updater === "function") {
-				pagination = updater(pagination);
-			} else {
-				pagination = updater;
-			}
-		},
-		getCoreRowModel: getCoreRowModel(),
-		getFilteredRowModel: getFilteredRowModel(),
-		getPaginationRowModel: getPaginationRowModel(),
-		getSortedRowModel: getSortedRowModel(),
-		getFacetedRowModel: getFacetedRowModel(),
-		getFacetedUniqueValues: getFacetedUniqueValues(),
+		onRowSelectionChange: setRowSelection,
 	});
 </script>
 
-{#snippet Pagination({ table }: { table: TableType<Task> })}
+{#snippet Pagination({ table }: { table: SvelteTable<TasksTableFeatures, Task> })}
 	<div class="flex items-center justify-between px-2">
-		<div class="text-muted-foreground flex-1 text-sm">
+		<div class="flex-1 text-sm text-muted-foreground">
 			{table.getFilteredSelectedRowModel().rows.length} of
 			{table.getFilteredRowModel().rows.length} row(s) selected.
 		</div>
@@ -213,13 +150,13 @@
 				<Select.Root
 					allowDeselect={false}
 					type="single"
-					value={`${table.getState().pagination.pageSize}`}
+					value={`${table.atoms.pagination.get().pageSize}`}
 					onValueChange={(value) => {
 						table.setPageSize(Number(value));
 					}}
 				>
 					<Select.Trigger class="h-8 w-[70px]">
-						{String(table.getState().pagination.pageSize)}
+						{String(table.atoms.pagination.get().pageSize)}
 					</Select.Trigger>
 					<Select.Content side="top">
 						{#each [10, 20, 30, 40, 50] as pageSize (pageSize)}
@@ -231,7 +168,7 @@
 				</Select.Root>
 			</div>
 			<div class="flex w-[100px] items-center justify-center text-sm font-medium">
-				Page {table.getState().pagination.pageIndex + 1} of
+				Page {table.atoms.pagination.get().pageIndex + 1} of
 				{table.getPageCount()}
 			</div>
 			<div class="flex items-center space-x-2">
@@ -286,10 +223,7 @@
 						{#each headerGroup.headers as header (header.id)}
 							<Table.Head colspan={header.colSpan}>
 								{#if !header.isPlaceholder}
-									<FlexRender
-										content={header.column.columnDef.header}
-										context={header.getContext()}
-									/>
+									<FlexRender {header} />
 								{/if}
 							</Table.Head>
 						{/each}
@@ -301,18 +235,13 @@
 					<Table.Row data-state={row.getIsSelected() && "selected"}>
 						{#each row.getVisibleCells() as cell (cell.id)}
 							<Table.Cell>
-								<FlexRender
-									content={cell.column.columnDef.cell}
-									context={cell.getContext()}
-								/>
+								<FlexRender {cell} />
 							</Table.Cell>
 						{/each}
 					</Table.Row>
 				{:else}
 					<Table.Row>
-						<Table.Cell colspan={columns.length} class="h-24 text-center">
-							No results.
-						</Table.Cell>
+						<Table.Cell colspan={columns.length} class="h-24 text-center">No results.</Table.Cell>
 					</Table.Row>
 				{/each}
 			</Table.Body>

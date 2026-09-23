@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { HTMLAttributes } from "svelte/elements";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import type { WithElementRef } from "$lib/utils.js";
 	import { cn } from "$lib/utils.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import type { HTMLAttributes } from "svelte/elements";
 
 	let {
 		ref = $bindable(null),

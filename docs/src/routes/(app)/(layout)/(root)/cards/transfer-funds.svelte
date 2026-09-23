@@ -50,12 +50,7 @@
 		<CardTitle>Transfer Funds</CardTitle>
 		<CardDescription>Move money between your connected accounts.</CardDescription>
 		<CardAction>
-			<Button
-				variant="ghost"
-				size="icon-sm"
-				class="bg-muted"
-				aria-label="Dismiss transfer funds"
-			>
+			<Button variant="ghost" size="icon-sm" class="bg-muted" aria-label="Dismiss transfer funds">
 				<IconPlaceholder
 					lucide="XIcon"
 					tabler="IconX"
@@ -114,12 +109,12 @@
 			<Item variant="muted" class="flex-col items-stretch">
 				<ItemContent class="gap-3">
 					<div class="flex items-center justify-between">
-						<span class="text-muted-foreground text-sm"> Estimated arrival </span>
+						<span class="text-sm text-muted-foreground"> Estimated arrival </span>
 						<span class="text-sm font-medium">Today, Apr 14</span>
 					</div>
 					<Separator></Separator>
 					<div class="flex items-center justify-between">
-						<span class="text-muted-foreground text-sm"> Transaction fee </span>
+						<span class="text-sm text-muted-foreground"> Transaction fee </span>
 						<span class="text-sm font-medium tabular-nums">$0.00</span>
 					</div>
 					<Separator></Separator>

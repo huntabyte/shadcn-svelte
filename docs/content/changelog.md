@@ -10,6 +10,7 @@ description: Latest updates and announcements.
 </script>
 
 ## October 2025 - New Components
+
 For this round of components, I looked at what we build every day, the boring stuff we rebuild over and over, and made reusable abstractions you can actually use.
 
 - [Spinner](/docs/components/spinner): An indicator to show a loading state.
@@ -77,7 +78,6 @@ It supports both vertical and horizontal scrolling, and is designed to provide a
 ### New Component: Resizable
 
 We've added a new component to the project, [Resizable](/docs/components/resizable), which is built on top of [PaneForge](https://paneforge.com). PaneForge is still in an early stage, so be sure to raise any issues you find with the library on the [PaneForge GitHub](https://github.com/svecosystem/paneforge).
-
 
 ### Updated Icon Imports
 
@@ -148,7 +148,6 @@ Pagination leverages the [Pagination](https://bits-ui.com/docs/components/pagina
 ## December 2023
 
 We've added three new components to the project, [Calendar](/docs/components/calendar), [Range Calendar](/docs/components/range-calendar), & [Date Picker](/docs/components/date-picker).
-
 
 ## November 2023
 

@@ -13,8 +13,7 @@
 		<div class="flex h-[140px] w-full items-end gap-2">
 			{#each bars as height, i (i)}
 				<div class="flex h-full flex-1 flex-col justify-end gap-1.5">
-					<Skeleton class="w-full rounded-t rounded-b-none" style={`height: ${height}%`}
-					></Skeleton>
+					<Skeleton class="w-full rounded-t rounded-b-none" style={`height: ${height}%`}></Skeleton>
 					<Skeleton class="mx-auto h-3 w-5 rounded-md"></Skeleton>
 				</div>
 			{/each}

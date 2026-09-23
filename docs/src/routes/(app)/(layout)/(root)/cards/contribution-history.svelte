@@ -34,10 +34,10 @@
 			{#each chartData as item (item.month)}
 				<div class="flex h-full flex-1 flex-col justify-end gap-2">
 					<div
-						class="bg-chart-2 min-h-2 rounded-t-md"
+						class="min-h-2 rounded-t-md bg-chart-2"
 						style={`height: ${(item.amount / maxAmount) * 100}%`}
 					></div>
-					<span class="text-muted-foreground text-center text-xs">
+					<span class="text-center text-xs text-muted-foreground">
 						{item.month}
 					</span>
 				</div>
@@ -49,23 +49,23 @@
 			<Item variant="muted" class="flex-col items-stretch">
 				<ItemContent class="gap-1">
 					<ItemDescription
-						class="text-muted-foreground text-xs font-medium tracking-wider uppercase"
+						class="text-xs font-medium tracking-wider text-muted-foreground uppercase"
 					>
 						Upcoming
 					</ItemDescription>
 					<span class="cn-font-heading text-base font-semibold"> May 2024 </span>
-					<span class="text-muted-foreground text-sm">Scheduled</span>
+					<span class="text-sm text-muted-foreground">Scheduled</span>
 				</ItemContent>
 			</Item>
 			<Item variant="muted" class="hidden flex-col items-stretch xl:flex">
 				<ItemContent class="gap-1">
 					<ItemDescription
-						class="text-muted-foreground text-xs font-medium tracking-wider uppercase"
+						class="text-xs font-medium tracking-wider text-muted-foreground uppercase"
 					>
 						Savings Plan
 					</ItemDescription>
 					<span class="cn-font-heading text-base font-semibold"> Accelerated </span>
-					<span class="text-muted-foreground text-sm">Recurring</span>
+					<span class="text-sm text-muted-foreground">Recurring</span>
 				</ItemContent>
 			</Item>
 		</div>

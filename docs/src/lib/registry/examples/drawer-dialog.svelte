@@ -2,9 +2,9 @@
 	import { MediaQuery } from "svelte/reactivity";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import * as Drawer from "$lib/registry/ui/drawer/index.js";
+	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
 	import { Label } from "$lib/registry/ui/label/index.js";
-	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
 
 	let open = $state(false);
 	const isDesktop = new MediaQuery("(min-width: 768px)");

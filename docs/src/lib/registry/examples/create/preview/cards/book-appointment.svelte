@@ -1,9 +1,9 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Alert from "$lib/registry/ui/alert/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
 <Card.Root>

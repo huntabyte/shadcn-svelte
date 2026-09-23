@@ -7,9 +7,7 @@
 	<Item.Root>
 		<Item.Content>
 			<Item.Title>Default Variant</Item.Title>
-			<Item.Description>
-				Standard styling with subtle background and borders.
-			</Item.Description>
+			<Item.Description>Standard styling with subtle background and borders.</Item.Description>
 		</Item.Content>
 		<Item.Actions>
 			<Button variant="outline" size="sm">Open</Button>

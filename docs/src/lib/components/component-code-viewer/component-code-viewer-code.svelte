@@ -10,6 +10,19 @@
 
 	function handleKeydown(event: KeyboardEvent) {
 		if (!codeContainer) return;
+		// Only take over select-all when the user is not typing somewhere else (e.g. the command
+		// menu input) and this code block is actually on screen.
+		if (
+			(event.target instanceof HTMLElement && event.target.isContentEditable) ||
+			event.target instanceof HTMLInputElement ||
+			event.target instanceof HTMLTextAreaElement ||
+			event.target instanceof HTMLSelectElement
+		) {
+			return;
+		}
+		if (typeof codeContainer.checkVisibility === "function" && !codeContainer.checkVisibility()) {
+			return;
+		}
 		if (event.key === "a" && (event.metaKey || event.ctrlKey)) {
 			event.preventDefault();
 			const range = document.createRange();
@@ -27,7 +40,7 @@
 
 {#if file}
 	<div
-		class="bg-code text-code-foreground flex h-(--height) overflow-hidden rounded-xl border group-data-[view=preview]/block-view-wrapper:hidden"
+		class="flex h-(--height) overflow-hidden rounded-xl border bg-code text-code-foreground group-data-[view=preview]/block-view-wrapper:hidden"
 	>
 		{#if showFileTree}
 			<div class="hidden w-72 md:block">

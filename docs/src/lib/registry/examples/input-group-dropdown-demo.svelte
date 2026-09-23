@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
 	import MoreHorizontalIcon from "@lucide/svelte/icons/more-horizontal";
+	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 </script>
 
 <div class="grid w-full max-w-sm gap-4">
@@ -12,12 +12,7 @@
 			<DropdownMenu.Root>
 				<DropdownMenu.Trigger>
 					{#snippet child({ props })}
-						<InputGroup.Button
-							{...props}
-							variant="ghost"
-							aria-label="More"
-							size="icon-xs"
-						>
+						<InputGroup.Button {...props} variant="ghost" aria-label="More" size="icon-xs">
 							<MoreHorizontalIcon />
 						</InputGroup.Button>
 					{/snippet}

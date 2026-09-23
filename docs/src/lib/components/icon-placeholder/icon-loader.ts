@@ -7,10 +7,20 @@ export const hugeiconsIconLoader = createIconLoader("hugeicons");
 export const phosphorIconLoader = createIconLoader("phosphor");
 export const remixiconIconLoader = createIconLoader("remixicon");
 
-export function createIconLoader(iconLibrary: IconLibraryName) {
+export type IconLoader = {
+	(icon: string): Promise<Component | null>;
+	/**
+	 * Returns the icon synchronously when it has already been loaded, `null` when the icon is
+	 * known to be missing, and `undefined` when it has not been requested yet. Lets callers skip
+	 * the async placeholder render for icons that are already in memory.
+	 */
+	peek: (icon: string) => Component | null | undefined;
+};
+
+export function createIconLoader(iconLibrary: IconLibraryName): IconLoader {
 	const preloadedIcons = new Map<string, Component | null>();
 
-	return async (icon: string) => {
+	const load = async (icon: string) => {
 		const preloadedIcon = preloadedIcons.get(icon);
 		if (preloadedIcon !== undefined) return preloadedIcon;
 
@@ -26,4 +36,8 @@ export function createIconLoader(iconLibrary: IconLibraryName) {
 
 		return Icon;
 	};
+
+	load.peek = (icon: string) => preloadedIcons.get(icon);
+
+	return load;
 }

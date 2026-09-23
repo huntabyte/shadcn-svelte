@@ -177,7 +177,7 @@ describe("getComponents", () => {
 		});
 
 		expect(result).toHaveLength(1);
-		expect(result[0].name).toBe("utils");
+		expect(result[0]?.name).toBe("utils");
 	});
 
 	it("skips directories that do not exist", async () => {
@@ -219,6 +219,6 @@ describe("getComponents", () => {
 		});
 
 		expect(result).toHaveLength(1);
-		expect(result[0].name).toBe("utils");
+		expect(result[0]?.name).toBe("utils");
 	});
 });

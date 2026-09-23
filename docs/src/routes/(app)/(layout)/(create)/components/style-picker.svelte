@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { STYLES } from "$lib/registry/config.js";
-	import LockButton from "./lock-button.svelte";
-	import * as Picker from "./picker/index.js";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
+	import { STYLES } from "$lib/registry/config.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
+	import * as Picker from "./picker/index.js";
+	import LockButton from "./lock-button.svelte";
 
 	type Props = {
 		submenu?: boolean;
@@ -24,8 +24,8 @@
 	<Picker.Root {submenu}>
 		<Picker.Trigger {submenu}>
 			<div class="flex flex-col justify-start text-left">
-				<div class="text-muted-foreground text-xs">Style</div>
-				<div class="text-foreground text-sm font-medium">
+				<div class="text-xs text-muted-foreground">Style</div>
+				<div class="text-sm font-medium text-foreground">
 					{currentStyle?.title}
 				</div>
 			</div>
@@ -47,16 +47,12 @@
 					{#each STYLES as style, i (style.name)}
 						<Picker.RadioItem value={style.name} closeOnSelect={false}>
 							<div class="flex items-start gap-2">
-								<div
-									class="flex size-4 translate-y-0.5 items-center justify-center"
-								>
+								<div class="flex size-4 translate-y-0.5 items-center justify-center">
 									<style.icon class="size-4" />
 								</div>
 								<div class="flex flex-col justify-start pointer-coarse:gap-1">
 									<div>{style.title}</div>
-									<div
-										class="text-muted-foreground! text-xs pointer-coarse:text-sm"
-									>
+									<div class="text-xs text-muted-foreground! pointer-coarse:text-sm">
 										{style.description}
 									</div>
 								</div>

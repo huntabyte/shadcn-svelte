@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as ButtonGroup from "$lib/registry/ui/button-group/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
 <ButtonGroup.Root>

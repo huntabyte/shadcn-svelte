@@ -1,0 +1,48 @@
+name: Parity Check
+
+on:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  base:
+    name: Parity Check (base)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Check base class parity
+        run: pnpm -F docs parity-check
+
+  variants:
+    name: Parity Check (variants)
+    runs-on: ubuntu-latest
+    # The generated registries are compared against the registry deployed at
+    # ui.shadcn.com, while our base sources and style CSS follow upstream `main`.
+    # When the deployed registry lags `main`, diffs here can be short-lived
+    # upstream skew. This job reports but does not block a PR.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Check generated registry parity
+        run: pnpm -F docs parity-check:variants

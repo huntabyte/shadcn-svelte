@@ -1,12 +1,12 @@
 <script lang="ts">
-	import * as Chart from "$lib/registry/ui/chart/index.js";
+	import { scaleUtc } from "d3-scale";
+	import { curveNatural } from "d3-shape";
+	import { Area, AreaChart, ChartClipPath } from "layerchart";
+	import { cubicInOut } from "svelte/easing";
 	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
-	import { scaleUtc } from "d3-scale";
-	import { Area, AreaChart, ChartClipPath } from "layerchart";
-	import { curveNatural } from "d3-shape";
-	import { cubicInOut } from "svelte/easing";
 
 	const chartData = [
 		{ date: new Date("2024-04-01"), desktop: 222, mobile: 150 },
@@ -210,24 +210,12 @@
 				{#snippet marks({ context })}
 					<defs>
 						<linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
-							<stop
-								offset="5%"
-								stop-color="var(--color-desktop)"
-								stop-opacity={1.0}
-							/>
-							<stop
-								offset="95%"
-								stop-color="var(--color-desktop)"
-								stop-opacity={0.1}
-							/>
+							<stop offset="5%" stop-color="var(--color-desktop)" stop-opacity={1.0} />
+							<stop offset="95%" stop-color="var(--color-desktop)" stop-opacity={0.1} />
 						</linearGradient>
 						<linearGradient id="fillMobile" x1="0" y1="0" x2="0" y2="1">
 							<stop offset="5%" stop-color="var(--color-mobile)" stop-opacity={0.8} />
-							<stop
-								offset="95%"
-								stop-color="var(--color-mobile)"
-								stop-opacity={0.1}
-							/>
+							<stop offset="95%" stop-color="var(--color-mobile)" stop-opacity={0.1} />
 						</linearGradient>
 					</defs>
 					<ChartClipPath
@@ -244,9 +232,7 @@
 								line={{ class: "stroke-1" }}
 								motion="tween"
 								{...s.props}
-								fill={s.key === "desktop"
-									? "url(#fillDesktop)"
-									: "url(#fillMobile)"}
+								fill={s.key === "desktop" ? "url(#fillDesktop)" : "url(#fillMobile)"}
 							/>
 						{/each}
 					</ChartClipPath>

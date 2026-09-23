@@ -1,20 +1,20 @@
-import color from "picocolors";
-import { Command, Option } from "commander";
-import { existsSync } from "node:fs";
 import path from "node:path";
 import process from "node:process";
-import { z } from "zod";
+import { existsSync } from "node:fs";
 import * as p from "@clack/prompts";
-import { ConfigError, error } from "../../utils/errors.js";
+import color from "picocolors";
+import { Command, Option } from "commander";
+import { z } from "zod";
 import * as cliConfig from "../../utils/config/index.js";
-import { intro, handleError } from "../../utils/prompt-helpers.js";
 import * as registry from "../../utils/registry/index.js";
-import { preflightInit } from "../init/preflight.js";
-import { addRegistryItems } from "../../utils/add-registry-items.js";
-import { getEnvProxy } from "../../utils/get-env-proxy.js";
-import { highlight } from "../../utils/colors.js";
 import { type PresetConfig, decodePreset, encodePreset } from "../../preset/index.js";
+import { addRegistryItems } from "../../utils/add-registry-items.js";
+import { highlight } from "../../utils/colors.js";
+import { ConfigError, error } from "../../utils/errors.js";
+import { getEnvProxy } from "../../utils/get-env-proxy.js";
 import { installDependencies } from "../../utils/install-deps.js";
+import { intro, handleError } from "../../utils/prompt-helpers.js";
+import { preflightInit } from "../init/preflight.js";
 
 const ONLY_OPTIONS = ["font", "theme"] as const;
 
@@ -26,6 +26,7 @@ const initOptionsSchema = z.object({
 	silent: z.boolean(),
 	skipPreflight: z.boolean(),
 	proxy: z.string().optional(),
+	depsInstall: z.boolean(),
 });
 
 type InitOptions = z.infer<typeof initOptionsSchema>;
@@ -43,6 +44,7 @@ export const apply = new Command()
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
 	.option("-y, --yes", "skip confirmation prompt", false)
 	.option("-s, --silent", "mute output", false)
+	.option("--no-deps-install", "add dependencies to package.json without running install")
 	.option("--skip-preflight", "ignore preflight checks and continue", false)
 	.option("--proxy <proxy>", "fetch items from registry using a proxy", getEnvProxy())
 	.action(async (preset, opts) => {
@@ -78,8 +80,7 @@ export const apply = new Command()
 
 			await runApply({ cwd, config, decidedPresets: presetConfig, options });
 
-			if (!options.silent)
-				p.outro(`Preset ${color.bold(providedPreset)} applied successfully.`);
+			if (!options.silent) p.outro(`Preset ${color.bold(providedPreset)} applied successfully.`);
 		} catch (e) {
 			handleError(e);
 		}
@@ -150,5 +151,6 @@ export async function runApply({
 		dependencies: Array.from(result.dependencies),
 		devDependencies: Array.from(result.devDependencies),
 		silent: options.silent,
+		install: options.depsInstall,
 	});
 }

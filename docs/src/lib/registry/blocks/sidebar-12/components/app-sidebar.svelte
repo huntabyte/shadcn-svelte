@@ -24,18 +24,18 @@
 </script>
 
 <script lang="ts">
+	import PlusIcon from "@lucide/svelte/icons/plus";
+	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import Calendars from "./calendars.svelte";
 	import DatePicker from "./date-picker.svelte";
 	import NavUser from "./nav-user.svelte";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import PlusIcon from "@lucide/svelte/icons/plus";
 	import type { ComponentProps } from "svelte";
 
 	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();
 </script>
 
 <Sidebar.Root bind:ref {...restProps}>
-	<Sidebar.Header class="border-sidebar-border h-16 border-b">
+	<Sidebar.Header class="h-16 border-b border-sidebar-border">
 		<NavUser user={data.user} />
 	</Sidebar.Header>
 	<Sidebar.Content>

@@ -66,10 +66,7 @@
 
 		const replaceTemplate = (
 			str: string,
-			obj: Record<
-				string,
-				Record<string, Record<string, string>> | Record<string, string> | string
-			>
+			obj: Record<string, Record<string, Record<string, string>> | Record<string, string> | string>
 		) => {
 			let result = str;
 			for (const key in obj) {
@@ -78,14 +75,9 @@
 					const value = obj[key];
 					if (
 						typeof value === "object" &&
-						typeof (value as Record<string, string | Record<string, string>>)[k] ===
-							"string"
+						typeof (value as Record<string, string | Record<string, string>>)[k] === "string"
 					) {
-						return (
-							((value as Record<string, string | Record<string, string>>)[
-								k
-							] as string) ?? ""
-						);
+						return ((value as Record<string, string | Record<string, string>>)[k] as string) ?? "";
 					}
 					return "";
 				});
@@ -162,19 +154,19 @@
 </script>
 
 <script lang="ts">
-	import { baseColors, baseColorsOKLCH } from "$lib/registry/registry-base-colors.js";
+	import IconCopy from "@tabler/icons-svelte/icons/copy";
 	import { setTheme } from "mode-watcher";
-	import { ScrollArea } from "$lib/registry/ui/scroll-area/index.js";
-	import { cn } from "$lib/utils.js";
+	import * as Dialog from "$lib/registry/ui/dialog/index.js";
+	import * as Drawer from "$lib/registry/ui/drawer/index.js";
+	import * as Select from "$lib/registry/ui/select/index.js";
+	import { baseColors, baseColorsOKLCH } from "$lib/registry/registry-base-colors.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Label } from "$lib/registry/ui/label/index.js";
-	import * as Select from "$lib/registry/ui/select/index.js";
-	import * as Drawer from "$lib/registry/ui/drawer/index.js";
-	import * as Dialog from "$lib/registry/ui/dialog/index.js";
-	import type { HTMLAttributes } from "svelte/elements";
+	import { ScrollArea } from "$lib/registry/ui/scroll-area/index.js";
 	import { UserConfigContext, type ActiveTheme } from "$lib/user-config.svelte.js";
-	import IconCopy from "@tabler/icons-svelte/icons/copy";
+	import { cn } from "$lib/utils.js";
 	import ThemeCustomizerCode from "./theme-customizer-code.svelte";
+	import type { HTMLAttributes } from "svelte/elements";
 	interface Props extends HTMLAttributes<HTMLElement> {
 		class?: string;
 	}
@@ -223,7 +215,7 @@
 					variant="link"
 					size="sm"
 					data-active={coercedActiveTheme === theme.name}
-					class="text-muted-foreground hover:text-primary data-[active=true]:text-primary flex h-7 cursor-pointer items-center justify-center px-4 text-center text-base font-medium capitalize transition-colors hover:no-underline"
+					class="flex h-7 cursor-pointer items-center justify-center px-4 text-center text-base font-medium text-muted-foreground capitalize transition-colors hover:text-primary hover:no-underline data-[active=true]:text-primary"
 					onclick={() => {
 						userConfig.setConfig({ activeTheme: theme.name as ActiveTheme });
 						setTheme(theme.name);

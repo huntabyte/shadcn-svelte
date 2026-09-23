@@ -4,12 +4,12 @@
 	import CircleCheckIcon from "@lucide/svelte/icons/circle-check";
 	import CircleHelpIcon from "@lucide/svelte/icons/circle-help";
 	import CircleXIcon from "@lucide/svelte/icons/circle-x";
-	import { type Component, tick } from "svelte";
 	import { useId } from "bits-ui";
-	import { cn } from "$lib/utils.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
+	import { type Component, tick } from "svelte";
 	import * as Command from "$lib/registry/ui/command/index.js";
+	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import { cn } from "$lib/utils.js";
 
 	type Status = {
 		value: string;
@@ -63,7 +63,7 @@
 </script>
 
 <div class="flex items-center space-x-4">
-	<p class="text-muted-foreground text-sm">Status</p>
+	<p class="text-sm text-muted-foreground">Status</p>
 	<Popover.Root bind:open>
 		<Popover.Trigger
 			id={triggerId}
@@ -99,8 +99,7 @@
 								<Icon
 									class={cn(
 										"me-2 size-4",
-										status.value !== selectedStatus?.value &&
-											"text-foreground/40"
+										status.value !== selectedStatus?.value && "text-foreground/40"
 									)}
 								/>
 

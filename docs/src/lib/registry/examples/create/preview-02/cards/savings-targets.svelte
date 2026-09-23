@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
 	import * as NativeSelect from "$lib/registry/ui/native-select/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Progress } from "$lib/registry/ui/progress/index.js";
 </script>
 
@@ -22,7 +22,7 @@
 				<Item.Root variant="muted" class="flex-col items-stretch">
 					<Item.Content class="gap-3">
 						<Item.Description
-							class="cn-font-heading text-muted-foreground text-xs font-medium tracking-wider uppercase"
+							class="cn-font-heading text-xs font-medium tracking-wider text-muted-foreground uppercase"
 						>
 							Retirement
 						</Item.Description>
@@ -30,14 +30,14 @@
 						<Progress value={65} />
 					</Item.Content>
 					<Item.Footer>
-						<span class="text-muted-foreground text-sm">65% achieved</span>
+						<span class="text-sm text-muted-foreground">65% achieved</span>
 						<span class="text-sm font-medium tabular-nums">$273,000</span>
 					</Item.Footer>
 				</Item.Root>
 				<Item.Root variant="muted" class="flex-col items-stretch">
 					<Item.Content class="gap-3">
 						<Item.Description
-							class="cn-font-heading text-muted-foreground text-xs font-medium tracking-wider uppercase"
+							class="cn-font-heading text-xs font-medium tracking-wider text-muted-foreground uppercase"
 						>
 							Real Estate
 						</Item.Description>
@@ -45,7 +45,7 @@
 						<Progress value={32} />
 					</Item.Content>
 					<Item.Footer>
-						<span class="text-muted-foreground text-sm">32% achieved</span>
+						<span class="text-sm text-muted-foreground">32% achieved</span>
 						<span class="text-sm font-medium tabular-nums">$27,200</span>
 					</Item.Footer>
 				</Item.Root>
@@ -79,17 +79,15 @@
 						<NativeSelect.Option value="limit">Limit Order</NativeSelect.Option>
 						<NativeSelect.Option value="stop">Stop Order</NativeSelect.Option>
 					</NativeSelect.Root>
-					<Field.Description
-						>Market orders execute at the current price.</Field.Description
-					>
+					<Field.Description>Market orders execute at the current price.</Field.Description>
 				</Field.Field>
 				<div class="flex flex-col gap-2">
 					<div class="flex items-center justify-between">
-						<span class="text-muted-foreground text-sm">Estimated Shares</span>
+						<span class="text-sm text-muted-foreground">Estimated Shares</span>
 						<span class="text-sm font-semibold tabular-nums">1.95</span>
 					</div>
 					<div class="flex items-center justify-between">
-						<span class="text-muted-foreground text-sm">Buying Power</span>
+						<span class="text-sm text-muted-foreground">Buying Power</span>
 						<span class="text-sm font-semibold tabular-nums">$12,450.00</span>
 					</div>
 				</div>

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import * as Menubar from "$lib/registry/ui/menubar/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	let showBookmarks = $state(true);
 	let showUrls = $state(false);
@@ -40,12 +40,8 @@
 				<Menubar.Separator />
 				<Menubar.Group>
 					<Menubar.Label inset>Appearance</Menubar.Label>
-					<Menubar.CheckboxItem inset bind:checked={showBookmarks}>
-						Bookmarks
-					</Menubar.CheckboxItem>
-					<Menubar.CheckboxItem inset bind:checked={showUrls}>
-						Full URLs
-					</Menubar.CheckboxItem>
+					<Menubar.CheckboxItem inset bind:checked={showBookmarks}>Bookmarks</Menubar.CheckboxItem>
+					<Menubar.CheckboxItem inset bind:checked={showUrls}>Full URLs</Menubar.CheckboxItem>
 				</Menubar.Group>
 				<Menubar.Separator />
 				<Menubar.Group>

@@ -76,9 +76,7 @@
 								closeAndFocusTrigger();
 							}}
 						>
-							<CheckIcon
-								class={cn(value !== framework.value && "text-transparent")}
-							/>
+							<CheckIcon class={cn(value !== framework.value && "text-transparent")} />
 							{framework.label}
 						</Command.Item>
 					{/each}

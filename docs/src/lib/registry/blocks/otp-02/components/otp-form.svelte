@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as InputOTP from "$lib/registry/ui/input-otp/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { cn } from "$lib/utils.js";
 
 	let className: string | undefined = undefined;
 	export { className as class };
@@ -13,7 +13,7 @@
 		<Field.Group>
 			<div class="flex flex-col items-center gap-1 text-center">
 				<h1 class="text-2xl font-bold">Enter verification code</h1>
-				<p class="text-muted-foreground text-sm text-balance">
+				<p class="text-sm text-balance text-muted-foreground">
 					We sent a 6-digit code to your email.
 				</p>
 			</div>

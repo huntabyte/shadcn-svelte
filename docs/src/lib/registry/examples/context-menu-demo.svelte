@@ -14,20 +14,20 @@
 		Right click here
 	</ContextMenu.Trigger>
 	<ContextMenu.Content class="w-52">
-		<ContextMenu.Item inset>
+		<ContextMenu.Item>
 			Back
 			<ContextMenu.Shortcut>⌘[</ContextMenu.Shortcut>
 		</ContextMenu.Item>
-		<ContextMenu.Item inset disabled>
+		<ContextMenu.Item disabled>
 			Forward
 			<ContextMenu.Shortcut>⌘]</ContextMenu.Shortcut>
 		</ContextMenu.Item>
-		<ContextMenu.Item inset>
+		<ContextMenu.Item>
 			Reload
 			<ContextMenu.Shortcut>⌘R</ContextMenu.Shortcut>
 		</ContextMenu.Item>
 		<ContextMenu.Sub>
-			<ContextMenu.SubTrigger inset>More Tools</ContextMenu.SubTrigger>
+			<ContextMenu.SubTrigger>More Tools</ContextMenu.SubTrigger>
 			<ContextMenu.SubContent class="w-48">
 				<ContextMenu.Item>
 					Save Page As...
@@ -40,16 +40,12 @@
 			</ContextMenu.SubContent>
 		</ContextMenu.Sub>
 		<ContextMenu.Separator />
-		<ContextMenu.CheckboxItem bind:checked={showBookmarks}>
-			Show Bookmarks
-		</ContextMenu.CheckboxItem>
-		<ContextMenu.CheckboxItem bind:checked={showFullURLs}>
-			Show Full URLs
-		</ContextMenu.CheckboxItem>
+		<ContextMenu.CheckboxItem bind:checked={showBookmarks}>Show Bookmarks</ContextMenu.CheckboxItem>
+		<ContextMenu.CheckboxItem bind:checked={showFullURLs}>Show Full URLs</ContextMenu.CheckboxItem>
 		<ContextMenu.Separator />
 		<ContextMenu.RadioGroup bind:value>
 			<ContextMenu.Group>
-				<ContextMenu.GroupHeading inset>People</ContextMenu.GroupHeading>
+				<ContextMenu.Label>People</ContextMenu.Label>
 				<ContextMenu.RadioItem value="pedro">Pedro Duarte</ContextMenu.RadioItem>
 				<ContextMenu.RadioItem value="colm">Colm Tuite</ContextMenu.RadioItem>
 			</ContextMenu.Group>

@@ -1,13 +1,13 @@
 <script lang="ts">
-	import WelcomeDialog from "../components/welcome-dialog.svelte";
-	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import Metadata from "$lib/components/metadata.svelte";
 	import SiteHeader from "$lib/components/site-header.svelte";
-	import Customizer from "../components/customizer.svelte";
-	import ActionMenu from "../components/action-menu.svelte";
-	import InitializeDialog from "../components/initialize-dialog.svelte";
-	import { OG_IMAGE_BASE_URL } from "../../../../og/og.js";
+	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { cn } from "$lib/utils.js";
+	import ActionMenu from "../components/action-menu.svelte";
+	import Customizer from "../components/customizer.svelte";
+	import InitializeDialog from "../components/initialize-dialog.svelte";
+	import WelcomeDialog from "../components/welcome-dialog.svelte";
+	import { OG_IMAGE_BASE_URL } from "../../../../og/og.js";
 
 	let { children } = $props();
 
@@ -29,7 +29,7 @@
 		<div
 			data-slot="layout"
 			class={cn(
-				"group/layout section-soft relative z-10 flex h-svh flex-col overflow-hidden",
+				"group/layout relative z-10 flex h-svh flex-col overflow-hidden section-soft",
 				"[--customizer-width:--spacing(56)] [--gap:--spacing(4)] md:[--gap:--spacing(6)]",
 				"[--preview-height:calc(100svh-var(--header-height)-2rem-150px)] md:[--preview-height:calc(100svh-var(--header-height)-2rem)]"
 			)}

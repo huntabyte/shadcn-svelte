@@ -1,5 +1,4 @@
 import { describe, expect, it } from "vitest";
-
 import {
 	decodePreset,
 	DEFAULT_PRESET_CONFIG,

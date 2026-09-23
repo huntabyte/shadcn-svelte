@@ -1,8 +1,8 @@
 <script lang="ts">
 	import * as ButtonGroup from "$lib/registry/ui/button-group/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Kbd from "$lib/registry/ui/kbd/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
 <div class="flex flex-wrap gap-4">

@@ -119,7 +119,7 @@ Copy and paste the following code into your project.
 ### Outline
 
 <ComponentPreview name="button-outline" description="A button using the outline variant." class="mb-4">
-  
+
 <div></div>
 
 </ComponentPreview>
@@ -131,9 +131,9 @@ Copy and paste the following code into your project.
 ### Secondary
 
 <ComponentPreview name="button-secondary" description="A secondary button" class="mb-4">
-  
+
 <div></div>
-  
+
 </ComponentPreview>
 
 ```svelte
@@ -143,7 +143,7 @@ Copy and paste the following code into your project.
 ### Ghost
 
 <ComponentPreview name="button-ghost" description="A button using the ghost variant" class="mb-4">
-  
+
 <div></div>
 
 </ComponentPreview>

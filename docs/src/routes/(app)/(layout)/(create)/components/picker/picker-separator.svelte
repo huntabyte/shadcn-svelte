@@ -13,7 +13,7 @@
 	bind:ref
 	data-slot="dropdown-menu-separator"
 	class={cn(
-		"[[data-slot=dropdown-menu-sub-content]_&]:bg-border -mx-1.5 my-1.5 h-px bg-neutral-600 dark:bg-neutral-700",
+		"-mx-1.5 my-1.5 h-px bg-neutral-600 dark:bg-neutral-700 [[data-slot=dropdown-menu-sub-content]_&]:bg-border",
 		className
 	)}
 	{...restProps}

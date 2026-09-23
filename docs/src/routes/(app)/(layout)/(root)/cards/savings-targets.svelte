@@ -21,8 +21,8 @@
 	<CardHeader>
 		<CardTitle>Savings Targets</CardTitle>
 		<CardDescription>
-			Active milestones for 2024 across your portfolio. Monitor how close you are to each
-			savings goal.
+			Active milestones for 2024 across your portfolio. Monitor how close you are to each savings
+			goal.
 		</CardDescription>
 	</CardHeader>
 	<CardContent>
@@ -30,7 +30,7 @@
 			<Item role="listitem" variant="muted" class="flex-col items-stretch">
 				<ItemContent class="gap-3">
 					<ItemDescription
-						class="cn-font-heading text-muted-foreground text-xs font-medium tracking-wider uppercase"
+						class="cn-font-heading text-xs font-medium tracking-wider text-muted-foreground uppercase"
 					>
 						Retirement
 					</ItemDescription>
@@ -38,14 +38,14 @@
 					<Progress value={65} aria-label="Retirement savings progress"></Progress>
 				</ItemContent>
 				<ItemFooter>
-					<span class="text-muted-foreground text-sm"> 65% achieved </span>
+					<span class="text-sm text-muted-foreground"> 65% achieved </span>
 					<span class="text-sm font-medium tabular-nums">$273,000</span>
 				</ItemFooter>
 			</Item>
 			<Item role="listitem" variant="muted" class="flex-col items-stretch">
 				<ItemContent class="gap-3">
 					<ItemDescription
-						class="cn-font-heading text-muted-foreground text-xs font-medium tracking-wider uppercase"
+						class="cn-font-heading text-xs font-medium tracking-wider text-muted-foreground uppercase"
 					>
 						Real Estate
 					</ItemDescription>
@@ -53,7 +53,7 @@
 					<Progress value={32} aria-label="Real estate savings progress"></Progress>
 				</ItemContent>
 				<ItemFooter>
-					<span class="text-muted-foreground text-sm"> 32% achieved </span>
+					<span class="text-sm text-muted-foreground"> 32% achieved </span>
 					<span class="text-sm font-medium tabular-nums">$27,200</span>
 				</ItemFooter>
 			</Item>

@@ -1,7 +1,7 @@
 <script lang="ts">
+	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 </script>
 
 <header
@@ -16,7 +16,7 @@
 				href="https://github.com/shadcn-ui/ui/tree/main/apps/v4/app/(examples)/dashboard"
 				variant="ghost"
 				size="sm"
-				class="dark:text-foreground hidden sm:flex"
+				class="hidden sm:flex dark:text-foreground"
 				target="_blank"
 				rel="noopener noreferrer"
 			>

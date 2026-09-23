@@ -2,11 +2,11 @@
 	import CalendarIcon from "@lucide/svelte/icons/calendar";
 	import { CalendarDate, getLocalTimeZone, type DateValue } from "@internationalized/date";
 	import { untrack } from "svelte";
+	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import Calendar from "$lib/registry/ui/calendar/calendar.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
 	import { Label } from "$lib/registry/ui/label/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 
 	function formatDate(date: DateValue | undefined) {
 		if (!date) return "";
@@ -41,11 +41,7 @@
 					const date = new Date(v);
 					inputValue = v;
 					if (isValidDate(date)) {
-						value = new CalendarDate(
-							date.getFullYear(),
-							date.getMonth(),
-							date.getDate()
-						);
+						value = new CalendarDate(date.getFullYear(), date.getMonth(), date.getDate());
 					}
 				}
 			}
@@ -59,11 +55,7 @@
 		<Popover.Root bind:open>
 			<Popover.Trigger id="{id}-date-picker">
 				{#snippet child({ props })}
-					<Button
-						{...props}
-						variant="ghost"
-						class="absolute end-2 top-1/2 size-6 -translate-y-1/2"
-					>
+					<Button {...props} variant="ghost" class="absolute end-2 top-1/2 size-6 -translate-y-1/2">
 						<CalendarIcon class="size-3.5" />
 						<span class="sr-only">Select date</span>
 					</Button>

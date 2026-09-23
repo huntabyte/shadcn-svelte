@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { formatDateRange } from "little-date";
 	import PlusIcon from "@lucide/svelte/icons/plus";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import Calendar from "$lib/registry/ui/calendar/calendar.svelte";
-	import * as Card from "$lib/registry/ui/card/index.js";
 	import { CalendarDate, getLocalTimeZone, type DateValue } from "@internationalized/date";
+	import { formatDateRange } from "little-date";
+	import * as Card from "$lib/registry/ui/card/index.js";
+	import Calendar from "$lib/registry/ui/calendar/calendar.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const events = [
 		{
@@ -48,10 +48,10 @@
 		<div class="flex w-full flex-col gap-2">
 			{#each events as event (event.title)}
 				<div
-					class="bg-muted after:bg-primary/70 relative rounded-md p-2 ps-6 text-sm after:absolute after:inset-y-2 after:start-2 after:w-1 after:rounded-full"
+					class="relative rounded-md bg-muted p-2 ps-6 text-sm after:absolute after:inset-y-2 after:start-2 after:w-1 after:rounded-full after:bg-primary/70"
 				>
 					<div class="font-medium">{event.title}</div>
-					<div class="text-muted-foreground text-xs">
+					<div class="text-xs text-muted-foreground">
 						{formatDateRange(new Date(event.start), new Date(event.end))}
 					</div>
 				</div>

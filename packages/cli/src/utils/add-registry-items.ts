@@ -1,14 +1,16 @@
 import path from "node:path";
 import { existsSync, promises as fs } from "node:fs";
-import color from "picocolors";
-import merge from "deepmerge";
 import * as p from "@clack/prompts";
+import merge from "deepmerge";
+import color from "picocolors";
 import * as registry from "./registry/index.js";
 import { highlight } from "./colors.js";
-import { cancel, prettifyList } from "./prompt-helpers.js";
 import { shadcnSvelteTailwindCssImport } from "./css.js";
+import { getSupportedFontMarkers, type FontMarkerSource } from "./font-markers.js";
+import { setupFonts, type Font } from "./fonts.js";
+import { silentOutput } from "./node-utils.js";
+import { cancel, prettifyList } from "./prompt-helpers.js";
 import { transformCss } from "./transform-css.js";
-import type { ResolvedConfig } from "./config/index.js";
 import {
 	transform,
 	transformFont,
@@ -17,9 +19,7 @@ import {
 	transformMenu,
 	transformStripTypes,
 } from "./transformers/index.js";
-import { getSupportedFontMarkers, type FontMarkerSource } from "./font-markers.js";
-import { setupFonts, type Font } from "./fonts.js";
-import { silentOutput } from "./node-utils.js";
+import type { ResolvedConfig } from "./config/index.js";
 
 const STYLE_TYPES = ["registry:style", "registry:theme"];
 
@@ -133,9 +133,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 
 			if (!opts.overwrite && existingItems.includes(item.name)) {
 				if (selectedItems.has(item.name)) {
-					p.log.warn(
-						`Item ${highlight(item.name)} already exists at ${color.gray(itemPath)}`
-					);
+					p.log.warn(`Item ${highlight(item.name)} already exists at ${color.gray(itemPath)}`);
 
 					const overwrite = await p.confirm({
 						message: `Would you like to ${color.bold(color.red("overwrite"))} your existing ${highlight(item.name)} ${item.type}?`,

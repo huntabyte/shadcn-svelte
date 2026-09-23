@@ -135,12 +135,12 @@
 </script>
 
 <script lang="ts">
+	import CommandIcon from "@lucide/svelte/icons/command";
+	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import NavMain from "./nav-main.svelte";
 	import NavProjects from "./nav-projects.svelte";
 	import NavSecondary from "./nav-secondary.svelte";
 	import NavUser from "./nav-user.svelte";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import CommandIcon from "@lucide/svelte/icons/command";
 	import type { ComponentProps } from "svelte";
 
 	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();
@@ -154,7 +154,7 @@
 					{#snippet child({ props })}
 						<a href="##" {...props}>
 							<div
-								class="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg"
+								class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground"
 							>
 								<CommandIcon class="size-4" />
 							</div>

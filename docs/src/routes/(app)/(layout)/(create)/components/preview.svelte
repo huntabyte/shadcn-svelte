@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { cn } from "$lib/utils.js";
 	import PreviewSwitcher from "./preview-switcher.svelte";
 
 	type Props = {
@@ -16,12 +16,10 @@
 
 <div
 	data-slot="preview"
-	class="border-border relative -mx-1 flex flex-1 flex-col justify-center overflow-hidden rounded-2xl border sm:mx-0"
+	class="relative -mx-1 flex flex-1 flex-col justify-center overflow-hidden rounded-2xl border border-border sm:mx-0"
 >
 	<div
-		class={cn(
-			"z-0 mx-auto flex max-h-(--preview-height) w-full flex-1 flex-col overflow-y-auto"
-		)}
+		class={cn("z-0 mx-auto flex max-h-(--preview-height) w-full flex-1 flex-col overflow-y-auto")}
 	>
 		<Button
 			href="/preview/{item}{new URL(designSystem.shareUrl).search}&fromPreview=true"

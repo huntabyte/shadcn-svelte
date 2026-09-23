@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import CopyIcon from "@lucide/svelte/icons/copy";
 	import CornerDownLeftIcon from "@lucide/svelte/icons/corner-down-left";
 	import RefreshCwIcon from "@lucide/svelte/icons/refresh-cw";
+	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 </script>
 
 <div class="grid w-full max-w-md gap-4">
@@ -21,9 +21,7 @@
 					stroke-linejoin="round"
 					class="lucide lucide-file-code"
 				>
-					<path
-						d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
-					/>
+					<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
 					<polyline points="14,2 14,8 20,8" />
 					<path d="m10 13-2 2 2 2" />
 					<path d="m14 17 2-2-2-2" />

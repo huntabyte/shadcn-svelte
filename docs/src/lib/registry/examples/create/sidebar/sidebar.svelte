@@ -1,9 +1,9 @@
 <script lang="ts">
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Label } from "$lib/registry/ui/label/index.js";
 
 	const data = {
 		versions: ["1.0.1", "1.1.0-alpha", "2.0.0-beta1"],
@@ -235,11 +235,11 @@
 		</header>
 		<div class="flex flex-1 flex-col gap-4 p-4">
 			<div class="grid auto-rows-min gap-4 md:grid-cols-3">
-				<div class="bg-muted/50 aspect-video rounded-xl"></div>
-				<div class="bg-muted/50 aspect-video rounded-xl"></div>
-				<div class="bg-muted/50 aspect-video rounded-xl"></div>
+				<div class="aspect-video rounded-xl bg-muted/50"></div>
+				<div class="aspect-video rounded-xl bg-muted/50"></div>
+				<div class="aspect-video rounded-xl bg-muted/50"></div>
 			</div>
-			<div class="bg-muted/50 min-h-screen flex-1 rounded-xl md:min-h-min"></div>
+			<div class="min-h-screen flex-1 rounded-xl bg-muted/50 md:min-h-min"></div>
 		</div>
 	</Sidebar.Inset>
 </Sidebar.Provider>

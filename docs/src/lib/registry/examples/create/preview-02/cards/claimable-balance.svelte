@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
+	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
 </script>
 
@@ -18,16 +18,16 @@
 		<Item.Root variant="muted" class="flex-col items-stretch">
 			<Item.Content class="gap-3">
 				<div class="flex items-center justify-between">
-					<span class="text-muted-foreground text-sm">Net Royalties</span>
+					<span class="text-sm text-muted-foreground">Net Royalties</span>
 					<span class="text-sm font-medium tabular-nums">$0.00</span>
 				</div>
 				<div class="flex items-center justify-between">
-					<span class="text-muted-foreground text-sm">Processing Fee</span>
+					<span class="text-sm text-muted-foreground">Processing Fee</span>
 					<span class="text-sm font-medium tabular-nums">-$0.00</span>
 				</div>
 				<Separator />
 				<div class="flex items-center justify-between">
-					<span class="text-muted-foreground text-sm">Total Ready to Claim</span>
+					<span class="text-sm text-muted-foreground">Total Ready to Claim</span>
 					<span class="text-sm font-semibold tabular-nums">$0.00 USD</span>
 				</div>
 			</Item.Content>

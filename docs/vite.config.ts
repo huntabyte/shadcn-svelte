@@ -1,10 +1,17 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
+import { enhancedImages } from "@sveltejs/enhanced-img";
 import { sveltekit } from "@sveltejs/kit/vite";
 import { visualizer } from "rollup-plugin-visualizer";
-import { enhancedImages } from "@sveltejs/enhanced-img";
+import { defineConfig } from "vite";
+import packageJson from "./package.json" with { type: "json" };
+
+// NOTE: the registry (`static/registry`, `src/__registry__`) is intentionally NOT built here.
+// Building it during config load costs ~15s on every server (re)start, and importing the
+// build script from the config makes every source file it touches a "config dependency"
+// that restarts the whole dev server on change. Run `pnpm build:registry` (done by
+// `pnpm sync` / `pnpm build`) or `pnpm dev`, which runs `dev:registry` in watch mode.
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 export const veliteDirPath = path.join(__dirname, ".velite");
@@ -72,36 +79,6 @@ export default defineConfig({
 		},
 	},
 	ssr: {
-		noExternal: [
-			"@dnd-kit-svelte/svelte",
-			"@dnd-kit/abstract",
-			"@dnd-kit/collision",
-			"@dnd-kit/helpers",
-			"@hugeicons/core-free-icons",
-			"@hugeicons/svelte",
-			"@internationalized/date",
-			"@lucide/svelte",
-			"@sveltejs/kit",
-			"@tabler/icons-svelte",
-			"bits-ui",
-			"clsx",
-			"d3-scale",
-			"d3-shape",
-			"formsnap",
-			"layerchart",
-			"mode-watcher",
-			"package-manager-detector",
-			"paneforge",
-			"phosphor-svelte",
-			"qrcode",
-			"remixicon-svelte",
-			"runed",
-			"svelte-toolbelt",
-			"sveltekit-superforms",
-			"tailwind-merge",
-			"tailwind-variants",
-			"vaul-svelte",
-			"zod",
-		],
+		noExternal: Object.keys(packageJson.devDependencies),
 	},
 });

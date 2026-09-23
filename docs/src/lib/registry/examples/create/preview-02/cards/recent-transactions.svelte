@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Table from "$lib/registry/ui/table/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
 <Card.Root>
@@ -19,7 +19,7 @@
 			<Table.Body>
 				<Table.Row>
 					<Table.Cell class="w-10">
-						<div class="bg-muted flex size-10 items-center justify-center rounded-lg">
+						<div class="flex size-10 items-center justify-center rounded-lg bg-muted">
 							<IconPlaceholder
 								class="size-4 shrink-0"
 								lucide="CoffeeIcon"
@@ -33,10 +33,10 @@
 					<Table.Cell>
 						<div class="flex flex-col">
 							<span class="font-medium">Blue Bottle Coffee</span>
-							<span class="text-muted-foreground text-sm">Food & Drink</span>
+							<span class="text-sm text-muted-foreground">Food & Drink</span>
 						</div>
 					</Table.Cell>
-					<Table.Cell class="text-muted-foreground text-sm">Today, 10:24 AM</Table.Cell>
+					<Table.Cell class="text-sm text-muted-foreground">Today, 10:24 AM</Table.Cell>
 					<Table.Cell class="text-right">
 						<span class="text-sm font-semibold tabular-nums">-$6.50</span>
 					</Table.Cell>
@@ -67,7 +67,7 @@
 				</Table.Row>
 				<Table.Row>
 					<Table.Cell class="w-10">
-						<div class="bg-muted flex size-10 items-center justify-center rounded-lg">
+						<div class="flex size-10 items-center justify-center rounded-lg bg-muted">
 							<IconPlaceholder
 								class="size-4 shrink-0"
 								lucide="ShoppingCartIcon"
@@ -81,10 +81,10 @@
 					<Table.Cell>
 						<div class="flex flex-col">
 							<span class="font-medium">Whole Foods Market</span>
-							<span class="text-muted-foreground text-sm">Groceries</span>
+							<span class="text-sm text-muted-foreground">Groceries</span>
 						</div>
 					</Table.Cell>
-					<Table.Cell class="text-muted-foreground text-sm">Yesterday</Table.Cell>
+					<Table.Cell class="text-sm text-muted-foreground">Yesterday</Table.Cell>
 					<Table.Cell class="text-right">
 						<span class="text-sm font-semibold tabular-nums">-$142.30</span>
 					</Table.Cell>
@@ -115,7 +115,7 @@
 				</Table.Row>
 				<Table.Row>
 					<Table.Cell class="w-10">
-						<div class="bg-muted flex size-10 items-center justify-center rounded-lg">
+						<div class="flex size-10 items-center justify-center rounded-lg bg-muted">
 							<IconPlaceholder
 								class="size-4 shrink-0"
 								lucide="WalletIcon"
@@ -129,14 +129,12 @@
 					<Table.Cell>
 						<div class="flex flex-col">
 							<span class="font-medium">Stripe Payout</span>
-							<span class="text-muted-foreground text-sm">Income</span>
+							<span class="text-sm text-muted-foreground">Income</span>
 						</div>
 					</Table.Cell>
-					<Table.Cell class="text-muted-foreground text-sm">Oct 12</Table.Cell>
+					<Table.Cell class="text-sm text-muted-foreground">Oct 12</Table.Cell>
 					<Table.Cell class="text-right">
-						<span class="text-sm font-semibold text-emerald-500 tabular-nums"
-							>+$4,200.00</span
-						>
+						<span class="text-sm font-semibold text-emerald-500 tabular-nums">+$4,200.00</span>
 					</Table.Cell>
 					<Table.Cell class="w-8">
 						<DropdownMenu.Root>
@@ -165,7 +163,7 @@
 				</Table.Row>
 				<Table.Row>
 					<Table.Cell class="w-10">
-						<div class="bg-muted flex size-10 items-center justify-center rounded-lg">
+						<div class="flex size-10 items-center justify-center rounded-lg bg-muted">
 							<IconPlaceholder
 								class="size-4 shrink-0"
 								lucide="CarIcon"
@@ -179,10 +177,10 @@
 					<Table.Cell>
 						<div class="flex flex-col">
 							<span class="font-medium">Uber Technologies</span>
-							<span class="text-muted-foreground text-sm">Transport</span>
+							<span class="text-sm text-muted-foreground">Transport</span>
 						</div>
 					</Table.Cell>
-					<Table.Cell class="text-muted-foreground text-sm">Oct 11</Table.Cell>
+					<Table.Cell class="text-sm text-muted-foreground">Oct 11</Table.Cell>
 					<Table.Cell class="text-right">
 						<span class="text-sm font-semibold tabular-nums">-$24.10</span>
 					</Table.Cell>
@@ -213,7 +211,7 @@
 				</Table.Row>
 				<Table.Row>
 					<Table.Cell class="w-10">
-						<div class="bg-muted flex size-10 items-center justify-center rounded-lg">
+						<div class="flex size-10 items-center justify-center rounded-lg bg-muted">
 							<IconPlaceholder
 								class="size-4 shrink-0"
 								lucide="TvIcon"
@@ -227,10 +225,10 @@
 					<Table.Cell>
 						<div class="flex flex-col">
 							<span class="font-medium">Netflix Subscription</span>
-							<span class="text-muted-foreground text-sm">Entertainment</span>
+							<span class="text-sm text-muted-foreground">Entertainment</span>
 						</div>
 					</Table.Cell>
-					<Table.Cell class="text-muted-foreground text-sm">Oct 10</Table.Cell>
+					<Table.Cell class="text-sm text-muted-foreground">Oct 10</Table.Cell>
 					<Table.Cell class="text-right">
 						<span class="text-sm font-semibold tabular-nums">-$19.99</span>
 					</Table.Cell>

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
 	import CircularGauge from "./circular-gauge.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const items = [
 		{
@@ -76,9 +76,7 @@
 									<Item.Title class="inline">{item.name}</Item.Title>
 								</Item.Content>
 								<Item.Actions>
-									<span
-										class="text-muted-foreground font-mono text-xs font-medium tabular-nums"
-									>
+									<span class="font-mono text-xs font-medium text-muted-foreground tabular-nums">
 										{item.value}
 									</span>
 								</Item.Actions>

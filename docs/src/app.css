@@ -3,40 +3,9 @@
 @import "shadcn-svelte/tailwind.css";
 
 @import "./lib/registry/styles/style-vega.css" layer(base);
-@import "./lib/registry/styles/style-nova.css" layer(base);
-@import "./lib/registry/styles/style-lyra.css" layer(base);
-@import "./lib/registry/styles/style-maia.css" layer(base);
-@import "./lib/registry/styles/style-mira.css" layer(base);
-@import "./lib/registry/styles/style-luma.css" layer(base);
-@import "./lib/registry/styles/style-sera.css" layer(base);
-@import "./lib/registry/styles/style-rhea.css" layer(base);
 
 @import "@fontsource-variable/geist/index.css";
-@import "@fontsource-variable/inter/index.css";
-@import "@fontsource-variable/noto-sans/index.css";
-@import "@fontsource-variable/nunito-sans/index.css";
-@import "@fontsource-variable/figtree/index.css";
-@import "@fontsource-variable/roboto/index.css";
-@import "@fontsource-variable/raleway/index.css";
-@import "@fontsource-variable/dm-sans/index.css";
-@import "@fontsource-variable/public-sans/index.css";
-@import "@fontsource-variable/outfit/index.css";
-@import "@fontsource-variable/oxanium/index.css";
-@import "@fontsource-variable/manrope/index.css";
-@import "@fontsource-variable/space-grotesk/index.css";
-@import "@fontsource-variable/montserrat/index.css";
-@import "@fontsource-variable/ibm-plex-sans/index.css";
-@import "@fontsource-variable/source-sans-3/index.css";
-@import "@fontsource-variable/instrument-sans/index.css";
-@import "@fontsource-variable/jetbrains-mono/index.css";
 @import "@fontsource-variable/geist-mono/index.css";
-@import "@fontsource-variable/noto-serif/index.css";
-@import "@fontsource-variable/roboto-slab/index.css";
-@import "@fontsource-variable/merriweather/index.css";
-@import "@fontsource-variable/lora/index.css";
-@import "@fontsource-variable/playfair-display/index.css";
-@import "@fontsource-variable/eb-garamond/index.css";
-@import "@fontsource/instrument-serif/index.css";
 
 @custom-variant style-vega (&:where(.style-vega *));
 @custom-variant style-nova (&:where(.style-nova *));
@@ -234,7 +203,7 @@
 }
 
 @utility section-soft {
-	@apply from-background to-surface/40 dark:bg-background 3xl:fixed:bg-none bg-gradient-to-b;
+	@apply bg-gradient-to-b from-background to-surface/40 dark:bg-background 3xl:fixed:bg-none;
 }
 
 @utility theme-container {
@@ -242,11 +211,11 @@
 }
 
 @utility container-wrapper {
-	@apply 3xl:fixed:max-w-[calc(var(--breakpoint-2xl)+2rem)] mx-auto w-full px-2;
+	@apply mx-auto w-full px-2 3xl:fixed:max-w-[calc(var(--breakpoint-2xl)+2rem)];
 }
 
 @utility container {
-	@apply 3xl:max-w-screen-2xl mx-auto max-w-[1400px] px-4 lg:px-8;
+	@apply mx-auto max-w-[1400px] px-4 3xl:max-w-screen-2xl lg:px-8;
 }
 
 @utility no-scrollbar {
@@ -259,7 +228,7 @@
 }
 
 @utility border-ghost {
-	@apply after:border-border relative after:absolute after:inset-0 after:border after:mix-blend-darken dark:after:mix-blend-lighten;
+	@apply relative after:absolute after:inset-0 after:border after:border-border after:mix-blend-darken dark:after:mix-blend-lighten;
 }
 
 @utility bg-svelte-orange {
@@ -271,7 +240,7 @@
 	@apply relative;
 
 	&:before {
-		@apply text-muted-foreground end-0 me-2 hidden size-7 items-center justify-center rounded-full text-center -indent-px font-mono text-sm font-medium md:absolute;
+		@apply end-0 me-2 hidden size-7 items-center justify-center rounded-full text-center -indent-px font-mono text-sm font-medium text-muted-foreground md:absolute;
 		content: counter(step);
 	}
 }
@@ -436,7 +405,7 @@
 	}
 
 	.mdsx code:not(pre code) {
-		@apply bg-muted relative rounded-md px-[0.3rem] py-[0.2rem] font-mono text-[0.8rem] break-words outline-none;
+		@apply relative rounded-md bg-muted px-[0.3rem] py-[0.2rem] font-mono text-[0.8rem] break-words outline-none;
 	}
 
 	.super-debug {

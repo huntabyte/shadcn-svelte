@@ -1,7 +1,7 @@
 // @ts-check
-import { mdsx } from "mdsx";
 import adapter from "@sveltejs/adapter-cloudflare";
 import MagicString from "magic-string";
+import { mdsx } from "mdsx";
 import { mdsxConfig } from "./mdsx.config.js";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -24,6 +24,12 @@ const config = {
 		},
 		alias: {
 			"$content/*": ".velite/*",
+		},
+		typescript: {
+			config: (config) => {
+				config.include.push("../mdsx.config.js", "../velite.config.js", "../.velite/**/*");
+				return config;
+			},
 		},
 	},
 };

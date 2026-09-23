@@ -26,6 +26,14 @@
 		"relativeUrl": "aspect-ratio.json"
 	},
 	{
+		"name": "attachment",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"button"
+		],
+		"relativeUrl": "attachment.json"
+	},
+	{
 		"name": "avatar",
 		"type": "registry:ui",
 		"registryDependencies": [],
@@ -42,6 +50,12 @@
 		"type": "registry:ui",
 		"registryDependencies": [],
 		"relativeUrl": "breadcrumb.json"
+	},
+	{
+		"name": "bubble",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "bubble.json"
 	},
 	{
 		"name": "button",
@@ -111,12 +125,6 @@
 		"type": "registry:ui",
 		"registryDependencies": [],
 		"relativeUrl": "context-menu.json"
-	},
-	{
-		"name": "data-table",
-		"type": "registry:ui",
-		"registryDependencies": [],
-		"relativeUrl": "data-table.json"
 	},
 	{
 		"name": "dialog",
@@ -211,10 +219,22 @@
 		"relativeUrl": "label.json"
 	},
 	{
+		"name": "marker",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "marker.json"
+	},
+	{
 		"name": "menubar",
 		"type": "registry:ui",
 		"registryDependencies": [],
 		"relativeUrl": "menubar.json"
+	},
+	{
+		"name": "message",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "message.json"
 	},
 	{
 		"name": "native-select",
@@ -454,8 +474,8 @@
 		"name": "calendar-10",
 		"type": "registry:block",
 		"registryDependencies": [
-			"calendar",
 			"card",
+			"calendar",
 			"button"
 		],
 		"relativeUrl": "calendar-10.json"
@@ -481,8 +501,8 @@
 		"name": "calendar-13",
 		"type": "registry:block",
 		"registryDependencies": [
-			"calendar",
 			"select",
+			"calendar",
 			"label"
 		],
 		"relativeUrl": "calendar-13.json"
@@ -505,10 +525,10 @@
 		"name": "calendar-16",
 		"type": "registry:block",
 		"registryDependencies": [
-			"calendar",
 			"card",
-			"label",
-			"input"
+			"calendar",
+			"input",
+			"label"
 		],
 		"relativeUrl": "calendar-16.json"
 	},
@@ -516,10 +536,10 @@
 		"name": "calendar-17",
 		"type": "registry:block",
 		"registryDependencies": [
-			"calendar",
 			"card",
-			"label",
-			"input"
+			"calendar",
+			"input",
+			"label"
 		],
 		"relativeUrl": "calendar-17.json"
 	},
@@ -535,9 +555,9 @@
 		"name": "calendar-19",
 		"type": "registry:block",
 		"registryDependencies": [
+			"card",
 			"calendar",
-			"button",
-			"card"
+			"button"
 		],
 		"relativeUrl": "calendar-19.json"
 	},
@@ -545,9 +565,9 @@
 		"name": "calendar-20",
 		"type": "registry:block",
 		"registryDependencies": [
-			"button",
 			"card",
-			"calendar"
+			"calendar",
+			"button"
 		],
 		"relativeUrl": "calendar-20.json"
 	},
@@ -563,8 +583,8 @@
 		"name": "calendar-22",
 		"type": "registry:block",
 		"registryDependencies": [
-			"calendar",
 			"popover",
+			"calendar",
 			"button",
 			"label"
 		],
@@ -574,8 +594,8 @@
 		"name": "calendar-23",
 		"type": "registry:block",
 		"registryDependencies": [
-			"range-calendar",
 			"popover",
+			"range-calendar",
 			"button",
 			"label"
 		],
@@ -585,11 +605,11 @@
 		"name": "calendar-24",
 		"type": "registry:block",
 		"registryDependencies": [
-			"calendar",
 			"popover",
+			"calendar",
 			"button",
-			"label",
-			"input"
+			"input",
+			"label"
 		],
 		"relativeUrl": "calendar-24.json"
 	},
@@ -597,11 +617,11 @@
 		"name": "calendar-25",
 		"type": "registry:block",
 		"registryDependencies": [
-			"calendar",
 			"popover",
+			"calendar",
 			"button",
-			"label",
-			"input"
+			"input",
+			"label"
 		],
 		"relativeUrl": "calendar-25.json"
 	},
@@ -609,11 +629,11 @@
 		"name": "calendar-26",
 		"type": "registry:block",
 		"registryDependencies": [
-			"calendar",
 			"popover",
+			"calendar",
 			"button",
-			"label",
-			"input"
+			"input",
+			"label"
 		],
 		"relativeUrl": "calendar-26.json"
 	},
@@ -621,11 +641,11 @@
 		"name": "calendar-27",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
 			"card",
+			"chart",
 			"popover",
-			"button",
-			"range-calendar"
+			"range-calendar",
+			"button"
 		],
 		"relativeUrl": "calendar-27.json"
 	},
@@ -633,11 +653,11 @@
 		"name": "calendar-28",
 		"type": "registry:block",
 		"registryDependencies": [
-			"calendar",
-			"input",
-			"label",
 			"popover",
-			"button"
+			"calendar",
+			"button",
+			"input",
+			"label"
 		],
 		"relativeUrl": "calendar-28.json"
 	},
@@ -645,11 +665,11 @@
 		"name": "calendar-29",
 		"type": "registry:block",
 		"registryDependencies": [
-			"label",
 			"popover",
 			"button",
 			"calendar",
-			"input"
+			"input",
+			"label"
 		],
 		"relativeUrl": "calendar-29.json"
 	},
@@ -658,8 +678,8 @@
 		"type": "registry:block",
 		"registryDependencies": [
 			"popover",
-			"button",
 			"range-calendar",
+			"button",
 			"label"
 		],
 		"relativeUrl": "calendar-30.json"
@@ -668,9 +688,9 @@
 		"name": "calendar-31",
 		"type": "registry:block",
 		"registryDependencies": [
-			"button",
+			"card",
 			"calendar",
-			"card"
+			"button"
 		],
 		"relativeUrl": "calendar-31.json"
 	},
@@ -678,9 +698,9 @@
 		"name": "calendar-32",
 		"type": "registry:block",
 		"registryDependencies": [
-			"button",
-			"calendar",
 			"drawer",
+			"calendar",
+			"button",
 			"label"
 		],
 		"relativeUrl": "calendar-32.json"
@@ -698,8 +718,8 @@
 		"name": "chart-area-default",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-area-default.json"
 	},
@@ -716,8 +736,8 @@
 		"name": "chart-area-icons",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-area-icons.json"
 	},
@@ -725,8 +745,8 @@
 		"name": "chart-area-interactive",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
 			"card",
+			"chart",
 			"select"
 		],
 		"relativeUrl": "chart-area-interactive.json"
@@ -735,8 +755,8 @@
 		"name": "chart-area-legend",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-area-legend.json"
 	},
@@ -744,8 +764,8 @@
 		"name": "chart-area-linear",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-area-linear.json"
 	},
@@ -753,8 +773,8 @@
 		"name": "chart-area-stacked-expand",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-area-stacked-expand.json"
 	},
@@ -771,8 +791,8 @@
 		"name": "chart-area-step",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-area-step.json"
 	},
@@ -789,8 +809,8 @@
 		"name": "chart-bar-default",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-bar-default.json"
 	},
@@ -798,8 +818,8 @@
 		"name": "chart-bar-horizontal",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-bar-horizontal.json"
 	},
@@ -807,8 +827,8 @@
 		"name": "chart-bar-interactive",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-bar-interactive.json"
 	},
@@ -816,8 +836,8 @@
 		"name": "chart-bar-label-custom",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-bar-label-custom.json"
 	},
@@ -825,8 +845,8 @@
 		"name": "chart-bar-label",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-bar-label.json"
 	},
@@ -834,8 +854,8 @@
 		"name": "chart-bar-mixed",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-bar-mixed.json"
 	},
@@ -843,8 +863,8 @@
 		"name": "chart-bar-multiple",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-bar-multiple.json"
 	},
@@ -852,8 +872,8 @@
 		"name": "chart-bar-negative",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-bar-negative.json"
 	},
@@ -870,8 +890,8 @@
 		"name": "chart-line-default",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-line-default.json"
 	},
@@ -879,8 +899,8 @@
 		"name": "chart-line-dots-colors",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-line-dots-colors.json"
 	},
@@ -888,8 +908,8 @@
 		"name": "chart-line-dots-custom",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-line-dots-custom.json"
 	},
@@ -897,8 +917,8 @@
 		"name": "chart-line-dots",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-line-dots.json"
 	},
@@ -906,8 +926,8 @@
 		"name": "chart-line-interactive",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-line-interactive.json"
 	},
@@ -915,8 +935,8 @@
 		"name": "chart-line-label-custom",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-line-label-custom.json"
 	},
@@ -924,8 +944,8 @@
 		"name": "chart-line-label",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-line-label.json"
 	},
@@ -933,8 +953,8 @@
 		"name": "chart-line-linear",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-line-linear.json"
 	},
@@ -942,8 +962,8 @@
 		"name": "chart-line-multiple",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-line-multiple.json"
 	},
@@ -951,8 +971,8 @@
 		"name": "chart-line-step",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-line-step.json"
 	},
@@ -960,8 +980,8 @@
 		"name": "chart-pie-donut-active",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-pie-donut-active.json"
 	},
@@ -969,8 +989,8 @@
 		"name": "chart-pie-donut-text",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-pie-donut-text.json"
 	},
@@ -978,8 +998,8 @@
 		"name": "chart-pie-donut",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-pie-donut.json"
 	},
@@ -987,8 +1007,8 @@
 		"name": "chart-pie-interactive",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
 			"card",
+			"chart",
 			"select"
 		],
 		"relativeUrl": "chart-pie-interactive.json"
@@ -997,8 +1017,8 @@
 		"name": "chart-pie-label-custom",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-pie-label-custom.json"
 	},
@@ -1006,8 +1026,8 @@
 		"name": "chart-pie-label-list",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-pie-label-list.json"
 	},
@@ -1015,8 +1035,8 @@
 		"name": "chart-pie-label",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-pie-label.json"
 	},
@@ -1024,8 +1044,8 @@
 		"name": "chart-pie-legend",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-pie-legend.json"
 	},
@@ -1041,8 +1061,8 @@
 		"name": "chart-pie-simple",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-pie-simple.json"
 	},
@@ -1050,8 +1070,8 @@
 		"name": "chart-pie-stacked",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-pie-stacked.json"
 	},
@@ -1059,8 +1079,8 @@
 		"name": "chart-radar-default",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-radar-default.json"
 	},
@@ -1068,8 +1088,8 @@
 		"name": "chart-radar-dots",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-radar-dots.json"
 	},
@@ -1077,8 +1097,8 @@
 		"name": "chart-radar-grid-circle-fill",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-radar-grid-circle-fill.json"
 	},
@@ -1086,8 +1106,8 @@
 		"name": "chart-radar-grid-circle-no-lines",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-radar-grid-circle-no-lines.json"
 	},
@@ -1095,8 +1115,8 @@
 		"name": "chart-radar-grid-circle",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-radar-grid-circle.json"
 	},
@@ -1104,8 +1124,8 @@
 		"name": "chart-radar-grid-custom",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-radar-grid-custom.json"
 	},
@@ -1113,8 +1133,8 @@
 		"name": "chart-radar-grid-fill",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-radar-grid-fill.json"
 	},
@@ -1122,8 +1142,8 @@
 		"name": "chart-radar-grid-none",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-radar-grid-none.json"
 	},
@@ -1131,8 +1151,8 @@
 		"name": "chart-radar-icons",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-radar-icons.json"
 	},
@@ -1140,8 +1160,8 @@
 		"name": "chart-radar-label-custom",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-radar-label-custom.json"
 	},
@@ -1149,8 +1169,8 @@
 		"name": "chart-radar-legend",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-radar-legend.json"
 	},
@@ -1158,8 +1178,8 @@
 		"name": "chart-radar-lines-only",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-radar-lines-only.json"
 	},
@@ -1167,8 +1187,8 @@
 		"name": "chart-radar-multiple",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-radar-multiple.json"
 	},
@@ -1176,8 +1196,8 @@
 		"name": "chart-radar-radius",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-radar-radius.json"
 	},
@@ -1221,8 +1241,8 @@
 		"name": "chart-radial-stacked",
 		"type": "registry:block",
 		"registryDependencies": [
-			"chart",
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-radial-stacked.json"
 	},
@@ -1321,22 +1341,21 @@
 		"type": "registry:block",
 		"registryDependencies": [
 			"sidebar",
-			"chart",
 			"card",
+			"chart",
 			"select",
 			"toggle-group",
 			"dropdown-menu",
 			"button",
 			"drawer",
 			"is-mobile",
-			"label",
 			"input",
+			"label",
 			"separator",
 			"checkbox",
 			"badge",
-			"data-table",
-			"tabs",
 			"table",
+			"tabs",
 			"avatar"
 		],
 		"relativeUrl": "dashboard-01.json"
@@ -1354,8 +1373,8 @@
 		"name": "demo-sidebar-footer",
 		"type": "registry:block",
 		"registryDependencies": [
-			"sidebar",
-			"dropdown-menu"
+			"dropdown-menu",
+			"sidebar"
 		],
 		"relativeUrl": "demo-sidebar-footer.json"
 	},
@@ -1372,8 +1391,8 @@
 		"name": "demo-sidebar-group-collapsible",
 		"type": "registry:block",
 		"registryDependencies": [
-			"sidebar",
-			"collapsible"
+			"collapsible",
+			"sidebar"
 		],
 		"relativeUrl": "demo-sidebar-group-collapsible.json"
 	},
@@ -1389,8 +1408,8 @@
 		"name": "demo-sidebar-header",
 		"type": "registry:block",
 		"registryDependencies": [
-			"sidebar",
-			"dropdown-menu"
+			"dropdown-menu",
+			"sidebar"
 		],
 		"relativeUrl": "demo-sidebar-header.json"
 	},
@@ -1398,8 +1417,8 @@
 		"name": "demo-sidebar-menu-action",
 		"type": "registry:block",
 		"registryDependencies": [
-			"sidebar",
-			"dropdown-menu"
+			"dropdown-menu",
+			"sidebar"
 		],
 		"relativeUrl": "demo-sidebar-menu-action.json"
 	},
@@ -1415,8 +1434,8 @@
 		"name": "demo-sidebar-menu-collapsible",
 		"type": "registry:block",
 		"registryDependencies": [
-			"sidebar",
-			"collapsible"
+			"collapsible",
+			"sidebar"
 		],
 		"relativeUrl": "demo-sidebar-menu-collapsible.json"
 	},
@@ -1448,10 +1467,10 @@
 		"name": "login-01",
 		"type": "registry:block",
 		"registryDependencies": [
-			"button",
 			"card",
-			"input",
-			"field"
+			"button",
+			"field",
+			"input"
 		],
 		"relativeUrl": "login-01.json"
 	},
@@ -1459,9 +1478,9 @@
 		"name": "login-02",
 		"type": "registry:block",
 		"registryDependencies": [
+			"button",
 			"field",
-			"input",
-			"button"
+			"input"
 		],
 		"relativeUrl": "login-02.json"
 	},
@@ -1469,8 +1488,8 @@
 		"name": "login-03",
 		"type": "registry:block",
 		"registryDependencies": [
-			"button",
 			"card",
+			"button",
 			"field",
 			"input"
 		],
@@ -1481,9 +1500,9 @@
 		"type": "registry:block",
 		"registryDependencies": [
 			"card",
+			"button",
 			"field",
-			"input",
-			"button"
+			"input"
 		],
 		"relativeUrl": "login-04.json"
 	},
@@ -1491,9 +1510,9 @@
 		"name": "login-05",
 		"type": "registry:block",
 		"registryDependencies": [
+			"button",
 			"field",
-			"input",
-			"button"
+			"input"
 		],
 		"relativeUrl": "login-05.json"
 	},
@@ -1501,28 +1520,28 @@
 		"name": "new-components-01",
 		"type": "registry:block",
 		"registryDependencies": [
-			"checkbox",
 			"field",
 			"tooltip",
-			"button",
+			"checkbox",
 			"button-group",
+			"radio-group",
+			"button",
 			"input",
 			"label",
-			"radio-group",
 			"switch",
 			"dropdown-menu",
 			"input-group",
 			"popover",
 			"separator",
 			"textarea",
-			"empty",
 			"avatar",
+			"empty",
 			"kbd",
 			"select",
 			"slider",
 			"item",
-			"badge",
 			"command",
+			"badge",
 			"spinner"
 		],
 		"relativeUrl": "new-components-01.json"
@@ -1531,10 +1550,10 @@
 		"name": "otp-01",
 		"type": "registry:block",
 		"registryDependencies": [
-			"button",
 			"card",
 			"field",
-			"input-otp"
+			"input-otp",
+			"button"
 		],
 		"relativeUrl": "otp-01.json"
 	},
@@ -1542,9 +1561,9 @@
 		"name": "otp-02",
 		"type": "registry:block",
 		"registryDependencies": [
-			"button",
 			"field",
-			"input-otp"
+			"input-otp",
+			"button"
 		],
 		"relativeUrl": "otp-02.json"
 	},
@@ -1552,10 +1571,10 @@
 		"name": "otp-03",
 		"type": "registry:block",
 		"registryDependencies": [
-			"button",
 			"card",
 			"field",
-			"input-otp"
+			"input-otp",
+			"button"
 		],
 		"relativeUrl": "otp-03.json"
 	},
@@ -1563,10 +1582,10 @@
 		"name": "otp-04",
 		"type": "registry:block",
 		"registryDependencies": [
-			"button",
 			"card",
 			"field",
-			"input-otp"
+			"input-otp",
+			"button"
 		],
 		"relativeUrl": "otp-04.json"
 	},
@@ -1574,9 +1593,9 @@
 		"name": "otp-05",
 		"type": "registry:block",
 		"registryDependencies": [
-			"button",
 			"field",
-			"input-otp"
+			"input-otp",
+			"button"
 		],
 		"relativeUrl": "otp-05.json"
 	},
@@ -1585,8 +1604,8 @@
 		"type": "registry:block",
 		"registryDependencies": [
 			"breadcrumb",
-			"separator",
 			"sidebar",
+			"separator",
 			"label",
 			"dropdown-menu"
 		],
@@ -1597,8 +1616,8 @@
 		"type": "registry:block",
 		"registryDependencies": [
 			"breadcrumb",
-			"separator",
 			"sidebar",
+			"separator",
 			"collapsible",
 			"label",
 			"dropdown-menu"
@@ -1610,8 +1629,8 @@
 		"type": "registry:block",
 		"registryDependencies": [
 			"breadcrumb",
-			"separator",
-			"sidebar"
+			"sidebar",
+			"separator"
 		],
 		"relativeUrl": "sidebar-03.json"
 	},
@@ -1620,8 +1639,8 @@
 		"type": "registry:block",
 		"registryDependencies": [
 			"breadcrumb",
-			"separator",
-			"sidebar"
+			"sidebar",
+			"separator"
 		],
 		"relativeUrl": "sidebar-04.json"
 	},
@@ -1630,8 +1649,8 @@
 		"type": "registry:block",
 		"registryDependencies": [
 			"breadcrumb",
-			"separator",
 			"sidebar",
+			"separator",
 			"collapsible",
 			"label"
 		],
@@ -1642,11 +1661,11 @@
 		"type": "registry:block",
 		"registryDependencies": [
 			"breadcrumb",
-			"separator",
 			"sidebar",
+			"separator",
 			"dropdown-menu",
-			"button",
-			"card"
+			"card",
+			"button"
 		],
 		"relativeUrl": "sidebar-06.json"
 	},
@@ -1655,8 +1674,8 @@
 		"type": "registry:block",
 		"registryDependencies": [
 			"breadcrumb",
-			"separator",
 			"sidebar",
+			"separator",
 			"collapsible",
 			"dropdown-menu",
 			"avatar"
@@ -1668,8 +1687,8 @@
 		"type": "registry:block",
 		"registryDependencies": [
 			"breadcrumb",
-			"separator",
 			"sidebar",
+			"separator",
 			"collapsible",
 			"dropdown-menu",
 			"avatar"
@@ -1681,8 +1700,8 @@
 		"type": "registry:block",
 		"registryDependencies": [
 			"breadcrumb",
-			"separator",
 			"sidebar",
+			"separator",
 			"label",
 			"switch",
 			"avatar",
@@ -1695,10 +1714,10 @@
 		"type": "registry:block",
 		"registryDependencies": [
 			"breadcrumb",
-			"separator",
 			"sidebar",
-			"button",
+			"separator",
 			"popover",
+			"button",
 			"dropdown-menu",
 			"collapsible"
 		],
@@ -1709,8 +1728,8 @@
 		"type": "registry:block",
 		"registryDependencies": [
 			"breadcrumb",
-			"separator",
 			"sidebar",
+			"separator",
 			"collapsible"
 		],
 		"relativeUrl": "sidebar-11.json"
@@ -1720,8 +1739,8 @@
 		"type": "registry:block",
 		"registryDependencies": [
 			"breadcrumb",
-			"separator",
 			"sidebar",
+			"separator",
 			"collapsible",
 			"calendar",
 			"avatar",
@@ -1734,9 +1753,9 @@
 		"type": "registry:block",
 		"registryDependencies": [
 			"breadcrumb",
-			"button",
 			"dialog",
-			"sidebar"
+			"sidebar",
+			"button"
 		],
 		"relativeUrl": "sidebar-13.json"
 	},
@@ -1754,8 +1773,8 @@
 		"type": "registry:block",
 		"registryDependencies": [
 			"breadcrumb",
-			"separator",
 			"sidebar",
+			"separator",
 			"collapsible",
 			"calendar",
 			"dropdown-menu",
@@ -1782,9 +1801,9 @@
 		"name": "signup-01",
 		"type": "registry:block",
 		"registryDependencies": [
-			"button",
 			"card",
 			"field",
+			"button",
 			"input"
 		],
 		"relativeUrl": "signup-01.json"
@@ -1793,8 +1812,8 @@
 		"name": "signup-02",
 		"type": "registry:block",
 		"registryDependencies": [
-			"button",
 			"field",
+			"button",
 			"input"
 		],
 		"relativeUrl": "signup-02.json"
@@ -1803,9 +1822,9 @@
 		"name": "signup-03",
 		"type": "registry:block",
 		"registryDependencies": [
-			"button",
 			"card",
 			"field",
+			"button",
 			"input"
 		],
 		"relativeUrl": "signup-03.json"
@@ -1814,9 +1833,9 @@
 		"name": "signup-04",
 		"type": "registry:block",
 		"registryDependencies": [
-			"button",
 			"card",
 			"field",
+			"button",
 			"input"
 		],
 		"relativeUrl": "signup-04.json"
@@ -1825,8 +1844,8 @@
 		"name": "signup-05",
 		"type": "registry:block",
 		"registryDependencies": [
-			"button",
 			"field",
+			"button",
 			"input"
 		],
 		"relativeUrl": "signup-05.json"

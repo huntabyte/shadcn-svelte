@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { getColors } from "$lib/colors.js";
 	import ColorPalette from "$lib/components/color-palette.svelte";
+	import { getColors } from "$lib/colors.js";
 	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
 
 	const colors = getColors();

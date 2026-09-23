@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import * as Button from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as Input from "$lib/registry/ui/input/index.js";
-	import * as Button from "$lib/registry/ui/button/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 
 <Example title="Login">
@@ -22,10 +22,7 @@
 					<Field.Field>
 						<div class="flex items-center">
 							<Field.Label for="password">Password</Field.Label>
-							<a
-								href="#/"
-								class="ml-auto inline-block underline-offset-4 hover:underline"
-							>
+							<a href="#/" class="ml-auto inline-block underline-offset-4 hover:underline">
 								Forgot your password?
 							</a>
 						</div>
@@ -37,7 +34,7 @@
 		<Card.Footer class="flex-col gap-2">
 			<Button.Root type="submit" class="w-full">Login</Button.Root>
 			<Button.Root variant="outline" class="w-full">Login with Google</Button.Root>
-			<div class="style-nova:mt-2 mt-4 text-center">
+			<div class="mt-4 text-center style-nova:mt-2">
 				Don't have an account?
 				<a href="#/" class="underline underline-offset-4"> Sign up </a>
 			</div>

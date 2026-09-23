@@ -8,11 +8,11 @@
 </script>
 
 <script lang="ts">
+	import { toast } from "svelte-sonner";
 	import { defaults, superForm } from "sveltekit-superforms";
 	import { zod4 } from "sveltekit-superforms/adapters";
-	import { toast } from "svelte-sonner";
-	import * as InputOTP from "$lib/registry/ui/input-otp/index.js";
 	import * as Form from "$lib/registry/ui/form/index.js";
+	import * as InputOTP from "$lib/registry/ui/input-otp/index.js";
 
 	const form = superForm(defaults(zod4(formSchema)), {
 		validators: zod4(formSchema),

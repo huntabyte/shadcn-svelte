@@ -1,12 +1,12 @@
-import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
-import { exec } from "tinyexec";
-import type { PackageJson } from "type-fest";
+import { existsSync, promises as fs } from "node:fs";
 import { detect, resolveCommand } from "package-manager-detector";
-import { readJSONSync } from "./get-package-info.js";
+import { exec } from "tinyexec";
 import { CLIError } from "./errors.js";
+import { readJSONSync } from "./get-package-info.js";
 import type * as cliConfig from "./config/schema.js";
 import type * as registry from "./registry/index.js";
+import type { PackageJson } from "type-fest";
 
 export async function getComponents({
 	registryIndex,

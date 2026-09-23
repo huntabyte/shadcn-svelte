@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import * as Item from "$lib/registry/ui/item/index.js";
-	import { Progress } from "$lib/registry/ui/progress/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Progress } from "$lib/registry/ui/progress/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const files = [
 		{
@@ -53,7 +53,7 @@
 					<Progress value={file.progress} class="w-32" />
 				</Item.Content>
 				<Item.Actions class="w-16 justify-end">
-					<span class="text-muted-foreground text-sm">{file.timeRemaining}</span>
+					<span class="text-sm text-muted-foreground">{file.timeRemaining}</span>
 				</Item.Actions>
 			</Item.Root>
 		{/each}

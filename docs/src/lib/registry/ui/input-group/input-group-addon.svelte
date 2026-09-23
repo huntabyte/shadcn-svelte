@@ -6,8 +6,7 @@
 			align: {
 				"inline-start": "cn-input-group-addon-align-inline-start order-first",
 				"inline-end": "cn-input-group-addon-align-inline-end order-last",
-				"block-start":
-					"cn-input-group-addon-align-block-start order-first w-full justify-start",
+				"block-start": "cn-input-group-addon-align-block-start order-first w-full justify-start",
 				"block-end": "cn-input-group-addon-align-block-end order-last w-full justify-start",
 			},
 		},

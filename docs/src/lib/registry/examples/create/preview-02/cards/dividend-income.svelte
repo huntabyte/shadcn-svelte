@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { scaleBand } from "d3-scale";
+	import { BarChart } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
-	import { scaleBand } from "d3-scale";
-	import { BarChart } from "layerchart";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const HOLDINGS = [
 		{
@@ -62,9 +62,7 @@
 <Card.Root>
 	<Card.Header>
 		<Card.Title>Q2 Dividend Income</Card.Title>
-		<Card.Description
-			>Quarterly dividend payouts across your portfolio holdings.</Card.Description
-		>
+		<Card.Description>Quarterly dividend payouts across your portfolio holdings.</Card.Description>
 		<Card.Action>
 			<Button variant="ghost" size="icon-sm" class="bg-muted">
 				<IconPlaceholder

@@ -1,5 +1,8 @@
 <script lang="ts">
-	import type { Snippet } from "svelte";
+	import { browser } from "$app/environment";
+	import { toggleMode } from "mode-watcher";
+	import { watch } from "runed";
+	import { onDestroy, type Snippet } from "svelte";
 	import {
 		buildRegistryTheme,
 		DEFAULT_CONFIG,
@@ -7,11 +10,8 @@
 		RADII,
 		type DesignSystemConfig,
 	} from "$lib/registry/config.js";
-	import { browser } from "$app/environment";
-	import { watch } from "runed";
-	import { setupDesignSystem } from "./design-system-provider-state.svelte.js";
 	import { cn } from "$lib/registry/lib/utils.js";
-	import { toggleMode } from "mode-watcher";
+	import { setupDesignSystem } from "./design-system-provider-state.svelte.js";
 
 	const uid = $props.id();
 
@@ -22,6 +22,17 @@
 	let { children }: Props = $props();
 
 	const designSystem = setupDesignSystem();
+
+	const MANAGED_BODY_CLASS_PREFIXES = ["style-", "base-color-"] as const;
+
+	// `classList.forEach` skips entries when removing during iteration, so snapshot first.
+	function removeManagedBodyClasses(body: HTMLElement) {
+		for (const className of Array.from(body.classList)) {
+			if (MANAGED_BODY_CLASS_PREFIXES.some((prefix) => className.startsWith(prefix))) {
+				body.classList.remove(className);
+			}
+		}
+	}
 
 	const effectiveRadius = $derived(designSystem.style === "lyra" ? "none" : designSystem.radius);
 
@@ -63,31 +74,19 @@
 
 		const body = document.body;
 
-		// Update style class in place (remove old, add new).
-		body.classList.forEach((className) => {
-			if (className.startsWith("style-")) {
-				body.classList.remove(className);
-			}
-		});
+		// Update style / base color classes in place (remove old, add new).
+		removeManagedBodyClasses(body);
 		body.classList.add(`style-${designSystem.style}`);
-
-		// Update base color class in place.
-		body.classList.forEach((className) => {
-			if (className.startsWith("base-color-")) {
-				body.classList.remove(className);
-			}
-		});
 		body.classList.add(`base-color-${designSystem.baseColor}`);
 
 		const selectedFont =
-			fonts.find((font) => font.name.replace("font-", "") === designSystem.font)?.font
-				.family ?? fonts[0].font.family;
+			fonts.find((font) => font.name.replace("font-", "") === designSystem.font)?.font.family ??
+			fonts[0].font.family;
 		document.documentElement.style.setProperty("--font-sans", selectedFont);
 
 		const selectedHeadingFont =
-			fonts.find(
-				(font) => font.name.replace("font-heading-", "") === designSystem.fontHeading
-			)?.font.family ?? fonts[0].font.family;
+			fonts.find((font) => font.name.replace("font-heading-", "") === designSystem.fontHeading)
+				?.font.family ?? fonts[0].font.family;
 		document.documentElement.style.setProperty("--font-heading", selectedHeadingFont);
 
 		const styleId = uid;
@@ -135,6 +134,24 @@
 
 	let menuObserver: MutationObserver | null = null;
 	let menuFrameId = 0;
+
+	// The provider only lives on the design-system routes. When it unmounts (e.g. navigating
+	// from /create to the docs) restore the document to the default style so the rest of the
+	// site is not left wearing the last preset.
+	onDestroy(() => {
+		if (!browser) return;
+		removeManagedBodyClasses(document.body);
+		document.body.classList.add(`style-${DEFAULT_CONFIG.style}`);
+		document.getElementById(uid)?.remove();
+		document.documentElement.style.removeProperty("--font-sans");
+		document.documentElement.style.removeProperty("--font-heading");
+		menuObserver?.disconnect();
+		menuObserver = null;
+		if (menuFrameId) {
+			window.cancelAnimationFrame(menuFrameId);
+			menuFrameId = 0;
+		}
+	});
 
 	watch([() => designSystem.menuColor, () => browser], ([menuColor, browser]) => {
 		if (menuObserver) {

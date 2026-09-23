@@ -19,12 +19,11 @@ jobs:
         with:
           node-version: 24
           cache: pnpm
-          cache-dependency-path: pnpm-lock.yaml
 
       - name: Install dependencies
         env:
           SHADCN_SKIP_POSTINSTALL: "1"
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
       - name: Build site
         env:

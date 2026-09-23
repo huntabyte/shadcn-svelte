@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Kbd from "$lib/registry/ui/kbd/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
 <div class="flex flex-wrap items-center gap-4">

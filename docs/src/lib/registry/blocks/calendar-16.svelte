@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Calendar from "$lib/registry/ui/calendar/calendar.svelte";
+	import Clock2Icon from "@lucide/svelte/icons/clock-2";
 	import { CalendarDate } from "@internationalized/date";
 	import * as Card from "$lib/registry/ui/card/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
+	import Calendar from "$lib/registry/ui/calendar/calendar.svelte";
 	import { Input } from "$lib/registry/ui/input/index.js";
-	import Clock2Icon from "@lucide/svelte/icons/clock-2";
+	import { Label } from "$lib/registry/ui/label/index.js";
 
 	let value = $state<CalendarDate | undefined>(new CalendarDate(2025, 6, 12));
 </script>
@@ -18,7 +18,7 @@
 			<Label for="time-from">Start Time</Label>
 			<div class="relative flex w-full items-center gap-2">
 				<Clock2Icon
-					class="text-muted-foreground pointer-events-none absolute start-2.5 size-4 select-none"
+					class="pointer-events-none absolute start-2.5 size-4 text-muted-foreground select-none"
 				/>
 				<Input
 					id="time-from"
@@ -33,7 +33,7 @@
 			<Label for="time-to">End Time</Label>
 			<div class="relative flex w-full items-center gap-2">
 				<Clock2Icon
-					class="text-muted-foreground pointer-events-none absolute start-2.5 size-4 select-none"
+					class="pointer-events-none absolute start-2.5 size-4 text-muted-foreground select-none"
 				/>
 				<Input
 					id="time-to"

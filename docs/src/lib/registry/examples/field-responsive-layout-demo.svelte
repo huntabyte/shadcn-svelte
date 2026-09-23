@@ -15,9 +15,7 @@
 				<Field.Field orientation="responsive">
 					<Field.Content>
 						<Field.Label for="name">Name</Field.Label>
-						<Field.Description>
-							Provide your full name for identification
-						</Field.Description>
+						<Field.Description>Provide your full name for identification</Field.Description>
 					</Field.Content>
 					<Input id="name" placeholder="Evil Rabbit" required />
 				</Field.Field>
@@ -26,8 +24,7 @@
 					<Field.Content>
 						<Field.Label for="message">Message</Field.Label>
 						<Field.Description>
-							You can write your message here. Keep it short, preferably under 100
-							characters.
+							You can write your message here. Keep it short, preferably under 100 characters.
 						</Field.Description>
 					</Field.Content>
 					<Textarea

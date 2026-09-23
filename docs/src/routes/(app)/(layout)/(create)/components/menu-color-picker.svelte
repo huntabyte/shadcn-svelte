@@ -1,12 +1,12 @@
 <script lang="ts">
-	import * as Picker from "./picker/index.js";
-	import { useDesignSystem } from "$lib/features/design-system/index.js";
-	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
-	import LockButton from "./lock-button.svelte";
-	import type { MenuColorValue } from "$lib/registry/config.js";
-	import { mode } from "mode-watcher";
 	import { browser } from "$app/environment";
 	import MenuIcon from "@lucide/svelte/icons/menu";
+	import { mode } from "mode-watcher";
+	import { useDesignSystem } from "$lib/features/design-system/index.js";
+	import type { MenuColorValue } from "$lib/registry/config.js";
+	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
+	import * as Picker from "./picker/index.js";
+	import LockButton from "./lock-button.svelte";
 
 	type ColorChoice = "default" | "inverted";
 	type SurfaceChoice = "solid" | "translucent";
@@ -88,15 +88,15 @@
 			<div
 				class="flex min-w-0 flex-1 flex-col justify-start overflow-hidden pr-8 text-left md:pr-7"
 			>
-				<div class="text-muted-foreground text-xs">Menu</div>
+				<div class="text-xs text-muted-foreground">Menu</div>
 				<div
-					class="text-foreground overflow-hidden text-sm font-medium text-ellipsis whitespace-nowrap"
+					class="overflow-hidden text-sm font-medium text-ellipsis whitespace-nowrap text-foreground"
 				>
 					{currentMenu.label}
 				</div>
 			</div>
 			<div
-				class="text-foreground pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base select-none md:right-2.5"
+				class="pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base text-foreground select-none md:right-2.5"
 			>
 				<MenuIcon class="size-4" strokeWidth={2} />
 			</div>
@@ -116,11 +116,7 @@
 					<Picker.RadioItem value="default" closeOnSelect={isMobile.current}>
 						Default
 					</Picker.RadioItem>
-					<Picker.RadioItem
-						value="inverted"
-						closeOnSelect={isMobile.current}
-						disabled={isDark}
-					>
+					<Picker.RadioItem value="inverted" closeOnSelect={isMobile.current} disabled={isDark}>
 						Inverted
 					</Picker.RadioItem>
 				</Picker.RadioGroup>
@@ -132,9 +128,7 @@
 					value={surfaceChoice}
 					onValueChange={(value) => setSurface(value as SurfaceChoice)}
 				>
-					<Picker.RadioItem value="solid" closeOnSelect={isMobile.current}>
-						Solid
-					</Picker.RadioItem>
+					<Picker.RadioItem value="solid" closeOnSelect={isMobile.current}>Solid</Picker.RadioItem>
 					<Picker.RadioItem value="translucent" closeOnSelect={isMobile.current}>
 						Translucent
 					</Picker.RadioItem>

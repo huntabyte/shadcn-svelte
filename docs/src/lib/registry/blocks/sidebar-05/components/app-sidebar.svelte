@@ -144,12 +144,12 @@
 </script>
 
 <script lang="ts">
-	import SearchForm from "./search-form.svelte";
-	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import GalleryVerticalEndIcon from "@lucide/svelte/icons/gallery-vertical-end";
 	import MinusIcon from "@lucide/svelte/icons/minus";
 	import PlusIcon from "@lucide/svelte/icons/plus";
+	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
+	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
+	import SearchForm from "./search-form.svelte";
 	import type { ComponentProps } from "svelte";
 
 	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();
@@ -163,7 +163,7 @@
 					{#snippet child({ props })}
 						<a href="##" {...props}>
 							<div
-								class="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg"
+								class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground"
 							>
 								<GalleryVerticalEndIcon class="size-4" />
 							</div>
@@ -188,12 +188,8 @@
 								{#snippet child({ props })}
 									<Sidebar.MenuButton {...props}>
 										{item.title}
-										<PlusIcon
-											class="ms-auto group-data-[state=open]/collapsible:hidden"
-										/>
-										<MinusIcon
-											class="ms-auto group-data-[state=closed]/collapsible:hidden"
-										/>
+										<PlusIcon class="ms-auto group-data-[state=open]/collapsible:hidden" />
+										<MinusIcon class="ms-auto group-data-[state=closed]/collapsible:hidden" />
 									</Sidebar.MenuButton>
 								{/snippet}
 							</Collapsible.Trigger>
@@ -204,9 +200,7 @@
 											<Sidebar.MenuSubItem>
 												<Sidebar.MenuSubButton isActive={subItem.isActive}>
 													{#snippet child({ props })}
-														<a href={subItem.url} {...props}
-															>{subItem.title}</a
-														>
+														<a href={subItem.url} {...props}>{subItem.title}</a>
 													{/snippet}
 												</Sidebar.MenuSubButton>
 											</Sidebar.MenuSubItem>

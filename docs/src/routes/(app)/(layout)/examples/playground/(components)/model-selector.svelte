@@ -1,14 +1,14 @@
 <script lang="ts">
 	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
-	import { tick } from "svelte";
 	import { useId } from "bits-ui";
-	import type { Model, ModelType } from "../(data)/models.js";
-	import ModelItem from "./model-item.svelte";
-	import * as HoverCard from "$lib/registry/ui/hover-card/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import { tick } from "svelte";
 	import * as Command from "$lib/registry/ui/command/index.js";
+	import * as HoverCard from "$lib/registry/ui/hover-card/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import { Label } from "$lib/registry/ui/label/index.js";
+	import ModelItem from "./model-item.svelte";
+	import type { Model, ModelType } from "../(data)/models.js";
 
 	let { types, models }: { types: ModelType[]; models: Model[] } = $props();
 
@@ -65,8 +65,8 @@
 			{/snippet}
 		</HoverCard.Trigger>
 		<HoverCard.Content class="w-[260px] text-sm" align="start" side="left">
-			The model which will generate the completion. Some models are suitable for natural
-			language tasks, others specialize in code. Learn more.
+			The model which will generate the completion. Some models are suitable for natural language
+			tasks, others specialize in code. Learn more.
 		</HoverCard.Content>
 	</HoverCard.Root>
 
@@ -93,13 +93,13 @@
 							<h4 class="leading-none font-medium">
 								{peekedModel.name}
 							</h4>
-							<div class="text-muted-foreground text-sm">
+							<div class="text-sm text-muted-foreground">
 								{peekedModel.description}
 							</div>
 							{#if peekedModel.strengths}
 								<div class="mt-4 grid gap-2">
 									<h5 class="text-sm leading-none font-medium">Strengths</h5>
-									<ul class="text-muted-foreground text-sm">
+									<ul class="text-sm text-muted-foreground">
 										{peekedModel.strengths}
 									</ul>
 								</div>

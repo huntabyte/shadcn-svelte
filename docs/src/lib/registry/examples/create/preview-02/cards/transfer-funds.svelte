@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
-	import { Separator } from "$lib/registry/ui/separator/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Separator } from "$lib/registry/ui/separator/index.js";
 
 	const FROM_ACCOUNTS = [
 		{ label: "Main Checking (··8402) — $12,450.00", value: "checking" },
@@ -82,12 +82,12 @@
 			<Item.Root variant="muted" class="flex-col items-stretch">
 				<Item.Content class="gap-3">
 					<div class="flex items-center justify-between">
-						<span class="text-muted-foreground text-sm">Estimated arrival</span>
+						<span class="text-sm text-muted-foreground">Estimated arrival</span>
 						<span class="text-sm font-medium">Today, Apr 14</span>
 					</div>
 					<Separator />
 					<div class="flex items-center justify-between">
-						<span class="text-muted-foreground text-sm">Transaction fee</span>
+						<span class="text-sm text-muted-foreground">Transaction fee</span>
 						<span class="text-sm font-medium tabular-nums">$0.00</span>
 					</div>
 					<Separator />

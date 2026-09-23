@@ -15,9 +15,7 @@
 					<Field.Field orientation="horizontal">
 						<Field.Content>
 							<Field.Title>Kubernetes</Field.Title>
-							<Field.Description>
-								Run GPU workloads on a K8s configured cluster.
-							</Field.Description>
+							<Field.Description>Run GPU workloads on a K8s configured cluster.</Field.Description>
 						</Field.Content>
 						<RadioGroup.Item value="kubernetes" id="kubernetes-r2h" />
 					</Field.Field>

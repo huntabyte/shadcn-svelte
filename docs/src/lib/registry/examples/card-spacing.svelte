@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
 	import { Label } from "$lib/registry/ui/label/index.js";
-	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
 
 	const spacingOptions = [
 		{
@@ -57,20 +57,12 @@
 				<div class="flex flex-col gap-6">
 					<div class="grid gap-2">
 						<Label for="email-spacing">Email</Label>
-						<Input
-							id="email-spacing"
-							type="email"
-							placeholder="m@example.com"
-							required
-						/>
+						<Input id="email-spacing" type="email" placeholder="m@example.com" required />
 					</div>
 					<div class="grid gap-2">
 						<div class="flex items-center">
 							<Label for="password-spacing">Password</Label>
-							<a
-								href="##"
-								class="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-							>
+							<a href="##" class="ml-auto inline-block text-sm underline-offset-4 hover:underline">
 								Forgot your password?
 							</a>
 						</div>

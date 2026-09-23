@@ -1,11 +1,11 @@
 <script lang="ts">
 	import MinusIcon from "@lucide/svelte/icons/minus";
 	import PlusIcon from "@lucide/svelte/icons/plus";
+	import { scaleBand } from "d3-scale";
+	import { BarChart } from "layerchart";
+	import { cubicInOut } from "svelte/easing";
 	import * as Drawer from "$lib/registry/ui/drawer/index.js";
 	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
-	import { BarChart } from "layerchart";
-	import { scaleBand } from "d3-scale";
-	import { cubicInOut } from "svelte/easing";
 
 	const data = [
 		{
@@ -80,9 +80,7 @@
 						<div class="text-7xl font-bold tracking-tighter">
 							{goal}
 						</div>
-						<div class="text-muted-foreground text-[0.70rem] uppercase">
-							Calories/day
-						</div>
+						<div class="text-[0.70rem] text-muted-foreground uppercase">Calories/day</div>
 					</div>
 					<Button
 						variant="outline"

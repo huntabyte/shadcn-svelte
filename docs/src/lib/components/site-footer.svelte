@@ -1,11 +1,34 @@
+<script lang="ts">
+	import { page } from "$app/state";
+	import type { ResolvedPathname } from "$app/types";
+	import { cn } from "$lib/utils.js";
+
+	// These states used to be expressed with `group-has-*/body` utilities that inspect the page
+	// content (`body:has(.section-soft)`, `body:has([data-slot=docs])`, ...). A `:has()` anchored on
+	// <body> with a descendant subject makes Chrome restyle the _entire document_ on every DOM
+	// mutation anywhere in the page, which cost ~200ms per click in the interactive Field examples.
+	// Instead, we'll just derive the same states from the route instead.
+	const pathname = $derived(page.url.pathname);
+	const isDocs = $derived(
+		pathname === ("/docs" as ResolvedPathname) || pathname.startsWith("/docs/")
+	);
+	const isSoftSection = $derived(
+		["/blocks", "/charts", "/examples", "/themes"].some(
+			(prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`)
+		)
+	);
+</script>
+
 <footer
-	class="group-has-[.section-soft]/body:bg-surface/40 dark:group-has-[.section-soft]/body:bg-surface/40 3xl:fixed:bg-transparent group-has-[.docs-nav]/body:pb-20 group-has-[[data-slot=designer]]/body:hidden group-has-[[data-slot=docs]]/body:hidden group-has-[.docs-nav]/body:sm:pb-0 dark:bg-transparent"
+	class={cn(
+		"3xl:fixed:bg-transparent",
+		isSoftSection ? "bg-surface/40 dark:bg-surface/40" : "dark:bg-transparent",
+		isDocs && "hidden"
+	)}
 >
 	<div class="container-wrapper px-4 xl:px-6">
 		<div class="flex h-(--footer-height) items-center justify-between">
-			<div
-				class="text-muted-foreground w-full px-1 text-center text-xs leading-loose sm:text-sm"
-			>
+			<div class="w-full px-1 text-center text-xs leading-loose text-muted-foreground sm:text-sm">
 				Built by
 				<a
 					href="https://x.com/shadcn"

@@ -8,8 +8,8 @@
 		<Field.Content>
 			<Field.Label for="2fa">Multi-factor authentication</Field.Label>
 			<Field.Description>
-				Enable multi-factor authentication. If you do not have a two-factor device, you can
-				use a one-time code sent to your email.
+				Enable multi-factor authentication. If you do not have a two-factor device, you can use a
+				one-time code sent to your email.
 			</Field.Description>
 		</Field.Content>
 		<Switch id="2fa" />

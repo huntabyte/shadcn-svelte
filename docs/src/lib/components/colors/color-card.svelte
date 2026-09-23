@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { toast } from "svelte-sonner";
-	import { PersistedState } from "runed";
-	import * as Select from "$lib/registry/ui/select/index.js";
-	import { AspectRatio } from "$lib/registry/ui/aspect-ratio/index.js";
-	import { getColors, type ColorPalette } from "$lib/components/colors/colors.js";
-	import ClipboardIcon from "@lucide/svelte/icons/clipboard";
 	import CheckIcon from "@lucide/svelte/icons/check";
+	import ClipboardIcon from "@lucide/svelte/icons/clipboard";
+	import { PersistedState } from "runed";
+	import { toast } from "svelte-sonner";
 	import { scale } from "svelte/transition";
+	import * as Select from "$lib/registry/ui/select/index.js";
+	import { getColors, type ColorPalette } from "$lib/components/colors/colors.js";
+	import { AspectRatio } from "$lib/registry/ui/aspect-ratio/index.js";
 
 	type Format = {
 		format: string;
@@ -66,9 +66,7 @@
 					<Select.Trigger class="h-7 w-fit text-xs">
 						<span class="me-2">
 							<span class="font-bold">Format:</span>
-							<span class="text-muted-foreground font-mono"
-								>{selectedFormat.current}</span
-							>
+							<span class="font-mono text-muted-foreground">{selectedFormat.current}</span>
 						</span>
 					</Select.Trigger>
 					<Select.Content align="end">
@@ -76,9 +74,7 @@
 							<Select.Item value={format.format}>
 								<span>
 									<span>{format.format}</span>
-									<span class="text-muted-foreground font-mono"
-										>{format.hint}</span
-									>
+									<span class="font-mono text-muted-foreground">{format.hint}</span>
 								</span>
 							</Select.Item>
 						{/each}
@@ -95,10 +91,7 @@
 						<div class="relative">
 							<div class="hidden md:block">
 								<AspectRatio ratio={12 / 16}>
-									<div
-										class="size-full rounded-lg"
-										style="background-color: {shade.hex};"
-									></div>
+									<div class="size-full rounded-lg" style="background-color: {shade.hex};"></div>
 								</AspectRatio>
 							</div>
 							<div
@@ -123,12 +116,12 @@
 						</div>
 
 						<span
-							class="group-hover:text-foreground text-muted-foreground hidden py-1 font-mono text-sm text-nowrap transition-colors xl:block"
+							class="hidden py-1 font-mono text-sm text-nowrap text-muted-foreground transition-colors group-hover:text-foreground xl:block"
 						>
 							{shade.className}
 						</span>
 						<span
-							class="group-hover:text-foreground text-muted-foreground block py-1 font-mono text-sm text-nowrap transition-colors xl:hidden"
+							class="block py-1 font-mono text-sm text-nowrap text-muted-foreground transition-colors group-hover:text-foreground xl:hidden"
 						>
 							{shade.className.split("-")[1]}
 						</span>

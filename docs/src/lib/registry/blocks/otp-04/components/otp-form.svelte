@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as InputOTP from "$lib/registry/ui/input-otp/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { cn } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 
 	let { class: className, ...restProps }: HTMLAttributes<HTMLDivElement> = $props();
@@ -16,7 +16,7 @@
 				<Field.Group>
 					<Field.Field class="items-center text-center">
 						<h1 class="text-2xl font-bold">Enter verification code</h1>
-						<p class="text-muted-foreground text-sm text-balance">
+						<p class="text-sm text-balance text-muted-foreground">
 							We sent a 6-digit code to your email
 						</p>
 					</Field.Field>
@@ -49,7 +49,7 @@
 					</Field.Field>
 				</Field.Group>
 			</form>
-			<div class="bg-muted relative hidden md:block">
+			<div class="relative hidden bg-muted md:block">
 				<img
 					src="/placeholder.svg"
 					alt=""

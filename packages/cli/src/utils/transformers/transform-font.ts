@@ -1,11 +1,11 @@
-import { promises as fs } from "node:fs";
 import path from "node:path";
-import { walk } from "estree-walker";
+import { promises as fs } from "node:fs";
 import MagicString from "magic-string";
+import { tsPlugin } from "@sveltejs/acorn-typescript";
+import { Parser } from "acorn";
+import { walk } from "estree-walker";
 import { parse as parseSvelte } from "svelte/compiler";
 import type { Transformer } from "./index.js";
-import { Parser } from "acorn";
-import { tsPlugin } from "@sveltejs/acorn-typescript";
 
 const FONT_MARKERS = [
 	{
@@ -267,9 +267,7 @@ function transformSvelteStyles(
 			if (Array.isArray(value)) {
 				const textChunks = value
 					.filter(
-						(
-							chunk
-						): chunk is { type: string; data?: string; start?: number; end?: number } =>
+						(chunk): chunk is { type: string; data?: string; start?: number; end?: number } =>
 							typeof chunk === "object" &&
 							chunk !== null &&
 							"type" in chunk &&
@@ -287,8 +285,7 @@ function transformSvelteStyles(
 				if (newText === "") {
 					const aStart = attr.start ?? 0;
 					const aEnd = attr.end ?? 0;
-					const removeStart =
-						aStart > 0 && content[aStart - 1] === " " ? aStart - 1 : aStart;
+					const removeStart = aStart > 0 && content[aStart - 1] === " " ? aStart - 1 : aStart;
 					src.overwrite(removeStart, aEnd, "");
 					continue;
 				}
