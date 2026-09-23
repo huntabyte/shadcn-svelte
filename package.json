@@ -20,7 +20,7 @@
 		"format": "oxfmt",
 		"pull:styles": "pnpm -F './docs' pull:styles",
 		"preinstall": "npx only-allow pnpm",
-		"postinstall": "node scripts/postinstall.mjs",
+		"postinstall": "pnpm build:cli && pnpm -r sync",
 		"ci:publish": "changeset publish",
 		"ci:build": "pnpm build:cli",
 		"ci:release": "pnpm ci:build && pnpm ci:publish"

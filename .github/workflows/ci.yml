@@ -37,12 +37,7 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        env:
-          SHADCN_SKIP_POSTINSTALL: "1"
         run: pnpm install
-
-      - name: Build CLI
-        run: pnpm -F shadcn-svelte build
 
       - run: pnpm lint
 
@@ -61,8 +56,6 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        env:
-          SHADCN_SKIP_POSTINSTALL: "1"
         run: pnpm install
 
       - name: Build packages
@@ -83,12 +76,7 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        env:
-          SHADCN_SKIP_POSTINSTALL: "1"
         run: pnpm install
-
-      - name: Build CLI
-        run: pnpm -F shadcn-svelte build
 
       - name: Run tests
         run: pnpm -F @shadcn-svelte/parity test
