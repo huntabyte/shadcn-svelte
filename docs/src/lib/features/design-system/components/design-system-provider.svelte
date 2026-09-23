@@ -19,9 +19,10 @@
 
 	type Props = {
 		children: Snippet;
+		applyThemeToDocument?: boolean;
 	};
 
-	let { children }: Props = $props();
+	let { children, applyThemeToDocument = true }: Props = $props();
 
 	const designSystem = setupDesignSystem();
 	const resetDialogCtx = ResetDialogCtx.set(new ResetDialogContext());
@@ -72,7 +73,7 @@
 	});
 
 	watch([() => registryTheme, () => browser], ([registryTheme, browser]) => {
-		if (!browser) return;
+		if (!browser || !applyThemeToDocument) return;
 		if (!registryTheme) return;
 
 		const body = document.body;
@@ -141,7 +142,7 @@
 	});
 
 	onDestroy(() => {
-		if (!browser) return;
+		if (!browser || !applyThemeToDocument) return;
 		removeManagedBodyClasses(document.body);
 		document.body.classList.add(`style-${DEFAULT_CONFIG.style}`);
 		document.getElementById(uid)?.remove();
@@ -151,7 +152,7 @@
 
 	$effect.pre(() => {
 		const menuColor = designSystem.menuColor;
-		if (!browser || !menuColor) return;
+		if (!browser || !applyThemeToDocument || !menuColor) return;
 		if (!document.body) return;
 
 		const isInvertedMenu = menuColor === "inverted" || menuColor === "inverted-translucent";
@@ -299,7 +300,9 @@
 <div
 	data-slot="design-system-provider"
 	style="display: contents;"
-	class={cn(`style-${designSystem.style} base-color-${designSystem.baseColor}`)}
+	class={applyThemeToDocument
+		? cn(`style-${designSystem.style} base-color-${designSystem.baseColor}`)
+		: undefined}
 >
 	{@render children?.()}
 </div>

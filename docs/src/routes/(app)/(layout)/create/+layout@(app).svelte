@@ -6,6 +6,6 @@
 	let { children } = $props();
 </script>
 
-<DesignSystemProvider>
+<DesignSystemProvider applyThemeToDocument={false}>
 	<CreateLayout {children} />
 </DesignSystemProvider>
