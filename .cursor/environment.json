@@ -1,0 +1,11 @@
+{
+	"name": "shadcn-svelte",
+	"install": "./.cursor/install.sh",
+	"terminals": [
+		{
+			"name": "docs-dev",
+			"command": "./.cursor/dev.sh",
+			"description": "shadcn-svelte documentation site (SvelteKit dev server) on http://localhost:5173"
+		}
+	]
+}
