@@ -365,10 +365,9 @@ Flex column that groups control and descriptions when the label sits beside the 
 
 Label styled for both direct inputs and nested `Field.Field` children.
 
-| Prop      | Type      | Default |
-| --------- | --------- | ------- |
-| `class`   | `string`  |         |
-| `asChild` | `boolean` | `false` |
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` |         |
 
 ```svelte
 <Field.Label for="email">Email</Field.Label>

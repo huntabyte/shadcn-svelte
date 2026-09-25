@@ -71,15 +71,25 @@ Update the import paths to match your project setup.
 ```
 
 ```svelte showLineNumbers
-<Select.Root type="single">
+<script lang="ts">
+  const themes = [
+    { value: "light", label: "Light" },
+    { value: "dark", label: "Dark" },
+    { value: "system", label: "System" },
+  ];
+</script>
+
+<Select.Root type="single" items={themes}>
   <Select.Trigger class="w-[180px]">
     <Select.Value placeholder="Select a theme" />
   </Select.Trigger>
   <Select.Content>
     <Select.Group>
-      <Select.Item value="light">Light</Select.Item>
-      <Select.Item value="dark">Dark</Select.Item>
-      <Select.Item value="system">System</Select.Item>
+      {#each themes as theme (theme.value)}
+        <Select.Item value={theme.value} label={theme.label}
+          >{theme.label}</Select.Item
+        >
+      {/each}
     </Select.Group>
   </Select.Content>
 </Select.Root>
