@@ -20,7 +20,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="checkbox-demo" previewClassName="h-80">
+<ComponentPreview name="checkbox-demo" previewClassName="min-h-80">
 
 <div></div>
 

@@ -60,4 +60,34 @@ describe("docs UI parity", () => {
 
 		expect(result.error).toContain("local class not found");
 	});
+
+	it("allows only the documented flexible preview height difference", async () => {
+		const root = fs.mkdtempSync(path.join(os.tmpdir(), "parity-docs-height-test-"));
+		const docsRoot = path.join(root, "docs");
+		const upstreamRoot = path.join(root, "upstream");
+		fs.mkdirSync(docsRoot, { recursive: true });
+		fs.mkdirSync(upstreamRoot, { recursive: true });
+		const contract = {
+			name: "preview",
+			local: "local.svelte",
+			upstream: "upstream.tsx",
+			marker: ["preview", "h-72", "p-10"],
+			localMarker: ["preview", "min-h-72", "p-10"],
+			allowedDifference: { added: ["min-h-72"], removed: ["h-72"] },
+		};
+		fs.writeFileSync(
+			path.join(upstreamRoot, "upstream.tsx"),
+			'<div className="preview h-72 p-10" />'
+		);
+		fs.writeFileSync(path.join(docsRoot, "local.svelte"), '<div class="preview min-h-72 p-10" />');
+		expect((await compareDocsContract(contract, docsRoot, upstreamRoot)).pair?.kind).toBe(
+			"ignored"
+		);
+
+		fs.writeFileSync(
+			path.join(docsRoot, "local.svelte"),
+			'<div class="preview min-h-72 p-10 rounded-md" />'
+		);
+		expect((await compareDocsContract(contract, docsRoot, upstreamRoot)).pair?.kind).toBe("diff");
+	});
 });

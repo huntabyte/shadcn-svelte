@@ -86,7 +86,7 @@ includes built-in `Field.Label`, `Field.Description`, and `Field.Error` componen
 </Field.Field>
 ```
 
-<ComponentPreview name="field-demo" previewClassName="h-[44rem]">
+<ComponentPreview name="field-demo" previewClassName="min-h-[44rem]">
 
 <div></div>
 

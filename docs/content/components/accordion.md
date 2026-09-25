@@ -108,7 +108,7 @@ Accordion.Root
 
 A basic accordion that shows one item at a time. The first item is open by default.
 
-<ComponentPreview name="accordion-basic" align="start" previewClassName="*:data-[slot=accordion]:max-w-sm h-[300px]">
+<ComponentPreview name="accordion-basic" align="start" previewClassName="*:data-[slot=accordion]:max-w-sm min-h-[300px]">
 
 <div></div>
 
@@ -118,7 +118,7 @@ A basic accordion that shows one item at a time. The first item is open by defau
 
 Use `type="multiple"` to allow multiple items to be open at the same time.
 
-<ComponentPreview name="accordion-multiple" align="start" previewClassName="*:data-[slot=accordion]:max-w-sm h-[36rem] md:h-[30rem]">
+<ComponentPreview name="accordion-multiple" align="start" previewClassName="*:data-[slot=accordion]:max-w-sm min-h-[36rem] md:min-h-[30rem]">
 
 <div></div>
 
@@ -128,7 +128,7 @@ Use `type="multiple"` to allow multiple items to be open at the same time.
 
 Use the `disabled` prop on `Accordion.Item` to disable individual items.
 
-<ComponentPreview name="accordion-disabled" align="start" previewClassName="*:data-[slot=accordion]:max-w-sm h-[300px]">
+<ComponentPreview name="accordion-disabled" align="start" previewClassName="*:data-[slot=accordion]:max-w-sm min-h-[300px]">
 
 <div></div>
 
@@ -138,7 +138,7 @@ Use the `disabled` prop on `Accordion.Item` to disable individual items.
 
 Add `border` to the `Accordion.Root` and `border-b last:border-b-0` to the `Accordion.Item` to add borders to the items.
 
-<ComponentPreview name="accordion-borders" align="start" previewClassName="*:data-[slot=accordion]:max-w-sm h-96 md:h-80">
+<ComponentPreview name="accordion-borders" align="start" previewClassName="*:data-[slot=accordion]:max-w-sm min-h-96 md:min-h-80">
 
 <div></div>
 
@@ -148,7 +148,7 @@ Add `border` to the `Accordion.Root` and `border-b last:border-b-0` to the `Acco
 
 Wrap the `Accordion` in a `Card` component.
 
-<ComponentPreview name="accordion-card" align="start" previewClassName="*:data-[slot=accordion]:max-w-sm h-[32rem] md:h-[28rem]">
+<ComponentPreview name="accordion-card" align="start" previewClassName="*:data-[slot=accordion]:max-w-sm min-h-[32rem] md:min-h-[28rem]">
 
 <div></div>
 

@@ -17,6 +17,8 @@ type Contract = {
 	local: string;
 	upstream: string;
 	marker: string[];
+	localMarker?: string[];
+	allowedDifference?: { added: string[]; removed: string[] };
 	occurrences?: number;
 };
 
@@ -37,6 +39,12 @@ export const DOCS_SURFACES: Record<string, Surface> = {
 				local: "src/lib/components/component-preview-tabs.svelte",
 				upstream: "apps/v4/components/component-preview-tabs.tsx",
 				marker: ["preview", "h-72", "p-10", "data-[chromeless=true]:h-auto"],
+				localMarker: ["preview", "min-h-72", "p-10"],
+				// Let tall Svelte examples grow without losing the upstream preview chrome.
+				allowedDifference: {
+					added: ["min-h-72"],
+					removed: ["h-72", "data-[chromeless=true]:h-auto"],
+				},
 			},
 			{
 				name: "view-code button",
@@ -160,14 +168,24 @@ export async function compareDocsContract(
 	const expected = findContractClass(upstreamContent, contract.marker);
 	if (!expected)
 		return { error: `upstream class not found for markers: ${contract.marker.join(" ")}` };
-	const actual = findContractClass(localContent, contract.marker);
-	if (!actual) return { error: `local class not found for markers: ${contract.marker.join(" ")}` };
+	const localMarker = contract.localMarker ?? contract.marker;
+	const actual = findContractClass(localContent, localMarker);
+	if (!actual) return { error: `local class not found for markers: ${localMarker.join(" ")}` };
 	if (contract.occurrences && occurrenceCount(localContent, actual) < contract.occurrences) {
 		return {
 			error: `expected ${contract.occurrences} occurrences, found ${occurrenceCount(localContent, actual)}`,
 		};
 	}
-	return { pair: pairClassStrings([actual], [expected])[0] };
+	const pair = pairClassStrings([actual], [expected])[0]!;
+	if (
+		pair.kind === "diff" &&
+		contract.allowedDifference &&
+		[...pair.added].sort().join(" ") === [...contract.allowedDifference.added].sort().join(" ") &&
+		[...pair.removed].sort().join(" ") === [...contract.allowedDifference.removed].sort().join(" ")
+	) {
+		pair.kind = "ignored";
+	}
+	return { pair };
 }
 
 export async function runDocsParity(options: DocsParityOptions = {}) {
