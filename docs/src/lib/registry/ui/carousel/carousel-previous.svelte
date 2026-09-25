@@ -40,6 +40,7 @@
 		hugeicons="ArrowLeft01Icon"
 		phosphor="CaretLeftIcon"
 		remixicon="RiArrowLeftSLine"
+		class="cn-rtl-flip"
 	/>
 	<span class="sr-only">Previous slide</span>
 </Button>

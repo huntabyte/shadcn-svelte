@@ -23,7 +23,7 @@
 		{sideOffset}
 		{align}
 		class={cn(
-			"cn-popover-content cn-popover-content-logical z-50 w-72 origin-(--transform-origin) outline-hidden",
+			"cn-popover-content cn-popover-content-logical z-50 w-72 origin-(--bits-popover-content-transform-origin) outline-hidden",
 			className
 		)}
 		{...restProps}

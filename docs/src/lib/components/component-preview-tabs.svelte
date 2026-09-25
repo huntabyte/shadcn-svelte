@@ -58,12 +58,12 @@
 	)}
 	{...restProps}
 >
-	<div data-slot="preview">
+	<div data-slot="preview" data-llm-ignore>
 		<div
 			data-align={align}
 			data-chromeless={chromeLessOnMobile}
 			class={cn(
-				"preview relative flex h-72 w-full justify-center p-10 data-[align=center]:items-center data-[align=end]:items-end data-[align=start]:items-start data-[chromeless=true]:h-auto data-[chromeless=true]:p-0",
+				"preview relative flex h-72 w-full justify-center p-10 data-[align=center]:items-center data-[align=end]:items-start data-[align=start]:items-start data-[chromeless=true]:h-auto data-[chromeless=true]:p-0 sm:data-[align=end]:items-end",
 				previewClassName
 			)}
 			data-llm-ignore

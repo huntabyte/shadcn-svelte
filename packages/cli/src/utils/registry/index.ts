@@ -53,30 +53,33 @@ export async function getRegistryTheme(baseUrl: string, theme: string) {
 	}
 }
 
+/** Last `cn-*` ident in a selector (dotted or nested/undotted). */
+function subjectCnClass(selector: string): string | undefined {
+	const matches = [...selector.matchAll(/(?:^|[\s.>+~])(cn-[\w-]+)/g)];
+	return matches.at(-1)?.[1];
+}
+
 /** Parses a style CSS file and extracts the `@apply` styles for each class */
 export function parseStyleCss(css: string): Record<string, string> {
 	const ast = parseCss(css);
 	const styles: Record<string, string> = {};
 
 	ast.walkRules((rule) => {
-		// Extract class name from selector (e.g., ".cn-accordion-item" -> "cn-accordion-item")
-		const selector = rule.selector;
-		if (!selector.startsWith(".cn-")) return;
+		for (const selector of rule.selectors) {
+			const className = subjectCnClass(selector.trim());
+			if (!className) continue;
 
-		const className = selector.slice(1); // Remove leading "."
+			const applyValues: string[] = [];
+			rule.walkAtRules("apply", (atRule) => {
+				const applyValue = atRule.params.trim();
+				if (applyValue) applyValues.push(applyValue);
+			});
 
-		// Find @apply rules within this rule
-		rule.walkAtRules("apply", (atRule) => {
-			const applyValue = atRule.params.trim();
-			if (applyValue) {
-				// If there are multiple @apply rules, concatenate them
-				if (styles[className]) {
-					styles[className] += ` ${applyValue}`;
-				} else {
-					styles[className] = applyValue;
-				}
-			}
-		});
+			if (applyValues.length === 0) continue;
+
+			const next = applyValues.join(" ");
+			styles[className] = styles[className] ? `${next} ${styles[className]}` : next;
+		}
 	});
 
 	return styles;

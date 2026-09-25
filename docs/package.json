@@ -7,8 +7,9 @@
 		"dev": "pnpm --reporter append-only --color \"/dev:/\"",
 		"dev:content": "velite dev --watch",
 		"dev:icons": "tsx scripts/build-icons.ts --watch",
-		"dev:svelte": "vite dev",
-		"build": "concurrently \"pnpm build:icons\" \"pnpm build:content\" \"pnpm build:llm-placeholders\" && pnpm build:svelte && pnpm build:llms",
+		"dev:registry": "tsx scripts/build-registry.ts build-registry --watch",
+		"dev:svelte": "wait-on src/__registry__/index.js && vite dev",
+		"build": "concurrently \"pnpm build:icons\" \"pnpm build:content\" \"pnpm build:llm-placeholders\" \"pnpm build:registry\" && pnpm build:svelte && pnpm build:llms",
 		"build:content": "velite && tsx scripts/velite/velite-update-json.ts",
 		"build:svelte": "vite build",
 		"build:registry": "tsx scripts/build-registry.ts build-registry",
@@ -21,7 +22,14 @@
 		"sync": "pnpm build:registry && pnpm build:content && svelte-kit sync",
 		"preview": "vite preview",
 		"check": "svelte-check --fail-on-warnings --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
+		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
+		"parity": "parity",
+		"parity-check": "parity --check",
+		"parity:docs": "parity docs",
+		"parity-check:docs": "parity docs --check",
+		"parity:fix": "parity fix",
+		"parity:variants": "parity variants",
+		"parity-check:variants": "parity variants --check"
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20260317.1",
@@ -59,6 +67,8 @@
 		"@hugeicons/svelte": "^1.1.2",
 		"@internationalized/date": "^3.12.0",
 		"@lucide/svelte": "^1.27.0",
+		"@prettier/sync": "0.6.1",
+		"@shadcn-svelte/parity": "workspace:*",
 		"@shikijs/langs": "^3.20.0",
 		"@shikijs/themes": "^3.20.0",
 		"@sveltejs/acorn-typescript": "^1.0.9",
@@ -78,9 +88,9 @@
 		"@types/mdast": "^4.0.4",
 		"@types/qrcode": "^1.5.6",
 		"acorn": "^8.16.0",
-		"bits-ui": "^2.16.3",
+		"bits-ui": "^2.18.0",
 		"chrono-node": "^2.9.0",
-		"clsx": "^2.1.1",
+		"cn": "^0.3.0",
 		"concurrently": "^9.2.1",
 		"consola": "^3.4.2",
 		"d3-scale": "^4.0.2",
@@ -121,7 +131,6 @@
 		"svelte-sonner": "^1.1.0",
 		"svelte-toolbelt": "^0.10.6",
 		"sveltekit-superforms": "^2.30.0",
-		"tailwind-merge": "^3.6.0",
 		"tailwind-variants": "^3.3.0",
 		"tailwindcss": "^4.3.3",
 		"tsx": "^4.21.0",
@@ -133,6 +142,6 @@
 		"vaul-svelte": "1.0.0-next.7",
 		"velite": "^0.3.1",
 		"vite": "^8.1.5",
-		"zod": "catalog:"
+		"zod": "^4.4.3"
 	}
 }

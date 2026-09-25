@@ -151,7 +151,7 @@ Use `Item.Media` with `variant="image"` to display an image.
 
 Use `Item.Group` to group related items together.
 
-<ComponentPreview name="item-group-demo" previewClassName="h-96">
+<ComponentPreview name="item-group-demo" previewClassName="h-auto min-h-96">
 
 <div></div>
 

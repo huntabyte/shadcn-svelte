@@ -11,18 +11,28 @@
 
 	let { icon, placeholder, class: className, ...restProps }: Props = $props();
 
+	// Icons that are already loaded render synchronously; otherwise fall back to the async
+	// placeholder. This avoids a double render for every icon after the first load.
 	// svelte-ignore state_referenced_locally
-	const IconPromise = phosphorIconLoader(icon);
+	const CachedIcon = phosphorIconLoader.peek(icon);
+	// svelte-ignore state_referenced_locally
+	const IconPromise = CachedIcon === undefined ? phosphorIconLoader(icon) : null;
 
 	const rp = $derived(restProps as Record<string, unknown>);
 </script>
 
-{#await IconPromise}
-	{@render placeholder?.()}
-{:then Icon}
-	{#if Icon !== null}
-		<Icon class={className} {...rp} />
-	{:else}
+{#if CachedIcon}
+	<CachedIcon class={className} {...rp} />
+{:else if IconPromise}
+	{#await IconPromise}
 		{@render placeholder?.()}
-	{/if}
-{/await}
+	{:then Icon}
+		{#if Icon !== null}
+			<Icon class={className} {...rp} />
+		{:else}
+			{@render placeholder?.()}
+		{/if}
+	{/await}
+{:else}
+	{@render placeholder?.()}
+{/if}

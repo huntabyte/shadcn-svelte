@@ -15,7 +15,7 @@
 	bind:ref
 	data-slot="field-label"
 	class={cn(
-		"cn-field-label group/field-label peer/field-label flex w-fit leading-snug",
+		"cn-field-label group/field-label peer/field-label flex w-fit",
 		"has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col",
 		className
 	)}

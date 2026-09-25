@@ -175,6 +175,38 @@ describe("getConfig", () => {
 		});
 	});
 
+	it("handles aliases defined via package.json subpath imports without tsconfig paths", async () => {
+		expect(await getConf("config-pkg-imports")).toEqual({
+			tailwind: {
+				css: "src/app.css",
+				baseColor: "zinc",
+			},
+			aliases: {
+				utils: "#lib/utils",
+				components: "#lib/components",
+				hooks: "#lib/hooks",
+				ui: "#lib/components/ui",
+				lib: "#lib",
+			},
+			resolvedPaths: {
+				components: resolvePath("../fixtures/config-pkg-imports/src/lib/components"),
+				tailwindCss: resolvePath("../fixtures/config-pkg-imports/src/app.css"),
+				utils: resolvePath("../fixtures/config-pkg-imports/src/lib/utils"),
+				hooks: resolvePath("../fixtures/config-pkg-imports/src/lib/hooks"),
+				ui: resolvePath("../fixtures/config-pkg-imports/src/lib/components/ui"),
+				lib: resolvePath("../fixtures/config-pkg-imports/src/lib"),
+				cwd: resolvePath("../fixtures/config-pkg-imports"),
+			},
+			iconLibrary: "lucide",
+			menuAccent: "subtle",
+			menuColor: "default",
+			style: "nova",
+			sveltekit: false,
+			typescript: true,
+			registry: `${SITE_BASE_URL}/registry`,
+		});
+	});
+
 	it("handles cases where the project uses jsconfig.json", async () => {
 		const config = await getConf("config-jsconfig");
 

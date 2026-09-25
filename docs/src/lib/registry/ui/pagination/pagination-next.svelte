@@ -21,6 +21,7 @@
 		phosphor="CaretRightIcon"
 		remixicon="RiArrowRightSLine"
 		data-icon="inline-end"
+		class="cn-rtl-flip"
 	/>
 {/snippet}
 

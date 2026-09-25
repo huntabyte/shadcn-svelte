@@ -21,15 +21,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<Callout class="mt-0 mb-6">
-
-**Important:** LayerChart v2 is still in pre-release and is actively evolving. Only use if you're comfortable with potential breaking changes before stable v2.
-
-Your feedback will be invaluable in shaping the release and features. Current development status can be tracked [here](https://github.com/techniq/layerchart/pull/449).
-
-</Callout>
-
-<ComponentPreview name="chart-bar-interactive" class="-mt-2 [&_[data-slot='card-footer']]:hidden [&_[data-slot='card']]:py-0 [&_[data-slot='card-header'].border-b]:pb-0 [&_[data-slot='card']]:bg-background [&_[data-slot='card']]:border-none" previewClassName="h-auto p-0 border-t border-none lg:min-h-[404px] *:w-full *:border-none *:shadow-none" hideCode>
+<ComponentPreview name="chart-bar-interactive" class="theme-blue -mt-2 [&_[data-slot='card-footer']]:hidden [&_[data-slot='card']]:py-0 [&_[data-slot='card-header'].border-b]:pb-0 [&_[data-slot='card']]:bg-background [&_[data-slot='card']]:border-none" previewClassName="h-auto p-0 lg:min-h-[404px] *:w-full *:border-none *:shadow-none" hideCode>
 
 <div></div>
 
@@ -95,7 +87,7 @@ Install `layerchart`:
 
 </Step>
 
-<PMInstall command="layerchart@next -D" />
+<PMInstall command="layerchart@latest -D" />
 
 <Step>
 
@@ -199,7 +191,7 @@ These components handle a lot of the common chart scaffolding for you, while all
 <ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
-<ComponentPreview name="chart-bar-demo" previewClassName="h-[22rem] p-4">
+<ComponentPreview name="chart-bar-demo" previewClassName="h-80 p-4">
 
 <div></div>
 
@@ -249,7 +241,7 @@ The `props` prop is how you can pass custom props to the various components that
 </Chart.Container>
 ```
 
-<ComponentPreview name="chart-bar-axis-tick-demo" previewClassName="h-[22rem] p-4">
+<ComponentPreview name="chart-bar-axis-tick-demo" previewClassName="h-80 p-4">
 
 <div></div>
 
@@ -302,7 +294,7 @@ We'll replace the `tooltipContext={false}` prop with the `tooltip` snippet where
 </Chart.Container>
 ```
 
-<ComponentPreview name="chart-bar-tooltip-demo" previewClassName="h-[22rem] p-4">
+<ComponentPreview name="chart-bar-tooltip-demo" previewClassName="h-80 p-4">
 
 <div></div>
 
@@ -352,7 +344,7 @@ The `legend` prop is used to show a legend for the chart. We are working with La
 </Chart.Container>
 ```
 
-<ComponentPreview name="chart-bar-legend-demo" previewClassName="h-[22rem] p-4">
+<ComponentPreview name="chart-bar-legend-demo" previewClassName="h-80 p-4">
 
 <div></div>
 
@@ -485,7 +477,7 @@ const chartData = [
 
 A chart tooltip contains a label, name, indicator and value. You can use a combination of these to customize your tooltip.
 
-<ComponentPreview name="chart-tooltip-demo" previewClassName="h-auto p-0" hideCode>
+<ComponentPreview name="chart-tooltip-demo" previewClassName="h-auto min-h-72" hideCode>
 
 <div></div>
 

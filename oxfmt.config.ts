@@ -7,7 +7,7 @@ export default defineConfig({
 	printWidth: 100,
 	sortTailwindcss: {
 		stylesheet: "./docs/src/app.css",
-		functions: ["cn", "clsx", "tv"],
+		functions: ["cn", "tv"],
 	},
 	// Adrian's opinionated import sorting. It's not perfect, but it's a decent starting point.
 	sortImports: {
@@ -77,6 +77,11 @@ export default defineConfig({
 	sortPackageJson: false,
 	ignorePatterns: [
 		"pnpm-lock.yaml",
+		// Verbatim copies of upstream shadcn/ui style CSS. Do not sort their
+		// `@apply` lists: tailwind-merge resolves conflicts by order (for example
+		// `text-sm` after `leading-snug` drops the line-height), so reordering
+		// changes what our registry renders compared to upstream.
+		"docs/src/lib/registry/styles/*.css",
 		"/static/",
 		"/.agents/",
 		"/.cursor/",

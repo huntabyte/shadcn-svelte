@@ -1,6 +1,6 @@
 <script lang="ts">
 	import SquareIcon from "@lucide/svelte/icons/square";
-	import { useDesignSystem } from "$lib/features/design-system/index.js";
+	import { DesignSystemContext } from "$lib/features/design-system/index.js";
 	import type { HugeIconsIconName } from "$lib/registry/icons/__hugeicons__/index.js";
 	import type { LucideIconName } from "$lib/registry/icons/__lucide__/index.js";
 	import type { PhosphorIconName } from "$lib/registry/icons/__phosphor__/index.js";
@@ -34,38 +34,41 @@
 		...restProps
 	}: Props & Omit<SvgProps, "class"> = $props();
 
-	const designSystem = useDesignSystem();
+	// Outside of the design-system routes (/create, /preview) there is no provider and the
+	// docs always render the default icon library.
+	const designSystem = DesignSystemContext.getOr(null);
+	const iconLibrary = $derived(designSystem?.iconLibrary ?? "lucide");
 </script>
 
 {#snippet PlaceholderIcon()}
 	<SquareIcon class={className} {...restProps as unknown as object} />
 {/snippet}
 
-{#if designSystem.iconLibrary === "hugeicons"}
+{#if iconLibrary === "hugeicons"}
 	<HugeiconsIcon icon={hugeicons} {className} {...restProps as unknown as object}>
 		{#snippet placeholder()}
 			{@render PlaceholderIcon()}
 		{/snippet}
 	</HugeiconsIcon>
-{:else if designSystem.iconLibrary === "lucide"}
+{:else if iconLibrary === "lucide"}
 	<LucideIcon icon={lucide} class={className} {...restProps as unknown as object}>
 		{#snippet placeholder()}
 			{@render PlaceholderIcon()}
 		{/snippet}
 	</LucideIcon>
-{:else if designSystem.iconLibrary === "tabler"}
+{:else if iconLibrary === "tabler"}
 	<TablerIcon icon={tabler} class={className} {...restProps as unknown as object}>
 		{#snippet placeholder()}
 			{@render PlaceholderIcon()}
 		{/snippet}
 	</TablerIcon>
-{:else if designSystem.iconLibrary === "phosphor"}
+{:else if iconLibrary === "phosphor"}
 	<PhosphorIcon icon={phosphor} class={className} {...restProps as unknown as object}>
 		{#snippet placeholder()}
 			{@render PlaceholderIcon()}
 		{/snippet}
 	</PhosphorIcon>
-{:else if designSystem.iconLibrary === "remixicon"}
+{:else if iconLibrary === "remixicon"}
 	<RemixiconIcon icon={remixicon} class={className} {...restProps as unknown as object}>
 		{#snippet placeholder()}
 			{@render PlaceholderIcon()}
