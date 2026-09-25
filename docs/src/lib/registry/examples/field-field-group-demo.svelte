@@ -3,7 +3,7 @@
 	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
 </script>
 
-<div class="w-full max-w-md">
+<div class="w-full max-w-xs">
 	<Field.Group>
 		<Field.Set>
 			<Field.Label>Responses</Field.Label>

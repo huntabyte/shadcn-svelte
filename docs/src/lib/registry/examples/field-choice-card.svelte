@@ -5,7 +5,7 @@
 	let computeEnvironment = $state("kubernetes");
 </script>
 
-<div class="w-full max-w-md">
+<div class="w-full max-w-xs">
 	<Field.Group>
 		<Field.Set>
 			<Field.Label for="compute-environment-p8w">Compute Environment</Field.Label>

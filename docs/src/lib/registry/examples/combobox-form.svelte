@@ -46,7 +46,7 @@
 
 	const { form: formData, enhance } = form;
 
-	let open = false;
+	let open = $state(false);
 
 	// We want to refocus the trigger button when the user selects
 	// an item from the list so users can continue navigating the

@@ -1,11 +1,12 @@
 /*
  * Registry styles that are NOT needed by the docs.
  *
- * The docs only ever render the default (vega) style, which app.css loads. The
- * remaining styles and fonts are only needed by the design-system routes
- * (/create and /preview), so they are imported from those layouts instead of
- * globally. Loading all eight style sheets everywhere makes every style
- * recalculation ~5x slower on every page, which made the docs unusable.
+ * The docs render Vega by default, plus Luma and Rhea on the homepage. app.css
+ * loads those three styles. The remaining styles and fonts are only needed by
+ * the design-system routes (/create and /preview), so they are imported from
+ * those layouts instead of globally. Loading all eight style sheets everywhere
+ * makes every style recalculation ~5x slower on every page, which made the docs
+ * unusable.
  */
 @reference "./app.css";
 
@@ -13,9 +14,7 @@
 @import "./lib/registry/styles/style-lyra.css" layer(base);
 @import "./lib/registry/styles/style-maia.css" layer(base);
 @import "./lib/registry/styles/style-mira.css" layer(base);
-@import "./lib/registry/styles/style-luma.css" layer(base);
 @import "./lib/registry/styles/style-sera.css" layer(base);
-@import "./lib/registry/styles/style-rhea.css" layer(base);
 
 @import "@fontsource-variable/inter/index.css";
 @import "@fontsource-variable/noto-sans/index.css";

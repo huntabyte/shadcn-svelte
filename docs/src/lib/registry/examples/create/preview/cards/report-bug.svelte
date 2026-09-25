@@ -43,9 +43,11 @@
 							{severities.find((s) => s.value === severity)?.label ?? "Select Severity"}
 						</Select.Trigger>
 						<Select.Content>
-							{#each severities as severity (severity.value)}
-								<Select.Item value={severity.value}>{severity.label}</Select.Item>
-							{/each}
+							<Select.Group>
+								{#each severities as severity (severity.value)}
+									<Select.Item value={severity.value}>{severity.label}</Select.Item>
+								{/each}
+							</Select.Group>
 						</Select.Content>
 					</Select.Root>
 				</Field.Field>
@@ -56,9 +58,11 @@
 							{components.find((c) => c.value === component)?.label ?? "Select Component"}
 						</Select.Trigger>
 						<Select.Content>
-							{#each components as component (component.value)}
-								<Select.Item value={component.value}>{component.label}</Select.Item>
-							{/each}
+							<Select.Group>
+								{#each components as component (component.value)}
+									<Select.Item value={component.value}>{component.label}</Select.Item>
+								{/each}
+							</Select.Group>
 						</Select.Content>
 					</Select.Root>
 				</Field.Field>

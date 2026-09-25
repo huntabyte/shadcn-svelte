@@ -3,7 +3,7 @@ title: Textarea
 description: Displays a form textarea or a component that looks like a textarea.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/textarea
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/textarea
 ---
 
 <script>
@@ -18,7 +18,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="textarea-demo">
+<ComponentPreview name="textarea-demo" previewClassName="*:max-w-xs">
 
 <div></div>
 
@@ -42,6 +42,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -58,43 +64,49 @@ Copy and paste the following code into your project.
 <Textarea />
 ```
 
-## Examples
+## Field
 
-### Default
+Use `Field`, `Field.Label`, and `Field.Description` to create a textarea with a label and description.
 
-<ComponentPreview name="textarea-demo">
-
-<div></div>
-
-</ComponentPreview>
-
-### Disabled
-
-<ComponentPreview name="textarea-disabled">
+<ComponentPreview name="textarea-field" previewClassName="*:max-w-xs">
 
 <div></div>
 
 </ComponentPreview>
 
-### With Label
+## Disabled
 
-<ComponentPreview name="textarea-with-label">
+Use the `disabled` prop to disable the textarea. To style the disabled state, add the `data-disabled` attribute to the `Field` component.
 
-<div></div>
-
-</ComponentPreview>
-
-### With Text
-
-<ComponentPreview name="textarea-with-text">
+<ComponentPreview name="textarea-disabled" previewClassName="*:max-w-xs">
 
 <div></div>
 
 </ComponentPreview>
 
-### With Button
+## Invalid
 
-<ComponentPreview name="textarea-with-button">
+Use the `aria-invalid` attribute to mark the textarea as invalid.
+
+<ComponentPreview name="textarea-invalid" previewClassName="*:max-w-xs">
+
+<div></div>
+
+</ComponentPreview>
+
+## Button
+
+Pair with `Button` to create a textarea with a submit button.
+
+<ComponentPreview name="textarea-button" previewClassName="*:max-w-xs">
+
+<div></div>
+
+</ComponentPreview>
+
+## Form
+
+<ComponentPreview name="textarea-form">
 
 <div></div>
 

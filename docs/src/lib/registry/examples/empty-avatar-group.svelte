@@ -1,0 +1,37 @@
+<script lang="ts">
+	import PlusIcon from "@lucide/svelte/icons/plus";
+	import * as Avatar from "$lib/registry/ui/avatar/index.js";
+	import * as Empty from "$lib/registry/ui/empty/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+</script>
+
+<Empty.Root>
+	<Empty.Header>
+		<Empty.Media>
+			<div
+				class="flex -space-x-2 *:data-[slot=avatar]:size-12 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-background *:data-[slot=avatar]:grayscale"
+			>
+				<Avatar.Root>
+					<Avatar.Image src="https://github.com/shadcn.png" alt="@shadcn" />
+					<Avatar.Fallback>CN</Avatar.Fallback>
+				</Avatar.Root>
+				<Avatar.Root>
+					<Avatar.Image src="https://github.com/maxleiter.png" alt="@maxleiter" />
+					<Avatar.Fallback>LR</Avatar.Fallback>
+				</Avatar.Root>
+				<Avatar.Root>
+					<Avatar.Image src="https://github.com/evilrabbit.png" alt="@evilrabbit" />
+					<Avatar.Fallback>ER</Avatar.Fallback>
+				</Avatar.Root>
+			</div>
+		</Empty.Media>
+		<Empty.Title>No Team Members</Empty.Title>
+		<Empty.Description>Invite your team to collaborate on this project.</Empty.Description>
+	</Empty.Header>
+	<Empty.Content>
+		<Button size="sm">
+			<PlusIcon />
+			Invite Members
+		</Button>
+	</Empty.Content>
+</Empty.Root>

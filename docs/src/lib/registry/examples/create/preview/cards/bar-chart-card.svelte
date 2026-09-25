@@ -3,7 +3,7 @@
 	import { BarChart } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
-	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const barChartData = [
 		{ month: "January", desktop: 186, mobile: 80 },
@@ -35,21 +35,12 @@
 	<Card.Header>
 		<Card.Title>Traffic Channels</Card.Title>
 		<Card.Description>Desktop vs mobile over the last 6 months</Card.Description>
-		<Card.Action>
-			<ToggleGroup.Root
-				aria-label="Time range"
-				type="single"
-				value="6m"
-				variant="outline"
-				size="sm"
-			>
-				<ToggleGroup.Item value="6m">6M</ToggleGroup.Item>
-				<ToggleGroup.Item value="12m">12M</ToggleGroup.Item>
-			</ToggleGroup.Root>
-		</Card.Action>
 	</Card.Header>
 	<Card.Content class="pt-0">
-		<Chart.Container config={barChartConfig} class="max-h-[180px] w-full">
+		<Chart.Container
+			config={barChartConfig}
+			class="max-h-[180px] w-full [&_.lc-legend-swatch-group]:mt-16"
+		>
 			<BarChart
 				data={barChartData}
 				xScale={scaleBand().padding(0.25)}
@@ -57,6 +48,7 @@
 				axis="x"
 				x1Scale={scaleBand().paddingInner(0.2)}
 				seriesLayout="group"
+				legend
 				rule={false}
 				props={{
 					bars: {
@@ -66,6 +58,7 @@
 					xAxis: {
 						format: (d: string) => d.slice(0, 3),
 						tickLength: 0,
+						tickLabelProps: { dy: 12 },
 					},
 				}}
 				series={[
@@ -86,9 +79,7 @@
 				{/snippet}
 			</BarChart>
 		</Chart.Container>
-	</Card.Content>
-	<Card.Footer>
-		<div class="grid w-full grid-cols-3 divide-x divide-border/60">
+		<div class="mt-4 grid w-full grid-cols-3 divide-x divide-border/60">
 			<div class="px-2 text-center">
 				<div class="text-[0.65rem] text-muted-foreground uppercase">Desktop</div>
 				<div class="text-sm font-medium tabular-nums">
@@ -104,9 +95,13 @@
 			<div class="px-2 text-center">
 				<div class="text-[0.65rem] text-muted-foreground uppercase">Mix Delta</div>
 				<div class="text-sm font-medium tabular-nums">
-					{desktopDeltaPrefix}{desktopDelta}%
+					{desktopDeltaPrefix}
+					{desktopDelta}%
 				</div>
 			</div>
 		</div>
+	</Card.Content>
+	<Card.Footer>
+		<Button class="w-full">View report</Button>
 	</Card.Footer>
 </Card.Root>

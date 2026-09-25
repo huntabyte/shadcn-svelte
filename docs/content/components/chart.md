@@ -3,7 +3,7 @@ title: Chart
 description: Beautiful charts. Built using LayerChart. Copy and paste into your apps.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/chart
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/chart
 ---
 
 <script>
@@ -21,7 +21,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="chart-bar-interactive" class="-mt-2 [&_.preview]:p-0 [&_.preview]:border-t [&_.preview>div]:shadow-none [&_.preview]:border-none [&_.preview>div]:w-full [&_.preview]:lg:min-h-[404px] [&_[data-slot='card-footer']]:hidden [&_[data-slot='card']]:py-0 [&_[data-slot='card-header'].border-b]:pb-0 [&_[data-slot='card']]:bg-background [&_[data-slot='card']]:border-none" hideCode>
+<ComponentPreview name="chart-bar-interactive" class="theme-blue -mt-2 [&_[data-slot='card-footer']]:hidden [&_[data-slot='card']]:py-0 [&_[data-slot='card-header'].border-b]:pb-0 [&_[data-slot='card']]:bg-background [&_[data-slot='card']]:border-none" previewClassName="h-auto p-0 lg:min-h-[404px] *:w-full *:border-none *:shadow-none" hideCode>
 
 <div></div>
 
@@ -61,6 +61,16 @@ We designed the `Chart` component with composition in mind. **You build your cha
 We do not wrap LayerChart. This means you're not locked into an abstraction. When a new LayerChart version is released, you can follow the official upgrade path to upgrade your charts.
 
 **The components are yours**.
+
+## Composition
+
+Use the following composition to build a `Chart`:
+
+```text
+Chart.Container
+└── [LayerChart component (e.g. BarChart, LineChart)]
+    └── Chart.Tooltip (via tooltip snippet)
+```
 
 ## Installation
 
@@ -181,7 +191,7 @@ These components handle a lot of the common chart scaffolding for you, while all
 <ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
-<ComponentPreview name="chart-bar-demo" class="[&_.preview]:p-4">
+<ComponentPreview name="chart-bar-demo" previewClassName="h-80 p-4">
 
 <div></div>
 
@@ -231,7 +241,7 @@ The `props` prop is how you can pass custom props to the various components that
 </Chart.Container>
 ```
 
-<ComponentPreview name="chart-bar-axis-tick-demo" class="[&_.preview]:p-4">
+<ComponentPreview name="chart-bar-axis-tick-demo" previewClassName="h-80 p-4">
 
 <div></div>
 
@@ -284,7 +294,7 @@ We'll replace the `tooltipContext={false}` prop with the `tooltip` snippet where
 </Chart.Container>
 ```
 
-<ComponentPreview name="chart-bar-tooltip-demo" class="[&_.preview]:p-4">
+<ComponentPreview name="chart-bar-tooltip-demo" previewClassName="h-80 p-4">
 
 <div></div>
 
@@ -334,7 +344,7 @@ The `legend` prop is used to show a legend for the chart. We are working with La
 </Chart.Container>
 ```
 
-<ComponentPreview name="chart-bar-legend-demo" class="[&_.preview]:p-4">
+<ComponentPreview name="chart-bar-legend-demo" previewClassName="h-80 p-4">
 
 <div></div>
 
@@ -467,7 +477,7 @@ const chartData = [
 
 A chart tooltip contains a label, name, indicator and value. You can use a combination of these to customize your tooltip.
 
-<ComponentPreview name="chart-tooltip-demo" class="[&_.preview]:p-0" hideCode>
+<ComponentPreview name="chart-tooltip-demo" previewClassName="h-auto min-h-72" hideCode>
 
 <div></div>
 

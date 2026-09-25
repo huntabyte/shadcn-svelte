@@ -3,7 +3,7 @@ title: Kbd
 description: Used to display textual user input from keyboard.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/kbd
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/kbd
 ---
 
 <script>
@@ -42,6 +42,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -58,9 +64,16 @@ Copy and paste the following code into your project.
 <Kbd.Root>B</Kbd.Root>
 ```
 
-## Examples
+## Composition
 
-### Group
+```text
+Kbd.Root
+Kbd.Group
+├── Kbd.Root
+└── Kbd.Root
+```
+
+## Group
 
 Use the `Kbd.Group` component to group keyboard keys together.
 
@@ -70,7 +83,7 @@ Use the `Kbd.Group` component to group keyboard keys together.
 
 </ComponentPreview>
 
-### Button
+## Button
 
 Use the `Kbd.Root` component inside a `Button` component to display a keyboard key inside a button.
 
@@ -80,7 +93,7 @@ Use the `Kbd.Root` component inside a `Button` component to display a keyboard k
 
 </ComponentPreview>
 
-### Tooltip
+## Tooltip
 
 You can use the `Kbd.Root` component inside a `Tooltip` component to display a tooltip with a keyboard key.
 
@@ -90,7 +103,7 @@ You can use the `Kbd.Root` component inside a `Tooltip` component to display a t
 
 </ComponentPreview>
 
-### Input Group
+## Input Group
 
 You can use the `Kbd.Root` component inside a `InputGroup.Addon` component to display a keyboard key inside an input group.
 
@@ -99,3 +112,32 @@ You can use the `Kbd.Root` component inside a `InputGroup.Addon` component to di
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+### Kbd.Root
+
+Use the `Kbd.Root` component to display a keyboard key.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | ``      |
+
+```svelte
+<Kbd.Root>Ctrl</Kbd.Root>
+```
+
+### Kbd.Group
+
+Use the `Kbd.Group` component to group `Kbd` components together.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | ``      |
+
+```svelte
+<Kbd.Group>
+  <Kbd.Root>Ctrl</Kbd.Root>
+  <Kbd.Root>B</Kbd.Root>
+</Kbd.Group>
+```

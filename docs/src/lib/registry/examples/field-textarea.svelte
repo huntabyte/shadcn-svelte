@@ -3,7 +3,7 @@
 	import { Textarea } from "$lib/registry/ui/textarea/index.js";
 </script>
 
-<div class="w-full max-w-md">
+<div class="w-full max-w-xs">
 	<Field.Set>
 		<Field.Group>
 			<Field.Field>
