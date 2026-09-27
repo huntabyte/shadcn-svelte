@@ -134,7 +134,7 @@
   }
 
   .cn-breadcrumb-separator {
-    @apply [&>svg]:size-3.5;
+    @apply flex items-center [&>svg]:size-3.5;
   }
 
   .cn-breadcrumb-ellipsis {
