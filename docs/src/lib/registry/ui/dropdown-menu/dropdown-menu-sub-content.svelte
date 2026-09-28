@@ -1,20 +1,27 @@
 <script lang="ts">
 	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
-	import { cn } from "$lib/utils.js";
+	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
+	import DropdownMenuPortal from "./dropdown-menu-portal.svelte";
+	import type { ComponentProps } from "svelte";
 
 	let {
 		ref = $bindable(null),
 		class: className,
+		portalProps,
 		...restProps
-	}: DropdownMenuPrimitive.SubContentProps = $props();
+	}: DropdownMenuPrimitive.SubContentProps & {
+		portalProps?: WithoutChildrenOrChild<ComponentProps<typeof DropdownMenuPortal>>;
+	} = $props();
 </script>
 
-<DropdownMenuPrimitive.SubContent
-	bind:ref
-	data-slot="dropdown-menu-sub-content"
-	class={cn(
-		"cn-dropdown-menu-sub-content cn-menu-target cn-menu-translucent z-50 origin-(--bits-dropdown-menu-content-transform-origin) overflow-hidden",
-		className
-	)}
-	{...restProps}
-/>
+<DropdownMenuPortal {...portalProps}>
+	<DropdownMenuPrimitive.SubContent
+		bind:ref
+		data-slot="dropdown-menu-sub-content"
+		class={cn(
+			"cn-dropdown-menu-sub-content cn-menu-target cn-menu-translucent z-50 origin-(--bits-dropdown-menu-content-transform-origin) overflow-hidden",
+			className
+		)}
+		{...restProps}
+	/>
+</DropdownMenuPortal>
