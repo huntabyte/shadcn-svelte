@@ -67,7 +67,10 @@
 			{code}
 			class="h-6 w-6 rounded-[6px] bg-transparent text-foreground shadow-none hover:bg-muted dark:text-foreground [&_svg]:h-3 [&_svg]:w-3"
 		/>
-		<Separator orientation="vertical" class="mx-0 hidden data-vertical:h-4 data-vertical:self-auto md:flex" />
+		<Separator
+			orientation="vertical"
+			class="mx-0 hidden md:flex data-vertical:h-4 data-vertical:self-auto"
+		/>
 		<ChartCodeViewer {chart} {code}>{@render children?.()}</ChartCodeViewer>
 	</div>
 </div>

@@ -37,7 +37,10 @@
 				<CirclePlusIcon />
 				{title}
 				{#if selectedValues.size > 0}
-					<Separator orientation="vertical" class="mx-2 data-vertical:h-4 data-vertical:self-auto" />
+					<Separator
+						orientation="vertical"
+						class="mx-2 data-vertical:h-4 data-vertical:self-auto"
+					/>
 					<Badge variant="secondary" class="rounded-sm px-1 font-normal lg:hidden">
 						{selectedValues.size}
 					</Badge>

@@ -30,7 +30,10 @@
 				>
 					{open ? "Collapse" : "Expand"}
 				</Button>
-				<Separator orientation="vertical" class="mx-1.5 data-vertical:h-4 data-vertical:self-auto" />
+				<Separator
+					orientation="vertical"
+					class="mx-1.5 data-vertical:h-4 data-vertical:self-auto"
+				/>
 			</div>
 		{/snippet}
 	</Collapsible.Trigger>

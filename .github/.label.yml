@@ -23,7 +23,7 @@ labels:
     apply_when: The issue or PR requires additional information or action from the submitter.
     removed_when: The submitter replies with the additional information or action requested
   "needs reproduction":
-    apply_when: A reproduction is required to support the issue, or the provided reproduction is just steps and not a repository/stackblitz that maintainers can open. (Links to the official docs are fine)
+    apply_when: A reproduction is required to support the issue, or the provided reproduction is just steps and not a repository/stackblitz that maintainers can open. (Links to the official docs (shadcn-svelte.com) are fine)
   "has workaround":
     apply_when: The issue has a workaround available to end users provided in the description or in the comments. Never apply this label to enhancements, only to bugs.
   cli:
