@@ -109,7 +109,7 @@ Open drawers from inside another drawer using `<Drawer.NestedRoot />`. Parent dr
 
 ### Non Modal
 
-Set `modal={false}` to allow interaction with the rest of the page while the drawer is open. Combine with `dismissible={false}` to prevent the drawer from closing on outside presses.
+Set `modal={false}` to allow interaction with the rest of the page while the drawer is open. Clicking outside a non-modal drawer does not close it.
 
 <ComponentPreview name="drawer-non-modal">
 

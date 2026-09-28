@@ -3,7 +3,7 @@
 	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 </script>
 
-<Drawer.Root modal={false} dismissible={false} direction="right">
+<Drawer.Root modal={false} direction="right">
 	<Drawer.Trigger class={buttonVariants({ variant: "outline" })}>Non Modal</Drawer.Trigger>
 	<Drawer.Content>
 		<Drawer.Header>
