@@ -182,7 +182,7 @@ To create a button group, use the `ButtonGroup` component. See the [Button Group
 
 ### As Link
 
-Pass an `href` prop to `<Button />` to render it as an `<a>` element that looks like a button.
+Pass an `href` prop to `<Button />` to render it as an `<a>` element that looks like a button. You can also use the `buttonVariants` helper to make any other element look like a button.
 
 <ComponentPreview name="button-as-link">
 
@@ -190,12 +190,3 @@ Pass an `href` prop to `<Button />` to render it as an `<a>` element that looks 
 
 </ComponentPreview>
 
-Alternatively, you can use the `buttonVariants` helper to make any element look like a button.
-
-```svelte
-<script lang="ts">
-  import { buttonVariants } from "$lib/components/ui/button/index.js";
-</script>
-
-<a href="/login" class={buttonVariants({ variant: "outline" })}>Login</a>
-```

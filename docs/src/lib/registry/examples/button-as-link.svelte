@@ -2,4 +2,4 @@
 	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
-<Button href="/login">Login</Button>
+<Button href="#" variant="secondary" size="sm">Login</Button>
