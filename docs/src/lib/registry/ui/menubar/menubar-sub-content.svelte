@@ -7,6 +7,8 @@
 	let {
 		ref = $bindable(null),
 		class: className,
+		align = "start",
+		alignOffset = -3,
 		portalProps,
 		...restProps
 	}: MenubarPrimitive.SubContentProps & {
@@ -18,6 +20,8 @@
 	<MenubarPrimitive.SubContent
 		bind:ref
 		data-slot="menubar-sub-content"
+		{align}
+		{alignOffset}
 		class={cn(
 			"cn-menubar-sub-content cn-menu-target cn-menu-translucent z-50 origin-(--bits-menubar-content-transform-origin) overflow-hidden",
 			className
