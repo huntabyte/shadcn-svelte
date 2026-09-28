@@ -5,11 +5,11 @@
 <Breadcrumb.Root>
 	<Breadcrumb.List>
 		<Breadcrumb.Item>
-			<Breadcrumb.Link href="##">Home</Breadcrumb.Link>
+			<Breadcrumb.Link href="#">Home</Breadcrumb.Link>
 		</Breadcrumb.Item>
 		<Breadcrumb.Separator />
 		<Breadcrumb.Item>
-			<Breadcrumb.Link href="##">Components</Breadcrumb.Link>
+			<Breadcrumb.Link href="#">Components</Breadcrumb.Link>
 		</Breadcrumb.Item>
 		<Breadcrumb.Separator />
 		<Breadcrumb.Item>
