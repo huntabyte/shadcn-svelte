@@ -83,7 +83,9 @@ Marker.Root
 - Pairs with the [`shimmer`](/docs/utils/shimmer) utility for streaming status text
 - Customizable styling through the `class` prop on every part
 
-## Variants
+## Examples
+
+### Variants
 
 Use `variant` to switch between an inline marker, bordered row, and labeled separator.
 
@@ -99,7 +101,7 @@ Use `variant` to switch between an inline marker, bordered row, and labeled sepa
 | `border`    | A default marker with a bottom border under the row. |
 | `separator` | A centered label with divider lines on each side.    |
 
-## Status
+### Status
 
 Set `role="status"` and include a [`Spinner`](/docs/components/spinner) for streaming or in-progress markers so updates are announced.
 
@@ -109,7 +111,7 @@ Set `role="status"` and include a [`Spinner`](/docs/components/spinner) for stre
 
 </ComponentPreview>
 
-## Shimmer
+### Shimmer
 
 Add the [`shimmer`](/docs/utils/shimmer) utility class to `Marker.Content` for an animated streaming-text effect. The utility ships with the `shadcn-svelte` package. See the shimmer docs for installation.
 
@@ -119,7 +121,7 @@ Add the [`shimmer`](/docs/utils/shimmer) utility class to `Marker.Content` for a
 
 </ComponentPreview>
 
-## Separator
+### Separator
 
 Use the `separator` variant for labeled dividers, such as dates or section breaks, in a conversation.
 
@@ -129,7 +131,7 @@ Use the `separator` variant for labeled dividers, such as dates or section break
 
 </ComponentPreview>
 
-## Border
+### Border
 
 Use the `border` variant for status rows that should keep the default marker alignment while separating the next row.
 
@@ -139,7 +141,7 @@ Use the `border` variant for status rows that should keep the default marker ali
 
 </ComponentPreview>
 
-## With Icon
+### With Icon
 
 Use `Marker.Icon` to render an icon alongside the content. Use `flex-col` to stack the icon above the content.
 
@@ -149,7 +151,7 @@ Use `Marker.Icon` to render an icon alongside the content. Use `flex-col` to sta
 
 </ComponentPreview>
 
-## Links and Buttons
+### Links and Buttons
 
 Turn a marker into a link or button with the `child` snippet on `Marker.Root`.
 

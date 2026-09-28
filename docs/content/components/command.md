@@ -21,7 +21,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="command-demo" align="start" class="[&_.preview>div]:max-w-[450px]">
+<ComponentPreview name="command-demo" align="start">
 
 <div></div>
 
@@ -87,46 +87,6 @@ Copy and paste the following code into your project.
 
 ## Examples
 
-### Dialog
-
-<ComponentPreview name="command-dialog">
-
-<div></div>
-
-</ComponentPreview>
-
-To show the command menu in a dialog, use the `<Command.Dialog />` component instead of `<Command.Root />`. It accepts props for both the `<Dialog.Root />` and `<Command.Root />` components.
-
-```svelte title="lib/components/example-command-menu.svelte" showLineNumbers
-<script lang="ts">
-  import * as Command from "$lib/components/ui/command/index.js";
-  import { onMount } from "svelte";
-
-  let open = $state(false);
-
-  function handleKeydown(e: KeyboardEvent) {
-    if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-      e.preventDefault();
-      open = !open;
-    }
-  }
-</script>
-
-<svelte:document onkeydown={handleKeydown} />
-
-<Command.Dialog bind:open>
-  <Command.Input placeholder="Type a command or search..." />
-  <Command.List>
-    <Command.Empty>No results found.</Command.Empty>
-    <Command.Group heading="Suggestions">
-      <Command.Item>Calendar</Command.Item>
-      <Command.Item>Search Emoji</Command.Item>
-      <Command.Item>Calculator</Command.Item>
-    </Command.Group>
-  </Command.List>
-</Command.Dialog>
-```
-
 ### Basic
 
 A simple command menu in a dialog.
@@ -164,13 +124,3 @@ Scrollable command menu with multiple items.
 <div></div>
 
 </ComponentPreview>
-
-### Combobox
-
-You can use the `<Command />` component as a combobox. See the [Combobox](/docs/components/combobox) page for more information.
-
-## Changelog
-
-### 2024-10-30 Classes for icons
-
-- Added `gap-2 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0` to the `<Command.Item>` component to automatically style the icons inside.

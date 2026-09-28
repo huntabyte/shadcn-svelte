@@ -4,9 +4,9 @@
 </script>
 
 <Field.Field class="w-full max-w-sm">
-	<Field.Label for="progress-upload">
+	<Field.Label for="progress-upload" class="w-full">
 		<span>Upload progress</span>
-		<span class="ml-auto">66%</span>
+		<span class="ml-auto font-normal text-muted-foreground tabular-nums">56%</span>
 	</Field.Label>
-	<Progress value={66} id="progress-upload" />
+	<Progress value={56} id="progress-upload" />
 </Field.Field>

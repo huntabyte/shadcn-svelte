@@ -94,7 +94,7 @@ Use the `bg-*` and `bg-gradient-*` utilities to add a background to the empty st
 
 ### Avatar
 
-Use the `EmptyMedia` component to display an avatar in the empty state.
+Use the `Empty.Media` component to display an avatar in the empty state.
 
 <ComponentPreview name="empty-avatar-demo">
 
@@ -104,7 +104,7 @@ Use the `EmptyMedia` component to display an avatar in the empty state.
 
 ### Avatar Group
 
-Use the `EmptyMedia` component to display an avatar group in the empty state.
+Use the `Empty.Media` component to display an avatar group in the empty state.
 
 <ComponentPreview name="empty-avatar-group-demo">
 
@@ -114,7 +114,7 @@ Use the `EmptyMedia` component to display an avatar group in the empty state.
 
 ### InputGroup
 
-You can add an `InputGroup` component to the `EmptyContent` component.
+You can add an `InputGroup` component to the `Empty.Content` component.
 
 <ComponentPreview name="empty-input-group-demo">
 

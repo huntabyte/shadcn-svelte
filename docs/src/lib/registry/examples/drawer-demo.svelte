@@ -1,126 +1,94 @@
 <script lang="ts">
-	import MinusIcon from "@lucide/svelte/icons/minus";
-	import PlusIcon from "@lucide/svelte/icons/plus";
-	import { scaleBand } from "d3-scale";
-	import { BarChart } from "layerchart";
-	import { cubicInOut } from "svelte/easing";
+	import { toast } from "svelte-sonner";
 	import * as Drawer from "$lib/registry/ui/drawer/index.js";
+	import * as Field from "$lib/registry/ui/field/index.js";
+	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
+	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
+	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
 
-	const data = [
+	const deliveryTimes = [
 		{
-			goal: 400,
+			value: "asap",
+			id: "delivery-asap",
+			label: "Standard delivery",
+			description: "25–35 min · Driver assigned now",
+			badge: "Fastest",
 		},
 		{
-			goal: 300,
+			value: "5-00",
+			id: "delivery-5-00",
+			label: "5:00 PM – 5:15 PM",
+			description: "Prep starts at 4:45 PM",
 		},
 		{
-			goal: 200,
+			value: "5-30",
+			id: "delivery-5-30",
+			label: "5:30 PM – 5:45 PM",
+			description: "Good if you're heading home",
 		},
 		{
-			goal: 300,
+			value: "6-00",
+			id: "delivery-6-00",
+			label: "6:00 PM – 6:15 PM",
+			description: "Most popular · High demand",
 		},
 		{
-			goal: 200,
-		},
-		{
-			goal: 278,
-		},
-		{
-			goal: 189,
-		},
-		{
-			goal: 239,
-		},
-		{
-			goal: 300,
-		},
-		{
-			goal: 200,
-		},
-		{
-			goal: 278,
-		},
-		{
-			goal: 189,
-		},
-		{
-			goal: 349,
+			value: "6-30",
+			id: "delivery-6-30",
+			label: "6:30 PM – 6:45 PM",
+			description: "Last slot before kitchen closes",
 		},
 	];
 
-	let goal = $state(350);
+	let open = $state(false);
+	let deliveryTime = $state("asap");
+	const isMobile = new IsMobile();
 
-	function handleClick(adjustment: number) {
-		goal = Math.max(200, Math.min(400, goal + adjustment));
+	function handleConfirm() {
+		const selected = deliveryTimes.find((time) => time.value === deliveryTime);
+
+		if (!selected) {
+			return;
+		}
+
+		open = false;
+		toast("Delivery time confirmed", {
+			description: selected.label,
+		});
 	}
 </script>
 
-<Drawer.Root>
-	<Drawer.Trigger class={buttonVariants({ variant: "outline" })}>Open Drawer</Drawer.Trigger>
+<Drawer.Root bind:open direction={isMobile.current ? "bottom" : "right"}>
+	<Drawer.Trigger class={buttonVariants({ variant: "secondary" })}>Open Drawer</Drawer.Trigger>
 	<Drawer.Content>
-		<div class="mx-auto w-full max-w-sm">
-			<Drawer.Header>
-				<Drawer.Title>Move Goal</Drawer.Title>
-				<Drawer.Description>Set your daily activity goal.</Drawer.Description>
-			</Drawer.Header>
-			<div class="p-4 pb-0">
-				<div class="flex items-center justify-center space-x-2">
-					<Button
-						variant="outline"
-						size="icon"
-						class="size-8 shrink-0 rounded-full"
-						onclick={() => handleClick(-10)}
-						disabled={goal <= 200}
-					>
-						<MinusIcon />
-						<span class="sr-only">Decrease</span>
-					</Button>
-					<div class="flex-1 text-center">
-						<div class="text-7xl font-bold tracking-tighter">
-							{goal}
-						</div>
-						<div class="text-[0.70rem] text-muted-foreground uppercase">Calories/day</div>
-					</div>
-					<Button
-						variant="outline"
-						size="icon"
-						class="size-8 shrink-0 rounded-full"
-						onclick={() => handleClick(10)}
-						disabled={goal >= 400}
-					>
-						<PlusIcon />
-						<span class="sr-only">Increase</span>
-					</Button>
-				</div>
-				<div class="mt-3 h-[120px]">
-					<div class="h-full w-full">
-						<BarChart
-							data={data.map((d, i) => ({ goal: d.goal, index: i }))}
-							y="goal"
-							x="index"
-							xScale={scaleBand().padding(0.25)}
-							axis={false}
-							tooltipContext={false}
-							props={{
-								bars: {
-									stroke: "none",
-									rounded: "all",
-									radius: 4,
-									motion: { type: "tween", duration: 500, easing: cubicInOut },
-									fill: "var(--color-foreground)",
-									fillOpacity: 0.9,
-								},
-								highlight: { area: { fill: "none" } },
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-			<Drawer.Footer>
-				<Button>Submit</Button>
-				<Drawer.Close class={buttonVariants({ variant: "outline" })}>Cancel</Drawer.Close>
-			</Drawer.Footer>
+		<Drawer.Header>
+			<Drawer.Title>Pick a delivery time</Drawer.Title>
+			<Drawer.Description>We&apos;ll prepare your order as soon as possible.</Drawer.Description>
+		</Drawer.Header>
+		<div class="flex-1 overflow-y-auto p-4">
+			<RadioGroup.Root bind:value={deliveryTime} class="gap-2">
+				{#each deliveryTimes as time (time.value)}
+					<Field.Label for={time.id}>
+						<Field.Field orientation="horizontal">
+							<Field.Content>
+								<Field.Title class="flex items-center gap-2">
+									{time.label}
+									{#if time.badge}
+										<Badge variant="secondary">{time.badge}</Badge>
+									{/if}
+								</Field.Title>
+								<Field.Description>{time.description}</Field.Description>
+							</Field.Content>
+							<RadioGroup.Item value={time.value} id={time.id} />
+						</Field.Field>
+					</Field.Label>
+				{/each}
+			</RadioGroup.Root>
 		</div>
+		<Drawer.Footer>
+			<Button onclick={handleConfirm} class="h-[34px]">Confirm Delivery Time</Button>
+			<Drawer.Close class={buttonVariants({ variant: "outline" })}>Cancel</Drawer.Close>
+		</Drawer.Footer>
 	</Drawer.Content>
 </Drawer.Root>

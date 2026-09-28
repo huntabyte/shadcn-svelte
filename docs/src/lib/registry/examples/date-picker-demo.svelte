@@ -22,7 +22,7 @@
 				class="w-[212px] justify-between text-start font-normal data-[empty=true]:text-muted-foreground"
 			>
 				{value ? df.format(value.toDate(getLocalTimeZone())) : "Pick a date"}
-				<ChevronDownIcon />
+				<ChevronDownIcon data-icon="inline-end" />
 			</Button>
 		{/snippet}
 	</Popover.Trigger>

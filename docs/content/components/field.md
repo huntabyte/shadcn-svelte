@@ -164,7 +164,7 @@ The `Field` family is designed for composing accessible forms. A typical field i
 
 ### Choice Card
 
-Wrap `Field` components inside `FieldLabel` to create selectable field groups. This works with `RadioItem`, `Checkbox` and `Switch` components.
+Wrap `Field.Field` components inside `Field.Label` to create selectable field groups. This works with `RadioGroup.Item`, `Checkbox` and `Switch` components.
 
 <ComponentPreview name="field-choice-card">
 
@@ -196,10 +196,9 @@ Stack `Field` components with `Field.Group`. Add `Field.Separator` to divide the
 
 ## Validation and Errors
 
-- Add `data-invalid` to `Field` to switch the entire block into an error state.
+- Add `data-invalid` to `Field.Field` to switch the entire block into an error state.
 - Add `aria-invalid` on the input itself for assistive technologies.
-- Render `FieldError` immediately after the control or inside `FieldContent` to keep error messages aligned with the field.
-  Copy
+- Render `Field.Error` immediately after the control or inside `Field.Content` to keep error messages aligned with the field.
 
 ```svelte
 <Field.Field data-invalid>

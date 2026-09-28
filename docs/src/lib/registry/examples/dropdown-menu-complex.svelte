@@ -13,12 +13,12 @@
 	import FolderSearchIcon from "@lucide/svelte/icons/folder-search";
 	import KeyboardIcon from "@lucide/svelte/icons/keyboard";
 	import LanguagesIcon from "@lucide/svelte/icons/languages";
-	import LayoutPanelLeftIcon from "@lucide/svelte/icons/layout-panel-left";
 	import LogOutIcon from "@lucide/svelte/icons/log-out";
 	import MailIcon from "@lucide/svelte/icons/mail";
 	import MonitorIcon from "@lucide/svelte/icons/monitor";
 	import MoonIcon from "@lucide/svelte/icons/moon";
 	import PaletteIcon from "@lucide/svelte/icons/palette";
+	import LayoutIcon from "@lucide/svelte/icons/panels-top-left";
 	import SaveIcon from "@lucide/svelte/icons/save";
 	import SettingsIcon from "@lucide/svelte/icons/settings";
 	import ShieldIcon from "@lucide/svelte/icons/shield";
@@ -114,7 +114,7 @@
 				Show Sidebar
 			</DropdownMenu.CheckboxItem>
 			<DropdownMenu.CheckboxItem bind:checked={notifications.sms}>
-				<LayoutPanelLeftIcon />
+				<LayoutIcon />
 				Show Status Bar
 			</DropdownMenu.CheckboxItem>
 			<DropdownMenu.Sub>

@@ -5,7 +5,7 @@
 	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
 </script>
 
-<ToggleGroup.Root disabled type="multiple">
+<ToggleGroup.Root disabled type="single">
 	<ToggleGroup.Item value="bold" aria-label="Toggle bold">
 		<BoldIcon />
 	</ToggleGroup.Item>

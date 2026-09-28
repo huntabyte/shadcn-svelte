@@ -10,29 +10,25 @@
 		<Tooltip.Root>
 			<Tooltip.Trigger>
 				{#snippet child({ props })}
-					<Button size="sm" variant="outline" {...props}>Save</Button>
+					<Button variant="outline" {...props}>Save</Button>
 				{/snippet}
 			</Tooltip.Trigger>
 			<Tooltip.Content>
-				<div class="flex items-center gap-2">
-					Save Changes <Kbd.Root>S</Kbd.Root>
-				</div>
+				Save Changes <Kbd.Root>S</Kbd.Root>
 			</Tooltip.Content>
 		</Tooltip.Root>
 		<Tooltip.Root>
 			<Tooltip.Trigger>
 				{#snippet child({ props })}
-					<Button size="sm" variant="outline" {...props}>Print</Button>
+					<Button variant="outline" {...props}>Print</Button>
 				{/snippet}
 			</Tooltip.Trigger>
 			<Tooltip.Content>
-				<div class="flex items-center gap-2">
-					Print Document
-					<Kbd.Group>
-						<Kbd.Root>Ctrl</Kbd.Root>
-						<Kbd.Root>P</Kbd.Root>
-					</Kbd.Group>
-				</div>
+				Print Document
+				<Kbd.Group>
+					<Kbd.Root>Ctrl</Kbd.Root>
+					<Kbd.Root>P</Kbd.Root>
+				</Kbd.Group>
 			</Tooltip.Content>
 		</Tooltip.Root>
 	</ButtonGroup.Root>

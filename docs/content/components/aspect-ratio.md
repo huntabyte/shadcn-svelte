@@ -65,11 +65,9 @@ Copy and paste the following code into your project.
 ```
 
 ```svelte showLineNumbers
-<div class="w-[450px]">
-  <AspectRatio ratio={16 / 9} class="bg-muted">
-    <img src="..." alt="..." class="rounded-md object-cover" />
-  </AspectRatio>
-</div>
+<AspectRatio ratio={16 / 9}>
+  <img src="..." alt="Image" class="rounded-md object-cover" />
+</AspectRatio>
 ```
 
 ## Examples

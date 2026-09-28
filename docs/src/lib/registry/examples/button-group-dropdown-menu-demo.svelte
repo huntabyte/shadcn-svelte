@@ -17,12 +17,12 @@
 	<DropdownMenu.Root>
 		<DropdownMenu.Trigger>
 			{#snippet child({ props })}
-				<Button {...props} variant="outline" class="!ps-2">
+				<Button {...props} variant="outline" class="pl-2!">
 					<ChevronDown />
 				</Button>
 			{/snippet}
 		</DropdownMenu.Trigger>
-		<DropdownMenu.Content align="end" class="[--radius:1rem]">
+		<DropdownMenu.Content align="end" class="w-44">
 			<DropdownMenu.Group>
 				<DropdownMenu.Item>
 					<VolumeOff />

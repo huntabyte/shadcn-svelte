@@ -20,7 +20,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="collapsible-demo">
+<ComponentPreview name="collapsible-demo" align="start">
 
 <div></div>
 
@@ -95,7 +95,7 @@ Use `bind:open` to control the state.
 
 ### Basic
 
-<ComponentPreview name="collapsible-basic">
+<ComponentPreview name="collapsible-basic" align="start">
 
 <div></div>
 

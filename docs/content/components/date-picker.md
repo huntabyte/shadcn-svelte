@@ -99,29 +99,32 @@ A date picker component for selecting a range of dates.
 
 </ComponentPreview>
 
-### Date of Birth Picker
+### Date of Birth
 
 A date picker component for selecting a date of birth. This component includes a dropdown caption layout for date and month selection.
 
-<ComponentPreview name="calendar-22" description="A calendar with date of birth picker." >
+<ComponentPreview name="date-picker-dob">
 
 <div></div>
 
 </ComponentPreview>
 
-### Picker with Input
+### Input
 
-<!--need to fix code not showing due to type-->
+A date picker component with an input field for selecting a date.
 
-<ComponentPreview name="calendar-28" description="A calendar with input and picker." >
+<ComponentPreview name="date-picker-input">
 
 <div></div>
 
 </ComponentPreview>
 
-### Date and Time Picker
+### Time Picker
 
-<ComponentPreview name="calendar-24" description="A calendar with date and time picker." >
+A date picker component with a time input field for selecting a time.
+
+<ComponentPreview name="date-picker-time">
+
 <div></div>
 
 </ComponentPreview>
@@ -130,7 +133,7 @@ A date picker component for selecting a date of birth. This component includes a
 
 This component uses the `chrono-node` library to parse natural language dates.
 
-<ComponentPreview name="calendar-29" description="A calendar with natural language picker.">
+<ComponentPreview name="date-picker-natural-language">
 
 <div></div>
 

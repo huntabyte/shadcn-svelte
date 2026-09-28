@@ -95,6 +95,14 @@ Use the `Avatar.Badge` component to add a badge to the avatar. The badge is posi
 
 Use the `class` prop to add custom styles to the badge such as custom colors, sizes, etc.
 
+```svelte showLineNumbers
+<Avatar.Root>
+  <Avatar.Image src="https://github.com/shadcn.png" alt="@shadcn" />
+  <Avatar.Fallback>CN</Avatar.Fallback>
+  <Avatar.Badge class="bg-green-600 dark:bg-green-800" />
+</Avatar.Root>
+```
+
 ### Badge with Icon
 
 You can also use an icon inside `<Avatar.Badge>`.

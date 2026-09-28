@@ -99,8 +99,6 @@ You can nest providers to create groups with different settings. Tooltips use th
 </Tooltip.Provider>
 ```
 
----
-
 ## Examples
 
 ### Side

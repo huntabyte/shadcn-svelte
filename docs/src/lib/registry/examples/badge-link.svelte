@@ -3,6 +3,6 @@
 	import { Badge } from "$lib/registry/ui/badge/index.js";
 </script>
 
-<Badge href="##">
+<Badge href="#link">
 	Open Link <ArrowUpRightIcon data-icon="inline-end" />
 </Badge>

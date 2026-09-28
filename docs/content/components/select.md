@@ -138,6 +138,15 @@ A select with many items that scrolls.
 
 Add the `data-invalid` attribute to the `Field.Field` component and the `aria-invalid` attribute to the `Select.Trigger` component to show an error state.
 
+```svelte showLineNumbers /data-invalid/ /aria-invalid/
+<Field.Field data-invalid>
+  <Field.Label>Fruit</Field.Label>
+  <Select.Trigger aria-invalid>
+    <Select.Value />
+  </Select.Trigger>
+</Field.Field>
+```
+
 <ComponentPreview name="select-invalid">
 
 <div></div>

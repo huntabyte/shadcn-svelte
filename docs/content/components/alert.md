@@ -56,10 +56,14 @@ Copy and paste the following code into your project.
 
 ```svelte showLineNumbers
 <Alert.Root>
+  <InfoIcon />
   <Alert.Title>Heads up!</Alert.Title>
   <Alert.Description>
-    You can add components to your app using the cli.
+    You can add components and dependencies to your app using the cli.
   </Alert.Description>
+  <Alert.Action>
+    <Button variant="outline">Enable</Button>
+  </Alert.Action>
 </Alert.Root>
 ```
 

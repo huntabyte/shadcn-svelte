@@ -18,7 +18,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="input-demo">
+<ComponentPreview name="input-demo" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 
@@ -62,7 +62,7 @@ Copy and paste the following code into your project.
 
 ### Basic
 
-<ComponentPreview name="input-basic">
+<ComponentPreview name="input-basic" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 
@@ -72,7 +72,7 @@ Copy and paste the following code into your project.
 
 Use `Field.Field`, `Field.Label`, and `Field.Description` to create an input with a label and description.
 
-<ComponentPreview name="input-field">
+<ComponentPreview name="input-field" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 
@@ -82,7 +82,7 @@ Use `Field.Field`, `Field.Label`, and `Field.Description` to create an input wit
 
 Use `Field.Group` to show multiple `Field.Field` blocks and to build forms.
 
-<ComponentPreview name="input-fieldgroup">
+<ComponentPreview name="input-fieldgroup" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 
@@ -92,7 +92,7 @@ Use `Field.Group` to show multiple `Field.Field` blocks and to build forms.
 
 Use the `disabled` prop to disable the input. To style the disabled state, add the `data-disabled` attribute to the `Field.Field` component.
 
-<ComponentPreview name="input-disabled">
+<ComponentPreview name="input-disabled" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 
@@ -102,7 +102,7 @@ Use the `disabled` prop to disable the input. To style the disabled state, add t
 
 Use the `aria-invalid` prop to mark the input as invalid. To style the invalid state, add the `data-invalid` attribute to the `Field.Field` component.
 
-<ComponentPreview name="input-invalid">
+<ComponentPreview name="input-invalid" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 
@@ -112,7 +112,7 @@ Use the `aria-invalid` prop to mark the input as invalid. To style the invalid s
 
 Use the `type="file"` prop to create a file input.
 
-<ComponentPreview name="input-file">
+<ComponentPreview name="input-file" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 
@@ -121,14 +121,13 @@ Use the `type="file"` prop to create a file input.
 ### Inline
 
 Use `Field.Field` with `orientation="horizontal"` to create an inline input.
+Pair with `Button` to create a search input with a button.
 
-<ComponentPreview name="input-inline">
+<ComponentPreview name="input-inline" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 
 </ComponentPreview>
-
-Pair with `Button` to create a search input with a button.
 
 ### Grid
 
@@ -144,7 +143,7 @@ Use a grid layout to place multiple inputs side by side.
 
 Use the `required` attribute to indicate required inputs.
 
-<ComponentPreview name="input-required">
+<ComponentPreview name="input-required" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 
@@ -154,7 +153,7 @@ Use the `required` attribute to indicate required inputs.
 
 Use `Badge` in the label to highlight a recommended field.
 
-<ComponentPreview name="input-badge">
+<ComponentPreview name="input-badge" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 
@@ -164,7 +163,7 @@ Use `Badge` in the label to highlight a recommended field.
 
 To add icons, text, or buttons inside an input, use the `InputGroup` component. See the [Input Group](/docs/components/input-group) component for more examples.
 
-<ComponentPreview name="input-input-group">
+<ComponentPreview name="input-input-group" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 
@@ -174,7 +173,7 @@ To add icons, text, or buttons inside an input, use the `InputGroup` component. 
 
 To add buttons to an input, use the `ButtonGroup` component. See the [Button Group](/docs/components/button-group) component for more examples.
 
-<ComponentPreview name="input-button-group">
+<ComponentPreview name="input-button-group" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 

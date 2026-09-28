@@ -59,6 +59,7 @@ Copy and paste the following code into your project.
   <Card.Header>
     <Card.Title>Card Title</Card.Title>
     <Card.Description>Card Description</Card.Description>
+    <Card.Action>Card Action</Card.Action>
   </Card.Header>
   <Card.Content>
     <p>Card Content</p>
@@ -70,12 +71,6 @@ Copy and paste the following code into your project.
 ```
 
 ## Examples
-
-<ComponentPreview name="card-demo">
-
-<div></div>
-
-</ComponentPreview>
 
 ### Size
 
@@ -97,7 +92,7 @@ In addition to the `size` prop, you can use the `--card-spacing` CSS variable to
 
 </ComponentPreview>
 
-Use negative margins with `-mx-(--card-spacing)` to make content go edge to edge while keeping it aligned with the card inset. When the edge-to-edge content sits above a footer, use `-mb-(--card-spacing)` on `CardContent` to remove the section gap.
+Use negative margins with `-mx-(--card-spacing)` to make content go edge to edge while keeping it aligned with the card inset. When the edge-to-edge content sits above a footer, use `-mb-(--card-spacing)` on `Card.Content` to remove the section gap.
 
 <ComponentPreview name="card-edge-to-edge" class="[&_.preview]:h-[28rem]">
 

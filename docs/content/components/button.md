@@ -8,8 +8,6 @@ links:
 ---
 
 <script>
-  import Callout from "$lib/components/callout.svelte";
-  import InfoIcon from "@lucide/svelte/icons/info";
 	import ComponentPreview from "$lib/components/component-preview.svelte";
 	import ComponentSource from "$lib/components/component-source.svelte";
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
@@ -21,26 +19,11 @@ links:
 	let { viewerData, links } = $props();
 </script>
 
-<Callout variant="info" icon={InfoIcon}>
-
-**Updated:** We have updated the button component to add new sizes: `icon-sm` and `icon-lg`. See the
-[changelog](/docs/components/button#changelog) for more details. Follow the
-instructions to update your project.
-
-</Callout>
-
-<ComponentPreview name="button-demo" class="mb-4">
+<ComponentPreview name="button-demo">
 
 <div></div>
 
 </ComponentPreview>
-
-```svelte showLineNumbers
-<Button variant="outline">Button</Button>
-<Button variant="outline" size="icon" aria-label="Submit">
-  <ArrowUpIcon />
-</Button>
-```
 
 ## Installation
 
@@ -74,312 +57,145 @@ Copy and paste the following code into your project.
 <Button variant="outline">Button</Button>
 ```
 
+## Cursor
+
+Tailwind v4 [switched](https://tailwindcss.com/docs/upgrade-guide#buttons-use-the-default-cursor) from `cursor: pointer` to `cursor: default` for the button component.
+
+If you want to keep the `cursor: pointer` behavior, add the following code to your CSS file:
+
+```css showLineNumbers title="app.css"
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+```
+
 ## Examples
 
 ### Size
 
-<ComponentPreview name="button-size" class="mb-4" >
+Use the `size` prop to change the size of the button.
+
+<ComponentPreview name="button-size">
 
 <div></div>
 
 </ComponentPreview>
-
-```svelte
-<!-- Small -->
-<Button size="sm" variant="outline">Small</Button>
-<Button size="icon-sm" aria-label="Submit" variant="outline">
-  <ArrowUpRightIcon />
-</Button>
-
-<!-- Medium -->
-<Button variant="outline">Default</Button>
-<Button size="icon" aria-label="Submit" variant="outline">
-  <ArrowUpRightIcon />
-</Button>
-
-<!-- Large -->
-<Button size="lg" variant="outline">Large</Button>
-<Button size="icon-lg" aria-label="Submit" variant="outline">
-  <ArrowUpRightIcon />
-</Button>
-```
 
 ### Default
 
-<ComponentPreview name="button-default" description="A primary button" class="mb-4">
+<ComponentPreview name="button-default">
 
 <div></div>
 
 </ComponentPreview>
-
-```svelte
-<Button>Button</Button>
-```
 
 ### Outline
 
-<ComponentPreview name="button-outline" description="A button using the outline variant." class="mb-4">
+<ComponentPreview name="button-outline">
 
 <div></div>
 
 </ComponentPreview>
-
-```svelte
-<Button variant="outline">Outline</Button>
-```
 
 ### Secondary
 
-<ComponentPreview name="button-secondary" description="A secondary button" class="mb-4">
+<ComponentPreview name="button-secondary">
 
 <div></div>
 
 </ComponentPreview>
-
-```svelte
-<Button variant="secondary">Secondary</Button>
-```
 
 ### Ghost
 
-<ComponentPreview name="button-ghost" description="A button using the ghost variant" class="mb-4">
+<ComponentPreview name="button-ghost">
 
 <div></div>
 
 </ComponentPreview>
-
-```svelte
-<Button variant="ghost">Ghost</Button>
-```
 
 ### Destructive
 
-<ComponentPreview name="button-destructive" description="A destructive button" class="mb-4">
+<ComponentPreview name="button-destructive">
 
 <div></div>
 
 </ComponentPreview>
-
-```svelte
-<Button variant="destructive">Destructive</Button>
-```
 
 ### Link
 
-<ComponentPreview name="button-link" description="A button using the link variant." class="mb-4">
+<ComponentPreview name="button-link">
 
 <div></div>
 
 </ComponentPreview>
-
-```svelte
-<Button variant="link">Link</Button>
-```
 
 ### Icon
 
-<ComponentPreview name="button-icon" description="An icon button" class="mb-4">
+<ComponentPreview name="button-icon">
 
 <div></div>
 
 </ComponentPreview>
-
-```svelte
-<Button variant="outline" size="icon" aria-label="Submit">
-  <CircleFadingArrowUpIcon />
-</Button>
-```
 
 ### With Icon
 
-The spacing between the icon and the text is automatically adjusted based on the size of the button. You do not need any margin on the icon.
+Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` attribute to the icon for the correct spacing.
 
-<ComponentPreview name="button-with-icon" description="A button with an icon" class="mb-4">
+<ComponentPreview name="button-with-icon">
 
 <div></div>
 
 </ComponentPreview>
-
-```svelte
-<Button variant="outline" size="sm">
-  <IconGitBranch /> New Branch
-</Button>
-```
 
 ### Rounded
 
 Use the `rounded-full` class to make the button rounded.
 
-<ComponentPreview name="button-rounded" class="mb-4" >
+<ComponentPreview name="button-rounded">
 
 <div></div>
 
 </ComponentPreview>
-
-```svelte
-<Button variant="outline" size="icon" className="rounded-full">
-  <ArrowUpRightIcon />
-</Button>
-```
 
 ### Spinner
 
 Render a `<Spinner />` component inside the button to show a loading state. Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` attribute to the spinner for the correct spacing.
 
-<ComponentPreview name="button-loading" description="A button with a loading state." class="mb-4">
+<ComponentPreview name="button-loading">
 
 <div></div>
 
 </ComponentPreview>
-
-```svelte showLineNumbers
-<Button variant="outline" disabled>
-  <Spinner data-icon="inline-start" />
-  Generating
-</Button>
-```
 
 ### Button Group
 
 To create a button group, use the `ButtonGroup` component. See the [Button Group](/docs/components/button-group) documentation for more details.
 
-<ComponentPreview name="button-group-demo" class="mb-4" >
+<ComponentPreview name="button-group-demo">
 
 <div></div>
 
 </ComponentPreview>
 
-```svelte showLineNumbers
-<ButtonGroup.Root>
-  <ButtonGroup.Root class="hidden sm:flex">
-    <Button variant="outline" size="icon" aria-label="Go Back">
-      <ArrowLeft />
-    </Button>
-  </ButtonGroup.Root>
-  <ButtonGroup.Root>
-    <Button variant="outline">Archive</Button>
-    <Button variant="outline">Report</Button>
-  </ButtonGroup.Root>
-  <ButtonGroup.Root>
-    <Button variant="outline">Snooze</Button>
-    <DropdownMenu.Root>
-      <DropdownMenu.Trigger>
-        {#snippet child({ props })}
-          <Button
-            {...props}
-            variant="outline"
-            size="icon"
-            aria-label="More Options"
-          >
-            <MoreHorizontal />
-          </Button>
-        {/snippet}
-      </DropdownMenu.Trigger>
-      <DropdownMenu.Content align="end" class="w-52">
-        <DropdownMenu.Group>
-          <DropdownMenu.Item>
-            <MailCheck />
-            Mark as Read
-          </DropdownMenu.Item>
-          <DropdownMenu.Item>
-            <Archive />
-            Archive
-          </DropdownMenu.Item>
-        </DropdownMenu.Group>
-        <DropdownMenu.Separator />
-        <DropdownMenu.Group>
-          <DropdownMenu.Item>
-            <Clock />
-            Snooze
-          </DropdownMenu.Item>
-          <DropdownMenu.Item>
-            <CalendarPlus />
-            Add to Calendar
-          </DropdownMenu.Item>
-          <DropdownMenu.Item>
-            <ListFilter />
-            Add to List
-          </DropdownMenu.Item>
-          <DropdownMenu.Sub>
-            <DropdownMenu.SubTrigger>
-              <Tag />
-              Label As...
-            </DropdownMenu.SubTrigger>
-            <DropdownMenu.SubContent>
-              <DropdownMenu.RadioGroup bind:value={label}>
-                <DropdownMenu.RadioItem value="personal">
-                  Personal
-                </DropdownMenu.RadioItem>
-                <DropdownMenu.RadioItem value="work"
-                  >Work</DropdownMenu.RadioItem
-                >
-                <DropdownMenu.RadioItem value="other"
-                  >Other</DropdownMenu.RadioItem
-                >
-              </DropdownMenu.RadioGroup>
-            </DropdownMenu.SubContent>
-          </DropdownMenu.Sub>
-        </DropdownMenu.Group>
-        <DropdownMenu.Separator />
-        <DropdownMenu.Group>
-          <DropdownMenu.Item class="text-destructive focus:text-destructive">
-            <Trash2 />
-            Trash
-          </DropdownMenu.Item>
-        </DropdownMenu.Group>
-      </DropdownMenu.Content>
-    </DropdownMenu.Root>
-  </ButtonGroup.Root>
-</ButtonGroup.Root>
-```
+### As Link
 
-### Link
+Pass an `href` prop to `<Button />` to render it as an `<a>` element that looks like a button.
 
-You can convert the `<button>` into an `<a>` element by simply passing an `href` as a prop.
-
-<ComponentPreview name="button-as-link" class="mb-4">
+<ComponentPreview name="button-as-link">
 
 <div></div>
 
 </ComponentPreview>
 
-```svelte
-<script lang="ts">
-  import { Button } from "$lib/components/ui/button/index.js";
-</script>
-
-<Button href="/dashboard">Dashboard</Button>
-```
-
-Alternatively, you can use the `buttonVariants` helper to create a link that looks like a button.
+Alternatively, you can use the `buttonVariants` helper to make any element look like a button.
 
 ```svelte
 <script lang="ts">
-  import { buttonVariants } from "$lib/components/ui/button";
+  import { buttonVariants } from "$lib/components/ui/button/index.js";
 </script>
 
-<a href="/dashboard" class={buttonVariants({ variant: "outline" })}>
-  Dashboard
-</a>
-```
-
-## Changelog
-
-### 2025-09-24 New sizes
-
-We have added two new sizes to the button component: `icon-sm` and `icon-lg`. These sizes are used to create icon buttons. To add them, edit `button.svelte` and add the following code under `size` in `buttonVariants`:
-
-```ts showLineNumbers title="components/ui/button.svelte"
-export const buttonVariants = tv({
-  // ...
-  variants: {
-    // ...
-    size: {
-      // ...
-      icon: "size-9",
-      "icon-sm": "size-8",
-      "icon-lg": "size-10",
-    },
-  },
-});
+<a href="/login" class={buttonVariants({ variant: "outline" })}>Login</a>
 ```

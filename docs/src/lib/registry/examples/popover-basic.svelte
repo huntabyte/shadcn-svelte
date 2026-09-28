@@ -4,7 +4,9 @@
 </script>
 
 <Popover.Root>
-	<Popover.Trigger class={buttonVariants({ variant: "outline" })}>Open Popover</Popover.Trigger>
+	<Popover.Trigger class={buttonVariants({ variant: "outline", class: "w-fit" })}
+		>Open Popover</Popover.Trigger
+	>
 	<Popover.Content align="start">
 		<Popover.Header>
 			<Popover.Title>Dimensions</Popover.Title>

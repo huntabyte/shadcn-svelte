@@ -76,6 +76,24 @@ You can replace the default spinner icon with any other icon by editing the `Spi
 
 </ComponentPreview>
 
+```svelte showLineNumbers title="components/ui/spinner/spinner.svelte"
+<script lang="ts">
+  import LoaderIcon from "@lucide/svelte/icons/loader";
+  import { cn } from "$lib/utils.js";
+  import type { SVGAttributes } from "svelte/elements";
+
+  let { class: className, ...restProps }: SVGAttributes<SVGSVGElement> =
+    $props();
+</script>
+
+<LoaderIcon
+  role="status"
+  aria-label="Loading"
+  class={cn("size-4 animate-spin", className)}
+  {...restProps}
+/>
+```
+
 ## Examples
 
 ### Size
@@ -88,19 +106,9 @@ Use the `size-*` utility class to change the size of the spinner.
 
 </ComponentPreview>
 
-### Color
-
-Use the `text-*` utility class to change the color of the spinner.
-
-<ComponentPreview name="spinner-color-demo">
-
-<div></div>
-
-</ComponentPreview>
-
 ### Button
 
-Add a spinner to a button to indicate a loading state. The `<Button />` will handle the spacing between the spinner and the text.
+Add a spinner to a button to indicate a loading state. Place the `<Spinner />` before the label with `data-icon="inline-start"` for a start position, or after the label with `data-icon="inline-end"` for an end position.
 
 <ComponentPreview name="spinner-button-demo">
 
@@ -110,7 +118,7 @@ Add a spinner to a button to indicate a loading state. The `<Button />` will han
 
 ### Badge
 
-You can also use a spinner inside a badge.
+Add a spinner to a badge to indicate a loading state. Place the `<Spinner />` before the label with `data-icon="inline-start"` for a start position, or after the label with `data-icon="inline-end"` for an end position.
 
 <ComponentPreview name="spinner-badge-demo">
 
@@ -119,8 +127,6 @@ You can also use a spinner inside a badge.
 </ComponentPreview>
 
 ### Input Group
-
-Input Group can have spinners inside `<InputGroup.Addon>`.
 
 <ComponentPreview name="spinner-input-group-demo">
 
@@ -131,16 +137,6 @@ Input Group can have spinners inside `<InputGroup.Addon>`.
 ### Empty
 
 <ComponentPreview name="spinner-empty-demo">
-
-<div></div>
-
-</ComponentPreview>
-
-### Item
-
-Use the spinner inside `<Item.Media>` to indicate a loading state.
-
-<ComponentPreview name="spinner-item-demo">
 
 <div></div>
 

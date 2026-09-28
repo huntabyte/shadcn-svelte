@@ -72,7 +72,7 @@ Copy and paste the following code into your project.
   <Drawer.Trigger>Open</Drawer.Trigger>
   <Drawer.Content>
     <Drawer.Header>
-      <Drawer.Title>Are you sure absolutely sure?</Drawer.Title>
+      <Drawer.Title>Are you absolutely sure?</Drawer.Title>
       <Drawer.Description>This action cannot be undone.</Drawer.Description>
     </Drawer.Header>
     <Drawer.Footer>
@@ -85,29 +85,53 @@ Copy and paste the following code into your project.
 
 ## Examples
 
-### Scrollable Content
+### Position
 
-Keep actions visible while the content scrolls.
+Use the `direction` prop to set the side of the drawer.
 
-<ComponentPreview name="drawer-scrollable-content">
+Available options are `top`, `right`, `bottom`, and `left`.
 
-<div></div>
-
-</ComponentPreview>
-
-### Sides
-
-Use the `direction` prop to set the side of the drawer. Available options are `top`, `right`, `bottom`, and `left`.
-
-<ComponentPreview name="drawer-direction">
+<ComponentPreview name="drawer-sides">
 
 <div></div>
 
 </ComponentPreview>
 
-### Responsive Dialog
+### Nested
 
-You can combine the `Dialog` and `Drawer` components to create a responsive dialog. This renders a `Dialog` on desktop and a `Drawer` on mobile.
+Open drawers from inside another drawer using `<Drawer.NestedRoot />`. Parent drawers stay mounted and stack behind the frontmost drawer.
+
+<ComponentPreview name="drawer-nested">
+
+<div></div>
+
+</ComponentPreview>
+
+### Non Modal
+
+Set `modal={false}` to allow interaction with the rest of the page while the drawer is open. Combine with `dismissible={false}` to prevent the drawer from closing on outside presses.
+
+<ComponentPreview name="drawer-non-modal">
+
+<div></div>
+
+</ComponentPreview>
+
+### Snap Points
+
+Use `snapPoints` to snap a drawer to preset heights. Numbers between `0` and `1` represent fractions of the viewport. String values support `px` units. Snap points apply to vertical drawers.
+
+Track the active snap point with `bind:activeSnapPoint`.
+
+<ComponentPreview name="drawer-snap-points">
+
+<div></div>
+
+</ComponentPreview>
+
+### Responsive
+
+You can combine the `Dialog` and `Drawer` components to create a responsive dialog. This renders a `Dialog` component on desktop and a `Drawer` on mobile.
 
 <ComponentPreview name="drawer-dialog">
 

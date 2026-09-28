@@ -36,9 +36,11 @@
 						<Select.Value />
 					</Select.Trigger>
 					<Select.Content>
-						{#each countries as item (item.value)}
-							<Select.Item value={item.value} label={item.label}>{item.label}</Select.Item>
-						{/each}
+						<Select.Group>
+							{#each countries as item (item.value)}
+								<Select.Item value={item.value} label={item.label}>{item.label}</Select.Item>
+							{/each}
+						</Select.Group>
 					</Select.Content>
 				</Select.Root>
 			</Field.Field>

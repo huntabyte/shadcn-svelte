@@ -54,7 +54,7 @@ Copy and paste the following code into your project.
 ```
 
 ```svelte
-<Badge variant="outline">Badge</Badge>
+<Badge variant="default | outline | secondary | destructive">Badge</Badge>
 ```
 
 ## Examples

@@ -70,15 +70,9 @@ Copy and paste the following code into your project.
 
 ## Examples
 
-### Default
-
-<ComponentPreview name="toggle-demo">
-
-<div></div>
-
-</ComponentPreview>
-
 ### Outline
+
+Use `variant="outline"` for an outline style.
 
 <ComponentPreview name="toggle-outline">
 
@@ -94,17 +88,11 @@ Copy and paste the following code into your project.
 
 </ComponentPreview>
 
-### Small
+### Size
 
-<ComponentPreview name="toggle-sm">
+Use the `size` prop to change the size of the toggle.
 
-<div></div>
-
-</ComponentPreview>
-
-### Large
-
-<ComponentPreview name="toggle-lg">
+<ComponentPreview name="toggle-sizes">
 
 <div></div>
 

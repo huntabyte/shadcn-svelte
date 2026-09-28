@@ -67,11 +67,11 @@ Copy and paste the following code into your project.
 
 ```svelte showLineNumbers
 <RadioGroup.Root value="option-one">
-  <div class="flex items-center space-x-2">
+  <div class="flex items-center gap-3">
     <RadioGroup.Item value="option-one" id="option-one" />
     <Label for="option-one">Option One</Label>
   </div>
-  <div class="flex items-center space-x-2">
+  <div class="flex items-center gap-3">
     <RadioGroup.Item value="option-two" id="option-two" />
     <Label for="option-two">Option Two</Label>
   </div>

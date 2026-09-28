@@ -66,7 +66,7 @@ Copy and paste the following code into your project.
 
 ```svelte showLineNumbers
 <ContextMenu.Root>
-  <ContextMenu.Trigger>Right click</ContextMenu.Trigger>
+  <ContextMenu.Trigger>Right click here</ContextMenu.Trigger>
   <ContextMenu.Content>
     <ContextMenu.Item>Profile</ContextMenu.Item>
     <ContextMenu.Item>Billing</ContextMenu.Item>
@@ -160,7 +160,7 @@ Use `variant="destructive"` to style the menu item as destructive.
 
 ### Sides
 
-Use the `side` prop on `ContextMenu.Content` to control which side of the pointer the menu opens on.
+Control submenu placement with `side` and `align` props.
 
 <ComponentPreview name="context-menu-sides">
 

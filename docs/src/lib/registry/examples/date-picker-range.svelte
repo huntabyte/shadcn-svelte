@@ -25,7 +25,7 @@
 		<Popover.Trigger id="date-picker-range">
 			{#snippet child({ props })}
 				<Button {...props} variant="outline" class="justify-start px-2.5 font-normal">
-					<CalendarIcon />
+					<CalendarIcon data-icon="inline-start" />
 					{#if value?.start}
 						{#if value.end}
 							{df.format(value.start.toDate(getLocalTimeZone()))} - {df.format(

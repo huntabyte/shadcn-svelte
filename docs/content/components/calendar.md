@@ -11,7 +11,6 @@ links:
 <script>
 	import ComponentPreview from "$lib/components/component-preview.svelte";
 	import ComponentSource from "$lib/components/component-source.svelte";
-	import Callout from "$lib/components/callout.svelte";
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
 	import PMInstall from "$lib/components/pm-install.svelte";
 	import Steps from "$lib/components/steps.svelte";
@@ -26,12 +25,6 @@ links:
 <div></div>
 
 </ComponentPreview>
-
-## Blocks
-
-We have built a collection of 30+ calendar blocks that you can use to build your own calendar components.
-
-See call calendar blocks in the [Blocks Library](/blocks/calendar) page.
 
 ## Installation
 
@@ -63,11 +56,26 @@ Copy and paste the following code into your project.
 {/snippet}
 </InstallTabs>
 
+## Usage
+
+```svelte showLineNumbers
+<script lang="ts">
+  import { getLocalTimeZone, today } from "@internationalized/date";
+  import { Calendar } from "$lib/components/ui/calendar/index.js";
+
+  let value = $state(today(getLocalTimeZone()));
+</script>
+```
+
+```svelte showLineNumbers
+<Calendar type="single" bind:value class="rounded-lg border" />
+```
+
+See the [Bits UI Calendar](https://bits-ui.com/docs/components/calendar) documentation for more information.
+
 ## About
 
-The `<Calendar />` component is built on top of the [Bits UI Calendar](https://www.bits-ui.com/docs/components/calendar) component, which uses the [@internationalized/date](https://react-spectrum.adobe.com/internationalized/date/index.html) package to handle dates.
-
-If you're looking for a range calendar, check out the [Range Calendar](/docs/components/range-calendar) component.
+The `<Calendar />` component is built on top of the [Bits UI Calendar](https://bits-ui.com/docs/components/calendar) component, which uses the [@internationalized/date](https://react-spectrum.adobe.com/internationalized/date/index.html) package to handle dates.
 
 ## Date Picker
 
@@ -79,7 +87,7 @@ You can use the `<Calendar />` component to build a date picker. See the [Date P
 
 A basic calendar component. We used `class="rounded-lg border"` to style the calendar.
 
-<ComponentPreview name="calendar-01">
+<ComponentPreview name="calendar-basic">
 
 <div></div>
 
@@ -87,9 +95,9 @@ A basic calendar component. We used `class="rounded-lg border"` to style the cal
 
 ### Range Calendar
 
-Use the `RangeCalendar` component to enable range selection.
+Use the [`RangeCalendar`](/docs/components/range-calendar) component to enable range selection.
 
-<ComponentPreview name="calendar-02" class="**:[.preview]:h-auto lg:**:[.preview]:h-[450px]">
+<ComponentPreview name="calendar-range">
 
 <div></div>
 
@@ -99,7 +107,7 @@ Use the `RangeCalendar` component to enable range selection.
 
 Use `captionLayout="dropdown"` to show month and year dropdowns.
 
-<ComponentPreview name="calendar-13">
+<ComponentPreview name="calendar-caption">
 
 <div></div>
 
@@ -107,15 +115,7 @@ Use `captionLayout="dropdown"` to show month and year dropdowns.
 
 ### Presets
 
-<ComponentPreview name="calendar-19">
-
-<div></div>
-
-</ComponentPreview>
-
-### Date of Birth Picker
-
-<ComponentPreview name="calendar-22">
+<ComponentPreview name="calendar-presets">
 
 <div></div>
 
@@ -123,7 +123,7 @@ Use `captionLayout="dropdown"` to show month and year dropdowns.
 
 ### Date and Time Picker
 
-<ComponentPreview name="calendar-24">
+<ComponentPreview name="calendar-time">
 
 <div></div>
 
@@ -131,7 +131,7 @@ Use `captionLayout="dropdown"` to show month and year dropdowns.
 
 ### Booked dates
 
-<ComponentPreview name="calendar-14">
+<ComponentPreview name="calendar-booked-dates">
 
 <div></div>
 
@@ -139,7 +139,7 @@ Use `captionLayout="dropdown"` to show month and year dropdowns.
 
 ### Custom Cell Size
 
-<ComponentPreview name="calendar-21" class="**:[.preview]:h-[560px]">
+<ComponentPreview name="calendar-custom-days" class="**:[.preview]:h-[560px]">
 
 <div></div>
 
@@ -164,29 +164,3 @@ Or use fixed values:
   class="rounded-lg border [--cell-size:2.75rem] md:[--cell-size:3rem]"
 />
 ```
-
-### Natural Language Picker
-
-This component uses the `chrono-node` library to parse natural language dates.
-
-<ComponentPreview name="calendar-29">
-
-<div></div>
-
-</ComponentPreview>
-
-## Upgrade Guide
-
-You can upgrade to the latest version of the `<Calendar />` component by running the following command:
-
-<PMAddComp name="calendar" />
-
-When you're prompted to overwrite the existing files, select `Yes`. **If you have made any changes to the `Calendar` component, you will need to merge your changes with the new version.**
-
-#### Installing Blocks
-
-After upgrading the `Calendar` component, you can add the new blocks with the following:
-
-<PMAddComp name="calendar-02" />
-
-This will add the latest version of the calendar blocks.

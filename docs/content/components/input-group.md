@@ -90,6 +90,8 @@ For proper focus management, `InputGroup.Addon` should always be placed after `I
 
 #### inline-start
 
+Use `align="inline-start"` to position the addon at the start of the input. This is the default.
+
 <ComponentPreview name="input-group-inline-start">
 
 <div></div>
@@ -97,6 +99,8 @@ For proper focus management, `InputGroup.Addon` should always be placed after `I
 </ComponentPreview>
 
 #### inline-end
+
+Use `align="inline-end"` to position the addon at the end of the input.
 
 <ComponentPreview name="input-group-inline-end">
 
@@ -106,6 +110,8 @@ For proper focus management, `InputGroup.Addon` should always be placed after `I
 
 #### block-start
 
+Use `align="block-start"` to position the addon above the input.
+
 <ComponentPreview name="input-group-block-start">
 
 <div></div>
@@ -113,6 +119,8 @@ For proper focus management, `InputGroup.Addon` should always be placed after `I
 </ComponentPreview>
 
 #### block-end
+
+Use `align="block-end"` to position the addon below the input.
 
 <ComponentPreview name="input-group-block-end">
 
@@ -130,8 +138,6 @@ For proper focus management, `InputGroup.Addon` should always be placed after `I
 
 ### Text
 
-Display additional text information alongside inputs.
-
 <ComponentPreview name="input-group-text-demo">
 
 <div></div>
@@ -139,8 +145,6 @@ Display additional text information alongside inputs.
 </ComponentPreview>
 
 ### Button
-
-Add buttons to perform actions within the input group.
 
 <ComponentPreview name="input-group-button-demo">
 
@@ -156,49 +160,7 @@ Add buttons to perform actions within the input group.
 
 </ComponentPreview>
 
-### Tooltip
-
-Add tooltips to provide additional context or help.
-
-<ComponentPreview name="input-group-tooltip-demo">
-
-<div></div>
-
-</ComponentPreview>
-
-### Textarea
-
-Input groups also work with textarea components. Use `block-start` or `block-end` for alignment.
-
-<ComponentPreview name="input-group-textarea-demo">
-
-<div></div>
-
-</ComponentPreview>
-
-### Spinner
-
-Show loading indicators while processing input.
-
-<ComponentPreview name="input-group-spinner-demo">
-
-<div></div>
-
-</ComponentPreview>
-
-### Label
-
-Add labels within input groups to improve accessibility.
-
-<ComponentPreview name="input-group-label-demo">
-
-<div></div>
-
-</ComponentPreview>
-
 ### Dropdown
-
-Pair input groups with dropdown menus for complex interactions.
 
 <ComponentPreview name="input-group-dropdown-demo">
 
@@ -206,11 +168,17 @@ Pair input groups with dropdown menus for complex interactions.
 
 </ComponentPreview>
 
-### Button Group
+### Spinner
 
-Wrap input groups with button groups to create prefixes and suffixes.
+<ComponentPreview name="input-group-spinner-demo">
 
-<ComponentPreview name="input-group-button-group-demo">
+<div></div>
+
+</ComponentPreview>
+
+### Textarea
+
+<ComponentPreview name="input-group-textarea-demo">
 
 <div></div>
 
@@ -218,9 +186,9 @@ Wrap input groups with button groups to create prefixes and suffixes.
 
 ### Custom Input
 
-Add the `data-slot="input-group-control"` attribute to your custom input for automatic behavior and focus state handling.
+Add the `data-slot="input-group-control"` attribute to your custom input for automatic focus state handling.
 
-No style is applied to the custom input. Apply your own styles using the `class` prop.
+Here's an example of a custom auto-resizing textarea.
 
 <ComponentPreview name="input-group-custom-input-demo">
 

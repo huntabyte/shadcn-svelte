@@ -70,9 +70,11 @@ Copy and paste the following code into your project.
   <DropdownMenu.Content>
     <DropdownMenu.Group>
       <DropdownMenu.Label>My Account</DropdownMenu.Label>
-      <DropdownMenu.Separator />
       <DropdownMenu.Item>Profile</DropdownMenu.Item>
       <DropdownMenu.Item>Billing</DropdownMenu.Item>
+    </DropdownMenu.Group>
+    <DropdownMenu.Separator />
+    <DropdownMenu.Group>
       <DropdownMenu.Item>Team</DropdownMenu.Item>
       <DropdownMenu.Item>Subscription</DropdownMenu.Item>
     </DropdownMenu.Group>
@@ -191,28 +193,3 @@ A richer example combining groups, icons, and submenus.
 <div></div>
 
 </ComponentPreview>
-
-### Dialog
-
-This example shows how to open a dialog from a dropdown menu.
-
-```svelte showLineNumbers
-<DropdownMenu.Root>
-  <DropdownMenu.Trigger class={buttonVariants({ variant: "outline" })}>
-    Actions
-  </DropdownMenu.Trigger>
-</DropdownMenu.Root>
-```
-
-<ComponentPreview name="dropdown-menu-dialog" >
-
-<div></div>
-
-</ComponentPreview>
-
-## Changelog
-
-### 2024-10-30 Classes for DropdownMenu.SubTrigger
-
-- Added `gap-2 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0` to the `<DropdownMenu.SubTrigger>` to automatically style icon inside the dropdown menu sub trigger.
-- Removed `size-4` from the icon inside the `<DropdownMenu.SubTrigger>` since it is now handled by the parent `<DropdownMenu.SubTrigger>`.

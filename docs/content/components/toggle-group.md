@@ -126,7 +126,7 @@ Use `orientation="vertical"` for vertical toggle groups.
 
 A custom toggle group example.
 
-<ComponentPreview name="toggle-group-font-weight-selector">
+<ComponentPreview name="toggle-group-font-weight-selector" class="[&_[data-align]>[data-slot=field]]:max-w-xs">
 
 <div></div>
 

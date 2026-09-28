@@ -92,12 +92,6 @@ Copy and paste the following code into your project.
 
 Use the `pattern` prop to define a custom pattern for the OTP input.
 
-<ComponentPreview name="input-otp-pattern">
-
-<div></div>
-
-</ComponentPreview>
-
 ```svelte showLineNumbers {3,6}
 <script lang="ts">
   import * as InputOTP from "$lib/components/ui/input-otp/index.js";
@@ -109,37 +103,21 @@ Use the `pattern` prop to define a custom pattern for the OTP input.
 </InputOTP.Root>
 ```
 
+<ComponentPreview name="input-otp-pattern">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Separator
 
-You can use the `InputOTP.Separator` component to add a separator between the groups of cells.
+Use the `<InputOTP.Separator />` component to add a separator between input groups.
 
 <ComponentPreview name="input-otp-separator">
 
 <div></div>
 
 </ComponentPreview>
-
-```svelte showLineNumbers {12}
-<script lang="ts">
-  import * as InputOTP from "$lib/components/ui/input-otp/index.js";
-</script>
-
-<InputOTP.Root maxlength={4}>
-  {#snippet children({ cells })}
-    <InputOTP.Group>
-      {#each cells.slice(0, 2) as cell}
-        <InputOTP.Slot {cell} />
-      {/each}
-    </InputOTP.Group>
-    <InputOTP.Separator />
-    <InputOTP.Group>
-      {#each cells.slice(2, 4) as cell}
-        <InputOTP.Slot {cell} />
-      {/each}
-    </InputOTP.Group>
-  {/snippet}
-</InputOTP.Root>
-```
 
 ### Disabled
 

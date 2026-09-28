@@ -79,7 +79,9 @@ If you only need to display content such as a title, description, and actions, u
 
 ## Examples
 
-### Variants
+### Variant
+
+Use the `variant` prop to change the visual style of the item.
 
 <ComponentPreview name="item-variants-demo">
 
@@ -89,7 +91,7 @@ If you only need to display content such as a title, description, and actions, u
 
 ### Size
 
-The `Item` component has different sizes for different use cases. For example, you can use the `sm` size for a compact item or the default size for a standard item.
+Use the `size` prop to change the size of the item. Available sizes are `default`, `sm`, and `xs`.
 
 <ComponentPreview name="item-size-demo">
 
@@ -99,6 +101,8 @@ The `Item` component has different sizes for different use cases. For example, y
 
 ### Icon
 
+Use `Item.Media` with `variant="icon"` to display an icon.
+
 <ComponentPreview name="item-icon-demo">
 
 <div></div>
@@ -106,6 +110,8 @@ The `Item` component has different sizes for different use cases. For example, y
 </ComponentPreview>
 
 ### Avatar
+
+You can use `Item.Media` with `variant="avatar"` to display an avatar.
 
 <ComponentPreview name="item-avatar-demo">
 
@@ -115,6 +121,8 @@ The `Item` component has different sizes for different use cases. For example, y
 
 ### Image
 
+Use `Item.Media` with `variant="image"` to display an image.
+
 <ComponentPreview name="item-image-demo">
 
 <div></div>
@@ -122,6 +130,8 @@ The `Item` component has different sizes for different use cases. For example, y
 </ComponentPreview>
 
 ### Group
+
+Use `Item.Group` to group related items together.
 
 <ComponentPreview name="item-group-demo">
 
@@ -131,6 +141,8 @@ The `Item` component has different sizes for different use cases. For example, y
 
 ### Header
 
+Use `Item.Header` to add a header above the item content.
+
 <ComponentPreview name="item-header-demo">
 
 <div></div>
@@ -139,13 +151,31 @@ The `Item` component has different sizes for different use cases. For example, y
 
 ### Link
 
-To render an item as a link, use the the `child` snippet. The hover and focus states will be applied to the anchor element.
+Use the `child` snippet to render the item as a link. The hover and focus states will be applied to the anchor element.
 
 <ComponentPreview name="item-link-demo">
 
 <div></div>
 
 </ComponentPreview>
+
+```svelte showLineNumbers
+<Item.Root>
+  {#snippet child({ props })}
+    <a href="/dashboard" {...props}>
+      <Item.Media variant="icon">
+        <HomeIcon />
+      </Item.Media>
+      <Item.Content>
+        <Item.Title>Dashboard</Item.Title>
+        <Item.Description
+          >Overview of your account and activity.</Item.Description
+        >
+      </Item.Content>
+    </a>
+  {/snippet}
+</Item.Root>
+```
 
 ### Dropdown
 
