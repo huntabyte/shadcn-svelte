@@ -79,9 +79,7 @@ Copy and paste the following code into your project.
 - Use the `ButtonGroup` component when you want to group buttons that perform an action.
 - Use the `ToggleGroup` component when you want to group buttons that toggle a state.
 
-## Examples
-
-### Orientation
+## Orientation
 
 Set the `orientation` prop to change the button group layout.
 
@@ -91,7 +89,7 @@ Set the `orientation` prop to change the button group layout.
 
 </ComponentPreview>
 
-### Size
+## Size
 
 Control the size of buttons using the `size` prop on individual buttons.
 
@@ -101,7 +99,7 @@ Control the size of buttons using the `size` prop on individual buttons.
 
 </ComponentPreview>
 
-### Nested
+## Nested
 
 Nest `<ButtonGroup.Root>` components to create button groups with spacing.
 
@@ -111,7 +109,7 @@ Nest `<ButtonGroup.Root>` components to create button groups with spacing.
 
 </ComponentPreview>
 
-### Separator
+## Separator
 
 The `ButtonGroup.Separator` component visually divides buttons within a group.
 
@@ -123,7 +121,7 @@ Buttons with variant `outline` do not need a separator since they have a border.
 
 </ComponentPreview>
 
-### Split
+## Split
 
 Create a split button group by adding two buttons separated by a `ButtonGroup.Separator`.
 
@@ -133,7 +131,7 @@ Create a split button group by adding two buttons separated by a `ButtonGroup.Se
 
 </ComponentPreview>
 
-### Input
+## Input
 
 Wrap an `Input` component with buttons.
 
@@ -143,7 +141,7 @@ Wrap an `Input` component with buttons.
 
 </ComponentPreview>
 
-### Input Group
+## Input Group
 
 Wrap an `InputGroup` component to create complex input layouts.
 
@@ -153,7 +151,7 @@ Wrap an `InputGroup` component to create complex input layouts.
 
 </ComponentPreview>
 
-### Dropdown Menu
+## Dropdown Menu
 
 Create a split button group with a `DropdownMenu` component.
 
@@ -163,7 +161,7 @@ Create a split button group with a `DropdownMenu` component.
 
 </ComponentPreview>
 
-### Select
+## Select
 
 Pair with a `Select` component.
 
@@ -173,7 +171,7 @@ Pair with a `Select` component.
 
 </ComponentPreview>
 
-### Popover
+## Popover
 
 Use with a `Popover` component.
 

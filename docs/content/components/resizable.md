@@ -76,9 +76,7 @@ Copy and paste the following code into your project.
 </Resizable.PaneGroup>
 ```
 
-## Examples
-
-### Vertical
+## Vertical
 
 Use `direction="vertical"` for vertical resizing.
 
@@ -88,7 +86,7 @@ Use `direction="vertical"` for vertical resizing.
 
 </ComponentPreview>
 
-### Handle
+## Handle
 
 Use the `withHandle` prop on `Resizable.Handle` to show a visible handle.
 

@@ -58,9 +58,7 @@ Copy and paste the following code into your project.
 <Skeleton class="h-[20px] w-[100px] rounded-full" />
 ```
 
-## Examples
-
-### Avatar
+## Avatar
 
 <ComponentPreview name="skeleton-avatar">
 
@@ -68,7 +66,7 @@ Copy and paste the following code into your project.
 
 </ComponentPreview>
 
-### Card
+## Card
 
 <ComponentPreview name="skeleton-card">
 
@@ -76,7 +74,7 @@ Copy and paste the following code into your project.
 
 </ComponentPreview>
 
-### Text
+## Text
 
 <ComponentPreview name="skeleton-text">
 
@@ -84,7 +82,7 @@ Copy and paste the following code into your project.
 
 </ComponentPreview>
 
-### Form
+## Form
 
 <ComponentPreview name="skeleton-form">
 
@@ -92,7 +90,7 @@ Copy and paste the following code into your project.
 
 </ComponentPreview>
 
-### Table
+## Table
 
 <ComponentPreview name="skeleton-table">
 

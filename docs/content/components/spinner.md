@@ -94,9 +94,7 @@ You can replace the default spinner icon with any other icon by editing the `Spi
 />
 ```
 
-## Examples
-
-### Size
+## Size
 
 Use the `size-*` utility class to change the size of the spinner.
 
@@ -106,7 +104,7 @@ Use the `size-*` utility class to change the size of the spinner.
 
 </ComponentPreview>
 
-### Button
+## Button
 
 Add a spinner to a button to indicate a loading state. Place the `<Spinner />` before the label with `data-icon="inline-start"` for a start position, or after the label with `data-icon="inline-end"` for an end position.
 
@@ -116,7 +114,7 @@ Add a spinner to a button to indicate a loading state. Place the `<Spinner />` b
 
 </ComponentPreview>
 
-### Badge
+## Badge
 
 Add a spinner to a badge to indicate a loading state. Place the `<Spinner />` before the label with `data-icon="inline-start"` for a start position, or after the label with `data-icon="inline-end"` for an end position.
 
@@ -126,7 +124,7 @@ Add a spinner to a badge to indicate a loading state. Place the `<Spinner />` be
 
 </ComponentPreview>
 
-### Input Group
+## Input Group
 
 <ComponentPreview name="spinner-input-group-demo">
 
@@ -134,7 +132,7 @@ Add a spinner to a badge to indicate a loading state. Place the `<Spinner />` be
 
 </ComponentPreview>
 
-### Empty
+## Empty
 
 <ComponentPreview name="spinner-empty-demo">
 

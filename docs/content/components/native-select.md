@@ -68,9 +68,7 @@ Copy and paste the following code into your project.
 </NativeSelect.Root>
 ```
 
-## Examples
-
-### Groups
+## Groups
 
 Use `NativeSelect.OptGroup` to organize options into categories.
 
@@ -80,7 +78,7 @@ Use `NativeSelect.OptGroup` to organize options into categories.
 
 </ComponentPreview>
 
-### Disabled
+## Disabled
 
 Add the `disabled` prop to the `NativeSelect.Root` component to disable the select.
 
@@ -90,7 +88,7 @@ Add the `disabled` prop to the `NativeSelect.Root` component to disable the sele
 
 </ComponentPreview>
 
-### Invalid
+## Invalid
 
 Use `aria-invalid` to show validation errors and the `data-invalid` attribute to the `Field.Field` component for styling.
 

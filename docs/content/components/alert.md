@@ -67,9 +67,7 @@ Copy and paste the following code into your project.
 </Alert.Root>
 ```
 
-## Examples
-
-### Basic
+## Basic
 
 A basic alert with an icon, title and description.
 
@@ -79,7 +77,7 @@ A basic alert with an icon, title and description.
 
 </ComponentPreview>
 
-### Destructive
+## Destructive
 
 Use `variant="destructive"` to create a destructive alert.
 
@@ -89,7 +87,7 @@ Use `variant="destructive"` to create a destructive alert.
 
 </ComponentPreview>
 
-### Action
+## Action
 
 Use `Alert.Action` to add a button or other action element to the alert.
 
@@ -99,7 +97,7 @@ Use `Alert.Action` to add a button or other action element to the alert.
 
 </ComponentPreview>
 
-### Custom Colors
+## Custom Colors
 
 You can customize the alert colors by adding custom classes such as `bg-amber-50 dark:bg-amber-950` to the `Alert.Root` component.
 

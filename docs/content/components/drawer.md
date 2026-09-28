@@ -83,9 +83,7 @@ Copy and paste the following code into your project.
 </Drawer.Root>
 ```
 
-## Examples
-
-### Position
+## Position
 
 Use the `direction` prop to set the side of the drawer.
 
@@ -97,7 +95,7 @@ Available options are `top`, `right`, `bottom`, and `left`.
 
 </ComponentPreview>
 
-### Nested
+## Nested
 
 Open drawers from inside another drawer using `<Drawer.NestedRoot />`. Parent drawers stay mounted and stack behind the frontmost drawer.
 
@@ -107,7 +105,7 @@ Open drawers from inside another drawer using `<Drawer.NestedRoot />`. Parent dr
 
 </ComponentPreview>
 
-### Non Modal
+## Non Modal
 
 Set `modal={false}` to allow interaction with the rest of the page while the drawer is open. Clicking outside a non-modal drawer does not close it.
 
@@ -117,7 +115,7 @@ Set `modal={false}` to allow interaction with the rest of the page while the dra
 
 </ComponentPreview>
 
-### Snap Points
+## Snap Points
 
 Use `snapPoints` to snap a drawer to preset heights. Numbers between `0` and `1` represent fractions of the viewport. String values support `px` units. Snap points apply to vertical drawers.
 
@@ -129,7 +127,7 @@ Track the active snap point with `bind:activeSnapPoint`.
 
 </ComponentPreview>
 
-### Responsive
+## Responsive
 
 You can combine the `Dialog` and `Drawer` components to create a responsive dialog. This renders a `Dialog` component on desktop and a `Drawer` on mobile.
 

@@ -81,9 +81,7 @@ Copy and paste the following code into your project.
 </Menubar.Root>
 ```
 
-## Examples
-
-### Checkbox
+## Checkbox
 
 Use `Menubar.CheckboxItem` for toggleable options.
 
@@ -93,7 +91,7 @@ Use `Menubar.CheckboxItem` for toggleable options.
 
 </ComponentPreview>
 
-### Radio
+## Radio
 
 Use `Menubar.RadioGroup` and `Menubar.RadioItem` for single-select options.
 
@@ -103,7 +101,7 @@ Use `Menubar.RadioGroup` and `Menubar.RadioItem` for single-select options.
 
 </ComponentPreview>
 
-### Submenu
+## Submenu
 
 Use `Menubar.Sub`, `Menubar.SubTrigger`, and `Menubar.SubContent` for nested menus.
 
@@ -113,7 +111,7 @@ Use `Menubar.Sub`, `Menubar.SubTrigger`, and `Menubar.SubContent` for nested men
 
 </ComponentPreview>
 
-### With Icons
+## With Icons
 
 <ComponentPreview name="menubar-icons">
 

@@ -81,9 +81,7 @@ The `<Calendar />` component is built on top of the [Bits UI Calendar](https://b
 
 You can use the `<Calendar />` component to build a date picker. See the [Date Picker](/docs/components/date-picker) page for more information.
 
-## Examples
-
-### Basic
+## Basic
 
 A basic calendar component. We used `class="rounded-lg border"` to style the calendar.
 
@@ -93,7 +91,7 @@ A basic calendar component. We used `class="rounded-lg border"` to style the cal
 
 </ComponentPreview>
 
-### Range Calendar
+## Range Calendar
 
 Use the [`RangeCalendar`](/docs/components/range-calendar) component to enable range selection.
 
@@ -103,7 +101,7 @@ Use the [`RangeCalendar`](/docs/components/range-calendar) component to enable r
 
 </ComponentPreview>
 
-### Month and Year Selector
+## Month and Year Selector
 
 Use `captionLayout="dropdown"` to show month and year dropdowns.
 
@@ -113,7 +111,7 @@ Use `captionLayout="dropdown"` to show month and year dropdowns.
 
 </ComponentPreview>
 
-### Presets
+## Presets
 
 <ComponentPreview name="calendar-presets">
 
@@ -121,7 +119,7 @@ Use `captionLayout="dropdown"` to show month and year dropdowns.
 
 </ComponentPreview>
 
-### Date and Time Picker
+## Date and Time Picker
 
 <ComponentPreview name="calendar-time">
 
@@ -129,7 +127,7 @@ Use `captionLayout="dropdown"` to show month and year dropdowns.
 
 </ComponentPreview>
 
-### Booked dates
+## Booked dates
 
 <ComponentPreview name="calendar-booked-dates">
 
@@ -137,9 +135,9 @@ Use `captionLayout="dropdown"` to show month and year dropdowns.
 
 </ComponentPreview>
 
-### Custom Cell Size
+## Custom Cell Size
 
-<ComponentPreview name="calendar-custom-days" class="**:[.preview]:h-[560px]">
+<ComponentPreview name="calendar-custom-days" class="**:[.preview]:min-h-[560px]">
 
 <div></div>
 

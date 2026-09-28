@@ -99,9 +99,7 @@ You can nest providers to create groups with different settings. Tooltips use th
 </Tooltip.Provider>
 ```
 
-## Examples
-
-### Side
+## Side
 
 Use the `side` prop to change the position of the tooltip.
 
@@ -111,7 +109,7 @@ Use the `side` prop to change the position of the tooltip.
 
 </ComponentPreview>
 
-### With Keyboard Shortcut
+## With Keyboard Shortcut
 
 <ComponentPreview name="tooltip-keyboard">
 
@@ -119,7 +117,7 @@ Use the `side` prop to change the position of the tooltip.
 
 </ComponentPreview>
 
-### Disabled Button
+## Disabled Button
 
 Show a tooltip on a disabled button by wrapping it with a span.
 

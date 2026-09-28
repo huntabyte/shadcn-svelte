@@ -92,9 +92,7 @@ See installation instructions for the [Popover](/docs/components/popover#install
 
 </CodeCollapsibleWrapper>
 
-## Examples
-
-### Basic
+## Basic
 
 A simple combobox with a list of frameworks.
 
@@ -104,7 +102,7 @@ A simple combobox with a list of frameworks.
 
 </ComponentPreview>
 
-### Groups
+## Groups
 
 Use `<Command.Group />` and `<Command.Separator />` to group items.
 
@@ -114,7 +112,7 @@ Use `<Command.Group />` and `<Command.Separator />` to group items.
 
 </ComponentPreview>
 
-### Custom Items
+## Custom Items
 
 You can render a custom component inside `<Command.Item />`.
 
@@ -124,7 +122,7 @@ You can render a custom component inside `<Command.Item />`.
 
 </ComponentPreview>
 
-### Invalid
+## Invalid
 
 Use the `aria-invalid` prop to make the combobox invalid.
 
@@ -134,7 +132,7 @@ Use the `aria-invalid` prop to make the combobox invalid.
 
 </ComponentPreview>
 
-### Disabled
+## Disabled
 
 Use the `disabled` prop to disable the combobox.
 
@@ -144,7 +142,7 @@ Use the `disabled` prop to disable the combobox.
 
 </ComponentPreview>
 
-### Popup
+## Popup
 
 You can trigger the combobox from a button or any other component by using the `child` snippet on `<Popover.Trigger />`. Place the `<Command.Input />` inside the `<Popover.Content />`.
 

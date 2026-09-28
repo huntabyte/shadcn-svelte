@@ -84,9 +84,7 @@ Copy and paste the following code into your project.
 </Accordion.Root>
 ```
 
-## Examples
-
-### Basic
+## Basic
 
 A basic accordion that shows one item at a time. The first item is open by default.
 
@@ -96,7 +94,7 @@ A basic accordion that shows one item at a time. The first item is open by defau
 
 </ComponentPreview>
 
-### Multiple
+## Multiple
 
 Use `type="multiple"` to allow multiple items to be open at the same time.
 
@@ -106,7 +104,7 @@ Use `type="multiple"` to allow multiple items to be open at the same time.
 
 </ComponentPreview>
 
-### Disabled
+## Disabled
 
 Use the `disabled` prop on `Accordion.Item` to disable individual items.
 
@@ -116,7 +114,7 @@ Use the `disabled` prop on `Accordion.Item` to disable individual items.
 
 </ComponentPreview>
 
-### Borders
+## Borders
 
 Add `border` to the `Accordion.Root` and `border-b last:border-b-0` to the `Accordion.Item` to add borders to the items.
 
@@ -126,7 +124,7 @@ Add `border` to the `Accordion.Root` and `border-b last:border-b-0` to the `Acco
 
 </ComponentPreview>
 
-### Card
+## Card
 
 Wrap the `Accordion.Root` in a `Card` component.
 

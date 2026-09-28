@@ -109,9 +109,7 @@ Message.Group
 - Group wrapper for stacking consecutive messages from the same sender
 - Customizable styling through the `class` prop on every part
 
-## Examples
-
-### Avatar
+## Avatar
 
 Use `Message.Avatar` to render an avatar next to the message. Set `align="end"` on the message to align the avatar to the end of the message.
 
@@ -126,7 +124,7 @@ Use `Message.Avatar` to render an avatar next to the message. Set `align="end"` 
 | `start` | Align the message to the start of the conversation. |
 | `end`   | Align the message to the end of the conversation.   |
 
-### Group
+## Group
 
 Use `Message.Group` to stack consecutive messages from the same sender. Render an empty `Message.Avatar` on the earlier messages to keep them aligned with the avatar on the last one.
 
@@ -136,7 +134,7 @@ Use `Message.Group` to stack consecutive messages from the same sender. Render a
 
 </ComponentPreview>
 
-### Header and Footer
+## Header and Footer
 
 Use `Message.Header` for a sender name and `Message.Footer` for metadata such as a delivery or read status.
 
@@ -146,7 +144,7 @@ Use `Message.Header` for a sender name and `Message.Footer` for metadata such as
 
 </ComponentPreview>
 
-### Actions
+## Actions
 
 Place message-level actions in `Message.Footer`, such as copy, retry, or feedback buttons.
 
@@ -156,7 +154,7 @@ Place message-level actions in `Message.Footer`, such as copy, retry, or feedbac
 
 </ComponentPreview>
 
-### Attachment
+## Attachment
 
 <ComponentPreview name="message-attachment">
 

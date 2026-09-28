@@ -75,9 +75,7 @@ Copy and paste the following code into your project.
 </ScrollArea>
 ```
 
-## Examples
-
-### Horizontal
+## Horizontal
 
 Use `orientation="horizontal"` for horizontal scrolling.
 

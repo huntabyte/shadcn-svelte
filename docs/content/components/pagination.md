@@ -92,9 +92,7 @@ Copy and paste the following code into your project.
 </Pagination.Root>
 ```
 
-## Examples
-
-### Simple
+## Simple
 
 A simple pagination with only page numbers.
 
@@ -104,7 +102,7 @@ A simple pagination with only page numbers.
 
 </ComponentPreview>
 
-### Icons Only
+## Icons Only
 
 Use just the previous and next buttons without page numbers. This is useful for data tables with a rows per page selector.
 

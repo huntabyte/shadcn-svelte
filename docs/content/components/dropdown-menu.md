@@ -82,9 +82,7 @@ Copy and paste the following code into your project.
 </DropdownMenu.Root>
 ```
 
-## Examples
-
-### Basic
+## Basic
 
 A basic dropdown menu with labels and separators.
 
@@ -94,7 +92,7 @@ A basic dropdown menu with labels and separators.
 
 </ComponentPreview>
 
-### Submenu
+## Submenu
 
 Use `DropdownMenu.Sub` to nest secondary actions.
 
@@ -104,7 +102,7 @@ Use `DropdownMenu.Sub` to nest secondary actions.
 
 </ComponentPreview>
 
-### Shortcuts
+## Shortcuts
 
 Add `DropdownMenu.Shortcut` to show keyboard hints.
 
@@ -114,7 +112,7 @@ Add `DropdownMenu.Shortcut` to show keyboard hints.
 
 </ComponentPreview>
 
-### Icons
+## Icons
 
 Combine icons with labels for quick scanning.
 
@@ -124,7 +122,7 @@ Combine icons with labels for quick scanning.
 
 </ComponentPreview>
 
-### Checkboxes
+## Checkboxes
 
 Use `DropdownMenu.CheckboxItem` for toggles.
 
@@ -134,7 +132,7 @@ Use `DropdownMenu.CheckboxItem` for toggles.
 
 </ComponentPreview>
 
-### Checkboxes Icons
+## Checkboxes Icons
 
 Add icons to checkbox items.
 
@@ -144,7 +142,7 @@ Add icons to checkbox items.
 
 </ComponentPreview>
 
-### Radio Group
+## Radio Group
 
 Use `DropdownMenu.RadioGroup` for exclusive choices.
 
@@ -154,7 +152,7 @@ Use `DropdownMenu.RadioGroup` for exclusive choices.
 
 </ComponentPreview>
 
-### Radio Icons
+## Radio Icons
 
 Show radio options with icons.
 
@@ -164,7 +162,7 @@ Show radio options with icons.
 
 </ComponentPreview>
 
-### Destructive
+## Destructive
 
 Use `variant="destructive"` for irreversible actions.
 
@@ -174,7 +172,7 @@ Use `variant="destructive"` for irreversible actions.
 
 </ComponentPreview>
 
-### Avatar
+## Avatar
 
 An account switcher dropdown triggered by an avatar.
 
@@ -184,7 +182,7 @@ An account switcher dropdown triggered by an avatar.
 
 </ComponentPreview>
 
-### Complex
+## Complex
 
 A richer example combining groups, icons, and submenus.
 

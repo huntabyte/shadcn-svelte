@@ -86,7 +86,7 @@ For form fields, use the [Field](/docs/components/field) component which include
 </Field.Field>
 ```
 
-<ComponentPreview name="field-demo" class="**:[.preview]:h-[44rem]">
+<ComponentPreview name="field-demo" class="**:[.preview]:min-h-[44rem]">
 
 <div></div>
 

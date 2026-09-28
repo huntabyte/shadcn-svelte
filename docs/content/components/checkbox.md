@@ -68,7 +68,7 @@ Copy and paste the following code into your project.
 <Checkbox />
 ```
 
-### Checked State
+## Checked State
 
 Use `bind:checked` to control the checkbox state, or `onCheckedChange` to listen for changes.
 
@@ -82,7 +82,7 @@ Use `bind:checked` to control the checkbox state, or `onCheckedChange` to listen
 <Checkbox bind:checked />
 ```
 
-### Invalid State
+## Invalid State
 
 Set `aria-invalid` on the checkbox and `data-invalid` on the field wrapper to show the invalid styles.
 
@@ -92,9 +92,7 @@ Set `aria-invalid` on the checkbox and `data-invalid` on the field wrapper to sh
 
 </ComponentPreview>
 
-## Examples
-
-### Basic
+## Basic
 
 Pair the checkbox with `Field.Field` and `Field.Label` for proper layout and labeling.
 
@@ -104,7 +102,7 @@ Pair the checkbox with `Field.Field` and `Field.Label` for proper layout and lab
 
 </ComponentPreview>
 
-### Description
+## Description
 
 Use `Field.Content` and `Field.Description` for helper text.
 
@@ -114,7 +112,7 @@ Use `Field.Content` and `Field.Description` for helper text.
 
 </ComponentPreview>
 
-### Disabled
+## Disabled
 
 Use the `disabled` prop to prevent interaction and add the `data-disabled` attribute to the `<Field.Field>` component for disabled styles.
 
@@ -124,7 +122,7 @@ Use the `disabled` prop to prevent interaction and add the `data-disabled` attri
 
 </ComponentPreview>
 
-### Group
+## Group
 
 Use multiple fields to create a checkbox list.
 
@@ -134,7 +132,7 @@ Use multiple fields to create a checkbox list.
 
 </ComponentPreview>
 
-### Table
+## Table
 
 <ComponentPreview name="checkbox-table">
 

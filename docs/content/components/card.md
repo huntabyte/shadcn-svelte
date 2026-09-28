@@ -70,9 +70,7 @@ Copy and paste the following code into your project.
 </Card.Root>
 ```
 
-## Examples
-
-### Size
+## Size
 
 Use the `size="sm"` prop to set the size of the card to small. The small size variant uses smaller spacing.
 
@@ -82,11 +80,11 @@ Use the `size="sm"` prop to set the size of the card to small. The small size va
 
 </ComponentPreview>
 
-### Spacing
+## Spacing
 
 In addition to the `size` prop, you can use the `--card-spacing` CSS variable to control the spacing between sections and the inset of card parts.
 
-<ComponentPreview name="card-spacing" class="[&_.preview]:h-[34rem]">
+<ComponentPreview name="card-spacing" class="[&_.preview]:min-h-[34rem]">
 
 <div></div>
 
@@ -94,17 +92,17 @@ In addition to the `size` prop, you can use the `--card-spacing` CSS variable to
 
 Use negative margins with `-mx-(--card-spacing)` to make content go edge to edge while keeping it aligned with the card inset. When the edge-to-edge content sits above a footer, use `-mb-(--card-spacing)` on `Card.Content` to remove the section gap.
 
-<ComponentPreview name="card-edge-to-edge" class="[&_.preview]:h-[28rem]">
+<ComponentPreview name="card-edge-to-edge" class="[&_.preview]:min-h-[28rem]">
 
 <div></div>
 
 </ComponentPreview>
 
-### Image
+## Image
 
 Add an image before the card header to create a card with an image.
 
-<ComponentPreview name="card-image" class="[&_.preview]:h-[32rem]">
+<ComponentPreview name="card-image" class="[&_.preview]:min-h-[32rem]">
 
 <div></div>
 

@@ -68,9 +68,7 @@ Copy and paste the following code into your project.
 <Switch />
 ```
 
-## Examples
-
-### Description
+## Description
 
 <ComponentPreview name="switch-description">
 
@@ -78,7 +76,7 @@ Copy and paste the following code into your project.
 
 </ComponentPreview>
 
-### Choice Card
+## Choice Card
 
 Card-style selection where `Field.Label` wraps the entire `Field.Field` for a clickable card pattern.
 
@@ -88,7 +86,7 @@ Card-style selection where `Field.Label` wraps the entire `Field.Field` for a cl
 
 </ComponentPreview>
 
-### Disabled
+## Disabled
 
 Add the `disabled` prop to the `Switch` component to disable the switch. Add the `data-disabled` prop to the `Field.Field` component for styling.
 
@@ -98,7 +96,7 @@ Add the `disabled` prop to the `Switch` component to disable the switch. Add the
 
 </ComponentPreview>
 
-### Invalid
+## Invalid
 
 Add the `aria-invalid` prop to the `Switch` component to indicate an invalid state. Add the `data-invalid` prop to the `Field.Field` component for styling.
 
@@ -108,7 +106,7 @@ Add the `aria-invalid` prop to the `Switch` component to indicate an invalid sta
 
 </ComponentPreview>
 
-### Size
+## Size
 
 Use the `size` prop to change the size of the switch.
 

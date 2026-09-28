@@ -74,7 +74,7 @@ Copy and paste the following code into your project.
 </Collapsible.Root>
 ```
 
-### Controlled State
+## Controlled State
 
 Use `bind:open` to control the state.
 
@@ -91,9 +91,7 @@ Use `bind:open` to control the state.
 </Collapsible.Root>
 ```
 
-## Examples
-
-### Basic
+## Basic
 
 <ComponentPreview name="collapsible-basic" align="start">
 
@@ -101,7 +99,7 @@ Use `bind:open` to control the state.
 
 </ComponentPreview>
 
-### Settings Panel
+## Settings Panel
 
 Use a trigger button to reveal additional settings.
 
@@ -111,11 +109,11 @@ Use a trigger button to reveal additional settings.
 
 </ComponentPreview>
 
-### File Tree
+## File Tree
 
 Use nested collapsibles to build a file tree.
 
-<ComponentPreview name="collapsible-file-tree" class="**:[.preview]:h-[600px]">
+<ComponentPreview name="collapsible-file-tree" class="**:[.preview]:min-h-[600px]">
 
 <div></div>
 

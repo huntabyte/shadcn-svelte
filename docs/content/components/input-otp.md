@@ -86,9 +86,7 @@ Copy and paste the following code into your project.
 </InputOTP.Root>
 ```
 
-## Examples
-
-### Pattern
+## Pattern
 
 Use the `pattern` prop to define a custom pattern for the OTP input.
 
@@ -109,7 +107,7 @@ Use the `pattern` prop to define a custom pattern for the OTP input.
 
 </ComponentPreview>
 
-### Separator
+## Separator
 
 Use the `<InputOTP.Separator />` component to add a separator between input groups.
 
@@ -119,7 +117,7 @@ Use the `<InputOTP.Separator />` component to add a separator between input grou
 
 </ComponentPreview>
 
-### Disabled
+## Disabled
 
 Use the `disabled` prop to disable the input.
 
@@ -129,7 +127,7 @@ Use the `disabled` prop to disable the input.
 
 </ComponentPreview>
 
-### Controlled
+## Controlled
 
 Use `bind:value` to control the input value.
 
@@ -139,7 +137,7 @@ Use `bind:value` to control the input value.
 
 </ComponentPreview>
 
-### Invalid
+## Invalid
 
 Use `aria-invalid` on the slots to show an error state.
 
@@ -149,7 +147,7 @@ Use `aria-invalid` on the slots to show an error state.
 
 </ComponentPreview>
 
-### Four Digits
+## Four Digits
 
 A common pattern for PIN codes. This uses the `pattern={REGEXP_ONLY_DIGITS}` prop.
 
@@ -159,7 +157,7 @@ A common pattern for PIN codes. This uses the `pattern={REGEXP_ONLY_DIGITS}` pro
 
 </ComponentPreview>
 
-### Alphanumeric
+## Alphanumeric
 
 Use `REGEXP_ONLY_DIGITS_AND_CHARS` to accept both letters and numbers.
 
@@ -169,7 +167,7 @@ Use `REGEXP_ONLY_DIGITS_AND_CHARS` to accept both letters and numbers.
 
 </ComponentPreview>
 
-### Form
+## Form
 
 <ComponentPreview name="input-otp-form">
 

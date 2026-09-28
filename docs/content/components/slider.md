@@ -69,9 +69,7 @@ Copy and paste the following code into your project.
 <Slider type="single" bind:value max={100} step={1} />
 ```
 
-## Examples
-
-### Range
+## Range
 
 Use `type="multiple"` with an array of two values for a range slider.
 
@@ -81,7 +79,7 @@ Use `type="multiple"` with an array of two values for a range slider.
 
 </ComponentPreview>
 
-### Multiple Thumbs
+## Multiple Thumbs
 
 Use an array with multiple values for multiple thumbs.
 
@@ -91,7 +89,7 @@ Use an array with multiple values for multiple thumbs.
 
 </ComponentPreview>
 
-### Vertical
+## Vertical
 
 Use `orientation="vertical"` for a vertical slider.
 
@@ -101,7 +99,7 @@ Use `orientation="vertical"` for a vertical slider.
 
 </ComponentPreview>
 
-### Controlled
+## Controlled
 
 <ComponentPreview name="slider-controlled">
 
@@ -109,7 +107,7 @@ Use `orientation="vertical"` for a vertical slider.
 
 </ComponentPreview>
 
-### Disabled
+## Disabled
 
 Use the `disabled` prop to disable the slider.
 

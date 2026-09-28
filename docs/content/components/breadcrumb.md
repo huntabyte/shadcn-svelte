@@ -72,9 +72,7 @@ Copy and paste the following code into your project.
 </Breadcrumb.Root>
 ```
 
-## Examples
-
-### Basic
+## Basic
 
 A basic breadcrumb with a home link and a components link.
 
@@ -84,7 +82,7 @@ A basic breadcrumb with a home link and a components link.
 
 </ComponentPreview>
 
-### Custom separator
+## Custom separator
 
 Use a custom component as `children` for `<Breadcrumb.Separator />` to create a custom separator.
 
@@ -94,7 +92,7 @@ Use a custom component as `children` for `<Breadcrumb.Separator />` to create a 
 
 </ComponentPreview>
 
-### Dropdown
+## Dropdown
 
 You can compose `<Breadcrumb.Item />` with a `<DropdownMenu />` to create a dropdown in the breadcrumb.
 
@@ -104,7 +102,7 @@ You can compose `<Breadcrumb.Item />` with a `<DropdownMenu />` to create a drop
 
 </ComponentPreview>
 
-### Collapsed
+## Collapsed
 
 We provide a `<Breadcrumb.Ellipsis />` component to show a collapsed state when the breadcrumb is too long.
 
@@ -114,7 +112,7 @@ We provide a `<Breadcrumb.Ellipsis />` component to show a collapsed state when 
 
 </ComponentPreview>
 
-### Link component
+## Link component
 
 To use a link just add the `href` prop to `<Breadcrumb.Link />`.
 

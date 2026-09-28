@@ -104,9 +104,7 @@ It reads the label from the matching `Select.Item`, which only exists in the DOM
 
 Without `items` the trigger falls back to the raw value, so you only need it when an item's label differs from its value.
 
-## Examples
-
-### Groups
+## Groups
 
 Use `Select.Group`, `Select.Label`, and `Select.Separator` to organize items.
 
@@ -116,7 +114,7 @@ Use `Select.Group`, `Select.Label`, and `Select.Separator` to organize items.
 
 </ComponentPreview>
 
-### Scrollable
+## Scrollable
 
 A select with many items that scrolls.
 
@@ -126,7 +124,7 @@ A select with many items that scrolls.
 
 </ComponentPreview>
 
-### Disabled
+## Disabled
 
 <ComponentPreview name="select-disabled">
 
@@ -134,7 +132,7 @@ A select with many items that scrolls.
 
 </ComponentPreview>
 
-### Invalid
+## Invalid
 
 Add the `data-invalid` attribute to the `Field.Field` component and the `aria-invalid` attribute to the `Select.Trigger` component to show an error state.
 

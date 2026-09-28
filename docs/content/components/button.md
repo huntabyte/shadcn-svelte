@@ -72,9 +72,7 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 }
 ```
 
-## Examples
-
-### Size
+## Size
 
 Use the `size` prop to change the size of the button.
 
@@ -84,7 +82,7 @@ Use the `size` prop to change the size of the button.
 
 </ComponentPreview>
 
-### Default
+## Default
 
 <ComponentPreview name="button-default">
 
@@ -92,7 +90,7 @@ Use the `size` prop to change the size of the button.
 
 </ComponentPreview>
 
-### Outline
+## Outline
 
 <ComponentPreview name="button-outline">
 
@@ -100,7 +98,7 @@ Use the `size` prop to change the size of the button.
 
 </ComponentPreview>
 
-### Secondary
+## Secondary
 
 <ComponentPreview name="button-secondary">
 
@@ -108,7 +106,7 @@ Use the `size` prop to change the size of the button.
 
 </ComponentPreview>
 
-### Ghost
+## Ghost
 
 <ComponentPreview name="button-ghost">
 
@@ -116,7 +114,7 @@ Use the `size` prop to change the size of the button.
 
 </ComponentPreview>
 
-### Destructive
+## Destructive
 
 <ComponentPreview name="button-destructive">
 
@@ -124,7 +122,7 @@ Use the `size` prop to change the size of the button.
 
 </ComponentPreview>
 
-### Link
+## Link
 
 <ComponentPreview name="button-link">
 
@@ -132,7 +130,7 @@ Use the `size` prop to change the size of the button.
 
 </ComponentPreview>
 
-### Icon
+## Icon
 
 <ComponentPreview name="button-icon">
 
@@ -140,7 +138,7 @@ Use the `size` prop to change the size of the button.
 
 </ComponentPreview>
 
-### With Icon
+## With Icon
 
 Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` attribute to the icon for the correct spacing.
 
@@ -150,7 +148,7 @@ Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` attri
 
 </ComponentPreview>
 
-### Rounded
+## Rounded
 
 Use the `rounded-full` class to make the button rounded.
 
@@ -160,7 +158,7 @@ Use the `rounded-full` class to make the button rounded.
 
 </ComponentPreview>
 
-### Spinner
+## Spinner
 
 Render a `<Spinner />` component inside the button to show a loading state. Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` attribute to the spinner for the correct spacing.
 
@@ -170,7 +168,7 @@ Render a `<Spinner />` component inside the button to show a loading state. Reme
 
 </ComponentPreview>
 
-### Button Group
+## Button Group
 
 To create a button group, use the `ButtonGroup` component. See the [Button Group](/docs/components/button-group) documentation for more details.
 
@@ -180,7 +178,7 @@ To create a button group, use the `ButtonGroup` component. See the [Button Group
 
 </ComponentPreview>
 
-### As Link
+## As Link
 
 Pass an `href` prop to `<Button />` to render it as an `<a>` element that looks like a button. You can also use the `buttonVariants` helper to make any other element look like a button.
 

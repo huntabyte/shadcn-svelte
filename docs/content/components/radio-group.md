@@ -78,9 +78,7 @@ Copy and paste the following code into your project.
 </RadioGroup.Root>
 ```
 
-## Examples
-
-### Description
+## Description
 
 Radio group items with a description using the `Field` component.
 
@@ -90,7 +88,7 @@ Radio group items with a description using the `Field` component.
 
 </ComponentPreview>
 
-### Choice Card
+## Choice Card
 
 Use `Field.Label` to wrap the entire `Field.Field` for a clickable card-style selection.
 
@@ -100,7 +98,7 @@ Use `Field.Label` to wrap the entire `Field.Field` for a clickable card-style se
 
 </ComponentPreview>
 
-### Fieldset
+## Fieldset
 
 Use `Field.Set` and `Field.Legend` to group radio items with a label and description.
 
@@ -110,7 +108,7 @@ Use `Field.Set` and `Field.Legend` to group radio items with a label and descrip
 
 </ComponentPreview>
 
-### Disabled
+## Disabled
 
 Use the `disabled` prop on `RadioGroup.Item` to disable individual items.
 
@@ -120,7 +118,7 @@ Use the `disabled` prop on `RadioGroup.Item` to disable individual items.
 
 </ComponentPreview>
 
-### Invalid
+## Invalid
 
 Use `aria-invalid` on `RadioGroup.Item` and `data-invalid` on `Field.Field` to show validation errors.
 

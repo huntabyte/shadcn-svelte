@@ -76,9 +76,7 @@ Copy and paste the following code into your project.
 </ContextMenu.Root>
 ```
 
-## Examples
-
-### Basic
+## Basic
 
 A simple context menu with a few actions.
 
@@ -88,7 +86,7 @@ A simple context menu with a few actions.
 
 </ComponentPreview>
 
-### Submenu
+## Submenu
 
 Use `ContextMenu.Sub` to nest secondary actions.
 
@@ -98,7 +96,7 @@ Use `ContextMenu.Sub` to nest secondary actions.
 
 </ComponentPreview>
 
-### Shortcuts
+## Shortcuts
 
 Add `ContextMenu.Shortcut` to show keyboard hints.
 
@@ -108,7 +106,7 @@ Add `ContextMenu.Shortcut` to show keyboard hints.
 
 </ComponentPreview>
 
-### Groups
+## Groups
 
 Group related actions and separate them with dividers.
 
@@ -118,7 +116,7 @@ Group related actions and separate them with dividers.
 
 </ComponentPreview>
 
-### Icons
+## Icons
 
 Combine icons with labels for quick scanning.
 
@@ -128,7 +126,7 @@ Combine icons with labels for quick scanning.
 
 </ComponentPreview>
 
-### Checkboxes
+## Checkboxes
 
 Use `ContextMenu.CheckboxItem` for toggles.
 
@@ -138,7 +136,7 @@ Use `ContextMenu.CheckboxItem` for toggles.
 
 </ComponentPreview>
 
-### Radio
+## Radio
 
 Use `ContextMenu.RadioItem` for exclusive choices.
 
@@ -148,7 +146,7 @@ Use `ContextMenu.RadioItem` for exclusive choices.
 
 </ComponentPreview>
 
-### Destructive
+## Destructive
 
 Use `variant="destructive"` to style the menu item as destructive.
 
@@ -158,7 +156,7 @@ Use `variant="destructive"` to style the menu item as destructive.
 
 </ComponentPreview>
 
-### Sides
+## Sides
 
 Control submenu placement with `side` and `align` props.
 

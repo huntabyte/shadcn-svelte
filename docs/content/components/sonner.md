@@ -111,9 +111,7 @@ Copy and paste the following code into your project.
 <Button onclick={() => toast("Hello world")}>Show toast</Button>
 ```
 
-## Examples
-
-### Types
+## Types
 
 <ComponentPreview name="sonner-types">
 
@@ -121,7 +119,7 @@ Copy and paste the following code into your project.
 
 </ComponentPreview>
 
-### Description
+## Description
 
 <ComponentPreview name="sonner-description">
 
@@ -129,7 +127,7 @@ Copy and paste the following code into your project.
 
 </ComponentPreview>
 
-### Position
+## Position
 
 Use the `position` prop to change the position of the toast.
 

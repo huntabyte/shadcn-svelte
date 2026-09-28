@@ -96,9 +96,7 @@ The `Field` family is designed for composing accessible forms. A typical field i
 - `Field.Content` is a flex column that groups label and description. Not required if you have no description.
 - Wrap related fields with `Field.Group`, and use `Field.Set` with `Field.Legend` for semantic grouping.
 
-## Examples
-
-### Input
+## Input
 
 <ComponentPreview name="field-input">
 
@@ -106,7 +104,7 @@ The `Field` family is designed for composing accessible forms. A typical field i
 
 </ComponentPreview>
 
-### Textarea
+## Textarea
 
 <ComponentPreview name="field-textarea">
 
@@ -114,7 +112,7 @@ The `Field` family is designed for composing accessible forms. A typical field i
 
 </ComponentPreview>
 
-### Select
+## Select
 
 <ComponentPreview name="field-select">
 
@@ -122,7 +120,7 @@ The `Field` family is designed for composing accessible forms. A typical field i
 
 </ComponentPreview>
 
-### Slider
+## Slider
 
 <ComponentPreview name="field-slider">
 
@@ -130,7 +128,7 @@ The `Field` family is designed for composing accessible forms. A typical field i
 
 </ComponentPreview>
 
-### Fieldset
+## Fieldset
 
 <ComponentPreview name="field-field-set-demo">
 
@@ -138,7 +136,7 @@ The `Field` family is designed for composing accessible forms. A typical field i
 
 </ComponentPreview>
 
-### Checkbox
+## Checkbox
 
 <ComponentPreview name="field-checkbox">
 
@@ -146,7 +144,7 @@ The `Field` family is designed for composing accessible forms. A typical field i
 
 </ComponentPreview>
 
-### Radio
+## Radio
 
 <ComponentPreview name="field-radio">
 
@@ -154,7 +152,7 @@ The `Field` family is designed for composing accessible forms. A typical field i
 
 </ComponentPreview>
 
-### Switch
+## Switch
 
 <ComponentPreview name="field-switch">
 
@@ -162,7 +160,7 @@ The `Field` family is designed for composing accessible forms. A typical field i
 
 </ComponentPreview>
 
-### Choice Card
+## Choice Card
 
 Wrap `Field.Field` components inside `Field.Label` to create selectable field groups. This works with `RadioGroup.Item`, `Checkbox` and `Switch` components.
 
@@ -172,7 +170,7 @@ Wrap `Field.Field` components inside `Field.Label` to create selectable field gr
 
 </ComponentPreview>
 
-### Field Group
+## Field Group
 
 Stack `Field` components with `Field.Group`. Add `Field.Separator` to divide them.
 
@@ -182,7 +180,7 @@ Stack `Field` components with `Field.Group`. Add `Field.Separator` to divide the
 
 </ComponentPreview>
 
-### Responsive Layout
+## Responsive Layout
 
 - **Vertical fields:** Default orientation stacks label, control, and helper text—ideal for mobile-first layouts.
 - **Horizontal fields:** Set `orientation="horizontal"` on `Field` to align the label and control side-by-side. Pair with `Field.Content` to keep descriptions aligned.

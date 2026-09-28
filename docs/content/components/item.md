@@ -75,9 +75,7 @@ Use Field if you need to display a form input such as a checkbox, input, radio, 
 
 If you only need to display content such as a title, description, and actions, use `Item`.
 
-## Examples
-
-### Variant
+## Variant
 
 Use the `variant` prop to change the visual style of the item.
 
@@ -87,7 +85,7 @@ Use the `variant` prop to change the visual style of the item.
 
 </ComponentPreview>
 
-### Size
+## Size
 
 Use the `size` prop to change the size of the item. Available sizes are `default`, `sm`, and `xs`.
 
@@ -97,7 +95,7 @@ Use the `size` prop to change the size of the item. Available sizes are `default
 
 </ComponentPreview>
 
-### Icon
+## Icon
 
 Use `Item.Media` with `variant="icon"` to display an icon.
 
@@ -107,7 +105,7 @@ Use `Item.Media` with `variant="icon"` to display an icon.
 
 </ComponentPreview>
 
-### Avatar
+## Avatar
 
 You can use `Item.Media` with `variant="avatar"` to display an avatar.
 
@@ -117,7 +115,7 @@ You can use `Item.Media` with `variant="avatar"` to display an avatar.
 
 </ComponentPreview>
 
-### Image
+## Image
 
 Use `Item.Media` with `variant="image"` to display an image.
 
@@ -127,7 +125,7 @@ Use `Item.Media` with `variant="image"` to display an image.
 
 </ComponentPreview>
 
-### Group
+## Group
 
 Use `Item.Group` to group related items together.
 
@@ -137,7 +135,7 @@ Use `Item.Group` to group related items together.
 
 </ComponentPreview>
 
-### Header
+## Header
 
 Use `Item.Header` to add a header above the item content.
 
@@ -147,7 +145,7 @@ Use `Item.Header` to add a header above the item content.
 
 </ComponentPreview>
 
-### Link
+## Link
 
 Use the `child` snippet to render the item as a link. The hover and focus states will be applied to the anchor element.
 
@@ -175,7 +173,7 @@ Use the `child` snippet to render the item as a link. The hover and focus states
 </Item.Root>
 ```
 
-### Dropdown
+## Dropdown
 
 <ComponentPreview name="item-dropdown-demo">
 

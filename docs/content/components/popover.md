@@ -71,9 +71,7 @@ Copy and paste the following code into your project.
 </Popover.Root>
 ```
 
-## Examples
-
-### Basic
+## Basic
 
 A simple popover with a header, title, and description.
 
@@ -83,7 +81,7 @@ A simple popover with a header, title, and description.
 
 </ComponentPreview>
 
-### Align
+## Align
 
 Use the `align` prop on `Popover.Content` to control the horizontal alignment.
 
@@ -93,7 +91,7 @@ Use the `align` prop on `Popover.Content` to control the horizontal alignment.
 
 </ComponentPreview>
 
-### With Form
+## With Form
 
 A popover with form fields inside.
 

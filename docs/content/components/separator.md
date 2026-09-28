@@ -68,9 +68,7 @@ Copy and paste the following code into your project.
 <Separator />
 ```
 
-## Examples
-
-### Vertical
+## Vertical
 
 Use `orientation="vertical"` for a vertical separator.
 
@@ -80,7 +78,7 @@ Use `orientation="vertical"` for a vertical separator.
 
 </ComponentPreview>
 
-### Menu
+## Menu
 
 Vertical separators between menu items with descriptions.
 
@@ -90,7 +88,7 @@ Vertical separators between menu items with descriptions.
 
 </ComponentPreview>
 
-### List
+## List
 
 Horizontal separators between list items.
 

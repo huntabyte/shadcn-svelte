@@ -76,9 +76,7 @@ Copy and paste the following code into your project.
 </InputGroup.Root>
 ```
 
-## Examples
-
-### Align
+## Align
 
 Use the `align` prop on `InputGroup.Addon` to position the addon relative to the input.
 
@@ -88,7 +86,7 @@ For proper focus management, `InputGroup.Addon` should always be placed after `I
 
 </Callout>
 
-#### inline-start
+### inline-start
 
 Use `align="inline-start"` to position the addon at the start of the input. This is the default.
 
@@ -98,7 +96,7 @@ Use `align="inline-start"` to position the addon at the start of the input. This
 
 </ComponentPreview>
 
-#### inline-end
+### inline-end
 
 Use `align="inline-end"` to position the addon at the end of the input.
 
@@ -108,7 +106,7 @@ Use `align="inline-end"` to position the addon at the end of the input.
 
 </ComponentPreview>
 
-#### block-start
+### block-start
 
 Use `align="block-start"` to position the addon above the input.
 
@@ -118,7 +116,7 @@ Use `align="block-start"` to position the addon above the input.
 
 </ComponentPreview>
 
-#### block-end
+### block-end
 
 Use `align="block-end"` to position the addon below the input.
 
@@ -128,7 +126,7 @@ Use `align="block-end"` to position the addon below the input.
 
 </ComponentPreview>
 
-### Icon
+## Icon
 
 <ComponentPreview name="input-group-icon-demo">
 
@@ -136,7 +134,7 @@ Use `align="block-end"` to position the addon below the input.
 
 </ComponentPreview>
 
-### Text
+## Text
 
 <ComponentPreview name="input-group-text-demo">
 
@@ -144,7 +142,7 @@ Use `align="block-end"` to position the addon below the input.
 
 </ComponentPreview>
 
-### Button
+## Button
 
 <ComponentPreview name="input-group-button-demo">
 
@@ -152,7 +150,7 @@ Use `align="block-end"` to position the addon below the input.
 
 </ComponentPreview>
 
-### Kbd
+## Kbd
 
 <ComponentPreview name="input-group-kbd">
 
@@ -160,7 +158,7 @@ Use `align="block-end"` to position the addon below the input.
 
 </ComponentPreview>
 
-### Dropdown
+## Dropdown
 
 <ComponentPreview name="input-group-dropdown-demo">
 
@@ -168,7 +166,7 @@ Use `align="block-end"` to position the addon below the input.
 
 </ComponentPreview>
 
-### Spinner
+## Spinner
 
 <ComponentPreview name="input-group-spinner-demo">
 
@@ -176,7 +174,7 @@ Use `align="block-end"` to position the addon below the input.
 
 </ComponentPreview>
 
-### Textarea
+## Textarea
 
 <ComponentPreview name="input-group-textarea-demo">
 
@@ -184,7 +182,7 @@ Use `align="block-end"` to position the addon below the input.
 
 </ComponentPreview>
 
-### Custom Input
+## Custom Input
 
 Add the `data-slot="input-group-control"` attribute to your custom input for automatic focus state handling.
 

@@ -58,9 +58,7 @@ Copy and paste the following code into your project.
 <Input />
 ```
 
-## Examples
-
-### Basic
+## Basic
 
 <ComponentPreview name="input-basic" class="[&_[data-align]>*]:max-w-xs">
 
@@ -68,7 +66,7 @@ Copy and paste the following code into your project.
 
 </ComponentPreview>
 
-### Field
+## Field
 
 Use `Field.Field`, `Field.Label`, and `Field.Description` to create an input with a label and description.
 
@@ -78,7 +76,7 @@ Use `Field.Field`, `Field.Label`, and `Field.Description` to create an input wit
 
 </ComponentPreview>
 
-### Field Group
+## Field Group
 
 Use `Field.Group` to show multiple `Field.Field` blocks and to build forms.
 
@@ -88,7 +86,7 @@ Use `Field.Group` to show multiple `Field.Field` blocks and to build forms.
 
 </ComponentPreview>
 
-### Disabled
+## Disabled
 
 Use the `disabled` prop to disable the input. To style the disabled state, add the `data-disabled` attribute to the `Field.Field` component.
 
@@ -98,7 +96,7 @@ Use the `disabled` prop to disable the input. To style the disabled state, add t
 
 </ComponentPreview>
 
-### Invalid
+## Invalid
 
 Use the `aria-invalid` prop to mark the input as invalid. To style the invalid state, add the `data-invalid` attribute to the `Field.Field` component.
 
@@ -108,7 +106,7 @@ Use the `aria-invalid` prop to mark the input as invalid. To style the invalid s
 
 </ComponentPreview>
 
-### File
+## File
 
 Use the `type="file"` prop to create a file input.
 
@@ -118,7 +116,7 @@ Use the `type="file"` prop to create a file input.
 
 </ComponentPreview>
 
-### Inline
+## Inline
 
 Use `Field.Field` with `orientation="horizontal"` to create an inline input.
 Pair with `Button` to create a search input with a button.
@@ -129,7 +127,7 @@ Pair with `Button` to create a search input with a button.
 
 </ComponentPreview>
 
-### Grid
+## Grid
 
 Use a grid layout to place multiple inputs side by side.
 
@@ -139,7 +137,7 @@ Use a grid layout to place multiple inputs side by side.
 
 </ComponentPreview>
 
-### Required
+## Required
 
 Use the `required` attribute to indicate required inputs.
 
@@ -149,7 +147,7 @@ Use the `required` attribute to indicate required inputs.
 
 </ComponentPreview>
 
-### Badge
+## Badge
 
 Use `Badge` in the label to highlight a recommended field.
 
@@ -159,7 +157,7 @@ Use `Badge` in the label to highlight a recommended field.
 
 </ComponentPreview>
 
-### Input Group
+## Input Group
 
 To add icons, text, or buttons inside an input, use the `InputGroup` component. See the [Input Group](/docs/components/input-group) component for more examples.
 
@@ -169,7 +167,7 @@ To add icons, text, or buttons inside an input, use the `InputGroup` component. 
 
 </ComponentPreview>
 
-### Button Group
+## Button Group
 
 To add buttons to an input, use the `ButtonGroup` component. See the [Button Group](/docs/components/button-group) component for more examples.
 
@@ -179,7 +177,7 @@ To add buttons to an input, use the `ButtonGroup` component. See the [Button Gro
 
 </ComponentPreview>
 
-### Form
+## Form
 
 A full form example with multiple inputs, a select, and a button.
 

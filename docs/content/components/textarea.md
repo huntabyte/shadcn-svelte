@@ -58,9 +58,7 @@ Copy and paste the following code into your project.
 <Textarea />
 ```
 
-## Examples
-
-### Field
+## Field
 
 Use `Field.Field`, `Field.Label`, and `Field.Description` to create a textarea with a label and description.
 
@@ -70,7 +68,7 @@ Use `Field.Field`, `Field.Label`, and `Field.Description` to create a textarea w
 
 </ComponentPreview>
 
-### Disabled
+## Disabled
 
 Use the `disabled` prop to disable the textarea. To style the disabled state, add the `data-disabled` attribute to the `Field.Field` component.
 
@@ -80,7 +78,7 @@ Use the `disabled` prop to disable the textarea. To style the disabled state, ad
 
 </ComponentPreview>
 
-### Invalid
+## Invalid
 
 Use the `aria-invalid` prop to mark the textarea as invalid. To style the invalid state, add the `data-invalid` attribute to the `Field.Field` component.
 
@@ -90,7 +88,7 @@ Use the `aria-invalid` prop to mark the textarea as invalid. To style the invali
 
 </ComponentPreview>
 
-### Button
+## Button
 
 Pair with `Button` to create a textarea with a submit button.
 
