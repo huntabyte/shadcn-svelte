@@ -1,6 +1,6 @@
 ---
 title: Item
-description: A versatile component that you can use to display any content.
+description: A versatile component for displaying content with media, title, description, and actions.
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/item
@@ -18,15 +18,13 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-The `Item` component is a straightforward flex container that can house nearly any type of content. Use it to display a title, description, and actions. Group it with the `ItemGroup` component to create a list of items.
-
-You can pretty much achieve the same result with the `div` element and some classes, but **I've built this so many times** that I decided to create a component for it. Now I use it all the time.
-
 <ComponentPreview name="item-demo">
 
 <div></div>
 
 </ComponentPreview>
+
+The `Item` component is a straightforward flex container that can house nearly any type of content. Use it to display a title, description, and actions. Group it with the `Item.Group` component to create a list of items.
 
 ## Installation
 

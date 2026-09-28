@@ -1,6 +1,6 @@
 ---
 title: Command
-description: Fast, composable, unstyled command menu for Svelte.
+description: Command menu for search and quick actions.
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/command

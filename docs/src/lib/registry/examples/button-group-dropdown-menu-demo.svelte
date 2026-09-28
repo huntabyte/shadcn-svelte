@@ -22,7 +22,7 @@
 				</Button>
 			{/snippet}
 		</DropdownMenu.Trigger>
-		<DropdownMenu.Content align="end" class="w-44">
+		<DropdownMenu.Content align="end" class="w-auto">
 			<DropdownMenu.Group>
 				<DropdownMenu.Item>
 					<VolumeOff />

@@ -1,6 +1,6 @@
 ---
 title: Input
-description: Displays a form input field or a component that looks like an input field.
+description: A text input component for forms and user data entry with built-in styling and accessibility features.
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/input

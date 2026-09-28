@@ -32,7 +32,7 @@
 			</Button>
 		{/snippet}
 	</DropdownMenu.Trigger>
-	<DropdownMenu.Content class="w-48" align="end">
+	<DropdownMenu.Content class="w-auto" align="end">
 		<DropdownMenu.Group>
 			{#each people as person (person.username)}
 				<DropdownMenu.Item>

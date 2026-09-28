@@ -1,6 +1,6 @@
 ---
 title: Input Group
-description: Display additional information or actions to an input or textarea.
+description: Add addons, buttons, and helper content to inputs.
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/input-group

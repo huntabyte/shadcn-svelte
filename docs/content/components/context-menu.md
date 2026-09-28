@@ -1,6 +1,6 @@
 ---
 title: Context Menu
-description: Displays a menu to the user — such as a set of actions or functions — triggered by right click.
+description: Displays a menu of actions triggered by a right click.
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/context-menu

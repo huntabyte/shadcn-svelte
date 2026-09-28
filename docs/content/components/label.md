@@ -16,6 +16,7 @@ links:
 	import Steps from "$lib/components/steps.svelte";
 	import Step from "$lib/components/step.svelte";
 	import InstallTabs from "$lib/components/install-tabs.svelte";
+	import Callout from "$lib/components/callout.svelte";
 
 	let { viewerData } = $props();
 </script>
@@ -25,6 +26,12 @@ links:
 <div></div>
 
 </ComponentPreview>
+
+<Callout>
+
+For form fields, use the [Field](/docs/components/field) component which includes built-in label, description, and error handling.
+
+</Callout>
 
 ## Installation
 

@@ -1,6 +1,6 @@
 ---
 title: Calendar
-description: A calendar component that allows users to select dates.
+description: A calendar component that allows users to select a date or a range of dates.
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/calendar
