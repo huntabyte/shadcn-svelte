@@ -7,7 +7,7 @@
 <div class="flex w-full max-w-md flex-col gap-4">
 	<Item.Root>
 		{#snippet child({ props })}
-			<a href="#/" {...props}>
+			<a href="##" {...props}>
 				<Item.Content>
 					<Item.Title>Visit our documentation</Item.Title>
 					<Item.Description>Learn how to get started with our components.</Item.Description>
@@ -20,7 +20,7 @@
 	</Item.Root>
 	<Item.Root variant="outline">
 		{#snippet child({ props })}
-			<a href="#/" target="_blank" rel="noopener noreferrer" {...props}>
+			<a href="##" target="_blank" rel="noopener noreferrer" {...props}>
 				<Item.Content>
 					<Item.Title>External resource</Item.Title>
 					<Item.Description>Opens in a new tab with security attributes.</Item.Description>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import {
-		FieldSliderDemo,
+		FieldSlider,
 		ButtonGroupInputGroupDemo,
 		SpinnerBadgeDemo,
 		InputGroupDemo,
@@ -34,7 +34,7 @@
 		</div>
 		<SpinnerBadgeDemo />
 		<ButtonGroupInputGroupDemo />
-		<FieldSliderDemo />
+		<FieldSlider />
 		<InputGroupDemo />
 	</div>
 	<div class="flex flex-col gap-6 *:[div]:w-full *:[div]:max-w-full">

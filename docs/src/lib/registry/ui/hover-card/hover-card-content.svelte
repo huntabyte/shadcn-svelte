@@ -7,8 +7,9 @@
 	let {
 		ref = $bindable(null),
 		class: className,
-		align = "center",
+		side = "bottom",
 		sideOffset = 4,
+		align = "center",
 		portalProps,
 		...restProps
 	}: HoverCardPrimitive.ContentProps & {
@@ -20,9 +21,13 @@
 	<HoverCardPrimitive.Content
 		bind:ref
 		data-slot="hover-card-content"
-		{align}
+		{side}
 		{sideOffset}
-		class={cn("cn-hover-card-content z-50 origin-(--transform-origin) outline-hidden", className)}
+		{align}
+		class={cn(
+			"cn-hover-card-content z-50 origin-(--bits-link-preview-content-transform-origin) outline-hidden",
+			className
+		)}
 		{...restProps}
 	/>
 </HoverCardPortal>

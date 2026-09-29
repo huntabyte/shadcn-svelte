@@ -1,8 +1,8 @@
 // !! BROWSER SAFE !!
 
 import MagicString from "magic-string";
+import { twMerge } from "cn";
 import { parse as parseSvelte } from "svelte/compiler";
-import { twMerge } from "tailwind-merge";
 import type { Transformer } from "./index.js";
 
 // Hardcoded translucent classes inlined at install time.
