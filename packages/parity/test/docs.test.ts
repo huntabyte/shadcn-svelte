@@ -6,12 +6,7 @@ import { compareDocsContract, DOCS_SURFACES } from "../src/docs.ts";
 
 describe("docs UI parity", () => {
 	it("keeps the mapped source files explicit", () => {
-		expect(Object.keys(DOCS_SURFACES)).toEqual([
-			"component-preview",
-			"docs-sidebar",
-			"homepage",
-			"attachment",
-		]);
+		expect(Object.keys(DOCS_SURFACES)).toEqual(["component-preview", "docs-sidebar", "homepage"]);
 	});
 
 	it("compares a named class contract", async () => {

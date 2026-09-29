@@ -20,7 +20,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="carousel-demo" previewClassName="h-80 sm:h-[32rem]">
+<ComponentPreview name="carousel-demo">
 
 <div></div>
 
@@ -84,7 +84,7 @@ Copy and paste the following code into your project.
 
 To set the size of the items, you can use the `basis` utility class on the `<Carousel.Item />`.
 
-<ComponentPreview name="carousel-size" previewClassName="h-auto min-h-72">
+<ComponentPreview name="carousel-size">
 
 <div></div>
 
@@ -116,7 +116,7 @@ To set the size of the items, you can use the `basis` utility class on the `<Car
 
 To set the spacing between the items, we use a `ps-[VALUE]` utility on the `<Carousel.Item />` and a negative `-ms-[VALUE]` on the `<Carousel.Content />`.
 
-<ComponentPreview name="carousel-spacing" previewClassName="h-auto min-h-72">
+<ComponentPreview name="carousel-spacing">
 
 <div></div>
 
@@ -146,7 +146,7 @@ To set the spacing between the items, we use a `ps-[VALUE]` utility on the `<Car
 
 Use the `orientation` prop to set the orientation of the carousel.
 
-<ComponentPreview name="carousel-orientation" previewClassName="h-[32rem]">
+<ComponentPreview name="carousel-orientation">
 
 <div></div>
 
@@ -185,7 +185,7 @@ You can pass options to the carousel using the `opts` prop. See the [Embla Carou
 
 Use reactive state and the `setApi` prop to get an instance of the carousel API.
 
-<ComponentPreview name="carousel-api" previewClassName="h-auto min-h-72 sm:h-[32rem]">
+<ComponentPreview name="carousel-api">
 
 <div></div>
 
@@ -271,7 +271,7 @@ You can use the `plugins` prop to add plugins to the carousel.
 </Carousel.Root>
 ```
 
-<ComponentPreview name="carousel-plugin" previewClassName="h-auto min-h-72 sm:h-[32rem]">
+<ComponentPreview name="carousel-plugin">
 
 <div></div>
 

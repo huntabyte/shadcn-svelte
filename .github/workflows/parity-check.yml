@@ -66,7 +66,6 @@ jobs:
             })
             const inputs = new Set([
               ".github/workflows/parity-check.yml",
-              "docs/content/components/attachment.md",
               "docs/package.json",
               "docs/src/lib/components/component-preview-tabs.svelte",
               "docs/src/lib/components/docs-sidebar.svelte",

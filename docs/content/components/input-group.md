@@ -19,7 +19,7 @@ links:
 	import Callout from "$lib/components/callout.svelte";
 </script>
 
-<ComponentPreview name="input-group-demo" previewClassName="min-h-[26rem]">
+<ComponentPreview name="input-group-demo">
 
 <div></div>
 
@@ -136,7 +136,7 @@ Use `align="block-end"` to position the addon below the input.
 
 ## Text
 
-<ComponentPreview name="input-group-text-demo" previewClassName="min-h-80">
+<ComponentPreview name="input-group-text-demo">
 
 <div></div>
 
@@ -176,7 +176,7 @@ Use `align="block-end"` to position the addon below the input.
 
 ## Textarea
 
-<ComponentPreview name="input-group-textarea-demo" previewClassName="min-h-96">
+<ComponentPreview name="input-group-textarea-demo">
 
 <div></div>
 

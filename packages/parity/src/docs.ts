@@ -107,18 +107,6 @@ export const DOCS_SURFACES: Record<string, Surface> = {
 			})),
 		],
 	},
-	attachment: {
-		description: "attachment demo preview height",
-		contracts: [
-			{
-				name: "preview override",
-				local: "content/components/attachment.md",
-				upstream: "apps/v4/content/docs/components/base/attachment.mdx",
-				marker: ["h-auto", "theme-blue", "bg-surface", "dark:bg-background"],
-				occurrences: 6,
-			},
-		],
-	},
 };
 
 function findUpstreamRoot(explicit?: string): string | undefined {

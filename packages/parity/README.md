@@ -42,7 +42,7 @@ Compares the generated registries in `docs/static/registry/styles/<style>/*.json
 
 ### `parity docs [surface]`
 
-Checks named Tailwind class contracts for the docs UI against the current shadcn/ui source. The contracts intentionally cover the pieces that should stay visually identical while ignoring framework-specific React and Svelte markup. Current surfaces are `component-preview`, `docs-sidebar`, `homepage`, and `attachment`.
+Checks named Tailwind class contracts for the docs UI against the current shadcn/ui source. The contracts intentionally cover the pieces that should stay visually identical while ignoring framework-specific React and Svelte markup. Current surfaces are `component-preview`, `docs-sidebar`, and `homepage`: 13 selected class contracts. This is a focused regression guard, not a complete docs UI parity audit. It does not check page content, component composition or APIs, DOM structure, interactions, accessibility, computed styles, or rendered layouts at different viewport sizes. Classes outside the named contracts are not compared.
 
 Pass a surface to focus a run, for example `parity docs component-preview --check`. Without a surface, every contract runs. `--upstream <path>` uses a local shadcn/ui checkout; otherwise the command uses `SHADCN_UI`, a sibling `shadcn-ui` checkout, or cached raw files from upstream `main`, in that order. `--verbose` prints added and removed tokens for a differing contract.
 
@@ -134,6 +134,8 @@ Where parity is impossible or not yet reached, add a comment in the source. Ever
 For `base` and `fix`, a local checkout of shadcn/ui is used instead of the network when either `SHADCN_UI=/path/to/ui` is set or a sibling `shadcn-ui` directory exists next to this repository.
 
 Fetched files are cached under `shadcn-svelte-upstream-registry` in the system temp directory. A cached file is reused for one hour, after which it is fetched again. `--refresh` bypasses the cache for that run.
+
+The docs command caches raw files separately under `shadcn-svelte-upstream-docs` without an expiry or revision pin. Use `--refresh` to fetch current files, or `--upstream <path>` with a checkout at a known commit for a reproducible comparison.
 
 The style CSS under `docs/src/lib/registry/styles/` is pulled verbatim from upstream `main` with `pnpm pull:styles` and is excluded from the formatter on purpose. The order of each `@apply` list is semantic: `tailwind-merge` resolves conflicts by position. Sorting those lists changes what our registry renders and shows up here as `variants` diffs that do not exist in the base check. If the deployed registry lags `main`, `variants` can also report short-lived diffs that clear when upstream deploys.
 

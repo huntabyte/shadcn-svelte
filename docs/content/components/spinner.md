@@ -134,7 +134,7 @@ Add a spinner to a badge to indicate a loading state. Place the `<Spinner />` be
 
 ## Empty
 
-<ComponentPreview name="spinner-empty-demo" previewClassName="h-auto min-h-72">
+<ComponentPreview name="spinner-empty-demo">
 
 <div></div>
 
