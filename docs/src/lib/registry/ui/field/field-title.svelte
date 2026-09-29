@@ -12,7 +12,7 @@
 
 <div
 	bind:this={ref}
-	data-slot="field-label"
+	data-slot="field-title"
 	class={cn("cn-field-title flex w-fit items-center", className)}
 	{...restProps}
 >

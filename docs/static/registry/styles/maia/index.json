@@ -1414,6 +1414,18 @@
 		"relativeUrl": "demo-sidebar-header.json"
 	},
 	{
+		"name": "demo-sidebar-icon",
+		"type": "registry:block",
+		"registryDependencies": [
+			"avatar",
+			"collapsible",
+			"dropdown-menu",
+			"sidebar",
+			"is-mobile"
+		],
+		"relativeUrl": "demo-sidebar-icon.json"
+	},
+	{
 		"name": "demo-sidebar-menu-action",
 		"type": "registry:block",
 		"registryDependencies": [
