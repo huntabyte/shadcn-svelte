@@ -7,7 +7,7 @@
 
 <ButtonGroup.Root>
 	<Input placeholder="Search..." />
-	<Button variant="outline" size="icon" aria-label="Search">
+	<Button variant="outline" aria-label="Search">
 		<Search />
 	</Button>
 </ButtonGroup.Root>

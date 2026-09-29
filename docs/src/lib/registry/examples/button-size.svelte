@@ -5,6 +5,12 @@
 
 <div class="flex flex-col items-start gap-8 sm:flex-row">
 	<div class="flex items-start gap-2">
+		<Button size="xs" variant="outline">Extra Small</Button>
+		<Button size="icon-xs" aria-label="Submit" variant="outline">
+			<ArrowUpRightIcon />
+		</Button>
+	</div>
+	<div class="flex items-start gap-2">
 		<Button size="sm" variant="outline">Small</Button>
 		<Button size="icon-sm" aria-label="Submit" variant="outline">
 			<ArrowUpRightIcon />

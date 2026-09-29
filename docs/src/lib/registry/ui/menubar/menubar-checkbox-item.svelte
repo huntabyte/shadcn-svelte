@@ -11,6 +11,7 @@
 		indeterminate = $bindable(false),
 		inset,
 		children: childrenProp,
+		closeOnSelect = false,
 		...restProps
 	}: WithoutChildrenOrChild<MenubarPrimitive.CheckboxItemProps> & {
 		inset?: boolean;
@@ -20,6 +21,7 @@
 
 <MenubarPrimitive.CheckboxItem
 	bind:ref
+	{closeOnSelect}
 	bind:checked
 	bind:indeterminate
 	data-slot="menubar-checkbox-item"
