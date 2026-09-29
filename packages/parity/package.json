@@ -1,0 +1,35 @@
+{
+	"name": "@shadcn-svelte/parity",
+	"private": true,
+	"version": "0.0.1",
+	"description": "Compare shadcn-svelte registry classes against upstream shadcn/ui",
+	"type": "module",
+	"bin": {
+		"parity": "./src/index.ts"
+	},
+	"exports": {
+		".": "./src/compare.ts",
+		"./docs": "./src/docs.ts",
+		"./parity-ignore": "./src/parity-ignore.ts",
+		"./inject-style-classes": "./src/inject-style-classes.ts"
+	},
+	"engines": {
+		"node": ">=22.18"
+	},
+	"scripts": {
+		"check": "tsc --noEmit",
+		"test": "vitest run",
+		"parity": "node src/index.ts"
+	},
+	"dependencies": {
+		"cn": "^0.3.0",
+		"commander": "^14.0.0",
+		"picocolors": "^1.1.1",
+		"shadcn-svelte": "workspace:*",
+		"zod": "^4.4.3"
+	},
+	"devDependencies": {
+		"typescript": "catalog:",
+		"vitest": "^4.1.10"
+	}
+}

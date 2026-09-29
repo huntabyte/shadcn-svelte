@@ -28,6 +28,7 @@
 		phosphor="CaretLeftIcon"
 		remixicon="RiArrowLeftSLine"
 		data-icon="inline-start"
+		class="cn-rtl-flip"
 	/>
 	<span class="cn-pagination-previous-text hidden sm:block">Previous</span>
 </PaginationPrimitive.PrevButton>

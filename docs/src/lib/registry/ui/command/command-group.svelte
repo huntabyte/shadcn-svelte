@@ -22,6 +22,7 @@
 	{...restProps}
 >
 	{#if heading}
+		<!-- parity-ignore: Bits GroupHeading; cmdk heading styles live on cn-command-group -->
 		<CommandPrimitive.GroupHeading class="px-2 py-1.5 text-xs font-medium text-muted-foreground">
 			{heading}
 		</CommandPrimitive.GroupHeading>

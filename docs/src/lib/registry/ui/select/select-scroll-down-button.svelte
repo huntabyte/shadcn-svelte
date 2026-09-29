@@ -13,7 +13,7 @@
 <SelectPrimitive.ScrollDownButton
 	bind:ref
 	data-slot="select-scroll-down-button"
-	class={cn("cn-select-scroll-down-button bottom-0 w-full", className)}
+	class={cn("cn-select-scroll-down-button", className)}
 	{...restProps}
 >
 	<IconPlaceholder

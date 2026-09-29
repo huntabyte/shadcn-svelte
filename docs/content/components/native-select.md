@@ -72,84 +72,40 @@ Copy and paste the following code into your project.
 </NativeSelect.Root>
 ```
 
-## Examples
+## Groups
 
-### With Groups
+Use `NativeSelect.OptGroup` to organize options into categories.
 
-Organize options using `NativeSelect.OptGroup` for better categorization.
-
-<ComponentPreview name="native-select-groups" >
+<ComponentPreview name="native-select-groups">
 
 <div></div>
 
 </ComponentPreview>
 
-```svelte showLineNumbers
-<NativeSelect.Root>
-  <NativeSelect.Option value="">Select a food</NativeSelect.Option>
-  <NativeSelect.OptGroup label="Fruits">
-    <NativeSelect.Option value="apple">Apple</NativeSelect.Option>
-    <NativeSelect.Option value="banana">Banana</NativeSelect.Option>
-    <NativeSelect.Option value="blueberry">Blueberry</NativeSelect.Option>
-  </NativeSelect.OptGroup>
-  <NativeSelect.OptGroup label="Vegetables">
-    <NativeSelect.Option value="carrot">Carrot</NativeSelect.Option>
-    <NativeSelect.Option value="broccoli">Broccoli</NativeSelect.Option>
-    <NativeSelect.Option value="spinach">Spinach</NativeSelect.Option>
-  </NativeSelect.OptGroup>
-</NativeSelect.Root>
-```
+## Disabled
 
-### Disabled State
+Add the `disabled` prop to the `NativeSelect.Root` component to disable the select.
 
-Disable individual options or the entire select component.
-
-<ComponentPreview name="native-select-disabled" >
+<ComponentPreview name="native-select-disabled">
 
 <div></div>
 
 </ComponentPreview>
 
-### Invalid State
+## Invalid
 
-Show validation errors with the `aria-invalid` attribute and error styling.
+Use `aria-invalid` to show validation errors and the `data-invalid` attribute to the `Field.Field` component for styling.
 
-<ComponentPreview name="native-select-invalid" >
+<ComponentPreview name="native-select-invalid">
 
 <div></div>
 
 </ComponentPreview>
-
-```svelte showLineNumbers
-<NativeSelect.Root aria-invalid="true">
-  <NativeSelect.Option value="">Select a country</NativeSelect.Option>
-  <NativeSelect.Option value="us">United States</NativeSelect.Option>
-  <NativeSelect.Option value="uk">United Kingdom</NativeSelect.Option>
-  <NativeSelect.Option value="ca">Canada</NativeSelect.Option>
-</NativeSelect.Root>
-```
 
 ## Native Select vs Select
 
-- Use `NativeSelect` when you need native browser behavior, better performance, or mobile-optimized dropdowns.
-- Use `Select` when you need custom styling, animations, or complex interactions.
-
-The `NativeSelect` component provides native HTML select functionality with consistent styling that matches your design system.
-
-## Accessibility
-
-- The component maintains all native HTML select accessibility features.
-- Screen readers can navigate through options using arrow keys.
-- The chevron icon is marked as `aria-hidden="true"` to avoid duplication.
-- Use `aria-label` or `aria-labelledby` for additional context when needed.
-
-```tsx showLineNumbers
-<NativeSelect.Root aria-label="Choose your preferred language">
-  <NativeSelect.Option value="en">English</NativeSelect.Option>
-  <NativeSelect.Option value="es">Spanish</NativeSelect.Option>
-  <NativeSelect.Option value="fr">French</NativeSelect.Option>
-</NativeSelect.Root>
-```
+- Use `NativeSelect` for native browser behavior, better performance, or mobile-optimized dropdowns.
+- Use `Select` for custom styling, animations, or complex interactions.
 
 ## API Reference
 

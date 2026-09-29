@@ -3,7 +3,7 @@
 	"name": "scroll-area",
 	"type": "registry:ui",
 	"devDependencies": [
-		"bits-ui@^2.16.3",
+		"bits-ui@^2.18.0",
 		"@internationalized/date@^3.12.0"
 	],
 	"files": [
@@ -18,7 +18,7 @@
 			"target": "scroll-area/scroll-area-scrollbar.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { ScrollArea as ScrollAreaPrimitive } from \"bits-ui\";\n\timport { cn, type WithoutChild } from \"$UTILS$.js\";\n\timport { Scrollbar } from \"./index.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tviewportRef = $bindable(null),\n\t\tclass: className,\n\t\torientation = \"vertical\",\n\t\tscrollbarXClasses = \"\",\n\t\tscrollbarYClasses = \"\",\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChild<ScrollAreaPrimitive.RootProps> & {\n\t\torientation?: \"vertical\" | \"horizontal\" | \"both\" | undefined;\n\t\tscrollbarXClasses?: string | undefined;\n\t\tscrollbarYClasses?: string | undefined;\n\t\tviewportRef?: HTMLElement | null;\n\t} = $props();\n</script>\n\n<ScrollAreaPrimitive.Root\n\tbind:ref\n\tdata-slot=\"scroll-area\"\n\tclass={cn(\"relative\", className)}\n\t{...restProps}\n>\n\t<ScrollAreaPrimitive.Viewport\n\t\tbind:ref={viewportRef}\n\t\tdata-slot=\"scroll-area-viewport\"\n\t\tclass=\"cn-scroll-area-viewport size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1\"\n\t>\n\t\t{@render children?.()}\n\t</ScrollAreaPrimitive.Viewport>\n\t{#if orientation === \"vertical\" || orientation === \"both\"}\n\t\t<Scrollbar orientation=\"vertical\" class={scrollbarYClasses} />\n\t{/if}\n\t{#if orientation === \"horizontal\" || orientation === \"both\"}\n\t\t<Scrollbar orientation=\"horizontal\" class={scrollbarXClasses} />\n\t{/if}\n\t<ScrollAreaPrimitive.Corner />\n</ScrollAreaPrimitive.Root>\n",
+			"content": "<script lang=\"ts\">\n\timport { ScrollArea as ScrollAreaPrimitive } from \"bits-ui\";\n\timport { cn, type WithoutChild } from \"$UTILS$.js\";\n\timport { Scrollbar } from \"./index.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tviewportRef = $bindable(null),\n\t\tclass: className,\n\t\torientation = \"vertical\",\n\t\tscrollbarXClasses = \"\",\n\t\tscrollbarYClasses = \"\",\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChild<ScrollAreaPrimitive.RootProps> & {\n\t\torientation?: \"vertical\" | \"horizontal\" | \"both\" | undefined;\n\t\tscrollbarXClasses?: string | undefined;\n\t\tscrollbarYClasses?: string | undefined;\n\t\tviewportRef?: HTMLElement | null;\n\t} = $props();\n</script>\n\n<ScrollAreaPrimitive.Root\n\tbind:ref\n\tdata-slot=\"scroll-area\"\n\tclass={cn(\"relative\", className)}\n\t{...restProps}\n>\n\t<ScrollAreaPrimitive.Viewport\n\t\tbind:ref={viewportRef}\n\t\tdata-slot=\"scroll-area-viewport\"\n\t\tclass=\"size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1\"\n\t>\n\t\t{@render children?.()}\n\t</ScrollAreaPrimitive.Viewport>\n\t{#if orientation === \"vertical\" || orientation === \"both\"}\n\t\t<Scrollbar orientation=\"vertical\" class={scrollbarYClasses} />\n\t{/if}\n\t{#if orientation === \"horizontal\" || orientation === \"both\"}\n\t\t<Scrollbar orientation=\"horizontal\" class={scrollbarXClasses} />\n\t{/if}\n\t<ScrollAreaPrimitive.Corner />\n</ScrollAreaPrimitive.Root>\n",
 			"type": "registry:file",
 			"target": "scroll-area/scroll-area.svelte"
 		}

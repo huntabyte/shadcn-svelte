@@ -10,11 +10,11 @@
 		"@types/d3-shape@^3.1.8",
 		"layerchart@^2.0.0",
 		"@tanstack/svelte-table@^9.0.0",
-		"svelte-sonner@^1.1.0",
+		"svelte-sonner@^1.2.0",
 		"@dnd-kit-svelte/svelte@^0.1.5",
 		"@dnd-kit/abstract@^0.1.21",
 		"@dnd-kit/helpers@^0.1.21",
-		"zod@catalog:"
+		"zod@^4.4.3"
 	],
 	"registryDependencies": [
 		"sidebar",
@@ -152,7 +152,7 @@
 			"target": "section-cards.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport * as Sidebar from \"$UI$/sidebar/index.js\";\n\timport { Button } from \"$UI$/button/index.js\";\n\timport { Separator } from \"$UI$/separator/index.js\";\n</script>\n\n<header\n\tclass=\"flex h-(--header-height) shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)\"\n>\n\t<div class=\"flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-6\">\n\t\t<Sidebar.Trigger class=\"-ms-1\" />\n\t\t<Separator orientation=\"vertical\" class=\"mx-2 data-[orientation=vertical]:h-4\" />\n\t\t<h1 class=\"text-base font-medium\">Documents</h1>\n\t\t<div class=\"ms-auto flex items-center gap-2\">\n\t\t\t<Button\n\t\t\t\thref=\"https://github.com/shadcn-ui/ui/tree/main/apps/v4/app/(examples)/dashboard\"\n\t\t\t\tvariant=\"ghost\"\n\t\t\t\tsize=\"sm\"\n\t\t\t\tclass=\"hidden sm:flex dark:text-foreground\"\n\t\t\t\ttarget=\"_blank\"\n\t\t\t\trel=\"noopener noreferrer\"\n\t\t\t>\n\t\t\t\tGitHub\n\t\t\t</Button>\n\t\t</div>\n\t</div>\n</header>\n",
+			"content": "<script lang=\"ts\">\n\timport * as Sidebar from \"$UI$/sidebar/index.js\";\n\timport { Button } from \"$UI$/button/index.js\";\n\timport { Separator } from \"$UI$/separator/index.js\";\n</script>\n\n<header\n\tclass=\"flex h-(--header-height) shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)\"\n>\n\t<div class=\"flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-6\">\n\t\t<Sidebar.Trigger class=\"-ms-1\" />\n\t\t<Separator orientation=\"vertical\" class=\"mx-2 data-vertical:h-4 data-vertical:self-auto\" />\n\t\t<h1 class=\"text-base font-medium\">Documents</h1>\n\t\t<div class=\"ms-auto flex items-center gap-2\">\n\t\t\t<Button\n\t\t\t\thref=\"https://github.com/shadcn-ui/ui/tree/main/apps/v4/app/(examples)/dashboard\"\n\t\t\t\tvariant=\"ghost\"\n\t\t\t\tsize=\"sm\"\n\t\t\t\tclass=\"hidden sm:flex dark:text-foreground\"\n\t\t\t\ttarget=\"_blank\"\n\t\t\t\trel=\"noopener noreferrer\"\n\t\t\t>\n\t\t\t\tGitHub\n\t\t\t</Button>\n\t\t</div>\n\t</div>\n</header>\n",
 			"type": "registry:component",
 			"target": "site-header.svelte"
 		}

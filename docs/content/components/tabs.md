@@ -20,7 +20,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="tabs-demo" previewClassName="h-[28rem]">
+<ComponentPreview name="tabs-demo" previewClassName="h-auto min-h-96">
 
 <div></div>
 
@@ -76,3 +76,39 @@ Copy and paste the following code into your project.
   <Tabs.Content value="password">Change your password here.</Tabs.Content>
 </Tabs.Root>
 ```
+
+## Line
+
+Use the `variant="line"` prop on `Tabs.List` for a line style.
+
+<ComponentPreview name="tabs-line">
+
+<div></div>
+
+</ComponentPreview>
+
+## Vertical
+
+Use `orientation="vertical"` for vertical tabs.
+
+<ComponentPreview name="tabs-vertical">
+
+<div></div>
+
+</ComponentPreview>
+
+## Disabled
+
+<ComponentPreview name="tabs-disabled">
+
+<div></div>
+
+</ComponentPreview>
+
+## Icons
+
+<ComponentPreview name="tabs-icons">
+
+<div></div>
+
+</ComponentPreview>
