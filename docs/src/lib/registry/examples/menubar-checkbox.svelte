@@ -1,8 +1,8 @@
 <script lang="ts">
 	import * as Menubar from "$lib/registry/ui/menubar/index.js";
 
-	let showBookmarks = $state(false);
-	let showFullUrls = $state(true);
+	let showBookmarksBar = $state(false);
+	let showFullURLs = $state(true);
 	let strikethrough = $state(true);
 	let code = $state(false);
 	let superscript = $state(false);
@@ -12,10 +12,10 @@
 	<Menubar.Menu>
 		<Menubar.Trigger>View</Menubar.Trigger>
 		<Menubar.Content class="w-64">
-			<Menubar.CheckboxItem bind:checked={showBookmarks}>
+			<Menubar.CheckboxItem bind:checked={showBookmarksBar}>
 				Always Show Bookmarks Bar
 			</Menubar.CheckboxItem>
-			<Menubar.CheckboxItem bind:checked={showFullUrls}>Always Show Full URLs</Menubar.CheckboxItem>
+			<Menubar.CheckboxItem bind:checked={showFullURLs}>Always Show Full URLs</Menubar.CheckboxItem>
 			<Menubar.Separator />
 			<Menubar.Item inset>
 				Reload <Menubar.Shortcut>⌘R</Menubar.Shortcut>

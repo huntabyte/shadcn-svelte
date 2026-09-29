@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as ContextMenu from "$lib/registry/ui/context-menu/index.js";
 
-	let showBookmarks = $state(true);
+	let showBookmarksBar = $state(true);
 	let showFullURLs = $state(false);
 	let showDeveloperTools = $state(true);
 </script>
@@ -15,12 +15,11 @@
 	</ContextMenu.Trigger>
 	<ContextMenu.Content>
 		<ContextMenu.Group>
-			<ContextMenu.CheckboxItem bind:checked={showBookmarks}>
+			<ContextMenu.CheckboxItem bind:checked={showBookmarksBar}>
 				Show Bookmarks Bar
 			</ContextMenu.CheckboxItem>
-			<ContextMenu.CheckboxItem bind:checked={showFullURLs}>
-				Show Full URLs
-			</ContextMenu.CheckboxItem>
+			<ContextMenu.CheckboxItem bind:checked={showFullURLs}>Show Full URLs</ContextMenu.CheckboxItem
+			>
 			<ContextMenu.CheckboxItem bind:checked={showDeveloperTools}>
 				Show Developer Tools
 			</ContextMenu.CheckboxItem>

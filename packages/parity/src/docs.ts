@@ -43,7 +43,7 @@ export const DOCS_SURFACES: Record<string, Surface> = {
 				// Let tall Svelte examples grow without losing the upstream preview chrome.
 				allowedDifference: {
 					added: ["min-h-72"],
-					removed: ["h-72", "data-[chromeless=true]:h-auto"],
+					removed: ["h-72"],
 				},
 			},
 			{

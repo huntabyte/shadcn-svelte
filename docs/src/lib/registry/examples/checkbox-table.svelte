@@ -4,41 +4,18 @@
 	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
 
 	const tableData = [
-		{
-			id: "1",
-			name: "Sarah Chen",
-			email: "sarah.chen@example.com",
-			role: "Admin",
-		},
-		{
-			id: "2",
-			name: "Marcus Rodriguez",
-			email: "marcus.rodriguez@example.com",
-			role: "User",
-		},
-		{
-			id: "3",
-			name: "Priya Patel",
-			email: "priya.patel@example.com",
-			role: "User",
-		},
-		{
-			id: "4",
-			name: "David Kim",
-			email: "david.kim@example.com",
-			role: "Editor",
-		},
+		{ id: "1", name: "Sarah Chen", email: "sarah.chen@example.com", role: "Admin" },
+		{ id: "2", name: "Marcus Rodriguez", email: "marcus.rodriguez@example.com", role: "User" },
+		{ id: "3", name: "Priya Patel", email: "priya.patel@example.com", role: "User" },
+		{ id: "4", name: "David Kim", email: "david.kim@example.com", role: "Editor" },
 	];
 
-	let selectedRows = new SvelteSet(["1"]);
-
+	const selectedRows = new SvelteSet<string>(["1"]);
 	const selectAll = $derived(selectedRows.size === tableData.length);
 
 	function handleSelectAll(checked: boolean) {
 		if (checked) {
-			for (const row of tableData) {
-				selectedRows.add(row.id);
-			}
+			for (const row of tableData) selectedRows.add(row.id);
 		} else {
 			selectedRows.clear();
 		}
@@ -53,7 +30,7 @@
 	}
 </script>
 
-<Table.Table>
+<Table.Root>
 	<Table.Header>
 		<Table.Row>
 			<Table.Head class="w-8">
@@ -86,4 +63,4 @@
 			</Table.Row>
 		{/each}
 	</Table.Body>
-</Table.Table>
+</Table.Root>

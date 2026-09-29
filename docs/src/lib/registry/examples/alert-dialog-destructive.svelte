@@ -17,15 +17,13 @@
 			</AlertDialog.Media>
 			<AlertDialog.Title>Delete chat?</AlertDialog.Title>
 			<AlertDialog.Description>
-				This will permanently delete this chat conversation. View
-				<a href="/settings">Settings</a> delete any memories saved during this chat.
+				This will permanently delete this chat conversation. View <a href="##">Settings</a> delete any
+				memories saved during this chat.
 			</AlertDialog.Description>
 		</AlertDialog.Header>
 		<AlertDialog.Footer>
-			<AlertDialog.Cancel class={buttonVariants({ variant: "outline" })}>Cancel</AlertDialog.Cancel>
-			<AlertDialog.Action class={buttonVariants({ variant: "destructive" })}>
-				Delete
-			</AlertDialog.Action>
+			<AlertDialog.Cancel variant="outline">Cancel</AlertDialog.Cancel>
+			<AlertDialog.Action variant="destructive">Delete</AlertDialog.Action>
 		</AlertDialog.Footer>
 	</AlertDialog.Content>
 </AlertDialog.Root>

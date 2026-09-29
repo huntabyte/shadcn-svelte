@@ -1,16 +1,13 @@
 <script lang="ts">
-	import { today, getLocalTimeZone, type DateValue } from "@internationalized/date";
+	import { CalendarDate, getLocalTimeZone, today, type DateValue } from "@internationalized/date";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { Calendar } from "$lib/registry/ui/calendar/index.js";
 
-	const base = today(getLocalTimeZone()).set({ month: 2, day: 3 });
+	const year = today(getLocalTimeZone()).year;
 
-	// Booked dates: 12th through 26th of February
-	const bookedDates = Array.from({ length: 15 }, (_, i) =>
-		today(getLocalTimeZone()).set({ month: 2, day: 12 + i })
-	);
+	let value = $state<CalendarDate | undefined>(new CalendarDate(year, 2, 3));
 
-	let value = $state<DateValue | undefined>(base);
+	const bookedDates = Array.from({ length: 15 }, (_, i) => new CalendarDate(year, 2, 12 + i));
 
 	function isBooked(date: DateValue) {
 		return bookedDates.some((d) => d.compare(date) === 0);
@@ -19,13 +16,6 @@
 
 <Card.Root class="mx-auto w-fit p-0">
 	<Card.Content class="p-0">
-		<Calendar
-			type="single"
-			bind:value
-			placeholder={base}
-			isDateUnavailable={isBooked}
-			isDateDisabled={isBooked}
-			class="rounded-lg"
-		/>
+		<Calendar type="single" bind:value isDateUnavailable={isBooked} />
 	</Card.Content>
 </Card.Root>

@@ -4,17 +4,10 @@
 </script>
 
 <HoverCard.Root openDelay={10} closeDelay={100}>
-	<HoverCard.Trigger
-		class={buttonVariants({ variant: "link" })}
-		href="https://github.com/sveltejs"
-		target="_blank"
-		rel="noreferrer noopener"
-	>
-		Hover Here
-	</HoverCard.Trigger>
+	<HoverCard.Trigger class={buttonVariants({ variant: "link" })}>Hover Here</HoverCard.Trigger>
 	<HoverCard.Content class="flex w-64 flex-col gap-0.5">
 		<div class="font-semibold">@sveltejs</div>
-		<div>web development for the rest of us</div>
-		<div class="mt-1 text-xs text-muted-foreground">Joined September 2022</div>
+		<div>Cybernetically enhanced web apps – created and maintained by @vercel.</div>
+		<div class="mt-1 text-xs text-muted-foreground">Joined December 2021</div>
 	</HoverCard.Content>
 </HoverCard.Root>

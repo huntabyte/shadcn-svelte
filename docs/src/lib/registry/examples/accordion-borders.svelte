@@ -23,13 +23,11 @@
 	];
 </script>
 
-<Accordion.Root type="single" class="max-w-lg rounded-lg border" value="billing">
+<Accordion.Root type="single" value="billing" class="max-w-lg rounded-lg border">
 	{#each items as item (item.value)}
 		<Accordion.Item value={item.value} class="border-b px-4 last:border-b-0">
 			<Accordion.Trigger>{item.trigger}</Accordion.Trigger>
-			<Accordion.Content>
-				{item.content}
-			</Accordion.Content>
+			<Accordion.Content>{item.content}</Accordion.Content>
 		</Accordion.Item>
 	{/each}
 </Accordion.Root>

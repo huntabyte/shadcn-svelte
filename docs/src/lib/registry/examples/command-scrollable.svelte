@@ -2,6 +2,7 @@
 	import BellIcon from "@lucide/svelte/icons/bell";
 	import CalculatorIcon from "@lucide/svelte/icons/calculator";
 	import CalendarIcon from "@lucide/svelte/icons/calendar";
+	import CircleQuestionMarkIcon from "@lucide/svelte/icons/circle-question-mark";
 	import ClipboardPasteIcon from "@lucide/svelte/icons/clipboard-paste";
 	import CodeIcon from "@lucide/svelte/icons/code";
 	import CopyIcon from "@lucide/svelte/icons/copy";
@@ -9,8 +10,7 @@
 	import FileTextIcon from "@lucide/svelte/icons/file-text";
 	import FolderIcon from "@lucide/svelte/icons/folder";
 	import FolderPlusIcon from "@lucide/svelte/icons/folder-plus";
-	import HelpCircleIcon from "@lucide/svelte/icons/help-circle";
-	import HomeIcon from "@lucide/svelte/icons/home";
+	import HouseIcon from "@lucide/svelte/icons/house";
 	import ImageIcon from "@lucide/svelte/icons/image";
 	import InboxIcon from "@lucide/svelte/icons/inbox";
 	import LayoutGridIcon from "@lucide/svelte/icons/layout-grid";
@@ -36,7 +36,7 @@
 			<Command.Empty>No results found.</Command.Empty>
 			<Command.Group heading="Navigation">
 				<Command.Item>
-					<HomeIcon />
+					<HouseIcon />
 					<span>Home</span>
 					<Command.Shortcut>⌘H</Command.Shortcut>
 				</Command.Item>
@@ -132,8 +132,8 @@
 					<span>Notifications</span>
 				</Command.Item>
 				<Command.Item>
-					<HelpCircleIcon />
-					<span>Help &amp; Support</span>
+					<CircleQuestionMarkIcon />
+					<span>Help & Support</span>
 				</Command.Item>
 			</Command.Group>
 			<Command.Separator />

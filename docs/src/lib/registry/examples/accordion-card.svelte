@@ -36,9 +36,7 @@
 			{#each items as item (item.value)}
 				<Accordion.Item value={item.value}>
 					<Accordion.Trigger>{item.trigger}</Accordion.Trigger>
-					<Accordion.Content>
-						{item.content}
-					</Accordion.Content>
+					<Accordion.Content>{item.content}</Accordion.Content>
 				</Accordion.Item>
 			{/each}
 		</Accordion.Root>

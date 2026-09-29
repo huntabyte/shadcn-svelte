@@ -18,7 +18,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="breadcrumb-demo" previewClassName="p-2">
+<ComponentPreview name="breadcrumb-demo">
 
 <div></div>
 
@@ -99,6 +99,8 @@ Use `Breadcrumb.Ellipsis` inside a `Breadcrumb.Item` to represent collapsed item
 
 ## Basic
 
+A basic breadcrumb with a home link and a components link.
+
 <ComponentPreview name="breadcrumb-basic">
 
 <div></div>
@@ -107,7 +109,7 @@ Use `Breadcrumb.Ellipsis` inside a `Breadcrumb.Item` to represent collapsed item
 
 ## Custom separator
 
-Pass a custom component as children of `<Breadcrumb.Separator />` to create a custom separator.
+Use a custom component as `children` for `<Breadcrumb.Separator />` to create a custom separator.
 
 <ComponentPreview name="breadcrumb-separator">
 
@@ -129,7 +131,7 @@ You can compose `<Breadcrumb.Item />` with a `<DropdownMenu />` to create a drop
 
 We provide a `<Breadcrumb.Ellipsis />` component to show a collapsed state when the breadcrumb is too long.
 
-<ComponentPreview name="breadcrumb-ellipsis" previewClassName="p-2">
+<ComponentPreview name="breadcrumb-ellipsis">
 
 <div></div>
 

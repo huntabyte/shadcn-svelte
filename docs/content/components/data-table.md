@@ -16,7 +16,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="data-table-demo" align="start" previewClassName="items-start h-auto px-4 md:px-8" hideCode>
+<ComponentPreview name="data-table-demo" align="start" previewClassName="items-start h-auto px-4 md:px-8">
 
 <div></div>
 
@@ -315,6 +315,12 @@ export async function load() {
 
 <DataTable data={data.payments} {columns} />
 ```
+
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
 
 </Steps>
 
@@ -778,3 +784,7 @@ You can show the number of selected rows using the `table.getFilteredSelectedRow
 ## Reusable Components
 
 Check out the [Tasks](/examples/tasks) example to learn about creating reusable components for your data tables.
+
+## API Reference
+
+See the [TanStack Table documentation](https://tanstack.com/table/latest/docs) for table state, columns, filtering, sorting, and pagination. The visual table components are documented in [Table](/docs/components/table).

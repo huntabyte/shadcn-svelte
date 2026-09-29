@@ -3,17 +3,17 @@
 	import { Spinner } from "$lib/registry/ui/spinner/index.js";
 </script>
 
-<div class="flex items-center gap-2">
+<div class="flex items-center gap-4 [--radius:1.2rem]">
 	<Badge>
-		<Spinner />
+		<Spinner data-icon="inline-start" />
 		Syncing
 	</Badge>
 	<Badge variant="secondary">
-		<Spinner />
+		<Spinner data-icon="inline-start" />
 		Updating
 	</Badge>
 	<Badge variant="outline">
-		<Spinner />
-		Loading
+		<Spinner data-icon="inline-start" />
+		Processing
 	</Badge>
 </div>

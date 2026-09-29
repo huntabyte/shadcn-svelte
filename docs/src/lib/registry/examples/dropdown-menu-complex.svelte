@@ -1,7 +1,9 @@
 <script lang="ts">
 	import BellIcon from "@lucide/svelte/icons/bell";
+	import CircleQuestionMarkIcon from "@lucide/svelte/icons/circle-question-mark";
 	import CreditCardIcon from "@lucide/svelte/icons/credit-card";
 	import DownloadIcon from "@lucide/svelte/icons/download";
+	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
 	import EyeIcon from "@lucide/svelte/icons/eye";
 	import FileIcon from "@lucide/svelte/icons/file";
 	import FileCodeIcon from "@lucide/svelte/icons/file-code";
@@ -9,38 +11,33 @@
 	import FolderIcon from "@lucide/svelte/icons/folder";
 	import FolderOpenIcon from "@lucide/svelte/icons/folder-open";
 	import FolderSearchIcon from "@lucide/svelte/icons/folder-search";
-	import HelpCircleIcon from "@lucide/svelte/icons/help-circle";
 	import KeyboardIcon from "@lucide/svelte/icons/keyboard";
 	import LanguagesIcon from "@lucide/svelte/icons/languages";
-	import LayoutIcon from "@lucide/svelte/icons/layout";
 	import LogOutIcon from "@lucide/svelte/icons/log-out";
 	import MailIcon from "@lucide/svelte/icons/mail";
 	import MonitorIcon from "@lucide/svelte/icons/monitor";
 	import MoonIcon from "@lucide/svelte/icons/moon";
-	import MoreHorizontalIcon from "@lucide/svelte/icons/more-horizontal";
 	import PaletteIcon from "@lucide/svelte/icons/palette";
+	import LayoutIcon from "@lucide/svelte/icons/panels-top-left";
 	import SaveIcon from "@lucide/svelte/icons/save";
 	import SettingsIcon from "@lucide/svelte/icons/settings";
 	import ShieldIcon from "@lucide/svelte/icons/shield";
 	import SunIcon from "@lucide/svelte/icons/sun";
 	import UserIcon from "@lucide/svelte/icons/user";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 
 	let notifications = $state({
 		email: true,
 		sms: false,
 		push: true,
 	});
-
 	let theme = $state("light");
 </script>
 
 <DropdownMenu.Root>
-	<DropdownMenu.Trigger>
-		{#snippet child({ props })}
-			<Button variant="outline" {...props}>Complex Menu</Button>
-		{/snippet}
+	<DropdownMenu.Trigger class={buttonVariants({ variant: "outline" })}>
+		Complex Menu
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content class="w-44">
 		<DropdownMenu.Group>
@@ -60,46 +57,42 @@
 					<FolderOpenIcon />
 					Open Recent
 				</DropdownMenu.SubTrigger>
-				<DropdownMenu.Portal>
-					<DropdownMenu.SubContent>
-						<DropdownMenu.Group>
-							<DropdownMenu.Label>Recent Projects</DropdownMenu.Label>
-							<DropdownMenu.Item>
-								<FileCodeIcon />
-								Project Alpha
-							</DropdownMenu.Item>
-							<DropdownMenu.Item>
-								<FileCodeIcon />
-								Project Beta
-							</DropdownMenu.Item>
-							<DropdownMenu.Sub>
-								<DropdownMenu.SubTrigger>
-									<MoreHorizontalIcon />
-									More Projects
-								</DropdownMenu.SubTrigger>
-								<DropdownMenu.Portal>
-									<DropdownMenu.SubContent>
-										<DropdownMenu.Item>
-											<FileCodeIcon />
-											Project Gamma
-										</DropdownMenu.Item>
-										<DropdownMenu.Item>
-											<FileCodeIcon />
-											Project Delta
-										</DropdownMenu.Item>
-									</DropdownMenu.SubContent>
-								</DropdownMenu.Portal>
-							</DropdownMenu.Sub>
-						</DropdownMenu.Group>
-						<DropdownMenu.Separator />
-						<DropdownMenu.Group>
-							<DropdownMenu.Item>
-								<FolderSearchIcon />
-								Browse...
-							</DropdownMenu.Item>
-						</DropdownMenu.Group>
-					</DropdownMenu.SubContent>
-				</DropdownMenu.Portal>
+				<DropdownMenu.SubContent>
+					<DropdownMenu.Group>
+						<DropdownMenu.Label>Recent Projects</DropdownMenu.Label>
+						<DropdownMenu.Item>
+							<FileCodeIcon />
+							Project Alpha
+						</DropdownMenu.Item>
+						<DropdownMenu.Item>
+							<FileCodeIcon />
+							Project Beta
+						</DropdownMenu.Item>
+						<DropdownMenu.Sub>
+							<DropdownMenu.SubTrigger>
+								<EllipsisIcon />
+								More Projects
+							</DropdownMenu.SubTrigger>
+							<DropdownMenu.SubContent>
+								<DropdownMenu.Item>
+									<FileCodeIcon />
+									Project Gamma
+								</DropdownMenu.Item>
+								<DropdownMenu.Item>
+									<FileCodeIcon />
+									Project Delta
+								</DropdownMenu.Item>
+							</DropdownMenu.SubContent>
+						</DropdownMenu.Sub>
+					</DropdownMenu.Group>
+					<DropdownMenu.Separator />
+					<DropdownMenu.Group>
+						<DropdownMenu.Item>
+							<FolderSearchIcon />
+							Browse...
+						</DropdownMenu.Item>
+					</DropdownMenu.Group>
+				</DropdownMenu.SubContent>
 			</DropdownMenu.Sub>
 			<DropdownMenu.Separator />
 			<DropdownMenu.Item>
@@ -129,27 +122,25 @@
 					<PaletteIcon />
 					Theme
 				</DropdownMenu.SubTrigger>
-				<DropdownMenu.Portal>
-					<DropdownMenu.SubContent>
-						<DropdownMenu.Group>
-							<DropdownMenu.Label>Appearance</DropdownMenu.Label>
-							<DropdownMenu.RadioGroup bind:value={theme}>
-								<DropdownMenu.RadioItem value="light">
-									<SunIcon />
-									Light
-								</DropdownMenu.RadioItem>
-								<DropdownMenu.RadioItem value="dark">
-									<MoonIcon />
-									Dark
-								</DropdownMenu.RadioItem>
-								<DropdownMenu.RadioItem value="system">
-									<MonitorIcon />
-									System
-								</DropdownMenu.RadioItem>
-							</DropdownMenu.RadioGroup>
-						</DropdownMenu.Group>
-					</DropdownMenu.SubContent>
-				</DropdownMenu.Portal>
+				<DropdownMenu.SubContent>
+					<DropdownMenu.Group>
+						<DropdownMenu.Label>Appearance</DropdownMenu.Label>
+						<DropdownMenu.RadioGroup bind:value={theme}>
+							<DropdownMenu.RadioItem value="light">
+								<SunIcon />
+								Light
+							</DropdownMenu.RadioItem>
+							<DropdownMenu.RadioItem value="dark">
+								<MoonIcon />
+								Dark
+							</DropdownMenu.RadioItem>
+							<DropdownMenu.RadioItem value="system">
+								<MonitorIcon />
+								System
+							</DropdownMenu.RadioItem>
+						</DropdownMenu.RadioGroup>
+					</DropdownMenu.Group>
+				</DropdownMenu.SubContent>
 			</DropdownMenu.Sub>
 		</DropdownMenu.Group>
 		<DropdownMenu.Separator />
@@ -169,56 +160,52 @@
 					<SettingsIcon />
 					Settings
 				</DropdownMenu.SubTrigger>
-				<DropdownMenu.Portal>
-					<DropdownMenu.SubContent>
-						<DropdownMenu.Group>
-							<DropdownMenu.Label>Preferences</DropdownMenu.Label>
-							<DropdownMenu.Item>
-								<KeyboardIcon />
-								Keyboard Shortcuts
-							</DropdownMenu.Item>
-							<DropdownMenu.Item>
-								<LanguagesIcon />
-								Language
-							</DropdownMenu.Item>
-							<DropdownMenu.Sub>
-								<DropdownMenu.SubTrigger>
-									<BellIcon />
-									Notifications
-								</DropdownMenu.SubTrigger>
-								<DropdownMenu.Portal>
-									<DropdownMenu.SubContent>
-										<DropdownMenu.Group>
-											<DropdownMenu.Label>Notification Types</DropdownMenu.Label>
-											<DropdownMenu.CheckboxItem bind:checked={notifications.push}>
-												<BellIcon />
-												Push Notifications
-											</DropdownMenu.CheckboxItem>
-											<DropdownMenu.CheckboxItem bind:checked={notifications.email}>
-												<MailIcon />
-												Email Notifications
-											</DropdownMenu.CheckboxItem>
-										</DropdownMenu.Group>
-									</DropdownMenu.SubContent>
-								</DropdownMenu.Portal>
-							</DropdownMenu.Sub>
-						</DropdownMenu.Group>
-						<DropdownMenu.Separator />
-						<DropdownMenu.Group>
-							<DropdownMenu.Item>
-								<ShieldIcon />
-								Privacy &amp; Security
-							</DropdownMenu.Item>
-						</DropdownMenu.Group>
-					</DropdownMenu.SubContent>
-				</DropdownMenu.Portal>
+				<DropdownMenu.SubContent>
+					<DropdownMenu.Group>
+						<DropdownMenu.Label>Preferences</DropdownMenu.Label>
+						<DropdownMenu.Item>
+							<KeyboardIcon />
+							Keyboard Shortcuts
+						</DropdownMenu.Item>
+						<DropdownMenu.Item>
+							<LanguagesIcon />
+							Language
+						</DropdownMenu.Item>
+						<DropdownMenu.Sub>
+							<DropdownMenu.SubTrigger>
+								<BellIcon />
+								Notifications
+							</DropdownMenu.SubTrigger>
+							<DropdownMenu.SubContent>
+								<DropdownMenu.Group>
+									<DropdownMenu.Label>Notification Types</DropdownMenu.Label>
+									<DropdownMenu.CheckboxItem bind:checked={notifications.push}>
+										<BellIcon />
+										Push Notifications
+									</DropdownMenu.CheckboxItem>
+									<DropdownMenu.CheckboxItem bind:checked={notifications.email}>
+										<MailIcon />
+										Email Notifications
+									</DropdownMenu.CheckboxItem>
+								</DropdownMenu.Group>
+							</DropdownMenu.SubContent>
+						</DropdownMenu.Sub>
+					</DropdownMenu.Group>
+					<DropdownMenu.Separator />
+					<DropdownMenu.Group>
+						<DropdownMenu.Item>
+							<ShieldIcon />
+							Privacy & Security
+						</DropdownMenu.Item>
+					</DropdownMenu.Group>
+				</DropdownMenu.SubContent>
 			</DropdownMenu.Sub>
 		</DropdownMenu.Group>
 		<DropdownMenu.Separator />
 		<DropdownMenu.Group>
 			<DropdownMenu.Item>
-				<HelpCircleIcon />
-				Help &amp; Support
+				<CircleQuestionMarkIcon />
+				Help & Support
 			</DropdownMenu.Item>
 			<DropdownMenu.Item>
 				<FileTextIcon />

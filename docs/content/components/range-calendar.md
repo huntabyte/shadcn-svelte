@@ -72,28 +72,15 @@ Update the import paths to match your project setup.
 
 ## Composition
 
-Use the following composition to build a `RangeCalendar`:
+`RangeCalendar` renders its navigation, month grids, and date cells internally. Pass `captionLayout="dropdown"` to show month and year selectors and use the `day` snippet to customize a date cell.
 
 ```text
-RangeCalendar.Root
-└── RangeCalendar.Months
-    └── RangeCalendar.Month
-        ├── RangeCalendar.Caption
-        │   ├── RangeCalendar.Nav
-        │   │   ├── RangeCalendar.PrevButton
-        │   │   └── RangeCalendar.NextButton
-        │   └── RangeCalendar.Heading
-        ├── RangeCalendar.Header
-        │   ├── RangeCalendar.MonthSelect
-        │   └── RangeCalendar.YearSelect
-        └── RangeCalendar.Grid
-            ├── RangeCalendar.GridHead
-            │   └── RangeCalendar.GridRow
-            │       └── RangeCalendar.HeadCell
-            └── RangeCalendar.GridBody
-                └── RangeCalendar.GridRow
-                    └── RangeCalendar.Cell
-                        └── RangeCalendar.Day
+RangeCalendar
+├── Navigation and caption (rendered internally)
+└── Months (rendered internally)
+    └── Month grid
+        ├── Weekday headings
+        └── Date cells
 ```
 
 ## API Reference

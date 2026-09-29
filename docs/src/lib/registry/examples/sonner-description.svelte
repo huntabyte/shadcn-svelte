@@ -4,11 +4,12 @@
 </script>
 
 <Button
-	variant="outline"
 	onclick={() =>
 		toast("Event has been created", {
 			description: "Monday, January 3rd at 6:00pm",
 		})}
+	variant="outline"
+	class="w-fit"
 >
 	Show Toast
 </Button>

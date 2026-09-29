@@ -22,8 +22,6 @@ links:
 
 <ComponentPreview name="menubar-demo">
 
-<div></div>
-
 </ComponentPreview>
 
 ## Installation

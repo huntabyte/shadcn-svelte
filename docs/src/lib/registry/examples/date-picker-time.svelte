@@ -1,6 +1,6 @@
 <script lang="ts">
 	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
-	import { DateFormatter, type DateValue, getLocalTimeZone } from "@internationalized/date";
+	import { DateFormatter, getLocalTimeZone, type DateValue } from "@internationalized/date";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
@@ -8,35 +8,30 @@
 	import { Input } from "$lib/registry/ui/input/index.js";
 
 	const df = new DateFormatter("en-US", {
-		dateStyle: "medium",
+		dateStyle: "long",
 	});
 
 	let open = $state(false);
 	let value = $state<DateValue | undefined>();
 </script>
 
-<Field.Group class="mx-auto max-w-xs flex-row gap-4">
+<Field.Group class="mx-auto max-w-xs flex-row">
 	<Field.Field>
 		<Field.Label for="date-picker-optional">Date</Field.Label>
 		<Popover.Root bind:open>
-			<Popover.Trigger>
+			<Popover.Trigger id="date-picker-optional">
 				{#snippet child({ props })}
-					<Button
-						{...props}
-						variant="outline"
-						id="date-picker-optional"
-						class="w-32 justify-between font-normal {!value ? 'text-muted-foreground' : ''}"
-					>
+					<Button {...props} variant="outline" class="w-32 justify-between font-normal">
 						{value ? df.format(value.toDate(getLocalTimeZone())) : "Select date"}
-						<ChevronDownIcon />
+						<ChevronDownIcon data-icon="inline-end" />
 					</Button>
 				{/snippet}
 			</Popover.Trigger>
 			<Popover.Content class="w-auto overflow-hidden p-0" align="start">
 				<Calendar
 					type="single"
-					captionLayout="dropdown"
 					bind:value
+					captionLayout="dropdown"
 					onValueChange={() => {
 						open = false;
 					}}

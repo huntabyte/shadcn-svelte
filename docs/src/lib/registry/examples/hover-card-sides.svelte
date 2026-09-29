@@ -1,17 +1,16 @@
 <script lang="ts">
 	import * as HoverCard from "$lib/registry/ui/hover-card/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import { cn } from "$lib/utils.js";
 
-	const sides = ["left", "top", "bottom", "right"] as const;
+	const HOVER_CARD_SIDES = ["left", "top", "bottom", "right"] as const;
 </script>
 
 <div class="flex flex-wrap justify-center gap-2">
-	{#each sides as side (side)}
+	{#each HOVER_CARD_SIDES as side (side)}
 		<HoverCard.Root openDelay={100} closeDelay={100}>
-			<HoverCard.Trigger>
-				{#snippet child({ props })}
-					<Button variant="outline" class="capitalize" {...props}>{side}</Button>
-				{/snippet}
+			<HoverCard.Trigger class={cn(buttonVariants({ variant: "outline" }), "capitalize")}>
+				{side}
 			</HoverCard.Trigger>
 			<HoverCard.Content {side}>
 				<div class="flex flex-col gap-1">

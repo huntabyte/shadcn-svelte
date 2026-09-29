@@ -15,11 +15,11 @@
 		<Field.Group class="gap-4">
 			<Field.Field orientation="horizontal">
 				<Field.Label for="width" class="w-1/2">Width</Field.Label>
-				<Input id="width" defaultValue="100%" />
+				<Input id="width" value="100%" />
 			</Field.Field>
 			<Field.Field orientation="horizontal">
 				<Field.Label for="height" class="w-1/2">Height</Field.Label>
-				<Input id="height" defaultValue="25px" />
+				<Input id="height" value="25px" />
 			</Field.Field>
 		</Field.Group>
 	</Popover.Content>

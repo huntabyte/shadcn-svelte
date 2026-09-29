@@ -35,7 +35,7 @@
 					</Button>
 				{/snippet}
 			</DropdownMenu.Trigger>
-			<DropdownMenu.Content align="end" class="w-52">
+			<DropdownMenu.Content align="end" class="w-40">
 				<DropdownMenu.Group>
 					<DropdownMenu.Item>
 						<MailCheck />
@@ -76,7 +76,7 @@
 				</DropdownMenu.Group>
 				<DropdownMenu.Separator />
 				<DropdownMenu.Group>
-					<DropdownMenu.Item class="text-destructive focus:text-destructive">
+					<DropdownMenu.Item variant="destructive">
 						<Trash2 />
 						Trash
 					</DropdownMenu.Item>

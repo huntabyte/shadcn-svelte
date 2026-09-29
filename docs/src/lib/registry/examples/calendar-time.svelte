@@ -1,12 +1,14 @@
 <script lang="ts">
 	import Clock2Icon from "@lucide/svelte/icons/clock-2";
-	import { today, getLocalTimeZone, type DateValue } from "@internationalized/date";
+	import { CalendarDate, getLocalTimeZone, today } from "@internationalized/date";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import { Calendar } from "$lib/registry/ui/calendar/index.js";
 
-	let value = $state<DateValue | undefined>(today(getLocalTimeZone()).set({ day: 12 }));
+	const now = today(getLocalTimeZone());
+
+	let value = $state<CalendarDate | undefined>(new CalendarDate(now.year, now.month, 12));
 </script>
 
 <Card.Root size="sm" class="mx-auto w-fit">

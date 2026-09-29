@@ -2,6 +2,7 @@
 	import MoreHorizontal from "@lucide/svelte/icons/more-horizontal";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import * as Field from "$lib/registry/ui/field/index.js";
 	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
 	import { Label } from "$lib/registry/ui/label/index.js";
@@ -12,12 +13,8 @@
 </script>
 
 <DropdownMenu.Root>
-	<DropdownMenu.Trigger>
-		{#snippet child({ props })}
-			<Button {...props} variant="outline" size="icon-sm">
-				<MoreHorizontal />
-			</Button>
-		{/snippet}
+	<DropdownMenu.Trigger class={buttonVariants({ variant: "outline", size: "icon-sm" })}>
+		<MoreHorizontal />
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content class="w-40" align="end">
 		<DropdownMenu.Label>File Actions</DropdownMenu.Label>
@@ -37,12 +34,12 @@
 				Provide a name for your new file. Click create when you&apos;re done.
 			</Dialog.Description>
 		</Dialog.Header>
-		<div class="grid gap-4 pb-3">
-			<div class="grid gap-3">
-				<Label for="filename">File Name</Label>
+		<Field.Group class="pb-3">
+			<Field.Field>
+				<Field.Label for="filename">File Name</Field.Label>
 				<Input id="filename" name="filename" placeholder="document.txt" />
-			</div>
-		</div>
+			</Field.Field>
+		</Field.Group>
 		<Dialog.Footer>
 			<Dialog.Close class={buttonVariants({ variant: "outline" })}>Cancel</Dialog.Close>
 			<Button type="submit">Create</Button>
@@ -56,16 +53,16 @@
 			<Dialog.Title>Share File</Dialog.Title>
 			<Dialog.Description>Anyone with the link will be able to view this file.</Dialog.Description>
 		</Dialog.Header>
-		<div class="grid gap-4 py-3">
-			<div class="grid gap-3">
+		<Field.Group class="py-3">
+			<Field.Field>
 				<Label for="email">Email Address</Label>
 				<Input id="email" name="email" type="email" placeholder="shadcn@vercel.com" />
-			</div>
-			<div class="grid gap-3">
-				<Label for="message">Message (Optional)</Label>
+			</Field.Field>
+			<Field.Field>
+				<Field.Label for="message">Message (Optional)</Field.Label>
 				<Textarea id="message" name="message" placeholder="Check out this file" />
-			</div>
-		</div>
+			</Field.Field>
+		</Field.Group>
 		<Dialog.Footer>
 			<Dialog.Close class={buttonVariants({ variant: "outline" })}>Cancel</Dialog.Close>
 			<Button type="submit">Send Invite</Button>

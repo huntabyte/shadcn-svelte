@@ -20,7 +20,7 @@ links:
 
 The Date Picker is built using a composition of the `<Popover />` and either the `<Calendar />` or `<RangeCalendar />` components.
 
-See installation instructions for the [Popover](/docs/components/popover#installation), [Calendar](/docs/components/calendar#installation), and [Range Calendar](/docs/components/range-calendar#installation) components.
+See installations instructions for the [Popover](/docs/components/popover#installation), [Calendar](/docs/components/calendar#installation), and [Range Calendar](/docs/components/range-calendar#installation) components.
 
 ## Usage
 
@@ -99,7 +99,7 @@ A date picker component for selecting a range of dates.
 
 ## Date of Birth
 
-A date picker component for selecting a date of birth. Includes a dropdown caption layout and closes on selection.
+A date picker component for selecting a date of birth. This component includes a dropdown caption layout for date and month selection.
 
 <ComponentPreview name="date-picker-dob">
 
@@ -119,7 +119,7 @@ A date picker component with an input field for selecting a date.
 
 ## Time Picker
 
-A date picker component with a time input field.
+A date picker component with a time input field for selecting a time.
 
 <ComponentPreview name="date-picker-time">
 
@@ -136,3 +136,7 @@ This component uses the `chrono-node` library to parse natural language dates.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+A date picker is composed from [Bits UI Popover](https://bits-ui.com/docs/components/popover#api-reference) and [Calendar](/docs/components/calendar#api-reference). See [@internationalized/date](https://react-spectrum.adobe.com/internationalized/date/index.html) for date values and formatting.

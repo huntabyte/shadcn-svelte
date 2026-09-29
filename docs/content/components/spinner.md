@@ -82,6 +82,24 @@ You can replace the default spinner icon with any other icon by editing the `Spi
 
 </ComponentPreview>
 
+```svelte showLineNumbers title="components/ui/spinner/spinner.svelte"
+<script lang="ts">
+  import LoaderIcon from "@lucide/svelte/icons/loader";
+  import { cn } from "$lib/utils.js";
+  import type { SVGAttributes } from "svelte/elements";
+
+  let { class: className, ...restProps }: SVGAttributes<SVGSVGElement> =
+    $props();
+</script>
+
+<LoaderIcon
+  role="status"
+  aria-label="Loading"
+  class={cn("size-4 animate-spin", className)}
+  {...restProps}
+/>
+```
+
 ## Size
 
 Use the `size-*` utility class to change the size of the spinner.
@@ -122,8 +140,12 @@ Add a spinner to a badge to indicate a loading state. Place the `<Spinner />` be
 
 ## Empty
 
-<ComponentPreview name="spinner-empty">
+<ComponentPreview name="spinner-empty-demo" previewClassName="h-auto min-h-72">
 
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+`Spinner` accepts SVG attributes. Its default `role` is `"status"` and its default `aria-label` is `"Loading"`. Use `class` to set its size and `aria-label` to describe the operation. See the [SVG attribute reference](https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute).

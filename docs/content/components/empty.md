@@ -57,7 +57,6 @@ Update the import paths to match your project setup.
 ```svelte
 <script lang="ts">
   import * as Empty from "$lib/components/ui/empty/index.js";
-  import { Button } from "$lib/components/ui/button/index.js";
   import FolderCodeIcon from "@tabler/icons-svelte/icons/folder-code";
 </script>
 ```
@@ -94,7 +93,7 @@ Empty.Root
 
 Use the `border` utility class to create an outline empty state.
 
-<ComponentPreview name="empty-outline-demo" previewClassName="h-auto min-h-72 p-0 md:p-10">
+<ComponentPreview name="empty-outline-demo" previewClassName="h-auto min-h-72">
 
 <div></div>
 
@@ -104,7 +103,7 @@ Use the `border` utility class to create an outline empty state.
 
 Use the `bg-*` and `bg-gradient-*` utilities to add a background to the empty state.
 
-<ComponentPreview name="empty-background-demo" previewClassName="h-96 p-0">
+<ComponentPreview name="empty-background-demo">
 
 <div></div>
 
@@ -112,7 +111,7 @@ Use the `bg-*` and `bg-gradient-*` utilities to add a background to the empty st
 
 ## Avatar
 
-Use the `EmptyMedia` component to display an avatar in the empty state.
+Use the `Empty.Media` component to display an avatar in the empty state.
 
 <ComponentPreview name="empty-avatar-demo" previewClassName="h-96 p-0">
 
@@ -124,7 +123,7 @@ Use the `EmptyMedia` component to display an avatar in the empty state.
 
 Use the `Empty.Media` component to display an avatar group in the empty state.
 
-<ComponentPreview name="empty-avatar-group" previewClassName="h-auto min-h-72 p-0">
+<ComponentPreview name="empty-avatar-group-demo" previewClassName="h-auto min-h-72">
 
 <div></div>
 
@@ -132,9 +131,9 @@ Use the `Empty.Media` component to display an avatar group in the empty state.
 
 ## InputGroup
 
-You can add an `InputGroup` component to the `EmptyContent` component.
+You can add an `InputGroup` component to the `Empty.Content` component.
 
-<ComponentPreview name="empty-input-group-demo" previewClassName="h-auto min-h-72 p-0">
+<ComponentPreview name="empty-input-group-demo" previewClassName="h-auto min-h-72">
 
 <div></div>
 

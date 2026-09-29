@@ -18,7 +18,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="card-demo" previewClassName="min-h-[30rem]">
+<ComponentPreview name="card-demo">
 
 <div></div>
 
@@ -94,7 +94,25 @@ Card.Root
 
 Use the `size="sm"` prop to set the size of the card to small. The small size variant uses smaller spacing.
 
-<ComponentPreview name="card-small" previewClassName="h-96">
+<ComponentPreview name="card-small" previewClassName="min-h-[30rem]">
+
+<div></div>
+
+</ComponentPreview>
+
+## Spacing
+
+In addition to the `size` prop, you can use the `--card-spacing` CSS variable to control the spacing between sections and the inset of card parts.
+
+<ComponentPreview name="card-spacing" class="[&_.preview]:min-h-[34rem]">
+
+<div></div>
+
+</ComponentPreview>
+
+Use negative margins with `-mx-(--card-spacing)` to make content go edge to edge while keeping it aligned with the card inset. When the edge-to-edge content sits above a footer, use `-mb-(--card-spacing)` on `Card.Content` to remove the section gap.
+
+<ComponentPreview name="card-edge-to-edge" class="[&_.preview]:min-h-[28rem]">
 
 <div></div>
 
@@ -104,15 +122,7 @@ Use the `size="sm"` prop to set the size of the card to small. The small size va
 
 Add an image before the card header to create a card with an image.
 
-<ComponentPreview name="card-image" previewClassName="h-[32rem]">
-
-<div></div>
-
-</ComponentPreview>
-
-## With Form
-
-<ComponentPreview name="card-with-form">
+<ComponentPreview name="card-image" class="[&_.preview]:min-h-[32rem]">
 
 <div></div>
 

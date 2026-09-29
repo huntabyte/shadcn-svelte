@@ -20,7 +20,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="checkbox-demo" previewClassName="min-h-80">
+<ComponentPreview name="checkbox-demo">
 
 <div></div>
 
@@ -76,12 +76,12 @@ Update the import paths to match your project setup.
 
 ## Checked State
 
-Use `defaultChecked` for uncontrolled checkboxes, or `checked` and
-`onCheckedChange` to control the state.
+Use `bind:checked` to control the checkbox state, or `onCheckedChange` to listen for changes.
 
 ```svelte showLineNumbers
 <script lang="ts">
   import { Checkbox } from "$lib/components/ui/checkbox/index.js";
+
   let checked = $state(false);
 </script>
 
@@ -100,7 +100,7 @@ Set `aria-invalid` on the checkbox and `data-invalid` on the field wrapper to sh
 
 ## Basic
 
-Pair the checkbox with `Field` and `Field.Label` for proper layout and labeling.
+Pair the checkbox with `Field.Field` and `Field.Label` for proper layout and labeling.
 
 <ComponentPreview name="checkbox-basic">
 
@@ -140,15 +140,7 @@ Use multiple fields to create a checkbox list.
 
 ## Table
 
-<ComponentPreview name="checkbox-table" previewClassName="p-4 md:p-8">
-
-<div></div>
-
-</ComponentPreview>
-
-## Form
-
-<ComponentPreview name="checkbox-form-multiple">
+<ComponentPreview name="checkbox-table">
 
 <div></div>
 

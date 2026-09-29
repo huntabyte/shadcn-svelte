@@ -1,6 +1,6 @@
 ---
 title: Typography
-description: Styles for headings, paragraphs, lists...etc
+description: Styles for headings, paragraphs, lists, etc.
 component: true
 ---
 
@@ -119,3 +119,7 @@ We do not ship any typography styles by default. This page is an example of how 
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+These examples use native HTML elements and Tailwind CSS utilities; there is no separate Typography component API. See the [HTML element reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements).

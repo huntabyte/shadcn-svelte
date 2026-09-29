@@ -7,12 +7,12 @@
 
 <ToggleGroup.Root type="multiple" orientation="vertical" spacing={1} value={["bold", "italic"]}>
 	<ToggleGroup.Item value="bold" aria-label="Toggle bold">
-		<BoldIcon class="size-4" />
+		<BoldIcon />
 	</ToggleGroup.Item>
 	<ToggleGroup.Item value="italic" aria-label="Toggle italic">
-		<ItalicIcon class="size-4" />
+		<ItalicIcon />
 	</ToggleGroup.Item>
 	<ToggleGroup.Item value="underline" aria-label="Toggle underline">
-		<UnderlineIcon class="size-4" />
+		<UnderlineIcon />
 	</ToggleGroup.Item>
 </ToggleGroup.Root>

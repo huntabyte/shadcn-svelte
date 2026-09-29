@@ -1,6 +1,6 @@
 ---
 title: Input
-description: Displays a form input field or a component that looks like an input field.
+description: A text input component for forms and user data entry with built-in styling and accessibility features.
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/input
@@ -18,7 +18,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="input-demo" previewClassName="*:max-w-xs">
+<ComponentPreview name="input-demo" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 
@@ -66,7 +66,7 @@ Update the import paths to match your project setup.
 
 ## Basic
 
-<ComponentPreview name="input-basic" previewClassName="*:max-w-xs">
+<ComponentPreview name="input-basic" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 
@@ -74,9 +74,9 @@ Update the import paths to match your project setup.
 
 ## Field
 
-Use `Field`, `Field.Label`, and `Field.Description` to create an input with a label and description.
+Use `Field.Field`, `Field.Label`, and `Field.Description` to create an input with a label and description.
 
-<ComponentPreview name="input-field" previewClassName="*:max-w-xs">
+<ComponentPreview name="input-field" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 
@@ -84,9 +84,9 @@ Use `Field`, `Field.Label`, and `Field.Description` to create an input with a la
 
 ## Field Group
 
-Use `Field.Group` to show multiple `Field` blocks and to build forms.
+Use `Field.Group` to show multiple `Field.Field` blocks and to build forms.
 
-<ComponentPreview name="input-fieldgroup" previewClassName="*:max-w-xs">
+<ComponentPreview name="input-fieldgroup" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 
@@ -94,9 +94,9 @@ Use `Field.Group` to show multiple `Field` blocks and to build forms.
 
 ## Disabled
 
-Use the `disabled` prop to disable the input. Add the `data-disabled` attribute to the `Field` component to style the disabled state.
+Use the `disabled` prop to disable the input. To style the disabled state, add the `data-disabled` attribute to the `Field.Field` component.
 
-<ComponentPreview name="input-disabled" previewClassName="*:max-w-xs">
+<ComponentPreview name="input-disabled" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 
@@ -104,9 +104,9 @@ Use the `disabled` prop to disable the input. Add the `data-disabled` attribute 
 
 ## Invalid
 
-Use the `aria-invalid` prop to mark the input as invalid. Add the `data-invalid` attribute to the `Field` component to style the invalid state.
+Use the `aria-invalid` prop to mark the input as invalid. To style the invalid state, add the `data-invalid` attribute to the `Field.Field` component.
 
-<ComponentPreview name="input-invalid" previewClassName="*:max-w-xs">
+<ComponentPreview name="input-invalid" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 
@@ -116,7 +116,7 @@ Use the `aria-invalid` prop to mark the input as invalid. Add the `data-invalid`
 
 Use the `type="file"` prop to create a file input.
 
-<ComponentPreview name="input-file" previewClassName="*:max-w-xs">
+<ComponentPreview name="input-file" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 
@@ -124,9 +124,10 @@ Use the `type="file"` prop to create a file input.
 
 ## Inline
 
-Use `Field` with `orientation="horizontal"` to create an inline input. Pair with `Button` to create a search input with a button.
+Use `Field.Field` with `orientation="horizontal"` to create an inline input.
+Pair with `Button` to create a search input with a button.
 
-<ComponentPreview name="input-inline" previewClassName="*:max-w-xs">
+<ComponentPreview name="input-inline" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 
@@ -136,7 +137,7 @@ Use `Field` with `orientation="horizontal"` to create an inline input. Pair with
 
 Use a grid layout to place multiple inputs side by side.
 
-<ComponentPreview name="input-grid" previewClassName="p-6">
+<ComponentPreview name="input-grid">
 
 <div></div>
 
@@ -146,7 +147,7 @@ Use a grid layout to place multiple inputs side by side.
 
 Use the `required` attribute to indicate required inputs.
 
-<ComponentPreview name="input-required" previewClassName="*:max-w-xs">
+<ComponentPreview name="input-required" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 
@@ -156,7 +157,7 @@ Use the `required` attribute to indicate required inputs.
 
 Use `Badge` in the label to highlight a recommended field.
 
-<ComponentPreview name="input-badge" previewClassName="*:max-w-xs">
+<ComponentPreview name="input-badge" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 
@@ -166,7 +167,7 @@ Use `Badge` in the label to highlight a recommended field.
 
 To add icons, text, or buttons inside an input, use the `InputGroup` component. See the [Input Group](/docs/components/input-group) component for more examples.
 
-<ComponentPreview name="input-input-group" previewClassName="*:max-w-xs">
+<ComponentPreview name="input-input-group" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 
@@ -176,7 +177,7 @@ To add icons, text, or buttons inside an input, use the `InputGroup` component. 
 
 To add buttons to an input, use the `ButtonGroup` component. See the [Button Group](/docs/components/button-group) component for more examples.
 
-<ComponentPreview name="input-button-group" previewClassName="*:max-w-xs">
+<ComponentPreview name="input-button-group" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 
@@ -186,8 +187,12 @@ To add buttons to an input, use the `ButtonGroup` component. See the [Button Gro
 
 A full form example with multiple inputs, a select, and a button.
 
-<ComponentPreview name="input-form" previewClassName="h-[32rem]">
+<ComponentPreview name="input-form">
 
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+`Input` accepts native input attributes and supports `bind:value`, `bind:files` for `type="file"`, and `bind:ref`. See the [HTML input reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input) for native attributes.

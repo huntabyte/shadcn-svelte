@@ -1,14 +1,10 @@
 <script lang="ts">
 	import * as Sheet from "$lib/registry/ui/sheet/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 </script>
 
 <Sheet.Root>
-	<Sheet.Trigger>
-		{#snippet child({ props })}
-			<Button variant="outline" {...props}>Open Sheet</Button>
-		{/snippet}
-	</Sheet.Trigger>
+	<Sheet.Trigger class={buttonVariants({ variant: "outline" })}>Open Sheet</Sheet.Trigger>
 	<Sheet.Content showCloseButton={false}>
 		<Sheet.Header>
 			<Sheet.Title>No Close Button</Sheet.Title>

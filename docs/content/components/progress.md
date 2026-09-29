@@ -78,14 +78,36 @@ Update the import paths to match your project setup.
 
 ### With label and value
 
-Use `Progress.Label` and `Progress.Value` to display additional context.
+Compose `Progress` with `Field.Label` and a text value. Bits UI exposes one progress root; the wrapper renders its indicator internally. It does not export separate label, value, or track components.
+
+Use `aria-labelledby` to connect the progress bar to its label. An HTML label's `for` attribute does not label a progress bar rendered as a `div`.
+
+```svelte showLineNumbers
+<script lang="ts">
+  import * as Field from "$lib/components/ui/field/index.js";
+  import { Progress } from "$lib/components/ui/progress/index.js";
+
+  let value = $state(56);
+</script>
+
+<Field.Field class="w-full max-w-sm">
+  <Field.Label id="upload-progress-label" class="w-full">
+    <span>Upload progress</span>
+    <span class="ml-auto font-normal text-muted-foreground tabular-nums"
+      >{value}%</span
+    >
+  </Field.Label>
+  <Progress {value} aria-labelledby="upload-progress-label" />
+</Field.Field>
+```
 
 ```text
-Progress.Root
-├── Progress.Label
-├── Progress.Track
-│   └── Progress.Range
-└── Progress.Value
+Field.Field
+├── Field.Label
+│   ├── Label text
+│   └── Value text
+└── Progress
+    └── Indicator (rendered internally)
 ```
 
 ## Label

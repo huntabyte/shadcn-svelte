@@ -1,6 +1,6 @@
 ---
 title: Input Group
-description: Display additional information or actions to an input or textarea.
+description: Add addons, buttons, and helper content to inputs.
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/input-group
@@ -19,7 +19,7 @@ links:
 	import Callout from "$lib/components/callout.svelte";
 </script>
 
-<ComponentPreview name="input-group-demo-simple" previewClassName="h-[26rem]">
+<ComponentPreview name="input-group-demo" previewClassName="min-h-[26rem]">
 
 <div></div>
 
@@ -98,7 +98,7 @@ InputGroup.Root
 
 Use the `align` prop on `InputGroup.Addon` to position the addon relative to the input.
 
-<Callout className="mt-4">
+<Callout>
 
 For proper focus management, `InputGroup.Addon` should always be placed after `InputGroup.Input` or `InputGroup.Textarea` in the DOM. Use the `align` prop to visually position the addon.
 
@@ -108,7 +108,7 @@ For proper focus management, `InputGroup.Addon` should always be placed after `I
 
 Use `align="inline-start"` to position the addon at the start of the input. This is the default.
 
-<ComponentPreview name="input-group-inline-start-demo" previewClassName="h-48">
+<ComponentPreview name="input-group-inline-start">
 
 <div></div>
 
@@ -118,7 +118,7 @@ Use `align="inline-start"` to position the addon at the start of the input. This
 
 Use `align="inline-end"` to position the addon at the end of the input.
 
-<ComponentPreview name="input-group-inline-end-demo" previewClassName="h-48">
+<ComponentPreview name="input-group-inline-end">
 
 <div></div>
 
@@ -128,7 +128,7 @@ Use `align="inline-end"` to position the addon at the end of the input.
 
 Use `align="block-start"` to position the addon above the input.
 
-<ComponentPreview name="input-group-block-start-demo" previewClassName="h-96">
+<ComponentPreview name="input-group-block-start">
 
 <div></div>
 
@@ -138,7 +138,7 @@ Use `align="block-start"` to position the addon above the input.
 
 Use `align="block-end"` to position the addon below the input.
 
-<ComponentPreview name="input-group-block-end-demo" previewClassName="h-[26rem]">
+<ComponentPreview name="input-group-block-end">
 
 <div></div>
 
@@ -146,9 +146,7 @@ Use `align="block-end"` to position the addon below the input.
 
 ## Icon
 
-Display icons inside the input group to provide visual context.
-
-<ComponentPreview name="input-group-icon-demo" previewClassName="h-80">
+<ComponentPreview name="input-group-icon-demo">
 
 <div></div>
 
@@ -156,9 +154,7 @@ Display icons inside the input group to provide visual context.
 
 ## Text
 
-Display additional text information alongside inputs.
-
-<ComponentPreview name="input-group-text-demo" previewClassName="h-80">
+<ComponentPreview name="input-group-text-demo" previewClassName="min-h-80">
 
 <div></div>
 
@@ -166,9 +162,7 @@ Display additional text information alongside inputs.
 
 ## Button
 
-Add buttons to perform actions within the input group.
-
-<ComponentPreview name="input-group-button-demo" previewClassName="h-72">
+<ComponentPreview name="input-group-button-demo">
 
 <div></div>
 
@@ -176,9 +170,7 @@ Add buttons to perform actions within the input group.
 
 ## Kbd
 
-Display keyboard shortcuts within the input group.
-
-<ComponentPreview name="input-group-kbd-demo" previewClassName="h-40">
+<ComponentPreview name="input-group-kbd">
 
 <div></div>
 
@@ -186,9 +178,7 @@ Display keyboard shortcuts within the input group.
 
 ## Dropdown
 
-Pair input groups with dropdown menus for complex interactions.
-
-<ComponentPreview name="input-group-dropdown-demo" previewClassName="h-56">
+<ComponentPreview name="input-group-dropdown-demo">
 
 <div></div>
 
@@ -196,9 +186,7 @@ Pair input groups with dropdown menus for complex interactions.
 
 ## Spinner
 
-Show loading indicators while processing input.
-
-<ComponentPreview name="input-group-spinner-demo" previewClassName="h-80">
+<ComponentPreview name="input-group-spinner-demo">
 
 <div></div>
 
@@ -206,9 +194,7 @@ Show loading indicators while processing input.
 
 ## Textarea
 
-Input groups also work with textarea components. Use `block-start` or `block-end` for alignment.
-
-<ComponentPreview name="input-group-textarea-demo" previewClassName="h-96">
+<ComponentPreview name="input-group-textarea-demo" previewClassName="min-h-96">
 
 <div></div>
 
@@ -216,11 +202,11 @@ Input groups also work with textarea components. Use `block-start` or `block-end
 
 ## Custom Input
 
-Add the `data-slot="input-group-control"` attribute to your custom input for automatic behavior and focus state handling.
+Add the `data-slot="input-group-control"` attribute to your custom input for automatic focus state handling.
 
-No style is applied to the custom input. Apply your own styles using the `class` prop.
+Here's an example of a custom auto-resizing textarea.
 
-<ComponentPreview name="input-group-custom-input-demo" previewClassName="h-56">
+<ComponentPreview name="input-group-custom-input-demo">
 
 <div></div>
 

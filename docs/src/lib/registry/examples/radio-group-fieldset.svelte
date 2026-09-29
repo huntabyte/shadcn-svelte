@@ -1,29 +1,23 @@
 <script lang="ts">
+	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
-	import {
-		FieldSet,
-		FieldLegend,
-		FieldDescription,
-		Field,
-		FieldLabel,
-	} from "$lib/registry/ui/field/index.js";
 </script>
 
-<FieldSet class="w-full max-w-xs">
-	<FieldLegend variant="label">Subscription Plan</FieldLegend>
-	<FieldDescription>Yearly and lifetime plans offer significant savings.</FieldDescription>
+<Field.Set class="w-full max-w-xs">
+	<Field.Legend variant="label">Subscription Plan</Field.Legend>
+	<Field.Description>Yearly and lifetime plans offer significant savings.</Field.Description>
 	<RadioGroup.Root value="monthly">
-		<Field orientation="horizontal">
+		<Field.Field orientation="horizontal">
 			<RadioGroup.Item value="monthly" id="plan-monthly" />
-			<FieldLabel for="plan-monthly" class="font-normal">Monthly ($9.99/month)</FieldLabel>
-		</Field>
-		<Field orientation="horizontal">
+			<Field.Label for="plan-monthly" class="font-normal">Monthly ($9.99/month)</Field.Label>
+		</Field.Field>
+		<Field.Field orientation="horizontal">
 			<RadioGroup.Item value="yearly" id="plan-yearly" />
-			<FieldLabel for="plan-yearly" class="font-normal">Yearly ($99.99/year)</FieldLabel>
-		</Field>
-		<Field orientation="horizontal">
+			<Field.Label for="plan-yearly" class="font-normal">Yearly ($99.99/year)</Field.Label>
+		</Field.Field>
+		<Field.Field orientation="horizontal">
 			<RadioGroup.Item value="lifetime" id="plan-lifetime" />
-			<FieldLabel for="plan-lifetime" class="font-normal">Lifetime ($299.99)</FieldLabel>
-		</Field>
+			<Field.Label for="plan-lifetime" class="font-normal">Lifetime ($299.99)</Field.Label>
+		</Field.Field>
 	</RadioGroup.Root>
-</FieldSet>
+</Field.Set>

@@ -1,16 +1,15 @@
 <script lang="ts">
-	import { CalendarDate, getLocalTimeZone } from "@internationalized/date";
+	import { CalendarDate, getLocalTimeZone, isWeekend, today } from "@internationalized/date";
 	import * as Card from "$lib/registry/ui/card/index.js";
-	import CalendarDayButton from "$lib/registry/ui/range-calendar/range-calendar-day.svelte";
+	import RangeCalendarDay from "$lib/registry/ui/range-calendar/range-calendar-day.svelte";
 	import { RangeCalendar } from "$lib/registry/ui/range-calendar/index.js";
 	import type { DateRange } from "bits-ui";
 
-	const currentYear = new Date().getFullYear();
-	const maxValue = new CalendarDate(currentYear, 12, 31);
+	const start = new CalendarDate(today(getLocalTimeZone()).year, 12, 8);
 
-	let value = $state<DateRange>({
-		start: new CalendarDate(currentYear, 12, 8),
-		end: new CalendarDate(currentYear, 12, 8).add({ days: 10 }),
+	let value = $state<DateRange | undefined>({
+		start,
+		end: start.add({ days: 10 }),
 	});
 </script>
 
@@ -18,22 +17,17 @@
 	<Card.Content class="p-0">
 		<RangeCalendar
 			bind:value
-			{maxValue}
-			numberOfMonths={1}
 			captionLayout="dropdown"
 			monthFormat="long"
 			class="[--cell-size:--spacing(10)] md:[--cell-size:--spacing(12)]"
 		>
 			{#snippet day({ day, outsideMonth })}
-				{@const isWeekend =
-					day.toDate(getLocalTimeZone()).getDay() === 0 ||
-					day.toDate(getLocalTimeZone()).getDay() === 6}
-				<CalendarDayButton>
+				<RangeCalendarDay>
 					{day.day}
 					{#if !outsideMonth}
-						<span>{isWeekend ? "$120" : "$100"}</span>
+						<span>{isWeekend(day, "en-US") ? "$120" : "$100"}</span>
 					{/if}
-				</CalendarDayButton>
+				</RangeCalendarDay>
 			{/snippet}
 		</RangeCalendar>
 	</Card.Content>

@@ -29,7 +29,7 @@
 			<Select.Trigger class="font-mono">
 				{currency}
 			</Select.Trigger>
-			<Select.Content class="min-w-24">
+			<Select.Content align="start">
 				<Select.Group>
 					{#each CURRENCIES as currencyOption (currencyOption.value)}
 						<Select.Item value={currencyOption.value}>

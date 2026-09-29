@@ -20,7 +20,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="dropdown-menu-demo" description="A dropdown menu with icons, shortcuts and sub menu items.">
+<ComponentPreview name="dropdown-menu-demo">
 
 <div></div>
 
@@ -76,9 +76,11 @@ Update the import paths to match your project setup.
   <DropdownMenu.Content>
     <DropdownMenu.Group>
       <DropdownMenu.Label>My Account</DropdownMenu.Label>
-      <DropdownMenu.Separator />
       <DropdownMenu.Item>Profile</DropdownMenu.Item>
       <DropdownMenu.Item>Billing</DropdownMenu.Item>
+    </DropdownMenu.Group>
+    <DropdownMenu.Separator />
+    <DropdownMenu.Group>
       <DropdownMenu.Item>Team</DropdownMenu.Item>
       <DropdownMenu.Item>Subscription</DropdownMenu.Item>
     </DropdownMenu.Group>
@@ -168,7 +170,7 @@ Use `DropdownMenu.CheckboxItem` for toggles.
 
 </ComponentPreview>
 
-## Checkboxes with Icons
+## Checkboxes Icons
 
 Add icons to checkbox items.
 
@@ -188,7 +190,7 @@ Use `DropdownMenu.RadioGroup` for exclusive choices.
 
 </ComponentPreview>
 
-## Radio Group with Icons
+## Radio Icons
 
 Show radio options with icons.
 
@@ -223,24 +225,6 @@ An account switcher dropdown triggered by an avatar.
 A richer example combining groups, icons, and submenus.
 
 <ComponentPreview name="dropdown-menu-complex">
-
-<div></div>
-
-</ComponentPreview>
-
-## Dialog
-
-This example shows how to open a dialog from a dropdown menu.
-
-```svelte showLineNumbers
-<DropdownMenu.Root>
-  <DropdownMenu.Trigger class={buttonVariants({ variant: "outline" })}>
-    Actions
-  </DropdownMenu.Trigger>
-</DropdownMenu.Root>
-```
-
-<ComponentPreview name="dropdown-menu-dialog" >
 
 <div></div>
 

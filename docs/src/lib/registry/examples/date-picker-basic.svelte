@@ -13,9 +13,9 @@
 </script>
 
 <Field.Field class="mx-auto w-44">
-	<Field.Label for="date-picker-basic">Date</Field.Label>
+	<Field.Label for="date-picker-simple">Date</Field.Label>
 	<Popover.Root>
-		<Popover.Trigger id="date-picker-basic">
+		<Popover.Trigger id="date-picker-simple">
 			{#snippet child({ props })}
 				<Button {...props} variant="outline" class="justify-start font-normal">
 					{value ? df.format(value.toDate(getLocalTimeZone())) : "Pick a date"}

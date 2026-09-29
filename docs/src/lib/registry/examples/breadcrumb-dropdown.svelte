@@ -17,12 +17,14 @@
 			<DropdownMenu.Root>
 				<DropdownMenu.Trigger class="flex items-center gap-1">
 					Components
-					<ChevronDownIcon class="size-4" />
+					<ChevronDownIcon data-icon="inline-end" class="size-3.5" />
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content align="start">
-					<DropdownMenu.Item>Documentation</DropdownMenu.Item>
-					<DropdownMenu.Item>Themes</DropdownMenu.Item>
-					<DropdownMenu.Item>GitHub</DropdownMenu.Item>
+					<DropdownMenu.Group>
+						<DropdownMenu.Item>Documentation</DropdownMenu.Item>
+						<DropdownMenu.Item>Themes</DropdownMenu.Item>
+						<DropdownMenu.Item>GitHub</DropdownMenu.Item>
+					</DropdownMenu.Group>
 				</DropdownMenu.Content>
 			</DropdownMenu.Root>
 		</Breadcrumb.Item>

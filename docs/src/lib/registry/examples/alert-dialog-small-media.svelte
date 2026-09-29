@@ -5,9 +5,9 @@
 </script>
 
 <AlertDialog.Root>
-	<AlertDialog.Trigger class={buttonVariants({ variant: "outline" })}>
-		Show Dialog
-	</AlertDialog.Trigger>
+	<AlertDialog.Trigger class={buttonVariants({ variant: "outline" })}
+		>Show Dialog</AlertDialog.Trigger
+	>
 	<AlertDialog.Content size="sm">
 		<AlertDialog.Header>
 			<AlertDialog.Media>

@@ -1,6 +1,6 @@
 ---
 title: Context Menu
-description: Displays a menu to the user — such as a set of actions or functions — triggered by right click.
+description: Displays a menu of actions triggered by a right click.
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/context-menu
@@ -20,7 +20,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="context-menu-demo" description="A context menu with sub menu items.">
+<ComponentPreview name="context-menu-demo">
 
 <div></div>
 
@@ -72,7 +72,7 @@ Update the import paths to match your project setup.
 
 ```svelte showLineNumbers
 <ContextMenu.Root>
-  <ContextMenu.Trigger>Right click</ContextMenu.Trigger>
+  <ContextMenu.Trigger>Right click here</ContextMenu.Trigger>
   <ContextMenu.Content>
     <ContextMenu.Item>Profile</ContextMenu.Item>
     <ContextMenu.Item>Billing</ContextMenu.Item>
@@ -125,7 +125,7 @@ A simple context menu with a few actions.
 
 ## Submenu
 
-Use `ContextMenuSub` to nest secondary actions.
+Use `ContextMenu.Sub` to nest secondary actions.
 
 <ComponentPreview name="context-menu-submenu">
 
@@ -135,7 +135,7 @@ Use `ContextMenuSub` to nest secondary actions.
 
 ## Shortcuts
 
-Add `ContextMenuShortcut` to show keyboard hints.
+Add `ContextMenu.Shortcut` to show keyboard hints.
 
 <ComponentPreview name="context-menu-shortcuts">
 
@@ -165,7 +165,7 @@ Combine icons with labels for quick scanning.
 
 ## Checkboxes
 
-Use `ContextMenuCheckboxItem` for toggles.
+Use `ContextMenu.CheckboxItem` for toggles.
 
 <ComponentPreview name="context-menu-checkboxes">
 
@@ -175,9 +175,9 @@ Use `ContextMenuCheckboxItem` for toggles.
 
 ## Radio
 
-Use `ContextMenuRadioItem` for exclusive choices.
+Use `ContextMenu.RadioItem` for exclusive choices.
 
-<ComponentPreview name="context-menu-radio-group">
+<ComponentPreview name="context-menu-radio">
 
 <div></div>
 
@@ -188,6 +188,16 @@ Use `ContextMenuRadioItem` for exclusive choices.
 Use `variant="destructive"` to style the menu item as destructive.
 
 <ComponentPreview name="context-menu-destructive">
+
+<div></div>
+
+</ComponentPreview>
+
+## Sides
+
+Control submenu placement with `side` and `align` props.
+
+<ComponentPreview name="context-menu-sides">
 
 <div></div>
 

@@ -5,21 +5,18 @@
 	import LogOutIcon from "@lucide/svelte/icons/log-out";
 	import * as Avatar from "$lib/registry/ui/avatar/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
 <DropdownMenu.Root>
 	<DropdownMenu.Trigger>
 		{#snippet child({ props })}
-			<button
-				{...props}
-				class={buttonVariants({ variant: "ghost", size: "icon" }) + " rounded-full"}
-			>
+			<Button {...props} variant="ghost" size="icon" class="rounded-full">
 				<Avatar.Root>
 					<Avatar.Image src="https://github.com/shadcn.png" alt="shadcn" />
 					<Avatar.Fallback>LR</Avatar.Fallback>
 				</Avatar.Root>
-			</button>
+			</Button>
 		{/snippet}
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content align="end">

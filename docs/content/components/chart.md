@@ -29,9 +29,9 @@ links:
 
 Introducing **Charts**. A collection of chart components that you can copy and paste into your apps.
 
-Charts are designed to look great out of the box. They work well with other components are are fully customizable to fit your project.
+Charts are designed to look great out of the box. They work well with the other components and are fully customizable to fit your project.
 
-[Browse the Charts Library](/charts)
+[Browse the Charts Library](/charts).
 
 ## Component
 
@@ -61,16 +61,6 @@ We designed the `Chart` component with composition in mind. **You build your cha
 We do not wrap LayerChart. This means you're not locked into an abstraction. When a new LayerChart version is released, you can follow the official upgrade path to upgrade your charts.
 
 **The components are yours**.
-
-## Composition
-
-Use the following composition to build a `Chart`:
-
-```text
-Chart.Container
-└── [LayerChart component (e.g. BarChart, LineChart)]
-    └── Chart.Tooltip (via tooltip snippet)
-```
 
 ## Installation
 
@@ -124,6 +114,12 @@ Add the following colors to your CSS file
 <Step>
 
 Copy and paste the following code into your project.
+
+</Step>
+
+<Step>
+
+Update the import paths to match your project setup.
 
 </Step>
 
@@ -538,3 +534,17 @@ To use a custom key for tooltip label and names, use the `labelKey` and `nameKey
 ```
 
 This will use `Total Visitors` for label and `Chrome` and `Safari` for the tooltip names.
+
+## Composition
+
+Use the following composition to build a `Chart`:
+
+```text
+Chart.Container
+└── [LayerChart component (e.g. BarChart, LineChart)]
+    └── Chart.Tooltip (via tooltip snippet)
+```
+
+## API Reference
+
+See the [LayerChart documentation](https://layerchart.com) for chart props and the [Chart configuration](#chart-config) section for the wrapper configuration.

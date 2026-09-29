@@ -11,10 +11,6 @@
 	];
 
 	let country = $state("us");
-
-	const countryLabel = $derived(
-		countries.find((c) => c.value === country)?.label ?? "Select a country"
-	);
 </script>
 
 <form class="w-full max-w-sm">
@@ -35,14 +31,14 @@
 			</Field.Field>
 			<Field.Field>
 				<Field.Label for="form-country">Country</Field.Label>
-				<Select.Root type="single" name="country" bind:value={country}>
+				<Select.Root type="single" items={countries} bind:value={country}>
 					<Select.Trigger id="form-country">
-						{countryLabel}
+						<Select.Value />
 					</Select.Trigger>
 					<Select.Content>
 						<Select.Group>
-							{#each countries as c (c.value)}
-								<Select.Item value={c.value} label={c.label}>{c.label}</Select.Item>
+							{#each countries as item (item.value)}
+								<Select.Item value={item.value} label={item.label}>{item.label}</Select.Item>
 							{/each}
 						</Select.Group>
 					</Select.Content>

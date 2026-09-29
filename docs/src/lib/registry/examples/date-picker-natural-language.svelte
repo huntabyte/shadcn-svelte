@@ -1,73 +1,63 @@
 <script lang="ts">
 	import CalendarIcon from "@lucide/svelte/icons/calendar";
-	import {
-		parseDate as parseISODate,
-		type DateValue,
-		getLocalTimeZone,
-	} from "@internationalized/date";
-	import { DateFormatter } from "@internationalized/date";
-	import { parseDate as chronoParse } from "chrono-node";
+	import { CalendarDate, getLocalTimeZone, type DateValue } from "@internationalized/date";
+	import { parseDate } from "chrono-node";
+	import { untrack } from "svelte";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import { Calendar } from "$lib/registry/ui/calendar/index.js";
 
-	const df = new DateFormatter("en-US", {
-		day: "2-digit",
-		month: "long",
-		year: "numeric",
-	});
-
-	function formatDateValue(date: DateValue | undefined): string {
+	function formatDate(date: DateValue | undefined) {
 		if (!date) return "";
-		return df.format(date.toDate(getLocalTimeZone()));
+
+		return date.toDate(getLocalTimeZone()).toLocaleDateString("en-US", {
+			day: "2-digit",
+			month: "long",
+			year: "numeric",
+		});
 	}
 
-	function chronoToDateValue(date: Date | null): DateValue | undefined {
-		if (!date) return undefined;
-		const iso = date.toISOString().split("T")[0];
-		try {
-			return parseISODate(iso);
-		} catch {
-			return undefined;
-		}
+	function toCalendarDate(date: Date) {
+		return new CalendarDate(date.getFullYear(), date.getMonth() + 1, date.getDate());
 	}
 
-	const initialText = "In 2 days";
 	let open = $state(false);
-	let inputValue = $state(initialText);
-	let value = $state<DateValue | undefined>(chronoToDateValue(chronoParse(initialText)));
-
-	function handleInput(e: Event) {
-		const text = (e.target as HTMLInputElement).value;
-		inputValue = text;
-		const parsed = chronoParse(text);
-		if (parsed) {
-			value = chronoToDateValue(parsed);
-		}
-	}
-
-	function handleKeyDown(e: KeyboardEvent) {
-		if (e.key === "ArrowDown") {
-			e.preventDefault();
-			open = true;
-		}
-	}
+	let inputValue = $state("In 2 days");
+	let value = $state<DateValue | undefined>(
+		untrack(() => {
+			const date = parseDate(inputValue);
+			return date ? toCalendarDate(date) : undefined;
+		})
+	);
 </script>
 
 <Field.Field class="mx-auto max-w-xs">
-	<Field.Label for="date-natural-language">Schedule Date</Field.Label>
+	<Field.Label for="date-optional">Schedule Date</Field.Label>
 	<InputGroup.Root>
 		<InputGroup.Input
-			id="date-natural-language"
-			value={inputValue}
+			id="date-optional"
 			placeholder="Tomorrow or next week"
-			oninput={handleInput}
-			onkeydown={handleKeyDown}
+			bind:value={
+				() => inputValue,
+				(v) => {
+					inputValue = v;
+					const date = parseDate(v);
+					if (date) {
+						value = toCalendarDate(date);
+					}
+				}
+			}
+			onkeydown={(e) => {
+				if (e.key === "ArrowDown") {
+					e.preventDefault();
+					open = true;
+				}
+			}}
 		/>
 		<InputGroup.Addon align="inline-end">
 			<Popover.Root bind:open>
-				<Popover.Trigger>
+				<Popover.Trigger id="date-picker">
 					{#snippet child({ props })}
 						<InputGroup.Button {...props} variant="ghost" size="icon-xs" aria-label="Select date">
 							<CalendarIcon />
@@ -78,10 +68,10 @@
 				<Popover.Content class="w-auto overflow-hidden p-0" align="end" sideOffset={8}>
 					<Calendar
 						type="single"
-						captionLayout="dropdown"
 						bind:value
+						captionLayout="dropdown"
 						onValueChange={(v) => {
-							inputValue = formatDateValue(v);
+							inputValue = formatDate(v);
 							open = false;
 						}}
 					/>
@@ -91,6 +81,6 @@
 	</InputGroup.Root>
 	<div class="px-1 text-sm text-muted-foreground">
 		Your post will be published on
-		<span class="font-medium">{formatDateValue(value)}</span>.
+		<span class="font-medium">{formatDate(value)}</span>.
 	</div>
 </Field.Field>

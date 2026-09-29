@@ -3,16 +3,14 @@
 	import CreditCardIcon from "@lucide/svelte/icons/credit-card";
 	import WalletIcon from "@lucide/svelte/icons/wallet";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 
 	let paymentMethod = $state("card");
 </script>
 
 <DropdownMenu.Root>
-	<DropdownMenu.Trigger>
-		{#snippet child({ props })}
-			<Button {...props} variant="outline">Payment Method</Button>
-		{/snippet}
+	<DropdownMenu.Trigger class={buttonVariants({ variant: "outline" })}>
+		Payment Method
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content class="min-w-56">
 		<DropdownMenu.Group>

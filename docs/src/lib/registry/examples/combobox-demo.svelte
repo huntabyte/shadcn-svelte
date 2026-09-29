@@ -1,40 +1,15 @@
 <script lang="ts">
-	import CheckIcon from "@lucide/svelte/icons/check";
-	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
+	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
 	import { tick } from "svelte";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
 
-	const frameworks = [
-		{
-			value: "sveltekit",
-			label: "SvelteKit",
-		},
-		{
-			value: "next.js",
-			label: "Next.js",
-		},
-		{
-			value: "nuxt.js",
-			label: "Nuxt.js",
-		},
-		{
-			value: "remix",
-			label: "Remix",
-		},
-		{
-			value: "astro",
-			label: "Astro",
-		},
-	];
+	const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"];
 
 	let open = $state(false);
 	let value = $state("");
 	let triggerRef = $state<HTMLButtonElement>(null!);
-
-	const selectedValue = $derived(frameworks.find((f) => f.value === value)?.label);
 
 	// We want to refocus the trigger button when the user selects
 	// an item from the list so users can continue navigating the
@@ -53,12 +28,12 @@
 			<Button
 				{...props}
 				variant="outline"
-				class="w-[200px] justify-between"
+				class="w-[200px] justify-between font-normal"
 				role="combobox"
 				aria-expanded={open}
 			>
-				{selectedValue || "Select a framework..."}
-				<ChevronsUpDownIcon class="opacity-50" />
+				{value || "Select a framework"}
+				<ChevronDownIcon class="text-muted-foreground" />
 			</Button>
 		{/snippet}
 	</Popover.Trigger>
@@ -66,18 +41,18 @@
 		<Command.Root>
 			<Command.Input placeholder="Search framework..." />
 			<Command.List>
-				<Command.Empty>No framework found.</Command.Empty>
-				<Command.Group value="frameworks">
-					{#each frameworks as framework (framework.value)}
+				<Command.Empty>No items found.</Command.Empty>
+				<Command.Group>
+					{#each frameworks as framework (framework)}
 						<Command.Item
-							value={framework.value}
+							value={framework}
+							data-checked={value === framework}
 							onSelect={() => {
-								value = framework.value;
+								value = framework;
 								closeAndFocusTrigger();
 							}}
 						>
-							<CheckIcon class={cn(value !== framework.value && "text-transparent")} />
-							{framework.label}
+							{framework}
 						</Command.Item>
 					{/each}
 				</Command.Group>

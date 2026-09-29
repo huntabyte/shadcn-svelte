@@ -1,6 +1,6 @@
 ---
 title: Item
-description: A versatile component that you can use to display any content.
+description: A versatile component for displaying content with media, title, description, and actions.
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/item
@@ -24,7 +24,7 @@ links:
 
 </ComponentPreview>
 
-The `Item` component is a straightforward flex container that can house nearly any type of content. Use it to display a title, description, and actions. Group it with the `ItemGroup` component to create a list of items.
+The `Item` component is a straightforward flex container that can house nearly any type of content. Use it to display a title, description, and actions. Group it with the `Item.Group` component to create a list of items.
 
 ## Installation
 
@@ -93,11 +93,11 @@ Item.Group
 
 ## Item vs Field
 
-Use `Field` if you need to display a form input such as a checkbox, input, radio, or select.
+Use Field if you need to display a form input such as a checkbox, input, radio, or select.
 
 If you only need to display content such as a title, description, and actions, use `Item`.
 
-### Variants
+## Variant
 
 Use the `variant` prop to change the visual style of the item.
 
@@ -107,7 +107,7 @@ Use the `variant` prop to change the visual style of the item.
 
 </ComponentPreview>
 
-### Size
+## Size
 
 Use the `size` prop to change the size of the item. Available sizes are `default`, `sm`, and `xs`.
 
@@ -131,7 +131,7 @@ Use `Item.Media` with `variant="icon"` to display an icon.
 
 You can use `Item.Media` with `variant="avatar"` to display an avatar.
 
-<ComponentPreview name="item-avatar-demo" >
+<ComponentPreview name="item-avatar-demo">
 
 <div></div>
 
@@ -176,6 +176,24 @@ Use the `child` snippet to render the item as a link. The hover and focus states
 <div></div>
 
 </ComponentPreview>
+
+```svelte showLineNumbers
+<Item.Root>
+  {#snippet child({ props })}
+    <a href="/dashboard" {...props}>
+      <Item.Media variant="icon">
+        <HomeIcon />
+      </Item.Media>
+      <Item.Content>
+        <Item.Title>Dashboard</Item.Title>
+        <Item.Description
+          >Overview of your account and activity.</Item.Description
+        >
+      </Item.Content>
+    </a>
+  {/snippet}
+</Item.Root>
+```
 
 ## Dropdown
 

@@ -5,9 +5,9 @@
 </script>
 
 <AlertDialog.Root>
-	<AlertDialog.Trigger class={buttonVariants({ variant: "outline" })}>
-		Share Project
-	</AlertDialog.Trigger>
+	<AlertDialog.Trigger class={buttonVariants({ variant: "outline" })}
+		>Share Project</AlertDialog.Trigger
+	>
 	<AlertDialog.Content>
 		<AlertDialog.Header>
 			<AlertDialog.Media>

@@ -27,7 +27,7 @@
 				<FieldDemo />
 			</div>
 			<div class="flex flex-col gap-6 *:[div]:w-full *:[div]:max-w-full">
-				<div class="*:[div]:border *:[div]:border-dashed">
+				<div class="*:[div]:border">
 					<EmptyAvatarGroup />
 				</div>
 				<ButtonGroupInputGroup />
@@ -62,7 +62,7 @@
 					<ButtonGroupNested />
 					<ButtonGroupPopover />
 				</div>
-				<div class="*:[div]:border *:[div]:border-dashed">
+				<div class="*:[div]:border">
 					<SpinnerEmpty />
 				</div>
 			</div>

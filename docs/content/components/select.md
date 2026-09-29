@@ -71,31 +71,17 @@ Update the import paths to match your project setup.
 ```
 
 ```svelte showLineNumbers
-<script lang="ts">
-  const themes = [
-    { value: "light", label: "Light" },
-    { value: "dark", label: "Dark" },
-    { value: "system", label: "System" },
-  ];
-</script>
-
-<Select.Root type="single" items={themes}>
+<Select.Root type="single">
   <Select.Trigger class="w-[180px]">
     <Select.Value placeholder="Select a theme" />
   </Select.Trigger>
   <Select.Content>
-    <Select.Group>
-      {#each themes as theme (theme.value)}
-        <Select.Item value={theme.value} label={theme.label}
-          >{theme.label}</Select.Item
-        >
-      {/each}
-    </Select.Group>
+    <Select.Item value="light">Light</Select.Item>
+    <Select.Item value="dark">Dark</Select.Item>
+    <Select.Item value="system">System</Select.Item>
   </Select.Content>
 </Select.Root>
 ```
-
-## Composition
 
 `Select.Value` renders the label of the selected item, falling back to `placeholder` when nothing is selected.
 
@@ -124,32 +110,22 @@ It reads the label from the matching `Select.Item`, which only exists in the DOM
 
 Without `items` the trigger falls back to the raw value, so you only need it when an item's label differs from its value.
 
+## Composition
+
 Use the following composition to build a `Select`:
 
 ```text
 Select.Root
 ├── Select.Trigger
+│   └── Select.Value
 └── Select.Content
     ├── Select.Group
     │   ├── Select.Label
-    │   ├── Select.Item
     │   └── Select.Item
-    ├── Select.Separator
-    └── Select.Group
-        ├── Select.Label
-        ├── Select.Item
-        └── Select.Item
+    └── Select.Separator
 ```
 
-## Align Item With Trigger
-
-Use `Select.Item` contents that match the trigger width and alignment.
-
-<ComponentPreview name="select-align-item">
-
-<div></div>
-
-</ComponentPreview>
+Pass `items` to `Select.Root` when item labels differ from their values, as shown in Usage. This keeps `Select.Value` displaying the label after the menu closes.
 
 ## Groups
 
@@ -183,15 +159,16 @@ A select with many items that scrolls.
 
 Add the `data-invalid` attribute to the `Field.Field` component and the `aria-invalid` attribute to the `Select.Trigger` component to show an error state.
 
+```svelte showLineNumbers /data-invalid/ /aria-invalid/
+<Field.Field data-invalid>
+  <Field.Label>Fruit</Field.Label>
+  <Select.Trigger aria-invalid>
+    <Select.Value />
+  </Select.Trigger>
+</Field.Field>
+```
+
 <ComponentPreview name="select-invalid">
-
-<div></div>
-
-</ComponentPreview>
-
-## Form
-
-<ComponentPreview name="select-form">
 
 <div></div>
 

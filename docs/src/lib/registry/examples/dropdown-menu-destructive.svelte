@@ -3,15 +3,12 @@
 	import ShareIcon from "@lucide/svelte/icons/share";
 	import TrashIcon from "@lucide/svelte/icons/trash";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 </script>
 
 <DropdownMenu.Root>
-	<DropdownMenu.Trigger>
-		{#snippet child({ props })}
-			<Button {...props} variant="outline">Actions</Button>
-		{/snippet}
-	</DropdownMenu.Trigger>
+	<DropdownMenu.Trigger class={buttonVariants({ variant: "outline" })}>Actions</DropdownMenu.Trigger
+	>
 	<DropdownMenu.Content>
 		<DropdownMenu.Group>
 			<DropdownMenu.Item>

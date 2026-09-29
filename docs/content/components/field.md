@@ -57,8 +57,6 @@ Update the import paths to match your project setup.
 ```svelte showLineNumbers
 <script lang="ts">
   import * as Field from "$lib/components/ui/field/index.js";
-  import { Input } from "$lib/components/ui/input/index.js";
-  import { Switch } from "$lib/components/ui/switch/index.js";
 </script>
 ```
 
@@ -212,7 +210,7 @@ The `Field` family is designed for composing accessible forms. A typical field i
 
 ## Switch
 
-<ComponentPreview name="field-switch-demo">
+<ComponentPreview name="field-switch">
 
 <div></div>
 
@@ -220,7 +218,7 @@ The `Field` family is designed for composing accessible forms. A typical field i
 
 ## Choice Card
 
-Wrap `Field` components inside `Field.Label` to create selectable field groups. This works with `RadioItem`, `Checkbox` and `Switch` components.
+Wrap `Field.Field` components inside `Field.Label` to create selectable field groups. This works with `RadioGroup.Item`, `Checkbox` and `Switch` components.
 
 <ComponentPreview name="field-choice-card">
 
@@ -250,19 +248,11 @@ Stack `Field` components with `Field.Group`. Add `Field.Separator` to divide the
 
 </ComponentPreview>
 
-## Form
-
-<ComponentPreview name="checkbox-form-multiple">
-
-<div></div>
-
-</ComponentPreview>
-
 ## Validation and Errors
 
-- Add `data-invalid` to `Field` to switch the entire block into an error state.
+- Add `data-invalid` to `Field.Field` to switch the entire block into an error state.
 - Add `aria-invalid` on the input itself for assistive technologies.
-- Render `FieldError` immediately after the control or inside `FieldContent` to keep error messages aligned with the field.
+- Render `Field.Error` immediately after the control or inside `Field.Content` to keep error messages aligned with the field.
 
 ```svelte
 <Field.Field data-invalid>

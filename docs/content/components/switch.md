@@ -84,7 +84,7 @@ Update the import paths to match your project setup.
 
 ## Choice Card
 
-Card-style selection where `Field.Label` wraps the entire `Field` for a clickable card pattern.
+Card-style selection where `Field.Label` wraps the entire `Field.Field` for a clickable card pattern.
 
 <ComponentPreview name="switch-choice-card">
 
@@ -94,7 +94,7 @@ Card-style selection where `Field.Label` wraps the entire `Field` for a clickabl
 
 ## Disabled
 
-Add the `disabled` prop to the `Switch` component to disable the switch. Add the `data-disabled` prop to the `Field` component for styling.
+Add the `disabled` prop to the `Switch` component to disable the switch. Add the `data-disabled` prop to the `Field.Field` component for styling.
 
 <ComponentPreview name="switch-disabled">
 
@@ -104,7 +104,7 @@ Add the `disabled` prop to the `Switch` component to disable the switch. Add the
 
 ## Invalid
 
-Add the `aria-invalid` prop to the `Switch` component to indicate an invalid state. Add the `data-invalid` prop to the `Field` component for styling.
+Add the `aria-invalid` prop to the `Switch` component to indicate an invalid state. Add the `data-invalid` prop to the `Field.Field` component for styling.
 
 <ComponentPreview name="switch-invalid">
 

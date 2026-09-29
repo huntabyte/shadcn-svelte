@@ -3,31 +3,31 @@
 	import MailIcon from "@lucide/svelte/icons/mail";
 	import MessageSquareIcon from "@lucide/svelte/icons/message-square";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 
-	let emailEnabled = $state(true);
-	let smsEnabled = $state(false);
-	let pushEnabled = $state(true);
+	let notifications = $state({
+		email: true,
+		sms: false,
+		push: true,
+	});
 </script>
 
 <DropdownMenu.Root>
-	<DropdownMenu.Trigger>
-		{#snippet child({ props })}
-			<Button {...props} variant="outline">Notifications</Button>
-		{/snippet}
+	<DropdownMenu.Trigger class={buttonVariants({ variant: "outline" })}>
+		Notifications
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content class="w-48">
 		<DropdownMenu.Group>
 			<DropdownMenu.Label>Notification Preferences</DropdownMenu.Label>
-			<DropdownMenu.CheckboxItem bind:checked={emailEnabled}>
+			<DropdownMenu.CheckboxItem bind:checked={notifications.email}>
 				<MailIcon />
 				Email notifications
 			</DropdownMenu.CheckboxItem>
-			<DropdownMenu.CheckboxItem bind:checked={smsEnabled}>
+			<DropdownMenu.CheckboxItem bind:checked={notifications.sms}>
 				<MessageSquareIcon />
 				SMS notifications
 			</DropdownMenu.CheckboxItem>
-			<DropdownMenu.CheckboxItem bind:checked={pushEnabled}>
+			<DropdownMenu.CheckboxItem bind:checked={notifications.push}>
 				<BellIcon />
 				Push notifications
 			</DropdownMenu.CheckboxItem>

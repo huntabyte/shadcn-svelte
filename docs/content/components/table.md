@@ -136,3 +136,7 @@ You can use the `<Table />` component to build more complex data tables. Combine
 See the [Data Table](/docs/components/data-table) documentation for more information.
 
 You can also see an example of a data table in the [Tasks](/examples/tasks) demo.
+
+## API Reference
+
+The table components accept the native attributes for `table`, `thead`, `tbody`, `tfoot`, `tr`, `th`, `td`, and `caption`, respectively. Each component supports `bind:ref`. See the [HTML table reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/table).

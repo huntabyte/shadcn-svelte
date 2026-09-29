@@ -50,11 +50,9 @@
 							{states.find((s) => s.value === selectedState)?.label ?? "Select State"}
 						</Select.Trigger>
 						<Select.Content>
-							<Select.Group>
-								{#each states as state (state.value)}
-									<Select.Item value={state.value}>{state.label}</Select.Item>
-								{/each}
-							</Select.Group>
+							{#each states as state (state.value)}
+								<Select.Item value={state.value}>{state.label}</Select.Item>
+							{/each}
 						</Select.Content>
 					</Select.Root>
 				</Field.Field>
@@ -71,11 +69,9 @@
 							{countries.find((c) => c.value === selectedCountry)?.label ?? "Select Country"}
 						</Select.Trigger>
 						<Select.Content>
-							<Select.Group>
-								{#each countries as country (country.value)}
-									<Select.Item value={country.value}>{country.label}</Select.Item>
-								{/each}
-							</Select.Group>
+							{#each countries as country (country.value)}
+								<Select.Item value={country.value}>{country.label}</Select.Item>
+							{/each}
 						</Select.Content>
 					</Select.Root>
 				</Field.Field>

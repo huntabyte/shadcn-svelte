@@ -110,7 +110,7 @@ NativeSelect.Root
 
 Use `NativeSelect.OptGroup` to organize options into categories.
 
-<ComponentPreview name="native-select-groups" >
+<ComponentPreview name="native-select-groups">
 
 <div></div>
 
@@ -118,9 +118,9 @@ Use `NativeSelect.OptGroup` to organize options into categories.
 
 ## Disabled
 
-Add the `disabled` prop to the `NativeSelect` component to disable the select.
+Add the `disabled` prop to the `NativeSelect.Root` component to disable the select.
 
-<ComponentPreview name="native-select-disabled" >
+<ComponentPreview name="native-select-disabled">
 
 <div></div>
 
@@ -128,9 +128,9 @@ Add the `disabled` prop to the `NativeSelect` component to disable the select.
 
 ## Invalid
 
-Use `aria-invalid` to show validation errors and the `data-invalid` attribute to the `Field` component for styling.
+Use `aria-invalid` to show validation errors and the `data-invalid` attribute to the `Field.Field` component for styling.
 
-<ComponentPreview name="native-select-invalid" >
+<ComponentPreview name="native-select-invalid">
 
 <div></div>
 
@@ -138,8 +138,8 @@ Use `aria-invalid` to show validation errors and the `data-invalid` attribute to
 
 ## Native Select vs Select
 
-- Use `NativeSelect` when you need native browser behavior, better performance, or mobile-optimized dropdowns.
-- Use `Select` when you need custom styling, animations, or complex interactions.
+- Use `NativeSelect` for native browser behavior, better performance, or mobile-optimized dropdowns.
+- Use `Select` for custom styling, animations, or complex interactions.
 
 ## API Reference
 

@@ -1,11 +1,9 @@
 <script lang="ts">
-	import CheckIcon from "@lucide/svelte/icons/check";
-	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
+	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
 	import { tick } from "svelte";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
 
 	const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"];
 
@@ -13,6 +11,9 @@
 	let value = $state("");
 	let triggerRef = $state<HTMLButtonElement>(null!);
 
+	// We want to refocus the trigger button when the user selects
+	// an item from the list so users can continue navigating the
+	// rest of the form with the keyboard.
 	function closeAndFocusTrigger() {
 		open = false;
 		tick().then(() => {
@@ -27,12 +28,12 @@
 			<Button
 				{...props}
 				variant="outline"
-				class="w-[200px] justify-between"
+				class="w-[200px] justify-between font-normal"
 				role="combobox"
 				aria-expanded={open}
 			>
 				{value || "Select a framework"}
-				<ChevronsUpDownIcon class="opacity-50" />
+				<ChevronDownIcon class="text-muted-foreground" />
 			</Button>
 		{/snippet}
 	</Popover.Trigger>
@@ -45,12 +46,12 @@
 					{#each frameworks as framework (framework)}
 						<Command.Item
 							value={framework}
+							data-checked={value === framework}
 							onSelect={() => {
 								value = framework;
 								closeAndFocusTrigger();
 							}}
 						>
-							<CheckIcon class={cn(value !== framework && "text-transparent")} />
 							{framework}
 						</Command.Item>
 					{/each}

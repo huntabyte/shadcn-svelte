@@ -28,6 +28,8 @@
 	--font-heading: var(--font-heading);
 	--font-mono: var(--font-mono);
 	--svelte-orange: oklch(0.6385 0.1991 34.99);
+	--breakpoint-3xl: 1600px;
+	--breakpoint-4xl: 2000px;
 	--radius-sm: calc(var(--radius) * 0.6);
 	--radius-md: calc(var(--radius) * 0.8);
 	--radius-lg: var(--radius);

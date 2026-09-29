@@ -1,25 +1,24 @@
 <script lang="ts">
 	import { toast } from "svelte-sonner";
 	import { Button } from "$lib/registry/ui/button/index.js";
+
+	const positions = [
+		{ label: "Top Left", value: "top-left" },
+		{ label: "Top Center", value: "top-center" },
+		{ label: "Top Right", value: "top-right" },
+		{ label: "Bottom Left", value: "bottom-left" },
+		{ label: "Bottom Center", value: "bottom-center" },
+		{ label: "Bottom Right", value: "bottom-right" },
+	] as const;
 </script>
 
 <div class="flex flex-wrap justify-center gap-2">
-	<Button variant="outline" onclick={() => toast("Top Left", { position: "top-left" })}>
-		Top Left
-	</Button>
-	<Button variant="outline" onclick={() => toast("Top Center", { position: "top-center" })}>
-		Top Center
-	</Button>
-	<Button variant="outline" onclick={() => toast("Top Right", { position: "top-right" })}>
-		Top Right
-	</Button>
-	<Button variant="outline" onclick={() => toast("Bottom Left", { position: "bottom-left" })}>
-		Bottom Left
-	</Button>
-	<Button variant="outline" onclick={() => toast("Bottom Center", { position: "bottom-center" })}>
-		Bottom Center
-	</Button>
-	<Button variant="outline" onclick={() => toast("Bottom Right", { position: "bottom-right" })}>
-		Bottom Right
-	</Button>
+	{#each positions as position (position.value)}
+		<Button
+			variant="outline"
+			onclick={() => toast("Event has been created", { position: position.value })}
+		>
+			{position.label}
+		</Button>
+	{/each}
 </div>

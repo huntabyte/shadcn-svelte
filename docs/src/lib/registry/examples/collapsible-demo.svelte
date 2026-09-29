@@ -1,7 +1,7 @@
 <script lang="ts">
 	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
 	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	let isOpen = $state(false);
 </script>
@@ -9,11 +9,13 @@
 <Collapsible.Root bind:open={isOpen} class="flex w-[350px] flex-col gap-2">
 	<div class="flex items-center justify-between gap-4 px-4">
 		<h4 class="text-sm font-semibold">Order #4189</h4>
-		<Collapsible.Trigger
-			class={buttonVariants({ variant: "ghost", size: "icon", class: "size-8" })}
-		>
-			<ChevronsUpDownIcon />
-			<span class="sr-only">Toggle details</span>
+		<Collapsible.Trigger>
+			{#snippet child({ props })}
+				<Button {...props} variant="ghost" size="icon" class="size-8">
+					<ChevronsUpDownIcon />
+					<span class="sr-only">Toggle details</span>
+				</Button>
+			{/snippet}
 		</Collapsible.Trigger>
 	</div>
 	<div class="flex items-center justify-between rounded-md border px-4 py-2 text-sm">

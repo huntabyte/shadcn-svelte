@@ -1,5 +1,5 @@
 <script lang="ts">
-	import MoreHorizontalIcon from "@lucide/svelte/icons/ellipsis";
+	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Table from "$lib/registry/ui/table/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
@@ -16,7 +16,7 @@
 		<Table.Row>
 			<Table.Head>Product</Table.Head>
 			<Table.Head>Price</Table.Head>
-			<Table.Head class="text-end">Actions</Table.Head>
+			<Table.Head class="text-right">Actions</Table.Head>
 		</Table.Row>
 	</Table.Header>
 	<Table.Body>
@@ -24,12 +24,12 @@
 			<Table.Row>
 				<Table.Cell class="font-medium">{product.name}</Table.Cell>
 				<Table.Cell>{product.price}</Table.Cell>
-				<Table.Cell class="text-end">
+				<Table.Cell class="text-right">
 					<DropdownMenu.Root>
 						<DropdownMenu.Trigger>
 							{#snippet child({ props })}
 								<Button {...props} variant="ghost" size="icon" class="size-8">
-									<MoreHorizontalIcon />
+									<EllipsisIcon />
 									<span class="sr-only">Open menu</span>
 								</Button>
 							{/snippet}

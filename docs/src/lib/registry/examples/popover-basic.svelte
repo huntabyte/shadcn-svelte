@@ -1,14 +1,12 @@
 <script lang="ts">
 	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 </script>
 
 <Popover.Root>
-	<Popover.Trigger>
-		{#snippet child({ props })}
-			<Button variant="outline" {...props}>Open Popover</Button>
-		{/snippet}
-	</Popover.Trigger>
+	<Popover.Trigger class={buttonVariants({ variant: "outline", class: "w-fit" })}
+		>Open Popover</Popover.Trigger
+	>
 	<Popover.Content align="start">
 		<Popover.Header>
 			<Popover.Title>Dimensions</Popover.Title>

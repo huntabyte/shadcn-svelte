@@ -1,6 +1,6 @@
 ---
 title: Input OTP
-description: Accessible one-time password component with copy paste functionality.
+description: Accessible one-time password component with copy-paste functionality.
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/input-otp
@@ -115,7 +115,18 @@ InputOTP.Root
 
 ## Pattern
 
-Use the `pattern` prop to restrict input to a specific pattern. The `REGEXP_ONLY_DIGITS` constant can be imported from `bits-ui`.
+Use the `pattern` prop to define a custom pattern for the OTP input.
+
+```svelte showLineNumbers {3,6}
+<script lang="ts">
+  import * as InputOTP from "$lib/components/ui/input-otp/index.js";
+  import { REGEXP_ONLY_DIGITS_AND_CHARS } from "bits-ui";
+</script>
+
+<InputOTP.Root maxlength={6} pattern={REGEXP_ONLY_DIGITS_AND_CHARS}>
+  <!-- ... -->
+</InputOTP.Root>
+```
 
 <ComponentPreview name="input-otp-pattern">
 
@@ -125,7 +136,7 @@ Use the `pattern` prop to restrict input to a specific pattern. The `REGEXP_ONLY
 
 ## Separator
 
-You can use the `InputOTP.Separator` component to add a separator between the groups of cells.
+Use the `<InputOTP.Separator />` component to add a separator between input groups.
 
 <ComponentPreview name="input-otp-separator">
 
@@ -135,7 +146,7 @@ You can use the `InputOTP.Separator` component to add a separator between the gr
 
 ## Disabled
 
-Use the `disabled` prop to prevent user interaction with the input.
+Use the `disabled` prop to disable the input.
 
 <ComponentPreview name="input-otp-disabled">
 
@@ -145,7 +156,7 @@ Use the `disabled` prop to prevent user interaction with the input.
 
 ## Controlled
 
-Use `bind:value` to control the input value programmatically.
+Use `bind:value` to control the input value.
 
 <ComponentPreview name="input-otp-controlled">
 
@@ -155,7 +166,7 @@ Use `bind:value` to control the input value programmatically.
 
 ## Invalid
 
-Use the `aria-invalid` attribute on slots to display an error state.
+Use `aria-invalid` on the slots to show an error state.
 
 <ComponentPreview name="input-otp-invalid">
 
@@ -165,7 +176,7 @@ Use the `aria-invalid` attribute on slots to display an error state.
 
 ## Four Digits
 
-A common pattern for PIN codes using a 4-digit numeric input.
+A common pattern for PIN codes. This uses the `pattern={REGEXP_ONLY_DIGITS}` prop.
 
 <ComponentPreview name="input-otp-four-digits">
 
@@ -175,7 +186,7 @@ A common pattern for PIN codes using a 4-digit numeric input.
 
 ## Alphanumeric
 
-Use the `REGEXP_ONLY_DIGITS_AND_CHARS` pattern to accept both letters and numbers.
+Use `REGEXP_ONLY_DIGITS_AND_CHARS` to accept both letters and numbers.
 
 <ComponentPreview name="input-otp-alphanumeric">
 
@@ -185,9 +196,7 @@ Use the `REGEXP_ONLY_DIGITS_AND_CHARS` pattern to accept both letters and number
 
 ## Form
 
-Use the input in a form with a label and description.
-
-<ComponentPreview name="input-otp-form" previewClassName="h-[30rem]">
+<ComponentPreview name="input-otp-form">
 
 <div></div>
 

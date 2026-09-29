@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as Sheet from "$lib/registry/ui/sheet/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
 
 	const SHEET_SIDES = ["top", "right", "bottom", "left"] as const;
 </script>
@@ -8,12 +8,8 @@
 <div class="flex flex-wrap gap-2">
 	{#each SHEET_SIDES as side (side)}
 		<Sheet.Root>
-			<Sheet.Trigger>
-				{#snippet child({ props })}
-					<Button variant="outline" {...props} class="capitalize">
-						{side}
-					</Button>
-				{/snippet}
+			<Sheet.Trigger class={buttonVariants({ variant: "outline", class: "capitalize" })}>
+				{side}
 			</Sheet.Trigger>
 			<Sheet.Content {side} class="data-[side=bottom]:max-h-[50vh] data-[side=top]:max-h-[50vh]">
 				<Sheet.Header>
@@ -36,11 +32,7 @@
 				</div>
 				<Sheet.Footer>
 					<Button type="submit">Save changes</Button>
-					<Sheet.Close>
-						{#snippet child({ props })}
-							<Button variant="outline" {...props}>Cancel</Button>
-						{/snippet}
-					</Sheet.Close>
+					<Sheet.Close class={buttonVariants({ variant: "outline" })}>Cancel</Sheet.Close>
 				</Sheet.Footer>
 			</Sheet.Content>
 		</Sheet.Root>

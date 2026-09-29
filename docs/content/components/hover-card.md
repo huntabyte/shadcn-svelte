@@ -3,7 +3,7 @@ title: Hover Card
 description: For sighted users to preview content available behind a link.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/hover-card
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/link-preview
   doc: https://bits-ui.com/docs/components/link-preview
   api: https://bits-ui.com/docs/components/link-preview#api-reference
 ---
@@ -20,7 +20,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="hover-card-demo" previewClassName="h-80">
+<ComponentPreview name="hover-card-demo">
 
 <div></div>
 
@@ -51,7 +51,6 @@ Copy and paste the following code into your project.
 {#if viewerData}
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
-
 <Step>
 
 Update the import paths to match your project setup.
@@ -114,7 +113,7 @@ Use the `side` and `align` props on `HoverCard.Content` to control placement.
 
 ## Basic
 
-<ComponentPreview name="hover-card-demo" previewClassName="h-80">
+<ComponentPreview name="hover-card-demo">
 
 <div></div>
 
@@ -122,7 +121,7 @@ Use the `side` and `align` props on `HoverCard.Content` to control placement.
 
 ## Sides
 
-<ComponentPreview name="hover-card-sides" previewClassName="h-[22rem]">
+<ComponentPreview name="hover-card-sides">
 
 <div></div>
 

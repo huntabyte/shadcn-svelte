@@ -20,7 +20,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="dialog-demo" description="A dialog for editing profile details.">
+<ComponentPreview name="dialog-demo">
 
 <div></div>
 
@@ -75,7 +75,7 @@ Update the import paths to match your project setup.
   <Dialog.Trigger>Open</Dialog.Trigger>
   <Dialog.Content>
     <Dialog.Header>
-      <Dialog.Title>Are you sure absolutely sure?</Dialog.Title>
+      <Dialog.Title>Are you absolutely sure?</Dialog.Title>
       <Dialog.Description>
         This action cannot be undone. This will permanently delete your account
         and remove your data from our servers.
@@ -99,11 +99,11 @@ Dialog.Root
     └── Dialog.Footer
 ```
 
-## Custom close button
+## Custom Close Button
 
 Replace the default close control with your own button.
 
-<ComponentPreview name="dialog-close-button" >
+<ComponentPreview name="dialog-close-button">
 
 <div></div>
 
@@ -133,53 +133,11 @@ Keep actions visible while the content scrolls.
 
 Long content can scroll while the header stays in view.
 
-<ComponentPreview name="dialog-scrollable">
+<ComponentPreview name="dialog-scrollable-content">
 
 <div></div>
 
 </ComponentPreview>
-
-## Notes
-
-To use the `Dialog` component from within a `Context Menu` or `Dropdown Menu`, you must encase the `Context Menu` or
-`Dropdown Menu` component in the `Dialog` component.
-
-```svelte showLineNumbers title="components/example-dialog-context-menu.svelte" {1, 26}
-<script lang="ts">
-  import * as Dialog from "$lib/components/ui/dialog/index.js";
-  import * as ContextMenu from "$lib/components/ui/context-menu/index.js";
-  import { Button } from "$lib/components/ui/button/index.js";
-</script>
-
-<Dialog.Root>
-  <ContextMenu.Root>
-    <ContextMenu.Trigger>Right click</ContextMenu.Trigger>
-    <ContextMenu.Content>
-      <ContextMenu.Item>Open</ContextMenu.Item>
-      <ContextMenu.Item>Download</ContextMenu.Item>
-      <Dialog.Trigger>
-        {#snippet child({ props })}
-          <ContextMenu.Item {...props}>
-            <span>Delete</span>
-          </ContextMenu.Item>
-        {/snippet}
-      </Dialog.Trigger>
-    </ContextMenu.Content>
-  </ContextMenu.Root>
-  <Dialog.Content>
-    <Dialog.Header>
-      <Dialog.Title>Are you absolutely sure?</Dialog.Title>
-      <Dialog.Description>
-        This action cannot be undone. Are you sure you want to permanently
-        delete this file from our servers?
-      </Dialog.Description>
-    </Dialog.Header>
-    <Dialog.Footer>
-      <Button type="submit">Confirm</Button>
-    </Dialog.Footer>
-  </Dialog.Content>
-</Dialog.Root>
-```
 
 ## API Reference
 

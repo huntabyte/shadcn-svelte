@@ -19,27 +19,27 @@
 		<Collapsible.Root bind:open={isOpen} class="flex items-start gap-2">
 			<Field.Group class="grid w-full grid-cols-2 gap-2">
 				<Field.Field>
-					<Field.Label class="sr-only">Radius X</Field.Label>
-					<Input id="radius-x" placeholder="0" value={0} />
+					<Field.Label for="radius-top-left" class="sr-only">Radius Top Left</Field.Label>
+					<Input id="radius-top-left" placeholder="0" value={0} />
 				</Field.Field>
 				<Field.Field>
-					<Field.Label class="sr-only">Radius Y</Field.Label>
-					<Input id="radius-y" placeholder="0" value={0} />
+					<Field.Label for="radius-top-right" class="sr-only">Radius Top Right</Field.Label>
+					<Input id="radius-top-right" placeholder="0" value={0} />
 				</Field.Field>
 				<Collapsible.Content class="col-span-full grid grid-cols-subgrid gap-2">
 					<Field.Field>
-						<Field.Label class="sr-only">Radius X</Field.Label>
-						<Input id="radius-x-2" placeholder="0" value={0} />
+						<Field.Label for="radius-bottom-left" class="sr-only">Radius Bottom Left</Field.Label>
+						<Input id="radius-bottom-left" placeholder="0" value={0} />
 					</Field.Field>
 					<Field.Field>
-						<Field.Label class="sr-only">Radius Y</Field.Label>
-						<Input id="radius-y-2" placeholder="0" value={0} />
+						<Field.Label for="radius-bottom-right" class="sr-only">Radius Bottom Right</Field.Label>
+						<Input id="radius-bottom-right" placeholder="0" value={0} />
 					</Field.Field>
 				</Collapsible.Content>
 			</Field.Group>
 			<Collapsible.Trigger>
 				{#snippet child({ props })}
-					<Button variant="outline" size="icon" {...props}>
+					<Button {...props} variant="outline" size="icon">
 						{#if isOpen}
 							<MinimizeIcon />
 						{:else}

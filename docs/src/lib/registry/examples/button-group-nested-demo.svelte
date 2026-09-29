@@ -1,6 +1,6 @@
 <script lang="ts">
-	import AudioLines from "@lucide/svelte/icons/audio-lines";
-	import Plus from "@lucide/svelte/icons/plus";
+	import AudioLinesIcon from "@lucide/svelte/icons/audio-lines";
+	import PlusIcon from "@lucide/svelte/icons/plus";
 	import * as ButtonGroup from "$lib/registry/ui/button-group/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
@@ -9,8 +9,8 @@
 
 <ButtonGroup.Root>
 	<ButtonGroup.Root>
-		<Button variant="outline" size="icon" aria-label="Add">
-			<Plus />
+		<Button variant="outline" size="icon">
+			<PlusIcon />
 		</Button>
 	</ButtonGroup.Root>
 	<ButtonGroup.Root>
@@ -19,8 +19,8 @@
 			<Tooltip.Root>
 				<Tooltip.Trigger>
 					{#snippet child({ props })}
-						<InputGroup.Addon align="inline-end" {...props}>
-							<AudioLines />
+						<InputGroup.Addon {...props} align="inline-end">
+							<AudioLinesIcon />
 						</InputGroup.Addon>
 					{/snippet}
 				</Tooltip.Trigger>

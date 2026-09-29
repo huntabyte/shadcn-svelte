@@ -1,5 +1,6 @@
 <script lang="ts">
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
+	import * as Field from "$lib/registry/ui/field/index.js";
 	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
 	import { Label } from "$lib/registry/ui/label/index.js";
@@ -17,16 +18,16 @@
 					Make changes to your profile here. Click save when you&apos;re done.
 				</Dialog.Description>
 			</Dialog.Header>
-			<div class="grid gap-4">
-				<div class="grid gap-3">
+			<Field.Group>
+				<Field.Field>
 					<Label for="name-1">Name</Label>
-					<Input id="name-1" name="name" value="Pedro Duarte" />
-				</div>
-				<div class="grid gap-3">
+					<Input id="name-1" name="name" defaultValue="Pedro Duarte" />
+				</Field.Field>
+				<Field.Field>
 					<Label for="username-1">Username</Label>
-					<Input id="username-1" name="username" value="@peduarte" />
-				</div>
-			</div>
+					<Input id="username-1" name="username" defaultValue="@peduarte" />
+				</Field.Field>
+			</Field.Group>
 			<Dialog.Footer>
 				<Dialog.Close type="button" class={buttonVariants({ variant: "outline" })}>
 					Cancel

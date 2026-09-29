@@ -20,11 +20,15 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="resizable-demo" previewClassName="h-80">
+<ComponentPreview name="resizable-demo">
 
 <div></div>
 
 </ComponentPreview>
+
+## About
+
+The `Resizable` component is built on top of [PaneForge](https://github.com/svecosystem/paneforge) by [Huntabyte](https://github.com/huntabyte). Visit the [PaneForge documentation](https://paneforge.com) for all the available props and abilities of the `Resizable` component.
 
 ## Installation
 
@@ -71,11 +75,11 @@ Update the import paths to match your project setup.
 ```
 
 ```svelte showLineNumbers
-<Resizable.PanelGroup orientation="horizontal">
-  <Resizable.Panel>One</Resizable.Panel>
+<Resizable.PaneGroup direction="horizontal">
+  <Resizable.Pane>One</Resizable.Pane>
   <Resizable.Handle />
-  <Resizable.Panel>Two</Resizable.Panel>
-</Resizable.PanelGroup>
+  <Resizable.Pane>Two</Resizable.Pane>
+</Resizable.PaneGroup>
 ```
 
 ## Composition
@@ -91,7 +95,7 @@ Resizable.PanelGroup
 
 ## Vertical
 
-Use `orientation="vertical"` for vertical resizing.
+Use `direction="vertical"` for vertical resizing.
 
 <ComponentPreview name="resizable-vertical">
 
@@ -111,4 +115,6 @@ Use the `withHandle` prop on `Resizable.Handle` to show a visible handle.
 
 ## API Reference
 
-See the [PaneForge documentation](https://paneforge.com) documentation for more information.
+See the [PaneForge PaneGroup](https://paneforge.com/docs/components/pane-group), [Pane](https://paneforge.com/docs/components/pane), and [Handle](https://paneforge.com/docs/components/handle) references.
+
+`Resizable.PanelGroup` and `Resizable.Panel` are aliases for `Resizable.PaneGroup` and `Resizable.Pane`. The group accepts `direction` or `orientation`; when both are set, `orientation` takes precedence.

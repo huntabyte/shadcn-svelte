@@ -3,7 +3,6 @@
 
 	let showBookmarks = $state(true);
 	let showFullURLs = $state(false);
-
 	let value = $state("pedro");
 </script>
 
@@ -49,12 +48,11 @@
 		</ContextMenu.Group>
 		<ContextMenu.Separator />
 		<ContextMenu.Group>
-			<ContextMenu.CheckboxItem bind:checked={showBookmarks}>
-				Show Bookmarks
-			</ContextMenu.CheckboxItem>
-			<ContextMenu.CheckboxItem bind:checked={showFullURLs}>
-				Show Full URLs
-			</ContextMenu.CheckboxItem>
+			<ContextMenu.CheckboxItem bind:checked={showBookmarks}
+				>Show Bookmarks</ContextMenu.CheckboxItem
+			>
+			<ContextMenu.CheckboxItem bind:checked={showFullURLs}>Show Full URLs</ContextMenu.CheckboxItem
+			>
 		</ContextMenu.Group>
 		<ContextMenu.Separator />
 		<ContextMenu.Group>

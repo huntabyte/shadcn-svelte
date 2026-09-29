@@ -23,11 +23,9 @@
 				{currencyLabel}
 			</Select.Trigger>
 			<Select.Content>
-				<Select.Group>
-					<Select.Item value="usd">USD</Select.Item>
-					<Select.Item value="eur">EUR</Select.Item>
-					<Select.Item value="gbp">GBP</Select.Item>
-				</Select.Group>
+				<Select.Item value="usd">USD</Select.Item>
+				<Select.Item value="eur">EUR</Select.Item>
+				<Select.Item value="gbp">GBP</Select.Item>
 			</Select.Content>
 		</Select.Root>
 	</div>

@@ -143,7 +143,7 @@ You can also use an icon inside `<Avatar.Badge>`.
 
 </ComponentPreview>
 
-## Group
+## Avatar Group
 
 Use the `Avatar.Group` component to add a group of avatars.
 
@@ -153,7 +153,7 @@ Use the `Avatar.Group` component to add a group of avatars.
 
 </ComponentPreview>
 
-## Group Count
+## Avatar Group Count
 
 Use `<Avatar.GroupCount>` to add a count to the group.
 
@@ -163,11 +163,11 @@ Use `<Avatar.GroupCount>` to add a count to the group.
 
 </ComponentPreview>
 
-## Group with Icon
+## Avatar Group with Icon
 
 You can also use an icon inside `<Avatar.GroupCount>`.
 
-<ComponentPreview name="avatar-group-icon">
+<ComponentPreview name="avatar-group-count-icon">
 
 <div></div>
 
@@ -177,7 +177,7 @@ You can also use an icon inside `<Avatar.GroupCount>`.
 
 Use the `size` prop to change the size of the avatar.
 
-<ComponentPreview name="avatar-sizes">
+<ComponentPreview name="avatar-size">
 
 <div></div>
 

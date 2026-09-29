@@ -4,6 +4,5 @@
 </script>
 
 <Button variant="outline">
-	Accept
-	<Kbd.Root data-icon="inline-end" class="translate-x-0.5">⏎</Kbd.Root>
+	Accept <Kbd.Root data-icon="inline-end" class="translate-x-0.5">⏎</Kbd.Root>
 </Button>

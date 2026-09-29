@@ -41,11 +41,9 @@
 							{countryLabel}
 						</Select.Trigger>
 						<Select.Content>
-							<Select.Group>
-								<Select.Item value="us">United States</Select.Item>
-								<Select.Item value="uk">United Kingdom</Select.Item>
-								<Select.Item value="ca">Canada</Select.Item>
-							</Select.Group>
+							<Select.Item value="us">United States</Select.Item>
+							<Select.Item value="uk">United Kingdom</Select.Item>
+							<Select.Item value="ca">Canada</Select.Item>
 						</Select.Content>
 					</Select.Root>
 				</Field.Field>

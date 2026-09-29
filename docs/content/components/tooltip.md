@@ -72,7 +72,9 @@ The `Tooltip.Provider` component should be placed once in your root layout, wrap
 
   let { children } = $props();
 </script>
+```
 
+```svelte showLineNumbers
 <Tooltip.Provider>
   {@render children()}
 </Tooltip.Provider>
@@ -118,7 +120,7 @@ Tooltip.Provider
 
 Use the `side` prop to change the position of the tooltip.
 
-<ComponentPreview name="tooltip-side">
+<ComponentPreview name="tooltip-sides">
 
 <div></div>
 
@@ -126,7 +128,7 @@ Use the `side` prop to change the position of the tooltip.
 
 ## With Keyboard Shortcut
 
-<ComponentPreview name="tooltip-keyboard-shortcut">
+<ComponentPreview name="tooltip-keyboard">
 
 <div></div>
 
@@ -136,11 +138,19 @@ Use the `side` prop to change the position of the tooltip.
 
 Show a tooltip on a disabled button by wrapping it with a span.
 
-<ComponentPreview name="tooltip-disabled-button">
+<ComponentPreview name="tooltip-disabled">
 
 <div></div>
 
 </ComponentPreview>
+
+## Changelog
+
+### 2025-12 Update tooltip colors
+
+We've updated the tooltip colors to use the foreground color for the background and the background color for the foreground.
+
+Replace `bg-primary text-primary-foreground` with `bg-foreground text-background` for `<Tooltip.Content />`.
 
 ## API Reference
 

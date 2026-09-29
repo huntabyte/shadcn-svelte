@@ -10,7 +10,7 @@
 		<Collapsible.Root class="rounded-md data-[state=open]:bg-muted">
 			<Collapsible.Trigger>
 				{#snippet child({ props })}
-					<Button variant="ghost" class="group w-full" {...props}>
+					<Button {...props} variant="ghost" class="group w-full">
 						Product details
 						<ChevronDownIcon class="ml-auto group-data-[state=open]:rotate-180" />
 					</Button>

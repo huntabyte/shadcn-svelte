@@ -71,11 +71,9 @@ Update the import paths to match your project setup.
 ```
 
 ```svelte showLineNumbers
-<div class="w-[450px]">
-  <AspectRatio ratio={16 / 9} class="bg-muted">
-    <img src="..." alt="..." class="rounded-md object-cover" />
-  </AspectRatio>
-</div>
+<AspectRatio ratio={16 / 9}>
+  <img src="..." alt="Image" class="rounded-md object-cover" />
+</AspectRatio>
 ```
 
 ## Square
@@ -92,7 +90,7 @@ A square aspect ratio component using the `ratio={1 / 1}` prop. This is useful f
 
 A portrait aspect ratio component using the `ratio={9 / 16}` prop. This is useful for displaying images in a portrait format.
 
-<ComponentPreview name="aspect-ratio-portrait" previewClassName="h-96">
+<ComponentPreview name="aspect-ratio-portrait">
 
 <div></div>
 

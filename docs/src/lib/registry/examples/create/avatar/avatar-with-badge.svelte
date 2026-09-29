@@ -4,20 +4,34 @@
 </script>
 
 <Example title="Badge">
-	<div class="flex flex-wrap items-center gap-4">
+	<div class="flex flex-wrap items-center gap-2">
 		<Avatar.Root size="sm">
-			<Avatar.Image src="https://github.com/shadcn.png" alt="@shadcn" />
-			<Avatar.Fallback>CN</Avatar.Fallback>
+			<Avatar.Image src="https://github.com/jorgezreik.png" alt="@jorgezreik" />
+			<Avatar.Fallback>JZ</Avatar.Fallback>
 			<Avatar.Badge />
 		</Avatar.Root>
-		<Avatar.Root size="default">
-			<Avatar.Image src="https://github.com/shadcn.png" alt="@shadcn" />
-			<Avatar.Fallback>CN</Avatar.Fallback>
+		<Avatar.Root>
+			<Avatar.Image src="https://github.com/jorgezreik.png" alt="@jorgezreik" />
+			<Avatar.Fallback>JZ</Avatar.Fallback>
 			<Avatar.Badge />
 		</Avatar.Root>
 		<Avatar.Root size="lg">
-			<Avatar.Image src="https://github.com/shadcn.png" alt="@shadcn" />
-			<Avatar.Fallback>CN</Avatar.Fallback>
+			<Avatar.Image src="https://github.com/jorgezreik.png" alt="@jorgezreik" />
+			<Avatar.Fallback>JZ</Avatar.Fallback>
+			<Avatar.Badge />
+		</Avatar.Root>
+	</div>
+	<div class="flex flex-wrap items-center gap-2">
+		<Avatar.Root size="sm">
+			<Avatar.Fallback>JZ</Avatar.Fallback>
+			<Avatar.Badge />
+		</Avatar.Root>
+		<Avatar.Root>
+			<Avatar.Fallback>JZ</Avatar.Fallback>
+			<Avatar.Badge />
+		</Avatar.Root>
+		<Avatar.Root size="lg">
+			<Avatar.Fallback>JZ</Avatar.Fallback>
 			<Avatar.Badge />
 		</Avatar.Root>
 	</div>

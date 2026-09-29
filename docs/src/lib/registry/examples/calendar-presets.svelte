@@ -1,20 +1,21 @@
 <script lang="ts">
-	import { today, getLocalTimeZone, type DateValue } from "@internationalized/date";
+	import { CalendarDate, getLocalTimeZone, today } from "@internationalized/date";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Calendar } from "$lib/registry/ui/calendar/index.js";
 
 	const presets = [
-		{ label: "Today", days: 0 },
-		{ label: "Tomorrow", days: 1 },
-		{ label: "In 3 days", days: 3 },
-		{ label: "In a week", days: 7 },
-		{ label: "In 2 weeks", days: 14 },
+		{ label: "Today", value: 0 },
+		{ label: "Tomorrow", value: 1 },
+		{ label: "In 3 days", value: 3 },
+		{ label: "In a week", value: 7 },
+		{ label: "In 2 weeks", value: 14 },
 	];
 
-	const initialDate = today(getLocalTimeZone()).set({ month: 2, day: 12 });
-	let value = $state<DateValue | undefined>(initialDate);
-	let placeholder = $state<DateValue | undefined>(initialDate);
+	let value = $state<CalendarDate | undefined>(
+		new CalendarDate(today(getLocalTimeZone()).year, 2, 12)
+	);
+	let placeholder = $state<CalendarDate>(today(getLocalTimeZone()));
 </script>
 
 <Card.Root class="mx-auto w-fit max-w-[300px]" size="sm">
@@ -28,13 +29,13 @@
 		/>
 	</Card.Content>
 	<Card.Footer class="flex flex-wrap gap-2 border-t">
-		{#each presets as preset (preset.days)}
+		{#each presets as preset (preset.value)}
 			<Button
 				variant="outline"
 				size="sm"
 				class="flex-1"
 				onclick={() => {
-					const newDate = today(getLocalTimeZone()).add({ days: preset.days });
+					const newDate = today(getLocalTimeZone()).add({ days: preset.value });
 					value = newDate;
 					placeholder = newDate;
 				}}

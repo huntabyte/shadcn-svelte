@@ -140,17 +140,11 @@ Use `orientation="vertical"` for vertical toggle groups.
 
 A custom toggle group example.
 
-<ComponentPreview name="toggle-group-font-weight-selector" previewClassName="*:data-[slot=field]:max-w-xs">
+<ComponentPreview name="toggle-group-font-weight-selector" class="[&_[data-align]>[data-slot=field]]:max-w-xs">
 
 <div></div>
 
 </ComponentPreview>
-
-## Changelog
-
-### 2026-05-17 Default Spacing
-
-The default spacing for `ToggleGroup` has been updated to match the upstream component.
 
 ## API Reference
 

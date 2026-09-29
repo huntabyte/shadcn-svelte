@@ -4,6 +4,5 @@
 </script>
 
 <Badge href="#link">
-	Open Link
-	<ArrowUpRightIcon data-icon="inline-end" />
+	Open Link <ArrowUpRightIcon data-icon="inline-end" />
 </Badge>

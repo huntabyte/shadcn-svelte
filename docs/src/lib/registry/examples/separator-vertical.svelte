@@ -2,10 +2,10 @@
 	import { Separator } from "$lib/registry/ui/separator/index.js";
 </script>
 
-<div class="flex h-5 items-center space-x-4 text-sm">
-	<span>Blog</span>
+<div class="flex h-5 items-center gap-4 text-sm">
+	<div>Blog</div>
 	<Separator orientation="vertical" />
-	<span>Docs</span>
+	<div>Docs</div>
 	<Separator orientation="vertical" />
-	<span>Source</span>
+	<div>Source</div>
 </div>

@@ -6,8 +6,8 @@
 	<AspectRatio ratio={9 / 16} class="rounded-lg bg-muted">
 		<img
 			src="https://avatar.vercel.sh/shadcn1"
-			alt="Portrait"
-			class="rounded-lg object-cover grayscale dark:brightness-20"
+			alt="Placeholder"
+			class="size-full rounded-lg object-cover grayscale dark:brightness-20"
 		/>
 	</AspectRatio>
 </div>

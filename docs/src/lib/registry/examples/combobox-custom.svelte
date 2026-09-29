@@ -1,21 +1,13 @@
 <script lang="ts">
-	import CheckIcon from "@lucide/svelte/icons/check";
-	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
+	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
 	import { tick } from "svelte";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
 
-	type Country = {
-		code: string;
-		value: string;
-		label: string;
-		continent: string;
-	};
-
-	const countries: Country[] = [
+	const countries = [
+		{ code: "", value: "", continent: "", label: "Select country" },
 		{ code: "ar", value: "argentina", label: "Argentina", continent: "South America" },
 		{ code: "au", value: "australia", label: "Australia", continent: "Oceania" },
 		{ code: "br", value: "brazil", label: "Brazil", continent: "South America" },
@@ -37,10 +29,15 @@
 		{ code: "us", value: "united-states", label: "United States", continent: "North America" },
 	];
 
+	const items = countries.filter((country) => country.code !== "");
+
 	let open = $state(false);
-	let selectedCountry = $state<Country | null>(null);
+	let value = $state("");
 	let triggerRef = $state<HTMLButtonElement>(null!);
 
+	// We want to refocus the trigger button when the user selects
+	// an item from the list so users can continue navigating the
+	// rest of the form with the keyboard.
 	function closeAndFocusTrigger() {
 		open = false;
 		tick().then(() => {
@@ -55,30 +52,30 @@
 			<Button
 				{...props}
 				variant="outline"
-				class="w-[220px] justify-between font-normal"
+				class="w-[200px] justify-between font-normal"
 				role="combobox"
 				aria-expanded={open}
 			>
-				{selectedCountry ? selectedCountry.label : "Search countries..."}
-				<ChevronsUpDownIcon class="opacity-50" />
+				{items.find((country) => country.value === value)?.label || "Select country"}
+				<ChevronDownIcon class="text-muted-foreground" />
 			</Button>
 		{/snippet}
 	</Popover.Trigger>
-	<Popover.Content class="w-[220px] p-0">
+	<Popover.Content class="w-[200px] p-0">
 		<Command.Root>
 			<Command.Input placeholder="Search countries..." />
 			<Command.List>
 				<Command.Empty>No countries found.</Command.Empty>
 				<Command.Group>
-					{#each countries as country (country.code)}
+					{#each items as country (country.code)}
 						<Command.Item
 							value={country.label}
+							data-checked={value === country.value}
 							onSelect={() => {
-								selectedCountry = country;
+								value = country.value;
 								closeAndFocusTrigger();
 							}}
 						>
-							<CheckIcon class={cn(selectedCountry?.code !== country.code && "text-transparent")} />
 							<Item.Root size="xs" class="p-0">
 								<Item.Content>
 									<Item.Title class="whitespace-nowrap">{country.label}</Item.Title>

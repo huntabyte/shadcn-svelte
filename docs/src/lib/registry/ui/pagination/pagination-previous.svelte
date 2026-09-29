@@ -7,12 +7,20 @@
 	let {
 		ref = $bindable(null),
 		class: className,
-		children,
 		...restProps
 	}: PaginationPrimitive.PrevButtonProps = $props();
 </script>
 
-{#snippet Fallback()}
+<PaginationPrimitive.PrevButton
+	bind:ref
+	aria-label="Go to previous page"
+	class={cn(
+		buttonVariants({ variant: "ghost", size: "default" }),
+		"cn-pagination-previous",
+		className
+	)}
+	{...restProps}
+>
 	<IconPlaceholder
 		lucide="ChevronLeftIcon"
 		tabler="IconChevronLeft"
@@ -23,18 +31,4 @@
 		class="cn-rtl-flip"
 	/>
 	<span class="cn-pagination-previous-text hidden sm:block">Previous</span>
-{/snippet}
-
-<PaginationPrimitive.PrevButton
-	bind:ref
-	aria-label="Go to previous page"
-	data-slot="pagination-previous"
-	class={cn(buttonVariants({ variant: "ghost" }), "cn-pagination-previous", className)}
-	{...restProps}
->
-	{#if children}
-		{@render children?.()}
-	{:else}
-		{@render Fallback()}
-	{/if}
 </PaginationPrimitive.PrevButton>

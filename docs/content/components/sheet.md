@@ -119,22 +119,6 @@ Use `showCloseButton={false}` on `Sheet.Content` to hide the close button.
 
 </ComponentPreview>
 
-<!--
-```svelte showLineNumbers {3}
-<Sheet.Root>
-  <Sheet.Trigger>Open</Sheet.Trigger>
-  <Sheet.Content class="w-[400px] sm:w-[540px]">
-    <Sheet.Header>
-      <Sheet.Title>Are you absolutely sure?</Sheet.Title>
-      <Sheet.Description>
-        This action cannot be undone. This will permanently delete your account
-        and remove your data from our servers.
-      </Sheet.Description>
-    </Sheet.Header>
-  </Sheet.Content>
-</Sheet.Root>
-```-->
-
 ## API Reference
 
 See the [Bits UI Dialog](https://bits-ui.com/docs/components/dialog#api-reference) documentation.

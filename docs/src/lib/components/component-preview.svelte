@@ -7,17 +7,15 @@
 		name,
 		type = "example",
 		class: className,
-		previewClassName,
 		align = "center",
 		hideCode = false,
-		chromeLessOnMobile = false,
+		previewClassName,
 		...restProps
 	}: HTMLAttributes<HTMLElement> & {
 		name: string;
 		align?: "center" | "start" | "end";
 		description?: string;
 		hideCode?: boolean;
-		chromeLessOnMobile?: boolean;
 		previewClassName?: string;
 		type?: "block" | "component" | "example";
 		component?: Component;
@@ -51,10 +49,9 @@
 	<ComponentPreviewTabs
 		{name}
 		class={className}
-		{previewClassName}
 		{align}
 		{hideCode}
-		{chromeLessOnMobile}
+		{previewClassName}
 		{...restProps}
 	/>
 {/if}

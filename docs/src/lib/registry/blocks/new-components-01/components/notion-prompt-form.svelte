@@ -158,7 +158,7 @@
 											{...props}
 											variant="outline"
 											size={!hasMentions ? "sm" : "icon-sm"}
-											class=" transition-transform"
+											class="rounded-full transition-transform"
 										>
 											<AtIcon />
 											{!hasMentions && "Add context"}

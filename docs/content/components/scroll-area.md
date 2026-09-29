@@ -83,16 +83,23 @@ Update the import paths to match your project setup.
 
 ## Composition
 
+`ScrollArea` renders the viewport, scrollbars, and corner internally. Pass your content as children and use `orientation="horizontal"` or `orientation="both"` to choose the scrollbars. You do not need to add a separate scrollbar as a child.
+
 ```text
 ScrollArea
-└── ScrollBar
+├── Viewport (rendered internally)
+│   └── Your content
+├── Scrollbar (rendered internally for each enabled axis)
+└── Corner (rendered internally)
 ```
+
+Use `scrollbarXClasses` and `scrollbarYClasses` to style the generated scrollbars. `bind:viewportRef` gives access to the scrolling element.
 
 ## Horizontal
 
-Set the `orientation` prop to `"horizontal"` to enable horizontal scrolling.
+Use `orientation="horizontal"` for horizontal scrolling.
 
-<ComponentPreview name="scroll-area-horizontal" previewClassName="h-auto min-h-72 p-0 *:max-w-full sm:p-10">
+<ComponentPreview name="scroll-area-horizontal" previewClassName="h-auto min-h-72">
 
 <div></div>
 

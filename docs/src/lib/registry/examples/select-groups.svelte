@@ -1,37 +1,38 @@
 <script lang="ts">
 	import * as Select from "$lib/registry/ui/select/index.js";
 
-	let value = $state("");
+	const fruits = [
+		{ value: "apple", label: "Apple" },
+		{ value: "banana", label: "Banana" },
+		{ value: "blueberry", label: "Blueberry" },
+	];
 
-	const triggerContent = $derived(
-		[
-			{ value: "apple", label: "Apple" },
-			{ value: "banana", label: "Banana" },
-			{ value: "blueberry", label: "Blueberry" },
-			{ value: "carrot", label: "Carrot" },
-			{ value: "broccoli", label: "Broccoli" },
-			{ value: "spinach", label: "Spinach" },
-		].find((i) => i.value === value)?.label ?? "Select a fruit"
-	);
+	const vegetables = [
+		{ value: "carrot", label: "Carrot" },
+		{ value: "broccoli", label: "Broccoli" },
+		{ value: "spinach", label: "Spinach" },
+	];
+
+	let value = $state("");
 </script>
 
-<Select.Root type="single" bind:value>
+<Select.Root type="single" items={[...fruits, ...vegetables]} bind:value>
 	<Select.Trigger class="w-full max-w-48">
-		{triggerContent}
+		<Select.Value placeholder="Select a fruit" />
 	</Select.Trigger>
 	<Select.Content>
 		<Select.Group>
 			<Select.Label>Fruits</Select.Label>
-			<Select.Item value="apple" label="Apple">Apple</Select.Item>
-			<Select.Item value="banana" label="Banana">Banana</Select.Item>
-			<Select.Item value="blueberry" label="Blueberry">Blueberry</Select.Item>
+			{#each fruits as fruit (fruit.value)}
+				<Select.Item value={fruit.value} label={fruit.label}>{fruit.label}</Select.Item>
+			{/each}
 		</Select.Group>
 		<Select.Separator />
 		<Select.Group>
 			<Select.Label>Vegetables</Select.Label>
-			<Select.Item value="carrot" label="Carrot">Carrot</Select.Item>
-			<Select.Item value="broccoli" label="Broccoli">Broccoli</Select.Item>
-			<Select.Item value="spinach" label="Spinach">Spinach</Select.Item>
+			{#each vegetables as vegetable (vegetable.value)}
+				<Select.Item value={vegetable.value} label={vegetable.label}>{vegetable.label}</Select.Item>
+			{/each}
 		</Select.Group>
 	</Select.Content>
 </Select.Root>

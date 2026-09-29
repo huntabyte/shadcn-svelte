@@ -4,6 +4,6 @@
 </script>
 
 <Toggle aria-label="Toggle bookmark" size="sm" variant="outline">
-	<BookmarkIcon class="group-data-[state=on]/toggle:fill-foreground" />
+	<BookmarkIcon class="group-aria-pressed/toggle:fill-foreground" />
 	Bookmark
 </Toggle>

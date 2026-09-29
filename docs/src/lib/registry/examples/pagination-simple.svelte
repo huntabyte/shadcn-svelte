@@ -6,7 +6,7 @@
 	{#snippet children({ pages, currentPage })}
 		<Pagination.Content>
 			{#each pages as page (page.key)}
-				{#if page.type !== "ellipsis"}
+				{#if page.type === "page"}
 					<Pagination.Item>
 						<Pagination.Link {page} isActive={currentPage === page.value}>
 							{page.value}

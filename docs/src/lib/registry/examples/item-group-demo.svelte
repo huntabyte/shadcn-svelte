@@ -1,5 +1,5 @@
 <script lang="ts">
-	import PlusIcon from "@lucide/svelte/icons/plus";
+	import Plus from "@lucide/svelte/icons/plus";
 	import * as Avatar from "$lib/registry/ui/avatar/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
@@ -38,7 +38,7 @@
 			</Item.Content>
 			<Item.Actions>
 				<Button variant="ghost" size="icon" class="rounded-full">
-					<PlusIcon />
+					<Plus />
 				</Button>
 			</Item.Actions>
 		</Item.Root>

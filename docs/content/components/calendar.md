@@ -1,6 +1,6 @@
 ---
 title: Calendar
-description: A calendar component that allows users to select dates.
+description: A calendar component that allows users to select a date or a range of dates.
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/calendar
@@ -11,7 +11,6 @@ links:
 <script>
 	import ComponentPreview from "$lib/components/component-preview.svelte";
 	import ComponentSource from "$lib/components/component-source.svelte";
-	import Callout from "$lib/components/callout.svelte";
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
 	import PMInstall from "$lib/components/pm-install.svelte";
 	import Steps from "$lib/components/steps.svelte";
@@ -21,7 +20,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="calendar-demo" previewClassName="h-96">
+<ComponentPreview name="calendar-demo">
 
 <div></div>
 
@@ -67,20 +66,22 @@ Update the import paths to match your project setup.
 
 ```svelte showLineNumbers
 <script lang="ts">
+  import { getLocalTimeZone, today } from "@internationalized/date";
   import { Calendar } from "$lib/components/ui/calendar/index.js";
-  import type { DateValue } from "@internationalized/date";
 
-  let date = $state<DateValue | undefined>(undefined);
+  let value = $state(today(getLocalTimeZone()));
 </script>
-
-<Calendar type="single" bind:value={date} class="rounded-lg border" />
 ```
+
+```svelte showLineNumbers
+<Calendar type="single" bind:value class="rounded-lg border" />
+```
+
+See the [Bits UI Calendar](https://bits-ui.com/docs/components/calendar) documentation for more information.
 
 ## About
 
-The `<Calendar />` component is built on top of the [Bits UI Calendar](https://www.bits-ui.com/docs/components/calendar) component, which uses the [@internationalized/date](https://react-spectrum.adobe.com/internationalized/date/index.html) package to handle dates.
-
-If you're looking for a range calendar, check out the [Range Calendar](/docs/components/range-calendar) component.
+The `<Calendar />` component is built on top of the [Bits UI Calendar](https://bits-ui.com/docs/components/calendar) component, which uses the [@internationalized/date](https://react-spectrum.adobe.com/internationalized/date/index.html) package to handle dates.
 
 ## Date Picker
 
@@ -88,7 +89,7 @@ You can use the `<Calendar />` component to build a date picker. See the [Date P
 
 ## Basic
 
-A basic calendar component with a border. We used `class="rounded-lg border"` to style the calendar.
+A basic calendar component. We used `class="rounded-lg border"` to style the calendar.
 
 <ComponentPreview name="calendar-basic" previewClassName="h-96">
 
@@ -98,9 +99,9 @@ A basic calendar component with a border. We used `class="rounded-lg border"` to
 
 ## Range Calendar
 
-Use the `RangeCalendar` component to enable range selection.
+Use the [`RangeCalendar`](/docs/components/range-calendar) component to enable range selection.
 
-<ComponentPreview name="calendar-range" class="**:[.preview]:h-auto lg:**:[.preview]:h-[450px]" previewClassName="h-[36rem] md:h-96">
+<ComponentPreview name="calendar-range" previewClassName="min-h-[36rem] md:min-h-96">
 
 <div></div>
 
@@ -118,7 +119,7 @@ Use `captionLayout="dropdown"` to show month and year dropdowns.
 
 ## Presets
 
-<ComponentPreview name="calendar-presets" class="**:[.preview]:h-[650px]" previewClassName="h-[650px]">
+<ComponentPreview name="calendar-presets" previewClassName="h-[650px]">
 
 <div></div>
 
@@ -126,15 +127,15 @@ Use `captionLayout="dropdown"` to show month and year dropdowns.
 
 ## Date and Time Picker
 
-<ComponentPreview name="calendar-time" class="**:[.preview]:h-[600px]" previewClassName="h-[600px]">
+<ComponentPreview name="calendar-time" previewClassName="h-[600px]">
 
 <div></div>
 
 </ComponentPreview>
 
-## Booked Dates
+## Booked dates
 
-<ComponentPreview name="calendar-booked-dates" previewClassName="h-96">
+<ComponentPreview name="calendar-booked-dates">
 
 <div></div>
 
@@ -142,21 +143,18 @@ Use `captionLayout="dropdown"` to show month and year dropdowns.
 
 ## Custom Cell Size
 
-A calendar with custom cell content — useful for showing prices or other per-day data.
-
-<ComponentPreview name="calendar-custom-days" description="A calendar with custom cell size that's responsive." class="**:[.preview]:h-[560px]">
+<ComponentPreview name="calendar-custom-days" class="**:[.preview]:min-h-[560px]">
 
 <div></div>
 
 </ComponentPreview>
 
-<!--You can customize the size of calendar cells using the `--cell-size` CSS variable. You can also make it responsive by using breakpoint-specific values:
+You can customize the size of calendar cells using the `--cell-size` CSS variable. You can also make it responsive by using breakpoint-specific values:
 
 ```svelte showLineNumbers
-<RangeCalendar
-  mode="single"
-  selected={date}
-  onSelect={setDate}
+<Calendar
+  type="single"
+  bind:value
   class="rounded-lg border [--cell-size:--spacing(11)] md:[--cell-size:--spacing(12)]"
 />
 ```
@@ -164,23 +162,12 @@ A calendar with custom cell content — useful for showing prices or other per-d
 Or use fixed values:
 
 ```svelte showLineNumbers
-<RangeCalendar
-  mode="single"
-  selected={date}
-  onSelect={setDate}
+<Calendar
+  type="single"
+  bind:value
   class="rounded-lg border [--cell-size:2.75rem] md:[--cell-size:3rem]"
 />
-```-->
-
-## Week Numbers
-
-<!--Use `showWeekNumber` to show week numbers.-->
-
-<ComponentPreview name="calendar-week-numbers" previewClassName="h-96" hideCode>
-
-<div></div>
-
-</ComponentPreview>
+```
 
 ## API Reference
 

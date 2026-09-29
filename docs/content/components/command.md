@@ -1,6 +1,6 @@
 ---
 title: Command
-description: Fast, composable, unstyled command menu for Svelte.
+description: Command menu for search and quick actions.
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/command
@@ -21,11 +21,15 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="command-demo" align="start" previewClassName="h-[24.5rem]" class="[&_.preview>div]:max-w-[450px]">
+<ComponentPreview name="command-demo" align="start" previewClassName="min-h-0 h-[24.5rem]">
 
 <div></div>
 
 </ComponentPreview>
+
+## About
+
+The `<Command />` component uses the [`Command`](https://bits-ui.com/docs/components/command) component from [Bits UI](https://bits-ui.com), which is inspired by [`cmdk`](https://github.com/dip/cmdk).
 
 ## Installation
 
@@ -113,8 +117,11 @@ For a dialog variant, wrap with `Command.Dialog`:
 
 ```text
 Command.Dialog
-└── Command.Root
-    └── (same as above)
+├── Command.Input
+└── Command.List
+    ├── Command.Empty
+    └── Command.Group
+        └── Command.Item
 ```
 
 ## Basic
@@ -150,14 +157,6 @@ A command menu with groups, icons and separators.
 Scrollable command menu with multiple items.
 
 <ComponentPreview name="command-scrollable">
-
-<div></div>
-
-</ComponentPreview>
-
-## Dialog
-
-<ComponentPreview name="command-dialog">
 
 <div></div>
 

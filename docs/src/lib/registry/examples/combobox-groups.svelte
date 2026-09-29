@@ -1,15 +1,13 @@
 <script lang="ts">
-	import CheckIcon from "@lucide/svelte/icons/check";
-	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
+	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
 	import { tick } from "svelte";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
 
 	const timezones = [
 		{
-			label: "Americas",
+			value: "Americas",
 			items: [
 				"(GMT-5) New York",
 				"(GMT-8) Los Angeles",
@@ -20,7 +18,7 @@
 			],
 		},
 		{
-			label: "Europe",
+			value: "Europe",
 			items: [
 				"(GMT+0) London",
 				"(GMT+1) Paris",
@@ -31,7 +29,7 @@
 			],
 		},
 		{
-			label: "Asia/Pacific",
+			value: "Asia/Pacific",
 			items: [
 				"(GMT+9) Tokyo",
 				"(GMT+8) Shanghai",
@@ -47,6 +45,9 @@
 	let value = $state("");
 	let triggerRef = $state<HTMLButtonElement>(null!);
 
+	// We want to refocus the trigger button when the user selects
+	// an item from the list so users can continue navigating the
+	// rest of the form with the keyboard.
 	function closeAndFocusTrigger() {
 		open = false;
 		tick().then(() => {
@@ -61,36 +62,36 @@
 			<Button
 				{...props}
 				variant="outline"
-				class="w-[240px] justify-between"
+				class="w-60 justify-between font-normal"
 				role="combobox"
 				aria-expanded={open}
 			>
 				{value || "Select a timezone"}
-				<ChevronsUpDownIcon class="opacity-50" />
+				<ChevronDownIcon class="text-muted-foreground" />
 			</Button>
 		{/snippet}
 	</Popover.Trigger>
-	<Popover.Content class="w-[240px] p-0">
+	<Popover.Content class="w-60 p-0">
 		<Command.Root>
 			<Command.Input placeholder="Search timezone..." />
 			<Command.List>
 				<Command.Empty>No timezones found.</Command.Empty>
-				{#each timezones as group, i (group.label)}
-					<Command.Group heading={group.label}>
+				{#each timezones as group, index (group.value)}
+					<Command.Group heading={group.value}>
 						{#each group.items as item (item)}
 							<Command.Item
 								value={item}
+								data-checked={value === item}
 								onSelect={() => {
 									value = item;
 									closeAndFocusTrigger();
 								}}
 							>
-								<CheckIcon class={cn(value !== item && "text-transparent")} />
 								{item}
 							</Command.Item>
 						{/each}
 					</Command.Group>
-					{#if i < timezones.length - 1}
+					{#if index < timezones.length - 1}
 						<Command.Separator />
 					{/if}
 				{/each}

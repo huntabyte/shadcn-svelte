@@ -20,9 +20,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="navigation-menu-demo" previewClassName="h-96" class="overflow-visible">
-
-<div></div>
+<ComponentPreview name="navigation-menu-demo" align="start">
 
 </ComponentPreview>
 
@@ -49,7 +47,6 @@ Copy and paste the following code into your project.
 {#if viewerData}
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
-
 <Step>
 
 Update the import paths to match your project setup.
@@ -95,19 +92,24 @@ NavigationMenu.Root
 │   │       └── NavigationMenu.Link
 │   └── NavigationMenu.Item
 │       └── NavigationMenu.Link
-└── NavigationMenu.Indicator
+└── Viewport (rendered internally when viewport=true)
 ```
 
 ## Link Component
 
-When using the `NavigationMenu.Link` component as a child of a SvelteKit `<a>` element or similar router link, use the `child` snippet to pass the link props through:
+Use the `href` prop on `NavigationMenu.Link` to render a link. You can style it like a trigger with `navigationMenuTriggerStyle()`.
 
 ```svelte showLineNumbers
-<NavigationMenu.Link>
-  {#snippet child({ props })}
-    <a href="/docs" {...props}> Documentation </a>
-  {/snippet}
-</NavigationMenu.Link>
+<script lang="ts">
+  import * as NavigationMenu from "$lib/components/ui/navigation-menu/index.js";
+  import { navigationMenuTriggerStyle } from "$lib/components/ui/navigation-menu/navigation-menu-trigger.svelte";
+</script>
+
+<NavigationMenu.Item>
+  <NavigationMenu.Link href="/docs" class={navigationMenuTriggerStyle()}>
+    Documentation
+  </NavigationMenu.Link>
+</NavigationMenu.Item>
 ```
 
 ## API Reference

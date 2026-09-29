@@ -1,7 +1,6 @@
 ---
 title: Badge
 description: Displays a badge or a component that looks like a badge.
-component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/badge
 ---
@@ -61,7 +60,7 @@ Update the import paths to match your project setup.
 ```
 
 ```svelte
-<Badge variant="outline">Badge</Badge>
+<Badge variant="default | outline | secondary | destructive">Badge</Badge>
 ```
 
 ## Variants
@@ -78,7 +77,7 @@ Use the `variant` prop to change the variant of the badge.
 
 You can render an icon inside the badge. Use `data-icon="inline-start"` to render the icon on the left and `data-icon="inline-end"` to render the icon on the right.
 
-<ComponentPreview name="badge-with-icon">
+<ComponentPreview name="badge-icon">
 
 <div></div>
 
@@ -88,7 +87,7 @@ You can render an icon inside the badge. Use `data-icon="inline-start"` to rende
 
 You can render a spinner inside the badge. Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` prop to the spinner.
 
-<ComponentPreview name="badge-with-spinner">
+<ComponentPreview name="badge-spinner">
 
 <div></div>
 
@@ -96,7 +95,7 @@ You can render a spinner inside the badge. Remember to add the `data-icon="inlin
 
 ## Link
 
-Use the `href` prop to render the badge as a link.
+Use the `href` prop to render a link as a badge.
 
 <ComponentPreview name="badge-link">
 
@@ -108,7 +107,7 @@ Use the `href` prop to render the badge as a link.
 
 You can customize the colors of a badge by adding custom classes such as `bg-green-50 dark:bg-green-800` to the `Badge` component.
 
-<ComponentPreview name="badge-custom-colors">
+<ComponentPreview name="badge-colors">
 
 <div></div>
 

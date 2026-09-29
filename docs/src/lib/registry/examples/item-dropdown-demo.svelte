@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
+	import ChevronDown from "@lucide/svelte/icons/chevron-down";
 	import * as Avatar from "$lib/registry/ui/avatar/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
@@ -28,14 +28,14 @@
 	<DropdownMenu.Trigger>
 		{#snippet child({ props })}
 			<Button {...props} variant="outline">
-				Select <ChevronDownIcon />
+				Select <ChevronDown />
 			</Button>
 		{/snippet}
 	</DropdownMenu.Trigger>
-	<DropdownMenu.Content class="w-max" align="end">
+	<DropdownMenu.Content class="w-auto" align="end">
 		<DropdownMenu.Group>
 			{#each people as person (person.username)}
-				<DropdownMenu.Item textValue={person.username}>
+				<DropdownMenu.Item>
 					<Item.Root size="xs" class="w-full p-2">
 						<Item.Media>
 							<Avatar.Root class="size-[--spacing(6.5)]">
@@ -45,12 +45,11 @@
 						</Item.Media>
 						<Item.Content class="gap-0">
 							<Item.Title>{person.username}</Item.Title>
-							<Item.Description class="leading-none">
-								{person.email}
-							</Item.Description>
+							<Item.Description class="leading-none">{person.email}</Item.Description>
 						</Item.Content>
 					</Item.Root>
-				</DropdownMenu.Item>{/each}
+				</DropdownMenu.Item>
+			{/each}
 		</DropdownMenu.Group>
 	</DropdownMenu.Content>
 </DropdownMenu.Root>

@@ -75,9 +75,20 @@ Update the import paths to match your project setup.
 <Slider type="single" bind:value max={100} step={1} />
 ```
 
+## Composition
+
+`Slider` renders its track, range, and thumbs internally. Use `type="single"` with a number, or `type="multiple"` with an array; the wrapper creates a thumb for each value.
+
+```text
+Slider
+├── Track (rendered internally)
+│   └── Range
+└── Thumb for each value (rendered internally)
+```
+
 ## Range
 
-Use an array with two values for a range slider.
+Use `type="multiple"` with an array of two values for a range slider.
 
 <ComponentPreview name="slider-range">
 

@@ -8,8 +8,6 @@ links:
 ---
 
 <script>
-  import Callout from "$lib/components/callout.svelte";
-  import InfoIcon from "@lucide/svelte/icons/info";
 	import ComponentPreview from "$lib/components/component-preview.svelte";
 	import ComponentSource from "$lib/components/component-source.svelte";
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
@@ -21,18 +19,11 @@ links:
 	let { viewerData, links } = $props();
 </script>
 
-<ComponentPreview name="button-demo" class="mb-4">
+<ComponentPreview name="button-demo">
 
 <div></div>
 
 </ComponentPreview>
-
-```svelte showLineNumbers
-<Button variant="outline">Button</Button>
-<Button variant="outline" size="icon" aria-label="Submit">
-  <ArrowUpIcon />
-</Button>
-```
 
 ## Installation
 
@@ -89,7 +80,9 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 
 ## Size
 
-<ComponentPreview name="button-size" class="mb-4" >
+Use the `size` prop to change the size of the button.
+
+<ComponentPreview name="button-size">
 
 <div></div>
 
@@ -97,7 +90,7 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 
 ## Default
 
-<ComponentPreview name="button-default" description="A primary button" class="mb-4">
+<ComponentPreview name="button-default">
 
 <div></div>
 
@@ -105,7 +98,7 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 
 ## Outline
 
-<ComponentPreview name="button-outline" description="A button using the outline variant." class="mb-4">
+<ComponentPreview name="button-outline">
 
 <div></div>
 
@@ -113,7 +106,7 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 
 ## Secondary
 
-<ComponentPreview name="button-secondary" description="A secondary button" class="mb-4">
+<ComponentPreview name="button-secondary">
 
 <div></div>
 
@@ -121,7 +114,7 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 
 ## Ghost
 
-<ComponentPreview name="button-ghost" description="A button using the ghost variant" class="mb-4">
+<ComponentPreview name="button-ghost">
 
 <div></div>
 
@@ -129,7 +122,7 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 
 ## Destructive
 
-<ComponentPreview name="button-destructive" description="A destructive button" class="mb-4">
+<ComponentPreview name="button-destructive">
 
 <div></div>
 
@@ -137,7 +130,7 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 
 ## Link
 
-<ComponentPreview name="button-link" description="A button using the link variant." class="mb-4">
+<ComponentPreview name="button-link">
 
 <div></div>
 
@@ -145,7 +138,7 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 
 ## Icon
 
-<ComponentPreview name="button-icon" description="An icon button" class="mb-4">
+<ComponentPreview name="button-icon">
 
 <div></div>
 
@@ -155,7 +148,7 @@ If you want to keep the `cursor: pointer` behavior, add the following code to yo
 
 Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` attribute to the icon for the correct spacing.
 
-<ComponentPreview name="button-with-icon" description="A button with an icon" class="mb-4">
+<ComponentPreview name="button-with-icon">
 
 <div></div>
 
@@ -165,7 +158,7 @@ Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` attri
 
 Use the `rounded-full` class to make the button rounded.
 
-<ComponentPreview name="button-rounded" class="mb-4" >
+<ComponentPreview name="button-rounded">
 
 <div></div>
 
@@ -175,7 +168,7 @@ Use the `rounded-full` class to make the button rounded.
 
 Render a `<Spinner />` component inside the button to show a loading state. Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` attribute to the spinner for the correct spacing.
 
-<ComponentPreview name="button-spinner" description="A button with a loading state." class="mb-4">
+<ComponentPreview name="button-loading">
 
 <div></div>
 
@@ -185,17 +178,17 @@ Render a `<Spinner />` component inside the button to show a loading state. Reme
 
 To create a button group, use the `ButtonGroup` component. See the [Button Group](/docs/components/button-group) documentation for more details.
 
-<ComponentPreview name="button-group-demo" class="mb-4" >
+<ComponentPreview name="button-group-demo">
 
 <div></div>
 
 </ComponentPreview>
 
-## Child Snippet
+## As Link
 
-You can use `buttonVariants` helper on `<Button />` to make another component look like a button. Here's an example of a link that looks like a button.
+Pass an `href` prop to `<Button />` to render it as an `<a>` element that looks like a button. You can also use the `buttonVariants` helper to make any other element look like a button.
 
-<ComponentPreview name="button-as-child" class="mb-4">
+<ComponentPreview name="button-as-link">
 
 <div></div>
 

@@ -42,6 +42,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -74,15 +80,15 @@ ButtonGroup.Root
 
 ## Accessibility
 
-- The `ButtonGroup` component has the `role` attribute set to `group`.
-- Use `tabindex` to navigate between the buttons in the group.
+- The `ButtonGroup.Root` component has the `role` attribute set to `group`.
+- Use `Tab` to navigate between the buttons in the group.
 - Use `aria-label` or `aria-labelledby` to label the button group.
 
 ```svelte showLineNumbers
-<ButtonGroup aria-label="Button group">
+<ButtonGroup.Root aria-label="Button group">
   <Button>Button 1</Button>
   <Button>Button 2</Button>
-</ButtonGroup>
+</ButtonGroup.Root>
 ```
 
 ## ButtonGroup vs ToggleGroup
@@ -112,7 +118,7 @@ Control the size of buttons using the `size` prop on individual buttons.
 
 ## Nested
 
-Nest `ButtonGroup` components to create button groups with spacing.
+Nest `<ButtonGroup.Root>` components to create button groups with spacing.
 
 <ComponentPreview name="button-group-nested-demo">
 
@@ -122,7 +128,7 @@ Nest `ButtonGroup` components to create button groups with spacing.
 
 ## Separator
 
-The `ButtonGroupSeparator` component visually divides buttons within a group.
+The `ButtonGroup.Separator` component visually divides buttons within a group.
 
 Buttons with variant `outline` do not need a separator since they have a border. For other variants, a separator is recommended to improve the visual hierarchy.
 
@@ -134,7 +140,7 @@ Buttons with variant `outline` do not need a separator since they have a border.
 
 ## Split
 
-Create a split button group by adding two buttons separated by a `ButtonGroupSeparator`.
+Create a split button group by adding two buttons separated by a `ButtonGroup.Separator`.
 
 <ComponentPreview name="button-group-split-demo">
 

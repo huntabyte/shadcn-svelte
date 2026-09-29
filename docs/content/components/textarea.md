@@ -18,7 +18,7 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="textarea-demo" previewClassName="*:max-w-xs">
+<ComponentPreview name="textarea-demo" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 
@@ -66,9 +66,9 @@ Update the import paths to match your project setup.
 
 ## Field
 
-Use `Field`, `Field.Label`, and `Field.Description` to create a textarea with a label and description.
+Use `Field.Field`, `Field.Label`, and `Field.Description` to create a textarea with a label and description.
 
-<ComponentPreview name="textarea-field" previewClassName="*:max-w-xs">
+<ComponentPreview name="textarea-field" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 
@@ -76,9 +76,9 @@ Use `Field`, `Field.Label`, and `Field.Description` to create a textarea with a 
 
 ## Disabled
 
-Use the `disabled` prop to disable the textarea. To style the disabled state, add the `data-disabled` attribute to the `Field` component.
+Use the `disabled` prop to disable the textarea. To style the disabled state, add the `data-disabled` attribute to the `Field.Field` component.
 
-<ComponentPreview name="textarea-disabled" previewClassName="*:max-w-xs">
+<ComponentPreview name="textarea-disabled" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 
@@ -86,9 +86,9 @@ Use the `disabled` prop to disable the textarea. To style the disabled state, ad
 
 ## Invalid
 
-Use the `aria-invalid` attribute to mark the textarea as invalid.
+Use the `aria-invalid` prop to mark the textarea as invalid. To style the invalid state, add the `data-invalid` attribute to the `Field.Field` component.
 
-<ComponentPreview name="textarea-invalid" previewClassName="*:max-w-xs">
+<ComponentPreview name="textarea-invalid" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 
@@ -98,16 +98,12 @@ Use the `aria-invalid` attribute to mark the textarea as invalid.
 
 Pair with `Button` to create a textarea with a submit button.
 
-<ComponentPreview name="textarea-button" previewClassName="*:max-w-xs">
+<ComponentPreview name="textarea-button" class="[&_[data-align]>*]:max-w-xs">
 
 <div></div>
 
 </ComponentPreview>
 
-## Form
+## API Reference
 
-<ComponentPreview name="textarea-form">
-
-<div></div>
-
-</ComponentPreview>
+`Textarea` accepts native textarea attributes and supports `bind:value` and `bind:ref`. See the [HTML textarea reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/textarea).
