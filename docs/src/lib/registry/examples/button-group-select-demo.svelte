@@ -29,13 +29,15 @@
 			<Select.Trigger class="font-mono">
 				{currency}
 			</Select.Trigger>
-			<Select.Content class="min-w-24">
-				{#each CURRENCIES as currencyOption (currencyOption.value)}
-					<Select.Item value={currencyOption.value}>
-						{currencyOption.value}
-						<span class="text-muted-foreground">{currencyOption.label}</span>
-					</Select.Item>
-				{/each}
+			<Select.Content align="start">
+				<Select.Group>
+					{#each CURRENCIES as currencyOption (currencyOption.value)}
+						<Select.Item value={currencyOption.value}>
+							{currencyOption.value}
+							<span class="text-muted-foreground">{currencyOption.label}</span>
+						</Select.Item>
+					{/each}
+				</Select.Group>
 			</Select.Content>
 		</Select.Root>
 		<Input placeholder="10.00" pattern="[0-9]*" />
