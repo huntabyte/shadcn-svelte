@@ -70,9 +70,7 @@ Copy and paste the following code into your project.
 </Empty.Root>
 ```
 
-## Examples
-
-### Outline
+## Outline
 
 Use the `border` utility class to create an outline empty state.
 
@@ -82,7 +80,7 @@ Use the `border` utility class to create an outline empty state.
 
 </ComponentPreview>
 
-### Background
+## Background
 
 Use the `bg-*` and `bg-gradient-*` utilities to add a background to the empty state.
 
@@ -92,9 +90,9 @@ Use the `bg-*` and `bg-gradient-*` utilities to add a background to the empty st
 
 </ComponentPreview>
 
-### Avatar
+## Avatar
 
-Use the `EmptyMedia` component to display an avatar in the empty state.
+Use the `Empty.Media` component to display an avatar in the empty state.
 
 <ComponentPreview name="empty-avatar-demo" previewClassName="h-96 p-0">
 
@@ -102,9 +100,9 @@ Use the `EmptyMedia` component to display an avatar in the empty state.
 
 </ComponentPreview>
 
-### Avatar Group
+## Avatar Group
 
-Use the `EmptyMedia` component to display an avatar group in the empty state.
+Use the `Empty.Media` component to display an avatar group in the empty state.
 
 <ComponentPreview name="empty-avatar-group-demo" previewClassName="h-auto min-h-72">
 
@@ -112,9 +110,9 @@ Use the `EmptyMedia` component to display an avatar group in the empty state.
 
 </ComponentPreview>
 
-### InputGroup
+## InputGroup
 
-You can add an `InputGroup` component to the `EmptyContent` component.
+You can add an `InputGroup` component to the `Empty.Content` component.
 
 <ComponentPreview name="empty-input-group-demo" previewClassName="h-auto min-h-72">
 

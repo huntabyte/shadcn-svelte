@@ -11,6 +11,7 @@
 		class: className,
 		inset,
 		children: childrenProp,
+		closeOnSelect = false,
 		...restProps
 	}: WithoutChildrenOrChild<ContextMenuPrimitive.CheckboxItemProps> & {
 		inset?: boolean;
@@ -20,6 +21,7 @@
 
 <ContextMenuPrimitive.CheckboxItem
 	bind:ref
+	{closeOnSelect}
 	bind:checked
 	bind:indeterminate
 	data-slot="context-menu-checkbox-item"

@@ -113,7 +113,7 @@
 			"target": "sidebar/sidebar-menu-sub-item.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLUListElement>> = $props();\n</script>\n\n<ul\n\tbind:this={ref}\n\tdata-slot=\"sidebar-menu-sub\"\n\tdata-sidebar=\"menu-sub\"\n\tclass={cn(\"border-sidebar-border mx-3.5 translate-x-px gap-1 border-l px-2.5 py-0.5 group-data-[collapsible=icon]:hidden flex min-w-0 flex-col\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</ul>\n",
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLUListElement>> = $props();\n</script>\n\n<ul\n\tbind:this={ref}\n\tdata-slot=\"sidebar-menu-sub\"\n\tdata-sidebar=\"menu-sub\"\n\tclass={cn(\n\t\t\"border-sidebar-border mx-3.5 translate-x-px gap-1 border-l px-2.5 py-0.5 group-data-[collapsible=icon]:hidden flex min-w-0 flex-col\",\n\t\t\"group-data-[collapsible=icon]:hidden\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</ul>\n",
 			"type": "registry:file",
 			"target": "sidebar/sidebar-menu-sub.svelte"
 		},
