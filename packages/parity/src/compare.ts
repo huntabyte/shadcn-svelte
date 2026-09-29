@@ -482,13 +482,12 @@ function isClassToken(token: string): boolean {
 	);
 }
 
-export function extractClassStrings(content: string): ClassString[] {
-	return dedupeClassStrings(
-		withEmptyClassSentinel(
-			content,
-			extractOccurrences(content).map((item) => item.entry)
-		)
+export function extractClassStrings(content: string, dedupe = true): ClassString[] {
+	const entries = withEmptyClassSentinel(
+		content,
+		extractOccurrences(content).map((item) => item.entry)
 	);
+	return dedupe ? dedupeClassStrings(entries) : entries;
 }
 
 type ClassFragment = {
