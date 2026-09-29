@@ -1,7 +1,7 @@
 {
 	"name": "@shadcn-svelte/parity",
 	"private": true,
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"description": "Compare shadcn-svelte registry classes against upstream shadcn/ui",
 	"type": "module",
 	"bin": {
@@ -21,10 +21,10 @@
 		"parity": "node src/index.ts"
 	},
 	"dependencies": {
+		"cn": "^0.3.0",
 		"commander": "^14.0.0",
 		"picocolors": "^1.1.1",
 		"shadcn-svelte": "workspace:*",
-		"tailwind-merge": "^3.6.0",
 		"zod": "^4.4.3"
 	},
 	"devDependencies": {
