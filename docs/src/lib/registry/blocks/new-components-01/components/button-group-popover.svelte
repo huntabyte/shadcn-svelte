@@ -1,9 +1,9 @@
 <script lang="ts">
 	import Bot from "@lucide/svelte/icons/bot";
 	import ChevronDown from "@lucide/svelte/icons/chevron-down";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as ButtonGroup from "$lib/registry/ui/button-group/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
 	import { Textarea } from "$lib/registry/ui/textarea/index.js";
 </script>
@@ -27,14 +27,11 @@
 			</div>
 			<Separator />
 			<div class="p-4 text-sm *:[p:not(:last-child)]:mb-2">
-				<Textarea
-					placeholder="Describe your task in natural language."
-					class="mb-4 resize-none"
-				/>
+				<Textarea placeholder="Describe your task in natural language." class="mb-4 resize-none" />
 				<p class="font-medium">Start a new task with Copilot</p>
 				<p class="text-muted-foreground">
-					Describe your task in natural language. Copilot will work in the background and
-					open a pull request for your review.
+					Describe your task in natural language. Copilot will work in the background and open a
+					pull request for your review.
 				</p>
 			</div>
 		</Popover.Content>

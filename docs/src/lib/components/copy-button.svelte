@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import CheckIcon from "@lucide/svelte/icons/check";
+	import CopyIcon from "@tabler/icons-svelte/icons/copy";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
-	import CopyIcon from "@tabler/icons-svelte/icons/copy";
-	import CheckIcon from "@lucide/svelte/icons/check";
 	import type { ComponentProps } from "svelte";
 
 	let {
@@ -26,7 +26,7 @@
 	<Tooltip.Trigger
 		{...rp}
 		class={cn(
-			"bg-code absolute end-2 top-3 z-10 size-7 hover:opacity-100 focus-visible:opacity-100",
+			"absolute end-2 top-3 z-10 size-7 bg-code hover:opacity-100 focus-visible:opacity-100",
 			className
 		)}
 		onclick={() => clipboard.copy(text)}

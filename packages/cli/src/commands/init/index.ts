@@ -1,32 +1,31 @@
-import color from "picocolors";
-import { Command, Option } from "commander";
-import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
 import process from "node:process";
-import { z } from "zod";
+import { existsSync, promises as fs } from "node:fs";
 import * as p from "@clack/prompts";
-import type { TsConfigResult } from "get-tsconfig";
-import { detectConfigs } from "../../utils/auto-detect.js";
-import { error } from "../../utils/errors.js";
-import * as cliConfig from "../../utils/config/index.js";
-import { cancel, intro, prettifyList, handleError } from "../../utils/prompt-helpers.js";
-import * as registry from "../../utils/registry/index.js";
+import color from "picocolors";
+import { Command, Option } from "commander";
+import { z } from "zod";
 import { preflightInit } from "./preflight.js";
-import { addRegistryItems } from "../../utils/add-registry-items.js";
-import { getEnvProxy } from "../../utils/get-env-proxy.js";
-import { highlight } from "../../utils/colors.js";
-import { installDependencies } from "../../utils/install-deps.js";
-import { checkPreconditions } from "../../utils/preconditions.js";
+import * as cliConfig from "../../utils/config/index.js";
+import * as project from "../../utils/project.js";
+import * as registry from "../../utils/registry/index.js";
 import { type PresetConfig, decodePreset, encodePreset } from "../../preset/index.js";
 import { promptForPreset } from "../../preset/presets.js";
-import * as project from "../../utils/project.js";
+import { addRegistryItems } from "../../utils/add-registry-items.js";
+import { detectConfigs } from "../../utils/auto-detect.js";
+import { highlight } from "../../utils/colors.js";
+import { error } from "../../utils/errors.js";
+import { getEnvProxy } from "../../utils/get-env-proxy.js";
+import { installDependencies } from "../../utils/install-deps.js";
+import { checkPreconditions } from "../../utils/preconditions.js";
+import { cancel, intro, prettifyList, handleError } from "../../utils/prompt-helpers.js";
+import type { TsConfigResult } from "get-tsconfig";
 
 const baseColors = registry.getBaseColors();
 
 const initOptionsSchema = z.object({
 	cwd: z.string(),
 	baseColor: z.string().optional(),
-	// TODO: Add additional options for the preset
 	preset: z.string().optional(),
 	css: z.string().optional(),
 	componentsAlias: z.string().optional(),
@@ -35,9 +34,11 @@ const initOptionsSchema = z.object({
 	hooksAlias: z.string().optional(),
 	uiAlias: z.string().optional(),
 	deps: z.boolean(),
+	depsInstall: z.boolean(),
 	overwrite: z.boolean(),
 	proxy: z.string().optional(),
 	skipPreflight: z.boolean(),
+	reinstall: z.boolean().optional(),
 });
 
 type InitOptions = z.infer<typeof initOptionsSchema>;
@@ -47,15 +48,17 @@ export const init = new Command()
 	.description("initialize your project and install dependencies")
 	.option("--preset <preset>", "the preset to use")
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
-	.option("-o, --overwrite", "overwrite existing files", false)
-	.option("--no-deps", "disable adding & installing dependencies")
+	.addOption(new Option("-o, --overwrite", "deprecated: use --reinstall").default(false).hideHelp())
+	.addOption(new Option("--no-deps", "disable adding & installing dependencies").hideHelp())
+	.option("--no-deps-install", "add dependencies to package.json without running install")
 	.option("--skip-preflight", "ignore preflight checks and continue", false)
+	.option("--reinstall", "reinstall existing components when style changes")
+	.option("--no-reinstall", "skip reinstalling existing components when style changes")
 	.addOption(
 		new Option("--base-color <name>", "the base color for the components").choices(
 			baseColors.map((color) => color.name)
 		)
 	)
-	.addOption(new Option("--design-system-url"))
 	.option("--css <path>", "path to the global CSS file")
 	.option("--components-alias <path>", "import alias for components")
 	.option("--lib-alias <path>", "import alias for lib")
@@ -106,6 +109,13 @@ export const init = new Command()
 		} catch (e) {
 			handleError(e);
 		}
+	})
+	.on("option:overwrite", () => {
+		console.warn(
+			color.yellow(
+				`Warning: ${color.bold("--overwrite")} is deprecated. Use ${color.bold("--reinstall")} instead.\n`
+			)
+		);
 	});
 
 function validateOptions(cwd: string, options: InitOptions, tsconfig: TsConfigResult) {
@@ -143,7 +153,7 @@ async function promptForConfig({
 	// if it's a SvelteKit project, run sync so that the aliases are always up to date
 	await project.syncSvelteKit(cwd);
 
-	const { cssPath, tsconfigPath } = detectConfigs(cwd, { relative: true });
+	const { cssPath, tsconfigPath, packageImportAlias } = detectConfigs(cwd, { relative: true });
 
 	let tsconfig;
 	if (existingConfig) {
@@ -203,6 +213,7 @@ async function promptForConfig({
 	const { utilsAlias, libAlias, componentAlias, hooksAlias, uiAlias } =
 		await cliConfig.promptForAliases({
 			...options,
+			libAliasDefault: packageImportAlias,
 			tsconfig,
 			cwd,
 			existingConfig,
@@ -278,9 +289,7 @@ export async function runInit({
 			// Ensure all resolved paths directories exist.
 			for (const [key, resolvedPath] of Object.entries(config.resolvedPaths)) {
 				// Determine if the path is a file or directory.
-				let dirname = path.extname(resolvedPath)
-					? path.dirname(resolvedPath)
-					: resolvedPath;
+				let dirname = path.extname(resolvedPath) ? path.dirname(resolvedPath) : resolvedPath;
 
 				// If the utils alias is set to something like "@/lib/utils",
 				// assume this is a file and remove the "utils" file name.
@@ -306,9 +315,10 @@ export async function runInit({
 	const presetUrl = new URL(`/init?preset=${encodedPreset}`, registryUrl).toString();
 
 	let selectedItems: string[] = [];
-	let overwrite = options.overwrite;
+	let overwrite = options.overwrite || options.reinstall === true;
 	// if the style has changed then we want to ask the user if they want to reinstall existing components to update their styles
-	if (styleChanged) {
+	// unless of course they user has explicitly disabled it
+	if (styleChanged && options.reinstall !== false) {
 		const registryIndex = await registry.getRegistryIndex(registryUrl);
 		const existingComponents = await project.getComponents({
 			registryIndex,
@@ -346,6 +356,7 @@ export async function runInit({
 			prompt: options.deps,
 			dependencies: Array.from(result.dependencies),
 			devDependencies: Array.from(result.devDependencies),
+			install: options.depsInstall,
 		});
 	} else if (result.skippedDeps.size) {
 		const prettyList = prettifyList([...result.skippedDeps], 7);

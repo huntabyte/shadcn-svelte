@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { LineChart } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
-	import { curveLinearClosed } from "d3-shape";
 	import { scaleBand } from "d3-scale";
-	import * as Chart from "$lib/registry/ui/chart/index.js";
+	import { curveLinearClosed } from "d3-shape";
+	import { LineChart } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Chart from "$lib/registry/ui/chart/index.js";
 
 	const chartData = [
 		{ month: "January", desktop: 186 },
@@ -81,11 +81,7 @@
 			>
 				{#snippet belowMarks()}
 					{#each gridPolygons as points (points)}
-						<polygon
-							{points}
-							class="stroke-muted-foreground/20 fill-none"
-							stroke-width="1"
-						/>
+						<polygon {points} class="fill-none stroke-muted-foreground/20" stroke-width="1" />
 					{/each}
 				{/snippet}
 				{#snippet tooltip()}
@@ -98,8 +94,8 @@
 		<div class="flex items-center gap-2 leading-none font-medium">
 			Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
 		</div>
-		<div class="text-muted-foreground flex items-center gap-2 leading-none">
-			Showing total visitors for the last 6 months
+		<div class="flex items-center gap-2 leading-none text-muted-foreground">
+			January - June 2024
 		</div>
 	</Card.Footer>
 </Card.Root>

@@ -1,19 +1,19 @@
 <script lang="ts">
 	import * as AlertDialog from "$lib/registry/ui/alert-dialog/index.js";
-	import { Badge } from "$lib/registry/ui/badge/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as ButtonGroup from "$lib/registry/ui/button-group/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
-	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
 	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Badge } from "$lib/registry/ui/badge/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
 	import { Slider } from "$lib/registry/ui/slider/index.js";
 	import { Switch } from "$lib/registry/ui/switch/index.js";
 	import { Textarea } from "$lib/registry/ui/textarea/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 
 	let sliderValue = $state(500);
 	let radioValue = $state("apple");
@@ -102,8 +102,7 @@
 					<AlertDialog.Header>
 						<AlertDialog.Title>Allow accessory to connect?</AlertDialog.Title>
 						<AlertDialog.Description>
-							Do you want to allow the USB accessory to connect to this device and
-							your data?
+							Do you want to allow the USB accessory to connect to this device and your data?
 						</AlertDialog.Description>
 					</AlertDialog.Header>
 					<AlertDialog.Footer>
@@ -144,9 +143,7 @@
 						</DropdownMenu.Group>
 						<DropdownMenu.Separator />
 						<DropdownMenu.Group>
-							<DropdownMenu.Item variant="destructive">
-								Delete Conversation
-							</DropdownMenu.Item>
+							<DropdownMenu.Item variant="destructive">Delete Conversation</DropdownMenu.Item>
 						</DropdownMenu.Group>
 					</DropdownMenu.Content>
 				</DropdownMenu.Root>

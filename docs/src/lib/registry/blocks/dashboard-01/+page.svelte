@@ -1,11 +1,11 @@
 <script lang="ts">
-	import data from "./data.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import AppSidebar from "./components/app-sidebar.svelte";
-	import SiteHeader from "./components/site-header.svelte";
-	import SectionCards from "./components/section-cards.svelte";
 	import ChartAreaInteractive from "./components/chart-area-interactive.svelte";
 	import DataTable from "./components/data-table.svelte";
+	import SectionCards from "./components/section-cards.svelte";
+	import SiteHeader from "./components/site-header.svelte";
+	import data from "./data.js";
 </script>
 
 <Sidebar.Provider

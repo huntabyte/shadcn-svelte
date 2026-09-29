@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Button from "$lib/registry/ui/button/button.svelte";
 	import { toggleMode } from "mode-watcher";
+	import Button from "$lib/registry/ui/button/button.svelte";
 	import { cn } from "$lib/utils.js";
 
 	type Props = {

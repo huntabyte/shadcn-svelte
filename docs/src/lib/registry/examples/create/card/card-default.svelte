@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
-	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Button from "$lib/registry/ui/button/index.js";
+	import * as Card from "$lib/registry/ui/card/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 
 <Example title="Default Size">
@@ -12,8 +12,8 @@
 		</Card.Header>
 		<Card.Content>
 			<p>
-				The card component supports a size prop that defaults to "default" for standard
-				spacing and sizing.
+				The card component supports a size prop that defaults to "default" for standard spacing and
+				sizing.
 			</p>
 		</Card.Content>
 		<Card.Footer>

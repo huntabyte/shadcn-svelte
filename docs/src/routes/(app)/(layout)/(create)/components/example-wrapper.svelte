@@ -5,7 +5,7 @@
 	let { class: className, children, ...restProps }: HTMLAttributes<HTMLDivElement> = $props();
 </script>
 
-<div class="bg-background w-full">
+<div class="w-full bg-background">
 	<div
 		data-slot="example-wrapper"
 		class={cn(

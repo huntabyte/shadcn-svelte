@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { cn } from "$lib/utils.js";
-	import type { HighlightedBlock } from "../../routes/api/block/[block]/+server.js";
 	import ChartToolbar from "./chart-toolbar.svelte";
+	import type { HighlightedBlock } from "../../routes/api/block/[block]/+server.js";
 	import type { HTMLAttributes } from "svelte/elements";
 
 	let {
@@ -24,10 +24,13 @@
 			className
 		)}
 	>
-		<ChartToolbar {chart} class="relative z-20 flex justify-end px-3 py-2.5">
+		<ChartToolbar
+			{chart}
+			class="relative z-20 flex justify-end border-b bg-card px-3 py-2.5 text-card-foreground"
+		>
 			{@render children?.()}
 		</ChartToolbar>
-		<div class="bg-background relative z-10 overflow-hidden rounded-xl border">
+		<div class="relative z-10 overflow-hidden rounded-xl border bg-background">
 			{@render children?.()}
 		</div>
 	</div>

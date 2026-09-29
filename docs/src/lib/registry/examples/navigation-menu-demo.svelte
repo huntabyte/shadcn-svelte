@@ -1,15 +1,9 @@
 <script lang="ts">
-	import * as NavigationMenu from "$lib/registry/ui/navigation-menu/index.js";
-	import { cn } from "$lib/utils.js";
-	import { navigationMenuTriggerStyle } from "$lib/registry/ui/navigation-menu/navigation-menu-trigger.svelte";
-	import type { HTMLAttributes } from "svelte/elements";
-	import CircleHelpIcon from "@lucide/svelte/icons/circle-help";
-	import CircleIcon from "@lucide/svelte/icons/circle";
+	import CircleAlertIcon from "@lucide/svelte/icons/circle-alert";
 	import CircleCheckIcon from "@lucide/svelte/icons/circle-check";
-
-	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
-
-	const isMobile = new IsMobile();
+	import CircleDashedIcon from "@lucide/svelte/icons/circle-dashed";
+	import * as NavigationMenu from "$lib/registry/ui/navigation-menu/index.js";
+	import { navigationMenuTriggerStyle } from "$lib/registry/ui/navigation-menu/navigation-menu-trigger.svelte";
 
 	const components: { title: string; href: string; description: string }[] = [
 		{
@@ -47,60 +41,29 @@
 				"A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
 		},
 	];
-
-	type ListItemProps = HTMLAttributes<HTMLAnchorElement> & {
-		title: string;
-		href: string;
-		content: string;
-	};
 </script>
 
-{#snippet ListItem({ title, content, href, class: className, ...restProps }: ListItemProps)}
+{#snippet ListItem({ title, content, href }: { title: string; content: string; href: string })}
 	<li>
-		<NavigationMenu.Link>
-			{#snippet child()}
-				<a
-					{href}
-					class={cn(
-						"hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none",
-						className
-					)}
-					{...restProps}
-				>
-					<div class="text-sm leading-none font-medium">{title}</div>
-					<p class="text-muted-foreground line-clamp-2 text-sm leading-snug">
-						{content}
-					</p>
-				</a>
-			{/snippet}
+		<NavigationMenu.Link {href}>
+			<div class="flex flex-col gap-1 text-sm">
+				<div class="leading-none font-medium">{title}</div>
+				<div class="line-clamp-2 text-muted-foreground">{content}</div>
+			</div>
 		</NavigationMenu.Link>
 	</li>
 {/snippet}
 
-<NavigationMenu.Root viewport={isMobile.current}>
-	<NavigationMenu.List class="flex-wrap">
+<NavigationMenu.Root>
+	<NavigationMenu.List>
 		<NavigationMenu.Item>
-			<NavigationMenu.Trigger>Home</NavigationMenu.Trigger>
+			<NavigationMenu.Trigger>Getting started</NavigationMenu.Trigger>
 			<NavigationMenu.Content>
-				<ul class="grid gap-2 p-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-					<li class="row-span-3">
-						<NavigationMenu.Link
-							class="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-4 no-underline outline-hidden select-none focus:shadow-md md:p-6"
-						>
-							{#snippet child({ props })}
-								<a {...props} href="/">
-									<div class="mt-4 mb-2 text-lg font-medium">shadcn-svelte</div>
-									<p class="text-muted-foreground text-sm leading-tight">
-										Beautifully designed components built with Tailwind CSS.
-									</p>
-								</a>
-							{/snippet}
-						</NavigationMenu.Link>
-					</li>
+				<ul class="w-96">
 					{@render ListItem({
 						href: "/docs",
 						title: "Introduction",
-						content: "Re-usable components built using Bits UI and Tailwind CSS.",
+						content: "Re-usable components built with Tailwind CSS.",
 					})}
 					{@render ListItem({
 						href: "/docs/installation",
@@ -115,13 +78,11 @@
 				</ul>
 			</NavigationMenu.Content>
 		</NavigationMenu.Item>
-		<NavigationMenu.Item>
+		<NavigationMenu.Item class="hidden md:flex">
 			<NavigationMenu.Trigger>Components</NavigationMenu.Trigger>
 			<NavigationMenu.Content>
-				<ul
-					class="grid w-[300px] gap-2 p-2 sm:w-[400px] md:w-[500px] md:grid-cols-2 lg:w-[600px]"
-				>
-					{#each components as component, i (i)}
+				<ul class="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+					{#each components as component (component.title)}
 						{@render ListItem({
 							href: component.href,
 							title: component.title,
@@ -131,65 +92,19 @@
 				</ul>
 			</NavigationMenu.Content>
 		</NavigationMenu.Item>
-
 		<NavigationMenu.Item>
-			<NavigationMenu.Link>
-				{#snippet child()}
-					<a href="/docs" class={navigationMenuTriggerStyle()}>Docs</a>
-				{/snippet}
-			</NavigationMenu.Link>
-		</NavigationMenu.Item>
-		<NavigationMenu.Item class="hidden md:block">
-			<NavigationMenu.Trigger>List</NavigationMenu.Trigger>
-			<NavigationMenu.Content>
-				<ul class="grid w-[300px] gap-4 p-2">
-					<li>
-						<NavigationMenu.Link href="##">
-							<div class="font-medium">Components</div>
-							<div class="text-muted-foreground">
-								Browse all components in the library.
-							</div>
-						</NavigationMenu.Link>
-						<NavigationMenu.Link href="##">
-							<div class="font-medium">Documentation</div>
-							<div class="text-muted-foreground">Learn how to use the library.</div>
-						</NavigationMenu.Link>
-						<NavigationMenu.Link href="##">
-							<div class="font-medium">Blog</div>
-							<div class="text-muted-foreground">Read our latest blog posts.</div>
-						</NavigationMenu.Link>
-					</li>
-				</ul>
-			</NavigationMenu.Content>
-		</NavigationMenu.Item>
-		<NavigationMenu.Item class="hidden md:block">
-			<NavigationMenu.Trigger>Simple</NavigationMenu.Trigger>
-			<NavigationMenu.Content>
-				<ul class="grid w-[200px] gap-4 p-2">
-					<li>
-						<NavigationMenu.Link href="##">Components</NavigationMenu.Link>
-						<NavigationMenu.Link href="##">Documentation</NavigationMenu.Link>
-						<NavigationMenu.Link href="##">Blocks</NavigationMenu.Link>
-					</li>
-				</ul>
-			</NavigationMenu.Content>
-		</NavigationMenu.Item>
-		<NavigationMenu.Item class="hidden md:block">
 			<NavigationMenu.Trigger>With Icon</NavigationMenu.Trigger>
-
 			<NavigationMenu.Content>
-				<ul class="grid w-[200px] gap-4 p-2">
+				<ul class="grid w-[200px]">
 					<li>
 						<NavigationMenu.Link href="##" class="flex-row items-center gap-2">
-							<CircleHelpIcon />
+							<CircleAlertIcon />
 							Backlog
 						</NavigationMenu.Link>
-
 						<NavigationMenu.Link href="##" class="flex-row items-center gap-2">
-							<CircleIcon />
+							<CircleDashedIcon />
 							To Do
 						</NavigationMenu.Link>
-
 						<NavigationMenu.Link href="##" class="flex-row items-center gap-2">
 							<CircleCheckIcon />
 							Done
@@ -197,6 +112,11 @@
 					</li>
 				</ul>
 			</NavigationMenu.Content>
+		</NavigationMenu.Item>
+		<NavigationMenu.Item>
+			<NavigationMenu.Link href="/docs" class={navigationMenuTriggerStyle()}>
+				Docs
+			</NavigationMenu.Link>
 		</NavigationMenu.Item>
 	</NavigationMenu.List>
 </NavigationMenu.Root>

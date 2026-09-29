@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as Picker from "./picker/index.js";
-	import { FONTS } from "$lib/fonts.js";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
+	import { FONTS } from "$lib/fonts.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
+	import * as Picker from "./picker/index.js";
 	import LockButton from "./lock-button.svelte";
 
 	type FontPickerOption = {
@@ -66,13 +66,13 @@
 	<Picker.Root {submenu}>
 		<Picker.Trigger {submenu}>
 			<div class="flex flex-col justify-start text-left">
-				<div class="text-muted-foreground text-xs">{label}</div>
-				<div class="text-foreground text-sm font-medium">
+				<div class="text-xs text-muted-foreground">{label}</div>
+				<div class="text-sm font-medium text-foreground">
 					{displayFontName}
 				</div>
 			</div>
 			<div
-				class="text-foreground pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base select-none md:right-2.5"
+				class="pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base text-foreground select-none md:right-2.5"
 				style="font-family: {previewFontFamily}"
 			>
 				Aa

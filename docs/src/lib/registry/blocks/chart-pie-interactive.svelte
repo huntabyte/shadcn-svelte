@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Arc, PieChart, Text } from "layerchart";
-	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import ChartStyle from "../ui/chart/chart-style.svelte";
 
@@ -49,9 +49,7 @@
 					class="flex h-3 w-3 shrink-0 rounded-xs"
 					style:background-color={`var(--color-${activeMonth})`}
 				></span>
-				{activeMonth
-					? chartConfig[activeMonth as keyof typeof chartConfig].label
-					: "Select month"}
+				{activeMonth ? chartConfig[activeMonth as keyof typeof chartConfig].label : "Select month"}
 			</Select.Trigger>
 			<Select.Content align="end" class="rounded-xl">
 				<Select.Group>
@@ -59,11 +57,7 @@
 						{@const config = chartConfig[month as keyof typeof chartConfig]}
 
 						{#if config}
-							<Select.Item
-								value={month}
-								label={config.label}
-								class="rounded-lg [&_span]:flex"
-							>
+							<Select.Item value={month} label={config.label} class="rounded-lg [&_span]:flex">
 								<div class="flex items-center gap-2 text-xs">
 									{config?.label}
 								</div>
@@ -113,9 +107,7 @@
 				{/snippet}
 				{#snippet arc({ props, index })}
 					{@const isActive = index === activeIndex}
-					{@const arcProps = isActive
-						? { ...props, outerRadius: 60, innerRadius: 105 }
-						: props}
+					{@const arcProps = isActive ? { ...props, outerRadius: 60, innerRadius: 105 } : props}
 
 					{#if isActive}
 						<g>

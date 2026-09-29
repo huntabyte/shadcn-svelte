@@ -1,13 +1,12 @@
 <script lang="ts">
 	import MoreHorizontal from "@lucide/svelte/icons/more-horizontal";
-
-	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import * as Field from "$lib/registry/ui/field/index.js";
+	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
 	import { Label } from "$lib/registry/ui/label/index.js";
 	import { Textarea } from "$lib/registry/ui/textarea/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
 
 	let showNewDialog = $state(false);
 	let showShareDialog = $state(false);
@@ -20,12 +19,8 @@
 	<DropdownMenu.Content class="w-40" align="end">
 		<DropdownMenu.Label>File Actions</DropdownMenu.Label>
 		<DropdownMenu.Group>
-			<DropdownMenu.Item onSelect={() => (showNewDialog = true)}>
-				New File...
-			</DropdownMenu.Item>
-			<DropdownMenu.Item onSelect={() => (showShareDialog = true)}>
-				Share...
-			</DropdownMenu.Item>
+			<DropdownMenu.Item onSelect={() => (showNewDialog = true)}>New File...</DropdownMenu.Item>
+			<DropdownMenu.Item onSelect={() => (showShareDialog = true)}>Share...</DropdownMenu.Item>
 			<DropdownMenu.Item disabled>Download</DropdownMenu.Item>
 		</DropdownMenu.Group>
 	</DropdownMenu.Content>
@@ -56,9 +51,7 @@
 	<Dialog.Content class="sm:max-w-[425px]">
 		<Dialog.Header>
 			<Dialog.Title>Share File</Dialog.Title>
-			<Dialog.Description>
-				Anyone with the link will be able to view this file.
-			</Dialog.Description>
+			<Dialog.Description>Anyone with the link will be able to view this file.</Dialog.Description>
 		</Dialog.Header>
 		<Field.Group class="py-3">
 			<Field.Field>

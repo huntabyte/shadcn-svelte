@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 
 <Example title="Checkbox Fields">
@@ -30,17 +30,13 @@
 				<Checkbox id="checkbox-with-title" />
 				<Field.Content>
 					<Field.Title>Enable Touch ID</Field.Title>
-					<Field.Description
-						>Enable Touch ID to quickly unlock your device.</Field.Description
-					>
+					<Field.Description>Enable Touch ID to quickly unlock your device.</Field.Description>
 				</Field.Content>
 			</Field.Field>
 		</Field.Label>
 		<Field.Set>
 			<Field.Legend variant="label">Preferences</Field.Legend>
-			<Field.Description
-				>Select all that apply to customize your experience.</Field.Description
-			>
+			<Field.Description>Select all that apply to customize your experience.</Field.Description>
 			<Field.Group class="gap-3">
 				<Field.Field orientation="horizontal">
 					<Checkbox id="pref-dark" />
@@ -64,9 +60,7 @@
 		</Field.Field>
 		<Field.Field data-disabled orientation="horizontal">
 			<Checkbox id="checkbox-disabled-field" disabled />
-			<Field.Label for="checkbox-disabled-field" class="font-normal">
-				Disabled checkbox
-			</Field.Label>
+			<Field.Label for="checkbox-disabled-field" class="font-normal">Disabled checkbox</Field.Label>
 		</Field.Field>
 	</Field.Group>
 </Example>

@@ -243,12 +243,12 @@
 </script>
 
 <script lang="ts">
+	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import NavFavorites from "./nav-favorites.svelte";
 	import NavMain from "./nav-main.svelte";
 	import NavSecondary from "./nav-secondary.svelte";
 	import NavWorkspaces from "./nav-workspaces.svelte";
 	import TeamSwitcher from "./team-switcher.svelte";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import type { ComponentProps } from "svelte";
 
 	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();

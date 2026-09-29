@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
+	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import * as Kbd from "$lib/registry/ui/kbd/index.js";
-	import { Spinner } from "$lib/registry/ui/spinner/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Spinner } from "$lib/registry/ui/spinner/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 
 <Example title="With Kbd">
@@ -68,8 +68,7 @@
 					</div>
 				</InputGroup.Addon>
 			</InputGroup.Root>
-			<Field.Description class="text-green-700">This username is available.</Field.Description
-			>
+			<Field.Description class="text-green-700">This username is available.</Field.Description>
 		</Field.Field>
 		<InputGroup.Root>
 			<InputGroup.Input id="input-search-docs-27" placeholder="Search documentation..." />
@@ -134,9 +133,7 @@
 			</Field.Field>
 		</Field.Group>
 		<Field.Field data-disabled="true">
-			<Field.Label for="input-group-29"
-				>Loading (&quot;data-disabled=&quot;true&quot;)</Field.Label
-			>
+			<Field.Label for="input-group-29">Loading (&quot;data-disabled=&quot;true&quot;)</Field.Label>
 			<InputGroup.Root>
 				<InputGroup.Input id="input-group-29" disabled value="shadcn" />
 				<InputGroup.Addon align="inline-end">

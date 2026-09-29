@@ -1,7 +1,7 @@
 // @ts-check
-import { mdsx } from "mdsx";
 import adapter from "@sveltejs/adapter-cloudflare";
 import MagicString from "magic-string";
+import { mdsx } from "mdsx";
 import { mdsxConfig } from "./mdsx.config.js";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -24,6 +24,12 @@ const config = {
 		},
 		alias: {
 			"$content/*": ".velite/*",
+		},
+		typescript: {
+			config: (config) => {
+				config.include.push("../mdsx.config.js", "../velite.config.js", "../.velite/**/*");
+				return config;
+			},
 		},
 	},
 };
@@ -66,7 +72,7 @@ function componentPreviews() {
 					importStatement = `import ${identifier} from "$lib/registry/blocks/${name}.svelte";`;
 				} else if (name.includes("sidebar") || name.includes("Sidebar")) {
 					continue;
-				} else if (name.startsWith("calendar") && !name.includes("demo")) {
+				} else if (/^calendar-\d+$/.test(name)) {
 					importStatement = `import ${identifier} from "$lib/registry/blocks/${name}.svelte";`;
 				} else {
 					importStatement = `import ${identifier} from "$lib/registry/examples/${name}.svelte";`;

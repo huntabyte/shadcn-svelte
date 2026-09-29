@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { tick } from "svelte";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
-	import * as Dialog from "$lib/registry/ui/dialog/index.js";
-	import * as Command from "$lib/registry/ui/command/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { toast } from "svelte-sonner";
+	import * as Command from "$lib/registry/ui/command/index.js";
+	import * as Dialog from "$lib/registry/ui/dialog/index.js";
+	import * as Field from "$lib/registry/ui/field/index.js";
+	import * as Popover from "$lib/registry/ui/popover/index.js";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"] as const;
 
@@ -62,7 +62,7 @@
 									hugeicons="ArrowDown01Icon"
 									phosphor="CaretDownIcon"
 									remixicon="RiArrowDownSLine"
-									class="text-muted-foreground size-4 opacity-50"
+									class="size-4 text-muted-foreground opacity-50"
 								/>
 							</Button>
 						{/snippet}
@@ -87,9 +87,7 @@
 												hugeicons="Tick02Icon"
 												phosphor="CheckIcon"
 												remixicon="RiCheckLine"
-												class={cn(
-													value !== framework && "text-transparent"
-												)}
+												class={cn(value !== framework && "text-transparent")}
 											/>
 											{framework}
 										</Command.Item>

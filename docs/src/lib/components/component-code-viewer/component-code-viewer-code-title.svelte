@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { ComponentCodeViewerContext } from "./component-code-viewer.svelte";
 	import * as Select from "$lib/registry/ui/select/index.js";
-	import { getIconForLanguageExtension } from "../icons/icons.js";
 	import ComponentCodeViewerCopyCodeButton from "./component-code-viewer-copy-code-button.svelte";
+	import { ComponentCodeViewerContext } from "./component-code-viewer.svelte";
+	import { getIconForLanguageExtension } from "../icons/icons.js";
 
 	const ctx = ComponentCodeViewerContext.get();
 	const file = $derived(ctx.highlightedFiles?.find((f) => f.target === ctx.activeFile) ?? null);
@@ -17,7 +17,7 @@
 	<!-- When sidebar is hidden, show Select at all screen sizes -->
 	{#if hideSidebar}
 		<div
-			class="text-code-foreground [&_svg]:text-code-foreground flex h-12 shrink-0 items-center gap-2 border-b px-2 py-2 select-none [&_svg]:size-4 [&_svg]:opacity-70"
+			class="flex h-12 shrink-0 items-center gap-2 border-b px-2 py-2 text-code-foreground select-none [&_svg]:size-4 [&_svg]:text-code-foreground [&_svg]:opacity-70"
 			data-language={language}
 		>
 			<Select.Root
@@ -48,7 +48,7 @@
 	{:else}
 		<!-- When sidebar is shown, show file name on desktop and Select on mobile -->
 		<figcaption
-			class="text-code-foreground [&_svg]:text-code-foreground hidden h-12 shrink-0 items-center gap-2 border-b px-4 py-2 select-none md:flex [&_svg]:size-4 [&_svg]:opacity-70"
+			class="hidden h-12 shrink-0 items-center gap-2 border-b px-4 py-2 text-code-foreground select-none md:flex [&_svg]:size-4 [&_svg]:text-code-foreground [&_svg]:opacity-70"
 			data-language={language}
 		>
 			<Icon />
@@ -59,7 +59,7 @@
 		</figcaption>
 		{#if showFileTree}
 			<div
-				class="text-code-foreground [&_svg]:text-code-foreground flex h-12 shrink-0 items-center gap-2 border-b px-2 py-2 md:hidden [&_svg]:size-4 [&_svg]:opacity-70"
+				class="flex h-12 shrink-0 items-center gap-2 border-b px-2 py-2 text-code-foreground md:hidden [&_svg]:size-4 [&_svg]:text-code-foreground [&_svg]:opacity-70"
 			>
 				<Select.Root
 					type="single"

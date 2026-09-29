@@ -1,11 +1,11 @@
-import Vega from "./icons/vega.svelte";
-import Nova from "./icons/nova.svelte";
-import Maia from "./icons/maia.svelte";
-import Lyra from "./icons/lyra.svelte";
-import Mira from "./icons/mira.svelte";
 import Luma from "./icons/luma.svelte";
-import Sera from "./icons/sera.svelte";
+import Lyra from "./icons/lyra.svelte";
+import Maia from "./icons/maia.svelte";
+import Mira from "./icons/mira.svelte";
+import Nova from "./icons/nova.svelte";
 import Rhea from "./icons/rhea.svelte";
+import Sera from "./icons/sera.svelte";
+import Vega from "./icons/vega.svelte";
 
 export const STYLES = [
 	{

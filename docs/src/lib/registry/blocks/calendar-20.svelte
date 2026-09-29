@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { CalendarDate, getLocalTimeZone } from "@internationalized/date";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import Calendar from "$lib/registry/ui/calendar/calendar.svelte";
-	import { CalendarDate, getLocalTimeZone } from "@internationalized/date";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	let value = $state<CalendarDate | undefined>(new CalendarDate(2025, 6, 12));
 	let selectedTime = $state<string | null>("10:00");
@@ -28,7 +28,7 @@
 			/>
 		</div>
 		<div
-			class="no-scrollbar inset-y-0 end-0 flex max-h-72 w-full scroll-pb-6 flex-col gap-4 overflow-y-auto border-t p-6 md:absolute md:max-h-none md:w-48 md:border-s md:border-t-0"
+			class="inset-y-0 end-0 no-scrollbar flex max-h-72 w-full scroll-pb-6 flex-col gap-4 overflow-y-auto border-t p-6 md:absolute md:max-h-none md:w-48 md:border-s md:border-t-0"
 		>
 			<div class="grid gap-2">
 				{#each timeSlots as time (time)}

@@ -1,10 +1,10 @@
 <script lang="ts">
-	import * as Chart from "$lib/registry/ui/chart/index.js";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Select from "$lib/registry/ui/select/index.js";
 	import { scaleUtc } from "d3-scale";
-	import { Area, AreaChart, ChartClipPath } from "layerchart";
 	import { curveNatural } from "d3-shape";
+	import { Area, AreaChart, ChartClipPath } from "layerchart";
+	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Chart from "$lib/registry/ui/chart/index.js";
+	import * as Select from "$lib/registry/ui/select/index.js";
 	import ChartContainer from "../ui/chart/chart-container.svelte";
 
 	const chartData = [
@@ -196,24 +196,12 @@
 				{#snippet marks({ context })}
 					<defs>
 						<linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
-							<stop
-								offset="5%"
-								stop-color="var(--color-desktop)"
-								stop-opacity={1.0}
-							/>
-							<stop
-								offset="95%"
-								stop-color="var(--color-desktop)"
-								stop-opacity={0.1}
-							/>
+							<stop offset="5%" stop-color="var(--color-desktop)" stop-opacity={1.0} />
+							<stop offset="95%" stop-color="var(--color-desktop)" stop-opacity={0.1} />
 						</linearGradient>
 						<linearGradient id="fillMobile" x1="0" y1="0" x2="0" y2="1">
 							<stop offset="5%" stop-color="var(--color-mobile)" stop-opacity={0.8} />
-							<stop
-								offset="95%"
-								stop-color="var(--color-mobile)"
-								stop-opacity={0.1}
-							/>
+							<stop offset="95%" stop-color="var(--color-mobile)" stop-opacity={0.1} />
 						</linearGradient>
 					</defs>
 					<ChartClipPath initialWidth={0} motion={Chart.defaultClipMotion}>
@@ -224,9 +212,7 @@
 								fillOpacity={0.4}
 								line={{ class: "stroke-1" }}
 								{...s.props}
-								fill={s.key === "desktop"
-									? "url(#fillDesktop)"
-									: "url(#fillMobile)"}
+								fill={s.key === "desktop" ? "url(#fillDesktop)" : "url(#fillMobile)"}
 							/>
 						{/each}
 					</ChartClipPath>

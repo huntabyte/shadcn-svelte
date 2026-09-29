@@ -143,11 +143,11 @@
 </script>
 
 <script lang="ts">
-	import SearchForm from "./search-form.svelte";
-	import VersionSwitcher from "./version-switcher.svelte";
+	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
+	import SearchForm from "./search-form.svelte";
+	import VersionSwitcher from "./version-switcher.svelte";
 	import type { ComponentProps } from "svelte";
 
 	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();
@@ -164,7 +164,7 @@
 			<Collapsible.Root title={item.title} open class="group/collapsible">
 				<Sidebar.Group>
 					<Sidebar.GroupLabel
-						class="group/label text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-sm"
+						class="group/label text-sm text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
 					>
 						{#snippet child({ props })}
 							<Collapsible.Trigger {...props}>

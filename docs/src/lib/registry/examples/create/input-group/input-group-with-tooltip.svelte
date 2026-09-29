@@ -1,12 +1,12 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import * as ButtonGroup from "$lib/registry/ui/button-group/index.js";
+	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import * as Field from "$lib/registry/ui/field/index.js";
+	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
+	import * as Popover from "$lib/registry/ui/popover/index.js";
+	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	let country = $state("+1");
 </script>
@@ -46,10 +46,7 @@
 					<DropdownMenu.Root>
 						<DropdownMenu.Trigger>
 							{#snippet child({ props })}
-								<InputGroup.Button
-									{...props}
-									class="text-muted-foreground tabular-nums"
-								>
+								<InputGroup.Button {...props} class="text-muted-foreground tabular-nums">
 									{country}
 									<IconPlaceholder
 										lucide="ChevronDownIcon"
@@ -61,21 +58,10 @@
 								</InputGroup.Button>
 							{/snippet}
 						</DropdownMenu.Trigger>
-						<DropdownMenu.Content
-							align="start"
-							class="min-w-16"
-							sideOffset={10}
-							alignOffset={-8}
-						>
-							<DropdownMenu.Item onclick={() => (country = "+1")}
-								>+1</DropdownMenu.Item
-							>
-							<DropdownMenu.Item onclick={() => (country = "+44")}
-								>+44</DropdownMenu.Item
-							>
-							<DropdownMenu.Item onclick={() => (country = "+46")}
-								>+46</DropdownMenu.Item
-							>
+						<DropdownMenu.Content align="start" class="min-w-16" sideOffset={10} alignOffset={-8}>
+							<DropdownMenu.Item onclick={() => (country = "+1")}>+1</DropdownMenu.Item>
+							<DropdownMenu.Item onclick={() => (country = "+44")}>+44</DropdownMenu.Item>
+							<DropdownMenu.Item onclick={() => (country = "+46")}>+46</DropdownMenu.Item>
 						</DropdownMenu.Content>
 					</DropdownMenu.Root>
 				</InputGroup.Addon>
@@ -104,13 +90,13 @@
 					<Popover.Content align="start">
 						<div class="space-y-2">
 							<h4 class="leading-none font-medium">Your connection is not secure.</h4>
-							<p class="text-muted-foreground text-sm">
+							<p class="text-sm text-muted-foreground">
 								You should not enter any sensitive information on this site.
 							</p>
 						</div>
 					</Popover.Content>
 				</Popover.Root>
-				<InputGroup.Addon class="text-muted-foreground pl-1">https://</InputGroup.Addon>
+				<InputGroup.Addon class="pl-1 text-muted-foreground">https://</InputGroup.Addon>
 				<InputGroup.Input id="input-secure-19" />
 				<InputGroup.Addon align="inline-end">
 					<InputGroup.Button size="icon-xs" onclick={() => {}}>

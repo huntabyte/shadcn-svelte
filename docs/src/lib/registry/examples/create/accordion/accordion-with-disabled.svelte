@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import * as Accordion from "$lib/registry/ui/accordion/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const items = [
 		{
@@ -30,18 +30,18 @@
 <Example title="With Disabled">
 	<Accordion.Root
 		type="single"
-		class="style-lyra:rounded-none style-vega:rounded-lg style-nova:rounded-lg style-maia:rounded-lg style-mira:rounded-lg mx-auto max-w-lg overflow-hidden border"
+		class="mx-auto max-w-lg overflow-hidden border style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-lg style-mira:rounded-lg"
 	>
 		{#each items as item (item.value)}
 			<Accordion.Item
 				value={item.value}
 				disabled={item.disabled}
-				class="data-[state=open]:bg-muted/50 p-1"
+				class="p-1 data-[state=open]:bg-muted/50"
 			>
-				<Accordion.Trigger class="style-nova:px-2.5 style-lyra:px-2 style-vega:px-4">
+				<Accordion.Trigger class="style-vega:px-4 style-nova:px-2.5 style-lyra:px-2">
 					{item.trigger}
 				</Accordion.Trigger>
-				<Accordion.Content class="style-nova:px-2.5 style-lyra:px-2 style-vega:px-4">
+				<Accordion.Content class="style-vega:px-4 style-nova:px-2.5 style-lyra:px-2">
 					{item.content}
 				</Accordion.Content>
 			</Accordion.Item>

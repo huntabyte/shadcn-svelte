@@ -1,19 +1,19 @@
 <script lang="ts">
 	import * as AlertDialog from "$lib/registry/ui/alert-dialog/index.js";
-	import { Badge } from "$lib/registry/ui/badge/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as ButtonGroup from "$lib/registry/ui/button-group/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
-	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
 	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Badge } from "$lib/registry/ui/badge/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
 	import { Slider } from "$lib/registry/ui/slider/index.js";
 	import { Switch } from "$lib/registry/ui/switch/index.js";
 	import { Textarea } from "$lib/registry/ui/textarea/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 
 	const colorVariants = [
 		"--background",
@@ -38,7 +38,7 @@
 </script>
 
 <div
-	class="bg-muted dark:bg-background flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-12"
+	class="flex min-h-screen w-full flex-col items-center justify-center bg-muted p-4 sm:p-6 lg:p-12 dark:bg-background"
 >
 	<div class="grid max-w-3xl gap-4 sm:grid-cols-2">
 		<div class="flex flex-col gap-4">
@@ -46,9 +46,9 @@
 				<Card.Content class="flex flex-col gap-6">
 					<div class="flex flex-col gap-1">
 						<div class="text-2xl font-medium">Style Overview</div>
-						<div class="text-muted-foreground line-clamp-2 text-base">
-							Designers love packing quirky glyphs into test phrases. This is a
-							preview of the typography styles.
+						<div class="line-clamp-2 text-base text-muted-foreground">
+							Designers love packing quirky glyphs into test phrases. This is a preview of the
+							typography styles.
 						</div>
 					</div>
 					<div class="grid grid-cols-6 gap-3">
@@ -58,11 +58,9 @@
 								style="--color: var({variant})"
 							>
 								<div
-									class="after:border-border relative aspect-square w-full rounded-lg bg-(--color) after:absolute after:inset-0 after:rounded-lg after:border after:mix-blend-darken dark:after:mix-blend-lighten"
+									class="relative aspect-square w-full rounded-lg bg-(--color) after:absolute after:inset-0 after:rounded-lg after:border after:border-border after:mix-blend-darken dark:after:mix-blend-lighten"
 								></div>
-								<div
-									class="hidden max-w-14 truncate font-mono text-[0.60rem] md:block"
-								>
+								<div class="hidden max-w-14 truncate font-mono text-[0.60rem] md:block">
 									{variant}
 								</div>
 							</div>
@@ -74,7 +72,7 @@
 				<Card.Content>
 					<div class="grid grid-cols-8 place-items-center gap-4">
 						<Card.Root
-							class="ring-border flex size-8 items-center justify-center rounded-md p-0 ring *:[svg]:size-4"
+							class="flex size-8 items-center justify-center rounded-md p-0 ring ring-border *:[svg]:size-4"
 						>
 							<IconPlaceholder
 								lucide="CopyIcon"
@@ -85,7 +83,7 @@
 							/>
 						</Card.Root>
 						<Card.Root
-							class="ring-border flex size-8 items-center justify-center rounded-md p-0 ring *:[svg]:size-4"
+							class="flex size-8 items-center justify-center rounded-md p-0 ring ring-border *:[svg]:size-4"
 						>
 							<IconPlaceholder
 								lucide="CircleAlertIcon"
@@ -96,7 +94,7 @@
 							/>
 						</Card.Root>
 						<Card.Root
-							class="ring-border flex size-8 items-center justify-center rounded-md p-0 ring *:[svg]:size-4"
+							class="flex size-8 items-center justify-center rounded-md p-0 ring ring-border *:[svg]:size-4"
 						>
 							<IconPlaceholder
 								lucide="TrashIcon"
@@ -107,7 +105,7 @@
 							/>
 						</Card.Root>
 						<Card.Root
-							class="ring-border flex size-8 items-center justify-center rounded-md p-0 ring *:[svg]:size-4"
+							class="flex size-8 items-center justify-center rounded-md p-0 ring ring-border *:[svg]:size-4"
 						>
 							<IconPlaceholder
 								lucide="ShareIcon"
@@ -118,7 +116,7 @@
 							/>
 						</Card.Root>
 						<Card.Root
-							class="ring-border flex size-8 items-center justify-center rounded-md p-0 ring *:[svg]:size-4"
+							class="flex size-8 items-center justify-center rounded-md p-0 ring ring-border *:[svg]:size-4"
 						>
 							<IconPlaceholder
 								lucide="ShoppingBagIcon"
@@ -129,7 +127,7 @@
 							/>
 						</Card.Root>
 						<Card.Root
-							class="ring-border flex size-8 items-center justify-center rounded-md p-0 ring *:[svg]:size-4"
+							class="flex size-8 items-center justify-center rounded-md p-0 ring ring-border *:[svg]:size-4"
 						>
 							<IconPlaceholder
 								lucide="MoreHorizontalIcon"
@@ -140,7 +138,7 @@
 							/>
 						</Card.Root>
 						<Card.Root
-							class="ring-border flex size-8 items-center justify-center rounded-md p-0 ring *:[svg]:size-4"
+							class="flex size-8 items-center justify-center rounded-md p-0 ring ring-border *:[svg]:size-4"
 						>
 							<IconPlaceholder
 								lucide="Loader2Icon"
@@ -151,7 +149,7 @@
 							/>
 						</Card.Root>
 						<Card.Root
-							class="ring-border flex size-8 items-center justify-center rounded-md p-0 ring *:[svg]:size-4"
+							class="flex size-8 items-center justify-center rounded-md p-0 ring ring-border *:[svg]:size-4"
 						>
 							<IconPlaceholder
 								lucide="PlusIcon"
@@ -162,7 +160,7 @@
 							/>
 						</Card.Root>
 						<Card.Root
-							class="ring-border flex size-8 items-center justify-center rounded-md p-0 ring *:[svg]:size-4"
+							class="flex size-8 items-center justify-center rounded-md p-0 ring ring-border *:[svg]:size-4"
 						>
 							<IconPlaceholder
 								lucide="MinusIcon"
@@ -173,7 +171,7 @@
 							/>
 						</Card.Root>
 						<Card.Root
-							class="ring-border flex size-8 items-center justify-center rounded-md p-0 ring *:[svg]:size-4"
+							class="flex size-8 items-center justify-center rounded-md p-0 ring ring-border *:[svg]:size-4"
 						>
 							<IconPlaceholder
 								lucide="ArrowLeftIcon"
@@ -184,7 +182,7 @@
 							/>
 						</Card.Root>
 						<Card.Root
-							class="ring-border flex size-8 items-center justify-center rounded-md p-0 ring *:[svg]:size-4"
+							class="flex size-8 items-center justify-center rounded-md p-0 ring ring-border *:[svg]:size-4"
 						>
 							<IconPlaceholder
 								lucide="ArrowRightIcon"
@@ -195,7 +193,7 @@
 							/>
 						</Card.Root>
 						<Card.Root
-							class="ring-border flex size-8 items-center justify-center rounded-md p-0 ring *:[svg]:size-4"
+							class="flex size-8 items-center justify-center rounded-md p-0 ring ring-border *:[svg]:size-4"
 						>
 							<IconPlaceholder
 								lucide="CheckIcon"
@@ -206,7 +204,7 @@
 							/>
 						</Card.Root>
 						<Card.Root
-							class="ring-border flex size-8 items-center justify-center rounded-md p-0 ring *:[svg]:size-4"
+							class="flex size-8 items-center justify-center rounded-md p-0 ring ring-border *:[svg]:size-4"
 						>
 							<IconPlaceholder
 								lucide="ChevronDownIcon"
@@ -217,7 +215,7 @@
 							/>
 						</Card.Root>
 						<Card.Root
-							class="ring-border flex size-8 items-center justify-center rounded-md p-0 ring *:[svg]:size-4"
+							class="flex size-8 items-center justify-center rounded-md p-0 ring ring-border *:[svg]:size-4"
 						>
 							<IconPlaceholder
 								lucide="ChevronRightIcon"
@@ -228,7 +226,7 @@
 							/>
 						</Card.Root>
 						<Card.Root
-							class="ring-border flex size-8 items-center justify-center rounded-md p-0 ring *:[svg]:size-4"
+							class="flex size-8 items-center justify-center rounded-md p-0 ring ring-border *:[svg]:size-4"
 						>
 							<IconPlaceholder
 								lucide="SearchIcon"
@@ -239,7 +237,7 @@
 							/>
 						</Card.Root>
 						<Card.Root
-							class="ring-border flex size-8 items-center justify-center rounded-md p-0 ring *:[svg]:size-4"
+							class="flex size-8 items-center justify-center rounded-md p-0 ring ring-border *:[svg]:size-4"
 						>
 							<IconPlaceholder
 								lucide="SettingsIcon"
@@ -332,12 +330,9 @@
 							</AlertDialog.Trigger>
 							<AlertDialog.Content size="sm">
 								<AlertDialog.Header>
-									<AlertDialog.Title>
-										Allow accessory to connect?
-									</AlertDialog.Title>
+									<AlertDialog.Title>Allow accessory to connect?</AlertDialog.Title>
 									<AlertDialog.Description>
-										Do you want to allow the USB accessory to connect to this
-										device and your data?
+										Do you want to allow the USB accessory to connect to this device and your data?
 									</AlertDialog.Description>
 								</AlertDialog.Header>
 								<AlertDialog.Footer>
@@ -378,9 +373,7 @@
 									</DropdownMenu.Group>
 									<DropdownMenu.Separator />
 									<DropdownMenu.Group>
-										<DropdownMenu.Item variant="destructive">
-											Delete Conversation
-										</DropdownMenu.Item>
+										<DropdownMenu.Item variant="destructive">Delete Conversation</DropdownMenu.Item>
 									</DropdownMenu.Group>
 								</DropdownMenu.Content>
 							</DropdownMenu.Root>

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as Textarea from "$lib/registry/ui/textarea/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 
 <Example title="Textarea Fields">
@@ -33,11 +33,7 @@
 		</Field.Field>
 		<Field.Field data-invalid>
 			<Field.Label for="textarea-invalid">Invalid Textarea</Field.Label>
-			<Textarea.Root
-				id="textarea-invalid"
-				placeholder="This field has an error"
-				aria-invalid
-			/>
+			<Textarea.Root id="textarea-invalid" placeholder="This field has an error" aria-invalid />
 			<Field.Description>This field contains validation errors.</Field.Description>
 		</Field.Field>
 		<Field.Field data-disabled>

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { Command as CommandPrimitive } from "bits-ui";
 	import CheckIcon from "@lucide/svelte/icons/check";
-	import type { Model } from "../(data)/models.js";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import { cn } from "$lib/utils.js";
+	import type { Model } from "../(data)/models.js";
+	import type { Command as CommandPrimitive } from "bits-ui";
 
 	type Props = {
 		model: Model;
@@ -17,8 +17,7 @@
 	function mutationObserverAction(node: HTMLElement) {
 		const observer = new MutationObserver((mutations) => {
 			for (const mutation of mutations) {
-				if (mutation.type !== "attributes" || mutation.attributeName !== "aria-selected")
-					continue;
+				if (mutation.type !== "attributes" || mutation.attributeName !== "aria-selected") continue;
 
 				if (node.getAttribute("aria-selected") === "true") {
 					onPeek(model);
@@ -42,7 +41,7 @@
 		<div
 			use:mutationObserverAction
 			{...props}
-			class="aria-selected:bg-primary aria-selected:text-primary-foreground relative flex cursor-default items-center rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
+			class="relative flex cursor-default items-center rounded-sm px-2 py-1.5 text-sm outline-none select-none aria-selected:bg-primary aria-selected:text-primary-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
 		>
 			{model.name}
 			{#if isSelected}

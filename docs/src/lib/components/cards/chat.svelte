@@ -1,15 +1,15 @@
 <script lang="ts">
+	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import PlusIcon from "@lucide/svelte/icons/plus";
-	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
-	import { cn } from "$lib/utils.js";
 	import * as Avatar from "$lib/registry/ui/avatar/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
+	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { cn } from "$lib/utils.js";
 
 	const users = [
 		{
@@ -76,7 +76,7 @@
 			</Avatar.Root>
 			<div class="flex flex-col gap-0.5">
 				<p class="text-sm leading-none font-medium">Sofia Davis</p>
-				<p class="text-muted-foreground text-xs">m@example.com</p>
+				<p class="text-xs text-muted-foreground">m@example.com</p>
 			</div>
 		</div>
 		<Tooltip.Provider delayDuration={0}>
@@ -105,9 +105,7 @@
 				<div
 					class={cn(
 						"flex w-max max-w-[75%] flex-col gap-2 rounded-lg px-3 py-2 text-sm",
-						message.role === "user"
-							? "bg-primary text-primary-foreground ms-auto"
-							: "bg-muted"
+						message.role === "user" ? "ms-auto bg-primary text-primary-foreground" : "bg-muted"
 					)}
 				>
 					{message.content}
@@ -163,13 +161,9 @@
 							class="data-[active=true]:opacity-50"
 							onSelect={() => {
 								if (selectedUsers.includes(user)) {
-									selectedUsers = selectedUsers.filter(
-										(u) => u.email !== user.email
-									);
+									selectedUsers = selectedUsers.filter((u) => u.email !== user.email);
 								} else {
-									selectedUsers = [...users].filter((u) =>
-										[...selectedUsers, user].includes(u)
-									);
+									selectedUsers = [...users].filter((u) => [...selectedUsers, user].includes(u));
 								}
 							}}
 						>
@@ -181,12 +175,12 @@
 								<p class="text-sm leading-none font-medium">
 									{user.name}
 								</p>
-								<p class="text-muted-foreground text-sm">
+								<p class="text-sm text-muted-foreground">
 									{user.email}
 								</p>
 							</div>
 							{#if selectedUsers.includes(user)}
-								<CheckIcon class="text-primary ms-auto flex size-4" />
+								<CheckIcon class="ms-auto flex size-4 text-primary" />
 							{/if}
 						</Command.Item>
 					{/each}
@@ -204,11 +198,9 @@
 					{/each}
 				</div>
 			{:else}
-				<p class="text-muted-foreground text-sm">Select users to add to this thread.</p>
+				<p class="text-sm text-muted-foreground">Select users to add to this thread.</p>
 			{/if}
-			<Button disabled={selectedUsers.length < 2} onclick={() => (open = false)}>
-				Continue
-			</Button>
+			<Button disabled={selectedUsers.length < 2} onclick={() => (open = false)}>Continue</Button>
 		</Dialog.Footer>
 	</Dialog.Content>
 </Dialog.Root>

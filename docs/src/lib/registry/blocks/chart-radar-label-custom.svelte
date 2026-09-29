@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { Axis, LineChart, Text } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
-	import { curveLinearClosed } from "d3-shape";
 	import { scaleBand } from "d3-scale";
-	import * as Chart from "$lib/registry/ui/chart/index.js";
+	import { curveLinearClosed } from "d3-shape";
+	import { Axis, LineChart, Text } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Chart from "$lib/registry/ui/chart/index.js";
 
 	const chartData = [
 		{ month: "January", desktop: 186, mobile: 80 },
@@ -90,12 +90,7 @@
 										: 0
 								: 0}
 							{@const data = chartData[index]}
-							<Text
-								{...props}
-								{y}
-								value="{data.desktop} / {data.mobile}"
-								class="fill-foreground"
-							/>
+							<Text {...props} {y} value="{data.desktop} / {data.mobile}" class="fill-foreground" />
 							<Text {...props} y={y + 14} />
 						{/snippet}
 					</Axis>
@@ -111,8 +106,8 @@
 		<div class="flex items-center gap-2 leading-none font-medium">
 			Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
 		</div>
-		<div class="text-muted-foreground flex items-center gap-2 leading-none">
-			Showing total visitors for the last 6 months
+		<div class="flex items-center gap-2 leading-none text-muted-foreground">
+			January - June 2024
 		</div>
 	</Card.Footer>
 </Card.Root>

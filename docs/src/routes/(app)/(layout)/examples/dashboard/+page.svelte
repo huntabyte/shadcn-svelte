@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Metadata from "$lib/components/metadata.svelte";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
+	import Metadata from "$lib/components/metadata.svelte";
 	import AppSidebar from "./components/app-sidebar.svelte";
 	import ChartAreaInteractive from "./components/chart-area-interactive.svelte";
 	import DataTable from "./components/data-table.svelte";

@@ -1,22 +1,22 @@
 <script lang="ts">
-	import AtIcon from "@lucide/svelte/icons/at-sign";
 	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
-	import AppsIcon from "@lucide/svelte/icons/grid-3x3";
+	import AtIcon from "@lucide/svelte/icons/at-sign";
 	import BookIcon from "@lucide/svelte/icons/book";
 	import CirclePlusIcon from "@lucide/svelte/icons/circle-plus";
+	import GlobeIcon from "@lucide/svelte/icons/globe";
+	import AppsIcon from "@lucide/svelte/icons/grid-3x3";
 	import PaperclipIcon from "@lucide/svelte/icons/paperclip";
 	import PlusIcon from "@lucide/svelte/icons/plus";
-	import GlobeIcon from "@lucide/svelte/icons/globe";
 	import XIcon from "@lucide/svelte/icons/x";
-	import { Avatar, AvatarFallback, AvatarImage } from "$lib/registry/ui/avatar/index.js";
-	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import { Switch } from "$lib/registry/ui/switch/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
+	import { Avatar, AvatarFallback, AvatarImage } from "$lib/registry/ui/avatar/index.js";
+	import { Badge } from "$lib/registry/ui/badge/index.js";
+	import { Switch } from "$lib/registry/ui/switch/index.js";
 
 	const SAMPLE_DATA = {
 		mentionable: [
@@ -146,10 +146,7 @@
 	<Field.Group>
 		<Field.Label for="notion-prompt" class="sr-only">Prompt</Field.Label>
 		<InputGroup.Root>
-			<InputGroup.Textarea
-				id="notion-prompt"
-				placeholder="Ask, search, or make anything..."
-			/>
+			<InputGroup.Textarea id="notion-prompt" placeholder="Ask, search, or make anything..." />
 			<InputGroup.Addon align="block-start">
 				<Popover.Root bind:open={mentionPopoverOpen}>
 					<Tooltip.Root>
@@ -197,11 +194,9 @@
 						</Command.Root>
 					</Popover.Content>
 				</Popover.Root>
-				<div class="no-scrollbar -m-1.5 flex gap-1 overflow-y-auto p-1.5">
+				<div class="-m-1.5 no-scrollbar flex gap-1 overflow-y-auto p-1.5">
 					{#each mentions as mention (mention)}
-						{@const item = SAMPLE_DATA.mentionable.find(
-							(item) => item.title === mention
-						)}
+						{@const item = SAMPLE_DATA.mentionable.find((item) => item.title === mention)}
 						{#if item}
 							<InputGroup.Button
 								size="sm"
@@ -241,11 +236,7 @@
 							{#snippet child({ props })}
 								<DropdownMenu.Trigger {...props}>
 									{#snippet child({ props })}
-										<InputGroup.Button
-											{...props}
-											size="sm"
-											class="rounded-full"
-										>
+										<InputGroup.Button {...props} size="sm" class="rounded-full">
 											{selectedModel.name}
 										</InputGroup.Button>
 									{/snippet}
@@ -256,7 +247,7 @@
 					</Tooltip.Root>
 					<DropdownMenu.Content side="top" align="start" class="[--radius:1rem]">
 						<DropdownMenu.Group class="w-42">
-							<DropdownMenu.Label class="text-muted-foreground text-xs">
+							<DropdownMenu.Label class="text-xs text-muted-foreground">
 								Select Agent Mode
 							</DropdownMenu.Label>
 							{#each SAMPLE_DATA.models as model (model.name)}
@@ -325,10 +316,7 @@
 								</DropdownMenu.SubTrigger>
 								<DropdownMenu.SubContent class="w-72 p-0 [--radius:1rem]">
 									<Command.Root>
-										<Command.Input
-											placeholder="Find or use knowledge in..."
-											autofocus
-										/>
+										<Command.Input placeholder="Find or use knowledge in..." autofocus />
 										<Command.List>
 											<Command.Empty>No knowledge found</Command.Empty>
 											<Command.Group>
@@ -337,10 +325,7 @@
 														value={user.title}
 														onSelect={() => {
 															// Handle user selection here
-															console.log(
-																"Selected user:",
-																user.title
-															);
+															console.log("Selected user:", user.title);
 														}}
 													>
 														<Avatar class="size-4">
@@ -369,7 +354,7 @@
 							<DropdownMenu.Item>
 								<PlusIcon /> Connect Apps
 							</DropdownMenu.Item>
-							<DropdownMenu.Label class="text-muted-foreground text-xs">
+							<DropdownMenu.Label class="text-xs text-muted-foreground">
 								We'll only search in the sources selected here.
 							</DropdownMenu.Label>
 						</DropdownMenu.Group>

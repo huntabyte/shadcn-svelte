@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import {
 		FieldGroup,
 		Field,
@@ -7,7 +8,6 @@
 		FieldSeparator,
 	} from "$lib/registry/ui/field/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import { cn, type WithElementRef } from "$lib/utils.js";
 	import type { HTMLFormAttributes } from "svelte/elements";
 
@@ -24,7 +24,7 @@
 	<FieldGroup>
 		<div class="flex flex-col items-center gap-1 text-center">
 			<h1 class="text-2xl font-bold">Login to your account</h1>
-			<p class="text-muted-foreground text-sm text-balance">
+			<p class="text-sm text-balance text-muted-foreground">
 				Enter your email below to login to your account
 			</p>
 		</div>

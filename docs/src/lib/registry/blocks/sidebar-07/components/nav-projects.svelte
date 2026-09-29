@@ -1,11 +1,11 @@
 <script lang="ts">
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { useSidebar } from "$lib/registry/ui/sidebar/context.svelte.js";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
 	import FolderIcon from "@lucide/svelte/icons/folder";
 	import ForwardIcon from "@lucide/svelte/icons/forward";
 	import Trash2Icon from "@lucide/svelte/icons/trash-2";
+	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
+	import { useSidebar } from "$lib/registry/ui/sidebar/context.svelte.js";
 
 	let {
 		projects,

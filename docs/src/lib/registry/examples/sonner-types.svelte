@@ -5,9 +5,7 @@
 
 <div class="flex flex-wrap gap-2">
 	<Button variant="outline" onclick={() => toast("Event has been created")}>Default</Button>
-	<Button variant="outline" onclick={() => toast.success("Event has been created")}>
-		Success
-	</Button>
+	<Button variant="outline" onclick={() => toast.success("Event has been created")}>Success</Button>
 	<Button
 		variant="outline"
 		onclick={() => toast.info("Be at the area 10 minutes before the event time")}
@@ -20,9 +18,7 @@
 	>
 		Warning
 	</Button>
-	<Button variant="outline" onclick={() => toast.error("Event has not been created")}>
-		Error
-	</Button>
+	<Button variant="outline" onclick={() => toast.error("Event has not been created")}>Error</Button>
 	<Button
 		variant="outline"
 		onclick={() => {

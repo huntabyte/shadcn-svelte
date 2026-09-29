@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Input } from "$lib/registry/ui/input/index.js";
 </script>
 
 <Card.Root>
@@ -23,7 +23,7 @@
 					<Field.Label for="current-password">Current Password</Field.Label>
 					<a
 						href="#/"
-						class="text-muted-foreground hover:text-foreground text-xs font-medium tracking-wider uppercase"
+						class="text-xs font-medium tracking-wider text-muted-foreground uppercase hover:text-foreground"
 					>
 						Forgot?
 					</a>

@@ -1,13 +1,13 @@
 <script lang="ts">
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
-	import { tick } from "svelte";
 	import { useId } from "bits-ui";
-	import type { Preset } from "../(data)/presets.js";
-	import { cn } from "$lib/utils.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import { tick } from "svelte";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import { cn } from "$lib/utils.js";
+	import type { Preset } from "../(data)/presets.js";
 
 	let { presets }: { presets: Preset[] } = $props();
 
@@ -15,9 +15,7 @@
 
 	let value = $state("");
 
-	const selectedValue = $derived(
-		presets.find((f) => f.name === value)?.name ?? "Load a preset..."
-	);
+	const selectedValue = $derived(presets.find((f) => f.name === value)?.name ?? "Load a preset...");
 
 	let triggerId = useId();
 
@@ -61,9 +59,7 @@
 							}}
 						>
 							{preset.name}
-							<CheckIcon
-								class={cn(value === preset.name ? "opacity-100" : "opacity-0")}
-							/>
+							<CheckIcon class={cn(value === preset.name ? "opacity-100" : "opacity-0")} />
 						</Command.Item>
 					{/each}
 				</Command.Group>

@@ -1,13 +1,14 @@
 <script lang="ts">
+	import ActiveTheme from "$lib/components/active-theme.svelte";
 	import Announcement from "$lib/components/announcement.svelte";
+	import ChartsNav from "$lib/components/charts-nav.svelte";
+	import Metadata from "$lib/components/metadata.svelte";
 	import PageActions from "$lib/components/page-header/page-actions.svelte";
 	import PageHeaderDescription from "$lib/components/page-header/page-header-description.svelte";
 	import PageHeaderHeading from "$lib/components/page-header/page-header-heading.svelte";
 	import PageHeader from "$lib/components/page-header/page-header.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import PageNav from "$lib/components/page-nav.svelte";
-	import ChartsNav from "$lib/components/charts-nav.svelte";
-	import Metadata from "$lib/components/metadata.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	let { children } = $props();
 	const title = "Beautiful Charts & Graphs";
@@ -23,6 +24,7 @@
 	}}
 />
 
+<ActiveTheme />
 <PageHeader>
 	<Announcement />
 	<PageHeaderHeading>{title}</PageHeaderHeading>
@@ -35,7 +37,7 @@
 <PageNav id="charts">
 	<ChartsNav />
 </PageNav>
-<div class="container-wrapper section-soft flex-1">
+<div class="container-wrapper flex-1 section-soft">
 	<div class="container pb-6">
 		<section class="theme-container">{@render children?.()}</section>
 	</div>

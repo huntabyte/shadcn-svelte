@@ -1,9 +1,9 @@
 import { describe, expect, it, vi, beforeEach } from "vitest";
+import * as project from "../../src/utils/project.js";
 import { TW3_SITE_BASE_URL } from "../../src/constants.js";
-import { checkPreconditions } from "../../src/utils/preconditions.js";
 import { getConfig, writeConfig } from "../../src/utils/config/index.js";
 import { getDependencyPackageInfo } from "../../src/utils/get-package-info.js";
-import * as project from "../../src/utils/project.js";
+import { checkPreconditions } from "../../src/utils/preconditions.js";
 
 const resolvedPaths = {
 	cwd: "n/a",
@@ -88,9 +88,7 @@ describe("checkPreconditions", () => {
 
 		const config = (await getConfig(mockCwd))!;
 
-		expect(() =>
-			checkPreconditions({ cwd: mockCwd, config, skipPreflight: false })
-		).not.toThrow();
+		expect(() => checkPreconditions({ cwd: mockCwd, config, skipPreflight: false })).not.toThrow();
 	});
 
 	it("should update legacy config for Tailwind v3 + Svelte v5", async () => {
@@ -159,9 +157,9 @@ describe("checkPreconditions", () => {
 			});
 
 			const config = (await getConfig(mockCwd))!;
-			expect(() =>
-				checkPreconditions({ cwd: mockCwd, config, skipPreflight: false })
-			).toThrow("requires Tailwind CSS (v3 or v4) and Svelte v5");
+			expect(() => checkPreconditions({ cwd: mockCwd, config, skipPreflight: false })).toThrow(
+				"requires Tailwind CSS (v3 or v4) and Svelte v5"
+			);
 		}
 	});
 });

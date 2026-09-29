@@ -1,10 +1,10 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Chart from "$lib/registry/ui/chart/index.js";
+	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { scaleUtc } from "d3-scale";
 	import { curveNatural } from "d3-shape";
 	import { Area, AreaChart, ChartClipPath, LinearGradient } from "layerchart";
-	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
+	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Chart from "$lib/registry/ui/chart/index.js";
 
 	const chartData = [
 		{ date: new Date("2024-01-01"), desktop: 186, mobile: 80 },
@@ -67,10 +67,7 @@
 					<ChartClipPath initialWidth={0} motion={Chart.defaultClipMotion}>
 						{#each context.series.visibleSeries as s (s.key)}
 							<LinearGradient
-								stops={[
-									s.color ?? "",
-									"color-mix(in lch, " + s.color + " 10%, transparent)",
-								]}
+								stops={[s.color ?? "", "color-mix(in lch, " + s.color + " 10%, transparent)"]}
 								vertical
 							>
 								{#snippet children({ gradient })}
@@ -96,8 +93,8 @@
 				<div class="flex items-center gap-2 leading-none font-medium">
 					Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
 				</div>
-				<div class="text-muted-foreground flex items-center gap-2 leading-none">
-					Showing total visitors for the last 6 months
+				<div class="flex items-center gap-2 leading-none text-muted-foreground">
+					January - June 2024
 				</div>
 			</div>
 		</div>

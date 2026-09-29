@@ -1,10 +1,10 @@
-import { promises as fs } from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import { promises as fs } from "node:fs";
 import { afterEach, describe, expect, it } from "vitest";
-import { transform, transformFont } from "../../src/utils/transformers";
-import type { ResolvedConfig } from "../../src/utils/config/index";
-import { resolvedConfigSchema } from "../../src/utils/config/schema";
+import { resolvedConfigSchema } from "../../src/utils/config/schema.js";
+import { transform, transformFont } from "../../src/utils/transformers/index.js";
+import type { ResolvedConfig } from "../../src/utils/config/index.js";
 
 const tempDirs: string[] = [];
 
@@ -47,9 +47,7 @@ async function createTestConfig(cssContent: string): Promise<ResolvedConfig> {
 }
 
 afterEach(async () => {
-	await Promise.all(
-		tempDirs.splice(0).map((dir) => fs.rm(dir, { recursive: true, force: true }))
-	);
+	await Promise.all(tempDirs.splice(0).map((dir) => fs.rm(dir, { recursive: true, force: true })));
 });
 
 describe("transformFont", () => {
@@ -59,9 +57,7 @@ describe("transformFont", () => {
 			{
 				content: raw,
 				filePath: "test.svelte",
-				config: await createTestConfig(
-					`@theme inline { --font-heading: var(--font-heading); }`
-				),
+				config: await createTestConfig(`@theme inline { --font-heading: var(--font-heading); }`),
 			},
 			[]
 		);
@@ -75,9 +71,7 @@ describe("transformFont", () => {
 			{
 				content: raw,
 				filePath: "test.svelte",
-				config: await createTestConfig(
-					`@theme inline { --font-heading: var(--font-heading); }`
-				),
+				config: await createTestConfig(`@theme inline { --font-heading: var(--font-heading); }`),
 			},
 			[transformFont]
 		);
@@ -126,9 +120,7 @@ describe("transformFont", () => {
 			{
 				content: raw,
 				filePath: "test.svelte",
-				config: await createTestConfig(
-					`@theme inline { --font-heading: var(--font-heading); }`
-				),
+				config: await createTestConfig(`@theme inline { --font-heading: var(--font-heading); }`),
 			},
 			[transformFont]
 		);

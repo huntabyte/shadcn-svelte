@@ -8,34 +8,34 @@
 	import MoreHorizontal from "@lucide/svelte/icons/more-horizontal";
 	import Tag from "@lucide/svelte/icons/tag";
 	import Trash2 from "@lucide/svelte/icons/trash-2";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as ButtonGroup from "$lib/registry/ui/button-group/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	let label = $state("personal");
 </script>
 
 <ButtonGroup.Root>
 	<ButtonGroup.Root class="hidden sm:flex">
-		<Button variant="outline" size="icon-sm" aria-label="Go Back">
+		<Button variant="outline" size="icon" aria-label="Go Back">
 			<ArrowLeft />
 		</Button>
 	</ButtonGroup.Root>
 	<ButtonGroup.Root>
-		<Button size="sm" variant="outline">Archive</Button>
-		<Button size="sm" variant="outline">Report</Button>
+		<Button variant="outline">Archive</Button>
+		<Button variant="outline">Report</Button>
 	</ButtonGroup.Root>
 	<ButtonGroup.Root>
-		<Button size="sm" variant="outline">Snooze</Button>
+		<Button variant="outline">Snooze</Button>
 		<DropdownMenu.Root>
 			<DropdownMenu.Trigger>
 				{#snippet child({ props })}
-					<Button {...props} variant="outline" size="icon-sm" aria-label="More Options">
+					<Button {...props} variant="outline" size="icon" aria-label="More Options">
 						<MoreHorizontal />
 					</Button>
 				{/snippet}
 			</DropdownMenu.Trigger>
-			<DropdownMenu.Content align="end" class="w-52">
+			<DropdownMenu.Content align="end" class="w-40">
 				<DropdownMenu.Group>
 					<DropdownMenu.Item>
 						<MailCheck />
@@ -67,9 +67,7 @@
 						</DropdownMenu.SubTrigger>
 						<DropdownMenu.SubContent>
 							<DropdownMenu.RadioGroup bind:value={label}>
-								<DropdownMenu.RadioItem value="personal">
-									Personal
-								</DropdownMenu.RadioItem>
+								<DropdownMenu.RadioItem value="personal">Personal</DropdownMenu.RadioItem>
 								<DropdownMenu.RadioItem value="work">Work</DropdownMenu.RadioItem>
 								<DropdownMenu.RadioItem value="other">Other</DropdownMenu.RadioItem>
 							</DropdownMenu.RadioGroup>
@@ -78,7 +76,7 @@
 				</DropdownMenu.Group>
 				<DropdownMenu.Separator />
 				<DropdownMenu.Group>
-					<DropdownMenu.Item class="text-destructive focus:text-destructive">
+					<DropdownMenu.Item variant="destructive">
 						<Trash2 />
 						Trash
 					</DropdownMenu.Item>

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import HelpCircleIcon from "@lucide/svelte/icons/help-circle";
 	import InfoIcon from "@lucide/svelte/icons/info";
+	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
+	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 </script>
 
 <div class="grid w-full max-w-sm gap-4">
@@ -12,12 +12,7 @@
 			<Tooltip.Root>
 				<Tooltip.Trigger>
 					{#snippet child({ props })}
-						<InputGroup.Button
-							{...props}
-							variant="ghost"
-							aria-label="Info"
-							size="icon-xs"
-						>
+						<InputGroup.Button {...props} variant="ghost" aria-label="Info" size="icon-xs">
 							<InfoIcon />
 						</InputGroup.Button>
 					{/snippet}
@@ -34,12 +29,7 @@
 			<Tooltip.Root>
 				<Tooltip.Trigger>
 					{#snippet child({ props })}
-						<InputGroup.Button
-							{...props}
-							variant="ghost"
-							aria-label="Help"
-							size="icon-xs"
-						>
+						<InputGroup.Button {...props} variant="ghost" aria-label="Help" size="icon-xs">
 							<HelpCircleIcon />
 						</InputGroup.Button>
 					{/snippet}
@@ -56,12 +46,7 @@
 			<Tooltip.Trigger>
 				{#snippet child({ props })}
 					<InputGroup.Addon>
-						<InputGroup.Button
-							{...props}
-							variant="ghost"
-							aria-label="Help"
-							size="icon-xs"
-						>
+						<InputGroup.Button {...props} variant="ghost" aria-label="Help" size="icon-xs">
 							<HelpCircleIcon />
 						</InputGroup.Button>
 					</InputGroup.Addon>

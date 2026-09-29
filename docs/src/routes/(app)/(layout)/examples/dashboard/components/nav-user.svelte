@@ -4,7 +4,6 @@
 	import LogoutIcon from "@tabler/icons-svelte/icons/logout";
 	import NotificationIcon from "@tabler/icons-svelte/icons/notification";
 	import UserCircleIcon from "@tabler/icons-svelte/icons/user-circle";
-
 	import * as Avatar from "$lib/registry/ui/avatar/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
@@ -37,7 +36,7 @@
 						</Avatar.Root>
 						<div class="grid flex-1 text-start text-sm leading-tight">
 							<span class="truncate font-medium">{user.name}</span>
-							<span class="text-muted-foreground truncate text-xs">
+							<span class="truncate text-xs text-muted-foreground">
 								{user.email}
 							</span>
 						</div>
@@ -59,7 +58,7 @@
 						</Avatar.Root>
 						<div class="grid flex-1 text-start text-sm leading-tight">
 							<span class="truncate font-medium">{user.name}</span>
-							<span class="text-muted-foreground truncate text-xs">
+							<span class="truncate text-xs text-muted-foreground">
 								{user.email}
 							</span>
 						</div>

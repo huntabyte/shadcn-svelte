@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { cn } from "$lib/utils.js";
-	import type { HTMLAttributes } from "svelte/elements";
 	import HeadingAnchor from "./heading-anchor.svelte";
+	import type { HTMLAttributes } from "svelte/elements";
 
 	let {
 		class: className,
@@ -12,7 +12,7 @@
 </script>
 
 <h1
-	class={cn("font-heading mt-2 scroll-m-28 text-3xl font-bold tracking-tight", className)}
+	class={cn("mt-2 scroll-m-28 font-heading text-3xl font-bold tracking-tight", className)}
 	{id}
 	{...restProps}
 >

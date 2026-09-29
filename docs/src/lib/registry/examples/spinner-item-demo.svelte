@@ -1,8 +1,8 @@
 <script lang="ts">
 	import * as Item from "$lib/registry/ui/item/index.js";
-	import { Spinner } from "$lib/registry/ui/spinner/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Progress } from "$lib/registry/ui/progress/index.js";
+	import { Spinner } from "$lib/registry/ui/spinner/index.js";
 </script>
 
 <div class="flex w-full max-w-md flex-col gap-4 [--radius:1rem]">

@@ -1,0 +1,120 @@
+import { defineConfig } from "oxfmt";
+
+export default defineConfig({
+	useTabs: true,
+	singleQuote: false,
+	trailingComma: "es5",
+	printWidth: 100,
+	sortTailwindcss: {
+		stylesheet: "./docs/src/app.css",
+		functions: ["cn", "tv"],
+	},
+	// Adrian's opinionated import sorting. It's not perfect, but it's a decent starting point.
+	sortImports: {
+		internalPattern: ["$lib/"],
+		newlinesBetween: false,
+		order: "asc",
+		customGroups: [
+			{
+				groupName: "sveltekit-env",
+				elementNamePattern: ["$env/**/*"],
+			},
+			{
+				groupName: "sveltekit-app",
+				elementNamePattern: ["$app/**/*"],
+			},
+			{
+				groupName: "wildcard-$lib-code",
+				elementNamePattern: ["$lib/**/*.svelte", "$lib/**/*.js"],
+				modifiers: ["wildcard"],
+			},
+			{
+				groupName: "named-$lib-code",
+				elementNamePattern: ["$lib/**/*.svelte", "$lib/**/*.js"],
+				modifiers: ["named"],
+			},
+			{
+				groupName: "$lib-code",
+				elementNamePattern: ["$lib/**/*.svelte", "$lib/**/*.js"],
+			},
+		],
+		groups: [
+			// SvelteKit-specific virtual modules
+			"sveltekit-env",
+			"sveltekit-app",
+			// Node.js modules
+			"wildcard-builtin",
+			"builtin",
+			"named-builtin",
+			// Third-party modules
+			"wildcard-external",
+			"external",
+			"named-external",
+			// Modules from this project
+			"wildcard-internal",
+			"internal",
+			"named-internal",
+			// Library code
+			"wildcard-$lib-code",
+			"$lib-code",
+			"named-$lib-code",
+			// Relative imports
+			"wildcard-index",
+			"index",
+			"named-index",
+			"wildcard-sibling",
+			"sibling",
+			"named-sibling",
+			"wildcard-parent",
+			"parent",
+			"named-parent",
+			// All types
+			"type", // TODO: types should have a group order of their own - built-in > external > internal, etc
+			// Miscellaneous
+			"unknown",
+		],
+	},
+	sortPackageJson: false,
+	ignorePatterns: [
+		"pnpm-lock.yaml",
+		// Verbatim copies of upstream shadcn/ui style CSS. Do not sort their
+		// `@apply` lists: tailwind-merge resolves conflicts by order (for example
+		// `text-sm` after `leading-snug` drops the line-height), so reordering
+		// changes what our registry renders compared to upstream.
+		"docs/src/lib/registry/styles/*.css",
+		"/static/",
+		"/.agents/",
+		"/.cursor/",
+		"/.changeset/",
+		"CHANGELOG.md",
+		"packages/cli/test/fixtures",
+		"/docs/static/",
+		"**/__*__/**/*",
+		"sv-addons/registry/template",
+	],
+	svelte: true,
+	overrides: [
+		{
+			files: ["*.md"],
+			options: {
+				tabWidth: 2,
+				useTabs: false,
+				printWidth: 79,
+			},
+		},
+		{
+			files: ["*.yaml", "*.yml"],
+			options: {
+				tabWidth: 4,
+				useTabs: false,
+			},
+		},
+		{
+			files: [".github/**/*"],
+			options: {
+				tabWidth: 2,
+				useTabs: false,
+			},
+		},
+	],
+});

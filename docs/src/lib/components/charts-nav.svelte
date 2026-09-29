@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from "$app/state";
-	import { cn } from "$lib/utils.js";
 	import { ScrollArea } from "$lib/registry/ui/scroll-area/index.js";
+	import { cn } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 
 	let { class: className, ...restProps }: HTMLAttributes<HTMLElement> = $props();
@@ -39,18 +39,14 @@
 </script>
 
 <div class="relative overflow-hidden">
-	<ScrollArea
-		class="max-w-[600px] lg:max-w-none"
-		orientation="both"
-		scrollbarXClasses="invisible"
-	>
+	<ScrollArea class="max-w-[600px] lg:max-w-none" orientation="both" scrollbarXClasses="invisible">
 		<div class={cn("flex items-center", className)} {...restProps}>
 			{#each links as link (link.href)}
 				<a
 					href={link.href}
 					data-active={link.href.startsWith(page.url.pathname)}
 					class={cn(
-						"text-muted-foreground hover:text-primary data-[active=true]:text-primary flex h-7 shrink-0 items-center justify-center px-4 text-center text-base font-medium transition-colors"
+						"flex h-7 shrink-0 items-center justify-center px-4 text-center text-base font-medium text-muted-foreground transition-colors hover:text-primary data-[active=true]:text-primary"
 					)}
 				>
 					{link.name}

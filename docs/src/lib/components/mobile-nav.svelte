@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
-	import { Button, type ButtonProps } from "$lib/registry/ui/button/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import type { HTMLAnchorAttributes } from "svelte/elements";
 	import { mainNavItems, PAGES_NEW, sidebarNavItems } from "$lib/navigation.js";
+	import { Button, type ButtonProps } from "$lib/registry/ui/button/index.js";
+	import { cn } from "$lib/utils.js";
+	import type { HTMLAnchorAttributes } from "svelte/elements";
 
 	type MobileLinkProps = HTMLAnchorAttributes & {
 		content?: string;
@@ -32,7 +32,7 @@
 	>
 		{content}
 		{#if href && PAGES_NEW.includes(href)}
-			<span class="bg-svelte-orange flex size-2 rounded-full" title="New"></span>
+			<span class="flex size-2 rounded-full bg-svelte-orange" title="New"></span>
 		{/if}
 	</a>
 {/snippet}
@@ -53,13 +53,13 @@
 					<div class="relative size-4">
 						<span
 							class={cn(
-								"bg-foreground absolute start-0 block h-0.5 w-4 transition-all duration-100",
+								"absolute start-0 block h-0.5 w-4 bg-foreground transition-all duration-100",
 								open ? "top-[0.4rem] -rotate-45" : "top-1"
 							)}
 						></span>
 						<span
 							class={cn(
-								"bg-foreground absolute start-0 block h-0.5 w-4 transition-all duration-100",
+								"absolute start-0 block h-0.5 w-4 bg-foreground transition-all duration-100",
 								open ? "top-[0.4rem] rotate-45" : "top-2.5"
 							)}
 						></span>
@@ -71,7 +71,7 @@
 		{/snippet}
 	</Popover.Trigger>
 	<Popover.Content
-		class="bg-background/90 no-scrollbar h-(--bits-popover-content-available-height) w-(--bits-popover-content-available-width) overflow-y-auto rounded-none border-none p-0 shadow-none backdrop-blur duration-100"
+		class="no-scrollbar h-(--bits-popover-content-available-height) w-(--bits-popover-content-available-width) overflow-y-auto rounded-none border-none bg-background/90 p-0 shadow-none backdrop-blur duration-100"
 		align="start"
 		side="bottom"
 		alignOffset={-16}
@@ -80,7 +80,7 @@
 	>
 		<div class="flex flex-col gap-12 overflow-auto px-6 py-6">
 			<div class="flex flex-col gap-4">
-				<div class="text-muted-foreground text-sm font-medium">Menu</div>
+				<div class="text-sm font-medium text-muted-foreground">Menu</div>
 				<div class="flex flex-col gap-3">
 					{#each mainNavItems as item, i (i)}
 						{@render MobileLink({ href: item.href, content: item.title })}
@@ -90,7 +90,7 @@
 			<div class="flex flex-col gap-8">
 				{#each sidebarNavItems as group (group.title)}
 					<div class="flex flex-col gap-4">
-						<div class="text-muted-foreground text-sm font-medium">
+						<div class="text-sm font-medium text-muted-foreground">
 							{group.title}
 						</div>
 						<div class="flex flex-col gap-3">

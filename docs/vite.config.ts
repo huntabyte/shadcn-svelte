@@ -1,20 +1,17 @@
-import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
-import { sveltekit } from "@sveltejs/kit/vite";
-import { build } from "./scripts/build-registry.js";
-import { visualizer } from "rollup-plugin-visualizer";
 import { enhancedImages } from "@sveltejs/enhanced-img";
+import { sveltekit } from "@sveltejs/kit/vite";
+import { visualizer } from "rollup-plugin-visualizer";
+import { defineConfig } from "vite";
 import packageJson from "./package.json" with { type: "json" };
 
-// don't build when we're running `vite preview`
-if (!process.argv.includes("preview")) {
-	console.log("Building registry...");
-	await buildRegistry();
-	console.log("Registry built.");
-}
+// NOTE: the registry (`static/registry`, `src/__registry__`) is intentionally NOT built here.
+// Building it during config load costs ~15s on every server (re)start, and importing the
+// build script from the config makes every source file it touches a "config dependency"
+// that restarts the whole dev server on change. Run `pnpm build:registry` (done by
+// `pnpm sync` / `pnpm build`) or `pnpm dev`, which runs `dev:registry` in watch mode.
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 export const veliteDirPath = path.join(__dirname, ".velite");
@@ -85,10 +82,3 @@ export default defineConfig({
 		noExternal: Object.keys(packageJson.devDependencies),
 	},
 });
-
-async function buildRegistry() {
-	await build();
-	fs.cpSync(path.resolve("static", "registry"), path.resolve("src", "__registry__", "json"), {
-		recursive: true,
-	});
-}

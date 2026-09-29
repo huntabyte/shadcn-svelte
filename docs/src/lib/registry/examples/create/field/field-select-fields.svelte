@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const basicItems = [
 		{ label: "Option 1", value: "option1" },
@@ -83,9 +83,7 @@
 		</Field.Field>
 		<Field.Field>
 			<Field.Label for="select-timezone">Timezone</Field.Label>
-			<Field.Description
-				>Choose your local timezone for accurate scheduling.</Field.Description
-			>
+			<Field.Description>Choose your local timezone for accurate scheduling.</Field.Description>
 			<Select.Root type="single" bind:value={timezoneValue}>
 				<Select.Trigger id="select-timezone">{timezoneLabel}</Select.Trigger>
 				<Select.Content>

@@ -1,19 +1,19 @@
 <script lang="ts">
-	import { BlockViewerContext } from "./block-viewer.svelte";
-	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
+	import CheckIcon from "@lucide/svelte/icons/check";
+	import FullscreenIcon from "@lucide/svelte/icons/fullscreen";
+	import MonitorIcon from "@lucide/svelte/icons/monitor";
+	import RotateCcwIcon from "@lucide/svelte/icons/rotate-ccw";
+	import SmartphoneIcon from "@lucide/svelte/icons/smartphone";
+	import TabletIcon from "@lucide/svelte/icons/tablet";
+	import TerminalIcon from "@lucide/svelte/icons/terminal";
 	import * as Tabs from "$lib/registry/ui/tabs/index.js";
+	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
+	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
+	import { getCommand } from "$lib/package-manager.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
-	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
-	import MonitorIcon from "@lucide/svelte/icons/monitor";
-	import TabletIcon from "@lucide/svelte/icons/tablet";
-	import SmartphoneIcon from "@lucide/svelte/icons/smartphone";
-	import FullscreenIcon from "@lucide/svelte/icons/fullscreen";
-	import CheckIcon from "@lucide/svelte/icons/check";
-	import TerminalIcon from "@lucide/svelte/icons/terminal";
-	import RotateCcwIcon from "@lucide/svelte/icons/rotate-ccw";
-	import { getCommand } from "$lib/package-manager.js";
 	import { UserConfigContext } from "$lib/user-config.svelte.js";
+	import { BlockViewerContext } from "./block-viewer.svelte";
 
 	const ctx = BlockViewerContext.get();
 	const userConfig = UserConfigContext.get();
@@ -40,7 +40,7 @@
 			<Tabs.Trigger value="code">Code</Tabs.Trigger>
 		</Tabs.List>
 	</Tabs.Root>
-	<Separator orientation="vertical" class="mx-2 !h-4" />
+	<Separator orientation="vertical" class="mx-2 data-vertical:h-4 data-vertical:self-auto" />
 	<a
 		href="#{ctx.item.name}"
 		class="flex-1 text-center text-sm font-medium underline-offset-2 hover:underline md:flex-auto md:text-start"
@@ -68,7 +68,7 @@
 				<ToggleGroup.Item value="30" title="Mobile">
 					<SmartphoneIcon />
 				</ToggleGroup.Item>
-				<Separator orientation="vertical" class="!h-4" />
+				<Separator orientation="vertical" class="data-vertical:h-4 data-vertical:self-auto" />
 				<Button
 					size="icon"
 					variant="ghost"
@@ -80,7 +80,7 @@
 					<span class="sr-only">Open in New Tab</span>
 					<FullscreenIcon />
 				</Button>
-				<Separator orientation="vertical" class="!h-4" />
+				<Separator orientation="vertical" class="data-vertical:h-4 data-vertical:self-auto" />
 				<Button
 					size="icon"
 					variant="ghost"
@@ -95,7 +95,7 @@
 				</Button>
 			</ToggleGroup.Root>
 		</div>
-		<Separator orientation="vertical" class="mx-1 !h-4" />
+		<Separator orientation="vertical" class="mx-1 data-vertical:h-4 data-vertical:self-auto" />
 		<Button
 			variant="outline"
 			class="w-fit gap-1 px-2 shadow-none"

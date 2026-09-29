@@ -1,12 +1,12 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Avatar from "$lib/registry/ui/avatar/index.js";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
+	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Command from "$lib/registry/ui/command/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Badge } from "$lib/registry/ui/badge/index.js";
+	import * as Popover from "$lib/registry/ui/popover/index.js";
+	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Badge } from "$lib/registry/ui/badge/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 
 	const users = [
@@ -72,14 +72,10 @@
 								class="gap-1 pr-0.5"
 								onclick={(e) => removeUser(e, username)}
 								onkeydown={(e) =>
-									e.key === "Enter" &&
-									removeUser(e as unknown as MouseEvent, username)}
+									e.key === "Enter" && removeUser(e as unknown as MouseEvent, username)}
 							>
 								<Avatar.Root class="size-4">
-									<Avatar.Image
-										src="https://github.com/{username}.png"
-										alt={username}
-									/>
+									<Avatar.Image src="https://github.com/{username}.png" alt={username} />
 									<Avatar.Fallback>{username.charAt(0)}</Avatar.Fallback>
 								</Avatar.Root>
 								{username}
@@ -93,7 +89,7 @@
 								/>
 							</Badge>
 						{/each}
-						<span class="text-muted-foreground flex-1 py-1 text-sm">
+						<span class="flex-1 py-1 text-sm text-muted-foreground">
 							{selected.length > 0 ? "Select users..." : "Select a user..."}
 						</span>
 					</div>
@@ -106,25 +102,17 @@
 						<Command.Empty>No users found.</Command.Empty>
 						<Command.Group value="users">
 							{#each users as username (username)}
-								<Command.Item
-									value={username}
-									onSelect={() => toggleUser(username)}
-								>
+								<Command.Item value={username} onSelect={() => toggleUser(username)}>
 									<IconPlaceholder
 										lucide="CheckIcon"
 										tabler="IconCheck"
 										hugeicons="Tick02Icon"
 										phosphor="CheckIcon"
 										remixicon="RiCheckLine"
-										class={cn(
-											!selected.includes(username) && "text-transparent"
-										)}
+										class={cn(!selected.includes(username) && "text-transparent")}
 									/>
 									<Avatar.Root class="size-5">
-										<Avatar.Image
-											src="https://github.com/{username}.png"
-											alt={username}
-										/>
+										<Avatar.Image src="https://github.com/{username}.png" alt={username} />
 										<Avatar.Fallback>{username.charAt(0)}</Avatar.Fallback>
 									</Avatar.Root>
 									{username}

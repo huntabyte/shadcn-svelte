@@ -1,6 +1,6 @@
 <script lang="ts">
-	import RangeCalendar from "$lib/registry/ui/range-calendar/range-calendar.svelte";
 	import { CalendarDate, isWeekend } from "@internationalized/date";
+	import RangeCalendar from "$lib/registry/ui/range-calendar/range-calendar.svelte";
 	import type { DateRange } from "bits-ui";
 
 	let value = $state<DateRange>({
@@ -17,7 +17,7 @@
 		class="rounded-lg border shadow-sm"
 		excludeDisabled
 	/>
-	<div class="text-muted-foreground text-center text-xs">
+	<div class="text-center text-xs text-muted-foreground">
 		Your stay cannot extend through the weekend
 	</div>
 </div>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Card from "$lib/registry/ui/card/index.js";
-	import { Slider } from "$lib/registry/ui/slider/index.js";
 	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
+	import { Slider } from "$lib/registry/ui/slider/index.js";
 
 	let position = $state([50]);
 
@@ -29,20 +29,16 @@
 		<Card.Description>Roller Shades</Card.Description>
 	</Card.Header>
 	<Card.Content class="flex flex-col gap-4">
-		<div class="bg-muted flex h-32 flex-col overflow-hidden rounded-lg border">
+		<div class="flex h-32 flex-col overflow-hidden rounded-lg border bg-muted">
 			<div
 				class="bg-muted-foreground transition-all duration-300"
 				style:height="{position[0]}%"
 			></div>
 		</div>
 		<div class="flex items-center gap-3">
-			<span class="text-muted-foreground text-xs font-medium tracking-wider uppercase"
-				>Open</span
-			>
+			<span class="text-xs font-medium tracking-wider text-muted-foreground uppercase">Open</span>
 			<Slider type="multiple" bind:value={position} max={100} class="flex-1" />
-			<span class="text-muted-foreground text-xs font-medium tracking-wider uppercase"
-				>Close</span
-			>
+			<span class="text-xs font-medium tracking-wider text-muted-foreground uppercase">Close</span>
 		</div>
 	</Card.Content>
 	<Card.Footer>

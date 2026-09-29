@@ -1,10 +1,10 @@
 <script lang="ts">
 	import * as Breadcrumb from "$lib/registry/ui/breadcrumb/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
 <Card.Root>
@@ -63,9 +63,7 @@
 						</Item.Media>
 						<Item.Content>
 							<Item.Title>Change transfer limit</Item.Title>
-							<Item.Description
-								>Adjust how much you can send from your balance.</Item.Description
-							>
+							<Item.Description>Adjust how much you can send from your balance.</Item.Description>
 						</Item.Content>
 						<IconPlaceholder
 							lucide="ChevronRightIcon"
@@ -73,7 +71,7 @@
 							hugeicons="ArrowRight01Icon"
 							phosphor="CaretRightIcon"
 							remixicon="RiArrowRightSLine"
-							class="text-muted-foreground size-4 shrink-0"
+							class="size-4 shrink-0 text-muted-foreground"
 						/>
 					</a>
 				{/snippet}
@@ -92,9 +90,7 @@
 						</Item.Media>
 						<Item.Content>
 							<Item.Title>Scheduled transfers</Item.Title>
-							<Item.Description
-								>Set up a transfer to send at a later date.</Item.Description
-							>
+							<Item.Description>Set up a transfer to send at a later date.</Item.Description>
 						</Item.Content>
 						<IconPlaceholder
 							lucide="ChevronRightIcon"
@@ -102,7 +98,7 @@
 							hugeicons="ArrowRight01Icon"
 							phosphor="CaretRightIcon"
 							remixicon="RiArrowRightSLine"
-							class="text-muted-foreground size-4 shrink-0"
+							class="size-4 shrink-0 text-muted-foreground"
 						/>
 					</a>
 				{/snippet}
@@ -129,7 +125,7 @@
 							hugeicons="ArrowRight01Icon"
 							phosphor="CaretRightIcon"
 							remixicon="RiArrowRightSLine"
-							class="text-muted-foreground size-4 shrink-0"
+							class="size-4 shrink-0 text-muted-foreground"
 						/>
 					</a>
 				{/snippet}
@@ -148,9 +144,7 @@
 						</Item.Media>
 						<Item.Content>
 							<Item.Title>Recurring card payments</Item.Title>
-							<Item.Description
-								>Manage your repeated card transactions.</Item.Description
-							>
+							<Item.Description>Manage your repeated card transactions.</Item.Description>
 						</Item.Content>
 						<IconPlaceholder
 							lucide="ChevronRightIcon"
@@ -158,7 +152,7 @@
 							hugeicons="ArrowRight01Icon"
 							phosphor="CaretRightIcon"
 							remixicon="RiArrowRightSLine"
-							class="text-muted-foreground size-4 shrink-0"
+							class="size-4 shrink-0 text-muted-foreground"
 						/>
 					</a>
 				{/snippet}

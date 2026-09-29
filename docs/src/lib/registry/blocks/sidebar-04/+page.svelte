@@ -1,8 +1,8 @@
 <script lang="ts">
-	import AppSidebar from "./components/app-sidebar.svelte";
 	import * as Breadcrumb from "$lib/registry/ui/breadcrumb/index.js";
-	import { Separator } from "$lib/registry/ui/separator/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
+	import { Separator } from "$lib/registry/ui/separator/index.js";
+	import AppSidebar from "./components/app-sidebar.svelte";
 </script>
 
 <Sidebar.Provider style="--sidebar-width: 19rem;">
@@ -10,7 +10,7 @@
 	<Sidebar.Inset>
 		<header class="flex h-16 shrink-0 items-center gap-2 px-4">
 			<Sidebar.Trigger class="-ms-1" />
-			<Separator orientation="vertical" class="me-2 data-[orientation=vertical]:h-4" />
+			<Separator orientation="vertical" class="me-2 data-vertical:h-4 data-vertical:self-auto" />
 			<Breadcrumb.Root>
 				<Breadcrumb.List>
 					<Breadcrumb.Item class="hidden md:block">
@@ -25,11 +25,11 @@
 		</header>
 		<div class="flex flex-1 flex-col gap-4 p-4 pt-0">
 			<div class="grid auto-rows-min gap-4 md:grid-cols-3">
-				<div class="bg-muted/50 aspect-video rounded-xl"></div>
-				<div class="bg-muted/50 aspect-video rounded-xl"></div>
-				<div class="bg-muted/50 aspect-video rounded-xl"></div>
+				<div class="aspect-video rounded-xl bg-muted/50"></div>
+				<div class="aspect-video rounded-xl bg-muted/50"></div>
+				<div class="aspect-video rounded-xl bg-muted/50"></div>
 			</div>
-			<div class="bg-muted/50 min-h-screen flex-1 rounded-xl md:min-h-min"></div>
+			<div class="min-h-screen flex-1 rounded-xl bg-muted/50 md:min-h-min"></div>
 		</div>
 	</Sidebar.Inset>
 </Sidebar.Provider>

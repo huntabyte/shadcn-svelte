@@ -7,24 +7,8 @@ const layoutSchema = z.enum(["fixed", "full"]).default("full");
 const installationTypeSchema = z.enum(["cli", "manual"]).default("cli");
 const packageManagerSchema = z.enum(["npm", "yarn", "pnpm", "bun"]).default("pnpm");
 const colorFormatSchema = z.enum(["class", "hex", "rgb", "hsl", "oklch", "var"]).default("oklch");
-const activeTheme = z
-	.enum([
-		"default",
-		"scaled",
-		"mono",
-		"blue",
-		"green",
-		"amber",
-		"rose",
-		"purple",
-		"orange",
-		"teal",
-		"violet",
-		"red",
-		"yellow",
-		"neutral",
-	])
-	.default("default");
+// "default" means no theme override; any other value is a theme name from `$lib/registry/themes`.
+const activeTheme = z.string().default("default");
 
 export type Layout = z.infer<typeof layoutSchema>;
 export type InstallationType = z.infer<typeof installationTypeSchema>;

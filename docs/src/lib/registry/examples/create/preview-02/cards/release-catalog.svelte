@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
 	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Badge } from "$lib/registry/ui/badge/index.js";
 
 	const HOLDINGS = [
 		{
@@ -86,9 +86,7 @@
 					<div class="flex shrink-0 items-center gap-6">
 						<Badge variant="outline">{holding.type}</Badge>
 						<div class="flex flex-col items-end gap-0.5">
-							<span class="text-muted-foreground text-xs tracking-wider uppercase"
-								>Value</span
-							>
+							<span class="text-xs tracking-wider text-muted-foreground uppercase">Value</span>
 							<span class="font-medium tabular-nums">{holding.value}</span>
 						</div>
 					</div>

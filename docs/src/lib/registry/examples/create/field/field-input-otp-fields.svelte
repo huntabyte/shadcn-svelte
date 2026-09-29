@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import { REGEXP_ONLY_DIGITS } from "bits-ui";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as InputOTP from "$lib/registry/ui/input-otp/index.js";
-	import { REGEXP_ONLY_DIGITS } from "bits-ui";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	let value = $state("");
 	let pinValue = $state("");
@@ -56,12 +56,7 @@
 		</Field.Field>
 		<Field.Field>
 			<Field.Label for="otp-pin">PIN Code</Field.Label>
-			<InputOTP.Root
-				id="otp-pin"
-				maxlength={4}
-				pattern={REGEXP_ONLY_DIGITS}
-				bind:value={pinValue}
-			>
+			<InputOTP.Root id="otp-pin" maxlength={4} pattern={REGEXP_ONLY_DIGITS} bind:value={pinValue}>
 				{#snippet children({ cells })}
 					<InputOTP.Group>
 						{#each cells as cell (cell)}

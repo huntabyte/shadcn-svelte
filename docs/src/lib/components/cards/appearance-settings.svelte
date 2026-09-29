@@ -1,11 +1,11 @@
 <script lang="ts">
 	import MinusIcon from "@lucide/svelte/icons/minus";
 	import PlusIcon from "@lucide/svelte/icons/plus";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as ButtonGroup from "$lib/registry/ui/button-group/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
 	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Input } from "$lib/registry/ui/input/index.js";
 	import { Switch } from "$lib/registry/ui/switch/index.js";
 
 	let gpuCount = $state(8);
@@ -66,11 +66,7 @@
 								Run GPU workloads on a K8s configured cluster. This is the default.
 							</Field.Description>
 						</Field.Content>
-						<RadioGroup.Item
-							value="kubernetes"
-							id="kubernetes-r2h"
-							aria-label="Kubernetes"
-						/>
+						<RadioGroup.Item value="kubernetes" id="kubernetes-r2h" aria-label="Kubernetes" />
 					</Field.Field>
 				</Field.Label>
 				<Field.Label for="vm-z4k">
@@ -97,7 +93,7 @@
 					id="number-of-gpus-f6l"
 					bind:value={gpuCount}
 					size={3}
-					class="style-luma:h-8 style-vega:h-8 style-maia:h-8 style-lyra:h-7 style-nova:h-7 style-mira:h-6 style-sera:h-9 font-mono"
+					class="font-mono style-vega:h-8 style-nova:h-7 style-lyra:h-7 style-maia:h-8 style-mira:h-6 style-luma:h-8 style-sera:h-9"
 					maxlength={3}
 					oninput={handleGpuCountChange}
 					type="text"

@@ -1,9 +1,9 @@
 <script lang="ts">
+	import { PieChart, Text } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
-	import { Progress } from "$lib/registry/ui/progress/index.js";
 	import { Badge } from "$lib/registry/ui/badge/index.js";
-	import { PieChart, Text } from "layerchart";
+	import { Progress } from "$lib/registry/ui/progress/index.js";
 
 	const pieChartData = [
 		{ browser: "Chrome", visitors: 275, color: "var(--color-Chrome)" },
@@ -74,7 +74,7 @@
 	<Card.Footer class="flex-col items-stretch gap-2">
 		<div class="flex items-center text-xs">
 			<span class="font-medium">{topBrowserLabel}</span>
-			<span class="text-muted-foreground ml-auto tabular-nums">
+			<span class="ml-auto text-muted-foreground tabular-nums">
 				{topBrowserShare}%
 			</span>
 		</div>

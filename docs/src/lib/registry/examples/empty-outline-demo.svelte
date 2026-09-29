@@ -1,7 +1,7 @@
 <script lang="ts">
+	import CloudIcon from "@tabler/icons-svelte/icons/cloud";
 	import * as Empty from "$lib/registry/ui/empty/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import CloudIcon from "@tabler/icons-svelte/icons/cloud";
 </script>
 
 <Empty.Root class="border border-dashed">

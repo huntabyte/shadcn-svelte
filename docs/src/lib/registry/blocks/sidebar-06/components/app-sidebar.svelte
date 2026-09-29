@@ -132,10 +132,10 @@
 </script>
 
 <script lang="ts">
+	import GalleryVerticalEndIcon from "@lucide/svelte/icons/gallery-vertical-end";
+	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import NavMain from "./nav-main.svelte";
 	import SidebarOptInForm from "./sidebar-opt-in-form.svelte";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import GalleryVerticalEndIcon from "@lucide/svelte/icons/gallery-vertical-end";
 	import type { ComponentProps } from "svelte";
 
 	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();
@@ -149,7 +149,7 @@
 					{#snippet child({ props })}
 						<a href="##" {...props}>
 							<div
-								class="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg"
+								class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground"
 							>
 								<GalleryVerticalEndIcon class="size-4" />
 							</div>

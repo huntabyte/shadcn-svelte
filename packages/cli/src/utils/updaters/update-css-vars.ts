@@ -22,9 +22,8 @@ export function updateCssVars(
 
 	// Add @custom-variant for dark when dark vars exist (only for v4 structure)
 	const hasV4Structure =
-		ast.nodes?.some(
-			(n) => n.type === "atrule" && (n.name === "import" || n.name === "theme")
-		) ?? false;
+		ast.nodes?.some((n) => n.type === "atrule" && (n.name === "import" || n.name === "theme")) ??
+		false;
 	if (hasV4Structure && cssVars.dark && Object.keys(cssVars.dark).length > 0) {
 		addCustomVariant(ast);
 	}
@@ -195,8 +194,7 @@ function updateThemePlugin(ast: Root, cssVars: CssVars): void {
 				});
 				if (
 					themeNode.nodes?.find(
-						(node): node is Declaration =>
-							node.type === "decl" && node.prop === cssVarNode.prop
+						(node): node is Declaration => node.type === "decl" && node.prop === cssVarNode.prop
 					)
 				) {
 					continue;

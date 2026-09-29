@@ -6,15 +6,18 @@
  * Whether this is a good idea or not, idk but seems like a good start.
  */
 
-import { it, expect } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
+import { it, expect } from "vitest";
+
 const registryTemplateStaticRegistryPath = path.join(
-	__dirname,
+	import.meta.dirname,
 	"..",
 	"..",
 	"..",
-	"registry-template",
+	"sv-addons",
+	"registry",
+	"demo",
 	"static",
 	"r"
 );
@@ -138,7 +141,7 @@ it("should accurately build the registry template", async () => {
 		  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 		  "description": "A complex component showing hooks, libs and components.",
 		  "devDependencies": [
-		    "zod@^4.2.1",
+		    "zod@^4.4.3",
 		  ],
 		  "files": [
 		    {
@@ -288,7 +291,7 @@ it("should accurately build the registry template", async () => {
 		  ],
 		  "description": "A contact form with Zod validation.",
 		  "devDependencies": [
-		    "zod@^4.2.1",
+		    "zod@^4.4.3",
 		  ],
 		  "files": [
 		    {

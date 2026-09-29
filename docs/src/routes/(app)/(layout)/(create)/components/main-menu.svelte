@@ -1,12 +1,12 @@
 <svelte:options runes />
 
 <script lang="ts">
+	import { setMode, mode } from "mode-watcher";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { useDesignSystem } from "$lib/features/design-system/index.js";
+	import { useIsMac } from "$lib/hooks/use-is-mac.svelte.js";
 	import { cn } from "$lib/utils.js";
 	import * as Picker from "./picker/index.js";
-	import { useDesignSystem } from "$lib/features/design-system/index.js";
-	import { setMode, mode } from "mode-watcher";
-	import { useIsMac } from "$lib/hooks/use-is-mac.svelte.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { ActionMenuCtx } from "./action-menu-context.svelte.js";
 
 	type Props = {
@@ -28,7 +28,7 @@
 	<Picker.Trigger
 		submenu={false}
 		class={cn(
-			"ring-foreground/10 flex items-center justify-between gap-2 rounded-lg px-1.75 ring-1 focus-visible:ring-1",
+			"flex items-center justify-between gap-2 rounded-lg px-1.75 ring-1 ring-foreground/10 focus-visible:ring-1",
 			className
 		)}
 	>

@@ -165,10 +165,7 @@
 								<Sidebar.MenuSub>
 									{#each item.items as subItem (subItem.title)}
 										<Sidebar.MenuSubItem>
-											<Sidebar.MenuSubButton
-												href={subItem.url}
-												isActive={subItem.isActive}
-											>
+											<Sidebar.MenuSubButton href={subItem.url} isActive={subItem.isActive}>
 												{subItem.title}
 											</Sidebar.MenuSubButton>
 										</Sidebar.MenuSubItem>

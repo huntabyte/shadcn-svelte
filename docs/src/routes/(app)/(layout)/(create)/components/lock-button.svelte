@@ -1,9 +1,9 @@
 <script lang="ts">
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import { cn } from "$lib/utils.js";
 	import { SquareLock01Icon, SquareUnlock01Icon } from "@hugeicons/core-free-icons";
 	import { HugeiconsIcon } from "@hugeicons/svelte";
+	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import { useDesignSystem, type Lockable } from "$lib/features/design-system/index.js";
+	import { cn } from "$lib/utils.js";
 
 	type Props = {
 		prop: keyof Lockable;
@@ -28,17 +28,9 @@
 		aria-label={isLocked ? "Unlock" : "Lock"}
 	>
 		{#if isLocked}
-			<HugeiconsIcon
-				icon={SquareLock01Icon}
-				strokeWidth={2}
-				className="text-foreground size-5"
-			/>
+			<HugeiconsIcon icon={SquareLock01Icon} strokeWidth={2} className="text-foreground size-5" />
 		{:else}
-			<HugeiconsIcon
-				icon={SquareUnlock01Icon}
-				strokeWidth={2}
-				className="text-foreground size-5"
-			/>
+			<HugeiconsIcon icon={SquareUnlock01Icon} strokeWidth={2} className="text-foreground size-5" />
 		{/if}
 	</Tooltip.Trigger>
 	<Tooltip.Content>

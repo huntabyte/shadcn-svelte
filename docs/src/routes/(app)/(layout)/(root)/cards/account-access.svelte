@@ -36,13 +36,12 @@
 					<FieldLabel for="current-password">Current Password</FieldLabel>
 					<a
 						href="/"
-						class="text-muted-foreground hover:text-foreground text-xs font-medium tracking-wider uppercase"
+						class="text-xs font-medium tracking-wider text-muted-foreground uppercase hover:text-foreground"
 					>
 						Forgot?
 					</a>
 				</div>
-				<Input id="current-password" type="password" placeholder="••••••••••••••••••••••••"
-				></Input>
+				<Input id="current-password" type="password" placeholder="••••••••••••••••••••••••"></Input>
 			</Field>
 		</FieldGroup>
 	</CardContent>
@@ -70,9 +69,7 @@
 			</ItemMedia>
 			<ItemContent>
 				<ItemTitle>Danger Zone</ItemTitle>
-				<ItemDescription class="line-clamp-1">
-					Archive account and remove catalog
-				</ItemDescription>
+				<ItemDescription class="line-clamp-1">Archive account and remove catalog</ItemDescription>
 			</ItemContent>
 			<IconPlaceholder
 				lucide="ArrowRightIcon"
