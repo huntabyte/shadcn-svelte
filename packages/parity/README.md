@@ -42,9 +42,9 @@ Compares the generated registries in `docs/static/registry/styles/<style>/*.json
 
 ### `parity docs [surface]`
 
-Checks named Tailwind class contracts for the docs UI against the current shadcn/ui source. The contracts intentionally cover the pieces that should stay visually identical while ignoring framework-specific React and Svelte markup. Current surfaces are `component-preview`, `docs-sidebar`, and `homepage`: 13 selected class contracts. This is a focused regression guard, not a complete docs UI parity audit. It does not check page content, component composition or APIs, DOM structure, interactions, accessibility, computed styles, or rendered layouts at different viewport sizes. Classes outside the named contracts are not compared.
+Checks named Tailwind class contracts for the docs UI against a checked-in shadcn/ui commit baseline. The contracts intentionally cover the pieces that should stay visually identical while ignoring framework-specific React and Svelte markup. Current surfaces are `component-preview`, `docs-sidebar`, `homepage`, `page-header`, `site-header`, `site-footer`, `docs-toc`, `code-tabs`, `code-collapsible-wrapper`, `docs-copy-page`, and `page-nav`: 40 selected class contracts. This is a focused regression guard, not a complete docs UI parity audit. It does not check page content, component composition or APIs, DOM structure, interactions, accessibility, computed styles, or rendered layouts at different viewport sizes. Classes outside the named contracts are not compared.
 
-Pass a surface to focus a run, for example `parity docs component-preview --check`. Without a surface, every contract runs. `--upstream <path>` uses a local shadcn/ui checkout; otherwise the command uses `SHADCN_UI`, a sibling `shadcn-ui` checkout, or cached raw files from upstream `main`, in that order. `--verbose` prints added and removed tokens for a differing contract.
+Pass a surface to focus a run, for example `parity docs component-preview --check`. Without a surface, every contract runs. `--upstream <path>` uses a local shadcn/ui checkout; otherwise the command uses `SHADCN_UI`, a sibling `shadcn-ui` checkout, or cached raw files from the checked-in `DOCS_UPSTREAM_COMMIT` baseline, in that order. `--upstream-ref <sha>` overrides the baseline with a full 40-character commit SHA. Update `DOCS_UPSTREAM_COMMIT` in `src/docs.ts` deliberately when adopting newer upstream UI changes. `--verbose` prints added and removed tokens for a differing contract.
 
 ### `parity fix <item> [--dry-run]`
 
@@ -69,7 +69,7 @@ Every command accepts these:
 | `--no-exclude-runtime-equivalent` | Report Bits-vs-Radix runtime-equivalent tokens as diffs instead of folding them away. |
 | `-v, --version`                   | Print the package version.                                                            |
 
-The docs command has the focused subset `--check`, `--docs <path>`, `--refresh`, and `--verbose`, plus `--upstream <path>` for selecting a local shadcn/ui checkout.
+The docs command has the focused subset `--check`, `--docs <path>`, `--refresh`, and `--verbose`, plus `--upstream-ref <sha>` and `--upstream <path>` for selecting a local shadcn/ui checkout.
 
 ## How a comparison works
 
@@ -129,13 +129,13 @@ Where parity is impossible or not yet reached, add a comment in the source. Ever
 | ------------- | ------------------------------------------------------------------------------------------------- |
 | `base`, `fix` | `apps/v4/registry/bases/radix/ui/<item>.tsx` from the `main` branch on raw.githubusercontent.com. |
 | `variants`    | `https://ui.shadcn.com/r/styles/radix-<style>/<item>.json`, the deployed registry.                |
-| `docs`        | The mapped files under `apps/v4` on the shadcn/ui `main` branch.                                  |
+| `docs`        | The mapped files under `apps/v4` at `DOCS_UPSTREAM_COMMIT` (or `--upstream-ref <sha>`).           |
 
 For `base` and `fix`, a local checkout of shadcn/ui is used instead of the network when either `SHADCN_UI=/path/to/ui` is set or a sibling `shadcn-ui` directory exists next to this repository.
 
 Fetched files are cached under `shadcn-svelte-upstream-registry` in the system temp directory. A cached file is reused for one hour, after which it is fetched again. `--refresh` bypasses the cache for that run.
 
-The docs command caches raw files separately under `shadcn-svelte-upstream-docs` without an expiry or revision pin. Use `--refresh` to fetch current files, or `--upstream <path>` with a checkout at a known commit for a reproducible comparison.
+The docs command caches immutable raw files separately under `shadcn-svelte-upstream-docs/<commit>/`. Every remote file in a run uses the same commit; `--refresh` bypasses that cache. A local `--upstream <path>` comparison uses the checkout contents, including uncommitted edits. Selectors reject ambiguous class lists and enforce occurrence counts using parsed class strings, excluding comments. Missing files are reported per contract so the rest of the audit still runs.
 
 The style CSS under `docs/src/lib/registry/styles/` is pulled verbatim from upstream `main` with `pnpm pull:styles` and is excluded from the formatter on purpose. The order of each `@apply` list is semantic: `tailwind-merge` resolves conflicts by position. Sorting those lists changes what our registry renders and shows up here as `variants` diffs that do not exist in the base check. If the deployed registry lags `main`, `variants` can also report short-lived diffs that clear when upstream deploys.
 
@@ -154,7 +154,7 @@ The docs app imports this package as a library as well:
 
 ## CI
 
-- `.github/workflows/parity-check.yml` runs `parity-check` as a blocking job and `parity-check:variants` as a non-blocking job for the skew reason above. Its `parity-check:docs` job is skipped unless a pull request changes one of the docs UI contract inputs or the checker itself.
+- `.github/workflows/parity-check.yml` runs `parity-check` as a blocking job and `parity-check:variants` as a non-blocking job for the skew reason above. Its `parity-check:docs` job is skipped unless a pull request changes any file under `docs/` or `packages/parity/`, the root manifest or lockfile, or the parity workflow.
 - `.github/workflows/ci.yml` runs this package's test suite.
 
 ## Development

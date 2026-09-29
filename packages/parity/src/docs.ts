@@ -1,4 +1,8 @@
 import fs from "node:fs";
+import { SHARED_DOCS_SURFACES } from "./docs-contracts.ts";
+
+// Update deliberately when adopting upstream docs changes.
+export const DOCS_UPSTREAM_COMMIT = "08ab84f7d1952cc1f36055aa8931213a86b01bbd";
 import os from "node:os";
 import path from "node:path";
 import { extractClassStrings, pairClassStrings, type ClassString, type Pair } from "./compare.ts";
@@ -7,6 +11,7 @@ export type DocsParityOptions = {
 	surface?: string;
 	root?: string;
 	upstream?: string;
+	upstreamRef?: string;
 	check?: boolean;
 	refresh?: boolean;
 	verbose?: boolean;
@@ -25,6 +30,7 @@ type Contract = {
 type Surface = { description: string; contracts: Contract[] };
 
 export const DOCS_SURFACES: Record<string, Surface> = {
+	...SHARED_DOCS_SURFACES,
 	"component-preview": {
 		description: "component preview chrome and sizing",
 		contracts: [
@@ -116,27 +122,22 @@ function findUpstreamRoot(explicit?: string): string | undefined {
 	return fs.existsSync(sibling) ? sibling : undefined;
 }
 
-function findContractClass(content: string, marker: string[]): ClassString | undefined {
-	return extractClassStrings(content).find((entry) =>
+function findContractClasses(content: string, marker: string[]): ClassString[] {
+	return extractClassStrings(content, false).filter((entry) =>
 		marker.every((token) => entry.tokens.includes(token))
 	);
 }
 
-function occurrenceCount(content: string, entry: ClassString): number {
-	let count = 0;
-	let offset = 0;
-	while ((offset = content.indexOf(entry.merged, offset)) !== -1) {
-		count++;
-		offset += entry.merged.length;
-	}
-	return count;
-}
-
-async function readUpstream(relativePath: string, root: string | undefined, refresh: boolean) {
+async function readUpstream(
+	relativePath: string,
+	root: string | undefined,
+	refresh: boolean,
+	ref = DOCS_UPSTREAM_COMMIT
+) {
 	if (root) return fs.readFileSync(path.join(root, relativePath), "utf8");
-	const cachePath = path.join(os.tmpdir(), "shadcn-svelte-upstream-docs", relativePath);
+	const cachePath = path.join(os.tmpdir(), "shadcn-svelte-upstream-docs", ref, relativePath);
 	if (!refresh && fs.existsSync(cachePath)) return fs.readFileSync(cachePath, "utf8");
-	const url = `https://raw.githubusercontent.com/shadcn-ui/ui/refs/heads/main/${relativePath}`;
+	const url = `https://raw.githubusercontent.com/shadcn-ui/ui/${ref}/${relativePath}`;
 	const response = await fetch(url);
 	if (!response.ok) throw new Error(`Unable to fetch ${url}: ${response.status}`);
 	const content = await response.text();
@@ -149,21 +150,27 @@ export async function compareDocsContract(
 	contract: Contract,
 	docsRoot: string,
 	upstreamRoot: string | undefined,
-	refresh = false
+	refresh = false,
+	upstreamRef = DOCS_UPSTREAM_COMMIT
 ): Promise<{ pair?: Pair; error?: string }> {
 	const localContent = fs.readFileSync(path.join(docsRoot, contract.local), "utf8");
-	const upstreamContent = await readUpstream(contract.upstream, upstreamRoot, refresh);
-	const expected = findContractClass(upstreamContent, contract.marker);
-	if (!expected)
+	const upstreamContent = await readUpstream(contract.upstream, upstreamRoot, refresh, upstreamRef);
+	const expectedMatches = findContractClasses(upstreamContent, contract.marker);
+	if (!expectedMatches.length)
 		return { error: `upstream class not found for markers: ${contract.marker.join(" ")}` };
+	if (new Set(expectedMatches.map((entry) => entry.key)).size !== 1)
+		return { error: "ambiguous upstream selector: matches different class lists" };
+	const expected = expectedMatches[0]!;
 	const localMarker = contract.localMarker ?? contract.marker;
-	const actual = findContractClass(localContent, localMarker);
-	if (!actual) return { error: `local class not found for markers: ${localMarker.join(" ")}` };
-	if (contract.occurrences && occurrenceCount(localContent, actual) < contract.occurrences) {
-		return {
-			error: `expected ${contract.occurrences} occurrences, found ${occurrenceCount(localContent, actual)}`,
-		};
-	}
+	const actualMatches = findContractClasses(localContent, localMarker);
+	if (!actualMatches.length)
+		return { error: `local class not found for markers: ${localMarker.join(" ")}` };
+	if (new Set(actualMatches.map((entry) => entry.key)).size !== 1)
+		return { error: "ambiguous local selector: matches different class lists" };
+	const expectedCount = contract.occurrences ?? expectedMatches.length;
+	if (actualMatches.length !== expectedCount)
+		return { error: `expected ${expectedCount} occurrences, found ${actualMatches.length}` };
+	const actual = actualMatches[0]!;
 	const pair = pairClassStrings([actual], [expected])[0]!;
 	if (
 		pair.kind === "diff" &&
@@ -179,6 +186,9 @@ export async function compareDocsContract(
 export async function runDocsParity(options: DocsParityOptions = {}) {
 	const docsRoot = path.resolve(options.root ?? path.resolve(import.meta.dirname, "../../../docs"));
 	const upstreamRoot = findUpstreamRoot(options.upstream);
+	const upstreamRef = options.upstreamRef ?? DOCS_UPSTREAM_COMMIT;
+	if (!/^[a-f0-9]{40}$/.test(upstreamRef))
+		throw new Error("--upstream-ref must be a full 40-character commit SHA");
 	const selected = options.surface
 		? { [options.surface]: DOCS_SURFACES[options.surface] }
 		: DOCS_SURFACES;
@@ -189,14 +199,20 @@ export async function runDocsParity(options: DocsParityOptions = {}) {
 	}
 
 	console.log("Comparing docs UI class contracts to shadcn/ui");
-	console.log(`Upstream: ${upstreamRoot ?? "shadcn-ui/ui main (cached raw files)"}`);
+	console.log(`Upstream: ${upstreamRoot ?? `shadcn-ui/ui @ ${upstreamRef}`}`);
 	let diffs = 0;
 	let total = 0;
 	for (const [surfaceName, surface] of Object.entries(selected) as [string, Surface][]) {
 		console.log(`\n## ${surfaceName} — ${surface.description}`);
 		for (const contract of surface.contracts) {
 			total++;
-			const result = await compareDocsContract(contract, docsRoot, upstreamRoot, options.refresh);
+			const result = await compareDocsContract(
+				contract,
+				docsRoot,
+				upstreamRoot,
+				options.refresh,
+				upstreamRef
+			).catch((error: Error) => ({ error: error.message, pair: undefined }));
 			if (result.error || result.pair?.kind === "diff") {
 				diffs++;
 				console.log(`  ✗ ${contract.name}: ${result.error ?? "class tokens differ"}`);

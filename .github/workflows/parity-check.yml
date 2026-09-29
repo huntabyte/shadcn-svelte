@@ -64,23 +64,9 @@ jobs:
               pull_number: context.issue.number,
               per_page: 100,
             })
-            const inputs = new Set([
-              ".github/workflows/parity-check.yml",
-              "docs/package.json",
-              "docs/src/lib/components/component-preview-tabs.svelte",
-              "docs/src/lib/components/docs-sidebar.svelte",
-              "docs/src/routes/(app)/(layout)/(root)/+page.svelte",
-              "packages/parity/package.json",
-              "packages/parity/src/commands/docs.ts",
-              "packages/parity/src/commands/index.ts",
-              "packages/parity/src/compare.ts",
-              "packages/parity/src/docs.ts",
-              "packages/parity/src/index.ts",
-              "packages/parity/src/utils/errors.ts",
-              "packages/parity/test/docs.test.ts",
-              "pnpm-lock.yaml",
-            ])
-            return files.some(({ filename }) => inputs.has(filename))
+            const prefixes = ["docs/", "packages/parity/"]
+            const inputs = new Set([".github/workflows/parity-check.yml", "package.json", "pnpm-lock.yaml"])
+            return files.some(({ filename }) => inputs.has(filename) || prefixes.some(prefix => filename.startsWith(prefix)))
 
   docs-ui:
     name: Parity Check (docs UI)

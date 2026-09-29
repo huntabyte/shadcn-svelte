@@ -10,6 +10,7 @@ export const docs = new Command()
 	.option("-c, --check", "exit 1 if any docs UI contract differs", false)
 	.option("--docs <path>", "path to the docs app")
 	.option("--upstream <path>", "path to a local shadcn/ui checkout")
+	.option("--upstream-ref <sha>", "upstream commit SHA (defaults to the checked-in docs baseline)")
 	.option("--refresh", "ignore cached upstream files and fetch them again", false)
 	.option("--verbose", "print differing class tokens", false)
 	.action(async (surface: string | undefined, opts) => {
@@ -18,6 +19,7 @@ export const docs = new Command()
 				surface,
 				root: opts.docs ? path.resolve(opts.docs) : undefined,
 				upstream: opts.upstream ? path.resolve(opts.upstream) : undefined,
+				upstreamRef: opts.upstreamRef,
 				check: opts.check,
 				refresh: opts.refresh,
 				verbose: opts.verbose,
