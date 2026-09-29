@@ -19,7 +19,7 @@ links:
 </script>
 
 <DocsFigure caption="A sidebar that collapses to icons.">
-<ComponentPreview type="block" name="sidebar-07" title="Sidebar" class="w-full">
+<ComponentPreview type="block" name="demo-sidebar-icon" title="Sidebar" class="w-full">
 
 <div></div>
 
