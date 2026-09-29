@@ -5,7 +5,11 @@ const highlightCodeCache = new Map<string, string>();
 const jsEngine = createJavaScriptRegexEngine();
 const highlighterPromise = createHighlighterCore({
 	themes: [import("@shikijs/themes/github-dark"), import("@shikijs/themes/github-light-default")],
-	langs: [import("@shikijs/langs/typescript"), import("@shikijs/langs/svelte")],
+	langs: [
+		import("@shikijs/langs/typescript"),
+		import("@shikijs/langs/svelte"),
+		import("@shikijs/langs/toml"),
+	],
 	engine: jsEngine,
 });
 
