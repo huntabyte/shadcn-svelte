@@ -109,7 +109,7 @@
 	let selectedModel = $state(SAMPLE_DATA.models[0]);
 	let scopeMenuOpen = $state(false);
 
-	const grouped = $derived(() => {
+	const grouped = $derived.by(() => {
 		return SAMPLE_DATA.mentionable.reduce(
 			(acc, item) => {
 				const isAvailable = !mentions.includes(item.title);
@@ -149,7 +149,7 @@
 			<InputGroup.Textarea id="notion-prompt" placeholder="Ask, search, or make anything..." />
 			<InputGroup.Addon align="block-start">
 				<Popover.Root bind:open={mentionPopoverOpen}>
-					<Tooltip.Root>
+					<Tooltip.Root ignoreNonKeyboardFocus>
 						<Tooltip.Trigger>
 							{#snippet child({ props })}
 								<Popover.Trigger {...props}>
@@ -161,7 +161,9 @@
 											class="rounded-full transition-transform"
 										>
 											<AtIcon />
-											{!hasMentions && "Add context"}
+											{#if !hasMentions}
+												Add context
+											{/if}
 										</InputGroup.Button>
 									{/snippet}
 								</Popover.Trigger>
@@ -180,7 +182,7 @@
 											<Command.Item
 												value={item.title}
 												onSelect={() => {
-													mentions = [...mentions, item];
+													mentions = [...mentions, item.title];
 													mentionPopoverOpen = false;
 												}}
 											>
