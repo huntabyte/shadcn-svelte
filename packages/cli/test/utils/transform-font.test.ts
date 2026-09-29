@@ -2,9 +2,9 @@ import os from "node:os";
 import path from "node:path";
 import { promises as fs } from "node:fs";
 import { afterEach, describe, expect, it } from "vitest";
-import { resolvedConfigSchema } from "../../src/utils/config/schema";
-import { transform, transformFont } from "../../src/utils/transformers";
-import type { ResolvedConfig } from "../../src/utils/config/index";
+import { resolvedConfigSchema } from "../../src/utils/config/schema.js";
+import { transform, transformFont } from "../../src/utils/transformers/index.js";
+import type { ResolvedConfig } from "../../src/utils/config/index.js";
 
 const tempDirs: string[] = [];
 

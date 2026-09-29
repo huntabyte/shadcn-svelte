@@ -34,6 +34,7 @@ const initOptionsSchema = z.object({
 	hooksAlias: z.string().optional(),
 	uiAlias: z.string().optional(),
 	deps: z.boolean(),
+	depsInstall: z.boolean(),
 	overwrite: z.boolean(),
 	proxy: z.string().optional(),
 	skipPreflight: z.boolean(),
@@ -48,7 +49,8 @@ export const init = new Command()
 	.option("--preset <preset>", "the preset to use")
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
 	.addOption(new Option("-o, --overwrite", "deprecated: use --reinstall").default(false).hideHelp())
-	.option("--no-deps", "disable adding & installing dependencies")
+	.addOption(new Option("--no-deps", "disable adding & installing dependencies").hideHelp())
+	.option("--no-deps-install", "add dependencies to package.json without running install")
 	.option("--skip-preflight", "ignore preflight checks and continue", false)
 	.option("--reinstall", "reinstall existing components when style changes")
 	.option("--no-reinstall", "skip reinstalling existing components when style changes")
@@ -151,7 +153,7 @@ async function promptForConfig({
 	// if it's a SvelteKit project, run sync so that the aliases are always up to date
 	await project.syncSvelteKit(cwd);
 
-	const { cssPath, tsconfigPath } = detectConfigs(cwd, { relative: true });
+	const { cssPath, tsconfigPath, packageImportAlias } = detectConfigs(cwd, { relative: true });
 
 	let tsconfig;
 	if (existingConfig) {
@@ -211,6 +213,7 @@ async function promptForConfig({
 	const { utilsAlias, libAlias, componentAlias, hooksAlias, uiAlias } =
 		await cliConfig.promptForAliases({
 			...options,
+			libAliasDefault: packageImportAlias,
 			tsconfig,
 			cwd,
 			existingConfig,
@@ -353,6 +356,7 @@ export async function runInit({
 			prompt: options.deps,
 			dependencies: Array.from(result.dependencies),
 			devDependencies: Array.from(result.devDependencies),
+			install: options.depsInstall,
 		});
 	} else if (result.skippedDeps.size) {
 		const prettyList = prettifyList([...result.skippedDeps], 7);

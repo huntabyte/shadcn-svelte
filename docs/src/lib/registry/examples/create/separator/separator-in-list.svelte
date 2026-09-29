@@ -4,7 +4,7 @@
 </script>
 
 <Example title="In List">
-	<div class="flex flex-col gap-2 text-sm style-lyra:text-xs/relaxed">
+	<div class="flex w-full max-w-sm flex-col gap-2 text-sm style-lyra:text-xs/relaxed">
 		<dl class="flex items-center justify-between">
 			<dt>Item 1</dt>
 			<dd class="text-muted-foreground">Value 1</dd>

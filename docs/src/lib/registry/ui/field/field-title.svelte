@@ -12,8 +12,8 @@
 
 <div
 	bind:this={ref}
-	data-slot="field-label"
-	class={cn("cn-font-heading cn-field-title flex w-fit items-center leading-snug", className)}
+	data-slot="field-title"
+	class={cn("cn-field-title flex w-fit items-center", className)}
 	{...restProps}
 >
 	{@render children?.()}

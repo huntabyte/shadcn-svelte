@@ -4,7 +4,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import * as registry from "../../src/utils/registry/index.js";
 import { addRegistryItems } from "../../src/utils/add-registry-items.js";
 import { transformCss } from "../../src/utils/transform-css.js";
-import type { ResolvedConfig } from "../../src/utils/config/index";
+import type { ResolvedConfig } from "../../src/utils/config/index.js";
 
 vi.mock("node:fs", () => ({
 	existsSync: vi.fn(),
@@ -222,7 +222,7 @@ describe("addRegistryItems", () => {
 		const runTasks = async (tasks: p.Task[]) => {
 			for (const task of tasks) {
 				if (task.enabled === false) continue;
-				await task.task();
+				await task.task(() => {});
 			}
 			return undefined;
 		};
@@ -235,7 +235,6 @@ describe("addRegistryItems", () => {
 				return `/path/to/${item.name}/${file.target}`;
 			});
 			vi.mocked(registry.getItemAliasDir).mockReturnValue("/test/components");
-			// @ts-expect-error the mock returns undefined which is fine for our assertions
 			vi.mocked(p.tasks).mockImplementation(runTasks);
 		});
 
@@ -249,11 +248,11 @@ describe("addRegistryItems", () => {
 
 			const [, changes] = vi.mocked(transformCss).mock.calls.at(-1)!;
 			// theme colors are present
-			expect(changes.cssVars).toMatchObject({ light: { background: "oklch(1 0 0)" } });
+			expect(changes?.cssVars).toMatchObject({ light: { background: "oklch(1 0 0)" } });
 			// font var is present
-			expect(changes.cssVars).toMatchObject({ theme: { "--font-sans": expect.any(String) } });
+			expect(changes?.cssVars).toMatchObject({ theme: { "--font-sans": expect.any(String) } });
 			// font import + dependency are present
-			expect(changes.css).toHaveProperty('@import "@fontsource-variable/inter"');
+			expect(changes?.css).toHaveProperty('@import "@fontsource-variable/inter"');
 			expect(result.devDependencies.has("@fontsource-variable/inter")).toBe(true);
 		});
 
@@ -268,13 +267,13 @@ describe("addRegistryItems", () => {
 
 			const [, changes] = vi.mocked(transformCss).mock.calls.at(-1)!;
 			// theme colors are present
-			expect(changes.cssVars).toMatchObject({ light: { background: "oklch(1 0 0)" } });
+			expect(changes?.cssVars).toMatchObject({ light: { background: "oklch(1 0 0)" } });
 			// no font var, no font import, no fontsource dependency
-			expect(changes.cssVars).not.toHaveProperty("theme");
-			expect(changes.css).not.toHaveProperty('@import "@fontsource-variable/inter"');
+			expect(changes?.cssVars).not.toHaveProperty("theme");
+			expect(changes?.css).not.toHaveProperty('@import "@fontsource-variable/inter"');
 			expect(result.devDependencies.has("@fontsource-variable/inter")).toBe(false);
 			// the font item is never turned into a task
-			const [tasks] = vi.mocked(p.tasks).mock.calls[0];
+			const [tasks] = vi.mocked(p.tasks).mock.calls[0]!;
 			expect(tasks.some((t) => t.title.includes("font-inter"))).toBe(false);
 		});
 
@@ -289,12 +288,12 @@ describe("addRegistryItems", () => {
 
 			const [, changes] = vi.mocked(transformCss).mock.calls.at(-1)!;
 			// font var, font import, and fontsource dependency are present
-			expect(changes.cssVars).toMatchObject({ theme: { "--font-sans": expect.any(String) } });
-			expect(changes.css).toHaveProperty('@import "@fontsource-variable/inter"');
+			expect(changes?.cssVars).toMatchObject({ theme: { "--font-sans": expect.any(String) } });
+			expect(changes?.css).toHaveProperty('@import "@fontsource-variable/inter"');
 			expect(result.devDependencies.has("@fontsource-variable/inter")).toBe(true);
 			// theme colors are NOT written
-			expect(changes.cssVars).not.toHaveProperty("light");
-			expect(changes.cssVars).not.toHaveProperty("dark");
+			expect(changes?.cssVars).not.toHaveProperty("light");
+			expect(changes?.cssVars).not.toHaveProperty("dark");
 		});
 	});
 
@@ -320,7 +319,7 @@ describe("addRegistryItems", () => {
 		const runTasks = async (tasks: p.Task[]) => {
 			for (const task of tasks) {
 				if (task.enabled === false) continue;
-				await task.task();
+				await task.task(() => {});
 			}
 			return undefined;
 		};
@@ -330,7 +329,6 @@ describe("addRegistryItems", () => {
 			vi.mocked(registry.resolveItemFilePath).mockImplementation(
 				(_, item, file) => `/test/lib/${item.name}/${file.target}`
 			);
-			// @ts-expect-error the mock returns undefined which is fine for our assertions
 			vi.mocked(p.tasks).mockImplementation(runTasks);
 			vi.mocked(transformCss).mockImplementation((source: string) => source);
 		});
@@ -353,11 +351,11 @@ describe("addRegistryItems", () => {
 			// no overwrite prompt for the pre-existing utils file
 			expect(p.confirm).not.toHaveBeenCalled();
 			// utils never becomes a task, so its file is left untouched
-			const [tasks] = vi.mocked(p.tasks).mock.calls[0];
+			const [tasks] = vi.mocked(p.tasks).mock.calls[0]!;
 			expect(tasks.some((t) => t.title.includes("utils"))).toBe(false);
 			// the theme is still applied
 			const [, changes] = vi.mocked(transformCss).mock.calls.at(-1)!;
-			expect(changes.cssVars).toMatchObject({ light: { background: "oklch(1 0 0)" } });
+			expect(changes?.cssVars).toMatchObject({ light: { background: "oklch(1 0 0)" } });
 		});
 
 		it("writes the stylesheet without prompting when forceStylesheet is set", async () => {

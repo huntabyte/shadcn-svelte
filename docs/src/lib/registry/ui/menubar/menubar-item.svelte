@@ -19,6 +19,9 @@
 	data-slot="menubar-item"
 	data-inset={inset}
 	data-variant={variant}
-	class={cn("cn-menubar-item group/menubar-item flex items-center", className)}
+	class={cn(
+		"cn-menubar-item group/menubar-item relative flex cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
+		className
+	)}
 	{...restProps}
 />

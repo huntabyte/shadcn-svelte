@@ -46,6 +46,14 @@ describe("resolveDepsFromImport", () => {
 		expect(result).toEqual(["foo@1.2.3", "peer-a", "peer-b"]);
 	});
 
+	it("does not treat unrelated package name prefixes as deep imports", () => {
+		mockDeps.versions.re = "re@1.0.0";
+		mockDeps.deps["re@1.0.0"] = [];
+		expect(resolveDepsFromImport("react", mockDeps)).toEqual([]);
+		expect(resolveDepsFromImport("re", mockDeps)).toEqual(["re@1.0.0"]);
+		expect(resolveDepsFromImport("re/utils", mockDeps)).toEqual(["re@1.0.0"]);
+	});
+
 	it("ignores deps listed in IGNORE_DEPS even if present", () => {
 		for (const dep of IGNORE_DEPS) {
 			const src = dep;
@@ -191,7 +199,7 @@ describe("resolveTypeDeps", () => {
 	it("only pushes the package name, not the version string", () => {
 		resolveTypeDeps(projectDeps);
 		const peers = projectDeps.dependencies.deps["foo@1.0.0"];
-		expect(peers.includes("@types/foo@1.0.0")).toBe(false);
+		expect(peers?.includes("@types/foo@1.0.0")).toBe(false);
 	});
 });
 
@@ -256,6 +264,17 @@ describe("getFileDependencies", () => {
 		// bar import -> bar@1.0.0 then its peer bar-peer@1.0.0
 		expect(result.dependencies).toEqual(["foo@1.0.0", "bar@1.0.0", "bar-peer@1.0.0"]);
 		expect(result.devDependencies).toBeUndefined();
+	});
+
+	it("extracts packages from re-exports", async () => {
+		const src = `
+		export { cn } from "cn";
+		export * from "foo";
+	  `;
+		const result = await getFileDependencies(mkOpts("utils.ts", src, {}, { cn: [], foo: [] }));
+
+		expect(result.dependencies).toBeUndefined();
+		expect(result.devDependencies).toEqual(["cn@1.0.0", "foo@1.0.0"]);
 	});
 
 	it('parses <script> and <script context="module"> in .svelte', async () => {

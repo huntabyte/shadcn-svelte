@@ -66,7 +66,9 @@ Copy and paste the following code into your project.
 
 ```svelte showLineNumbers
 <Select.Root type="single">
-  <Select.Trigger class="w-[180px]"></Select.Trigger>
+  <Select.Trigger class="w-[180px]">
+    <Select.Value placeholder="Select a theme" />
+  </Select.Trigger>
   <Select.Content>
     <Select.Item value="light">Light</Select.Item>
     <Select.Item value="dark">Dark</Select.Item>
@@ -75,11 +77,75 @@ Copy and paste the following code into your project.
 </Select.Root>
 ```
 
-## Examples
+`Select.Value` renders the label of the selected item, falling back to `placeholder` when nothing is selected.
 
-### Scrollable
+It reads the label from the matching `Select.Item`, which only exists in the DOM while the menu is open. Pass `items` to `Select.Root` so the label survives the menu closing:
+
+```svelte showLineNumbers
+<script lang="ts">
+  const themes = [
+    { value: "light", label: "Light" },
+    { value: "dark", label: "Dark" },
+    { value: "system", label: "System" },
+  ];
+</script>
+
+<Select.Root type="single" items={themes}>
+  <Select.Trigger class="w-[180px]">
+    <Select.Value placeholder="Select a theme" />
+  </Select.Trigger>
+  <Select.Content>
+    {#each themes as theme (theme.value)}
+      <Select.Item value={theme.value}>{theme.label}</Select.Item>
+    {/each}
+  </Select.Content>
+</Select.Root>
+```
+
+Without `items` the trigger falls back to the raw value, so you only need it when an item's label differs from its value.
+
+## Groups
+
+Use `Select.Group`, `Select.Label`, and `Select.Separator` to organize items.
+
+<ComponentPreview name="select-groups">
+
+<div></div>
+
+</ComponentPreview>
+
+## Scrollable
+
+A select with many items that scrolls.
 
 <ComponentPreview name="select-scrollable">
+
+<div></div>
+
+</ComponentPreview>
+
+## Disabled
+
+<ComponentPreview name="select-disabled">
+
+<div></div>
+
+</ComponentPreview>
+
+## Invalid
+
+Add the `data-invalid` attribute to the `Field.Field` component and the `aria-invalid` attribute to the `Select.Trigger` component to show an error state.
+
+```svelte showLineNumbers /data-invalid/ /aria-invalid/
+<Field.Field data-invalid>
+  <Field.Label>Fruit</Field.Label>
+  <Select.Trigger aria-invalid>
+    <Select.Value />
+  </Select.Trigger>
+</Field.Field>
+```
+
+<ComponentPreview name="select-invalid">
 
 <div></div>
 

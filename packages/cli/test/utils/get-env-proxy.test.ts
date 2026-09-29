@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, afterEach } from "vitest";
-import { getEnvProxy } from "../../src/utils/get-env-proxy";
+import { getEnvProxy } from "../../src/utils/get-env-proxy.js";
 
 describe("getEnvProxy", () => {
 	afterEach(() => {

@@ -77,7 +77,15 @@ export function resolvePeerVersions(projectDeps: ProjectDependencies): ProjectDe
 	return projectDeps;
 }
 
-export const IGNORE_DEPS = ["svelte", "@sveltejs/kit", "tailwindcss", "vite"];
+export const IGNORE_DEPS = [
+	"svelte",
+	"@sveltejs/kit",
+	"tailwindcss",
+	"vite",
+	// CLIs / tooling that can collide with deep-import prefix matching (e.g. `sv` vs `svelte/*`)
+	"sv",
+	"shadcn-svelte",
+];
 
 /**
  * Resolves peer dependencies from a given set of dependencies from a package.json.
@@ -143,7 +151,14 @@ export async function getFileDependencies(opts: GetFileDepOpts) {
 	const devDependencies = new Set<string>();
 
 	const enter = (node: Node) => {
-		if (node.type !== "ImportDeclaration") return;
+		if (
+			node.type !== "ImportDeclaration" &&
+			node.type !== "ExportNamedDeclaration" &&
+			node.type !== "ExportAllDeclaration"
+		) {
+			return;
+		}
+		if (!node.source) return;
 		const source = node.source.value as string;
 
 		const deps = resolveDepsFromImport(source, opts.dependencies);
@@ -173,8 +188,10 @@ export function resolveDepsFromImport(source: string, dependencies: ResolvedDepe
 	const simple = dependencies.versions[source] ? source : undefined;
 	const depName =
 		simple ??
-		// considers deep imports
-		Object.keys(dependencies.versions).find((dep) => source.startsWith(dep));
+		// considers deep imports (`pkg/subpath`), but not unrelated prefixes (`sv` vs `svelte`)
+		Object.keys(dependencies.versions).find(
+			(dep) => source === dep || source.startsWith(`${dep}/`)
+		);
 
 	if (depName && !IGNORE_DEPS.includes(depName)) {
 		const versioned = dependencies.versions[depName]!;

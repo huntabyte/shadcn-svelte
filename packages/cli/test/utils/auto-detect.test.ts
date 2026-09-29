@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { describe, it, expect, afterAll, beforeEach } from "vitest";
-import { detectConfigs } from "../../src/utils/auto-detect";
+import { detectConfigs } from "../../src/utils/auto-detect.js";
 
 describe("detectConfigs", () => {
 	const tmpDir = path.join(process.cwd(), "test-fixtures");
@@ -92,5 +92,15 @@ describe("detectConfigs", () => {
 
 		const result = detectConfigs(tmpDir);
 		expect(result.tsconfigPath).toBe(path.join(tmpDir, "tsconfig.json"));
+	});
+
+	it("should detect the #lib package subpath import alias", () => {
+		fs.writeFileSync(
+			path.join(tmpDir, "package.json"),
+			JSON.stringify({ imports: { "#lib/*": "./src/lib/*" } })
+		);
+
+		const result = detectConfigs(tmpDir);
+		expect(result.packageImportAlias).toBe("#lib");
 	});
 });

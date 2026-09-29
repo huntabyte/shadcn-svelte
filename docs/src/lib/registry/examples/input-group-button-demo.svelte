@@ -46,13 +46,14 @@
 				<p>You should not enter any sensitive information on this site.</p>
 			</Popover.Content>
 		</Popover.Root>
-		<InputGroup.Addon class="ps-1.5 text-muted-foreground">
-			<InputGroup.Text>https://</InputGroup.Text>
-		</InputGroup.Addon>
-		<InputGroup.Input />
+		<InputGroup.Addon class="ps-1.5 text-muted-foreground">https://</InputGroup.Addon>
+		<InputGroup.Input id="input-secure-19" />
 		<InputGroup.Addon align="inline-end">
 			<InputGroup.Button onclick={() => (isFavorite = !isFavorite)} size="icon-xs">
-				<IconStar class={isFavorite ? "fill-blue-600 stroke-blue-600" : ""} />
+				<IconStar
+					data-favorite={isFavorite}
+					class="data-[favorite=true]:fill-blue-600 data-[favorite=true]:stroke-blue-600"
+				/>
 			</InputGroup.Button>
 		</InputGroup.Addon>
 	</InputGroup.Root>

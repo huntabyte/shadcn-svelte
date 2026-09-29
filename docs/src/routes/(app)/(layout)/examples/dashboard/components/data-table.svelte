@@ -1,66 +1,3 @@
-<script lang="ts" module>
-	export const columns: ColumnDef<Schema>[] = [
-		{
-			id: "drag",
-			header: () => null,
-			cell: () => renderComponent(DataTableDragHandle, {}),
-		},
-		{
-			id: "select",
-			header: ({ table }) =>
-				renderComponent(DataTableCheckbox, {
-					checked: table.getIsAllPageRowsSelected(),
-					indeterminate: table.getIsSomePageRowsSelected() && !table.getIsAllPageRowsSelected(),
-					onCheckedChange: (value) => table.toggleAllPageRowsSelected(!!value),
-					"aria-label": "Select all",
-				}),
-			cell: ({ row }) =>
-				renderComponent(DataTableCheckbox, {
-					checked: row.getIsSelected(),
-					onCheckedChange: (value) => row.toggleSelected(!!value),
-					"aria-label": "Select row",
-				}),
-			enableSorting: false,
-			enableHiding: false,
-		},
-		{
-			accessorKey: "header",
-			header: "Header",
-			cell: ({ row }) => renderComponent(DataTableCellViewer, { item: row.original }),
-			enableHiding: false,
-		},
-		{
-			accessorKey: "type",
-			header: "Section Type",
-			cell: ({ row }) => renderComponent(DataTableType, { row }),
-		},
-		{
-			accessorKey: "status",
-			header: "Status",
-			cell: ({ row }) => renderComponent(DataTableStatus, { row }),
-		},
-		{
-			accessorKey: "target",
-			header: () => renderComponent(DataTableHeaderTarget, {}),
-			cell: ({ row }) => renderComponent(DataTableTarget, { row }),
-		},
-		{
-			accessorKey: "limit",
-			header: () => renderComponent(DataTableHeaderLimit, {}),
-			cell: ({ row }) => renderComponent(DataTableLimit, { row }),
-		},
-		{
-			accessorKey: "reviewer",
-			header: "Reviewer",
-			cell: ({ row }) => renderComponent(DataTableReviewer, { row }),
-		},
-		{
-			id: "actions",
-			cell: () => renderComponent(DataTableActions, {}),
-		},
-	];
-</script>
-
 <script lang="ts">
 	import ChevronDownIcon from "@tabler/icons-svelte/icons/chevron-down";
 	import ChevronLeftIcon from "@tabler/icons-svelte/icons/chevron-left";
@@ -74,28 +11,20 @@
 	import { RestrictToVerticalAxis } from "@dnd-kit/abstract/modifiers";
 	import { move } from "@dnd-kit/helpers";
 	import {
-		getCoreRowModel,
-		getFacetedRowModel,
-		getFacetedUniqueValues,
-		getFilteredRowModel,
-		getPaginationRowModel,
-		getSortedRowModel,
-		type ColumnDef,
-		type ColumnFiltersState,
-		type PaginationState,
-		type Row,
+		FlexRender,
 		type RowSelectionState,
-		type SortingState,
-		type VisibilityState,
-	} from "@tanstack/table-core";
+		createColumnHelper,
+		createTable,
+		createTableState,
+		renderComponent,
+		type Row,
+	} from "@tanstack/svelte-table";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import * as Table from "$lib/registry/ui/table/index.js";
 	import * as Tabs from "$lib/registry/ui/tabs/index.js";
 	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import { createSvelteTable } from "$lib/registry/ui/data-table/data-table.svelte.js";
-	import { FlexRender, renderComponent } from "$lib/registry/ui/data-table/index.js";
 	import { Label } from "$lib/registry/ui/label/index.js";
 	import DataTableActions from "./data-table-actions.svelte";
 	import DataTableCellViewer from "./data-table-cell-viewer.svelte";
@@ -108,82 +37,90 @@
 	import DataTableStatus from "./data-table-status.svelte";
 	import DataTableTarget from "./data-table-target.svelte";
 	import DataTableType from "./data-table-type.svelte";
+	import { features, type DashboardTableFeatures } from "./data-table-features.js";
 	import type { Schema } from "./schemas.js";
 
 	let { data }: { data: Schema[] } = $props();
-	let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
-	let sorting = $state<SortingState>([]);
-	let columnFilters = $state<ColumnFiltersState>([]);
-	let rowSelection = $state<RowSelectionState>({});
-	let columnVisibility = $state<VisibilityState>({});
 
-	const table = createSvelteTable({
+	const columnHelper = createColumnHelper<DashboardTableFeatures, Schema>();
+
+	const columns = columnHelper.columns([
+		columnHelper.display({
+			id: "drag",
+			header: () => null,
+		}),
+		columnHelper.display({
+			id: "select",
+			header: ({ table }) =>
+				renderComponent(DataTableCheckbox, {
+					checked: table.getIsAllPageRowsSelected(),
+					indeterminate: table.getIsSomePageRowsSelected() && !table.getIsAllPageRowsSelected(),
+					onCheckedChange: (value: boolean) => table.toggleAllPageRowsSelected(!!value),
+					"aria-label": "Select all",
+				}),
+			cell: ({ row }) =>
+				renderComponent(DataTableCheckbox, {
+					checked: row.getIsSelected(),
+					onCheckedChange: (value: boolean) => row.toggleSelected(!!value),
+					"aria-label": "Select row",
+				}),
+			enableSorting: false,
+			enableHiding: false,
+		}),
+		columnHelper.accessor("header", {
+			header: "Header",
+			cell: ({ row }) => renderComponent(DataTableCellViewer, { item: row.original }),
+			enableHiding: false,
+		}),
+		columnHelper.accessor("type", {
+			header: "Section Type",
+			cell: ({ row }) => renderComponent(DataTableType, { row }),
+		}),
+		columnHelper.accessor("status", {
+			header: "Status",
+			cell: ({ row }) => renderComponent(DataTableStatus, { row }),
+		}),
+		columnHelper.accessor("target", {
+			header: () => renderComponent(DataTableHeaderTarget, {}),
+			cell: ({ row }) => renderComponent(DataTableTarget, { row }),
+		}),
+		columnHelper.accessor("limit", {
+			header: () => renderComponent(DataTableHeaderLimit, {}),
+			cell: ({ row }) => renderComponent(DataTableLimit, { row }),
+		}),
+		columnHelper.accessor("reviewer", {
+			header: "Reviewer",
+			cell: ({ row }) => renderComponent(DataTableReviewer, { row }),
+		}),
+		columnHelper.display({
+			id: "actions",
+			cell: () => renderComponent(DataTableActions, {}),
+		}),
+	]);
+
+	// Keep row selection outside the table so the rest of the app can read or update it.
+	const [rowSelection, setRowSelection] = createTableState<RowSelectionState>({});
+
+	// v9 manages the rest of its state internally — reads like
+	// `table.getRowModel()` are rune-reactive, so no `$state` mirrors are needed.
+	const table = createTable({
+		features,
 		get data() {
 			return data;
 		},
 		columns,
-		state: {
-			get pagination() {
-				return pagination;
-			},
-			get sorting() {
-				return sorting;
-			},
-			get columnVisibility() {
-				return columnVisibility;
-			},
-			get rowSelection() {
-				return rowSelection;
-			},
-			get columnFilters() {
-				return columnFilters;
-			},
-		},
 		getRowId: (row) => row.id.toString(),
 		enableRowSelection: true,
-		getCoreRowModel: getCoreRowModel(),
-		getPaginationRowModel: getPaginationRowModel(),
-		getSortedRowModel: getSortedRowModel(),
-		getFacetedRowModel: getFacetedRowModel(),
-		getFacetedUniqueValues: getFacetedUniqueValues(),
-		getFilteredRowModel: getFilteredRowModel(),
 		autoResetPageIndex: false,
-		onPaginationChange: (updater) => {
-			if (typeof updater === "function") {
-				pagination = updater(pagination);
-			} else {
-				pagination = updater;
-			}
+		state: {
+			get rowSelection() {
+				return rowSelection();
+			},
 		},
-		onSortingChange: (updater) => {
-			if (typeof updater === "function") {
-				sorting = updater(sorting);
-			} else {
-				sorting = updater;
-			}
-		},
-		onColumnFiltersChange: (updater) => {
-			if (typeof updater === "function") {
-				columnFilters = updater(columnFilters);
-			} else {
-				columnFilters = updater;
-			}
-		},
-		onColumnVisibilityChange: (updater) => {
-			if (typeof updater === "function") {
-				columnVisibility = updater(columnVisibility);
-			} else {
-				columnVisibility = updater;
-			}
-		},
-		onRowSelectionChange: (updater) => {
-			if (typeof updater === "function") {
-				rowSelection = updater(rowSelection);
-			} else {
-				rowSelection = updater;
-			}
-		},
+		onRowSelectionChange: setRowSelection,
 	});
+
+	const pagination = $derived(table.atoms.pagination.get());
 
 	let views = [
 		{
@@ -285,10 +222,7 @@
 								{#each headerGroup.headers as header (header.id)}
 									<Table.Head colspan={header.colSpan}>
 										{#if !header.isPlaceholder}
-											<FlexRender
-												content={header.column.columnDef.header}
-												context={header.getContext()}
-											/>
+											<FlexRender {header} />
 										{/if}
 									</Table.Head>
 								{/each}
@@ -321,12 +255,10 @@
 					<Label for="rows-per-page" class="text-sm font-medium">Rows per page</Label>
 					<Select.Root
 						type="single"
-						bind:value={
-							() => `${table.getState().pagination.pageSize}`, (v) => table.setPageSize(Number(v))
-						}
+						bind:value={() => `${pagination.pageSize}`, (v) => table.setPageSize(Number(v))}
 					>
 						<Select.Trigger size="sm" class="w-20" id="rows-per-page">
-							{table.getState().pagination.pageSize}
+							{pagination.pageSize}
 						</Select.Trigger>
 						<Select.Content side="top">
 							{#each [10, 20, 30, 40, 50] as pageSize (pageSize)}
@@ -338,7 +270,7 @@
 					</Select.Root>
 				</div>
 				<div class="flex w-fit items-center justify-center text-sm font-medium">
-					Page {table.getState().pagination.pageIndex + 1} of
+					Page {pagination.pageIndex + 1} of
 					{table.getPageCount()}
 				</div>
 				<div class="ms-auto flex items-center gap-2 lg:ms-0">
@@ -396,7 +328,7 @@
 	</Tabs.Content>
 </Tabs.Root>
 
-{#snippet DraggableRow({ row }: { row: Row<Schema> })}
+{#snippet DraggableRow({ row }: { row: Row<DashboardTableFeatures, Schema> })}
 	{@const { ref, isDragging, handleRef } = useSortable({
 		id: row.original.id,
 		index: () => row.index,
@@ -410,11 +342,13 @@
 	>
 		{#each row.getVisibleCells() as cell (cell.id)}
 			<Table.Cell>
-				<FlexRender
-					attach={handleRef}
-					content={cell.column.columnDef.cell}
-					context={cell.getContext()}
-				/>
+				{#if cell.column.id === "drag"}
+					<!-- The drag handle needs this row's sortable handleRef, so it renders
+						here instead of through the column def. -->
+					<DataTableDragHandle attach={handleRef} />
+				{:else}
+					<FlexRender {cell} />
+				{/if}
 			</Table.Cell>
 		{/each}
 	</Table.Row>

@@ -246,7 +246,7 @@ describe("Registry Utilities", () => {
 					},
 				],
 			};
-			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![0]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![0]!))).toBe(
 				"/path/to/cwd/src/components/button.svelte"
 			);
 		});
@@ -263,7 +263,7 @@ describe("Registry Utilities", () => {
 					},
 				],
 			};
-			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![0]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![0]!))).toBe(
 				"/path/to/cwd/ui/button/button.svelte"
 			);
 		});
@@ -274,7 +274,7 @@ describe("Registry Utilities", () => {
 				type: "registry:component",
 				files: [{ type: "registry:component", content: "", target: "button.svelte" }],
 			};
-			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![0]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![0]!))).toBe(
 				"/path/to/cwd/components/button.svelte"
 			);
 		});
@@ -289,13 +289,13 @@ describe("Registry Utilities", () => {
 					{ type: "registry:page", content: "", target: "login/+page.svelte" },
 				],
 			};
-			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![0]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![0]!))).toBe(
 				"/path/to/cwd/components/complex-button.svelte"
 			);
-			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![1]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![1]!))).toBe(
 				"/path/to/cwd/ui/button/button.svelte"
 			);
-			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![2]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![2]!))).toBe(
 				"/path/to/cwd/src/routes/login/+page.svelte"
 			);
 		});
@@ -313,7 +313,7 @@ describe("Registry Utilities", () => {
 					},
 				],
 			};
-			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![0]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![0]!))).toBe(
 				"/path/to/cwd/hooks/use-hook.svelte.ts"
 			);
 		});
@@ -331,7 +331,7 @@ describe("Registry Utilities", () => {
 					},
 				],
 			};
-			expect(toPosixPath(resolveItemFilePath(config, item, item.files![0]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(config, item, item.files![0]!))).toBe(
 				"/path/to/cwd/utils.ts"
 			);
 
@@ -341,13 +341,13 @@ describe("Registry Utilities", () => {
 				utils: `${cwd}/some-other-path/shadcn-utils`,
 			};
 
-			expect(toPosixPath(resolveItemFilePath(config, item, item.files![0]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(config, item, item.files![0]!))).toBe(
 				"/path/to/cwd/some-other-path/shadcn-utils.ts"
 			);
 
 			// includes a file extension
 			config.resolvedPaths.utils += ".ts";
-			expect(toPosixPath(resolveItemFilePath(config, item, item.files![0]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(config, item, item.files![0]!))).toBe(
 				"/path/to/cwd/some-other-path/shadcn-utils.ts"
 			);
 		});

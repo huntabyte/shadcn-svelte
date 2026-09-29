@@ -8,7 +8,7 @@
 		"d3-scale@^4.0.2",
 		"@types/d3-scale@^4.0.9",
 		"layerchart@^2.0.0",
-		"bits-ui@^2.16.3"
+		"bits-ui@^2.18.0"
 	],
 	"registryDependencies": [
 		"card",

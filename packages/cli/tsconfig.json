@@ -9,7 +9,8 @@
 		"noEmit": true,
 		"verbatimModuleSyntax": true,
 		"erasableSyntaxOnly": true,
-		"noUncheckedIndexedAccess": true
+		"noUncheckedIndexedAccess": true,
+		"types": ["node"]
 	},
-	"include": ["src", "test/preset.test.ts"]
+	"include": ["src", "test/**/*.test.ts"]
 }

@@ -26,6 +26,7 @@ const initOptionsSchema = z.object({
 	silent: z.boolean(),
 	skipPreflight: z.boolean(),
 	proxy: z.string().optional(),
+	depsInstall: z.boolean(),
 });
 
 type InitOptions = z.infer<typeof initOptionsSchema>;
@@ -43,6 +44,7 @@ export const apply = new Command()
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
 	.option("-y, --yes", "skip confirmation prompt", false)
 	.option("-s, --silent", "mute output", false)
+	.option("--no-deps-install", "add dependencies to package.json without running install")
 	.option("--skip-preflight", "ignore preflight checks and continue", false)
 	.option("--proxy <proxy>", "fetch items from registry using a proxy", getEnvProxy())
 	.action(async (preset, opts) => {
@@ -149,5 +151,6 @@ export async function runApply({
 		dependencies: Array.from(result.dependencies),
 		devDependencies: Array.from(result.devDependencies),
 		silent: options.silent,
+		install: options.depsInstall,
 	});
 }
