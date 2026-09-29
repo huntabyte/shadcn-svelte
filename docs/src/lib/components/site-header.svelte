@@ -49,6 +49,7 @@
 					<ProjectForm class="hidden h-[31px] rounded-lg md:flex" />
 				{:else}
 					<ModeSwitcher />
+					<Separator orientation="vertical" />
 					<Button href="/create" variant="default" size="sm" class="h-[31px] rounded-lg">
 						<PlusIcon />
 						New

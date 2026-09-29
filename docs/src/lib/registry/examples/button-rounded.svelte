@@ -3,7 +3,8 @@
 	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
-<div class="flex flex-col gap-8">
+<div class="flex gap-2">
+	<Button class="rounded-full">Get Started</Button>
 	<Button variant="outline" size="icon" class="rounded-full">
 		<ArrowUpIcon />
 	</Button>

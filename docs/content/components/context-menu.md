@@ -1,6 +1,6 @@
 ---
 title: Context Menu
-description: Displays a menu to the user — such as a set of actions or functions — triggered by right click.
+description: Displays a menu of actions triggered by a right click.
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/context-menu
@@ -66,7 +66,7 @@ Copy and paste the following code into your project.
 
 ```svelte showLineNumbers
 <ContextMenu.Root>
-  <ContextMenu.Trigger>Right click</ContextMenu.Trigger>
+  <ContextMenu.Trigger>Right click here</ContextMenu.Trigger>
   <ContextMenu.Content>
     <ContextMenu.Item>Profile</ContextMenu.Item>
     <ContextMenu.Item>Billing</ContextMenu.Item>
@@ -75,3 +75,93 @@ Copy and paste the following code into your project.
   </ContextMenu.Content>
 </ContextMenu.Root>
 ```
+
+## Basic
+
+A simple context menu with a few actions.
+
+<ComponentPreview name="context-menu-basic">
+
+<div></div>
+
+</ComponentPreview>
+
+## Submenu
+
+Use `ContextMenu.Sub` to nest secondary actions.
+
+<ComponentPreview name="context-menu-submenu">
+
+<div></div>
+
+</ComponentPreview>
+
+## Shortcuts
+
+Add `ContextMenu.Shortcut` to show keyboard hints.
+
+<ComponentPreview name="context-menu-shortcuts">
+
+<div></div>
+
+</ComponentPreview>
+
+## Groups
+
+Group related actions and separate them with dividers.
+
+<ComponentPreview name="context-menu-groups">
+
+<div></div>
+
+</ComponentPreview>
+
+## Icons
+
+Combine icons with labels for quick scanning.
+
+<ComponentPreview name="context-menu-icons">
+
+<div></div>
+
+</ComponentPreview>
+
+## Checkboxes
+
+Use `ContextMenu.CheckboxItem` for toggles.
+
+<ComponentPreview name="context-menu-checkboxes">
+
+<div></div>
+
+</ComponentPreview>
+
+## Radio
+
+Use `ContextMenu.RadioItem` for exclusive choices.
+
+<ComponentPreview name="context-menu-radio">
+
+<div></div>
+
+</ComponentPreview>
+
+## Destructive
+
+Use `variant="destructive"` to style the menu item as destructive.
+
+<ComponentPreview name="context-menu-destructive">
+
+<div></div>
+
+</ComponentPreview>
+
+## Sides
+
+Control submenu placement with `side` and `align` props.
+
+<ComponentPreview name="context-menu-sides">
+
+<div></div>
+
+</ComponentPreview>
