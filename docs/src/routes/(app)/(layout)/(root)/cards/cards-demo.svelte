@@ -5,7 +5,6 @@
 	import ContributionHistory from "./contribution-history.svelte";
 	import DividendIncome from "./dividend-income.svelte";
 	import EmptyDistributeTrack from "./empty-distribute-track.svelte";
-	import NewChat from "./new-chat.svelte";
 	import NewMilestone from "./new-milestone.svelte";
 	import NotificationSettings from "./notification-settings.svelte";
 	import Payments from "./payments.svelte";
@@ -29,6 +28,7 @@
 	import SkeletonSavingsTargets from "./skeleton/savings-targets.svelte";
 	import SkeletonTransferFunds from "./skeleton/transfer-funds.svelte";
 	import SkeletonUIElements from "./skeleton/ui-elements.svelte";
+	import TransferFunds from "./transfer-funds.svelte";
 	import UIElements from "./ui-elements.svelte";
 </script>
 
@@ -97,19 +97,17 @@
 			<ClaimableBalance></ClaimableBalance>
 			<DividendIncome></DividendIncome>
 		</div>
-		<div class="hidden flex-col gap-(--gap) min-[1400px]:flex">
+		<div class="hidden flex-col gap-(--gap) 3xl:flex!">
 			<NewMilestone></NewMilestone>
 			<PayoutThreshold></PayoutThreshold>
 			<AccountAccess></AccountAccess>
 		</div>
 		<div class="hidden flex-col gap-(--gap) md:flex">
 			<QrConnect></QrConnect>
-			<div class="**:[.text-center.text-xs]:hidden">
-				<NewChat />
-			</div>
+			<TransferFunds></TransferFunds>
 			<Payments></Payments>
 		</div>
-		<div class="hidden flex-col gap-(--gap) min-[1900px]:flex">
+		<div class="hidden flex-col gap-(--gap) min-[1400px]:flex">
 			<EmptyDistributeTrack></EmptyDistributeTrack>
 			<AnalyticsCard></AnalyticsCard>
 			<NotificationSettings></NotificationSettings>

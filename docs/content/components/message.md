@@ -17,7 +17,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="message-demo" previewClassName="h-auto min-h-72">
+<ComponentPreview name="message-demo">
 
 <div></div>
 
@@ -119,7 +119,7 @@ Message.Group
 
 Use `Message.Avatar` to render an avatar next to the message. Set `align="end"` on the message to align the avatar to the end of the message.
 
-<ComponentPreview name="message-avatar" previewClassName="h-auto min-h-72">
+<ComponentPreview name="message-avatar">
 
 <div></div>
 
@@ -144,7 +144,7 @@ Use `Message.Group` to stack consecutive messages from the same sender. Render a
 
 Use `Message.Header` for a sender name and `Message.Footer` for metadata such as a delivery or read status.
 
-<ComponentPreview name="message-header-footer" previewClassName="h-auto min-h-72">
+<ComponentPreview name="message-header-footer">
 
 <div></div>
 
@@ -154,7 +154,7 @@ Use `Message.Header` for a sender name and `Message.Footer` for metadata such as
 
 Place message-level actions in `Message.Footer`, such as copy, retry, or feedback buttons.
 
-<ComponentPreview name="message-actions" previewClassName="h-auto min-h-72">
+<ComponentPreview name="message-actions">
 
 <div></div>
 
@@ -162,7 +162,7 @@ Place message-level actions in `Message.Footer`, such as copy, retry, or feedbac
 
 ## Attachment
 
-<ComponentPreview name="message-attachment" previewClassName="h-auto min-h-72">
+<ComponentPreview name="message-attachment">
 
 <div></div>
 

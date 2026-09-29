@@ -1,6 +1,7 @@
 <svelte:options runes />
 
 <script lang="ts">
+	import IconArrowRight from "@tabler/icons-svelte/icons/arrow-right";
 	import Announcement from "$lib/components/announcement.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
 	import PageActions from "$lib/components/page-header/page-actions.svelte";
@@ -13,7 +14,7 @@
 
 	const title = "The Foundation for your Design System";
 	const description =
-		"Composable, accessible components with thoughtful defaults. Build your own component library with code you can customize, extend, and make your own.";
+		"A set of beautifully designed components that you can customize, extend, and build on. Start here then make it your own. Open Source. Open Code.";
 
 	const mobile = new IsMobile();
 </script>
@@ -25,9 +26,10 @@
 		<Announcement />
 		<PageHeaderHeading class="max-w-4xl">{title}</PageHeaderHeading>
 		<PageHeaderDescription>{description}</PageHeaderDescription>
-		<PageActions class="style-luma">
-			<Button href="/docs/installation" class="h-[35px]">Get Started</Button>
-			<Button href="/docs/components" variant="secondary">View Components</Button>
+		<PageActions>
+			<Button href="/create?preset=b27GcrRo" class="h-[31px] rounded-lg">
+				Build Your Own <IconArrowRight data-icon="inline-end" />
+			</Button>
 		</PageActions>
 	</PageHeader>
 	<div class="container-wrapper flex-1 p-0">
@@ -54,7 +56,10 @@
 			</section>
 			{#if !mobile.current}
 				<section class="hidden md:block">
-					<div class="style-rhea theme-neutral">
+					<div
+						class="style-rhea base-color-neutral theme-neutral"
+						style="--radius: 0.625rem; font-family: 'Inter Variable', sans-serif;"
+					>
 						<CardsDemo />
 					</div>
 				</section>

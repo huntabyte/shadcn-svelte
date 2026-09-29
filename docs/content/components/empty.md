@@ -18,7 +18,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="empty-demo" previewClassName="h-96 p-0">
+<ComponentPreview name="empty-demo">
 
 <div></div>
 
@@ -93,7 +93,7 @@ Empty.Root
 
 Use the `border` utility class to create an outline empty state.
 
-<ComponentPreview name="empty-outline-demo" previewClassName="h-auto min-h-72">
+<ComponentPreview name="empty-outline-demo">
 
 <div></div>
 
@@ -113,7 +113,7 @@ Use the `bg-*` and `bg-gradient-*` utilities to add a background to the empty st
 
 Use the `Empty.Media` component to display an avatar in the empty state.
 
-<ComponentPreview name="empty-avatar-demo" previewClassName="h-96 p-0">
+<ComponentPreview name="empty-avatar-demo">
 
 <div></div>
 
@@ -123,7 +123,7 @@ Use the `Empty.Media` component to display an avatar in the empty state.
 
 Use the `Empty.Media` component to display an avatar group in the empty state.
 
-<ComponentPreview name="empty-avatar-group-demo" previewClassName="h-auto min-h-72">
+<ComponentPreview name="empty-avatar-group-demo">
 
 <div></div>
 
@@ -133,7 +133,7 @@ Use the `Empty.Media` component to display an avatar group in the empty state.
 
 You can add an `InputGroup` component to the `Empty.Content` component.
 
-<ComponentPreview name="empty-input-group-demo" previewClassName="h-auto min-h-72">
+<ComponentPreview name="empty-input-group-demo">
 
 <div></div>
 

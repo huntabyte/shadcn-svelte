@@ -13,12 +13,9 @@
 	onMount(() => syncMenuColor(DEFAULT_CONFIG.menuColor));
 </script>
 
-<div
-	data-slot="layout"
-	class="group/layout relative z-10 flex min-h-svh flex-col bg-background has-data-[slot=designer]:h-svh has-data-[slot=designer]:overflow-hidden"
->
+<div class="relative z-10 flex min-h-svh flex-col bg-background">
 	<SiteHeader />
-	<main class="flex min-h-0 flex-1 flex-col">
+	<main class="flex flex-1 flex-col">
 		<Tooltip.Provider>
 			{@render children()}
 		</Tooltip.Provider>
