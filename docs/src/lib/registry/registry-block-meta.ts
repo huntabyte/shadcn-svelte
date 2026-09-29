@@ -74,6 +74,9 @@ export const blockMeta = {
 	"demo-sidebar": {
 		description: "Your first sidebar.",
 	},
+	"demo-sidebar-icon": {
+		description: "A sidebar that collapses to icons.",
+	},
 	"demo-sidebar-header": {
 		description: "A sidebar header with a dropdown menu.",
 	},

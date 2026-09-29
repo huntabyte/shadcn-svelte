@@ -29,9 +29,9 @@ links:
 
 Introducing **Charts**. A collection of chart components that you can copy and paste into your apps.
 
-Charts are designed to look great out of the box. They work well with other components are are fully customizable to fit your project.
+Charts are designed to look great out of the box. They work well with the other components and are fully customizable to fit your project.
 
-[Browse the Charts Library](/charts)
+[Browse the Charts Library](/charts).
 
 ## Component
 
@@ -77,7 +77,7 @@ Install `layerchart`:
 
 </Step>
 
-<PMInstall command="layerchart@next -D" />
+<PMInstall command="layerchart@latest -D" />
 
 <Step>
 

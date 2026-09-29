@@ -67,13 +67,63 @@ Copy and paste the following code into your project.
 
 ```svelte showLineNumbers
 <RadioGroup.Root value="option-one">
-  <div class="flex items-center space-x-2">
+  <div class="flex items-center gap-3">
     <RadioGroup.Item value="option-one" id="option-one" />
     <Label for="option-one">Option One</Label>
   </div>
-  <div class="flex items-center space-x-2">
+  <div class="flex items-center gap-3">
     <RadioGroup.Item value="option-two" id="option-two" />
     <Label for="option-two">Option Two</Label>
   </div>
 </RadioGroup.Root>
 ```
+
+## Description
+
+Radio group items with a description using the `Field` component.
+
+<ComponentPreview name="radio-group-description">
+
+<div></div>
+
+</ComponentPreview>
+
+## Choice Card
+
+Use `Field.Label` to wrap the entire `Field.Field` for a clickable card-style selection.
+
+<ComponentPreview name="radio-group-choice-card">
+
+<div></div>
+
+</ComponentPreview>
+
+## Fieldset
+
+Use `Field.Set` and `Field.Legend` to group radio items with a label and description.
+
+<ComponentPreview name="radio-group-fieldset">
+
+<div></div>
+
+</ComponentPreview>
+
+## Disabled
+
+Use the `disabled` prop on `RadioGroup.Item` to disable individual items.
+
+<ComponentPreview name="radio-group-disabled">
+
+<div></div>
+
+</ComponentPreview>
+
+## Invalid
+
+Use `aria-invalid` on `RadioGroup.Item` and `data-invalid` on `Field.Field` to show validation errors.
+
+<ComponentPreview name="radio-group-invalid">
+
+<div></div>
+
+</ComponentPreview>

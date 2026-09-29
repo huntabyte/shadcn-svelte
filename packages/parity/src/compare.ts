@@ -424,6 +424,15 @@ export function toSourceToken(token: string): string {
 	);
 }
 
+/** Rewrite an upstream `--radix-*` variable to the `--bits-*` one Bits UI sets. */
+export function toBitsToken(token: string): string {
+	return token
+		.replace(/--radix-hover-card-/g, "--bits-link-preview-")
+		.replace(/--radix-([a-z-]+)-trigger-(width|height)/g, "--bits-$1-anchor-$2")
+		.replace(/--radix-/g, "--bits-")
+		.replace(/data-radix-/g, "data-bits-");
+}
+
 export function fixClassString(raw: string, added: string[], removed: string[]): string {
 	const filtered = dropRuntimeEquivalentDiffs(added, removed);
 	const canonicalAdded = new Set(filtered.added.map(canonicalizeRuntimeToken));
@@ -431,13 +440,12 @@ export function fixClassString(raw: string, added: string[], removed: string[]):
 		if (shouldKeepSourceToken(token)) return true;
 		return !canonicalAdded.has(canonicalizeRuntimeToken(token));
 	});
-	const existing = new Set(kept.map(canonicalizeRuntimeToken));
+	const existing = new Set(kept.map(normalizeToken));
 	for (const token of filtered.removed) {
-		if (isFrameworkToken(token)) continue;
-		const sourceToken = toSourceToken(token);
-		if (existing.has(canonicalizeRuntimeToken(sourceToken))) continue;
+		const sourceToken = isFrameworkToken(token) ? toBitsToken(token) : toSourceToken(token);
+		if (existing.has(normalizeToken(sourceToken))) continue;
 		kept.push(sourceToken);
-		existing.add(canonicalizeRuntimeToken(sourceToken));
+		existing.add(normalizeToken(sourceToken));
 	}
 	return kept.join(" ");
 }
@@ -1100,12 +1108,26 @@ function jaccard(a: string[], b: string[]): number {
 	return union === 0 ? 1 : intersection / union;
 }
 
+/**
+ * Bits UI and Radix expose the same floating/measurement CSS variables under
+ * different component or part names. Both spellings normalize to the Radix one
+ * so that a framework token on our side can be paired with its upstream twin.
+ */
+const FRAMEWORK_VAR_ALIASES: [RegExp, string][] = [
+	[/--fw-link-preview-/g, "--fw-hover-card-"],
+	[/--fw-([a-z-]+)-anchor-(width|height)/g, "--fw-$1-trigger-$2"],
+];
+
 function normalizeToken(token: string): string {
-	return canonicalizeRuntimeToken(token)
+	let normalized = canonicalizeRuntimeToken(token)
 		.replace(/--radix-/g, "--fw-")
 		.replace(/--bits-/g, "--fw-")
 		.replace(/data-radix-/g, "data-fw-")
 		.replace(/data-bits-/g, "data-fw-");
+	for (const [pattern, replacement] of FRAMEWORK_VAR_ALIASES) {
+		normalized = normalized.replace(pattern, replacement);
+	}
+	return normalized;
 }
 
 function tokenTail(token: string): string {
@@ -1226,7 +1248,24 @@ function isAllowlistToken(token: string): boolean {
 }
 
 function isFrameworkToken(token: string): boolean {
-	return /radix|bits-|--bits-|--radix-|data-bits-|data-radix-|--transform-origin/i.test(token);
+	return /radix|bits-|--bits-|--radix-|data-bits-|data-radix-/i.test(token);
+}
+
+/**
+ * True when every framework token on one side has a counterpart on the other
+ * side once `--radix-`/`--bits-` prefixes and known naming differences are
+ * normalized away. A framework token with no twin (a `--bits-*` variable that
+ * upstream never reads, or an upstream `--radix-*` variable we dropped) is a
+ * real diff, not a library difference.
+ */
+function frameworkTokensPair(added: string[], removed: string[]): boolean {
+	const remaining = removed.filter(isFrameworkToken).map(normalizeToken);
+	for (const token of added.filter(isFrameworkToken)) {
+		const index = remaining.indexOf(normalizeToken(token));
+		if (index === -1) return false;
+		remaining.splice(index, 1);
+	}
+	return remaining.length === 0;
 }
 
 function shouldKeepSourceToken(token: string): boolean {
@@ -1239,7 +1278,10 @@ function classifyDiff(added: string[], removed: string[]): PairKind {
 	const tokens = [...added, ...removed];
 	if (tokens.length === 0) return "order";
 	if (tokens.every(isAllowlistToken)) return "allowlist";
-	if (tokens.every((token) => isAllowlistToken(token) || isFrameworkToken(token))) {
+	if (
+		tokens.every((token) => isAllowlistToken(token) || isFrameworkToken(token)) &&
+		frameworkTokensPair(added, removed)
+	) {
 		return "framework";
 	}
 	return "diff";
