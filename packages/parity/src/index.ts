@@ -40,8 +40,6 @@ Examples:
   $ parity --ignored command
   $ parity variants --style mira
   $ parity variants mira/empty
-  $ parity docs
-  $ parity docs component-preview --check
   $ parity fix empty
   $ parity fix empty --dry-run
 `
