@@ -1,7 +1,7 @@
 <svelte:options runes />
 
 <script lang="ts">
-	import { IconArrowRight } from "@tabler/icons-svelte";
+	import IconArrowRight from "@tabler/icons-svelte/icons/arrow-right";
 	import Announcement from "$lib/components/announcement.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
 	import PageActions from "$lib/components/page-header/page-actions.svelte";

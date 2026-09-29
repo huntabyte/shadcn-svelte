@@ -16,6 +16,7 @@ links:
 	import Steps from "$lib/components/steps.svelte";
 	import Step from "$lib/components/step.svelte";
 	import InstallTabs from "$lib/components/install-tabs.svelte";
+	import Callout from "$lib/components/callout.svelte";
 
 	let { viewerData } = $props();
 </script>
@@ -25,6 +26,12 @@ links:
 <div></div>
 
 </ComponentPreview>
+
+<Callout>
+
+For form fields, use the [Field](/docs/components/field) component which includes built-in label, description, and error handling.
+
+</Callout>
 
 ## Installation
 
@@ -67,3 +74,20 @@ Copy and paste the following code into your project.
 ```svelte
 <Label for="email">Your email address</Label>
 ```
+
+## Label in Field
+
+For form fields, use the [Field](/docs/components/field) component which includes built-in `Field.Label`, `Field.Description`, and `Field.Error` components.
+
+```svelte
+<Field.Field>
+  <Field.Label for="email">Your email address</Field.Label>
+  <Input id="email" />
+</Field.Field>
+```
+
+<ComponentPreview name="field-demo" class="**:[.preview]:min-h-[44rem]">
+
+<div></div>
+
+</ComponentPreview>
