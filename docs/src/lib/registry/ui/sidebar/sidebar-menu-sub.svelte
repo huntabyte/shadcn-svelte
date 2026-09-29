@@ -14,7 +14,12 @@
 	bind:this={ref}
 	data-slot="sidebar-menu-sub"
 	data-sidebar="menu-sub"
-	class={cn("cn-sidebar-menu-sub flex min-w-0 flex-col", className)}
+	class={cn(
+		"cn-sidebar-menu-sub flex min-w-0 flex-col",
+		// parity-ignore: the docs load style CSS in the base layer, where cn-sidebar-menu-sub's hidden variant loses to the flex utility
+		"group-data-[collapsible=icon]:hidden",
+		className
+	)}
 	{...restProps}
 >
 	{@render children?.()}

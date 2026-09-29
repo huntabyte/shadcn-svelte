@@ -12,6 +12,7 @@
 	} from "$lib/registry/config.js";
 	import { cn } from "$lib/registry/lib/utils.js";
 	import { setupDesignSystem } from "./design-system-provider-state.svelte.js";
+	import { syncMenuColor } from "../menu-color.js";
 
 	const uid = $props.id();
 
@@ -132,8 +133,7 @@
 		styleElement.textContent = cssText;
 	});
 
-	let menuObserver: MutationObserver | null = null;
-	let menuFrameId = 0;
+	let stopMenuSync: (() => void) | null = null;
 
 	// The provider only lives on the design-system routes. When it unmounts (e.g. navigating
 	// from /create to the docs) restore the document to the default style so the rest of the
@@ -145,86 +145,18 @@
 		document.getElementById(uid)?.remove();
 		document.documentElement.style.removeProperty("--font-sans");
 		document.documentElement.style.removeProperty("--font-heading");
-		menuObserver?.disconnect();
-		menuObserver = null;
-		if (menuFrameId) {
-			window.cancelAnimationFrame(menuFrameId);
-			menuFrameId = 0;
-		}
+		stopMenuSync?.();
+		stopMenuSync = null;
 	});
 
 	watch([() => designSystem.menuColor, () => browser], ([menuColor, browser]) => {
-		if (menuObserver) {
-			menuObserver.disconnect();
-			menuObserver = null;
-		}
-		if (menuFrameId) {
-			window.cancelAnimationFrame(menuFrameId);
-			menuFrameId = 0;
-		}
+		stopMenuSync?.();
+		stopMenuSync = null;
 
 		if (!browser) return;
 		if (!menuColor) return;
 
-		const isInvertedMenu = menuColor === "inverted" || menuColor === "inverted-translucent";
-		const isTranslucentMenu =
-			menuColor === "default-translucent" || menuColor === "inverted-translucent";
-
-		const updateMenuElements = () => {
-			const allElements = document.querySelectorAll<HTMLElement>(
-				".cn-menu-target, [data-menu-translucent]"
-			);
-
-			if (allElements.length === 0) return;
-
-			allElements.forEach((element) => {
-				element.style.transition = "none";
-			});
-
-			allElements.forEach((element) => {
-				if (element.classList.contains("cn-menu-target")) {
-					if (isInvertedMenu) {
-						element.classList.add("dark");
-					} else {
-						element.classList.remove("dark");
-					}
-				}
-
-				if (isTranslucentMenu) {
-					element.classList.add("cn-menu-translucent");
-					element.removeAttribute("data-menu-translucent");
-				} else if (element.classList.contains("cn-menu-translucent")) {
-					element.classList.remove("cn-menu-translucent");
-					element.setAttribute("data-menu-translucent", "");
-				}
-			});
-
-			void document.body.offsetHeight;
-
-			allElements.forEach((element) => {
-				element.style.transition = "";
-			});
-		};
-
-		const scheduleMenuUpdate = () => {
-			if (menuFrameId) return;
-
-			menuFrameId = window.requestAnimationFrame(() => {
-				menuFrameId = 0;
-				updateMenuElements();
-			});
-		};
-
-		updateMenuElements();
-
-		menuObserver = new MutationObserver(() => {
-			scheduleMenuUpdate();
-		});
-
-		menuObserver.observe(document.body, {
-			childList: true,
-			subtree: true,
-		});
+		stopMenuSync = syncMenuColor(menuColor);
 	});
 
 	function handleKeyDown(e: KeyboardEvent) {

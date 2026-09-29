@@ -7,6 +7,8 @@
 	let {
 		ref = $bindable(null),
 		class: className,
+		align = "start",
+		alignOffset = -3,
 		portalProps,
 		...restProps
 	}: DropdownMenuPrimitive.SubContentProps & {
@@ -18,6 +20,8 @@
 	<DropdownMenuPrimitive.SubContent
 		bind:ref
 		data-slot="dropdown-menu-sub-content"
+		{align}
+		{alignOffset}
 		class={cn(
 			"cn-dropdown-menu-sub-content cn-menu-target cn-menu-translucent z-50 origin-(--bits-dropdown-menu-content-transform-origin) overflow-hidden",
 			className
