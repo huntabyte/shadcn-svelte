@@ -6,7 +6,7 @@
 		variants: {
 			size: {
 				xs: "cn-input-group-button-size-xs",
-				sm: "h-8 gap-1.5 rounded-md px-2.5 has-[>svg]:px-2.5",
+				sm: "cn-input-group-button-size-sm",
 				"icon-xs": "cn-input-group-button-size-icon-xs",
 				"icon-sm": "cn-input-group-button-size-icon-sm",
 			},
