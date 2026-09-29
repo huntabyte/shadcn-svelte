@@ -177,7 +177,7 @@ describe("transformIcons", () => {
 		expect(result.content).toBe(
 			`
 <script lang="ts">
-	import { IconChevronDown } from '@tabler/icons-svelte';
+	import IconChevronDown from '@tabler/icons-svelte/icons/chevron-down';
 </script>
 
 <IconChevronDown class="cn-accordion-trigger-icon size-4" />
@@ -196,8 +196,8 @@ describe("transformIcons", () => {
 		expect(result.content).toBe(
 			`
 <script lang="ts">
-	import { IconChevronDown } from '@tabler/icons-svelte';
-	import { IconChevronUp } from '@tabler/icons-svelte';
+	import IconChevronDown from '@tabler/icons-svelte/icons/chevron-down';
+	import IconChevronUp from '@tabler/icons-svelte/icons/chevron-up';
 </script>
 
 <div>
@@ -219,7 +219,7 @@ describe("transformIcons", () => {
 		expect(result.content).toBe(
 			`
 <script lang="ts">
-	import { IconChevronDown } from '@tabler/icons-svelte';
+	import IconChevronDown from '@tabler/icons-svelte/icons/chevron-down';
 
 	let { ...restProps } = $props();
 </script>

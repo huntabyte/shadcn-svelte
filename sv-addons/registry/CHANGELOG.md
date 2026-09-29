@@ -1,5 +1,11 @@
 # shadcn-svelte@registry
 
+## 0.1.1
+
+### Patch Changes
+
+- feat: use `cn` instead of `clsx` + `tailwind-merge` ([#2888](https://github.com/huntabyte/shadcn-svelte/pull/2888))
+
 ## 0.1.0
 
 ### Minor Changes

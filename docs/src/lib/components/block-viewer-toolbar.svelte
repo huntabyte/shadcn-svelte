@@ -40,7 +40,7 @@
 			<Tabs.Trigger value="code">Code</Tabs.Trigger>
 		</Tabs.List>
 	</Tabs.Root>
-	<Separator orientation="vertical" class="mx-2 !h-4" />
+	<Separator orientation="vertical" class="mx-2 data-vertical:h-4 data-vertical:self-auto" />
 	<a
 		href="#{ctx.item.name}"
 		class="flex-1 text-center text-sm font-medium underline-offset-2 hover:underline md:flex-auto md:text-start"
@@ -68,7 +68,7 @@
 				<ToggleGroup.Item value="30" title="Mobile">
 					<SmartphoneIcon />
 				</ToggleGroup.Item>
-				<Separator orientation="vertical" class="!h-4" />
+				<Separator orientation="vertical" class="data-vertical:h-4 data-vertical:self-auto" />
 				<Button
 					size="icon"
 					variant="ghost"
@@ -80,7 +80,7 @@
 					<span class="sr-only">Open in New Tab</span>
 					<FullscreenIcon />
 				</Button>
-				<Separator orientation="vertical" class="!h-4" />
+				<Separator orientation="vertical" class="data-vertical:h-4 data-vertical:self-auto" />
 				<Button
 					size="icon"
 					variant="ghost"
@@ -95,7 +95,7 @@
 				</Button>
 			</ToggleGroup.Root>
 		</div>
-		<Separator orientation="vertical" class="mx-1 !h-4" />
+		<Separator orientation="vertical" class="mx-1 data-vertical:h-4 data-vertical:self-auto" />
 		<Button
 			variant="outline"
 			class="w-fit gap-1 px-2 shadow-none"
