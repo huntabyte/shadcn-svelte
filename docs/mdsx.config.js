@@ -3,6 +3,7 @@ import process from "node:process";
 import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import prettier from "@prettier/sync";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
@@ -13,6 +14,27 @@ import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
 import { u } from "unist-builder";
 import { visit } from "unist-util-visit";
 import { Index } from "./src/__registry__/index.js";
+
+/** @type {Parameters<typeof prettier.format>[1]} */
+const codeBlockPrettierConfig = {
+	useTabs: false,
+	tabWidth: 2,
+	singleQuote: false,
+	trailingComma: "none",
+	printWidth: 80,
+	endOfLine: "lf",
+	parser: "svelte",
+	plugins: ["prettier-plugin-svelte"],
+	overrides: [
+		{
+			files: "*.svelte",
+			options: {
+				parser: "svelte",
+			},
+		},
+	],
+	bracketSameLine: false,
+};
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const jsEngine = createJavaScriptRegexEngine();
@@ -32,7 +54,6 @@ export async function createHighlighter() {
 				import("@shikijs/langs/bash"),
 				import("@shikijs/langs/astro"),
 				import("@shikijs/langs/diff"),
-				import("@shikijs/langs/toml"),
 			],
 			engine: jsEngine,
 		});
@@ -273,5 +294,7 @@ function getComponentSourceFileContent(src = "") {
 	// Read the source file.
 	const filePath = join(process.cwd(), newSrc);
 
-	return readFileSync(filePath, "utf-8").trim();
+	const formattedSource = prettier.format(readFileSync(filePath, "utf-8"), codeBlockPrettierConfig);
+
+	return formattedSource.trim();
 }
