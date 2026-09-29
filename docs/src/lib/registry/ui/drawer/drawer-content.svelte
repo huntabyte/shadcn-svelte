@@ -31,6 +31,8 @@
 		<div
 			class="cn-drawer-handle mx-auto hidden shrink-0 group-data-[vaul-drawer-direction=bottom]/drawer-content:block"
 		></div>
-		{@render children?.()}
+		<div class="flex-1 overflow-y-auto">
+			{@render children?.()}
+		</div>
 	</DrawerPrimitive.Content>
 </DrawerPortal>
