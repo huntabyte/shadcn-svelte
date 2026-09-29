@@ -1,0 +1,51 @@
+name: Label
+
+on:
+  issues:
+    types: [opened, edited, reopened]
+  pull_request_target:
+    types: [opened, edited, reopened, ready_for_review]
+  issue_comment:
+    types: [created, edited]
+
+concurrency:
+  group: label-${{ github.repository }}-${{ github.event.issue.number || github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  label:
+    if: github.event.comment.user.login != 'github-actions[bot]' && (github.event.issue.state || github.event.pull_request.state) == 'open'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Skip issues and PRs older than 1 year
+        id: age
+        env:
+          CREATED_AT: ${{ github.event.issue.created_at || github.event.pull_request.created_at }}
+        run: |
+          cutoff=$(date -u -d '1 year ago' +%s)
+          created=$(date -u -d "$CREATED_AT" +%s)
+          if [ "$created" -lt "$cutoff" ]; then
+              echo "skip=true" >> "$GITHUB_OUTPUT"
+              echo "Skipping: created more than 1 year ago ($CREATED_AT)"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.age.outputs.skip != 'true'
+
+      - uses: actions/setup-node@v4
+        if: steps.age.outputs.skip != 'true'
+        with:
+          node-version: 24
+
+      - name: Label
+        if: steps.age.outputs.skip != 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
+        run: npx --yes @ieedan/label label -R "$GITHUB_REPOSITORY" --config .github/.label.yml "${{ github.event.issue.number || github.event.pull_request.number }}"

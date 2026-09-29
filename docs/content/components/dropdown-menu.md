@@ -70,9 +70,11 @@ Copy and paste the following code into your project.
   <DropdownMenu.Content>
     <DropdownMenu.Group>
       <DropdownMenu.Label>My Account</DropdownMenu.Label>
-      <DropdownMenu.Separator />
       <DropdownMenu.Item>Profile</DropdownMenu.Item>
       <DropdownMenu.Item>Billing</DropdownMenu.Item>
+    </DropdownMenu.Group>
+    <DropdownMenu.Separator />
+    <DropdownMenu.Group>
       <DropdownMenu.Item>Team</DropdownMenu.Item>
       <DropdownMenu.Item>Subscription</DropdownMenu.Item>
     </DropdownMenu.Group>
@@ -80,9 +82,49 @@ Copy and paste the following code into your project.
 </DropdownMenu.Root>
 ```
 
-## Examples
+## Basic
 
-### Checkboxes
+A basic dropdown menu with labels and separators.
+
+<ComponentPreview name="dropdown-menu-basic">
+
+<div></div>
+
+</ComponentPreview>
+
+## Submenu
+
+Use `DropdownMenu.Sub` to nest secondary actions.
+
+<ComponentPreview name="dropdown-menu-submenu">
+
+<div></div>
+
+</ComponentPreview>
+
+## Shortcuts
+
+Add `DropdownMenu.Shortcut` to show keyboard hints.
+
+<ComponentPreview name="dropdown-menu-shortcuts">
+
+<div></div>
+
+</ComponentPreview>
+
+## Icons
+
+Combine icons with labels for quick scanning.
+
+<ComponentPreview name="dropdown-menu-icons">
+
+<div></div>
+
+</ComponentPreview>
+
+## Checkboxes
+
+Use `DropdownMenu.CheckboxItem` for toggles.
 
 <ComponentPreview name="dropdown-menu-checkboxes">
 
@@ -90,7 +132,19 @@ Copy and paste the following code into your project.
 
 </ComponentPreview>
 
-### Radio Group
+## Checkboxes Icons
+
+Add icons to checkbox items.
+
+<ComponentPreview name="dropdown-menu-checkboxes-icons">
+
+<div></div>
+
+</ComponentPreview>
+
+## Radio Group
+
+Use `DropdownMenu.RadioGroup` for exclusive choices.
 
 <ComponentPreview name="dropdown-menu-radio-group">
 
@@ -98,27 +152,42 @@ Copy and paste the following code into your project.
 
 </ComponentPreview>
 
-### Dialog
+## Radio Icons
 
-This example shows how to open a dialog from a dropdown menu.
+Show radio options with icons.
 
-```svelte showLineNumbers
-<DropdownMenu.Root>
-  <DropdownMenu.Trigger class={buttonVariants({ variant: "outline" })}>
-    Actions
-  </DropdownMenu.Trigger>
-</DropdownMenu.Root>
-```
-
-<ComponentPreview name="dropdown-menu-dialog" >
+<ComponentPreview name="dropdown-menu-radio-icons">
 
 <div></div>
 
 </ComponentPreview>
 
-## Changelog
+## Destructive
 
-### 2024-10-30 Classes for DropdownMenu.SubTrigger
+Use `variant="destructive"` for irreversible actions.
 
-- Added `gap-2 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0` to the `<DropdownMenu.SubTrigger>` to automatically style icon inside the dropdown menu sub trigger.
-- Removed `size-4` from the icon inside the `<DropdownMenu.SubTrigger>` since it is now handled by the parent `<DropdownMenu.SubTrigger>`.
+<ComponentPreview name="dropdown-menu-destructive">
+
+<div></div>
+
+</ComponentPreview>
+
+## Avatar
+
+An account switcher dropdown triggered by an avatar.
+
+<ComponentPreview name="dropdown-menu-avatar">
+
+<div></div>
+
+</ComponentPreview>
+
+## Complex
+
+A richer example combining groups, icons, and submenus.
+
+<ComponentPreview name="dropdown-menu-complex">
+
+<div></div>
+
+</ComponentPreview>

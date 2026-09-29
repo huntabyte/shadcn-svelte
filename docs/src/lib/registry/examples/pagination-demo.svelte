@@ -2,7 +2,7 @@
 	import * as Pagination from "$lib/registry/ui/pagination/index.js";
 </script>
 
-<Pagination.Root count={30} page={2}>
+<Pagination.Root count={30} perPage={10} page={2}>
 	{#snippet children({ pages, currentPage })}
 		<Pagination.Content>
 			<Pagination.Item>
