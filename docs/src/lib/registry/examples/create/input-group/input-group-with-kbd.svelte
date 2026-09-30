@@ -4,7 +4,7 @@
 	import * as Kbd from "$lib/registry/ui/kbd/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { Spinner } from "$lib/registry/ui/spinner/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="With Kbd">

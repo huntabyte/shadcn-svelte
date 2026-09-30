@@ -7,7 +7,7 @@
 	import ToggleWithButtonIcon from "./toggle-with-button-icon.svelte";
 	import ToggleWithButtonText from "./toggle-with-button-text.svelte";
 	import ToggleWithIcon from "./toggle-with-icon.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

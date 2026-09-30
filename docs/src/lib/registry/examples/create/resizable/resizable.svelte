@@ -4,7 +4,7 @@
 	import ResizableNested from "./resizable-nested.svelte";
 	import ResizableVertical from "./resizable-vertical.svelte";
 	import ResizableWithHandle from "./resizable-with-handle.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

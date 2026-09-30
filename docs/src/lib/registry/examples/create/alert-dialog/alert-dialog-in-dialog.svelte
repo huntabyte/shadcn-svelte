@@ -2,7 +2,7 @@
 	import * as AlertDialog from "$lib/registry/ui/alert-dialog/index.js";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	let alertOpen = $state(false);
 </script>

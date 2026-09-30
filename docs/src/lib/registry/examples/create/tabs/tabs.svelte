@@ -12,7 +12,7 @@
 	import TabsWithDropdown from "./tabs-with-dropdown.svelte";
 	import TabsWithIcons from "./tabs-with-icons.svelte";
 	import TabsWithInputAndButton from "./tabs-with-input-and-button.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

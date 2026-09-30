@@ -10,7 +10,7 @@
 	import ContextMenuWithShortcuts from "./context-menu-with-shortcuts.svelte";
 	import ContextMenuWithSides from "./context-menu-with-sides.svelte";
 	import ContextMenuWithSubmenu from "./context-menu-with-submenu.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>
