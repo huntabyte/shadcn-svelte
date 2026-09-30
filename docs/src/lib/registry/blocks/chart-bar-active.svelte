@@ -59,7 +59,7 @@
 								{...s.props}
 								rounded="all"
 								radius={8}
-								motion="tween"
+								motion={Chart.defaultBarMotion}
 								fill={data.color}
 								{data}
 								fillOpacity={0.8}
@@ -76,7 +76,7 @@
 								radius={8}
 								fill={data.color}
 								{data}
-								motion="tween"
+								motion={Chart.defaultBarMotion}
 							/>
 						{/if}
 					{/each}

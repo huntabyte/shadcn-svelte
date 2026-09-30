@@ -27,7 +27,7 @@
 <Card.Root>
 	<Card.Header>
 		<Card.Title>Line Chart - Custom Label</Card.Title>
-		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
+		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<Chart.Container config={chartConfig}>
@@ -41,7 +41,7 @@
 				props={{
 					spline: {
 						curve: curveNatural,
-						motion: "tween",
+						motion: Chart.defaultMotion,
 						strokeWidth: 2,
 						stroke: "var(--color-visitors)",
 					},

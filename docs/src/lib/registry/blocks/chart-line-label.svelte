@@ -2,7 +2,7 @@
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { scaleUtc } from "d3-scale";
 	import { curveNatural } from "d3-shape";
-	import { LineChart } from "layerchart";
+	import { LineChart, Spline, ChartClipPath } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 
@@ -23,7 +23,7 @@
 <Card.Root>
 	<Card.Header>
 		<Card.Title>Line Chart - Label</Card.Title>
-		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
+		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<Chart.Container config={chartConfig}>
@@ -42,7 +42,6 @@
 					},
 				]}
 				props={{
-					spline: { curve: curveNatural, motion: "tween", strokeWidth: 2 },
 					highlight: {
 						points: {
 							motion: "none",
@@ -54,6 +53,13 @@
 					},
 				}}
 			>
+				{#snippet marks({ context })}
+					<ChartClipPath initialWidth={0} motion={Chart.defaultClipMotion}>
+						{#each context.series.visibleSeries as s (s.key)}
+							<Spline seriesKey={s.key} curve={curveNatural} strokeWidth={2} {...s.props} />
+						{/each}
+					</ChartClipPath>
+				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip
 						labelFormatter={(v: Date) => {
