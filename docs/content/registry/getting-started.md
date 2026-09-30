@@ -174,17 +174,9 @@ To make your registry available to other developers, you can publish it by deplo
 
 ## Adding Auth
 
-The `shadcn-svelte` CLI does not offer a built-in way to add auth to your registry. We recommend handling authorization on your registry server.
+Configure a [namespaced registry](/docs/registry/namespace) with headers or query parameters in `components.json`. Credentials can reference environment variables, so tokens do not need to be stored in the configuration.
 
-A common simple approach is to use a `token` query parameter to authenticate requests to your registry. e.g. `http://localhost:5173/r/hello-world.json?token=[SECURE_TOKEN_HERE]`.
-
-Use the secure token to authenticate requests and return a 401 Unauthorized response if the token is invalid. The `shadcn-svelte` CLI will handle the 401 response and display a message to the user.
-
-<Callout class="mt-6">
-
-**Note:** Make sure to encrypt and expire tokens.
-
-</Callout>
+See [Authentication](/docs/registry/authentication) for bearer tokens, environment files, and dependency authentication.
 
 ## Guidelines
 

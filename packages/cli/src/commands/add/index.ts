@@ -32,7 +32,7 @@ type AddOptions = z.infer<typeof addOptionsSchema>;
 export const add = new Command()
 	.command("add")
 	.description("add components to your project")
-	.argument("[components...]", "the components to add or a url to the component")
+	.argument("[components...]", "the components to add, @namespace/name, or a url to the component")
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
 	.addOption(new Option("--no-deps", "skips adding & installing package dependencies").hideHelp())
 	.option("--no-deps-install", "add dependencies to package.json without running install")
@@ -80,7 +80,8 @@ async function runAdd(cwd: string, config: cliConfig.ResolvedConfig, options: Ad
 	}
 
 	const registryUrl = registry.getRegistryUrl(config);
-	const shadcnIndex = await registry.getRegistryIndex(registryUrl);
+	const shadcnIndex =
+		options.all || !options.components?.length ? await registry.getRegistryIndex(registryUrl) : [];
 	const uiOnly = shadcnIndex.filter((f) => f.type === "registry:ui");
 
 	let selectedComponents = new Set(

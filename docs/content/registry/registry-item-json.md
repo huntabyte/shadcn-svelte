@@ -150,6 +150,20 @@ The name of a shadcn-svelte registry item (e.g., `'button'`, `'input'`, `'select
 }
 ```
 
+#### Namespaced Registry Item
+
+A reference such as `@acme/chart` resolves through the installing project's
+`registries` configuration. You can mix namespaced items with bare names and
+URLs. Each namespace uses its own authentication settings.
+
+```json title="registry-item.json" showLineNumbers
+{
+  "registryDependencies": ["button", "@acme/chart", "@other/calendar"]
+}
+```
+
+See [Namespaced Registries](/docs/registry/namespace) for configuration.
+
 #### Remote URL
 
 A full URL to a custom registry item (e.g. `https://example.com/r/hello-world.json`)

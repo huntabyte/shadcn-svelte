@@ -55,10 +55,9 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 	const shouldApplyTheme = applyParts.includes("theme");
 	const shouldApplyFont = applyParts.includes("font");
 
-	const registryIndex = await registry.getRegistryIndex(registryUrl);
 	const resolvedItems = await registry.resolveRegistryItems({
 		registryUrl,
-		registryIndex,
+		config: opts.config,
 		items: Array.from(selectedItems),
 	});
 

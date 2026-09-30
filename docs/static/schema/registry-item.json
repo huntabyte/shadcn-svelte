@@ -218,6 +218,52 @@
 							"default": "https://shadcn-svelte.com/registry",
 							"type": "string"
 						},
+						"registries": {
+							"type": "object",
+							"propertyNames": {
+								"type": "string",
+								"pattern": "^@.*"
+							},
+							"additionalProperties": {
+								"anyOf": [
+									{
+										"type": "string",
+										"pattern": "\\{name\\}"
+									},
+									{
+										"type": "object",
+										"properties": {
+											"url": {
+												"type": "string",
+												"pattern": "\\{name\\}"
+											},
+											"params": {
+												"type": "object",
+												"propertyNames": {
+													"type": "string"
+												},
+												"additionalProperties": {
+													"type": "string"
+												}
+											},
+											"headers": {
+												"type": "object",
+												"propertyNames": {
+													"type": "string"
+												},
+												"additionalProperties": {
+													"type": "string"
+												}
+											}
+										},
+										"required": [
+											"url"
+										],
+										"additionalProperties": false
+									}
+								]
+							}
+						},
 						"iconLibrary": {
 							"type": "string",
 							"enum": [
