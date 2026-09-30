@@ -19,6 +19,7 @@ export type NavItemWithChildren = NavItem & {
 };
 
 export const PAGES_NEW = [
+	"/docs/mcp",
 	"/docs/skills",
 	"/docs/changelog",
 	"/docs/utils/scroll-fade",
@@ -42,22 +43,22 @@ function generateSectionsNav(): SidebarNavItem[] {
 			title: "Components",
 			href: "/docs/components",
 			items: [],
-		} /*
-		{
-			title: "Directory",
-			href: "/docs/directory",
-			items: [],
 		},
+		// {
+		// 	title: "Directory",
+		// 	href: "/docs/directory",
+		// 	items: [],
+		// },
 		{
 			title: "MCP Server",
 			href: "/docs/mcp",
 			items: [],
 		},
-		{
-			title: "Forms",
-			href: "/docs/forms",
-			items: [],
-			},*/,
+		// {
+		// 	title: "Forms",
+		// 	href: "/docs/forms",
+		// 	items: [],
+		// },
 		{
 			title: "Skills",
 			href: "/docs/skills",
