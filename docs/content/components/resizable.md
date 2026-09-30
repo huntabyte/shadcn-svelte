@@ -3,7 +3,7 @@ title: Resizable
 description: Accessible resizable panel groups and layouts with keyboard support.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/resizable
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/resizable
   doc: https://www.paneforge.com
   api: https://www.paneforge.com/docs/components/pane-group
 ---
@@ -56,6 +56,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -74,6 +80,17 @@ Copy and paste the following code into your project.
   <Resizable.Handle />
   <Resizable.Pane>Two</Resizable.Pane>
 </Resizable.PaneGroup>
+```
+
+## Composition
+
+Use the following composition to build a `Resizable` layout:
+
+```text
+Resizable.PanelGroup
+├── Resizable.Panel
+├── Resizable.Handle
+└── Resizable.Panel
 ```
 
 ## Vertical
@@ -95,3 +112,9 @@ Use the `withHandle` prop on `Resizable.Handle` to show a visible handle.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+See the [PaneForge PaneGroup](https://paneforge.com/docs/components/pane-group), [Pane](https://paneforge.com/docs/components/pane), and [Handle](https://paneforge.com/docs/components/handle) references.
+
+`Resizable.PanelGroup` and `Resizable.Panel` are aliases for `Resizable.PaneGroup` and `Resizable.Pane`. The group accepts `direction` or `orientation`; when both are set, `orientation` takes precedence.

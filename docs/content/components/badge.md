@@ -2,7 +2,7 @@
 title: Badge
 description: Displays a badge or a component that looks like a badge.
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/badge
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/badge
 ---
 
 <script>
@@ -40,6 +40,12 @@ Copy and paste the following code into your project.
 {#if viewerData}
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
+
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
 
 </Steps>
 {/snippet}
@@ -106,3 +112,15 @@ You can customize the colors of a badge by adding custom classes such as `bg-gre
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+### Badge
+
+The `Badge` component displays a badge or a component that looks like a badge.
+
+| Prop      | Type                                                                          | Default     |
+| --------- | ----------------------------------------------------------------------------- | ----------- |
+| `variant` | `"default" \| "secondary" \| "destructive" \| "outline" \| "ghost" \| "link"` | `"default"` |
+| `href`    | `string`                                                                      | -           |
+| `class`   | `string`                                                                      | -           |

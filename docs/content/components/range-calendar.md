@@ -3,7 +3,7 @@ title: Range Calendar
 description: A calendar component that allows users to select a range of dates.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/range-calendar
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/range-calendar
   doc: https://bits-ui.com/docs/components/range-calendar
   api: https://bits-ui.com/docs/components/range-calendar#api-reference
 ---
@@ -60,6 +60,29 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
+
+## Composition
+
+`RangeCalendar` renders its navigation, month grids, and date cells internally. Pass `captionLayout="dropdown"` to show month and year selectors and use the `day` snippet to customize a date cell.
+
+```text
+RangeCalendar
+├── Navigation and caption (rendered internally)
+└── Months (rendered internally)
+    └── Month grid
+        ├── Weekday headings
+        └── Date cells
+```
+
+## API Reference
+
+See the [Bits UI](https://bits-ui.com/docs/components/range-calendar#api-reference) documentation for more information.

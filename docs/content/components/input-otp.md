@@ -3,7 +3,7 @@ title: Input OTP
 description: Accessible one-time password component with copy-paste functionality.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/input-otp
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/input-otp
   doc: https://bits-ui.com/docs/components/pin-input
   api: https://bits-ui.com/docs/components/pin-input#api-reference
 ---
@@ -56,6 +56,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -84,6 +90,27 @@ Copy and paste the following code into your project.
     </InputOTP.Group>
   {/snippet}
 </InputOTP.Root>
+```
+
+## Composition
+
+Use the following composition to build an `InputOTP`:
+
+```text
+InputOTP.Root
+├── InputOTP.Group
+│   ├── InputOTP.Slot
+│   ├── InputOTP.Slot
+│   └── InputOTP.Slot
+├── InputOTP.Separator
+├── InputOTP.Group
+│   ├── InputOTP.Slot
+│   ├── InputOTP.Slot
+│   └── InputOTP.Slot
+├── InputOTP.Separator
+└── InputOTP.Group
+    ├── InputOTP.Slot
+    └── InputOTP.Slot
 ```
 
 ## Pattern
@@ -174,3 +201,7 @@ Use `REGEXP_ONLY_DIGITS_AND_CHARS` to accept both letters and numbers.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+See the [Bits UI](https://bits-ui.com/docs/components/pin-input#api-reference) documentation for more information.

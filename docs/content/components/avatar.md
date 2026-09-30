@@ -3,7 +3,7 @@ title: Avatar
 description: An image element with a fallback for representing the user.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/avatar
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/avatar
   doc: https://bits-ui.com/docs/components/avatar
   api: https://bits-ui.com/docs/components/avatar#api-reference
 ---
@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -69,6 +75,32 @@ Copy and paste the following code into your project.
   <Avatar.Image src="https://github.com/shadcn.png" alt="@shadcn" />
   <Avatar.Fallback>CN</Avatar.Fallback>
 </Avatar.Root>
+```
+
+## Composition
+
+Use the following composition to build an `Avatar`:
+
+```text
+Avatar.Root
+├── Avatar.Image
+├── Avatar.Fallback
+└── Avatar.Badge
+```
+
+Use the following composition to build an `Avatar.Group`:
+
+```text
+Avatar.Group
+├── Avatar.Root
+│   ├── Avatar.Image
+│   ├── Avatar.Fallback
+│   └── Avatar.Badge
+├── Avatar.Root
+│   ├── Avatar.Image
+│   ├── Avatar.Fallback
+│   └── Avatar.Badge
+└── Avatar.GroupCount
 ```
 
 ## Basic
@@ -160,3 +192,58 @@ You can use the `Avatar` component as a trigger for a dropdown menu.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+### Avatar.Root
+
+The `Avatar.Root` component serves as the root element that wraps the avatar image and fallback content.
+
+| Prop    | Type                        | Default     |
+| ------- | --------------------------- | ----------- |
+| `size`  | `"default" \| "sm" \| "lg"` | `"default"` |
+| `class` | `string`                    | -           |
+
+### Avatar.Image
+
+The `Avatar.Image` component displays the avatar image.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `src`   | `string` | -       |
+| `alt`   | `string` | -       |
+| `class` | `string` | -       |
+
+### Avatar.Fallback
+
+The `Avatar.Fallback` component displays a fallback when the image fails to load.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | -       |
+
+### Avatar.Badge
+
+The `Avatar.Badge` component displays a badge indicator on the avatar, typically positioned at the bottom right.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | -       |
+
+### Avatar.Group
+
+The `Avatar.Group` component displays a group of avatars with overlapping styling.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | -       |
+
+### Avatar.GroupCount
+
+The `Avatar.GroupCount` component displays a count indicator in an avatar group, typically showing the number of additional avatars.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | -       |
+
+For more information about Bits UI Avatar props, see the [Bits UI documentation](https://bits-ui.com/docs/components/avatar#api-reference).

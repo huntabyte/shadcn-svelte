@@ -3,7 +3,7 @@ title: Dropdown Menu
 description: Displays a menu to the user — such as a set of actions or functions — triggered by a button.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/dropdown-menu
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/dropdown-menu
   doc: https://bits-ui.com/docs/components/dropdown-menu
   api: https://bits-ui.com/docs/components/dropdown-menu#api-reference
 ---
@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -80,6 +86,38 @@ Copy and paste the following code into your project.
     </DropdownMenu.Group>
   </DropdownMenu.Content>
 </DropdownMenu.Root>
+```
+
+## Composition
+
+Use the following composition to build a `DropdownMenu`:
+
+```text
+DropdownMenu.Root
+├── DropdownMenu.Trigger
+└── DropdownMenu.Content
+    ├── DropdownMenu.Group
+    │   ├── DropdownMenu.Label
+    │   ├── DropdownMenu.Item
+    │   └── DropdownMenu.Item
+    ├── DropdownMenu.Separator
+    ├── DropdownMenu.Group
+    │   ├── DropdownMenu.Label
+    │   ├── DropdownMenu.CheckboxItem
+    │   └── DropdownMenu.CheckboxItem
+    ├── DropdownMenu.Separator
+    ├── DropdownMenu.Group
+    │   ├── DropdownMenu.Label
+    │   └── DropdownMenu.RadioGroup
+    │       ├── DropdownMenu.RadioItem
+    │       └── DropdownMenu.RadioItem
+    └── DropdownMenu.Sub
+        ├── DropdownMenu.SubTrigger
+        └── DropdownMenu.SubContent
+            └── DropdownMenu.Group
+                ├── DropdownMenu.Label
+                ├── DropdownMenu.Item
+                └── DropdownMenu.Item
 ```
 
 ## Basic
@@ -191,3 +229,7 @@ A richer example combining groups, icons, and submenus.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+See the [Bits UI](https://bits-ui.com/docs/components/dropdown-menu#api-reference) documentation for more information.

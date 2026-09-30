@@ -3,7 +3,7 @@ title: Accordion
 description: A vertically stacked set of interactive headings that each reveal a section of content.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/accordion
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/accordion
   doc: https://bits-ui.com/docs/components/accordion
   api: https://bits-ui.com/docs/components/accordion#api-reference
 ---
@@ -59,6 +59,12 @@ Copy and paste the following code into your project.
 <ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 
 {/snippet}
@@ -82,6 +88,20 @@ Copy and paste the following code into your project.
     </Accordion.Content>
   </Accordion.Item>
 </Accordion.Root>
+```
+
+## Composition
+
+Use the following composition to build an `Accordion`:
+
+```text
+Accordion.Root
+├── Accordion.Item
+│   ├── Accordion.Trigger
+│   └── Accordion.Content
+└── Accordion.Item
+    ├── Accordion.Trigger
+    └── Accordion.Content
 ```
 
 ## Basic
@@ -133,3 +153,7 @@ Wrap the `Accordion.Root` in a `Card` component.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+See the [Bits UI](https://bits-ui.com/docs/components/accordion#api-reference) documentation for more information.
