@@ -35,10 +35,10 @@ jobs:
               echo "Skipping: created more than 1 year ago ($CREATED_AT)"
           fi
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         if: steps.age.outputs.skip != 'true'
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         if: steps.age.outputs.skip != 'true'
         with:
           node-version: 24
