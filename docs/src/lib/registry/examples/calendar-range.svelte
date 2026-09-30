@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { CalendarDate, getLocalTimeZone, today } from "@internationalized/date";
 	import * as Card from "$lib/registry/ui/card/index.js";
-	import { RangeCalendar } from "$lib/registry/ui/range-calendar/index.js";
+	import { Calendar } from "$lib/registry/ui/calendar/index.js";
 	import type { DateRange } from "bits-ui";
 
 	const start = new CalendarDate(today(getLocalTimeZone()).year, 1, 12);
@@ -14,7 +14,8 @@
 
 <Card.Root class="mx-auto w-fit p-0">
 	<Card.Content class="p-0">
-		<RangeCalendar
+		<Calendar
+			mode="range"
 			bind:value
 			numberOfMonths={2}
 			minValue={new CalendarDate(1900, 1, 1)}
