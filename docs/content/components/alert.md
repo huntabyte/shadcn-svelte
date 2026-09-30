@@ -18,7 +18,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="alert-demo">
+<ComponentPreview name="alert-demo" previewClassName="h-auto sm:h-72 p-6">
 
 <div></div>
 
