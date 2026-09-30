@@ -17,6 +17,7 @@
 		{ title: "Installation", href: "/docs/installation", items: [] },
 		{ title: "Theming", href: "/docs/theming", items: [] },
 		{ title: "CLI", href: "/docs/cli", items: [] },
+		{ title: "Typeset", href: "/docs/typeset", items: [] },
 		{ title: "Skills", href: "/docs/skills", items: [] },
 		{ title: "Registry", href: "/docs/registry", items: [] },
 		{ title: "Forms", href: "/docs/forms", items: [] },

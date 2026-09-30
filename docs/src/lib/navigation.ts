@@ -19,6 +19,7 @@ export type NavItemWithChildren = NavItem & {
 };
 
 export const PAGES_NEW = [
+	"/docs/typeset",
 	"/docs/skills",
 	"/docs/changelog",
 	"/docs/utils/scroll-fade",
@@ -59,6 +60,11 @@ function generateSectionsNav(): SidebarNavItem[] {
 			items: [],
 			},*/,
 		{
+			title: "Typeset",
+			href: "/docs/typeset",
+			items: [],
+		},
+		{
 			title: "Skills",
 			href: "/docs/skills",
 			items: [],
@@ -93,6 +99,11 @@ function generateGetStartedNav(): SidebarNavItem[] {
 		{
 			title: "Theming",
 			href: "/docs/theming",
+			items: [],
+		},
+		{
+			title: "Typeset",
+			href: "/docs/typeset",
 			items: [],
 		},
 		{
@@ -369,6 +380,10 @@ export const mainNavItems: NavItem[] = [
 	{
 		title: "Charts",
 		href: "/charts/area",
+	},
+	{
+		title: "Typeset",
+		href: "/typeset",
 	},
 	{
 		title: "Create",
