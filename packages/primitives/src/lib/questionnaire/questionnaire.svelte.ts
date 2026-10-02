@@ -13,8 +13,7 @@ import {
 	getShortcutByChoiceValue,
 } from "./collection.js";
 import {
-	compareAnswerOrder,
-	compareItemOrder,
+	compareDocumentOrder,
 	getAnswerKeyShortcuts,
 	getShortcutFromKey,
 	getShortcutKeys,
@@ -203,7 +202,7 @@ export class QuestionnaireRootState {
 		void this.domVersion;
 		return this.registrations
 			.filter((registration) => !registration.disabled)
-			.sort(compareItemOrder);
+			.sort(compareDocumentOrder);
 	});
 
 	readonly runtimeItemByName = $derived.by(
@@ -577,7 +576,7 @@ export class QuestionnaireItemState {
 
 	readonly answerControls = $derived.by(() => {
 		void this.root.domVersion;
-		return [...this.answerControlRegistrations].sort(compareAnswerOrder);
+		return [...this.answerControlRegistrations].sort(compareDocumentOrder);
 	});
 
 	readonly answers = $derived.by(() =>

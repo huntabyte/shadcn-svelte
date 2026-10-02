@@ -1,9 +1,5 @@
 // Adapted from https://github.com/shadcn-ui/ui/blob/main/packages/react/src/questionnaire/utils.ts
-import type {
-	AnswerControlRegistration,
-	ItemRegistration,
-	QuestionnaireShortcutMode,
-} from "./types.js";
+import type { AnswerControlRegistration, QuestionnaireShortcutMode } from "./types.js";
 
 export function hasInputValue(value: unknown) {
 	if (Array.isArray(value)) {
@@ -67,33 +63,13 @@ export function isRadioTarget(element: Element) {
 	return element instanceof HTMLInputElement && element.type === "radio";
 }
 
-export function compareItemOrder(firstItem: ItemRegistration, secondItem: ItemRegistration) {
-	if (firstItem.element === secondItem.element) {
+/** Sorts registrations (items or answer controls) by the DOM order of their elements. */
+export function compareDocumentOrder<T extends { element: Element }>(first: T, second: T) {
+	if (first.element === second.element) {
 		return 0;
 	}
 
-	const position = firstItem.element.compareDocumentPosition(secondItem.element);
-
-	if (position & Node.DOCUMENT_POSITION_FOLLOWING) {
-		return -1;
-	}
-
-	if (position & Node.DOCUMENT_POSITION_PRECEDING) {
-		return 1;
-	}
-
-	return 0;
-}
-
-export function compareAnswerOrder(
-	firstAnswer: AnswerControlRegistration,
-	secondAnswer: AnswerControlRegistration
-) {
-	if (firstAnswer.element === secondAnswer.element) {
-		return 0;
-	}
-
-	const position = firstAnswer.element.compareDocumentPosition(secondAnswer.element);
+	const position = first.element.compareDocumentPosition(second.element);
 
 	if (position & Node.DOCUMENT_POSITION_FOLLOWING) {
 		return -1;
