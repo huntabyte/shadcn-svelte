@@ -42,8 +42,8 @@
 	const { scrollToEnd, scrollToMessage, scrollToStart } = useMessageScroller();
 
 	$effect(() => {
-		position;
-		positionKey;
+		void position;
+		void positionKey;
 		const frame = requestAnimationFrame(() => {
 			if (position === "start") {
 				scrollToStart({ behavior: "auto" });
@@ -55,11 +55,7 @@
 				return;
 			}
 
-			scrollToMessage("open-3", {
-				align: "start",
-				behavior: "auto",
-				scrollMargin: 64,
-			});
+			scrollToMessage("open-3", { align: "start", behavior: "auto", scrollMargin: 64 });
 		});
 
 		return () => {

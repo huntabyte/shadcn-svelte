@@ -242,10 +242,7 @@ function createMessageScrollerCommands({
 		{
 			behavior = "auto",
 			autoscrolling = false,
-		}: {
-			behavior?: ScrollBehavior;
-			autoscrolling?: boolean;
-		} = {}
+		}: { behavior?: ScrollBehavior; autoscrolling?: boolean } = {}
 	) => {
 		const viewport = viewportRef.current;
 
@@ -297,7 +294,9 @@ function createMessageScrollerCommands({
 		streamingTurnRef.current = null;
 		modeRef.current = autoScrollRef.current ? "following-bottom" : "free-scrolling";
 		scrollToPosition(getMaxScrollTop(viewport), {
-			autoscrolling: true,
+			// Only hide the scrollbar when we're smooth scrolling.
+			// Instant jumps would otherwise cause the scrollbar to briefly disappear/flicker.
+			autoscrolling: behavior === "smooth" || autoScrollRef.current,
 			behavior,
 		});
 		scheduleVisibilitySync();
