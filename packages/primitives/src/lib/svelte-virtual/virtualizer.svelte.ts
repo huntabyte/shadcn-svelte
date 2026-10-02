@@ -19,9 +19,9 @@ export type SvelteVirtualizer<
 };
 
 function useVirtualizerBase<TScrollElement extends Element | Window, TItemElement extends Element>(
-	initialOptions: VirtualizerOptions<TScrollElement, TItemElement>
+	getOptions: () => VirtualizerOptions<TScrollElement, TItemElement>
 ): SvelteVirtualizer<TScrollElement, TItemElement> {
-	const virtualizer = new Virtualizer(initialOptions);
+	const virtualizer = new Virtualizer(getOptions());
 	const originalSetOptions = virtualizer.setOptions;
 
 	// Bumped every time the virtualizer reports a change. Reading it inside the
@@ -51,10 +51,10 @@ function useVirtualizerBase<TScrollElement extends Element | Window, TItemElemen
 	};
 
 	$effect(() => {
-		// Spreading evaluates any reactive getters on the options object (e.g.
-		// `get count() { return items.length }`), so this effect re-runs whenever
-		// one of those values changes.
-		const options = { ...initialOptions };
+		// Resolving the options here evaluates any reactive getters on the caller's
+		// object (e.g. `get count() { return items.length }`), so this effect
+		// re-runs whenever one of those values changes.
+		const options = getOptions();
 		// Read the scroll element too, so binding it after mount (e.g. via
 		// `bind:this`) re-runs `_willUpdate` and attaches the observers.
 		options.getScrollElement();
@@ -79,12 +79,12 @@ export function useVirtualizer<TScrollElement extends Element, TItemElement exte
 		"observeElementRect" | "observeElementOffset" | "scrollToFn"
 	>
 ): SvelteVirtualizer<TScrollElement, TItemElement> {
-	return useVirtualizerBase<TScrollElement, TItemElement>({
+	return useVirtualizerBase<TScrollElement, TItemElement>(() => ({
 		observeElementRect: observeElementRect,
 		observeElementOffset: observeElementOffset,
 		scrollToFn: elementScroll,
 		...options,
-	});
+	}));
 }
 
 export function useWindowVirtualizer<TItemElement extends Element>(
@@ -93,12 +93,12 @@ export function useWindowVirtualizer<TItemElement extends Element>(
 		"getScrollElement" | "observeElementRect" | "observeElementOffset" | "scrollToFn"
 	>
 ): SvelteVirtualizer<Window, TItemElement> {
-	return useVirtualizerBase<Window, TItemElement>({
+	return useVirtualizerBase<Window, TItemElement>(() => ({
 		getScrollElement: () => (typeof document !== "undefined" ? window : null),
 		observeElementRect: observeWindowRect,
 		observeElementOffset: observeWindowOffset,
 		scrollToFn: windowScroll,
 		initialOffset: () => (typeof document !== "undefined" ? window.scrollY : 0),
 		...options,
-	});
+	}));
 }
