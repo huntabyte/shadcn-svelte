@@ -4,7 +4,7 @@ import { flushSync, onMount, untrack } from "svelte";
 import { attachRef, type ReadableBoxedValues, type WritableBoxedValues } from "svelte-toolbelt";
 import { SvelteMap, SvelteSet } from "svelte/reactivity";
 import { boolToEmptyStrOrUndef, boolToTrueOrUndef } from "$lib/internal/attrs.js";
-import type { BitsEvent, RefAttachment, WithRefOpts } from "$lib/internal/types.js";
+import type { BitsEvent, BitsMouseEvent, RefAttachment, WithRefOpts } from "$lib/internal/types.js";
 import {
 	createQuestionnaireCollection,
 	getCollectionDefinitionWarnings,
@@ -42,10 +42,8 @@ import type {
 import type { EventHandler, FormEventHandler } from "svelte/elements";
 
 const QuestionnaireRootContext = new Context<QuestionnaireRootState>("Questionnaire.Root");
-const QuestionnaireItemContext = new Context<QuestionnaireItemStateClass>("Questionnaire.Item");
-const QuestionnaireChoiceContext = new Context<QuestionnaireChoiceStateClass>(
-	"Questionnaire.Choice"
-);
+const QuestionnaireItemContext = new Context<QuestionnaireItemState>("Questionnaire.Item");
+const QuestionnaireChoiceContext = new Context<QuestionnaireChoiceState>("Questionnaire.Choice");
 
 interface QuestionnaireRootStateOpts
 	extends
@@ -454,6 +452,7 @@ export class QuestionnaireRootState {
 				onkeydown: this.handleKeyDown,
 				onreset: this.handleReset,
 				onsubmit: this.handleSubmit,
+				...this.attachment,
 			}) as const
 	);
 }
@@ -472,10 +471,10 @@ interface QuestionnaireItemStateOpts
 			required: boolean;
 		}> {}
 
-export class QuestionnaireItemStateClass {
+export class QuestionnaireItemState {
 	static create(opts: QuestionnaireItemStateOpts) {
 		return QuestionnaireItemContext.set(
-			new QuestionnaireItemStateClass(opts, QuestionnaireRootContext.get())
+			new QuestionnaireItemState(opts, QuestionnaireRootContext.get())
 		);
 	}
 
@@ -486,7 +485,7 @@ export class QuestionnaireItemStateClass {
 	readonly opts: QuestionnaireItemStateOpts;
 	readonly root: QuestionnaireRootState;
 	readonly attachment: RefAttachment<HTMLFieldSetElement>;
-	readonly element = $derived.by(() => this.opts.ref.current as HTMLFieldSetElement | null);
+	readonly element = $derived.by(() => this.opts.ref.current);
 	answerControlRegistrations = $state.raw<AnswerControlRegistration[]>([]);
 	validationAttempted = $state(false);
 	selectedAnswerIds = $state.raw<string[]>([]);
@@ -898,6 +897,7 @@ export class QuestionnaireItemStateClass {
 				"data-multiple": boolToEmptyStrOrUndef(this.opts.multiple.current),
 				"data-required": boolToEmptyStrOrUndef(this.opts.required.current),
 				"data-status": this.status,
+				...this.attachment,
 			}) as const
 	);
 }
@@ -911,10 +911,10 @@ type QuestionnaireChoiceStateOpts = ReadableBoxedValues<{
 	answerId: string;
 }>;
 
-export class QuestionnaireChoiceStateClass {
+export class QuestionnaireChoiceState {
 	static create(opts: QuestionnaireChoiceStateOpts) {
 		return QuestionnaireChoiceContext.set(
-			new QuestionnaireChoiceStateClass(opts, QuestionnaireItemContext.get())
+			new QuestionnaireChoiceState(opts, QuestionnaireItemContext.get())
 		);
 	}
 
@@ -923,18 +923,20 @@ export class QuestionnaireChoiceStateClass {
 	}
 
 	readonly opts: QuestionnaireChoiceStateOpts;
-	readonly item: QuestionnaireItemStateClass;
+	readonly item: QuestionnaireItemState;
+	readonly attachment: RefAttachment<HTMLElement>;
 	inputElement = $state<HTMLInputElement | null>(null);
 	readonly initialDefaultChecked: boolean;
 
-	constructor(opts: QuestionnaireChoiceStateOpts, item: QuestionnaireItemStateClass) {
+	constructor(opts: QuestionnaireChoiceStateOpts, item: QuestionnaireItemState) {
 		this.opts = opts;
 		this.item = item;
 		this.initialDefaultChecked = opts.defaultChecked.current;
+		this.attachment = attachRef(this.opts.ref);
 
-		onMount(() => {
-			this.item.registerAnswerSelection(this.opts.answerId.current, this.initialDefaultChecked);
-		});
+		onMount(() =>
+			this.item.registerAnswerSelection(this.opts.answerId.current, this.initialDefaultChecked)
+		);
 		watch.pre(
 			() => this.opts.defaultChecked.current,
 			(defaultChecked) => this.item.setAnswerDefault(this.opts.answerId.current, defaultChecked)
@@ -1085,6 +1087,7 @@ export class QuestionnaireChoiceStateClass {
 				"data-invalid": boolToEmptyStrOrUndef(this.item.invalid),
 				"data-shortcut": this.shortcut ?? undefined,
 				"data-type": this.type,
+				...this.attachment,
 			}) as const
 	);
 }
@@ -1101,28 +1104,28 @@ interface QuestionnaireInputStateOpts
 			answerId: string;
 		}> {}
 
-export class QuestionnaireInputStateClass {
+export class QuestionnaireInputState {
 	static create(opts: QuestionnaireInputStateOpts) {
-		return new QuestionnaireInputStateClass(opts, QuestionnaireItemContext.get());
+		return new QuestionnaireInputState(opts, QuestionnaireItemContext.get());
 	}
 
 	readonly opts: QuestionnaireInputStateOpts;
-	readonly item: QuestionnaireItemStateClass;
+	readonly item: QuestionnaireItemState;
 	readonly attachment: RefAttachment<HTMLInputElement>;
-	readonly inputElement = $derived.by(() => this.opts.ref.current as HTMLInputElement | null);
+	readonly inputElement = $derived.by(() => this.opts.ref.current);
 	uncontrolledFilled = $state(false);
 	readonly initialDefaultFilled: boolean;
 
-	constructor(opts: QuestionnaireInputStateOpts, item: QuestionnaireItemStateClass) {
+	constructor(opts: QuestionnaireInputStateOpts, item: QuestionnaireItemState) {
 		this.opts = opts;
 		this.item = item;
 		this.initialDefaultFilled = hasInputValue(opts.defaultValue.current);
 		this.uncontrolledFilled = this.initialDefaultFilled;
 		this.attachment = attachRef(this.opts.ref);
 
-		onMount(() => {
-			this.item.registerAnswerSelection(this.opts.answerId.current, this.initialDefaultFilled);
-		});
+		onMount(() =>
+			this.item.registerAnswerSelection(this.opts.answerId.current, this.initialDefaultFilled)
+		);
 		watch.pre(
 			() => this.defaultFilled,
 			(defaultFilled) => this.item.setAnswerDefault(this.opts.answerId.current, defaultFilled)
@@ -1249,19 +1252,28 @@ export class QuestionnaireInputStateClass {
 			"data-filled": boolToEmptyStrOrUndef(this.filled),
 			"data-disabled": boolToEmptyStrOrUndef(this.disabled),
 			"data-invalid": boolToEmptyStrOrUndef(this.item.invalid),
+			...this.attachment,
 		} as const;
 	});
 }
 
-export class QuestionnaireProgressStateClass {
-	static create() {
-		return new QuestionnaireProgressStateClass(QuestionnaireRootState.get());
+type QuestionnaireProgressStateOpts = WritableBoxedValues<{
+	ref: HTMLElement | null;
+}>;
+
+export class QuestionnaireProgressState {
+	static create(opts: QuestionnaireProgressStateOpts) {
+		return new QuestionnaireProgressState(opts, QuestionnaireRootState.get());
 	}
 
+	readonly opts: QuestionnaireProgressStateOpts;
 	readonly root: QuestionnaireRootState;
+	readonly attachment: RefAttachment<HTMLElement>;
 
-	constructor(root: QuestionnaireRootState) {
+	constructor(opts: QuestionnaireProgressStateOpts, root: QuestionnaireRootState) {
+		this.opts = opts;
 		this.root = root;
+		this.attachment = attachRef(this.opts.ref);
 	}
 
 	readonly label = $derived.by(() =>
@@ -1288,21 +1300,30 @@ export class QuestionnaireProgressStateClass {
 	);
 }
 
-export class QuestionnaireChoicesStateClass {
-	static create() {
-		return new QuestionnaireChoicesStateClass(QuestionnaireItemStateClass.get());
+type QuestionnaireChoicesStateOpts = WritableBoxedValues<{
+	ref: HTMLElement | null;
+}>;
+
+export class QuestionnaireChoicesState {
+	static create(opts: QuestionnaireChoicesStateOpts) {
+		return new QuestionnaireChoicesState(opts, QuestionnaireItemState.get());
 	}
 
-	readonly item: QuestionnaireItemStateClass;
+	readonly opts: QuestionnaireChoicesStateOpts;
+	readonly item: QuestionnaireItemState;
+	readonly attachment: RefAttachment<HTMLElement>;
 
-	constructor(item: QuestionnaireItemStateClass) {
+	constructor(opts: QuestionnaireChoicesStateOpts, item: QuestionnaireItemState) {
+		this.opts = opts;
 		this.item = item;
+		this.attachment = attachRef(this.opts.ref);
 	}
 
 	readonly snippetProps = $derived.by(() => ({ shortcuts: this.item.root.shortcuts }));
 
 	readonly props = $derived.by(() => ({
 		"data-shortcuts": this.item.root.shortcuts ?? undefined,
+		...this.attachment,
 	}));
 }
 
@@ -1310,17 +1331,19 @@ type QuestionnaireDescriptionStateOpts = ReadableBoxedValues<{
 	id: string;
 }>;
 
-export class QuestionnaireDescriptionStateClass {
+export class QuestionnaireDescriptionState {
 	static create(opts: QuestionnaireDescriptionStateOpts) {
-		return new QuestionnaireDescriptionStateClass(opts, QuestionnaireItemStateClass.get());
+		return new QuestionnaireDescriptionState(opts, QuestionnaireItemState.get());
 	}
 
 	readonly opts: QuestionnaireDescriptionStateOpts;
-	readonly item: QuestionnaireItemStateClass;
+	readonly item: QuestionnaireItemState;
+	readonly attachment: RefAttachment<HTMLElement>;
 
-	constructor(opts: QuestionnaireDescriptionStateOpts, item: QuestionnaireItemStateClass) {
+	constructor(opts: QuestionnaireDescriptionStateOpts, item: QuestionnaireItemState) {
 		this.opts = opts;
 		this.item = item;
+		this.attachment = attachRef(this.opts.ref);
 
 		watch(
 			() => this.opts.id.current,
@@ -1330,6 +1353,7 @@ export class QuestionnaireDescriptionStateClass {
 
 	readonly props = $derived.by(() => ({
 		id: this.opts.id.current,
+		...this.attachment,
 	}));
 }
 
@@ -1337,17 +1361,19 @@ type QuestionnaireErrorStateOpts = ReadableBoxedValues<{
 	id: string;
 }>;
 
-export class QuestionnaireErrorStateClass {
+export class QuestionnaireErrorState {
 	static create(opts: QuestionnaireErrorStateOpts) {
-		return new QuestionnaireErrorStateClass(opts, QuestionnaireItemStateClass.get());
+		return new QuestionnaireErrorState(opts, QuestionnaireItemState.get());
 	}
 
 	readonly opts: QuestionnaireErrorStateOpts;
-	readonly item: QuestionnaireItemStateClass;
+	readonly item: QuestionnaireItemState;
+	readonly attachment: RefAttachment<HTMLElement>;
 
-	constructor(opts: QuestionnaireErrorStateOpts, item: QuestionnaireItemStateClass) {
+	constructor(opts: QuestionnaireErrorStateOpts, item: QuestionnaireItemState) {
 		this.opts = opts;
 		this.item = item;
+		this.attachment = attachRef(this.opts.ref);
 
 		watch(
 			() => this.opts.id.current,
@@ -1368,18 +1394,27 @@ export class QuestionnaireErrorStateClass {
 		id: this.opts.id.current,
 		role: this.item.invalid ? ("alert" as const) : undefined,
 		"data-invalid": boolToEmptyStrOrUndef(this.item.invalid),
+		...this.attachment,
 	}));
 }
 
-export class QuestionnaireChoiceShortcutStateClass {
-	static create() {
-		return new QuestionnaireChoiceShortcutStateClass(QuestionnaireChoiceStateClass.get());
+type QuestionnaireChoiceShortcutStateOpts = WritableBoxedValues<{
+	ref: HTMLElement | null;
+}>;
+
+export class QuestionnaireChoiceShortcutState {
+	static create(opts: QuestionnaireChoiceShortcutStateOpts) {
+		return new QuestionnaireChoiceShortcutState(opts, QuestionnaireChoiceState.get());
 	}
 
-	readonly choice: QuestionnaireChoiceStateClass;
+	readonly opts: QuestionnaireChoiceShortcutStateOpts;
+	readonly choice: QuestionnaireChoiceState;
+	readonly attachment: RefAttachment<HTMLElement>;
 
-	constructor(choice: QuestionnaireChoiceStateClass) {
+	constructor(opts: QuestionnaireChoiceShortcutStateOpts, choice: QuestionnaireChoiceState) {
+		this.opts = opts;
 		this.choice = choice;
+		this.attachment = attachRef(this.opts.ref);
 	}
 
 	readonly shortcut = $derived.by(() => this.choice.shortcut);
@@ -1390,6 +1425,7 @@ export class QuestionnaireChoiceShortcutStateClass {
 		"aria-hidden": true as const,
 		hidden: this.shortcut === null,
 		"data-shortcut": this.shortcut ?? undefined,
+		...this.attachment,
 	}));
 }
 
@@ -1397,16 +1433,16 @@ type QuestionnaireChoiceInputStateOpts = WritableBoxedValues<{
 	ref: HTMLElement | null;
 }>;
 
-export class QuestionnaireChoiceInputStateClass {
+export class QuestionnaireChoiceInputState {
 	static create(opts: QuestionnaireChoiceInputStateOpts) {
-		return new QuestionnaireChoiceInputStateClass(opts, QuestionnaireChoiceStateClass.get());
+		return new QuestionnaireChoiceInputState(opts, QuestionnaireChoiceState.get());
 	}
 
 	readonly opts: QuestionnaireChoiceInputStateOpts;
-	readonly choice: QuestionnaireChoiceStateClass;
+	readonly choice: QuestionnaireChoiceState;
 	readonly attachment: RefAttachment<HTMLElement>;
 
-	constructor(opts: QuestionnaireChoiceInputStateOpts, choice: QuestionnaireChoiceStateClass) {
+	constructor(opts: QuestionnaireChoiceInputStateOpts, choice: QuestionnaireChoiceState) {
 		this.opts = opts;
 		this.choice = choice;
 		this.attachment = attachRef(this.opts.ref, (node) => {
@@ -1416,7 +1452,7 @@ export class QuestionnaireChoiceInputStateClass {
 
 	readonly checked = $derived.by(() => this.choice.checked);
 	readonly snippetProps = $derived.by(() => this.choice.viewState);
-	readonly props = $derived.by(() => this.choice.inputProps);
+	readonly props = $derived.by(() => ({ ...this.choice.inputProps, ...this.attachment }));
 }
 
 type QuestionnaireAction = "next" | "previous" | "skip" | "submit";
@@ -1436,6 +1472,7 @@ export class QuestionnaireActionState {
 	readonly action: QuestionnaireAction;
 	readonly opts: QuestionnaireActionStateOpts;
 	readonly root: QuestionnaireRootState;
+	readonly attachment: RefAttachment<HTMLElement>;
 
 	constructor(
 		action: QuestionnaireAction,
@@ -1445,6 +1482,7 @@ export class QuestionnaireActionState {
 		this.action = action;
 		this.opts = opts;
 		this.root = root;
+		this.attachment = attachRef(this.opts.ref);
 		this.handleClick = this.handleClick.bind(this);
 	}
 
@@ -1461,7 +1499,7 @@ export class QuestionnaireActionState {
 		}
 	});
 
-	handleClick(event: MouseEvent & { currentTarget: EventTarget & HTMLButtonElement }) {
+	handleClick(event: BitsMouseEvent<HTMLButtonElement>) {
 		this.opts.onclick.current?.(event);
 
 		if (event.defaultPrevented) {
