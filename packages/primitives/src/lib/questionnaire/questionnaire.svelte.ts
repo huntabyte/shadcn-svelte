@@ -4,7 +4,7 @@ import { flushSync, onMount, untrack } from "svelte";
 import { attachRef, type ReadableBoxedValues, type WritableBoxedValues } from "svelte-toolbelt";
 import { SvelteMap, SvelteSet } from "svelte/reactivity";
 import { boolToEmptyStrOrUndef, boolToTrueOrUndef } from "$lib/internal/attrs.js";
-import type { RefAttachment, WithRefOpts } from "$lib/internal/types.js";
+import type { BitsEvent, RefAttachment, WithRefOpts } from "$lib/internal/types.js";
 import {
 	createQuestionnaireCollection,
 	getCollectionDefinitionWarnings,
@@ -39,6 +39,7 @@ import type {
 	QuestionnaireRootState as QuestionnaireRootViewState,
 	QuestionnaireShortcutMode,
 } from "./types.js";
+import type { EventHandler, FormEventHandler } from "svelte/elements";
 
 const QuestionnaireRootContext = new Context<QuestionnaireRootState>("Questionnaire.Root");
 const QuestionnaireItemContext = new Context<QuestionnaireItemStateClass>("Questionnaire.Item");
@@ -54,8 +55,8 @@ interface QuestionnaireRootStateOpts
 			items: readonly QuestionnaireItemDefinition[] | undefined;
 			noValidate: boolean;
 			onItemChange: ((item: string) => void) | undefined;
-			onReset: ((event: Event) => void) | undefined;
-			onSubmit: ((event: SubmitEvent) => void) | undefined;
+			onReset: FormEventHandler<HTMLFormElement> | undefined;
+			onSubmit: EventHandler<SubmitEvent, HTMLFormElement> | undefined;
 			shortcuts: QuestionnaireShortcutMode | undefined;
 		}>,
 		WritableBoxedValues<{
@@ -329,7 +330,7 @@ export class QuestionnaireRootState {
 		this.rootElement?.requestSubmit();
 	}
 
-	handleReset(event: Event) {
+	handleReset(event: BitsEvent<Event, HTMLFormElement>) {
 		this.opts.onReset.current?.(event);
 		if (event.defaultPrevented) return;
 
@@ -348,7 +349,7 @@ export class QuestionnaireRootState {
 		}
 	}
 
-	handleSubmit(event: SubmitEvent) {
+	handleSubmit(event: BitsEvent<SubmitEvent, HTMLFormElement>) {
 		const firstInvalidItem = this.orderedRegistrations.find(
 			(registration) => !registration.validate()
 		);

@@ -15,6 +15,7 @@ import type {
 	WithChildNoChildrenSnippetProps,
 	Without,
 } from "$lib/internal/types.js";
+import type { EventHandler, FormEventHandler } from "svelte/elements";
 
 export type QuestionnaireItemStatus = "unanswered" | "answered" | "skipped";
 export type QuestionnaireShortcutMode = "letters" | "numbers";
@@ -45,8 +46,8 @@ export type QuestionnaireRootPropsWithoutHTML = WithChildNoChildrenSnippetProps<
 		items?: readonly QuestionnaireItemDefinition[];
 		noValidate?: boolean;
 		onItemChange?: OnChangeFn<string>;
-		onReset?: (event: Event) => void;
-		onSubmit?: (event: SubmitEvent) => void;
+		onReset?: FormEventHandler<HTMLFormElement>;
+		onSubmit?: EventHandler<SubmitEvent, HTMLFormElement>;
 		shortcuts?: QuestionnaireShortcutMode;
 	},
 	QuestionnaireRootState,

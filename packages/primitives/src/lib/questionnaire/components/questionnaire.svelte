@@ -15,6 +15,7 @@
 		item = $bindable(undefined),
 		items,
 		noValidate = true,
+		novalidate,
 		onItemChange,
 		onReset,
 		onSubmit,
@@ -35,16 +36,10 @@
 			(v) => (item = v)
 		),
 		items: boxWith(() => items),
-		noValidate: boxWith(() => noValidate),
+		noValidate: boxWith(() => novalidate ?? noValidate),
 		onItemChange: boxWith(() => onItemChange),
-		onReset: boxWith(() => onReset ?? undefined),
-		onSubmit: boxWith(() => {
-			if (onSubmit) return onSubmit;
-			if (!onsubmit) return undefined;
-			return (event: SubmitEvent) => {
-				onsubmit(event as SubmitEvent & { currentTarget: EventTarget & HTMLFormElement });
-			};
-		}),
+		onReset: boxWith(() => onReset),
+		onSubmit: boxWith(() => onSubmit ?? onsubmit ?? undefined),
 		shortcuts: boxWith(() => shortcuts),
 	});
 
@@ -55,7 +50,7 @@
 {#if child}
 	{@render child({ props: mergedProps, ...snippetProps })}
 {:else}
-	<form bind:this={ref} {...mergedProps}>
+	<form {...mergedProps}>
 		{@render children?.()}
 	</form>
 {/if}
