@@ -152,24 +152,6 @@ type MessageScrollerRegisterMessage = (
 	removedElement?: HTMLElement | null
 ) => void;
 
-type MessageScrollerContextValue = {
-	handleContentChange: () => void;
-	handleResize: () => void;
-	observeVisibility: () => void;
-	preserveScrollOnPrependRef: MessageScrollerRef<boolean>;
-	scrollToEnd: (options?: MessageScrollerScrollOptions) => boolean;
-	scrollToMessage: (messageId: string, options?: MessageScrollerScrollOptions) => boolean;
-	scrollToStart: (options?: MessageScrollerScrollOptions) => boolean;
-	setContentElement: (element: HTMLDivElement | null) => void;
-	setRootElement: (element: HTMLDivElement | null) => void;
-	setSpacerElement: (element: HTMLDivElement | null) => void;
-	setViewportElement: (element: HTMLDivElement | null) => void;
-	syncAfterScroll: () => void;
-	unobserveVisibility: () => void;
-	userScrollIntent: () => void;
-	viewportRef: MessageScrollerRef<HTMLDivElement | null>;
-};
-
 // Initial MessageScrollerScrollable before measurement. Stable reference for the
 // server and first-render snapshot.
 const EMPTY_MESSAGE_SCROLLER_SCROLLABLE: MessageScrollerScrollable = {
@@ -203,7 +185,6 @@ export type {
 	MessageScrollerButtonProps,
 	MessageScrollerButtonRenderState,
 	MessageScrollerContentProps,
-	MessageScrollerContextValue,
 	MessageScrollerDefaultScrollPosition,
 	MessageScrollerItemProps,
 	MessageScrollerMode,
