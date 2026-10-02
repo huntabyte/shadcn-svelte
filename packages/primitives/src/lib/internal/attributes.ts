@@ -7,7 +7,7 @@ import type {
 	HTMLLabelAttributes,
 } from "svelte/elements";
 
-// Utility type to strip keys containing colons from a type (used to remove Svelte 4 event directive keys `on:event`).
+/** Strips keys containing colons from a type (used to remove Svelte 4 event directive keys such as `on:event`). */
 type StripColonKeys<T> = {
 	[K in keyof T as K extends `${string}:${string}` ? never : K]: T[K];
 };
