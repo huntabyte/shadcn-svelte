@@ -30,13 +30,7 @@
 	}
 </script>
 
-<Questionnaire.Root
-	class="mx-auto max-w-md"
-	bind:item
-	{items}
-	onItemChange={(nextItem) => (item = nextItem as ItemName)}
-	onSubmit={handleSubmit}
->
+<Questionnaire.Root class="mx-auto max-w-md" bind:item {items} onSubmit={handleSubmit}>
 	<Questionnaire.Progress />
 
 	<Questionnaire.Item

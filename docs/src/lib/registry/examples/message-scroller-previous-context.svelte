@@ -53,8 +53,7 @@
 	const isBusy = $derived(demo.status === "submitted" || demo.status === "streaming");
 
 	let demoKey = $state(0);
-	let peekValue = $state([DEFAULT_PEEK]);
-	const peek = $derived(peekValue[0] ?? DEFAULT_PEEK);
+	let peek = $state(DEFAULT_PEEK);
 
 	function handleSubmit(event: SubmitEvent) {
 		event.preventDefault();
@@ -66,7 +65,7 @@
 
 	function reset() {
 		demo.setMessages(initialMessages);
-		peekValue = [DEFAULT_PEEK];
+		peek = DEFAULT_PEEK;
 		demoKey += 1;
 	}
 </script>
@@ -167,9 +166,9 @@
 								<div class="flex w-28 items-center gap-2">
 									<span class="text-xs text-muted-foreground tabular-nums">{peek}px</span>
 									<Slider
-										type="multiple"
+										type="single"
 										aria-label="Previous context peek"
-										bind:value={peekValue}
+										bind:value={peek}
 										min={64}
 										max={128}
 										step={1}
