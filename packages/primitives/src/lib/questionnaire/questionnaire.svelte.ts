@@ -2,7 +2,6 @@ import { DEV } from "esm-env";
 import { Context, watch } from "runed";
 import { flushSync, onMount, untrack } from "svelte";
 import { attachRef, type ReadableBoxedValues, type WritableBoxedValues } from "svelte-toolbelt";
-import { SvelteMap, SvelteSet } from "svelte/reactivity";
 import { boolToEmptyStrOrUndef, boolToTrueOrUndef } from "$lib/internal/attrs.js";
 import type { BitsEvent, BitsMouseEvent, RefAttachment, WithRefOpts } from "$lib/internal/types.js";
 import {
@@ -27,11 +26,11 @@ import type {
 	AnswerControlRegistration,
 	ItemRegistration,
 	PendingFocus,
-	QuestionnaireChoiceState,
-	QuestionnaireInputState,
+	QuestionnaireChoiceState as QuestionnaireChoiceViewState,
+	QuestionnaireInputState as QuestionnaireInputViewState,
 	QuestionnaireInputType,
 	QuestionnaireItemDefinition,
-	QuestionnaireItemState,
+	QuestionnaireItemState as QuestionnaireItemViewState,
 	QuestionnaireItemStatus,
 	QuestionnaireNavigationState,
 	QuestionnaireNextProps,
@@ -204,7 +203,8 @@ export class QuestionnaireRootState {
 	});
 
 	readonly runtimeItemByName = $derived.by(
-		() => new SvelteMap(this.runtimeItems.map((runtimeItem) => [runtimeItem.name, runtimeItem]))
+		// eslint-disable-next-line svelte/prefer-svelte-reactivity
+		() => new Map(this.runtimeItems.map((runtimeItem) => [runtimeItem.name, runtimeItem]))
 	);
 
 	readonly logicalItems = $derived.by(() => this.collection?.enabledItems ?? this.runtimeItems);
@@ -619,10 +619,12 @@ export class QuestionnaireItemState {
 	);
 
 	readonly shortcutByAnswerId = $derived.by(() => {
-		if (this.shortcutByChoiceValue) return new SvelteMap<string, string>();
+		// eslint-disable-next-line svelte/prefer-svelte-reactivity
+		if (this.shortcutByChoiceValue) return new Map<string, string>();
 		const keys = getShortcutKeys(this.root.shortcuts);
 		const shortcutAnswers = this.answers.filter((answer) => answer.type === "choice");
-		return new SvelteMap(
+		// eslint-disable-next-line svelte/prefer-svelte-reactivity
+		return new Map(
 			shortcutAnswers.slice(0, keys.length).map((answer, index) => [answer.id, keys[index]!])
 		);
 	});
@@ -841,7 +843,7 @@ export class QuestionnaireItemState {
 	}
 
 	readonly viewState = $derived.by(
-		(): QuestionnaireItemState => ({
+		(): QuestionnaireItemViewState => ({
 			active: this.active,
 			disabled: this.opts.disabled.current,
 			invalid: this.invalid,
@@ -1040,7 +1042,7 @@ export class QuestionnaireChoiceState {
 	}
 
 	readonly viewState = $derived.by(
-		(): QuestionnaireChoiceState => ({
+		(): QuestionnaireChoiceViewState => ({
 			checked: this.checked,
 			disabled: this.disabled,
 			invalid: this.item.invalid,
@@ -1153,14 +1155,14 @@ export class QuestionnaireInputState {
 				() => this.item.resetVersion,
 				() => this.defaultFilled,
 			],
-			([controlled, filled, resetVersion, defaultFilled]) => {
+			([controlled, filled, resetVersion, defaultFilled], [, , previousResetVersion]) => {
 				if (controlled) {
 					untrack(() =>
 						this.item.syncControlledAnswerSelection(this.opts.answerId.current, filled)
 					);
 					return;
 				}
-				if (resetVersion > 0) {
+				if (didReset(resetVersion, previousResetVersion)) {
 					this.uncontrolledFilled = defaultFilled;
 				}
 			}
@@ -1174,7 +1176,7 @@ export class QuestionnaireInputState {
 				() => this.opts.defaultValue.current,
 				() => this.item.resetVersion,
 			],
-			([input, controlled, value, defaultValue, resetVersion]) => {
+			([input, controlled, value, defaultValue, resetVersion], [, , , , previousResetVersion]) => {
 				if (!input) return;
 				if (controlled) {
 					const nextValue = String(value ?? "");
@@ -1183,7 +1185,7 @@ export class QuestionnaireInputState {
 					return;
 				}
 				if (defaultValue !== undefined) input.defaultValue = String(defaultValue);
-				if (resetVersion > 0) {
+				if (didReset(resetVersion, previousResetVersion)) {
 					input.value = String(defaultValue ?? "");
 				}
 			}
@@ -1218,7 +1220,7 @@ export class QuestionnaireInputState {
 	}
 
 	readonly viewState = $derived.by(
-		(): QuestionnaireInputState => ({
+		(): QuestionnaireInputViewState => ({
 			disabled: this.disabled,
 			filled: this.filled,
 			invalid: this.item.invalid,
