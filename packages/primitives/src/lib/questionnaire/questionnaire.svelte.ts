@@ -1,6 +1,6 @@
 import { DEV } from "esm-env";
 import { Context, watch } from "runed";
-import { flushSync, onMount, untrack } from "svelte";
+import { flushSync, onMount } from "svelte";
 import { attachRef, type ReadableBoxedValues, type WritableBoxedValues } from "svelte-toolbelt";
 import { boolToEmptyStrOrUndef, boolToTrueOrUndef } from "$lib/internal/attrs.js";
 import type { BitsEvent, BitsMouseEvent, RefAttachment, WithRefOpts } from "$lib/internal/types.js";
@@ -533,35 +533,33 @@ export class QuestionnaireItemState {
 				const name = () => this.opts.name.current;
 				const required = () => this.opts.required.current;
 				const status = () => this.status;
-				return untrack(() =>
-					this.root.registerItem({
-						get choices() {
-							return choices();
-						},
-						get disabled() {
-							return disabled();
-						},
-						element,
-						focus: () => this.focus(),
-						focusInvalid: () => this.focusInvalid(),
-						getAnswerByElement: (answerElement) => this.getAnswerByElement(answerElement),
-						getAnswerByShortcut: (shortcut) => this.getAnswerByShortcut(shortcut),
-						moveAnswerFocus: (currentElement, direction) =>
-							this.moveAnswerFocus(currentElement, direction),
-						get name() {
-							return name();
-						},
-						get required() {
-							return required();
-						},
-						reset: () => this.reset(),
-						skip: () => this.skip(),
-						get status() {
-							return status();
-						},
-						validate: () => this.validate(),
-					})
-				);
+				return this.root.registerItem({
+					get choices() {
+						return choices();
+					},
+					get disabled() {
+						return disabled();
+					},
+					element,
+					focus: () => this.focus(),
+					focusInvalid: () => this.focusInvalid(),
+					getAnswerByElement: (answerElement) => this.getAnswerByElement(answerElement),
+					getAnswerByShortcut: (shortcut) => this.getAnswerByShortcut(shortcut),
+					moveAnswerFocus: (currentElement, direction) =>
+						this.moveAnswerFocus(currentElement, direction),
+					get name() {
+						return name();
+					},
+					get required() {
+						return required();
+					},
+					reset: () => this.reset(),
+					skip: () => this.skip(),
+					get status() {
+						return status();
+					},
+					validate: () => this.validate(),
+				});
 			}
 		);
 	}
@@ -668,11 +666,7 @@ export class QuestionnaireItemState {
 	}
 
 	syncControlledAnswerSelection(answerId: string, selected: boolean) {
-		if (selected) {
-			untrack(() => {
-				if (this.skipped) this.skipped = false;
-			});
-		}
+		if (selected && this.skipped) this.skipped = false;
 		this.updateAnswerSelected(answerId, selected);
 	}
 
@@ -948,24 +942,22 @@ export class QuestionnaireChoiceState {
 				const id = () => this.opts.answerId.current;
 				const ownDisabled = () => this.opts.disabled.current;
 				const value = () => this.opts.value.current;
-				return untrack(() =>
-					this.item.registerAnswerControl({
-						get disabled() {
-							return disabled();
-						},
-						element: input,
-						get id() {
-							return id();
-						},
-						get ownDisabled() {
-							return ownDisabled();
-						},
-						type: "choice",
-						get value() {
-							return value();
-						},
-					})
-				);
+				return this.item.registerAnswerControl({
+					get disabled() {
+						return disabled();
+					},
+					element: input,
+					get id() {
+						return id();
+					},
+					get ownDisabled() {
+						return ownDisabled();
+					},
+					type: "choice",
+					get value() {
+						return value();
+					},
+				});
 			}
 		);
 
@@ -973,9 +965,7 @@ export class QuestionnaireChoiceState {
 			[() => this.controlled, () => this.opts.checked.current, () => this.item.resetVersion],
 			([controlled, checked]) => {
 				if (!controlled) return;
-				untrack(() =>
-					this.item.syncControlledAnswerSelection(this.opts.answerId.current, checked!)
-				);
+				this.item.syncControlledAnswerSelection(this.opts.answerId.current, checked!);
 			}
 		);
 
@@ -993,9 +983,7 @@ export class QuestionnaireChoiceState {
 				const skipped = status === "skipped";
 				input.defaultChecked = controlled ? Boolean(controlledChecked) : defaultChecked;
 				if (resetVersion > 0 || skipped) {
-					untrack(() => {
-						if (input.checked !== this.checked) input.checked = this.checked;
-					});
+					if (input.checked !== this.checked) input.checked = this.checked;
 				}
 			}
 		);
@@ -1039,6 +1027,8 @@ export class QuestionnaireChoiceState {
 				Boolean(this.opts.checked.current)
 			);
 		}
+		// The root state owns `checked`, so we'll resync if their value changes.
+		if (target.checked !== this.checked) target.checked = this.checked;
 	}
 
 	readonly viewState = $derived.by(
@@ -1133,18 +1123,16 @@ export class QuestionnaireInputState {
 				if (!input) return;
 				const disabled = () => this.disabled;
 				const id = () => this.opts.answerId.current;
-				return untrack(() =>
-					this.item.registerAnswerControl({
-						get disabled() {
-							return disabled();
-						},
-						element: input,
-						get id() {
-							return id();
-						},
-						type: "input",
-					})
-				);
+				return this.item.registerAnswerControl({
+					get disabled() {
+						return disabled();
+					},
+					element: input,
+					get id() {
+						return id();
+					},
+					type: "input",
+				});
 			}
 		);
 
@@ -1157,9 +1145,7 @@ export class QuestionnaireInputState {
 			],
 			([controlled, filled, resetVersion, defaultFilled], [, , previousResetVersion]) => {
 				if (controlled) {
-					untrack(() =>
-						this.item.syncControlledAnswerSelection(this.opts.answerId.current, filled)
-					);
+					this.item.syncControlledAnswerSelection(this.opts.answerId.current, filled);
 					return;
 				}
 				if (didReset(resetVersion, previousResetVersion)) {
@@ -1337,6 +1323,9 @@ export class QuestionnaireDescriptionState {
 		this.item = item;
 		this.attachment = attachRef(this.opts.ref);
 
+		// Register synchronously so the id is known before effects run (and on the server);
+		// the watch re-registers on id changes and unregisters on destroy.
+		this.item.registerDescription(this.opts.id.current);
 		watch(
 			() => this.opts.id.current,
 			(id) => this.item.registerDescription(id)
@@ -1366,6 +1355,9 @@ export class QuestionnaireErrorState {
 		this.item = item;
 		this.attachment = attachRef(this.opts.ref);
 
+		// Register synchronously so the id is known before effects run (and on the server);
+		// the watch re-registers on id changes and unregisters on destroy.
+		this.item.registerError(this.opts.id.current);
 		watch(
 			() => this.opts.id.current,
 			(id) => this.item.registerError(id)
