@@ -930,4 +930,78 @@
 			<TestChoice value="fixed" />
 		</Questionnaire.Item>
 	</Questionnaire.Root>
+{:else if model.scenario === "child-snippets"}
+	<Questionnaire.Root data-testid="root" defaultItem="only" onSubmit={model.onSubmit}>
+		{#snippet child({ props, total })}
+			<form {...props} data-child-total={total}>
+				<Questionnaire.Progress data-testid="progress" />
+				<Questionnaire.Item data-testid="only" name="only" required>
+					{#snippet child({ props, status })}
+						<fieldset {...props} data-child-status={status}>
+							<Questionnaire.Title>Only</Questionnaire.Title>
+							<TestChoice data-testid="only-choice" value="answer">Answer</TestChoice>
+						</fieldset>
+					{/snippet}
+				</Questionnaire.Item>
+				<Questionnaire.Submit data-testid="submit" />
+			</form>
+		{/snippet}
+	</Questionnaire.Root>
+{:else if model.scenario === "rejected-choice"}
+	<Questionnaire.Root data-testid="root" defaultItem="answer">
+		<Questionnaire.Item data-testid="answer" multiple name="answer">
+			<Questionnaire.Title>Answer</Questionnaire.Title>
+			<TestChoice
+				data-testid="rejected-choice"
+				checked={false}
+				value="fixed"
+				onChange={model.onChange}
+			>
+				Fixed
+			</TestChoice>
+		</Questionnaire.Item>
+	</Questionnaire.Root>
+{:else if model.scenario === "swap-default-choice"}
+	<Questionnaire.Root data-testid="root" defaultItem="channel">
+		<Questionnaire.Item data-testid="channel" name="channel" required>
+			<Questionnaire.Title>Channel</Questionnaire.Title>
+			{#if model.defaultsChanged}
+				<TestChoice data-testid="chat" defaultChecked value="chat">Chat</TestChoice>
+			{:else}
+				<TestChoice data-testid="email" defaultChecked value="email">Email</TestChoice>
+			{/if}
+		</Questionnaire.Item>
+		<button data-testid="swap" type="button" onclick={() => (model.defaultsChanged = true)}>
+			Swap default
+		</button>
+	</Questionnaire.Root>
+{:else if model.scenario === "refs"}
+	<Questionnaire.Root data-testid="root" defaultItem="only" bind:ref={model.refs.root}>
+		<Questionnaire.Progress data-testid="progress" bind:ref={model.refs.progress} />
+		<Questionnaire.Item data-testid="only" name="only" bind:ref={model.refs.item}>
+			<Questionnaire.Title data-testid="title" bind:ref={model.refs.title}>Only</Questionnaire.Title
+			>
+			<Questionnaire.Description data-testid="description" bind:ref={model.refs.description}>
+				Description
+			</Questionnaire.Description>
+			<Questionnaire.Choices data-testid="choices" bind:ref={model.refs.choices}>
+				<Questionnaire.Choice data-testid="choice" value="answer" bind:ref={model.refs.choice}>
+					<Questionnaire.ChoiceInput data-testid="choice-input" bind:ref={model.refs.choiceInput} />
+					<Questionnaire.ChoiceLabel data-testid="choice-label" bind:ref={model.refs.choiceLabel}>
+						Answer
+					</Questionnaire.ChoiceLabel>
+					<Questionnaire.ChoiceShortcut
+						data-testid="choice-shortcut"
+						bind:ref={model.refs.choiceShortcut}
+					/>
+				</Questionnaire.Choice>
+				<Questionnaire.Input data-testid="input" aria-label="Other" bind:ref={model.refs.input} />
+			</Questionnaire.Choices>
+			<Questionnaire.Error data-testid="error" bind:ref={model.refs.error} />
+		</Questionnaire.Item>
+		<Questionnaire.Previous data-testid="previous" bind:ref={model.refs.previous} />
+		<Questionnaire.Skip data-testid="skip" bind:ref={model.refs.skip} />
+		<Questionnaire.Next data-testid="next" bind:ref={model.refs.next} />
+		<Questionnaire.Submit data-testid="submit" bind:ref={model.refs.submit} />
+	</Questionnaire.Root>
 {/if}

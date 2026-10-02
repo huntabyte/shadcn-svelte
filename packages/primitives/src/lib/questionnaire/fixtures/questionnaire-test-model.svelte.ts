@@ -57,6 +57,41 @@ export class QuestionnaireTestModel {
 		Array.from({ length: 10 }, (_, index) => ({ value: `choice-${index + 1}` }))
 	);
 	middleItems = $state([{ name: "first" }, { name: "middle" }, { name: "last" }]);
+	refs = $state<{
+		root: HTMLFormElement | null;
+		progress: HTMLElement | null;
+		item: HTMLFieldSetElement | null;
+		title: HTMLElement | null;
+		description: HTMLElement | null;
+		choices: HTMLElement | null;
+		choice: HTMLElement | null;
+		choiceInput: HTMLInputElement | null;
+		choiceLabel: HTMLElement | null;
+		choiceShortcut: HTMLElement | null;
+		input: HTMLInputElement | null;
+		error: HTMLElement | null;
+		previous: HTMLElement | null;
+		skip: HTMLElement | null;
+		next: HTMLElement | null;
+		submit: HTMLElement | null;
+	}>({
+		root: null,
+		progress: null,
+		item: null,
+		title: null,
+		description: null,
+		choices: null,
+		choice: null,
+		choiceInput: null,
+		choiceLabel: null,
+		choiceShortcut: null,
+		input: null,
+		error: null,
+		previous: null,
+		skip: null,
+		next: null,
+		submit: null,
+	});
 
 	onSubmit: ((event: SubmitEvent) => void) | undefined = undefined;
 	onItemChange: ((item: string) => void) | undefined = undefined;
