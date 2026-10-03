@@ -202,7 +202,14 @@ export type QuestionnaireChoiceInputPropsWithoutHTML = WithChildNoChildrenSnippe
 	HTMLInputElement
 >;
 export type QuestionnaireChoiceInputProps = QuestionnaireChoiceInputPropsWithoutHTML &
-	Without<PrimitiveInputAttributes, QuestionnaireChoiceInputPropsWithoutHTML>;
+	Without<
+		// The owning Choice controls these, so they're not accepted here.
+		Omit<
+			PrimitiveInputAttributes,
+			"checked" | "defaultChecked" | "disabled" | "name" | "required" | "type" | "value"
+		>,
+		QuestionnaireChoiceInputPropsWithoutHTML
+	>;
 
 export type QuestionnaireChoiceLabelPropsWithoutHTML = WithChild;
 export type QuestionnaireChoiceLabelProps = QuestionnaireChoiceLabelPropsWithoutHTML &
@@ -261,7 +268,11 @@ export type QuestionnaireInputPropsWithoutHTML = WithChildNoChildrenSnippetProps
 	HTMLInputElement
 >;
 export type QuestionnaireInputProps = QuestionnaireInputPropsWithoutHTML &
-	Without<PrimitiveInputAttributes, QuestionnaireInputPropsWithoutHTML>;
+	Without<
+		// The owning Item controls these, so they're not accepted here.
+		Omit<PrimitiveInputAttributes, "form" | "name">,
+		QuestionnaireInputPropsWithoutHTML
+	>;
 
 export type QuestionnaireNavigationState = {
 	/** The `disabled` prop is set or there is no active item. */

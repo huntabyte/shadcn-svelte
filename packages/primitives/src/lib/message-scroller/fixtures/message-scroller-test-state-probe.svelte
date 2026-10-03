@@ -13,6 +13,8 @@
 	} = $props();
 
 	const state = useMessageScrollerScrollable();
+	// The ref container is stable for the life of the test, so a one-time write is intended.
+	// svelte-ignore state_referenced_locally
 	stateRef.current = state;
 
 	watch.pre([() => state.start, () => state.end], () => {

@@ -119,6 +119,8 @@ function resolvePeerDeps(
 }
 
 const WORKSPACE_PROTOCOL = "workspace:";
+/** Workspace ranges that stand in for the dependency's current version. */
+const WORKSPACE_RANGE_ALIASES = new Set(["*", "^", "~"]);
 
 /**
  * Constructs the `pkg-name@version` string.
@@ -133,8 +135,8 @@ export function toVersionedName(name: string, version: string | undefined, cwd: 
 
 	if (version.startsWith(WORKSPACE_PROTOCOL)) {
 		const versionRange = version.slice(WORKSPACE_PROTOCOL.length);
-		// an explicit range (e.g. `workspace:^1.2.0`) is already publishable as-is
-		if (versionRange.length > 1) return `${name}@${versionRange}`;
+		// an explicit range (e.g. `workspace:^1.2.0` or `workspace:1`) is already publishable as-is
+		if (!WORKSPACE_RANGE_ALIASES.has(versionRange)) return `${name}@${versionRange}`;
 
 		const pkgVersion = getDependencyPackageInfo(cwd, name)?.pkg.version;
 		if (!pkgVersion) return name;

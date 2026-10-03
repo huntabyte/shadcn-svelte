@@ -455,7 +455,7 @@ test("keeps the anchor at the reading line current over lower visible anchors", 
 	expect(getVisibleIds()).toContain("m6");
 });
 
-test("visibility populates under StrictMode (frame ref + lifecycle survive remount)", async () => {
+test("visibility populates after an unmount and remount (frame refs are reset on destroy)", async () => {
 	const ids = Array.from({ length: 8 }, (_, index) => `m${index}`);
 
 	container = document.createElement("div");
@@ -491,6 +491,25 @@ test("tracks visibility through memoized item components", async () => {
 	expect(getVisibleIds()).toContain("m0");
 });
 
+test("re-creates the tail spacer after a child-snippet Content empties out", async () => {
+	await renderThread({ items: createItems(3), useChildContent: true });
+
+	const content = document.querySelector('[data-testid="content"]')!;
+	expect(content.querySelector("[data-message-scroller-spacer]")).not.toBeNull();
+
+	// Emptying a sole `{#each}` clears the element wholesale, spacer included.
+	updateThread({ items: [], useChildContent: true });
+	await settle();
+
+	updateThread({ items: createItems(3), useChildContent: true });
+	await settle();
+
+	const spacer = content.querySelector("[data-message-scroller-spacer]");
+	expect(spacer).not.toBeNull();
+	expect(spacer!.isConnected).toBe(true);
+	expect(content.lastElementChild).toBe(spacer);
+});
+
 test("an anchored turn holds at the top when content below it collapses", async () => {
 	const peek = 32;
 	const base = [
@@ -519,7 +538,7 @@ test("an anchored turn holds at the top when content below it collapses", async 
 	expect(viewportOffsetOf("turn", getViewport())).toBeLessThanOrEqual(peek + 4);
 });
 
-test("auto-scroll and content updates survive a StrictMode remount", async () => {
+test("auto-scroll and content updates survive an unmount and remount", async () => {
 	const items = createItems(6);
 
 	await renderThread({ autoScroll: true, items, showVisibility: true });

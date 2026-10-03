@@ -343,6 +343,10 @@ describe("toVersionedName", () => {
 		expect(toVersionedName("@shadcn-svelte/primitives", "workspace:^1.5.0", cwd)).toBe(
 			"@shadcn-svelte/primitives@^1.5.0"
 		);
+		// a single-character range is still a range, not an alias for `workspace:^`
+		expect(toVersionedName("@shadcn-svelte/primitives", "workspace:1", cwd)).toBe(
+			"@shadcn-svelte/primitives@1"
+		);
 	});
 
 	it("falls back to the bare name when the workspace package is not installed", () => {

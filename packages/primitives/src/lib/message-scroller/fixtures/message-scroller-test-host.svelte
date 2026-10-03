@@ -4,6 +4,8 @@
 
 	let { initial, ...refs }: { initial: TestScrollerOptions } & TestScrollerRefs = $props();
 
+	// `initial` is intentionally only read once; tests drive updates via `apply`.
+	// svelte-ignore state_referenced_locally
 	let options = $state(initial);
 	let parentTick = $state(0);
 
