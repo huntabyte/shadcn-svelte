@@ -10,6 +10,7 @@
 		direction = "end",
 		class: className,
 		children,
+		child: childProp,
 		variant = "secondary",
 		size = "icon-sm",
 		...restProps
@@ -32,22 +33,26 @@
 	)}
 	{...restProps}
 >
-	{#snippet child({ props })}
-		<Button {variant} {size} {...props}>
-			{#if children}
-				{@render children()}
-			{:else}
-				<IconPlaceholder
-					lucide="ArrowDownIcon"
-					tabler="IconArrowDown"
-					hugeicons="ArrowDown02Icon"
-					phosphor="ArrowDownIcon"
-					remixicon="RiArrowDownLine"
-				/>
-				<span class="sr-only">
-					{direction === "end" ? "Scroll to end" : "Scroll to start"}
-				</span>
-			{/if}
-		</Button>
+	{#snippet child(state)}
+		{#if childProp}
+			{@render childProp(state)}
+		{:else}
+			<Button {variant} {size} {...state.props}>
+				{#if children}
+					{@render children()}
+				{:else}
+					<IconPlaceholder
+						lucide="ArrowDownIcon"
+						tabler="IconArrowDown"
+						hugeicons="ArrowDown02Icon"
+						phosphor="ArrowDownIcon"
+						remixicon="RiArrowDownLine"
+					/>
+					<span class="sr-only">
+						{direction === "end" ? "Scroll to end" : "Scroll to start"}
+					</span>
+				{/if}
+			</Button>
+		{/if}
 	{/snippet}
 </MessageScrollerPrimitive.Button>

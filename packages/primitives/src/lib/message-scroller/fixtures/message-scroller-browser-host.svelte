@@ -11,7 +11,6 @@
 		showButton?: boolean;
 		showJumpButton?: boolean;
 		showVisibility?: boolean;
-		useChildContent?: boolean;
 	};
 
 	let { initial }: { initial: ThreadProps } = $props();

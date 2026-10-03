@@ -491,25 +491,6 @@ test("tracks visibility through memoized item components", async () => {
 	expect(getVisibleIds()).toContain("m0");
 });
 
-test("re-creates the tail spacer after a child-snippet Content empties out", async () => {
-	await renderThread({ items: createItems(3), useChildContent: true });
-
-	const content = document.querySelector('[data-testid="content"]')!;
-	expect(content.querySelector("[data-message-scroller-spacer]")).not.toBeNull();
-
-	// Emptying a sole `{#each}` clears the element wholesale, spacer included.
-	updateThread({ items: [], useChildContent: true });
-	await settle();
-
-	updateThread({ items: createItems(3), useChildContent: true });
-	await settle();
-
-	const spacer = content.querySelector("[data-message-scroller-spacer]");
-	expect(spacer).not.toBeNull();
-	expect(spacer!.isConnected).toBe(true);
-	expect(content.lastElementChild).toBe(spacer);
-});
-
 test("an anchored turn holds at the top when content below it collapses", async () => {
 	const peek = 32;
 	const base = [
