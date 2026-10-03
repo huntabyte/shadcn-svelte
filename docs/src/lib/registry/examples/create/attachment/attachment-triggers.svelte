@@ -67,7 +67,7 @@
 					lucide="FileSearchIcon"
 					tabler="IconFileSearch"
 					hugeicons="FileSearchIcon"
-					phosphor="MagnifyingGlassIcon"
+					phosphor="FileMagnifyingGlassIcon"
 					remixicon="RiFileSearchLine"
 				/>
 			</Attachment.Media>

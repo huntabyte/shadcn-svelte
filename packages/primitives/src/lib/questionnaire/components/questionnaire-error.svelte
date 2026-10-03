@@ -1,15 +1,25 @@
 <script lang="ts">
 	import { boxWith, mergeProps } from "svelte-toolbelt";
 	import { createId } from "$lib/internal/create-id.js";
-	import { QuestionnaireErrorStateClass } from "../questionnaire.svelte.js";
+	import { QuestionnaireErrorState } from "../questionnaire.svelte.js";
 	import type { QuestionnaireErrorProps } from "../types.js";
 
 	const uid = $props.id();
 
-	let { children, child, id = createId(uid), ...restProps }: QuestionnaireErrorProps = $props();
+	let {
+		children,
+		child,
+		id = createId(uid),
+		ref = $bindable(null),
+		...restProps
+	}: QuestionnaireErrorProps = $props();
 
-	const errorState = QuestionnaireErrorStateClass.create({
+	const errorState = QuestionnaireErrorState.create({
 		id: boxWith(() => id),
+		ref: boxWith(
+			() => ref,
+			(v) => (ref = v)
+		),
 	});
 	const snippetProps = $derived(errorState.snippetProps);
 	const mergedProps = $derived(mergeProps(restProps, errorState.props));

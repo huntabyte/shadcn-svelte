@@ -150,6 +150,7 @@ Questionnaire.Root
 │   ├── Questionnaire.Description
 │   ├── Questionnaire.Choices
 │   │   ├── Questionnaire.Choice
+│   │   │   └── Questionnaire.ChoiceDescription
 │   │   └── Questionnaire.Input
 │   └── Questionnaire.Error
 └── Questionnaire.Actions

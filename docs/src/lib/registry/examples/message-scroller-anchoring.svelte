@@ -131,8 +131,7 @@
 			<ToggleGroup.Root
 				type="single"
 				aria-label="Select scroll anchor role"
-				value={anchorRole}
-				onValueChange={handleAnchorChange}
+				bind:value={() => anchorRole, handleAnchorChange}
 			>
 				<ToggleGroup.Item value="user" aria-label="Anchor user messages">User</ToggleGroup.Item>
 				<ToggleGroup.Item value="assistant" aria-label="Anchor assistant messages">

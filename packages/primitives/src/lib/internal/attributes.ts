@@ -7,7 +7,12 @@ import type {
 	HTMLLabelAttributes,
 } from "svelte/elements";
 
-type Primitive<T> = Omit<T, "style" | "id" | "children"> & { id?: string };
+/** Strips keys containing colons from a type (used to remove Svelte 4 event directive keys such as `on:event`). */
+type StripColonKeys<T> = {
+	[K in keyof T as K extends `${string}:${string}` ? never : K]: T[K];
+};
+
+type Primitive<T> = StripColonKeys<Omit<T, "style" | "id" | "children"> & { id?: string }>;
 
 export type PrimitiveButtonAttributes = Primitive<HTMLButtonAttributes>;
 export type PrimitiveDivAttributes = Primitive<HTMLAttributes<HTMLDivElement>>;

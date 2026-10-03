@@ -1,5 +1,5 @@
-import { getShortcutKeys } from "./utils.js";
 // Adapted from https://github.com/shadcn-ui/ui/blob/main/packages/react/src/questionnaire/collection.ts
+import { getShortcutKeys } from "./utils.js";
 import type {
 	ItemRegistration,
 	QuestionnaireItemDefinition,

@@ -20,6 +20,8 @@ export default defineConfig({
 			"**/node_modules/**",
 			"**/*.browser.test.*",
 			"**/.svelte-kit/**",
+			// `svelte-package` copies the test files into `dist`
+			"**/dist/**",
 		],
 		testTimeout: 8000,
 	},
