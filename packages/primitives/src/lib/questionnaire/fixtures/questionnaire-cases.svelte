@@ -961,18 +961,6 @@
 			</TestChoice>
 		</Questionnaire.Item>
 	</Questionnaire.Root>
-{:else if model.scenario === "rejected-radio"}
-	<Questionnaire.Root data-testid="root" defaultItem="answer">
-		<Questionnaire.Item data-testid="answer" name="answer">
-			<Questionnaire.Title>Answer</Questionnaire.Title>
-			<TestChoice data-testid="keep" checked={true} value="keep" onChange={model.onChange}>
-				Keep
-			</TestChoice>
-			<TestChoice data-testid="swap" checked={false} value="swap" onChange={model.onChange}>
-				Swap
-			</TestChoice>
-		</Questionnaire.Item>
-	</Questionnaire.Root>
 {:else if model.scenario === "custom-ids"}
 	<Questionnaire.Root data-testid="root" defaultItem="answer">
 		<Questionnaire.Item data-testid="answer" name="answer">

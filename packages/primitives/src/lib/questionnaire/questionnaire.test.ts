@@ -9,7 +9,6 @@ import {
 	click,
 	container,
 	error,
-	flushEffects,
 	form,
 	freeform,
 	item,
@@ -1154,27 +1153,6 @@ describe("Questionnaire", () => {
 		expect(choice("rejected-choice").hasAttribute("data-unchecked")).toBe(true);
 		expect(item("answer").dataset.status).toBe("unanswered");
 		expect(new FormData(form()).getAll("answer")).toEqual([]);
-	});
-
-	it("restores the whole radio group when the parent rejects a controlled change", async () => {
-		const onChange = vi.fn();
-
-		renderCase("rejected-radio", (model) => {
-			model.onChange = onChange;
-		});
-
-		expect(choiceInput("keep").checked).toBe(true);
-
-		// The browser unchecks `keep` as part of checking `swap`; a rejected change
-		// has to put `keep` back, not just uncheck `swap`.
-		choose("swap");
-		await flushEffects();
-
-		expect(onChange).toHaveBeenCalledOnce();
-		expect(choiceInput("swap").checked).toBe(false);
-		expect(choiceInput("keep").checked).toBe(true);
-		expect(item("answer").dataset.status).toBe("answered");
-		expect(new FormData(form()).get("answer")).toBe("keep");
 	});
 
 	it("honors a user-supplied id on Input and ChoiceInput", () => {

@@ -1218,7 +1218,7 @@ export class QuestionnaireInputState {
 			? { value: this.opts.value.current }
 			: { defaultValue: this.opts.defaultValue.current };
 		return {
-			id: this.opts.answerId.current,
+			id: this.opts.id.current,
 			"aria-invalid": boolToTrueOrUndef(this.item.invalid),
 			"aria-keyshortcuts": getAnswerKeyShortcuts(
 				null,
@@ -1446,7 +1446,8 @@ export class QuestionnaireChoiceLabelState {
 	readonly props = $derived.by(() => ({ ...this.attachment }));
 }
 
-type QuestionnaireChoiceInputStateOpts = WritableBoxedValues<{ ref: HTMLElement | null }>;
+type QuestionnaireChoiceInputStateOpts = WritableBoxedValues<{ ref: HTMLElement | null }> &
+	ReadableBoxedValues<{ id: string | undefined }>;
 
 export class QuestionnaireChoiceInputState {
 	static create(opts: QuestionnaireChoiceInputStateOpts) {
@@ -1467,7 +1468,12 @@ export class QuestionnaireChoiceInputState {
 
 	readonly checked = $derived.by(() => this.choice.checked);
 	readonly snippetProps = $derived.by(() => this.choice.viewState);
-	readonly props = $derived.by(() => ({ ...this.choice.inputProps, ...this.attachment }));
+	readonly props = $derived.by(() => ({
+		...this.choice.inputProps,
+		// A user-supplied `id` wins over the generated answer id, as upstream does.
+		id: this.opts.id.current ?? this.choice.inputProps.id,
+		...this.attachment,
+	}));
 }
 
 type QuestionnaireAction = "next" | "previous" | "skip" | "submit";
