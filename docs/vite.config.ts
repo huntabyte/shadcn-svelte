@@ -22,7 +22,7 @@ export const contentDirPath = path.join(__dirname, "content");
 export const ogDirPath = path.join(__dirname, "src/routes/og");
 
 /**
- * Serve docs examples and blocks the *flattened* UI components, with the `cn-*` classes already
+ * Serve docs examples and blocks with *flattened* UI components, with the `cn-*` classes already
  * replaced by the docs style's utilities, instead of the raw `src/lib/registry/ui` source.
  *
  * The raw components lean on the stylesheet (loaded in the `base` layer, e.g. `cn-*` classes) to finish their
