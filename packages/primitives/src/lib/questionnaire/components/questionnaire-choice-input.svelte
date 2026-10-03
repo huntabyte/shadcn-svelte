@@ -6,11 +6,13 @@
 	let {
 		children,
 		child,
+		id,
 		ref = $bindable(null),
 		...restProps
 	}: QuestionnaireChoiceInputProps = $props();
 
 	const inputState = QuestionnaireChoiceInputState.create({
+		id: boxWith(() => id),
 		ref: boxWith(
 			() => ref,
 			(v) => (ref = v)
