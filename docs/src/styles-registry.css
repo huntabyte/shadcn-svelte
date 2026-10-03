@@ -1,7 +1,7 @@
 /*
  * Registry styles that are NOT needed by the docs.
  *
- * The docs only ever render the default (vega) style, which app.css loads. The
+ * The docs only ever render the default (nova) style, which app.css loads. The
  * remaining styles and fonts are only needed by the design-system routes
  * (/create and /preview), so they are imported from those layouts instead of
  * globally. Loading all eight style sheets everywhere makes every style
@@ -9,7 +9,7 @@
  */
 @reference "./app.css";
 
-@import "./lib/registry/styles/style-nova.css" layer(base);
+@import "./lib/registry/styles/style-vega.css" layer(base);
 @import "./lib/registry/styles/style-lyra.css" layer(base);
 @import "./lib/registry/styles/style-maia.css" layer(base);
 @import "./lib/registry/styles/style-mira.css" layer(base);
