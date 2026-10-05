@@ -39,8 +39,8 @@
 		"sv": "^0.16.6"
 	},
 	"devDependencies": {
-		"@sveltejs/sv-utils": "^0.3.2",
-		"sv": "^0.16.6",
+		"@sveltejs/sv-utils": "^1.0.1",
+		"sv": "^1.1.0",
 		"tsdown": "catalog:",
 		"typescript": "catalog:"
 	}

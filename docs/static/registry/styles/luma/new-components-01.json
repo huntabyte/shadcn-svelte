@@ -3,8 +3,8 @@
 	"name": "new-components-01",
 	"type": "registry:block",
 	"devDependencies": [
-		"@lucide/svelte@^1.27.0",
-		"@tabler/icons-svelte@^3.40.0"
+		"@lucide/svelte@^1.52.0",
+		"@tabler/icons-svelte@^3.48.0"
 	],
 	"registryDependencies": [
 		"field",

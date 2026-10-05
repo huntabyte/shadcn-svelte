@@ -3,8 +3,8 @@
 	"name": "chart-radial-label",
 	"type": "registry:block",
 	"devDependencies": [
-		"@lucide/svelte@^1.27.0",
-		"layerchart@^2.0.0"
+		"@lucide/svelte@^1.52.0",
+		"layerchart@^2.5.1"
 	],
 	"registryDependencies": [
 		"card",

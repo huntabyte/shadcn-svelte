@@ -44,11 +44,11 @@
 		"sv": "^0.16.6"
 	},
 	"devDependencies": {
-		"@playwright/test": "^1.56.0",
-		"@sveltejs/sv-utils": "^0.3.2",
-		"sv": "^0.16.6",
+		"@playwright/test": "^1.63.0",
+		"@sveltejs/sv-utils": "^1.0.1",
+		"sv": "^1.1.0",
 		"tsdown": "catalog:",
 		"typescript": "catalog:",
-		"vitest": "^4.1.10"
+		"vitest": "^5.0.3"
 	}
 }

@@ -3,12 +3,12 @@
 	"name": "calendar-27",
 	"type": "registry:block",
 	"devDependencies": [
-		"@lucide/svelte@^1.27.0",
-		"@internationalized/date@^3.12.0",
+		"@lucide/svelte@^1.52.0",
+		"@internationalized/date@^3.12.4",
 		"d3-scale@^4.0.2",
 		"@types/d3-scale@^4.0.9",
-		"layerchart@^2.0.0",
-		"bits-ui@^2.16.3"
+		"layerchart@^2.5.1",
+		"bits-ui@^2.19.5"
 	],
 	"registryDependencies": [
 		"card",
