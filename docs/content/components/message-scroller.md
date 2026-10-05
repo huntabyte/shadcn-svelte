@@ -18,7 +18,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="message-scroller-demo" class="rounded-[34px] sm:rounded-4xl">
+<ComponentPreview name="message-scroller-demo" class="rounded-[34px] sm:rounded-4xl" previewClassName="h-auto theme-blue style-rhea bg-surface dark:bg-background p-4 min-[480px]:p-8 min-[560px]:p-10 sm:px-10 sm:py-16">
 
 <div></div>
 
@@ -199,7 +199,7 @@ viewport.
 
 In the following example, the user's message is anchored. When you send a new message, the viewport anchors it near the top and appends the assistant reply below it. Toggle the anchor to the assistant's message to see the difference.
 
-<ComponentPreview name="message-scroller-anchoring" class="rounded-[34px] sm:rounded-4xl">
+<ComponentPreview name="message-scroller-anchoring" class="rounded-[34px] sm:rounded-4xl" previewClassName="h-auto theme-blue style-rhea bg-surface dark:bg-background p-4 min-[480px]:p-8 min-[560px]:p-10 sm:px-10 sm:py-16">
 
 <div></div>
 
@@ -222,7 +222,7 @@ a message.
 </MessageScroller.Item>
 ```
 
-<ComponentPreview name="message-scroller-group-chat" class="rounded-[34px] sm:rounded-4xl">
+<ComponentPreview name="message-scroller-group-chat" class="rounded-[34px] sm:rounded-4xl" previewClassName="h-auto theme-blue style-rhea bg-surface dark:bg-background p-4 min-[480px]:p-8 min-[560px]:p-10 sm:px-10 sm:py-16">
 
 <div></div>
 
@@ -246,7 +246,7 @@ conversation restarted on a blank page.
 
 Adjust the peek amount in the example below to see how it affects the conversation.
 
-<ComponentPreview name="message-scroller-previous-context" class="rounded-[34px] sm:rounded-4xl">
+<ComponentPreview name="message-scroller-previous-context" class="rounded-[34px] sm:rounded-4xl" previewClassName="h-auto theme-blue style-rhea bg-surface dark:bg-background p-4 min-[480px]:p-8 min-[560px]:p-10 sm:px-10 sm:py-16">
 
 <div></div>
 
@@ -273,7 +273,7 @@ follow-output takes over from the anchor.
 </MessageScroller.Provider>
 ```
 
-<ComponentPreview name="message-scroller-streaming" class="rounded-[34px] sm:rounded-4xl">
+<ComponentPreview name="message-scroller-streaming" class="rounded-[34px] sm:rounded-4xl" previewClassName="h-auto theme-blue style-rhea bg-surface dark:bg-background p-4 min-[480px]:p-8 min-[560px]:p-10 sm:px-10 sm:py-16">
 
 <div></div>
 
@@ -304,7 +304,7 @@ the conversation from the bottom edge.
 </MessageScroller.Provider>
 ```
 
-<ComponentPreview name="message-scroller-opening-position" class="rounded-[34px] sm:rounded-4xl" hideCode>
+<ComponentPreview name="message-scroller-opening-position" class="rounded-[34px] sm:rounded-4xl" previewClassName="h-auto theme-blue style-rhea bg-surface dark:bg-background p-4 min-[480px]:p-8 min-[560px]:p-10 sm:px-10 sm:py-16" hideCode>
 
 <div></div>
 
@@ -370,7 +370,7 @@ same place while history loads above them.
 
 This is enabled by default through `preserveScrollOnPrepend`.
 
-<ComponentPreview name="message-scroller-load-history" class="rounded-[34px] sm:rounded-4xl">
+<ComponentPreview name="message-scroller-load-history" class="rounded-[34px] sm:rounded-4xl" previewClassName="h-auto theme-blue style-rhea bg-surface dark:bg-background p-4 min-[480px]:p-8 min-[560px]:p-10 sm:px-10 sm:py-16">
 
 <div></div>
 
@@ -397,7 +397,7 @@ its final position so it feels like it rises from the live edge of the viewport.
 />
 ```
 
-<ComponentPreview name="message-scroller-animation" class="rounded-[34px] sm:rounded-4xl">
+<ComponentPreview name="message-scroller-animation" class="rounded-[34px] sm:rounded-4xl" previewClassName="h-auto theme-blue style-rhea bg-surface dark:bg-background p-4 min-[480px]:p-8 min-[560px]:p-10 sm:px-10 sm:py-16">
 
 <div></div>
 
@@ -423,7 +423,7 @@ in any component inside the provider, including controls rendered outside the
 </script>
 ```
 
-<ComponentPreview name="message-scroller-commands" class="rounded-[34px] sm:rounded-4xl" hideCode>
+<ComponentPreview name="message-scroller-commands" class="rounded-[34px] sm:rounded-4xl" previewClassName="h-auto theme-blue style-rhea bg-surface dark:bg-background p-4 min-[480px]:p-8 min-[560px]:p-10 sm:px-10 sm:py-16" hideCode>
 
 <div></div>
 
@@ -452,7 +452,7 @@ highlights the current anchored turn.
 </script>
 ```
 
-<ComponentPreview name="message-scroller-visibility" class="rounded-[34px] sm:rounded-4xl" hideCode>
+<ComponentPreview name="message-scroller-visibility" class="rounded-[34px] sm:rounded-4xl" previewClassName="h-auto theme-blue style-rhea bg-surface dark:bg-background p-4 min-[480px]:p-8 min-[560px]:p-10 sm:px-10 sm:py-16" hideCode>
 
 <div></div>
 
@@ -482,7 +482,7 @@ scroller itself, prefer the `data-scrollable` attribute.
 </script>
 ```
 
-<ComponentPreview name="message-scroller-scrollable" class="rounded-[34px] sm:rounded-4xl">
+<ComponentPreview name="message-scroller-scrollable" class="rounded-[34px] sm:rounded-4xl" previewClassName="h-auto theme-blue style-rhea bg-surface dark:bg-background p-4 min-[480px]:p-8 min-[560px]:p-10 sm:px-10 sm:py-16">
 
 <div></div>
 

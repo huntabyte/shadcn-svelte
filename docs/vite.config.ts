@@ -40,13 +40,18 @@ export const ogDirPath = path.join(__dirname, "src/routes/og");
  * in `static/registry`, which _is_ tracked by Tailwind.
  *
  * The `/create` and `/preview` routes switch styles with CSS and keep using the raw source.
+ *
+ * A preview opts into a non-default style with a `style-*` class on `previewClassName`.
+ * The component preprocessor imports that example as `?flattened=<style>`, and this plugin
+ * carries that query onto the UI modules it renders — including local `.svelte` helpers
+ * those examples import, so they share one flattened module instance.
  */
 function flattenedRegistry(): Plugin {
 	// Keep in sync with the style loaded by `app.css` and set on `<body>` in `app.html`.
-	const STYLE = "nova";
+	const DEFAULT_STYLE = "nova";
 	const QUERY = "flattened";
 	const rawUiDir = path.join(__dirname, "src/lib/registry/ui");
-	const styleCssPath = path.join(__dirname, `src/lib/registry/styles/style-${STYLE}.css`);
+	const stylesDir = path.join(__dirname, "src/lib/registry/styles");
 	const flattenedImporters = [
 		path.join(__dirname, "src/lib/registry/examples"),
 		path.join(__dirname, "src/lib/registry/blocks"),
@@ -62,14 +67,28 @@ function flattenedRegistry(): Plugin {
 		return { file: path.normalize(file!), params: new URLSearchParams(query ?? "") };
 	};
 	const isFlattened = (id: string) => splitId(id).params.has(QUERY);
-	const withQuery = (id: string) => {
+	const withQuery = (id: string, style: string) => {
 		const { file, params } = splitId(id);
-		params.set(QUERY, STYLE);
+		params.set(QUERY, style);
 		return `${file}?${params}`;
 	};
+	const styleOf = (importer: string) => {
+		if (isFlattened(importer)) return splitId(importer).params.get(QUERY) ?? DEFAULT_STYLE;
+		const file = splitId(importer).file;
+		if (within(file, rawImporters)) return null;
+		if (within(file, flattenedImporters)) return DEFAULT_STYLE;
+		return null;
+	};
 
-	let styleMap: Record<string, string> | undefined;
-	const getStyleMap = () => (styleMap ??= parseStyleCss(fs.readFileSync(styleCssPath, "utf8")));
+	const styleMaps = new Map<string, Record<string, string>>();
+	const getStyleMap = (style: string) => {
+		let map = styleMaps.get(style);
+		if (!map) {
+			map = parseStyleCss(fs.readFileSync(path.join(stylesDir, `style-${style}.css`), "utf8"));
+			styleMaps.set(style, map);
+		}
+		return map;
+	};
 
 	return {
 		name: "shadcn-svelte:flattened-registry",
@@ -81,33 +100,50 @@ function flattenedRegistry(): Plugin {
 			if ((options as { scan?: boolean }).scan) return null;
 			// Note: Vite passes `scan: true` here ^^ at runtime but only types it on the internal plugin
 			// container's options, not on the public hook signature.
+			// A `style-*` class on the preview imports the example as `?flattened=<style>`.
+			// That request wins over the importer's default (nova) style.
+			const requested = isFlattened(source)
+				? (splitId(source).params.get(QUERY) ?? DEFAULT_STYLE)
+				: null;
+			const style = requested ?? styleOf(importer);
+			if (!style) return null;
 			const importerIsFlattened = isFlattened(importer);
 			const importerFile = splitId(importer).file;
-			if (
-				!importerIsFlattened &&
-				(within(importerFile, rawImporters) || !within(importerFile, flattenedImporters))
-			) {
-				return null;
-			}
-			// Resolve against the real file so relative imports from a flattened module work.
-			const resolved = await this.resolve(source, importerIsFlattened ? importerFile : importer, {
-				skipSelf: true,
-			});
+			// Resolve the bare file. `this.resolve` does not understand `?flattened=`, and
+			// a flattened importer's id is not a real path.
+			const resolved = await this.resolve(
+				requested ? splitId(source).file : source,
+				importerIsFlattened ? importerFile : importer,
+				{ skipSelf: true }
+			);
 			if (!resolved || resolved.external || isFlattened(resolved.id)) return resolved;
-			if (!within(splitId(resolved.id).file, [rawUiDir])) return resolved;
-			return { ...resolved, id: withQuery(resolved.id) };
+			const file = splitId(resolved.id).file;
+			const isUi = within(file, [rawUiDir]);
+			// Local helpers imported by an already-styled module need the same query, or
+			// their UI imports resolve to a different flattened instance (split context).
+			// `fileURLToPath` of the config directory keeps a trailing slash, so resolve it.
+			const docsRoot = path.resolve(__dirname);
+			const isLocalHelper =
+				importerIsFlattened &&
+				path.extname(file) === ".svelte" &&
+				file.startsWith(docsRoot + path.sep) &&
+				!file.includes(`${path.sep}node_modules${path.sep}`);
+			if (!isUi && !requested && !isLocalHelper) return resolved;
+			return { ...resolved, id: withQuery(resolved.id, style) };
 		},
 		load(id) {
 			if (!isFlattened(id)) return null;
-			const { file } = splitId(id);
+			const { file, params } = splitId(id);
 			const content = fs.readFileSync(file, "utf8");
-			return TEXT_EXTENSIONS.has(path.extname(file))
-				? injectStyleClasses(content, getStyleMap())
-				: content;
+			// The query also marks example and helper modules so their UI imports share
+			// one style. Only registry UI source has `cn-*` tokens to inline.
+			if (!within(file, [rawUiDir]) || !TEXT_EXTENSIONS.has(path.extname(file))) return content;
+			return injectStyleClasses(content, getStyleMap(params.get(QUERY) ?? DEFAULT_STYLE));
 		},
 		hotUpdate({ file }) {
-			if (path.normalize(file) !== styleCssPath) return;
-			styleMap = undefined;
+			const normalized = path.normalize(file);
+			if (!normalized.startsWith(stylesDir + path.sep) || !normalized.endsWith(".css")) return;
+			styleMaps.clear();
 			for (const mod of this.environment.moduleGraph.idToModuleMap.values()) {
 				if (mod.id && isFlattened(mod.id)) this.environment.moduleGraph.invalidateModule(mod);
 			}
