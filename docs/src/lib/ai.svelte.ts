@@ -1,3 +1,4 @@
+import { onDestroy } from "svelte";
 import {
 	cloneMessage,
 	createChat,
@@ -183,9 +184,7 @@ export function createScriptedChat(options: {
 		messages = (typeof next === "function" ? next(messages) : next).map(cloneMessage);
 	}
 
-	// Stop the scripted reply when the owning component is destroyed so its
-	// timers don't keep patching state after the user navigates away.
-	$effect(() => stop);
+	onDestroy(stop);
 
 	return {
 		get messages() {
