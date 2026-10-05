@@ -348,7 +348,8 @@ function runBuildInChildProcess() {
 /**
  * Rebuilds the registry once, then again (debounced) whenever a file under
  * `src/lib/registry` changes. Generated icon wrappers are ignored since they are
- * rewritten by `build-icons.ts` and are not registry items.
+ * rewritten by `build-icons.ts` and are not registry items. Examples are ignored
+ * too.
  */
 async function watchAndBuild() {
 	let building = false;
@@ -386,6 +387,7 @@ async function watchAndBuild() {
 		if (!filename) return;
 		const normalized = filename.split(path.sep).join("/");
 		if (normalized.startsWith("icons/__")) return;
+		if (normalized.startsWith("examples/")) return;
 		schedule();
 	});
 }
