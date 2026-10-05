@@ -106,9 +106,7 @@ type EventWriter = {
 
 export type AssistantTurn = Extract<ScriptedTurn, { kind: "assistant" }>;
 
-export function getMessageText(
-	message: Pick<DemoMessage, "parts" | "text"> | { text?: string; parts?: DemoMessagePart[] }
-) {
+export function getMessageText(message: { text?: string; parts?: readonly DemoMessagePart[] }) {
 	if (message.parts?.length) {
 		return message.parts.reduce(
 			(text, part) => (part.type === "text" ? text + part.text : text),

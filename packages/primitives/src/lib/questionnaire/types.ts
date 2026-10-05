@@ -15,38 +15,65 @@ import type {
 	WithChildNoChildrenSnippetProps,
 	Without,
 } from "$lib/internal/types.js";
+import type { EventHandler, FormEventHandler } from "svelte/elements";
 
 export type QuestionnaireItemStatus = "unanswered" | "answered" | "skipped";
 export type QuestionnaireShortcutMode = "letters" | "numbers";
 
 export type QuestionnaireChoiceDefinition = {
+	/** Excludes the choice from answers and shortcuts. */
 	disabled?: boolean;
+	/** The submitted value. */
 	value: string;
 };
 
 export type QuestionnaireItemDefinition = {
+	/** Fixed choices, in display order. */
 	choices?: readonly QuestionnaireChoiceDefinition[];
+	/** Removes the item from navigation and progress. */
 	disabled?: boolean;
+	/** Unique form field name. Also used as the identifier for `item`, `defaultItem`, and `onItemChange`. */
 	name: string;
+	/**
+	 * Whether an answer is needed before moving past the item.
+	 *
+	 * @default false
+	 */
 	required?: boolean;
 };
 
 export type QuestionnaireRootState = {
+	/** 1-based position of the active item among enabled items, or 0 when none is active. */
 	current: number;
+	/** The active item is the first enabled item. */
 	first: boolean;
+	/** The active item is the last enabled item. */
 	last: boolean;
+	/** Number of enabled items. */
 	total: number;
 };
 
 export type QuestionnaireRootPropsWithoutHTML = WithChildNoChildrenSnippetProps<
 	{
+		/** Name of the item to open on when uncontrolled. Defaults to the first enabled item. */
 		defaultItem?: string;
+		/** Controlled active item name. */
 		item?: string;
+		/** Ordered item definitions. Required for server rendering, and lets progress and shortcuts resolve before the parts register in the DOM. */
 		items?: readonly QuestionnaireItemDefinition[];
+		/**
+		 * Sets `novalidate` on the form so the primitive's own validation runs instead of the browser's.
+		 *
+		 * @default true
+		 */
 		noValidate?: boolean;
+		/** Called with the item name whenever navigation changes the active item. */
 		onItemChange?: OnChangeFn<string>;
-		onReset?: (event: Event) => void;
-		onSubmit?: (event: SubmitEvent) => void;
+		/** Native reset handler, called before every item restores its default answers. */
+		onReset?: FormEventHandler<HTMLFormElement>;
+		/** Native submit handler. Every item is validated first, when one fails, submission is prevented and that item becomes active instead. */
+		onSubmit?: EventHandler<SubmitEvent, HTMLFormElement>;
+		/** Assigns a keyboard shortcut to each fixed choice of the active item. */
 		shortcuts?: QuestionnaireShortcutMode;
 	},
 	QuestionnaireRootState,
@@ -67,21 +94,41 @@ export type QuestionnaireProgressProps = QuestionnaireProgressPropsWithoutHTML &
 	Without<PrimitiveDivAttributes, QuestionnaireProgressPropsWithoutHTML>;
 
 export type QuestionnaireItemState = {
+	/** This is the active item. Inactive items are hidden and inert. */
 	active: boolean;
+	/** The item, or the form, is disabled. */
 	disabled: boolean;
+	/** The `invalid` prop is set or the item failed validation. */
 	invalid: boolean;
+	/** Choices render as checkboxes and more than one may be selected. */
 	multiple: boolean;
+	/** An answer is needed before moving past the item. */
 	required: boolean;
+	/** Current answer state. */
 	status: QuestionnaireItemStatus;
 };
 
 export type QuestionnaireItemPropsWithoutHTML = WithChildNoChildrenSnippetProps<
 	{
+		/** Marks the item invalid from external validation, such as a schema error. Navigation returns to it and `Error` becomes visible. */
 		invalid?: boolean;
+		/** Unique form field name. Matches the `items` entry and the `item` prop. */
 		name: string;
+		/**
+		 * Render fixed choices as checkboxes so more than one can be selected.
+		 *
+		 * @default false
+		 */
 		multiple?: boolean;
+		/** Called whenever the item's status changes. */
 		onStatusChange?: OnChangeFn<QuestionnaireItemStatus>;
+		/**
+		 * Whether an answer is needed before moving past the item.
+		 *
+		 * @default false
+		 */
 		required?: boolean;
+		/** Removes the item from navigation and progress. */
 		disabled?: boolean;
 	},
 	QuestionnaireItemState,
@@ -100,6 +147,7 @@ export type QuestionnaireDescriptionProps = QuestionnaireDescriptionPropsWithout
 	Without<PrimitiveParagraphAttributes, QuestionnaireDescriptionPropsWithoutHTML>;
 
 export type QuestionnaireChoicesState = {
+	/** The root's shortcut mode, or `null` when shortcuts are off. */
 	shortcuts: QuestionnaireShortcutMode | null;
 };
 
@@ -118,19 +166,29 @@ export type QuestionnaireErrorProps = QuestionnaireErrorPropsWithoutHTML &
 	Without<PrimitiveParagraphAttributes, QuestionnaireErrorPropsWithoutHTML>;
 
 export type QuestionnaireChoiceState = {
+	/** The choice is currently selected. */
 	checked: boolean;
+	/** The choice, its item, or the form is disabled. */
 	disabled: boolean;
+	/** The owning item is invalid. */
 	invalid: boolean;
+	/** Assigned shortcut key, or `null` when none applies. */
 	shortcut: string | null;
+	/** `radio` for single-answer items, `checkbox` when the item is `multiple`. */
 	type: "checkbox" | "radio";
 };
 
 export type QuestionnaireChoicePropsWithoutHTML = WithChildNoChildrenSnippetProps<
 	{
+		/** Controlled checked state. */
 		checked?: boolean;
+		/** Initial checked state when uncontrolled. Restores on form reset. */
 		defaultChecked?: boolean;
+		/** Excludes the choice from answers and shortcuts. */
 		disabled?: boolean;
+		/** Native `change` handler for the underlying input. */
 		onChange?: (event: Event) => void;
+		/** Submitted value under the item's `name`. */
 		value: string;
 	},
 	QuestionnaireChoiceState
@@ -144,7 +202,14 @@ export type QuestionnaireChoiceInputPropsWithoutHTML = WithChildNoChildrenSnippe
 	HTMLInputElement
 >;
 export type QuestionnaireChoiceInputProps = QuestionnaireChoiceInputPropsWithoutHTML &
-	Without<PrimitiveInputAttributes, QuestionnaireChoiceInputPropsWithoutHTML>;
+	Without<
+		// The owning Choice controls these, so they're not accepted here.
+		Omit<
+			PrimitiveInputAttributes,
+			"checked" | "defaultChecked" | "disabled" | "name" | "required" | "type" | "value"
+		>,
+		QuestionnaireChoiceInputPropsWithoutHTML
+	>;
 
 export type QuestionnaireChoiceLabelPropsWithoutHTML = WithChild;
 export type QuestionnaireChoiceLabelProps = QuestionnaireChoiceLabelPropsWithoutHTML &
@@ -159,11 +224,15 @@ export type QuestionnaireChoiceShortcutProps = QuestionnaireChoiceShortcutPropsW
 	Without<PrimitiveSpanAttributes, QuestionnaireChoiceShortcutPropsWithoutHTML>;
 
 export type QuestionnaireInputState = {
+	/** The input, its item, or the form is disabled. */
 	disabled: boolean;
+	/** The input has a non-empty value. */
 	filled: boolean;
+	/** The owning item is invalid. */
 	invalid: boolean;
 };
 
+/** Native input types a freeform answer may use. */
 export type QuestionnaireInputType =
 	| "date"
 	| "datetime-local"
@@ -180,27 +249,45 @@ export type QuestionnaireInputType =
 
 export type QuestionnaireInputPropsWithoutHTML = WithChildNoChildrenSnippetProps<
 	{
+		/**
+		 * Native input type.
+		 *
+		 * @default "text"
+		 */
 		type?: QuestionnaireInputType;
+		/** Excludes the input from answers. */
 		disabled?: boolean;
+		/** Controlled value. */
 		value?: string;
+		/** Initial value when uncontrolled. Restores on form reset. */
 		defaultValue?: string;
+		/** Called on native `input` events. */
 		onChange?: (event: Event) => void;
 	},
 	QuestionnaireInputState,
 	HTMLInputElement
 >;
 export type QuestionnaireInputProps = QuestionnaireInputPropsWithoutHTML &
-	Without<PrimitiveInputAttributes, QuestionnaireInputPropsWithoutHTML>;
+	Without<
+		// The owning Item controls these, so they're not accepted here.
+		Omit<PrimitiveInputAttributes, "form" | "name">,
+		QuestionnaireInputPropsWithoutHTML
+	>;
 
 export type QuestionnaireNavigationState = {
+	/** The `disabled` prop is set or there is no active item. */
 	disabled: boolean;
+	/** `Enter` for `Next` and `Submit`, which the active item's Enter key triggers, `null` otherwise. */
 	shortcut: "Enter" | null;
+	/** Status of the active item, or `null` when none is active. */
 	status: QuestionnaireItemStatus | null;
+	/** Whether the action currently applies. */
 	visible: boolean;
 };
 
 export type QuestionnairePreviousPropsWithoutHTML = WithChildNoChildrenSnippetProps<
 	{
+		/** Disables the button regardless of navigation state. */
 		disabled?: boolean;
 	},
 	QuestionnaireNavigationState
@@ -210,6 +297,7 @@ export type QuestionnairePreviousProps = QuestionnairePreviousPropsWithoutHTML &
 
 export type QuestionnaireSkipPropsWithoutHTML = WithChildNoChildrenSnippetProps<
 	{
+		/** Disables the button regardless of navigation state. */
 		disabled?: boolean;
 	},
 	QuestionnaireNavigationState
@@ -219,6 +307,7 @@ export type QuestionnaireSkipProps = QuestionnaireSkipPropsWithoutHTML &
 
 export type QuestionnaireNextPropsWithoutHTML = WithChildNoChildrenSnippetProps<
 	{
+		/** Disables the button regardless of navigation state. */
 		disabled?: boolean;
 	},
 	QuestionnaireNavigationState
@@ -228,6 +317,7 @@ export type QuestionnaireNextProps = QuestionnaireNextPropsWithoutHTML &
 
 export type QuestionnaireSubmitPropsWithoutHTML = WithChildNoChildrenSnippetProps<
 	{
+		/** Disables the button regardless of navigation state. */
 		disabled?: boolean;
 	},
 	QuestionnaireNavigationState

@@ -455,7 +455,7 @@ test("keeps the anchor at the reading line current over lower visible anchors", 
 	expect(getVisibleIds()).toContain("m6");
 });
 
-test("visibility populates under StrictMode (frame ref + lifecycle survive remount)", async () => {
+test("visibility populates after an unmount and remount (frame refs are reset on destroy)", async () => {
 	const ids = Array.from({ length: 8 }, (_, index) => `m${index}`);
 
 	container = document.createElement("div");
@@ -519,7 +519,7 @@ test("an anchored turn holds at the top when content below it collapses", async 
 	expect(viewportOffsetOf("turn", getViewport())).toBeLessThanOrEqual(peek + 4);
 });
 
-test("auto-scroll and content updates survive a StrictMode remount", async () => {
+test("auto-scroll and content updates survive an unmount and remount", async () => {
 	const items = createItems(6);
 
 	await renderThread({ autoScroll: true, items, showVisibility: true });

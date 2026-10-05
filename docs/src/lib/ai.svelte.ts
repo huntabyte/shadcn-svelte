@@ -1,3 +1,4 @@
+import { onDestroy } from "svelte";
 import {
 	cloneMessage,
 	createChat,
@@ -172,10 +173,18 @@ export function createScriptedChat(options: {
 		status = "ready";
 	}
 
-	function setMessages(next: DemoMessage[] | ((current: DemoMessage[]) => DemoMessage[])) {
-		messages = (typeof next === "function" ? next(messages) : next).map(cloneMessage);
+	function stop() {
+		generation += 1;
 		status = "ready";
 	}
+
+	function setMessages(next: DemoMessage[] | ((current: DemoMessage[]) => DemoMessage[])) {
+		// Replacing the transcript abandons any reply still streaming into it.
+		stop();
+		messages = (typeof next === "function" ? next(messages) : next).map(cloneMessage);
+	}
+
+	onDestroy(stop);
 
 	return {
 		get messages() {
@@ -186,9 +195,6 @@ export function createScriptedChat(options: {
 		},
 		sendMessage,
 		setMessages,
-		stop() {
-			generation += 1;
-			status = "ready";
-		},
+		stop,
 	};
 }

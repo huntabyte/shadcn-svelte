@@ -1,5 +1,5 @@
-import { userEvent } from "@vitest/browser/context";
 import { afterEach, expect, test, vi } from "vitest";
+import { userEvent } from "vitest/browser";
 import {
 	choiceInput,
 	container,

@@ -33,9 +33,7 @@
 		tabindex: boxWith(() => tabindex),
 	});
 
-	const mergedProps = $derived(
-		mergeProps(restProps, viewportState.props, viewportState.attachment)
-	);
+	const mergedProps = $derived(mergeProps(restProps, viewportState.props));
 </script>
 
 {#if child}

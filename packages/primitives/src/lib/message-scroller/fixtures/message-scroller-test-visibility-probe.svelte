@@ -5,5 +5,7 @@
 
 	let { visibilityRef }: { visibilityRef: TestRef<MessageScrollerVisibilityState> } = $props();
 
+	// The ref container is stable for the life of the test, so a one-time write is intended.
+	// svelte-ignore state_referenced_locally
 	visibilityRef.current = useMessageScrollerVisibility();
 </script>

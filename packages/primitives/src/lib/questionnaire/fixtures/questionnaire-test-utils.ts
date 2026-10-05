@@ -1,4 +1,4 @@
-import { flushSync, mount, unmount, type Component } from "svelte";
+import { flushSync, mount, unmount } from "svelte";
 import QuestionnaireCases from "./questionnaire-cases.svelte";
 import { QuestionnaireTestModel } from "./questionnaire-test-model.svelte.js";
 
@@ -129,12 +129,6 @@ export function renderCase(scenario = "default", setup?: (next: QuestionnaireTes
 	createModel(scenario);
 	setup?.(model);
 	app = mount(QuestionnaireCases, { target: container, props: { model } });
-	flushSync();
-	return app;
-}
-
-export function renderComponent(component: Component, props: Record<string, unknown> = {}) {
-	app = mount(component, { target: container, props });
 	flushSync();
 	return app;
 }

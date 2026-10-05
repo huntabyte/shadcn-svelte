@@ -583,7 +583,7 @@ describe("Questionnaire", () => {
 	});
 
 	it("preserves a compatible selection when multiple changes", async () => {
-		const { model } = renderWithModel("dynamic-multiple");
+		renderCase("dynamic-multiple");
 
 		choose("first-signal");
 		choose("second-signal");
@@ -603,7 +603,6 @@ describe("Questionnaire", () => {
 		expect(choiceInput("first-signal").type).toBe("checkbox");
 		expect(choiceInput("first-signal").checked).toBe(true);
 		expect(choiceInput("second-signal").checked).toBe(false);
-		void model;
 	});
 
 	it("records an intentional skip separately from an unanswered item", async () => {
@@ -811,7 +810,7 @@ describe("Questionnaire", () => {
 		expect(choiceInput("chat").checked).toBe(false);
 	});
 
-	it("skips disabled items and registers in Strict Mode", async () => {
+	it("skips disabled items in progress and navigation", async () => {
 		renderCase("disabled-items");
 
 		expect(progress().textContent).toBe("Question 1 of 2");
@@ -1038,7 +1037,7 @@ describe("Questionnaire", () => {
 	});
 
 	it("registers a ChoiceInput whenever its composed input mounts", async () => {
-		const { model } = renderWithModel("conditional-choice-input");
+		renderCase("conditional-choice-input");
 
 		expect(item("answer").dataset.status).toBe("unanswered");
 		expect(choice("conditional-choice").hasAttribute("data-shortcut")).toBe(false);
@@ -1066,7 +1065,6 @@ describe("Questionnaire", () => {
 		expect(secondInput).not.toBe(firstInput);
 		expect(secondInput.checked).toBe(true);
 		expect(item("answer").dataset.status).toBe("answered");
-		void model;
 	});
 
 	it("supports render callbacks and emits no primitive data slots", async () => {
@@ -1091,6 +1089,119 @@ describe("Questionnaire", () => {
 		expect(title.tagName).toBe("H2");
 		expect(title.textContent).toBe("Custom title");
 		expect(item("only").getAttribute("aria-labelledby")).toBe("only-title");
+	});
+
+	it("wires Root and Item refs through child snippets", async () => {
+		const onSubmit = vi.fn((event: SubmitEvent) => {
+			event.preventDefault();
+		});
+
+		renderCase("child-snippets", (model) => {
+			model.onSubmit = onSubmit;
+		});
+
+		expect(form().tagName).toBe("FORM");
+		expect(form().dataset.childTotal).toBe("1");
+		expect(form().dataset.total).toBe("1");
+		expect(progress().textContent).toBe("Question 1 of 1");
+		expect(item("only").dataset.childStatus).toBe("unanswered");
+		expect(item("only").hasAttribute("data-active")).toBe(true);
+
+		choose("only-choice");
+
+		expect(item("only").dataset.childStatus).toBe("answered");
+
+		keydown(choiceInput("only-choice"), "Enter", { metaKey: true });
+
+		expect(onSubmit).toHaveBeenCalledOnce();
+	});
+
+	it("keeps typed input after a reset when defaultValue changes later", async () => {
+		renderCase("changing-defaults");
+
+		form().reset();
+		flushSync();
+
+		expect(freeform("default-input").value).toBe("Initial");
+
+		type(freeform("default-input"), "Edited");
+		click(requiredElement('[data-testid="change-defaults"]'));
+
+		expect(freeform("default-input").value).toBe("Edited");
+		expect(freeform("default-input").hasAttribute("data-filled")).toBe(true);
+		expect(freeform("default-input").name).toBe("defaults");
+		expect(item("defaults").dataset.status).toBe("answered");
+
+		form().reset();
+		flushSync();
+
+		expect(freeform("default-input").value).toBe("");
+		expect(freeform("default-input").hasAttribute("data-empty")).toBe(true);
+	});
+
+	it("restores a controlled Choice when the parent rejects the change", async () => {
+		const onChange = vi.fn();
+
+		renderCase("rejected-choice", (model) => {
+			model.onChange = onChange;
+		});
+
+		choose("rejected-choice");
+
+		expect(onChange).toHaveBeenCalledOnce();
+		expect(choiceInput("rejected-choice").checked).toBe(false);
+		expect(choice("rejected-choice").hasAttribute("data-unchecked")).toBe(true);
+		expect(item("answer").dataset.status).toBe("unanswered");
+		expect(new FormData(form()).getAll("answer")).toEqual([]);
+	});
+
+	it("honors a user-supplied id on Input and ChoiceInput", () => {
+		renderCase("custom-ids");
+
+		expect(freeform("answer-input").id).toBe("custom-input");
+		expect(choiceInput("fixed").id).toBe("custom-choice");
+	});
+
+	it("releases a default selection when its Choice unmounts", async () => {
+		renderCase("swap-default-choice");
+
+		expect(choiceInput("email").checked).toBe(true);
+		expect(new FormData(form()).get("channel")).toBe("email");
+
+		click(requiredElement('[data-testid="swap"]'));
+
+		expect(container.querySelector('[data-testid="email"]')).toBeNull();
+		expect(choiceInput("chat").checked).toBe(true);
+		expect(item("channel").dataset.status).toBe("answered");
+		expect(new FormData(form()).get("channel")).toBe("chat");
+	});
+
+	it("binds ref on every part without leaking it to the DOM", async () => {
+		const { model } = renderWithModel("refs");
+
+		const expected = {
+			root: form(),
+			progress: progress(),
+			item: item("only"),
+			title: requiredElement('[data-testid="title"]'),
+			description: requiredElement('[data-testid="description"]'),
+			choices: requiredElement('[data-testid="choices"]'),
+			choice: choice("choice"),
+			choiceInput: requiredElement('[data-testid="choice-input"]'),
+			choiceLabel: requiredElement('[data-testid="choice-label"]'),
+			choiceShortcut: requiredElement('[data-testid="choice-shortcut"]'),
+			input: freeform("input"),
+			error: error("error"),
+			previous: previous(),
+			skip: skip(),
+			next: next(),
+			submit: submit(),
+		};
+
+		for (const [part, element] of Object.entries(expected)) {
+			expect(model.refs[part as keyof typeof expected], part).toBe(element);
+			expect(element.hasAttribute("ref"), part).toBe(false);
+		}
 	});
 });
 

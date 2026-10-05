@@ -21,7 +21,7 @@
 		scrollAnchor: boxWith(() => scrollAnchor),
 	});
 
-	const mergedProps = $derived(mergeProps(restProps, itemState.props, itemState.attachment));
+	const mergedProps = $derived(mergeProps(restProps, itemState.props));
 </script>
 
 {#if child}

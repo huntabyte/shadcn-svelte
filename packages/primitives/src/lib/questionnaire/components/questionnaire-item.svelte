@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { boxWith, mergeProps } from "svelte-toolbelt";
 	import { createId } from "$lib/internal/create-id.js";
-	import { QuestionnaireItemStateClass } from "../questionnaire.svelte.js";
+	import { QuestionnaireItemState } from "../questionnaire.svelte.js";
 	import type { QuestionnaireItemProps } from "../types.js";
 
 	const uid = $props.id();
@@ -22,7 +22,7 @@
 		...restProps
 	}: QuestionnaireItemProps = $props();
 
-	const itemState = QuestionnaireItemStateClass.create({
+	const itemState = QuestionnaireItemState.create({
 		id: boxWith(() => id),
 		ref: boxWith(
 			() => ref,
@@ -45,7 +45,7 @@
 {#if child}
 	{@render child({ props: mergedProps, ...snippetProps })}
 {:else}
-	<fieldset bind:this={ref} {...mergedProps}>
+	<fieldset {...mergedProps}>
 		{@render children?.()}
 	</fieldset>
 {/if}

@@ -1,10 +1,17 @@
 <script lang="ts">
-	import { mergeProps } from "svelte-toolbelt";
+	import { boxWith, mergeProps } from "svelte-toolbelt";
+	import { QuestionnaireTitleState } from "../questionnaire.svelte.js";
 	import type { QuestionnaireTitleProps } from "../types.js";
 
-	let { children, child, ...restProps }: QuestionnaireTitleProps = $props();
+	let { children, child, ref = $bindable(null), ...restProps }: QuestionnaireTitleProps = $props();
 
-	const mergedProps = $derived(mergeProps(restProps));
+	const titleState = QuestionnaireTitleState.create({
+		ref: boxWith(
+			() => ref,
+			(v) => (ref = v)
+		),
+	});
+	const mergedProps = $derived(mergeProps(restProps, titleState.props));
 </script>
 
 {#if child}

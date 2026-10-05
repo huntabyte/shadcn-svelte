@@ -28,7 +28,7 @@
 	});
 
 	const snippetProps = $derived(buttonState.snippetProps);
-	const mergedProps = $derived(mergeProps(restProps, buttonState.props, buttonState.attachment));
+	const mergedProps = $derived(mergeProps(restProps, buttonState.props));
 </script>
 
 {#if child}

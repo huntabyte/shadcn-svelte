@@ -1,6 +1,6 @@
 <script lang="ts">
 	import BrainIcon from "@lucide/svelte/icons/brain";
-	import { MediaQuery } from "svelte/reactivity";
+	import { prefersReducedMotion } from "svelte/motion";
 	import * as Bubble from "$lib/registry/ui/bubble/index.js";
 	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
 	import * as Message from "$lib/registry/ui/message/index.js";
@@ -39,14 +39,13 @@
 		class?: string;
 	} = $props();
 
-	const reduceMotion = new MediaQuery("(prefers-reduced-motion: reduce)");
 	const isUserMessage = $derived(message.role === "user");
 	const parts = $derived(getMessageAnimatedContentParts(message));
-	const itemClass = $derived(
-		[isUserMessage && !reduceMotion.current ? animationPreset.class : "", className]
-			.filter(Boolean)
-			.join(" ")
-	);
+
+	function enterMessage(node: HTMLElement, preset: MessageAnimationPreset) {
+		if (prefersReducedMotion.current) return { duration: 0 };
+		return preset.transition(node);
+	}
 
 	function getMessageAnimatedContentParts(current: AnimatedMessage) {
 		if (current.parts) {
@@ -73,12 +72,7 @@
 	}
 </script>
 
-<MessageScroller.Item
-	class={itemClass}
-	messageId={message.id}
-	scrollAnchor={scrollAnchor ?? isUserMessage}
-	{...restProps}
->
+{#snippet row()}
 	<Message.Root align={isUserMessage ? "end" : "start"}>
 		<Message.Content>
 			{#each parts as part (part.key)}
@@ -110,4 +104,23 @@
 			{/each}
 		</Message.Content>
 	</Message.Root>
-</MessageScroller.Item>
+{/snippet}
+
+{#if isUserMessage}
+	<MessageScroller.Item
+		class={className}
+		messageId={message.id}
+		scrollAnchor={scrollAnchor ?? true}
+		{...restProps}
+	>
+		{#snippet child({ props })}
+			<div {...props} in:enterMessage|global={animationPreset}>
+				{@render row()}
+			</div>
+		{/snippet}
+	</MessageScroller.Item>
+{:else}
+	<MessageScroller.Item class={className} messageId={message.id} {scrollAnchor} {...restProps}>
+		{@render row()}
+	</MessageScroller.Item>
+{/if}

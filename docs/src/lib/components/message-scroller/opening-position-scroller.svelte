@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { watch } from "runed";
 	import * as Bubble from "$lib/registry/ui/bubble/index.js";
 	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
 	import * as Message from "$lib/registry/ui/message/index.js";
@@ -41,9 +42,7 @@
 
 	const { scrollToEnd, scrollToMessage, scrollToStart } = useMessageScroller();
 
-	$effect(() => {
-		position;
-		positionKey;
+	watch([() => position, () => positionKey], ([position]) => {
 		const frame = requestAnimationFrame(() => {
 			if (position === "start") {
 				scrollToStart({ behavior: "auto" });
@@ -55,11 +54,7 @@
 				return;
 			}
 
-			scrollToMessage("open-3", {
-				align: "start",
-				behavior: "auto",
-				scrollMargin: 64,
-			});
+			scrollToMessage("open-3", { align: "start", behavior: "auto", scrollMargin: 64 });
 		});
 
 		return () => {

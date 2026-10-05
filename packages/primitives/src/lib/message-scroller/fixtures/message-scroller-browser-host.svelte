@@ -15,6 +15,8 @@
 
 	let { initial }: { initial: ThreadProps } = $props();
 
+	// `initial` is intentionally only read once; tests drive updates via `setProps`.
+	// svelte-ignore state_referenced_locally
 	let options = $state(initial);
 
 	export function setProps(next: ThreadProps) {

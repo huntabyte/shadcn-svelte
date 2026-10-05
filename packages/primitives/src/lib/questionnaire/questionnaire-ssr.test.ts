@@ -143,6 +143,15 @@ describe("Questionnaire server rendering", () => {
 		expect(ssrChoiceInput("default").checked).toBe(false);
 		expect(ssrChoice("default").hasAttribute("data-checked")).toBe(false);
 	});
+
+	it("pins the current aria-describedby server-rendering limitation", async () => {
+		// Svelte serializes an element's attributes before rendering its children, so a
+		// Description cannot contribute its id to the parent Item's server output.
+		await renderMarkup("default");
+
+		expect(requiredElement('[data-testid="scope"] #scope-description')).toBeTruthy();
+		expect(item("scope").hasAttribute("aria-describedby")).toBe(false);
+	});
 });
 
 describe("Questionnaire hydration", () => {
@@ -299,6 +308,16 @@ describe("Questionnaire hydration", () => {
 		expect(progress().textContent).toBe("Question 1 of 3");
 		expect(action("next").hidden).toBe(false);
 		expect(item("fourth").hidden).toBe(true);
+	});
+
+	it("describes an item by its Description once hydrated", async () => {
+		const consoleWarn = vi.spyOn(console, "warn").mockImplementation(() => {});
+		await renderMarkup("default");
+
+		await hydrateMarkup();
+
+		expect(consoleWarn).not.toHaveBeenCalled();
+		expect(item("scope").getAttribute("aria-describedby")).toBe("scope-description");
 	});
 
 	it("keeps a controlled item aligned with collection updates", async () => {

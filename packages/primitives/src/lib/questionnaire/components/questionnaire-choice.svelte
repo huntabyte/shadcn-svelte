@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { boxWith, mergeProps } from "svelte-toolbelt";
 	import { createId } from "$lib/internal/create-id.js";
-	import { QuestionnaireChoiceStateClass } from "../questionnaire.svelte.js";
+	import { QuestionnaireChoiceState } from "../questionnaire.svelte.js";
 	import type { QuestionnaireChoiceProps } from "../types.js";
 
 	const uid = $props.id();
@@ -10,6 +10,7 @@
 	let {
 		children,
 		child,
+		ref = $bindable(null),
 		checked,
 		defaultChecked = false,
 		disabled = false,
@@ -18,7 +19,11 @@
 		...restProps
 	}: QuestionnaireChoiceProps = $props();
 
-	const choiceState = QuestionnaireChoiceStateClass.create({
+	const choiceState = QuestionnaireChoiceState.create({
+		ref: boxWith(
+			() => ref,
+			(v) => (ref = v)
+		),
 		answerId: boxWith(() => answerId),
 		checked: boxWith(() => checked),
 		defaultChecked: boxWith(() => defaultChecked),
