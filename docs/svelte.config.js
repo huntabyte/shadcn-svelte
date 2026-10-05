@@ -65,7 +65,7 @@ function componentPreviews() {
 				const insertIndex = exec.index + TARGET.length;
 				const identifier = camelize(name);
 				ms.appendRight(insertIndex, ` component={${identifier}}`);
-				if (!components.has(name)) components.set(name, previewStyle(attrs));
+				if (!components.has(name)) components.set(name, previewStyle(attrs, name, filename));
 			}
 
 			const importIndex = content.search("import ComponentPreview");
@@ -91,18 +91,20 @@ function componentPreviews() {
 	};
 }
 
-const previewStylePattern = new RegExp(
-	`(?<![\\w-])style-(${[...PRESET_STYLES].sort((a, b) => b.length - a.length).join("|")})(?![\\w-])`
-);
-
 /**
- * Style to flatten a preview with, taken from a `style-*` class on
- * `previewClassName` or `class`. Absent means the docs default (nova).
+ * Registry style to flatten a preview with, from its `previewStyle` prop. Absent means the
+ * docs default (nova). The matching `style-*` class is added by `ComponentPreview` itself.
  * @param {string} attrs
+ * @param {string} name
+ * @param {string} filename
  */
-function previewStyle(attrs) {
-	const classes = [...attrs.matchAll(/\b(?:previewClassName|class)=["']([^"']*)["']/g)]
-		.map((match) => match[1])
-		.join(" ");
-	return classes.match(previewStylePattern)?.[1];
+function previewStyle(attrs, name, filename) {
+	const style = attrs.match(/\bpreviewStyle=["']([^"'\s]+)["']/)?.[1];
+	if (style && !PRESET_STYLES.includes(/** @type {any} */ (style))) {
+		throw new Error(
+			`<ComponentPreview name="${name}"> in ${filename} has an unknown previewStyle "${style}". ` +
+				`Expected one of: ${PRESET_STYLES.join(", ")}.`
+		);
+	}
+	return style;
 }
