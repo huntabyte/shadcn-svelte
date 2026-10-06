@@ -668,6 +668,16 @@ describe("transformImports", () => {
 });
 
 describe("transformStripTypes", () => {
+	it("preserves registry CSS assets in JavaScript projects", async () => {
+		const content = ".toast { transform: translateY(calc(var(--offset) * -1)); }";
+		const result = await transformStripTypes({
+			content,
+			filePath: "toaster.css",
+			config: mockConfig,
+		});
+		expect(result).toEqual({ content, filePath: "toaster.css" });
+	});
+
 	it("strips types from TypeScript files", async () => {
 		const content = `
       interface Props {

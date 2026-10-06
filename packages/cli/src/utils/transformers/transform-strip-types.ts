@@ -5,6 +5,7 @@ import type { Transformer } from "./index.js";
 const CONSECUTIVE_NEWLINE_REGEX = new RegExp(/^\s\s*\n+/gm);
 
 export const transformStripTypes: Transformer = async ({ content, filePath }) => {
+	if (filePath.endsWith(".css")) return { content, filePath };
 	if (filePath.endsWith(".svelte")) {
 		content = strip(content, { filename: filePath });
 	} else {
