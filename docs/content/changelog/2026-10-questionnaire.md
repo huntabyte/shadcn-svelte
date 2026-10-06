@@ -16,7 +16,7 @@ prompts, onboarding, surveys, intake forms, and configuration.
 
 Questionnaire is available for Svelte across all eight styles.
 
-<ComponentPreview name="questionnaire-demo" align="end" previewClassName="min-h-[560px] p-4 sm:p-8">
+<ComponentPreview name="questionnaire-demo" align="start" previewClassName="min-h-[560px] p-4 sm:p-8">
 
 <div></div>
 
