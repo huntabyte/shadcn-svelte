@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
+	import type { PresetConfig } from "shadcn-svelte/preset";
 	import type { Component, Snippet } from "svelte";
 	import type { HTMLAttributes } from "svelte/elements";
 
@@ -14,12 +15,14 @@
 		name,
 		hideCode = false,
 		chromeLessOnMobile = false,
+		previewStyle,
 		...restProps
 	}: HTMLAttributes<HTMLElement> & {
 		previewClassName?: string;
 		align?: "center" | "start" | "end";
 		hideCode?: boolean;
 		chromeLessOnMobile?: boolean;
+		previewStyle?: PresetConfig["style"];
 		example?: Snippet;
 		component?: Component;
 		name: string;
@@ -57,6 +60,7 @@
 			data-chromeless={chromeLessOnMobile}
 			class={cn(
 				"preview relative flex min-h-72 w-full justify-center p-10 data-[align=center]:items-center data-[align=end]:items-start data-[align=start]:items-start data-[chromeless=true]:h-auto data-[chromeless=true]:p-0 sm:data-[align=end]:items-end",
+				previewStyle && `style-${previewStyle}`,
 				previewClassName
 			)}
 		>
