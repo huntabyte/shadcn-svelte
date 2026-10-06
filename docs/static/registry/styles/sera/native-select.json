@@ -9,7 +9,7 @@
 			"target": "native-select/index.ts"
 		},
 		{
-			"content": "<script lang=\"ts\">\n\timport type { WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLOptgroupAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLOptgroupAttributes> = $props();\n</script>\n\n<optgroup bind:this={ref} data-slot=\"native-select-opt-group\" {...restProps}>\n\t{@render children?.()}\n</optgroup>\n",
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLOptgroupAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLOptgroupAttributes> = $props();\n</script>\n\n<optgroup\n\tbind:this={ref}\n\tdata-slot=\"native-select-optgroup\"\n\tclass={cn(\"bg-[Canvas] text-[CanvasText]\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</optgroup>\n",
 			"type": "registry:file",
 			"target": "native-select/native-select-opt-group.svelte"
 		},

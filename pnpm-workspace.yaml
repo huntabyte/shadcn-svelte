@@ -1,22 +1,23 @@
 packages:
-    - packages/*
-    - docs
-    - sv-addons/*
+  - packages/*
+  - docs
+  - sv-addons/*
 
 catalog:
-    "@sveltejs/kit": ^2.60.1
-    "@sveltejs/vite-plugin-svelte": ^6.2.4
-    svelte: ^5.54.0
-    svelte-check: ^4.7.4
-    tsdown: ^0.22.14
-    typescript: ^6.0.3
-    vite: ^7.3.1
+  "@sveltejs/kit": ^2.60.1
+  "@sveltejs/vite-plugin-svelte": ^6.2.4
+  svelte: ^5.54.0
+  svelte-check: ^4.7.4
+  tsdown: ^0.22.14
+  typescript: ^6.0.3
+  vite: ^7.3.1
 
 onlyBuiltDependencies:
-    - "@tailwindcss/oxide"
-    - esbuild
-    - sharp
-    - workerd
+  - "@tailwindcss/oxide"
+  - esbuild
+  - sharp
+  - workerd
+
 patchedDependencies:
-    "@formisch/svelte@1.0.0-rc.0": patches/@formisch__svelte@1.0.0-rc.0.patch
-    "@tanstack/svelte-form@2.0.0-alpha.2": patches/@tanstack__svelte-form@2.0.0-alpha.2.patch
+  "@formisch/svelte@1.0.0-rc.0": patches/@formisch__svelte@1.0.0-rc.0.patch
+  "@tanstack/svelte-form@2.0.0-alpha.2": patches/@tanstack__svelte-form@2.0.0-alpha.2.patch
