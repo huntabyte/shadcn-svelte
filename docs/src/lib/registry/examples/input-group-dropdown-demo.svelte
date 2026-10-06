@@ -17,15 +17,17 @@
 						</InputGroup.Button>
 					{/snippet}
 				</DropdownMenu.Trigger>
-				<DropdownMenu.Content align="end">
-					<DropdownMenu.Item>Settings</DropdownMenu.Item>
-					<DropdownMenu.Item>Copy path</DropdownMenu.Item>
-					<DropdownMenu.Item>Open location</DropdownMenu.Item>
+				<DropdownMenu.Content align="end" sideOffset={8} alignOffset={-4}>
+					<DropdownMenu.Group>
+						<DropdownMenu.Item>Settings</DropdownMenu.Item>
+						<DropdownMenu.Item>Copy path</DropdownMenu.Item>
+						<DropdownMenu.Item>Open location</DropdownMenu.Item>
+					</DropdownMenu.Group>
 				</DropdownMenu.Content>
 			</DropdownMenu.Root>
 		</InputGroup.Addon>
 	</InputGroup.Root>
-	<InputGroup.Root class="[--radius:1rem]">
+	<InputGroup.Root>
 		<InputGroup.Input placeholder="Enter search query" />
 		<InputGroup.Addon align="inline-end">
 			<DropdownMenu.Root>
@@ -36,10 +38,12 @@
 						</InputGroup.Button>
 					{/snippet}
 				</DropdownMenu.Trigger>
-				<DropdownMenu.Content align="end" class="[--radius:0.95rem]">
-					<DropdownMenu.Item>Documentation</DropdownMenu.Item>
-					<DropdownMenu.Item>Blog Posts</DropdownMenu.Item>
-					<DropdownMenu.Item>Changelog</DropdownMenu.Item>
+				<DropdownMenu.Content align="end" sideOffset={8} alignOffset={-4}>
+					<DropdownMenu.Group>
+						<DropdownMenu.Item>Documentation</DropdownMenu.Item>
+						<DropdownMenu.Item>Blog Posts</DropdownMenu.Item>
+						<DropdownMenu.Item>Changelog</DropdownMenu.Item>
+					</DropdownMenu.Group>
 				</DropdownMenu.Content>
 			</DropdownMenu.Root>
 		</InputGroup.Addon>

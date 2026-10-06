@@ -32,6 +32,33 @@ export default defineConfig(
 				},
 			],
 			"@typescript-eslint/no-unused-expressions": "off",
+			// Icon packages must be imported per-icon. Their root barrels re-export
+			// thousands of components, which makes Vite dev (SSR) take tens of seconds.
+			"@typescript-eslint/no-restricted-imports": [
+				"error",
+				{
+					paths: [
+						{
+							name: "@lucide/svelte",
+							message: "Import icons individually, e.g. `@lucide/svelte/icons/<icon-name>`.",
+						},
+						{
+							name: "@tabler/icons-svelte",
+							message: "Import icons individually, e.g. `@tabler/icons-svelte/icons/<icon-name>`.",
+						},
+						{
+							name: "phosphor-svelte",
+							message: "Import icons individually, e.g. `phosphor-svelte/lib/<IconName>`.",
+						},
+						{
+							name: "remixicon-svelte",
+							message: "Import icons individually, e.g. `remixicon-svelte/icons/<icon-name>`.",
+						},
+						// `@hugeicons/core-free-icons` is intentionally left out of this check as they
+						// do not provide proper types for their deep imports.
+					].map((entry) => ({ ...entry, allowTypeImports: true })),
+				},
+			],
 		},
 	},
 	{

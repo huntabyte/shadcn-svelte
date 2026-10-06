@@ -5,21 +5,19 @@
 	let value = $state([200, 800]);
 </script>
 
-<div class="w-full max-w-md">
-	<Field.Field>
-		<Field.Label>Price Range</Field.Label>
-		<Field.Description>
-			Set your budget range ($<span class="font-medium tabular-nums">{value[0]}</span> -
-			<span class="font-medium tabular-nums">{value[1]}</span>).
-		</Field.Description>
-		<Slider
-			type="multiple"
-			bind:value
-			max={1000}
-			min={0}
-			step={10}
-			class="mt-2 w-full"
-			aria-label="Price Range"
-		/>
-	</Field.Field>
-</div>
+<Field.Field class="w-full max-w-xs">
+	<Field.Title>Price Range</Field.Title>
+	<Field.Description>
+		Set your budget range ($<span class="font-medium tabular-nums">{value[0]}</span> -
+		<span class="font-medium tabular-nums">{value[1]}</span>).
+	</Field.Description>
+	<Slider
+		type="multiple"
+		bind:value
+		max={1000}
+		min={0}
+		step={10}
+		class="mt-2 w-full"
+		aria-label="Price Range"
+	/>
+</Field.Field>

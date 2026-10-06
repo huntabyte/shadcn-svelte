@@ -17,25 +17,25 @@
 
 <ButtonGroup.Root>
 	<ButtonGroup.Root class="hidden sm:flex">
-		<Button variant="outline" size="icon-sm" aria-label="Go Back">
+		<Button variant="outline" size="icon" aria-label="Go Back">
 			<ArrowLeft />
 		</Button>
 	</ButtonGroup.Root>
 	<ButtonGroup.Root>
-		<Button size="sm" variant="outline">Archive</Button>
-		<Button size="sm" variant="outline">Report</Button>
+		<Button variant="outline">Archive</Button>
+		<Button variant="outline">Report</Button>
 	</ButtonGroup.Root>
 	<ButtonGroup.Root>
-		<Button size="sm" variant="outline">Snooze</Button>
+		<Button variant="outline">Snooze</Button>
 		<DropdownMenu.Root>
 			<DropdownMenu.Trigger>
 				{#snippet child({ props })}
-					<Button {...props} variant="outline" size="icon-sm" aria-label="More Options">
+					<Button {...props} variant="outline" size="icon" aria-label="More Options">
 						<MoreHorizontal />
 					</Button>
 				{/snippet}
 			</DropdownMenu.Trigger>
-			<DropdownMenu.Content align="end" class="w-52">
+			<DropdownMenu.Content align="end" class="w-40">
 				<DropdownMenu.Group>
 					<DropdownMenu.Item>
 						<MailCheck />
@@ -76,7 +76,7 @@
 				</DropdownMenu.Group>
 				<DropdownMenu.Separator />
 				<DropdownMenu.Group>
-					<DropdownMenu.Item class="text-destructive focus:text-destructive">
+					<DropdownMenu.Item variant="destructive">
 						<Trash2 />
 						Trash
 					</DropdownMenu.Item>

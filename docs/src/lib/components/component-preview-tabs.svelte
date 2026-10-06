@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
+	import type { PresetConfig } from "shadcn-svelte/preset";
 	import type { Component, Snippet } from "svelte";
 	import type { HTMLAttributes } from "svelte/elements";
 
@@ -12,10 +13,14 @@
 		children,
 		name,
 		hideCode = false,
+		previewClassName,
+		previewStyle,
 		...restProps
 	}: HTMLAttributes<HTMLElement> & {
 		align?: "center" | "start" | "end";
 		hideCode?: boolean;
+		previewClassName?: string;
+		previewStyle?: PresetConfig["style"];
 		example?: Snippet;
 		component?: Component;
 		name: string;
@@ -50,7 +55,11 @@
 	>
 		<div
 			data-align={align}
-			class="preview flex min-h-[450px] w-full justify-center p-10 data-[align=center]:items-center data-[align=end]:items-end data-[align=start]:items-start"
+			class={cn(
+				"preview flex min-h-[450px] w-full justify-center p-10 data-[align=center]:items-center data-[align=end]:items-end data-[align=start]:items-start",
+				previewStyle && `style-${previewStyle}`,
+				previewClassName
+			)}
 		>
 			{#if example}
 				{@render example()}
