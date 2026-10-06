@@ -1,11 +1,10 @@
 /*
  * Additional registry styles and font faces for /create and /preview.
- * Those route layouts import this file. app.css already loads Vega plus
- * Luma and Rhea, which the homepage uses; the other five styles are loaded here.
+ * Those route layouts import this file. app.css already loads Nova and Vega plus
+ * Luma and Rhea, which the homepage uses; the other four styles are loaded here.
  */
 @reference "./app.css";
 
-@import "./lib/registry/styles/style-nova.css" layer(base);
 @import "./lib/registry/styles/style-lyra.css" layer(base);
 @import "./lib/registry/styles/style-maia.css" layer(base);
 @import "./lib/registry/styles/style-mira.css" layer(base);

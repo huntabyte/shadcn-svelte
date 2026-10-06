@@ -1,5 +1,6 @@
 <script lang="ts">
 	import ComponentPreviewTabs from "./component-preview-tabs.svelte";
+	import type { PresetConfig } from "shadcn-svelte/preset";
 	import type { Component } from "svelte";
 	import type { HTMLAttributes } from "svelte/elements";
 
@@ -10,6 +11,7 @@
 		align = "center",
 		hideCode = false,
 		previewClassName,
+		previewStyle,
 		...restProps
 	}: HTMLAttributes<HTMLElement> & {
 		name: string;
@@ -17,6 +19,7 @@
 		description?: string;
 		hideCode?: boolean;
 		previewClassName?: string;
+		previewStyle?: PresetConfig["style"];
 		type?: "block" | "component" | "example";
 		component?: Component;
 	} = $props();
@@ -52,6 +55,7 @@
 		{align}
 		{hideCode}
 		{previewClassName}
+		{previewStyle}
 		{...restProps}
 	/>
 {/if}

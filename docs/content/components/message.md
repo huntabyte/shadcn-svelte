@@ -17,7 +17,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="message-demo">
+<ComponentPreview name="message-demo" previewStyle="rhea" previewClassName="h-auto theme-blue">
 
 <div></div>
 
@@ -113,7 +113,7 @@ Message.Group
 
 Use `Message.Avatar` to render an avatar next to the message. Set `align="end"` on the message to align the avatar to the end of the message.
 
-<ComponentPreview name="message-avatar">
+<ComponentPreview name="message-avatar" previewStyle="rhea" previewClassName="h-auto theme-blue">
 
 <div></div>
 
@@ -128,7 +128,7 @@ Use `Message.Avatar` to render an avatar next to the message. Set `align="end"` 
 
 Use `Message.Group` to stack consecutive messages from the same sender. Render an empty `Message.Avatar` on the earlier messages to keep them aligned with the avatar on the last one.
 
-<ComponentPreview name="message-group">
+<ComponentPreview name="message-group" previewStyle="rhea" previewClassName="h-auto theme-blue">
 
 <div></div>
 
@@ -138,7 +138,7 @@ Use `Message.Group` to stack consecutive messages from the same sender. Render a
 
 Use `Message.Header` for a sender name and `Message.Footer` for metadata such as a delivery or read status.
 
-<ComponentPreview name="message-header-footer">
+<ComponentPreview name="message-header-footer" previewStyle="rhea" previewClassName="h-auto theme-blue">
 
 <div></div>
 
@@ -148,7 +148,7 @@ Use `Message.Header` for a sender name and `Message.Footer` for metadata such as
 
 Place message-level actions in `Message.Footer`, such as copy, retry, or feedback buttons.
 
-<ComponentPreview name="message-actions">
+<ComponentPreview name="message-actions" previewStyle="rhea" previewClassName="h-auto theme-blue">
 
 <div></div>
 
@@ -156,7 +156,7 @@ Place message-level actions in `Message.Footer`, such as copy, retry, or feedbac
 
 ## Attachment
 
-<ComponentPreview name="message-attachment">
+<ComponentPreview name="message-attachment" previewStyle="rhea" previewClassName="h-auto theme-blue">
 
 <div></div>
 
