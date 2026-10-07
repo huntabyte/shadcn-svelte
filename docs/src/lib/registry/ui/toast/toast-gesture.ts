@@ -174,6 +174,10 @@ export function swipeToast(
 	};
 	node.addEventListener("pointerdown", down);
 	node.addEventListener("pointermove", move);
+	// End on the root before the viewport handles pointerup. Otherwise a deferred
+	// mouseleave collapses the stack before dismissal marks this toast as ending.
+	node.addEventListener("pointerup", end);
+	node.addEventListener("pointercancel", end);
 	node.ownerDocument.addEventListener("pointerup", end);
 	node.ownerDocument.addEventListener("pointercancel", end);
 	node.addEventListener("touchmove", touch, { passive: false });
@@ -184,6 +188,8 @@ export function swipeToast(
 		destroy() {
 			node.removeEventListener("pointerdown", down);
 			node.removeEventListener("pointermove", move);
+			node.removeEventListener("pointerup", end);
+			node.removeEventListener("pointercancel", end);
 			node.ownerDocument.removeEventListener("pointerup", end);
 			node.ownerDocument.removeEventListener("pointercancel", end);
 			node.removeEventListener("touchmove", touch);

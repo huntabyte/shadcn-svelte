@@ -23,12 +23,22 @@ beforeEach(() => {
 			disconnect() {}
 		}
 	);
+	vi.stubGlobal(
+		"DOMMatrix",
+		class {
+			m41 = 0;
+			m42 = 0;
+			m11 = 1;
+			m12 = 0;
+		}
+	);
 	HTMLElement.prototype.getAnimations = () => [];
 });
 afterEach(async () => {
 	for (const component of mounted.splice(0)) await unmount(component);
 	document.body.innerHTML = "";
 	vi.unstubAllGlobals();
+	vi.restoreAllMocks();
 });
 async function flush() {
 	await tick();
@@ -46,7 +56,136 @@ function setup(custom = false) {
 	);
 	return manager;
 }
+function pointer(target: EventTarget, type: string, x = 0) {
+	const event = new MouseEvent(type, { clientX: x, button: 0, bubbles: true, cancelable: true });
+	for (const [key, value] of Object.entries({
+		pointerId: 1,
+		pointerType: "touch",
+		movementX: x,
+		movementY: 0,
+	}))
+		Object.defineProperty(event, key, { value });
+	target.dispatchEvent(event);
+}
 describe("toast primitives DOM", () => {
+	it("removes zero-height variables on close so the exiting card retains natural height", async () => {
+		vi.spyOn(HTMLElement.prototype, "offsetHeight", "get").mockReturnValue(78);
+		const manager = setup();
+		await flush();
+		manager.add({ title: "Close", timeout: 0 });
+		await flush();
+		await flush();
+		const root = document.querySelector<HTMLElement>("[data-slot=toast]")!;
+		expect(root.style.getPropertyValue("--toast-height")).toBe("78px");
+		let finish!: () => void;
+		const finished = new Promise<void>((resolve) => {
+			finish = resolve;
+		});
+		root.getAnimations = () => [{ finished } as unknown as Animation];
+		document.querySelector<HTMLButtonElement>("[data-slot=toast-close]")!.click();
+		await flush();
+		expect(root.style.getPropertyValue("--toast-height")).toBe("");
+		expect(
+			document
+				.querySelector<HTMLElement>("[data-slot=toast-viewport]")!
+				.style.getPropertyValue("--toast-frontmost-height")
+		).toBe("");
+		root.getAnimations = () => [];
+		finish();
+		await flush();
+	});
+	it("keeps an active touch gesture through a toast update, then expands and collapses on outside touch", async () => {
+		const manager = setup();
+		await flush();
+		const id = manager.add({ title: "Touch", timeout: 0 });
+		await flush();
+		const root = document.querySelector<HTMLElement>("[data-slot=toast]")!;
+		pointer(root, "pointerdown");
+		await flush();
+		expect(root.hasAttribute("data-expanded")).toBe(true);
+		expect(root.hasAttribute("data-swiping")).toBe(true);
+		manager.update(id, { description: "Updated during touch" });
+		await flush();
+		pointer(root, "pointerup");
+		await flush();
+		expect(root.hasAttribute("data-swiping")).toBe(false);
+		expect(root.hasAttribute("data-expanded")).toBe(true);
+		pointer(document.body, "pointerdown");
+		await flush();
+		expect(root.hasAttribute("data-expanded")).toBe(false);
+	});
+	it("swipes a mounted toast after adding another notification during the gesture", async () => {
+		const manager = setup();
+		await flush();
+		manager.add({ title: "Swipe", timeout: 0 });
+		await flush();
+		const root = document.querySelector<HTMLElement>("[data-slot=toast]")!;
+		pointer(root, "pointerdown");
+		await flush();
+		manager.add({ title: "New", timeout: 0 });
+		await flush();
+		pointer(root, "pointermove", 10);
+		await flush();
+		pointer(root, "pointermove", 70);
+		await flush();
+		pointer(root, "pointerup", 70);
+		await flush();
+		expect(document.querySelectorAll("[data-slot=toast]")).toHaveLength(1);
+		expect(document.querySelector("[data-slot=toast]")!.textContent).toContain("New");
+	});
+	it("defers collapse until a touch-dismissed toast finishes its exit", async () => {
+		const manager = setup();
+		await flush();
+		manager.add({ title: "Behind", timeout: 0 });
+		manager.add({ title: "Front", timeout: 0 });
+		await flush();
+		const root = document.querySelector<HTMLElement>("[data-slot=toast]")!;
+		const viewport = document.querySelector<HTMLElement>("[data-slot=toast-viewport]")!;
+		let finish!: () => void;
+		const finished = new Promise<void>((resolve) => {
+			finish = resolve;
+		});
+		root.getAnimations = () => [{ finished } as unknown as Animation];
+		pointer(root, "pointerdown");
+		await flush();
+		viewport.dispatchEvent(new MouseEvent("mouseleave"));
+		await flush();
+		pointer(root, "pointermove", 10);
+		pointer(root, "pointermove", 70);
+		pointer(root, "pointerup", 70);
+		await flush();
+		expect(root.hasAttribute("data-ending-style")).toBe(true);
+		expect(viewport.hasAttribute("data-expanded")).toBe(true);
+		root.getAnimations = () => [];
+		finish();
+		await flush();
+		expect(viewport.hasAttribute("data-expanded")).toBe(false);
+	});
+	it("closes through the X button after tapping a stack without treating controls as swipes", async () => {
+		const manager = setup();
+		await flush();
+		manager.add({ title: "Behind", timeout: 0 });
+		const onClose = vi.fn();
+		const onRemove = vi.fn();
+		manager.add({ title: "Front", timeout: 0, onClose, onRemove });
+		await flush();
+		const root = document.querySelector<HTMLElement>("[data-slot=toast]")!;
+		pointer(root, "pointerdown");
+		await flush();
+		pointer(root, "pointerup");
+		await flush();
+		const button = root.querySelector<HTMLButtonElement>("[data-slot=toast-close]")!;
+		expect(button.getAttribute("aria-hidden")).toBe("false");
+		pointer(button, "pointerdown");
+		await flush();
+		expect(root.hasAttribute("data-swiping")).toBe(false);
+		pointer(button, "pointerup");
+		button.click();
+		await flush();
+		expect(onClose).toHaveBeenCalledOnce();
+		expect(onRemove).toHaveBeenCalledOnce();
+		expect(document.querySelectorAll("[data-slot=toast]")).toHaveLength(1);
+	});
 	it("portals, links accessible labels, and runs an action without implicit dismissal", async () => {
 		const manager = setup();
 		await flush();

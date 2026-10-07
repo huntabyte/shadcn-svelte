@@ -18,6 +18,7 @@
 		children?: Snippet;
 		child?: Snippet<[{ props: HTMLButtonAttributes }]>;
 	} = $props();
+	let hasFocus = $state(false);
 	const root = getRoot();
 	const { store } = getProvider();
 	const attachmentKey = createAttachmentKey();
@@ -33,6 +34,15 @@
 		"data-slot": "toast-close",
 		"data-type": root.toast.type,
 		"aria-label": restProps["aria-label"] ?? "Close toast",
+		"aria-hidden": !root.expanded && !hasFocus,
+		onfocus: (event: FocusEvent & { currentTarget: EventTarget & HTMLButtonElement }) => {
+			hasFocus = true;
+			restProps.onfocus?.(event);
+		},
+		onblur: (event: FocusEvent & { currentTarget: EventTarget & HTMLButtonElement }) => {
+			hasFocus = false;
+			restProps.onblur?.(event);
+		},
 		class: cn(
 			buttonVariants({ variant: "ghost", size: "icon-sm" }),
 			"relative shrink-0 text-muted-foreground after:absolute after:-inset-2 after:content-[''] hover:text-foreground",

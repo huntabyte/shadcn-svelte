@@ -127,7 +127,7 @@
 			"base-toast-viewport pointer-events-none fixed inset-x-4 bottom-4 z-50 mx-auto w-auto max-w-sm outline-none sm:right-4 sm:left-auto sm:mx-0 sm:w-full",
 			className
 		),
-		style: `--toast-frontmost-height:${items[0]?.height ?? 0}px;${style}`,
+		style: `${items[0]?.height ? `--toast-frontmost-height:${items[0].height}px;` : ""}${style}`,
 		tabindex: -1,
 		role: "region" as const,
 		"aria-live": "polite" as const,
@@ -159,9 +159,11 @@
 				flushLeave();
 			}
 		},
-		onpointercancel: () => {
-			touching = false;
-			flushLeave();
+		onpointercancel: (event: PointerEvent) => {
+			if (event.pointerType === "touch") {
+				touching = false;
+				flushLeave();
+			}
 		},
 	} satisfies HTMLAttributes<HTMLDivElement> & Record<string, unknown>);
 </script>

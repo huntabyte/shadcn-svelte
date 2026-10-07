@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { tick, type Snippet } from "svelte";
+	import { tick, untrack, type Snippet } from "svelte";
 	import { createAttachmentKey } from "svelte/attachments";
 	import { cn } from "$lib/utils.js";
 	import { getProvider, setRoot, type RootContext } from "./toast-context.js";
@@ -116,6 +116,7 @@
 		for (const content of node.children) resize.observe(content);
 		mutation.observe(node, { childList: true, subtree: true, characterData: true });
 		return {
+			recalculate,
 			destroy() {
 				destroyed = true;
 				resize.disconnect();
@@ -123,12 +124,19 @@
 			},
 		};
 	}
+	let lifecycleId: string | undefined;
+	let wasStarting = false;
 	$effect(() => {
-		if (item.transitionStatus === "starting") {
-			swipeX = swipeY = 0;
-			direction = undefined;
-			dragTransform = undefined;
+		const starting = item.transitionStatus === "starting";
+		if (starting && (!wasStarting || lifecycleId !== item.id)) {
+			untrack(() => {
+				swipeX = swipeY = 0;
+				direction = undefined;
+				dragTransform = undefined;
+			});
 		}
+		wasStarting = starting;
+		lifecycleId = item.id;
 	});
 	$effect(() => {
 		if (item.transitionStatus !== "ending" || !ref) return;
@@ -156,21 +164,40 @@
 		};
 	});
 	const attachmentKey = createAttachmentKey();
+	let gesture: ReturnType<typeof swipeToast> | undefined;
+	let recalculateHeight: (() => void) | undefined;
 	function attach(node: HTMLDivElement) {
-		ref = node;
-		const measurement = measure(node);
-		const gesture = swipeToast(node, {
-			store,
-			id: item.id,
-			directions: Array.isArray(swipeDirection) ? swipeDirection : [swipeDirection],
-			onChange: onSwipe,
+		// Attach once per element. Reading toast props here would reattach the gesture
+		// whenever measurement or a stack update replaces its toast record.
+		return untrack(() => {
+			ref = node;
+			const measurement = measure(node);
+			recalculateHeight = measurement.recalculate;
+			gesture = swipeToast(node, {
+				store,
+				id: item.id,
+				directions: Array.isArray(swipeDirection) ? swipeDirection : [swipeDirection],
+				onChange: onSwipe,
+			});
+			return () => {
+				measurement.destroy();
+				gesture?.destroy();
+				gesture = undefined;
+				recalculateHeight = undefined;
+				if (ref === node) ref = null;
+			};
 		});
-		return () => {
-			measurement.destroy();
-			gesture.destroy();
-			if (ref === node) ref = null;
-		};
 	}
+	$effect(() => {
+		const id = item.id;
+		const directions = Array.isArray(swipeDirection) ? swipeDirection : [swipeDirection];
+		gesture?.update({ store, id, directions, onChange: onSwipe });
+	});
+	$effect(() => {
+		if (item.transitionStatus === "starting") {
+			void tick().then(() => requestAnimationFrame(() => recalculateHeight?.()));
+		}
+	});
 	const toastState = $derived({
 		expanded,
 		limited: !!item.limited,
@@ -201,7 +228,7 @@
 		"aria-describedby": labels.descriptionId,
 		"aria-hidden": item.priority === "high" && !focused ? true : undefined,
 		inert: !!item.limited,
-		style: `--toast-index:${index};--toast-offset-y:${offset}px;--toast-height:${item.height ?? 0}px;--toast-swipe-movement-x:${swipeX}px;--toast-swipe-movement-y:${swipeY}px;${dragTransform ? `transition:none;transform:${dragTransform};` : ""}${style}`,
+		style: `--toast-index:${index};--toast-offset-y:${offset}px;${item.height ? `--toast-height:${item.height}px;` : ""}--toast-swipe-movement-x:${swipeX}px;--toast-swipe-movement-y:${swipeY}px;${dragTransform ? `transition:none;transform:${dragTransform};` : ""}${style}`,
 		onkeydown: (event: KeyboardEvent) => {
 			restProps.onkeydown?.(
 				event as KeyboardEvent & { currentTarget: EventTarget & HTMLDivElement }
