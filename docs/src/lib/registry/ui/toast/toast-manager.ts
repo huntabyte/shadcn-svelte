@@ -1,129 +1,93 @@
-import { toast as sonner } from "svelte-sonner";
-import Toast from "./toast.svelte";
-import type { Component } from "svelte";
+import type { Snippet } from "svelte";
 import type { HTMLButtonAttributes } from "svelte/elements";
 
-export type ToastType = "success" | "info" | "warning" | "error" | "loading";
+export type ToastType = "success" | "info" | "warning" | "error" | "loading" | (string & {});
 export type ToastId = string;
-export type ToastOptions = {
+export type ToastMessage = string | number | Snippet;
+export type ToastOptions<Data extends object = object> = {
 	id?: ToastId;
-	title?: string;
-	description?: string;
+	title?: ToastMessage;
+	description?: ToastMessage;
 	type?: ToastType;
-	/** Milliseconds before dismissal. Zero keeps the toast open. */
 	timeout?: number;
 	priority?: "low" | "high";
-	actionProps?: Omit<HTMLButtonAttributes, "children"> & { children: string };
+	actionProps?: Omit<HTMLButtonAttributes, "children"> & { children?: ToastMessage };
 	onClose?: () => void;
+	onRemove?: () => void;
+	data?: Data;
 };
-export type ToastItem = ToastOptions & { id: ToastId };
-export type PromiseMessage<T> =
+export type ToastItem<Data extends object = object> = ToastOptions<Data> & {
+	id: ToastId;
+	transitionStatus?: "starting" | "ending";
+	updateKey?: number;
+	limited?: boolean;
+	height?: number;
+	ref?: HTMLElement;
+};
+export type ToastUpdate<Data extends object = object> = Partial<Omit<ToastOptions<Data>, "id">>;
+export type PromiseMessage<T, Data extends object = object> =
 	| string
-	| Omit<ToastOptions, "id" | "type">
-	| ((value: T) => string | Omit<ToastOptions, "id" | "type">);
-export type ToastPromiseOptions<T> = {
-	loading: string | Omit<ToastOptions, "id" | "type">;
-	success: PromiseMessage<T>;
-	error: PromiseMessage<unknown>;
+	| ToastUpdate<Data>
+	| ((value: T) => string | ToastUpdate<Data>);
+export type ToastPromiseOptions<T, Data extends object = object> = {
+	loading: string | ToastUpdate<Data>;
+	success: PromiseMessage<T, Data>;
+	error: PromiseMessage<unknown, Data>;
 };
-
-let managerCount = 0;
-
-/** Adapts the stacked Base UI manager API to svelte-sonner's public custom renderer. */
-export function createToastManager() {
-	const toasterId = `shadcn-toast-${managerCount++}`;
-	let count = 0;
-	const records = new Map<ToastId, { item: ToastItem; notify: () => void }>();
-
-	function render(item: ToastItem, notify: () => void) {
-		sonner.custom(Toast as Component<{ item: ToastItem; close: () => void }>, {
-			id: `${toasterId}:${item.id}`,
-			toasterId,
-			componentProps: { item, close: () => close(item.id) },
-			duration: item.type === "loading" || item.timeout === 0 ? Infinity : item.timeout,
-			important: item.priority === "high",
-			onDismiss: notify,
-			onAutoClose: notify,
-		});
-	}
-
-	function add(options: ToastOptions): ToastId {
-		const id = options.id ?? `${toasterId}-${count++}`;
-		// Sonner's state is browser-only; never retain notification data between SSR requests.
-		if (typeof window === "undefined") return id;
-		const current = records.get(id);
-		if (current) {
-			update(id, options);
+export type ToastEvent<Data extends object = object> =
+	| { action: "add"; options: ToastItem<Data> }
+	| {
+			action: "update";
+			id: string;
+			updates: ToastUpdate<Data> | ((prev: ToastItem<Data>) => ToastUpdate<Data>);
+	  }
+	| { action: "close"; id?: string }
+	| {
+			action: "promise";
+			task: Promise<unknown>;
+			options: ToastPromiseOptions<unknown, Data>;
+			setPromise: (promise: Promise<unknown>) => void;
+	  };
+let count = 0;
+export function createToastManager<Data extends object = object>() {
+	const listeners = new Set<(event: ToastEvent<Data>) => void>();
+	const emit = (event: ToastEvent<Data>) => listeners.forEach((listener) => listener(event));
+	return {
+		" subscribe": (listener: (event: ToastEvent<Data>) => void) => {
+			listeners.add(listener);
+			return () => {
+				listeners.delete(listener);
+			};
+		},
+		add(options: ToastOptions<Data>): string {
+			const id = options.id || `toast-${count++}`;
+			emit({ action: "add", options: { ...options, id, transitionStatus: "starting" } });
 			return id;
-		}
-		const record = {
-			item: { ...options, id },
-			notify: () => {
-				if (records.get(id) !== record) return;
-				records.delete(id);
-				record.item.onClose?.();
-			},
-		};
-		records.set(id, record);
-		render(record.item, record.notify);
-		return id;
-	}
-
-	function update(id: ToastId, options: Partial<ToastOptions>): void {
-		const record = records.get(id);
-		if (!record) return;
-		record.item = { ...record.item, ...options, id };
-		render(record.item, record.notify);
-	}
-
-	function close(id?: ToastId): void {
-		const ids = id === undefined ? [...records.keys()] : [id];
-		for (const toastId of ids) {
-			const record = records.get(toastId);
-			if (!record) continue;
-			sonner.dismiss(`${toasterId}:${toastId}`);
-			record.notify();
-		}
-	}
-
-	async function promise<T>(
-		task: Promise<T> | (() => Promise<T>),
-		options: ToastPromiseOptions<T>
-	): Promise<T> {
-		const loading =
-			typeof options.loading === "string" ? { title: options.loading } : options.loading;
-		const id = add({ ...loading, type: "loading" });
-		function settle(
-			message: PromiseMessage<T> | PromiseMessage<unknown>,
-			value: T | unknown,
-			type: "success" | "error"
+		},
+		update(
+			id: string,
+			updates: ToastUpdate<Data> | ((prev: ToastItem<Data>) => ToastUpdate<Data>)
 		) {
-			const result =
-				typeof message === "function"
-					? (message as (value: unknown) => string | ToastOptions)(value)
-					: message;
-			// Explicitly clear loading-only fields instead of leaking them into the settled toast.
-			update(id, {
-				title: undefined,
-				description: undefined,
-				actionProps: undefined,
-				timeout: undefined,
-				...(typeof result === "string" ? { title: result } : result),
-				type,
+			emit({ action: "update", id, updates });
+		},
+		close(id?: string) {
+			emit({ action: "close", id });
+		},
+		promise<T>(task: Promise<T>, options: ToastPromiseOptions<T, Data>): Promise<T> {
+			let handled = task;
+			emit({
+				action: "promise",
+				task,
+				options: options as ToastPromiseOptions<unknown, Data>,
+				setPromise: (promise) => {
+					handled = promise as Promise<T>;
+				},
 			});
-		}
-		try {
-			const result = await (typeof task === "function" ? task() : task);
-			settle(options.success, result, "success");
-			return result;
-		} catch (error) {
-			settle(options.error, error, "error");
-			throw error;
-		}
-	}
-
-	return { toasterId, add, update, close, promise };
+			return handled;
+		},
+	};
 }
-
-export type ToastManager = ReturnType<typeof createToastManager>;
+export type ToastManager<Data extends object = object> = ReturnType<
+	typeof createToastManager<Data>
+>;
 export const toast = createToastManager();

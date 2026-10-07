@@ -1,45 +1,25 @@
-<script lang="ts">
-	import { Toaster as Sonner, type ToasterProps } from "svelte-sonner";
-	import "./toaster.css";
-	import { cn } from "$lib/utils.js";
+<script lang="ts" generics="Data extends object = object">
+	import ToastList from "./toast-list.svelte";
+	import ToastPortal from "./toast-portal.svelte";
+	import ToastProvider from "./toast-provider.svelte";
+	import ToastViewport from "./toast-viewport.svelte";
 	import { toast, type ToastManager } from "./toast-manager.js";
-
+	import type { Snippet } from "svelte";
 	let {
-		toastManager = toast,
+		toastManager,
 		timeout = 5000,
 		limit = 3,
-		class: className,
-		...restProps
-	}: Omit<
-		ToasterProps,
-		| "id"
-		| "position"
-		| "duration"
-		| "visibleToasts"
-		| "toastOptions"
-		| "gap"
-		| "offset"
-		| "mobileOffset"
-		| "hotkey"
-	> & {
-		toastManager?: ToastManager;
+		children,
+	}: {
+		toastManager?: ToastManager<Data>;
 		timeout?: number;
 		limit?: number;
+		children?: Snippet;
 	} = $props();
+	const manager = $derived((toastManager ?? toast) as ToastManager<Data>);
 </script>
 
-<Sonner
-	id={toastManager.toasterId}
-	data-slot="toast-viewport"
-	class={cn("base-toast-viewport", className)}
-	position="bottom-right"
-	duration={timeout === 0 ? Infinity : timeout}
-	visibleToasts={limit}
-	gap={12}
-	offset={16}
-	mobileOffset={16}
-	hotkey={["F6"]}
-	pauseWhenPageIsHidden
-	toastOptions={{ unstyled: true }}
-	{...restProps}
-/>
+<ToastProvider toastManager={manager} {timeout} {limit}>
+	{@render children?.()}
+	<ToastPortal><ToastViewport><ToastList /></ToastViewport></ToastPortal>
+</ToastProvider>

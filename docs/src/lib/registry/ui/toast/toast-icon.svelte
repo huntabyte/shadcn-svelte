@@ -4,7 +4,7 @@
 	let { type }: { type?: ToastType } = $props();
 </script>
 
-{#if type}
+{#if type && ["success", "info", "warning", "error", "loading"].includes(type)}
 	<span
 		data-slot="toast-icon"
 		class="shrink-0 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4"

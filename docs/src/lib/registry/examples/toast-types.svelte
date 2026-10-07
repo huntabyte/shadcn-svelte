@@ -1,25 +1,35 @@
 <script lang="ts">
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import { toast, type ToastType } from "$lib/registry/ui/toast/index.js";
-	const types: ToastType[] = ["success", "info", "warning", "error"];
+	import { toast } from "$lib/registry/ui/toast/index.js";
 </script>
 
-<div class="flex flex-wrap justify-center gap-2">
+<div class="flex flex-wrap gap-2">
+	<Button variant="outline" onclick={() => toast.add({ description: "Event has been created." })}
+		>Default</Button
+	>
+	<Button
+		variant="outline"
+		onclick={() => toast.add({ type: "success", description: "Event has been created." })}
+		>Success</Button
+	>
+	<Button
+		variant="outline"
+		onclick={() => toast.add({ type: "info", description: "Arrive 10 minutes before the event." })}
+		>Info</Button
+	>
 	<Button
 		variant="outline"
 		onclick={() =>
-			toast.add({ title: "Event created", description: "Sunday, December 3 at 9:00 AM" })}
-		>Default</Button
+			toast.add({ type: "warning", description: "The event cannot start before 8:00 AM." })}
+		>Warning</Button
 	>
-	{#each types as type (type)}
-		<Button
-			variant="outline"
-			onclick={() =>
-				toast.add({
-					type,
-					title: `${type[0].toUpperCase()}${type.slice(1)} toast`,
-					description: "Sunday, December 3 at 9:00 AM",
-				})}>{type[0].toUpperCase()}{type.slice(1)}</Button
-		>
-	{/each}
+	<Button
+		variant="outline"
+		onclick={() =>
+			toast.add({
+				type: "error",
+				description: "The event could not be created.",
+				priority: "high",
+			})}>Error</Button
+	>
 </div>

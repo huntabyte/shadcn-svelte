@@ -216,3 +216,5 @@ export { default as ToastDemo } from "./toast-demo.svelte";
 export { default as ToastTypes } from "./toast-types.svelte";
 export { default as ToastPromise } from "./toast-promise.svelte";
 export { default as ToastExploration } from "./toast-exploration.svelte";
+
+export { default as ToastRichContent } from "./toast-rich-content.svelte";
