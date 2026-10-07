@@ -1,7 +1,7 @@
 ---
 title: October 2026 - Components for Chat Interfaces
 description: MessageScroller, Message, Bubble, Attachment, and Marker. Components for building chat interfaces.
-date: 2026-10-07
+date: 2026-10-04
 ---
 
 <script>
