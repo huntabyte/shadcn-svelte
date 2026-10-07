@@ -1,7 +1,7 @@
 ---
-title: June 2026 - Components for Chat Interfaces
+title: October 2026 - Components for Chat Interfaces
 description: MessageScroller, Message, Bubble, Attachment, and Marker. Components for building chat interfaces.
-date: 2026-06-26
+date: 2026-10-07
 ---
 
 <script>
@@ -106,14 +106,14 @@ Available now for Svelte across all eight styles.
 
 ## AI Elements
 
-This does not replace [AI Elements](https://ai-sdk.dev/elements/overview). You
-can keep using AI Elements for AI interface components and patterns. This
-release is about bringing the core pieces of chat into shadcn-svelte, one component
-at a time.
+These components complement [Svelte AI Elements](https://svelte-ai-elements.vercel.app/),
+the Svelte port of AI Elements. You can keep using its components for conversations,
+messages, prompt inputs, and other AI interface patterns while adopting the new
+shadcn-svelte chat components one piece at a time.
 
-If you are already using a component from AI Elements, you do not need to
-rewrite your app. Keep what works. Try the shadcn-svelte version when you want the
-newer abstraction, the updated styling, or support for Svelte.
+If you already use Svelte AI Elements, you do not need to rewrite your app. Keep
+what works, and try the shadcn-svelte components when their abstractions or styling
+fit your project.
 
 The goal is to make these pieces easy to adopt independently. Replace one part,
 compose it with what you already have, and keep building.
