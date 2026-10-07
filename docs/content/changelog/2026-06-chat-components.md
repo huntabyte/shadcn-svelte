@@ -70,7 +70,7 @@ containers. Use it on `MessageScroller`, `ScrollArea`, attachment rows, and any
 long list where you want to hint at more content without adding overlays or
 scroll listeners.
 
-<ComponentPreview previewStyle="rhea" name="scroll-fade-demo" previewClassName="h-auto">
+<ComponentPreview previewStyle="rhea" name="scroll-fade-demo" class="rounded-2xl" previewClassName="h-auto min-h-0">
 
 <div></div>
 
@@ -80,7 +80,7 @@ scroll listeners.
 for things like "Thinking…", "Generating response…", running tools, and
 streaming markers.
 
-<ComponentPreview previewStyle="rhea" name="shimmer-demo">
+<ComponentPreview previewStyle="rhea" name="shimmer-demo" class="rounded-2xl" previewClassName="h-72 min-h-0">
 
 <div></div>
 
