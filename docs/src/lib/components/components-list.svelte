@@ -8,7 +8,7 @@
 		components.filter(
 			(component) =>
 				component.title !== "Components" &&
-				(variant === "all" || PAGES_NEW.includes(`/docs${component.slugFull}`))
+				(variant === "all" || component.slugFull === "/components/questionnaire")
 		)
 	);
 </script>
