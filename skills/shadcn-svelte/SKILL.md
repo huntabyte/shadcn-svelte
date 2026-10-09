@@ -1,6 +1,6 @@
 ---
 name: shadcn-svelte
-description: Manages shadcn-svelte components and projects — adding, updating, fixing, debugging, styling, and composing UI. Provides project context, component docs, and usage examples. Applies when working with shadcn-svelte, the CLI, design-system presets, or any project with a components.json file. Also triggers for "shadcn-svelte init", "add component", or registry URLs.
+description: Manages shadcn-svelte components and projects — adding, updating, fixing, debugging, styling, and composing UI. Provides project context, component docs, and usage examples. Applies when working with shadcn-svelte, the CLI, design-system presets, or any project with a components.json file. Also triggers for "shadcn-svelte init", "add component", registry URLs, building a design system, or applying a DESIGN.md or brand spec to shadcn-svelte.
 user-invocable: false
 allowed-tools: Bash(npx shadcn-svelte@latest *), Bash(pnpm dlx shadcn-svelte@latest *), Bash(bunx --bun shadcn-svelte@latest *)
 ---
@@ -183,6 +183,18 @@ Open `https://shadcn-svelte.com/docs/components/<name>.md` for docs and examples
 6. **Review added components** — After adding, **read the added files** and verify composition (groups, titles, validation attrs). Align icon imports with `iconLibrary`.
 7. **Remote registry items** — Adding by URL is explicit; if the user wants a component from an unknown source, confirm the registry URL or item before running `add`.
 
+## Design Systems from DESIGN.md
+
+When the user asks for a design system from a `DESIGN.md` (or a brand spec), with or without a preset, follow [design-system.md](./design-system.md) end to end:
+
+1. For a new app, scaffold SvelteKit with `npx sv create <app>` (or Svelte + Vite when requested), then initialize with `npx shadcn-svelte@latest init --preset <code>`. Without a code, choose a style through `init`; React preset codes and scaffolding flags do not apply. In an existing app, preserve local customizations.
+2. Install every component with `add --all --yes` in a new app; add only missing components in an existing one.
+3. Read the DESIGN.md frontmatter, Do's and Don'ts, and Known Gaps before editing.
+4. Map its tokens onto the variables in `components.json`'s `tailwind.css`. Pin the radius scale, shadows, fonts and `type-*` utilities.
+5. Restyle installed `tailwind-variants` variants and associated style CSS. Change control heights together.
+6. Build the page per [design-system-page.md](./design-system-page.md): contrast-checked color roles, type specimens, pinned state matrices, edge cases, do/don't pairs, recipes. Check imports with `scripts/showcase-coverage.mjs`, then verify every component renders.
+7. Verify in a browser: `svelte-check`, production build including SSR, no console errors, loads at the top, no horizontal overflow, dark mode.
+
 ## Updating Components
 
 Use the **`update`** command to pull the latest registry versions of components already in the project. Review changes with `git diff` after `update`.
@@ -200,6 +212,12 @@ npx shadcn-svelte@latest init
 
 # Initialize with a preset string from the docs site builder.
 npx shadcn-svelte@latest init --preset <code>
+
+# Build a design system (scaffold an app first; follow design-system.md).
+npx sv create my-ds
+cd my-ds
+npx shadcn-svelte@latest init --preset <code>
+npx shadcn-svelte@latest add --all --yes
 
 # Add components (interactive when run with no names).
 npx shadcn-svelte@latest add
@@ -225,3 +243,5 @@ npx shadcn-svelte@latest registry build
 - [rules/styling.md](./rules/styling.md) — Semantic colors, variants, class, spacing, size, truncate, dark mode, cn(), z-index
 - [cli.md](./cli.md) — Commands, flags, registry
 - [customization.md](./customization.md) — Theming, CSS variables, extending components
+- [design-system.md](./design-system.md) — DESIGN.md to a themed Svelte app: scaffolding, style selection, tokens, geometry, fonts, verification
+- [design-system-page.md](./design-system-page.md) — Foundations, component tiers, pinned state matrices, contrast pairs, edge cases, recipes

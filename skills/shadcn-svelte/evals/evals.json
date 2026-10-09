@@ -42,6 +42,55 @@
 				"Uses gap-* instead of space-y-* or space-x-* for spacing",
 				"Uses size-* when width and height are equal instead of separate w-* h-*"
 			]
+		},
+		{
+			"id": 4,
+			"prompt": "Build me a SvelteKit design system using the shadcn-svelte preset from this folder. Use DESIGN.md: white canvas, #0075DE primary, 8px buttons, 12px cards, multi-layer soft shadows, 2px blue focus outline with 2px offset.",
+			"expected_output": "A SvelteKit app with all components installed, DESIGN.md tokens mapped onto the existing global CSS, and a complete design system page.",
+			"files": [],
+			"expectations": [
+				"Scaffolds with sv create separately, then passes the supplied shadcn-svelte preset unchanged to init --preset; does not use React scaffolding flags",
+				"Installs all components with add --all --yes and counts component directories with index.ts barrels from disk",
+				"Reads DESIGN.md frontmatter, Do's and Don'ts and Known Gaps before editing",
+				"Maps colors into components.json tailwind.css and registers extra tokens in @theme inline",
+				"Pins the radius scale and documented multi-layer shadow scale",
+				"Implements the 2px focus outline and offset, including the pinned focus preview selector",
+				"Changes field control heights together with button height, inspecting tv variants and style CSS",
+				"Uses Svelte 5 snippets for state matrices and data-preview for hover, focus and active",
+				"Measures live contrast in an SSR-safe helper and renders do/dont pairs",
+				"Runs showcase-coverage.mjs for folder/barrel imports and verifies each installed component renders",
+				"Runs svelte-check and a production build; checks console errors, initial scroll and overflow in a browser"
+			]
+		},
+		{
+			"id": 5,
+			"prompt": "Create a Svelte + Vite design system app called editorial using the supplied shadcn-svelte preset and DESIGN.md: cream #faf9f5 canvas, coral #cc785c primary that darkens only on press, licensed serif display (substitute Cormorant Garamond), Inter body, dark #181715 product surfaces, 40px buttons and inputs.",
+			"expected_output": "A Svelte + Vite app with font substitutes, type utilities, active-only primary styling, aligned controls, scoped dark bands, and a full showcase.",
+			"files": [],
+			"expectations": [
+				"Scaffolds a svelte-ts Vite app separately and follows the shadcn-svelte Vite installation guide",
+				"Installs the specified font substitutes and imports every referenced face",
+				"Defines type-* utilities with serif family, documented weights and tracking",
+				"Uses active: instead of hover: for primary darkening",
+				"Raises related button and input control heights to 40px",
+				"Uses class=\"dark\" for scoped dark surfaces and remeasures their contrast",
+				"Uses Svelte component barrels, child snippets and bind:value instead of React APIs",
+				"Reports font substitutions, retained hover states and derived dark values"
+			]
+		},
+		{
+			"id": 6,
+			"prompt": "Create a new shadcn-svelte design system from DESIGN.md without a preset: editorial cream canvas, coral primary, 40px controls, 12px cards, 16px hero container, pill badges, rare shadows, 32px card padding.",
+			"expected_output": "A new SvelteKit app initialized with a suitable style, themed from DESIGN.md, and a full design system page.",
+			"files": [],
+			"expectations": [
+				"Picks a style based on geometry and explains the reason, using init prompts or a builder-generated Svelte preset",
+				"Does not invent a preset code or pass bare style names or React preset codes to --preset",
+				"Uses components.json for aliases, style, icons and tailwind.css instead of info --json",
+				"Builds foundations, component examples and state matrices, edge cases, do/dont pairs and recipes",
+				"Reports all body-text contrast pairs below 4.5:1, including pairs specified by DESIGN.md",
+				"Keeps DOM helpers browser-only and verifies SvelteKit SSR plus dark mode"
+			]
 		}
 	]
 }
