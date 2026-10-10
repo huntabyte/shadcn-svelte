@@ -77,7 +77,7 @@
 		"@sveltejs/kit": "catalog:",
 		"@sveltejs/package": "^2.5.0",
 		"@sveltejs/vite-plugin-svelte": "catalog:",
-		"@vitest/browser-playwright": "^4.1.10",
+		"@vitest/browser-playwright": "^5.0.0",
 		"jsdom": "^28.1.0",
 		"playwright": "^1.61.0",
 		"publint": "^0.2.12",
@@ -86,6 +86,6 @@
 		"svelte-check": "catalog:",
 		"typescript": "catalog:",
 		"vite": "catalog:",
-		"vitest": "^4.1.11"
+		"vitest": "^5.0.0"
 	}
 }
