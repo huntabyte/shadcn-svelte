@@ -245,7 +245,7 @@
 				</Table.Root>
 			</DragDropProvider>
 		</div>
-		<div class="flex items-center justify-between px-4">
+		<div class="relative flex items-center justify-between px-4">
 			<div class="hidden flex-1 text-sm text-muted-foreground lg:flex">
 				{table.getFilteredSelectedRowModel().rows.length} of
 				{table.getFilteredRowModel().rows.length} row(s) selected.
