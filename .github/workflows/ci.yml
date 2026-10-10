@@ -25,6 +25,9 @@ jobs:
       - name: Run svelte-check
         run: pnpm check
 
+      - name: Run toast adapter tests
+        run: pnpm -F docs test:toast
+
   lint:
     name: Lint
     runs-on: macos-latest

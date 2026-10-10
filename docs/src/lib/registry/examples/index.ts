@@ -211,3 +211,10 @@ export { default as ShimmerAngle } from "./shimmer-angle.svelte";
 export { default as ShimmerOnce } from "./shimmer-once.svelte";
 export { default as ShimmerNone } from "./shimmer-none.svelte";
 export { default as ShimmerRtl } from "./shimmer-rtl.svelte";
+
+export { default as ToastDemo } from "./toast-demo.svelte";
+export { default as ToastTypes } from "./toast-types.svelte";
+export { default as ToastPromise } from "./toast-promise.svelte";
+export { default as ToastExploration } from "./toast-exploration.svelte";
+
+export { default as ToastRichContent } from "./toast-rich-content.svelte";

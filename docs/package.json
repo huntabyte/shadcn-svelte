@@ -27,7 +27,8 @@
 		"parity-check": "parity --check",
 		"parity:fix": "parity fix",
 		"parity:variants": "parity variants",
-		"parity-check:variants": "parity variants --check"
+		"parity-check:variants": "parity variants --check",
+		"test:toast": "vitest run"
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20260317.1",
@@ -141,6 +142,7 @@
 		"vaul-svelte": "1.0.0-next.7",
 		"velite": "^0.3.1",
 		"vite": "^8.1.5",
+		"vitest": "^4.1.11",
 		"zod": "^4.4.3"
 	}
 }

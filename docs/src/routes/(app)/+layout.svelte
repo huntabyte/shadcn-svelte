@@ -2,6 +2,7 @@
 	import { ModeWatcher, toggleMode } from "mode-watcher";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import { Toaster } from "$lib/registry/ui/sonner/index.js";
+	import { Toaster as ToastToaster } from "$lib/registry/ui/toast/index.js";
 	import { UserConfig, UserConfigContext } from "$lib/user-config.svelte.js";
 
 	let { children, data } = $props();
@@ -31,5 +32,6 @@
 
 <Tooltip.Provider>
 	<Toaster position="top-center" />
+	<ToastToaster />
 	{@render children()}
 </Tooltip.Provider>
