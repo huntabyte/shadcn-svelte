@@ -101,7 +101,9 @@ web_modules/
 .idea/
 
 .velite
+docs/.generated
 docs/src/__registry__
+docs/src/routes/api/search.json/search.json
 docs/static/docs
 docs/static/llms.txt
 docs/static/docs.md
