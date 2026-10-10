@@ -18,7 +18,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="field-demo">
+<ComponentPreview name="field-demo" previewClassName="h-[800px] p-6 md:h-[850px]">
 
 <div></div>
 
@@ -138,7 +138,7 @@ The `Field` family is designed for composing accessible forms. A typical field i
 
 ## Checkbox
 
-<ComponentPreview name="field-checkbox">
+<ComponentPreview name="field-checkbox" previewClassName="h-[32rem]">
 
 <div></div>
 
@@ -174,7 +174,7 @@ Wrap `Field.Field` components inside `Field.Label` to create selectable field gr
 
 Stack `Field` components with `Field.Group`. Add `Field.Separator` to divide them.
 
-<ComponentPreview name="field-field-group-demo">
+<ComponentPreview name="field-field-group-demo" previewClassName="h-96">
 
 <div></div>
 
@@ -186,7 +186,7 @@ Stack `Field` components with `Field.Group`. Add `Field.Separator` to divide the
 - **Horizontal fields:** Set `orientation="horizontal"` on `Field` to align the label and control side-by-side. Pair with `Field.Content` to keep descriptions aligned.
 - **Responsive fields:** Set `orientation="responsive"` for automatic column layouts inside container-aware parents. Apply `@container/field-group` classes on `Field.Group` to switch orientations at specific breakpoints.
 
-<ComponentPreview name="field-responsive-layout-demo">
+<ComponentPreview name="field-responsive-layout-demo" previewClassName="h-[650px] p-6 md:h-[500px] md:p-10">
 
 <div></div>
 

@@ -9,6 +9,7 @@
 	},
 	"exports": {
 		".": "./src/compare.ts",
+		"./docs": "./src/docs.ts",
 		"./parity-ignore": "./src/parity-ignore.ts",
 		"./inject-style-classes": "./src/inject-style-classes.ts"
 	},
