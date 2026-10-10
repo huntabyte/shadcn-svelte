@@ -18,16 +18,7 @@ export type NavItemWithChildren = NavItem & {
 	items: NavItemWithChildren[];
 };
 
-export const PAGES_NEW = [
-	"/docs/utils/scroll-fade",
-	"/docs/utils/shimmer",
-	"/docs/components/message",
-	"/docs/components/bubble",
-	"/docs/components/attachment",
-	"/docs/components/marker",
-	"/docs/components/questionnaire",
-	"/docs/components/message-scroller",
-];
+export const PAGES_NEW = ["/docs/components/questionnaire"];
 
 export const PAGES_UPDATED: string[] = [];
 

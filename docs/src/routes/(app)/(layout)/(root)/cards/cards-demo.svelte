@@ -97,7 +97,7 @@
 			<ClaimableBalance></ClaimableBalance>
 			<DividendIncome></DividendIncome>
 		</div>
-		<div class="hidden flex-col gap-(--gap) 3xl:flex!">
+		<div class="hidden flex-col gap-(--gap) min-[1400px]:flex">
 			<NewMilestone></NewMilestone>
 			<PayoutThreshold></PayoutThreshold>
 			<AccountAccess></AccountAccess>
@@ -107,7 +107,7 @@
 			<TransferFunds></TransferFunds>
 			<Payments></Payments>
 		</div>
-		<div class="hidden flex-col gap-(--gap) min-[1400px]:flex">
+		<div class="hidden flex-col gap-(--gap) min-[1900px]:flex">
 			<EmptyDistributeTrack></EmptyDistributeTrack>
 			<AnalyticsCard></AnalyticsCard>
 			<NotificationSettings></NotificationSettings>
