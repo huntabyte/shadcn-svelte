@@ -4,7 +4,7 @@
 	import TextareaInvalid from "./textarea-invalid.svelte";
 	import TextareaWithDescription from "./textarea-with-description.svelte";
 	import TextareaWithLabel from "./textarea-with-label.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

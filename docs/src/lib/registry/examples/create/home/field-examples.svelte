@@ -8,7 +8,7 @@
 	import { Input } from "$lib/registry/ui/input/index.js";
 	import { Slider } from "$lib/registry/ui/slider/index.js";
 	import { Switch } from "$lib/registry/ui/switch/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	let gpuCount = $state(8);
 	let value = $state([200, 800]);

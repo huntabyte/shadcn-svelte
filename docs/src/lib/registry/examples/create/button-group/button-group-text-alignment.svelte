@@ -3,7 +3,7 @@
 	import { ButtonGroup } from "$lib/registry/ui/button-group/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Label } from "$lib/registry/ui/label/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="Text Alignment">

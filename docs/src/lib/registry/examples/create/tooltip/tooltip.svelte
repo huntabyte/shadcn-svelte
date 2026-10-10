@@ -7,7 +7,7 @@
 	import TooltipSides from "./tooltip-sides.svelte";
 	import TooltipWithIcon from "./tooltip-with-icon.svelte";
 	import TooltipWithKeyboard from "./tooltip-with-keyboard.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

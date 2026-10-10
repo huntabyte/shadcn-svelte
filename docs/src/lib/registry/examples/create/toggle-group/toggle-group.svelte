@@ -14,7 +14,7 @@
 	import ToggleGroupVertical from "./toggle-group-vertical.svelte";
 	import ToggleGroupWithIcons from "./toggle-group-with-icons.svelte";
 	import ToggleGroupWithInputAndSelect from "./toggle-group-with-input-and-select.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

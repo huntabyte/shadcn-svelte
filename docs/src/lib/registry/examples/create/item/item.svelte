@@ -15,7 +15,7 @@
 	import ItemSeparator from "./item-separator.svelte";
 	import ItemVariants from "./item-variants.svelte";
 	import ItemWithImage from "./item-with-image.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

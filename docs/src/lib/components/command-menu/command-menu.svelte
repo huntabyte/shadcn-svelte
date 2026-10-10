@@ -3,6 +3,7 @@
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
 	import CornerDownLeftIcon from "@lucide/svelte/icons/corner-down-left";
 	import SquareDashedIcon from "@lucide/svelte/icons/square-dashed";
+	import { encodePreset } from "shadcn-svelte/preset";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import * as Kbd from "$lib/registry/ui/kbd/index.js";
@@ -10,6 +11,7 @@
 	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
 	import { mainNavItems, sidebarNavItems } from "$lib/navigation.js";
 	import { getCommand } from "$lib/package-manager.js";
+	import { STYLES } from "$lib/registry/config.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
 	import { UserConfigContext, type PackageManager } from "$lib/user-config.svelte.js";
@@ -49,7 +51,7 @@
 		sidebarNavItems.find((group) => group.title === title)
 	).filter((group): group is (typeof sidebarNavItems)[number] => group !== undefined);
 
-	type SelectedType = "color" | "page" | "component" | "block";
+	type SelectedType = "color" | "page" | "component" | "block" | "style";
 
 	function pageValue(groupTitle: string, title: string | undefined) {
 		return title?.toString() ? `${groupTitle} ${title}` : "";
@@ -82,6 +84,9 @@
 			for (const color of palette.colors) {
 				map[color.class] = { type: "color", payload: color.class };
 			}
+		}
+		for (const style of STYLES) {
+			map[`Style ${style.title} ${style.description}`] = { type: "style", payload: "" };
 		}
 		return map;
 	});
@@ -162,8 +167,15 @@
 					.filter((palette) => palette.colors.length > 0)
 	);
 
+	const styleResults = $derived(
+		STYLES.filter((style) =>
+			matches(`style preset ${style.name} ${style.title} ${style.description}`.toLowerCase())
+		)
+	);
+
 	const hasResults = $derived(
-		pageResults.length > 0 ||
+		styleResults.length > 0 ||
+			pageResults.length > 0 ||
 			groupResults.length > 0 ||
 			blockResults.length > 0 ||
 			colorResults.length > 0
@@ -280,6 +292,31 @@
 						{/each}
 					</Command.Group>
 				{/if}
+				{#if styleResults.length}
+					<Command.Group
+						heading="Styles"
+						class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
+					>
+						{#each styleResults as style (style.name)}
+							{@const Icon = style.icon}
+							<CommandMenuItem
+								value={`Style ${style.title} ${style.description}`}
+								keywords={["style", "preset", style.name, style.title]}
+								onSelect={() => {
+									runCommand(() => {
+										goto(`/create?preset=${encodePreset({ style: style.name })}`);
+									});
+								}}
+							>
+								<Icon />
+								{style.title}
+								<span class="ms-auto text-xs font-normal text-muted-foreground">
+									Open style in shadcn/create
+								</span>
+							</CommandMenuItem>
+						{/each}
+					</Command.Group>
+				{/if}
 				{#if renderDelayedGroups}
 					{#each groupResults as group (group.title)}
 						<Command.Group
@@ -370,6 +407,9 @@
 		>
 			<div class="flex items-center gap-2">
 				<Kbd.Root class="border bg-background"><CornerDownLeftIcon /></Kbd.Root>
+				{#if selectedType === "style"}
+					Open Style
+				{/if}
 				{#if selectedType === "page" || selectedType === "component"}
 					Go to Page
 				{/if}

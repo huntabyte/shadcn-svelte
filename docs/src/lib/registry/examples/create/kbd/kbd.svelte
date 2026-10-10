@@ -8,7 +8,7 @@
 	import KbdWithIconsAndText from "./kbd-with-icons-and-text.svelte";
 	import KbdWithIcons from "./kbd-with-icons.svelte";
 	import KbdWithSamp from "./kbd-with-samp.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

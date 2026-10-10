@@ -6,7 +6,7 @@
 	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
 	import { Textarea } from "$lib/registry/ui/textarea/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const monthItems = [
 		{ label: "01", value: "01" },

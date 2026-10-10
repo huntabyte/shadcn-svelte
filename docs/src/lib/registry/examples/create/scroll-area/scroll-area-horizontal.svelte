@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as ScrollArea from "$lib/registry/ui/scroll-area/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const works = [
 		{
