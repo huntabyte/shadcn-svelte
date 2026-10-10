@@ -92,6 +92,22 @@ See installation instructions for the [Popover](/docs/components/popover#install
 
 </CodeCollapsibleWrapper>
 
+## Composition
+
+The Combobox is not a single component — it is built by composing `Popover` and `Command` together:
+
+```text
+Popover.Root
+├── Popover.Trigger
+└── Popover.Content
+    └── Command.Root
+        ├── Command.Input
+        └── Command.List
+            ├── Command.Empty
+            └── Command.Group
+                └── Command.Item
+```
+
 ## Basic
 
 A simple combobox with a list of frameworks.
@@ -151,3 +167,7 @@ You can trigger the combobox from a button or any other component by using the `
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+A combobox is composed from [Bits UI Popover](https://bits-ui.com/docs/components/popover#api-reference) and [Command](/docs/components/command#api-reference). It does not expose a separate combobox component API.

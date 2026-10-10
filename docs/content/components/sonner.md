@@ -3,7 +3,7 @@ title: Sonner
 description: An opinionated toast component for Svelte.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/sonner
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/sonner
   doc: https://svelte-sonner.vercel.app/
 ---
 
@@ -58,6 +58,12 @@ If you wish to opt out of Dark Mode support, you can uninstall `mode-watcher` an
 
 {@render children?.()}
 ```
+
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
 
 </Steps>
 {/snippet}
@@ -182,3 +188,7 @@ We've updated the Sonner component to use icons from `lucide`. Update your `sonn
   {/snippet}
 </Sonner>
 ```
+
+## API Reference
+
+See the [svelte-sonner documentation](https://svelte-sonner.vercel.app/) for more information.

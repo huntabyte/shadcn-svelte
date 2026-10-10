@@ -3,7 +3,7 @@ title: Checkbox
 description: A control that allows the user to toggle between checked and not checked.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/checkbox
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/checkbox
   doc: https://bits-ui.com/docs/components/checkbox
   api: https://bits-ui.com/docs/components/checkbox#api-reference
 ---
@@ -51,6 +51,12 @@ Copy and paste the following code into your project.
 {#if viewerData}
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
+
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
 
 </Steps>
 {/snippet}
@@ -139,3 +145,7 @@ Use multiple fields to create a checkbox list.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+See the [Bits UI](https://bits-ui.com/docs/components/checkbox#api-reference) documentation for more information.

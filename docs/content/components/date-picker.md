@@ -3,7 +3,7 @@ title: Date Picker
 description: A date picker component with range and presets.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/examples/date-picker-demo.svelte
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/examples/date-picker-demo.svelte
 ---
 
 <script>
@@ -136,3 +136,7 @@ This component uses the `chrono-node` library to parse natural language dates.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+A date picker is composed from [Bits UI Popover](https://bits-ui.com/docs/components/popover#api-reference) and [Calendar](/docs/components/calendar#api-reference). See [@internationalized/date](https://react-spectrum.adobe.com/internationalized/date/index.html) for date values and formatting.

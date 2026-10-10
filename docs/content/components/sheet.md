@@ -3,7 +3,7 @@ title: Sheet
 description: Extends the Dialog component to display content that complements the main content of the screen.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/sheet
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/sheet
   doc: https://bits-ui.com/docs/components/dialog
   api: https://bits-ui.com/docs/components/dialog#api-reference
 ---
@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -79,6 +85,20 @@ Copy and paste the following code into your project.
 </Sheet.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `Sheet`:
+
+```text
+Sheet.Root
+├── Sheet.Trigger
+└── Sheet.Content
+    ├── Sheet.Header
+    │   ├── Sheet.Title
+    │   └── Sheet.Description
+    └── Sheet.Footer
+```
+
 ## Side
 
 Use the `side` prop on `Sheet.Content` to set the edge of the screen where the sheet appears. Values are `top`, `right`, `bottom`, or `left`.
@@ -98,3 +118,7 @@ Use `showCloseButton={false}` on `Sheet.Content` to hide the close button.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+See the [Bits UI Dialog](https://bits-ui.com/docs/components/dialog#api-reference) documentation.

@@ -3,7 +3,7 @@ title: Navigation Menu
 description: A collection of links for navigating websites.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/navigation-menu
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/navigation-menu
   doc: https://bits-ui.com/docs/components/navigation-menu
   api: https://bits-ui.com/docs/components/navigation-menu#api-reference
 ---
@@ -47,6 +47,12 @@ Copy and paste the following code into your project.
 {#if viewerData}
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -72,6 +78,23 @@ Copy and paste the following code into your project.
 </NavigationMenu.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `NavigationMenu`:
+
+```text
+NavigationMenu.Root
+├── NavigationMenu.List
+│   ├── NavigationMenu.Item
+│   │   ├── NavigationMenu.Trigger
+│   │   └── NavigationMenu.Content
+│   │       ├── NavigationMenu.Link
+│   │       └── NavigationMenu.Link
+│   └── NavigationMenu.Item
+│       └── NavigationMenu.Link
+└── Viewport (rendered internally when viewport=true)
+```
+
 ## Link Component
 
 Use the `href` prop on `NavigationMenu.Link` to render a link. You can style it like a trigger with `navigationMenuTriggerStyle()`.
@@ -88,3 +111,7 @@ Use the `href` prop on `NavigationMenu.Link` to render a link. You can style it 
   </NavigationMenu.Link>
 </NavigationMenu.Item>
 ```
+
+## API Reference
+
+See the [Bits UI](https://bits-ui.com/docs/components/navigation-menu#api-reference) documentation for more information.

@@ -3,7 +3,7 @@ title: Table
 description: A responsive table component.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/table
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/table
 ---
 
 <script>
@@ -42,6 +42,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -76,6 +82,33 @@ Copy and paste the following code into your project.
 </Table.Root>
 ```
 
+## Composition
+
+Use the following composition to build a `Table`:
+
+```text
+Table.Root
+├── Table.Caption
+├── Table.Header
+│   └── Table.Row
+│       ├── Table.Head
+│       ├── Table.Head
+│       ├── Table.Head
+│       └── Table.Head
+├── Table.Body
+│   ├── Table.Row
+│   │   ├── Table.Cell
+│   │   ├── Table.Cell
+│   │   ├── Table.Cell
+│   │   └── Table.Cell
+│   └── Table.Row
+│       ├── Table.Cell
+│       ├── Table.Cell
+│       ├── Table.Cell
+│       └── Table.Cell
+└── Table.Footer
+```
+
 ## Footer
 
 Use the `<Table.Footer />` component to add a footer to the table.
@@ -103,3 +136,7 @@ You can use the `<Table />` component to build more complex data tables. Combine
 See the [Data Table](/docs/components/data-table) documentation for more information.
 
 You can also see an example of a data table in the [Tasks](/examples/tasks) demo.
+
+## API Reference
+
+The table components accept the native attributes for `table`, `thead`, `tbody`, `tfoot`, `tr`, `th`, `td`, and `caption`, respectively. Each component supports `bind:ref`. See the [HTML table reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/table).

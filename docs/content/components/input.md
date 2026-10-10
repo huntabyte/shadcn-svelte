@@ -3,7 +3,7 @@ title: Input
 description: A text input component for forms and user data entry with built-in styling and accessibility features.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/input
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/input
 ---
 
 <script>
@@ -41,6 +41,12 @@ Copy and paste the following code into your project.
 {#if viewerData}
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
+
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
 
 </Steps>
 {/snippet}
@@ -186,3 +192,7 @@ A full form example with multiple inputs, a select, and a button.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+`Input` accepts native input attributes and supports `bind:value`, `bind:files` for `type="file"`, and `bind:ref`. See the [HTML input reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input) for native attributes.

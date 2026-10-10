@@ -3,7 +3,7 @@ title: Dialog
 description: A window overlaid on either the primary window or another dialog window, rendering the content underneath inert.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/dialog
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/dialog
   doc: https://bits-ui.com/docs/components/dialog
   api: https://bits-ui.com/docs/components/dialog#api-reference
 ---
@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -77,6 +83,20 @@ Copy and paste the following code into your project.
     </Dialog.Header>
   </Dialog.Content>
 </Dialog.Root>
+```
+
+## Composition
+
+Use the following composition to build a `Dialog`:
+
+```text
+Dialog.Root
+├── Dialog.Trigger
+└── Dialog.Content
+    ├── Dialog.Header
+    │   ├── Dialog.Title
+    │   └── Dialog.Description
+    └── Dialog.Footer
 ```
 
 ## Custom Close Button
@@ -118,3 +138,7 @@ Long content can scroll while the header stays in view.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+See the [Bits UI](https://bits-ui.com/docs/components/dialog#api-reference) documentation for more information.

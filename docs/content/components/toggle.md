@@ -3,7 +3,7 @@ title: Toggle
 description: A two-state button that can be either on or off.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/toggle
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/toggle
   doc: https://bits-ui.com/docs/components/toggle
   api: https://bits-ui.com/docs/components/toggle#api-reference
 ---
@@ -51,6 +51,12 @@ Copy and paste the following code into your project.
 {#if viewerData}
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
+
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
 
 </Steps>
 {/snippet}
@@ -103,3 +109,7 @@ Use the `size` prop to change the size of the toggle.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+See the [Bits UI Toggle](https://bits-ui.com/docs/components/toggle#api-reference) documentation.
