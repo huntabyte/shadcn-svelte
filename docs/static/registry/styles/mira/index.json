@@ -1069,7 +1069,8 @@
 		"name": "chart-pie-separator-none",
 		"type": "registry:block",
 		"registryDependencies": [
-			"card"
+			"card",
+			"chart"
 		],
 		"relativeUrl": "chart-pie-separator-none.json"
 	},
