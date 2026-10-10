@@ -1,6 +1,19 @@
+<script lang="ts">
+	import { cn } from "$lib/utils.js";
+
+	type Props = {
+		showOnDesktop?: boolean;
+	};
+
+	let { showOnDesktop = false }: Props = $props();
+</script>
+
 <a
 	href="https://github.com/EpicenterHQ/epicenter"
-	class="group relative flex w-full items-center gap-3 overflow-hidden rounded-xl border border-foreground/5 bg-muted/60 px-4 py-3 transition-all select-none hover:border-foreground/10 xl:hidden dark:bg-background"
+	class={cn(
+		"group relative flex w-full items-center gap-3 overflow-hidden rounded-xl border border-foreground/5 bg-muted/60 px-4 py-3 transition-all select-none hover:border-foreground/10 dark:bg-background",
+		!showOnDesktop && "xl:hidden"
+	)}
 >
 	<div
 		class="absolute -top-8 -right-8 h-24 w-24 rounded-full bg-[#FFD4B2] opacity-10 blur-2xl transition-opacity group-hover:opacity-20"
