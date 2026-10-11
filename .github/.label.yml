@@ -60,13 +60,18 @@ labels:
   "awaiting submitter":
     apply_when: >-
       A human maintainer has made a specific request for information or action from
-      the submitter and it is still outstanding. Conditional bot/template notices,
+      the submitter and it is still outstanding, including a specific actionable
+      request in a review thread. An unresolved thread or CHANGES_REQUESTED review
+      alone is insufficient. Conditional bot/template notices,
       drafts, parent-PR dependencies, upstream releases, or a submitter asking for
       review do not establish an outstanding request.
     remove_when: >-
       The submitter has supplied the requested information or action, or a later
-      maintainer comment or review accepts the response. There is no outstanding
-      request directed to the submitter.
+      maintainer comment or resolved request thread accepts the response. A later
+      approval by the requesting maintainer resolves their earlier request unless
+      they explicitly leave it outstanding or make a newer request. A dismissed review no longer establishes a request by itself. An outdated
+      thread alone is not proof that its request was addressed. There is no
+      outstanding request directed to the submitter.
   "needs reproduction":
     apply_when: >-
       Only an issue (type issue), never a pull request, reports a defect requiring
@@ -84,7 +89,11 @@ labels:
       The issue concerns the public shadcn-svelte CLI used by end users, or a pull
       request changes that public CLI. An internal documentation/build/parity tool,
       installation instructions, or a component port alone is insufficient.
-    remove_when: The discussion establishes that only components, docs, or internal tooling are affected.
+      Other tools named CLI, such as Changesets for releases or Wrangler for
+      deployments, are not the public shadcn-svelte CLI.
+    remove_when: >-
+      The discussion establishes that only components, docs, or internal tooling
+      are affected, including Changesets CLI upgrades and deployment tooling.
   triage:
     remove_when: The issue has been confirmed as a bug by the maintainer
     can_apply: false
