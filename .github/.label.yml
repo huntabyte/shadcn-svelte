@@ -1,38 +1,104 @@
 only_configured: true # only apply labels configured below
 
+prompt: >-
+  Classify issues and pull requests using the rules below. Read the conversation
+  chronologically and use later maintainer clarifications to resolve earlier ambiguity.
+  OWNER, MEMBER, and COLLABORATOR comments represent maintainers; CONTRIBUTOR alone
+  does not establish maintainer confirmation. Bot/template text is not a human request
+  or confirmation. Linked work may be related without being a duplicate.
+  Never apply needs reproduction to a pull request.
+
 labels:
   bug:
-    apply_when: A confirmed report of unexpected behavior in the application, only applied once the issue has been confirmed as valid
+    apply_when: >-
+      An issue reports incorrect existing behavior confirmed as valid by a maintainer,
+      or a pull request fixes incorrect existing behavior. A reporter's assertion or
+      dependency report alone is not maintainer confirmation.
+    remove_when: The item requests new functionality rather than fixing incorrect existing behavior.
   docs:
     apply_when: A change or addition to the documentation
   duplicate:
-    apply_when: This issue has already been raised/resolved
+    apply_when: >-
+      An earlier canonical issue or pull request covers the same problem or proposed
+      change, making this item redundant. Require matching scope, not just a link,
+      shared component name, or upstream cause. A PR fixing an issue, implementing a
+      request, or replacing another PR at a maintainer's request is not a duplicate.
+      A local dependency-upgrade tracker can remain useful even when upstream tracks
+      the defect. Respect explicit maintainer explanations that scopes differ.
+    remove_when: >-
+      The relationship is a fix, requested implementation or replacement, upstream
+      cause, follow-up, or distinct tracking scope rather than a redundant report.
+    examples:
+      - A second issue reports the same behavior and identifies the first issue as its canonical report.
+      - A second PR proposes the same change as an existing PR without a distinct scope or a requested replacement.
     context: similar_issues
   feature:
-    apply_when: Adds new functionality/components
+    apply_when: >-
+      Adds or requests new end-user functionality or a new component.
+      Restoring existing expected behavior, a bug fix, or a workaround is not a feature.
+    remove_when: The item only fixes existing behavior or provides a workaround.
   chore:
     apply_when: Changes to the application which do not directly impact the end user
   "contributions welcome":
-    apply_when: The issue is an easy fix that cannot be misinterpreted. Never apply this for big logic changes, or for issues that may take up someones time to work on and could even up with their work going unused.
+    apply_when: >-
+      An issue invites a small, clearly bounded contribution whose solution is
+      unambiguous and useful. Do not apply to pull requests, work already implemented
+      or claimed, or large/uncertain logic changes.
+    remove_when: The item is a pull request or the requested work is already implemented or claimed.
     examples:
       - "The docs say `x`, but they should say `y`"
       - "There is a typo in the docs"
   dependencies:
-    apply_when: A pull request updates a dependency or an issue is opened to update a dependency
+    apply_when: >-
+      A pull request adds, removes, upgrades, or downgrades dependencies in a package
+      manifest or lockfile, including docs and internal build dependencies; or an issue
+      explicitly requests such a dependency change. This is independent of whether
+      the public CLI is affected. Merely listing installed versions is insufficient.
+    examples:
+      - Removing unused build dependencies from the docs package.
+      - Updating a dependency version to obtain an upstream fix.
   "awaiting submitter":
-    apply_when: The issue or PR requires additional information or action from the submitter.
-    removed_when: The submitter replies with the additional information or action requested
+    apply_when: >-
+      A human maintainer has made a specific request for information or action from
+      the submitter and it is still outstanding. Conditional bot/template notices,
+      drafts, parent-PR dependencies, upstream releases, or a submitter asking for
+      review do not establish an outstanding request.
+    remove_when: >-
+      The submitter has supplied the requested information or action, or a later
+      maintainer comment or review accepts the response. There is no outstanding
+      request directed to the submitter.
   "needs reproduction":
-    apply_when: A reproduction is required to support the issue, or the provided reproduction is just steps and not a repository/stackblitz that maintainers can open. (Links to the official docs (shadcn-svelte.com) are fine)
+    apply_when: >-
+      Only an issue (type issue), never a pull request, reports a defect requiring
+      reproduction and lacks an accessible repository, StackBlitz, or identified
+      official shadcn-svelte demo exhibiting that defect. Steps or screenshots alone
+      are insufficient. An identified demo on shadcn-svelte.com, with or without www
+      or a URL scheme, is acceptable; a generic documentation link alone is insufficient.
+    remove_when: >-
+      The item is a pull request, or an accessible reproduction or identified official
+      demo exhibiting the defect has been supplied, or a maintainer accepts the reproduction.
   "has workaround":
     apply_when: The issue has a workaround available to end users provided in the description or in the comments. Never apply this label to enhancements, only to bugs.
   cli:
-    apply_when: The issue relates/requires changes to the shadcn-svelte CLI
+    apply_when: >-
+      The issue concerns the public shadcn-svelte CLI used by end users, or a pull
+      request changes that public CLI. An internal documentation/build/parity tool,
+      installation instructions, or a component port alone is insufficient.
+    remove_when: The discussion establishes that only components, docs, or internal tooling are affected.
   triage:
     remove_when: The issue has been confirmed as a bug by the maintainer
     can_apply: false
   parity:
-    apply_when: The request is for parity with upstream shadcn/ui
+    apply_when: >-
+      An issue requests, or a pull request implements, alignment with upstream
+      shadcn/ui functionality or components that this repository tracks. An explicit
+      port of upstream functionality is sufficient; separate maintainer confirmation
+      is not required. Do not infer a gap merely because different upstream
+      implementations behave differently.
+    remove_when: >-
+      A maintainer explains that the current implementation already has parity
+      with the upstream implementation this repository follows, or that the proposed
+      difference is a separate behavior/design discussion rather than a parity gap.
   slop:
     apply_when: The issue/pull request description is clearly generated by AI. Signs can be, usage of em-dashes, overly verbose descriptions that distract from the actual issue/changes, etc.
     remove_when: The issue/pull request description is no longer clearly generated by AI. Short no excessive use of em-dashes, no overly verbose descriptions that distract from the actual issue/changes.
