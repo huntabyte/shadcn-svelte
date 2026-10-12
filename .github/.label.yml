@@ -6,7 +6,7 @@ prompt: >-
   OWNER, MEMBER, and COLLABORATOR comments represent maintainers; CONTRIBUTOR alone
   does not establish maintainer confirmation. Bot/template text is not a human request
   or confirmation. Linked work may be related without being a duplicate.
-  Never apply needs reproduction to a pull request. Evaluate each label independently;
+  A bug-fix PR without a linked issue can need reproduction. Evaluate each label independently;
   several labels can be correct at once. Use changed-file evidence when available,
   and do not assume omitted files or patches contain no changes.
 
@@ -106,14 +106,17 @@ labels:
       its request was addressed.
   "needs reproduction":
     apply_when: >-
-      Only an issue (type issue), never a pull request, reports a defect requiring
-      reproduction and lacks an accessible repository, StackBlitz, or identified
+      An issue reports a defect requiring reproduction, or a bug-fix pull request
+      has no linked issue establishing the reported defect, and the item lacks an
+      accessible reproduction repository, StackBlitz, or identified
       official shadcn-svelte demo exhibiting that defect. Steps or screenshots alone
       are insufficient. An identified demo on shadcn-svelte.com, with or without www
       or a URL scheme, is acceptable; a generic documentation link alone is insufficient.
     remove_when: >-
-      The item is a pull request, or an accessible reproduction or identified official
+      The item does not report or fix a defect, the bug-fix PR links an issue
+      establishing the defect, an accessible reproduction or identified official
       demo exhibiting the defect has been supplied, or a maintainer accepts the reproduction.
+      A PR branch or code diff alone is not a reproduction of the original defect.
   "has workaround":
     apply_when: >-
       An issue describes a concrete workaround for a defect that the reporter or a
