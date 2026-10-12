@@ -56,11 +56,12 @@ labels:
       can also be a feature; alignment does not exclude new functionality. A newly
       exposed public prop, snippet, or mode remains a feature even when the PR is
       described as a documentation example.
-      Restoring existing expected behavior, a bug fix, or a workaround is not a feature.
+      Only restoring existing expected behavior is not a feature. A workaround can
+      still qualify if it adds new functionality or a public component API.
     examples:
       - Exposing a customizable rendering snippet through public component props.
       - Adding a newly supported component mode by wrapping an existing primitive.
-    remove_when: The item only fixes existing behavior or provides a workaround.
+    remove_when: The item only fixes existing behavior.
   chore:
     apply_when: >-
       Internal diagnostics, test maintenance, build, release, or deployment changes
@@ -90,20 +91,20 @@ labels:
   "awaiting submitter":
     apply_when: >-
       A human maintainer has made a specific request for information or action from
-      the submitter and it is still outstanding, including a specific actionable
-      request in a review thread. An unresolved thread or CHANGES_REQUESTED review
-      alone is insufficient. A later approval by the requesting maintainer resolves
-      their earlier request unless they explicitly leave it outstanding or make a
-      newer request. Conditional bot/template notices,
-      drafts, parent-PR dependencies, upstream releases, or a submitter asking for
-      review do not establish an outstanding request.
+      the submitter and it is still outstanding, including an actionable review-thread
+      request or an active CHANGES_REQUESTED review, even when the review body is empty.
+      A changes-requested review remains active until the requesting maintainer
+      approves or explicitly accepts the changes, or the review is dismissed.
+      A later specific human request can establish a new outstanding request.
+      An unresolved thread alone, conditional bot/template notices, drafts, parent-PR
+      dependencies, upstream releases, or a submitter asking for review do not qualify.
     remove_when: >-
-      Remove if any of these applies: the supplied human discussion contains no
-      specific outstanding request directed to the submitter; the requested information
-      or action has been supplied; the requesting maintainer later approves or accepts
-      the response; or the only request was in a dismissed review. A newer specific
-      human request remains outstanding. An outdated thread alone is not proof that
-      its request was addressed.
+      There is no outstanding human maintainer request or active human maintainer
+      CHANGES_REQUESTED review. This can follow the requested information or action
+      being supplied, the requesting maintainer approving or accepting the response,
+      or the review being dismissed. A submitter reply or a resolved/outdated thread
+      alone does not clear an active changes-requested review. Remove the label if
+      only bot reviews request changes and there is no outstanding human request.
   "needs reproduction":
     apply_when: >-
       An issue reports a defect requiring reproduction, or a bug-fix pull request
