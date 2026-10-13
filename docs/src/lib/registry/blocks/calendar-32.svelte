@@ -36,7 +36,7 @@
 				type="single"
 				bind:value
 				captionLayout="dropdown"
-				onValueChange={(v) => {
+				onValueChange={(v: DateValue | undefined) => {
 					if (v) {
 						open = false;
 					}
