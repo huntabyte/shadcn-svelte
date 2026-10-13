@@ -15,9 +15,9 @@ jobs:
       deployments: write
     name: Deploy Production Site to Cloudflare Pages
     steps:
-      - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v5
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: pnpm
@@ -31,12 +31,15 @@ jobs:
         run: pnpm build
 
       - name: Deploy to Cloudflare Pages
-        uses: AdrianGonz97/refined-cf-pages-action@v1
+        uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-          projectName: shadcn-svelte
-          directory: ./.svelte-kit/cloudflare
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          wranglerVersion: "4"
           workingDirectory: sites/docs
-          branch: ${{ github.ref_name }}
+          command: >-
+            pages deploy ./.svelte-kit/cloudflare
+            --project-name=shadcn-svelte
+            --branch="${{ github.ref_name }}"
+            --commit-hash="${{ github.sha }}"

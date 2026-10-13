@@ -18,11 +18,11 @@ jobs:
     if: github.repository == 'huntabyte/shadcn-svelte'
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
-      - uses: pnpm/action-setup@v5
-      - uses: actions/setup-node@v6
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: pnpm
@@ -36,12 +36,12 @@ jobs:
 
       - name: Create Release Pull Request or Publish
         id: changesets
-        uses: changesets/action@v1
+        uses: changesets/action@v2
         with:
-          commit: "chore(release): version package"
-          title: "chore(release): version package"
-          publish: pnpm ci:release
+          commit-message: "chore(release): version package"
+          pr-title: "chore(release): version package"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          publish-script: pnpm ci:release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
           NODE_ENV: production
