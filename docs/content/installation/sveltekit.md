@@ -22,7 +22,19 @@ Use the SvelteKit CLI to create a new project with TailwindCSS
 
 ### Setup path aliases
 
-If you are not using the default alias `$lib`, you'll need to update your `svelte.config.js` file to include those aliases.
+SvelteKit 3 projects use the `#lib` [subpath import](https://nodejs.org/api/packages.html#subpath-imports) instead of the `$lib` alias. New projects include the following entries in `package.json` by default:
+
+```json title="package.json" {3-6} showLineNumbers
+{
+  // ... other options
+  "imports": {
+    "#lib": "./src/lib/index.js",
+    "#lib/*": "./src/lib/*"
+  }
+}
+```
+
+SvelteKit 2 projects can continue using the built-in `$lib` alias. To use a custom alias, update your svelte config file:
 
 ```ts title="svelte.config.js" {6} showLineNumbers
 const config = {
@@ -47,11 +59,11 @@ You will be asked a few questions to configure `components.json`:
 ```txt showLineNumbers
 Which base color would you like to use? › Slate
 Where is your global CSS file? (this file will be overwritten) › src/routes/layout.css
-Configure the import alias for lib: › $lib
-Configure the import alias for components: › $lib/components
-Configure the import alias for utils: › $lib/utils
-Configure the import alias for hooks: › $lib/hooks
-Configure the import alias for ui: › $lib/components/ui
+Configure the import alias for lib: › #lib
+Configure the import alias for components: › #lib/components
+Configure the import alias for utils: › #lib/utils
+Configure the import alias for hooks: › #lib/hooks
+Configure the import alias for ui: › #lib/components/ui
 ```
 
 ### That's it
