@@ -251,7 +251,7 @@
 	}
 
 	html {
-		@apply overscroll-none;
+		@apply overscroll-y-none;
 	}
 
 	body {

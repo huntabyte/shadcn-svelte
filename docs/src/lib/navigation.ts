@@ -27,6 +27,8 @@ export const PAGES_NEW = [
 	"/docs/components/marker",
 	"/docs/components/questionnaire",
 	"/docs/components/message-scroller",
+	"/docs/components/trace",
+	"/docs/components/code-block",
 ];
 
 export const PAGES_UPDATED: string[] = [];
