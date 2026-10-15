@@ -31,7 +31,7 @@
 		</Trace.CollapsibleTrigger>
 		<Trace.CollapsibleContent>
 			<Trace.Root>
-				{#each sources as source (source.href)}
+				{#each sources as source, index (index)}
 					<a href={source.href} target="_blank" rel="noreferrer">
 						<Trace.Line>
 							<Trace.Icon>

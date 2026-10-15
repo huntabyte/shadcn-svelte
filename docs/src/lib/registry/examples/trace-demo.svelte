@@ -4,204 +4,83 @@
 	import CircleCheckIcon from "@lucide/svelte/icons/circle-check";
 	import GlobeIcon from "@lucide/svelte/icons/globe";
 	import LoaderCircleIcon from "@lucide/svelte/icons/loader-circle";
-	import { onDestroy } from "svelte";
+	import { Chat } from "@ai-sdk/svelte";
+	import { untrack } from "svelte";
 	import * as Bubble from "$lib/registry/ui/bubble/index.js";
 	import * as CodeBlock from "$lib/registry/ui/code-block/index.js";
 	import * as Message from "$lib/registry/ui/message/index.js";
 	import * as Trace from "$lib/registry/ui/trace/index.js";
-	import { getMessageText, splitTextDeltas, wait } from "$lib/ai.js";
+	import { createChat, getMessageText } from "$lib/ai-sdk.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
+	import type { UIDataTypes, UIMessage } from "ai";
 
-	type ToolPart = {
-		type: "tool-runCommand";
-		toolCallId: string;
-		state: "input-available" | "output-available" | "output-error";
-		input: { command: string };
-		output?: { stdout: string };
-		errorText?: string;
-	};
-
-	type SourcePart = {
-		type: "source-url";
-		sourceId: string;
-		url: string;
-		title?: string;
-	};
-
-	type Part =
-		| { type: "text"; text: string }
-		| { type: "reasoning"; text: string; state: "streaming" | "done" }
-		| ToolPart
-		| SourcePart;
-
-	type ChatMessage = { id: string; role: "user" | "assistant"; parts: Part[] };
-
-	type Step =
-		| { type: "reasoning"; text: string; delayMs: number }
-		| { type: "text"; text: string; delayMs: number }
-		| { type: "tool"; command: string; delayMs: number; stdout?: string; errorText?: string }
-		| { type: "source"; url: string; title: string }
-		| { type: "sleep"; delayMs: number };
-
-	const question: ChatMessage = {
-		id: "user-1",
-		role: "user",
-		parts: [{ type: "text", text: "Why does pnpm install fail in CI?" }],
-	};
-
-	const steps: Step[] = [
+	type ChatMessage = UIMessage<
+		unknown,
+		UIDataTypes,
 		{
-			type: "reasoning",
-			text: "CI installs with a frozen lockfile, so the install stops when package.json and pnpm-lock.yaml disagree. I should check what the last commit changed, then reproduce the install.",
-			delayMs: 40,
-		},
-		{ type: "tool", command: "pnpm --version", delayMs: 700, stdout: "10.18.0" },
-		{
-			type: "tool",
-			command: "git diff --stat HEAD~1 -- package.json pnpm-lock.yaml",
-			delayMs: 900,
-			stdout: " package.json | 2 +-\n 1 file changed, 1 insertion(+), 1 deletion(-)",
-		},
-		{
-			type: "tool",
-			command: "pnpm install --frozen-lockfile",
-			delayMs: 1200,
-			errorText:
-				'ERR_PNPM_OUTDATED_LOCKFILE  Cannot install with "frozen-lockfile" because pnpm-lock.yaml is not up to date with package.json',
-		},
-		{
-			type: "source",
-			url: "https://pnpm.io/cli/install#--frozen-lockfile",
-			title: "pnpm install | pnpm.io",
-		},
-		{
-			type: "source",
-			url: "https://pnpm.io/continuous-integration",
-			title: "Continuous Integration | pnpm.io",
-		},
-		{ type: "sleep", delayMs: 1000 },
-		{
-			type: "text",
-			text: "The last commit bumped a version in package.json without updating pnpm-lock.yaml, so the frozen install fails. Run pnpm install locally and commit the lockfile.",
-			delayMs: 20,
-		},
-	];
+			runCommand: {
+				input: { command: string };
+				output: { stdout: string };
+			};
+		}
+	>;
 
-	function toToolPart(step: Extract<Step, { type: "tool" }>, index: number): ToolPart {
-		return {
-			type: "tool-runCommand",
-			toolCallId: `tool-${index + 1}`,
-			state: "input-available",
-			input: { command: step.command },
-		};
-	}
+	type Part = ChatMessage["parts"][number];
+	type ToolPart = Extract<Part, { type: "tool-runCommand" }>;
+	type SourcePart = Extract<Part, { type: "source-url" }>;
 
-	function toSourcePart(step: Extract<Step, { type: "source" }>): SourcePart {
-		return { type: "source-url", sourceId: step.url, url: step.url, title: step.title };
-	}
-
-	function getTranscript(): ChatMessage[] {
-		const parts: Part[] = steps.flatMap((step, index): Part[] => {
-			if (step.type === "reasoning") return [{ type: "reasoning", text: step.text, state: "done" }];
-			if (step.type === "text") return [{ type: "text", text: step.text }];
-			if (step.type === "source") return [toSourcePart(step)];
-			if (step.type === "tool") {
-				return [
-					step.errorText
-						? { ...toToolPart(step, index), state: "output-error", errorText: step.errorText }
-						: {
-								...toToolPart(step, index),
-								state: "output-available",
-								output: { stdout: step.stdout ?? "" },
-							},
-				];
-			}
-			return [];
+	const script = createChat<ChatMessage>()
+		.user("Why does pnpm install fail in CI?")
+		.assistant(({ writer }) => {
+			writer.reasoning(
+				"CI installs with a frozen lockfile, so the install stops when package.json and pnpm-lock.yaml disagree. I should check what the last commit changed, then reproduce the install.",
+				{ delayMs: 40 }
+			);
+			writer
+				.tool("runCommand", { input: { command: "pnpm --version" } })
+				.sleep(700)
+				.output({ stdout: "10.18.0" });
+			writer
+				.tool("runCommand", {
+					input: {
+						command: "git diff --stat HEAD~1 -- package.json pnpm-lock.yaml",
+					},
+				})
+				.sleep(900)
+				.output({
+					stdout: " package.json | 2 +-\n 1 file changed, 1 insertion(+), 1 deletion(-)",
+				});
+			writer
+				.tool("runCommand", {
+					input: { command: "pnpm install --frozen-lockfile" },
+				})
+				.sleep(1200)
+				.error(
+					'ERR_PNPM_OUTDATED_LOCKFILE  Cannot install with "frozen-lockfile" because pnpm-lock.yaml is not up to date with package.json'
+				);
+			writer.sourceUrl({
+				url: "https://pnpm.io/cli/install#--frozen-lockfile",
+				title: "pnpm install | pnpm.io",
+			});
+			writer.sourceUrl({
+				url: "https://pnpm.io/continuous-integration",
+				title: "Continuous Integration | pnpm.io",
+			});
+			writer.sleep(1000);
+			writer.text(
+				"The last commit bumped a version in package.json without updating pnpm-lock.yaml, so the frozen install fails. Run pnpm install locally and commit the lockfile."
+			);
 		});
 
-		return [structuredClone(question), { id: "assistant-1", role: "assistant", parts }];
-	}
+	const transcript = script.get();
+	const [question] = script.get(1);
+	const transport = script.transport({ delayMs: 20 });
 
-	let messages = $state<ChatMessage[]>(getTranscript());
-	let status = $state<"ready" | "submitted" | "streaming">("ready");
-	// Open state the user picked for each thinking row, keyed by message and part.
-	let openRows = $state<Record<string, boolean>>({});
-	let generation = 0;
+	const chat = new Chat<ChatMessage>({ messages: transcript, transport });
+	const busy = $derived(chat.status === "submitted" || chat.status === "streaming");
 
-	const busy = $derived(status === "submitted" || status === "streaming");
-
-	async function sendMessage(message: ChatMessage) {
-		const run = ++generation;
-		messages.push(structuredClone(message));
-		status = "submitted";
-
-		messages.push({ id: "assistant-1", role: "assistant", parts: [] });
-		const assistant = messages[messages.length - 1];
-		status = "streaming";
-
-		for (const [index, step] of steps.entries()) {
-			if (step.type === "sleep") {
-				await wait(step.delayMs);
-				if (run !== generation) return;
-				continue;
-			}
-
-			if (step.type === "source") {
-				assistant.parts.push(toSourcePart(step));
-				continue;
-			}
-
-			if (step.type === "tool") {
-				assistant.parts.push(toToolPart(step, index));
-				const part = assistant.parts[assistant.parts.length - 1] as ToolPart;
-
-				await wait(step.delayMs);
-				if (run !== generation) return;
-
-				if (step.errorText) {
-					part.errorText = step.errorText;
-					part.state = "output-error";
-				} else {
-					part.output = { stdout: step.stdout ?? "" };
-					part.state = "output-available";
-				}
-				continue;
-			}
-
-			assistant.parts.push(
-				step.type === "reasoning"
-					? { type: "reasoning", text: "", state: "streaming" }
-					: { type: "text", text: "" }
-			);
-			const part = assistant.parts[assistant.parts.length - 1] as Extract<
-				Part,
-				{ type: "text" | "reasoning" }
-			>;
-
-			for (const delta of splitTextDeltas(step.text)) {
-				await wait(step.delayMs);
-				if (run !== generation) return;
-				part.text += delta;
-			}
-
-			if (part.type === "reasoning") {
-				part.state = "done";
-			}
-		}
-
-		status = "ready";
-	}
-
-	function replay() {
-		generation += 1;
-		openRows = {};
-		messages = [];
-		sendMessage(question);
-	}
-
-	onDestroy(() => {
-		generation += 1;
-	});
+	// The reader's choice for each thinking row. Until they click, it follows `running`.
+	let thinkingOpen = $state<Record<string, boolean>>({});
 </script>
 
 {#snippet thinkingLine(running: boolean)}
@@ -217,13 +96,13 @@
 	</Trace.Line>
 {/snippet}
 
-{#snippet thinkingRow(text: string, running: boolean, key: string)}
+{#snippet thinkingRow(id: string, text: string, running: boolean)}
 	{#if text.length === 0}
 		{@render thinkingLine(running)}
 	{:else}
 		<Trace.Collapsible
-			open={openRows[key] ?? running}
-			onOpenChange={(open) => (openRows[key] = open)}
+			open={thinkingOpen[id] ?? running}
+			onOpenChange={(open) => (thinkingOpen[id] = open)}
 		>
 			<Trace.CollapsibleTrigger>{@render thinkingLine(running)}</Trace.CollapsibleTrigger>
 			<Trace.CollapsibleContent class="whitespace-pre-wrap">
@@ -233,7 +112,7 @@
 	{/if}
 {/snippet}
 
-{#snippet toolRow(part: ToolPart, streaming: boolean, defaultOpen: boolean)}
+{#snippet toolRow(part: ToolPart, streaming: boolean, defaultOpen?: boolean)}
 	{@const command = part.input?.command}
 	{#if part.state === "output-available" || part.state === "output-error"}
 		{@const failed = part.state === "output-error"}
@@ -260,7 +139,7 @@
 					</CodeBlock.Root>
 				{:else}
 					<CodeBlock.Root size="sm">
-						<CodeBlock.Content wrap class="max-h-64" code={part.output?.stdout} />
+						<CodeBlock.Content wrap class="max-h-64" code={part.output.stdout} />
 					</CodeBlock.Root>
 				{/if}
 			</Trace.CollapsibleContent>
@@ -301,7 +180,7 @@
 		</Trace.CollapsibleTrigger>
 		<Trace.CollapsibleContent>
 			<Trace.Root>
-				{#each sources as source (source.url)}
+				{#each sources as source (source.sourceId)}
 					<a href={source.url} target="_blank" rel="noreferrer">
 						<Trace.Line>
 							<Trace.Icon>
@@ -323,7 +202,7 @@
 {/snippet}
 
 <div class="flex min-h-72 w-full max-w-sm flex-col gap-4 py-6 text-sm">
-	{#each messages as message (message.id)}
+	{#each chat.messages as message (message.id)}
 		{#if message.role === "user"}
 			<Message.Root align="end">
 				<Message.Content>
@@ -333,13 +212,11 @@
 				</Message.Content>
 			</Message.Root>
 		{:else}
-			{@const streaming = busy && message.id === messages.at(-1)?.id}
+			{@const streaming = busy && message === chat.messages.at(-1)}
 			{@const rows = message.parts.filter(
 				(part) => part.type === "reasoning" || part.type === "tool-runCommand"
 			)}
-			{@const sources = message.parts.filter(
-				(part): part is SourcePart => part.type === "source-url"
-			)}
+			{@const sources = message.parts.filter((part) => part.type === "source-url")}
 			{@const text = getMessageText(message)}
 			<Message.Root>
 				<Message.Content class="gap-4">
@@ -348,12 +225,17 @@
 							{#each rows as part, index (part.type === "tool-runCommand" ? part.toolCallId : index)}
 								{#if part.type === "reasoning"}
 									{@render thinkingRow(
+										`${message.id}-${index}`,
 										part.text,
-										streaming && part.state === "streaming",
-										`${message.id}-${index}`
+										streaming && part.state === "streaming"
 									)}
 								{:else if part.type === "tool-runCommand"}
-									{@render toolRow(part, streaming, index === 2)}
+									<!-- Like `defaultOpen`: read once, when the row first renders. -->
+									{@render toolRow(
+										part,
+										streaming,
+										untrack(() => index === 2)
+									)}
 								{/if}
 							{/each}
 							{#if sources.length > 0}
@@ -369,6 +251,17 @@
 		{/if}
 	{/each}
 	{#if !busy}
-		<Button variant="outline" size="sm" class="mt-auto self-start" onclick={replay}>Replay</Button>
+		<Button
+			variant="outline"
+			size="sm"
+			class="mt-auto self-start"
+			onclick={() => {
+				thinkingOpen = {};
+				chat.messages = [];
+				void chat.sendMessage(question);
+			}}
+		>
+			Replay
+		</Button>
 	{/if}
 </div>

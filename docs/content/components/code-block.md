@@ -319,6 +319,8 @@ Put a `CodeBlock.Root` with `size="sm"` in `Trace.CollapsibleContent` for tool a
 
 </ComponentPreview>
 
+See [Tool](/docs/ai-elements/tool), [Terminal](/docs/ai-elements/terminal) and [Stack Trace](/docs/ai-elements/stack-trace) for more examples.
+
 ## Tabs
 
 Show several files with [Tabs](/docs/components/tabs), one `CodeBlock.Root` in each `Tabs.Content`.

@@ -1,10 +1,10 @@
 <script lang="ts">
+	import { Chat } from "@ai-sdk/svelte";
 	import { Streamdown } from "svelte-streamdown";
 	import * as Bubble from "$lib/registry/ui/bubble/index.js";
 	import * as Message from "$lib/registry/ui/message/index.js";
 	import MarkdownCodeBlock from "$lib/components/code-block/markdown-code-block.svelte";
-	import { createChat, getMessageText } from "$lib/ai.js";
-	import { createScriptedChat } from "$lib/ai.svelte.js";
+	import { createChat, getMessageText } from "$lib/ai-sdk.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const response = `Wrap the value in a \`useDebounce\` hook. It returns the latest value once it stops changing for \`delay\` milliseconds.
@@ -24,22 +24,22 @@ export function useDebounce<T>(value: T, delay = 300) {
 
 Pass the debounced value to your fetch instead of the raw input.`;
 
-	const chat = createChat()
+	const script = createChat()
 		.user("How do I debounce a search input in React?")
 		.assistant(({ writer }) => {
 			writer.text(response);
 		});
 
-	const transcript = chat.get();
-	const [question] = chat.get(1);
-	const transport = chat.transport({ delayMs: 30 });
+	const transcript = script.get();
+	const [question] = script.get(1);
+	const transport = script.transport({ delayMs: 30 });
 
-	const demo = createScriptedChat({ chat, transport, initialMessages: transcript });
-	const busy = $derived(demo.status === "submitted" || demo.status === "streaming");
+	const chat = new Chat({ messages: transcript, transport });
+	const busy = $derived(chat.status === "submitted" || chat.status === "streaming");
 </script>
 
 <div class="flex min-h-112 w-full max-w-md flex-col gap-4 py-6 text-sm">
-	{#each demo.messages as message (message.id)}
+	{#each chat.messages as message (message.id)}
 		{#if message.role === "user"}
 			<Message.Root align="end">
 				<Message.Content>
@@ -56,6 +56,7 @@ Pass the debounced value to your fetch instead of the raw input.`;
 						content={getMessageText(message)}
 						controls={false}
 						components={{ code: MarkdownCodeBlock }}
+						class="space-y-4 whitespace-normal [&>*:first-child]:mt-0 [&>*:last-child]:mb-0"
 					>
 						{#snippet codespan({ children })}
 							<code class="rounded-sm bg-muted px-1 py-0.5 font-mono text-[0.9em]"
@@ -73,8 +74,8 @@ Pass the debounced value to your fetch instead of the raw input.`;
 			size="sm"
 			class="mt-auto self-start"
 			onclick={() => {
-				demo.setMessages([]);
-				void demo.sendMessage(question);
+				chat.messages = [];
+				void chat.sendMessage(question);
 			}}
 		>
 			Replay

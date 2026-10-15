@@ -30,6 +30,7 @@
 		"parity-check:variants": "parity variants --check"
 	},
 	"devDependencies": {
+		"@ai-sdk/svelte": "^5.0.141",
 		"@cloudflare/workers-types": "^4.20260317.1",
 		"@dnd-kit-svelte/svelte": "^0.1.5",
 		"@dnd-kit/abstract": "^0.1.21",
@@ -68,6 +69,7 @@
 		"@prettier/sync": "0.6.1",
 		"@shadcn-svelte/parity": "workspace:^",
 		"@shadcn-svelte/primitives": "workspace:^",
+		"@shadcn/helpers": "^0.2.0",
 		"@shikijs/langs": "^3.20.0",
 		"@shikijs/themes": "^3.20.0",
 		"@sveltejs/acorn-typescript": "^1.0.9",
@@ -87,6 +89,7 @@
 		"@types/mdast": "^4.0.4",
 		"@types/qrcode": "^1.5.6",
 		"acorn": "^8.16.0",
+		"ai": "^7.0.141",
 		"bits-ui": "^2.18.0",
 		"chrono-node": "^2.9.0",
 		"cn": "^0.3.0",

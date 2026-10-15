@@ -40,7 +40,7 @@
 				<Dialog.Description>Three results were used in the response.</Dialog.Description>
 			</Dialog.Header>
 			<Trace.Root>
-				{#each results as result (result.url)}
+				{#each results as result, index (index)}
 					<a href={result.url} target="_blank" rel="noreferrer">
 						<Trace.Line>
 							<Trace.Icon>

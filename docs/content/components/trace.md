@@ -29,6 +29,24 @@ Every line has the same shape, so reasoning, tool calls, sources and plans built
 
 Use `Trace` for the steps an agent takes, like calling a tool, running a subagent or editing a file. Use [Message](/docs/components/message) for its reply, and [Marker](/docs/components/marker) for notes and dividers between turns.
 
+## Built with Trace
+
+Every pattern below is a composition of `Trace` parts. See [AI Elements](/docs/ai-elements) for examples and code.
+
+| Pattern                                                | Shows                                                            |
+| ------------------------------------------------------ | ---------------------------------------------------------------- |
+| [Chain of Thought](/docs/ai-elements/chain-of-thought) | A summary that expands into the steps behind it.                 |
+| [Plan](/docs/ai-elements/plan)                         | The steps the agent plans to take, and how far it has got.       |
+| [Queue](/docs/ai-elements/queue)                       | The agent's todo list, split into what is left and what is done. |
+| [Reasoning](/docs/ai-elements/reasoning)               | The agent's thinking as it streams.                              |
+| [Sources](/docs/ai-elements/sources)                   | The links the agent used for a reply.                            |
+| [Stack Trace](/docs/ai-elements/stack-trace)           | A failed tool call and its stack frames.                         |
+| [Subagent](/docs/ai-elements/subagent)                 | A subagent run, with its tool calls and result.                  |
+| [Task](/docs/ai-elements/task)                         | The steps the agent takes, as it takes them.                     |
+| [Terminal](/docs/ai-elements/terminal)                 | A command the agent runs, with its output as it streams.         |
+| [Test Results](/docs/ai-elements/test-results)         | A test run by the agent, with its suites and failures.           |
+| [Tool](/docs/ai-elements/tool)                         | A tool call the agent makes, from input to output.               |
+
 ## Installation
 
 <InstallTabs>
@@ -285,6 +303,8 @@ A collapsible row whose detail is a `Trace.Root` of link rows.
 
 </ComponentPreview>
 
+See [Sources](/docs/ai-elements/sources) for more examples.
+
 ## Chain of Thought
 
 A chain of thought is a collapsible row with step rows inside. Set the parent's status and title from its children.
@@ -294,6 +314,8 @@ A chain of thought is a collapsible row with step rows inside. Set the parent's 
 <div></div>
 
 </ComponentPreview>
+
+See [Chain of Thought](/docs/ai-elements/chain-of-thought) and [Task](/docs/ai-elements/task) for more examples.
 
 ## Commit
 
@@ -317,7 +339,7 @@ Three levels: the turn, a summary, and the rows. Text between steps sits between
 
 ## Reasoning
 
-Render a reasoning part as it streams. The row is a `Trace.Line` until the first text arrives. See [Open State](#open-state).
+Render a `reasoning` part from the AI SDK. The row is a `Trace.Line` until the first text arrives. See [Open State](#open-state).
 
 <ComponentPreview name="trace-thinking" previewStyle="rhea" previewClassName="h-auto min-h-0">
 
@@ -325,15 +347,19 @@ Render a reasoning part as it streams. The row is a `Trace.Line` until the first
 
 </ComponentPreview>
 
+See [Reasoning](/docs/ai-elements/reasoning) for more examples.
+
 ## Tool
 
-Render tool calls, from input to output.
+Render tool parts from the AI SDK. Map the tool part as in [Tool](/docs/ai-elements/tool#states).
 
 <ComponentPreview name="trace-tool-calls" previewStyle="rhea" previewClassName="h-auto min-h-0">
 
 <div></div>
 
 </ComponentPreview>
+
+See [Tool](/docs/ai-elements/tool) for more examples.
 
 ## Accessibility
 
