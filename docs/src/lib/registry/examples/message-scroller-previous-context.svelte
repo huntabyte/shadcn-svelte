@@ -6,20 +6,20 @@
 	import PlusIcon from "@lucide/svelte/icons/plus";
 	import RotateCwIcon from "@lucide/svelte/icons/rotate-cw";
 	import TelescopeIcon from "@lucide/svelte/icons/telescope";
+	import { Chat } from "@ai-sdk/svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import MessageAnimated from "$lib/components/message-animated.svelte";
-	import { createChat, getMessageText } from "$lib/ai.js";
-	import { createScriptedChat } from "$lib/ai.svelte.js";
+	import { createChat, getMessageText } from "$lib/ai-sdk.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Slider } from "$lib/registry/ui/slider/index.js";
 
 	const DEFAULT_PEEK = 64;
 
-	const chat = createChat()
+	const script = createChat()
 		.user(
 			"I'm building a chat for our app and the scroll behavior is driving me nuts. Every time the AI streams a reply, the whole thread jumps around."
 		)
@@ -46,11 +46,11 @@
 		.assistant(
 			'`MessageScrollerContent` sets `role="log"` and `aria-relevant="additions"` by default, so screen readers announce new messages as they stream in.\n\nThe scroll button is a real `<button>` with an sr-only label, and it\'s removed from the tab order when you\'re already at the bottom — no ghost focus stops.'
 		);
-	const initialMessages = chat.get(2);
-	const transport = chat.transport({ delayMs: 35 });
-	const demo = createScriptedChat({ chat, transport, initialMessages });
-	const nextMessage = $derived(chat.next(demo.messages));
-	const isBusy = $derived(demo.status === "submitted" || demo.status === "streaming");
+	const initialMessages = script.get(2);
+	const transport = script.transport({ delayMs: 35 });
+	const chat = new Chat({ messages: initialMessages, transport });
+	const nextMessage = $derived(script.next(chat.messages));
+	const isBusy = $derived(chat.status === "submitted" || chat.status === "streaming");
 
 	let demoKey = $state(0);
 	let peek = $state(DEFAULT_PEEK);
@@ -60,11 +60,11 @@
 		if (!nextMessage || isBusy) {
 			return;
 		}
-		void demo.sendMessage(nextMessage);
+		void chat.sendMessage(nextMessage);
 	}
 
 	function reset() {
-		demo.setMessages(initialMessages);
+		chat.messages = initialMessages;
 		peek = DEFAULT_PEEK;
 		demoKey += 1;
 	}
@@ -103,7 +103,7 @@
 					<MessageScroller.Root>
 						<MessageScroller.Viewport>
 							<MessageScroller.Content aria-busy={isBusy} class="p-(--card-spacing)">
-								{#each demo.messages as message (message.id)}
+								{#each chat.messages as message (message.id)}
 									<MessageAnimated {message} scrollAnchor={message.role === "user"} />
 								{/each}
 							</MessageScroller.Content>
@@ -117,7 +117,7 @@
 							<div class="h-14 w-full px-3 py-2.5">
 								<span
 									class="line-clamp-2 opacity-60 data-[status=ready]:opacity-100"
-									data-status={demo.status}
+									data-status={chat.status}
 								>
 									{#if nextMessage}
 										{getMessageText(nextMessage)}
