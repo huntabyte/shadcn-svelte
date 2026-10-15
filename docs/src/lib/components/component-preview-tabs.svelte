@@ -7,19 +7,21 @@
 
 	let {
 		class: className,
+		previewClassName,
 		align = "center",
 		component,
 		example,
 		children,
 		name,
 		hideCode = false,
-		previewClassName,
+		chromeLessOnMobile = false,
 		previewStyle,
 		...restProps
 	}: HTMLAttributes<HTMLElement> & {
+		previewClassName?: string;
 		align?: "center" | "start" | "end";
 		hideCode?: boolean;
-		previewClassName?: string;
+		chromeLessOnMobile?: boolean;
 		previewStyle?: PresetConfig["style"];
 		example?: Snippet;
 		component?: Component;
@@ -45,18 +47,19 @@
 {/snippet}
 
 <div
-	class={cn("group relative mt-4 mb-12 flex flex-col overflow-hidden rounded-xl border", className)}
+	data-slot="component-preview"
+	class={cn(
+		"group relative mt-4 mb-12 flex flex-col overflow-hidden rounded-2xl border",
+		className
+	)}
 	{...restProps}
 >
-	<div
-		data-slot="preview"
-		class="preview flex w-full justify-center data-[align=center]:items-center data-[align=end]:items-end data-[align=start]:items-start"
-		data-llm-ignore
-	>
+	<div data-slot="preview" data-llm-ignore>
 		<div
 			data-align={align}
+			data-chromeless={chromeLessOnMobile}
 			class={cn(
-				"preview flex min-h-[450px] w-full justify-center p-10 data-[align=center]:items-center data-[align=end]:items-end data-[align=start]:items-start",
+				"preview relative flex min-h-72 w-full justify-center p-10 data-[align=center]:items-center data-[align=end]:items-start data-[align=start]:items-start data-[chromeless=true]:h-auto data-[chromeless=true]:p-0 sm:data-[align=end]:items-end",
 				previewStyle && `style-${previewStyle}`,
 				previewClassName
 			)}
@@ -72,7 +75,7 @@
 		<div
 			data-slot="code"
 			data-code-visible={codeVisible}
-			class="relative overflow-hidden **:data-rehype-pretty-code-figure:m-0! **:data-rehype-pretty-code-figure:rounded-t-none **:data-rehype-pretty-code-figure:border-t data-[code-visible=false]:**:data-rehype-pretty-code-figure:max-h-22 data-[code-visible=false]:**:data-rehype-pretty-code-figure:overflow-hidden **:data-[slot=copy-button]:right-4 **:data-[slot=copy-button]:hidden data-[code-visible=true]:**:data-[slot=copy-button]:flex data-[code-visible=true]:[&_pre]:max-h-72"
+			class="relative overflow-hidden **:data-rehype-pretty-code-figure:m-0! **:data-rehype-pretty-code-figure:rounded-t-none **:data-rehype-pretty-code-figure:border-t data-[code-visible=false]:**:data-rehype-pretty-code-figure:max-h-28 data-[code-visible=false]:**:data-rehype-pretty-code-figure:overflow-hidden **:data-[slot=copy-button]:right-4 **:data-[slot=copy-button]:hidden data-[code-visible=true]:**:data-[slot=copy-button]:flex data-[code-visible=true]:[&_pre]:max-h-72"
 		>
 			{@render children?.()}
 			{#if !codeVisible}
