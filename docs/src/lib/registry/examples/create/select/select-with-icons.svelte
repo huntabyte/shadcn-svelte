@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const items = $derived([
 		{ label: "Line", value: "line", icon: chartLineIcon },

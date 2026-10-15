@@ -7,7 +7,7 @@
 	import FeedbackForm from "./feedback-form.svelte";
 	import ObservabilityCard from "./observability-card.svelte";
 	import UsageCard from "./usage-card.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

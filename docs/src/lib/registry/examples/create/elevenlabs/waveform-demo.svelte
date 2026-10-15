@@ -2,7 +2,7 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import LiveWaveform from "./live-waveform.svelte";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	let active = $state(false);
 	let processing = $state(true);

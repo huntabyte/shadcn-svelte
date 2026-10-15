@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import * as Table from "$lib/registry/ui/table/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const people = [
 		{ value: "sarah", label: "Sarah Chen" },

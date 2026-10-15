@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Sheet from "$lib/registry/ui/sheet/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const SHEET_SIDES = ["top", "right", "bottom", "left"] as const;
 </script>
