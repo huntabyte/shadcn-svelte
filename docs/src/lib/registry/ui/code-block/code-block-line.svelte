@@ -46,18 +46,27 @@
 	const newline = "\n";
 </script>
 
-<!-- An empty line holds a newline so copying a selection keeps blank lines. There is no whitespace between the tags because the line renders inside a <pre>. -->
+<!-- An empty line holds a newline so copying a selection keeps blank lines. -->
 <span
 	bind:this={ref}
 	data-slot="code-block-line"
 	data-variant={variant}
 	class={cn(codeBlockLineVariants({ variant }), className)}
 	{...restProps}
-	><span data-slot="code-block-line-content" class="min-w-0"
-		>{#if typeof code === "string"}{code ||
-				newline}{:else if code}{#each code as token, index (index)}<span
-					style={token.style}
-					class={token.class}>{token.content}</span
-				>{:else}{newline}{/each}{:else if children}{@render children()}{:else}{newline}{/if}</span
-	></span
 >
+	<span data-slot="code-block-line-content" class="min-w-0">
+		{#if typeof code === "string"}
+			{code || newline}
+		{:else if code?.length}
+			{#each code as token, index (index)}
+				<span style={token.style} class={token.class}>{token.content}</span>
+			{/each}
+		{:else if code}
+			{newline}
+		{:else if children}
+			{@render children()}
+		{:else}
+			{newline}
+		{/if}
+	</span>
+</span>

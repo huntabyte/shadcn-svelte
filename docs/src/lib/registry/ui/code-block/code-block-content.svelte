@@ -20,9 +20,31 @@
 		lineNumbers?: boolean;
 		startLine?: number;
 	} = $props();
+
+	// A `code` string is split into lines so each one can be numbered.
+	const lines = $derived(
+		code !== undefined && lineNumbers ? code.replace(/\n$/, "").split("\n") : null
+	);
 </script>
 
-<!-- The markup is kept tight because whitespace inside a <pre> is rendered. -->
+{#snippet content()}
+	<code
+		data-slot="code-block-code"
+		class="cn-code-block-code grid min-h-lh min-w-max content-start in-data-numbered:grid-cols-[auto_1fr] in-data-wrap:min-w-0"
+	>
+		{#if lines}
+			{#each lines as line, index (index)}
+				<CodeBlockLine code={line} />
+			{/each}
+		{:else if code !== undefined}
+			{code}
+		{:else}
+			{@render children?.()}
+		{/if}
+	</code>
+{/snippet}
+
+<!-- Whitespace inside a <pre> is rendered, so its content is a snippet defined outside it, where Svelte trims whitespace as usual. -->
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 <pre
 	bind:this={ref}
@@ -36,12 +58,4 @@
 		"cn-code-block-content min-h-0 min-w-0 scroll-fade-x scrollbar-thin overflow-auto text-start font-mono outline-none data-wrap:scroll-fade-y data-wrap:wrap-break-word data-wrap:whitespace-pre-wrap",
 		className
 	)}
-	{...restProps}><code
-		data-slot="code-block-code"
-		class="cn-code-block-code grid min-h-lh min-w-max content-start in-data-numbered:grid-cols-[auto_1fr] in-data-wrap:min-w-0"
-		>{#if code !== undefined && lineNumbers}{#each code
-				.replace(/\n$/, "")
-				.split("\n") as line, index (index)}<CodeBlockLine
-					code={line}
-				/>{/each}{:else if code !== undefined}{code}{:else}{@render children?.()}{/if}</code
-	></pre>
+	{...restProps}>{@render content()}</pre>
