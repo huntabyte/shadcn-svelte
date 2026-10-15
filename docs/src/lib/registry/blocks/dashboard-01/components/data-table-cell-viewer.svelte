@@ -145,9 +145,11 @@
 								{status ?? "Select a status"}
 							</Select.Trigger>
 							<Select.Content>
-								<Select.Item value="Done">Done</Select.Item>
-								<Select.Item value="In Progress">In Progress</Select.Item>
-								<Select.Item value="Not Started">Not Started</Select.Item>
+								<Select.Group>
+									<Select.Item value="Done">Done</Select.Item>
+									<Select.Item value="In Progress">In Progress</Select.Item>
+									<Select.Item value="Not Started">Not Started</Select.Item>
+								</Select.Group>
 							</Select.Content>
 						</Select.Root>
 					</div>
@@ -169,9 +171,11 @@
 							{reviewer ?? "Select a reviewer"}
 						</Select.Trigger>
 						<Select.Content>
-							<Select.Item value="Eddie Lake">Eddie Lake</Select.Item>
-							<Select.Item value="Jamik Tashpulatov">Jamik Tashpulatov</Select.Item>
-							<Select.Item value="Emily Whalen">Emily Whalen</Select.Item>
+							<Select.Group>
+								<Select.Item value="Eddie Lake">Eddie Lake</Select.Item>
+								<Select.Item value="Jamik Tashpulatov">Jamik Tashpulatov</Select.Item>
+								<Select.Item value="Emily Whalen">Emily Whalen</Select.Item>
+							</Select.Group>
 						</Select.Content>
 					</Select.Root>
 				</div>
