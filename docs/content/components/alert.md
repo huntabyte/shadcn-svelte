@@ -3,7 +3,7 @@ title: Alert
 description: Displays a callout for user attention.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/alert
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/alert
 ---
 
 <script>
@@ -42,6 +42,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -65,6 +71,18 @@ Copy and paste the following code into your project.
     <Button variant="outline">Enable</Button>
   </Alert.Action>
 </Alert.Root>
+```
+
+## Composition
+
+Use the following composition to build an `Alert`:
+
+```text
+Alert.Root
+├── Icon
+├── Alert.Title
+├── Alert.Description
+└── Alert.Action
 ```
 
 ## Basic
@@ -106,3 +124,38 @@ You can customize the alert colors by adding custom classes such as `bg-amber-50
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+### Alert.Root
+
+The `Alert.Root` component displays a callout for user attention.
+
+| Prop      | Type                         | Default     |
+| --------- | ---------------------------- | ----------- |
+| `variant` | `"default" \| "destructive"` | `"default"` |
+| `class`   | `string`                     | -           |
+
+### Alert.Title
+
+The `Alert.Title` component displays the title of the alert.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | -       |
+
+### Alert.Description
+
+The `Alert.Description` component displays the description or content of the alert.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | -       |
+
+### Alert.Action
+
+The `Alert.Action` component displays an action element positioned in the corner of the alert.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | -       |
