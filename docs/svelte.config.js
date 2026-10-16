@@ -2,6 +2,7 @@
 import adapter from "@sveltejs/adapter-cloudflare";
 import MagicString from "magic-string";
 import { mdsx } from "mdsx";
+import { PRESET_STYLES } from "shadcn-svelte/preset";
 import { mdsxConfig } from "./mdsx.config.js";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -51,31 +52,35 @@ function componentPreviews() {
 			if (!filename?.endsWith(".md") || !content.includes(TARGET)) return;
 
 			const ms = new MagicString(content);
-			const results = content.matchAll(/<ComponentPreview name=["|']([^\s]*)["|']/g);
-			const components = new Set();
+			const results = content.matchAll(/<ComponentPreview\b([^>]*)>/g);
+			/** @type {Map<string, string | undefined>} */
+			const components = new Map();
 			for (const exec of results) {
-				const [, name] = exec;
+				const attrs = exec[1] ?? "";
+				// This preprocessor runs again on its own output. The first pass inserts
+				// `component=`, which the old `name=`-first regex missed; skip those tags.
+				if (/\bcomponent=/.test(attrs)) continue;
+				const name = attrs.match(/\bname=["']([^"'\s]+)["']/)?.[1];
+				if (!name || name.includes("sidebar")) continue;
 				const insertIndex = exec.index + TARGET.length;
 				const identifier = camelize(name);
-				if (name.includes("sidebar")) continue;
-				const prop = ` component={${identifier}}`;
-				ms.appendRight(insertIndex, prop);
-
-				components.add(name);
+				ms.appendRight(insertIndex, ` component={${identifier}}`);
+				if (!components.has(name)) components.set(name, previewStyle(attrs, name, filename));
 			}
 
 			const importIndex = content.search("import ComponentPreview");
-			for (const name of components) {
+			for (const [name, style] of components) {
 				const identifier = camelize(name);
+				const query = style ? `?flattened=${style}` : "";
 				let importStatement;
 				if (name.startsWith("chart") && !name.includes("demo")) {
-					importStatement = `import ${identifier} from "$lib/registry/blocks/${name}.svelte";`;
+					importStatement = `import ${identifier} from "$lib/registry/blocks/${name}.svelte${query}";`;
 				} else if (name.includes("sidebar") || name.includes("Sidebar")) {
 					continue;
 				} else if (/^calendar-\d+$/.test(name)) {
-					importStatement = `import ${identifier} from "$lib/registry/blocks/${name}.svelte";`;
+					importStatement = `import ${identifier} from "$lib/registry/blocks/${name}.svelte${query}";`;
 				} else {
-					importStatement = `import ${identifier} from "$lib/registry/examples/${name}.svelte";`;
+					importStatement = `import ${identifier} from "$lib/registry/examples/${name}.svelte${query}";`;
 				}
 
 				ms.appendLeft(importIndex, importStatement);
@@ -84,4 +89,22 @@ function componentPreviews() {
 			return { code: ms.toString(), map: ms.generateMap() };
 		},
 	};
+}
+
+/**
+ * Registry style to flatten a preview with, from its `previewStyle` prop. Absent means the
+ * docs default (nova). The matching `style-*` class is added by `ComponentPreview` itself.
+ * @param {string} attrs
+ * @param {string} name
+ * @param {string} filename
+ */
+function previewStyle(attrs, name, filename) {
+	const style = attrs.match(/\bpreviewStyle=["']([^"'\s]+)["']/)?.[1];
+	if (style && !PRESET_STYLES.includes(/** @type {any} */ (style))) {
+		throw new Error(
+			`<ComponentPreview name="${name}"> in ${filename} has an unknown previewStyle "${style}". ` +
+				`Expected one of: ${PRESET_STYLES.join(", ")}.`
+		);
+	}
+	return style;
 }

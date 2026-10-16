@@ -40,6 +40,7 @@
 
 	const COMMAND_MENU_GROUP_ORDER = [
 		"Components",
+		"AI Elements",
 		"Get Started",
 		"Changelog",
 		"Utilities",

@@ -23,7 +23,8 @@
 		"postinstall": "pnpm build:cli && pnpm -r sync",
 		"ci:publish": "changeset publish",
 		"ci:build": "pnpm build:cli",
-		"ci:release": "pnpm ci:build && pnpm ci:publish"
+		"ci:release": "pnpm ci:build && pnpm ci:publish",
+		"parity": "pnpm -F docs parity"
 	},
 	"engines": {
 		"pnpm": ">=9",
