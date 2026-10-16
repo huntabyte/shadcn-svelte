@@ -5,5 +5,5 @@
 </script>
 
 <a href="/docs/changelog" class={cn(badgeVariants({ variant: "secondary", class: "bg-muted" }))}>
-	New Questionnaire component <ArrowRightIcon />
+	Trace, Code Block and AI Elements <ArrowRightIcon />
 </a>

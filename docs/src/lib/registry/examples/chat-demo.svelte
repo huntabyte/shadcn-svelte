@@ -44,23 +44,25 @@
 		.sleep(600)
 		.assistant(({ writer }) => {
 			writer.reasoning(
-				"I need to know how themes are set up before I add a toggle. If next-themes is already in the layout, the toggle only has to call setTheme."
+				"I need to know how themes are set up before I add a toggle. If mode-watcher is already in the layout, the toggle only has to call setMode."
 			);
 			writer.sleep(400);
 			writer
-				.tool("runCommand", { input: { command: "rg -l ThemeProvider app" } })
+				.tool("runCommand", { input: { command: "rg -l ModeWatcher src/routes" } })
 				.sleep(800)
-				.output({ stdout: "app/layout.tsx" });
+				.output({ stdout: "src/routes/+layout.svelte" });
 			writer.sleep(500);
-			writer.text(`next-themes is already set up in \`app/layout.tsx\`, so the toggle only has to call \`setTheme\`.
+			writer.text(`mode-watcher is already set up in \`src/routes/+layout.svelte\`, so the toggle only has to call \`setMode\`.
 
 **Changes**
 
-- Added \`components/mode-toggle.tsx\` with a Light and Dark option.
-- Put \`<ModeToggle />\` next to the Appearance heading in \`app/settings/page.tsx\`.
+- Added \`src/lib/components/mode-toggle.svelte\` with a Light and Dark option.
+- Put \`<ModeToggle />\` next to the Appearance heading in \`src/routes/settings/+page.svelte\`.
 
-\`\`\`tsx
-const { setTheme } = useTheme()
+\`\`\`ts
+import { setMode } from "mode-watcher"
+
+setMode("dark")
 \`\`\`
 `);
 		})
@@ -68,22 +70,22 @@ const { setTheme } = useTheme()
 		.sleep(600)
 		.assistant(({ writer }) => {
 			writer.reasoning(
-				"The default theme lives on the ThemeProvider. I should check what it is set to now."
+				"The default theme lives on the ModeWatcher. I should check what it is set to now."
 			);
 			writer.sleep(400);
 			writer
 				.tool("runCommand", {
-					input: { command: "rg -n defaultTheme app/layout.tsx" },
+					input: { command: "rg -n defaultMode src/routes/+layout.svelte" },
 				})
 				.sleep(800)
 				.output({
-					stdout: '12:  <ThemeProvider attribute="class" defaultTheme="light">',
+					stdout: '12:  <ModeWatcher defaultMode="light" />',
 				});
 			writer.sleep(500);
-			writer.text(`It was set to \`light\`. I updated the \`ThemeProvider\` in \`app/layout.tsx\`:
+			writer.text(`It was set to \`light\`. I updated the \`ModeWatcher\` in \`src/routes/+layout.svelte\`:
 
-\`\`\`tsx
-<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+\`\`\`svelte
+<ModeWatcher defaultMode="system" />
 \`\`\`
 
 New visitors now get the theme from their OS. The toggle also has a **System** option, so anyone who picked Light or Dark can switch back.
@@ -97,13 +99,12 @@ New visitors now get the theme from their OS. The toggle also has a **System** o
 				.sleep(1600)
 				.output({
 					stdout:
-						"▲ Next.js 16.0.0\n\n✓ Compiled successfully in 4.2s\n✓ Linting and checking validity of types\n✓ Generating static pages (12/12)",
+						"vite v8.1.5 building for production...\n\n✓ Built in 4.2s\n✓ Prerendered 12 pages",
 				});
 			writer.sleep(500);
 			writer.text(`The build passes, so it is ready to ship.
 
 - Compiled in **4.2s**.
-- No lint or type errors.
 - Generated all **12** static pages.
 `);
 		});
