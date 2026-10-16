@@ -1,0 +1,18 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "use-highlighted-code",
+	"type": "registry:hook",
+	"devDependencies": [
+		"shiki@^3.20.0"
+	],
+	"registryDependencies": [
+		"highlighter"
+	],
+	"files": [
+		{
+			"content": "import {\n\tloadHighlighter,\n\ttype Highlighter,\n\ttype HighlightedLine,\n} from \"$LIB$/highlighter.js\";\nimport type { GrammarState } from \"shiki/core\";\n\n/**\n * Highlights `code` in `language`. `current` holds one entry per line: a plain\n * string until the highlighter loads, then the line's tokens. Pass each one to\n * the `code` prop of a `CodeBlock.Line`.\n *\n * ```svelte\n * <script lang=\"ts\">\n * \tconst lines = useHighlightedCode(() => code, () => \"json\");\n * </script>\n *\n * {#each lines.current as line, index (index)}\n * \t<CodeBlock.Line code={line} />\n * {/each}\n * ```\n */\nexport function useHighlightedCode(value: () => string, language: () => string) {\n\tlet loaded = $state.raw<{\n\t\tlanguage: string;\n\t\thighlighter: Highlighter | null;\n\t} | null>(null);\n\n\t$effect(() => {\n\t\tconst lang = language();\n\t\tlet cancelled = false;\n\n\t\tloadHighlighter(lang)\n\t\t\t.then((next) => {\n\t\t\t\tif (!cancelled) {\n\t\t\t\t\tloaded = { language: lang, highlighter: next };\n\t\t\t\t}\n\t\t\t})\n\t\t\t.catch(() => {});\n\n\t\treturn () => {\n\t\t\tcancelled = true;\n\t\t};\n\t});\n\n\t// The complete lines, highlighted. While the code streams, only the new\n\t// lines are tokenized, starting from the grammar state of the last one.\n\tlet done: {\n\t\thighlighter: Highlighter | null;\n\t\ttext: string;\n\t\tlines: HighlightedLine[];\n\t\tstate?: GrammarState;\n\t} = { highlighter: null, text: \"\", lines: [] };\n\n\tconst lines = $derived.by((): HighlightedLine[] => {\n\t\tconst raw = value();\n\t\t// A trailing newline would render as an extra empty line.\n\t\tconst code = raw.endsWith(\"\\n\") ? raw.slice(0, -1) : raw;\n\t\tconst lang = language();\n\t\tconst highlighter = loaded?.language === lang ? loaded.highlighter : null;\n\n\t\tif (!highlighter) {\n\t\t\treturn code.split(\"\\n\");\n\t\t}\n\n\t\tlet next = done;\n\n\t\tif (next.highlighter !== highlighter || !code.startsWith(next.text)) {\n\t\t\tnext = { highlighter, text:\"\", lines: [] };\n\t\t}\n\n\t\tconst end = code.lastIndexOf(\"\\n\") + 1;\n\n\t\tif (end > next.text.length) {\n\t\t\tconst result = highlighter.highlight(code.slice(next.text.length, end - 1), next.state);\n\n\t\t\tnext = {\n\t\t\t\thighlighter,\n\t\t\t\ttext: code.slice(0, end),\n\t\t\t\tlines: [...next.lines, ...result.lines],\n\t\t\t\tstate: result.state,\n\t\t\t};\n\t\t}\n\n\t\tdone = next;\n\n\t\t// The last line is still being written, so it is tokenized every time.\n\t\tconst tail = code.slice(end);\n\n\t\treturn [...next.lines, highlighter.highlight(tail, next.state).lines[0]];\n\t});\n\n\treturn {\n\t\tget current() {\n\t\t\treturn lines;\n\t\t},\n\t};\n}\n",
+			"type": "registry:hook",
+			"target": "use-highlighted-code.svelte.ts"
+		}
+	]
+}

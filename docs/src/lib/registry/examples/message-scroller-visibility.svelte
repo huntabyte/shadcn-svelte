@@ -4,9 +4,9 @@
 	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
 	import * as Message from "$lib/registry/ui/message/index.js";
 	import VisibilityOutline from "$lib/components/message-scroller/visibility-outline.svelte";
-	import { createChat, getMessageText } from "$lib/ai.js";
+	import { createChat, getMessageText } from "$lib/ai-sdk.js";
 
-	const chat = createChat()
+	const script = createChat()
 		.user("Review the incident handoff and tell me what to read first.", {
 			id: "vis-brief",
 		})
@@ -32,7 +32,7 @@
 			"After that, compare the queue recovery graph with the deploy timeline so the handoff shows exactly when processing returned to baseline. That makes it easier for support and engineering to answer the same customer questions without re-reading the whole incident thread.\n\nI would also add a short owner note beside each follow-up item. The checklist is small, but ownership keeps the retry-window decision, alert tuning, and support macro from drifting into separate follow-up conversations.\n\nKeep the retry window enabled until the next deploy, then add a queue-depth alert as the long-term fix.\n\nThe alert should fire on sustained queue growth, not a single short spike."
 		);
 
-	const messages = chat.get();
+	const messages = script.get();
 	const userMessages = messages.filter((message) => message.role === "user");
 </script>
 
