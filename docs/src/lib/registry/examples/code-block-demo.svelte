@@ -6,15 +6,16 @@
 	import { useHighlightedCode } from "$lib/registry/hooks/use-highlighted-code.svelte.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 
-	const code = `import { streamText } from "ai"
+	const code = `import { convertToModelMessages, streamText } from "ai"
+import type { RequestHandler } from "./$types"
 
-export async function POST(request: Request) {
+export const POST: RequestHandler = async ({ request }) => {
   const { messages } = await request.json()
 
   const result = streamText({
     model: "anthropic/claude-sonnet-4.5",
     system: "You are a helpful assistant. Answer in one short paragraph.",
-    messages,
+    messages: await convertToModelMessages(messages),
   })
 
   return result.toUIMessageStreamResponse()
@@ -42,7 +43,7 @@ export async function POST(request: Request) {
 		<CodeBlock.Header>
 			<CodeBlock.Title>
 				<FileCodeIcon />
-				app/api/chat/route.ts
+				src/routes/api/chat/+server.ts
 			</CodeBlock.Title>
 			<CodeBlock.Actions>
 				<Button
@@ -59,7 +60,7 @@ export async function POST(request: Request) {
 					variant="ghost"
 					size="icon-xs"
 					aria-label="Download"
-					onclick={() => download(code, "route.ts")}
+					onclick={() => download(code, "+server.ts")}
 				>
 					<DownloadIcon />
 				</Button>
@@ -69,7 +70,7 @@ export async function POST(request: Request) {
 		<CodeBlock.Content {wrap} lineNumbers>
 			{#each lines.current as line, index (index)}
 				<CodeBlock.Line
-					variant={index >= 5 && index <= 9 ? "highlighted" : "default"}
+					variant={index >= 6 && index <= 10 ? "highlighted" : "default"}
 					code={line}
 				/>
 			{/each}
