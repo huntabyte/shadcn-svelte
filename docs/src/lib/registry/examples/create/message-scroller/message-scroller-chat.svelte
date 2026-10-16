@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { Chat } from "@ai-sdk/svelte";
 	import * as Bubble from "$lib/registry/ui/bubble/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
@@ -6,12 +7,11 @@
 	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
 	import * as Message from "$lib/registry/ui/message/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { createChat, getMessageText } from "$lib/ai.js";
-	import { createScriptedChat } from "$lib/ai.svelte.js";
+	import { createChat, getMessageText } from "$lib/ai-sdk.js";
 	import { Spinner } from "$lib/registry/ui/spinner/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
-	const chat = createChat()
+	const script = createChat()
 		.user("Hello there!")
 		.sleep(2000)
 		.assistant("Hey, how's it going?")
@@ -73,21 +73,23 @@ That's usually enough for v1. Fancy diff animations or per-paragraph fade-ins ca
 		.user("Thanks, that helps.")
 		.sleep(1000)
 		.assistant(
-			"Happy to help — send another message when you're ready to keep stepping through the demo."
+			"Happy to help — send another message when you're ready to keep stepping through the chat."
 		);
 
-	const initialMessages = chat.get(0);
-	const transport = chat.transport({ delayMs: 10 });
-	const demo = createScriptedChat({ chat, transport, initialMessages });
-	const nextMessage = $derived(chat.next(demo.messages));
-	const isBusy = $derived(demo.status === "submitted" || demo.status === "streaming");
+	const initialMessages = script.get(0);
+	const transport = script.transport({
+		delayMs: 10,
+	});
+	const chat = new Chat({ messages: initialMessages, transport });
+	const nextMessage = $derived(script.next(chat.messages));
+	const isBusy = $derived(chat.status === "submitted" || chat.status === "streaming");
 
 	function handleFormSubmit(event: SubmitEvent) {
 		event.preventDefault();
 		if (!nextMessage || isBusy) {
 			return;
 		}
-		void demo.sendMessage(nextMessage);
+		void chat.sendMessage(nextMessage);
 	}
 </script>
 
@@ -95,14 +97,14 @@ That's usually enough for v1. Fancy diff animations or per-paragraph fade-ins ca
 	<Card.Root class="h-140">
 		<Card.Header>
 			<Card.Title>How can I help you today?</Card.Title>
-			<Card.Description>Status: {demo.status}</Card.Description>
+			<Card.Description>Status: {chat.status}</Card.Description>
 		</Card.Header>
 		<Card.Content class="min-h-0 flex-1 overflow-hidden p-0">
 			<MessageScroller.Provider>
 				<MessageScroller.Root>
 					<MessageScroller.Viewport>
 						<MessageScroller.Content class="p-(--card-spacing)">
-							{#each demo.messages as message (message.id)}
+							{#each chat.messages as message (message.id)}
 								<MessageScroller.Item messageId={message.id} scrollAnchor={message.role === "user"}>
 									<Message.Root align={message.role === "user" ? "end" : "start"}>
 										<Message.Content>
@@ -119,7 +121,7 @@ That's usually enough for v1. Fancy diff animations or per-paragraph fade-ins ca
 									</Message.Root>
 								</MessageScroller.Item>
 							{/each}
-							{#if demo.status === "submitted"}
+							{#if chat.status === "submitted"}
 								<MessageScroller.Item scrollAnchor={false}>
 									<Marker.Root role="status">
 										<Marker.Icon>
@@ -167,7 +169,7 @@ That's usually enough for v1. Fancy diff animations or per-paragraph fade-ins ca
 							type="button"
 							data-hidden={!isBusy}
 							class="ml-auto data-[hidden=true]:hidden"
-							onclick={() => demo.stop()}
+							onclick={() => chat.stop()}
 						>
 							<IconPlaceholder
 								lucide="StopCircleIcon"

@@ -4,9 +4,9 @@
 	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
 	import * as Message from "$lib/registry/ui/message/index.js";
 	import CommandsMenu from "$lib/components/message-scroller/commands-menu.svelte";
-	import { createChat, getMessageText } from "$lib/ai.js";
+	import { createChat, getMessageText } from "$lib/ai-sdk.js";
 
-	const chat = createChat()
+	const script = createChat()
 		.user(
 			"We're seeing activation dip after workspace creation. Can you help me find the likely step?",
 			{
@@ -35,7 +35,7 @@
 			"The main risk is reducing team creation for accounts that already know who they want to invite.\n\nTo protect that path, keep the invite action visible in the header and only change the primary empty-state guidance. That gives confident teams a direct route without forcing uncertain users through the invite step too early."
 		);
 
-	const messages = chat.get();
+	const messages = script.get();
 	const userMessages = messages.filter((message) => message.role === "user");
 </script>
 

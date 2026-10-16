@@ -7,6 +7,8 @@
 @import "@fontsource-variable/geist/index.css";
 @import "@fontsource-variable/geist-mono/index.css";
 
+@source "../node_modules/svelte-streamdown/dist";
+
 @custom-variant style-vega (&:where(.style-vega *));
 @custom-variant style-nova (&:where(.style-nova *));
 @custom-variant style-lyra (&:where(.style-lyra *));
@@ -251,7 +253,7 @@
 	}
 
 	html {
-		@apply overscroll-none;
+		@apply overscroll-y-none;
 	}
 
 	body {
