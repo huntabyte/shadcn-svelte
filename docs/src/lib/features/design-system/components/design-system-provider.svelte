@@ -84,9 +84,10 @@
 			fonts[0].font.family;
 		document.documentElement.style.setProperty("--font-sans", selectedFont);
 
+		// `inherit` has no heading font item, so it falls through to the body font.
 		const selectedHeadingFont =
 			fonts.find((font) => font.name.replace("font-heading-", "") === designSystem.fontHeading)
-				?.font.family ?? fonts[0].font.family;
+				?.font.family ?? "var(--font-sans)";
 		document.documentElement.style.setProperty("--font-heading", selectedHeadingFont);
 
 		const styleId = uid;
