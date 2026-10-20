@@ -103,21 +103,3 @@ copy-and-paste components that match your project, and the hard interaction
 logic stays tested in one place.
 
 Available now for Svelte across all eight styles.
-
-## AI Elements
-
-These components complement [Svelte AI Elements](https://svelte-ai-elements.vercel.app/),
-the Svelte port of AI Elements. You can keep using its components for conversations,
-messages, prompt inputs, and other AI interface patterns while adopting the new
-shadcn-svelte chat components one piece at a time.
-
-If you already use Svelte AI Elements, you do not need to rewrite your app. Keep
-what works, and try the shadcn-svelte components when their abstractions or styling
-fit your project.
-
-The goal is to make these pieces easy to adopt independently. Replace one part,
-compose it with what you already have, and keep building.
-
-<Button size="sm" href="/docs/components" class="mt-6 no-underline!">
-  View Components
-</Button>
