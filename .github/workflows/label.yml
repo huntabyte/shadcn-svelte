@@ -70,3 +70,13 @@ jobs:
           if grep -qx 'slop' labels-after.txt && ! grep -qx 'slop' labels-before.txt; then
             gh workflow run anti-slop.yml -f number="$NUMBER" -f kind="$KIND"
           fi
+
+      - name: Dispatch reproduire
+        if: steps.age.outputs.skip != 'true' && !github.event.pull_request && !github.event.issue.pull_request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NUMBER: ${{ github.event.issue.number }}
+        run: |
+          if grep -qx 'needs reproduction' labels-after.txt && ! grep -qx 'needs reproduction' labels-before.txt; then
+            gh workflow run reproduire.yml -f number="$NUMBER"
+          fi
