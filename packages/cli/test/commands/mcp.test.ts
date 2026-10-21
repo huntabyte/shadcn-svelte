@@ -50,7 +50,7 @@ it("runs @shadcn-svelte/mcp through the package manager in the requested directo
 });
 
 it.each<string | Record<string, string>>([
-	{ "shadcn-svelte-mcp": "./dist/index.mjs" },
+	{ "shadcn-sv-mcp": "./dist/index.mjs" },
 	{ renamed: "./dist/index.mjs" },
 	"./dist/index.mjs",
 ])("prefers the @shadcn-svelte/mcp installed in the project (bin: %j)", async (bin) => {

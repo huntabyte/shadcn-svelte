@@ -21,7 +21,7 @@
 	},
 	"type": "module",
 	"bin": {
-		"shadcn-svelte-mcp": "./dist/index.mjs"
+		"shadcn-sv-mcp": "./dist/index.mjs"
 	},
 	"exports": {
 		".": {
