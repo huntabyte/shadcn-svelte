@@ -221,5 +221,5 @@ it("prints Codex instructions without writing a project config", async () => {
 	]);
 
 	await expect(readFile(path.join(cwd, ".codex/config.toml"), "utf8")).rejects.toThrow();
-	expect(process.exit).toHaveBeenCalledWith(0);
+	expect(process.exit).not.toHaveBeenCalled();
 });

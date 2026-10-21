@@ -66,6 +66,8 @@ export const mcp = new Command()
 mcp
 	.command("init")
 	.description("Initialize MCP configuration for your client")
+	// `--cwd` is defined on `mcp`
+	.configureHelp({ showGlobalOptions: true })
 	.addOption(new Option("--client <client>", "MCP client to configure").choices(CLIENT_NAMES))
 	.action(async (opts, command) => {
 		try {
@@ -97,7 +99,6 @@ mcp
 				p.log.message("2. Add the following configuration:");
 				p.log.message(formatCodexConfig(mcpCommand));
 				p.log.info("3. Restart Codex to load the MCP server");
-				process.exit(0);
 				return;
 			}
 
