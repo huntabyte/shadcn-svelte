@@ -336,8 +336,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0(svelte@5.54.0)
       package-manager-detector:
-        specifier: ^1.6.0
-        version: 1.6.0
+        specifier: ^1.9.0
+        version: 1.9.0
       paneforge:
         specifier: ^1.0.2
         version: 1.0.2(svelte@5.54.0)
@@ -517,8 +517,8 @@ importers:
         specifier: ^11.0.0
         version: 11.0.0
       package-manager-detector:
-        specifier: ^1.2.0
-        version: 1.6.0
+        specifier: ^1.9.0
+        version: 1.9.0
       picocolors:
         specifier: ^1.1.1
         version: 1.1.1
@@ -556,7 +556,7 @@ importers:
         specifier: ^1.32.0
         version: 1.32.1(zod@4.4.3)
       package-manager-detector:
-        specifier: ^1.2.0
+        specifier: ^1.9.0
         version: 1.9.0
       tsdown:
         specifier: 'catalog:'
@@ -5042,9 +5042,6 @@ packages:
 
   package-manager-detector@0.2.11:
     resolution: {integrity: sha512-BEnLolu+yuz22S56CU1SUKq3XC3PkwD5wv4ikR4MfGvnRVcmzXR9DwSlW2fEamyTPyXHomBJRzgapeuBvRNzJQ==}
-
-  package-manager-detector@1.6.0:
-    resolution: {integrity: sha512-61A5ThoTiDG/C8s8UMZwSorAGwMJ0ERVGj2OjoW5pAalsNOg15+iQiPzrLJ4jhZ1HJzmC2PIHT2oEiH3R5fzNA==}
 
   package-manager-detector@1.9.0:
     resolution: {integrity: sha512-zAMfbta9nPA8AKkA4WdmNAT8R8s6Dk0/xwPsqNnRidMFcLo1YkLuPDTgs2f64XdzS8vbLNnoJ+uUIkgbz7oRHA==}
@@ -11039,8 +11036,6 @@ snapshots:
   package-manager-detector@0.2.11:
     dependencies:
       quansync: 0.2.11
-
-  package-manager-detector@1.6.0: {}
 
   package-manager-detector@1.9.0: {}
 
