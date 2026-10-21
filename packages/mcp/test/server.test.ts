@@ -1,6 +1,5 @@
 import { Client, InMemoryTransport } from "@modelcontextprotocol/client";
 import { afterAll, beforeAll, expect, it } from "vitest";
-import pkg from "../package.json" with { type: "json" };
 import { server } from "../src/server.js";
 
 const client = new Client({ name: "test", version: "1.0.0" });
