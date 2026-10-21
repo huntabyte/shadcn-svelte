@@ -458,9 +458,6 @@ importers:
 
   packages/cli:
     dependencies:
-      '@shadcn-svelte/mcp':
-        specifier: workspace:*
-        version: link:../mcp
       cn:
         specifier: ^0.3.0
         version: 0.3.0
