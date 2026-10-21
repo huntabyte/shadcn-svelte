@@ -14,11 +14,15 @@ description: How to setup shadcn-svelte in a SvelteKit project.
 
 <Steps>
 
-### Create project
+### Add TailwindCSS to your project
 
 Use the SvelteKit CLI to create a new project with TailwindCSS
 
 <PMExecute command="sv create my-app --add tailwindcss" />
+
+Or add TailwindCSS to an existing project
+
+<PMExecute command="sv add tailwindcss" />
 
 ### Setup path aliases
 
