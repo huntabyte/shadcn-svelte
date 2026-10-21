@@ -1,6 +1,6 @@
-import { Client } from "@modelcontextprotocol/sdk/client/index.js";
-import { InMemoryTransport } from "@modelcontextprotocol/sdk/inMemory.js";
+import { Client, InMemoryTransport } from "@modelcontextprotocol/client";
 import { afterAll, beforeAll, expect, it } from "vitest";
+import pkg from "../package.json" with { type: "json" };
 import { server } from "../src/server.js";
 
 const client = new Client({ name: "test", version: "1.0.0" });
@@ -15,6 +15,10 @@ afterAll(async () => {
 	await server.close();
 });
 
+it("only advertises tools", () => {
+	expect(Object.keys(client.getServerCapabilities() ?? {})).toEqual(["tools"]);
+});
+
 it("lists the tools that do not require registry search", async () => {
 	const result = await client.listTools();
 	expect(result.tools.map((tool) => tool.name)).toEqual([
@@ -26,43 +30,54 @@ it("lists the tools that do not require registry search", async () => {
 it("returns an add command for the requested items", async () => {
 	const result = await client.callTool({
 		name: "get_add_command_for_items",
-		arguments: { items: ["button", "card"] },
+		arguments: {
+			items: [
+				"button",
+				"data-table",
+				"my_item",
+				"MyCard",
+				"https://example.com/r/item.json?a=1&b=2",
+			],
+		},
 	});
 
 	expect(result.isError).toBeUndefined();
 	expect(result.content).toEqual([
 		{
 			type: "text",
-			text: expect.stringContaining("shadcn-svelte@latest add button card"),
+			text: expect.stringContaining(
+				`shadcn-svelte@latest add -y "button" "data-table" "my_item" "MyCard" "https://example.com/r/item.json?a=1&b=2"`
+			),
 		},
 	]);
 });
 
-it("returns the audit checklist", async () => {
-	const result = await client.callTool({
-		name: "get_audit_checklist",
-		arguments: {},
-	});
-
-	expect(result.content).toEqual([
-		{
-			type: "text",
-			text: expect.stringContaining("Component Audit Checklist"),
-		},
-	]);
-});
-
-it("reports invalid input", async () => {
-	const result = await client.callTool({
-		name: "get_add_command_for_items",
-		arguments: {},
-	});
+it.each([
+	{ arguments: {} },
+	{ arguments: { items: [] } },
+	{ arguments: { items: ["button card"] } },
+	{ arguments: { items: ["--overwrite"] } },
+	{ arguments: { items: ["https://example.com/a --overwrite"] } },
+	{ arguments: { items: ['https://example.com/a";calc;"'] } },
+])("rejects invalid input: $arguments", async ({ arguments: args }) => {
+	const result = await client.callTool({ name: "get_add_command_for_items", arguments: args });
 
 	expect(result.isError).toBe(true);
 	expect(result.content).toEqual([
 		{
 			type: "text",
-			text: expect.stringContaining("Invalid input parameters"),
+			text: expect.stringContaining("Input validation error"),
+		},
+	]);
+});
+
+it.each([{}, { arguments: {} }])("returns the audit checklist (%j)", async (params) => {
+	const result = await client.callTool({ name: "get_audit_checklist", ...params });
+
+	expect(result.content).toEqual([
+		{
+			type: "text",
+			text: expect.stringContaining("Component Audit Checklist"),
 		},
 	]);
 });

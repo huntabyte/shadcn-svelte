@@ -48,7 +48,8 @@
 		"test": "vitest run"
 	},
 	"devDependencies": {
-		"@modelcontextprotocol/sdk": "^1.32.0",
+		"@modelcontextprotocol/client": "^2.3.1",
+		"@modelcontextprotocol/server": "^2.3.1",
 		"package-manager-detector": "^1.9.0",
 		"tsdown": "catalog:",
 		"typescript": "catalog:",

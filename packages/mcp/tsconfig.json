@@ -10,6 +10,7 @@
 		"verbatimModuleSyntax": true,
 		"erasableSyntaxOnly": true,
 		"noUncheckedIndexedAccess": true,
+		"resolveJsonModule": true,
 		"types": ["node"]
 	},
 	"include": ["src", "test"]
