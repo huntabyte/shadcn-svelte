@@ -1,15 +1,15 @@
 import path from "node:path";
 import process from "node:process";
-import { spawn } from "node:child_process";
 import { promises as fs } from "node:fs";
-import { createRequire } from "node:module";
 import * as p from "@clack/prompts";
 import deepmerge from "deepmerge";
 import { Command, Option } from "commander";
 import { resolveCommand } from "package-manager-detector";
+import { exec } from "tinyexec";
 import { z } from "zod";
 import { detectPM } from "../utils/auto-detect.js";
 import { highlight } from "../utils/colors.js";
+import { getDependencyPackageInfo } from "../utils/get-package-info.js";
 import { handleError, cancel } from "../utils/prompt-helpers.js";
 
 const SHADCN_SVELTE_MCP_VERSION = "latest";
@@ -47,23 +47,15 @@ export const mcp = new Command()
 		try {
 			const options = mcpOptionsSchema.parse(opts);
 			const cwd = path.resolve(options.cwd);
-			const entry = resolveMcpEntry();
-			const child = spawn(process.execPath, [entry], {
-				cwd,
-				stdio: "inherit",
-				env: process.env,
+			// Prefer the version installed in the project over the registry's latest.
+			const localBin = resolveLocalMcpBin(cwd);
+			const run = localBin
+				? { command: process.execPath, args: [localBin] }
+				: await resolveMcpCommand(cwd);
+			const result = await exec(run.command, run.args, {
+				nodeOptions: { cwd, stdio: "inherit" },
 			});
-
-			child.on("error", (error) => {
-				console.error(error);
-				process.exit(1);
-			});
-			child.on("exit", (code, signal) => {
-				if (signal) {
-					process.exit(1);
-				}
-				process.exit(code ?? 1);
-			});
+			process.exit(result.exitCode ?? 1);
 		} catch (error) {
 			console.error(error instanceof Error ? error.message : error);
 			process.exit(1);
@@ -152,14 +144,11 @@ export async function runMcpInit(options: { client: JsonClientName; cwd: string 
 
 async function resolveMcpCommand(cwd: string) {
 	const pm = (await detectPM(cwd, false)) ?? "npm";
-	const resolved = resolveCommand(pm, "execute", [
-		`@shadcn-svelte/mcp@${SHADCN_SVELTE_MCP_VERSION}`,
-	]);
+	const pkg = `@shadcn-svelte/mcp@${SHADCN_SVELTE_MCP_VERSION}`;
+	// `yarn dlx` logs the install to stdout, which corrupts the MCP stdio stream.
+	const resolved = resolveCommand(pm, "execute", pm === "yarn@berry" ? ["-q", pkg] : [pkg]);
 	if (!resolved) {
-		return {
-			command: "npx",
-			args: [`@shadcn-svelte/mcp@${SHADCN_SVELTE_MCP_VERSION}`],
-		};
+		return { command: "npx", args: [pkg] };
 	}
 
 	return resolved;
@@ -198,7 +187,13 @@ args = ${JSON.stringify(run.args)}
 `;
 }
 
-function resolveMcpEntry() {
-	const require = createRequire(import.meta.url);
-	return require.resolve("@shadcn-svelte/mcp");
+function resolveLocalMcpBin(cwd: string) {
+	const local = getDependencyPackageInfo(cwd, "@shadcn-svelte/mcp");
+	if (!local) return undefined;
+
+	// Like `npx @shadcn-svelte/mcp`, run the package's only bin, whatever it's named.
+	const { bin } = local.pkg;
+	const bins = typeof bin === "string" ? [bin] : Object.values(bin ?? {});
+	const [binPath] = bins;
+	return bins.length === 1 && binPath ? path.resolve(path.dirname(local.path), binPath) : undefined;
 }

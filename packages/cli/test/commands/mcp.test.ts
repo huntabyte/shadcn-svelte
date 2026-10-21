@@ -1,49 +1,74 @@
 import path from "node:path";
 import process from "node:process";
-import { spawn } from "node:child_process";
-import { EventEmitter } from "node:events";
 import { mkdtemp, readFile, writeFile } from "node:fs/promises";
-import { createRequire } from "node:module";
 import { tmpdir } from "node:os";
 import { Command } from "commander";
+import { exec } from "tinyexec";
 import { afterEach, expect, it, vi } from "vitest";
 import { mcp, runMcpInit } from "../../src/commands/mcp.js";
 import { detectPM } from "../../src/utils/auto-detect.js";
+import { getDependencyPackageInfo } from "../../src/utils/get-package-info.js";
 
-vi.mock("node:child_process", () => ({
-	spawn: vi.fn(() => {
-		const child = new EventEmitter() as EventEmitter & { kill: ReturnType<typeof vi.fn> };
-		child.kill = vi.fn();
-		queueMicrotask(() => child.emit("exit", 0, null));
-		return child;
-	}),
+vi.mock("tinyexec", () => ({
+	exec: vi.fn(async () => ({ stdout: "", stderr: "", exitCode: 0 })),
 }));
 
 vi.mock("../../src/utils/auto-detect.js", () => ({
 	detectPM: vi.fn(async () => undefined),
 }));
 
+// pnpm's bin shims set NODE_PATH to this monorepo's store, where Node's lookup would find
+// the workspace's `@shadcn-svelte/mcp` from any directory.
+vi.mock("../../src/utils/get-package-info.js", async (importOriginal) => ({
+	...(await importOriginal<typeof import("../../src/utils/get-package-info.js")>()),
+	getDependencyPackageInfo: vi.fn(() => undefined),
+}));
+
 vi.spyOn(process, "exit").mockImplementation(() => undefined as never);
 
 afterEach(() => {
-	vi.mocked(spawn).mockClear();
+	vi.mocked(exec).mockClear();
 	vi.mocked(detectPM).mockReset();
 	vi.mocked(detectPM).mockResolvedValue(undefined);
+	vi.mocked(getDependencyPackageInfo).mockReset();
+	vi.mocked(getDependencyPackageInfo).mockReturnValue(undefined);
 	vi.mocked(process.exit).mockClear();
 });
 
-it("shells out to @shadcn-svelte/mcp in the requested directory", async () => {
+it("runs @shadcn-svelte/mcp through the package manager in the requested directory", async () => {
+	vi.mocked(detectPM).mockResolvedValue("pnpm");
 	const cwd = await mkdtemp(path.join(tmpdir(), "shadcn-svelte-mcp-"));
 	const program = new Command();
 	program.addCommand(mcp);
 
 	await program.parseAsync(["node", "shadcn-svelte", "mcp", "-c", cwd]);
 
-	const require = createRequire(import.meta.url);
-	expect(spawn).toHaveBeenCalledWith(process.execPath, [require.resolve("@shadcn-svelte/mcp")], {
-		cwd: path.resolve(cwd),
-		stdio: "inherit",
-		env: process.env,
+	expect(exec).toHaveBeenCalledWith("pnpm", ["dlx", "@shadcn-svelte/mcp@latest"], {
+		nodeOptions: { cwd: path.resolve(cwd), stdio: "inherit" },
+	});
+	expect(process.exit).toHaveBeenCalledWith(0);
+});
+
+it.each<string | Record<string, string>>([
+	{ "shadcn-svelte-mcp": "./dist/index.mjs" },
+	{ renamed: "./dist/index.mjs" },
+	"./dist/index.mjs",
+])("prefers the @shadcn-svelte/mcp installed in the project (bin: %j)", async (bin) => {
+	vi.mocked(detectPM).mockResolvedValue("pnpm");
+	const cwd = await mkdtemp(path.join(tmpdir(), "shadcn-svelte-mcp-local-"));
+	const pkgDir = path.join(cwd, "node_modules", "@shadcn-svelte", "mcp");
+	vi.mocked(getDependencyPackageInfo).mockReturnValue({
+		pkg: { name: "@shadcn-svelte/mcp", bin },
+		path: path.join(pkgDir, "package.json"),
+	});
+	const program = new Command();
+	program.addCommand(mcp);
+
+	await program.parseAsync(["node", "shadcn-svelte", "mcp", "-c", cwd]);
+
+	expect(getDependencyPackageInfo).toHaveBeenCalledWith(path.resolve(cwd), "@shadcn-svelte/mcp");
+	expect(exec).toHaveBeenCalledWith(process.execPath, [path.join(pkgDir, "dist", "index.mjs")], {
+		nodeOptions: { cwd: path.resolve(cwd), stdio: "inherit" },
 	});
 });
 
@@ -95,6 +120,30 @@ it("uses the detected package manager to run the server", async () => {
 	expect(config.mcpServers["shadcn-svelte"]).toEqual({
 		command: "pnpm",
 		args: ["dlx", "@shadcn-svelte/mcp@latest"],
+	});
+});
+
+it("runs yarn dlx quietly so its install log stays off the MCP stdout", async () => {
+	vi.mocked(detectPM).mockResolvedValue("yarn@berry");
+	const cwd = await mkdtemp(path.join(tmpdir(), "shadcn-svelte-mcp-yarn-"));
+	const program = new Command();
+	program.addCommand(mcp);
+
+	await program.parseAsync([
+		"node",
+		"shadcn-svelte",
+		"mcp",
+		"-c",
+		cwd,
+		"init",
+		"--client",
+		"cursor",
+	]);
+
+	const config = JSON.parse(await readFile(path.join(cwd, ".cursor/mcp.json"), "utf8"));
+	expect(config.mcpServers["shadcn-svelte"]).toEqual({
+		command: "yarn",
+		args: ["dlx", "-q", "@shadcn-svelte/mcp@latest"],
 	});
 });
 
