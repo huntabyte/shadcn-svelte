@@ -1,14 +1,15 @@
+import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
-import { promises as fs } from "node:fs";
 import * as p from "@clack/prompts";
-import deepmerge from "deepmerge";
+import * as jsonc from "jsonc-parser/lib/esm/main.js";
 import { Command, Option } from "commander";
 import { resolveCommand } from "package-manager-detector";
 import { exec } from "tinyexec";
 import { z } from "zod";
 import { detectPM } from "../utils/auto-detect.js";
 import { highlight } from "../utils/colors.js";
+import { error } from "../utils/errors.js";
 import { getDependencyPackageInfo } from "../utils/get-package-info.js";
 import { handleError, cancel } from "../utils/prompt-helpers.js";
 
@@ -111,35 +112,49 @@ mcp
 		}
 	});
 
-const overwriteMerge = (_target: unknown[], source: unknown[]) => source;
-
 export async function runMcpInit(options: { client: JsonClientName; cwd: string }) {
 	const { client, cwd } = options;
 	const clientInfo = CLIENTS[client];
 	const configPath = path.join(cwd, clientInfo.configPath);
-	const dir = path.dirname(configPath);
-	await fs.mkdir(dir, { recursive: true });
+	let content = fs.existsSync(configPath) ? fs.readFileSync(configPath, "utf8") : "";
+	if (!content.trim()) content = "{}";
 
-	// Handle JSON format.
-	let existingConfig = {};
-	try {
-		const content = await fs.readFile(configPath, "utf-8");
-		existingConfig = JSON.parse(content);
-	} catch {
-		// No existing config.
+	// Client configs are often JSONC (e.g. VS Code's `mcp.json`), so refuse to touch files we
+	// can't parse, and edit the text in place to keep the user's comments and formatting.
+	const errors: jsonc.ParseError[] = [];
+	jsonc.parse(content, errors, { allowTrailingComma: true });
+	if (errors.length > 0) {
+		const { error: code, offset } = errors[0]!;
+		const line = content.slice(0, offset).split("\n").length;
+		throw error(
+			`Failed to parse ${highlight(clientInfo.configPath)} (${jsonc.printParseErrorCode(code)} on line ${line}). Fix the file and try again.`
+		);
 	}
 
-	const mergedConfig = deepmerge(
-		existingConfig,
-		buildClientConfig(client, await resolveMcpCommand(cwd)),
-		{
-			arrayMerge: overwriteMerge,
-		}
-	);
+	// Setting each value individually merges objects and replaces arrays.
+	const formattingOptions = { insertSpaces: false };
+	const config = buildClientConfig(client, await resolveMcpCommand(cwd));
+	for (const [jsonPath, value] of leafPaths(config)) {
+		content = jsonc.applyEdits(
+			content,
+			jsonc.modify(content, jsonPath, value, { formattingOptions })
+		);
+	}
 
-	await fs.writeFile(configPath, JSON.stringify(mergedConfig, null, 2) + "\n", "utf-8");
+	fs.mkdirSync(path.dirname(configPath), { recursive: true });
+	fs.writeFileSync(configPath, content.endsWith("\n") ? content : content + "\n", "utf8");
 
 	return clientInfo.configPath;
+}
+
+function* leafPaths(value: unknown, jsonPath: string[] = []): Generator<[string[], unknown]> {
+	if (typeof value === "object" && value !== null && !Array.isArray(value)) {
+		for (const [key, child] of Object.entries(value)) {
+			yield* leafPaths(child, [...jsonPath, key]);
+		}
+	} else {
+		yield [jsonPath, value];
+	}
 }
 
 async function resolveMcpCommand(cwd: string) {

@@ -1,7 +1,8 @@
 import path from "node:path";
 import process from "node:process";
-import { mkdtemp, readFile, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
+import * as jsonc from "jsonc-parser/lib/esm/main.js";
 import { Command } from "commander";
 import { exec } from "tinyexec";
 import { afterEach, expect, it, vi } from "vitest";
@@ -162,6 +163,45 @@ it("merges into an existing client config and replaces command arrays", async ()
 	const config = JSON.parse(await readFile(configPath, "utf8"));
 	expect(config.mcp.other).toEqual({ type: "local", command: ["stay"] });
 	expect(config.mcp["shadcn-svelte"].command).toEqual(["npx", "@shadcn-svelte/mcp@latest"]);
+});
+
+it("keeps comments and other servers when updating a JSONC config", async () => {
+	const cwd = await mkdtemp(path.join(tmpdir(), "shadcn-svelte-mcp-jsonc-"));
+	const configPath = path.join(cwd, ".vscode/mcp.json");
+	await mkdir(path.dirname(configPath));
+	await writeFile(
+		configPath,
+		`{
+	// my servers
+	"servers": {
+		"github": { "type": "http", "url": "https://api.githubcopilot.com/mcp/" },
+	},
+	"inputs": [],
+}
+`
+	);
+
+	await runMcpInit({ client: "vscode", cwd });
+
+	const content = await readFile(configPath, "utf8");
+	expect(content).toContain("// my servers");
+	expect(jsonc.parse(content)).toEqual({
+		servers: {
+			github: { type: "http", url: "https://api.githubcopilot.com/mcp/" },
+			"shadcn-svelte": { command: "npx", args: ["@shadcn-svelte/mcp@latest"] },
+		},
+		inputs: [],
+	});
+});
+
+it("refuses to overwrite a config it can't parse", async () => {
+	const cwd = await mkdtemp(path.join(tmpdir(), "shadcn-svelte-mcp-invalid-"));
+	const configPath = path.join(cwd, ".mcp.json");
+	const broken = `{\n\t"mcpServers": {\n`;
+	await writeFile(configPath, broken);
+
+	await expect(runMcpInit({ client: "claude", cwd })).rejects.toThrow(/Failed to parse/);
+	expect(await readFile(configPath, "utf8")).toBe(broken);
 });
 
 it("prints Codex instructions without writing a project config", async () => {
