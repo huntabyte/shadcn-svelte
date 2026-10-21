@@ -6,7 +6,7 @@ import * as jsonc from "jsonc-parser/lib/esm/main.js";
 import { Command } from "commander";
 import { exec } from "tinyexec";
 import { afterEach, expect, it, vi } from "vitest";
-import { mcp, runMcpInit } from "../../src/commands/mcp.js";
+import { mcp, runMcpInit } from "../../src/commands/mcp/index.js";
 import { detectPM } from "../../src/utils/auto-detect.js";
 import { getDependencyPackageInfo } from "../../src/utils/get-package-info.js";
 

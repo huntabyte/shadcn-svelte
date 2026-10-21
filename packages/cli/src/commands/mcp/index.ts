@@ -7,11 +7,11 @@ import { Command, Option } from "commander";
 import { resolveCommand } from "package-manager-detector";
 import { exec } from "tinyexec";
 import { z } from "zod";
-import { detectPM } from "../utils/auto-detect.js";
-import { highlight } from "../utils/colors.js";
-import { error } from "../utils/errors.js";
-import { getDependencyPackageInfo } from "../utils/get-package-info.js";
-import { handleError, cancel } from "../utils/prompt-helpers.js";
+import { detectPM } from "../../utils/auto-detect.js";
+import { highlight } from "../../utils/colors.js";
+import { error } from "../../utils/errors.js";
+import { getDependencyPackageInfo } from "../../utils/get-package-info.js";
+import { handleError, cancel } from "../../utils/prompt-helpers.js";
 
 const SHADCN_SVELTE_MCP_VERSION = "latest";
 
