@@ -40,17 +40,6 @@
 		RADII.find((radius) => radius.name === effectiveRadius)?.value ?? RADII[0].value
 	);
 
-	watch([() => designSystem.style, () => designSystem.radius], ([style, radius]) => {
-		if ((style === "lyra" || style === "sera") && radius !== "none") {
-			designSystem.radius = "none";
-			return;
-		}
-
-		if (style === "rhea" && radius === "large") {
-			designSystem.radius = "default";
-		}
-	});
-
 	const registryTheme = $derived.by(() => {
 		if (!designSystem.baseColor || !designSystem.theme || !designSystem.menuAccent || !radius) {
 			return null;
@@ -84,9 +73,10 @@
 			fonts[0].font.family;
 		document.documentElement.style.setProperty("--font-sans", selectedFont);
 
+		// `inherit` has no heading font item, so it falls through to the body font.
 		const selectedHeadingFont =
 			fonts.find((font) => font.name.replace("font-heading-", "") === designSystem.fontHeading)
-				?.font.family ?? fonts[0].font.family;
+				?.font.family ?? "var(--font-sans)";
 		document.documentElement.style.setProperty("--font-heading", selectedHeadingFont);
 
 		const styleId = uid;

@@ -987,6 +987,16 @@ export class QuestionnaireChoiceState {
 				}
 			}
 		);
+
+		// Switching an input to `radio` unchecks it when another radio in the same group is
+		// checked, and the browser doesn't tell Svelte, so re-apply `checked` after the DOM updates.
+		watch(
+			[() => this.inputElement, () => this.type],
+			([input]) => {
+				if (input && input.checked !== this.checked) input.checked = this.checked;
+			},
+			{ lazy: true }
+		);
 	}
 
 	readonly controlled = $derived.by(() => this.opts.checked.current !== undefined);
