@@ -4,7 +4,7 @@
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
-		"dev": "pnpm --reporter append-only --color \"/dev:/\"",
+		"dev": "pnpm --reporter append-only --color --workspace-concurrency=Infinity \"/dev:/\"",
 		"dev:content": "velite dev --watch",
 		"dev:icons": "tsx scripts/build-icons.ts --watch",
 		"dev:registry": "tsx scripts/build-registry.ts build-registry --watch",
@@ -92,7 +92,7 @@
 		"@types/qrcode": "^1.5.6",
 		"acorn": "^8.16.0",
 		"ai": "^7.0.141",
-		"bits-ui": "^2.18.0",
+		"bits-ui": "^2.20.0",
 		"chrono-node": "^2.9.0",
 		"cn": "^0.3.0",
 		"concurrently": "^9.2.1",
