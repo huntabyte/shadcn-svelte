@@ -51,6 +51,24 @@ export type Lockable = {
 	template: boolean;
 };
 
+// Some styles only support a subset of radii. Enforce that when state is written (rather than
+// reacting to it afterwards) so a style change is a single history entry that undo can restore.
+function normalizeConfig(config: PresetConfig): PresetConfig {
+	if ((config.style === "lyra" || config.style === "sera") && config.radius !== "none") {
+		return { ...config, radius: "none" };
+	}
+
+	if (config.style === "rhea" && config.radius === "large") {
+		return { ...config, radius: "default" };
+	}
+
+	return config;
+}
+
+function encodeNormalized(config: PresetConfig): string {
+	return encodePreset(normalizeConfig(config));
+}
+
 class DesignSystemState implements IDesignSystemState {
 	#history: StateHistory<string>;
 	#preset: PersistedState<string>;
@@ -67,6 +85,8 @@ class DesignSystemState implements IDesignSystemState {
 		if (presetFromUrl && isValidPreset(presetFromUrl)) {
 			this.#preset.current = presetFromUrl;
 		}
+		const initial = decodePreset(this.#preset.current);
+		if (initial) this.#preset.current = encodeNormalized(initial);
 		this.#locks = new PersistedState<Lockable>("locks", {
 			style: false,
 			baseColor: false,
@@ -112,7 +132,7 @@ class DesignSystemState implements IDesignSystemState {
 	}
 
 	private set system(value: PresetConfig) {
-		this.#setPresetCode(encodePreset(value));
+		this.#setPresetCode(encodeNormalized(value));
 	}
 
 	#setPresetCode(code: string) {

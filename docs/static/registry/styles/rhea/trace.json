@@ -1,0 +1,59 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "trace",
+	"type": "registry:ui",
+	"devDependencies": [
+		"bits-ui@^2.20.0",
+		"@internationalized/date@^3.12.0"
+	],
+	"registryDependencies": [
+		"collapsible"
+	],
+	"files": [
+		{
+			"content": "import CollapsibleContent from \"./trace-collapsible-content.svelte\";\nimport CollapsibleTrigger from \"./trace-collapsible-trigger.svelte\";\nimport Collapsible from \"./trace-collapsible.svelte\";\nimport Description from \"./trace-description.svelte\";\nimport Icon from \"./trace-icon.svelte\";\nimport Title from \"./trace-title.svelte\";\nimport Root from \"./trace.svelte\";\nimport Line, { type TraceLineStatus } from \"./trace-line.svelte\";\n\nexport {\n\tRoot,\n\tLine,\n\tIcon,\n\tTitle,\n\tDescription,\n\tCollapsible,\n\tCollapsibleTrigger,\n\tCollapsibleContent,\n\ttype TraceLineStatus,\n\t//\n\tRoot as Trace,\n\tLine as TraceLine,\n\tIcon as TraceIcon,\n\tTitle as TraceTitle,\n\tDescription as TraceDescription,\n\tCollapsible as TraceCollapsible,\n\tCollapsibleTrigger as TraceCollapsibleTrigger,\n\tCollapsibleContent as TraceCollapsibleContent,\n};\n",
+			"type": "registry:file",
+			"target": "trace/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport * as Collapsible from \"$UI$/collapsible/index.js\";\n\timport { cn, type WithoutChild } from \"$UTILS$.js\";\n\timport type { Collapsible as CollapsiblePrimitive } from \"bits-ui\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChild<CollapsiblePrimitive.ContentProps> = $props();\n</script>\n\n<Collapsible.Content\n\tbind:ref\n\tdata-slot=\"trace-collapsible-content\"\n\tclass=\"duration-200 min-w-0 overflow-hidden [--bits-accordion-content-height:var(--bits-collapsible-content-height)] data-open:animate-accordion-down data-closed:animate-accordion-up\"\n\t{...restProps}\n>\n\t<div\n\t\tdata-slot=\"trace-collapsible-content-inner\"\n\t\tclass={cn(\n\t\t\t\"mt-2 mb-1 ml-[calc(--spacing(2)_-_1px)] border-l pr-1 pl-4 leading-relaxed min-w-0 wrap-break-word text-muted-foreground\",\n\t\t\tclassName\n\t\t)}\n\t>\n\t\t{@render children?.()}\n\t</div>\n</Collapsible.Content>\n",
+			"type": "registry:file",
+			"target": "trace/trace-collapsible-content.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport * as Collapsible from \"$UI$/collapsible/index.js\";\n\timport IconPlaceholder from \"$lib/components/icon-placeholder/icon-placeholder.svelte\";\n\timport { cn, type WithoutChild } from \"$UTILS$.js\";\n\timport TraceIcon from \"./trace-icon.svelte\";\n\timport type { Collapsible as CollapsiblePrimitive } from \"bits-ui\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChild<CollapsiblePrimitive.TriggerProps> = $props();\n</script>\n\n<Collapsible.Trigger\n\tbind:ref\n\tdata-slot=\"trace-collapsible-trigger\"\n\tclass={cn(\n\t\t\"gap-1 rounded-lg focus-visible:ring-3 focus-visible:ring-ring/30 group/trace-collapsible-trigger flex w-fit max-w-full min-w-0 cursor-pointer items-center text-left text-muted-foreground transition-colors outline-none hover:text-foreground has-[[data-status=error]]:text-destructive\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n\t<TraceIcon class=\"transition-transform group-aria-expanded/trace-collapsible-trigger:rotate-90\">\n\t\t<IconPlaceholder\n\t\t\tlucide=\"ChevronRightIcon\"\n\t\t\ttabler=\"IconChevronRight\"\n\t\t\thugeicons=\"ArrowRight01Icon\"\n\t\t\tphosphor=\"CaretRightIcon\"\n\t\t\tremixicon=\"RiArrowRightSLine\"\n\t\t/>\n\t</TraceIcon>\n</Collapsible.Trigger>\n",
+			"type": "registry:file",
+			"target": "trace/trace-collapsible-trigger.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport * as Collapsible from \"$UI$/collapsible/index.js\";\n\timport { cn } from \"$UTILS$.js\";\n\timport type { Collapsible as CollapsiblePrimitive } from \"bits-ui\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\topen = $bindable(false),\n\t\tclass: className,\n\t\t...restProps\n\t}: CollapsiblePrimitive.RootProps = $props();\n</script>\n\n<Collapsible.Root\n\tbind:ref\n\tbind:open\n\tdata-slot=\"trace-collapsible\"\n\tclass={cn(\"flex w-full min-w-0 flex-col\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "trace/trace-collapsible.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLSpanElement>> = $props();\n</script>\n\n<span\n\tbind:this={ref}\n\tdata-slot=\"trace-description\"\n\tclass={cn(\"shrink-0 text-muted-foreground/70 tabular-nums\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</span>\n",
+			"type": "registry:file",
+			"target": "trace/trace-description.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLSpanElement>> = $props();\n</script>\n\n<span\n\tbind:this={ref}\n\tdata-slot=\"trace-icon\"\n\taria-hidden=\"true\"\n\tclass={cn(\n\t\t\"size-4 [&_svg:not([class*='size-'])]:size-4 [[data-slot=trace-title]~&]:-ml-1 flex shrink-0 items-center justify-center [&_svg]:pointer-events-none\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</span>\n",
+			"type": "registry:file",
+			"target": "trace/trace-icon.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\" module>\n\texport type TraceLineStatus = \"running\" | \"error\" | \"pending\";\n</script>\n\n<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tstatus,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLSpanElement>> & {\n\t\tstatus?: TraceLineStatus;\n\t} = $props();\n</script>\n\n<span\n\tbind:this={ref}\n\tdata-slot=\"trace-line\"\n\tdata-status={status}\n\tclass={cn(\n\t\t\"gap-2 text-sm flex w-fit max-w-full min-w-0 items-center text-muted-foreground transition-colors in-[a,button]:cursor-pointer in-[a:hover,button:hover]:text-foreground data-[status=error]:text-destructive data-[status=error]:in-[a:hover,button:hover]:text-destructive data-[status=pending]:opacity-60 data-[status=running]:*:data-[slot=trace-title]:shimmer\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</span>\n",
+			"type": "registry:file",
+			"target": "trace/trace-line.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLSpanElement>> = $props();\n</script>\n\n<span\n\tbind:this={ref}\n\tdata-slot=\"trace-title\"\n\tclass={cn(\"min-w-0 truncate motion-reduce:shimmer-none\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</span>\n",
+			"type": "registry:file",
+			"target": "trace/trace-title.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"trace\"\n\tclass={cn(\n\t\t\"gap-2 *:has-[>[data-slot=trace-line]]:rounded-lg *:has-[>[data-slot=trace-line]]:focus-visible:ring-3 *:has-[>[data-slot=trace-line]]:focus-visible:ring-ring/30 flex w-full min-w-0 flex-col *:has-[>[data-slot=trace-line]]:flex *:has-[>[data-slot=trace-line]]:w-fit *:has-[>[data-slot=trace-line]]:max-w-full *:has-[>[data-slot=trace-line]]:min-w-0 *:has-[>[data-slot=trace-line]]:text-left *:has-[>[data-slot=trace-line]]:outline-none\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "trace/trace.svelte"
+		}
+	]
+}

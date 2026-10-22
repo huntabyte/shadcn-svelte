@@ -7,4 +7,10 @@ description: Here you can find all the components available in the library. We a
 	import ComponentsList from "$lib/components/components-list.svelte";
 </script>
 
+## New Components
+
+<ComponentsList variant="new" />
+
+## All Components
+
 <ComponentsList />

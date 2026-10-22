@@ -1,9 +1,12 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
+	import { base } from "$app/paths";
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
 	import CornerDownLeftIcon from "@lucide/svelte/icons/corner-down-left";
 	import SquareDashedIcon from "@lucide/svelte/icons/square-dashed";
 	import { encodePreset } from "shadcn-svelte/preset";
+	import { onMount } from "svelte";
+	import { SvelteSet } from "svelte/reactivity";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import * as Kbd from "$lib/registry/ui/kbd/index.js";
@@ -16,6 +19,7 @@
 	import { Separator } from "$lib/registry/ui/separator/index.js";
 	import { UserConfigContext, type PackageManager } from "$lib/user-config.svelte.js";
 	import { cn } from "$lib/utils.js";
+	import { createContentIndex, searchContentIndex } from "$lib/utils/search.js";
 	import CommandMenuItem from "./command-menu-item.svelte";
 
 	let {
@@ -38,7 +42,9 @@
 
 	const COMMAND_MENU_GROUP_ORDER = [
 		"Components",
+		"AI Elements",
 		"Get Started",
+		"Changelog",
 		"Utilities",
 		"Installation",
 		"Dark Mode",
@@ -49,9 +55,19 @@
 
 	const orderedSidebarGroups = COMMAND_MENU_GROUP_ORDER.map((title) =>
 		sidebarNavItems.find((group) => group.title === title)
-	).filter((group): group is (typeof sidebarNavItems)[number] => group !== undefined);
+	)
+		.filter((group): group is (typeof sidebarNavItems)[number] => group !== undefined)
+		.map((group) => ({
+			...group,
+			items:
+				group.items.length > 0
+					? group.items
+					: group.href
+						? [{ title: group.title, href: group.href, items: [] }]
+						: [],
+		}));
 
-	type SelectedType = "color" | "page" | "component" | "block" | "style";
+	type SelectedType = "color" | "page" | "component" | "block" | "style" | "search";
 
 	function pageValue(groupTitle: string, title: string | undefined) {
 		return title?.toString() ? `${groupTitle} ${title}` : "";
@@ -87,6 +103,9 @@
 		}
 		for (const style of STYLES) {
 			map[`Style ${style.title} ${style.description}`] = { type: "style", payload: "" };
+		}
+		for (const result of contentResults) {
+			map[`Search ${result.href}`] = { type: "search", payload: "" };
 		}
 		return map;
 	});
@@ -173,8 +192,35 @@
 		)
 	);
 
+	let searchReady = $state(false);
+	onMount(async () => {
+		try {
+			const response = await fetch(`${base}/api/search.json`);
+			if (!response.ok) return;
+			await createContentIndex(await response.json());
+		} catch {
+			// Navigation search remains usable if the content index fails to load.
+		} finally {
+			searchReady = true;
+		}
+	});
+
+	const contentResults = $derived.by(() => {
+		if (!searchReady || !normalizedSearch) return [];
+		const pageHrefs = new Set(
+			groupResults.flatMap((group) => group.items.map((item) => item.href))
+		);
+		const seen = new SvelteSet<string>();
+		return searchContentIndex(search).filter((result) => {
+			if (pageHrefs.has(result.href.split("#")[0]) || seen.has(result.href)) return false;
+			seen.add(result.href);
+			return true;
+		});
+	});
+
 	const hasResults = $derived(
 		styleResults.length > 0 ||
+			contentResults.length > 0 ||
 			pageResults.length > 0 ||
 			groupResults.length > 0 ||
 			blockResults.length > 0 ||
@@ -373,6 +419,21 @@
 						</Command.Group>
 					{/if}
 				{/if}
+				{#if contentResults.length}
+					<Command.Group
+						heading="Search Results"
+						class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
+					>
+						{#each contentResults as result (result.href)}
+							<CommandMenuItem
+								value={`Search ${result.href}`}
+								onSelect={() => runCommand(() => goto(result.href))}
+							>
+								<div class="line-clamp-1 text-sm">{result.title}</div>
+							</CommandMenuItem>
+						{/each}
+					</Command.Group>
+				{/if}
 				{#each colorResults as colorPalette (colorPalette.name)}
 					<Command.Group
 						heading={colorPalette.name.charAt(0).toUpperCase() + colorPalette.name.slice(1)}
@@ -410,7 +471,7 @@
 				{#if selectedType === "style"}
 					Open Style
 				{/if}
-				{#if selectedType === "page" || selectedType === "component"}
+				{#if selectedType === "page" || selectedType === "component" || selectedType === "search"}
 					Go to Page
 				{/if}
 				{#if selectedType === "color"}

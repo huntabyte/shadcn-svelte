@@ -20,12 +20,16 @@
 	)}
 	{...restProps}
 >
-	{cell.char}
-	{#if cell.hasFakeCaret}
-		<div
-			class="cn-input-otp-caret pointer-events-none absolute inset-0 flex items-center justify-center"
-		>
-			<div class="cn-input-otp-caret-line"></div>
+	{#snippet child({ props })}
+		<div {...props} data-active={cell.isActive}>
+			{cell.char}
+			{#if cell.hasFakeCaret}
+				<div
+					class="cn-input-otp-caret pointer-events-none absolute inset-0 flex items-center justify-center"
+				>
+					<div class="cn-input-otp-caret-line"></div>
+				</div>
+			{/if}
 		</div>
-	{/if}
+	{/snippet}
 </InputOTPPrimitive.Cell>
