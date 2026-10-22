@@ -1,6 +1,6 @@
 import { McpServer } from "@modelcontextprotocol/server";
 import { z } from "zod";
-import { npxShadcnSvelte } from "./utils.js";
+import { resolveShadcnCommand } from "./utils.js";
 import pkg from "../package.json" with { type: "json" };
 
 export const server = new McpServer({
@@ -32,7 +32,7 @@ server.registerTool(
 		content: [
 			{
 				type: "text",
-				text: await npxShadcnSvelte(`add -y ${items.map((item) => `"${item}"`).join(" ")}`),
+				text: await resolveShadcnCommand("add", ["-y", ...items.map((item) => `"${item}"`)]),
 			},
 		],
 	})
