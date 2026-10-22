@@ -235,6 +235,7 @@ async function getFileDependencies(
 	filename: string,
 	content: string
 ): Promise<{ registryDependencies: Set<string> }> {
+	if (filename.endsWith(".css")) return { registryDependencies: new Set() };
 	let ast: unknown;
 	let moduleAst: unknown;
 
