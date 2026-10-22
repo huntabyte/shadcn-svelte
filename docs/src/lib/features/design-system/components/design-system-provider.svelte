@@ -40,17 +40,6 @@
 		RADII.find((radius) => radius.name === effectiveRadius)?.value ?? RADII[0].value
 	);
 
-	watch([() => designSystem.style, () => designSystem.radius], ([style, radius]) => {
-		if ((style === "lyra" || style === "sera") && radius !== "none") {
-			designSystem.radius = "none";
-			return;
-		}
-
-		if (style === "rhea" && radius === "large") {
-			designSystem.radius = "default";
-		}
-	});
-
 	const registryTheme = $derived.by(() => {
 		if (!designSystem.baseColor || !designSystem.theme || !designSystem.menuAccent || !radius) {
 			return null;
