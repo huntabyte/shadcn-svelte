@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import { tmpdir } from "node:os";
+import * as p from "@clack/prompts";
 import * as jsonc from "jsonc-parser/lib/esm/main.js";
 import { Command } from "commander";
 import { exec } from "tinyexec";
@@ -26,6 +27,7 @@ vi.mock("../../src/utils/get-package-info.js", async (importOriginal) => ({
 }));
 
 vi.spyOn(process, "exit").mockImplementation(() => undefined as never);
+const message = vi.spyOn(p.log, "message");
 
 const tempDirs: string[] = [];
 
@@ -42,6 +44,7 @@ afterEach(() => {
 	vi.mocked(getDependencyPackageInfo).mockReset();
 	vi.mocked(getDependencyPackageInfo).mockReturnValue(undefined);
 	vi.mocked(process.exit).mockClear();
+	message.mockClear();
 	for (const dir of tempDirs.splice(0)) {
 		fs.rmSync(dir, { recursive: true, force: true });
 	}
@@ -215,7 +218,7 @@ it("refuses to overwrite a config it can't parse", async () => {
 	expect(fs.readFileSync(configPath, "utf8")).toBe(broken);
 });
 
-it("prints Codex instructions without writing a project config", async () => {
+it("adds the server to Codex with `codex mcp add`", async () => {
 	const cwd = createTempDir("shadcn-svelte-mcp-codex-");
 	const program = new Command();
 	program.addCommand(mcp);
@@ -231,6 +234,38 @@ it("prints Codex instructions without writing a project config", async () => {
 		"codex",
 	]);
 
+	expect(exec).toHaveBeenCalledWith(
+		"codex",
+		["mcp", "add", "shadcn-svelte", "--", "npx", "@shadcn-svelte/mcp@latest"],
+		{ nodeOptions: { cwd: path.resolve(cwd) } }
+	);
+	expect(message).not.toHaveBeenCalledWith(expect.stringContaining("[mcp_servers.shadcn-svelte]"));
+	expect(fs.existsSync(path.join(cwd, ".codex/config.toml"))).toBe(false);
+	expect(process.exit).not.toHaveBeenCalled();
+});
+
+it("prints Codex instructions when Codex isn't installed", async () => {
+	vi.mocked(exec).mockRejectedValueOnce(
+		Object.assign(new Error("spawn codex ENOENT"), { code: "ENOENT" })
+	);
+	const cwd = createTempDir("shadcn-svelte-mcp-codex-manual-");
+	const program = new Command();
+	program.addCommand(mcp);
+
+	await program.parseAsync([
+		"node",
+		"shadcn-svelte",
+		"mcp",
+		"-c",
+		cwd,
+		"init",
+		"--client",
+		"codex",
+	]);
+
+	expect(message).toHaveBeenCalledWith(
+		expect.stringContaining(`args = ["@shadcn-svelte/mcp@latest"]`)
+	);
 	expect(fs.existsSync(path.join(cwd, ".codex/config.toml"))).toBe(false);
 	expect(process.exit).not.toHaveBeenCalled();
 });
