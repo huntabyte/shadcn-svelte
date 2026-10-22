@@ -136,7 +136,7 @@
 		"runed": "^0.37.1",
 		"shadcn-svelte": "workspace:^",
 		"shiki": "^3.20.0",
-		"svelte": "^5.57.2",
+		"svelte": "catalog:",
 		"svelte-check": "catalog:",
 		"svelte-sonner": "^1.2.0",
 		"svelte-streamdown": "^4.2.1",
