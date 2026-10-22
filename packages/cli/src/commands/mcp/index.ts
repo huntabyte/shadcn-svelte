@@ -148,14 +148,11 @@ export async function runMcpInit(options: { client: JsonClientName; cwd: string 
 	return clientInfo.configPath;
 }
 
-function* leafPaths(value: unknown, jsonPath: string[] = []): Generator<[string[], unknown]> {
+function leafPaths(value: unknown, jsonPath: string[] = []): Array<[string[], unknown]> {
 	if (typeof value === "object" && value !== null && !Array.isArray(value)) {
-		for (const [key, child] of Object.entries(value)) {
-			yield* leafPaths(child, [...jsonPath, key]);
-		}
-	} else {
-		yield [jsonPath, value];
+		return Object.entries(value).flatMap(([key, child]) => leafPaths(child, [...jsonPath, key]));
 	}
+	return [[jsonPath, value]];
 }
 
 async function resolveMcpCommand(cwd: string) {
