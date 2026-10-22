@@ -269,3 +269,31 @@ it("prints Codex instructions when Codex isn't installed", async () => {
 	expect(fs.existsSync(path.join(cwd, ".codex/config.toml"))).toBe(false);
 	expect(process.exit).not.toHaveBeenCalled();
 });
+
+it("shows Codex's error and the instructions when `codex mcp add` fails", async () => {
+	vi.mocked(exec).mockResolvedValueOnce({
+		stdout: "",
+		stderr: "Error: failed to load bootstrap configuration\n",
+		exitCode: 1,
+	});
+	const cwd = createTempDir("shadcn-svelte-mcp-codex-error-");
+	const program = new Command();
+	program.addCommand(mcp);
+
+	await program.parseAsync([
+		"node",
+		"shadcn-svelte",
+		"mcp",
+		"-c",
+		cwd,
+		"init",
+		"--client",
+		"codex",
+	]);
+
+	expect(message).toHaveBeenCalledWith("Error: failed to load bootstrap configuration");
+	expect(message).toHaveBeenCalledWith(
+		expect.stringContaining(`args = ["@shadcn-svelte/mcp@latest"]`)
+	);
+	expect(process.exit).not.toHaveBeenCalled();
+});

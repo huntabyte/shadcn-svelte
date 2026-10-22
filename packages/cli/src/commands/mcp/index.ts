@@ -96,13 +96,16 @@ mcp
 				const mcpCommand = await resolveMcpCommand(options.cwd);
 				const codexSpinner = p.spinner();
 				codexSpinner.start("Configuring MCP server...");
-				if (await addCodexServer(options.cwd, mcpCommand)) {
+				const result = await addCodexServer(options.cwd, mcpCommand);
+				if (result?.exitCode === 0) {
 					codexSpinner.stop("Configuring MCP server.");
 					p.log.success("Added the shadcn-svelte MCP server to Codex. Restart Codex to load it.");
 					return;
 				}
 
 				codexSpinner.error("Couldn't add the MCP server with the Codex CLI.");
+				const codexError = result?.stderr.trim();
+				if (codexError) p.log.message(codexError);
 				p.log.info("To configure the shadcn-svelte MCP server in Codex:");
 				p.log.message(`1. Open or create the file ${highlight("~/.codex/config.toml")}`);
 				p.log.message("2. Add the following configuration:");
@@ -197,14 +200,14 @@ function buildClientConfig(
 	}
 }
 
-// Codex only reads TOML, so let its CLI edit the config. Fails if Codex isn't installed.
+// Codex only reads TOML, so let its CLI edit the config. Returns `undefined` if Codex isn't
+// installed.
 async function addCodexServer(cwd: string, run: { command: string; args: string[] }) {
+	const args = ["mcp", "add", "shadcn-svelte", "--", run.command, ...run.args];
 	try {
-		const args = ["mcp", "add", "shadcn-svelte", "--", run.command, ...run.args];
-		const result = await exec("codex", args, { nodeOptions: { cwd } });
-		return result.exitCode === 0;
+		return await exec("codex", args, { nodeOptions: { cwd } });
 	} catch {
-		return false;
+		return undefined;
 	}
 }
 
