@@ -60,6 +60,24 @@ export type Lockable = {
 	template: boolean;
 };
 
+// Some styles only support a subset of radii. Enforce that when state is written (rather than
+// reacting to it afterwards) so a style change is a single history entry that undo can restore.
+function normalizeConfig(config: PresetConfig): PresetConfig {
+	if ((config.style === "lyra" || config.style === "sera") && config.radius !== "none") {
+		return { ...config, radius: "none" };
+	}
+
+	if (config.style === "rhea" && config.radius === "large") {
+		return { ...config, radius: "default" };
+	}
+
+	return config;
+}
+
+function encodeNormalized(config: PresetConfig): string {
+	return encodePreset(normalizeConfig(config));
+}
+
 class DesignSystemState implements IDesignSystemState {
 	#history: StateHistory<string>;
 	#preset: PersistedState<string>;
@@ -75,6 +93,8 @@ class DesignSystemState implements IDesignSystemState {
 		if (presetFromUrl && isValidPreset(presetFromUrl)) {
 			this.#preset.current = presetFromUrl;
 		}
+		const initial = decodePreset(this.#preset.current);
+		if (initial) this.#preset.current = encodeNormalized(initial);
 		this.#locks = new PersistedState<Lockable>("locks", {
 			style: false,
 			baseColor: false,
@@ -108,7 +128,11 @@ class DesignSystemState implements IDesignSystemState {
 	}
 
 	private set system(value: PresetConfig) {
-		this.#preset.current = encodePreset(value);
+		this.#preset.current = encodeNormalized(value);
+		this.#syncUrl();
+	}
+
+	#syncUrl() {
 		const searchParams = new SvelteURLSearchParams(page.url.searchParams);
 		searchParams.set("preset", this.#preset.current);
 		goto(`${page.url.pathname}?${searchParams.toString()}${page.url.hash}`, {
@@ -120,10 +144,12 @@ class DesignSystemState implements IDesignSystemState {
 
 	undo() {
 		this.#history.undo();
+		this.#syncUrl();
 	}
 
 	redo() {
 		this.#history.redo();
+		this.#syncUrl();
 	}
 
 	get canUndo() {
