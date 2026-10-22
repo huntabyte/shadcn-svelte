@@ -16,11 +16,7 @@ export async function resolveShadcnCommand(
 	const local = isInstalled(cwd, SHADCN_SVELTE);
 	const pkg = local ? SHADCN_SVELTE : `${SHADCN_SVELTE}@latest`;
 	const cliArgs = [pkg, command, ...args];
-	const resolved = resolveCommand(pm, local ? "execute-local" : "execute", cliArgs);
-	if (!resolved) {
-		return `npx ${cliArgs.join(" ")}`;
-	}
-
+	const resolved = resolveCommand(pm, local ? "execute-local" : "execute", cliArgs)!;
 	return [resolved.command, ...resolved.args].join(" ");
 }
 

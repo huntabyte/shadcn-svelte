@@ -162,12 +162,7 @@ async function resolveMcpCommand(cwd: string) {
 	const pm = (await detectPM(cwd, false)) ?? "npm";
 	const pkg = `@shadcn-svelte/mcp@${SHADCN_SVELTE_MCP_VERSION}`;
 	// `yarn dlx` logs the install to stdout, which corrupts the MCP stdio stream.
-	const resolved = resolveCommand(pm, "execute", pm === "yarn@berry" ? ["-q", pkg] : [pkg]);
-	if (!resolved) {
-		return { command: "npx", args: [pkg] };
-	}
-
-	return resolved;
+	return resolveCommand(pm, "execute", pm === "yarn@berry" ? ["-q", pkg] : [pkg])!;
 }
 
 function buildClientConfig(

@@ -24,10 +24,7 @@
 		"shadcn-sv-mcp": "./dist/index.mjs"
 	},
 	"exports": {
-		".": {
-			"types": "./dist/index.d.mts",
-			"default": "./dist/index.mjs"
-		}
+		"./package.json": "./package.json"
 	},
 	"files": [
 		"dist"
