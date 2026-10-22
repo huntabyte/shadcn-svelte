@@ -4,7 +4,7 @@ packages:
   - sv-addons/*
 
 allowBuilds:
-  '@hugeicons/svelte': true
+  "@hugeicons/svelte": true
   esbuild: true
   sharp: true
   workerd: true
