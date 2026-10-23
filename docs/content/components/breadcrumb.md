@@ -3,7 +3,7 @@ title: Breadcrumb
 description: Displays the path to the current resource using a hierarchy of links.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/breadcrumb
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/breadcrumb
 ---
 
 <script>
@@ -42,6 +42,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -71,6 +77,25 @@ Copy and paste the following code into your project.
   </Breadcrumb.List>
 </Breadcrumb.Root>
 ```
+
+## Composition
+
+Use the following composition to build a `Breadcrumb`:
+
+```text
+Breadcrumb.Root
+└── Breadcrumb.List
+    ├── Breadcrumb.Item
+    │   └── Breadcrumb.Link
+    ├── Breadcrumb.Separator
+    ├── Breadcrumb.Item
+    │   └── Breadcrumb.Link
+    ├── Breadcrumb.Separator
+    └── Breadcrumb.Item
+        └── Breadcrumb.Page
+```
+
+Use `Breadcrumb.Ellipsis` inside a `Breadcrumb.Item` to represent collapsed items.
 
 ## Basic
 
@@ -121,3 +146,63 @@ To use a link just add the `href` prop to `<Breadcrumb.Link />`.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+### Breadcrumb.Root
+
+The `Breadcrumb.Root` component is the root navigation element that wraps all breadcrumb components.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | -       |
+
+### Breadcrumb.List
+
+The `Breadcrumb.List` component displays the ordered list of breadcrumb items.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | -       |
+
+### Breadcrumb.Item
+
+The `Breadcrumb.Item` component wraps individual breadcrumb items.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | -       |
+
+### Breadcrumb.Link
+
+The `Breadcrumb.Link` component displays a clickable link in the breadcrumb.
+
+| Prop    | Type                   | Default |
+| ------- | ---------------------- | ------- |
+| `class` | `string`               | -       |
+| `child` | `Snippet<[{ props }]>` | -       |
+
+### Breadcrumb.Page
+
+The `Breadcrumb.Page` component displays the current page in the breadcrumb (non-clickable).
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | -       |
+
+### Breadcrumb.Separator
+
+The `Breadcrumb.Separator` component displays a separator between breadcrumb items. You can pass custom children to override the default separator icon.
+
+| Prop       | Type      | Default |
+| ---------- | --------- | ------- |
+| `children` | `Snippet` | -       |
+| `class`    | `string`  | -       |
+
+### Breadcrumb.Ellipsis
+
+The `Breadcrumb.Ellipsis` component displays an ellipsis indicator for collapsed breadcrumb items.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` | -       |

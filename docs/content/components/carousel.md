@@ -3,7 +3,7 @@ title: Carousel
 description: A carousel with motion and swipe built using Embla.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/carousel
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/carousel
   doc: https://www.embla-carousel.com/docs/v8/get-started/svelte
   api: https://www.embla-carousel.com/docs/v8/api
 ---
@@ -56,6 +56,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -78,6 +84,18 @@ Copy and paste the following code into your project.
   <Carousel.Previous />
   <Carousel.Next />
 </Carousel.Root>
+```
+
+## Composition
+
+Use the following composition to build a `Carousel`:
+
+```text
+Carousel.Root
+├── Carousel.Content
+│   └── Carousel.Item
+├── Carousel.Previous
+└── Carousel.Next
 ```
 
 ## Sizes
@@ -278,3 +296,7 @@ You can use the `plugins` prop to add plugins to the carousel.
 </ComponentPreview>
 
 See the [Embla Carousel docs](https://www.embla-carousel.com/docs/v8/plugins) for more information on using plugins.
+
+## API Reference
+
+See the [Embla Carousel docs](https://www.embla-carousel.com/api) for more information on props and plugins.

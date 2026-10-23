@@ -3,7 +3,7 @@ title: Textarea
 description: Displays a form textarea or a component that looks like a textarea.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/textarea
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/textarea
 ---
 
 <script>
@@ -41,6 +41,12 @@ Copy and paste the following code into your project.
 {#if viewerData}
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
+
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
 
 </Steps>
 {/snippet}
@@ -97,3 +103,7 @@ Pair with `Button` to create a textarea with a submit button.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+`Textarea` accepts native textarea attributes and supports `bind:value` and `bind:ref`. See the [HTML textarea reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/textarea).

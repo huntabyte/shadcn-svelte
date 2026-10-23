@@ -3,7 +3,7 @@ title: Button
 description: Displays a button or a component that looks like a button.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/button
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/button
   api: https://bits-ui.com/docs/components/button#api-reference
 ---
 
@@ -42,6 +42,12 @@ Copy and paste the following code into your project.
 {#if viewerData}
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
+
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
 
 </Steps>
 {/snippet}
@@ -187,3 +193,16 @@ Pass an `href` prop to `<Button />` to render it as an `<a>` element that looks 
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+### Button
+
+The Button component is a wrapper around the button element that adds a variety of styles and functionality.
+
+| Prop       | Type                                                                                 | Default     |
+| ---------- | ------------------------------------------------------------------------------------ | ----------- |
+| `variant`  | `"default" \| "outline" \| "ghost" \| "destructive" \| "secondary" \| "link"`        | `"default"` |
+| `size`     | `"default" \| "xs" \| "sm" \| "lg" \| "icon" \| "icon-xs" \| "icon-sm" \| "icon-lg"` | `"default"` |
+| `href`     | `string`                                                                             | -           |
+| `children` | `Snippet`                                                                            | -           |
