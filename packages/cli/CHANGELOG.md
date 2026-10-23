@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.7.1
+
+### Patch Changes
+
+- fix(cli): keep the legacy style for Tailwind v3 projects and stop appending `/styles/<style>` to the TW3 registry URL ([#2947](https://github.com/huntabyte/shadcn-svelte/pull/2947))
+
 ## 1.7.0
 
 ### Minor Changes

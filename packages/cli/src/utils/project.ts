@@ -1,9 +1,10 @@
 import path from "node:path";
 import { existsSync, promises as fs } from "node:fs";
+import * as semver from "semver";
 import { detect, resolveCommand } from "package-manager-detector";
 import { exec } from "tinyexec";
 import { CLIError } from "./errors.js";
-import { readJSONSync } from "./get-package-info.js";
+import { getDependencyPackageInfo, readJSONSync } from "./get-package-info.js";
 import type * as cliConfig from "./config/schema.js";
 import type * as registry from "./registry/index.js";
 import type { PackageJson } from "type-fest";
@@ -76,6 +77,15 @@ export function isUsingSvelteKit(cwd: string): boolean {
 	const packageJSON = getPackageInfo(cwd);
 	const deps = { ...packageJSON.devDependencies, ...packageJSON.dependencies };
 	return deps["@sveltejs/kit"] !== undefined;
+}
+
+/** Whether the project is using Tailwind CSS v3, which is served by the legacy registry. */
+export function isUsingTailwind3(cwd: string): boolean {
+	const installed = getDependencyPackageInfo(cwd, "tailwindcss")?.pkg.version;
+	// covers the case where dependencies haven't been installed yet
+	const pkg = getPackageInfo(cwd);
+	const version = installed ?? { ...pkg.dependencies, ...pkg.devDependencies }["tailwindcss"];
+	return semver.satisfies(semver.coerce(version) ?? "", "^3.0.0");
 }
 
 export function getPackageInfo(cwd: string) {
