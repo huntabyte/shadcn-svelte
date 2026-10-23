@@ -207,6 +207,21 @@ it("asks for the client with a terminal", async () => {
 	expect(fs.existsSync(path.join(cwd, ".mcp.json"))).toBe(true);
 });
 
+it.each([{ args: ["init", "--client", "claude"] }, { args: [] }])(
+	"refuses a directory that doesn't exist (mcp $args)",
+	async ({ args }) => {
+		const cwd = path.join(createTempDir("shadcn-svelte-mcp-missing-"), "missing");
+		const program = new Command();
+		program.addCommand(mcp);
+
+		await program.parseAsync(["node", "shadcn-svelte", "mcp", "-c", cwd, ...args]);
+
+		expect(process.exit).toHaveBeenCalledWith(1);
+		expect(fs.existsSync(cwd)).toBe(false);
+		expect(exec).not.toHaveBeenCalled();
+	}
+);
+
 it("merges into an existing client config and replaces command arrays", async () => {
 	const cwd = createTempDir("shadcn-svelte-mcp-merge-");
 	await runMcpInit({ client: "opencode", cwd });
