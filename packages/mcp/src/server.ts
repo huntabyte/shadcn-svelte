@@ -1,3 +1,4 @@
+import path from "node:path";
 import { McpServer } from "@modelcontextprotocol/server";
 import { z } from "zod";
 import { resolveShadcnCommand } from "./utils.js";
@@ -26,13 +27,19 @@ server.registerTool(
 				.describe(
 					"Array of item names or URLs to get the add command for (e.g., ['button', 'data-table'])"
 				),
+			// The client decides where the server runs, so it may not be the project.
+			cwd: z
+				.string()
+				.refine(path.isAbsolute, { error: "Expected an absolute path." })
+				.optional()
+				.describe("Absolute path of the project the command will run in."),
 		}),
 	},
-	async ({ items }) => ({
+	async ({ items, cwd }) => ({
 		content: [
 			{
 				type: "text",
-				text: await resolveShadcnCommand("add", ["-y", ...items.map((item) => `"${item}"`)]),
+				text: await resolveShadcnCommand("add", ["-y", ...items.map((item) => `"${item}"`)], cwd),
 			},
 		],
 	})

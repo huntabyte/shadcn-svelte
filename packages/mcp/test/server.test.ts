@@ -1,3 +1,6 @@
+import fs from "node:fs";
+import path from "node:path";
+import { tmpdir } from "node:os";
 import { Client, InMemoryTransport } from "@modelcontextprotocol/client";
 import { afterAll, beforeAll, expect, it } from "vitest";
 import { server } from "../src/server.js";
@@ -51,9 +54,27 @@ it("returns an add command for the requested items", async () => {
 	]);
 });
 
+it("detects the package manager and installed CLI from `cwd`", async () => {
+	const cwd = fs.mkdtempSync(path.join(tmpdir(), "shadcn-svelte-mcp-"));
+	fs.writeFileSync(path.join(cwd, "pnpm-lock.yaml"), "");
+	fs.mkdirSync(path.join(cwd, "node_modules", "shadcn-svelte"), { recursive: true });
+	fs.writeFileSync(path.join(cwd, "node_modules", "shadcn-svelte", "package.json"), "{}");
+
+	const result = await client.callTool({
+		name: "get_add_command_for_items",
+		arguments: { items: ["button"], cwd },
+	});
+	fs.rmSync(cwd, { recursive: true, force: true });
+
+	expect(result.content).toEqual([
+		{ type: "text", text: `pnpm exec shadcn-svelte add -y "button"` },
+	]);
+});
+
 it.each([
 	{ arguments: {} },
 	{ arguments: { items: [] } },
+	{ arguments: { items: ["button"], cwd: "." } },
 	{ arguments: { items: ["button card"] } },
 	{ arguments: { items: ["--overwrite"] } },
 	{ arguments: { items: ["https://example.com/a --overwrite"] } },
