@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="With Shortcuts">

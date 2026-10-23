@@ -12,7 +12,7 @@
 	import ComboboxWithForm from "./combobox-with-form.svelte";
 	import ComboboxWithGroupsAndSeparator from "./combobox-with-groups-and-separator.svelte";
 	import ComboboxWithGroups from "./combobox-with-groups.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

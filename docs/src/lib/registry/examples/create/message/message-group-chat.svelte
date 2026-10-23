@@ -4,7 +4,7 @@
 	import * as Marker from "$lib/registry/ui/marker/index.js";
 	import * as Message from "$lib/registry/ui/message/index.js";
 	import { Spinner } from "$lib/registry/ui/spinner/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="Group Chat">

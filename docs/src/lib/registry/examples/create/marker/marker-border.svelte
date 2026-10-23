@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Marker from "$lib/registry/ui/marker/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="Border" class="gap-3">

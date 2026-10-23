@@ -7,7 +7,7 @@
 	import AttachmentSizes from "./attachment-sizes.svelte";
 	import AttachmentStates from "./attachment-states.svelte";
 	import AttachmentTriggers from "./attachment-triggers.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

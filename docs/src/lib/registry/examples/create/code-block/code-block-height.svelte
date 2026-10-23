@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as CodeBlock from "$lib/registry/ui/code-block/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const log = Array.from(
 		{ length: 40 },
