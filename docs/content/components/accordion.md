@@ -21,7 +21,7 @@ links:
 
 </script>
 
-<ComponentPreview name="accordion-demo" class="**:[.preview]:min-h-[300px] [&_.preview>[data-slot=accordion]]:max-w-sm" description="An accordion with three items" align="start">
+<ComponentPreview name="accordion-demo" previewClassName="h-auto min-h-[400px] *:data-[slot=accordion]:max-w-sm" description="An accordion with three items" align="start">
 
 <div></div>
 
