@@ -143,7 +143,7 @@ it("uses the detected package manager to run the server", async () => {
 	});
 });
 
-it("runs yarn dlx quietly so its install log stays off the MCP stdout", async () => {
+it("runs the server through npx for Yarn Berry", async () => {
 	vi.mocked(detectPM).mockResolvedValue("yarn@berry");
 	const cwd = createTempDir("shadcn-svelte-mcp-yarn-");
 	const program = new Command();
@@ -162,8 +162,8 @@ it("runs yarn dlx quietly so its install log stays off the MCP stdout", async ()
 
 	const config = JSON.parse(fs.readFileSync(path.join(cwd, ".cursor/mcp.json"), "utf8"));
 	expect(config.mcpServers["shadcn-svelte"]).toEqual({
-		command: "yarn",
-		args: ["dlx", "-q", "@shadcn-svelte/mcp@latest"],
+		command: "npx",
+		args: ["@shadcn-svelte/mcp@latest"],
 	});
 });
 

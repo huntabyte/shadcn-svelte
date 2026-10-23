@@ -182,10 +182,11 @@ function leafPaths(value: unknown, jsonPath: string[] = []): Array<[string[], un
 }
 
 async function resolveMcpCommand(cwd: string) {
-	const pm = (await detectPM(cwd, false)) ?? "npm";
+	let pm = (await detectPM(cwd, false)) ?? "npm";
+	// Yarn Berry is a nuisance for running remote scripts, so fall back to npm.
+	if (pm === "yarn@berry") pm = "npm";
 	const pkg = `@shadcn-svelte/mcp@${SHADCN_SVELTE_MCP_VERSION}`;
-	// `yarn dlx` logs the install to stdout, which corrupts the MCP stdio stream.
-	return resolveCommand(pm, "execute", pm === "yarn@berry" ? ["-q", pkg] : [pkg])!;
+	return resolveCommand(pm, "execute", [pkg])!;
 }
 
 function buildClientConfig(
