@@ -64,6 +64,9 @@ jobs:
       - name: Run tests
         run: pnpm -F shadcn-svelte test
 
+      - name: Run MCP tests
+        run: pnpm -F @shadcn-svelte/mcp test
+
   parity-test:
     name: Parity-Tests
     runs-on: ubuntu-latest
