@@ -18,7 +18,7 @@ export type NavItemWithChildren = NavItem & {
 	items: NavItemWithChildren[];
 };
 
-export const PAGES_NEW = ["/docs/typeset", "/docs/components/trace", "/docs/components/code-block"];
+export const PAGES_NEW = ["/docs/components/trace", "/docs/components/code-block"];
 
 export const PAGES_UPDATED: string[] = [];
 
