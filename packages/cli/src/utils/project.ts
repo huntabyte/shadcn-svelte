@@ -1,8 +1,8 @@
 import path from "node:path";
 import { existsSync, promises as fs } from "node:fs";
+import * as semver from "semver";
 import { detect, resolveCommand } from "package-manager-detector";
 import { exec } from "tinyexec";
-import * as semver from "semver";
 import { CLIError } from "./errors.js";
 import { getDependencyPackageInfo, readJSONSync } from "./get-package-info.js";
 import type * as cliConfig from "./config/schema.js";

@@ -65,8 +65,7 @@ export async function resolveConfig(cwd: string, config: RawConfig): Promise<Res
 	const sveltekit = project.isUsingSvelteKit(cwd);
 
 	// Tailwind v3 projects keep their legacy style (e.g. `new-york`), which the TW3 registry serves
-	const isLegacy =
-		config.registry.startsWith(TW3_SITE_BASE_URL) || project.isUsingTailwind3(cwd);
+	const isLegacy = config.registry.startsWith(TW3_SITE_BASE_URL) || project.isUsingTailwind3(cwd);
 
 	if (!isLegacy && config.style && !PRESET_STYLES.includes(config.style as never)) {
 		p.log.warn(
