@@ -11,6 +11,11 @@ import { mcp, runMcpInit } from "../../src/commands/mcp/index.js";
 import { detectPM } from "../../src/utils/auto-detect.js";
 import { getDependencyPackageInfo } from "../../src/utils/get-package-info.js";
 
+vi.mock("@clack/prompts", async (importOriginal) => ({
+	...(await importOriginal<typeof import("@clack/prompts")>()),
+	select: vi.fn(async () => "claude"),
+}));
+
 vi.mock("tinyexec", () => ({
 	exec: vi.fn(async () => ({ stdout: "", stderr: "", exitCode: 0 })),
 }));
@@ -160,6 +165,46 @@ it("runs yarn dlx quietly so its install log stays off the MCP stdout", async ()
 		command: "yarn",
 		args: ["dlx", "-q", "@shadcn-svelte/mcp@latest"],
 	});
+});
+
+// `--client` is only optional with a terminal, which is checked when the command is defined.
+async function importMcpWithTTY(isTTY: boolean) {
+	const original = Object.getOwnPropertyDescriptor(process.stdin, "isTTY");
+	Object.defineProperty(process.stdin, "isTTY", { value: isTTY, configurable: true });
+	vi.resetModules();
+	try {
+		const { mcp } = await import("../../src/commands/mcp/index.js");
+		const program = new Command();
+		program.addCommand(mcp);
+		mcp.commands
+			.find((command) => command.name() === "init")!
+			.exitOverride()
+			.configureOutput({ writeErr: () => {} });
+		return program;
+	} finally {
+		if (original) Object.defineProperty(process.stdin, "isTTY", original);
+		else delete (process.stdin as { isTTY?: boolean }).isTTY;
+	}
+}
+
+it("requires `--client` without a terminal", async () => {
+	const cwd = createTempDir("shadcn-svelte-mcp-no-tty-");
+	const program = await importMcpWithTTY(false);
+
+	await expect(
+		program.parseAsync(["node", "shadcn-svelte", "mcp", "-c", cwd, "init"])
+	).rejects.toMatchObject({ code: "commander.missingMandatoryOptionValue" });
+	expect(fs.readdirSync(cwd)).toEqual([]);
+});
+
+it("asks for the client with a terminal", async () => {
+	const cwd = createTempDir("shadcn-svelte-mcp-tty-");
+	const program = await importMcpWithTTY(true);
+
+	// The mocked prompt answers "claude".
+	await program.parseAsync(["node", "shadcn-svelte", "mcp", "-c", cwd, "init"]);
+
+	expect(fs.existsSync(path.join(cwd, ".mcp.json"))).toBe(true);
 });
 
 it("merges into an existing client config and replaces command arrays", async () => {

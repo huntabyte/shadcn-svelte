@@ -73,7 +73,12 @@ mcp
 	.description("Initialize MCP configuration for your client")
 	// `--cwd` is defined on `mcp`
 	.configureHelp({ showGlobalOptions: true })
-	.addOption(new Option("--client <client>", "MCP client to configure").choices(CLIENT_NAMES))
+	.addOption(
+		new Option("--client <client>", "MCP client to configure")
+			.choices(CLIENT_NAMES)
+			// Without a terminal, the prompt would hang or exit without doing anything.
+			.makeOptionMandatory(!process.stdin.isTTY)
+	)
 	.action(async (opts, command) => {
 		try {
 			const parentOptions = mcpOptionsSchema.parse(command.parent?.opts() ?? {});
