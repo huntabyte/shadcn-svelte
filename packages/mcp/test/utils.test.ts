@@ -83,4 +83,33 @@ describe("npxShadcnSvelte", () => {
 			"npx shadcn-svelte add button"
 		);
 	});
+
+	it("finds an install next to the lockfile", async () => {
+		vi.mocked(detect).mockResolvedValue({ agent: "pnpm", name: "pnpm" });
+		const root = createProjectWithCli();
+		fs.writeFileSync(path.join(root, "pnpm-lock.yaml"), "");
+		const cwd = path.join(root, "apps", "web");
+		fs.mkdirSync(cwd, { recursive: true });
+		await expect(resolveShadcnCommand("add", ["button"], cwd)).resolves.toBe(
+			"pnpm exec shadcn-svelte add button"
+		);
+	});
+
+	it("always runs the latest CLI for Yarn Berry", async () => {
+		vi.mocked(detect).mockResolvedValue({ agent: "yarn@berry", name: "yarn" });
+		await expect(resolveShadcnCommand("add", ["button"], createProjectWithCli())).resolves.toBe(
+			"yarn dlx shadcn-svelte@latest add button"
+		);
+	});
+
+	it("ignores an install above the project's lockfile", async () => {
+		vi.mocked(detect).mockResolvedValue({ agent: "pnpm", name: "pnpm" });
+		// `pnpm exec` only finds the project's and the workspace root's installs.
+		const cwd = path.join(createProjectWithCli(), "app");
+		fs.mkdirSync(cwd);
+		fs.writeFileSync(path.join(cwd, "pnpm-lock.yaml"), "");
+		await expect(resolveShadcnCommand("add", ["button"], cwd)).resolves.toBe(
+			"pnpm dlx shadcn-svelte@latest add button"
+		);
+	});
 });
