@@ -20,7 +20,7 @@ Here's an example of a complex component that installs a page, two components, a
     {
       "path": "registry/hello-world/page.svelte",
       "type": "registry:page",
-      "target": "src/routes/hello/+page.svelte"
+      "target": "hello/+page.svelte"
     },
     {
       "path": "registry/hello-world/components/hello-world.svelte",

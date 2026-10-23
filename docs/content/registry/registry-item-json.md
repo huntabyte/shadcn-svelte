@@ -205,7 +205,7 @@ The `files` property is used to specify the files of your registry item. Each fi
     {
       "path": "registry/hello-world/page.svelte",
       "type": "registry:page",
-      "target": "src/routes/hello/+page.svelte"
+      "target": "hello/+page.svelte"
     },
     {
       "path": "registry/hello-world/hello-world.svelte",

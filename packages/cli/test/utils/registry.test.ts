@@ -300,6 +300,17 @@ describe("Registry Utilities", () => {
 			);
 		});
 
+		it("should not duplicate a leading src/routes in page targets", () => {
+			const item: RegistryItem = {
+				name: "login",
+				type: "registry:page",
+				files: [{ type: "registry:page", content: "", target: "src/routes/login/+page.svelte" }],
+			};
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![0]!))).toBe(
+				"/path/to/cwd/src/routes/login/+page.svelte"
+			);
+		});
+
 		it("should resolve path for hooks", () => {
 			const item: RegistryItem = {
 				name: "use-hook",

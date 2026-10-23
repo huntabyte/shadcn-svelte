@@ -251,5 +251,11 @@ export function resolveItemFilePath(
 		aliasDir = getItemAliasDir(config, file.type);
 	}
 
-	return path.resolve(aliasDir, file.target);
+	let target = file.target;
+	if (file.type === "registry:page" && config.sveltekit) {
+		// page targets are relative to `src/routes`, but older docs/templates included the prefix
+		target = target.replace(/^(\.\/)?src\/routes\//, "");
+	}
+
+	return path.resolve(aliasDir, target);
 }
