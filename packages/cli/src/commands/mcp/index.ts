@@ -3,6 +3,7 @@ import path from "node:path";
 import process from "node:process";
 import * as p from "@clack/prompts";
 import * as jsonc from "jsonc-parser/lib/esm/main.js";
+import color from "picocolors";
 import { Command, Option } from "commander";
 import { resolveCommand } from "package-manager-detector";
 import { exec } from "tinyexec";
@@ -48,6 +49,10 @@ export const mcp = new Command()
 		try {
 			const options = mcpOptionsSchema.parse(opts);
 			const cwd = path.resolve(options.cwd);
+			if (!fs.existsSync(cwd)) {
+				throw error(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
+			}
+
 			// Prefer the version installed in the project over the registry's latest.
 			const localBin = resolveLocalMcpBin(cwd);
 			const run = localBin
@@ -76,6 +81,10 @@ mcp
 				cwd: path.resolve(parentOptions.cwd),
 				client: opts.client,
 			});
+
+			if (!fs.existsSync(options.cwd)) {
+				throw error(`The path ${color.cyan(options.cwd)} does not exist. Please try again.`);
+			}
 
 			let client = options.client;
 			if (!client) {
