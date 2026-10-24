@@ -13,7 +13,7 @@ import { highlight } from "../../utils/colors.js";
 import { ConfigError, error } from "../../utils/errors.js";
 import { getEnvProxy } from "../../utils/get-env-proxy.js";
 import { installDependencies } from "../../utils/install-deps.js";
-import { intro, handleError } from "../../utils/prompt-helpers.js";
+import { cancel, intro, handleError } from "../../utils/prompt-helpers.js";
 import { preflightInit } from "../init/preflight.js";
 
 const ONLY_OPTIONS = ["font", "theme"] as const;
@@ -105,6 +105,24 @@ export async function runApply({
 	const only = options.only && options.only.length > 0 ? options.only : undefined;
 	const shouldApplyTheme = only === undefined || only.includes("theme");
 	const onlyApplyTheme = only?.includes("theme");
+
+	if (options.yes === false) {
+		// Without a terminal, the prompt would hang or exit without doing anything.
+		if (!process.stdin.isTTY) {
+			throw error(`Pass ${highlight("--yes")} to skip the confirmation.`);
+		}
+
+		const stylesheet = highlight(path.relative(cwd, config.resolvedPaths.tailwindCss));
+		const files = shouldApplyTheme
+			? `${highlight("components.json")} and ${stylesheet}`
+			: stylesheet;
+		const proceed = await p.confirm({
+			message: `Ready to update ${files}? ${color.gray("(Make sure you have committed your changes before proceeding!)")}`,
+			initialValue: true,
+		});
+
+		if (p.isCancel(proceed) || proceed === false) cancel();
+	}
 
 	if (shouldApplyTheme) {
 		config.iconLibrary = decidedPresets.iconLibrary;

@@ -1,4 +1,5 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import * as p from "@clack/prompts";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import * as cliConfig from "../../src/utils/config/index.js";
 import * as registry from "../../src/utils/registry/index.js";
 import { apply, runApply } from "../../src/commands/apply/index.js";
@@ -10,8 +11,19 @@ vi.mock("@clack/prompts", async (importOriginal) => {
 	const actual = await importOriginal<typeof import("@clack/prompts")>();
 	return {
 		...actual,
+		confirm: vi.fn(),
 		spinner: vi.fn(() => ({ start: vi.fn(), stop: vi.fn(), message: vi.fn() })),
 		log: { ...actual.log, info: vi.fn() },
+	};
+});
+
+vi.mock("../../src/utils/prompt-helpers.js", async (importOriginal) => {
+	const actual = await importOriginal<typeof import("../../src/utils/prompt-helpers.js")>();
+	return {
+		...actual,
+		cancel: vi.fn(() => {
+			throw new Error("cancelled");
+		}),
 	};
 });
 
@@ -182,5 +194,81 @@ describe("runApply", () => {
 		expect(cliConfig.writeConfig).toHaveBeenCalledTimes(1);
 		const [args] = vi.mocked(addRegistryItems).mock.calls[0]!;
 		expect(args.only).toBeUndefined();
+	});
+});
+
+describe("confirmation", () => {
+	const isTTY = Object.getOwnPropertyDescriptor(process.stdin, "isTTY");
+	const options = { ...baseOptions, yes: false };
+
+	function setTTY(value: boolean) {
+		Object.defineProperty(process.stdin, "isTTY", { value, configurable: true });
+	}
+
+	afterEach(() => {
+		if (isTTY) Object.defineProperty(process.stdin, "isTTY", isTTY);
+		else delete (process.stdin as { isTTY?: boolean }).isTTY;
+	});
+
+	it("asks before updating the config and the stylesheet", async () => {
+		setTTY(true);
+		vi.mocked(p.confirm).mockResolvedValue(true);
+
+		await runApply({ cwd: "/test", config: makeConfig(), decidedPresets, options });
+
+		expect(p.confirm).toHaveBeenCalledWith(
+			expect.objectContaining({ message: expect.stringMatching(/components\.json.*app\.css/) })
+		);
+		expect(cliConfig.writeConfig).toHaveBeenCalled();
+		expect(addRegistryItems).toHaveBeenCalled();
+	});
+
+	it("only names the stylesheet with `--only font`", async () => {
+		setTTY(true);
+		vi.mocked(p.confirm).mockResolvedValue(true);
+
+		await runApply({
+			cwd: "/test",
+			config: makeConfig(),
+			decidedPresets,
+			options: { ...options, only: ["font"] },
+		});
+
+		const [{ message }] = vi.mocked(p.confirm).mock.calls[0]!;
+		expect(message).toContain("app.css");
+		expect(message).not.toContain("components.json");
+	});
+
+	it("stops before changing anything when the answer is no", async () => {
+		setTTY(true);
+		vi.mocked(p.confirm).mockResolvedValue(false);
+
+		await expect(
+			runApply({ cwd: "/test", config: makeConfig(), decidedPresets, options })
+		).rejects.toThrow("cancelled");
+
+		expect(cliConfig.writeConfig).not.toHaveBeenCalled();
+		expect(addRegistryItems).not.toHaveBeenCalled();
+	});
+
+	it("fails without `--yes` when there's no terminal", async () => {
+		setTTY(false);
+
+		await expect(
+			runApply({ cwd: "/test", config: makeConfig(), decidedPresets, options })
+		).rejects.toThrow(/--yes/);
+
+		expect(p.confirm).not.toHaveBeenCalled();
+		expect(cliConfig.writeConfig).not.toHaveBeenCalled();
+		expect(addRegistryItems).not.toHaveBeenCalled();
+	});
+
+	it("doesn't ask with `--yes`", async () => {
+		setTTY(true);
+
+		await runApply({ cwd: "/test", config: makeConfig(), decidedPresets, options: baseOptions });
+
+		expect(p.confirm).not.toHaveBeenCalled();
+		expect(addRegistryItems).toHaveBeenCalled();
 	});
 });

@@ -109,7 +109,7 @@ Options:
   --preset <preset>  the preset to apply
   --only [parts]     apply only parts of a preset: theme, font
   -c, --cwd <path>   the working directory (default: the current directory)
-  -y, --yes          overwrite existing files without confirmation (default: false)
+  -y, --yes          skip confirmation prompt (default: false)
   -s, --silent       mute output (default: false)
   --no-deps-install  add dependencies to package.json without running install
   --skip-preflight   ignore preflight checks and continue (default: false)
