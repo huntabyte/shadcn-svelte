@@ -30,7 +30,7 @@
 	{#if title}
 		<Alert.Title>{title}</Alert.Title>
 	{/if}
-	<Alert.Description class="text-card-foreground/80">
+	<Alert.Description class="typeset text-card-foreground/80">
 		{@render children?.()}
 	</Alert.Description>
 </Alert.Root>

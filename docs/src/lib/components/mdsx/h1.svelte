@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
 	import HeadingAnchor from "./heading-anchor.svelte";
 	import type { HTMLAttributes } from "svelte/elements";
 
@@ -11,11 +10,7 @@
 	}: HTMLAttributes<HTMLHeadingElement> = $props();
 </script>
 
-<h1
-	class={cn("mt-2 scroll-m-28 font-heading text-3xl font-bold tracking-tight", className)}
-	{id}
-	{...restProps}
->
+<h1 class={className} {id} {...restProps}>
 	<HeadingAnchor id={id ?? undefined}>
 		{@render children?.()}
 	</HeadingAnchor>
