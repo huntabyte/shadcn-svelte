@@ -312,4 +312,51 @@ describe("installDependencies", () => {
 		expect(written.dependencies["tailwind-variants"]).toBe("^1.0.0");
 		expect(written.devDependencies?.["tailwind-variants"]).toBeUndefined();
 	});
+
+	it("installs with `installWith` instead of detecting the package manager", async () => {
+		await installDependencies({
+			cwd: "/test",
+			prompt: true,
+			silent: true,
+			installWith: "bun",
+			dependencies: ["bits-ui@^2.0.0"],
+			devDependencies: [],
+		});
+
+		expect(autoDetect.detectPM).not.toHaveBeenCalled();
+		expect(commands()).toEqual(["bun"]);
+		expect(args()[0]).toContain("bits-ui@^2.0.0");
+	});
+
+	it("adds dependencies to package.json when there's no package manager to install with", async () => {
+		vi.mocked(autoDetect.detectPM).mockResolvedValue(undefined);
+
+		await installDependencies({
+			cwd: "/test",
+			prompt: false,
+			silent: true,
+			dependencies: ["bits-ui@^2.0.0"],
+			devDependencies: [],
+		});
+
+		expect(exec).not.toHaveBeenCalled();
+		const written = JSON.parse(vi.mocked(fs.writeFileSync).mock.calls[0]![1] as string) as {
+			dependencies: Record<string, string>;
+		};
+		expect(written.dependencies["bits-ui"]).toBe("^2.0.0");
+	});
+
+	it("doesn't look for a package manager when nothing needs installing", async () => {
+		await installDependencies({
+			cwd: "/test",
+			prompt: true,
+			silent: true,
+			dependencies: [],
+			// already satisfied by package.json
+			devDependencies: ["tailwind-variants@^0.3.0"],
+		});
+
+		expect(autoDetect.detectPM).not.toHaveBeenCalled();
+		expect(exec).not.toHaveBeenCalled();
+	});
 });
