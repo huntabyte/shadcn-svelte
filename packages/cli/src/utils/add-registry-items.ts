@@ -6,6 +6,7 @@ import color from "picocolors";
 import * as registry from "./registry/index.js";
 import { highlight } from "./colors.js";
 import { shadcnSvelteTailwindCssImport } from "./css.js";
+import { error } from "./errors.js";
 import { getSupportedFontMarkers, type FontMarkerSource } from "./font-markers.js";
 import { setupFonts, type Font } from "./fonts.js";
 import { silentOutput } from "./node-utils.js";
@@ -34,6 +35,13 @@ type AddRegistryItemsProps = {
 	only?: ApplyOnly[];
 	skipExisting?: boolean;
 	forceStylesheet?: boolean;
+	skipStylesheet?: boolean;
+	/**
+	 * When `false`, throw instead of prompting to ask whether to overwrite.
+	 *
+	 * @default true
+	 */
+	interactive?: boolean;
 };
 
 // this logic is shared between the `add` and `init` commands
@@ -67,7 +75,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 		items: resolvedItems,
 	});
 
-	if (itemsWithContent.length === 0) cancel("Selected items not found.");
+	if (itemsWithContent.length === 0) throw error("Selected items not found.");
 
 	const fontMarkerSources: FontMarkerSource[] = [];
 	for (const item of itemsWithContent) {
@@ -101,6 +109,12 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 	// prompt if the user wants to overwrite ALL files or individually
 	if (!opts.skipExisting && opts.overwrite === false && existingItems.length > 0) {
 		const prettyList = prettifyList(existingItems);
+		if (opts.interactive === false) {
+			throw error(
+				`The following items already exist: ${prettyList}. Pass ${highlight("--overwrite")} to replace them, or ${highlight("--no-overwrite")} to keep them.`
+			);
+		}
+
 		p.log.warn(
 			`The following items ${color.bold(color.yellow("already exist"))}:\n${color.gray(prettyList)}`
 		);
@@ -117,18 +131,18 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 		opts.overwrite = overwrite;
 	}
 
+	const skippedItems: string[] = [];
 	for (const item of itemsWithContent) {
 		if (item.type === "registry:font" && !shouldApplyFont) continue;
 
-		if (opts.skipExisting && existingItems.includes(item.name)) continue;
+		if (opts.skipExisting && existingItems.includes(item.name)) {
+			skippedItems.push(item.name);
+			continue;
+		}
 
 		// `theme`s and `style`s do the same thing, because why not?
 		if (!STYLE_TYPES.includes(item.type)) {
 			const aliasDir = registry.getItemAliasDir(opts.config, item.type);
-			if (!existsSync(aliasDir)) {
-				await fs.mkdir(aliasDir, { recursive: true });
-			}
-
 			const itemPath = path.relative(cwd, path.resolve(aliasDir, item.name));
 
 			if (!opts.overwrite && existingItems.includes(item.name)) {
@@ -159,6 +173,15 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 			});
 		}
 
+		if (shouldApplyTheme) {
+			if (item.cssVars) {
+				cssVars = merge(cssVars, item.cssVars);
+			}
+			if (item.css) {
+				css = merge(css, item.css);
+			}
+		}
+
 		tasks.push({
 			title:
 				item.name === "init"
@@ -166,6 +189,13 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 					: `Adding ${highlight(item.name)}`,
 			// @ts-expect-error this is intentional since we don't want to return a string during `init`
 			async task() {
+				if (!STYLE_TYPES.includes(item.type)) {
+					const aliasDir = registry.getItemAliasDir(opts.config, item.type);
+					if (!existsSync(aliasDir)) {
+						await fs.mkdir(aliasDir, { recursive: true });
+					}
+				}
+
 				for (const file of item.files ?? []) {
 					const filePath = registry.resolveItemFilePath(opts.config, item, file);
 
@@ -201,17 +231,10 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 					await fs.writeFile(transformFilePath, content, "utf8");
 				}
 
-				if (shouldApplyTheme) {
-					if (item.cssVars) {
-						cssVars = merge(cssVars, item.cssVars);
-					}
-					if (item.css) {
-						css = merge(css, item.css);
-					}
-				}
-
 				if (item.name !== "init") {
 					if (STYLE_TYPES.includes(item.type)) {
+						// a theme only changes the stylesheet
+						if (skippedStylesheet) return `Skipped ${highlight(item.name)}`;
 						const itemPath = path.relative(cwd, opts.config.resolvedPaths.tailwindCss);
 						return `${highlight(item.name)} installed at ${color.gray(itemPath)}`;
 					}
@@ -223,10 +246,6 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 		});
 	}
 
-	const output = opts.silent ? silentOutput : process.stdout;
-
-	await p.tasks(tasks, { output });
-
 	const {
 		css: fontsCss,
 		cssVars: fontsCssVars,
@@ -237,20 +256,27 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 	cssVars = merge(cssVars, fontsCssVars);
 	fontsDependencies.forEach((dep) => devDependencies.add(dep));
 
-	if (Object.keys(cssVars).length || Object.keys(css).length) {
-		css = merge(css, shadcnSvelteTailwindCssImport);
-		const cssPath = opts.config.resolvedPaths.tailwindCss;
-		const relative = path.relative(cwd, cssPath);
+	// decide whether to update the stylesheet before any file is written
+	const cssPath = opts.config.resolvedPaths.tailwindCss;
+	const relative = path.relative(cwd, cssPath);
+	const hasCssChanges = Object.keys(cssVars).length > 0 || Object.keys(css).length > 0;
+	if (hasCssChanges) css = merge(css, shadcnSvelteTailwindCssImport);
 
+	let writeStylesheet = false;
+	let skippedStylesheet = false;
+	if (hasCssChanges) {
 		const cssSource = await fs.readFile(cssPath, "utf8");
-
-		const modifiedCss = transformCss(cssSource, { css, cssVars });
-
-		const isModified = cssSource !== modifiedCss;
+		const isModified = cssSource !== transformCss(cssSource, { css, cssVars });
 
 		if (isModified) {
-			let writeStylesheet = opts.overwrite || opts.forceStylesheet === true;
-			if (!writeStylesheet) {
+			writeStylesheet = opts.overwrite || opts.forceStylesheet === true;
+			if (!writeStylesheet && !opts.skipStylesheet) {
+				if (opts.interactive === false) {
+					throw error(
+						`Updates to your ${highlight(relative)} are required. Pass ${highlight("--overwrite")} to update it, or ${highlight("--no-overwrite")} to leave it as is.`
+					);
+				}
+
 				const overwrite = await p.confirm({
 					message: `Updates to your ${highlight(relative)} are required. Existing CSS variables may be ${color.bold(color.red("overwritten"))}. Continue?`,
 					initialValue: true,
@@ -259,27 +285,37 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 
 				writeStylesheet = overwrite;
 			}
-
-			await p.tasks(
-				[
-					{
-						title: "Updating stylesheet",
-						enabled: writeStylesheet,
-						async task() {
-							await fs.writeFile(cssPath, modifiedCss, "utf8");
-
-							return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;
-						},
-					},
-				],
-				{ output }
-			);
+			skippedStylesheet = !writeStylesheet;
 		}
+	}
+
+	const output = opts.silent ? silentOutput : process.stdout;
+
+	await p.tasks(tasks, { output });
+
+	if (writeStylesheet) {
+		await p.tasks(
+			[
+				{
+					title: "Updating stylesheet",
+					async task() {
+						// read it again in case one of the items' files changed it
+						const cssSource = await fs.readFile(cssPath, "utf8");
+						await fs.writeFile(cssPath, transformCss(cssSource, { css, cssVars }), "utf8");
+
+						return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;
+					},
+				},
+			],
+			{ output }
+		);
 	}
 
 	return {
 		skippedDeps,
 		dependencies,
 		devDependencies,
+		skippedItems,
+		skippedStylesheet,
 	};
 }

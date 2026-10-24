@@ -395,4 +395,117 @@ describe("addRegistryItems", () => {
 			expect(p.confirm).toHaveBeenCalledTimes(1);
 		});
 	});
+
+	describe("without a terminal", () => {
+		const buttonItem = {
+			name: "button",
+			type: "registry:ui",
+			files: [{ target: "button.svelte", type: "registry:ui", content: "" }],
+			registryDependencies: [],
+			cssVars: { light: { primary: "oklch(0 0 0)" } },
+		} satisfies ResolvedRegistryItem;
+
+		const runTasks = async (tasks: p.Task[]) => {
+			for (const task of tasks) {
+				if (task.enabled === false) continue;
+				await task.task(() => {});
+			}
+			return undefined;
+		};
+
+		beforeEach(() => {
+			vi.mocked(registry.getItemAliasDir).mockReturnValue("/test/ui");
+			vi.mocked(registry.resolveItemFilePath).mockImplementation(
+				(_, item, file) => `/test/ui/${item.name}/${file.target}`
+			);
+			vi.mocked(registry.resolveRegistryItems).mockResolvedValue([buttonItem]);
+			vi.mocked(registry.fetchRegistryItems).mockResolvedValue([buttonItem]);
+			vi.mocked(p.tasks).mockImplementation(runTasks);
+			vi.mocked(transformCss).mockReturnValue("/* updated */");
+		});
+
+		it("fails before writing anything when an item already exists", async () => {
+			vi.mocked(existsSync).mockReturnValue(true);
+
+			await expect(
+				addRegistryItems({
+					selectedItems: ["button"],
+					config: mockConfig,
+					overwrite: false,
+					deps: true,
+					interactive: false,
+				})
+			).rejects.toThrow(/already exist: button.*--overwrite.*--no-overwrite/);
+
+			expect(p.confirm).not.toHaveBeenCalled();
+			expect(p.tasks).not.toHaveBeenCalled();
+			expect(fs.mkdir).not.toHaveBeenCalled();
+			expect(fs.writeFile).not.toHaveBeenCalled();
+		});
+
+		it("fails before writing anything when the stylesheet needs changes", async () => {
+			vi.mocked(existsSync).mockReturnValue(false);
+
+			await expect(
+				addRegistryItems({
+					selectedItems: ["button"],
+					config: mockConfig,
+					overwrite: false,
+					deps: true,
+					interactive: false,
+				})
+			).rejects.toThrow(/app\.css.*--overwrite.*--no-overwrite/);
+
+			expect(p.confirm).not.toHaveBeenCalled();
+			expect(p.tasks).not.toHaveBeenCalled();
+			expect(fs.mkdir).not.toHaveBeenCalled();
+			expect(fs.writeFile).not.toHaveBeenCalled();
+		});
+
+		it("keeps existing items and the stylesheet with skipExisting and skipStylesheet", async () => {
+			// `button` exists, but the new `card` doesn't
+			const cardItem = {
+				...buttonItem,
+				name: "card",
+				files: [{ target: "card.svelte", type: "registry:ui", content: "" }],
+			} satisfies ResolvedRegistryItem;
+			vi.mocked(registry.resolveRegistryItems).mockResolvedValue([buttonItem, cardItem]);
+			vi.mocked(registry.fetchRegistryItems).mockResolvedValue([buttonItem, cardItem]);
+			vi.mocked(existsSync).mockImplementation((path) => path.toString().includes("button"));
+
+			const result = await addRegistryItems({
+				selectedItems: ["button", "card"],
+				config: mockConfig,
+				overwrite: false,
+				deps: true,
+				skipExisting: true,
+				skipStylesheet: true,
+				interactive: false,
+			});
+
+			expect(result.skippedItems).toEqual(["button"]);
+			expect(result.skippedStylesheet).toBe(true);
+			expect(p.confirm).not.toHaveBeenCalled();
+			expect(fs.writeFile).toHaveBeenCalledTimes(1);
+			expect(fs.writeFile).toHaveBeenCalledWith("/test/ui/card/card.svelte", "", "utf8");
+		});
+
+		it("replaces existing items and updates the stylesheet with overwrite", async () => {
+			vi.mocked(existsSync).mockReturnValue(true);
+
+			const result = await addRegistryItems({
+				selectedItems: ["button"],
+				config: mockConfig,
+				overwrite: true,
+				deps: true,
+				interactive: false,
+			});
+
+			expect(result.skippedItems).toEqual([]);
+			expect(result.skippedStylesheet).toBe(false);
+			expect(p.confirm).not.toHaveBeenCalled();
+			expect(fs.writeFile).toHaveBeenCalledWith("/test/ui/button/button.svelte", "", "utf8");
+			expect(fs.writeFile).toHaveBeenCalledWith("/test/app.css", "/* updated */", "utf8");
+		});
+	});
 });

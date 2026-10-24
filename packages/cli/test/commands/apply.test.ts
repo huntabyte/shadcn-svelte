@@ -41,6 +41,8 @@ vi.mock("../../src/utils/add-registry-items.js", () => ({
 		dependencies: new Set<string>(),
 		devDependencies: new Set<string>(),
 		skippedDeps: new Set<string>(),
+		skippedItems: [],
+		skippedStylesheet: false,
 	}),
 }));
 
@@ -104,6 +106,8 @@ beforeEach(() => {
 		dependencies: new Set<string>(),
 		devDependencies: new Set<string>(),
 		skippedDeps: new Set<string>(),
+		skippedItems: [],
+		skippedStylesheet: false,
 	});
 });
 

@@ -8,7 +8,7 @@ import { z } from "zod";
 import * as cliConfig from "../../utils/config/index.js";
 import * as registry from "../../utils/registry/index.js";
 import { addRegistryItems } from "../../utils/add-registry-items.js";
-import { AGENT_NAMES, getInstalledAgents } from "../../utils/auto-detect.js";
+import { AGENT_NAMES, detectPM, getInstalledAgents } from "../../utils/auto-detect.js";
 import { highlight } from "../../utils/colors.js";
 import { ConfigError, error } from "../../utils/errors.js";
 import { getEnvProxy } from "../../utils/get-env-proxy.js";
@@ -20,7 +20,7 @@ const addOptionsSchema = z.object({
 	components: z.string().array().optional(),
 	yes: z.boolean(),
 	all: z.boolean(),
-	overwrite: z.boolean(),
+	overwrite: z.boolean().optional(),
 	cwd: z.string(),
 	deps: z.boolean(),
 	install: z.boolean(),
@@ -51,7 +51,8 @@ export const add = new Command()
 	.option("--skip-preflight", "ignore preflight checks and continue", false)
 	.option("-a, --all", "install all components to your project", false)
 	.option("-y, --yes", "skip confirmation prompt", false)
-	.option("-o, --overwrite", "overwrite existing files", false)
+	.option("-o, --overwrite", "overwrite existing files")
+	.option("--no-overwrite", "keep existing files and leave the stylesheet as is")
 	.option("--proxy <proxy>", "fetch components from registry using a proxy", getEnvProxy())
 	.action(async (components, opts) => {
 		try {
@@ -86,6 +87,10 @@ export const add = new Command()
 	});
 
 async function runAdd(cwd: string, config: cliConfig.ResolvedConfig, options: AddOptions) {
+	// Without a terminal, prompts would hang or exit without doing anything, so fail and name the
+	// flag that answers them instead.
+	const interactive = Boolean(process.stdin.isTTY);
+
 	if (options.proxy !== undefined) {
 		process.env.HTTP_PROXY = options.proxy;
 		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);
@@ -101,6 +106,10 @@ async function runAdd(cwd: string, config: cliConfig.ResolvedConfig, options: Ad
 
 	// if the user hasn't passed any components prompt them to select components
 	if (selectedComponents.size === 0) {
+		if (!interactive) {
+			throw error(`Specify the components to add, or pass ${highlight("--all")}.`);
+		}
+
 		const components = await p.multiselect({
 			message: `Which ${highlight("components")} would you like to add?`,
 			maxItems: 10,
@@ -125,6 +134,10 @@ async function runAdd(cwd: string, config: cliConfig.ResolvedConfig, options: Ad
 	}
 
 	if (options.yes === false) {
+		if (!interactive) {
+			throw error(`Pass ${highlight("--yes")} to skip the confirmation.`);
+		}
+
 		const proceed = await p.confirm({
 			message: `Ready to install ${highlight("components")}${options.deps ? ` and ${highlight("dependencies")}?` : "?"}`,
 			initialValue: true,
@@ -133,21 +146,44 @@ async function runAdd(cwd: string, config: cliConfig.ResolvedConfig, options: Ad
 		if (p.isCancel(proceed) || proceed === false) cancel();
 	}
 
+	// find the package manager first, so that a missing one fails before any file is written
+	const install = options.install && options.depsInstall;
+	const installWith =
+		options.deps && install
+			? (options.installWith ?? (await detectPM(cwd, true)))
+			: options.installWith;
+
 	const result = await addRegistryItems({
 		config,
 		deps: options.deps,
-		overwrite: options.overwrite,
+		overwrite: options.overwrite ?? false,
+		skipExisting: options.overwrite === false,
+		skipStylesheet: options.overwrite === false,
+		interactive,
 		selectedItems: Array.from(selectedComponents),
 	});
+
+	if (result.skippedItems.length > 0) {
+		p.log.warn(
+			`Skipped the items that already exist: ${prettifyList(result.skippedItems)}. Pass ${highlight("--overwrite")} to replace them.`
+		);
+	}
+
+	if (result.skippedStylesheet) {
+		const relative = path.relative(cwd, config.resolvedPaths.tailwindCss);
+		p.log.warn(
+			`Left ${highlight(relative)} as is, so the components may be missing their CSS variables. Pass ${highlight("--overwrite")} to update it.`
+		);
+	}
 
 	if (options.deps) {
 		await installDependencies({
 			cwd,
-			prompt: options.deps,
+			prompt: false,
 			dependencies: Array.from(result.dependencies),
 			devDependencies: Array.from(result.devDependencies),
-			install: options.install && options.depsInstall,
-			installWith: options.installWith,
+			install,
+			installWith,
 		});
 	} else if (result.skippedDeps.size) {
 		const prettyList = prettifyList([...result.skippedDeps], 7);
