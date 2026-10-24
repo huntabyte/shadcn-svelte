@@ -48,8 +48,8 @@
 				<Separator orientation="vertical" />
 				{#if page.url.pathname.startsWith("/create")}
 					<ModeSwitcher class="md:hidden" />
-					<Separator orientation="vertical" />
 					{#if initializeProjectCtx}
+						<Separator orientation="vertical" class="hidden md:block" />
 						<Button
 							onclick={() => (initializeProjectCtx.open = true)}
 							variant="default"
@@ -62,11 +62,13 @@
 					{/if}
 				{:else}
 					<ModeSwitcher />
-					<Separator orientation="vertical" />
-					<Button href="/create" variant="default" size="sm" class="h-[31px] rounded-lg">
-						<PlusIcon />
-						New
-					</Button>
+					{#if page.url.pathname !== "/typeset"}
+						<Separator orientation="vertical" />
+						<Button href="/create" variant="default" size="sm" class="h-[31px] rounded-lg">
+							<PlusIcon />
+							New
+						</Button>
+					{/if}
 				{/if}
 			</div>
 		</div>

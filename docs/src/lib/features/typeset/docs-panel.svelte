@@ -3,6 +3,7 @@
 	import Copy from "@lucide/svelte/icons/copy";
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import * as Tabs from "$lib/registry/ui/tabs/index.js";
+	import PMInstall from "$lib/components/pm-install.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { TYPESET_MEASURES, findFont, type TypesetState } from "./typeset.svelte.js";
 
@@ -10,7 +11,6 @@
 		{ value: "sveltekit", label: "SvelteKit" },
 		{ value: "vite", label: "Vite" },
 		{ value: "astro", label: "Astro" },
-		{ value: "manual", label: "Manual Installation" },
 	] as const;
 
 	let { typeset, compact = false }: { typeset: TypesetState; compact?: boolean } = $props();
@@ -43,9 +43,8 @@
 	const picked = $derived(
 		[...new Set([typeset.params.body, heading, typeset.params.mono])].map(findFont).filter(Boolean)
 	);
-	const install = $derived(
-		`pnpm add ${picked.map((font) => font?.definition.dependency).join(" ")}`
-	);
+	const fontPackages = $derived(picked.map((font) => font?.definition.dependency).join(" "));
+	const install = $derived(`pnpm add ${fontPackages}`);
 	const fontCss = $derived.by(() => {
 		const imports = picked.map((font) => `@import "${font?.definition.dependency}";`).join("\n");
 		const variables = picked
@@ -128,8 +127,7 @@ Use not-typeset or data-not-typeset to exclude embedded components. Verify headi
 					</section>
 					<section class="flex flex-col gap-2.5">
 						<h3 class="text-sm font-medium">2. Add the fonts</h3>
-						<pre
-							class="overflow-x-auto rounded-lg bg-muted/60 p-3 font-mono text-xs">{install}</pre>
+						<PMInstall command={fontPackages} />
 						<pre
 							class="overflow-x-auto rounded-lg bg-muted/60 p-3 font-mono text-xs">{fontCss}</pre>
 					</section>

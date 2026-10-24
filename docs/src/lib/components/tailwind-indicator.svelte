@@ -1,10 +1,8 @@
 <script lang="ts">
 	import { dev } from "$app/environment";
-
-	const SHOW = false;
 </script>
 
-{#if dev && SHOW}
+{#if dev}
 	<div
 		data-tailwind-indicator=""
 		class="fixed start-1 bottom-1 z-50 flex h-6 w-6 items-center justify-center rounded-full bg-gray-800 p-3 font-mono text-xs text-white"

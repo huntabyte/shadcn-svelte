@@ -23,7 +23,7 @@
 	class={cn(
 		"3xl:fixed:bg-transparent",
 		isSoftSection ? "bg-surface/40 dark:bg-surface/40" : "dark:bg-transparent",
-		isDocs && "hidden"
+		(isDocs || pathname === "/typeset") && "hidden"
 	)}
 >
 	<div class="container-wrapper px-4 xl:px-6">

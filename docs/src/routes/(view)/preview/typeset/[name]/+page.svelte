@@ -44,7 +44,11 @@
 		params = { ...params, item: name };
 
 		const onMessage = (event: MessageEvent) => {
-			if (event.origin === window.location.origin && event.data?.type === "typeset-params") {
+			if (
+				event.origin === window.location.origin &&
+				event.source === window.parent &&
+				event.data?.type === "typeset-params"
+			) {
 				params = { ...params, ...event.data.data };
 			}
 		};

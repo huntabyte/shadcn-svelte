@@ -4,6 +4,6 @@
 	import { cn } from "$lib/utils.js";
 </script>
 
-<a href="/docs/typeset" class={cn(badgeVariants({ variant: "secondary", class: "bg-muted" }))}>
-	Introducing shadcn-svelte/typeset <ArrowRightIcon />
+<a href="/docs/changelog" class={cn(badgeVariants({ variant: "secondary", class: "bg-muted" }))}>
+	Trace, Code Block and AI Elements <ArrowRightIcon />
 </a>
