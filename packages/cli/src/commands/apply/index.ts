@@ -9,6 +9,7 @@ import * as cliConfig from "../../utils/config/index.js";
 import * as registry from "../../utils/registry/index.js";
 import { type PresetConfig, decodePreset, encodePreset } from "../../preset/index.js";
 import { addRegistryItems } from "../../utils/add-registry-items.js";
+import { AGENT_NAMES, getInstalledAgents } from "../../utils/auto-detect.js";
 import { highlight } from "../../utils/colors.js";
 import { ConfigError, error } from "../../utils/errors.js";
 import { getEnvProxy } from "../../utils/get-env-proxy.js";
@@ -26,7 +27,9 @@ const initOptionsSchema = z.object({
 	silent: z.boolean(),
 	skipPreflight: z.boolean(),
 	proxy: z.string().optional(),
+	install: z.boolean(),
 	depsInstall: z.boolean(),
+	installWith: z.enum(AGENT_NAMES).optional(),
 });
 
 type InitOptions = z.infer<typeof initOptionsSchema>;
@@ -44,7 +47,16 @@ export const apply = new Command()
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
 	.option("-y, --yes", "skip confirmation prompt", false)
 	.option("-s, --silent", "mute output", false)
-	.option("--no-deps-install", "add dependencies to package.json without running install")
+	.addOption(
+		new Option(
+			"--install-with <package-manager>",
+			"install dependencies with the given package manager"
+		)
+			.choices(getInstalledAgents())
+			.conflicts(["install", "depsInstall"])
+	)
+	.option("--no-install", "add dependencies to package.json without installing them")
+	.addOption(new Option("--no-deps-install", "deprecated: use --no-install").hideHelp())
 	.option("--skip-preflight", "ignore preflight checks and continue", false)
 	.option("--proxy <proxy>", "fetch items from registry using a proxy", getEnvProxy())
 	.action(async (preset, opts) => {
@@ -169,6 +181,7 @@ export async function runApply({
 		dependencies: Array.from(result.dependencies),
 		devDependencies: Array.from(result.devDependencies),
 		silent: options.silent,
-		install: options.depsInstall,
+		install: options.install && options.depsInstall,
+		installWith: options.installWith,
 	});
 }

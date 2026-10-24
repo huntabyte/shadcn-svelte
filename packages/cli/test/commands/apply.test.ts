@@ -64,6 +64,7 @@ const baseOptions = {
 	yes: true,
 	silent: true,
 	skipPreflight: false,
+	install: true,
 	depsInstall: true,
 };
 

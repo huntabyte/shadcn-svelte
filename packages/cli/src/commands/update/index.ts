@@ -9,6 +9,7 @@ import { z } from "zod";
 import * as cliConfig from "../../utils/config/index.js";
 import * as project from "../../utils/project.js";
 import * as registry from "../../utils/registry/index.js";
+import { AGENT_NAMES, getInstalledAgents } from "../../utils/auto-detect.js";
 import { highlight } from "../../utils/colors.js";
 import { shadcnSvelteTailwindCssImport } from "../../utils/css.js";
 import { error } from "../../utils/errors.js";
@@ -36,7 +37,9 @@ const updateOptionsSchema = z.object({
 	yes: z.boolean(),
 	skipPreflight: z.boolean(),
 	deps: z.boolean(),
+	install: z.boolean(),
 	depsInstall: z.boolean(),
+	installWith: z.enum(AGENT_NAMES).optional(),
 });
 
 type UpdateOptions = z.infer<typeof updateOptionsSchema>;
@@ -48,7 +51,16 @@ export const update = new Command()
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
 	.option("--skip-preflight", "ignore preflight checks and continue", false)
 	.addOption(new Option("--no-deps", "skips adding & installing package dependencies").hideHelp())
-	.option("--no-deps-install", "add dependencies to package.json without running install")
+	.addOption(
+		new Option(
+			"--install-with <package-manager>",
+			"install dependencies with the given package manager"
+		)
+			.choices(getInstalledAgents())
+			.conflicts(["deps", "install", "depsInstall"])
+	)
+	.option("--no-install", "add dependencies to package.json without installing them")
+	.addOption(new Option("--no-deps-install", "deprecated: use --no-install").hideHelp())
 	.option("-a, --all", "update all existing components", false)
 	.option("-y, --yes", "skip confirmation prompt", false)
 	.option("--proxy <proxy>", "fetch components from registry using a proxy", getEnvProxy())
@@ -294,7 +306,8 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 			dependencies: Array.from(dependencies),
 			devDependencies: Array.from(devDependencies),
 			prompt: true,
-			install: options.depsInstall,
+			install: options.install && options.depsInstall,
+			installWith: options.installWith,
 		});
 	} else if (dependencies.size > 0 || devDependencies.size > 0) {
 		const prettyList = prettifyList([...dependencies, ...devDependencies], 7);

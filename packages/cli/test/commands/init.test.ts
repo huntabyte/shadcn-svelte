@@ -105,6 +105,7 @@ it("init (config-full)", async () => {
 		options: {
 			cwd: targetDir,
 			deps: true,
+			install: true,
 			depsInstall: true,
 			overwrite: true,
 			skipPreflight: false,
