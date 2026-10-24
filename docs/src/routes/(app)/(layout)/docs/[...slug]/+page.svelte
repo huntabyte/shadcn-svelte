@@ -81,7 +81,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 									<Button
 										variant="secondary"
 										size="icon"
-										class="extend-touch-target size-8 shadow-none md:size-7"
+										class="extend-touch-target size-8 rounded-md border-0 shadow-none md:size-7"
 										href={neighbors.previous.href}
 									>
 										<ArrowLeftIcon />
@@ -92,7 +92,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 									<Button
 										variant="secondary"
 										size="icon"
-										class="extend-touch-target size-8 shadow-none md:size-7"
+										class="extend-touch-target size-8 rounded-md border-0 shadow-none md:size-7"
 										href={neighbors.next.href}
 									>
 										<span class="sr-only">Next</span>
@@ -141,7 +141,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 						<Button
 							size="sm"
 							variant="secondary"
-							class="shadow-none"
+							class="h-8 gap-1.5 rounded-md border-0 px-3 text-sm shadow-none has-[>svg]:px-2.5 [&_svg]:size-4"
 							href={neighbors.previous.href}
 						>
 							<ArrowLeftIcon />
@@ -152,7 +152,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 						<Button
 							size="sm"
 							variant="secondary"
-							class="ml-auto shadow-none"
+							class="ml-auto h-8 gap-1.5 rounded-md border-0 px-3 text-sm shadow-none has-[>svg]:px-2.5 [&_svg]:size-4"
 							href={neighbors.next.href}
 						>
 							{neighbors.next.title}
