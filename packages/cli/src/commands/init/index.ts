@@ -326,7 +326,9 @@ export async function runInit({
 	const presetUrl = new URL(`/init?preset=${encodedPreset}`, registryUrl).toString();
 
 	let selectedItems: string[] = [];
-	let overwrite = options.overwrite || options.reinstall === true;
+	// `undefined` asks about the items that already exist
+	let overwrite: boolean | undefined =
+		options.overwrite || options.reinstall === true ? true : undefined;
 	// if the style has changed then we want to ask the user if they want to reinstall existing components to update their styles
 	// unless of course they user has explicitly disabled it
 	if (styleChanged && options.reinstall !== false) {
@@ -359,6 +361,8 @@ export async function runInit({
 		config,
 		deps: options.deps,
 		overwrite,
+		// keeping the components still asks about the stylesheet, since the new style needs it
+		stylesheet: overwrite === false ? "ask" : undefined,
 	});
 
 	if (options.deps) {

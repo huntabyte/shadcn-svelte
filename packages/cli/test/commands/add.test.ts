@@ -126,21 +126,16 @@ it("fails without components when there's no terminal", async () => {
 });
 
 it.each([
-	{ flags: [], overwrite: false, skip: false },
-	{ flags: ["--overwrite"], overwrite: true, skip: false },
-	{ flags: ["--no-overwrite"], overwrite: false, skip: true },
-])("passes $flags through to the overwrite options", async ({ flags, overwrite, skip }) => {
+	{ flags: [], overwrite: undefined },
+	{ flags: ["--overwrite"], overwrite: true },
+	{ flags: ["--no-overwrite"], overwrite: false },
+])("passes $flags through to the overwrite option", async ({ flags, overwrite }) => {
 	await runAdd("-y", "button", ...flags);
 
 	expect(addRegistryItems).toHaveBeenCalledWith(
-		expect.objectContaining({
-			selectedItems: ["button"],
-			overwrite,
-			skipExisting: skip,
-			skipStylesheet: skip,
-			interactive: false,
-		})
+		expect.objectContaining({ selectedItems: ["button"], overwrite, interactive: false })
 	);
+	expect(vi.mocked(addRegistryItems).mock.calls[0]![0].stylesheet).toBeUndefined();
 });
 
 it("finds the package manager before adding anything", async () => {

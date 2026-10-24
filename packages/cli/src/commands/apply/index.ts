@@ -165,11 +165,10 @@ export async function runApply({
 		selectedItems: [presetUrl],
 		config,
 		deps: true,
-		overwrite: options.yes,
+		overwrite: false,
+		stylesheet: "write",
 		silent: options.silent,
 		only,
-		skipExisting: true,
-		forceStylesheet: true,
 	});
 
 	// never install dependencies if only the theme is being applied

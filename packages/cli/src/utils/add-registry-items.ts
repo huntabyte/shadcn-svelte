@@ -29,13 +29,21 @@ export type ApplyOnly = "theme" | "font";
 type AddRegistryItemsProps = {
 	selectedItems: string[];
 	config: ResolvedConfig;
-	overwrite: boolean;
+	/**
+	 * Whether to replace the items that already exist.
+	 *
+	 * `undefined` asks.
+	 */
+	overwrite?: boolean;
+	/**
+	 * Whether to update the stylesheet when it needs changes.
+	 *
+	 * It follows `overwrite` by default: `true` writes it, `false` keeps it, and `undefined` asks.
+	 */
+	stylesheet?: "write" | "keep" | "ask";
 	deps: boolean;
 	silent?: boolean;
 	only?: ApplyOnly[];
-	skipExisting?: boolean;
-	forceStylesheet?: boolean;
-	skipStylesheet?: boolean;
 	/**
 	 * When `false`, throw instead of prompting to ask whether to overwrite.
 	 *
@@ -107,7 +115,8 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 	}
 
 	// prompt if the user wants to overwrite ALL files or individually
-	if (!opts.skipExisting && opts.overwrite === false && existingItems.length > 0) {
+	let overwrite = opts.overwrite;
+	if (overwrite === undefined && existingItems.length > 0) {
 		const prettyList = prettifyList(existingItems);
 		if (opts.interactive === false) {
 			throw error(
@@ -119,23 +128,24 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 			`The following items ${color.bold(color.yellow("already exist"))}:\n${color.gray(prettyList)}`
 		);
 
-		const overwrite = await p.confirm({
+		const overwriteAll = await p.confirm({
 			message: `Would you like to ${color.bold(color.red("overwrite"))} all existing files?`,
 			active: "Yes, overwrite everything",
 			inactive: "No, let me decide individually",
 			initialValue: false,
 		});
 
-		if (p.isCancel(overwrite)) cancel();
+		if (p.isCancel(overwriteAll)) cancel();
 
-		opts.overwrite = overwrite;
+		// otherwise it stays `undefined`, which asks about each item
+		if (overwriteAll) overwrite = true;
 	}
 
 	const skippedItems: string[] = [];
 	for (const item of itemsWithContent) {
 		if (item.type === "registry:font" && !shouldApplyFont) continue;
 
-		if (opts.skipExisting && existingItems.includes(item.name)) {
+		if (overwrite === false && existingItems.includes(item.name)) {
 			skippedItems.push(item.name);
 			continue;
 		}
@@ -145,15 +155,15 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 			const aliasDir = registry.getItemAliasDir(opts.config, item.type);
 			const itemPath = path.relative(cwd, path.resolve(aliasDir, item.name));
 
-			if (!opts.overwrite && existingItems.includes(item.name)) {
+			if (overwrite === undefined && existingItems.includes(item.name)) {
 				if (selectedItems.has(item.name)) {
 					p.log.warn(`Item ${highlight(item.name)} already exists at ${color.gray(itemPath)}`);
 
-					const overwrite = await p.confirm({
+					const overwriteItem = await p.confirm({
 						message: `Would you like to ${color.bold(color.red("overwrite"))} your existing ${highlight(item.name)} ${item.type}?`,
 					});
-					if (p.isCancel(overwrite)) cancel();
-					if (overwrite === false) continue;
+					if (p.isCancel(overwriteItem)) cancel();
+					if (overwriteItem === false) continue;
 				}
 			}
 		}
@@ -269,22 +279,30 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 		const isModified = cssSource !== transformCss(cssSource, { css, cssVars });
 
 		if (isModified) {
-			writeStylesheet = opts.overwrite || opts.forceStylesheet === true;
-			if (!writeStylesheet && !opts.skipStylesheet) {
+			// following `overwrite` includes the answer to "overwrite all existing files?"
+			let stylesheet = opts.stylesheet;
+			if (stylesheet === undefined) {
+				if (overwrite === undefined) stylesheet = "ask";
+				else stylesheet = overwrite === false ? "keep" : "write";
+			}
+
+			if (stylesheet === "ask") {
 				if (opts.interactive === false) {
 					throw error(
 						`Updates to your ${highlight(relative)} are required. Pass ${highlight("--overwrite")} to update it, or ${highlight("--no-overwrite")} to leave it as is.`
 					);
 				}
 
-				const overwrite = await p.confirm({
+				const update = await p.confirm({
 					message: `Updates to your ${highlight(relative)} are required. Existing CSS variables may be ${color.bold(color.red("overwritten"))}. Continue?`,
 					initialValue: true,
 				});
-				if (p.isCancel(overwrite)) cancel();
+				if (p.isCancel(update)) cancel();
 
-				writeStylesheet = overwrite;
+				stylesheet = update ? "write" : "keep";
 			}
+
+			writeStylesheet = stylesheet === "write";
 			skippedStylesheet = !writeStylesheet;
 		}
 	}

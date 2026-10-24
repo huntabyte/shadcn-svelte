@@ -156,9 +156,7 @@ async function runAdd(cwd: string, config: cliConfig.ResolvedConfig, options: Ad
 	const result = await addRegistryItems({
 		config,
 		deps: options.deps,
-		overwrite: options.overwrite ?? false,
-		skipExisting: options.overwrite === false,
-		skipStylesheet: options.overwrite === false,
+		overwrite: options.overwrite,
 		interactive,
 		selectedItems: Array.from(selectedComponents),
 	});

@@ -116,7 +116,6 @@ describe("addRegistryItems", () => {
 		await addRegistryItems({
 			selectedItems: ["https://example.com/data-grid.json"],
 			config: mockConfig,
-			overwrite: false,
 			deps: true,
 		});
 
@@ -169,7 +168,6 @@ describe("addRegistryItems", () => {
 		await addRegistryItems({
 			selectedItems: ["https://example.com/data-grid.json"],
 			config: mockConfig,
-			overwrite: false,
 			deps: true,
 		});
 
@@ -297,7 +295,7 @@ describe("addRegistryItems", () => {
 		});
 	});
 
-	describe("skipExisting / forceStylesheet", () => {
+	describe("stylesheet", () => {
 		// the file-less base item carries the theme; `utils` is a file-bearing
 		// dependency pulled in by the preset that a project already has
 		const themeItem = {
@@ -344,8 +342,7 @@ describe("addRegistryItems", () => {
 				config: mockConfig,
 				overwrite: false,
 				deps: true,
-				skipExisting: true,
-				forceStylesheet: true,
+				stylesheet: "write",
 			});
 
 			// no overwrite prompt for the pre-existing utils file
@@ -358,7 +355,7 @@ describe("addRegistryItems", () => {
 			expect(changes?.cssVars).toMatchObject({ light: { background: "oklch(1 0 0)" } });
 		});
 
-		it("writes the stylesheet without prompting when forceStylesheet is set", async () => {
+		it('writes the stylesheet without prompting with `stylesheet: "write"`', async () => {
 			vi.mocked(existsSync).mockReturnValue(false);
 			vi.mocked(registry.resolveRegistryItems).mockResolvedValue([themeItem]);
 			vi.mocked(registry.fetchRegistryItems).mockResolvedValue([themeItem]);
@@ -368,9 +365,8 @@ describe("addRegistryItems", () => {
 			await addRegistryItems({
 				selectedItems: ["https://example.com/init?preset=abc"],
 				config: mockConfig,
-				overwrite: false,
 				deps: true,
-				forceStylesheet: true,
+				stylesheet: "write",
 			});
 
 			// no confirmation prompt for the stylesheet update
@@ -378,7 +374,7 @@ describe("addRegistryItems", () => {
 			expect(fs.writeFile).toHaveBeenCalledWith("/test/app.css", "/* updated */", "utf8");
 		});
 
-		it("prompts before writing the stylesheet when forceStylesheet is not set", async () => {
+		it("prompts before writing the stylesheet by default", async () => {
 			vi.mocked(existsSync).mockReturnValue(false);
 			vi.mocked(registry.resolveRegistryItems).mockResolvedValue([themeItem]);
 			vi.mocked(registry.fetchRegistryItems).mockResolvedValue([themeItem]);
@@ -388,11 +384,71 @@ describe("addRegistryItems", () => {
 			await addRegistryItems({
 				selectedItems: ["https://example.com/init?preset=abc"],
 				config: mockConfig,
-				overwrite: false,
 				deps: true,
 			});
 
 			expect(p.confirm).toHaveBeenCalledTimes(1);
+		});
+
+		it("leaves the stylesheet as is when the answer is no", async () => {
+			vi.mocked(existsSync).mockReturnValue(false);
+			vi.mocked(registry.resolveRegistryItems).mockResolvedValue([themeItem]);
+			vi.mocked(registry.fetchRegistryItems).mockResolvedValue([themeItem]);
+			vi.mocked(transformCss).mockReturnValue("/* updated */");
+			vi.mocked(p.confirm).mockResolvedValue(false);
+
+			const result = await addRegistryItems({
+				selectedItems: ["https://example.com/init?preset=abc"],
+				config: mockConfig,
+				deps: true,
+			});
+
+			expect(result.skippedStylesheet).toBe(true);
+			expect(fs.writeFile).not.toHaveBeenCalled();
+		});
+
+		it("updates the stylesheet without asking after choosing to overwrite everything", async () => {
+			vi.mocked(existsSync).mockImplementation((path) => path.toString().includes("utils"));
+			vi.mocked(registry.resolveRegistryItems).mockResolvedValue([themeItem, utilsItem]);
+			vi.mocked(registry.fetchRegistryItems).mockResolvedValue([themeItem, utilsItem]);
+			vi.mocked(transformCss).mockReturnValue("/* updated */");
+			vi.mocked(p.confirm).mockResolvedValue(true);
+
+			const result = await addRegistryItems({
+				selectedItems: ["https://example.com/init?preset=abc"],
+				config: mockConfig,
+				deps: true,
+			});
+
+			expect(p.confirm).toHaveBeenCalledTimes(1);
+			expect(p.confirm).toHaveBeenCalledWith(
+				expect.objectContaining({ message: expect.stringContaining("all existing files") })
+			);
+			expect(result.skippedItems).toEqual([]);
+			expect(fs.writeFile).toHaveBeenCalledWith("/test/app.css", "/* updated */", "utf8");
+		});
+
+		it('asks about the stylesheet with `stylesheet: "ask"`, even when keeping the items', async () => {
+			vi.mocked(existsSync).mockImplementation((path) => path.toString().includes("utils"));
+			vi.mocked(registry.resolveRegistryItems).mockResolvedValue([themeItem, utilsItem]);
+			vi.mocked(registry.fetchRegistryItems).mockResolvedValue([themeItem, utilsItem]);
+			vi.mocked(transformCss).mockReturnValue("/* updated */");
+			vi.mocked(p.confirm).mockResolvedValue(true);
+
+			const result = await addRegistryItems({
+				selectedItems: ["https://example.com/init?preset=abc"],
+				config: mockConfig,
+				overwrite: false,
+				stylesheet: "ask",
+				deps: true,
+			});
+
+			expect(p.confirm).toHaveBeenCalledTimes(1);
+			expect(p.confirm).toHaveBeenCalledWith(
+				expect.objectContaining({ message: expect.stringContaining("app.css") })
+			);
+			expect(result.skippedItems).toEqual(["utils"]);
+			expect(fs.writeFile).toHaveBeenCalledWith("/test/app.css", "/* updated */", "utf8");
 		});
 	});
 
@@ -431,7 +487,6 @@ describe("addRegistryItems", () => {
 				addRegistryItems({
 					selectedItems: ["button"],
 					config: mockConfig,
-					overwrite: false,
 					deps: true,
 					interactive: false,
 				})
@@ -450,7 +505,6 @@ describe("addRegistryItems", () => {
 				addRegistryItems({
 					selectedItems: ["button"],
 					config: mockConfig,
-					overwrite: false,
 					deps: true,
 					interactive: false,
 				})
@@ -462,7 +516,7 @@ describe("addRegistryItems", () => {
 			expect(fs.writeFile).not.toHaveBeenCalled();
 		});
 
-		it("keeps existing items and the stylesheet with skipExisting and skipStylesheet", async () => {
+		it("keeps existing items and the stylesheet with `overwrite: false`", async () => {
 			// `button` exists, but the new `card` doesn't
 			const cardItem = {
 				...buttonItem,
@@ -478,8 +532,6 @@ describe("addRegistryItems", () => {
 				config: mockConfig,
 				overwrite: false,
 				deps: true,
-				skipExisting: true,
-				skipStylesheet: true,
 				interactive: false,
 			});
 

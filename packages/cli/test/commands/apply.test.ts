@@ -123,7 +123,7 @@ describe("apply command options", () => {
 });
 
 describe("runApply", () => {
-	it("only touches the stylesheet/config: sends just the preset URL, skips existing files, forces the stylesheet", async () => {
+	it("only touches the stylesheet/config: sends just the preset URL, keeps existing files, writes the stylesheet", async () => {
 		const config = makeConfig();
 
 		await runApply({ cwd: "/test", config, decidedPresets, options: baseOptions });
@@ -139,9 +139,9 @@ describe("runApply", () => {
 		// are never re-added
 		expect(args.selectedItems).toHaveLength(1);
 		expect(args.selectedItems[0]).toContain("/init?preset=");
-		// don't prompt to overwrite existing files, and write the stylesheet directly
-		expect(args.skipExisting).toBe(true);
-		expect(args.forceStylesheet).toBe(true);
+		// keep existing files without asking, and write the stylesheet directly
+		expect(args.overwrite).toBe(false);
+		expect(args.stylesheet).toBe("write");
 	});
 
 	it("with `--only theme`: writes config and forwards only", async () => {
@@ -160,8 +160,8 @@ describe("runApply", () => {
 		const [args] = vi.mocked(addRegistryItems).mock.calls[0]!;
 		expect(args.only).toEqual(["theme"]);
 		expect(args.selectedItems).toHaveLength(1);
-		expect(args.skipExisting).toBe(true);
-		expect(args.forceStylesheet).toBe(true);
+		expect(args.overwrite).toBe(false);
+		expect(args.stylesheet).toBe("write");
 	});
 
 	it("with `--only font`: leaves config untouched", async () => {
