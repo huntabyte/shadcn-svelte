@@ -1,7 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
+import * as p from "@clack/prompts";
 import { exec } from "tinyexec";
-import { afterEach, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import * as items from "../../src/utils/add-registry-items.js";
+import * as cliConfig from "../../src/utils/config/index.js";
+import * as project from "../../src/utils/project.js";
 import * as registry from "../../src/utils/registry/index.js";
 import { runInit } from "../../src/commands/init/index.js";
 import { getConfig } from "../../src/utils/config/index.js";
@@ -105,6 +109,7 @@ it("init (config-full)", async () => {
 		options: {
 			cwd: targetDir,
 			deps: true,
+			install: true,
 			depsInstall: true,
 			overwrite: true,
 			skipPreflight: false,
@@ -159,6 +164,69 @@ it("init (config-full)", async () => {
 	mockWriteFile.mockRestore();
 });
 
+describe("overwriting the existing components", () => {
+	const decidedPresets = {
+		style: "vega",
+		theme: "neutral",
+		font: "inter",
+		radius: "default",
+		baseColor: "zinc",
+		iconLibrary: "lucide",
+		menuColor: "default",
+		menuAccent: "subtle",
+		fontHeading: "inter",
+	} as const;
+
+	it.each([
+		{ name: "--overwrite", overwrite: true, styleChanged: false, answer: undefined },
+		{ name: "the defaults", overwrite: false, styleChanged: false, answer: undefined },
+		{ name: "a new style, answering yes", overwrite: false, styleChanged: true, answer: true },
+		{ name: "a new style, answering no", overwrite: false, styleChanged: true, answer: false },
+	])("passes on the choice with $name", async ({ overwrite, styleChanged, answer }) => {
+		vi.spyOn(p, "tasks").mockResolvedValue(undefined);
+		vi.spyOn(p.log, "warn").mockImplementation(() => {});
+		vi.spyOn(cliConfig, "writeConfig").mockImplementation(() => {});
+		vi.spyOn(registry, "getRegistryIndex").mockResolvedValue([]);
+		vi.spyOn(project, "getComponents").mockResolvedValue([
+			{ name: "button", type: "registry:ui", relativeUrl: "button.json" },
+		]);
+		const confirm = vi.spyOn(p, "confirm").mockResolvedValue(answer ?? true);
+		const addRegistryItems = vi.spyOn(items, "addRegistryItems").mockResolvedValue({
+			dependencies: new Set(),
+			devDependencies: new Set(),
+			skippedDeps: new Set(),
+			skippedItems: [],
+			skippedStylesheet: false,
+		});
+
+		const targetDir = path.resolve(__dirname, "../fixtures/config-full");
+		const config = await getConfig(targetDir);
+		if (!config) throw new Error("config is undefined");
+
+		await runInit({
+			cwd: targetDir,
+			config,
+			decidedPresets,
+			options: {
+				cwd: targetDir,
+				deps: false,
+				install: true,
+				depsInstall: true,
+				overwrite,
+				skipPreflight: false,
+			},
+			styleChanged,
+		});
+
+		expect(confirm).toHaveBeenCalledTimes(answer === undefined ? 0 : 1);
+		const [args] = addRegistryItems.mock.calls[0]!;
+		// `undefined` asks about each item, and keeping them still asks about the stylesheet
+		expect(args.overwrite).toBe(answer ?? (overwrite || undefined));
+		expect(args.stylesheet).toBe(answer === false ? "ask" : undefined);
+	});
+});
+
 afterEach(() => {
+	vi.restoreAllMocks();
 	vi.resetAllMocks();
 });

@@ -116,7 +116,6 @@ describe("addRegistryItems", () => {
 		await addRegistryItems({
 			selectedItems: ["https://example.com/data-grid.json"],
 			config: mockConfig,
-			overwrite: false,
 			deps: true,
 		});
 
@@ -169,7 +168,6 @@ describe("addRegistryItems", () => {
 		await addRegistryItems({
 			selectedItems: ["https://example.com/data-grid.json"],
 			config: mockConfig,
-			overwrite: false,
 			deps: true,
 		});
 
@@ -297,7 +295,7 @@ describe("addRegistryItems", () => {
 		});
 	});
 
-	describe("skipExisting / forceStylesheet", () => {
+	describe("stylesheet", () => {
 		// the file-less base item carries the theme; `utils` is a file-bearing
 		// dependency pulled in by the preset that a project already has
 		const themeItem = {
@@ -344,8 +342,7 @@ describe("addRegistryItems", () => {
 				config: mockConfig,
 				overwrite: false,
 				deps: true,
-				skipExisting: true,
-				forceStylesheet: true,
+				stylesheet: "write",
 			});
 
 			// no overwrite prompt for the pre-existing utils file
@@ -358,7 +355,7 @@ describe("addRegistryItems", () => {
 			expect(changes?.cssVars).toMatchObject({ light: { background: "oklch(1 0 0)" } });
 		});
 
-		it("writes the stylesheet without prompting when forceStylesheet is set", async () => {
+		it('writes the stylesheet without prompting with `stylesheet: "write"`', async () => {
 			vi.mocked(existsSync).mockReturnValue(false);
 			vi.mocked(registry.resolveRegistryItems).mockResolvedValue([themeItem]);
 			vi.mocked(registry.fetchRegistryItems).mockResolvedValue([themeItem]);
@@ -368,9 +365,8 @@ describe("addRegistryItems", () => {
 			await addRegistryItems({
 				selectedItems: ["https://example.com/init?preset=abc"],
 				config: mockConfig,
-				overwrite: false,
 				deps: true,
-				forceStylesheet: true,
+				stylesheet: "write",
 			});
 
 			// no confirmation prompt for the stylesheet update
@@ -378,7 +374,7 @@ describe("addRegistryItems", () => {
 			expect(fs.writeFile).toHaveBeenCalledWith("/test/app.css", "/* updated */", "utf8");
 		});
 
-		it("prompts before writing the stylesheet when forceStylesheet is not set", async () => {
+		it("prompts before writing the stylesheet by default", async () => {
 			vi.mocked(existsSync).mockReturnValue(false);
 			vi.mocked(registry.resolveRegistryItems).mockResolvedValue([themeItem]);
 			vi.mocked(registry.fetchRegistryItems).mockResolvedValue([themeItem]);
@@ -388,11 +384,255 @@ describe("addRegistryItems", () => {
 			await addRegistryItems({
 				selectedItems: ["https://example.com/init?preset=abc"],
 				config: mockConfig,
-				overwrite: false,
 				deps: true,
 			});
 
 			expect(p.confirm).toHaveBeenCalledTimes(1);
+		});
+
+		it("leaves the stylesheet as is when the answer is no", async () => {
+			vi.mocked(existsSync).mockReturnValue(false);
+			vi.mocked(registry.resolveRegistryItems).mockResolvedValue([themeItem]);
+			vi.mocked(registry.fetchRegistryItems).mockResolvedValue([themeItem]);
+			vi.mocked(transformCss).mockReturnValue("/* updated */");
+			vi.mocked(p.confirm).mockResolvedValue(false);
+
+			const result = await addRegistryItems({
+				selectedItems: ["https://example.com/init?preset=abc"],
+				config: mockConfig,
+				deps: true,
+			});
+
+			expect(result.skippedStylesheet).toBe(true);
+			expect(fs.writeFile).not.toHaveBeenCalled();
+		});
+
+		it("updates the stylesheet without asking after choosing to overwrite everything", async () => {
+			vi.mocked(existsSync).mockImplementation((path) => path.toString().includes("utils"));
+			vi.mocked(registry.resolveRegistryItems).mockResolvedValue([themeItem, utilsItem]);
+			vi.mocked(registry.fetchRegistryItems).mockResolvedValue([themeItem, utilsItem]);
+			vi.mocked(transformCss).mockReturnValue("/* updated */");
+			vi.mocked(p.confirm).mockResolvedValue(true);
+
+			const result = await addRegistryItems({
+				selectedItems: ["https://example.com/init?preset=abc"],
+				config: mockConfig,
+				deps: true,
+			});
+
+			expect(p.confirm).toHaveBeenCalledTimes(1);
+			expect(p.confirm).toHaveBeenCalledWith(
+				expect.objectContaining({ message: expect.stringContaining("all existing files") })
+			);
+			expect(result.skippedItems).toEqual([]);
+			expect(fs.writeFile).toHaveBeenCalledWith("/test/app.css", "/* updated */", "utf8");
+		});
+
+		it('asks about the stylesheet with `stylesheet: "ask"`, even when keeping the items', async () => {
+			vi.mocked(existsSync).mockImplementation((path) => path.toString().includes("utils"));
+			vi.mocked(registry.resolveRegistryItems).mockResolvedValue([themeItem, utilsItem]);
+			vi.mocked(registry.fetchRegistryItems).mockResolvedValue([themeItem, utilsItem]);
+			vi.mocked(transformCss).mockReturnValue("/* updated */");
+			vi.mocked(p.confirm).mockResolvedValue(true);
+
+			const result = await addRegistryItems({
+				selectedItems: ["https://example.com/init?preset=abc"],
+				config: mockConfig,
+				overwrite: false,
+				stylesheet: "ask",
+				deps: true,
+			});
+
+			expect(p.confirm).toHaveBeenCalledTimes(1);
+			expect(p.confirm).toHaveBeenCalledWith(
+				expect.objectContaining({ message: expect.stringContaining("app.css") })
+			);
+			expect(result.skippedItems).toEqual(["utils"]);
+			expect(fs.writeFile).toHaveBeenCalledWith("/test/app.css", "/* updated */", "utf8");
+		});
+	});
+
+	describe("without a terminal", () => {
+		const buttonItem = {
+			name: "button",
+			type: "registry:ui",
+			files: [{ target: "button.svelte", type: "registry:ui", content: "" }],
+			registryDependencies: [],
+			cssVars: { light: { primary: "oklch(0 0 0)" } },
+		} satisfies ResolvedRegistryItem;
+
+		const runTasks = async (tasks: p.Task[]) => {
+			for (const task of tasks) {
+				if (task.enabled === false) continue;
+				await task.task(() => {});
+			}
+			return undefined;
+		};
+
+		beforeEach(() => {
+			vi.mocked(registry.getItemAliasDir).mockReturnValue("/test/ui");
+			vi.mocked(registry.resolveItemFilePath).mockImplementation(
+				(_, item, file) => `/test/ui/${item.name}/${file.target}`
+			);
+			vi.mocked(registry.resolveRegistryItems).mockResolvedValue([buttonItem]);
+			vi.mocked(registry.fetchRegistryItems).mockResolvedValue([buttonItem]);
+			vi.mocked(p.tasks).mockImplementation(runTasks);
+			vi.mocked(transformCss).mockReturnValue("/* updated */");
+		});
+
+		it("fails before writing anything when an item already exists", async () => {
+			vi.mocked(existsSync).mockReturnValue(true);
+
+			await expect(
+				addRegistryItems({
+					selectedItems: ["button"],
+					config: mockConfig,
+					deps: true,
+					interactive: false,
+				})
+			).rejects.toThrow(/already exist: button.*--overwrite.*--no-overwrite/);
+
+			expect(p.confirm).not.toHaveBeenCalled();
+			expect(p.tasks).not.toHaveBeenCalled();
+			expect(fs.mkdir).not.toHaveBeenCalled();
+			expect(fs.writeFile).not.toHaveBeenCalled();
+		});
+
+		it("fails before writing anything when the stylesheet needs changes", async () => {
+			vi.mocked(existsSync).mockReturnValue(false);
+
+			await expect(
+				addRegistryItems({
+					selectedItems: ["button"],
+					config: mockConfig,
+					deps: true,
+					interactive: false,
+				})
+			).rejects.toThrow(/app\.css.*--overwrite.*--no-overwrite/);
+
+			expect(p.confirm).not.toHaveBeenCalled();
+			expect(p.tasks).not.toHaveBeenCalled();
+			expect(fs.mkdir).not.toHaveBeenCalled();
+			expect(fs.writeFile).not.toHaveBeenCalled();
+		});
+
+		it("keeps existing items and the stylesheet with `overwrite: false`", async () => {
+			// `button` exists, but the new `card` doesn't
+			const cardItem = {
+				...buttonItem,
+				name: "card",
+				files: [{ target: "card.svelte", type: "registry:ui", content: "" }],
+			} satisfies ResolvedRegistryItem;
+			vi.mocked(registry.resolveRegistryItems).mockResolvedValue([buttonItem, cardItem]);
+			vi.mocked(registry.fetchRegistryItems).mockResolvedValue([buttonItem, cardItem]);
+			vi.mocked(existsSync).mockImplementation((path) => path.toString().includes("button"));
+
+			const result = await addRegistryItems({
+				selectedItems: ["button", "card"],
+				config: mockConfig,
+				overwrite: false,
+				deps: true,
+				interactive: false,
+			});
+
+			expect(result.skippedItems).toEqual(["button"]);
+			expect(result.skippedStylesheet).toBe(true);
+			expect(p.confirm).not.toHaveBeenCalled();
+			expect(fs.writeFile).toHaveBeenCalledTimes(1);
+			expect(fs.writeFile).toHaveBeenCalledWith("/test/ui/card/card.svelte", "", "utf8");
+		});
+
+		it("replaces only the items it's given, by name or URL, and updates the stylesheet", async () => {
+			// both exist, and `card` depends on `button`, but only `card` is replaced
+			const cardUrl = "https://example.com/r/card.json";
+			const cardItem = {
+				name: "card",
+				type: "registry:ui",
+				files: [{ target: "card.svelte", type: "registry:ui", content: "" }],
+				registryDependencies: ["button"],
+				cssVars: { light: { card: "oklch(1 0 0)" } },
+			} satisfies ResolvedRegistryItem;
+			vi.mocked(registry.resolveRegistryItems).mockImplementation(async ({ items }) =>
+				items[0] === cardUrl ? [cardItem, buttonItem] : [buttonItem]
+			);
+			vi.mocked(registry.fetchRegistryItems).mockResolvedValue([cardItem, buttonItem]);
+			vi.mocked(existsSync).mockReturnValue(true);
+
+			const result = await addRegistryItems({
+				selectedItems: [cardUrl, "button"],
+				config: mockConfig,
+				overwrite: [cardUrl],
+				deps: true,
+				interactive: false,
+			});
+
+			expect(registry.fetchRegistryItems).toHaveBeenCalledWith(
+				expect.objectContaining({ items: [cardItem, buttonItem] })
+			);
+			// each item is resolved on its own, but they share the remote items fetched so far
+			const [first, second] = vi.mocked(registry.resolveRegistryItems).mock.calls;
+			expect(first![0].fetched).toBeInstanceOf(Map);
+			expect(second![0].fetched).toBe(first![0].fetched);
+			expect(result.skippedItems).toEqual(["button"]);
+			expect(result.skippedStylesheet).toBe(false);
+			expect(p.confirm).not.toHaveBeenCalled();
+			expect(fs.writeFile).toHaveBeenCalledTimes(2);
+			expect(fs.writeFile).toHaveBeenCalledWith("/test/ui/card/card.svelte", "", "utf8");
+			expect(fs.writeFile).toHaveBeenCalledWith("/test/app.css", "/* updated */", "utf8");
+			// the stylesheet only gets the CSS of the items that were written
+			const [, changes] = vi.mocked(transformCss).mock.calls.at(-1)!;
+			expect(changes?.cssVars).toMatchObject({ light: { card: "oklch(1 0 0)" } });
+			expect(changes?.cssVars).not.toHaveProperty("light.primary");
+		});
+
+		it("resolves the items in parallel", async () => {
+			const cardItem = {
+				...buttonItem,
+				name: "card",
+				files: [{ target: "card.svelte", type: "registry:ui", content: "" }],
+			} satisfies ResolvedRegistryItem;
+			let finish!: () => void;
+			const loading = new Promise<void>((resolve) => (finish = resolve));
+			vi.mocked(registry.resolveRegistryItems).mockImplementation(async ({ items }) => {
+				if (items[0] === "button") await loading;
+				return [items[0] === "button" ? buttonItem : cardItem];
+			});
+			vi.mocked(registry.fetchRegistryItems).mockResolvedValue([buttonItem, cardItem]);
+			vi.mocked(existsSync).mockReturnValue(false);
+
+			const result = addRegistryItems({
+				selectedItems: ["button", "card"],
+				config: mockConfig,
+				overwrite: true,
+				deps: true,
+				interactive: false,
+			});
+			// `card` doesn't wait for `button`
+			await vi.waitFor(() => expect(registry.resolveRegistryItems).toHaveBeenCalledTimes(2));
+
+			finish();
+			await result;
+			expect(registry.fetchRegistryItems).toHaveBeenCalledWith(
+				expect.objectContaining({ items: [buttonItem, cardItem] })
+			);
+		});
+
+		it("replaces existing items and updates the stylesheet with overwrite", async () => {
+			vi.mocked(existsSync).mockReturnValue(true);
+
+			const result = await addRegistryItems({
+				selectedItems: ["button"],
+				config: mockConfig,
+				overwrite: true,
+				deps: true,
+				interactive: false,
+			});
+
+			expect(result.skippedItems).toEqual([]);
+			expect(result.skippedStylesheet).toBe(false);
+			expect(p.confirm).not.toHaveBeenCalled();
+			expect(fs.writeFile).toHaveBeenCalledWith("/test/ui/button/button.svelte", "", "utf8");
+			expect(fs.writeFile).toHaveBeenCalledWith("/test/app.css", "/* updated */", "utf8");
 		});
 	});
 });

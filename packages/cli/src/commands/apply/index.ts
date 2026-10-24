@@ -9,11 +9,12 @@ import * as cliConfig from "../../utils/config/index.js";
 import * as registry from "../../utils/registry/index.js";
 import { type PresetConfig, decodePreset, encodePreset } from "../../preset/index.js";
 import { addRegistryItems } from "../../utils/add-registry-items.js";
+import { AGENT_NAMES, getInstalledAgents } from "../../utils/auto-detect.js";
 import { highlight } from "../../utils/colors.js";
 import { ConfigError, error } from "../../utils/errors.js";
 import { getEnvProxy } from "../../utils/get-env-proxy.js";
 import { installDependencies } from "../../utils/install-deps.js";
-import { intro, handleError } from "../../utils/prompt-helpers.js";
+import { cancel, intro, handleError } from "../../utils/prompt-helpers.js";
 import { preflightInit } from "../init/preflight.js";
 
 const ONLY_OPTIONS = ["font", "theme"] as const;
@@ -26,7 +27,9 @@ const initOptionsSchema = z.object({
 	silent: z.boolean(),
 	skipPreflight: z.boolean(),
 	proxy: z.string().optional(),
+	install: z.boolean(),
 	depsInstall: z.boolean(),
+	installWith: z.enum(AGENT_NAMES).optional(),
 });
 
 type InitOptions = z.infer<typeof initOptionsSchema>;
@@ -44,7 +47,16 @@ export const apply = new Command()
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
 	.option("-y, --yes", "skip confirmation prompt", false)
 	.option("-s, --silent", "mute output", false)
-	.option("--no-deps-install", "add dependencies to package.json without running install")
+	.addOption(
+		new Option(
+			"--install-with <package-manager>",
+			"install dependencies with the given package manager"
+		)
+			.choices(getInstalledAgents())
+			.conflicts(["install", "depsInstall"])
+	)
+	.option("--no-install", "add dependencies to package.json without installing them")
+	.addOption(new Option("--no-deps-install", "deprecated: use --no-install").hideHelp())
 	.option("--skip-preflight", "ignore preflight checks and continue", false)
 	.option("--proxy <proxy>", "fetch items from registry using a proxy", getEnvProxy())
 	.action(async (preset, opts) => {
@@ -106,6 +118,24 @@ export async function runApply({
 	const shouldApplyTheme = only === undefined || only.includes("theme");
 	const onlyApplyTheme = only?.includes("theme");
 
+	if (options.yes === false) {
+		// Without a terminal, the prompt would hang or exit without doing anything.
+		if (!process.stdin.isTTY) {
+			throw error(`Pass ${highlight("--yes")} to skip the confirmation.`);
+		}
+
+		const stylesheet = highlight(path.relative(cwd, config.resolvedPaths.tailwindCss));
+		const files = shouldApplyTheme
+			? `${highlight("components.json")} and ${stylesheet}`
+			: stylesheet;
+		const proceed = await p.confirm({
+			message: `Ready to update ${files}? ${color.gray("(Make sure you have committed your changes before proceeding!)")}`,
+			initialValue: true,
+		});
+
+		if (p.isCancel(proceed) || proceed === false) cancel();
+	}
+
 	if (shouldApplyTheme) {
 		config.iconLibrary = decidedPresets.iconLibrary;
 		config.menuColor = decidedPresets.menuColor;
@@ -135,11 +165,10 @@ export async function runApply({
 		selectedItems: [presetUrl],
 		config,
 		deps: true,
-		overwrite: options.yes,
+		overwrite: false,
+		stylesheet: "write",
 		silent: options.silent,
 		only,
-		skipExisting: true,
-		forceStylesheet: true,
 	});
 
 	// never install dependencies if only the theme is being applied
@@ -151,6 +180,7 @@ export async function runApply({
 		dependencies: Array.from(result.dependencies),
 		devDependencies: Array.from(result.devDependencies),
 		silent: options.silent,
-		install: options.depsInstall,
+		install: options.install && options.depsInstall,
+		installWith: options.installWith,
 	});
 }
