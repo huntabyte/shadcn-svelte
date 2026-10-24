@@ -93,6 +93,15 @@ type ResolveRegistryItemsProps = {
 	registryIndex: schemas.RegistryIndex;
 	items: string[];
 	parentUrl?: URL;
+	/**
+	 * The remote items fetched so far, keyed by their URL.
+	 *
+	 * Items are kept as a `Promise` so that multiple requests for the same URL
+	 * can share the same fetch promise and avoid duplicate network requests.
+	 *
+	 * Pass this to several `resolveRegistryItems` calls to share them.
+	 */
+	fetched?: Map<string, Promise<ResolvedRegistryItem>>;
 };
 
 export type ResolvedRegistryItem = schemas.RegistryItem | schemas.RegistryIndexItem;
@@ -101,59 +110,69 @@ export async function resolveRegistryItems({
 	registryIndex,
 	items,
 	parentUrl,
+	fetched = new Map(),
 }: ResolveRegistryItemsProps): Promise<ResolvedRegistryItem[]> {
-	const resolvedItems: ResolvedRegistryItem[] = [];
+	// resolved concurrently and kept in the given order
+	const trees = await Promise.all(
+		items.map(async (item) => {
+			let remoteUrl: URL | undefined;
+			let resolvedItem: ResolvedRegistryItem | undefined = registryIndex.find(
+				(entry) => entry.name === item
+			);
 
-	for (const item of items) {
-		let remoteUrl: URL | undefined;
-		let resolvedItem: ResolvedRegistryItem | undefined = registryIndex.find(
-			(entry) => entry.name === item
-		);
+			/**
+			 * The `item` doesn't exist in the registry's `index`, so it can be one of two things:
+			 * 1. a remote registry item (URL)
+			 * 2. a `local:registryDep` of a _remote_  item (relative path from that item to the dep)
+			 */
+			if (!resolvedItem) {
+				const isRelative = item.startsWith("./") || item.startsWith("../");
+				if (isUrl(item) || (parentUrl && isRelative)) {
+					remoteUrl = new URL(item, parentUrl);
+					let remoteItem = fetched.get(remoteUrl.href);
+					if (!remoteItem) {
+						remoteItem = fetchRegistry([remoteUrl]).then(([result]) =>
+							schemas.registryItemSchema.parse(result)
+						);
+						fetched.set(remoteUrl.href, remoteItem);
+					}
+					resolvedItem = await remoteItem;
+				} else {
+					// diff error messages depending on whether we're resolving from the user's registry or a remote URL
+					if (parentUrl) {
+						throw error(
+							`Registry item '${item}' does not exist in the remote registry at '${parentUrl.origin}', nor is it a valid URL or relative path.`
+						);
+					}
 
-		/**
-		 * The `item` doesn't exist in the registry's `index`, so it can be one of two things:
-		 * 1. a remote registry item (URL)
-		 * 2. a `local:registryDep` of a _remote_  item (relative path from that item to the dep)
-		 */
-		if (!resolvedItem) {
-			const isRelative = item.startsWith("./") || item.startsWith("../");
-			if (isUrl(item) || (parentUrl && isRelative)) {
-				remoteUrl = new URL(item, parentUrl);
-				const [result] = await fetchRegistry([remoteUrl]);
-				resolvedItem = schemas.registryItemSchema.parse(result);
-			} else {
-				// diff error messages depending on whether we're resolving from the user's registry or a remote URL
-				if (parentUrl) {
-					throw error(
-						`Registry item '${item}' does not exist in the remote registry at '${parentUrl.origin}', nor is it a valid URL or relative path.`
-					);
+					let message = `Registry item '${item}' does not exist in the registry at '${registryUrl}'.`;
+					if (registryUrl !== OFFICIAL_REGISTRY_URL) {
+						message += `\n\nIf you're trying to use shadcn-svelte components, ensure your 'registry' property in components.json is set to '${OFFICIAL_REGISTRY_URL}'.`;
+					}
+					throw error(message);
 				}
-
-				let message = `Registry item '${item}' does not exist in the registry at '${registryUrl}'.`;
-				if (registryUrl !== OFFICIAL_REGISTRY_URL) {
-					message += `\n\nIf you're trying to use shadcn-svelte components, ensure your 'registry' property in components.json is set to '${OFFICIAL_REGISTRY_URL}'.`;
-				}
-				throw error(message);
 			}
-		}
 
-		resolvedItems.push(resolvedItem);
+			if (!resolvedItem.registryDependencies?.length) {
+				return [resolvedItem];
+			}
 
-		if (resolvedItem.registryDependencies?.length) {
 			const registryDeps = await resolveRegistryItems({
 				registryUrl,
 				registryIndex,
 				items: resolvedItem.registryDependencies,
 				parentUrl: remoteUrl,
+				fetched,
 			});
-			resolvedItems.push(...registryDeps);
-		}
-	}
+
+			return [resolvedItem, ...registryDeps];
+		})
+	);
 
 	// dedupes tree
-	return resolvedItems.filter(
-		(component, index, self) => self.findIndex((c) => c.name === component.name) === index
-	);
+	return trees
+		.flat()
+		.filter((item, index, self) => self.findIndex((i) => i.name === item.name) === index);
 }
 
 type FetchTreeProps = { baseUrl: string; items: ResolvedRegistryItem[] };

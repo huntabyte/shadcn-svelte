@@ -569,6 +569,10 @@ describe("addRegistryItems", () => {
 			expect(registry.fetchRegistryItems).toHaveBeenCalledWith(
 				expect.objectContaining({ items: [cardItem, buttonItem] })
 			);
+			// each item is resolved on its own, but they share the remote items fetched so far
+			const [first, second] = vi.mocked(registry.resolveRegistryItems).mock.calls;
+			expect(first![0].fetched).toBeInstanceOf(Map);
+			expect(second![0].fetched).toBe(first![0].fetched);
 			expect(result.skippedItems).toEqual(["button"]);
 			expect(result.skippedStylesheet).toBe(false);
 			expect(p.confirm).not.toHaveBeenCalled();
@@ -579,6 +583,38 @@ describe("addRegistryItems", () => {
 			const [, changes] = vi.mocked(transformCss).mock.calls.at(-1)!;
 			expect(changes?.cssVars).toMatchObject({ light: { card: "oklch(1 0 0)" } });
 			expect(changes?.cssVars).not.toHaveProperty("light.primary");
+		});
+
+		it("resolves the items in parallel", async () => {
+			const cardItem = {
+				...buttonItem,
+				name: "card",
+				files: [{ target: "card.svelte", type: "registry:ui", content: "" }],
+			} satisfies ResolvedRegistryItem;
+			let finish!: () => void;
+			const loading = new Promise<void>((resolve) => (finish = resolve));
+			vi.mocked(registry.resolveRegistryItems).mockImplementation(async ({ items }) => {
+				if (items[0] === "button") await loading;
+				return [items[0] === "button" ? buttonItem : cardItem];
+			});
+			vi.mocked(registry.fetchRegistryItems).mockResolvedValue([buttonItem, cardItem]);
+			vi.mocked(existsSync).mockReturnValue(false);
+
+			const result = addRegistryItems({
+				selectedItems: ["button", "card"],
+				config: mockConfig,
+				overwrite: true,
+				deps: true,
+				interactive: false,
+			});
+			// `card` doesn't wait for `button`
+			await vi.waitFor(() => expect(registry.resolveRegistryItems).toHaveBeenCalledTimes(2));
+
+			finish();
+			await result;
+			expect(registry.fetchRegistryItems).toHaveBeenCalledWith(
+				expect.objectContaining({ items: [buttonItem, cardItem] })
+			);
 		});
 
 		it("replaces existing items and updates the stylesheet with overwrite", async () => {

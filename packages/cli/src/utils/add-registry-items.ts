@@ -73,20 +73,21 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 
 	const registryIndex = await registry.getRegistryIndex(registryUrl);
 
-	// Each item is resolved on its own to find the names of the items to overwrite, since a URL's
-	// is only known once it's fetched.
+	// Each item is resolved on its own to find the names of the items to overwrite since a URL's
+	// item is only known once it's fetched.
 	const overwriteList = Array.isArray(opts.overwrite) ? opts.overwrite : undefined;
+	const names = Array.from(selectedItems);
+	const fetched = new Map<string, Promise<registry.ResolvedRegistryItem>>();
+	const trees = await Promise.all(
+		names.map((name) =>
+			registry.resolveRegistryItems({ registryUrl, registryIndex, items: [name], fetched })
+		)
+	);
 	const overwriteNames = new Set<string>();
-	const resolvedItems: registry.ResolvedRegistryItem[] = [];
-	for (const name of selectedItems) {
-		const [item, ...deps] = await registry.resolveRegistryItems({
-			registryUrl,
-			registryIndex,
-			items: [name],
-		});
-		if (overwriteList?.includes(name)) overwriteNames.add(item!.name);
-		resolvedItems.push(item!, ...deps);
-	}
+	trees.forEach(([item], i) => {
+		if (overwriteList?.includes(names[i]!)) overwriteNames.add(item!.name);
+	});
+	const resolvedItems = trees.flat();
 
 	const itemsWithContent = await registry.fetchRegistryItems({
 		baseUrl: registryUrl,
