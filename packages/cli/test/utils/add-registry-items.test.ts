@@ -542,6 +542,45 @@ describe("addRegistryItems", () => {
 			expect(fs.writeFile).toHaveBeenCalledWith("/test/ui/card/card.svelte", "", "utf8");
 		});
 
+		it("replaces only the items it's given, by name or URL, and updates the stylesheet", async () => {
+			// both exist, and `card` depends on `button`, but only `card` is replaced
+			const cardUrl = "https://example.com/r/card.json";
+			const cardItem = {
+				name: "card",
+				type: "registry:ui",
+				files: [{ target: "card.svelte", type: "registry:ui", content: "" }],
+				registryDependencies: ["button"],
+				cssVars: { light: { card: "oklch(1 0 0)" } },
+			} satisfies ResolvedRegistryItem;
+			vi.mocked(registry.resolveRegistryItems).mockImplementation(async ({ items }) =>
+				items[0] === cardUrl ? [cardItem, buttonItem] : [buttonItem]
+			);
+			vi.mocked(registry.fetchRegistryItems).mockResolvedValue([cardItem, buttonItem]);
+			vi.mocked(existsSync).mockReturnValue(true);
+
+			const result = await addRegistryItems({
+				selectedItems: [cardUrl, "button"],
+				config: mockConfig,
+				overwrite: [cardUrl],
+				deps: true,
+				interactive: false,
+			});
+
+			expect(registry.fetchRegistryItems).toHaveBeenCalledWith(
+				expect.objectContaining({ items: [cardItem, buttonItem] })
+			);
+			expect(result.skippedItems).toEqual(["button"]);
+			expect(result.skippedStylesheet).toBe(false);
+			expect(p.confirm).not.toHaveBeenCalled();
+			expect(fs.writeFile).toHaveBeenCalledTimes(2);
+			expect(fs.writeFile).toHaveBeenCalledWith("/test/ui/card/card.svelte", "", "utf8");
+			expect(fs.writeFile).toHaveBeenCalledWith("/test/app.css", "/* updated */", "utf8");
+			// the stylesheet only gets the CSS of the items that were written
+			const [, changes] = vi.mocked(transformCss).mock.calls.at(-1)!;
+			expect(changes?.cssVars).toMatchObject({ light: { card: "oklch(1 0 0)" } });
+			expect(changes?.cssVars).not.toHaveProperty("light.primary");
+		});
+
 		it("replaces existing items and updates the stylesheet with overwrite", async () => {
 			vi.mocked(existsSync).mockReturnValue(true);
 

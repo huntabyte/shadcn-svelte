@@ -20,7 +20,7 @@ const addOptionsSchema = z.object({
 	components: z.string().array().optional(),
 	yes: z.boolean(),
 	all: z.boolean(),
-	overwrite: z.boolean().optional(),
+	overwrite: z.union([z.boolean(), z.string().array()]).optional(),
 	cwd: z.string(),
 	deps: z.boolean(),
 	install: z.boolean(),
@@ -51,7 +51,7 @@ export const add = new Command()
 	.option("--skip-preflight", "ignore preflight checks and continue", false)
 	.option("-a, --all", "install all components to your project", false)
 	.option("-y, --yes", "skip confirmation prompt", false)
-	.option("-o, --overwrite", "overwrite existing files")
+	.option("-o, --overwrite [items...]", "overwrite existing files, or only the given items' files")
 	.option("--no-overwrite", "keep existing files and leave the stylesheet as is")
 	.option("--proxy <proxy>", "fetch components from registry using a proxy", getEnvProxy())
 	.action(async (components, opts) => {
@@ -100,9 +100,13 @@ async function runAdd(cwd: string, config: cliConfig.ResolvedConfig, options: Ad
 	const shadcnIndex = await registry.getRegistryIndex(registryUrl);
 	const uiOnly = shadcnIndex.filter((f) => f.type === "registry:ui");
 
-	let selectedComponents = new Set(
-		options.all ? uiOnly.map(({ name }) => name) : options.components
-	);
+	// the items to overwrite are added too, since in `add -o button card` the components end up
+	// as the option's values
+	const overwriteItems = Array.isArray(options.overwrite) ? options.overwrite : [];
+	let selectedComponents = new Set([
+		...(options.all ? uiOnly.map(({ name }) => name) : (options.components ?? [])),
+		...overwriteItems,
+	]);
 
 	// if the user hasn't passed any components prompt them to select components
 	if (selectedComponents.size === 0) {

@@ -138,6 +138,27 @@ it.each([
 	expect(vi.mocked(addRegistryItems).mock.calls[0]![0].stylesheet).toBeUndefined();
 });
 
+it.each([
+	{ args: ["dialog", "-o", "button"], selectedItems: ["dialog", "button"], overwrite: ["button"] },
+	// commander reads the components as the option's values
+	{
+		args: ["-o", "button", "card"],
+		selectedItems: ["button", "card"],
+		overwrite: ["button", "card"],
+	},
+	{
+		args: ["-o", "button", "--", "card"],
+		selectedItems: ["card", "button"],
+		overwrite: ["button"],
+	},
+])("adds the items to overwrite: $args", async ({ args, selectedItems, overwrite }) => {
+	await runAdd("-y", ...args);
+
+	expect(addRegistryItems).toHaveBeenCalledWith(
+		expect.objectContaining({ selectedItems, overwrite })
+	);
+});
+
 it("finds the package manager before adding anything", async () => {
 	vi.mocked(detectPM).mockRejectedValue(new Error("Couldn't detect a package manager."));
 

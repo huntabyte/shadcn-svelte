@@ -32,13 +32,13 @@ type AddRegistryItemsProps = {
 	/**
 	 * Whether to replace the items that already exist.
 	 *
-	 * `undefined` asks.
+	 * A list of names or URLs replaces only those and keeps the rest, and `undefined` asks.
 	 */
-	overwrite?: boolean;
+	overwrite?: boolean | string[];
 	/**
 	 * Whether to update the stylesheet when it needs changes.
 	 *
-	 * It follows `overwrite` by default: `true` writes it, `false` keeps it, and `undefined` asks.
+	 * It follows `overwrite` by default: `true` or a list writes it, `false` keeps it, and `undefined` asks.
 	 */
 	stylesheet?: "write" | "keep" | "ask";
 	deps: boolean;
@@ -72,15 +72,27 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 	const shouldApplyFont = applyParts.includes("font");
 
 	const registryIndex = await registry.getRegistryIndex(registryUrl);
-	const resolvedItems = await registry.resolveRegistryItems({
-		registryUrl,
-		registryIndex,
-		items: Array.from(selectedItems),
-	});
+
+	// Each item is resolved on its own to find the names of the items to overwrite, since a URL's
+	// is only known once it's fetched.
+	const overwriteList = Array.isArray(opts.overwrite) ? opts.overwrite : undefined;
+	const overwriteNames = new Set<string>();
+	const resolvedItems: registry.ResolvedRegistryItem[] = [];
+	for (const name of selectedItems) {
+		const [item, ...deps] = await registry.resolveRegistryItems({
+			registryUrl,
+			registryIndex,
+			items: [name],
+		});
+		if (overwriteList?.includes(name)) overwriteNames.add(item!.name);
+		resolvedItems.push(item!, ...deps);
+	}
 
 	const itemsWithContent = await registry.fetchRegistryItems({
 		baseUrl: registryUrl,
-		items: resolvedItems,
+		items: resolvedItems.filter(
+			(item, i) => resolvedItems.findIndex((other) => other.name === item.name) === i
+		),
 	});
 
 	if (itemsWithContent.length === 0) throw error("Selected items not found.");
@@ -120,7 +132,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 		const prettyList = prettifyList(existingItems);
 		if (opts.interactive === false) {
 			throw error(
-				`The following items already exist: ${prettyList}. Pass ${highlight("--overwrite")} to replace them, or ${highlight("--no-overwrite")} to keep them.`
+				`The following items already exist: ${prettyList}. Pass ${highlight("--overwrite")} to replace them, ${highlight("--overwrite <items...>")} to replace only some, or ${highlight("--no-overwrite")} to keep them.`
 			);
 		}
 
@@ -145,7 +157,8 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 	for (const item of itemsWithContent) {
 		if (item.type === "registry:font" && !shouldApplyFont) continue;
 
-		if (overwrite === false && existingItems.includes(item.name)) {
+		const keep = overwrite === false || (overwriteList && !overwriteNames.has(item.name));
+		if (keep && existingItems.includes(item.name)) {
 			skippedItems.push(item.name);
 			continue;
 		}

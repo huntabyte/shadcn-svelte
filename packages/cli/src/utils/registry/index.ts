@@ -95,7 +95,7 @@ type ResolveRegistryItemsProps = {
 	parentUrl?: URL;
 };
 
-type ResolvedRegistryItem = schemas.RegistryItem | schemas.RegistryIndexItem;
+export type ResolvedRegistryItem = schemas.RegistryItem | schemas.RegistryIndexItem;
 export async function resolveRegistryItems({
 	registryUrl,
 	registryIndex,
