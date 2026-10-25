@@ -201,7 +201,9 @@ Plain CSS can override Typeset with a normal selector too.
 
 ## Opting Out
 
-To keep a component out of Typeset, add `not-typeset` or `data-not-typeset`:
+Components with a `data-slot` attribute keep their own styles automatically. A component placed directly in the Typeset flow gets the same space above as a paragraph.
+
+To opt out another element and its descendants, add `not-typeset` or `data-not-typeset`:
 
 ```svelte
 <div class="typeset">

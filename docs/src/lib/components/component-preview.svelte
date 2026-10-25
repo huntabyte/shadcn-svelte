@@ -27,6 +27,7 @@
 
 {#if type === "block"}
 	<div
+		data-not-typeset
 		class="relative aspect-[4/2.5] w-full overflow-hidden rounded-md border md:-mx-4"
 		data-llm-ignore
 	>

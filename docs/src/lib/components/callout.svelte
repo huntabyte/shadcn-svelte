@@ -19,7 +19,7 @@
 <Alert.Root
 	data-variant={variant}
 	class={cn(
-		"mt-6 w-auto rounded-2xl border-surface bg-surface text-surface-foreground md:-mx-1 **:[code]:border",
+		"not-typeset mt-6 w-auto rounded-2xl border-surface bg-surface text-surface-foreground md:-mx-1 **:[a]:font-medium **:[a]:underline **:[a]:decoration-current/30 **:[a]:hover:decoration-current **:[code]:border",
 		className
 	)}
 	{...restProps}
@@ -30,7 +30,7 @@
 	{#if title}
 		<Alert.Title>{title}</Alert.Title>
 	{/if}
-	<Alert.Description class="typeset text-card-foreground/80">
+	<Alert.Description class="text-card-foreground/80">
 		{@render children?.()}
 	</Alert.Description>
 </Alert.Root>

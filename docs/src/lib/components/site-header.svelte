@@ -46,30 +46,23 @@
 				<Separator orientation="vertical" class="hidden 3xl:flex" />
 				<LayoutToggle class="hidden 3xl:flex" />
 				<Separator orientation="vertical" />
-				{#if page.url.pathname.startsWith("/create")}
-					<ModeSwitcher class="md:hidden" />
-					{#if initializeProjectCtx}
-						<Separator orientation="vertical" class="hidden md:block" />
-						<Button
-							onclick={() => (initializeProjectCtx.open = true)}
-							variant="default"
-							size="sm"
-							class="hidden md:flex"
-						>
+				<ModeSwitcher />
+				{#if page.url.pathname !== "/typeset" && initializeProjectCtx}
+					<div class="hidden items-center gap-2 group-has-data-[slot=designer]/layout:md:flex">
+						<Separator orientation="vertical" />
+						<Button onclick={() => (initializeProjectCtx.open = true)} variant="default" size="sm">
 							<SquareTerminal />
 							Initialize Project
 						</Button>
-					{/if}
-				{:else}
-					<ModeSwitcher />
-					{#if page.url.pathname !== "/typeset"}
-						<Separator orientation="vertical" />
-						<Button href="/create" variant="default" size="sm" class="h-[31px] rounded-lg">
-							<PlusIcon />
-							New
-						</Button>
-					{/if}
+					</div>
 				{/if}
+				<div class="flex items-center gap-2 group-has-data-[slot=designer]/layout:hidden">
+					<Separator orientation="vertical" />
+					<Button href="/create" variant="default" size="sm" class="h-[31px] rounded-lg">
+						<PlusIcon />
+						New
+					</Button>
+				</div>
 			</div>
 		</div>
 	</div>
