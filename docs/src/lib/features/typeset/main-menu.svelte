@@ -19,9 +19,8 @@
 	}
 </script>
 
-<Picker.Root submenu={false} bind:open={() => open, setOpen}>
+<Picker.Root bind:open={() => open, setOpen}>
 	<Picker.Trigger
-		submenu={false}
 		class="flex items-center justify-between gap-2 rounded-lg px-1.75 ring-1 ring-foreground/10 focus-visible:ring-1"
 	>
 		<span class="font-medium">Menu</span>

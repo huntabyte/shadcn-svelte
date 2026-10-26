@@ -80,6 +80,17 @@ export function coerceTypesetValue<K extends keyof TypesetParams>(key: K, value:
 	return VALUES[key].includes(value) ? (value as TypesetParams[K]) : null;
 }
 
+export function parseTypesetParams(query: URLSearchParams): TypesetParams {
+	const params = { ...DEFAULT_TYPESET_PARAMS };
+	for (const key of Object.keys(params) as (keyof TypesetParams)[]) {
+		const value = query.get(key);
+		if (value === null) continue;
+		const coerced = coerceTypesetValue(key, value);
+		if (coerced !== null) (params as Record<string, string>)[key] = coerced;
+	}
+	return params;
+}
+
 const random = <T>(items: readonly T[]) => items[Math.floor(Math.random() * items.length)];
 
 export function findFont(id: string | null | undefined) {
@@ -98,37 +109,26 @@ export function serializeTypesetParams(path: string, params: TypesetParams) {
 export class TypesetState {
 	openPicker = $state<LockableParam | "menu" | null>(null);
 	params = $state<TypesetParams>({ ...DEFAULT_TYPESET_PARAMS });
-	locks = $state<SvelteSet<LockableParam>>(new SvelteSet());
+	locks = new SvelteSet<LockableParam>();
 	history = $state<TypesetParams[]>([]);
 	historyIndex = $state(-1);
 
 	init() {
 		if (!browser) return;
-		const query = new SvelteURLSearchParams(window.location.search);
-		const next = { ...DEFAULT_TYPESET_PARAMS };
-		for (const key of Object.keys(next) as (keyof TypesetParams)[]) {
-			const value = query.get(key);
-			if (value) {
-				const coerced = coerceTypesetValue(key, value);
-				if (coerced !== null) (next as Record<string, string>)[key] = coerced;
-			}
-		}
-		this.params = next;
-		this.history = [{ ...next }];
+		this.params = parseTypesetParams(page.url.searchParams);
+		this.history = [{ ...this.params }];
 		this.historyIndex = 0;
 	}
 
-	update(patch: Partial<TypesetParams>, record = true) {
+	update(patch: Partial<TypesetParams>) {
 		const next = { ...this.params, ...patch };
 		if (
 			(Object.keys(next) as (keyof TypesetParams)[]).every((key) => next[key] === this.params[key])
 		)
 			return;
 		this.params = next;
-		if (record) {
-			this.history = [...this.history.slice(0, this.historyIndex + 1), { ...this.params }];
-			this.historyIndex = this.history.length - 1;
-		}
+		this.history = [...this.history.slice(0, this.historyIndex + 1), { ...this.params }];
+		this.historyIndex = this.history.length - 1;
 		this.syncUrl();
 	}
 
@@ -137,9 +137,7 @@ export class TypesetState {
 	}
 
 	toggleLock(param: LockableParam) {
-		const next = new SvelteSet(this.locks);
-		next.has(param) ? next.delete(param) : next.add(param);
-		this.locks = next;
+		this.locks.has(param) ? this.locks.delete(param) : this.locks.add(param);
 	}
 
 	shuffle() {

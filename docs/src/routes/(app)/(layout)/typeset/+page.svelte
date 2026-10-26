@@ -65,12 +65,12 @@
 		serializeTypesetParams(`/preview/typeset/${typeset.params.item}`, typeset.params)
 	);
 	let previewItem = typeset.params.item;
+	const previewParams = $derived({ ...typeset.params, ...(previewOverride.override ?? {}) });
 
 	function sendPreviewParams() {
-		const params = { ...typeset.params, ...(previewOverride.override ?? {}) };
 		iframe?.contentWindow?.postMessage(
-			{ type: "typeset-params", data: params },
-			typeof window === "undefined" ? "*" : window.location.origin
+			{ type: "typeset-params", data: previewParams },
+			window.location.origin
 		);
 	}
 
@@ -125,10 +125,9 @@
 	});
 
 	$effect(() => {
-		const params = { ...typeset.params };
-		if (params.item !== previewItem) {
-			previewItem = params.item;
-			previewSrc = serializeTypesetParams(`/preview/typeset/${params.item}`, params);
+		if (previewParams.item !== previewItem) {
+			previewItem = previewParams.item;
+			previewSrc = serializeTypesetParams(`/preview/typeset/${previewItem}`, previewParams);
 			return;
 		}
 		sendPreviewParams();

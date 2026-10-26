@@ -87,9 +87,8 @@
 </script>
 
 <div class={cn("group/picker relative", className)}>
-	<Picker.Root submenu={false} bind:open={() => open, setOpen}>
+	<Picker.Root bind:open={() => open, setOpen}>
 		<Picker.Trigger
-			submenu={false}
 			class="w-36 md:w-full"
 			onpointerdown={captureMobileScroll}
 			onkeydown={(event) => {
