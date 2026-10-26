@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as CodeBlock from "$lib/registry/ui/code-block/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { useHighlightedCode } from "$lib/registry/hooks/use-highlighted-code.svelte.js";
+	import * as CodeBlock from "#lib/registry/ui/code-block/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { useHighlightedCode } from "#lib/registry/hooks/use-highlighted-code.svelte.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const source = `import { streamText } from "ai"

@@ -1,6 +1,6 @@
 <script lang="ts">
+	import * as Avatar from "#lib/registry/ui/avatar/index.js";
 	import PlusIcon from "@lucide/svelte/icons/plus";
-	import * as Avatar from "$lib/registry/ui/avatar/index.js";
 </script>
 
 <Avatar.Root class="grayscale">

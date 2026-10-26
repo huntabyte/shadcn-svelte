@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as Attachment from "$lib/registry/ui/attachment/index.js";
-	import * as Dialog from "$lib/registry/ui/dialog/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as Attachment from "#lib/registry/ui/attachment/index.js";
+	import * as Dialog from "#lib/registry/ui/dialog/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import AttachmentRemove from "./attachment-remove.svelte";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 

@@ -1,14 +1,14 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import {
 		FieldGroup,
 		Field,
 		FieldLabel,
 		FieldDescription,
 		FieldSeparator,
-	} from "$lib/registry/ui/field/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
-	import { cn, type WithElementRef } from "$lib/utils.js";
+	} from "#lib/registry/ui/field/index.js";
+	import { Input } from "#lib/registry/ui/input/index.js";
+	import { cn, type WithElementRef } from "#lib/utils.js";
 	import type { HTMLFormAttributes } from "svelte/elements";
 
 	let {

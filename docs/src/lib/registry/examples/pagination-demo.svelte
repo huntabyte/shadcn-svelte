@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Pagination from "$lib/registry/ui/pagination/index.js";
+	import * as Pagination from "#lib/registry/ui/pagination/index.js";
 </script>
 
 <Pagination.Root count={30} perPage={10} page={2}>

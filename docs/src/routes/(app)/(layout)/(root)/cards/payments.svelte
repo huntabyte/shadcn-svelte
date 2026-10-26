@@ -1,5 +1,5 @@
 <script lang="ts">
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
 	import {
 		Breadcrumb,
 		BreadcrumbItem,
@@ -7,15 +7,15 @@
 		BreadcrumbList,
 		BreadcrumbPage,
 		BreadcrumbSeparator,
-	} from "$lib/registry/ui/breadcrumb/index.js";
-	import { Card, CardContent, CardHeader } from "$lib/registry/ui/card/index.js";
+	} from "#lib/registry/ui/breadcrumb/index.js";
+	import { Card, CardContent, CardHeader } from "#lib/registry/ui/card/index.js";
 	import {
 		DropdownMenu,
 		DropdownMenuContent,
 		DropdownMenuGroup,
 		DropdownMenuItem,
 		DropdownMenuTrigger,
-	} from "$lib/registry/ui/dropdown-menu/index.js";
+	} from "#lib/registry/ui/dropdown-menu/index.js";
 	import {
 		Item,
 		ItemContent,
@@ -23,7 +23,7 @@
 		ItemGroup,
 		ItemMedia,
 		ItemTitle,
-	} from "$lib/registry/ui/item/index.js";
+	} from "#lib/registry/ui/item/index.js";
 </script>
 
 <Card>

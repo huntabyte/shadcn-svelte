@@ -1,4 +1,4 @@
-import { getDoc } from "$lib/docs.js";
+import { getDoc } from "#lib/docs.js";
 import type { HighlightedBlock } from "../../../../api/block/[block]/+server.js";
 import type { EntryGenerator, PageLoad } from "./$types.js";
 

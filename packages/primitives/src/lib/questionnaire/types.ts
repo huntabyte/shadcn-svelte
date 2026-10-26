@@ -8,13 +8,13 @@ import type {
 	PrimitiveLegendAttributes,
 	PrimitiveParagraphAttributes,
 	PrimitiveSpanAttributes,
-} from "$lib/internal/attributes.js";
+} from "#lib/internal/attributes.js";
 import type {
 	OnChangeFn,
 	WithChild,
 	WithChildNoChildrenSnippetProps,
 	Without,
-} from "$lib/internal/types.js";
+} from "#lib/internal/types.js";
 import type { EventHandler, FormEventHandler } from "svelte/elements";
 
 export type QuestionnaireItemStatus = "unanswered" | "answered" | "skipped";

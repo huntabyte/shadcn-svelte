@@ -1,4 +1,8 @@
 <script lang="ts">
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
+	import * as Select from "#lib/registry/ui/select/index.js";
+	import * as Table from "#lib/registry/ui/table/index.js";
+	import * as Tabs from "#lib/registry/ui/tabs/index.js";
 	import ChevronDownIcon from "@tabler/icons-svelte/icons/chevron-down";
 	import ChevronLeftIcon from "@tabler/icons-svelte/icons/chevron-left";
 	import ChevronRightIcon from "@tabler/icons-svelte/icons/chevron-right";
@@ -6,6 +10,9 @@
 	import ChevronsRightIcon from "@tabler/icons-svelte/icons/chevrons-right";
 	import LayoutColumnsIcon from "@tabler/icons-svelte/icons/layout-columns";
 	import PlusIcon from "@tabler/icons-svelte/icons/plus";
+	import { Badge } from "#lib/registry/ui/badge/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Label } from "#lib/registry/ui/label/index.js";
 	import { DragDropProvider } from "@dnd-kit-svelte/svelte";
 	import { useSortable } from "@dnd-kit-svelte/svelte/sortable";
 	import { RestrictToVerticalAxis } from "@dnd-kit/abstract/modifiers";
@@ -19,13 +26,6 @@
 		renderComponent,
 		type Row,
 	} from "@tanstack/svelte-table";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as Select from "$lib/registry/ui/select/index.js";
-	import * as Table from "$lib/registry/ui/table/index.js";
-	import * as Tabs from "$lib/registry/ui/tabs/index.js";
-	import { Badge } from "$lib/registry/ui/badge/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
 	import DataTableActions from "./data-table-actions.svelte";
 	import DataTableCellViewer from "./data-table-cell-viewer.svelte";
 	import DataTableCheckbox from "./data-table-checkbox.svelte";

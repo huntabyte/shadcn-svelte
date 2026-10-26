@@ -1,5 +1,5 @@
+import { registryCategories } from "#lib/registry/registry-categories.js";
 import { error } from "@sveltejs/kit";
-import { registryCategories } from "$lib/registry/registry-categories.js";
 import type { HighlightedBlock } from "../../../../api/block/[block]/+server.js";
 import type { EntryGenerator, PageLoad } from "./$types.js";
 import type { Component } from "svelte";

@@ -1,10 +1,10 @@
 <script lang="ts">
+	import * as Sidebar from "#lib/registry/ui/sidebar/index.js";
 	import CalendarIcon from "@lucide/svelte/icons/calendar";
 	import HouseIcon from "@lucide/svelte/icons/house";
 	import InboxIcon from "@lucide/svelte/icons/inbox";
 	import SearchIcon from "@lucide/svelte/icons/search";
 	import SettingsIcon from "@lucide/svelte/icons/settings";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 
 	// Menu items.
 	const items = [

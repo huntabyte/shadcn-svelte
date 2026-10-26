@@ -1,12 +1,12 @@
 <script lang="ts">
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Chart from "#lib/registry/ui/chart/index.js";
+	import * as Select from "#lib/registry/ui/select/index.js";
+	import * as ToggleGroup from "#lib/registry/ui/toggle-group/index.js";
 	import { scaleUtc } from "d3-scale";
 	import { curveNatural } from "d3-shape";
 	import { Area, AreaChart, ChartClipPath } from "layerchart";
 	import { cubicInOut } from "svelte/easing";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Chart from "$lib/registry/ui/chart/index.js";
-	import * as Select from "$lib/registry/ui/select/index.js";
-	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
 
 	const chartData = [
 		{ date: new Date("2024-04-01"), desktop: 222, mobile: 150 },

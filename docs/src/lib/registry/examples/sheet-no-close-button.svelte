@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Sheet from "$lib/registry/ui/sheet/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import * as Sheet from "#lib/registry/ui/sheet/index.js";
+	import { buttonVariants } from "#lib/registry/ui/button/index.js";
 </script>
 
 <Sheet.Root>

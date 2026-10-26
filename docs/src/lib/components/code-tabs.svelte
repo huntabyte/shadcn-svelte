@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Tabs from "$lib/registry/ui/tabs/index.js";
-	import { type InstallationType } from "$lib/user-config.svelte.js";
-	import { UserConfigContext } from "$lib/user-config.svelte.js";
+	import * as Tabs from "#lib/registry/ui/tabs/index.js";
+	import { type InstallationType } from "#lib/user-config.svelte.js";
+	import { UserConfigContext } from "#lib/user-config.svelte.js";
 	import type { ComponentProps } from "svelte";
 
 	let { children }: ComponentProps<typeof Tabs.Root> = $props();

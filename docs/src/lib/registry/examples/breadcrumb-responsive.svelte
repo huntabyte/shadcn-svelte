@@ -1,9 +1,9 @@
 <script lang="ts">
+	import * as Breadcrumb from "#lib/registry/ui/breadcrumb/index.js";
+	import * as Drawer from "#lib/registry/ui/drawer/index.js";
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
+	import { buttonVariants } from "#lib/registry/ui/button/index.js";
 	import { MediaQuery } from "svelte/reactivity";
-	import * as Breadcrumb from "$lib/registry/ui/breadcrumb/index.js";
-	import * as Drawer from "$lib/registry/ui/drawer/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 
 	const items = [
 		{ href: "#", label: "Home" },

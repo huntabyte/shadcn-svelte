@@ -4,11 +4,11 @@ description: How to migrate from Svelte 4 and Tailwind 3 to Svelte 5.
 ---
 
 <script>
-	import Steps from "$lib/components/steps.svelte";
-	import PMExecute from "$lib/components/pm-execute.svelte";
-	import PMInstall from "$lib/components/pm-install.svelte";
-	import PMRemove from "$lib/components/pm-remove.svelte";
-	import Callout from "$lib/components/callout.svelte";
+	import Steps from "#lib/components/steps.svelte";
+	import PMExecute from "#lib/components/pm-execute.svelte";
+	import PMInstall from "#lib/components/pm-install.svelte";
+	import PMRemove from "#lib/components/pm-remove.svelte";
+	import Callout from "#lib/components/callout.svelte";
 </script>
 
 <Callout>
@@ -47,11 +47,11 @@ Add the `registry` to the root object, and add `hooks`, `ui`, and `lib` keys und
     "baseColor": "slate"
   },
   "aliases": {
-    "components": "$lib/components",
-    "utils": "$lib/utils",
-+   "ui": "$lib/components/ui",
-+   "hooks": "$lib/hooks",
-+   "lib": "$lib"
+    "components": "#lib/components",
+    "utils": "#lib/utils.js",
++   "ui": "#lib/components/ui",
++   "hooks": "#lib/hooks",
++   "lib": "#lib"
   },
   "typescript": true,
 + "registry": "https://shadcn-svelte.com/registry"

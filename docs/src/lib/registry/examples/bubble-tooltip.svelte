@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as Bubble from "#lib/registry/ui/bubble/index.js";
+	import * as Tooltip from "#lib/registry/ui/tooltip/index.js";
 	import CheckIcon from "@lucide/svelte/icons/check";
-	import * as Bubble from "$lib/registry/ui/bubble/index.js";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 </script>
 
 <div class="flex w-full max-w-sm flex-col gap-4 py-12">

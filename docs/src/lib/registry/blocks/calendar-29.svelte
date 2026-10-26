@@ -1,13 +1,13 @@
 <script lang="ts">
+	import * as Popover from "#lib/registry/ui/popover/index.js";
 	import CalendarIcon from "@lucide/svelte/icons/calendar";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Calendar } from "#lib/registry/ui/calendar/index.js";
+	import { Input } from "#lib/registry/ui/input/index.js";
+	import { Label } from "#lib/registry/ui/label/index.js";
 	import { CalendarDate, getLocalTimeZone, type DateValue } from "@internationalized/date";
 	import { parseDate } from "chrono-node";
 	import { untrack } from "svelte";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Calendar } from "$lib/registry/ui/calendar/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
 
 	function formatDate(date: DateValue | undefined) {
 		if (!date) return "";

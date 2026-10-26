@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Calendar } from "$lib/registry/ui/calendar/index.js";
+	import * as Popover from "#lib/registry/ui/popover/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Calendar } from "#lib/registry/ui/calendar/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 

@@ -1,9 +1,9 @@
 <script lang="ts">
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Chart from "#lib/registry/ui/chart/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import { curveNatural } from "d3-shape";
 	import { AreaChart, LineChart } from "layerchart";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Chart from "$lib/registry/ui/chart/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const data = [
 		{

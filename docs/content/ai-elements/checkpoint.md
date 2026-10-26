@@ -4,8 +4,8 @@ description: Marks a point in the conversation you can return to.
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
 </script>
 
 <ComponentPreview name="checkpoint-demo" previewStyle="rhea" previewClassName="h-auto min-h-0">

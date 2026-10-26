@@ -1,12 +1,12 @@
 <script lang="ts">
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Chart from "#lib/registry/ui/chart/index.js";
 	import ArrowDownFromLineIcon from "@lucide/svelte/icons/arrow-down-from-line";
 	import ArrowUpFromLineIcon from "@lucide/svelte/icons/arrow-up-from-line";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { scaleBand } from "d3-scale";
 	import { curveLinearClosed } from "d3-shape";
 	import { LineChart } from "layerchart";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Chart from "$lib/registry/ui/chart/index.js";
 
 	const chartData = [
 		{ month: "January", desktop: 186, mobile: 80 },

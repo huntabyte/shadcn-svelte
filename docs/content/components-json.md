@@ -4,9 +4,9 @@ description: Configuration for your project.
 ---
 
 <script>
-	import Callout from "$lib/components/callout.svelte";
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import PMExecute from "$lib/components/pm-execute.svelte";
+	import Callout from "#lib/components/callout.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import PMExecute from "#lib/components/pm-execute.svelte";
 </script>
 
 The `components.json` file holds configuration for your project.
@@ -78,7 +78,7 @@ Import alias for your library, which is _typically_ where you store your compone
 ```json title="components.json"
 {
   "aliases": {
-    "lib": "$lib"
+    "lib": "#lib"
   }
 }
 ```
@@ -90,7 +90,7 @@ Import alias for your utility functions.
 ```json title="components.json"
 {
   "aliases": {
-    "utils": "$lib/utils"
+    "utils": "#lib/utils.js"
   }
 }
 ```
@@ -102,7 +102,7 @@ Import alias for your components.
 ```json title="components.json"
 {
   "aliases": {
-    "components": "$lib/components"
+    "components": "#lib/components"
   }
 }
 ```
@@ -114,7 +114,7 @@ Import alias for your UI components.
 ```json title="components.json"
 {
   "aliases": {
-    "ui": "$lib/components/ui"
+    "ui": "#lib/components/ui"
   }
 }
 ```
@@ -126,7 +126,7 @@ Import alias for your hooks, which in Svelte 5 are reactive functions/classes wh
 ```json title="components.json"
 {
   "aliases": {
-    "hooks": "$lib/hooks"
+    "hooks": "#lib/hooks"
   }
 }
 ```

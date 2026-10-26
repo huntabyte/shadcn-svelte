@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Collapsible from "#lib/registry/ui/collapsible/index.js";
 	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 </script>
 
 <Card.Root class="mx-auto w-full max-w-sm">

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Bubble from "$lib/registry/ui/bubble/index.js";
-	import Markdown from "$lib/components/markdown/markdown.svelte";
+	import * as Bubble from "#lib/registry/ui/bubble/index.js";
+	import Markdown from "#lib/components/markdown/markdown.svelte";
 
 	const ghost = `Ghost bubbles work for assistant text, **markdown**, and other content that should not be framed.
 

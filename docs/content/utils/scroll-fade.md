@@ -4,7 +4,7 @@ description: Utilities for adding a fade effect to the edges of a scroll contain
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
 </script>
 
 <ComponentPreview name="scroll-fade-demo">

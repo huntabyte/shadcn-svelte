@@ -1,6 +1,6 @@
 <script lang="ts">
 	import ArrowUpRightIcon from "@lucide/svelte/icons/arrow-up-right";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 </script>
 
 <div class="flex flex-col items-start gap-8 sm:flex-row">

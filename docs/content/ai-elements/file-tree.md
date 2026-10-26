@@ -4,8 +4,8 @@ description: The files the agent changed, as a folder tree.
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
 </script>
 
 <ComponentPreview name="file-tree-demo" previewStyle="rhea" previewClassName="h-auto min-h-0">

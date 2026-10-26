@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as ContextMenu from "#lib/registry/ui/context-menu/index.js";
 	import PencilIcon from "@lucide/svelte/icons/pencil";
 	import ShareIcon from "@lucide/svelte/icons/share";
 	import TrashIcon from "@lucide/svelte/icons/trash";
-	import * as ContextMenu from "$lib/registry/ui/context-menu/index.js";
 </script>
 
 <ContextMenu.Root>

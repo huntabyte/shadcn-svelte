@@ -1,7 +1,7 @@
 <script lang="ts">
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { cn } from "#lib/utils.js";
 	import { Pagination as PaginationPrimitive } from "bits-ui";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { cn } from "$lib/utils.js";
 	import { buttonVariants } from "../button/index.js";
 
 	let {

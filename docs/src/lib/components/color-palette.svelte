@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { ColorPalette } from "$lib/colors.js";
-	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
+	import { UseClipboard } from "#lib/hooks/use-clipboard.svelte.js";
 	import ColorFormatSelector from "./color-format-selector.svelte";
 	import Color from "./color.svelte";
+	import type { ColorPalette } from "#lib/colors.js";
 
 	let { colorPalette, clipboard }: { colorPalette: ColorPalette; clipboard: UseClipboard } =
 		$props();

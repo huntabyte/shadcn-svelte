@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ScrollArea } from "$lib/registry/ui/scroll-area/index.js";
+	import { ScrollArea } from "#lib/registry/ui/scroll-area/index.js";
 
 	type Artwork = {
 		artist: string;

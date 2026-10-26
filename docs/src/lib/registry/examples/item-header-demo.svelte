@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Item from "$lib/registry/ui/item/index.js";
+	import * as Item from "#lib/registry/ui/item/index.js";
 
 	const models = [
 		{

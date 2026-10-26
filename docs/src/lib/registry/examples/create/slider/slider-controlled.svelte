@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Label } from "$lib/registry/ui/label/index.js";
-	import { Slider } from "$lib/registry/ui/slider/index.js";
+	import { Label } from "#lib/registry/ui/label/index.js";
+	import { Slider } from "#lib/registry/ui/slider/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	let value = $state([0.3, 0.7]);

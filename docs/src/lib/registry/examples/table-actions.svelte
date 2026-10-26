@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
+	import * as Table from "#lib/registry/ui/table/index.js";
 	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as Table from "$lib/registry/ui/table/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 
 	const products = [
 		{ name: "Wireless Mouse", price: "$29.99" },

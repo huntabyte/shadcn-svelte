@@ -1,5 +1,5 @@
 <script lang="ts">
-	import FileTreeNode, { type FileNode } from "$lib/components/file-tree/file-tree-node.svelte";
+	import FileTreeNode, { type FileNode } from "#lib/components/file-tree/file-tree-node.svelte";
 
 	const files: FileNode[] = [
 		{

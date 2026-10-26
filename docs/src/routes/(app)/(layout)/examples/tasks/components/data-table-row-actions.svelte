@@ -1,7 +1,7 @@
 <script lang="ts">
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
 	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import { labels } from "../data/data.js";
 	import { taskSchema, type Task } from "../data/schemas.js";
 	import type { TasksTableFeatures } from "./data-table-features.js";

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { getMessageText } from "$lib/ai-sdk.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { useMessageScroller } from "$lib/registry/ui/message-scroller/index.js";
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
+	import { getMessageText } from "#lib/ai-sdk.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { useMessageScroller } from "#lib/registry/ui/message-scroller/index.js";
 	import type { UIMessage } from "ai";
 
 	let { userMessages }: { userMessages: UIMessage[] } = $props();

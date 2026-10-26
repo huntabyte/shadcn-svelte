@@ -1,15 +1,15 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import {
 		FieldGroup,
 		Field,
 		FieldLabel,
 		FieldDescription,
 		FieldSeparator,
-	} from "$lib/registry/ui/field/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
-	import { cn } from "$lib/utils.js";
+	} from "#lib/registry/ui/field/index.js";
+	import { Input } from "#lib/registry/ui/input/index.js";
+	import { cn } from "#lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 
 	let { class: className, ...restProps }: HTMLAttributes<HTMLDivElement> = $props();

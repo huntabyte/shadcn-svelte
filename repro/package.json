@@ -18,8 +18,8 @@
 		"@hugeicons/svelte": "^1.0.2",
 		"@internationalized/date": "^3.10.0",
 		"@lucide/svelte": "^0.562.0",
-		"@sveltejs/adapter-auto": "^7.0.0",
-		"@sveltejs/kit": "2.70.1",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.1.0",
 		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"@tabler/icons-svelte": "^3.36.0",
 		"@tailwindcss/vite": "^4.3.3",
@@ -32,16 +32,20 @@
 		"mode-watcher": "^1.1.0",
 		"paneforge": "^1.0.2",
 		"phosphor-svelte": "^3.0.1",
-		"svelte": "^5.55.7",
-		"svelte-check": "^4.3.2",
+		"svelte": "^5.57.3",
+		"svelte-check": "^4.7.5",
 		"svelte-sonner": "^1.0.5",
 		"sveltekit-superforms": "^2.26.1",
 		"tailwind-variants": "^3.2.2",
 		"tailwindcss": "^4.3.3",
 		"tw-animate-css": "^1.4.0",
-		"typescript": "^5.9.2",
+		"typescript": "^6.0.3",
 		"vaul-svelte": "1.0.0-next.7",
-		"vite": "^8.0.0",
+		"vite": "^8.0.12",
 		"vite-plugin-devtools-json": "^1.0.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	}
 }

@@ -3,8 +3,8 @@
 <script lang="ts">
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import ClipboardIcon from "@lucide/svelte/icons/clipboard";
-	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { UseClipboard } from "#lib/hooks/use-clipboard.svelte.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import { BlockViewerContext } from "./block-viewer.svelte";
 
 	const ctx = BlockViewerContext.get();

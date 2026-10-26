@@ -243,7 +243,7 @@
 </script>
 
 <script lang="ts">
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
+	import * as Sidebar from "#lib/registry/ui/sidebar/index.js";
 	import NavFavorites from "./nav-favorites.svelte";
 	import NavMain from "./nav-main.svelte";
 	import NavSecondary from "./nav-secondary.svelte";

@@ -5,7 +5,7 @@ date: 2024-01-01
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
 </script>
 
 We've added four new components to the project, [Carousel](/docs/components/carousel), [Drawer](/docs/components/drawer), [Sonner](/docs/components/sonner), & [Pagination](/docs/components/pagination).

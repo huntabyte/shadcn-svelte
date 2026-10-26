@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import { Kbd } from "$lib/registry/ui/kbd/index.js";
-	import { Separator } from "$lib/registry/ui/separator/index.js";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import { Kbd } from "#lib/registry/ui/kbd/index.js";
+	import { Separator } from "#lib/registry/ui/separator/index.js";
 </script>
 
 <Card.Root>

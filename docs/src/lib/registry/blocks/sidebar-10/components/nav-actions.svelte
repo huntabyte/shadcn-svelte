@@ -78,12 +78,12 @@
 </script>
 
 <script lang="ts">
+	import * as Popover from "#lib/registry/ui/popover/index.js";
+	import * as Sidebar from "#lib/registry/ui/sidebar/index.js";
 	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
 	import StarIcon from "@lucide/svelte/icons/star";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import { untrack } from "svelte";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 
 	let open = $state(false);
 

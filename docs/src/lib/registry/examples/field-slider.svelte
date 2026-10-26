@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import { Slider } from "$lib/registry/ui/slider/index.js";
+	import * as Field from "#lib/registry/ui/field/index.js";
+	import { Slider } from "#lib/registry/ui/slider/index.js";
 
 	let value = $state([200, 800]);
 </script>

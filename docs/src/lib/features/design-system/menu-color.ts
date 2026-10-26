@@ -1,4 +1,4 @@
-import type { MenuColorValue } from "$lib/registry/config.js";
+import type { MenuColorValue } from "#lib/registry/config.js";
 
 /**
  * Menu content components ship with `cn-menu-target cn-menu-translucent` so every menu color can be

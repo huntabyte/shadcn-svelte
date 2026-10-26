@@ -1,8 +1,8 @@
 <script lang="ts">
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { buttonVariants } from "#lib/registry/ui/button/index.js";
+	import { cn } from "#lib/utils.js";
 	import { Pagination as PaginationPrimitive } from "bits-ui";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),

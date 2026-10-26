@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Badge } from "$lib/registry/ui/badge/index.js";
+	import { Badge } from "#lib/registry/ui/badge/index.js";
 	import {
 		Card,
 		CardContent,
@@ -7,9 +7,9 @@
 		CardFooter,
 		CardHeader,
 		CardTitle,
-	} from "$lib/registry/ui/card/index.js";
-	import { Item, ItemContent } from "$lib/registry/ui/item/index.js";
-	import { Separator } from "$lib/registry/ui/separator/index.js";
+	} from "#lib/registry/ui/card/index.js";
+	import { Item, ItemContent } from "#lib/registry/ui/item/index.js";
+	import { Separator } from "#lib/registry/ui/separator/index.js";
 	const netRoyalties = 1248.75;
 	const processingFee = 37.46;
 	const totalClaimable = netRoyalties - processingFee;

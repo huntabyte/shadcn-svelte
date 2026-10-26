@@ -71,11 +71,11 @@ export function createFileTreeForRegistryItemFiles(
 
 export function transformImportPaths(content: string): string {
 	const aliases = {
-		ui: "$lib/components/ui",
-		utils: "$lib/utils",
-		components: "$lib/components",
-		hooks: "$lib/hooks",
-		lib: "$lib",
+		ui: "#lib/components/ui",
+		utils: "#lib/utils.js",
+		components: "#lib/components",
+		hooks: "#lib/hooks",
+		lib: "#lib",
 	};
 	for (const [alias, path] of Object.entries(aliases)) {
 		content = content.replaceAll(`$${alias.toUpperCase()}$`, path);

@@ -1,18 +1,18 @@
 <script lang="ts">
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Command from "#lib/registry/ui/command/index.js";
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
+	import * as Field from "#lib/registry/ui/field/index.js";
+	import * as Popover from "#lib/registry/ui/popover/index.js";
+	import * as Select from "#lib/registry/ui/select/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { buttonVariants } from "#lib/registry/ui/button/index.js";
+	import { Input } from "#lib/registry/ui/input/index.js";
+	import { Textarea } from "#lib/registry/ui/textarea/index.js";
+	import { cn } from "#lib/utils.js";
 	import { setMode } from "mode-watcher";
 	import { tick } from "svelte";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Command from "$lib/registry/ui/command/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import * as Select from "$lib/registry/ui/select/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
-	import { Textarea } from "$lib/registry/ui/textarea/index.js";
-	import { cn } from "$lib/utils.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"] as const;

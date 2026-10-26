@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { usePokemonImage } from "$lib/registry/blocks/complex-component/hooks/use-pokemon.svelte";
+	import { usePokemonImage } from "$lib/registry/blocks/complex-component/hooks/use-pokemon.svelte.js";
 
 	let { number, name }: { number: number; name: string } = $props();
 

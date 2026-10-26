@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as Empty from "#lib/registry/ui/empty/index.js";
 	import RefreshCcwIcon from "@lucide/svelte/icons/refresh-ccw";
 	import BellIcon from "@tabler/icons-svelte/icons/bell";
-	import * as Empty from "$lib/registry/ui/empty/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 </script>
 
 <Empty.Root class="h-full bg-muted/30">

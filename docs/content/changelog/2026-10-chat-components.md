@@ -5,8 +5,8 @@ date: 2026-10-04
 ---
 
 <script>
-  import ComponentPreview from "$lib/components/component-preview.svelte";
-  import Button from "$lib/registry/ui/button/button.svelte";
+  import ComponentPreview from "#lib/components/component-preview.svelte";
+  import Button from "#lib/registry/ui/button/button.svelte";
 </script>
 
 <ComponentPreview previewStyle="rhea" name="message-scroller-demo" class="rounded-[34px] sm:rounded-4xl" previewClassName="h-auto theme-blue bg-surface dark:bg-background p-4 min-[480px]:p-8 min-[560px]:p-10 sm:px-10 sm:py-16">

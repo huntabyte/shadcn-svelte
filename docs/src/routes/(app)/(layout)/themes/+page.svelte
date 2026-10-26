@@ -1,6 +1,6 @@
 <script lang="ts">
-	import CardsDemo from "$lib/components/cards/cards-demo.svelte";
-	import ThemeCustomizer from "$lib/components/theme-customizer.svelte";
+	import CardsDemo from "#lib/components/cards/cards-demo.svelte";
+	import ThemeCustomizer from "#lib/components/theme-customizer.svelte";
 </script>
 
 <div id="themes" class="container-wrapper scroll-mt-20">

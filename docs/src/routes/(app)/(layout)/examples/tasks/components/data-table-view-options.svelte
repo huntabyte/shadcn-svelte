@@ -1,7 +1,7 @@
 <script lang="ts" generics="TData extends RowData">
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
 	import Settings2Icon from "@lucide/svelte/icons/settings-2";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import { buttonVariants } from "#lib/registry/ui/button/index.js";
 	import type { TasksTableFeatures } from "./data-table-features.js";
 	import type { RowData, SvelteTable } from "@tanstack/svelte-table";
 

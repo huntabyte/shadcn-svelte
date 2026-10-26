@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { PhosphorIconName } from "$lib/registry/icons/__phosphor__/index.js";
 	import { phosphorIconLoader } from "./icon-loader.js";
+	import type { PhosphorIconName } from "#lib/registry/icons/__phosphor__/index.js";
 	import type { Snippet } from "svelte";
 	import type { SVGAttributes } from "svelte/elements";
 

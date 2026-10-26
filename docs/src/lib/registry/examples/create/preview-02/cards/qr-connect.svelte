@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as Card from "#lib/registry/ui/card/index.js";
 	import QRCode from "qrcode";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import { onMount } from "svelte";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const connectUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
 

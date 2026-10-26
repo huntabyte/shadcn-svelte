@@ -1,13 +1,13 @@
 <script lang="ts">
+	import * as Bubble from "#lib/registry/ui/bubble/index.js";
+	import * as Message from "#lib/registry/ui/message/index.js";
+	import * as Trace from "#lib/registry/ui/trace/index.js";
 	import CircleAlertIcon from "@lucide/svelte/icons/circle-alert";
 	import CircleCheckIcon from "@lucide/svelte/icons/circle-check";
 	import LoaderCircleIcon from "@lucide/svelte/icons/loader-circle";
+	import { createChat, getMessageText } from "#lib/ai-sdk.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import { Chat } from "@ai-sdk/svelte";
-	import * as Bubble from "$lib/registry/ui/bubble/index.js";
-	import * as Message from "$lib/registry/ui/message/index.js";
-	import * as Trace from "$lib/registry/ui/trace/index.js";
-	import { createChat, getMessageText } from "$lib/ai-sdk.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import type { UIMessage } from "ai";
 
 	type ChatMessage = UIMessage<

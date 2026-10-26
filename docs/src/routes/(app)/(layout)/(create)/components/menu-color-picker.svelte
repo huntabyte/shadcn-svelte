@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { browser } from "$app/environment";
+	import { browser } from "$app/env";
 	import MenuIcon from "@lucide/svelte/icons/menu";
+	import { useDesignSystem } from "#lib/features/design-system/index.js";
+	import { IsMobile } from "#lib/registry/hooks/is-mobile.svelte.js";
 	import { mode } from "mode-watcher";
-	import { useDesignSystem } from "$lib/features/design-system/index.js";
-	import type { MenuColorValue } from "$lib/registry/config.js";
-	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import * as Picker from "./picker/index.js";
 	import LockButton from "./lock-button.svelte";
+	import type { MenuColorValue } from "#lib/registry/config.js";
 
 	type ColorChoice = "default" | "inverted";
 	type SurfaceChoice = "solid" | "translucent";

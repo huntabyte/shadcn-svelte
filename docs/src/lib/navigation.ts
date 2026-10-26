@@ -1,4 +1,4 @@
-import { aiElements, components, forms, installation, migration, utils } from "$content/index.js";
+import { aiElements, components, forms, installation, migration, utils } from "#content/index.js";
 import type { Component } from "svelte";
 
 export type NavItem = {

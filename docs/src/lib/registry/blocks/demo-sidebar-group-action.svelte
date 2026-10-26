@@ -1,11 +1,11 @@
 <script lang="ts">
+	import * as Sidebar from "#lib/registry/ui/sidebar/index.js";
 	import ChartPieIcon from "@lucide/svelte/icons/chart-pie";
 	import FrameIcon from "@lucide/svelte/icons/frame";
 	import MapIcon from "@lucide/svelte/icons/map";
 	import PlusIcon from "@lucide/svelte/icons/plus";
+	import { Toaster } from "#lib/registry/ui/sonner/index.js";
 	import { toast } from "svelte-sonner";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import { Toaster } from "$lib/registry/ui/sonner/index.js";
 </script>
 
 <Sidebar.Provider>

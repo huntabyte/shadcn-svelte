@@ -1,9 +1,9 @@
 <script lang="ts">
+	import { cn } from "#lib/utils.js";
 	import { Drawer as DrawerPrimitive } from "vaul-svelte";
-	import { cn } from "$lib/utils.js";
-	import type { WithoutChildrenOrChild } from "$lib/utils.js";
 	import DrawerOverlay from "./drawer-overlay.svelte";
 	import DrawerPortal from "./drawer-portal.svelte";
+	import type { WithoutChildrenOrChild } from "#lib/utils.js";
 	import type { ComponentProps } from "svelte";
 
 	let {

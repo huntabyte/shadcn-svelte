@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { cn } from "#lib/utils.js";
 	import type { PresetConfig } from "shadcn-svelte/preset";
 	import type { Component, Snippet } from "svelte";
 	import type { HTMLAttributes } from "svelte/elements";

@@ -4,11 +4,11 @@ description: How to setup shadcn-svelte manually.
 ---
 
 <script>
-	import Steps from "$lib/components/steps.svelte";
-	import Step from "$lib/components/step.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
-	import PMInstall from "$lib/components/pm-install.svelte";
-	import PMExecute from "$lib/components/pm-execute.svelte";
+	import Steps from "#lib/components/steps.svelte";
+	import Step from "#lib/components/step.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
+	import PMInstall from "#lib/components/pm-install.svelte";
+	import PMExecute from "#lib/components/pm-execute.svelte";
 </script>
 
 <Steps>
@@ -33,19 +33,18 @@ Install `@lucide/svelte`:
 
 ### Configure path aliases
 
-If you are using SvelteKit and are not using the default alias `$lib`, you'll need to update your `svelte.config.js` file to include those aliases.
+For SvelteKit 3, configure package imports in `package.json`:
 
-```ts title="svelte.config.js" {6} showLineNumbers
-const config = {
-  // ... other config
-  kit: {
-    // ... other config
-    alias: {
-      "@/*": "./path/to/lib/*",
-    },
-  },
-};
+```json title="package.json"
+{
+  "imports": {
+    "#lib": "./src/lib/index.js",
+    "#lib/*": "./src/lib/*"
+  }
+}
 ```
+
+SvelteKit 2 projects can keep their existing `$lib` aliases.
 
 If you are _not_ using SvelteKit, then you'll need to update your path aliases in your `tsconfig.json` and `vite.config.ts`.
 
@@ -54,8 +53,8 @@ If you are _not_ using SvelteKit, then you'll need to update your path aliases i
   "compilerOptions": {
     // ... other options
     "paths": {
-      "$lib": ["./src/lib"],
-      "$lib/*": ["./src/lib/*"]
+      "#lib": ["./src/lib"],
+      "#lib/*": ["./src/lib/*"]
     }
   }
 }
@@ -68,7 +67,7 @@ export default defineConfig({
   // ... other options
   resolve: {
     alias: {
-      $lib: path.resolve("./src/lib"),
+      "#lib": path.resolve("./src/lib"),
     },
   },
 });

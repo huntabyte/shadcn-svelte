@@ -1,6 +1,6 @@
 <script lang="ts">
+	import * as Alert from "#lib/registry/ui/alert/index.js";
 	import CircleCheckIcon from "@lucide/svelte/icons/circle-check";
-	import * as Alert from "$lib/registry/ui/alert/index.js";
 </script>
 
 <Alert.Root class="max-w-md">

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import * as Popover from "#lib/registry/ui/popover/index.js";
+	import { buttonVariants } from "#lib/registry/ui/button/index.js";
 
 	const alignments = ["start", "center", "end"] as const;
 </script>

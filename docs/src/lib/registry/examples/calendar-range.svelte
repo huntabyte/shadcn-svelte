@@ -1,7 +1,7 @@
 <script lang="ts">
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import { RangeCalendar } from "#lib/registry/ui/range-calendar/index.js";
 	import { CalendarDate, getLocalTimeZone, today } from "@internationalized/date";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import { RangeCalendar } from "$lib/registry/ui/range-calendar/index.js";
 	import type { DateRange } from "bits-ui";
 
 	const start = new CalendarDate(today(getLocalTimeZone()).year, 1, 12);

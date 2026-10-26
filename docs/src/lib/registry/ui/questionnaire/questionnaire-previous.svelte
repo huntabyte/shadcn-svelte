@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { Questionnaire as QuestionnairePrimitive } from "@shadcn-svelte/primitives/questionnaire";
 	import {
 		buttonVariants,
 		type ButtonSize,
 		type ButtonVariant,
-	} from "$lib/registry/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
+	} from "#lib/registry/ui/button/index.js";
+	import { cn } from "#lib/utils.js";
+	import { Questionnaire as QuestionnairePrimitive } from "@shadcn-svelte/primitives/questionnaire";
 
 	let {
 		ref = $bindable(null),

@@ -130,11 +130,11 @@
 </script>
 
 <script lang="ts">
+	import * as Sidebar from "#lib/registry/ui/sidebar/index.js";
 	import CommandIcon from "@lucide/svelte/icons/command";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
-	import { useSidebar } from "$lib/registry/ui/sidebar/context.svelte.js";
-	import { Switch } from "$lib/registry/ui/switch/index.js";
+	import { Label } from "#lib/registry/ui/label/index.js";
+	import { useSidebar } from "#lib/registry/ui/sidebar/context.svelte.js";
+	import { Switch } from "#lib/registry/ui/switch/index.js";
 	import NavUser from "./nav-user.svelte";
 	import type { ComponentProps } from "svelte";
 

@@ -1,11 +1,11 @@
 <script lang="ts">
+	import * as Field from "#lib/registry/ui/field/index.js";
+	import * as Popover from "#lib/registry/ui/popover/index.js";
 	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Calendar } from "#lib/registry/ui/calendar/index.js";
+	import { Input } from "#lib/registry/ui/input/index.js";
 	import { DateFormatter, getLocalTimeZone, type DateValue } from "@internationalized/date";
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Calendar } from "$lib/registry/ui/calendar/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
 
 	const df = new DateFormatter("en-US", {
 		dateStyle: "long",

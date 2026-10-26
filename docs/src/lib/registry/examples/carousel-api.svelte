@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Carousel from "$lib/registry/ui/carousel/index.js";
-	import type { CarouselAPI } from "$lib/registry/ui/carousel/context.js";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Carousel from "#lib/registry/ui/carousel/index.js";
+	import type { CarouselAPI } from "#lib/registry/ui/carousel/context.js";
 
 	let api = $state<CarouselAPI>();
 

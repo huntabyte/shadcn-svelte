@@ -1,10 +1,10 @@
 <script lang="ts">
-	import * as Breadcrumb from "$lib/registry/ui/breadcrumb/index.js";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as Item from "$lib/registry/ui/item/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as Breadcrumb from "#lib/registry/ui/breadcrumb/index.js";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
+	import * as Item from "#lib/registry/ui/item/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "#lib/registry/ui/button/index.js";
 </script>
 
 <Card.Root>

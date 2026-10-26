@@ -1,12 +1,12 @@
 <script lang="ts">
+	import * as Attachment from "#lib/registry/ui/attachment/index.js";
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
+	import * as InputGroup from "#lib/registry/ui/input-group/index.js";
 	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
 	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
 	import FileTextIcon from "@lucide/svelte/icons/file-text";
 	import PlusIcon from "@lucide/svelte/icons/plus";
 	import XIcon from "@lucide/svelte/icons/x";
-	import * as Attachment from "$lib/registry/ui/attachment/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 
 	type AttachmentFile = {
 		id: string;

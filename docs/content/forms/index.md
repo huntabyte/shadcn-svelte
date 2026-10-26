@@ -7,10 +7,10 @@ links:
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
-	import PMInstall from "$lib/components/pm-install.svelte";
-	import Steps from "$lib/components/steps.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
+	import PMInstall from "#lib/components/pm-install.svelte";
+	import Steps from "#lib/components/steps.svelte";
 </script>
 
 Forms are tricky. They are one of the most common things you'll build in a web application, but also one of the most complex.
@@ -112,8 +112,8 @@ For this example, we'll be passing the `form` returned from the load function as
 
 ```svelte title="src/routes/settings/settings-form.svelte" showLineNumbers
 <script lang="ts">
-  import * as Form from "$lib/components/ui/form/index.js";
-  import { Input } from "$lib/components/ui/input/index.js";
+  import * as Form from "#lib/components/ui/form/index.js";
+  import { Input } from "#lib/components/ui/input/index.js";
   import { formSchema, type FormSchema } from "./schema";
   import {
     type SuperValidated,

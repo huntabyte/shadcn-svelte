@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Attachment from "$lib/registry/ui/attachment/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import * as Attachment from "#lib/registry/ui/attachment/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
 	import AttachmentRemove from "./attachment-remove.svelte";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 

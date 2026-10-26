@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
 
 	const PREVIEW_ICONS = [
 		{

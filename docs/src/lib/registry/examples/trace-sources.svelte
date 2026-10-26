@@ -1,7 +1,7 @@
 <script lang="ts">
+	import * as Trace from "#lib/registry/ui/trace/index.js";
 	import ArrowUpRightIcon from "@lucide/svelte/icons/arrow-up-right";
 	import GlobeIcon from "@lucide/svelte/icons/globe";
-	import * as Trace from "$lib/registry/ui/trace/index.js";
 
 	const sources = [
 		{

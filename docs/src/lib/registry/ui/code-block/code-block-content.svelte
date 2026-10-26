@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { cn, type WithElementRef } from "$lib/utils.js";
+	import { cn, type WithElementRef } from "#lib/utils.js";
 	import CodeBlockLine from "./code-block-line.svelte";
 	import type { HTMLAttributes } from "svelte/elements";
 

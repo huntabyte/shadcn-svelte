@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Command from "$lib/registry/ui/command/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as Command from "#lib/registry/ui/command/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 
 	let open = $state(false);
 </script>

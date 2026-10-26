@@ -7,15 +7,15 @@ links:
 ---
 
 <script>
-	import ComponentPreview from '$lib/components/component-preview.svelte';
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
-	import Steps from "$lib/components/steps.svelte";
-	import Step from "$lib/components/step.svelte";
-	import InstallTabs from "$lib/components/install-tabs.svelte";
-	import ComponentSource from "$lib/components/component-source.svelte";
+	import ComponentPreview from '#lib/components/component-preview.svelte';
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
+	import Steps from "#lib/components/steps.svelte";
+	import Step from "#lib/components/step.svelte";
+	import InstallTabs from "#lib/components/install-tabs.svelte";
+	import ComponentSource from "#lib/components/component-source.svelte";
 	let { viewerData } = $props();
-	import DocsFigure from "$lib/components/docs-figure.svelte";
-	import Callout from "$lib/components/callout.svelte";
+	import DocsFigure from "#lib/components/docs-figure.svelte";
+	import Callout from "#lib/components/callout.svelte";
 </script>
 
 <DocsFigure caption="A sidebar that collapses to icons.">
@@ -58,8 +58,8 @@ Copy and paste the following code into your project.
 
 ```svelte showLineNumbers title="src/routes/+layout.svelte"
 <script lang="ts">
-  import * as Sidebar from "$lib/components/ui/sidebar/index.js";
-  import AppSidebar from "$lib/components/app-sidebar.svelte";
+  import * as Sidebar from "#lib/components/ui/sidebar/index.js";
+  import AppSidebar from "#lib/components/app-sidebar.svelte";
 
   let { children } = $props();
 </script>
@@ -75,7 +75,7 @@ Copy and paste the following code into your project.
 
 ```svelte showLineNumbers title="src/lib/components/app-sidebar.svelte"
 <script lang="ts">
-  import * as Sidebar from "$lib/components/ui/sidebar/index.js";
+  import * as Sidebar from "#lib/components/ui/sidebar/index.js";
 </script>
 
 <Sidebar.Root>
@@ -184,7 +184,7 @@ The `useSidebar` function is used to control the sidebar. It returns a reactive 
 
 ```svelte showLineNumbers
 <script lang="ts">
-  import { useSidebar } from "$lib/components/ui/sidebar/index.js";
+  import { useSidebar } from "#lib/components/ui/sidebar/index.js";
 
   const sidebar = useSidebar();
 
@@ -414,7 +414,7 @@ Use the `Sidebar.Trigger` component to render a button that toggles the sidebar.
 
 ```svelte showLineNumbers
 <script lang="ts">
-  import { useSidebar } from "$lib/components/ui/sidebar/index.js";
+  import { useSidebar } from "#lib/components/ui/sidebar/index.js";
 
   const sidebar = useSidebar();
 </script>
@@ -443,7 +443,7 @@ Use `bind:open` to control the sidebar.
 
 ```svelte showLineNumbers
 <script lang="ts">
-  import * as Sidebar from "$lib/components/ui/sidebar/index.js";
+  import * as Sidebar from "#lib/components/ui/sidebar/index.js";
 
   let open = $state(false);
 </script>

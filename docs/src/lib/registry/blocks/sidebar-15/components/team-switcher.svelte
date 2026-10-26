@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
+	import * as Sidebar from "#lib/registry/ui/sidebar/index.js";
 	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
 	import PlusIcon from "@lucide/svelte/icons/plus";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import type { Component } from "svelte";
 
 	let {

@@ -1,3 +1,5 @@
+import fs from "node:fs";
+import path from "node:path";
 import { defineAddon, defineAddonOptions } from "sv";
 import { color, resolveCommandArray, transforms } from "./sv-utils.js";
 import { mergeThemeCss } from "./utils/css.js";
@@ -26,7 +28,22 @@ export default defineAddon({
 		dependsOn("tailwindcss");
 	},
 
-	run: ({ sv, options, directory, file }) => {
+	run: ({ sv, options, directory, file, cwd }) => {
+		const pkg = JSON.parse(fs.readFileSync(path.join(cwd, "package.json"), "utf8"));
+		const libAlias = pkg.imports?.["#lib/*"] ? "#lib" : "$lib";
+		const readTemplate = (templatePath: string) => {
+			const content = readTemplateFile(templatePath).replaceAll("$lib", libAlias);
+			if (templatePath !== "registry.json" || libAlias === "$lib") return content;
+			const registry = JSON.parse(content);
+			registry.aliases = {
+				lib: "#lib",
+				ui: "#lib/registry/ui",
+				components: "#lib/registry/components",
+				hooks: "#lib/registry/hooks",
+				utils: "#lib/utils",
+			};
+			return JSON.stringify(registry, null, 2);
+		};
 		sv.devDependency("shadcn-svelte", "^1.4.2");
 		sv.devDependency("bits-ui", "^2.7.0");
 		sv.devDependency("cn", "^0.3.0");
@@ -44,7 +61,7 @@ export default defineAddon({
 		for (const templatePath of listTemplatePaths()) {
 			if (SKIP_PATHS.has(templatePath)) continue;
 
-			const templateContent = readTemplateFile(templatePath);
+			const templateContent = readTemplate(templatePath);
 			const projectPath = resolveProjectPath(templatePath, directory);
 			sv.file(
 				projectPath,
@@ -60,7 +77,7 @@ export default defineAddon({
 		if (options.demo) {
 			sv.file(
 				`${directory.kitRoutes}/demo/shadcn-svelte-registry/+page.svelte`,
-				transforms.text(() => readTemplateFile("src/routes/+page.svelte"))
+				transforms.text(() => readTemplate("src/routes/+page.svelte"))
 			);
 		}
 	},

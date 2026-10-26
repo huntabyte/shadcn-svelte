@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Bubble from "$lib/registry/ui/bubble/index.js";
+	import * as Bubble from "#lib/registry/ui/bubble/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 

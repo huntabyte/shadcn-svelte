@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Label } from "$lib/registry/ui/label/index.js";
-	import { Switch } from "$lib/registry/ui/switch/index.js";
+	import { Label } from "#lib/registry/ui/label/index.js";
+	import { Switch } from "#lib/registry/ui/switch/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 

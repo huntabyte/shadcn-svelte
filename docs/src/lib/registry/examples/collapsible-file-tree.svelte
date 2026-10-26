@@ -1,11 +1,11 @@
 <script lang="ts">
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Collapsible from "#lib/registry/ui/collapsible/index.js";
+	import * as Tabs from "#lib/registry/ui/tabs/index.js";
 	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 	import FileIcon from "@lucide/svelte/icons/file";
 	import FolderIcon from "@lucide/svelte/icons/folder";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
-	import * as Tabs from "$lib/registry/ui/tabs/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 
 	type FileTreeItem = { name: string } | { name: string; items: FileTreeItem[] };
 

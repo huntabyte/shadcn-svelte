@@ -4,8 +4,8 @@ description: A message field with attachments and a send button.
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
 </script>
 
 <ComponentPreview name="prompt-input-demo" previewStyle="rhea" previewClassName="h-auto min-h-0">
@@ -26,7 +26,7 @@ Prompt Input is built with the [Input Group](/docs/components/input-group), [Att
 
 ```svelte showLineNumbers
 <script lang="ts">
-  import * as InputGroup from "$lib/components/ui/input-group/index.js";
+  import * as InputGroup from "#lib/components/ui/input-group/index.js";
 </script>
 ```
 

@@ -1,8 +1,8 @@
 import type {
 	PrimitiveButtonAttributes,
 	PrimitiveDivAttributes,
-} from "$lib/internal/attributes.js";
-import type { WithChild, WithChildNoChildrenSnippetProps, Without } from "$lib/internal/types.js";
+} from "#lib/internal/attributes.js";
+import type { WithChild, WithChildNoChildrenSnippetProps, Without } from "#lib/internal/types.js";
 import type { Snippet } from "svelte";
 
 /**

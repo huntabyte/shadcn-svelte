@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Drawer from "$lib/registry/ui/drawer/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as Drawer from "#lib/registry/ui/drawer/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const DRAWER_SIDES = ["top", "right", "bottom", "left"] as const;

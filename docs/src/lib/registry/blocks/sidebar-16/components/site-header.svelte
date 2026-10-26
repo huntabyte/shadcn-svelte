@@ -1,9 +1,9 @@
 <script lang="ts">
+	import * as Breadcrumb from "#lib/registry/ui/breadcrumb/index.js";
+	import * as Sidebar from "#lib/registry/ui/sidebar/index.js";
 	import SidebarIcon from "@lucide/svelte/icons/sidebar";
-	import * as Breadcrumb from "$lib/registry/ui/breadcrumb/index.js";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Separator } from "$lib/registry/ui/separator/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Separator } from "#lib/registry/ui/separator/index.js";
 	import SearchForm from "./search-form.svelte";
 
 	const sidebar = Sidebar.useSidebar();

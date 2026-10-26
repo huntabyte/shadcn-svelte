@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Menubar from "$lib/registry/ui/menubar/index.js";
+	import * as Menubar from "#lib/registry/ui/menubar/index.js";
 
 	let showBookmarksBar = $state(false);
 	let showFullURLs = $state(true);

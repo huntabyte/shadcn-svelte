@@ -1,11 +1,11 @@
 <script lang="ts">
+	import * as Bubble from "#lib/registry/ui/bubble/index.js";
+	import * as Message from "#lib/registry/ui/message/index.js";
+	import MarkdownCodeBlock from "#lib/components/code-block/markdown-code-block.svelte";
+	import { createChat, getMessageText } from "#lib/ai-sdk.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import { Chat } from "@ai-sdk/svelte";
 	import { Streamdown } from "svelte-streamdown";
-	import * as Bubble from "$lib/registry/ui/bubble/index.js";
-	import * as Message from "$lib/registry/ui/message/index.js";
-	import MarkdownCodeBlock from "$lib/components/code-block/markdown-code-block.svelte";
-	import { createChat, getMessageText } from "$lib/ai-sdk.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const response = `Wrap the value in a \`useDebounce\` hook. It returns the latest value once it stops changing for \`delay\` milliseconds.
 

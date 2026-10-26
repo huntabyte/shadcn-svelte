@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as Alert from "$lib/registry/ui/alert/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { Badge } from "$lib/registry/ui/badge/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as Alert from "#lib/registry/ui/alert/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Badge } from "#lib/registry/ui/badge/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 

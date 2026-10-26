@@ -1,4 +1,11 @@
 <script lang="ts">
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
+	import * as Empty from "#lib/registry/ui/empty/index.js";
+	import * as InputGroup from "#lib/registry/ui/input-group/index.js";
+	import * as MessageScroller from "#lib/registry/ui/message-scroller/index.js";
+	import * as Tooltip from "#lib/registry/ui/tooltip/index.js";
+	import MessageAnimated from "#lib/components/message-animated.svelte";
 	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
 	import GlobeIcon from "@lucide/svelte/icons/globe";
 	import ImageIcon from "@lucide/svelte/icons/image";
@@ -7,16 +14,9 @@
 	import PlusIcon from "@lucide/svelte/icons/plus";
 	import RotateCwIcon from "@lucide/svelte/icons/rotate-cw";
 	import TelescopeIcon from "@lucide/svelte/icons/telescope";
+	import { createChat, getMessageText } from "#lib/ai-sdk.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import { Chat } from "@ai-sdk/svelte";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as Empty from "$lib/registry/ui/empty/index.js";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
-	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import MessageAnimated from "$lib/components/message-animated.svelte";
-	import { createChat, getMessageText } from "$lib/ai-sdk.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const script = createChat()
 		.user(

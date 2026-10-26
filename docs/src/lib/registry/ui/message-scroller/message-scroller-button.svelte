@@ -1,9 +1,9 @@
 <script lang="ts">
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { cn } from "#lib/utils.js";
 	import { MessageScroller as MessageScrollerPrimitive } from "@shadcn-svelte/primitives/message-scroller";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import type { ButtonSize, ButtonVariant } from "$lib/registry/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
+	import type { ButtonSize, ButtonVariant } from "#lib/registry/ui/button/index.js";
 
 	let {
 		ref = $bindable(null),

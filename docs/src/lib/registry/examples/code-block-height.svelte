@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as CodeBlock from "$lib/registry/ui/code-block/index.js";
+	import * as CodeBlock from "#lib/registry/ui/code-block/index.js";
 
 	const logs = Array.from(
 		{ length: 40 },

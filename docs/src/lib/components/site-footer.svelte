@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from "$app/state";
 	import type { ResolvedPathname } from "$app/types";
-	import { cn } from "$lib/utils.js";
+	import { cn } from "#lib/utils.js";
 
 	// These states used to be expressed with `group-has-*/body` utilities that inspect the page
 	// content (`body:has(.section-soft)`, `body:has([data-slot=docs])`, ...). A `:has()` anchored on

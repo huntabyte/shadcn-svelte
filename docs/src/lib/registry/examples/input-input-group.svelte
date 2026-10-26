@@ -1,7 +1,7 @@
 <script lang="ts">
+	import * as Field from "#lib/registry/ui/field/index.js";
+	import * as InputGroup from "#lib/registry/ui/input-group/index.js";
 	import InfoIcon from "@lucide/svelte/icons/info";
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 </script>
 
 <Field.Field>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as InputOTP from "$lib/registry/ui/input-otp/index.js";
+	import * as InputOTP from "#lib/registry/ui/input-otp/index.js";
 
 	let value = $state("000000");
 </script>

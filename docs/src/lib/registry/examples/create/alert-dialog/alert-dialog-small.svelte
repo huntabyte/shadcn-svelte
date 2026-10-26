@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as AlertDialog from "$lib/registry/ui/alert-dialog/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as AlertDialog from "#lib/registry/ui/alert-dialog/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	let open = $state(false);

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Separator } from "$lib/registry/ui/separator/index.js";
+	import * as Sidebar from "#lib/registry/ui/sidebar/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Separator } from "#lib/registry/ui/separator/index.js";
 </script>
 
 <header

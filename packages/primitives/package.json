@@ -73,9 +73,9 @@
 		"svelte-toolbelt": "^0.10.6"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.0",
-		"@sveltejs/kit": "catalog:",
-		"@sveltejs/package": "^2.5.0",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.1.0",
+		"@sveltejs/package": "^3.0.1",
 		"@sveltejs/vite-plugin-svelte": "catalog:",
 		"@vitest/browser-playwright": "^4.1.10",
 		"jsdom": "^28.1.0",
@@ -87,5 +87,9 @@
 		"typescript": "catalog:",
 		"vite": "catalog:",
 		"vitest": "^4.1.11"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	}
 }

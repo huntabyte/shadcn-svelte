@@ -1,10 +1,10 @@
 <script lang="ts">
+	import * as CodeBlock from "#lib/registry/ui/code-block/index.js";
+	import * as Trace from "#lib/registry/ui/trace/index.js";
 	import BrainIcon from "@lucide/svelte/icons/brain";
 	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 	import FileTextIcon from "@lucide/svelte/icons/file-text";
 	import TerminalIcon from "@lucide/svelte/icons/terminal";
-	import * as CodeBlock from "$lib/registry/ui/code-block/index.js";
-	import * as Trace from "$lib/registry/ui/trace/index.js";
 </script>
 
 <div class="w-full max-w-sm">

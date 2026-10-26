@@ -1,7 +1,7 @@
 <script lang="ts">
+	import { Input } from "#lib/registry/ui/input/index.js";
+	import { Label } from "#lib/registry/ui/label/index.js";
 	import { toast } from "svelte-sonner";
-	import { Input } from "$lib/registry/ui/input/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
 	import type { DashboardTableFeatures } from "./data-table-features.js";
 	import type { Schema } from "./schemas.js";
 	import type { Row } from "@tanstack/svelte-table";

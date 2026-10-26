@@ -1,9 +1,9 @@
 <script lang="ts">
+	import * as Collapsible from "#lib/registry/ui/collapsible/index.js";
+	import * as Sidebar from "#lib/registry/ui/sidebar/index.js";
 	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
 	import LifeBuoyIcon from "@lucide/svelte/icons/life-buoy";
 	import SendIcon from "@lucide/svelte/icons/send";
-	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 </script>
 
 <Sidebar.Provider>

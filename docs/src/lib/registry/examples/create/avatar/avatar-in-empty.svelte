@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as Avatar from "$lib/registry/ui/avatar/index.js";
-	import * as Empty from "$lib/registry/ui/empty/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as Avatar from "#lib/registry/ui/avatar/index.js";
+	import * as Empty from "#lib/registry/ui/empty/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 

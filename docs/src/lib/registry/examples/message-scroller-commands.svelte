@@ -1,10 +1,10 @@
 <script lang="ts">
-	import * as Bubble from "$lib/registry/ui/bubble/index.js";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
-	import * as Message from "$lib/registry/ui/message/index.js";
-	import CommandsMenu from "$lib/components/message-scroller/commands-menu.svelte";
-	import { createChat, getMessageText } from "$lib/ai-sdk.js";
+	import * as Bubble from "#lib/registry/ui/bubble/index.js";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as MessageScroller from "#lib/registry/ui/message-scroller/index.js";
+	import * as Message from "#lib/registry/ui/message/index.js";
+	import CommandsMenu from "#lib/components/message-scroller/commands-menu.svelte";
+	import { createChat, getMessageText } from "#lib/ai-sdk.js";
 
 	const script = createChat()
 		.user(

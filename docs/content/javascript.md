@@ -17,10 +17,10 @@ To opt-out of TypeScript, you can use the `typescript` flag in your `components.
   },
   "typescript": false,
   "aliases": {
-    "utils": "$lib/utils",
-    "components": "$lib/components",
-    "hooks": "$lib/hooks",
-    "ui": "$lib/components/ui"
+    "utils": "#lib/utils.js",
+    "components": "#lib/components",
+    "hooks": "#lib/hooks",
+    "ui": "#lib/components/ui"
   },
   "registry": "https://shadcn-svelte.com/registry"
 }
@@ -32,7 +32,7 @@ To configure import aliases, create a `jsconfig.json` file:
 {
   "compilerOptions": {
     "paths": {
-      "$lib/*": ["./src/lib/*"]
+      "#lib/*": ["./src/lib/*"]
     }
   }
 }

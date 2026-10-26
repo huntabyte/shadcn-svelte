@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
+	import * as ToggleGroup from "#lib/registry/ui/toggle-group/index.js";
 </script>
 
 <ToggleGroup.Root variant="outline" type="single" value="all">

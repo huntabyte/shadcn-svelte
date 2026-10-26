@@ -1,9 +1,9 @@
 <script lang="ts">
+	import * as Trace from "#lib/registry/ui/trace/index.js";
 	import CircleIcon from "@lucide/svelte/icons/circle";
 	import CircleCheckIcon from "@lucide/svelte/icons/circle-check";
 	import ListChecksIcon from "@lucide/svelte/icons/list-checks";
 	import ListTodoIcon from "@lucide/svelte/icons/list-todo";
-	import * as Trace from "$lib/registry/ui/trace/index.js";
 
 	type Todo = { title: string; description?: string; done: boolean };
 

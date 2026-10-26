@@ -4,8 +4,8 @@ description: Patterns for agentic interfaces, built from shadcn-svelte component
 ---
 
 <script>
-	import LinkedCard from "$lib/components/linked-card.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
+	import LinkedCard from "#lib/components/linked-card.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
 </script>
 
 AI Elements are patterns for building agentic interfaces. Each one is a composition of shadcn-svelte components that you copy into your project. There is no package to install. The code is yours.

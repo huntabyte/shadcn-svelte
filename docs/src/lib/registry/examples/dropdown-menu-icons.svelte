@@ -1,10 +1,10 @@
 <script lang="ts">
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
 	import CreditCardIcon from "@lucide/svelte/icons/credit-card";
 	import LogOutIcon from "@lucide/svelte/icons/log-out";
 	import SettingsIcon from "@lucide/svelte/icons/settings";
 	import UserIcon from "@lucide/svelte/icons/user";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import { buttonVariants } from "#lib/registry/ui/button/index.js";
 </script>
 
 <DropdownMenu.Root>

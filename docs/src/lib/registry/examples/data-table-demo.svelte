@@ -1,5 +1,9 @@
 <script lang="ts">
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
+	import * as Table from "#lib/registry/ui/table/index.js";
 	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Input } from "#lib/registry/ui/input/index.js";
 	import {
 		FlexRender,
 		type RowSelectionState,
@@ -22,10 +26,6 @@
 		tableFeatures,
 	} from "@tanstack/svelte-table";
 	import { createRawSnippet } from "svelte";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as Table from "$lib/registry/ui/table/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
 	import DataTableActions from "./data-table/data-table-actions.svelte";
 	import DataTableCheckbox from "./data-table/data-table-checkbox.svelte";
 	import DataTableEmailButton from "./data-table/data-table-email-button.svelte";

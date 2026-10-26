@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { RemixIconIconName } from "$lib/registry/icons/__remixicon__/index.js";
 	import { remixiconIconLoader } from "./icon-loader.js";
+	import type { RemixIconIconName } from "#lib/registry/icons/__remixicon__/index.js";
 	import type { Snippet } from "svelte";
 	import type { SVGAttributes } from "svelte/elements";
 

@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as Marker from "#lib/registry/ui/marker/index.js";
 	import BookOpenCheckIcon from "@lucide/svelte/icons/book-open-check";
 	import GitBranchIcon from "@lucide/svelte/icons/git-branch";
 	import SearchIcon from "@lucide/svelte/icons/search";
-	import * as Marker from "$lib/registry/ui/marker/index.js";
 </script>
 
 <div class="flex w-full max-w-sm flex-col gap-12 py-12">

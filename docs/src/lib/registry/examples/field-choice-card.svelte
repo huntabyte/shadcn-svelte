@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
+	import * as Field from "#lib/registry/ui/field/index.js";
+	import * as RadioGroup from "#lib/registry/ui/radio-group/index.js";
 
 	let computeEnvironment = $state("kubernetes");
 </script>

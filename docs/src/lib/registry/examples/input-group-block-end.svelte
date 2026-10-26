@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
+	import * as Field from "#lib/registry/ui/field/index.js";
+	import * as InputGroup from "#lib/registry/ui/input-group/index.js";
 </script>
 
 <Field.Group class="max-w-sm">

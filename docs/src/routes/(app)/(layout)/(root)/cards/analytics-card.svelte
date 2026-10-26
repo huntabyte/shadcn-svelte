@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { Badge } from "$lib/registry/ui/badge/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Badge } from "#lib/registry/ui/badge/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import {
 		Card,
 		CardAction,
 		CardDescription,
 		CardHeader,
 		CardTitle,
-	} from "$lib/registry/ui/card/index.js";
+	} from "#lib/registry/ui/card/index.js";
 	const areaPath = "M0 52L18 40L36 46L54 70L72 50L100 49V86H0Z";
 	const strokePath = "M0 52L18 40L36 46L54 70L72 50L100 49";
 </script>

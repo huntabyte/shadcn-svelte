@@ -1,11 +1,11 @@
 <script lang="ts">
+	import * as Drawer from "#lib/registry/ui/drawer/index.js";
+	import * as Field from "#lib/registry/ui/field/index.js";
+	import * as RadioGroup from "#lib/registry/ui/radio-group/index.js";
+	import { IsMobile } from "#lib/registry/hooks/is-mobile.svelte.js";
+	import { Badge } from "#lib/registry/ui/badge/index.js";
+	import { Button, buttonVariants } from "#lib/registry/ui/button/index.js";
 	import { toast } from "svelte-sonner";
-	import * as Drawer from "$lib/registry/ui/drawer/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
-	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
-	import { Badge } from "$lib/registry/ui/badge/index.js";
-	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
 
 	const deliveryTimes = [
 		{

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Metadata from "$lib/components/metadata.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import Metadata from "#lib/components/metadata.svelte";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import UserAuthForm from "./(components)/user-auth-form.svelte";
 
 	const title = "Authentication";

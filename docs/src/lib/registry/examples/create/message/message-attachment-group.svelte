@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as Attachment from "$lib/registry/ui/attachment/index.js";
-	import * as Bubble from "$lib/registry/ui/bubble/index.js";
-	import * as Message from "$lib/registry/ui/message/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import * as Attachment from "#lib/registry/ui/attachment/index.js";
+	import * as Bubble from "#lib/registry/ui/bubble/index.js";
+	import * as Message from "#lib/registry/ui/message/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 

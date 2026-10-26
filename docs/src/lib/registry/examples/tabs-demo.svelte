@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Tabs from "$lib/registry/ui/tabs/index.js";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Tabs from "#lib/registry/ui/tabs/index.js";
 
 	const tabs = [
 		{

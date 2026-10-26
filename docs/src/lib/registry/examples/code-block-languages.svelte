@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as CodeBlock from "$lib/registry/ui/code-block/index.js";
-	import { useHighlightedCode } from "$lib/registry/hooks/use-highlighted-code.svelte.js";
+	import * as CodeBlock from "#lib/registry/ui/code-block/index.js";
+	import { useHighlightedCode } from "#lib/registry/hooks/use-highlighted-code.svelte.js";
 
 	const samples = [
 		{

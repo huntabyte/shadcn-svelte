@@ -7,16 +7,16 @@ links:
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import ComponentSource from "$lib/components/component-source.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
-	import PMInstall from "$lib/components/pm-install.svelte";
-	import Steps from "$lib/components/steps.svelte";
-	import InstallTabs from "$lib/components/install-tabs.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import ComponentSource from "#lib/components/component-source.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
+	import PMInstall from "#lib/components/pm-install.svelte";
+	import Steps from "#lib/components/steps.svelte";
+	import InstallTabs from "#lib/components/install-tabs.svelte";
 
 	let { viewerData } = $props();
-	import Step from "$lib/components/step.svelte";
-	import Callout from "$lib/components/callout.svelte";
+	import Step from "#lib/components/step.svelte";
+	import Callout from "#lib/components/callout.svelte";
 </script>
 
 <ComponentPreview name="input-group-demo">
@@ -59,7 +59,7 @@ Copy and paste the following code into your project.
 
 ```svelte showLineNumbers
 <script lang="ts">
-  import * as InputGroup from "$lib/components/ui/input-group/index.js";
+  import * as InputGroup from "#lib/components/ui/input-group/index.js";
   import SearchIcon from "@lucide/svelte/icons/search";
 </script>
 ```

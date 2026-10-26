@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Questionnaire from "$lib/registry/ui/questionnaire/index.js";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Questionnaire from "#lib/registry/ui/questionnaire/index.js";
 	import QuestionnaireNavigation from "./questionnaire-navigation.svelte";
 	import { questionnaireItems, handleSubmit } from "./questionnaire-data.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";

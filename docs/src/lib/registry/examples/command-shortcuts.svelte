@@ -1,9 +1,9 @@
 <script lang="ts">
+	import * as Command from "#lib/registry/ui/command/index.js";
 	import CreditCardIcon from "@lucide/svelte/icons/credit-card";
 	import SettingsIcon from "@lucide/svelte/icons/settings";
 	import UserIcon from "@lucide/svelte/icons/user";
-	import * as Command from "$lib/registry/ui/command/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 
 	let open = $state(false);
 </script>

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as ToggleGroup from "#lib/registry/ui/toggle-group/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Input } from "#lib/registry/ui/input/index.js";
+	import { Label } from "#lib/registry/ui/label/index.js";
 
 	const spacingOptions = [
 		{

@@ -1,11 +1,11 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
-	import * as Item from "$lib/registry/ui/item/index.js";
-	import * as NativeSelect from "$lib/registry/ui/native-select/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Progress } from "$lib/registry/ui/progress/index.js";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Field from "#lib/registry/ui/field/index.js";
+	import * as InputGroup from "#lib/registry/ui/input-group/index.js";
+	import * as Item from "#lib/registry/ui/item/index.js";
+	import * as NativeSelect from "#lib/registry/ui/native-select/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Progress } from "#lib/registry/ui/progress/index.js";
 </script>
 
 <div class="grid grid-cols-2 gap-(--gap)">

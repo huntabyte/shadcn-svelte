@@ -1,6 +1,6 @@
 <script lang="ts">
+	import * as Attachment from "#lib/registry/ui/attachment/index.js";
 	import XIcon from "@lucide/svelte/icons/x";
-	import * as Attachment from "$lib/registry/ui/attachment/index.js";
 
 	const images = [
 		{

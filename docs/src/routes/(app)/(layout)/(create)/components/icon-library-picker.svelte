@@ -1,26 +1,26 @@
 <script lang="ts">
+	import * as Item from "#lib/registry/ui/item/index.js";
+	import HugeiconsIcon from "#lib/components/icon-placeholder/hugeicons-icon.svelte";
+	import LucideIcon from "#lib/components/icon-placeholder/lucide-icon.svelte";
+	import PhosphorIcon from "#lib/components/icon-placeholder/phosphor-icon.svelte";
+	import RemixiconIcon from "#lib/components/icon-placeholder/remixicon-icon.svelte";
+	import TablerIcon from "#lib/components/icon-placeholder/tabler-icon.svelte";
+	import HugeiconsLogo from "#lib/registry/icons/logos/hugeicons.svelte";
+	import LucideLogo from "#lib/registry/icons/logos/lucide.svelte";
+	import PhosphorLogo from "#lib/registry/icons/logos/phosphor.svelte";
+	import RemixiconLogo from "#lib/registry/icons/logos/remixicon.svelte";
+	import TablerLogo from "#lib/registry/icons/logos/tabler.svelte";
 	import LucideSquareIcon from "@lucide/svelte/icons/square";
-	import * as Item from "$lib/registry/ui/item/index.js";
-	import HugeiconsIcon from "$lib/components/icon-placeholder/hugeicons-icon.svelte";
-	import LucideIcon from "$lib/components/icon-placeholder/lucide-icon.svelte";
-	import PhosphorIcon from "$lib/components/icon-placeholder/phosphor-icon.svelte";
-	import RemixiconIcon from "$lib/components/icon-placeholder/remixicon-icon.svelte";
-	import TablerIcon from "$lib/components/icon-placeholder/tabler-icon.svelte";
-	import HugeiconsLogo from "$lib/registry/icons/logos/hugeicons.svelte";
-	import LucideLogo from "$lib/registry/icons/logos/lucide.svelte";
-	import PhosphorLogo from "$lib/registry/icons/logos/phosphor.svelte";
-	import RemixiconLogo from "$lib/registry/icons/logos/remixicon.svelte";
-	import TablerLogo from "$lib/registry/icons/logos/tabler.svelte";
-	import { useDesignSystem } from "$lib/features/design-system/index.js";
-	import { iconLibraries, type IconLibraryName } from "$lib/registry/config.js";
-	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
-	import type { HugeIconsIconName } from "$lib/registry/icons/__hugeicons__/index.js";
-	import type { LucideIconName } from "$lib/registry/icons/__lucide__/index.js";
-	import type { PhosphorIconName } from "$lib/registry/icons/__phosphor__/index.js";
-	import type { RemixIconIconName } from "$lib/registry/icons/__remixicon__/index.js";
-	import type { TablerIconName } from "$lib/registry/icons/__tabler__/index.js";
+	import { useDesignSystem } from "#lib/features/design-system/index.js";
+	import { iconLibraries, type IconLibraryName } from "#lib/registry/config.js";
+	import { IsMobile } from "#lib/registry/hooks/is-mobile.svelte.js";
 	import * as Picker from "./picker/index.js";
 	import LockButton from "./lock-button.svelte";
+	import type { HugeIconsIconName } from "#lib/registry/icons/__hugeicons__/index.js";
+	import type { LucideIconName } from "#lib/registry/icons/__lucide__/index.js";
+	import type { PhosphorIconName } from "#lib/registry/icons/__phosphor__/index.js";
+	import type { RemixIconIconName } from "#lib/registry/icons/__remixicon__/index.js";
+	import type { TablerIconName } from "#lib/registry/icons/__tabler__/index.js";
 
 	type Props = {
 		submenu?: boolean;

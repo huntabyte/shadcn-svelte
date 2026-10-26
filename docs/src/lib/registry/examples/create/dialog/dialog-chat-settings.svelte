@@ -1,17 +1,17 @@
 <script lang="ts">
-	import * as Dialog from "$lib/registry/ui/dialog/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
-	import * as NativeSelect from "$lib/registry/ui/native-select/index.js";
-	import * as Select from "$lib/registry/ui/select/index.js";
-	import * as Tabs from "$lib/registry/ui/tabs/index.js";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
-	import { Kbd } from "$lib/registry/ui/kbd/index.js";
-	import { Switch } from "$lib/registry/ui/switch/index.js";
-	import { Textarea } from "$lib/registry/ui/textarea/index.js";
+	import * as Dialog from "#lib/registry/ui/dialog/index.js";
+	import * as Field from "#lib/registry/ui/field/index.js";
+	import * as InputGroup from "#lib/registry/ui/input-group/index.js";
+	import * as NativeSelect from "#lib/registry/ui/native-select/index.js";
+	import * as Select from "#lib/registry/ui/select/index.js";
+	import * as Tabs from "#lib/registry/ui/tabs/index.js";
+	import * as Tooltip from "#lib/registry/ui/tooltip/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Checkbox } from "#lib/registry/ui/checkbox/index.js";
+	import { Kbd } from "#lib/registry/ui/kbd/index.js";
+	import { Switch } from "#lib/registry/ui/switch/index.js";
+	import { Textarea } from "#lib/registry/ui/textarea/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const spokenLanguages = [

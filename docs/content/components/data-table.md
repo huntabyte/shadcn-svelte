@@ -8,12 +8,12 @@ links:
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import Callout from "$lib/components/callout.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
-	import PMInstall from "$lib/components/pm-install.svelte";
-	import Steps from "$lib/components/steps.svelte";
-	import Step from "$lib/components/step.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import Callout from "#lib/components/callout.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
+	import PMInstall from "#lib/components/pm-install.svelte";
+	import Steps from "#lib/components/steps.svelte";
+	import Step from "#lib/components/step.svelte";
 </script>
 
 <ComponentPreview name="data-table-demo">
@@ -220,7 +220,7 @@ Next, we'll create a `<DataTable />` component to render our table.
     createTable,
     FlexRender,
   } from "@tanstack/svelte-table";
-  import * as Table from "$lib/components/ui/table/index.js";
+  import * as Table from "#lib/components/ui/table/index.js";
   import { features, type DataTableFeatures } from "./data-table-features.js";
 
   type DataTableProps<TData extends RowData> = {
@@ -389,8 +389,8 @@ We'll start by defining the actions menu in our `data-table-actions.svelte` comp
 ```svelte showLineNumbers title="routes/payments/data-table-actions.svelte"
 <script lang="ts">
   import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
-  import { Button } from "$lib/components/ui/button/index.js";
-  import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
+  import { Button } from "#lib/components/ui/button/index.js";
+  import * as DropdownMenu from "#lib/components/ui/dropdown-menu/index.js";
 
   let { id }: { id: string } = $props();
 </script>
@@ -463,7 +463,7 @@ We can add pagination controls to our table using the `<Button />` component and
 
 ```svelte showLineNumbers title="routes/payments/data-table.svelte"
 <script lang="ts" generics="TData extends RowData">
-  import { Button } from "$lib/components/ui/button/index.js";
+  import { Button } from "#lib/components/ui/button/index.js";
 
   // ...the rest of the script stays the same
 </script>
@@ -534,7 +534,7 @@ We'll start by creating a component to render a sortable email header button.
 <script lang="ts">
   import type { ComponentProps } from "svelte";
   import ArrowUpDownIcon from "@lucide/svelte/icons/arrow-up-down";
-  import { Button } from "$lib/components/ui/button/index.js";
+  import { Button } from "#lib/components/ui/button/index.js";
 
   let { variant = "ghost", ...restProps }: ComponentProps<typeof Button> =
     $props();
@@ -581,7 +581,7 @@ The `columnFilteringFeature`, filtered row model, and the `includesString` filte
 
 ```svelte showLineNumbers title="routes/payments/data-table.svelte"
 <script lang="ts" generics="TData extends RowData">
-  import { Input } from "$lib/components/ui/input/index.js";
+  import { Input } from "#lib/components/ui/input/index.js";
 
   // ...the rest of the script stays the same
 </script>
@@ -620,7 +620,7 @@ Adding column visibility is fairly simple using the `@tanstack/svelte-table` vis
 
 ```svelte showLineNumbers title="routes/payments/data-table.svelte"
 <script lang="ts" generics="TData extends RowData">
-  import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
+  import * as DropdownMenu from "#lib/components/ui/dropdown-menu/index.js";
 
   // ...the rest of the script stays the same
 </script>
@@ -681,7 +681,7 @@ We'll start by defining the checkbox component in our `data-table-checkbox.svelt
 ```svelte showLineNumbers title="routes/payments/data-table-checkbox.svelte"
 <script lang="ts">
   import type { ComponentProps } from "svelte";
-  import { Checkbox } from "$lib/components/ui/checkbox/index.js";
+  import { Checkbox } from "#lib/components/ui/checkbox/index.js";
 
   let {
     checked = false,

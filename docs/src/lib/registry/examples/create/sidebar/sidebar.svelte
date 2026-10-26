@@ -1,9 +1,9 @@
 <script lang="ts">
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as Item from "$lib/registry/ui/item/index.js";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { Label } from "$lib/registry/ui/label/index.js";
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
+	import * as Item from "#lib/registry/ui/item/index.js";
+	import * as Sidebar from "#lib/registry/ui/sidebar/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Label } from "#lib/registry/ui/label/index.js";
 
 	const data = {
 		versions: ["1.0.1", "1.1.0-alpha", "2.0.0-beta1"],

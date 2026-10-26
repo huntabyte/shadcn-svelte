@@ -1,9 +1,9 @@
 <script lang="ts">
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
+	import * as InputGroup from "#lib/registry/ui/input-group/index.js";
 	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
 	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
 	import PlusIcon from "@lucide/svelte/icons/plus";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 
 	const providers = [
 		{

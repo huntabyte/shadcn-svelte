@@ -144,11 +144,11 @@
 </script>
 
 <script lang="ts">
+	import * as Collapsible from "#lib/registry/ui/collapsible/index.js";
+	import * as Sidebar from "#lib/registry/ui/sidebar/index.js";
 	import GalleryVerticalEndIcon from "@lucide/svelte/icons/gallery-vertical-end";
 	import MinusIcon from "@lucide/svelte/icons/minus";
 	import PlusIcon from "@lucide/svelte/icons/plus";
-	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import SearchForm from "./search-form.svelte";
 	import type { ComponentProps } from "svelte";
 

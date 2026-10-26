@@ -4,8 +4,8 @@ description: Displays a failed tool call and its stack frames.
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
 </script>
 
 <ComponentPreview name="stack-trace-demo" previewStyle="rhea" previewClassName="h-auto min-h-0">
@@ -28,7 +28,7 @@ Stack Trace is built with the [Trace](/docs/components/trace) and [Code Block](/
 
 ```svelte showLineNumbers
 <script lang="ts">
-  import * as Trace from "$lib/components/ui/trace/index.js";
+  import * as Trace from "#lib/components/ui/trace/index.js";
 
   const [error, ...frames] = stack.split("\n").map((line) => line.trim());
 </script>

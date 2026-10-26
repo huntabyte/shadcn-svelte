@@ -4,8 +4,8 @@ description: Asks for approval before a tool runs.
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
 </script>
 
 <ComponentPreview name="confirmation-demo" previewStyle="rhea" previewClassName="h-auto min-h-0">

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { ButtonGroup } from "$lib/registry/ui/button-group/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
+	import { ButtonGroup } from "#lib/registry/ui/button-group/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Input } from "#lib/registry/ui/input/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 

@@ -1,10 +1,10 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import * as Select from "$lib/registry/ui/select/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Switch } from "$lib/registry/ui/switch/index.js";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Field from "#lib/registry/ui/field/index.js";
+	import * as Select from "#lib/registry/ui/select/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Switch } from "#lib/registry/ui/switch/index.js";
 
 	const CURRENCIES = [
 		{ label: "USD — United States Dollar", value: "usd" },

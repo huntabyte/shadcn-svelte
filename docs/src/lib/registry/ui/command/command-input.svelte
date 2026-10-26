@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as InputGroup from "#lib/registry/ui/input-group/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { cn } from "#lib/utils.js";
 	import { Command as CommandPrimitive } from "bits-ui";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { cn } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),

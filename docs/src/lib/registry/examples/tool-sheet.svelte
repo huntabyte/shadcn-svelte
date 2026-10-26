@@ -1,14 +1,14 @@
 <script lang="ts">
+	import * as Bubble from "#lib/registry/ui/bubble/index.js";
+	import * as CodeBlock from "#lib/registry/ui/code-block/index.js";
+	import * as Message from "#lib/registry/ui/message/index.js";
+	import * as Sheet from "#lib/registry/ui/sheet/index.js";
+	import * as Trace from "#lib/registry/ui/trace/index.js";
 	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 	import FileTextIcon from "@lucide/svelte/icons/file-text";
+	import { createChat, getMessageText } from "#lib/ai-sdk.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import { Chat } from "@ai-sdk/svelte";
-	import * as Bubble from "$lib/registry/ui/bubble/index.js";
-	import * as CodeBlock from "$lib/registry/ui/code-block/index.js";
-	import * as Message from "$lib/registry/ui/message/index.js";
-	import * as Sheet from "$lib/registry/ui/sheet/index.js";
-	import * as Trace from "$lib/registry/ui/trace/index.js";
-	import { createChat, getMessageText } from "$lib/ai-sdk.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import type { UIDataTypes, UIMessage } from "ai";
 
 	type ChatMessage = UIMessage<

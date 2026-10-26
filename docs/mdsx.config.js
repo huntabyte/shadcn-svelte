@@ -187,8 +187,8 @@ export function rehypeComponentExample() {
 					let sourceCode = getComponentSourceFileContent(src);
 					if (!sourceCode || sourceCode === null) return;
 
-					sourceCode = sourceCode.replaceAll("$lib/registry/", "$lib/components/");
-					sourceCode = sourceCode.replaceAll("$lib/registry/", "$lib/components/");
+					sourceCode = sourceCode.replaceAll("#lib/registry/", "#lib/components/");
+					sourceCode = sourceCode.replaceAll("#lib/registry/", "#lib/components/");
 
 					const meta = title
 						? {

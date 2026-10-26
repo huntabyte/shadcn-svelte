@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Alert from "$lib/registry/ui/alert/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as Alert from "#lib/registry/ui/alert/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 </script>
 
 <Alert.Root class="max-w-md">

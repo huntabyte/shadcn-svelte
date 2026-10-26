@@ -7,9 +7,9 @@ import { walk, type Node } from "estree-walker";
 import { registryItemSchema, type Registry } from "shadcn-svelte/schema";
 import { fonts } from "../src/lib/registry/fonts.js";
 
-const REGISTRY_DEPENDENCY = "$lib/";
-const UTILS_PATH = "$lib/utils.js";
-const REGISTRY_LIB_PATH = "$lib/registry/lib/";
+const REGISTRY_DEPENDENCY = "#lib/";
+const UTILS_PATH = "#lib/utils.js";
+const REGISTRY_LIB_PATH = "#lib/registry/lib/";
 
 const tsParser = acorn.Parser.extend(tsPlugin());
 

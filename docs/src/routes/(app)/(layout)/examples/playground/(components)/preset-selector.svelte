@@ -1,12 +1,12 @@
 <script lang="ts">
+	import * as Command from "#lib/registry/ui/command/index.js";
+	import * as Popover from "#lib/registry/ui/popover/index.js";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
+	import { buttonVariants } from "#lib/registry/ui/button/index.js";
+	import { cn } from "#lib/utils.js";
 	import { useId } from "bits-ui";
 	import { tick } from "svelte";
-	import * as Command from "$lib/registry/ui/command/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
 	import type { Preset } from "../(data)/presets.js";
 
 	let { presets }: { presets: Preset[] } = $props();

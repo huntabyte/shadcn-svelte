@@ -1,12 +1,12 @@
 <script lang="ts">
+	import * as ButtonGroup from "#lib/registry/ui/button-group/index.js";
+	import * as Field from "#lib/registry/ui/field/index.js";
+	import * as RadioGroup from "#lib/registry/ui/radio-group/index.js";
 	import MinusIcon from "@lucide/svelte/icons/minus";
 	import PlusIcon from "@lucide/svelte/icons/plus";
-	import * as ButtonGroup from "$lib/registry/ui/button-group/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
-	import { Switch } from "$lib/registry/ui/switch/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Input } from "#lib/registry/ui/input/index.js";
+	import { Switch } from "#lib/registry/ui/switch/index.js";
 
 	let gpuCount = $state(8);
 

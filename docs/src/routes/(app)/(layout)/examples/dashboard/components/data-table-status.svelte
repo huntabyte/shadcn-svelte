@@ -1,7 +1,7 @@
 <script lang="ts">
 	import CircleCheckFilledIcon from "@tabler/icons-svelte/icons/circle-check-filled";
 	import LoaderIcon from "@tabler/icons-svelte/icons/loader";
-	import { Badge } from "$lib/registry/ui/badge/index.js";
+	import { Badge } from "#lib/registry/ui/badge/index.js";
 	import type { DashboardTableFeatures } from "./data-table-features.js";
 	import type { Schema } from "./schemas.js";
 	import type { Row } from "@tanstack/svelte-table";

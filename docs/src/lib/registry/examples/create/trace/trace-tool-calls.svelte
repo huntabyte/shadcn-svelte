@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as CodeBlock from "$lib/registry/ui/code-block/index.js";
-	import * as Trace from "$lib/registry/ui/trace/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { Badge } from "$lib/registry/ui/badge/index.js";
+	import * as CodeBlock from "#lib/registry/ui/code-block/index.js";
+	import * as Trace from "#lib/registry/ui/trace/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Badge } from "#lib/registry/ui/badge/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const nodeVersion = "$ node --version\nv24.18.0";

@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import RangeCalendarDay from "#lib/registry/ui/range-calendar/range-calendar-day.svelte";
+	import { RangeCalendar } from "#lib/registry/ui/range-calendar/index.js";
 	import { CalendarDate, getLocalTimeZone, isWeekend, today } from "@internationalized/date";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import RangeCalendarDay from "$lib/registry/ui/range-calendar/range-calendar-day.svelte";
-	import { RangeCalendar } from "$lib/registry/ui/range-calendar/index.js";
 	import type { DateRange } from "bits-ui";
 
 	const start = new CalendarDate(today(getLocalTimeZone()).year, 12, 8);

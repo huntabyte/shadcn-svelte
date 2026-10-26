@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Input from "$lib/registry/ui/input/index.js";
-	import * as NativeSelect from "$lib/registry/ui/native-select/index.js";
+	import * as Input from "#lib/registry/ui/input/index.js";
+	import * as NativeSelect from "#lib/registry/ui/native-select/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 

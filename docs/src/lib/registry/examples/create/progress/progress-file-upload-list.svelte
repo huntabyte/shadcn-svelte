@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Item from "$lib/registry/ui/item/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { Progress } from "$lib/registry/ui/progress/index.js";
+	import * as Item from "#lib/registry/ui/item/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Progress } from "#lib/registry/ui/progress/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const files = [

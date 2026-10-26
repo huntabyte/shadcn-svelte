@@ -1,11 +1,11 @@
 <script lang="ts">
+	import * as AlertDialog from "#lib/registry/ui/alert-dialog/index.js";
+	import * as Dialog from "#lib/registry/ui/dialog/index.js";
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
 	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
-	import * as AlertDialog from "$lib/registry/ui/alert-dialog/index.js";
-	import * as Dialog from "$lib/registry/ui/dialog/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
-	import { Switch } from "$lib/registry/ui/switch/index.js";
+	import { Button, buttonVariants } from "#lib/registry/ui/button/index.js";
+	import { Label } from "#lib/registry/ui/label/index.js";
+	import { Switch } from "#lib/registry/ui/switch/index.js";
 
 	let open = $state(false);
 	let showDeleteDialog = $state(false);

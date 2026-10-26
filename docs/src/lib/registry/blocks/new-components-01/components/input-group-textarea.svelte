@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as InputGroup from "#lib/registry/ui/input-group/index.js";
 	import CopyIcon from "@lucide/svelte/icons/copy";
 	import CornerDownLeftIcon from "@lucide/svelte/icons/corner-down-left";
 	import RefreshCwIcon from "@lucide/svelte/icons/refresh-cw";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 </script>
 
 <div class="grid w-full max-w-md gap-4">

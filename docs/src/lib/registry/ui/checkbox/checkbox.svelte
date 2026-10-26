@@ -1,7 +1,7 @@
 <script lang="ts">
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { cn, type WithoutChildrenOrChild } from "#lib/utils.js";
 	import { Checkbox as CheckboxPrimitive } from "bits-ui";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),

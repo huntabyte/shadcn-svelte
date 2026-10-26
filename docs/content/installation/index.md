@@ -4,8 +4,8 @@ description: How to install dependencies and structure your app.
 ---
 
 <script>
-	import InstallCards from '$lib/components/install-cards.svelte'
-	import SvelteWhite from '$lib/components/svelte-white.svelte'
+	import InstallCards from '#lib/components/install-cards.svelte'
+	import SvelteWhite from '#lib/components/svelte-white.svelte'
 </script>
 
 ## Guides
@@ -28,14 +28,14 @@ For example, the Accordion component is split into four `.svelte` files:
 They can then be imported from the `accordion/index.ts` file like so:
 
 ```ts
-import * as Accordion from '$lib/components/ui/accordion"
+import * as Accordion from '#lib/components/ui/accordion"
 // or
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger
-} from "$lib/components/ui/accordion"
+} from "#lib/components/ui/accordion"
 ```
 
 Regardless of the import approach you take, the components will be tree-shaken by Rollup, so you don't have to worry about unused components being bundled into your app.

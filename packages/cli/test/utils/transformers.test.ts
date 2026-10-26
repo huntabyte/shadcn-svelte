@@ -623,6 +623,15 @@ describe("transformMenu", () => {
 });
 
 describe("transformImports", () => {
+	it("avoids duplicating utils file extensions for package imports", async () => {
+		const config = { ...mockConfig, aliases: { ...mockConfig.aliases, utils: "#lib/utils.js" } };
+		const result = await transformImports({
+			content: 'import { cn } from "$UTILS$.js";',
+			filePath: "test.ts",
+			config,
+		});
+		expect(result.content).toBe('import { cn } from "#lib/utils.js";');
+	});
 	it("transforms component imports correctly", async () => {
 		const content = 'import { Button } from "$COMPONENTS$/button";';
 		const expected = 'import { Button } from "$lib/components/button";';

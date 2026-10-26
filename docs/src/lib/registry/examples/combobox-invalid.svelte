@@ -1,9 +1,9 @@
 <script lang="ts">
+	import * as Command from "#lib/registry/ui/command/index.js";
+	import * as Popover from "#lib/registry/ui/popover/index.js";
 	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import { tick } from "svelte";
-	import * as Command from "$lib/registry/ui/command/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"];
 

@@ -1,12 +1,12 @@
 <script lang="ts">
+	import * as Attachment from "#lib/registry/ui/attachment/index.js";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import ClockIcon from "@lucide/svelte/icons/clock";
 	import FileTextIcon from "@lucide/svelte/icons/file-text";
 	import FileWarningIcon from "@lucide/svelte/icons/file-warning";
 	import RefreshCwIcon from "@lucide/svelte/icons/refresh-cw";
 	import XIcon from "@lucide/svelte/icons/x";
-	import * as Attachment from "$lib/registry/ui/attachment/index.js";
-	import { Spinner } from "$lib/registry/ui/spinner/index.js";
+	import { Spinner } from "#lib/registry/ui/spinner/index.js";
 </script>
 
 <div class="mx-auto flex w-full max-w-sm flex-col gap-2 py-12">

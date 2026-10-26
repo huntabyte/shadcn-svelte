@@ -1,6 +1,6 @@
 <script lang="ts">
 	import ArrowUpDownIcon from "@lucide/svelte/icons/arrow-up-down";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import type { PaymentsTableFeatures } from "./payments-features.js";
 	import type { Column } from "@tanstack/svelte-table";
 

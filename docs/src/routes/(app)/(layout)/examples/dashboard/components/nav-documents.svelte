@@ -1,10 +1,10 @@
 <script lang="ts">
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
+	import * as Sidebar from "#lib/registry/ui/sidebar/index.js";
 	import DotsIcon from "@tabler/icons-svelte/icons/dots";
 	import FolderIcon from "@tabler/icons-svelte/icons/folder";
 	import Share3Icon from "@tabler/icons-svelte/icons/share-3";
 	import TrashIcon from "@tabler/icons-svelte/icons/trash";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import type { Icon } from "@tabler/icons-svelte";
 
 	let { items }: { items: { name: string; url: string; icon?: Icon }[] } = $props();

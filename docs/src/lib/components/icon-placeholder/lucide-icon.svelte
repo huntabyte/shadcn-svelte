@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { LucideIconName } from "$lib/registry/icons/__lucide__/index.js";
 	import { lucideIconLoader } from "./icon-loader.js";
+	import type { LucideIconName } from "#lib/registry/icons/__lucide__/index.js";
 	import type { Snippet } from "svelte";
 	import type { SVGAttributes } from "svelte/elements";
 

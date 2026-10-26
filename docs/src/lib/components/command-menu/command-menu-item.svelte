@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Command from "$lib/registry/ui/command/index.js";
-	import { cn } from "$lib/utils.js";
+	import * as Command from "#lib/registry/ui/command/index.js";
+	import { cn } from "#lib/utils.js";
 	import type { ComponentProps } from "svelte";
 
 	let {

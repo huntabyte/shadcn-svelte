@@ -7,15 +7,15 @@ links:
 ---
 
 <script>
-	import Callout from "$lib/components/callout.svelte";
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import ComponentSource from "$lib/components/component-source.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
-	import Steps from "$lib/components/steps.svelte";
-	import InstallTabs from "$lib/components/install-tabs.svelte";
+	import Callout from "#lib/components/callout.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import ComponentSource from "#lib/components/component-source.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
+	import Steps from "#lib/components/steps.svelte";
+	import InstallTabs from "#lib/components/install-tabs.svelte";
 
 	let { viewerData } = $props();
-	import Step from "$lib/components/step.svelte";
+	import Step from "#lib/components/step.svelte";
 </script>
 
 <ComponentPreview name="marker-demo" previewStyle="rhea" previewClassName="h-auto theme-blue">
@@ -52,7 +52,7 @@ Copy and paste the following code into your project.
 
 ```svelte showLineNumbers
 <script lang="ts">
-  import * as Marker from "$lib/components/ui/marker/index.js";
+  import * as Marker from "#lib/components/ui/marker/index.js";
 </script>
 ```
 
@@ -161,7 +161,7 @@ Turn a marker into a link or button with the `child` snippet on `Marker.Root`.
 
 ```svelte showLineNumbers
 <script lang="ts">
-  import * as Marker from "$lib/components/ui/marker/index.js";
+  import * as Marker from "#lib/components/ui/marker/index.js";
 </script>
 
 <Marker.Root>

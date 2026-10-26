@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { Badge } from "$lib/registry/ui/badge/index.js";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Badge } from "#lib/registry/ui/badge/index.js";
 </script>
 
 <Card.Root>

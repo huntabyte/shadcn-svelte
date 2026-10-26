@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Skeleton } from "$lib/registry/ui/skeleton/index.js";
+	import { Skeleton } from "#lib/registry/ui/skeleton/index.js";
 </script>
 
 <div class="flex w-full max-w-sm flex-col gap-2">

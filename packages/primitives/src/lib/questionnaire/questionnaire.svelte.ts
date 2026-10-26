@@ -1,9 +1,8 @@
+import { boolToEmptyStrOrUndef, boolToTrueOrUndef } from "#lib/internal/attrs.js";
 import { DEV } from "esm-env";
 import { Context, watch } from "runed";
 import { flushSync, onMount } from "svelte";
 import { attachRef, type ReadableBoxedValues, type WritableBoxedValues } from "svelte-toolbelt";
-import { boolToEmptyStrOrUndef, boolToTrueOrUndef } from "$lib/internal/attrs.js";
-import type { BitsEvent, BitsMouseEvent, RefAttachment, WithRefOpts } from "$lib/internal/types.js";
 import {
 	createQuestionnaireCollection,
 	getCollectionDefinitionWarnings,
@@ -22,6 +21,7 @@ import {
 	isRadioTarget,
 	isTextEntryTarget,
 } from "./utils.js";
+import type { BitsEvent, BitsMouseEvent, RefAttachment, WithRefOpts } from "#lib/internal/types.js";
 import type {
 	AnswerControlRegistration,
 	ItemRegistration,

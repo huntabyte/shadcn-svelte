@@ -1,9 +1,9 @@
 <script lang="ts">
+	import * as Attachment from "#lib/registry/ui/attachment/index.js";
 	import FileCodeIcon from "@lucide/svelte/icons/file-code";
 	import FileTextIcon from "@lucide/svelte/icons/file-text";
 	import TableIcon from "@lucide/svelte/icons/table";
 	import XIcon from "@lucide/svelte/icons/x";
-	import * as Attachment from "$lib/registry/ui/attachment/index.js";
 	import type { Component } from "svelte";
 
 	type Item = {

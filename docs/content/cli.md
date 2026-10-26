@@ -4,7 +4,7 @@ description: Use the shadcn-svelte CLI to add components to your project.
 ---
 
 <script>
-	import PMExecute from "$lib/components/pm-execute.svelte";
+	import PMExecute from "#lib/components/pm-execute.svelte";
 </script>
 
 ## init

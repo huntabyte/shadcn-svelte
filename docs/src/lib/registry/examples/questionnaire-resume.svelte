@@ -1,7 +1,7 @@
 <script lang="ts">
+	import * as Questionnaire from "#lib/registry/ui/questionnaire/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import { toast } from "svelte-sonner";
-	import * as Questionnaire from "$lib/registry/ui/questionnaire/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const items = [
 		{ name: "change", required: true },

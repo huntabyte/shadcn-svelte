@@ -1,5 +1,5 @@
 <script lang="ts">
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
 	import {
 		AlertDialog,
 		AlertDialogAction,
@@ -10,12 +10,12 @@
 		AlertDialogHeader,
 		AlertDialogTitle,
 		AlertDialogTrigger,
-	} from "$lib/registry/ui/alert-dialog/index.js";
-	import { Badge } from "$lib/registry/ui/badge/index.js";
-	import { ButtonGroup } from "$lib/registry/ui/button-group/index.js";
-	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
-	import { Card, CardContent } from "$lib/registry/ui/card/index.js";
-	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
+	} from "#lib/registry/ui/alert-dialog/index.js";
+	import { Badge } from "#lib/registry/ui/badge/index.js";
+	import { ButtonGroup } from "#lib/registry/ui/button-group/index.js";
+	import { Button, buttonVariants } from "#lib/registry/ui/button/index.js";
+	import { Card, CardContent } from "#lib/registry/ui/card/index.js";
+	import { Checkbox } from "#lib/registry/ui/checkbox/index.js";
 	import {
 		DropdownMenu,
 		DropdownMenuContent,
@@ -24,17 +24,17 @@
 		DropdownMenuLabel,
 		DropdownMenuSeparator,
 		DropdownMenuTrigger,
-	} from "$lib/registry/ui/dropdown-menu/index.js";
-	import { Field, FieldGroup } from "$lib/registry/ui/field/index.js";
+	} from "#lib/registry/ui/dropdown-menu/index.js";
+	import { Field, FieldGroup } from "#lib/registry/ui/field/index.js";
 	import {
 		InputGroup,
 		InputGroupAddon,
 		InputGroupInput,
 		InputGroupText,
-	} from "$lib/registry/ui/input-group/index.js";
-	import { RadioGroup, RadioGroupItem } from "$lib/registry/ui/radio-group/index.js";
-	import { Switch } from "$lib/registry/ui/switch/index.js";
-	import { Textarea } from "$lib/registry/ui/textarea/index.js";
+	} from "#lib/registry/ui/input-group/index.js";
+	import { RadioGroup, RadioGroupItem } from "#lib/registry/ui/radio-group/index.js";
+	import { Switch } from "#lib/registry/ui/switch/index.js";
+	import { Textarea } from "#lib/registry/ui/textarea/index.js";
 </script>
 
 <Card class="w-full">

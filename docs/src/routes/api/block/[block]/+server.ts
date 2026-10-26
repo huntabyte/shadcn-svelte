@@ -1,8 +1,5 @@
 import path from "node:path";
-import { json } from "@sveltejs/kit";
-import { registryItemSchema } from "shadcn-svelte/schema";
-import { z } from "zod";
-import { highlightCode } from "$lib/highlight-code.js";
+import { highlightCode } from "#lib/highlight-code.js";
 import {
 	DEFAULT_CONFIG,
 	MENU_COLORS,
@@ -11,13 +8,15 @@ import {
 	type IconLibraryName,
 	type MenuColorValue,
 	type StyleName,
-} from "$lib/registry/config.js";
-import { blockMeta } from "$lib/registry/registry-block-meta.js";
+} from "#lib/registry/config.js";
+import { blockMeta } from "#lib/registry/registry-block-meta.js";
 import {
 	transformBlockPath,
 	transformDesignSystem,
 	transformImportPaths,
-} from "$lib/registry/registry-utils.js";
+} from "#lib/registry/registry-utils.js";
+import { registryItemSchema } from "shadcn-svelte/schema";
+import { z } from "zod";
 import type { RequestHandler } from "./$types.js";
 
 export interface HighlightedBlock {
@@ -132,7 +131,7 @@ export const GET: RequestHandler = async ({ params, url }) => {
 				: DEFAULT_CONFIG.menuColor,
 		},
 	});
-	return json(item);
+	return Response.json(item);
 };
 
 export const prerender = true;

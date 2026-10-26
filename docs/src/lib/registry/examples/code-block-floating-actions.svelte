@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as CodeBlock from "$lib/registry/ui/code-block/index.js";
+	import * as CodeBlock from "#lib/registry/ui/code-block/index.js";
 
 	const output = `$ pnpm add ai @ai-sdk/react zod
 Progress: resolved 412, reused 398, downloaded 14, added 14, done

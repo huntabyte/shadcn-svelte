@@ -1,24 +1,24 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { base } from "$app/paths";
+	import { resolve } from "$app/paths";
+	import * as Command from "#lib/registry/ui/command/index.js";
+	import * as Dialog from "#lib/registry/ui/dialog/index.js";
+	import * as Kbd from "#lib/registry/ui/kbd/index.js";
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
 	import CornerDownLeftIcon from "@lucide/svelte/icons/corner-down-left";
 	import SquareDashedIcon from "@lucide/svelte/icons/square-dashed";
+	import { UseClipboard } from "#lib/hooks/use-clipboard.svelte.js";
+	import { mainNavItems, sidebarNavItems } from "#lib/navigation.js";
+	import { getCommand } from "#lib/package-manager.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Separator } from "#lib/registry/ui/separator/index.js";
+	import { UserConfigContext, type PackageManager } from "#lib/user-config.svelte.js";
+	import { cn } from "#lib/utils.js";
+	import { createContentIndex, searchContentIndex } from "#lib/utils/search.js";
 	import { onMount } from "svelte";
 	import { SvelteSet } from "svelte/reactivity";
-	import * as Command from "$lib/registry/ui/command/index.js";
-	import * as Dialog from "$lib/registry/ui/dialog/index.js";
-	import * as Kbd from "$lib/registry/ui/kbd/index.js";
-	import type { ColorPalette } from "$lib/colors.js";
-	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
-	import { mainNavItems, sidebarNavItems } from "$lib/navigation.js";
-	import { getCommand } from "$lib/package-manager.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Separator } from "$lib/registry/ui/separator/index.js";
-	import { UserConfigContext, type PackageManager } from "$lib/user-config.svelte.js";
-	import { cn } from "$lib/utils.js";
-	import { createContentIndex, searchContentIndex } from "$lib/utils/search.js";
 	import CommandMenuItem from "./command-menu-item.svelte";
+	import type { ColorPalette } from "#lib/colors.js";
 
 	let {
 		colors,
@@ -152,6 +152,7 @@
 				...group,
 				items: group.items.filter((item) => {
 					const isComponent = item.href?.includes("/components/") ?? false;
+
 					return matches(
 						`${group.title} ${item.title}${isComponent ? " component" : ""}`.toLowerCase()
 					);
@@ -184,7 +185,7 @@
 	let searchReady = $state(false);
 	onMount(async () => {
 		try {
-			const response = await fetch(`${base}/api/search.json`);
+			const response = await fetch(resolve(`api/search.json`));
 			if (!response.ok) return;
 			await createContentIndex(await response.json());
 		} catch {
@@ -271,7 +272,7 @@
 	}
 </script>
 
-<svelte:document onkeydown={handleKeydown} />
+<svelte:document onkeydown={handleKeydown}></svelte:document>
 
 <Dialog.Root bind:open>
 	<Dialog.Trigger>

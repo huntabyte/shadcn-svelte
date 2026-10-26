@@ -1,10 +1,10 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Empty from "$lib/registry/ui/empty/index.js";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Kbd } from "$lib/registry/ui/kbd/index.js";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Empty from "#lib/registry/ui/empty/index.js";
+	import * as InputGroup from "#lib/registry/ui/input-group/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Kbd } from "#lib/registry/ui/kbd/index.js";
 </script>
 
 <Card.Root>

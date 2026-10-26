@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import { Skeleton } from "$lib/registry/ui/skeleton/index.js";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import { Skeleton } from "#lib/registry/ui/skeleton/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 

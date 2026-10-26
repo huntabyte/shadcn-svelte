@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
+	import * as Sidebar from "#lib/registry/ui/sidebar/index.js";
 	import type { Icon } from "@tabler/icons-svelte";
 
 	let { items }: { items: { title: string; url: string; icon?: Icon }[] } = $props();

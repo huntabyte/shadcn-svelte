@@ -4,9 +4,9 @@ description: Latest updates and announcements.
 ---
 
 <script>
-	import Steps from '$lib/components/steps.svelte'
-	import Callout from '$lib/components/callout.svelte'
-	import ComponentPreview from '$lib/components/component-preview.svelte'
+	import Steps from '#lib/components/steps.svelte'
+	import Callout from '#lib/components/callout.svelte'
+	import ComponentPreview from '#lib/components/component-preview.svelte'
 </script>
 
 ## October 2025 - New Components

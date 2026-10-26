@@ -1,7 +1,7 @@
 <script lang="ts">
+	import * as Bubble from "#lib/registry/ui/bubble/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import { toast } from "svelte-sonner";
-	import * as Bubble from "$lib/registry/ui/bubble/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
 <div class="flex w-full max-w-sm flex-col gap-12 py-12">

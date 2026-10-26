@@ -1,11 +1,11 @@
 <script lang="ts">
+	import * as Bubble from "#lib/registry/ui/bubble/index.js";
+	import * as Message from "#lib/registry/ui/message/index.js";
 	import CopyIcon from "@lucide/svelte/icons/copy";
 	import RefreshCcwIcon from "@lucide/svelte/icons/refresh-ccw";
 	import ThumbsDownIcon from "@lucide/svelte/icons/thumbs-down";
 	import ThumbsUpIcon from "@lucide/svelte/icons/thumbs-up";
-	import * as Bubble from "$lib/registry/ui/bubble/index.js";
-	import * as Message from "$lib/registry/ui/message/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 </script>
 
 <div class="flex w-full max-w-sm flex-col gap-8 py-12">

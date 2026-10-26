@@ -5,12 +5,12 @@
 </script>
 
 <script lang="ts">
+	import * as Collapsible from "#lib/registry/ui/collapsible/index.js";
 	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 	import FileIcon from "@lucide/svelte/icons/file";
 	import FolderIcon from "@lucide/svelte/icons/folder";
-	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { cn } from "#lib/utils.js";
 	import FileTreeNode from "./file-tree-node.svelte";
 
 	let {

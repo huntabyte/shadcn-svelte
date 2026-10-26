@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Card, CardAction, CardHeader } from "$lib/registry/ui/card/index.js";
-	import { Skeleton } from "$lib/registry/ui/skeleton/index.js";
+	import { Card, CardAction, CardHeader } from "#lib/registry/ui/card/index.js";
+	import { Skeleton } from "#lib/registry/ui/skeleton/index.js";
 </script>
 
 <Card class="mx-auto w-full max-w-sm data-[size=sm]:pb-0" size="sm">

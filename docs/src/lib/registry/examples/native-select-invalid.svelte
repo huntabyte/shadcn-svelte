@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as NativeSelect from "$lib/registry/ui/native-select/index.js";
+	import * as NativeSelect from "#lib/registry/ui/native-select/index.js";
 </script>
 
 <NativeSelect.Root aria-invalid="true">

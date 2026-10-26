@@ -1,6 +1,6 @@
 <script lang="ts">
+	import * as Attachment from "#lib/registry/ui/attachment/index.js";
 	import FileTextIcon from "@lucide/svelte/icons/file-text";
-	import * as Attachment from "$lib/registry/ui/attachment/index.js";
 </script>
 
 <div class="mx-auto flex w-full max-w-sm flex-col gap-3 py-12">

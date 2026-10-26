@@ -4,8 +4,8 @@ description: A source in the sentence that opens on hover.
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
 </script>
 
 <ComponentPreview name="inline-citation-demo" previewStyle="rhea" previewClassName="h-auto min-h-0">

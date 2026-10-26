@@ -1,9 +1,9 @@
 <script lang="ts">
+	import * as ContextMenu from "#lib/registry/ui/context-menu/index.js";
 	import ClipboardPasteIcon from "@lucide/svelte/icons/clipboard-paste";
 	import CopyIcon from "@lucide/svelte/icons/copy";
 	import ScissorsIcon from "@lucide/svelte/icons/scissors";
 	import TrashIcon from "@lucide/svelte/icons/trash";
-	import * as ContextMenu from "$lib/registry/ui/context-menu/index.js";
 </script>
 
 <ContextMenu.Root>

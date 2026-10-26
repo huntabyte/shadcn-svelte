@@ -1,9 +1,9 @@
 <script lang="ts">
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Field from "#lib/registry/ui/field/index.js";
+	import * as InputOTP from "#lib/registry/ui/input-otp/index.js";
 	import RefreshCwIcon from "@lucide/svelte/icons/refresh-cw";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import * as InputOTP from "$lib/registry/ui/input-otp/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 </script>
 
 <Card.Root class="mx-auto max-w-md">

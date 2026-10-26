@@ -4,8 +4,8 @@ description: Run your own component registry.
 ---
 
 <script>
-	import Callout from "$lib/components/callout.svelte";
-	import PMExecute from "$lib/components/pm-execute.svelte";
+	import Callout from "#lib/components/callout.svelte";
+	import PMExecute from "#lib/components/pm-execute.svelte";
 </script>
 
 <Callout>

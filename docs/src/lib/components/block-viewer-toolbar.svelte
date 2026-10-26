@@ -1,4 +1,6 @@
 <script lang="ts">
+	import * as Tabs from "#lib/registry/ui/tabs/index.js";
+	import * as ToggleGroup from "#lib/registry/ui/toggle-group/index.js";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import FullscreenIcon from "@lucide/svelte/icons/fullscreen";
 	import MonitorIcon from "@lucide/svelte/icons/monitor";
@@ -6,13 +8,11 @@
 	import SmartphoneIcon from "@lucide/svelte/icons/smartphone";
 	import TabletIcon from "@lucide/svelte/icons/tablet";
 	import TerminalIcon from "@lucide/svelte/icons/terminal";
-	import * as Tabs from "$lib/registry/ui/tabs/index.js";
-	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
-	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
-	import { getCommand } from "$lib/package-manager.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Separator } from "$lib/registry/ui/separator/index.js";
-	import { UserConfigContext } from "$lib/user-config.svelte.js";
+	import { UseClipboard } from "#lib/hooks/use-clipboard.svelte.js";
+	import { getCommand } from "#lib/package-manager.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Separator } from "#lib/registry/ui/separator/index.js";
+	import { UserConfigContext } from "#lib/user-config.svelte.js";
 	import { BlockViewerContext } from "./block-viewer.svelte";
 
 	const ctx = BlockViewerContext.get();

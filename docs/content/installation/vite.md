@@ -4,11 +4,11 @@ description: How to setup shadcn-svelte in a Vite project.
 ---
 
 <script>
-	import * as Alert from "$lib/registry/ui/alert/index.js";
-	import Steps from "$lib/components/steps.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
-	import PMInstall from "$lib/components/pm-install.svelte";
-	import PMExecute from "$lib/components/pm-execute.svelte";
+	import * as Alert from "#lib/registry/ui/alert/index.js";
+	import Steps from "#lib/components/steps.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
+	import PMInstall from "#lib/components/pm-install.svelte";
+	import PMExecute from "#lib/components/pm-execute.svelte";
 </script>
 
 <Steps>
@@ -35,8 +35,8 @@ Add the `baseUrl` and `paths` properties to the `compilerOptions` section of the
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "$lib": ["./src/lib"],
-      "$lib/*": ["./src/lib/*"]
+      "#lib": ["./src/lib"],
+      "#lib/*": ["./src/lib/*"]
     }
   }
 }
@@ -52,8 +52,8 @@ Add the following code to the `tsconfig.app.json` file to resolve paths, for you
     // ...
     "baseUrl": ".",
     "paths": {
-      "$lib": ["./src/lib"],
-      "$lib/*": ["./src/lib/*"]
+      "#lib": ["./src/lib"],
+      "#lib/*": ["./src/lib/*"]
     }
   }
 }
@@ -104,7 +104,7 @@ The command above will add the `Button` component to your project. You can then 
 
 ```svelte {2,5} showLineNumbers
 <script lang="ts">
-  import { Button } from "$lib/components/ui/button/index.js";
+  import { Button } from "#lib/components/ui/button/index.js";
 </script>
 
 <Button>Click me</Button>

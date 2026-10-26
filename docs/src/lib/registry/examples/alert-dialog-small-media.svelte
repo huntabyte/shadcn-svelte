@@ -1,7 +1,7 @@
 <script lang="ts">
+	import * as AlertDialog from "#lib/registry/ui/alert-dialog/index.js";
 	import BluetoothIcon from "@lucide/svelte/icons/bluetooth";
-	import * as AlertDialog from "$lib/registry/ui/alert-dialog/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import { buttonVariants } from "#lib/registry/ui/button/index.js";
 </script>
 
 <AlertDialog.Root>

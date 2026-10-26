@@ -1,13 +1,13 @@
 <script lang="ts">
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Empty from "#lib/registry/ui/empty/index.js";
+	import * as MessageScroller from "#lib/registry/ui/message-scroller/index.js";
+	import * as ToggleGroup from "#lib/registry/ui/toggle-group/index.js";
+	import MessageAnimated from "#lib/components/message-animated.svelte";
 	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
 	import MessageCircleDashedIcon from "@lucide/svelte/icons/message-circle-dashed";
 	import RotateCwIcon from "@lucide/svelte/icons/rotate-cw";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Empty from "$lib/registry/ui/empty/index.js";
-	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
-	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
-	import MessageAnimated from "$lib/components/message-animated.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 
 	type AnchorRole = "user" | "assistant";
 

@@ -41,12 +41,12 @@
 		}
 	},
 	"peerDependencies": {
-		"sv": "^0.16.6"
+		"sv": "^0.16.6 || ^1.0.0"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.56.0",
 		"@sveltejs/sv-utils": "^0.3.2",
-		"sv": "^0.16.6",
+		"sv": "^1.1.1",
 		"tsdown": "catalog:",
 		"typescript": "catalog:",
 		"vitest": "^4.1.10"

@@ -9,13 +9,13 @@ links:
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import ComponentSource from "$lib/components/component-source.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
-	import PMInstall from "$lib/components/pm-install.svelte";
-	import Steps from "$lib/components/steps.svelte";
-	import Step from "$lib/components/step.svelte";
-	import InstallTabs from "$lib/components/install-tabs.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import ComponentSource from "#lib/components/component-source.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
+	import PMInstall from "#lib/components/pm-install.svelte";
+	import Steps from "#lib/components/steps.svelte";
+	import Step from "#lib/components/step.svelte";
+	import InstallTabs from "#lib/components/install-tabs.svelte";
 
 	let { viewerData } = $props();
 </script>
@@ -55,7 +55,7 @@ Copy and paste the following code into your project.
 
 ```svelte showLineNumbers
 <script lang="ts">
-  import * as NavigationMenu from "$lib/components/ui/navigation-menu/index.js";
+  import * as NavigationMenu from "#lib/components/ui/navigation-menu/index.js";
 </script>
 ```
 
@@ -78,8 +78,8 @@ Use the `href` prop on `NavigationMenu.Link` to render a link. You can style it 
 
 ```svelte showLineNumbers
 <script lang="ts">
-  import * as NavigationMenu from "$lib/components/ui/navigation-menu/index.js";
-  import { navigationMenuTriggerStyle } from "$lib/components/ui/navigation-menu/navigation-menu-trigger.svelte";
+  import * as NavigationMenu from "#lib/components/ui/navigation-menu/index.js";
+  import { navigationMenuTriggerStyle } from "#lib/components/ui/navigation-menu/navigation-menu-trigger.svelte";
 </script>
 
 <NavigationMenu.Item>

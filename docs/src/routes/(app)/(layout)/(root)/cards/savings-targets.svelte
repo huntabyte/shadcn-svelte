@@ -6,15 +6,15 @@
 		CardFooter,
 		CardHeader,
 		CardTitle,
-	} from "$lib/registry/ui/card/index.js";
+	} from "#lib/registry/ui/card/index.js";
 	import {
 		Item,
 		ItemContent,
 		ItemDescription,
 		ItemFooter,
 		ItemGroup,
-	} from "$lib/registry/ui/item/index.js";
-	import { Progress } from "$lib/registry/ui/progress/index.js";
+	} from "#lib/registry/ui/item/index.js";
+	import { Progress } from "#lib/registry/ui/progress/index.js";
 </script>
 
 <Card>

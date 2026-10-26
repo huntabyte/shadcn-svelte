@@ -1,5 +1,5 @@
 <script lang="ts">
-	import TooltipDemo from "$lib/components/chart-tooltip-demo-item.svelte";
+	import TooltipDemo from "#lib/components/chart-tooltip-demo-item.svelte";
 </script>
 
 <div

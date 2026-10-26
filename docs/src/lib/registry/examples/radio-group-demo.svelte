@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
+	import * as RadioGroup from "#lib/registry/ui/radio-group/index.js";
+	import { Label } from "#lib/registry/ui/label/index.js";
 </script>
 
 <RadioGroup.Root value="comfortable" class="w-fit">

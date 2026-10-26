@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Badge } from "$lib/registry/ui/badge/index.js";
-	import { Spinner } from "$lib/registry/ui/spinner/index.js";
+	import { Badge } from "#lib/registry/ui/badge/index.js";
+	import { Spinner } from "#lib/registry/ui/spinner/index.js";
 </script>
 
 <div class="flex flex-wrap gap-2">

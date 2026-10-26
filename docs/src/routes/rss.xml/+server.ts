@@ -1,5 +1,5 @@
-import { changelog } from "$content/index.js";
-import { siteConfig } from "$lib/config.js";
+import { changelog } from "#content/index.js";
+import { siteConfig } from "#lib/config.js";
 
 export const prerender = true;
 

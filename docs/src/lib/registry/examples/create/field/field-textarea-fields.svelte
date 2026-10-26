@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import * as Textarea from "$lib/registry/ui/textarea/index.js";
+	import * as Field from "#lib/registry/ui/field/index.js";
+	import * as Textarea from "#lib/registry/ui/textarea/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 

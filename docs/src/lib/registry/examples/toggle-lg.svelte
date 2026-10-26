@@ -1,6 +1,6 @@
 <script lang="ts">
 	import ItalicIcon from "@lucide/svelte/icons/italic";
-	import { Toggle } from "$lib/registry/ui/toggle/index.js";
+	import { Toggle } from "#lib/registry/ui/toggle/index.js";
 </script>
 
 <Toggle size="lg" aria-label="Toggle italic">

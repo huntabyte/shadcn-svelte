@@ -4,7 +4,7 @@ description: Utilities for adding a shimmer effect to text elements.
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
 </script>
 
 <ComponentPreview name="shimmer-demo">

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Card, CardContent, CardFooter, CardHeader } from "$lib/registry/ui/card/index.js";
-	import { Skeleton } from "$lib/registry/ui/skeleton/index.js";
+	import { Card, CardContent, CardFooter, CardHeader } from "#lib/registry/ui/card/index.js";
+	import { Skeleton } from "#lib/registry/ui/skeleton/index.js";
 	const bars = [30, 70, 80, 60, 90, 75, 100, 85];
 </script>
 

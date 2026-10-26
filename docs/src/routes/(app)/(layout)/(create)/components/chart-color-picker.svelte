@@ -1,14 +1,14 @@
 <script lang="ts">
-	import { mode } from "mode-watcher";
-	import { PRESET_CHART_COLORS } from "shadcn-svelte/preset";
-	import { useDesignSystem } from "$lib/features/design-system/index.js";
+	import { useDesignSystem } from "#lib/features/design-system/index.js";
 	import {
 		BASE_THEMES,
 		getThemesForBaseColor,
 		type BaseTheme,
 		type Theme,
-	} from "$lib/registry/config.js";
-	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
+	} from "#lib/registry/config.js";
+	import { IsMobile } from "#lib/registry/hooks/is-mobile.svelte.js";
+	import { mode } from "mode-watcher";
+	import { PRESET_CHART_COLORS } from "shadcn-svelte/preset";
 	import * as Picker from "./picker/index.js";
 	import LockButton from "./lock-button.svelte";
 

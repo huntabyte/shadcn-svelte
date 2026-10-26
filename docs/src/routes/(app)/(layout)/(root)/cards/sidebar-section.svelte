@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Card } from "$lib/registry/ui/card/index.js";
+	import { Card } from "#lib/registry/ui/card/index.js";
 	import {
 		Sidebar,
 		SidebarContent,
@@ -8,8 +8,8 @@
 		SidebarGroupLabel,
 		SidebarMenu,
 		SidebarProvider,
-	} from "$lib/registry/ui/sidebar/index.js";
-	import { cn } from "$lib/utils.js";
+	} from "#lib/registry/ui/sidebar/index.js";
+	import { cn } from "#lib/utils.js";
 	import type { Snippet } from "svelte";
 
 	let {

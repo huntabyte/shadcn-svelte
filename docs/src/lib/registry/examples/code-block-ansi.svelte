@@ -1,7 +1,7 @@
 <script lang="ts">
+	import * as CodeBlock from "#lib/registry/ui/code-block/index.js";
 	import TerminalIcon from "@lucide/svelte/icons/terminal";
-	import * as CodeBlock from "$lib/registry/ui/code-block/index.js";
-	import { useHighlightedCode } from "$lib/registry/hooks/use-highlighted-code.svelte.js";
+	import { useHighlightedCode } from "#lib/registry/hooks/use-highlighted-code.svelte.js";
 
 	const output = `$ pnpm test
 \x1b[32m✓\x1b[39m src/format.test.ts \x1b[2m(4 tests)\x1b[22m

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Table from "$lib/registry/ui/table/index.js";
+	import * as Table from "#lib/registry/ui/table/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 

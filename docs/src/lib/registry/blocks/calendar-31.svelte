@@ -1,10 +1,10 @@
 <script lang="ts">
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import Calendar from "#lib/registry/ui/calendar/calendar.svelte";
 	import PlusIcon from "@lucide/svelte/icons/plus";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import { CalendarDate, getLocalTimeZone, type DateValue } from "@internationalized/date";
 	import { formatDateRange } from "little-date";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import Calendar from "$lib/registry/ui/calendar/calendar.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const events = [
 		{

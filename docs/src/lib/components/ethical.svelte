@@ -1,11 +1,13 @@
 <script lang="ts">
-	import { dev, browser } from "$app/environment";
+	import { dev, browser } from "$app/env";
 	import { beforeNavigate } from "$app/navigation";
 
 	beforeNavigate((navigation) => {
-		const isDocIndex = navigation.from?.route.id === "/(app)/(layout)/docs";
+		if (navigation.shallow && navigation.type === "goto") return;
+
+		const isDocIndex = navigation.from?.route.id === "/(app)/(layout)/docs/[...slug]";
 		if (isDocIndex) return;
-		const goingToDocIndex = navigation.to?.route.id === "/(app)/(layout)/docs";
+		const goingToDocIndex = navigation.to?.route.id === "/(app)/(layout)/docs/[...slug]";
 		if (goingToDocIndex) return;
 		refreshEthicalAds();
 	});

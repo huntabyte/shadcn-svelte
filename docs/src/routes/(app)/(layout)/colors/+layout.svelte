@@ -1,12 +1,12 @@
 <script lang="ts">
-	import Announcement from "$lib/components/announcement.svelte";
-	import ColorsNav from "$lib/components/colors-nav.svelte";
-	import Metadata from "$lib/components/metadata.svelte";
-	import PageActions from "$lib/components/page-header/page-actions.svelte";
-	import PageHeaderDescription from "$lib/components/page-header/page-header-description.svelte";
-	import PageHeaderHeading from "$lib/components/page-header/page-header-heading.svelte";
-	import PageHeader from "$lib/components/page-header/page-header.svelte";
-	import Button from "$lib/registry/ui/button/button.svelte";
+	import Announcement from "#lib/components/announcement.svelte";
+	import ColorsNav from "#lib/components/colors-nav.svelte";
+	import Metadata from "#lib/components/metadata.svelte";
+	import PageActions from "#lib/components/page-header/page-actions.svelte";
+	import PageHeaderDescription from "#lib/components/page-header/page-header-description.svelte";
+	import PageHeaderHeading from "#lib/components/page-header/page-header-heading.svelte";
+	import PageHeader from "#lib/components/page-header/page-header.svelte";
+	import Button from "#lib/registry/ui/button/button.svelte";
 
 	const title = "Tailwind Colors in Every Format";
 	const description =

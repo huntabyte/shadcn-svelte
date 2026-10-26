@@ -1,16 +1,16 @@
 <script lang="ts">
-	import CardsActivityGoal from "$lib/components/cards/activity-goal.svelte";
-	import CardsCalendar from "$lib/components/cards/calendar.svelte";
-	import CardsChat from "$lib/components/cards/chat.svelte";
-	import CardsCookieSettings from "$lib/components/cards/cookie-settings.svelte";
-	import CardsCreateAccount from "$lib/components/cards/create-account.svelte";
-	import CardsExerciseMinutes from "$lib/components/cards/exercise-minutes.svelte";
-	import CardsForms from "$lib/components/cards/forms.svelte";
-	import CardsPayments from "$lib/components/cards/payments.svelte";
-	import CardsReportIssue from "$lib/components/cards/report-issue.svelte";
-	import CardsShare from "$lib/components/cards/share.svelte";
-	import CardsStats from "$lib/components/cards/stats.svelte";
-	import CardsTeamMembers from "$lib/components/cards/team-members.svelte";
+	import CardsActivityGoal from "#lib/components/cards/activity-goal.svelte";
+	import CardsCalendar from "#lib/components/cards/calendar.svelte";
+	import CardsChat from "#lib/components/cards/chat.svelte";
+	import CardsCookieSettings from "#lib/components/cards/cookie-settings.svelte";
+	import CardsCreateAccount from "#lib/components/cards/create-account.svelte";
+	import CardsExerciseMinutes from "#lib/components/cards/exercise-minutes.svelte";
+	import CardsForms from "#lib/components/cards/forms.svelte";
+	import CardsPayments from "#lib/components/cards/payments.svelte";
+	import CardsReportIssue from "#lib/components/cards/report-issue.svelte";
+	import CardsShare from "#lib/components/cards/share.svelte";
+	import CardsStats from "#lib/components/cards/stats.svelte";
+	import CardsTeamMembers from "#lib/components/cards/team-members.svelte";
 </script>
 
 <div

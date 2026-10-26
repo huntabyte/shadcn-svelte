@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { components } from "$content/index.js";
-	import { PAGES_NEW } from "$lib/navigation.js";
+	import { components } from "#content/index.js";
+	import { PAGES_NEW } from "#lib/navigation.js";
 
 	let { variant = "all" }: { variant?: "all" | "new" } = $props();
 

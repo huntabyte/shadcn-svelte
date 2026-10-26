@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Progress } from "$lib/registry/ui/progress/index.js";
+	import { Progress } from "#lib/registry/ui/progress/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 

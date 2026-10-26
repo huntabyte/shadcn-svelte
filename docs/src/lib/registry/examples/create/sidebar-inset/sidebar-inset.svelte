@@ -1,8 +1,8 @@
 <script lang="ts">
 	/* eslint-disable @typescript-eslint/no-explicit-any */
-	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import * as Collapsible from "#lib/registry/ui/collapsible/index.js";
+	import * as Sidebar from "#lib/registry/ui/sidebar/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
 
 	const data = {
 		navMain: [

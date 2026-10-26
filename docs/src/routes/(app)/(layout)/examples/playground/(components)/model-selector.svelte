@@ -1,12 +1,12 @@
 <script lang="ts">
+	import * as Command from "#lib/registry/ui/command/index.js";
+	import * as HoverCard from "#lib/registry/ui/hover-card/index.js";
+	import * as Popover from "#lib/registry/ui/popover/index.js";
 	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
+	import { buttonVariants } from "#lib/registry/ui/button/index.js";
+	import { Label } from "#lib/registry/ui/label/index.js";
 	import { useId } from "bits-ui";
 	import { tick } from "svelte";
-	import * as Command from "$lib/registry/ui/command/index.js";
-	import * as HoverCard from "$lib/registry/ui/hover-card/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
 	import ModelItem from "./model-item.svelte";
 	import type { Model, ModelType } from "../(data)/models.js";
 

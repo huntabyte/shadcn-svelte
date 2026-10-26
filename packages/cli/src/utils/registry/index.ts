@@ -240,7 +240,10 @@ export function resolveItemFilePath(
 	}
 
 	if (item.name === "utils") {
-		const utils = config.resolvedPaths.utils;
+		const utils =
+			config.aliases.utils.startsWith("#") && config.typescript
+				? config.resolvedPaths.utils.replace(/\.js$/, ".ts")
+				: config.resolvedPaths.utils;
 		if (utils.match(/.*\.(ts|js)$/)) return utils;
 		else return `${utils}.ts`;
 	}

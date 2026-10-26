@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import BarVisualizer, { type AgentState } from "../../elevenlabs/bar-visualizer.svelte";
 
 	let agentState: AgentState = $state("speaking");

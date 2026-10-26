@@ -1,8 +1,8 @@
 <script lang="ts">
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button, type ButtonProps } from "#lib/registry/ui/button/index.js";
+	import { cn } from "#lib/utils.js";
 	import { onDestroy } from "svelte";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { Button, type ButtonProps } from "$lib/registry/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),

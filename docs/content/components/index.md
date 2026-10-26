@@ -4,7 +4,7 @@ description: Here you can find all the components available in the library. We a
 ---
 
 <script>
-	import ComponentsList from "$lib/components/components-list.svelte";
+	import ComponentsList from "#lib/components/components-list.svelte";
 </script>
 
 ## New Components

@@ -1,7 +1,7 @@
 <script lang="ts">
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
 	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import type { PaymentsTableFeatures } from "./payments-features.js";
 	import type { Row } from "@tanstack/svelte-table";
 

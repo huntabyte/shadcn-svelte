@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import {
 		Card,
 		CardContent,
@@ -7,8 +7,8 @@
 		CardFooter,
 		CardHeader,
 		CardTitle,
-	} from "$lib/registry/ui/card/index.js";
-	import { Item, ItemContent, ItemDescription } from "$lib/registry/ui/item/index.js";
+	} from "#lib/registry/ui/card/index.js";
+	import { Item, ItemContent, ItemDescription } from "#lib/registry/ui/item/index.js";
 	const chartData = [
 		{ month: "Dec", amount: 800 },
 		{ month: "Jan", amount: 1100 },

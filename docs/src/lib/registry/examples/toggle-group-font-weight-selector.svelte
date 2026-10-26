@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
+	import * as Field from "#lib/registry/ui/field/index.js";
+	import * as ToggleGroup from "#lib/registry/ui/toggle-group/index.js";
 
 	const weights = [
 		{ value: "light", label: "Light", class: "font-light" },

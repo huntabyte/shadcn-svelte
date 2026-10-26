@@ -7,16 +7,16 @@ links:
 ---
 
 <script>
-	import * as Alert from "$lib/registry/ui/alert/index.js";
+	import * as Alert from "#lib/registry/ui/alert/index.js";
 	import TriangleAlertIcon from "@lucide/svelte/icons/triangle-alert";
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import ComponentSource from "$lib/components/component-source.svelte";
-	import Callout from "$lib/components/callout.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
-	import PMInstall from "$lib/components/pm-install.svelte";
-	import Steps from "$lib/components/steps.svelte";
-	import InstallTabs from "$lib/components/install-tabs.svelte";
-	import Step from "$lib/components/step.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import ComponentSource from "#lib/components/component-source.svelte";
+	import Callout from "#lib/components/callout.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
+	import PMInstall from "#lib/components/pm-install.svelte";
+	import Steps from "#lib/components/steps.svelte";
+	import InstallTabs from "#lib/components/install-tabs.svelte";
+	import Step from "#lib/components/step.svelte";
 
 	let { viewerData } = $props();
 </script>
@@ -41,7 +41,7 @@ We designed the `Chart` component with composition in mind. **You build your cha
 
 ```svelte showLineNumbers /Chart.Container/ /Chart.Tooltip/
 <script lang="ts">
-  import * as Chart from "$lib/components/ui/chart/index.js";
+  import * as Chart from "#lib/components/ui/chart/index.js";
   import { BarChart } from "layerchart";
 
   const data = [
@@ -156,7 +156,7 @@ The chart config holds configuration for the chart. This is where you place huma
 
 ```svelte title="lib/components/example-chart.svelte" showLineNumbers
 <script lang="ts">
-  import * as Chart from "$lib/components/ui/chart/index.js";
+  import * as Chart from "#lib/components/ui/chart/index.js";
 
   const chartConfig = {
     desktop: {
@@ -358,7 +358,7 @@ This allows you to share config and color tokens between charts. It can also wor
 ```svelte
 <script lang="ts">
   import MonitorIcon from "@lucide/svelte/icons/monitor";
-  import * as Chart from "$lib/components/ui/chart/index.js";
+  import * as Chart from "#lib/components/ui/chart/index.js";
 
   const chartConfig = {
     desktop: {

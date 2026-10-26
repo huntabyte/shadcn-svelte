@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Drawer from "$lib/registry/ui/drawer/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import * as Drawer from "#lib/registry/ui/drawer/index.js";
+	import { buttonVariants } from "#lib/registry/ui/button/index.js";
 
 	const SNAP_POINTS = ["496px", 1];
 

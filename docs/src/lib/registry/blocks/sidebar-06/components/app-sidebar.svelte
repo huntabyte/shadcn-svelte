@@ -132,8 +132,8 @@
 </script>
 
 <script lang="ts">
+	import * as Sidebar from "#lib/registry/ui/sidebar/index.js";
 	import GalleryVerticalEndIcon from "@lucide/svelte/icons/gallery-vertical-end";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import NavMain from "./nav-main.svelte";
 	import SidebarOptInForm from "./sidebar-opt-in-form.svelte";
 	import type { ComponentProps } from "svelte";

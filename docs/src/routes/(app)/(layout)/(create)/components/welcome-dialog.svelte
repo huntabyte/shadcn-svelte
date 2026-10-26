@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as Dialog from "#lib/registry/ui/dialog/index.js";
+	import Logo from "#lib/components/logo.svelte";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import { PersistedState } from "runed";
-	import * as Dialog from "$lib/registry/ui/dialog/index.js";
-	import Logo from "$lib/components/logo.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const dismissed = new PersistedState("shadcn-create-welcome-dialog", false);
 </script>

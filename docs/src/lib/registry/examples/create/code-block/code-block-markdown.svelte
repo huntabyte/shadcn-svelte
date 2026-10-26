@@ -1,8 +1,8 @@
 <script lang="ts">
+	import MarkdownCodeBlock from "#lib/components/code-block/markdown-code-block.svelte";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import { onDestroy } from "svelte";
 	import { Streamdown } from "svelte-streamdown";
-	import MarkdownCodeBlock from "$lib/components/code-block/markdown-code-block.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const answer = `Wrap the input in a \`useDebounce\` hook:

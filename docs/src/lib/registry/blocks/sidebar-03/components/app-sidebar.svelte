@@ -142,8 +142,8 @@
 </script>
 
 <script lang="ts">
+	import * as Sidebar from "#lib/registry/ui/sidebar/index.js";
 	import GalleryVerticalEndIcon from "@lucide/svelte/icons/gallery-vertical-end";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import type { ComponentProps } from "svelte";
 	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();
 </script>

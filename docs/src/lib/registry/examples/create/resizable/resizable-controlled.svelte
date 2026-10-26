@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Resizable from "$lib/registry/ui/resizable/index.js";
+	import * as Resizable from "#lib/registry/ui/resizable/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	let sizes = $state([30, 70]);

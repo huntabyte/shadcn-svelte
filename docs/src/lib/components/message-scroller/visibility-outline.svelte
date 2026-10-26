@@ -1,10 +1,10 @@
 <script lang="ts">
-	import * as HoverCard from "$lib/registry/ui/hover-card/index.js";
-	import { getMessageText } from "$lib/ai-sdk.js";
+	import * as HoverCard from "#lib/registry/ui/hover-card/index.js";
+	import { getMessageText } from "#lib/ai-sdk.js";
 	import {
 		useMessageScroller,
 		useMessageScrollerVisibility,
-	} from "$lib/registry/ui/message-scroller/index.js";
+	} from "#lib/registry/ui/message-scroller/index.js";
 	import type { UIMessage } from "ai";
 
 	let { userMessages }: { userMessages: UIMessage[] } = $props();

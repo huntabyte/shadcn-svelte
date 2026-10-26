@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
-	import { Slider } from "$lib/registry/ui/slider/index.js";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as ToggleGroup from "#lib/registry/ui/toggle-group/index.js";
+	import { Slider } from "#lib/registry/ui/slider/index.js";
 
 	let position = $state([50]);
 

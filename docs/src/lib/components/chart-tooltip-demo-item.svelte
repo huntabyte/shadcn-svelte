@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { TooltipPayload } from "$lib/registry/ui/chart/chart-utils.js";
-	import { cn, type WithElementRef, type WithoutChildren } from "$lib/utils.js";
+	import { cn, type WithElementRef, type WithoutChildren } from "#lib/utils.js";
+	import type { TooltipPayload } from "#lib/registry/ui/chart/chart-utils.js";
 	import type { Snippet } from "svelte";
 	import type { HTMLAttributes } from "svelte/elements";
 

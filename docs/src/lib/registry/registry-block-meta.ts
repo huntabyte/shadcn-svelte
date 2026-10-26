@@ -1,4 +1,4 @@
-import { type BlockName } from "$lib/blocks.js";
+import { type BlockName } from "#lib/blocks.js";
 
 type BlockMeta = {
 	iframeHeight?: string;

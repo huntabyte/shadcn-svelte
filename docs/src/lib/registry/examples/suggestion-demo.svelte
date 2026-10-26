@@ -1,10 +1,10 @@
 <script lang="ts">
+	import * as Bubble from "#lib/registry/ui/bubble/index.js";
+	import * as InputGroup from "#lib/registry/ui/input-group/index.js";
+	import * as Message from "#lib/registry/ui/message/index.js";
 	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
 	import PlusIcon from "@lucide/svelte/icons/plus";
-	import * as Bubble from "$lib/registry/ui/bubble/index.js";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
-	import * as Message from "$lib/registry/ui/message/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 
 	const suggestions = [
 		"Add a dark mode toggle",

@@ -1,11 +1,11 @@
 <script lang="ts">
+	import * as Avatar from "#lib/registry/ui/avatar/index.js";
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
 	import BadgeCheckIcon from "@lucide/svelte/icons/badge-check";
 	import BellIcon from "@lucide/svelte/icons/bell";
 	import CreditCardIcon from "@lucide/svelte/icons/credit-card";
 	import LogOutIcon from "@lucide/svelte/icons/log-out";
-	import * as Avatar from "$lib/registry/ui/avatar/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 </script>
 
 <DropdownMenu.Root>

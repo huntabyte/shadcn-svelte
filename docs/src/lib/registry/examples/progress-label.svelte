@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import { Progress } from "$lib/registry/ui/progress/index.js";
+	import * as Field from "#lib/registry/ui/field/index.js";
+	import { Progress } from "#lib/registry/ui/progress/index.js";
 </script>
 
 <Field.Field class="w-full max-w-sm">

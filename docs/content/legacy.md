@@ -4,7 +4,7 @@ description: View the legacy docs for shadcn-svelte and Tailwind v3.
 ---
 
 <script>
-	import {Button} from "$lib/registry/ui/button/index.js";
+	import {Button} from "#lib/registry/ui/button/index.js";
 </script>
 
 You're looking at the docs for Svelte 5 + Tailwind v4.

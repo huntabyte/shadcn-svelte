@@ -1,9 +1,9 @@
 <script lang="ts">
+	import * as Dialog from "#lib/registry/ui/dialog/index.js";
+	import * as Trace from "#lib/registry/ui/trace/index.js";
 	import ArrowUpRightIcon from "@lucide/svelte/icons/arrow-up-right";
 	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 	import GlobeIcon from "@lucide/svelte/icons/globe";
-	import * as Dialog from "$lib/registry/ui/dialog/index.js";
-	import * as Trace from "$lib/registry/ui/trace/index.js";
 
 	const results = [
 		{

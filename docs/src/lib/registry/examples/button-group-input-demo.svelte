@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as ButtonGroup from "#lib/registry/ui/button-group/index.js";
 	import Search from "@lucide/svelte/icons/search";
-	import * as ButtonGroup from "$lib/registry/ui/button-group/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Input } from "#lib/registry/ui/input/index.js";
 </script>
 
 <ButtonGroup.Root>

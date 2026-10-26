@@ -1,9 +1,9 @@
 <script lang="ts">
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
 	import BellIcon from "@lucide/svelte/icons/bell";
 	import MailIcon from "@lucide/svelte/icons/mail";
 	import MessageSquareIcon from "@lucide/svelte/icons/message-square";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import { buttonVariants } from "#lib/registry/ui/button/index.js";
 
 	let notifications = $state({
 		email: true,

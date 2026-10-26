@@ -1,11 +1,11 @@
 <script lang="ts">
+	import * as CodeBlock from "#lib/registry/ui/code-block/index.js";
+	import * as Sheet from "#lib/registry/ui/sheet/index.js";
+	import * as Trace from "#lib/registry/ui/trace/index.js";
 	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 	import FilePenIcon from "@lucide/svelte/icons/file-pen";
 	import FilePlusIcon from "@lucide/svelte/icons/file-plus";
 	import GitCommitHorizontalIcon from "@lucide/svelte/icons/git-commit-horizontal";
-	import * as CodeBlock from "$lib/registry/ui/code-block/index.js";
-	import * as Sheet from "$lib/registry/ui/sheet/index.js";
-	import * as Trace from "$lib/registry/ui/trace/index.js";
 
 	const files = [
 		{

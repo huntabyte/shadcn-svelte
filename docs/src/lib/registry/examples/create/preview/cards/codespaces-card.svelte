@@ -1,16 +1,16 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as Empty from "$lib/registry/ui/empty/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
-	import * as Item from "$lib/registry/ui/item/index.js";
-	import * as Tabs from "$lib/registry/ui/tabs/index.js";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Separator } from "$lib/registry/ui/separator/index.js";
-	import { Spinner } from "$lib/registry/ui/spinner/index.js";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
+	import * as Empty from "#lib/registry/ui/empty/index.js";
+	import * as Field from "#lib/registry/ui/field/index.js";
+	import * as InputGroup from "#lib/registry/ui/input-group/index.js";
+	import * as Item from "#lib/registry/ui/item/index.js";
+	import * as Tabs from "#lib/registry/ui/tabs/index.js";
+	import * as Tooltip from "#lib/registry/ui/tooltip/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Separator } from "#lib/registry/ui/separator/index.js";
+	import { Spinner } from "#lib/registry/ui/spinner/index.js";
 
 	let isCreatingCodespace = $state(false);
 </script>

@@ -5,8 +5,8 @@
 		CardContent,
 		CardFooter,
 		CardHeader,
-	} from "$lib/registry/ui/card/index.js";
-	import { Skeleton } from "$lib/registry/ui/skeleton/index.js";
+	} from "#lib/registry/ui/card/index.js";
+	import { Skeleton } from "#lib/registry/ui/skeleton/index.js";
 </script>
 
 <Card>

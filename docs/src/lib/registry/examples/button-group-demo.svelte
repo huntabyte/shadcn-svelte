@@ -1,4 +1,6 @@
 <script lang="ts">
+	import * as ButtonGroup from "#lib/registry/ui/button-group/index.js";
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
 	import Archive from "@lucide/svelte/icons/archive";
 	import ArrowLeft from "@lucide/svelte/icons/arrow-left";
 	import CalendarPlus from "@lucide/svelte/icons/calendar-plus";
@@ -8,9 +10,7 @@
 	import MoreHorizontal from "@lucide/svelte/icons/more-horizontal";
 	import Tag from "@lucide/svelte/icons/tag";
 	import Trash2 from "@lucide/svelte/icons/trash-2";
-	import * as ButtonGroup from "$lib/registry/ui/button-group/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 
 	let label = $state("personal");
 </script>

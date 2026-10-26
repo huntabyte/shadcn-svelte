@@ -8,6 +8,10 @@
 </script>
 
 <script lang="ts">
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Table from "#lib/registry/ui/table/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Checkbox } from "#lib/registry/ui/checkbox/index.js";
 	import {
 		FlexRender,
 		type RowSelectionState,
@@ -18,10 +22,6 @@
 		renderSnippet,
 	} from "@tanstack/svelte-table";
 	import { createRawSnippet } from "svelte";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Table from "$lib/registry/ui/table/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
 	import ActionsCell from "./payments-actions-cell.svelte";
 	import EmailHeader from "./payments-email-header.svelte";
 	import { features } from "./payments-features.js";

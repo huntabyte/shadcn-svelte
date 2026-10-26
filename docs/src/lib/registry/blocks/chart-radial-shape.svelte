@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Chart from "#lib/registry/ui/chart/index.js";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { ArcChart, Text } from "layerchart";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Chart from "$lib/registry/ui/chart/index.js";
 
 	const chartData = [{ browser: "safari", visitors: 1260, color: "var(--color-safari)" }];
 

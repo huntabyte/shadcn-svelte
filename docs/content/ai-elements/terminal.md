@@ -4,8 +4,8 @@ description: Displays a command the agent runs, with its output as it streams.
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
 </script>
 
 <ComponentPreview name="terminal-demo" previewStyle="rhea" previewClassName="h-auto min-h-0">
@@ -28,8 +28,8 @@ Terminal is built with the [Trace](/docs/components/trace) and [Code Block](/doc
 
 ```svelte showLineNumbers
 <script lang="ts">
-  import * as CodeBlock from "$lib/components/ui/code-block/index.js";
-  import * as Trace from "$lib/components/ui/trace/index.js";
+  import * as CodeBlock from "#lib/components/ui/code-block/index.js";
+  import * as Trace from "#lib/components/ui/trace/index.js";
 </script>
 ```
 

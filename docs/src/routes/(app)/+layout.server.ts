@@ -1,4 +1,4 @@
-import { parseUserConfigJson, USER_CONFIG_COOKIE_NAME } from "$lib/user-config.svelte.js";
+import { parseUserConfigJson, USER_CONFIG_COOKIE_NAME } from "#lib/user-config.svelte.js";
 import type { LayoutServerLoad } from "./$types.js";
 
 export const load: LayoutServerLoad = async ({ cookies }) => {

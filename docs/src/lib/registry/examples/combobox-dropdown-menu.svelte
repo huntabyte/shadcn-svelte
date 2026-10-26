@@ -1,13 +1,13 @@
 <script lang="ts">
+	import * as Command from "#lib/registry/ui/command/index.js";
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
 	import CalendarIcon from "@lucide/svelte/icons/calendar";
 	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
 	import TagsIcon from "@lucide/svelte/icons/tags";
 	import TrashIcon from "@lucide/svelte/icons/trash";
 	import UserIcon from "@lucide/svelte/icons/user";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import { tick } from "svelte";
-	import * as Command from "$lib/registry/ui/command/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const labels = [
 		"feature",

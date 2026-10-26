@@ -1,3 +1,4 @@
+vi.mock("../../src/utils/get-env-proxy.js", () => ({ getEnvProxy: () => undefined }));
 import path from "node:path";
 import { fetch } from "node-fetch-native";
 import { describe, it, expect, vi, beforeEach } from "vitest";
@@ -328,7 +329,11 @@ describe("Registry Utilities", () => {
 		});
 
 		it("should resolve path for utils", () => {
-			const config = { ...mockConfig };
+			const config = {
+				...mockConfig,
+				aliases: { ...mockConfig.aliases, utils: "$lib/utils" },
+				typescript: true,
+			};
 			const item: RegistryItem = {
 				name: "utils",
 				type: "registry:lib",
@@ -355,6 +360,13 @@ describe("Registry Utilities", () => {
 			);
 
 			// includes a file extension
+			config.aliases.utils = "#lib/utils.js";
+			config.resolvedPaths.utils += ".js";
+			expect(toPosixPath(resolveItemFilePath(config, item, item.files![0]!))).toBe(
+				"/path/to/cwd/some-other-path/shadcn-utils.ts"
+			);
+			config.resolvedPaths.utils = config.resolvedPaths.utils.slice(0, -3);
+
 			config.resolvedPaths.utils += ".ts";
 			expect(toPosixPath(resolveItemFilePath(config, item, item.files![0]!))).toBe(
 				"/path/to/cwd/some-other-path/shadcn-utils.ts"

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import * as CodeBlock from "$lib/registry/ui/code-block/index.js";
-	import * as Dialog from "$lib/registry/ui/dialog/index.js";
-	import * as Sheet from "$lib/registry/ui/sheet/index.js";
-	import * as Trace from "$lib/registry/ui/trace/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import * as CodeBlock from "#lib/registry/ui/code-block/index.js";
+	import * as Dialog from "#lib/registry/ui/dialog/index.js";
+	import * as Sheet from "#lib/registry/ui/sheet/index.js";
+	import * as Trace from "#lib/registry/ui/trace/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 

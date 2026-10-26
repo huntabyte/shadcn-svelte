@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { cn, type WithoutChildrenOrChild } from "#lib/utils.js";
 	import { ContextMenu as ContextMenuPrimitive } from "bits-ui";
-	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
 	import ContextMenuPortal from "./context-menu-portal.svelte";
 	import type { ComponentProps } from "svelte";
 

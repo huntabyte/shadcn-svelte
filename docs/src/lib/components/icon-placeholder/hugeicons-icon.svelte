@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { HugeiconsIcon } from "@hugeicons/svelte";
-	import type { HugeIconsIconName } from "$lib/registry/icons/__hugeicons__/index.js";
 	import { hugeiconsIconLoader } from "./icon-loader.js";
+	import type { HugeIconsIconName } from "#lib/registry/icons/__hugeicons__/index.js";
 	import type { ComponentProps, Snippet } from "svelte";
 
 	type Props = Omit<ComponentProps<typeof HugeiconsIcon>, "icon"> & {

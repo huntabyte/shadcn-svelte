@@ -1,11 +1,11 @@
 <script lang="ts">
-	import * as Avatar from "$lib/registry/ui/avatar/index.js";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Command from "$lib/registry/ui/command/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as Avatar from "#lib/registry/ui/avatar/index.js";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Command from "#lib/registry/ui/command/index.js";
+	import * as Popover from "#lib/registry/ui/popover/index.js";
+	import * as Tooltip from "#lib/registry/ui/tooltip/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const users = [

@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as Attachment from "#lib/registry/ui/attachment/index.js";
 	import FileCodeIcon from "@lucide/svelte/icons/file-code";
 	import XIcon from "@lucide/svelte/icons/x";
-	import * as Attachment from "$lib/registry/ui/attachment/index.js";
-	import { Spinner } from "$lib/registry/ui/spinner/index.js";
+	import { Spinner } from "#lib/registry/ui/spinner/index.js";
 
 	const images = [
 		{

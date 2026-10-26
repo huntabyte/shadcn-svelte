@@ -7,15 +7,15 @@ links:
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import ComponentSource from "$lib/components/component-source.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
-	import PMInstall from "$lib/components/pm-install.svelte";
-	import Steps from "$lib/components/steps.svelte";
-	import InstallTabs from "$lib/components/install-tabs.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import ComponentSource from "#lib/components/component-source.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
+	import PMInstall from "#lib/components/pm-install.svelte";
+	import Steps from "#lib/components/steps.svelte";
+	import InstallTabs from "#lib/components/install-tabs.svelte";
 
 	let { viewerData } = $props();
-	import Step from "$lib/components/step.svelte";
+	import Step from "#lib/components/step.svelte";
 </script>
 
 <ComponentPreview name="code-block-demo" previewStyle="rhea" previewClassName="h-auto min-h-0">
@@ -72,7 +72,7 @@ Copy and paste the following code into your project.
 
 ```svelte showLineNumbers
 <script lang="ts">
-  import * as CodeBlock from "$lib/components/ui/code-block/index.js";
+  import * as CodeBlock from "#lib/components/ui/code-block/index.js";
 </script>
 ```
 
@@ -353,7 +353,7 @@ Put a `CodeBlock.Root` between paragraphs inside a [Message](/docs/components/me
 
 ```svelte showLineNumbers
 <script lang="ts">
-  import { useHighlightedCode } from "$lib/hooks/use-highlighted-code.svelte.js";
+  import { useHighlightedCode } from "#lib/hooks/use-highlighted-code.svelte.js";
 
   const lines = useHighlightedCode(
     () => code,
@@ -401,7 +401,7 @@ ANSI colors do not carry from one line to the next.
 `highlightCode` is async and returns plain data, so you can call it in a `load` function. Shiki then stays out of the client bundle.
 
 ```ts showLineNumbers title="src/routes/+page.server.ts"
-import { highlightCode } from "$lib/highlighter.js";
+import { highlightCode } from "#lib/highlighter.js";
 
 const code = `export function add(a: number, b: number) {
   return a + b;
@@ -416,7 +416,7 @@ export async function load() {
 
 ```svelte showLineNumbers title="src/routes/+page.svelte"
 <script lang="ts">
-  import * as CodeBlock from "$lib/components/ui/code-block/index.js";
+  import * as CodeBlock from "#lib/components/ui/code-block/index.js";
 
   let { data } = $props();
 </script>
@@ -454,8 +454,8 @@ The `code` component gets `incomplete`, which is `true` until the closing fence 
 
 ```svelte showLineNumbers title="markdown-code-block.svelte"
 <script lang="ts">
-  import { useHighlightedCode } from "$lib/hooks/use-highlighted-code.svelte.js";
-  import * as CodeBlock from "$lib/components/ui/code-block/index.js";
+  import { useHighlightedCode } from "#lib/hooks/use-highlighted-code.svelte.js";
+  import * as CodeBlock from "#lib/components/ui/code-block/index.js";
 
   let {
     token,

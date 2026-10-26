@@ -1,12 +1,12 @@
 <script lang="ts">
+	import * as HoverCard from "#lib/registry/ui/hover-card/index.js";
+	import * as Tabs from "#lib/registry/ui/tabs/index.js";
+	import Metadata from "#lib/components/metadata.svelte";
 	import RotateCCWIcon from "@lucide/svelte/icons/rotate-ccw";
-	import * as HoverCard from "$lib/registry/ui/hover-card/index.js";
-	import * as Tabs from "$lib/registry/ui/tabs/index.js";
-	import Metadata from "$lib/components/metadata.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
-	import { Separator } from "$lib/registry/ui/separator/index.js";
-	import { Textarea } from "$lib/registry/ui/textarea/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Label } from "#lib/registry/ui/label/index.js";
+	import { Separator } from "#lib/registry/ui/separator/index.js";
+	import { Textarea } from "#lib/registry/ui/textarea/index.js";
 	import {
 		CodeViewer,
 		MaxLengthSelector,

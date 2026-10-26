@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as Trace from "#lib/registry/ui/trace/index.js";
+	import { createChat } from "#lib/ai-sdk.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import { Chat } from "@ai-sdk/svelte";
-	import * as Trace from "$lib/registry/ui/trace/index.js";
-	import { createChat } from "$lib/ai-sdk.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import type { UIMessage } from "ai";
 

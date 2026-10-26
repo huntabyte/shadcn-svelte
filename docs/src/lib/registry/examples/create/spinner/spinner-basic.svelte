@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Spinner } from "$lib/registry/ui/spinner/index.js";
+	import { Spinner } from "#lib/registry/ui/spinner/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 

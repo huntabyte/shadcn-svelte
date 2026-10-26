@@ -1,15 +1,15 @@
 <script lang="ts">
+	import * as Command from "#lib/registry/ui/command/index.js";
+	import * as Popover from "#lib/registry/ui/popover/index.js";
 	import CircleIcon from "@lucide/svelte/icons/circle";
 	import CircleArrowUpIcon from "@lucide/svelte/icons/circle-arrow-up";
 	import CircleCheckIcon from "@lucide/svelte/icons/circle-check";
 	import CircleHelpIcon from "@lucide/svelte/icons/circle-help";
 	import CircleXIcon from "@lucide/svelte/icons/circle-x";
+	import { buttonVariants } from "#lib/registry/ui/button/index.js";
+	import { cn } from "#lib/utils.js";
 	import { useId } from "bits-ui";
 	import { type Component, tick } from "svelte";
-	import * as Command from "$lib/registry/ui/command/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
 
 	type Status = {
 		value: string;

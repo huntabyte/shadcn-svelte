@@ -5,9 +5,9 @@ date: 2026-10-05
 ---
 
 <script>
-  import ComponentPreview from "$lib/components/component-preview.svelte";
-  import PMAddComp from "$lib/components/pm-add-comp.svelte";
-  import Button from "$lib/registry/ui/button/button.svelte";
+  import ComponentPreview from "#lib/components/component-preview.svelte";
+  import PMAddComp from "#lib/components/pm-add-comp.svelte";
+  import Button from "#lib/registry/ui/button/button.svelte";
 </script>
 
 Today, we're releasing [**Questionnaire**](/docs/components/questionnaire),

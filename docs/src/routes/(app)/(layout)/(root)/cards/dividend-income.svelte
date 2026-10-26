@@ -1,6 +1,6 @@
 <script lang="ts">
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import {
 		Card,
 		CardAction,
@@ -8,14 +8,14 @@
 		CardDescription,
 		CardHeader,
 		CardTitle,
-	} from "$lib/registry/ui/card/index.js";
+	} from "#lib/registry/ui/card/index.js";
 	import {
 		Item,
 		ItemContent,
 		ItemDescription,
 		ItemGroup,
 		ItemTitle,
-	} from "$lib/registry/ui/item/index.js";
+	} from "#lib/registry/ui/item/index.js";
 	const HOLDINGS = [
 		{
 			name: "Vanguard",

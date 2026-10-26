@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as HoverCard from "$lib/registry/ui/hover-card/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import * as HoverCard from "#lib/registry/ui/hover-card/index.js";
+	import { buttonVariants } from "#lib/registry/ui/button/index.js";
 </script>
 
 <HoverCard.Root openDelay={10} closeDelay={100}>

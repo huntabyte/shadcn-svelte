@@ -1,6 +1,6 @@
 <script lang="ts">
+	import * as Trace from "#lib/registry/ui/trace/index.js";
 	import GitBranchIcon from "@lucide/svelte/icons/git-branch";
-	import * as Trace from "$lib/registry/ui/trace/index.js";
 </script>
 
 <Trace.Root class="max-w-sm">

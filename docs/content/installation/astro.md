@@ -4,13 +4,13 @@ description: How to setup shadcn-svelte in an Astro project.
 ---
 
 <script>
-	import * as Alert from "$lib/registry/ui/alert/index.js";
-	import Steps from "$lib/components/steps.svelte";
-	import Callout from "$lib/components/callout.svelte";
-	import PMCreate from "$lib/components/pm-create.svelte";
-	import PMExecute from "$lib/components/pm-execute.svelte";
-	import PMInstall from "$lib/components/pm-install.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
+	import * as Alert from "#lib/registry/ui/alert/index.js";
+	import Steps from "#lib/components/steps.svelte";
+	import Callout from "#lib/components/callout.svelte";
+	import PMCreate from "#lib/components/pm-create.svelte";
+	import PMExecute from "#lib/components/pm-execute.svelte";
+	import PMInstall from "#lib/components/pm-install.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
 </script>
 
 <Steps>
@@ -80,8 +80,8 @@ Add the following code to the `tsconfig.json` file to resolve paths:
     // ...
     "baseUrl": ".",
     "paths": {
-      "$lib": ["./src/lib"],
-      "$lib/*": ["./src/lib/*"]
+      "#lib": ["./src/lib"],
+      "#lib/*": ["./src/lib/*"]
     }
     // ...
   }
@@ -124,7 +124,7 @@ The command above will add the `Button` component to your project. You can then 
 
 ```astro title="index.astro" {2,10} showLineNumbers
 ---
-import { Button } from "$lib/components/ui/button/index.js";
+import { Button } from "#lib/components/ui/button/index.js";
 ---
 
 <html lang="en">

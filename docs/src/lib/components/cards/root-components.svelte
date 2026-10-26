@@ -9,8 +9,8 @@
 		ButtonGroupDemo,
 		SpinnerEmptyDemo,
 		ButtonGroupPopoverDemo,
-	} from "$lib/registry/examples/index.js";
-	import { FieldSeparator } from "$lib/registry/ui/field/index.js";
+	} from "#lib/registry/examples/index.js";
+	import { FieldSeparator } from "#lib/registry/ui/field/index.js";
 	import AppearanceSettings from "./appearance-settings.svelte";
 	import FieldCheckbox from "./field-checkbox.svelte";
 	import FieldHear from "./field-hear.svelte";

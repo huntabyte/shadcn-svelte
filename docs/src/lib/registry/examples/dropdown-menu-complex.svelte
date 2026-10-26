@@ -1,4 +1,5 @@
 <script lang="ts">
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
 	import BellIcon from "@lucide/svelte/icons/bell";
 	import CircleQuestionMarkIcon from "@lucide/svelte/icons/circle-question-mark";
 	import CreditCardIcon from "@lucide/svelte/icons/credit-card";
@@ -24,8 +25,7 @@
 	import ShieldIcon from "@lucide/svelte/icons/shield";
 	import SunIcon from "@lucide/svelte/icons/sun";
 	import UserIcon from "@lucide/svelte/icons/user";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import { buttonVariants } from "#lib/registry/ui/button/index.js";
 
 	let notifications = $state({
 		email: true,

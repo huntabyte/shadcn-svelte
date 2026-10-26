@@ -4,8 +4,8 @@ description: Displays the links the agent used for a reply.
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
 </script>
 
 <ComponentPreview name="sources-demo" previewStyle="rhea" previewClassName="h-auto min-h-0">
@@ -28,7 +28,7 @@ Sources is built with the [Trace](/docs/components/trace) component.
 
 ```svelte showLineNumbers
 <script lang="ts">
-  import * as Trace from "$lib/components/ui/trace/index.js";
+  import * as Trace from "#lib/components/ui/trace/index.js";
 </script>
 ```
 

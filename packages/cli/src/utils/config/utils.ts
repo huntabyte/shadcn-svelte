@@ -135,7 +135,11 @@ export async function promptForAliases(options: PromptForAliasesOptions) {
 	const libAlias = await promptAlias("lib", options.libAliasDefault ?? "$lib", options);
 	const componentAlias = await promptAlias("components", `${libAlias}/components`, options);
 	const uiAlias = await promptAlias("ui", `${componentAlias}/ui`, options);
-	const utilsAlias = await promptAlias("utils", `${libAlias}/utils`, options);
+	const utilsAlias = await promptAlias(
+		"utils",
+		`${libAlias}/utils${libAlias.startsWith("#") ? ".js" : ""}`,
+		options
+	);
 	const hooksAlias = await promptAlias("hooks", `${libAlias}/hooks`, options);
 
 	return {

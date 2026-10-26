@@ -1,14 +1,14 @@
 <script lang="ts">
+	import * as ButtonGroup from "#lib/registry/ui/button-group/index.js";
+	import * as Field from "#lib/registry/ui/field/index.js";
+	import * as RadioGroup from "#lib/registry/ui/radio-group/index.js";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import MinusIcon from "@tabler/icons-svelte/icons/minus";
 	import PlusIcon from "@tabler/icons-svelte/icons/plus";
-	import * as ButtonGroup from "$lib/registry/ui/button-group/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
-	import { Switch } from "$lib/registry/ui/switch/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Input } from "#lib/registry/ui/input/index.js";
+	import { Label } from "#lib/registry/ui/label/index.js";
+	import { Switch } from "#lib/registry/ui/switch/index.js";
 
 	const accents = [
 		{

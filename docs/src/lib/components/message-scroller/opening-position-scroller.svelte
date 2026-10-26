@@ -1,9 +1,9 @@
 <script lang="ts">
+	import * as Bubble from "#lib/registry/ui/bubble/index.js";
+	import * as MessageScroller from "#lib/registry/ui/message-scroller/index.js";
+	import * as Message from "#lib/registry/ui/message/index.js";
+	import { useMessageScroller } from "#lib/registry/ui/message-scroller/index.js";
 	import { watch } from "runed";
-	import * as Bubble from "$lib/registry/ui/bubble/index.js";
-	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
-	import * as Message from "$lib/registry/ui/message/index.js";
-	import { useMessageScroller } from "$lib/registry/ui/message-scroller/index.js";
 
 	let {
 		position,

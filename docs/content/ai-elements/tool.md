@@ -4,8 +4,8 @@ description: Displays a tool call the agent makes, from input to output.
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
 </script>
 
 <ComponentPreview name="tool-demo" previewStyle="rhea" previewClassName="h-auto min-h-0">
@@ -28,8 +28,8 @@ Tool is built with the [Trace](/docs/components/trace) and [Code Block](/docs/co
 
 ```svelte showLineNumbers
 <script lang="ts">
-  import * as CodeBlock from "$lib/components/ui/code-block/index.js";
-  import * as Trace from "$lib/components/ui/trace/index.js";
+  import * as CodeBlock from "#lib/components/ui/code-block/index.js";
+  import * as Trace from "#lib/components/ui/trace/index.js";
 </script>
 ```
 

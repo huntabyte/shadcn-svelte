@@ -2,7 +2,6 @@ import { Context, watch } from "runed";
 import { onDestroy, tick } from "svelte";
 import { attachRef, type ReadableBoxedValues, type WritableBoxedValues } from "svelte-toolbelt";
 import { createSubscriber } from "svelte/reactivity";
-import type { RefAttachment } from "$lib/internal/types.js";
 import {
 	getContentBottom,
 	getElementScrollTop,
@@ -27,6 +26,7 @@ import {
 	SCROLL_POSITION_EPSILON,
 	USER_SCROLL_KEYS,
 } from "./types.js";
+import type { RefAttachment } from "#lib/internal/types.js";
 import type {
 	MessageScrollerButtonDirection,
 	MessageScrollerButtonProps,

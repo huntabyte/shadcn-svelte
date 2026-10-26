@@ -1,11 +1,11 @@
 <script lang="ts">
+	import * as InputGroup from "#lib/registry/ui/input-group/index.js";
+	import * as Popover from "#lib/registry/ui/popover/index.js";
 	import IconCheck from "@tabler/icons-svelte/icons/check";
 	import IconCopy from "@tabler/icons-svelte/icons/copy";
 	import IconInfoCircle from "@tabler/icons-svelte/icons/info-circle";
 	import IconStar from "@tabler/icons-svelte/icons/star";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
+	import { UseClipboard } from "#lib/hooks/use-clipboard.svelte.js";
 
 	let isFavorite = $state(false);
 

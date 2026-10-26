@@ -1,13 +1,13 @@
 <script lang="ts">
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as FieldGroup from "#lib/registry/ui/field/index.js";
+	import * as Tooltip from "#lib/registry/ui/tooltip/index.js";
+	import Cta from "#lib/components/cta.svelte";
+	import Ethical from "#lib/components/ethical.svelte";
+	import Separator from "#lib/registry/ui/separator/separator.svelte";
 	import SquareTerminal from "@lucide/svelte/icons/square-terminal";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as FieldGroup from "$lib/registry/ui/field/index.js";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import Cta from "$lib/components/cta.svelte";
-	import Ethical from "$lib/components/ethical.svelte";
-	import Separator from "$lib/registry/ui/separator/separator.svelte";
-	import { FONT_HEADING_OPTIONS, FONTS } from "$lib/fonts.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { FONT_HEADING_OPTIONS, FONTS } from "#lib/fonts.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import BaseColorPicker from "./base-color-picker.svelte";
 	import ChartColorPicker from "./chart-color-picker.svelte";
 	import CopyPreset from "./copy-preset.svelte";

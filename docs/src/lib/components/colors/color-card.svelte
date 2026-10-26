@@ -1,12 +1,12 @@
 <script lang="ts">
+	import * as Select from "#lib/registry/ui/select/index.js";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import ClipboardIcon from "@lucide/svelte/icons/clipboard";
+	import { getColors, type ColorPalette } from "#lib/components/colors/colors.js";
+	import { AspectRatio } from "#lib/registry/ui/aspect-ratio/index.js";
 	import { PersistedState } from "runed";
 	import { toast } from "svelte-sonner";
 	import { scale } from "svelte/transition";
-	import * as Select from "$lib/registry/ui/select/index.js";
-	import { getColors, type ColorPalette } from "$lib/components/colors/colors.js";
-	import { AspectRatio } from "$lib/registry/ui/aspect-ratio/index.js";
 
 	type Format = {
 		format: string;

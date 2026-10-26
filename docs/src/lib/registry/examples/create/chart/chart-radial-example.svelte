@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Chart from "#lib/registry/ui/chart/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { ArcChart, Text } from "layerchart";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Chart from "$lib/registry/ui/chart/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const radialChartData = [{ browser: "safari", visitors: 1260, fill: "var(--color-safari)" }];

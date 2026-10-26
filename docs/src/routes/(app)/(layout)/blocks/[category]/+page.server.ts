@@ -1,5 +1,5 @@
 import path from "node:path";
-import { registryCategories } from "$lib/registry/registry-categories.js";
+import { registryCategories } from "#lib/registry/registry-categories.js";
 import type { EntryGenerator, PageServerLoad } from "./$types.js";
 
 const sidebars = import.meta.glob("/src/__registry__/json/styles/nova/sidebar-*.json");

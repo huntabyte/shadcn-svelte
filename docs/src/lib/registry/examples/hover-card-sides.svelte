@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as HoverCard from "$lib/registry/ui/hover-card/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
+	import * as HoverCard from "#lib/registry/ui/hover-card/index.js";
+	import { buttonVariants } from "#lib/registry/ui/button/index.js";
+	import { cn } from "#lib/utils.js";
 
 	const HOVER_CARD_SIDES = ["left", "top", "bottom", "right"] as const;
 </script>

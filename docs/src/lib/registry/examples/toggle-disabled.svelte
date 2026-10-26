@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Toggle } from "$lib/registry/ui/toggle/index.js";
+	import { Toggle } from "#lib/registry/ui/toggle/index.js";
 </script>
 
 <div class="flex flex-wrap items-center gap-2">

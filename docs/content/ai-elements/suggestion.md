@@ -4,8 +4,8 @@ description: A short prompt you can send to the agent in one click.
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
 </script>
 
 <ComponentPreview name="suggestion-demo" previewStyle="rhea" previewClassName="h-auto min-h-0">
@@ -26,7 +26,7 @@ Suggestion is built with the [Button](/docs/components/button) component.
 
 ```svelte showLineNumbers
 <script lang="ts">
-  import { Button } from "$lib/components/ui/button/index.js";
+  import { Button } from "#lib/components/ui/button/index.js";
 </script>
 ```
 

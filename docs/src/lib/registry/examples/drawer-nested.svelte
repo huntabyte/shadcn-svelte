@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Drawer from "$lib/registry/ui/drawer/index.js";
-	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import * as Drawer from "#lib/registry/ui/drawer/index.js";
+	import { IsMobile } from "#lib/registry/hooks/is-mobile.svelte.js";
+	import { buttonVariants } from "#lib/registry/ui/button/index.js";
 
 	const isMobile = new IsMobile();
 	const direction = $derived(isMobile.current ? "bottom" : "right");

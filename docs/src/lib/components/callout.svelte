@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Alert from "$lib/registry/ui/alert/index.js";
-	import { cn } from "$lib/utils.js";
+	import * as Alert from "#lib/registry/ui/alert/index.js";
+	import { cn } from "#lib/utils.js";
 	import type { Component, ComponentProps } from "svelte";
 
 	let {

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { dev } from "$app/environment";
+	import { dev } from "$app/env";
 </script>
 
 {#if dev}

@@ -1,9 +1,9 @@
 <script lang="ts">
+	import * as Field from "#lib/registry/ui/field/index.js";
+	import * as Popover from "#lib/registry/ui/popover/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Calendar } from "#lib/registry/ui/calendar/index.js";
 	import { getLocalTimeZone, type DateValue } from "@internationalized/date";
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Calendar } from "$lib/registry/ui/calendar/index.js";
 
 	let open = $state(false);
 	let value = $state<DateValue | undefined>();

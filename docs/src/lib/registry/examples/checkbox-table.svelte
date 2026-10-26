@@ -1,7 +1,7 @@
 <script lang="ts">
+	import * as Table from "#lib/registry/ui/table/index.js";
+	import { Checkbox } from "#lib/registry/ui/checkbox/index.js";
 	import { SvelteSet } from "svelte/reactivity";
-	import * as Table from "$lib/registry/ui/table/index.js";
-	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
 
 	const tableData = [
 		{ id: "1", name: "Sarah Chen", email: "sarah.chen@example.com", role: "Admin" },

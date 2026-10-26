@@ -1,10 +1,10 @@
 <script lang="ts">
-	import * as ButtonGroup from "$lib/registry/ui/button-group/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Textarea } from "$lib/registry/ui/textarea/index.js";
+	import * as ButtonGroup from "#lib/registry/ui/button-group/index.js";
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
+	import * as Popover from "#lib/registry/ui/popover/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Textarea } from "#lib/registry/ui/textarea/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	let label = $state("personal");

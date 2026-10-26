@@ -1,10 +1,10 @@
 <script lang="ts">
+	import * as CodeBlock from "#lib/registry/ui/code-block/index.js";
 	import DownloadIcon from "@lucide/svelte/icons/download";
 	import FileCodeIcon from "@lucide/svelte/icons/file-code";
 	import WrapTextIcon from "@lucide/svelte/icons/text-wrap";
-	import * as CodeBlock from "$lib/registry/ui/code-block/index.js";
-	import { useHighlightedCode } from "$lib/registry/hooks/use-highlighted-code.svelte.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { useHighlightedCode } from "#lib/registry/hooks/use-highlighted-code.svelte.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 
 	const code = `import { convertToModelMessages, streamText } from "ai"
 import type { RequestHandler } from "./$types"

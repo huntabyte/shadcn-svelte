@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as Trace from "#lib/registry/ui/trace/index.js";
 	import CircleXIcon from "@lucide/svelte/icons/circle-x";
 	import FileCodeIcon from "@lucide/svelte/icons/file-code";
 	import LayersIcon from "@lucide/svelte/icons/layers";
-	import * as Trace from "$lib/registry/ui/trace/index.js";
 
 	const STACK = `TypeError: Cannot read properties of undefined (reading 'total')
     at formatInvoice (app/lib/billing.ts:42:31)

@@ -1,5 +1,15 @@
 import { goto } from "$app/navigation";
 import { page } from "$app/state";
+import {
+	BASE_THEMES,
+	getThemesForBaseColor,
+	iconLibraries,
+	MENU_ACCENTS,
+	MENU_COLORS,
+	RADII,
+	STYLES,
+	type FontHeadingValue,
+} from "#lib/registry/config.js";
 import { StateHistory, Context, PersistedState } from "runed";
 import {
 	decodePreset,
@@ -12,23 +22,13 @@ import {
 } from "shadcn-svelte/preset";
 import { SvelteURLSearchParams } from "svelte/reactivity";
 import {
-	BASE_THEMES,
-	getThemesForBaseColor,
-	iconLibraries,
-	MENU_ACCENTS,
-	MENU_COLORS,
-	RADII,
-	STYLES,
-	type FontHeadingValue,
-} from "$lib/registry/config.js";
-import {
 	applyBias,
 	RANDOMIZE_BIASES,
 	type RandomizeContext,
 } from "../../../../routes/(app)/(layout)/(create)/lib/randomize-biases.js";
 
 type ChartColorName = (typeof PRESET_CHART_COLORS)[number];
-import { FONTS } from "$lib/fonts.js";
+import { FONTS } from "#lib/fonts.js";
 
 export interface IDesignSystemState extends PresetConfig {
 	preset: string;
@@ -133,12 +133,11 @@ class DesignSystemState implements IDesignSystemState {
 	}
 
 	#syncUrl() {
-		const searchParams = new SvelteURLSearchParams(page.url.searchParams);
+		const searchParams = new SvelteURLSearchParams(page.url.searchParams.toString());
 		searchParams.set("preset", this.#preset.current);
 		goto(`${page.url.pathname}?${searchParams.toString()}${page.url.hash}`, {
-			replaceState: true,
-			noScroll: true,
-			keepFocus: true,
+			replace: true,
+			reset: false,
 		});
 	}
 

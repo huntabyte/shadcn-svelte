@@ -7,15 +7,15 @@ links:
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import ComponentSource from "$lib/components/component-source.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
-	import PMInstall from "$lib/components/pm-install.svelte";
-	import Steps from "$lib/components/steps.svelte";
-	import InstallTabs from "$lib/components/install-tabs.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import ComponentSource from "#lib/components/component-source.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
+	import PMInstall from "#lib/components/pm-install.svelte";
+	import Steps from "#lib/components/steps.svelte";
+	import InstallTabs from "#lib/components/install-tabs.svelte";
 
 	let { viewerData } = $props();
-	import Step from "$lib/components/step.svelte";
+	import Step from "#lib/components/step.svelte";
 </script>
 
 <ComponentPreview name="message-scroller-demo" class="rounded-[34px] sm:rounded-4xl" previewStyle="rhea" previewClassName="h-auto theme-blue bg-surface dark:bg-background p-4 min-[480px]:p-8 min-[560px]:p-10 sm:px-10 sm:py-16">
@@ -108,8 +108,8 @@ Copy and paste the following code into your project.
 
 ```svelte showLineNumbers
 <script lang="ts">
-  import * as Message from "$lib/components/ui/message/index.js";
-  import * as MessageScroller from "$lib/components/ui/message-scroller/index.js";
+  import * as Message from "#lib/components/ui/message/index.js";
+  import * as MessageScroller from "#lib/components/ui/message-scroller/index.js";
 </script>
 ```
 
@@ -417,7 +417,7 @@ in any component inside the provider, including controls rendered outside the
 
 ```svelte showLineNumbers
 <script lang="ts">
-  import { useMessageScroller } from "$lib/components/ui/message-scroller/index.js";
+  import { useMessageScroller } from "#lib/components/ui/message-scroller/index.js";
 
   const { scrollToMessage, scrollToEnd, scrollToStart } = useMessageScroller();
 </script>
@@ -446,7 +446,7 @@ highlights the current anchored turn.
 
 ```svelte showLineNumbers
 <script lang="ts">
-  import { useMessageScrollerVisibility } from "$lib/components/ui/message-scroller/index.js";
+  import { useMessageScrollerVisibility } from "#lib/components/ui/message-scroller/index.js";
 
   const visibility = useMessageScrollerVisibility();
 </script>
@@ -476,7 +476,7 @@ scroller itself, prefer the `data-scrollable` attribute.
 
 ```svelte showLineNumbers
 <script lang="ts">
-  import { useMessageScrollerScrollable } from "$lib/components/ui/message-scroller/index.js";
+  import { useMessageScrollerScrollable } from "#lib/components/ui/message-scroller/index.js";
 
   const scrollable = useMessageScrollerScrollable();
 </script>
@@ -524,8 +524,8 @@ rows.
 ```svelte showLineNumbers
 <script lang="ts">
   import { useVirtualizer } from "@shadcn-svelte/primitives/svelte-virtual";
-  import * as Message from "$lib/components/ui/message/index.js";
-  import * as MessageScroller from "$lib/components/ui/message-scroller/index.js";
+  import * as Message from "#lib/components/ui/message/index.js";
+  import * as MessageScroller from "#lib/components/ui/message-scroller/index.js";
 
   let {
     messages,

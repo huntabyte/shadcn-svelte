@@ -28,7 +28,7 @@
 	},
 	"engines": {
 		"pnpm": ">=9",
-		"node": ">=20"
+		"node": ">=22.17"
 	},
 	"packageManager": "pnpm@12.14.0",
 	"repository": {
@@ -55,6 +55,6 @@
 		"typescript": "catalog:",
 		"typescript-eslint": "^8.65.0",
 		"wait-on": "^9.0.4",
-		"wrangler": "^4.75.0"
+		"wrangler": "^4.118.0"
 	}
 }

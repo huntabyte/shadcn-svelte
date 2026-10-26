@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as CodeBlock from "$lib/registry/ui/code-block/index.js";
+	import * as CodeBlock from "#lib/registry/ui/code-block/index.js";
 
 	const error = `TypeError: Cannot read properties of undefined (reading 'map')
     at MessageList (components/message-list.tsx:18:22)

@@ -1,10 +1,10 @@
 <script lang="ts">
+	import * as CodeBlock from "#lib/registry/ui/code-block/index.js";
+	import * as Trace from "#lib/registry/ui/trace/index.js";
 	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 	import FileTextIcon from "@lucide/svelte/icons/file-text";
 	import SearchIcon from "@lucide/svelte/icons/search";
-	import * as CodeBlock from "$lib/registry/ui/code-block/index.js";
-	import * as Trace from "$lib/registry/ui/trace/index.js";
-	import { Badge } from "$lib/registry/ui/badge/index.js";
+	import { Badge } from "#lib/registry/ui/badge/index.js";
 </script>
 
 <div class="w-full max-w-sm">

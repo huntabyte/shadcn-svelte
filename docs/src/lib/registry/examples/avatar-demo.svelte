@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Avatar from "$lib/registry/ui/avatar/index.js";
+	import * as Avatar from "#lib/registry/ui/avatar/index.js";
 </script>
 
 <div class="flex flex-row flex-wrap items-center gap-6 md:gap-12">

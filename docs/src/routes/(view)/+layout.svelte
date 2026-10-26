@@ -1,6 +1,6 @@
 <script lang="ts">
+	import * as Tooltip from "#lib/registry/ui/tooltip/index.js";
 	import { ModeWatcher } from "mode-watcher";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 
 	let { children } = $props();
 </script>

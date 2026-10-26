@@ -1,16 +1,16 @@
 <script lang="ts">
+	import * as Chart from "#lib/registry/ui/chart/index.js";
+	import * as Drawer from "#lib/registry/ui/drawer/index.js";
+	import * as Select from "#lib/registry/ui/select/index.js";
 	import TrendingUpIcon from "@tabler/icons-svelte/icons/trending-up";
+	import { IsMobile } from "#lib/registry/hooks/is-mobile.svelte.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Input } from "#lib/registry/ui/input/index.js";
+	import { Label } from "#lib/registry/ui/label/index.js";
+	import { Separator } from "#lib/registry/ui/separator/index.js";
 	import { scaleUtc } from "d3-scale";
 	import { curveNatural } from "d3-shape";
 	import { AreaChart } from "layerchart";
-	import * as Chart from "$lib/registry/ui/chart/index.js";
-	import * as Drawer from "$lib/registry/ui/drawer/index.js";
-	import * as Select from "$lib/registry/ui/select/index.js";
-	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
-	import { Separator } from "$lib/registry/ui/separator/index.js";
 	import type { Schema } from "./schemas.js";
 
 	const chartData = [

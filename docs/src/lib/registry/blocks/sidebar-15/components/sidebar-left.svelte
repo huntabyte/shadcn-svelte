@@ -1,4 +1,5 @@
 <script lang="ts">
+	import * as Sidebar from "#lib/registry/ui/sidebar/index.js";
 	import AudioWaveformIcon from "@lucide/svelte/icons/audio-waveform";
 	import BlocksIcon from "@lucide/svelte/icons/blocks";
 	import CalendarIcon from "@lucide/svelte/icons/calendar";
@@ -10,7 +11,6 @@
 	import Settings2Icon from "@lucide/svelte/icons/settings-2";
 	import SparklesIcon from "@lucide/svelte/icons/sparkles";
 	import Trash2Icon from "@lucide/svelte/icons/trash-2";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import NavFavorites from "./nav-favorites.svelte";
 	import NavMain from "./nav-main.svelte";
 	import NavSecondary from "./nav-secondary.svelte";

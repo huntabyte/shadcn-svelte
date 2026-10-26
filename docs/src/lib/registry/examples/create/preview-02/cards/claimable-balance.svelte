@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Item from "$lib/registry/ui/item/index.js";
-	import { Badge } from "$lib/registry/ui/badge/index.js";
-	import { Separator } from "$lib/registry/ui/separator/index.js";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Item from "#lib/registry/ui/item/index.js";
+	import { Badge } from "#lib/registry/ui/badge/index.js";
+	import { Separator } from "#lib/registry/ui/separator/index.js";
 </script>
 
 <Card.Root>

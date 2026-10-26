@@ -1,9 +1,9 @@
 <script lang="ts">
+	import * as Trace from "#lib/registry/ui/trace/index.js";
 	import CircleIcon from "@lucide/svelte/icons/circle";
 	import CircleAlertIcon from "@lucide/svelte/icons/circle-alert";
 	import CircleCheckIcon from "@lucide/svelte/icons/circle-check";
 	import LoaderCircleIcon from "@lucide/svelte/icons/loader-circle";
-	import * as Trace from "$lib/registry/ui/trace/index.js";
 </script>
 
 <Trace.Root class="max-w-sm">

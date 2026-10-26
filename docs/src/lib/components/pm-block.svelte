@@ -1,14 +1,14 @@
 <script lang="ts">
+	import * as Tabs from "#lib/registry/ui/tabs/index.js";
+	import * as Tooltip from "#lib/registry/ui/tooltip/index.js";
 	import TerminalIcon from "@lucide/svelte/icons/terminal";
 	import CheckIcon from "@tabler/icons-svelte/icons/check";
 	import CopyIcon from "@tabler/icons-svelte/icons/copy";
-	import * as Tabs from "$lib/registry/ui/tabs/index.js";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
-	import { getCommand, PACKAGE_MANAGERS, type PackageManager } from "$lib/package-manager.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { UserConfigContext } from "$lib/user-config.svelte.js";
-	import { cn } from "$lib/utils.js";
+	import { UseClipboard } from "#lib/hooks/use-clipboard.svelte.js";
+	import { getCommand, PACKAGE_MANAGERS, type PackageManager } from "#lib/package-manager.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { UserConfigContext } from "#lib/user-config.svelte.js";
+	import { cn } from "#lib/utils.js";
 	import type { Command } from "package-manager-detector";
 
 	const {

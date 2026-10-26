@@ -1,6 +1,6 @@
 <script lang="ts">
+	import * as Questionnaire from "#lib/registry/ui/questionnaire/index.js";
 	import { toast } from "svelte-sonner";
-	import * as Questionnaire from "$lib/registry/ui/questionnaire/index.js";
 
 	const items = [
 		{

@@ -1,4 +1,8 @@
 <script lang="ts">
+	import * as Avatar from "#lib/registry/ui/avatar/index.js";
+	import * as Collapsible from "#lib/registry/ui/collapsible/index.js";
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
+	import * as Sidebar from "#lib/registry/ui/sidebar/index.js";
 	import AudioWaveformIcon from "@lucide/svelte/icons/audio-waveform";
 	import BadgeCheckIcon from "@lucide/svelte/icons/badge-check";
 	import BellIcon from "@lucide/svelte/icons/bell";
@@ -21,11 +25,7 @@
 	import SparklesIcon from "@lucide/svelte/icons/sparkles";
 	import SquareTerminalIcon from "@lucide/svelte/icons/square-terminal";
 	import Trash2Icon from "@lucide/svelte/icons/trash-2";
-	import * as Avatar from "$lib/registry/ui/avatar/index.js";
-	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
+	import { IsMobile } from "#lib/registry/hooks/is-mobile.svelte.js";
 
 	// This is sample data.
 	const data = {

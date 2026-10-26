@@ -7,14 +7,14 @@ links:
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import ComponentSource from "$lib/components/component-source.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
-	import Steps from "$lib/components/steps.svelte";
-	import InstallTabs from "$lib/components/install-tabs.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import ComponentSource from "#lib/components/component-source.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
+	import Steps from "#lib/components/steps.svelte";
+	import InstallTabs from "#lib/components/install-tabs.svelte";
 
 	let { viewerData } = $props();
-	import Step from "$lib/components/step.svelte";
+	import Step from "#lib/components/step.svelte";
 </script>
 
 <ComponentPreview name="trace-demo" previewStyle="rhea" previewClassName="h-auto min-h-0">
@@ -83,7 +83,7 @@ Use a `Trace.Line` for a single step:
 
 ```svelte showLineNumbers
 <script lang="ts">
-  import * as Trace from "$lib/components/ui/trace/index.js";
+  import * as Trace from "#lib/components/ui/trace/index.js";
 </script>
 ```
 

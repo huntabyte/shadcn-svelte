@@ -1,10 +1,10 @@
 <script lang="ts">
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Field from "#lib/registry/ui/field/index.js";
+	import * as InputGroup from "#lib/registry/ui/input-group/index.js";
 	import Clock2Icon from "@lucide/svelte/icons/clock-2";
+	import { Calendar } from "#lib/registry/ui/calendar/index.js";
 	import { CalendarDate, getLocalTimeZone, today } from "@internationalized/date";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
-	import { Calendar } from "$lib/registry/ui/calendar/index.js";
 
 	const now = today(getLocalTimeZone());
 

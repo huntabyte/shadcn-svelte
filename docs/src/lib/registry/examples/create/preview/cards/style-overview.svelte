@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import { useDesignSystem } from "$lib/features/design-system/index.js";
-	import { getFont, getStyle } from "$lib/registry/config.js";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import { useDesignSystem } from "#lib/features/design-system/index.js";
+	import { getFont, getStyle } from "#lib/registry/config.js";
 
 	const designSystem = useDesignSystem();
 	const currentFont = $derived(getFont(designSystem.font));

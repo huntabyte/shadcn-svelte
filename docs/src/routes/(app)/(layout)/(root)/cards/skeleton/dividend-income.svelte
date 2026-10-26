@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Card, CardAction, CardContent, CardHeader } from "$lib/registry/ui/card/index.js";
-	import { Skeleton } from "$lib/registry/ui/skeleton/index.js";
+	import { Card, CardAction, CardContent, CardHeader } from "#lib/registry/ui/card/index.js";
+	import { Skeleton } from "#lib/registry/ui/skeleton/index.js";
 	const rows = [0, 1, 2, 3];
 	const miniBars = [40, 60, 80, 50];
 </script>

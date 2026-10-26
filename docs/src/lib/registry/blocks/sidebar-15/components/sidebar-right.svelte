@@ -1,6 +1,6 @@
 <script lang="ts">
+	import * as Sidebar from "#lib/registry/ui/sidebar/index.js";
 	import PlusIcon from "@lucide/svelte/icons/plus";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import Calendars from "./calendars.svelte";
 	import DatePicker from "./date-picker.svelte";
 	import NavUser from "./nav-user.svelte";

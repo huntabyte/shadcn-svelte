@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as Collapsible from "#lib/registry/ui/collapsible/index.js";
+	import * as Sidebar from "#lib/registry/ui/sidebar/index.js";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
-	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 
 	let { calendars }: { calendars: { name: string; items: string[] }[] } = $props();
 </script>

@@ -1,15 +1,15 @@
 <script lang="ts">
+	import * as Popover from "#lib/registry/ui/popover/index.js";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import CopyIcon from "@lucide/svelte/icons/copy";
 	import ShareIcon from "@lucide/svelte/icons/share";
+	import { useDesignSystem } from "#lib/features/design-system/index.js";
+	import { UseClipboard } from "#lib/hooks/use-clipboard.svelte.js";
+	import { buttonVariants, Button } from "#lib/registry/ui/button/index.js";
+	import { Input } from "#lib/registry/ui/input/index.js";
+	import { cn } from "#lib/utils.js";
+	import { OG_IMAGE_BASE_URL } from "#og";
 	import { scale } from "svelte/transition";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import { OG_IMAGE_BASE_URL } from "$lib/../routes/og/og.js";
-	import { useDesignSystem } from "$lib/features/design-system/index.js";
-	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
-	import { buttonVariants, Button } from "$lib/registry/ui/button/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
-	import { cn } from "$lib/utils.js";
 
 	const designSystem = useDesignSystem();
 

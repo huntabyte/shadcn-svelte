@@ -1,13 +1,13 @@
 <script lang="ts">
+	import * as Bubble from "#lib/registry/ui/bubble/index.js";
+	import * as CodeBlock from "#lib/registry/ui/code-block/index.js";
+	import * as Message from "#lib/registry/ui/message/index.js";
+	import * as Trace from "#lib/registry/ui/trace/index.js";
 	import TerminalIcon from "@lucide/svelte/icons/terminal";
+	import { createChat, getMessageText } from "#lib/ai-sdk.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import { Chat } from "@ai-sdk/svelte";
 	import { untrack } from "svelte";
-	import * as Bubble from "$lib/registry/ui/bubble/index.js";
-	import * as CodeBlock from "$lib/registry/ui/code-block/index.js";
-	import * as Message from "$lib/registry/ui/message/index.js";
-	import * as Trace from "$lib/registry/ui/trace/index.js";
-	import { createChat, getMessageText } from "$lib/ai-sdk.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import type { UIDataTypes, UIMessage } from "ai";
 
 	type ChatMessage = UIMessage<

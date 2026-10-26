@@ -281,11 +281,11 @@ async function buildRegistryJson(
 			name: `shadcn-svelte/${style}`,
 			homepage: "https://shadcn-svelte.com",
 			aliases: {
-				lib: "$lib/registry/lib",
-				ui: "$lib/registry/ui",
+				lib: "#lib/registry/lib",
+				ui: "#lib/registry/ui",
 				components: "./components",
-				hooks: "$lib/registry/hooks",
-				utils: "$lib/utils",
+				hooks: "#lib/registry/hooks",
+				utils: "#lib/utils.js",
 			},
 			// TODO: remove when moving from `next` to `latest`
 			overrideDependencies: ["vaul-svelte@next"],

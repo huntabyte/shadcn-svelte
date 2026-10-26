@@ -1,11 +1,11 @@
 <script lang="ts">
+	import * as Bubble from "#lib/registry/ui/bubble/index.js";
+	import * as MessageScroller from "#lib/registry/ui/message-scroller/index.js";
+	import * as Message from "#lib/registry/ui/message/index.js";
 	import BrainIcon from "@lucide/svelte/icons/brain";
+	import { MESSAGE_ANIMATIONS, type MessageAnimationPreset } from "#lib/message-animations.js";
 	import { prefersReducedMotion } from "svelte/motion";
-	import * as Bubble from "$lib/registry/ui/bubble/index.js";
-	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
-	import * as Message from "$lib/registry/ui/message/index.js";
-	import { MESSAGE_ANIMATIONS, type MessageAnimationPreset } from "$lib/message-animations.js";
-	import type { BubbleVariant } from "$lib/registry/ui/bubble/index.js";
+	import type { BubbleVariant } from "#lib/registry/ui/bubble/index.js";
 
 	type MessageAnimatedPart = {
 		content?: unknown;

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { ButtonGroup } from "$lib/registry/ui/button-group/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as InputGroup from "#lib/registry/ui/input-group/index.js";
+	import * as Tooltip from "#lib/registry/ui/tooltip/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { ButtonGroup } from "#lib/registry/ui/button-group/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 

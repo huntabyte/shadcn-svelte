@@ -1,11 +1,11 @@
 <script lang="ts">
+	import * as CodeBlock from "#lib/registry/ui/code-block/index.js";
+	import * as Trace from "#lib/registry/ui/trace/index.js";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import CircleDashedIcon from "@lucide/svelte/icons/circle-dashed";
 	import FileCodeIcon from "@lucide/svelte/icons/file-code";
 	import FlaskConicalIcon from "@lucide/svelte/icons/flask-conical";
 	import XIcon from "@lucide/svelte/icons/x";
-	import * as CodeBlock from "$lib/registry/ui/code-block/index.js";
-	import * as Trace from "$lib/registry/ui/trace/index.js";
 
 	type Test = {
 		name: string;

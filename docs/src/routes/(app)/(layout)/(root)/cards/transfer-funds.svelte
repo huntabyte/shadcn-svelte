@@ -1,6 +1,6 @@
 <script lang="ts">
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import {
 		Card,
 		CardAction,
@@ -9,23 +9,23 @@
 		CardFooter,
 		CardHeader,
 		CardTitle,
-	} from "$lib/registry/ui/card/index.js";
-	import { Field, FieldGroup, FieldLabel } from "$lib/registry/ui/field/index.js";
+	} from "#lib/registry/ui/card/index.js";
+	import { Field, FieldGroup, FieldLabel } from "#lib/registry/ui/field/index.js";
 	import {
 		InputGroup,
 		InputGroupAddon,
 		InputGroupInput,
 		InputGroupText,
-	} from "$lib/registry/ui/input-group/index.js";
-	import { Item, ItemContent } from "$lib/registry/ui/item/index.js";
+	} from "#lib/registry/ui/input-group/index.js";
+	import { Item, ItemContent } from "#lib/registry/ui/item/index.js";
 	import {
 		Select,
 		SelectContent,
 		SelectGroup,
 		SelectItem,
 		SelectTrigger,
-	} from "$lib/registry/ui/select/index.js";
-	import { Separator } from "$lib/registry/ui/separator/index.js";
+	} from "#lib/registry/ui/select/index.js";
+	import { Separator } from "#lib/registry/ui/separator/index.js";
 	const FROM_ACCOUNTS = [
 		{ label: "Main Checking (··8402) — $12,450.00", value: "checking" },
 		{ label: "Business (··7731) — $8,920.00", value: "business" },

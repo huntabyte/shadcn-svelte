@@ -1,7 +1,7 @@
 <script lang="ts">
+	import * as Tabs from "#lib/registry/ui/tabs/index.js";
 	import AppWindowIcon from "@lucide/svelte/icons/app-window";
 	import CodeIcon from "@lucide/svelte/icons/code";
-	import * as Tabs from "$lib/registry/ui/tabs/index.js";
 </script>
 
 <Tabs.Root value="preview">

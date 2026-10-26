@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Button from "$lib/registry/ui/button/index.js";
-	import * as Select from "$lib/registry/ui/select/index.js";
+	import * as Button from "#lib/registry/ui/button/index.js";
+	import * as Select from "#lib/registry/ui/select/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const items = [

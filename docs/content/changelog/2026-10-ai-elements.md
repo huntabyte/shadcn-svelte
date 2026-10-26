@@ -5,8 +5,8 @@ date: 2026-10-14
 ---
 
 <script>
-  import ComponentPreview from "$lib/components/component-preview.svelte";
-  import Button from "$lib/registry/ui/button/button.svelte";
+  import ComponentPreview from "#lib/components/component-preview.svelte";
+  import Button from "#lib/registry/ui/button/button.svelte";
 </script>
 
 Today, we are releasing two new components, [**Trace**](/docs/components/trace) and [**Code Block**](/docs/components/code-block), and [**AI Elements**](/docs/ai-elements), a set of patterns for agentic interfaces built from shadcn-svelte components.

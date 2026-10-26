@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Separator } from "$lib/registry/ui/separator/index.js";
+	import { Separator } from "#lib/registry/ui/separator/index.js";
 </script>
 
 <div class="flex max-w-sm flex-col gap-4 text-sm">

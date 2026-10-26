@@ -1,6 +1,6 @@
 <script lang="ts">
+	import * as Breadcrumb from "#lib/registry/ui/breadcrumb/index.js";
 	import DotIcon from "@lucide/svelte/icons/dot";
-	import * as Breadcrumb from "$lib/registry/ui/breadcrumb/index.js";
 </script>
 
 <Breadcrumb.Root>

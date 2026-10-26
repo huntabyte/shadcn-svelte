@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { cn } from "#lib/utils.js";
 	import { Streamdown, type StreamdownProps } from "svelte-streamdown";
-	import { cn } from "$lib/utils.js";
 	import MarkdownCodeBlock from "./markdown-code-block.svelte";
 
 	let {

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
+	import * as Field from "#lib/registry/ui/field/index.js";
+	import * as Tooltip from "#lib/registry/ui/tooltip/index.js";
+	import { Checkbox } from "#lib/registry/ui/checkbox/index.js";
 	import AppearanceSettings from "./components/appearance-settings.svelte";
 	import ButtonGroupDemo from "./components/button-group-demo.svelte";
 	import ButtonGroupInputGroup from "./components/button-group-input-group.svelte";

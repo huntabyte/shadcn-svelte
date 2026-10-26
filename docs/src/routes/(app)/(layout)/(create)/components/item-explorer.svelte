@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { page } from "$app/state";
+	import * as Collapsible from "#lib/registry/ui/collapsible/index.js";
+	import * as Sidebar from "#lib/registry/ui/sidebar/index.js";
 	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
-	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import { cn } from "$lib/utils.js";
+	import { cn } from "#lib/utils.js";
 	import { groupItemsByType } from "../lib/utils.js";
 	import type { RegistryItem } from "shadcn-svelte/schema";
 

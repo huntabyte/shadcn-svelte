@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import { toast } from "svelte-sonner";
-	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
 <div class="flex flex-wrap gap-2">

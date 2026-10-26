@@ -1,16 +1,16 @@
 <script lang="ts">
+	import * as Bubble from "#lib/registry/ui/bubble/index.js";
+	import * as Message from "#lib/registry/ui/message/index.js";
+	import * as Tooltip from "#lib/registry/ui/tooltip/index.js";
+	import Markdown from "#lib/components/markdown/markdown.svelte";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import CopyIcon from "@lucide/svelte/icons/copy";
 	import PencilIcon from "@lucide/svelte/icons/pencil";
 	import RefreshCcwIcon from "@lucide/svelte/icons/refresh-ccw";
 	import ThumbsDownIcon from "@lucide/svelte/icons/thumbs-down";
 	import ThumbsUpIcon from "@lucide/svelte/icons/thumbs-up";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import { onDestroy, type Snippet } from "svelte";
-	import * as Bubble from "$lib/registry/ui/bubble/index.js";
-	import * as Message from "$lib/registry/ui/message/index.js";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import Markdown from "$lib/components/markdown/markdown.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const reply = `Install Dialog, then open it from the gear button in \`site-header.tsx\`.
 

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
+	import * as Field from "#lib/registry/ui/field/index.js";
+	import * as ToggleGroup from "#lib/registry/ui/toggle-group/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	let fontWeight = $state("normal");

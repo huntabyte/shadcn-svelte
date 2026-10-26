@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
+	import * as Field from "#lib/registry/ui/field/index.js";
+	import { Input } from "#lib/registry/ui/input/index.js";
 </script>
 
 <Field.Group class="grid max-w-sm grid-cols-2">

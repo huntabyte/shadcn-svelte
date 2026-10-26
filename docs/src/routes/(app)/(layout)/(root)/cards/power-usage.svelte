@@ -5,8 +5,8 @@
 		CardDescription,
 		CardHeader,
 		CardTitle,
-	} from "$lib/registry/ui/card/index.js";
-	import { Separator } from "$lib/registry/ui/separator/index.js";
+	} from "#lib/registry/ui/card/index.js";
+	import { Separator } from "#lib/registry/ui/separator/index.js";
 	const chartData = [
 		{ hour: "6a", usage: 1.2 },
 		{ hour: "8a", usage: 2.8 },

@@ -1,15 +1,15 @@
 <script lang="ts">
-	import { browser } from "$app/environment";
-	import { watch } from "runed";
-	import { onDestroy, type Snippet } from "svelte";
+	import { browser } from "$app/env";
 	import {
 		buildRegistryTheme,
 		DEFAULT_CONFIG,
 		fonts,
 		RADII,
 		type DesignSystemConfig,
-	} from "$lib/registry/config.js";
-	import { cn } from "$lib/registry/lib/utils.js";
+	} from "#lib/registry/config.js";
+	import { cn } from "#lib/registry/lib/utils.js";
+	import { watch } from "runed";
+	import { onDestroy, type Snippet } from "svelte";
 	import { setupDesignSystem } from "./design-system-provider-state.svelte.js";
 	import { syncMenuColor } from "../menu-color.js";
 

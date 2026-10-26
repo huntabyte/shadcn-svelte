@@ -1,7 +1,7 @@
 <script lang="ts" generics="TData extends RowData">
+	import Button from "#lib/registry/ui/button/button.svelte";
 	import XIcon from "@lucide/svelte/icons/x";
-	import Button from "$lib/registry/ui/button/button.svelte";
-	import { Input } from "$lib/registry/ui/input/index.js";
+	import { Input } from "#lib/registry/ui/input/index.js";
 	import { DataTableFacetedFilter, DataTableViewOptions } from "./index.js";
 	import { priorities, statuses } from "../data/data.js";
 	import type { TasksTableFeatures } from "./data-table-features.js";

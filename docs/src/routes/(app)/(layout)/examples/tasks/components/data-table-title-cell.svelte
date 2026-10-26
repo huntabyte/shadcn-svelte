@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Badge } from "$lib/registry/ui/badge/index.js";
+	import { Badge } from "#lib/registry/ui/badge/index.js";
 	import { labels } from "../data/data.js";
 
 	let { value, labelValue }: { value: string; labelValue: string } = $props();

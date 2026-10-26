@@ -69,10 +69,10 @@
 </script>
 
 <script lang="ts">
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
 	import Menu3Icon from "@tabler/icons-svelte/icons/menu-3";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { cn } from "#lib/utils.js";
 
 	let {
 		toc,

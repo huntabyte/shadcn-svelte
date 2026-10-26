@@ -1,9 +1,9 @@
 <script lang="ts">
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Chart from "#lib/registry/ui/chart/index.js";
+	import * as ToggleGroup from "#lib/registry/ui/toggle-group/index.js";
 	import { scaleBand } from "d3-scale";
 	import { BarChart } from "layerchart";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Chart from "$lib/registry/ui/chart/index.js";
-	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
 
 	const barChartData = [
 		{ month: "January", desktop: 186, mobile: 80 },

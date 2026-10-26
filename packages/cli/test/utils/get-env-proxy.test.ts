@@ -1,7 +1,18 @@
-import { describe, it, expect, vi, afterEach } from "vitest";
+import { describe, it, expect, vi, afterEach, beforeEach } from "vitest";
 import { getEnvProxy } from "../../src/utils/get-env-proxy.js";
 
 describe("getEnvProxy", () => {
+	beforeEach(() => {
+		for (const key of [
+			"HTTP_PROXY",
+			"http_proxy",
+			"HTTPS_PROXY",
+			"https_proxy",
+			"npm_config_proxy",
+			"npm_config_https_proxy",
+		])
+			vi.stubEnv(key, undefined);
+	});
 	afterEach(() => {
 		vi.unstubAllEnvs();
 	});

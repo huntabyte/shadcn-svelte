@@ -1,7 +1,7 @@
 <script lang="ts">
+	import * as Collapsible from "#lib/registry/ui/collapsible/index.js";
 	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
-	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 
 	let isOpen = $state(false);
 </script>

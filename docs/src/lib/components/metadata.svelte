@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from "$app/state";
-	import { siteConfig } from "$lib/config.js";
+	import { siteConfig } from "#lib/config.js";
 
 	let {
 		title,

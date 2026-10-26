@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Card, CardContent, CardFooter, CardHeader } from "$lib/registry/ui/card/index.js";
-	import { Skeleton } from "$lib/registry/ui/skeleton/index.js";
+	import { Card, CardContent, CardFooter, CardHeader } from "#lib/registry/ui/card/index.js";
+	import { Skeleton } from "#lib/registry/ui/skeleton/index.js";
 	const rows = [0, 1];
 </script>
 

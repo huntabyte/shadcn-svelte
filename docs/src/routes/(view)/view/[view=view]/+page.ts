@@ -1,5 +1,5 @@
+import { blockMeta } from "#lib/registry/registry-block-meta.js";
 import { error } from "@sveltejs/kit";
-import { blockMeta } from "$lib/registry/registry-block-meta.js";
 import { blocks } from "../../../../__registry__/blocks.js";
 import type { EntryGenerator } from "./$types.js";
 import type { Component } from "svelte";

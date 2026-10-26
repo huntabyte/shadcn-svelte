@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Sidebar from "#lib/registry/ui/sidebar/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 </script>
 
 <Card.Root class="gap-2 py-4 shadow-none">

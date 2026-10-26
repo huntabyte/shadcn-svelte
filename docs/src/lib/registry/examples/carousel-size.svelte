@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Carousel from "$lib/registry/ui/carousel/index.js";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Carousel from "#lib/registry/ui/carousel/index.js";
 </script>
 
 <Carousel.Root

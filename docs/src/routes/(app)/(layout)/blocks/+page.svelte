@@ -1,8 +1,8 @@
 <script lang="ts">
-	import BlockViewer from "$lib/components/block-viewer.svelte";
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import { createFileTreeForRegistryItemFiles } from "$lib/registry/registry-utils.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import BlockViewer from "#lib/components/block-viewer.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import { createFileTreeForRegistryItemFiles } from "#lib/registry/registry-utils.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import type { PageData } from "./$types.js";
 
 	let { data }: { data: PageData } = $props();

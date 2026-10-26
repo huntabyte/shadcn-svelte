@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Breadcrumb from "$lib/registry/ui/breadcrumb/index.js";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import { Separator } from "$lib/registry/ui/separator/index.js";
+	import * as Breadcrumb from "#lib/registry/ui/breadcrumb/index.js";
+	import * as Sidebar from "#lib/registry/ui/sidebar/index.js";
+	import { Separator } from "#lib/registry/ui/separator/index.js";
 	import SidebarLeft from "./components/sidebar-left.svelte";
 	import SidebarRight from "./components/sidebar-right.svelte";
 </script>

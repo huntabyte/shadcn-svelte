@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Sidebar from "#lib/registry/ui/sidebar/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
 </script>
 
 <div class="grid grid-cols-2 items-start gap-6">

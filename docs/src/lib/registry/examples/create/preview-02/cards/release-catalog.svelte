@@ -1,10 +1,10 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
-	import * as Item from "$lib/registry/ui/item/index.js";
-	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { Badge } from "$lib/registry/ui/badge/index.js";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as InputGroup from "#lib/registry/ui/input-group/index.js";
+	import * as Item from "#lib/registry/ui/item/index.js";
+	import * as ToggleGroup from "#lib/registry/ui/toggle-group/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Badge } from "#lib/registry/ui/badge/index.js";
 
 	const HOLDINGS = [
 		{

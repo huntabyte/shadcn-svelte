@@ -1,11 +1,11 @@
 <script lang="ts" generics="TData extends RowData, TValue">
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
 	import ArrowDownIcon from "@lucide/svelte/icons/arrow-down";
 	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
 	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
 	import EyeOffIcon from "@lucide/svelte/icons/eye-off";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { cn } from "#lib/utils.js";
 	import type { TasksTableFeatures } from "./data-table-features.js";
 	import type { Column, RowData } from "@tanstack/svelte-table";
 	import type { HTMLAttributes } from "svelte/elements";

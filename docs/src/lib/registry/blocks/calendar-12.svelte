@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Select from "#lib/registry/ui/select/index.js";
+	import RangeCalendar from "#lib/registry/ui/range-calendar/range-calendar.svelte";
 	import { CalendarDate } from "@internationalized/date";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Select from "$lib/registry/ui/select/index.js";
-	import RangeCalendar from "$lib/registry/ui/range-calendar/range-calendar.svelte";
 	import type { DateRange } from "bits-ui";
 
 	let value = $state<DateRange | undefined>({

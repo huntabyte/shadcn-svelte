@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as HoverCard from "$lib/registry/ui/hover-card/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Progress } from "$lib/registry/ui/progress/index.js";
+	import * as HoverCard from "#lib/registry/ui/hover-card/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Progress } from "#lib/registry/ui/progress/index.js";
 
 	const usage = {
 		input: 8420,

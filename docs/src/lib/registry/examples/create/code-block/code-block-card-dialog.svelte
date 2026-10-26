@@ -1,9 +1,9 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as CodeBlock from "$lib/registry/ui/code-block/index.js";
-	import * as Dialog from "$lib/registry/ui/dialog/index.js";
-	import { useHighlightedCode } from "$lib/registry/hooks/use-highlighted-code.svelte.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as CodeBlock from "#lib/registry/ui/code-block/index.js";
+	import * as Dialog from "#lib/registry/ui/dialog/index.js";
+	import { useHighlightedCode } from "#lib/registry/hooks/use-highlighted-code.svelte.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const source = `import { streamText } from "ai"

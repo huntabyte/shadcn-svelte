@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
+	import * as Sidebar from "#lib/registry/ui/sidebar/index.js";
 	import ComponentCodeViewerTree from "./component-code-viewer-tree.svelte";
 	import { ComponentCodeViewerContext } from "./component-code-viewer.svelte";
 

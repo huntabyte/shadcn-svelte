@@ -1,12 +1,12 @@
 <script lang="ts">
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
+	import * as InputGroup from "#lib/registry/ui/input-group/index.js";
+	import * as Popover from "#lib/registry/ui/popover/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { RangeCalendar } from "#lib/registry/ui/range-calendar/index.js";
 	import { DateFormatter, getLocalTimeZone } from "@internationalized/date";
 	import { SvelteSet } from "svelte/reactivity";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { RangeCalendar } from "$lib/registry/ui/range-calendar/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import type { DateRange } from "bits-ui";
 

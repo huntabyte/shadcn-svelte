@@ -1,7 +1,7 @@
 <script lang="ts">
+	import * as InputGroup from "#lib/registry/ui/input-group/index.js";
 	import SearchIcon from "@lucide/svelte/icons/search";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
-	import { Kbd } from "$lib/registry/ui/kbd/index.js";
+	import { Kbd } from "#lib/registry/ui/kbd/index.js";
 </script>
 
 <InputGroup.Root class="max-w-sm">

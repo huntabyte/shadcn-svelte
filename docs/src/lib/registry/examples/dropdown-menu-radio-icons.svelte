@@ -1,9 +1,9 @@
 <script lang="ts">
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
 	import Building2Icon from "@lucide/svelte/icons/building-2";
 	import CreditCardIcon from "@lucide/svelte/icons/credit-card";
 	import WalletIcon from "@lucide/svelte/icons/wallet";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import { buttonVariants } from "#lib/registry/ui/button/index.js";
 
 	let paymentMethod = $state("card");
 </script>

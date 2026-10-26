@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as InputOTP from "$lib/registry/ui/input-otp/index.js";
+	import * as InputOTP from "#lib/registry/ui/input-otp/index.js";
 </script>
 
 <InputOTP.Root id="disabled" maxlength={6} disabled value="123456">

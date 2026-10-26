@@ -1,9 +1,9 @@
 <script lang="ts">
-	import * as Item from "$lib/registry/ui/item/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import type { ItemVariant, ItemSize } from "$lib/registry/ui/item/item.svelte";
+	import * as Item from "#lib/registry/ui/item/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import type { ItemVariant, ItemSize } from "#lib/registry/ui/item/item.svelte";
 
 	type VariantConfig = {
 		title: string;

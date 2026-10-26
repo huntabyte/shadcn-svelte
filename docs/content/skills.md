@@ -4,9 +4,9 @@ description: Give your AI assistant deep knowledge of shadcn-svelte components, 
 ---
 
 <script>
-	import PMExecute from "$lib/components/pm-execute.svelte";
-	import Steps from "$lib/components/steps.svelte";
-	import Step from "$lib/components/step.svelte";
+	import PMExecute from "#lib/components/pm-execute.svelte";
+	import Steps from "#lib/components/steps.svelte";
+	import Step from "#lib/components/step.svelte";
 
 	let { viewerData, links } = $props();
 </script>

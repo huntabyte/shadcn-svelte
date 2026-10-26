@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Pagination from "$lib/registry/ui/pagination/index.js";
+	import * as Pagination from "#lib/registry/ui/pagination/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 

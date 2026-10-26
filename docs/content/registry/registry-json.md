@@ -4,7 +4,7 @@ description: Schema for running your own component registry.
 ---
 
 <script>
-	import Callout from "$lib/components/callout.svelte";
+	import Callout from "#lib/components/callout.svelte";
 </script>
 
 The `registry.json` schema is used to define your custom component registry.
@@ -124,11 +124,11 @@ Default aliases (if you don't specify any):
 ```json title="registry.json" showLineNumbers
 {
   "aliases": {
-    "lib": "$lib/registry/lib", // For internal library code
-    "ui": "$lib/registry/ui", // For UI components
-    "components": "$lib/registry/components", // For component-specific code
-    "utils": "$lib/utils", // For utility functions
-    "hooks": "$lib/registry/hooks" // For reactive state and logic (.svelte.js|ts)
+    "lib": "#lib/registry/lib", // For internal library code
+    "ui": "#lib/registry/ui", // For UI components
+    "components": "#lib/registry/components", // For component-specific code
+    "utils": "#lib/utils.js", // For utility functions
+    "hooks": "#lib/registry/hooks" // For reactive state and logic (.svelte.js|ts)
   }
 }
 ```

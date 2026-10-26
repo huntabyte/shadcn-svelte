@@ -7,14 +7,14 @@ links:
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import ComponentSource from "$lib/components/component-source.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
-	import Steps from "$lib/components/steps.svelte";
-	import InstallTabs from "$lib/components/install-tabs.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import ComponentSource from "#lib/components/component-source.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
+	import Steps from "#lib/components/steps.svelte";
+	import InstallTabs from "#lib/components/install-tabs.svelte";
 
 	let { viewerData } = $props();
-	import Step from "$lib/components/step.svelte";
+	import Step from "#lib/components/step.svelte";
 </script>
 
 <ComponentPreview name="attachment-demo" class="bg-surface dark:bg-background" previewStyle="rhea" previewClassName="h-auto theme-blue bg-surface dark:bg-background">
@@ -59,7 +59,7 @@ Copy and paste the following code into your project.
 
 ```svelte
 <script lang="ts">
-  import * as Attachment from "$lib/components/ui/attachment/index.js";
+  import * as Attachment from "#lib/components/ui/attachment/index.js";
 </script>
 ```
 

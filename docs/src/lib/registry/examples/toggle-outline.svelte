@@ -1,7 +1,7 @@
 <script lang="ts">
 	import BoldIcon from "@lucide/svelte/icons/bold";
 	import ItalicIcon from "@lucide/svelte/icons/italic";
-	import { Toggle } from "$lib/registry/ui/toggle/index.js";
+	import { Toggle } from "#lib/registry/ui/toggle/index.js";
 </script>
 
 <div class="flex flex-wrap items-center gap-2">

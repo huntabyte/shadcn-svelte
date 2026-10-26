@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import {
 		Card,
 		CardContent,
@@ -7,15 +7,15 @@
 		CardFooter,
 		CardHeader,
 		CardTitle,
-	} from "$lib/registry/ui/card/index.js";
-	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
+	} from "#lib/registry/ui/card/index.js";
+	import { Checkbox } from "#lib/registry/ui/checkbox/index.js";
 	import {
 		Field,
 		FieldContent,
 		FieldDescription,
 		FieldGroup,
 		FieldLabel,
-	} from "$lib/registry/ui/field/index.js";
+	} from "#lib/registry/ui/field/index.js";
 	let notifications = $state([
 		{
 			id: "transactions",

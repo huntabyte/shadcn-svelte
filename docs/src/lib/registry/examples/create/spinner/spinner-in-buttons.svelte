@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Spinner } from "$lib/registry/ui/spinner/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Spinner } from "#lib/registry/ui/spinner/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 

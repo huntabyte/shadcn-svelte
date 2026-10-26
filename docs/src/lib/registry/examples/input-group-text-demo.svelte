@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
+	import * as InputGroup from "#lib/registry/ui/input-group/index.js";
 </script>
 
 <div class="grid w-full max-w-sm gap-6">

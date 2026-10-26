@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as Drawer from "$lib/registry/ui/drawer/index.js";
-	import * as Marker from "$lib/registry/ui/marker/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as Drawer from "#lib/registry/ui/drawer/index.js";
+	import * as Marker from "#lib/registry/ui/marker/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 

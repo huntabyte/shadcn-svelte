@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import { ButtonGroup } from "$lib/registry/ui/button-group/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
+	import * as Field from "#lib/registry/ui/field/index.js";
+	import { ButtonGroup } from "#lib/registry/ui/button-group/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Label } from "#lib/registry/ui/label/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 

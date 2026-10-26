@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import {
 		Card,
 		CardContent,
@@ -7,9 +7,9 @@
 		CardFooter,
 		CardHeader,
 		CardTitle,
-	} from "$lib/registry/ui/card/index.js";
-	import { Field, FieldGroup, FieldLabel } from "$lib/registry/ui/field/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
+	} from "#lib/registry/ui/card/index.js";
+	import { Field, FieldGroup, FieldLabel } from "#lib/registry/ui/field/index.js";
+	import { Input } from "#lib/registry/ui/input/index.js";
 </script>
 
 <Card>

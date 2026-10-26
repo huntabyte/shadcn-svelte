@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as Tabs from "#lib/registry/ui/tabs/index.js";
 	import CheckIcon from "@tabler/icons-svelte/icons/check";
 	import CopyIcon from "@tabler/icons-svelte/icons/copy";
-	import * as Tabs from "$lib/registry/ui/tabs/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import ColorIndicator from "./color-indicator.svelte";
 	import Css from "./icons/css.svelte";
 	import {

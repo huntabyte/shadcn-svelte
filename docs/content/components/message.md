@@ -7,14 +7,14 @@ links:
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import ComponentSource from "$lib/components/component-source.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
-	import Steps from "$lib/components/steps.svelte";
-	import InstallTabs from "$lib/components/install-tabs.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import ComponentSource from "#lib/components/component-source.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
+	import Steps from "#lib/components/steps.svelte";
+	import InstallTabs from "#lib/components/install-tabs.svelte";
 
 	let { viewerData } = $props();
-	import Step from "$lib/components/step.svelte";
+	import Step from "#lib/components/step.svelte";
 </script>
 
 <ComponentPreview name="message-demo" previewStyle="rhea" previewClassName="h-auto theme-blue">
@@ -53,9 +53,9 @@ Copy and paste the following code into your project.
 
 ```svelte showLineNumbers
 <script lang="ts">
-  import * as Avatar from "$lib/components/ui/avatar/index.js";
-  import * as Bubble from "$lib/components/ui/bubble/index.js";
-  import * as Message from "$lib/components/ui/message/index.js";
+  import * as Avatar from "#lib/components/ui/avatar/index.js";
+  import * as Bubble from "#lib/components/ui/bubble/index.js";
+  import * as Message from "#lib/components/ui/message/index.js";
 </script>
 ```
 

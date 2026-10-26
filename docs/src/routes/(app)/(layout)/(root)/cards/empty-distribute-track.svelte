@@ -1,7 +1,7 @@
 <script lang="ts">
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Card, CardContent } from "$lib/registry/ui/card/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Card, CardContent } from "#lib/registry/ui/card/index.js";
 	import {
 		Empty,
 		EmptyContent,
@@ -9,7 +9,7 @@
 		EmptyHeader,
 		EmptyMedia,
 		EmptyTitle,
-	} from "$lib/registry/ui/empty/index.js";
+	} from "#lib/registry/ui/empty/index.js";
 </script>
 
 <Card>

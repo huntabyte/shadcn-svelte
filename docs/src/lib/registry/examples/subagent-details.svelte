@@ -1,7 +1,7 @@
 <script lang="ts">
+	import * as Trace from "#lib/registry/ui/trace/index.js";
 	import CircleCheckIcon from "@lucide/svelte/icons/circle-check";
-	import * as Trace from "$lib/registry/ui/trace/index.js";
-	import { Badge } from "$lib/registry/ui/badge/index.js";
+	import { Badge } from "#lib/registry/ui/badge/index.js";
 </script>
 
 <Trace.Root class="max-w-sm">

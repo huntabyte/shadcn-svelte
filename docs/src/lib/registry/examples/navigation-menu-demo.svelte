@@ -1,9 +1,9 @@
 <script lang="ts">
+	import * as NavigationMenu from "#lib/registry/ui/navigation-menu/index.js";
 	import CircleAlertIcon from "@lucide/svelte/icons/circle-alert";
 	import CircleCheckIcon from "@lucide/svelte/icons/circle-check";
 	import CircleDashedIcon from "@lucide/svelte/icons/circle-dashed";
-	import * as NavigationMenu from "$lib/registry/ui/navigation-menu/index.js";
-	import { navigationMenuTriggerStyle } from "$lib/registry/ui/navigation-menu/navigation-menu-trigger.svelte";
+	import { navigationMenuTriggerStyle } from "#lib/registry/ui/navigation-menu/navigation-menu-trigger.svelte";
 
 	const components: { title: string; href: string; description: string }[] = [
 		{

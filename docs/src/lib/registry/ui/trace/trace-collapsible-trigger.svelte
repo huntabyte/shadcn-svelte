@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { cn, type WithoutChild } from "$lib/utils.js";
+	import * as Collapsible from "#lib/registry/ui/collapsible/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { cn, type WithoutChild } from "#lib/utils.js";
 	import TraceIcon from "./trace-icon.svelte";
 	import type { Collapsible as CollapsiblePrimitive } from "bits-ui";
 

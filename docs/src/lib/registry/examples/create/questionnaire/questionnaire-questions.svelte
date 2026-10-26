@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Questionnaire from "$lib/registry/ui/questionnaire/index.js";
+	import * as Questionnaire from "#lib/registry/ui/questionnaire/index.js";
 </script>
 
 <Questionnaire.Item name="direction" required>

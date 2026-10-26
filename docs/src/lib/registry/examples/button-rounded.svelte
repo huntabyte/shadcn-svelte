@@ -1,6 +1,6 @@
 <script lang="ts">
 	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 </script>
 
 <div class="flex gap-2">

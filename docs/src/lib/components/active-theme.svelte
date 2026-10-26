@@ -4,8 +4,8 @@
 	/create and /preview routes now.
 -->
 <script lang="ts">
-	import { THEMES } from "$lib/registry/themes.js";
-	import { UserConfigContext } from "$lib/user-config.svelte.js";
+	import { THEMES } from "#lib/registry/themes.js";
+	import { UserConfigContext } from "#lib/user-config.svelte.js";
 
 	const userConfig = UserConfigContext.get();
 

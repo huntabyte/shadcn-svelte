@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import * as Pagination from "$lib/registry/ui/pagination/index.js";
-	import * as Select from "$lib/registry/ui/select/index.js";
+	import * as Field from "#lib/registry/ui/field/index.js";
+	import * as Pagination from "#lib/registry/ui/pagination/index.js";
+	import * as Select from "#lib/registry/ui/select/index.js";
 
 	const rowsPerPage = ["10", "25", "50", "100"];
 

@@ -4,8 +4,8 @@ description: Displays the steps the agent plans to take, and how far it has got.
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
 </script>
 
 <ComponentPreview name="plan-demo" previewStyle="rhea" previewClassName="h-auto min-h-0">
@@ -30,7 +30,7 @@ Plan is built with the [Trace](/docs/components/trace) component.
 
 ```svelte showLineNumbers
 <script lang="ts">
-  import * as Trace from "$lib/components/ui/trace/index.js";
+  import * as Trace from "#lib/components/ui/trace/index.js";
 </script>
 ```
 

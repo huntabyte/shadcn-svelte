@@ -1,7 +1,7 @@
 <script lang="ts">
-	import ColorPalette from "$lib/components/color-palette.svelte";
-	import { getColors } from "$lib/colors.js";
-	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
+	import ColorPalette from "#lib/components/color-palette.svelte";
+	import { getColors } from "#lib/colors.js";
+	import { UseClipboard } from "#lib/hooks/use-clipboard.svelte.js";
 
 	const colors = getColors();
 	const clipboard = new UseClipboard({ delay: 0, reset: false });

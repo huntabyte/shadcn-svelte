@@ -1,7 +1,7 @@
 <script lang="ts">
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import { Calendar } from "#lib/registry/ui/calendar/index.js";
 	import { CalendarDate, getLocalTimeZone, today, type DateValue } from "@internationalized/date";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import { Calendar } from "$lib/registry/ui/calendar/index.js";
 
 	const year = today(getLocalTimeZone()).year;
 

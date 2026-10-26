@@ -9,13 +9,13 @@ links:
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import ComponentSource from "$lib/components/component-source.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
-	import PMInstall from "$lib/components/pm-install.svelte";
-	import Steps from "$lib/components/steps.svelte";
-	import Step from "$lib/components/step.svelte";
-	import InstallTabs from "$lib/components/install-tabs.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import ComponentSource from "#lib/components/component-source.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
+	import PMInstall from "#lib/components/pm-install.svelte";
+	import Steps from "#lib/components/steps.svelte";
+	import Step from "#lib/components/step.svelte";
+	import InstallTabs from "#lib/components/install-tabs.svelte";
 
 	let { viewerData } = $props();
 </script>
@@ -62,7 +62,7 @@ The `Tooltip.Provider` component should be placed once in your root layout, wrap
 
 ```svelte title="src/routes/+layout.svelte" showLineNumbers
 <script lang="ts">
-  import * as Tooltip from "$lib/components/ui/tooltip/index.js";
+  import * as Tooltip from "#lib/components/ui/tooltip/index.js";
 
   let { children } = $props();
 </script>
@@ -78,7 +78,7 @@ Then use tooltips anywhere in your app:
 
 ```svelte
 <script lang="ts">
-  import * as Tooltip from "$lib/components/ui/tooltip/index.js";
+  import * as Tooltip from "#lib/components/ui/tooltip/index.js";
 </script>
 
 <Tooltip.Root>

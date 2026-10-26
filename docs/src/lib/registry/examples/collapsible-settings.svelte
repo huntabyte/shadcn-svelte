@@ -1,11 +1,11 @@
 <script lang="ts">
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Collapsible from "#lib/registry/ui/collapsible/index.js";
+	import * as Field from "#lib/registry/ui/field/index.js";
 	import MaximizeIcon from "@lucide/svelte/icons/maximize";
 	import MinimizeIcon from "@lucide/svelte/icons/minimize";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Input } from "#lib/registry/ui/input/index.js";
 
 	let isOpen = $state(false);
 </script>

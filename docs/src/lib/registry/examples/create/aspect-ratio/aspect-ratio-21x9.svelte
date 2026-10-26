@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AspectRatio } from "$lib/registry/ui/aspect-ratio/index.js";
+	import { AspectRatio } from "#lib/registry/ui/aspect-ratio/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 

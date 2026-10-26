@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as ContextMenu from "$lib/registry/ui/context-menu/index.js";
+	import * as ContextMenu from "#lib/registry/ui/context-menu/index.js";
 
 	const sides = ["top", "right", "bottom", "left"] as const;
 </script>

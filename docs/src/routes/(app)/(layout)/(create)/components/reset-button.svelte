@@ -1,10 +1,10 @@
 <script lang="ts">
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
+	import * as Kbd from "#lib/registry/ui/kbd/index.js";
+	import { useDesignSystem } from "#lib/features/design-system/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import { Undo02Icon } from "@hugeicons/core-free-icons";
 	import { HugeiconsIcon } from "@hugeicons/svelte";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as Kbd from "$lib/registry/ui/kbd/index.js";
-	import { useDesignSystem } from "$lib/features/design-system/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 
 	type Props = {
 		submenu?: boolean;

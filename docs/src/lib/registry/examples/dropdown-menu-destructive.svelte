@@ -1,9 +1,9 @@
 <script lang="ts">
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
 	import PencilIcon from "@lucide/svelte/icons/pencil";
 	import ShareIcon from "@lucide/svelte/icons/share";
 	import TrashIcon from "@lucide/svelte/icons/trash";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import { buttonVariants } from "#lib/registry/ui/button/index.js";
 </script>
 
 <DropdownMenu.Root>

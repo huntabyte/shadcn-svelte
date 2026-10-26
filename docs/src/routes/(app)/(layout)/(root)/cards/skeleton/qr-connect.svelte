@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Card, CardContent, CardHeader } from "$lib/registry/ui/card/index.js";
-	import { Skeleton } from "$lib/registry/ui/skeleton/index.js";
+	import { Card, CardContent, CardHeader } from "#lib/registry/ui/card/index.js";
+	import { Skeleton } from "#lib/registry/ui/skeleton/index.js";
 </script>
 
 <Card>

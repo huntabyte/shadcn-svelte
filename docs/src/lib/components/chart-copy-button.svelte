@@ -1,10 +1,10 @@
 <script lang="ts">
+	import * as Tooltip from "#lib/registry/ui/tooltip/index.js";
 	import CheckIcon from "@tabler/icons-svelte/icons/check";
 	import CopyIcon from "@tabler/icons-svelte/icons/copy";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
+	import { UseClipboard } from "#lib/hooks/use-clipboard.svelte.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { cn } from "#lib/utils.js";
 	import type { ComponentProps } from "svelte";
 
 	let {

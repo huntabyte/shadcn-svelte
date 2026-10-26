@@ -1,9 +1,9 @@
 <script lang="ts">
+	import * as CodeBlock from "#lib/registry/ui/code-block/index.js";
 	import DownloadIcon from "@lucide/svelte/icons/download";
 	import TerminalIcon from "@lucide/svelte/icons/terminal";
 	import WrapTextIcon from "@lucide/svelte/icons/text-wrap";
-	import * as CodeBlock from "$lib/registry/ui/code-block/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 
 	const output = `$ pnpm lint
 apps/web/components/message-list.tsx

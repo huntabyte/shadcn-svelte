@@ -1,14 +1,14 @@
 <script lang="ts">
+	import * as Bubble from "#lib/registry/ui/bubble/index.js";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as InputGroup from "#lib/registry/ui/input-group/index.js";
+	import * as Marker from "#lib/registry/ui/marker/index.js";
+	import * as MessageScroller from "#lib/registry/ui/message-scroller/index.js";
+	import * as Message from "#lib/registry/ui/message/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { createChat, getMessageText } from "#lib/ai-sdk.js";
+	import { Spinner } from "#lib/registry/ui/spinner/index.js";
 	import { Chat } from "@ai-sdk/svelte";
-	import * as Bubble from "$lib/registry/ui/bubble/index.js";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
-	import * as Marker from "$lib/registry/ui/marker/index.js";
-	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
-	import * as Message from "$lib/registry/ui/message/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { createChat, getMessageText } from "$lib/ai-sdk.js";
-	import { Spinner } from "$lib/registry/ui/spinner/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const script = createChat()

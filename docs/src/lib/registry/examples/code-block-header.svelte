@@ -1,6 +1,6 @@
 <script lang="ts">
+	import * as CodeBlock from "#lib/registry/ui/code-block/index.js";
 	import TerminalIcon from "@lucide/svelte/icons/terminal";
-	import * as CodeBlock from "$lib/registry/ui/code-block/index.js";
 
 	const command = "pnpm add ai @ai-sdk/react zod";
 

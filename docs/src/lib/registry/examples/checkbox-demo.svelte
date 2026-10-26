@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
+	import * as Field from "#lib/registry/ui/field/index.js";
+	import { Checkbox } from "#lib/registry/ui/checkbox/index.js";
+	import { Label } from "#lib/registry/ui/label/index.js";
 </script>
 
 <Field.Group class="max-w-sm">

@@ -5,8 +5,8 @@ component: true
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import CodeCollapsibleWrapper from "$lib/components/code-collapsible-wrapper.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import CodeCollapsibleWrapper from "#lib/components/code-collapsible-wrapper.svelte";
 </script>
 
 <ComponentPreview name="combobox-demo">
@@ -29,9 +29,9 @@ See installation instructions for the [Popover](/docs/components/popover#install
 <script lang="ts">
   import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
   import { tick } from "svelte";
-  import * as Command from "$lib/components/ui/command/index.js";
-  import * as Popover from "$lib/components/ui/popover/index.js";
-  import { Button } from "$lib/components/ui/button/index.js";
+  import * as Command from "#lib/components/ui/command/index.js";
+  import * as Popover from "#lib/components/ui/popover/index.js";
+  import { Button } from "#lib/components/ui/button/index.js";
 
   const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"];
 

@@ -135,8 +135,8 @@
 </script>
 
 <script lang="ts">
+	import * as Sidebar from "#lib/registry/ui/sidebar/index.js";
 	import CommandIcon from "@lucide/svelte/icons/command";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import NavMain from "./nav-main.svelte";
 	import NavProjects from "./nav-projects.svelte";
 	import NavSecondary from "./nav-secondary.svelte";

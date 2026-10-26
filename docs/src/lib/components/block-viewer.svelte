@@ -1,11 +1,11 @@
 <script lang="ts" module>
 	import { Pane } from "paneforge";
 	import { Context } from "runed";
-	import type { createFileTreeForRegistryItemFiles } from "$lib/registry/registry-utils.js";
 	import BlockViewerCode from "./block-viewer-code.svelte";
 	import BlockViewerToolbar from "./block-viewer-toolbar.svelte";
 	import BlockViewerViewMobile from "./block-viewer-view-mobile.svelte";
 	import BlockViewerView from "./block-viewer-view.svelte";
+	import type { createFileTreeForRegistryItemFiles } from "#lib/registry/registry-utils.js";
 	import type { HighlightedBlock } from "../../routes/api/block/[block]/+server.js";
 	import type { Snippet } from "svelte";
 

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import CirclePlusFilledIcon from "@tabler/icons-svelte/icons/circle-plus-filled";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 </script>
 
 <header

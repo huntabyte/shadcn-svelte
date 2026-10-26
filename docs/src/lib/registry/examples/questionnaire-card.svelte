@@ -1,7 +1,7 @@
 <script lang="ts">
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Questionnaire from "#lib/registry/ui/questionnaire/index.js";
 	import { toast } from "svelte-sonner";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Questionnaire from "$lib/registry/ui/questionnaire/index.js";
 
 	const items = [
 		{

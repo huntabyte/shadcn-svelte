@@ -1,7 +1,7 @@
 <script lang="ts">
+	import * as Alert from "#lib/registry/ui/alert/index.js";
 	import CircleCheckIcon from "@lucide/svelte/icons/circle-check";
 	import InfoIcon from "@lucide/svelte/icons/info";
-	import * as Alert from "$lib/registry/ui/alert/index.js";
 </script>
 
 <div class="grid w-full max-w-md items-start gap-4">

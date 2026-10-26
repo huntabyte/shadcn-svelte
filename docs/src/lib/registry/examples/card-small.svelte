@@ -1,7 +1,7 @@
 <script lang="ts">
+	import * as Card from "#lib/registry/ui/card/index.js";
 	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 
 	const featureName = "Scheduled reports";
 	const steps = [

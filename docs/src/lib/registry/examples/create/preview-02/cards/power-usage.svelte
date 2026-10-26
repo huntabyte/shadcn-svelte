@@ -1,10 +1,10 @@
 <script lang="ts">
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Chart from "#lib/registry/ui/chart/index.js";
+	import { Progress } from "#lib/registry/ui/progress/index.js";
+	import { Separator } from "#lib/registry/ui/separator/index.js";
 	import { scaleBand } from "d3-scale";
 	import { BarChart } from "layerchart";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Chart from "$lib/registry/ui/chart/index.js";
-	import { Progress } from "$lib/registry/ui/progress/index.js";
-	import { Separator } from "$lib/registry/ui/separator/index.js";
 
 	const chartData = [
 		{ hour: "6a", usage: 1.2 },

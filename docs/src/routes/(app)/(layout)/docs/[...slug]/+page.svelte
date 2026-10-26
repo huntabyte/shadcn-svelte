@@ -1,18 +1,18 @@
 <script lang="ts">
 	import { page } from "$app/state";
+	import ComponentCodeViewer from "#lib/components/component-code-viewer/component-code-viewer.svelte";
+	import CtaMobile from "#lib/components/cta-mobile.svelte";
+	import Cta from "#lib/components/cta.svelte";
+	import DocsCopyPage from "#lib/components/docs-copy-page.svelte";
+	import DocsToc from "#lib/components/docs-toc.svelte";
+	import Ethical from "#lib/components/ethical.svelte";
+	import Metadata from "#lib/components/metadata.svelte";
 	import ArrowLeftIcon from "@lucide/svelte/icons/arrow-left";
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
 	import ArrowUpRight from "@lucide/svelte/icons/arrow-up-right";
-	import ComponentCodeViewer from "$lib/components/component-code-viewer/component-code-viewer.svelte";
-	import CtaMobile from "$lib/components/cta-mobile.svelte";
-	import Cta from "$lib/components/cta.svelte";
-	import DocsCopyPage from "$lib/components/docs-copy-page.svelte";
-	import DocsToc from "$lib/components/docs-toc.svelte";
-	import Ethical from "$lib/components/ethical.svelte";
-	import Metadata from "$lib/components/metadata.svelte";
-	import { findNeighbors } from "$lib/navigation.js";
-	import { Badge } from "$lib/registry/ui/badge/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { findNeighbors } from "#lib/navigation.js";
+	import { Badge } from "#lib/registry/ui/badge/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 
 	let { data } = $props();
 

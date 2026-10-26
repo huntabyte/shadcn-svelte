@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Accordion from "$lib/registry/ui/accordion/index.js";
+	import * as Accordion from "#lib/registry/ui/accordion/index.js";
 </script>
 
 <Accordion.Root type="single" class="w-full">

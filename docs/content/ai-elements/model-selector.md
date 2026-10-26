@@ -4,8 +4,8 @@ description: Two menus. One picks the model the agent runs, the other picks how 
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
 </script>
 
 <ComponentPreview name="model-selector-demo" previewStyle="rhea" previewClassName="h-auto min-h-0">
@@ -26,8 +26,8 @@ Model Selector is built with the [Dropdown Menu](/docs/components/dropdown-menu)
 <script lang="ts">
   import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
   import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
-  import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
-  import * as InputGroup from "$lib/components/ui/input-group/index.js";
+  import * as DropdownMenu from "#lib/components/ui/dropdown-menu/index.js";
+  import * as InputGroup from "#lib/components/ui/input-group/index.js";
 </script>
 ```
 

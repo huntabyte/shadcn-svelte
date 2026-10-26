@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as Sheet from "#lib/registry/ui/sheet/index.js";
+	import * as Trace from "#lib/registry/ui/trace/index.js";
 	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 	import FolderSearchIcon from "@lucide/svelte/icons/folder-search";
-	import * as Sheet from "$lib/registry/ui/sheet/index.js";
-	import * as Trace from "$lib/registry/ui/trace/index.js";
 </script>
 
 <Trace.Root class="max-w-sm">

@@ -1,9 +1,9 @@
 <script lang="ts">
+	import * as Popover from "#lib/registry/ui/popover/index.js";
 	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Calendar } from "#lib/registry/ui/calendar/index.js";
 	import { DateFormatter, type DateValue, getLocalTimeZone } from "@internationalized/date";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Calendar } from "$lib/registry/ui/calendar/index.js";
 
 	const df = new DateFormatter("en-US", {
 		dateStyle: "long",

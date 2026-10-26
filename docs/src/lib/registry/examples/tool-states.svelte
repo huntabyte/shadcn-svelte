@@ -1,7 +1,7 @@
 <script lang="ts">
+	import * as CodeBlock from "#lib/registry/ui/code-block/index.js";
+	import * as Trace from "#lib/registry/ui/trace/index.js";
 	import TerminalIcon from "@lucide/svelte/icons/terminal";
-	import * as CodeBlock from "$lib/registry/ui/code-block/index.js";
-	import * as Trace from "$lib/registry/ui/trace/index.js";
 
 	const status = ` M app/api/chat/route.ts
  M components/chat.tsx`;

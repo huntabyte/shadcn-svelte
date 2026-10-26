@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Toggle } from "$lib/registry/ui/toggle/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Toggle } from "#lib/registry/ui/toggle/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 

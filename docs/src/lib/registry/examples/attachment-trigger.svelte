@@ -1,9 +1,9 @@
 <script lang="ts">
+	import * as Attachment from "#lib/registry/ui/attachment/index.js";
+	import * as Dialog from "#lib/registry/ui/dialog/index.js";
 	import CopyIcon from "@lucide/svelte/icons/copy";
 	import FileSearchIcon from "@lucide/svelte/icons/file-search";
 	import XIcon from "@lucide/svelte/icons/x";
-	import * as Attachment from "$lib/registry/ui/attachment/index.js";
-	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 </script>
 
 <div class="mx-auto w-full max-w-sm py-12">

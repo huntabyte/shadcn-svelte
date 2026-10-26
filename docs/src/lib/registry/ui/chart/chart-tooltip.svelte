@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { cn, type WithElementRef, type WithoutChildren } from "#lib/utils.js";
 	import { getChartContext, Tooltip as TooltipPrimitive } from "layerchart";
-	import { cn, type WithElementRef, type WithoutChildren } from "$lib/utils.js";
 	import { getPayloadConfigFromPayload, useChart, type TooltipPayload } from "./chart-utils.js";
 	import type { Snippet } from "svelte";
 	import type { HTMLAttributes } from "svelte/elements";

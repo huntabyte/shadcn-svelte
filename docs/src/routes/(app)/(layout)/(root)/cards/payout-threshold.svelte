@@ -1,6 +1,6 @@
 <script lang="ts">
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import {
 		Card,
 		CardAction,
@@ -9,17 +9,17 @@
 		CardFooter,
 		CardHeader,
 		CardTitle,
-	} from "$lib/registry/ui/card/index.js";
-	import { Field, FieldDescription, FieldGroup, FieldLabel } from "$lib/registry/ui/field/index.js";
-	import { Progress } from "$lib/registry/ui/progress/index.js";
+	} from "#lib/registry/ui/card/index.js";
+	import { Field, FieldDescription, FieldGroup, FieldLabel } from "#lib/registry/ui/field/index.js";
+	import { Progress } from "#lib/registry/ui/progress/index.js";
 	import {
 		Select,
 		SelectContent,
 		SelectGroup,
 		SelectItem,
 		SelectTrigger,
-	} from "$lib/registry/ui/select/index.js";
-	import { Textarea } from "$lib/registry/ui/textarea/index.js";
+	} from "#lib/registry/ui/select/index.js";
+	import { Textarea } from "#lib/registry/ui/textarea/index.js";
 	const CURRENCIES = [
 		{ label: "USD — United States Dollar", value: "usd" },
 		{ label: "EUR — Euro", value: "eur" },

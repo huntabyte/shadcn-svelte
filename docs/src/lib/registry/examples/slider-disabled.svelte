@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Slider } from "$lib/registry/ui/slider/index.js";
+	import { Slider } from "#lib/registry/ui/slider/index.js";
 
 	let value = $state(50);
 </script>

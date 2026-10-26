@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Questionnaire from "#lib/registry/ui/questionnaire/index.js";
 	import { toast } from "svelte-sonner";
 	import { z } from "zod";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Questionnaire from "$lib/registry/ui/questionnaire/index.js";
 
 	const items = [
 		{ name: "detail", required: true },

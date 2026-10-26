@@ -1,7 +1,7 @@
 <script lang="ts">
+	import * as Bubble from "#lib/registry/ui/bubble/index.js";
+	import * as Marker from "#lib/registry/ui/marker/index.js";
 	import { toast } from "svelte-sonner";
-	import * as Bubble from "$lib/registry/ui/bubble/index.js";
-	import * as Marker from "$lib/registry/ui/marker/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const quickReplies = [

@@ -4,7 +4,7 @@ description: Learn how to update your project to the latest version of shadcn-sv
 ---
 
 <script>
-	import {Button} from "$lib/registry/ui/button/index.js";
+	import {Button} from "#lib/registry/ui/button/index.js";
 </script>
 
 The latest version of shadcn-svelte expects you to be using Svelte v5 and Tailwind v4. The following guides will help you update your project to the latest version.

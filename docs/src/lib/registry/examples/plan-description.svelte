@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as Trace from "#lib/registry/ui/trace/index.js";
 	import CircleIcon from "@lucide/svelte/icons/circle";
 	import CircleCheckIcon from "@lucide/svelte/icons/circle-check";
 	import RouteIcon from "@lucide/svelte/icons/route";
-	import * as Trace from "$lib/registry/ui/trace/index.js";
 
 	const steps = [
 		"Add a dark variant to the theme tokens",

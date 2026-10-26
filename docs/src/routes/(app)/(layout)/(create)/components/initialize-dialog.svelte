@@ -1,16 +1,16 @@
 <script lang="ts">
+	import * as Dialog from "#lib/registry/ui/dialog/index.js";
+	import * as Tooltip from "#lib/registry/ui/tooltip/index.js";
+	import Callout from "#lib/components/callout.svelte";
+	import PMExecute from "#lib/components/pm-execute.svelte";
 	import BookOpenIcon from "@lucide/svelte/icons/book-open";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import CopyIcon from "@lucide/svelte/icons/copy";
-	import * as Dialog from "$lib/registry/ui/dialog/index.js";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import Callout from "$lib/components/callout.svelte";
-	import PMExecute from "$lib/components/pm-execute.svelte";
-	import { useDesignSystem } from "$lib/features/design-system/index.js";
-	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
-	import { getCommand, type PackageManager } from "$lib/package-manager.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { UserConfigContext } from "$lib/user-config.svelte.js";
+	import { useDesignSystem } from "#lib/features/design-system/index.js";
+	import { UseClipboard } from "#lib/hooks/use-clipboard.svelte.js";
+	import { getCommand, type PackageManager } from "#lib/package-manager.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { UserConfigContext } from "#lib/user-config.svelte.js";
 	import {
 		InitializeProjectContext,
 		InitializeProjectCtx,

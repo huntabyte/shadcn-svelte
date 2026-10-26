@@ -1,12 +1,12 @@
 <script lang="ts">
+	import * as Dialog from "#lib/registry/ui/dialog/index.js";
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
+	import * as Field from "#lib/registry/ui/field/index.js";
 	import MoreHorizontal from "@lucide/svelte/icons/more-horizontal";
-	import * as Dialog from "$lib/registry/ui/dialog/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
-	import { Textarea } from "$lib/registry/ui/textarea/index.js";
+	import { Button, buttonVariants } from "#lib/registry/ui/button/index.js";
+	import { Input } from "#lib/registry/ui/input/index.js";
+	import { Label } from "#lib/registry/ui/label/index.js";
+	import { Textarea } from "#lib/registry/ui/textarea/index.js";
 
 	let showNewDialog = $state(false);
 	let showShareDialog = $state(false);

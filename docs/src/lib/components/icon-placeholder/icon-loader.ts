@@ -26,7 +26,7 @@ export function createIconLoader(iconLibrary: IconLibraryName): IconLoader {
 
 		let mod: Record<string, Component>;
 		try {
-			mod = await import(`$lib/registry/icons/__${iconLibrary}__/${icon}.ts`);
+			mod = await import(`#lib/registry/icons/__${iconLibrary}__/${icon}.ts`);
 		} catch {
 			preloadedIcons.set(icon, null);
 			return null;

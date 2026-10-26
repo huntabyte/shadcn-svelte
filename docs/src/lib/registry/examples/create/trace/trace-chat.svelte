@@ -1,4 +1,13 @@
 <script lang="ts">
+	import * as Bubble from "#lib/registry/ui/bubble/index.js";
+	import * as CodeBlock from "#lib/registry/ui/code-block/index.js";
+	import * as Item from "#lib/registry/ui/item/index.js";
+	import * as Message from "#lib/registry/ui/message/index.js";
+	import * as Sheet from "#lib/registry/ui/sheet/index.js";
+	import * as Trace from "#lib/registry/ui/trace/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { createChat, getMessageText } from "#lib/ai-sdk.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import { Chat } from "@ai-sdk/svelte";
 	import {
 		isToolUIPart,
@@ -6,15 +15,6 @@
 		type UIDataTypes,
 		type UIMessage,
 	} from "ai";
-	import * as Bubble from "$lib/registry/ui/bubble/index.js";
-	import * as CodeBlock from "$lib/registry/ui/code-block/index.js";
-	import * as Item from "$lib/registry/ui/item/index.js";
-	import * as Message from "$lib/registry/ui/message/index.js";
-	import * as Sheet from "$lib/registry/ui/sheet/index.js";
-	import * as Trace from "$lib/registry/ui/trace/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { createChat, getMessageText } from "$lib/ai-sdk.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import type { Snippet } from "svelte";
 

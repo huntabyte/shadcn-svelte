@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Accordion from "$lib/registry/ui/accordion/index.js";
-	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Accordion from "#lib/registry/ui/accordion/index.js";
+	import * as Card from "#lib/registry/ui/card/index.js";
 
 	const items = [
 		{

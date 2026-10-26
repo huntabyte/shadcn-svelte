@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as HoverCard from "$lib/registry/ui/hover-card/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
-	import { Slider } from "$lib/registry/ui/slider/index.js";
+	import * as HoverCard from "#lib/registry/ui/hover-card/index.js";
+	import { Label } from "#lib/registry/ui/label/index.js";
+	import { Slider } from "#lib/registry/ui/slider/index.js";
 	import type { Slider as SliderPrimitive } from "bits-ui";
 
 	let { value = $bindable(), ...restProps }: SliderPrimitive.RootProps = $props();

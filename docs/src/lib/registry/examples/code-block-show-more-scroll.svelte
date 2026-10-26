@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as CodeBlock from "#lib/registry/ui/code-block/index.js";
 	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
-	import * as CodeBlock from "$lib/registry/ui/code-block/index.js";
-	import { useHighlightedCode } from "$lib/registry/hooks/use-highlighted-code.svelte.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { useHighlightedCode } from "#lib/registry/hooks/use-highlighted-code.svelte.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 
 	const code = `"use client"
 

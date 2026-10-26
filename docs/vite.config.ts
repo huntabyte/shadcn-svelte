@@ -1,13 +1,19 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+// @ts-check
+import adapter from "@sveltejs/adapter-cloudflare";
 import tailwindcss from "@tailwindcss/vite";
+import MagicString from "magic-string";
 import { injectStyleClasses, parseStyleCss } from "@shadcn-svelte/parity/inject-style-classes";
 import { enhancedImages } from "@sveltejs/enhanced-img";
 import { sveltekit } from "@sveltejs/kit/vite";
+import { mdsx } from "mdsx";
 import { visualizer } from "rollup-plugin-visualizer";
+import { PRESET_STYLES } from "shadcn-svelte/preset";
 import { defineConfig, type Plugin } from "vite";
 import packageJson from "./package.json" with { type: "json" };
+import { mdsxConfig } from "./mdsx.config.js";
 
 // NOTE: the registry (`static/registry`, `src/__registry__`) is intentionally NOT built here.
 // Building it during config load costs ~15s on every server (re)start, and importing the
@@ -153,6 +159,88 @@ function flattenedRegistry(): Plugin {
 	};
 }
 
+/**
+ * Detects the `name` of the previewing component, imports it directly and
+ * passes it to the `ComponentPreview` as a prop.
+ * @returns {import("svelte/compiler").PreprocessorGroup}
+ */
+function componentPreviews(): import("svelte/compiler").PreprocessorGroup {
+	const TARGET = "<ComponentPreview";
+	const camelize = (s: string) => s.replace(/-./g, (w) => w[1].toUpperCase());
+
+	return {
+		name: "inject-component-preview",
+		markup: ({ content, filename }) => {
+			if (!filename?.endsWith(".md") || !content.includes(TARGET)) return;
+
+			const ms = new MagicString(content);
+			const results = content.matchAll(/<ComponentPreview\b([^>]*)>/g);
+			/** @type {Map<string, string | undefined>} */ const components = new Map();
+
+			for (const exec of results) {
+				const attrs = exec[1] ?? "";
+
+				// This preprocessor runs again on its own output. The first pass inserts
+				// `component=`, which the old `name=`-first regex missed; skip those tags.
+				if (/\bcomponent=/.test(attrs)) continue;
+
+				const name = attrs.match(/\bname=["']([^"'\s]+)["']/)?.[1];
+
+				if (!name || name.includes("sidebar")) continue;
+
+				const insertIndex = exec.index + TARGET.length;
+				const identifier = camelize(name);
+
+				ms.appendRight(insertIndex, ` component={${identifier}}`);
+
+				if (!components.has(name)) components.set(name, previewStyle(attrs, name, filename));
+			}
+
+			const importIndex = content.search("import ComponentPreview");
+
+			for (const [name, style] of components) {
+				const identifier = camelize(name);
+				const query = style ? `?flattened=${style}` : "";
+				let importStatement;
+
+				if (name.startsWith("chart") && !name.includes("demo")) {
+					importStatement = `import ${identifier} from "#lib/registry/blocks/${name}.svelte${query}";`;
+				} else if (name.includes("sidebar") || name.includes("Sidebar")) {
+					continue;
+				} else if (/^calendar-\d+$/.test(name)) {
+					importStatement = `import ${identifier} from "#lib/registry/blocks/${name}.svelte${query}";`;
+				} else {
+					importStatement = `import ${identifier} from "#lib/registry/examples/${name}.svelte${query}";`;
+				}
+
+				ms.appendLeft(importIndex, importStatement);
+			}
+
+			return { code: ms.toString(), map: ms.generateMap() };
+		},
+	};
+}
+
+/**
+ * Registry style to flatten a preview with, from its `previewStyle` prop. Absent means the
+ * docs default (nova). The matching `style-*` class is added by `ComponentPreview` itself.
+ * @param {string} attrs
+ * @param {string} name
+ * @param {string} filename
+ */
+function previewStyle(attrs: string, name: string, filename: string) {
+	const style = attrs.match(/\bpreviewStyle=["']([^"'\s]+)["']/)?.[1];
+
+	if (style && !PRESET_STYLES.includes(style as (typeof PRESET_STYLES)[number])) {
+		throw new Error(
+			`<ComponentPreview name="${name}"> in ${filename} has an unknown previewStyle "${style}". ` +
+				`Expected one of: ${PRESET_STYLES.join(", ")}.`
+		);
+	}
+
+	return style;
+}
+
 export default defineConfig({
 	resolve: {
 		// Use the browser implementation everywhere so SSR/Workers bundles avoid the Node
@@ -167,7 +255,25 @@ export default defineConfig({
 		flattenedRegistry(),
 		tailwindcss(),
 		enhancedImages(),
-		sveltekit(),
+		sveltekit({
+			preprocess: [mdsx(mdsxConfig), componentPreviews()],
+			extensions: [".svelte", ".md"],
+			// https://kit.svelte.dev/docs/adapter-cloudflare#options
+			adapter: adapter(),
+
+			prerender: {
+				handleMissingId: (details) => {
+					if (details.id === "#") return;
+
+					console.warn(details.message);
+				},
+
+				handleHttpError: (details) => {
+					// TODO: remove once all referenced pages are added
+					console.warn(details.message);
+				},
+			},
+		}),
 	],
 	server: {
 		fs: {
@@ -180,18 +286,12 @@ export default defineConfig({
 			output: {
 				codeSplitting: {
 					groups: [
-						{
-							test: /node_modules\/@lucide\/svelte/,
-							name: "lucide-icons",
-						},
+						{ test: /node_modules\/@lucide\/svelte/, name: "lucide-icons" },
 						{
 							test: /node_modules\/@tabler\/icons-svelte/,
 							name: "tabler-icons",
 						},
-						{
-							test: /node_modules\/@hugeicons\/svelte/,
-							name: "hugeicons",
-						},
+						{ test: /node_modules\/@hugeicons\/svelte/, name: "hugeicons" },
 						{
 							test: /node_modules\/@hugeicons\/core-free-icons/,
 							name: "hugeicons-core-free-icons",

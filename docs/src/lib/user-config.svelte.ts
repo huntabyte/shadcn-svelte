@@ -7,7 +7,7 @@ const layoutSchema = z.enum(["fixed", "full"]).default("full");
 const installationTypeSchema = z.enum(["cli", "manual"]).default("cli");
 const packageManagerSchema = z.enum(["npm", "yarn", "pnpm", "bun"]).default("pnpm");
 const colorFormatSchema = z.enum(["class", "hex", "rgb", "hsl", "oklch", "var"]).default("oklch");
-// "default" means no theme override; any other value is a theme name from `$lib/registry/themes`.
+// "default" means no theme override; any other value is a theme name from `#lib/registry/themes.js`.
 const activeTheme = z.string().default("default");
 
 export type Layout = z.infer<typeof layoutSchema>;

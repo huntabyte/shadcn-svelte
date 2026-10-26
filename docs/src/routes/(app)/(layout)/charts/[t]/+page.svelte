@@ -1,6 +1,6 @@
 <script lang="ts">
-	import ChartDisplay from "$lib/components/chart-display.svelte";
-	import { cn } from "$lib/utils.js";
+	import ChartDisplay from "#lib/components/chart-display.svelte";
+	import { cn } from "#lib/utils.js";
 	import { charts } from "../charts.js";
 
 	let { data } = $props();

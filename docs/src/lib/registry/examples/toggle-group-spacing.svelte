@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
+	import * as ToggleGroup from "#lib/registry/ui/toggle-group/index.js";
 
 	const sides = ["top", "bottom", "left", "right"] as const;
 </script>

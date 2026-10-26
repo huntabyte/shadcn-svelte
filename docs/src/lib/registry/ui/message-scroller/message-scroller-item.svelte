@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { cn } from "#lib/utils.js";
 	import { MessageScroller as MessageScrollerPrimitive } from "@shadcn-svelte/primitives/message-scroller";
-	import { cn } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),

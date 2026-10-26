@@ -4,12 +4,12 @@ description: Learn how to get setup and run your own component registry.
 ---
 
 <script>
-	import Step from "$lib/components/step.svelte";
-	import Steps from "$lib/components/steps.svelte";
-	import PMInstall from "$lib/components/pm-install.svelte";
-	import PMRun from "$lib/components/pm-run.svelte";
-	import PMExecute from "$lib/components/pm-execute.svelte";
-	import Callout from "$lib/components/callout.svelte";
+	import Step from "#lib/components/step.svelte";
+	import Steps from "#lib/components/steps.svelte";
+	import PMInstall from "#lib/components/pm-install.svelte";
+	import PMRun from "#lib/components/pm-run.svelte";
+	import PMExecute from "#lib/components/pm-execute.svelte";
+	import Callout from "#lib/components/callout.svelte";
 </script>
 
 This guide will walk you through the process of setting up your own component registry.
@@ -59,7 +59,7 @@ Add your first component. Here's an example of a simple `<HelloWorld />` compone
 
 ```svelte title="registry/hello-world/hello-world.svelte" showLineNumbers
 <script lang="ts">
-  import { Button } from "$lib/components/ui/button/index.js";
+  import { Button } from "#lib/components/ui/button/index.js";
 </script>
 
 <Button>Hello World</Button>

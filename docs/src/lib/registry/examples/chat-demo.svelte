@@ -1,4 +1,14 @@
 <script lang="ts">
+	import * as Bubble from "#lib/registry/ui/bubble/index.js";
+	import * as CodeBlock from "#lib/registry/ui/code-block/index.js";
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
+	import * as Empty from "#lib/registry/ui/empty/index.js";
+	import * as InputGroup from "#lib/registry/ui/input-group/index.js";
+	import * as MessageScroller from "#lib/registry/ui/message-scroller/index.js";
+	import * as Message from "#lib/registry/ui/message/index.js";
+	import * as Tooltip from "#lib/registry/ui/tooltip/index.js";
+	import * as Trace from "#lib/registry/ui/trace/index.js";
+	import Markdown from "#lib/components/markdown/markdown.svelte";
 	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
 	import CircleCheckIcon from "@lucide/svelte/icons/circle-check";
 	import GlobeIcon from "@lucide/svelte/icons/globe";
@@ -9,21 +19,11 @@
 	import RotateCwIcon from "@lucide/svelte/icons/rotate-cw";
 	import TelescopeIcon from "@lucide/svelte/icons/telescope";
 	import TerminalIcon from "@lucide/svelte/icons/terminal";
+	import { createChat, getMessageText } from "#lib/ai-sdk.js";
+	import { MESSAGE_ANIMATIONS, type MessageAnimationPreset } from "#lib/message-animations.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import { Chat } from "@ai-sdk/svelte";
 	import { prefersReducedMotion } from "svelte/motion";
-	import * as Bubble from "$lib/registry/ui/bubble/index.js";
-	import * as CodeBlock from "$lib/registry/ui/code-block/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as Empty from "$lib/registry/ui/empty/index.js";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
-	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
-	import * as Message from "$lib/registry/ui/message/index.js";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import * as Trace from "$lib/registry/ui/trace/index.js";
-	import Markdown from "$lib/components/markdown/markdown.svelte";
-	import { createChat, getMessageText } from "$lib/ai-sdk.js";
-	import { MESSAGE_ANIMATIONS, type MessageAnimationPreset } from "$lib/message-animations.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import type { UIDataTypes, UIMessage } from "ai";
 
 	type ChatMessage = UIMessage<

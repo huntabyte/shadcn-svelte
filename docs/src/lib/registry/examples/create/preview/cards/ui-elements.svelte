@@ -1,19 +1,19 @@
 <script lang="ts">
-	import * as AlertDialog from "$lib/registry/ui/alert-dialog/index.js";
-	import * as ButtonGroup from "$lib/registry/ui/button-group/index.js";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
-	import * as Item from "$lib/registry/ui/item/index.js";
-	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import { Badge } from "$lib/registry/ui/badge/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
-	import { Slider } from "$lib/registry/ui/slider/index.js";
-	import { Switch } from "$lib/registry/ui/switch/index.js";
-	import { Textarea } from "$lib/registry/ui/textarea/index.js";
+	import * as AlertDialog from "#lib/registry/ui/alert-dialog/index.js";
+	import * as ButtonGroup from "#lib/registry/ui/button-group/index.js";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
+	import * as Field from "#lib/registry/ui/field/index.js";
+	import * as InputGroup from "#lib/registry/ui/input-group/index.js";
+	import * as Item from "#lib/registry/ui/item/index.js";
+	import * as RadioGroup from "#lib/registry/ui/radio-group/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Badge } from "#lib/registry/ui/badge/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Checkbox } from "#lib/registry/ui/checkbox/index.js";
+	import { Slider } from "#lib/registry/ui/slider/index.js";
+	import { Switch } from "#lib/registry/ui/switch/index.js";
+	import { Textarea } from "#lib/registry/ui/textarea/index.js";
 
 	let sliderValue = $state(500);
 	let radioValue = $state("apple");

@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as Bubble from "#lib/registry/ui/bubble/index.js";
+	import * as Popover from "#lib/registry/ui/popover/index.js";
 	import InfoIcon from "@lucide/svelte/icons/info";
-	import * as Bubble from "$lib/registry/ui/bubble/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 </script>
 
 <div class="flex w-full max-w-sm flex-col gap-4 py-12">

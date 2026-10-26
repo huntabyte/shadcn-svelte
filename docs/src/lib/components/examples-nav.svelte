@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from "$app/state";
-	import ScrollArea from "$lib/registry/ui/scroll-area/scroll-area.svelte";
-	import { cn } from "$lib/utils.js";
+	import ScrollArea from "#lib/registry/ui/scroll-area/scroll-area.svelte";
+	import { cn } from "#lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 
 	const examples = [

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Attachment from "$lib/registry/ui/attachment/index.js";
+	import * as Attachment from "#lib/registry/ui/attachment/index.js";
 	import AttachmentRemove from "./attachment-remove.svelte";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import { useMessageScrollerScrollable } from "$lib/registry/ui/message-scroller/index.js";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import { useMessageScrollerScrollable } from "#lib/registry/ui/message-scroller/index.js";
 
 	const scrollable = useMessageScrollerScrollable();
 	const status = $derived(getScrollStatus({ start: scrollable.start, end: scrollable.end }));

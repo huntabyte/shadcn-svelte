@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Avatar from "$lib/registry/ui/avatar/index.js";
-	import * as Bubble from "$lib/registry/ui/bubble/index.js";
-	import * as Message from "$lib/registry/ui/message/index.js";
+	import * as Avatar from "#lib/registry/ui/avatar/index.js";
+	import * as Bubble from "#lib/registry/ui/bubble/index.js";
+	import * as Message from "#lib/registry/ui/message/index.js";
 </script>
 
 <div class="flex w-full max-w-sm flex-col gap-6 py-12">

@@ -4,8 +4,8 @@ description: One turn. The person's message, and the agent's reply with its acti
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
 </script>
 
 <ComponentPreview name="message-pattern" previewStyle="rhea" previewClassName="h-auto min-h-0">
@@ -27,9 +27,9 @@ Message is built with the [Message](/docs/components/message), [Bubble](/docs/co
 ```svelte showLineNumbers
 <script lang="ts">
   import CopyIcon from "@lucide/svelte/icons/copy";
-  import * as Bubble from "$lib/components/ui/bubble/index.js";
-  import { Button } from "$lib/components/ui/button/index.js";
-  import * as Message from "$lib/components/ui/message/index.js";
+  import * as Bubble from "#lib/components/ui/bubble/index.js";
+  import { Button } from "#lib/components/ui/button/index.js";
+  import * as Message from "#lib/components/ui/message/index.js";
 </script>
 ```
 

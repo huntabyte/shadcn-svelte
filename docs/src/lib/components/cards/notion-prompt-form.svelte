@@ -1,4 +1,10 @@
 <script lang="ts">
+	import * as Command from "#lib/registry/ui/command/index.js";
+	import * as DropdownMenu from "#lib/registry/ui/dropdown-menu/index.js";
+	import * as Field from "#lib/registry/ui/field/index.js";
+	import * as InputGroup from "#lib/registry/ui/input-group/index.js";
+	import * as Popover from "#lib/registry/ui/popover/index.js";
+	import * as Tooltip from "#lib/registry/ui/tooltip/index.js";
 	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
 	import AtIcon from "@lucide/svelte/icons/at-sign";
 	import BookIcon from "@lucide/svelte/icons/book";
@@ -8,15 +14,9 @@
 	import PaperclipIcon from "@lucide/svelte/icons/paperclip";
 	import PlusIcon from "@lucide/svelte/icons/plus";
 	import XIcon from "@lucide/svelte/icons/x";
-	import * as Command from "$lib/registry/ui/command/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import { Avatar, AvatarFallback, AvatarImage } from "$lib/registry/ui/avatar/index.js";
-	import { Badge } from "$lib/registry/ui/badge/index.js";
-	import { Switch } from "$lib/registry/ui/switch/index.js";
+	import { Avatar, AvatarFallback, AvatarImage } from "#lib/registry/ui/avatar/index.js";
+	import { Badge } from "#lib/registry/ui/badge/index.js";
+	import { Switch } from "#lib/registry/ui/switch/index.js";
 
 	const SAMPLE_DATA = {
 		mentionable: [

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import * as Command from "#lib/registry/ui/command/index.js";
 	import BellIcon from "@lucide/svelte/icons/bell";
 	import CalculatorIcon from "@lucide/svelte/icons/calculator";
 	import CalendarIcon from "@lucide/svelte/icons/calendar";
@@ -22,8 +23,7 @@
 	import UserIcon from "@lucide/svelte/icons/user";
 	import ZoomInIcon from "@lucide/svelte/icons/zoom-in";
 	import ZoomOutIcon from "@lucide/svelte/icons/zoom-out";
-	import * as Command from "$lib/registry/ui/command/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 
 	let open = $state(false);
 </script>

@@ -9,13 +9,13 @@ links:
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import ComponentSource from "$lib/components/component-source.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
-	import PMInstall from "$lib/components/pm-install.svelte";
-	import Steps from "$lib/components/steps.svelte";
-	import Step from "$lib/components/step.svelte";
-	import InstallTabs from "$lib/components/install-tabs.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import ComponentSource from "#lib/components/component-source.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
+	import PMInstall from "#lib/components/pm-install.svelte";
+	import Steps from "#lib/components/steps.svelte";
+	import Step from "#lib/components/step.svelte";
+	import InstallTabs from "#lib/components/install-tabs.svelte";
 
 	let { viewerData } = $props();
 </script>
@@ -64,7 +64,7 @@ Copy and paste the following code into your project.
 
 ```svelte showLineNumbers
 <script lang="ts">
-  import * as Carousel from "$lib/components/ui/carousel/index.js";
+  import * as Carousel from "#lib/components/ui/carousel/index.js";
 </script>
 ```
 
@@ -193,8 +193,8 @@ Use reactive state and the `setApi` prop to get an instance of the carousel API.
 
 ```svelte showLineNumbers {2,5,19}
 <script lang="ts">
-  import { type CarouselAPI } from "$lib/components/ui/carousel/context.js";
-  import * as Carousel from "$lib/components/ui/carousel/index.js";
+  import { type CarouselAPI } from "#lib/components/ui/carousel/context.js";
+  import * as Carousel from "#lib/components/ui/carousel/index.js";
 
   let api = $state<CarouselAPI>();
   let current = $state(0);
@@ -225,8 +225,8 @@ You can listen to events using the api instance from `setApi`.
 
 ```svelte showLineNumbers {2,5,7-13,16}
 <script lang="ts">
-  import { type CarouselAPI } from "$lib/components/ui/carousel/context.js";
-  import * as Carousel from "$lib/components/ui/carousel/index.js";
+  import { type CarouselAPI } from "#lib/components/ui/carousel/context.js";
+  import * as Carousel from "#lib/components/ui/carousel/index.js";
 
   let api = $state<CarouselAPI>();
 
@@ -257,7 +257,7 @@ You can use the `plugins` prop to add plugins to the carousel.
 ```svelte showLineNumbers {2,7-11}
 <script lang="ts">
   import Autoplay from "embla-carousel-autoplay";
-  import * as Carousel from "$lib/components/ui/carousel/index.js";
+  import * as Carousel from "#lib/components/ui/carousel/index.js";
 </script>
 
 <Carousel.Root

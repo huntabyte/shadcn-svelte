@@ -1,11 +1,11 @@
 <script lang="ts">
+	import * as Avatar from "#lib/registry/ui/avatar/index.js";
+	import * as Card from "#lib/registry/ui/card/index.js";
+	import * as Command from "#lib/registry/ui/command/index.js";
+	import * as Item from "#lib/registry/ui/item/index.js";
+	import * as Popover from "#lib/registry/ui/popover/index.js";
 	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
-	import * as Avatar from "$lib/registry/ui/avatar/index.js";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Command from "$lib/registry/ui/command/index.js";
-	import * as Item from "$lib/registry/ui/item/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import { buttonVariants } from "#lib/registry/ui/button/index.js";
 
 	let members = $state([
 		{

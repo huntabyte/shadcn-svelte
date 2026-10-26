@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { createId } from "#lib/internal/create-id.js";
 	import { boxWith, mergeProps } from "svelte-toolbelt";
-	import { createId } from "$lib/internal/create-id.js";
 	import { QuestionnaireItemState } from "../questionnaire.svelte.js";
 	import type { QuestionnaireItemProps } from "../types.js";
 

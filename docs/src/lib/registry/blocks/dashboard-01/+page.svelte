@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
+	import * as Sidebar from "#lib/registry/ui/sidebar/index.js";
 	import AppSidebar from "./components/app-sidebar.svelte";
 	import ChartAreaInteractive from "./components/chart-area-interactive.svelte";
 	import DataTable from "./components/data-table.svelte";

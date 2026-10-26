@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Trace from "$lib/registry/ui/trace/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import * as Trace from "#lib/registry/ui/trace/index.js";
+	import IconPlaceholder from "#lib/components/icon-placeholder/icon-placeholder.svelte";
 	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 

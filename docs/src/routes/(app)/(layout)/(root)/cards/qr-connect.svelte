@@ -5,7 +5,7 @@
 		CardDescription,
 		CardHeader,
 		CardTitle,
-	} from "$lib/registry/ui/card/index.js";
+	} from "#lib/registry/ui/card/index.js";
 	const qrCells = [
 		"111111100101101111111",
 		"100000101001001000001",

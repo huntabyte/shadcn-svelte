@@ -9,15 +9,15 @@ links:
 ---
 
 <script>
-	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import ComponentSource from "$lib/components/component-source.svelte";
-	import PMAddComp from "$lib/components/pm-add-comp.svelte";
-	import PMInstall from "$lib/components/pm-install.svelte";
-	import Steps from "$lib/components/steps.svelte";
-	import InstallTabs from "$lib/components/install-tabs.svelte";
+	import ComponentPreview from "#lib/components/component-preview.svelte";
+	import ComponentSource from "#lib/components/component-source.svelte";
+	import PMAddComp from "#lib/components/pm-add-comp.svelte";
+	import PMInstall from "#lib/components/pm-install.svelte";
+	import Steps from "#lib/components/steps.svelte";
+	import InstallTabs from "#lib/components/install-tabs.svelte";
 
 	let { viewerData } = $props();
-	import Step from "$lib/components/step.svelte";
+	import Step from "#lib/components/step.svelte";
 </script>
 
 <ComponentPreview name="checkbox-demo">
@@ -60,7 +60,7 @@ Copy and paste the following code into your project.
 
 ```svelte
 <script lang="ts">
-  import { Checkbox } from "$lib/components/ui/checkbox/index.js";
+  import { Checkbox } from "#lib/components/ui/checkbox/index.js";
 </script>
 ```
 
@@ -74,7 +74,7 @@ Use `bind:checked` to control the checkbox state, or `onCheckedChange` to listen
 
 ```svelte showLineNumbers
 <script lang="ts">
-  import { Checkbox } from "$lib/components/ui/checkbox/index.js";
+  import { Checkbox } from "#lib/components/ui/checkbox/index.js";
 
   let checked = $state(false);
 </script>

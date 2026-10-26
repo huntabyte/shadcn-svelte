@@ -1,8 +1,12 @@
 <script lang="ts">
+	import * as Select from "#lib/registry/ui/select/index.js";
+	import * as Table from "#lib/registry/ui/table/index.js";
+	import Checkbox from "#lib/registry/ui/checkbox/checkbox.svelte";
 	import ChevronLeftIcon from "@lucide/svelte/icons/chevron-left";
 	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 	import ChevronsLeftIcon from "@lucide/svelte/icons/chevrons-left";
 	import ChevronsRightIcon from "@lucide/svelte/icons/chevrons-right";
+	import { Button } from "#lib/registry/ui/button/index.js";
 	import {
 		FlexRender,
 		type RowSelectionState,
@@ -14,10 +18,6 @@
 		type SvelteTable,
 	} from "@tanstack/svelte-table";
 	import { createRawSnippet } from "svelte";
-	import * as Select from "$lib/registry/ui/select/index.js";
-	import * as Table from "$lib/registry/ui/table/index.js";
-	import Checkbox from "$lib/registry/ui/checkbox/checkbox.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import ColumnHeader from "./data-table-column-header.svelte";
 	import PriorityCell from "./data-table-priority-cell.svelte";
 	import RowActions from "./data-table-row-actions.svelte";

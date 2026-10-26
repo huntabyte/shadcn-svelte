@@ -1,7 +1,7 @@
 <script lang="ts">
+	import * as Item from "#lib/registry/ui/item/index.js";
 	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 	import ExternalLinkIcon from "@lucide/svelte/icons/external-link";
-	import * as Item from "$lib/registry/ui/item/index.js";
 </script>
 
 <div class="flex w-full max-w-md flex-col gap-4">

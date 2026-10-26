@@ -1,8 +1,8 @@
 <script lang="ts">
+	import Button from "#lib/registry/ui/button/button.svelte";
+	import { siteConfig } from "#lib/config.js";
+	import { FALLBACK_STAR_COUNT } from "#lib/constants.js";
 	import { onMount } from "svelte";
-	import Button from "$lib/registry/ui/button/button.svelte";
-	import { siteConfig } from "$lib/config.js";
-	import { FALLBACK_STAR_COUNT } from "$lib/constants.js";
 	import GithubIcon from "./github.svelte";
 
 	async function getGithubStarCount() {

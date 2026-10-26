@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as Trace from "#lib/registry/ui/trace/index.js";
 	import FileTextIcon from "@lucide/svelte/icons/file-text";
 	import SearchIcon from "@lucide/svelte/icons/search";
 	import TerminalIcon from "@lucide/svelte/icons/terminal";
-	import * as Trace from "$lib/registry/ui/trace/index.js";
 </script>
 
 <Trace.Root class="max-w-sm">

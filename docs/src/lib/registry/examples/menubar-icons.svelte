@@ -1,11 +1,11 @@
 <script lang="ts">
+	import * as Menubar from "#lib/registry/ui/menubar/index.js";
 	import CircleQuestionMarkIcon from "@lucide/svelte/icons/circle-question-mark";
 	import FileIcon from "@lucide/svelte/icons/file";
 	import FolderIcon from "@lucide/svelte/icons/folder";
 	import SaveIcon from "@lucide/svelte/icons/save";
 	import SettingsIcon from "@lucide/svelte/icons/settings";
 	import TrashIcon from "@lucide/svelte/icons/trash";
-	import * as Menubar from "$lib/registry/ui/menubar/index.js";
 </script>
 
 <Menubar.Root class="w-72">

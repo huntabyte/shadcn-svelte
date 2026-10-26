@@ -1,7 +1,7 @@
 <script lang="ts">
+	import * as InputGroup from "#lib/registry/ui/input-group/index.js";
 	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
-	import { Spinner } from "$lib/registry/ui/spinner/index.js";
+	import { Spinner } from "#lib/registry/ui/spinner/index.js";
 </script>
 
 <div class="flex w-full max-w-md flex-col gap-4">

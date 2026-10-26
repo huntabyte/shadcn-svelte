@@ -154,17 +154,17 @@
 </script>
 
 <script lang="ts">
+	import * as Dialog from "#lib/registry/ui/dialog/index.js";
+	import * as Drawer from "#lib/registry/ui/drawer/index.js";
+	import * as Select from "#lib/registry/ui/select/index.js";
 	import IconCopy from "@tabler/icons-svelte/icons/copy";
+	import { baseColors, baseColorsOKLCH } from "#lib/registry/registry-base-colors.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Label } from "#lib/registry/ui/label/index.js";
+	import { ScrollArea } from "#lib/registry/ui/scroll-area/index.js";
+	import { UserConfigContext, type ActiveTheme } from "#lib/user-config.svelte.js";
+	import { cn } from "#lib/utils.js";
 	import { setTheme } from "mode-watcher";
-	import * as Dialog from "$lib/registry/ui/dialog/index.js";
-	import * as Drawer from "$lib/registry/ui/drawer/index.js";
-	import * as Select from "$lib/registry/ui/select/index.js";
-	import { baseColors, baseColorsOKLCH } from "$lib/registry/registry-base-colors.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
-	import { ScrollArea } from "$lib/registry/ui/scroll-area/index.js";
-	import { UserConfigContext, type ActiveTheme } from "$lib/user-config.svelte.js";
-	import { cn } from "$lib/utils.js";
 	import ThemeCustomizerCode from "./theme-customizer-code.svelte";
 	import type { HTMLAttributes } from "svelte/elements";
 	interface Props extends HTMLAttributes<HTMLElement> {

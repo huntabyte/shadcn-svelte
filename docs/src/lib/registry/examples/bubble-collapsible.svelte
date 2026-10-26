@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as Bubble from "#lib/registry/ui/bubble/index.js";
+	import * as Collapsible from "#lib/registry/ui/collapsible/index.js";
 	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
-	import * as Bubble from "$lib/registry/ui/bubble/index.js";
-	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
 
 	const text = `The accessibility review found two focus states that were visually too subtle in dark mode.
 

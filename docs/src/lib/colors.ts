@@ -1,5 +1,5 @@
+import { colors } from "#lib/registry/registry-colors.js";
 import { z } from "zod";
-import { colors } from "$lib/registry/registry-colors.js";
 
 const colorSchema = z.object({
 	name: z.string(),

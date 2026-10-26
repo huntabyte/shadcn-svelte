@@ -1,11 +1,11 @@
 <script lang="ts">
+	import * as ButtonGroup from "#lib/registry/ui/button-group/index.js";
+	import * as Popover from "#lib/registry/ui/popover/index.js";
 	import Bot from "@lucide/svelte/icons/bot";
 	import ChevronDown from "@lucide/svelte/icons/chevron-down";
-	import * as ButtonGroup from "$lib/registry/ui/button-group/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Separator } from "$lib/registry/ui/separator/index.js";
-	import { Textarea } from "$lib/registry/ui/textarea/index.js";
+	import { Button } from "#lib/registry/ui/button/index.js";
+	import { Separator } from "#lib/registry/ui/separator/index.js";
+	import { Textarea } from "#lib/registry/ui/textarea/index.js";
 </script>
 
 <ButtonGroup.Root>
