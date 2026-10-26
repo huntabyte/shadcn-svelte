@@ -1,4 +1,6 @@
 import { browser } from "$app/environment";
+import { replaceState } from "$app/navigation";
+import { page } from "$app/state";
 import { SvelteSet, SvelteURLSearchParams } from "svelte/reactivity";
 import { FONT_DEFINITIONS } from "$lib/font-definitions.js";
 import { CONTENT_OPTIONS, type FixtureName } from "./fixtures/index.js";
@@ -117,13 +119,21 @@ export class TypesetState {
 	}
 
 	update(patch: Partial<TypesetParams>, record = true) {
-		this.params = { ...this.params, ...patch };
+		const next = { ...this.params, ...patch };
+		if (
+			(Object.keys(next) as (keyof TypesetParams)[]).every((key) => next[key] === this.params[key])
+		)
+			return;
+		this.params = next;
 		if (record) {
 			this.history = [...this.history.slice(0, this.historyIndex + 1), { ...this.params }];
 			this.historyIndex = this.history.length - 1;
 		}
-		if (browser)
-			window.history.replaceState(null, "", serializeTypesetParams("/typeset", this.params));
+		this.syncUrl();
+	}
+
+	private syncUrl() {
+		if (browser) replaceState(serializeTypesetParams("/typeset", this.params), page.state);
 	}
 
 	toggleLock(param: LockableParam) {
@@ -149,23 +159,21 @@ export class TypesetState {
 	}
 
 	reset() {
-		this.update({ ...DEFAULT_TYPESET_PARAMS, item: this.params.item });
+		this.update({ ...DEFAULT_TYPESET_PARAMS });
 	}
 
 	undo() {
 		if (this.historyIndex <= 0) return;
 		this.historyIndex -= 1;
 		this.params = { ...this.history[this.historyIndex] };
-		if (browser)
-			window.history.replaceState(null, "", serializeTypesetParams("/typeset", this.params));
+		this.syncUrl();
 	}
 
 	redo() {
 		if (this.historyIndex >= this.history.length - 1) return;
 		this.historyIndex += 1;
 		this.params = { ...this.history[this.historyIndex] };
-		if (browser)
-			window.history.replaceState(null, "", serializeTypesetParams("/typeset", this.params));
+		this.syncUrl();
 	}
 
 	get canUndo() {

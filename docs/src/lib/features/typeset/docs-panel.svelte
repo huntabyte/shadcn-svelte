@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Check from "@lucide/svelte/icons/check";
 	import Copy from "@lucide/svelte/icons/copy";
+	import { onMount } from "svelte";
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import * as Tabs from "$lib/registry/ui/tabs/index.js";
 	import PMInstall from "$lib/components/pm-install.svelte";
@@ -17,6 +18,25 @@
 	let tab = $state<"docs" | "prompt">("docs");
 	let framework = $state<(typeof frameworkOptions)[number]["value"]>("sveltekit");
 	let copied = $state("");
+	let rawCss = $state<string | null>(null);
+
+	onMount(() => {
+		let active = true;
+		fetch("/typeset.css")
+			.then((response) => {
+				if (!response.ok) throw new Error("Unable to load typeset.css");
+				return response.text();
+			})
+			.then((text) => {
+				if (active) rawCss = text;
+			})
+			.catch(() => {
+				// Keep copying disabled when the stylesheet is unavailable.
+			});
+		return () => {
+			active = false;
+		};
+	});
 
 	const measure = $derived(
 		TYPESET_MEASURES.find((item) => item.value === typeset.params.measure)?.width ?? "37em"
@@ -33,6 +53,11 @@
   --typeset-leading: ${typeset.params.leading};
   --typeset-flow: ${typeset.params.flow};
 }`);
+	const presetWithImports = $derived(`/* app.css */
+@import "tailwindcss";
+@import "./typeset.css";
+
+${preset}`);
 	const usage = $derived(
 		framework === "astro"
 			? `<div class="typeset ${presetName} max-w-[${measure}]" set:html={content}></div>`
@@ -44,28 +69,48 @@
 		[...new Set([typeset.params.body, heading, typeset.params.mono])].map(findFont).filter(Boolean)
 	);
 	const fontPackages = $derived(picked.map((font) => font?.definition.dependency).join(" "));
-	const install = $derived(`pnpm add ${fontPackages}`);
+	const install = $derived(`npm install ${fontPackages}`);
 	const fontCss = $derived.by(() => {
 		const imports = picked.map((font) => `@import "${font?.definition.dependency}";`).join("\n");
 		const variables = picked
 			.map((font) => `  --font-${font?.id}: ${font?.definition.family};`)
 			.join("\n");
-		return `${imports}\n\n:root {\n${variables}\n}`;
+		return `/* app.css */\n${imports}\n\n:root {\n${variables}\n}`;
 	});
-	const prompt = $derived(`Install shadcn/typeset in this project.
+	const fontStep = $derived(`Install the fonts:
 
-1. Download ${locationOrigin()}/typeset.css next to the main CSS file.
-2. Import it after Tailwind: @import "./typeset.css";
-3. Install the selected fonts: ${install}
-4. Add this preset:
+${install}
+
+Then import them in the main CSS file:
+
+${fontCss}`);
+	const prompt = $derived(`Install shadcn-svelte/typeset in this project.
+
+Typeset is a single stylesheet that styles rendered markdown: wrap the output in a \`typeset\` container and everything inside (headings, lists, tables, code, blockquotes, math) is styled. Everything outside is untouched.
+
+1. Download ${locationOrigin()}/typeset.css and save it as typeset.css next to the project's main CSS file (where Tailwind is imported). If the file already exists, replace it with the downloaded copy.
+
+2. Import it in the main CSS file, after the Tailwind import:
+
+@import "./typeset.css";
+
+3. ${fontStep}
+
+4. Add this preset to the main CSS file, after the typeset import. If a class named .${presetName} already exists, update its values in place. Leave any other typeset-* presets untouched: they are separate surfaces:
 
 ${preset}
 
-5. Find markdown or rich-content surfaces, ask which should use Typeset, then wrap the chosen surface:
+5. Do not apply the class anywhere yet. Search the project for surfaces that render markdown or rich content: mdsvex or MDsX components, {@html} with parsed markdown, prose classes, CMS content renderers. Present the candidates you find as a short list and ask the user which surface should use typeset. Then wrap only the surface they pick:
 
 ${usage}
 
-Use not-typeset or data-not-typeset to exclude embedded components. Verify headings, lists, tables, code, and blockquotes. Docs: ${locationOrigin()}/docs/typeset`);
+If the picked surface already has its own typography (a prose class, styled markdown components), list those styles and let the user decide what to remove before wrapping.
+
+Notes:
+
+- To exclude an embedded component from typeset styles, add the not-typeset class or the data-not-typeset attribute to it.
+- Verify on the surface the user picked: headings, lists, tables, and code inside the container should be styled with no classes on the content itself.
+- Docs: ${locationOrigin()}/docs/typeset`);
 
 	function locationOrigin() {
 		return typeof window === "undefined" ? "https://shadcn-svelte.com" : window.location.origin;
@@ -111,41 +156,48 @@ Use not-typeset or data-not-typeset to exclude embedded components. Verify headi
 					<section class="flex flex-col gap-2.5">
 						<h3 class="text-sm font-medium">1. Create typeset.css</h3>
 						<p class="text-sm leading-relaxed text-muted-foreground">
-							Copy the stylesheet next to your main CSS file, then import it:
+							Copy the stylesheet into a <code class="font-mono">typeset.css</code> file next to your
+							main CSS file, then import it:
 						</p>
 						<Button
 							variant="outline"
 							size="sm"
 							class="w-fit"
-							onclick={async () => copy(await (await fetch("/typeset.css")).text(), "css")}
+							disabled={!rawCss}
+							onclick={() => rawCss && copy(rawCss, "css")}
 						>
 							{#if copied === "css"}<Check />{:else}<Copy />{/if} Copy typeset.css
 						</Button>
 						<pre
-							class="overflow-x-auto rounded-lg bg-muted/60 p-3 font-mono text-sm">@import "tailwindcss";
+							class="overflow-x-auto rounded-lg bg-muted/60 p-3 font-mono text-sm leading-relaxed">@import "tailwindcss";
 @import "./typeset.css";</pre>
 					</section>
 					<section class="flex flex-col gap-2.5">
 						<h3 class="text-sm font-medium">2. Add the fonts</h3>
 						<PMInstall command={fontPackages} />
+						<p class="text-sm leading-relaxed text-muted-foreground">
+							Then import them in your CSS file:
+						</p>
 						<pre
-							class="overflow-x-auto rounded-lg bg-muted/60 p-3 font-mono text-xs">{fontCss}</pre>
+							class="overflow-x-auto rounded-lg bg-muted/60 p-3 font-mono text-sm leading-relaxed">{fontCss}</pre>
 					</section>
 					<section class="flex flex-col gap-2.5">
 						<h3 class="text-sm font-medium">3. Create your custom typeset</h3>
-						<pre class="overflow-x-auto rounded-lg bg-muted/60 p-3 font-mono text-xs">{preset}</pre>
+						<pre
+							class="overflow-x-auto rounded-lg bg-muted/60 p-3 font-mono text-sm leading-relaxed">{presetWithImports}</pre>
 					</section>
 					<section class="flex flex-col gap-2.5">
 						<h3 class="text-sm font-medium">4. Wrap your content</h3>
-						<pre class="overflow-x-auto rounded-lg bg-muted/60 p-3 font-mono text-xs">{usage}</pre>
+						<pre
+							class="overflow-x-auto rounded-lg bg-muted/60 p-3 font-mono text-sm leading-relaxed">{usage}</pre>
 					</section>
 				</Tabs.Content>
 				<Tabs.Content value="prompt" class="flex flex-col gap-2.5">
 					<p class="text-sm leading-relaxed text-muted-foreground">
-						One prompt with your picks baked in. Copy it into your coding agent.
+						One prompt with your picks baked in. Copy it and paste it into your coding agent.
 					</p>
 					<pre
-						class="max-h-102 overflow-y-auto rounded-lg bg-muted/60 p-3 font-mono text-xs whitespace-pre-wrap">{prompt}</pre>
+						class="max-h-102 overflow-y-auto rounded-lg bg-muted/60 p-3 font-mono text-sm leading-relaxed whitespace-pre-wrap">{prompt}</pre>
 					<Button variant="outline" size="sm" class="w-fit" onclick={() => copy(prompt, "prompt")}
 						>{#if copied === "prompt"}<Check />{:else}<Copy />{/if} Copy Prompt</Button
 					>

@@ -90,6 +90,9 @@
 		if ((event.metaKey || event.ctrlKey) && key === "z") {
 			event.preventDefault();
 			event.shiftKey ? typeset.redo() : typeset.undo();
+		} else if (event.ctrlKey && key === "y") {
+			event.preventDefault();
+			typeset.redo();
 		} else if (!event.metaKey && !event.ctrlKey && !event.altKey && key === "r") {
 			event.preventDefault();
 			event.shiftKey ? typeset.reset() : typeset.shuffle();

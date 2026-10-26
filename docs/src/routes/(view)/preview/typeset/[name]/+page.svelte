@@ -68,6 +68,7 @@
 				command = "toggle-theme";
 			else if ((event.metaKey || event.ctrlKey) && key === "z")
 				command = event.shiftKey ? "redo" : "undo";
+			else if (event.ctrlKey && key === "y") command = "redo";
 			if (command) {
 				event.preventDefault();
 				window.parent.postMessage({ type: "typeset-command", command }, window.location.origin);
