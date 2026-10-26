@@ -7,14 +7,19 @@
 
 	let { typeset }: { typeset: TypesetState } = $props();
 	const isMac = useIsMac();
-	let open = $state(false);
+	const open = $derived(typeset.openPicker === "menu");
+
+	function setOpen(next: boolean) {
+		if (next) typeset.openPicker = "menu";
+		else if (typeset.openPicker === "menu") typeset.openPicker = null;
+	}
 
 	function toggleTheme() {
 		setMode(mode.current === "dark" ? "light" : "dark");
 	}
 </script>
 
-<Picker.Root submenu={false} bind:open>
+<Picker.Root submenu={false} bind:open={() => open, setOpen}>
 	<Picker.Trigger
 		submenu={false}
 		class="flex items-center justify-between gap-2 rounded-lg px-1.75 ring-1 ring-foreground/10 focus-visible:ring-1"
@@ -51,6 +56,6 @@
 		type="button"
 		aria-label="Close Menu"
 		class="fixed inset-y-0 right-0 left-54 z-40 cursor-default bg-transparent"
-		onclick={() => (open = false)}
+		onclick={() => setOpen(false)}
 	></button>
 {/if}

@@ -94,6 +94,7 @@ export function serializeTypesetParams(path: string, params: TypesetParams) {
 }
 
 export class TypesetState {
+	openPicker = $state<LockableParam | "menu" | null>(null);
 	params = $state<TypesetParams>({ ...DEFAULT_TYPESET_PARAMS });
 	locks = $state<SvelteSet<LockableParam>>(new SvelteSet());
 	history = $state<TypesetParams[]>([]);

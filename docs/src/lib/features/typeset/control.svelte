@@ -38,7 +38,12 @@
 
 	const isMobile = new IsMobile();
 	const previewOverride = useTypesetPreviewOverride();
-	let open = $state(false);
+	const open = $derived(typeset.openPicker === param);
+
+	function setOpen(next: boolean) {
+		if (next) typeset.openPicker = param;
+		else if (typeset.openPicker === param) typeset.openPicker = null;
+	}
 	let mobileScrollLeft = 0;
 	const value = $derived(typeset.params[param]);
 	const current = $derived(options.find((option) => option.value === value));
@@ -82,7 +87,7 @@
 </script>
 
 <div class={cn("group/picker relative", className)}>
-	<Picker.Root submenu={false} bind:open>
+	<Picker.Root submenu={false} bind:open={() => open, setOpen}>
 		<Picker.Trigger
 			submenu={false}
 			class="w-36 md:w-full"
@@ -169,7 +174,7 @@
 			type="button"
 			aria-label="Close {label} menu"
 			class="fixed inset-y-0 right-0 left-54 z-40 cursor-default bg-transparent"
-			onclick={() => (open = false)}
+			onclick={() => setOpen(false)}
 		></button>
 	{/if}
 	<button
