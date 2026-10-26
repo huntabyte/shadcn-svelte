@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { getConf, resolvePath } from "./test-helpers.js";
+import * as project from "../../src/utils/project.js";
 import { SITE_BASE_URL } from "../../src/constants.js";
 
 vi.mock("tinyexec");
@@ -242,34 +243,40 @@ describe("getConfig", () => {
 	});
 
 	it("handles legacy tailwind v3 configs", async () => {
-		expect(await getConf("legacy/post-init-default")).toEqual({
-			style: "default",
-			tailwind: {
-				css: "src/app.css",
-				baseColor: "zinc",
-			},
-			aliases: {
-				components: "$lib/components",
-				hooks: "$lib/hooks",
-				utils: "$lib/utils",
-				lib: "$lib",
-				ui: "$lib/components/ui",
-			},
-			iconLibrary: "lucide",
-			menuAccent: "subtle",
-			menuColor: "default",
-			typescript: true,
-			sveltekit: true,
-			registry: `${SITE_BASE_URL}/registry`,
-			resolvedPaths: {
-				cwd: resolvePath("../fixtures/legacy/post-init-default"),
-				components: resolvePath("../fixtures/legacy/src/lib/components"),
-				hooks: resolvePath("../fixtures/legacy/src/lib/hooks"),
-				lib: resolvePath("../fixtures/legacy/src/lib"),
-				tailwindCss: resolvePath("../fixtures/legacy/post-init-default/src/app.css"),
-				ui: resolvePath("../fixtures/legacy/src/lib/components/ui"),
-				utils: resolvePath("../fixtures/legacy/src/lib/utils"),
-			},
-		});
+		// Fixtures have no installed dependencies. Avoid detecting an ancestor workspace's Tailwind.
+		const tailwindVersion = vi.spyOn(project, "isUsingTailwind3").mockReturnValue(true);
+		try {
+			expect(await getConf("legacy/post-init-default")).toEqual({
+				style: "default",
+				tailwind: {
+					css: "src/app.css",
+					baseColor: "zinc",
+				},
+				aliases: {
+					components: "$lib/components",
+					hooks: "$lib/hooks",
+					utils: "$lib/utils",
+					lib: "$lib",
+					ui: "$lib/components/ui",
+				},
+				iconLibrary: "lucide",
+				menuAccent: "subtle",
+				menuColor: "default",
+				typescript: true,
+				sveltekit: true,
+				registry: `${SITE_BASE_URL}/registry`,
+				resolvedPaths: {
+					cwd: resolvePath("../fixtures/legacy/post-init-default"),
+					components: resolvePath("../fixtures/legacy/src/lib/components"),
+					hooks: resolvePath("../fixtures/legacy/src/lib/hooks"),
+					lib: resolvePath("../fixtures/legacy/src/lib"),
+					tailwindCss: resolvePath("../fixtures/legacy/post-init-default/src/app.css"),
+					ui: resolvePath("../fixtures/legacy/src/lib/components/ui"),
+					utils: resolvePath("../fixtures/legacy/src/lib/utils"),
+				},
+			});
+		} finally {
+			tailwindVersion.mockRestore();
+		}
 	});
 });

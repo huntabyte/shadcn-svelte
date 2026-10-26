@@ -23,6 +23,8 @@ jobs:
         run: pnpm install
 
       - name: Run svelte-check
+        env:
+          NODE_OPTIONS: --max-old-space-size=8192
         run: pnpm check
 
   lint:
