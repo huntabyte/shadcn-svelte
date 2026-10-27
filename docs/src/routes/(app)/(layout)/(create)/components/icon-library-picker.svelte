@@ -1,5 +1,6 @@
 <script lang="ts">
 	import LucideSquareIcon from "@lucide/svelte/icons/square";
+	import * as Picker from "$lib/components/picker/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
 	import HugeiconsIcon from "$lib/components/icon-placeholder/hugeicons-icon.svelte";
 	import LucideIcon from "$lib/components/icon-placeholder/lucide-icon.svelte";
@@ -19,7 +20,6 @@
 	import type { PhosphorIconName } from "$lib/registry/icons/__phosphor__/index.js";
 	import type { RemixIconIconName } from "$lib/registry/icons/__remixicon__/index.js";
 	import type { TablerIconName } from "$lib/registry/icons/__tabler__/index.js";
-	import * as Picker from "./picker/index.js";
 	import LockButton from "./lock-button.svelte";
 
 	type Props = {

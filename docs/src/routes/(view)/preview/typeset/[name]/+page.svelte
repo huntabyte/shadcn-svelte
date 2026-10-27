@@ -1,4 +1,5 @@
 <script lang="ts">
+	import "$lib/styles/fonts.css";
 	import { page } from "$app/state";
 	import { onMount } from "svelte";
 	import { CHAT_QUESTION } from "$lib/features/typeset/fixtures/chat.js";

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import "$lib/styles/fonts.css";
 	import AlignJustify from "@lucide/svelte/icons/align-justify";
 	import ArrowLeftRight from "@lucide/svelte/icons/arrow-left-right";
 	import CaseUpper from "@lucide/svelte/icons/case-upper";

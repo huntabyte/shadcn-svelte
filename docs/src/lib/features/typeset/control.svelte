@@ -2,9 +2,9 @@
 	import Lock from "@lucide/svelte/icons/lock-keyhole";
 	import Unlock from "@lucide/svelte/icons/lock-keyhole-open";
 	import { tick } from "svelte";
+	import * as Picker from "$lib/components/picker/index.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import { cn } from "$lib/utils.js";
-	import * as Picker from "./picker/index.js";
 	import { useTypesetPreviewOverride } from "./preview-override.svelte.js";
 	import type { LockableParam, TypesetState } from "./typeset.svelte.js";
 	import type { Component } from "svelte";
@@ -87,7 +87,7 @@
 </script>
 
 <div class={cn("group/picker relative", className)}>
-	<Picker.Root bind:open={() => open, setOpen}>
+	<Picker.Root submenu={false} bind:open={() => open, setOpen}>
 		<Picker.Trigger
 			class="w-36 md:w-full"
 			onpointerdown={captureMobileScroll}
@@ -115,6 +115,7 @@
 			{/if}
 		</Picker.Trigger>
 		<Picker.Content
+			preventScroll={false}
 			side={isMobile.current ? "top" : "right"}
 			align={isMobile.current ? "center" : "start"}
 			customAnchor={isMobile.current ? anchor : undefined}
