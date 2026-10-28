@@ -32,21 +32,27 @@ export async function resolveConfig(cwd: string, config: RawConfig): Promise<Res
 	// if it's a SvelteKit project, run sync so that the aliases are always up to date
 	await project.syncSvelteKit(cwd);
 
-	const tsconfig = resolveTSConfig(cwd, config);
+	const aliases = Object.values(config.aliases);
+	const tsconfig = resolveTSConfig(cwd, config, { optional: !needsTSConfig(cwd, aliases) });
 
-	const tsconfigFilename = path.basename(tsconfig.path);
+	// it's only `undefined` when every alias resolves without it, so these never fail
+	const tsconfigFilename = path.basename(tsconfig?.path ?? "tsconfig.json");
 
 	const aliasError = (type: string, alias: string) => {
+		const isSubpathImport = alias.startsWith("#");
 		// aliases may also resolve via `package.json` import maps, so only surface the
 		// missing `paths` error when the tsconfig has no `paths` field at all
-		if (!tsconfig.config.compilerOptions?.paths) {
+		if (!isSubpathImport && !tsconfig?.config.compilerOptions?.paths) {
 			return error(
 				`Missing ${highlight("paths")} field in your ${highlight(tsconfigFilename)} for path aliases. See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}`
 			);
 		}
+		const rule = isSubpathImport
+			? `Import aliases starting with ${highlight("#")} ${color.underline("must use")} existing subpath imports defined in your ${highlight("package.json")} or path aliases defined in your ${highlight(tsconfigFilename)} (e.g. "${type}": "#lib/${type}")`
+			: `Import aliases ${color.underline("must use")} existing path aliases defined in your ${highlight(tsconfigFilename)} (e.g. "${type}": "$lib/${type}")`;
 		return new ConfigError(
 			`Invalid import alias found: (${highlight(`"${type}": "${alias}"`)}) in ${highlight("components.json")}.
-   - Import aliases ${color.underline("must use")} existing path aliases defined in your ${highlight(tsconfigFilename)} (e.g. "${type}": "$lib/${type}").
+   - ${rule}.
    - See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}.`
 		);
 	};
@@ -117,11 +123,23 @@ export function validateImportAlias(opts: Parameters<typeof resolveImportAlias>[
 	const resolvedPath = resolveImportAlias(opts);
 	if (resolvedPath !== undefined) return;
 
-	return `"${color.bold(opts.importPath)}" does not use an existing path alias defined in your ${color.bold(path.basename(opts.tsconfig.path))}. See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}`;
+	let source: string;
+	if (opts.importPath.startsWith("#")) {
+		source = `a subpath import defined in your ${color.bold("package.json")}`;
+		if (opts.tsconfig) {
+			source += ` or a path alias defined in your ${color.bold(path.basename(opts.tsconfig.path))}`;
+		}
+	} else if (opts.tsconfig) {
+		source = `an existing path alias defined in your ${color.bold(path.basename(opts.tsconfig.path))}`;
+	} else {
+		// without a tsconfig, only the subpath imports in `package.json` can resolve
+		source = `a subpath import defined in your ${color.bold("package.json")}, and there's no ${color.bold("tsconfig.json")} for path aliases`;
+	}
+	return `"${color.bold(opts.importPath)}" does not use ${source}. See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}`;
 }
 
 type PromptForAliasesOptions = {
-	tsconfig: TsConfigResult;
+	tsconfig: TsConfigResult | undefined;
 	cwd: string;
 	componentsAlias?: string | undefined;
 	existingConfig: RawConfig | undefined;
@@ -179,8 +197,27 @@ export function writeConfig(cwd: string, config: RawConfig): void {
 	fs.writeFileSync(targetPath, JSON.stringify(conf, null, "\t") + "\n", "utf8");
 }
 
+/**
+ * Whether any of the aliases needs a tsconfig to resolve.
+ */
+export function needsTSConfig(cwd: string, aliases: Array<string | undefined>): boolean {
+	return aliases.some(
+		(alias) =>
+			alias === undefined ||
+			resolveImportAlias({ cwd, importPath: alias, tsconfig: undefined }) === undefined
+	);
+}
+
 type TSConfigName = "tsconfig.json" | "jsconfig.json" | (string & {});
-export function resolveTSConfig(cwd: string, config: RawConfig) {
+/**
+ * With `optional`, returns `undefined` instead of failing when there's no tsconfig or jsconfig. A
+ * custom path in `components.json` always has to exist.
+ */
+export function resolveTSConfig(
+	cwd: string,
+	config: RawConfig,
+	{ optional = false }: { optional?: boolean } = {}
+): TsConfigResult | undefined {
 	let tsconfig;
 	let tsconfigType: TSConfigName;
 	if (typeof config.typescript === "object") {
@@ -193,6 +230,8 @@ export function resolveTSConfig(cwd: string, config: RawConfig) {
 	}
 
 	if (!tsconfig) {
+		if (optional && typeof config.typescript !== "object") return;
+
 		let msg = `Failed to find a ${highlight(tsconfigType)} file. `;
 
 		if (config.typescript)

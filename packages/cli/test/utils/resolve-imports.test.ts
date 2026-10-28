@@ -88,6 +88,20 @@ describe("resolveImportAlias", () => {
 		expect(toPosixPath(result!)).toBe("/project/src/components/Button");
 	});
 
+	it("resolves package.json subpath imports without a tsconfig", () => {
+		const result = resolveImportAlias({
+			importPath: "#lib/components/Button",
+			tsconfig: undefined,
+			cwd: "/project",
+		});
+		expect(result).toBeDefined();
+		expect(toPosixPath(result!)).toBe("/project/src/components/Button");
+
+		expect(resolveImportAlias({ importPath: "$lib", tsconfig: undefined, cwd: "/project" })).toBe(
+			undefined
+		);
+	});
+
 	it("returns first path match from workspace dependencies", () => {
 		const mockTsconfig: TsConfigResult = {
 			config: { compilerOptions: {} },

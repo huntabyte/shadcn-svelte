@@ -139,7 +139,7 @@ function warnDeprecated(flag: string, replacement: string) {
 	);
 }
 
-function validateOptions(cwd: string, options: InitOptions, tsconfig: TsConfigResult) {
+function validateOptions(cwd: string, options: InitOptions, tsconfig: TsConfigResult | undefined) {
 	if (options.css) {
 		if (!existsSync(path.resolve(cwd, options.css))) {
 			throw error(
