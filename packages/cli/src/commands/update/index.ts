@@ -9,7 +9,7 @@ import { z } from "zod";
 import * as cliConfig from "../../utils/config/index.js";
 import * as project from "../../utils/project.js";
 import * as registry from "../../utils/registry/index.js";
-import { AGENT_NAMES, getInstalledAgents } from "../../utils/auto-detect.js";
+import { AGENT_NAMES, detectPM, getInstalledAgents } from "../../utils/auto-detect.js";
 import { highlight } from "../../utils/colors.js";
 import { shadcnSvelteTailwindCssImport } from "../../utils/css.js";
 import { error } from "../../utils/errors.js";
@@ -100,6 +100,10 @@ export const update = new Command()
 	});
 
 async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options: UpdateOptions) {
+	// Without a terminal, prompts would hang or exit without doing anything, so fail and name the
+	// flag that answers them instead.
+	const interactive = Boolean(process.stdin.isTTY);
+
 	if (options.proxy !== undefined) {
 		process.env.HTTP_PROXY = options.proxy;
 		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);
@@ -124,6 +128,10 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 
 	// If user didn't specify any component arguments
 	if (selectedComponents.length === 0) {
+		if (!interactive) {
+			throw error(`Specify the installed components to update, or pass ${highlight("--all")}.`);
+		}
+
 		const selected = await p.multiselect({
 			message: "Which components would you like to update?",
 			maxItems: 10,
@@ -145,6 +153,10 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 	}
 
 	if (options.yes === false) {
+		if (!interactive) {
+			throw error(`Pass ${highlight("--yes")} to skip the confirmation.`);
+		}
+
 		const proceed = await p.confirm({
 			message: `Ready to update ${highlight("components")}? ${color.gray("(Make sure you have committed your changes before proceeding!)")}`,
 			initialValue: true,
@@ -152,6 +164,13 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 
 		if (p.isCancel(proceed) || proceed === false) cancel();
 	}
+
+	// find the package manager first, so that a missing one fails before any file is written
+	const install = options.install && options.depsInstall;
+	const installWith =
+		options.deps && install
+			? (options.installWith ?? (await detectPM(cwd, true)))
+			: options.installWith;
 
 	const tasks: p.Task[] = [];
 
@@ -305,9 +324,9 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 			cwd,
 			dependencies: Array.from(dependencies),
 			devDependencies: Array.from(devDependencies),
-			prompt: true,
-			install: options.install && options.depsInstall,
-			installWith: options.installWith,
+			prompt: false,
+			install,
+			installWith,
 		});
 	} else if (dependencies.size > 0 || devDependencies.size > 0) {
 		const prettyList = prettifyList([...dependencies, ...devDependencies], 7);
