@@ -51,7 +51,10 @@ export const add = new Command()
 	.option("--skip-preflight", "ignore preflight checks and continue", false)
 	.option("-a, --all", "install all components to your project", false)
 	.option("-y, --yes", "skip confirmation prompt", false)
-	.option("-o, --overwrite [items...]", "overwrite existing files, or only the given items' files")
+	.option(
+		"-o, --overwrite [items...]",
+		'overwrite existing files, or only the given items\' files\nappending "..." to an item also overwrites its dependencies, e.g. "sidebar..."'
+	)
 	.option("--no-overwrite", "keep existing files and leave the stylesheet as is")
 	.option("--proxy <proxy>", "fetch components from registry using a proxy", getEnvProxy())
 	.action(async (components, opts) => {
@@ -102,7 +105,9 @@ async function runAdd(cwd: string, config: cliConfig.ResolvedConfig, options: Ad
 
 	// the items to overwrite are added too, since in `add -o button card` the components end up
 	// as the option's values
-	const overwriteItems = Array.isArray(options.overwrite) ? options.overwrite : [];
+	const overwriteItems = Array.isArray(options.overwrite)
+		? options.overwrite.map((item) => item.replace(/\.\.\.$/, ""))
+		: [];
 	let selectedComponents = new Set([
 		...(options.all ? uiOnly.map(({ name }) => name) : (options.components ?? [])),
 		...overwriteItems,

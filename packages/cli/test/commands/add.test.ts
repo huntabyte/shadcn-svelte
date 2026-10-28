@@ -151,6 +151,7 @@ it.each([
 		selectedItems: ["card", "button"],
 		overwrite: ["button"],
 	},
+	{ args: ["-o", "sidebar..."], selectedItems: ["sidebar"], overwrite: ["sidebar..."] },
 ])("adds the items to overwrite: $args", async ({ args, selectedItems, overwrite }) => {
 	await runAdd("-y", ...args);
 

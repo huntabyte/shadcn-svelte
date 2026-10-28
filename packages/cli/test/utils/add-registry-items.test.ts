@@ -585,6 +585,31 @@ describe("addRegistryItems", () => {
 			expect(changes?.cssVars).not.toHaveProperty("light.primary");
 		});
 
+		it("also replaces everything an item depends on when it's followed by `...`", async () => {
+			// both exist, and `card` depends on `button`
+			const cardItem = {
+				name: "card",
+				type: "registry:ui",
+				files: [{ target: "card.svelte", type: "registry:ui", content: "" }],
+				registryDependencies: ["button"],
+			} satisfies ResolvedRegistryItem;
+			vi.mocked(registry.resolveRegistryItems).mockResolvedValue([cardItem, buttonItem]);
+			vi.mocked(registry.fetchRegistryItems).mockResolvedValue([cardItem, buttonItem]);
+			vi.mocked(existsSync).mockReturnValue(true);
+
+			const result = await addRegistryItems({
+				selectedItems: ["card"],
+				config: mockConfig,
+				overwrite: ["card..."],
+				deps: true,
+				interactive: false,
+			});
+
+			expect(result.skippedItems).toEqual([]);
+			expect(fs.writeFile).toHaveBeenCalledWith("/test/ui/card/card.svelte", "", "utf8");
+			expect(fs.writeFile).toHaveBeenCalledWith("/test/ui/button/button.svelte", "", "utf8");
+		});
+
 		it("resolves the items in parallel", async () => {
 			const cardItem = {
 				...buttonItem,

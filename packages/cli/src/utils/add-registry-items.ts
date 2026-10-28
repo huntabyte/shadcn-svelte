@@ -32,7 +32,8 @@ type AddRegistryItemsProps = {
 	/**
 	 * Whether to replace the items that already exist.
 	 *
-	 * A list of names or URLs replaces only those and keeps the rest, and `undefined` asks.
+	 * A list of names or URLs replaces only those and keeps the rest, and `undefined` asks. A name
+	 * or URL followed by `...` also replaces everything it depends on.
 	 */
 	overwrite?: boolean | string[];
 	/**
@@ -91,8 +92,11 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 		)
 	);
 	const overwriteNames = new Set<string>();
-	trees.forEach(([item], i) => {
-		if (overwriteList?.includes(names[i]!)) overwriteNames.add(item!.name);
+	trees.forEach((tree, i) => {
+		if (overwriteList?.includes(names[i]!)) overwriteNames.add(tree[0]!.name);
+		if (overwriteList?.includes(`${names[i]}...`)) {
+			for (const item of tree) overwriteNames.add(item.name);
+		}
 	});
 	const resolvedItems = trees.flat();
 

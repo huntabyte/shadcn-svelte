@@ -79,6 +79,7 @@ Options:
   -a, --all                         install all components to your project (default: false)
   -y, --yes                         skip confirmation prompt (default: false)
   -o, --overwrite [items...]        overwrite existing files, or only the given items' files
+                                    appending "..." to an item also overwrites its dependencies, e.g. "sidebar..."
   --no-overwrite                    keep existing files and leave the stylesheet as is
   --proxy <proxy>                   fetch components from registry using a proxy
   -h, --help                        display help for command
