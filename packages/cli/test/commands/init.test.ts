@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import * as p from "@clack/prompts";
 import { exec } from "tinyexec";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import * as items from "../../src/utils/add-registry-items.js";
 import * as cliConfig from "../../src/utils/config/index.js";
 import * as project from "../../src/utils/project.js";
@@ -21,6 +21,27 @@ vi.mock("@clack/prompts", async (importOriginal) => {
 		taskLog: vi.fn(() => ({ message: vi.fn(), error: vi.fn(), success: vi.fn() })),
 	};
 });
+
+const decidedPresets = {
+	style: "vega",
+	theme: "neutral",
+	font: "inter",
+	radius: "default",
+	baseColor: "zinc",
+	iconLibrary: "lucide",
+	menuColor: "default",
+	menuAccent: "subtle",
+	fontHeading: "inter",
+} as const;
+
+type InitOptions = Parameters<typeof runInit>[0]["options"];
+
+const defaultOptions = {
+	deps: false,
+	install: true,
+	depsInstall: true,
+	skipPreflight: false,
+} satisfies Partial<InitOptions>;
 
 it("init (config-full)", async () => {
 	vi.spyOn(registry, "getRegistryTheme").mockResolvedValue({
@@ -95,17 +116,7 @@ it("init (config-full)", async () => {
 	await runInit({
 		cwd: targetDir,
 		config,
-		decidedPresets: {
-			style: "vega",
-			theme: "neutral",
-			font: "inter",
-			radius: "default",
-			baseColor: "zinc",
-			iconLibrary: "lucide",
-			menuColor: "default",
-			menuAccent: "subtle",
-			fontHeading: "inter",
-		},
+		decidedPresets,
 		options: {
 			cwd: targetDir,
 			deps: true,
@@ -165,24 +176,9 @@ it("init (config-full)", async () => {
 });
 
 describe("overwriting the existing components", () => {
-	const decidedPresets = {
-		style: "vega",
-		theme: "neutral",
-		font: "inter",
-		radius: "default",
-		baseColor: "zinc",
-		iconLibrary: "lucide",
-		menuColor: "default",
-		menuAccent: "subtle",
-		fontHeading: "inter",
-	} as const;
+	const targetDir = path.resolve(__dirname, "../fixtures/config-full");
 
-	it.each([
-		{ name: "--overwrite", overwrite: true, styleChanged: false, answer: undefined },
-		{ name: "the defaults", overwrite: false, styleChanged: false, answer: undefined },
-		{ name: "a new style, answering yes", overwrite: false, styleChanged: true, answer: true },
-		{ name: "a new style, answering no", overwrite: false, styleChanged: true, answer: false },
-	])("passes on the choice with $name", async ({ overwrite, styleChanged, answer }) => {
+	beforeEach(() => {
 		vi.spyOn(p, "tasks").mockResolvedValue(undefined);
 		vi.spyOn(p.log, "warn").mockImplementation(() => {});
 		vi.spyOn(cliConfig, "writeConfig").mockImplementation(() => {});
@@ -190,16 +186,16 @@ describe("overwriting the existing components", () => {
 		vi.spyOn(project, "getComponents").mockResolvedValue([
 			{ name: "button", type: "registry:ui", relativeUrl: "button.json" },
 		]);
-		const confirm = vi.spyOn(p, "confirm").mockResolvedValue(answer ?? true);
-		const addRegistryItems = vi.spyOn(items, "addRegistryItems").mockResolvedValue({
+		vi.spyOn(items, "addRegistryItems").mockResolvedValue({
 			dependencies: new Set(),
 			devDependencies: new Set(),
 			skippedDeps: new Set(),
 			skippedItems: [],
 			skippedStylesheet: false,
 		});
+	});
 
-		const targetDir = path.resolve(__dirname, "../fixtures/config-full");
+	async function run(options: Partial<InitOptions>, styleChanged: boolean) {
 		const config = await getConfig(targetDir);
 		if (!config) throw new Error("config is undefined");
 
@@ -207,23 +203,102 @@ describe("overwriting the existing components", () => {
 			cwd: targetDir,
 			config,
 			decidedPresets,
-			options: {
-				cwd: targetDir,
-				deps: false,
-				install: true,
-				depsInstall: true,
-				overwrite,
-				skipPreflight: false,
-			},
+			options: { cwd: targetDir, ...defaultOptions, ...options },
 			styleChanged,
 		});
 
-		expect(confirm).toHaveBeenCalledTimes(answer === undefined ? 0 : 1);
-		const [args] = addRegistryItems.mock.calls[0]!;
-		// `undefined` asks about each item, and keeping them still asks about the stylesheet
-		expect(args.overwrite).toBe(answer ?? (overwrite || undefined));
-		expect(args.stylesheet).toBe(answer === false ? "ask" : undefined);
-	});
+		return vi.mocked(items.addRegistryItems).mock.calls[0]![0];
+	}
+
+	// `undefined` asks about each item, and keeping them still asks about the stylesheet
+	it.each([
+		{ name: "the defaults", options: {}, styleChanged: false, overwrite: undefined },
+		{ name: "--overwrite", options: { overwrite: true }, styleChanged: false, overwrite: true },
+		{
+			name: "--no-overwrite",
+			options: { overwrite: false },
+			styleChanged: false,
+			overwrite: false,
+		},
+		{
+			name: "a new style and --overwrite",
+			options: { overwrite: true },
+			styleChanged: true,
+			overwrite: true,
+			reinstalled: true,
+		},
+		{
+			name: "a new style and --no-overwrite",
+			options: { overwrite: false },
+			styleChanged: true,
+			overwrite: false,
+		},
+		{
+			name: "a new style and --reinstall",
+			options: { reinstall: true },
+			styleChanged: true,
+			overwrite: true,
+			reinstalled: true,
+		},
+		{
+			name: "a new style and --no-reinstall",
+			options: { reinstall: false },
+			styleChanged: true,
+			overwrite: undefined,
+		},
+		{
+			name: "--overwrite stylesheet",
+			options: { overwrite: ["stylesheet"] } satisfies Partial<InitOptions>,
+			styleChanged: false,
+			overwrite: [],
+			stylesheet: "write",
+		},
+		{
+			name: "a new style and --overwrite utils stylesheet",
+			options: { overwrite: ["utils", "stylesheet"] } satisfies Partial<InitOptions>,
+			styleChanged: true,
+			overwrite: ["utils"],
+			stylesheet: "write",
+		},
+		{
+			name: "a new style and --overwrite components",
+			options: { overwrite: ["components"] } satisfies Partial<InitOptions>,
+			styleChanged: true,
+			overwrite: ["button"],
+			stylesheet: "keep",
+			reinstalled: true,
+		},
+		{
+			name: "a new style, answering yes",
+			options: {},
+			styleChanged: true,
+			answer: true,
+			overwrite: true,
+			reinstalled: true,
+		},
+		{
+			name: "a new style, answering no",
+			options: {},
+			styleChanged: true,
+			answer: false,
+			overwrite: false,
+			stylesheet: "ask",
+			reinstalled: true,
+		},
+	])(
+		"passes on the choice with $name",
+		async ({ options, styleChanged, answer, overwrite, stylesheet, reinstalled }) => {
+			const confirm = vi.spyOn(p, "confirm").mockResolvedValue(answer ?? true);
+
+			const args = await run(options, styleChanged);
+
+			expect(confirm).toHaveBeenCalledTimes(answer === undefined ? 0 : 1);
+			expect(args.overwrite).toEqual(overwrite);
+			expect(args.stylesheet).toBe(stylesheet);
+			// answering no still passes the components, which `overwrite: false` keeps
+			expect(args.selectedItems.includes("button")).toBe(reinstalled ?? false);
+		}
+	);
 });
 
 afterEach(() => {

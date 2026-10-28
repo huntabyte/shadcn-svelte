@@ -23,6 +23,8 @@ import type { TsConfigResult } from "get-tsconfig";
 
 const baseColors = registry.getBaseColors();
 
+const OVERWRITE_PARTS = ["components", "utils", "stylesheet"] as const;
+
 const initOptionsSchema = z.object({
 	cwd: z.string(),
 	baseColor: z.string().optional(),
@@ -37,7 +39,7 @@ const initOptionsSchema = z.object({
 	install: z.boolean(),
 	depsInstall: z.boolean(),
 	installWith: z.enum(AGENT_NAMES).optional(),
-	overwrite: z.boolean(),
+	overwrite: z.union([z.boolean(), z.enum(OVERWRITE_PARTS).array()]).optional(),
 	proxy: z.string().optional(),
 	skipPreflight: z.boolean(),
 	reinstall: z.boolean().optional(),
@@ -50,7 +52,6 @@ export const init = new Command()
 	.description("initialize your project and install dependencies")
 	.option("--preset <preset>", "the preset to use")
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
-	.addOption(new Option("-o, --overwrite", "deprecated: use --reinstall").default(false).hideHelp())
 	.addOption(new Option("--no-deps", "disable adding & installing dependencies").hideHelp())
 	.addOption(
 		new Option(
@@ -63,8 +64,14 @@ export const init = new Command()
 	.option("--no-install", "add dependencies to package.json without installing them")
 	.addOption(new Option("--no-deps-install", "deprecated: use --no-install").hideHelp())
 	.option("--skip-preflight", "ignore preflight checks and continue", false)
-	.option("--reinstall", "reinstall existing components when style changes")
-	.option("--no-reinstall", "skip reinstalling existing components when style changes")
+	.addOption(
+		new Option("-o, --overwrite [parts...]", "overwrite existing files, or only the given parts")
+			.choices(OVERWRITE_PARTS)
+			.conflicts(["reinstall"])
+	)
+	.option("--no-overwrite", "keep existing files and leave the stylesheet as is")
+	.addOption(new Option("--reinstall", "deprecated: use --overwrite").hideHelp())
+	.addOption(new Option("--no-reinstall", "deprecated: use --overwrite <parts...>").hideHelp())
 	.addOption(
 		new Option("--base-color <name>", "the base color for the components").choices(
 			baseColors.map((color) => color.name)
@@ -121,13 +128,16 @@ export const init = new Command()
 			handleError(e);
 		}
 	})
-	.on("option:overwrite", () => {
-		console.warn(
-			color.yellow(
-				`Warning: ${color.bold("--overwrite")} is deprecated. Use ${color.bold("--reinstall")} instead.\n`
-			)
-		);
-	});
+	.on("option:reinstall", () => warnDeprecated("--reinstall", "--overwrite"))
+	.on("option:no-reinstall", () => warnDeprecated("--no-reinstall", "--overwrite <parts...>"));
+
+function warnDeprecated(flag: string, replacement: string) {
+	console.warn(
+		color.yellow(
+			`Warning: ${color.bold(flag)} is deprecated. Use ${color.bold(replacement)} instead.\n`
+		)
+	);
+}
 
 function validateOptions(cwd: string, options: InitOptions, tsconfig: TsConfigResult) {
 	if (options.css) {
@@ -326,33 +336,40 @@ export async function runInit({
 	const presetUrl = new URL(`/init?preset=${encodedPreset}`, registryUrl).toString();
 
 	let selectedItems: string[] = [];
-	// `undefined` asks about the items that already exist
-	let overwrite: boolean | undefined =
-		options.overwrite || options.reinstall === true ? true : undefined;
-	// if the style has changed then we want to ask the user if they want to reinstall existing components to update their styles
-	// unless of course they user has explicitly disabled it
-	if (styleChanged && options.reinstall !== false) {
-		const registryIndex = await registry.getRegistryIndex(registryUrl);
-		const existingComponents = await project.getComponents({
-			registryIndex,
-			config,
-		});
+	// `undefined` asks about the items that already exist, and a list names the items to replace
+	let overwrite: boolean | string[] | undefined;
+	let stylesheet: "write" | "keep" | "ask" | undefined;
 
-		selectedItems = existingComponents
-			.filter((component) => component.name !== "utils")
-			.map((component) => component.name);
+	if (Array.isArray(options.overwrite)) {
+		// only the given parts are replaced, without asking
+		const parts = options.overwrite;
+		if (styleChanged && parts.includes("components")) {
+			selectedItems = await getExistingComponents(registryUrl, config);
+		}
+		if (parts.includes("utils")) selectedItems.push("utils");
+		overwrite = selectedItems;
+		stylesheet = parts.includes("stylesheet") ? "write" : "keep";
+	} else {
+		overwrite = options.overwrite ?? (options.reinstall || undefined);
+		// if the style has changed then we want to ask the user if they want to reinstall existing components to update their styles
+		// unless of course they user has explicitly disabled it
+		if (styleChanged && options.reinstall !== false && overwrite !== false) {
+			selectedItems = await getExistingComponents(registryUrl, config);
 
-		if (selectedItems.length > 0 && !overwrite) {
-			p.log.warn(
-				`The registry style has changed to ${color.bold(color.yellow(decidedPresets.style))}.`
-			);
+			if (selectedItems.length > 0 && overwrite === undefined) {
+				p.log.warn(
+					`The registry style has changed to ${color.bold(color.yellow(decidedPresets.style))}.`
+				);
 
-			const choice = await p.confirm({
-				message: `Would you like to ${color.bold(color.red("overwrite"))} your existing components?`,
-				initialValue: true,
-			});
-			if (p.isCancel(choice)) cancel();
-			overwrite = choice;
+				const choice = await p.confirm({
+					message: `Would you like to ${color.bold(color.red("overwrite"))} your existing components?`,
+					initialValue: true,
+				});
+				if (p.isCancel(choice)) cancel();
+				overwrite = choice;
+				// keeping the components still asks about the stylesheet, since the new style needs it
+				if (!choice) stylesheet = "ask";
+			}
 		}
 	}
 
@@ -361,8 +378,8 @@ export async function runInit({
 		config,
 		deps: options.deps,
 		overwrite,
-		// keeping the components still asks about the stylesheet, since the new style needs it
-		stylesheet: overwrite === false ? "ask" : undefined,
+		stylesheet,
+		overwriteArg: "<parts...>",
 	});
 
 	if (options.deps) {
@@ -380,4 +397,12 @@ export async function runInit({
 			`shadcn-svelte has been initialized ${color.bold(color.red("without"))} the following ${highlight("dependencies")}:\n${color.gray(prettyList)}`
 		);
 	}
+}
+
+async function getExistingComponents(registryUrl: string, config: cliConfig.ResolvedConfig) {
+	const registryIndex = await registry.getRegistryIndex(registryUrl);
+	const components = await project.getComponents({ registryIndex, config });
+	return components
+		.filter((component) => component.name !== "utils")
+		.map((component) => component.name);
 }

@@ -40,8 +40,8 @@ Options:
   --install-with <package-manager>  install dependencies with the given package manager (choices: the ones you have installed)
   --no-install                      add dependencies to package.json without installing them
   --skip-preflight                  ignore preflight checks and continue (default: false)
-  --reinstall                       reinstall existing components when style changes
-  --no-reinstall                    skip reinstalling existing components when style changes
+  -o, --overwrite [parts...]        overwrite existing files, or only the given parts (choices: "components", "utils", "stylesheet")
+  --no-overwrite                    keep existing files and leave the stylesheet as is
   --base-color <name>               the base color for the components (choices: "neutral", "stone", "zinc", "mauve", "olive", "mist", "taupe")
   --css <path>                      path to the global CSS file
   --components-alias <path>         import alias for components

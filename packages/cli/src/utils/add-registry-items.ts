@@ -50,6 +50,13 @@ type AddRegistryItemsProps = {
 	 * @default true
 	 */
 	interactive?: boolean;
+	/**
+	 * What the command's `--overwrite` takes to replace only some items, which the error without a
+	 * terminal suggests.
+	 *
+	 * @default "<items...>"
+	 */
+	overwriteArg?: string;
 };
 
 // this logic is shared between the `add` and `init` commands
@@ -132,8 +139,9 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 	if (overwrite === undefined && existingItems.length > 0) {
 		const prettyList = prettifyList(existingItems);
 		if (opts.interactive === false) {
+			const some = highlight(`--overwrite ${opts.overwriteArg ?? "<items...>"}`);
 			throw error(
-				`The following items already exist: ${prettyList}. Pass ${highlight("--overwrite")} to replace them, ${highlight("--overwrite <items...>")} to replace only some, or ${highlight("--no-overwrite")} to keep them.`
+				`The following items already exist: ${prettyList}. Pass ${highlight("--overwrite")} to replace them, ${some} to replace only some, or ${highlight("--no-overwrite")} to keep them.`
 			);
 		}
 
