@@ -30,6 +30,7 @@ const initOptionsSchema = z.object({
 	baseColor: z.string().optional(),
 	preset: z.string().optional(),
 	css: z.string().optional(),
+	tsconfig: z.string().optional(),
 	componentsAlias: z.string().optional(),
 	utilsAlias: z.string().optional(),
 	libAlias: z.string().optional(),
@@ -78,6 +79,7 @@ export const init = new Command()
 		)
 	)
 	.option("--css <path>", "path to the global CSS file")
+	.option("--tsconfig <path>", "path to the tsconfig/jsconfig file")
 	.option("--components-alias <path>", "import alias for components")
 	.option("--lib-alias <path>", "import alias for lib")
 	.option("--utils-alias <path>", "import alias for utils")
@@ -177,7 +179,15 @@ async function promptForConfig({
 	const { cssPath, tsconfigPath, packageImportAlias } = detectConfigs(cwd, { relative: true });
 
 	let tsconfig;
-	if (existingConfig) {
+	if (options.tsconfig !== undefined) {
+		if (!existsSync(path.resolve(cwd, options.tsconfig))) {
+			throw error(
+				`The provided tsconfig/jsconfig file path ${color.cyan(options.tsconfig)} does not exist. Please enter a valid path.`
+			);
+		}
+		config.typescript = { config: options.tsconfig };
+		tsconfig = cliConfig.resolveTSConfig(cwd, config);
+	} else if (existingConfig) {
 		tsconfig = cliConfig.resolveTSConfig(cwd, existingConfig);
 	} else {
 		if (!tsconfigPath) {

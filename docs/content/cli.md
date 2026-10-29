@@ -44,6 +44,7 @@ Options:
   --no-overwrite                    keep existing files and leave the stylesheet as is
   --base-color <name>               the base color for the components (choices: "neutral", "stone", "zinc", "mauve", "olive", "mist", "taupe")
   --css <path>                      path to the global CSS file
+  --tsconfig <path>                 path to the tsconfig/jsconfig file
   --components-alias <path>         import alias for components
   --lib-alias <path>                import alias for lib
   --utils-alias <path>              import alias for utils

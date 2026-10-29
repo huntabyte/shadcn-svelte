@@ -1,13 +1,18 @@
 import fs from "node:fs";
 import path from "node:path";
+import process from "node:process";
+import { tmpdir } from "node:os";
 import * as p from "@clack/prompts";
+import { Command } from "commander";
 import { exec } from "tinyexec";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import * as items from "../../src/utils/add-registry-items.js";
 import * as cliConfig from "../../src/utils/config/index.js";
 import * as project from "../../src/utils/project.js";
+import * as promptHelpers from "../../src/utils/prompt-helpers.js";
 import * as registry from "../../src/utils/registry/index.js";
-import { runInit } from "../../src/commands/init/index.js";
+import { init, runInit } from "../../src/commands/init/index.js";
+import { encodePreset } from "../../src/preset/index.js";
 import { getConfig } from "../../src/utils/config/index.js";
 
 vi.mock("fs/promises", () => ({ writeFile: vi.fn(), mkdir: vi.fn(), readFile: vi.fn() }));
@@ -21,6 +26,9 @@ vi.mock("@clack/prompts", async (importOriginal) => {
 		taskLog: vi.fn(() => ({ message: vi.fn(), error: vi.fn(), success: vi.fn() })),
 	};
 });
+
+// it only checks the project's Svelte and Tailwind CSS versions
+vi.mock("../../src/commands/init/preflight.js", () => ({ preflightInit: vi.fn() }));
 
 const decidedPresets = {
 	style: "vega",
@@ -299,6 +307,74 @@ describe("overwriting the existing components", () => {
 			expect(args.selectedItems.includes("button")).toBe(reinstalled ?? false);
 		}
 	);
+});
+
+describe("the init command", () => {
+	const aliases = [
+		["--lib-alias", "$lib"],
+		["--components-alias", "$lib/components"],
+		["--ui-alias", "$lib/components/ui"],
+		["--utils-alias", "$lib/utils"],
+		["--hooks-alias", "$lib/hooks"],
+	];
+	const flags = [
+		["--preset", encodePreset(decidedPresets)],
+		["--css", "src/app.css"],
+		...aliases,
+	].flat();
+	const tsconfig = JSON.stringify({
+		compilerOptions: { paths: { $lib: ["./src/lib"], "$lib/*": ["./src/lib/*"] } },
+	});
+
+	let cwd: string;
+
+	beforeEach(() => {
+		cwd = fs.mkdtempSync(path.join(tmpdir(), "shadcn-svelte-init-"));
+		fs.mkdirSync(path.join(cwd, "src"));
+		fs.writeFileSync(path.join(cwd, "src", "app.css"), "");
+		fs.writeFileSync(path.join(cwd, "package.json"), "{}");
+		vi.spyOn(promptHelpers, "intro").mockImplementation(() => {});
+		vi.spyOn(project, "syncSvelteKit").mockResolvedValue();
+		vi.spyOn(p, "cancel").mockImplementation(() => {});
+		vi.spyOn(p, "outro").mockImplementation(() => {});
+		vi.spyOn(process, "exit").mockImplementation(() => undefined as never);
+		vi.spyOn(items, "addRegistryItems").mockResolvedValue({
+			dependencies: new Set(),
+			devDependencies: new Set(),
+			skippedDeps: new Set(),
+			skippedItems: [],
+			skippedStylesheet: false,
+		});
+	});
+
+	afterEach(() => {
+		fs.rmSync(cwd, { recursive: true, force: true });
+	});
+
+	async function runInitCommand(...args: string[]) {
+		const program = new Command();
+		program.addCommand(init);
+		await program.parseAsync(["node", "shadcn-svelte", "init", "-c", cwd, "--no-deps", ...args]);
+	}
+
+	it.each([
+		{ name: "a detected tsconfig", file: "tsconfig.json", args: [], typescript: true },
+		{
+			name: "--tsconfig",
+			file: "tsconfig.app.json",
+			args: ["--tsconfig", "tsconfig.app.json"],
+			typescript: { config: "tsconfig.app.json" },
+		},
+	])("runs with every flag and $name", async ({ file, args, typescript }) => {
+		fs.writeFileSync(path.join(cwd, file), tsconfig);
+
+		await runInitCommand(...flags, ...args);
+
+		expect(p.cancel).not.toHaveBeenCalled();
+		const [options] = vi.mocked(items.addRegistryItems).mock.calls[0]!;
+		expect(options.config.typescript).toEqual(typescript);
+		expect(options.config.aliases.ui).toBe("$lib/components/ui");
+	});
 });
 
 afterEach(() => {
