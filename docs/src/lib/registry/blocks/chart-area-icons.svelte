@@ -3,7 +3,7 @@
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { scaleUtc } from "d3-scale";
 	import { curveNatural } from "d3-shape";
-	import { AreaChart } from "layerchart";
+	import { AreaChart, Area, ChartClipPath } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 
@@ -25,7 +25,7 @@
 <Card.Root>
 	<Card.Header>
 		<Card.Title>Area Chart - Icons</Card.Title>
-		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
+		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<Chart.Container config={chartConfig}>
@@ -52,7 +52,6 @@
 						curve: curveNatural,
 						fillOpacity: 0.4,
 						line: { class: "stroke-1" },
-						motion: "tween",
 					},
 					xAxis: {
 						format: (v: Date) => v.toLocaleDateString("en-US", { month: "short" }),
@@ -60,6 +59,19 @@
 					yAxis: { format: () => "" },
 				}}
 			>
+				{#snippet marks({ context })}
+					<ChartClipPath initialWidth={0} motion={Chart.defaultClipMotion}>
+						{#each context.series.visibleSeries as s (s.key)}
+							<Area
+								seriesKey={s.key}
+								curve={curveNatural}
+								fillOpacity={0.4}
+								line={{ class: "stroke-1" }}
+								{...s.props}
+							/>
+						{/each}
+					</ChartClipPath>
+				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip
 						labelFormatter={(v: Date) => {
