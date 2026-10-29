@@ -23,6 +23,9 @@ import type { TsConfigResult } from "get-tsconfig";
 
 const baseColors = registry.getBaseColors();
 
+// in the order they're asked for
+const ALIASES = ["lib", "components", "ui", "utils", "hooks"] as const;
+
 const OVERWRITE_PARTS = ["components", "utils", "stylesheet"] as const;
 
 const initOptionsSchema = z.object({
@@ -177,6 +180,15 @@ async function promptForConfig({
 	await project.syncSvelteKit(cwd);
 
 	const { cssPath, tsconfigPath, packageImportAlias } = detectConfigs(cwd, { relative: true });
+	// A tsconfig isn't necessary when the aliases are subpath imports from `package.json`. The
+	// prompts default to `packageImportAlias` for the aliases that aren't passed.
+	const needsTsconfig =
+		!existingConfig &&
+		!tsconfigPath &&
+		cliConfig.needsTSConfig(
+			cwd,
+			ALIASES.map((alias) => options[`${alias}Alias`] ?? packageImportAlias)
+		);
 
 	let tsconfig;
 	if (options.tsconfig !== undefined) {
@@ -188,9 +200,14 @@ async function promptForConfig({
 		config.typescript = { config: options.tsconfig };
 		tsconfig = cliConfig.resolveTSConfig(cwd, config);
 	} else if (existingConfig) {
-		tsconfig = cliConfig.resolveTSConfig(cwd, existingConfig);
+		const aliases = ALIASES.map(
+			(alias) => options[`${alias}Alias`] ?? existingConfig.aliases[alias]
+		);
+		tsconfig = cliConfig.resolveTSConfig(cwd, existingConfig, {
+			optional: !cliConfig.needsTSConfig(cwd, aliases),
+		});
 	} else {
-		if (!tsconfigPath) {
+		if (needsTsconfig) {
 			const input = await p.text({
 				message: `Where is your ${highlight("tsconfig/jsconfig")} file?`,
 				// initialValue: "tsconfig.json",
@@ -207,11 +224,14 @@ async function promptForConfig({
 			if (p.isCancel(input)) cancel();
 
 			config.typescript = { config: input };
-		} else {
+		} else if (tsconfigPath) {
 			config.typescript = tsconfigPath.includes("tsconfig");
+		} else {
+			// without a tsconfig or jsconfig in the project or above it, it's a JavaScript project
+			config.typescript = false;
 		}
 
-		tsconfig = cliConfig.resolveTSConfig(cwd, config);
+		tsconfig = cliConfig.resolveTSConfig(cwd, config, { optional: !needsTsconfig });
 	}
 
 	// Validation for any paths provided by flags

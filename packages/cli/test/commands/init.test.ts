@@ -375,6 +375,58 @@ describe("the init command", () => {
 		expect(options.config.typescript).toEqual(typescript);
 		expect(options.config.aliases.ui).toBe("$lib/components/ui");
 	});
+
+	describe("with package.json subpath imports", () => {
+		const subpathFlags = [
+			["--preset", encodePreset(decidedPresets)],
+			["--css", "src/app.css"],
+			...aliases.map(([flag, alias]) => [flag!, alias!.replace("$lib", "#lib")]),
+		].flat();
+
+		function writePackageJson(devDependencies = {}) {
+			const imports = { "#lib": "./src/lib/index.js", "#lib/*": "./src/lib/*" };
+			fs.writeFileSync(
+				path.join(cwd, "package.json"),
+				JSON.stringify({ imports, devDependencies })
+			);
+		}
+
+		it("runs without a tsconfig as a JavaScript project", async () => {
+			writePackageJson();
+
+			await runInitCommand(...subpathFlags);
+
+			expect(p.cancel).not.toHaveBeenCalled();
+			const [options] = vi.mocked(items.addRegistryItems).mock.calls[0]!;
+			expect(options.config.typescript).toBe(false);
+			expect(options.config.resolvedPaths.ui).toBe(path.join(cwd, "src/lib/components/ui"));
+		});
+
+		it("runs again without a tsconfig", async () => {
+			// which an existing config is checked for
+			writePackageJson({ svelte: "^5.0.0", tailwindcss: "^4.0.0" });
+			const existing = {
+				tailwind: { css: "src/app.css", baseColor: "zinc" },
+				aliases: Object.fromEntries(
+					aliases.map(([flag, alias]) => [
+						flag!.slice(2, -"-alias".length),
+						alias!.replace("$lib", "#lib"),
+					])
+				),
+				typescript: false,
+				// the same style, so that it doesn't look for components to reinstall
+				style: decidedPresets.style,
+				menuColor: decidedPresets.menuColor,
+				menuAccent: decidedPresets.menuAccent,
+			};
+			fs.writeFileSync(path.join(cwd, "components.json"), JSON.stringify(existing));
+
+			await runInitCommand(...subpathFlags);
+
+			expect(p.cancel).not.toHaveBeenCalled();
+			expect(items.addRegistryItems).toHaveBeenCalled();
+		});
+	});
 });
 
 afterEach(() => {
