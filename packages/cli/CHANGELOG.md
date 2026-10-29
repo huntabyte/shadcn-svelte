@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.7.2
+
+### Patch Changes
+
+- fix(cli): run `svelte-kit sync` when `node_modules/$app` is missing in SvelteKit v3 projects ([#2954](https://github.com/huntabyte/shadcn-svelte/pull/2954))
+
 ## 1.7.1
 
 ### Patch Changes
