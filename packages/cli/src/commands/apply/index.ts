@@ -176,7 +176,6 @@ export async function runApply({
 
 	await installDependencies({
 		cwd,
-		prompt: false,
 		dependencies: Array.from(result.dependencies),
 		devDependencies: Array.from(result.devDependencies),
 		silent: options.silent,

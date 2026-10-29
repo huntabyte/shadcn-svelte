@@ -516,6 +516,35 @@ describe("addRegistryItems", () => {
 			expect(fs.writeFile).not.toHaveBeenCalled();
 		});
 
+		it("runs the `before` tasks once nothing is left to ask, before writing the items", async () => {
+			vi.mocked(existsSync).mockReturnValue(false);
+			const written: string[] = [];
+			vi.mocked(fs.writeFile).mockImplementation(async (file) => {
+				written.push(String(file));
+			});
+			const before = {
+				title: "Creating config file",
+				task: vi.fn(async () => {
+					written.push("components.json");
+				}),
+			};
+
+			await addRegistryItems({
+				selectedItems: ["button"],
+				config: mockConfig,
+				overwrite: true,
+				deps: true,
+				interactive: false,
+				before: [before],
+			});
+
+			expect(written).toEqual([
+				"components.json",
+				"/test/ui/button/button.svelte",
+				mockConfig.resolvedPaths.tailwindCss,
+			]);
+		});
+
 		it("keeps existing items and the stylesheet with `overwrite: false`", async () => {
 			// `button` exists, but the new `card` doesn't
 			const cardItem = {

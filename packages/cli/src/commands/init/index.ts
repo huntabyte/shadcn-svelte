@@ -12,7 +12,12 @@ import * as registry from "../../utils/registry/index.js";
 import { type PresetConfig, decodePreset, encodePreset } from "../../preset/index.js";
 import { promptForPreset } from "../../preset/presets.js";
 import { addRegistryItems } from "../../utils/add-registry-items.js";
-import { AGENT_NAMES, detectConfigs, getInstalledAgents } from "../../utils/auto-detect.js";
+import {
+	AGENT_NAMES,
+	detectConfigs,
+	detectPM,
+	getInstalledAgents,
+} from "../../utils/auto-detect.js";
 import { highlight } from "../../utils/colors.js";
 import { error } from "../../utils/errors.js";
 import { getEnvProxy } from "../../utils/get-env-proxy.js";
@@ -324,41 +329,12 @@ export async function runInit({
 		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);
 	}
 
-	const tasks: p.Task[] = [];
-
-	tasks.push({
-		title: "Creating config file",
-		async task() {
-			cliConfig.writeConfig(cwd, config);
-			return `Config file ${highlight("components.json")} created`;
-		},
-	});
-
-	tasks.push({
-		title: "Validating alias paths",
-		async task() {
-			// Ensure all resolved paths directories exist.
-			for (const [key, resolvedPath] of Object.entries(config.resolvedPaths)) {
-				// Determine if the path is a file or directory.
-				let dirname = path.extname(resolvedPath) ? path.dirname(resolvedPath) : resolvedPath;
-
-				// If the utils alias is set to something like "@/lib/utils",
-				// assume this is a file and remove the "utils" file name.
-				// TODO: In future releases we should add support for individual utils.
-				if (key === "utils" && resolvedPath.endsWith("/utils")) {
-					// Remove /utils at the end.
-					dirname = dirname.replace(/\/utils$/, "");
-				}
-
-				if (!existsSync(dirname) && key !== "utils") {
-					await fs.mkdir(dirname, { recursive: true });
-				}
-			}
-			return `Alias paths validated`;
-		},
-	});
-
-	await p.tasks(tasks);
+	// find the package manager first, so that a missing one fails before any file is written
+	const install = options.install && options.depsInstall;
+	const installWith =
+		options.deps && install
+			? (options.installWith ?? (await detectPM(cwd, true)))
+			: options.installWith;
 
 	// we create a registry base item using the encoded preset at the /init endpoint in the docs
 	const registryUrl = registry.getRegistryUrl(config);
@@ -403,6 +379,42 @@ export async function runInit({
 		}
 	}
 
+	// these run once nothing is left to ask, so that stopping at a question leaves the project as
+	// it was
+	const setup: p.Task[] = [];
+
+	setup.push({
+		title: "Creating config file",
+		async task() {
+			cliConfig.writeConfig(cwd, config);
+			return `Config file ${highlight("components.json")} created`;
+		},
+	});
+
+	setup.push({
+		title: "Validating alias paths",
+		async task() {
+			// Ensure all resolved paths directories exist.
+			for (const [key, resolvedPath] of Object.entries(config.resolvedPaths)) {
+				// Determine if the path is a file or directory.
+				let dirname = path.extname(resolvedPath) ? path.dirname(resolvedPath) : resolvedPath;
+
+				// If the utils alias is set to something like "@/lib/utils",
+				// assume this is a file and remove the "utils" file name.
+				// TODO: In future releases we should add support for individual utils.
+				if (key === "utils" && resolvedPath.endsWith("/utils")) {
+					// Remove /utils at the end.
+					dirname = dirname.replace(/\/utils$/, "");
+				}
+
+				if (!existsSync(dirname) && key !== "utils") {
+					await fs.mkdir(dirname, { recursive: true });
+				}
+			}
+			return `Alias paths validated`;
+		},
+	});
+
 	const result = await addRegistryItems({
 		selectedItems: [presetUrl, ...selectedItems],
 		config,
@@ -410,16 +422,16 @@ export async function runInit({
 		overwrite,
 		stylesheet,
 		overwriteArg: "<parts...>",
+		before: setup,
 	});
 
 	if (options.deps) {
 		await installDependencies({
 			cwd,
-			prompt: options.deps,
 			dependencies: Array.from(result.dependencies),
 			devDependencies: Array.from(result.devDependencies),
-			install: options.install && options.depsInstall,
-			installWith: options.installWith,
+			install,
+			installWith,
 		});
 	} else if (result.skippedDeps.size) {
 		const prettyList = prettifyList([...result.skippedDeps], 7);

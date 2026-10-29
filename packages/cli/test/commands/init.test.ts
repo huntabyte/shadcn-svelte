@@ -7,6 +7,7 @@ import { Command } from "commander";
 import { exec } from "tinyexec";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import * as items from "../../src/utils/add-registry-items.js";
+import * as autoDetect from "../../src/utils/auto-detect.js";
 import * as cliConfig from "../../src/utils/config/index.js";
 import * as project from "../../src/utils/project.js";
 import * as promptHelpers from "../../src/utils/prompt-helpers.js";
@@ -307,6 +308,29 @@ describe("overwriting the existing components", () => {
 			expect(args.selectedItems.includes("button")).toBe(reinstalled ?? false);
 		}
 	);
+
+	it("writes the config only once nothing is left to ask", async () => {
+		vi.spyOn(fs.promises, "mkdir").mockResolvedValue(undefined);
+
+		const args = await run({}, false);
+
+		expect(cliConfig.writeConfig).not.toHaveBeenCalled();
+
+		// `addRegistryItems` runs these after its own questions
+		for (const task of args.before ?? []) await task.task(() => {});
+		expect(cliConfig.writeConfig).toHaveBeenCalledOnce();
+	});
+
+	it("finds the package manager before writing anything", async () => {
+		const detectPM = vi
+			.spyOn(autoDetect, "detectPM")
+			.mockRejectedValue(new Error("Couldn't detect a package manager."));
+
+		await expect(run({ deps: true }, false)).rejects.toThrow("Couldn't detect");
+
+		expect(detectPM).toHaveBeenCalledWith(targetDir, true);
+		expect(items.addRegistryItems).not.toHaveBeenCalled();
+	});
 });
 
 describe("the init command", () => {

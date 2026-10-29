@@ -324,7 +324,6 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 			cwd,
 			dependencies: Array.from(dependencies),
 			devDependencies: Array.from(devDependencies),
-			prompt: false,
 			install,
 			installWith,
 		});

@@ -186,7 +186,6 @@ async function runAdd(cwd: string, config: cliConfig.ResolvedConfig, options: Ad
 	if (options.deps) {
 		await installDependencies({
 			cwd,
-			prompt: false,
 			dependencies: Array.from(result.dependencies),
 			devDependencies: Array.from(result.devDependencies),
 			install,

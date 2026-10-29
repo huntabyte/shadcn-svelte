@@ -144,7 +144,7 @@ it("installs with the detected package manager", async () => {
 
 	expect(p.tasks).toHaveBeenCalled();
 	expect(installDependencies).toHaveBeenCalledWith(
-		expect.objectContaining({ installWith: "pnpm", install: true, prompt: false })
+		expect.objectContaining({ installWith: "pnpm", install: true })
 	);
 });
 

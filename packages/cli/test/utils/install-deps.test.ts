@@ -64,7 +64,6 @@ describe("installDependencies", () => {
 	it("reinstalls a present package when an explicit range isn't satisfied", async () => {
 		await installDependencies({
 			cwd: "/test",
-			prompt: false,
 			silent: true,
 			dependencies: [],
 			// installed tailwind-variants is ^0.3.0, which doesn't satisfy ^1.0.0
@@ -79,7 +78,6 @@ describe("installDependencies", () => {
 	it("skips a present package when an explicit range is satisfied", async () => {
 		await installDependencies({
 			cwd: "/test",
-			prompt: false,
 			silent: true,
 			dependencies: [],
 			// installed tailwind-variants ^0.3.0 satisfies ^0.3.0
@@ -97,7 +95,6 @@ describe("installDependencies", () => {
 
 		await installDependencies({
 			cwd: "/test",
-			prompt: false,
 			silent: true,
 			dependencies: [],
 			// registry targets this as a devDependency, but it's already in dependencies
@@ -117,7 +114,6 @@ describe("installDependencies", () => {
 
 		await installDependencies({
 			cwd: "/test",
-			prompt: false,
 			silent: true,
 			dependencies: ["cn@^2.0.0"],
 			devDependencies: [],
@@ -136,7 +132,6 @@ describe("installDependencies", () => {
 
 		await installDependencies({
 			cwd: "/test",
-			prompt: false,
 			silent: true,
 			install: false,
 			dependencies: ["cn@latest"],
@@ -161,7 +156,6 @@ describe("installDependencies", () => {
 
 		await installDependencies({
 			cwd: "/test",
-			prompt: false,
 			silent: true,
 			install: false,
 			dependencies: ["cn@next"],
@@ -185,7 +179,6 @@ describe("installDependencies", () => {
 
 		await installDependencies({
 			cwd: "/test",
-			prompt: false,
 			silent: true,
 			install: false,
 			dependencies: ["cn@latest"],
@@ -201,7 +194,6 @@ describe("installDependencies", () => {
 	it("does not rewrite satisfied entries when install is false", async () => {
 		await installDependencies({
 			cwd: "/test",
-			prompt: false,
 			silent: true,
 			install: false,
 			dependencies: [],
@@ -215,7 +207,6 @@ describe("installDependencies", () => {
 	it("writes semver ranges as-is without resolving", async () => {
 		await installDependencies({
 			cwd: "/test",
-			prompt: false,
 			silent: true,
 			install: false,
 			dependencies: [],
@@ -240,7 +231,6 @@ describe("installDependencies", () => {
 
 		await installDependencies({
 			cwd: "/test",
-			prompt: false,
 			silent: true,
 			install: false,
 			dependencies: ["cn@latest"],
@@ -273,7 +263,6 @@ describe("installDependencies", () => {
 
 		await installDependencies({
 			cwd: "/test",
-			prompt: false,
 			silent: true,
 			install: false,
 			dependencies: [],
@@ -298,7 +287,6 @@ describe("installDependencies", () => {
 
 		await installDependencies({
 			cwd: "/test",
-			prompt: false,
 			silent: true,
 			install: false,
 			dependencies: [],
@@ -316,7 +304,6 @@ describe("installDependencies", () => {
 	it("installs with `installWith` instead of detecting the package manager", async () => {
 		await installDependencies({
 			cwd: "/test",
-			prompt: true,
 			silent: true,
 			installWith: "bun",
 			dependencies: ["bits-ui@^2.0.0"],
@@ -333,7 +320,6 @@ describe("installDependencies", () => {
 
 		await installDependencies({
 			cwd: "/test",
-			prompt: false,
 			silent: true,
 			dependencies: ["bits-ui@^2.0.0"],
 			devDependencies: [],
@@ -349,7 +335,6 @@ describe("installDependencies", () => {
 	it("doesn't look for a package manager when nothing needs installing", async () => {
 		await installDependencies({
 			cwd: "/test",
-			prompt: true,
 			silent: true,
 			dependencies: [],
 			// already satisfied by package.json

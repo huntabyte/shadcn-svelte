@@ -58,6 +58,8 @@ type AddRegistryItemsProps = {
 	 * @default "<items...>"
 	 */
 	overwriteArg?: string;
+	/** Tasks to run before the items are written, once nothing is left to ask. */
+	before?: p.Task[];
 };
 
 // this logic is shared between the `add` and `init` commands
@@ -335,7 +337,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 
 	const output = opts.silent ? silentOutput : process.stdout;
 
-	await p.tasks(tasks, { output });
+	await p.tasks([...(opts.before ?? []), ...tasks], { output });
 
 	if (writeStylesheet) {
 		await p.tasks(

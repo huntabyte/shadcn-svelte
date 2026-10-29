@@ -16,7 +16,6 @@ type InstallOptions = {
 	dependencies: string[];
 	devDependencies: string[];
 	cwd: string;
-	prompt: boolean;
 	silent?: boolean;
 	/**
 	 * When `false`, write deps to package.json without running the package manager install.
@@ -37,7 +36,6 @@ type DepSection = "dependencies" | "devDependencies";
 
 export async function installDependencies({
 	cwd,
-	prompt,
 	dependencies,
 	devDependencies,
 	silent,
@@ -72,7 +70,8 @@ export async function installDependencies({
 
 	if (needed.length === 0) return;
 
-	const pm = installWith ?? (await detectPM(cwd, prompt));
+	// the commands that ask for a package manager do it before writing anything
+	const pm = installWith ?? (await detectPM(cwd, false));
 	const neededDeps = needed.filter((d) => d.section === "dependencies");
 	const neededDevDeps = needed.filter((d) => d.section === "devDependencies");
 
