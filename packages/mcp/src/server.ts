@@ -35,14 +35,14 @@ server.registerTool(
 				.describe("Absolute path of the project the command will run in."),
 		}),
 	},
-	async ({ items, cwd }) => ({
-		content: [
-			{
-				type: "text",
-				text: await resolveShadcnCommand("add", ["-y", ...items.map((item) => `"${item}"`)], cwd),
-			},
-		],
-	})
+	async ({ items, cwd }) => {
+		const { command, args } = await resolveShadcnCommand(
+			"add",
+			["-y", ...items.map((item) => `"${item}"`)],
+			cwd
+		);
+		return { content: [{ type: "text", text: [command, ...args].join(" ") }] };
+	}
 );
 
 server.registerTool(

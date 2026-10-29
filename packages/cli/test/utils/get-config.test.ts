@@ -1,6 +1,10 @@
-import { describe, expect, it, vi } from "vitest";
+import fs from "node:fs";
+import path from "node:path";
+import { tmpdir } from "node:os";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { getConf, resolvePath } from "./test-helpers.js";
 import { SITE_BASE_URL } from "../../src/constants.js";
+import { getConfig, validateImportAlias } from "../../src/utils/config/index.js";
 
 vi.mock("tinyexec");
 
@@ -272,4 +276,120 @@ describe("getConfig", () => {
 			},
 		});
 	});
+});
+
+// outside of the repo, so that no tsconfig is found in a parent directory
+describe("with package.json subpath imports", () => {
+	let cwd: string;
+
+	beforeEach(() => {
+		cwd = fs.mkdtempSync(path.join(tmpdir(), "shadcn-svelte-config-"));
+		fs.writeFileSync(
+			path.join(cwd, "package.json"),
+			JSON.stringify({ imports: { "#lib": "./src/lib/index.js", "#lib/*": "./src/lib/*" } })
+		);
+	});
+
+	afterEach(() => {
+		fs.rmSync(cwd, { recursive: true, force: true });
+	});
+
+	function writeConfig(
+		lib: string,
+		{ typescript = true, ...overrides }: { typescript?: unknown; utils?: string } = {}
+	) {
+		const aliases = {
+			lib,
+			components: `${lib}/components`,
+			ui: `${lib}/components/ui`,
+			utils: `${lib}/utils`,
+			hooks: `${lib}/hooks`,
+			...overrides,
+		};
+		const config = { tailwind: { css: "src/app.css", baseColor: "zinc" }, aliases, typescript };
+		fs.writeFileSync(path.join(cwd, "components.json"), JSON.stringify(config));
+	}
+
+	it("resolves aliases that use package.json subpath imports", async () => {
+		writeConfig("#lib");
+
+		const config = await getConfig(cwd);
+
+		expect(config?.typescript).toBe(true);
+		expect(config?.resolvedPaths.lib).toBe(path.join(cwd, "src/lib"));
+		expect(config?.resolvedPaths.ui).toBe(path.join(cwd, "src/lib/components/ui"));
+	});
+
+	it.each([
+		{ name: "aliases", lib: "$lib", overrides: {} },
+		{ name: "one alias", lib: "#lib", overrides: { utils: "$lib/utils" } },
+	])("still needs a tsconfig for $name that aren't subpath imports", async ({ lib, overrides }) => {
+		writeConfig(lib, overrides);
+
+		await expect(getConfig(cwd)).rejects.toThrow(/Failed to find a .*tsconfig\.json/);
+	});
+
+	it("explains that an alias needs a tsconfig when there's none", () => {
+		const message = validateImportAlias({ cwd, importPath: "$lib", tsconfig: undefined });
+
+		expect(message).toMatch(/\$lib.*subpath import.*package\.json.*tsconfig\.json/);
+		expect(validateImportAlias({ cwd, importPath: "#lib", tsconfig: undefined })).toBe(undefined);
+	});
+
+	it("fails when the custom tsconfig in components.json doesn't exist", async () => {
+		writeConfig("#lib", { typescript: { config: "tsconfig.custom.json" } });
+
+		await expect(getConfig(cwd)).rejects.toThrow(/Failed to find a .*tsconfig\.custom\.json/);
+	});
+
+	it("resolves `#` aliases defined in the tsconfig's paths", async () => {
+		const paths = { "#app/*": ["./src/app/*"] };
+		fs.writeFileSync(
+			path.join(cwd, "tsconfig.json"),
+			JSON.stringify({ compilerOptions: { paths } })
+		);
+		writeConfig("#app");
+
+		const config = await getConfig(cwd);
+
+		expect(config?.resolvedPaths.ui).toBe(path.join(cwd, "src/app/components/ui"));
+	});
+
+	it("explains that a `#` alias isn't a subpath import or a tsconfig path alias", () => {
+		const tsconfig = { path: path.join(cwd, "tsconfig.json"), config: { compilerOptions: {} } };
+
+		const message = validateImportAlias({ cwd, importPath: "#src", tsconfig });
+
+		expect(message).toMatch(/#src.*subpath import.*package\.json.*path alias.*tsconfig\.json/);
+	});
+
+	it("explains that a `#` alias isn't a subpath import when there's no tsconfig", () => {
+		const message = validateImportAlias({ cwd, importPath: "#src", tsconfig: undefined });
+
+		expect(message).toMatch(/#src.*subpath import.*package\.json/);
+		expect(message).not.toMatch(/tsconfig/);
+	});
+
+	it.each([
+		{ name: "no paths", compilerOptions: {} },
+		{
+			name: "paths",
+			compilerOptions: { paths: { $lib: ["./src/lib"], "$lib/*": ["./src/lib/*"] } },
+		},
+	])(
+		"fails on a `#` alias that resolves nowhere with a tsconfig that has $name",
+		async ({ compilerOptions }) => {
+			fs.writeFileSync(path.join(cwd, "tsconfig.json"), JSON.stringify({ compilerOptions }));
+			writeConfig("#lib", { utils: "#src/utils" });
+
+			const { message } = await getConfig(cwd).then(
+				() => expect.unreachable(),
+				(e: Error) => e
+			);
+
+			expect(message).toMatch(/#src\/utils/);
+			expect(message).toMatch(/subpath imports.*package\.json.*path aliases.*tsconfig\.json/);
+			expect(message).not.toMatch(/Missing/);
+		}
+	);
 });

@@ -1,6 +1,6 @@
 import path from "node:path";
 import { fetch } from "node-fetch-native";
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { toPosixPath } from "./test-helpers.js";
 import {
 	getRegistryUrl,
@@ -228,6 +228,89 @@ describe("Registry Utilities", () => {
 					items: ["nonexistent-item"],
 				})
 			).rejects.toThrow(/https:\/\/shadcn-svelte\.com\/registry/);
+		});
+
+		describe("remote items that share a dependency", () => {
+			const a = "https://remote.com/r/a.json";
+			const b = "https://remote.com/r/b.json";
+			const shared = "https://remote.com/r/shared.json";
+			const remote: Record<string, RegistryItem> = {
+				[a]: { name: "a", type: "registry:ui", files: [], registryDependencies: ["./shared.json"] },
+				[b]: { name: "b", type: "registry:ui", files: [], registryDependencies: ["./shared.json"] },
+				[shared]: { name: "shared", type: "registry:ui", files: [] },
+			};
+			const fetchedUrls = () => vi.mocked(fetch).mock.calls.map(([url]) => String(url));
+
+			beforeEach(() => {
+				vi.mocked(fetch).mockImplementation(
+					async (url) =>
+						({
+							ok: true,
+							status: 200,
+							statusText: "OK",
+							json: async () => remote[String(url)],
+						}) as Response
+				);
+			});
+
+			afterEach(() => {
+				vi.mocked(fetch).mockReset();
+			});
+
+			it("fetches the items in parallel, and the dependency once", async () => {
+				const result = await resolveRegistryItems({
+					registryUrl,
+					registryIndex: mockRegistryIndex,
+					items: [a, b],
+				});
+
+				expect(result.map((item) => item.name)).toEqual(["a", "shared", "b"]);
+				// `b` doesn't wait for `a` and its dependency
+				expect(fetchedUrls()).toEqual([a, b, shared]);
+			});
+
+			it("fetches the dependency once while it's still loading", async () => {
+				let finish!: () => void;
+				const loading = new Promise<void>((resolve) => (finish = resolve));
+				const respond = vi.mocked(fetch).getMockImplementation()!;
+				vi.mocked(fetch).mockImplementation(async (url, init) => {
+					if (String(url) === shared) await loading;
+					return respond(url, init);
+				});
+
+				const result = resolveRegistryItems({
+					registryUrl,
+					registryIndex: mockRegistryIndex,
+					items: [a, b],
+				});
+				// both items are waiting on the dependency by now
+				await new Promise((resolve) => setTimeout(resolve, 0));
+				expect(fetchedUrls()).toEqual([a, b, shared]);
+
+				finish();
+				expect((await result).map((item) => item.name)).toEqual(["a", "shared", "b"]);
+				expect(fetchedUrls()).toEqual([a, b, shared]);
+			});
+
+			it("shares the fetched items between calls given the same map", async () => {
+				const fetched = new Map();
+				await resolveRegistryItems({
+					registryUrl,
+					registryIndex: mockRegistryIndex,
+					items: [a],
+					fetched,
+				});
+				const result = await resolveRegistryItems({
+					registryUrl,
+					registryIndex: mockRegistryIndex,
+					items: [b],
+					fetched,
+				});
+
+				// the second call still lists the dependency it didn't have to fetch
+				expect(result.map((item) => item.name)).toEqual(["b", "shared"]);
+				expect(fetchedUrls()).toEqual([a, shared, b]);
+			});
 		});
 	});
 

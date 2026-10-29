@@ -9,6 +9,7 @@ import { z } from "zod";
 import * as cliConfig from "../../utils/config/index.js";
 import * as project from "../../utils/project.js";
 import * as registry from "../../utils/registry/index.js";
+import { AGENT_NAMES, detectPM, getInstalledAgents } from "../../utils/auto-detect.js";
 import { highlight } from "../../utils/colors.js";
 import { shadcnSvelteTailwindCssImport } from "../../utils/css.js";
 import { error } from "../../utils/errors.js";
@@ -36,7 +37,9 @@ const updateOptionsSchema = z.object({
 	yes: z.boolean(),
 	skipPreflight: z.boolean(),
 	deps: z.boolean(),
+	install: z.boolean(),
 	depsInstall: z.boolean(),
+	installWith: z.enum(AGENT_NAMES).optional(),
 });
 
 type UpdateOptions = z.infer<typeof updateOptionsSchema>;
@@ -48,7 +51,16 @@ export const update = new Command()
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
 	.option("--skip-preflight", "ignore preflight checks and continue", false)
 	.addOption(new Option("--no-deps", "skips adding & installing package dependencies").hideHelp())
-	.option("--no-deps-install", "add dependencies to package.json without running install")
+	.addOption(
+		new Option(
+			"--install-with <package-manager>",
+			"install dependencies with the given package manager"
+		)
+			.choices(getInstalledAgents())
+			.conflicts(["deps", "install", "depsInstall"])
+	)
+	.option("--no-install", "add dependencies to package.json without installing them")
+	.addOption(new Option("--no-deps-install", "deprecated: use --no-install").hideHelp())
 	.option("-a, --all", "update all existing components", false)
 	.option("-y, --yes", "skip confirmation prompt", false)
 	.option("--proxy <proxy>", "fetch components from registry using a proxy", getEnvProxy())
@@ -88,6 +100,10 @@ export const update = new Command()
 	});
 
 async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options: UpdateOptions) {
+	// Without a terminal, prompts would hang or exit without doing anything, so fail and name the
+	// flag that answers them instead.
+	const interactive = Boolean(process.stdin.isTTY);
+
 	if (options.proxy !== undefined) {
 		process.env.HTTP_PROXY = options.proxy;
 		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);
@@ -112,6 +128,10 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 
 	// If user didn't specify any component arguments
 	if (selectedComponents.length === 0) {
+		if (!interactive) {
+			throw error(`Specify the installed components to update, or pass ${highlight("--all")}.`);
+		}
+
 		const selected = await p.multiselect({
 			message: "Which components would you like to update?",
 			maxItems: 10,
@@ -133,6 +153,10 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 	}
 
 	if (options.yes === false) {
+		if (!interactive) {
+			throw error(`Pass ${highlight("--yes")} to skip the confirmation.`);
+		}
+
 		const proceed = await p.confirm({
 			message: `Ready to update ${highlight("components")}? ${color.gray("(Make sure you have committed your changes before proceeding!)")}`,
 			initialValue: true,
@@ -140,6 +164,13 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 
 		if (p.isCancel(proceed) || proceed === false) cancel();
 	}
+
+	// find the package manager first, so that a missing one fails before any file is written
+	const install = options.install && options.depsInstall;
+	const installWith =
+		options.deps && install
+			? (options.installWith ?? (await detectPM(cwd, true)))
+			: options.installWith;
 
 	const tasks: p.Task[] = [];
 
@@ -293,8 +324,8 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 			cwd,
 			dependencies: Array.from(dependencies),
 			devDependencies: Array.from(devDependencies),
-			prompt: true,
-			install: options.depsInstall,
+			install,
+			installWith,
 		});
 	} else if (dependencies.size > 0 || devDependencies.size > 0) {
 		const prettyList = prettifyList([...dependencies, ...devDependencies], 7);

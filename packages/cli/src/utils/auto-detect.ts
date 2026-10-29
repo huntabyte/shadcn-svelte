@@ -1,9 +1,20 @@
 import fs from "node:fs";
 import path from "node:path";
+import process from "node:process";
+import { execSync } from "node:child_process";
 import * as p from "@clack/prompts";
 import * as find from "empathic/find";
 import ignore, { type Ignore } from "ignore";
-import { AGENTS, detect, getUserAgent, type Agent, type AgentName } from "package-manager-detector";
+import {
+	AGENTS,
+	detect,
+	getUserAgent,
+	resolveCommand,
+	type Agent,
+	type AgentName,
+} from "package-manager-detector";
+import { highlight } from "./colors.js";
+import { error } from "./errors.js";
 import { getPackageInfo } from "./project.js";
 import { cancel } from "./prompt-helpers.js";
 
@@ -100,14 +111,43 @@ function findTSConfig(cwd: string): string | undefined {
 	return find.any(["tsconfig.json", "jsconfig.json"], { cwd });
 }
 
-const AGENT_NAMES = AGENTS.filter((agent) => !agent.includes("@")) as AgentName[];
+export const AGENT_NAMES = AGENTS.filter((agent) => !agent.includes("@")) as AgentName[];
+
+let installedAgents: readonly AgentName[] | undefined;
+
+/** The package managers whose commands are on the `PATH` */
+export function getInstalledAgents(): readonly AgentName[] {
+	installedAgents ??= AGENT_NAMES.filter((agent) =>
+		commandExists(resolveCommand(agent, "install", [])!.command)
+	);
+	return installedAgents;
+}
+
+function commandExists(command: string): boolean {
+	// `command -v` is built into every POSIX shell and `where` comes with Windows.
+	const check = process.platform === "win32" ? "where" : "command -v";
+	try {
+		execSync(`${check} ${command}`, { stdio: "ignore" });
+		return true;
+	} catch {
+		return false;
+	}
+}
+
 type Options = Array<{ value: Agent | undefined; label: Agent | "None" }>;
 export async function detectPM(cwd: string, prompt: boolean): Promise<Agent | undefined> {
 	const agent = (await detect({ cwd }))?.agent;
 
 	// prompt for package manager
 	if (!agent && prompt) {
-		const options: Options = AGENT_NAMES.map((pm) => ({ value: pm, label: pm }));
+		// Without a terminal, the prompt would hang or exit without doing anything.
+		if (!process.stdin.isTTY) {
+			throw error(
+				`Couldn't detect a package manager. Pass ${highlight("--install-with <package-manager>")}, or ${highlight("--no-install")} to add dependencies without installing them.`
+			);
+		}
+
+		const options: Options = getInstalledAgents().map((pm) => ({ value: pm, label: pm }));
 		options.unshift({ label: "None", value: undefined });
 
 		const userAgent = getUserAgent() ?? undefined; // replaces `null` for `undefined`

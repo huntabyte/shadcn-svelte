@@ -7,6 +7,7 @@ import { resolveCommand, type Agent } from "package-manager-detector";
 import { exec } from "tinyexec";
 import * as project from "./project.js";
 import { detectPM } from "./auto-detect.js";
+import { highlight } from "./colors.js";
 import { error } from "./errors.js";
 import { silentOutput } from "./node-utils.js";
 import type { PackageJson } from "type-fest";
@@ -15,13 +16,14 @@ type InstallOptions = {
 	dependencies: string[];
 	devDependencies: string[];
 	cwd: string;
-	prompt: boolean;
 	silent?: boolean;
 	/**
 	 * When `false`, write deps to package.json without running the package manager install.
 	 * @default `true`
 	 */
 	install?: boolean;
+	/** The package manager to install with instead of detecting it. */
+	installWith?: Agent;
 };
 
 type NeededDep = {
@@ -34,14 +36,12 @@ type DepSection = "dependencies" | "devDependencies";
 
 export async function installDependencies({
 	cwd,
-	prompt,
 	dependencies,
 	devDependencies,
 	silent,
 	install = true,
+	installWith,
 }: InstallOptions): Promise<void> {
-	const pm = await detectPM(cwd, prompt);
-
 	const pkg = project.getPackageInfo(cwd);
 
 	const mapNeededDep = (dep: string, preferred: DepSection): NeededDep | undefined => {
@@ -70,10 +70,13 @@ export async function installDependencies({
 
 	if (needed.length === 0) return;
 
+	// the commands that ask for a package manager do it before writing anything
+	const pm = installWith ?? (await detectPM(cwd, false));
 	const neededDeps = needed.filter((d) => d.section === "dependencies");
 	const neededDevDeps = needed.filter((d) => d.section === "devDependencies");
 
-	if (!install) {
+	if (!install || !pm) {
+		// Without a package manager, still add the dependencies so they aren't lost.
 		await writeDependencies({
 			cwd,
 			pm,
@@ -81,10 +84,14 @@ export async function installDependencies({
 			devDependencies: neededDevDeps,
 			silent,
 		});
+
+		if (install && !silent) {
+			p.log.warn(
+				`No package manager was specified or detected. Dependencies have been added to ${highlight("package.json")} without installing them.`
+			);
+		}
 		return;
 	}
-
-	if (!pm) return;
 
 	// Deno requires the `npm:` specifier
 	const pkgSpecifier = pm === "deno" ? "npm:" : "";

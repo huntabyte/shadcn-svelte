@@ -1,9 +1,19 @@
 import fs from "node:fs";
 import path from "node:path";
+import process from "node:process";
+import { tmpdir } from "node:os";
+import * as p from "@clack/prompts";
+import { Command } from "commander";
 import { exec } from "tinyexec";
-import { afterEach, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import * as items from "../../src/utils/add-registry-items.js";
+import * as autoDetect from "../../src/utils/auto-detect.js";
+import * as cliConfig from "../../src/utils/config/index.js";
+import * as project from "../../src/utils/project.js";
+import * as promptHelpers from "../../src/utils/prompt-helpers.js";
 import * as registry from "../../src/utils/registry/index.js";
-import { runInit } from "../../src/commands/init/index.js";
+import { init, runInit } from "../../src/commands/init/index.js";
+import { encodePreset } from "../../src/preset/index.js";
 import { getConfig } from "../../src/utils/config/index.js";
 
 vi.mock("fs/promises", () => ({ writeFile: vi.fn(), mkdir: vi.fn(), readFile: vi.fn() }));
@@ -16,6 +26,46 @@ vi.mock("@clack/prompts", async (importOriginal) => {
 		...actual,
 		taskLog: vi.fn(() => ({ message: vi.fn(), error: vi.fn(), success: vi.fn() })),
 	};
+});
+
+// it only checks the project's Svelte and Tailwind CSS versions
+vi.mock("../../src/commands/init/preflight.js", () => ({ preflightInit: vi.fn() }));
+
+const decidedPresets = {
+	style: "vega",
+	theme: "neutral",
+	font: "inter",
+	radius: "default",
+	baseColor: "zinc",
+	iconLibrary: "lucide",
+	menuColor: "default",
+	menuAccent: "subtle",
+	fontHeading: "inter",
+} as const;
+
+type InitOptions = Parameters<typeof runInit>[0]["options"];
+
+const defaultOptions = {
+	deps: false,
+	install: true,
+	depsInstall: true,
+	skipPreflight: false,
+} satisfies Partial<InitOptions>;
+
+let isTTY: PropertyDescriptor | undefined;
+
+function setTTY(value: boolean) {
+	Object.defineProperty(process.stdin, "isTTY", { value, configurable: true });
+}
+
+beforeEach(() => {
+	isTTY = Object.getOwnPropertyDescriptor(process.stdin, "isTTY");
+	setTTY(true);
+});
+
+afterEach(() => {
+	if (isTTY) Object.defineProperty(process.stdin, "isTTY", isTTY);
+	else delete (process.stdin as { isTTY?: boolean }).isTTY;
 });
 
 it("init (config-full)", async () => {
@@ -91,20 +141,11 @@ it("init (config-full)", async () => {
 	await runInit({
 		cwd: targetDir,
 		config,
-		decidedPresets: {
-			style: "vega",
-			theme: "neutral",
-			font: "inter",
-			radius: "default",
-			baseColor: "zinc",
-			iconLibrary: "lucide",
-			menuColor: "default",
-			menuAccent: "subtle",
-			fontHeading: "inter",
-		},
+		decidedPresets,
 		options: {
 			cwd: targetDir,
 			deps: true,
+			install: true,
 			depsInstall: true,
 			overwrite: true,
 			skipPreflight: false,
@@ -159,6 +200,365 @@ it("init (config-full)", async () => {
 	mockWriteFile.mockRestore();
 });
 
+describe("overwriting the existing components", () => {
+	const targetDir = path.resolve(__dirname, "../fixtures/config-full");
+
+	beforeEach(() => {
+		vi.spyOn(p, "tasks").mockResolvedValue(undefined);
+		vi.spyOn(p.log, "warn").mockImplementation(() => {});
+		vi.spyOn(cliConfig, "writeConfig").mockImplementation(() => {});
+		vi.spyOn(registry, "getRegistryIndex").mockResolvedValue([]);
+		vi.spyOn(project, "getComponents").mockResolvedValue([
+			{ name: "button", type: "registry:ui", relativeUrl: "button.json" },
+		]);
+		vi.spyOn(items, "addRegistryItems").mockResolvedValue({
+			dependencies: new Set(),
+			devDependencies: new Set(),
+			skippedDeps: new Set(),
+			skippedItems: [],
+			skippedStylesheet: false,
+		});
+	});
+
+	async function run(options: Partial<InitOptions>, styleChanged: boolean) {
+		const config = await getConfig(targetDir);
+		if (!config) throw new Error("config is undefined");
+
+		await runInit({
+			cwd: targetDir,
+			config,
+			decidedPresets,
+			options: { cwd: targetDir, ...defaultOptions, ...options },
+			styleChanged,
+		});
+
+		return vi.mocked(items.addRegistryItems).mock.calls[0]![0];
+	}
+
+	// `undefined` asks about each item, and keeping them still asks about the stylesheet
+	it.each([
+		{ name: "the defaults", options: {}, styleChanged: false, overwrite: undefined },
+		{ name: "--overwrite", options: { overwrite: true }, styleChanged: false, overwrite: true },
+		{
+			name: "--no-overwrite",
+			options: { overwrite: false },
+			styleChanged: false,
+			overwrite: false,
+		},
+		{
+			name: "a new style and --overwrite",
+			options: { overwrite: true },
+			styleChanged: true,
+			overwrite: true,
+			reinstalled: true,
+		},
+		{
+			name: "a new style and --no-overwrite",
+			options: { overwrite: false },
+			styleChanged: true,
+			overwrite: false,
+		},
+		{
+			name: "a new style and --reinstall",
+			options: { reinstall: true },
+			styleChanged: true,
+			overwrite: true,
+			reinstalled: true,
+		},
+		{
+			name: "a new style and --no-reinstall",
+			options: { reinstall: false },
+			styleChanged: true,
+			overwrite: undefined,
+		},
+		{
+			name: "--overwrite stylesheet",
+			options: { overwrite: ["stylesheet"] } satisfies Partial<InitOptions>,
+			styleChanged: false,
+			overwrite: [],
+			stylesheet: "write",
+		},
+		{
+			name: "a new style and --overwrite utils stylesheet",
+			options: { overwrite: ["utils", "stylesheet"] } satisfies Partial<InitOptions>,
+			styleChanged: true,
+			overwrite: ["utils"],
+			stylesheet: "write",
+		},
+		{
+			name: "a new style and --overwrite components",
+			options: { overwrite: ["components"] } satisfies Partial<InitOptions>,
+			styleChanged: true,
+			overwrite: ["button"],
+			stylesheet: "keep",
+			reinstalled: true,
+		},
+		{
+			name: "a new style, answering yes",
+			options: {},
+			styleChanged: true,
+			answer: true,
+			overwrite: true,
+			reinstalled: true,
+		},
+		{
+			name: "a new style, answering no",
+			options: {},
+			styleChanged: true,
+			answer: false,
+			overwrite: false,
+			stylesheet: "ask",
+			reinstalled: true,
+		},
+	])(
+		"passes on the choice with $name",
+		async ({ options, styleChanged, answer, overwrite, stylesheet, reinstalled }) => {
+			const confirm = vi.spyOn(p, "confirm").mockResolvedValue(answer ?? true);
+
+			const args = await run(options, styleChanged);
+
+			expect(confirm).toHaveBeenCalledTimes(answer === undefined ? 0 : 1);
+			expect(args.overwrite).toEqual(overwrite);
+			expect(args.stylesheet).toBe(stylesheet);
+			// answering no still passes the components, which `overwrite: false` keeps
+			expect(args.selectedItems.includes("button")).toBe(reinstalled ?? false);
+		}
+	);
+
+	it("writes the config only once nothing is left to ask", async () => {
+		vi.spyOn(fs.promises, "mkdir").mockResolvedValue(undefined);
+
+		const args = await run({}, false);
+
+		expect(cliConfig.writeConfig).not.toHaveBeenCalled();
+
+		// `addRegistryItems` runs these after its own questions
+		for (const task of args.before ?? []) await task.task(() => {});
+		expect(cliConfig.writeConfig).toHaveBeenCalledOnce();
+	});
+
+	it("finds the package manager before writing anything", async () => {
+		const detectPM = vi
+			.spyOn(autoDetect, "detectPM")
+			.mockRejectedValue(new Error("Couldn't detect a package manager."));
+
+		await expect(run({ deps: true }, false)).rejects.toThrow("Couldn't detect");
+
+		expect(detectPM).toHaveBeenCalledWith(targetDir, true);
+		expect(items.addRegistryItems).not.toHaveBeenCalled();
+	});
+
+	describe("without a terminal", () => {
+		beforeEach(() => setTTY(false));
+
+		it("fails before writing anything when the style changed", async () => {
+			const confirm = vi.spyOn(p, "confirm");
+
+			await expect(run({}, true)).rejects.toThrow(
+				/--overwrite.*--overwrite <parts\.\.\.>.*--no-overwrite/
+			);
+
+			expect(confirm).not.toHaveBeenCalled();
+			expect(items.addRegistryItems).not.toHaveBeenCalled();
+			expect(cliConfig.writeConfig).not.toHaveBeenCalled();
+		});
+	});
+});
+
+describe("the init command without a terminal", () => {
+	const aliases = [
+		["--lib-alias", "$lib"],
+		["--components-alias", "$lib/components"],
+		["--ui-alias", "$lib/components/ui"],
+		["--utils-alias", "$lib/utils"],
+		["--hooks-alias", "$lib/hooks"],
+	];
+	const flags = [
+		["--preset", encodePreset(decidedPresets)],
+		["--css", "src/app.css"],
+		...aliases,
+	].flat();
+	const tsconfig = JSON.stringify({
+		compilerOptions: { paths: { $lib: ["./src/lib"], "$lib/*": ["./src/lib/*"] } },
+	});
+
+	let cwd: string;
+
+	beforeEach(() => {
+		setTTY(false);
+		cwd = fs.mkdtempSync(path.join(tmpdir(), "shadcn-svelte-init-"));
+		fs.mkdirSync(path.join(cwd, "src"));
+		fs.writeFileSync(path.join(cwd, "src", "app.css"), "");
+		fs.writeFileSync(path.join(cwd, "package.json"), "{}");
+		vi.spyOn(promptHelpers, "intro").mockImplementation(() => {});
+		vi.spyOn(project, "syncSvelteKit").mockResolvedValue();
+		vi.spyOn(p, "cancel").mockImplementation(() => {});
+		vi.spyOn(p, "outro").mockImplementation(() => {});
+		vi.spyOn(process, "exit").mockImplementation(() => undefined as never);
+		vi.spyOn(items, "addRegistryItems").mockResolvedValue({
+			dependencies: new Set(),
+			devDependencies: new Set(),
+			skippedDeps: new Set(),
+			skippedItems: [],
+			skippedStylesheet: false,
+		});
+	});
+
+	afterEach(() => {
+		fs.rmSync(cwd, { recursive: true, force: true });
+	});
+
+	async function runInitCommand(...args: string[]) {
+		const program = new Command();
+		program.addCommand(init);
+		await program.parseAsync(["node", "shadcn-svelte", "init", "-c", cwd, "--no-deps", ...args]);
+	}
+
+	function failure() {
+		expect(process.exit).toHaveBeenCalledWith(1);
+		expect(items.addRegistryItems).not.toHaveBeenCalled();
+		return String(vi.mocked(p.cancel).mock.calls[0]![0]);
+	}
+
+	it("names every flag that answers a prompt", async () => {
+		fs.writeFileSync(path.join(cwd, "tsconfig.json"), tsconfig);
+
+		await runInitCommand();
+
+		const message = failure();
+		for (const flag of [
+			"--preset <preset>",
+			"--css <path>",
+			...aliases.map(([f]) => `${f} <path>`),
+		]) {
+			expect(message).toContain(flag);
+		}
+		expect(message).not.toContain("--tsconfig");
+	});
+
+	it("asks for --tsconfig when there's no tsconfig or jsconfig", async () => {
+		await runInitCommand(...flags);
+
+		const message = failure();
+		expect(message).toContain("--tsconfig <path>");
+		expect(message).not.toContain("--css");
+	});
+
+	it("asks for --preset when the given one isn't valid", async () => {
+		fs.writeFileSync(path.join(cwd, "tsconfig.json"), tsconfig);
+
+		await runInitCommand(...flags, "--preset", "nope");
+
+		expect(failure()).toContain("--preset <preset>");
+	});
+
+	it.each([
+		{ name: "a detected tsconfig", file: "tsconfig.json", args: [], typescript: true },
+		{
+			name: "--tsconfig",
+			file: "tsconfig.app.json",
+			args: ["--tsconfig", "tsconfig.app.json"],
+			typescript: { config: "tsconfig.app.json" },
+		},
+	])("runs with every flag and $name", async ({ file, args, typescript }) => {
+		fs.writeFileSync(path.join(cwd, file), tsconfig);
+
+		await runInitCommand(...flags, ...args);
+
+		expect(p.cancel).not.toHaveBeenCalled();
+		const [options] = vi.mocked(items.addRegistryItems).mock.calls[0]!;
+		expect(options.interactive).toBe(false);
+		expect(options.config.typescript).toEqual(typescript);
+		expect(options.config.aliases.ui).toBe("$lib/components/ui");
+	});
+
+	it("replaces only the given parts", async () => {
+		fs.writeFileSync(path.join(cwd, "tsconfig.json"), tsconfig);
+
+		await runInitCommand(...flags, "-o", "utils", "stylesheet");
+
+		expect(p.cancel).not.toHaveBeenCalled();
+		const [options] = vi.mocked(items.addRegistryItems).mock.calls[0]!;
+		expect(options.selectedItems).toContain("utils");
+		expect(options.overwrite).toEqual(["utils"]);
+		expect(options.stylesheet).toBe("write");
+		expect(options.overwriteArg).toBe("<parts...>");
+	});
+
+	describe("with package.json subpath imports", () => {
+		const subpathFlags = [
+			["--preset", encodePreset(decidedPresets)],
+			["--css", "src/app.css"],
+			...aliases.map(([flag, alias]) => [flag!, alias!.replace("$lib", "#lib")]),
+		].flat();
+
+		function writePackageJson(devDependencies = {}) {
+			const imports = { "#lib": "./src/lib/index.js", "#lib/*": "./src/lib/*" };
+			fs.writeFileSync(
+				path.join(cwd, "package.json"),
+				JSON.stringify({ imports, devDependencies })
+			);
+		}
+
+		it("doesn't need --tsconfig", async () => {
+			writePackageJson();
+
+			await runInitCommand();
+
+			const message = failure();
+			expect(message).toContain("--lib-alias <path>");
+			expect(message).not.toContain("--tsconfig");
+		});
+
+		it("runs without a tsconfig as a JavaScript project", async () => {
+			writePackageJson();
+
+			await runInitCommand(...subpathFlags);
+
+			expect(p.cancel).not.toHaveBeenCalled();
+			const [options] = vi.mocked(items.addRegistryItems).mock.calls[0]!;
+			expect(options.config.typescript).toBe(false);
+			expect(options.config.resolvedPaths.ui).toBe(path.join(cwd, "src/lib/components/ui"));
+		});
+
+		it("runs again without a tsconfig", async () => {
+			// which an existing config is checked for
+			writePackageJson({ svelte: "^5.0.0", tailwindcss: "^4.0.0" });
+			const existing = {
+				tailwind: { css: "src/app.css", baseColor: "zinc" },
+				aliases: Object.fromEntries(
+					aliases.map(([flag, alias]) => [
+						flag!.slice(2, -"-alias".length),
+						alias!.replace("$lib", "#lib"),
+					])
+				),
+				typescript: false,
+				// the same style, so that it doesn't look for components to reinstall
+				style: decidedPresets.style,
+				menuColor: decidedPresets.menuColor,
+				menuAccent: decidedPresets.menuAccent,
+			};
+			fs.writeFileSync(path.join(cwd, "components.json"), JSON.stringify(existing));
+
+			await runInitCommand(...subpathFlags);
+
+			expect(p.cancel).not.toHaveBeenCalled();
+			expect(items.addRegistryItems).toHaveBeenCalled();
+		});
+
+		it("asks for --tsconfig when an alias isn't a subpath import", async () => {
+			writePackageJson();
+
+			await runInitCommand(...subpathFlags, "--utils-alias", "$lib/utils");
+
+			const message = failure();
+			expect(message).toContain("--tsconfig <path>");
+			expect(message).not.toContain("--lib-alias");
+		});
+	});
+});
+
 afterEach(() => {
+	vi.restoreAllMocks();
 	vi.resetAllMocks();
 });

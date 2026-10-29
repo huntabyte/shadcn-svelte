@@ -35,21 +35,23 @@ Usage: shadcn-svelte init [options]
 initialize your project and install dependencies
 
 Options:
-  --preset <preset>          the preset to use
-  -c, --cwd <path>           the working directory
-  --no-deps-install          add dependencies to package.json without running install
-  --skip-preflight           ignore preflight checks and continue (default: false)
-  --reinstall                reinstall existing components when style changes
-  --no-reinstall             skip reinstalling existing components when style changes
-  --base-color <name>        the base color for the components (choices: "neutral", "stone", "zinc", "mauve", "olive", "mist", "taupe")
-  --css <path>               path to the global CSS file
-  --components-alias <path>  import alias for components
-  --lib-alias <path>         import alias for lib
-  --utils-alias <path>       import alias for utils
-  --hooks-alias <path>       import alias for hooks
-  --ui-alias <path>          import alias for ui
-  --proxy <proxy>            fetch items from registry using a proxy
-  -h, --help                 display help for command
+  --preset <preset>                 the preset to use
+  -c, --cwd <path>                  the working directory (default: the current directory)
+  --install-with <package-manager>  install dependencies with the given package manager (choices: the ones you have installed)
+  --no-install                      add dependencies to package.json without installing them
+  --skip-preflight                  ignore preflight checks and continue (default: false)
+  -o, --overwrite [parts...]        overwrite existing files, or only the given parts (choices: "components", "utils", "stylesheet")
+  --no-overwrite                    keep existing files and leave the stylesheet as is
+  --base-color <name>               the base color for the components (choices: "neutral", "stone", "zinc", "mauve", "olive", "mist", "taupe")
+  --css <path>                      path to the global CSS file
+  --tsconfig <path>                 path to the tsconfig/jsconfig file
+  --components-alias <path>         import alias for components
+  --lib-alias <path>                import alias for lib
+  --utils-alias <path>              import alias for utils
+  --hooks-alias <path>              import alias for hooks
+  --ui-alias <path>                 import alias for ui
+  --proxy <proxy>                   fetch items from registry using a proxy
+  -h, --help                        display help for command
 ```
 
 ---
@@ -68,17 +70,20 @@ Usage: shadcn-svelte add [options] [components...]
 add components to your project
 
 Arguments:
-  components         the components to add or a url to the component
+  components                        the components to add or a url to the component
 
 Options:
-  -c, --cwd <path>   the working directory (default: the current directory)
-  --no-deps-install add dependencies to package.json without running install
-  --skip-preflight  ignore preflight checks and continue (default: false)
-  -a, --all         install all components to your project (default: false)
-  -y, --yes         skip confirmation prompt (default: false)
-  -o, --overwrite   overwrite existing files (default: false)
-  --proxy <proxy>   fetch components from registry using a proxy
-  -h, --help        display help for command
+  -c, --cwd <path>                  the working directory (default: the current directory)
+  --install-with <package-manager>  install dependencies with the given package manager (choices: the ones you have installed)
+  --no-install                      add dependencies to package.json without installing them
+  --skip-preflight                  ignore preflight checks and continue (default: false)
+  -a, --all                         install all components to your project (default: false)
+  -y, --yes                         skip confirmation prompt (default: false)
+  -o, --overwrite [items...]        overwrite existing files, or only the given items' files
+                                    appending "..." to an item also overwrites its dependencies, e.g. "sidebar..."
+  --no-overwrite                    keep existing files and leave the stylesheet as is
+  --proxy <proxy>                   fetch components from registry using a proxy
+  -h, --help                        display help for command
 ```
 
 ---
@@ -98,23 +103,24 @@ Supported values for `--only` are `theme` and `font`.
 **Options**
 
 ```bash
-Usage: shadcn-svelte apply [options]
+Usage: shadcn-svelte apply [options] [preset]
 
 apply a preset to an existing project
 
 Arguments:
-  preset             the preset to apply
+  preset                            the preset to apply
 
 Options:
-  --preset <preset>  the preset to apply
-  --only [parts]     apply only parts of a preset: theme, font
-  -c, --cwd <path>   the working directory (default: the current directory)
-  -y, --yes          overwrite existing files without confirmation (default: false)
-  -s, --silent       mute output (default: false)
-  --no-deps-install  add dependencies to package.json without running install
-  --skip-preflight   ignore preflight checks and continue (default: false)
-  --proxy <proxy>    fetch items from registry using a proxy
-  -h, --help         display help for command
+  --preset <preset>                 the preset to use
+  --only <parts...>                 apply only parts of a preset: theme, font (choices: "font", "theme")
+  -c, --cwd <path>                  the working directory (default: the current directory)
+  -y, --yes                         skip confirmation prompt (default: false)
+  -s, --silent                      mute output (default: false)
+  --install-with <package-manager>  install dependencies with the given package manager (choices: the ones you have installed)
+  --no-install                      add dependencies to package.json without installing them
+  --skip-preflight                  ignore preflight checks and continue (default: false)
+  --proxy <proxy>                   fetch items from registry using a proxy
+  -h, --help                        display help for command
 ```
 
 ---

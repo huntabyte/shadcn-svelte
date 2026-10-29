@@ -12,7 +12,12 @@ import * as registry from "../../utils/registry/index.js";
 import { type PresetConfig, decodePreset, encodePreset } from "../../preset/index.js";
 import { promptForPreset } from "../../preset/presets.js";
 import { addRegistryItems } from "../../utils/add-registry-items.js";
-import { detectConfigs } from "../../utils/auto-detect.js";
+import {
+	AGENT_NAMES,
+	detectConfigs,
+	detectPM,
+	getInstalledAgents,
+} from "../../utils/auto-detect.js";
 import { highlight } from "../../utils/colors.js";
 import { error } from "../../utils/errors.js";
 import { getEnvProxy } from "../../utils/get-env-proxy.js";
@@ -23,19 +28,27 @@ import type { TsConfigResult } from "get-tsconfig";
 
 const baseColors = registry.getBaseColors();
 
+// in the order they're asked for
+const ALIASES = ["lib", "components", "ui", "utils", "hooks"] as const;
+
+const OVERWRITE_PARTS = ["components", "utils", "stylesheet"] as const;
+
 const initOptionsSchema = z.object({
 	cwd: z.string(),
 	baseColor: z.string().optional(),
 	preset: z.string().optional(),
 	css: z.string().optional(),
+	tsconfig: z.string().optional(),
 	componentsAlias: z.string().optional(),
 	utilsAlias: z.string().optional(),
 	libAlias: z.string().optional(),
 	hooksAlias: z.string().optional(),
 	uiAlias: z.string().optional(),
 	deps: z.boolean(),
+	install: z.boolean(),
 	depsInstall: z.boolean(),
-	overwrite: z.boolean(),
+	installWith: z.enum(AGENT_NAMES).optional(),
+	overwrite: z.union([z.boolean(), z.enum(OVERWRITE_PARTS).array()]).optional(),
 	proxy: z.string().optional(),
 	skipPreflight: z.boolean(),
 	reinstall: z.boolean().optional(),
@@ -48,18 +61,33 @@ export const init = new Command()
 	.description("initialize your project and install dependencies")
 	.option("--preset <preset>", "the preset to use")
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
-	.addOption(new Option("-o, --overwrite", "deprecated: use --reinstall").default(false).hideHelp())
 	.addOption(new Option("--no-deps", "disable adding & installing dependencies").hideHelp())
-	.option("--no-deps-install", "add dependencies to package.json without running install")
+	.addOption(
+		new Option(
+			"--install-with <package-manager>",
+			"install dependencies with the given package manager"
+		)
+			.choices(getInstalledAgents())
+			.conflicts(["deps", "install", "depsInstall"])
+	)
+	.option("--no-install", "add dependencies to package.json without installing them")
+	.addOption(new Option("--no-deps-install", "deprecated: use --no-install").hideHelp())
 	.option("--skip-preflight", "ignore preflight checks and continue", false)
-	.option("--reinstall", "reinstall existing components when style changes")
-	.option("--no-reinstall", "skip reinstalling existing components when style changes")
+	.addOption(
+		new Option("-o, --overwrite [parts...]", "overwrite existing files, or only the given parts")
+			.choices(OVERWRITE_PARTS)
+			.conflicts(["reinstall"])
+	)
+	.option("--no-overwrite", "keep existing files and leave the stylesheet as is")
+	.addOption(new Option("--reinstall", "deprecated: use --overwrite").hideHelp())
+	.addOption(new Option("--no-reinstall", "deprecated: use --overwrite <parts...>").hideHelp())
 	.addOption(
 		new Option("--base-color <name>", "the base color for the components").choices(
 			baseColors.map((color) => color.name)
 		)
 	)
 	.option("--css <path>", "path to the global CSS file")
+	.option("--tsconfig <path>", "path to the tsconfig/jsconfig file")
 	.option("--components-alias <path>", "import alias for components")
 	.option("--lib-alias <path>", "import alias for lib")
 	.option("--utils-alias <path>", "import alias for utils")
@@ -110,15 +138,18 @@ export const init = new Command()
 			handleError(e);
 		}
 	})
-	.on("option:overwrite", () => {
-		console.warn(
-			color.yellow(
-				`Warning: ${color.bold("--overwrite")} is deprecated. Use ${color.bold("--reinstall")} instead.\n`
-			)
-		);
-	});
+	.on("option:reinstall", () => warnDeprecated("--reinstall", "--overwrite"))
+	.on("option:no-reinstall", () => warnDeprecated("--no-reinstall", "--overwrite <parts...>"));
 
-function validateOptions(cwd: string, options: InitOptions, tsconfig: TsConfigResult) {
+function warnDeprecated(flag: string, replacement: string) {
+	console.warn(
+		color.yellow(
+			`Warning: ${color.bold(flag)} is deprecated. Use ${color.bold(replacement)} instead.\n`
+		)
+	);
+}
+
+function validateOptions(cwd: string, options: InitOptions, tsconfig: TsConfigResult | undefined) {
 	if (options.css) {
 		if (!existsSync(path.resolve(cwd, options.css))) {
 			throw error(
@@ -154,12 +185,52 @@ async function promptForConfig({
 	await project.syncSvelteKit(cwd);
 
 	const { cssPath, tsconfigPath, packageImportAlias } = detectConfigs(cwd, { relative: true });
+	// A tsconfig isn't necessary when the aliases are subpath imports from `package.json`. The
+	// prompts default to `packageImportAlias` for the aliases that aren't passed.
+	const needsTsconfig =
+		!existingConfig &&
+		!tsconfigPath &&
+		cliConfig.needsTSConfig(
+			cwd,
+			ALIASES.map((alias) => options[`${alias}Alias`] ?? packageImportAlias)
+		);
+
+	// Without a terminal, prompts would hang or exit without doing anything, so fail and name all
+	// the flags that answer them instead.
+	if (!process.stdin.isTTY) {
+		const missing = [
+			needsTsconfig && options.tsconfig === undefined && "--tsconfig <path>",
+			!presetConfig && "--preset <preset>",
+			options.css === undefined && "--css <path>",
+			...ALIASES.filter((alias) => options[`${alias}Alias`] === undefined).map(
+				(alias) => `--${alias}-alias <path>`
+			),
+		].filter((flag) => flag !== false);
+
+		if (missing.length > 0) {
+			const flags = missing.map((flag) => highlight(flag)).join(", ");
+			throw error(`Pass ${flags} to skip the prompts.`);
+		}
+	}
 
 	let tsconfig;
-	if (existingConfig) {
-		tsconfig = cliConfig.resolveTSConfig(cwd, existingConfig);
+	if (options.tsconfig !== undefined) {
+		if (!existsSync(path.resolve(cwd, options.tsconfig))) {
+			throw error(
+				`The provided tsconfig/jsconfig file path ${color.cyan(options.tsconfig)} does not exist. Please enter a valid path.`
+			);
+		}
+		config.typescript = { config: options.tsconfig };
+		tsconfig = cliConfig.resolveTSConfig(cwd, config);
+	} else if (existingConfig) {
+		const aliases = ALIASES.map(
+			(alias) => options[`${alias}Alias`] ?? existingConfig.aliases[alias]
+		);
+		tsconfig = cliConfig.resolveTSConfig(cwd, existingConfig, {
+			optional: !cliConfig.needsTSConfig(cwd, aliases),
+		});
 	} else {
-		if (!tsconfigPath) {
+		if (needsTsconfig) {
 			const input = await p.text({
 				message: `Where is your ${highlight("tsconfig/jsconfig")} file?`,
 				// initialValue: "tsconfig.json",
@@ -176,11 +247,14 @@ async function promptForConfig({
 			if (p.isCancel(input)) cancel();
 
 			config.typescript = { config: input };
-		} else {
+		} else if (tsconfigPath) {
 			config.typescript = tsconfigPath.includes("tsconfig");
+		} else {
+			// without a tsconfig or jsconfig in the project or above it, it's a JavaScript project
+			config.typescript = false;
 		}
 
-		tsconfig = cliConfig.resolveTSConfig(cwd, config);
+		tsconfig = cliConfig.resolveTSConfig(cwd, config, { optional: !needsTsconfig });
 	}
 
 	// Validation for any paths provided by flags
@@ -268,14 +342,75 @@ export async function runInit({
 	options: InitOptions;
 	styleChanged: boolean;
 }) {
+	// Without a terminal, prompts would hang or exit without doing anything, so fail and name the
+	// flag that answers them instead.
+	const interactive = Boolean(process.stdin.isTTY);
+
 	if (options.proxy !== undefined) {
 		process.env.HTTP_PROXY = options.proxy;
 		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);
 	}
 
-	const tasks: p.Task[] = [];
+	// find the package manager first, so that a missing one fails before any file is written
+	const install = options.install && options.depsInstall;
+	const installWith =
+		options.deps && install
+			? (options.installWith ?? (await detectPM(cwd, true)))
+			: options.installWith;
 
-	tasks.push({
+	// we create a registry base item using the encoded preset at the /init endpoint in the docs
+	const registryUrl = registry.getRegistryUrl(config);
+	const encodedPreset = encodePreset(decidedPresets);
+	const presetUrl = new URL(`/init?preset=${encodedPreset}`, registryUrl).toString();
+
+	let selectedItems: string[] = [];
+	// `undefined` asks about the items that already exist, and a list names the items to replace
+	let overwrite: boolean | string[] | undefined;
+	let stylesheet: "write" | "keep" | "ask" | undefined;
+
+	if (Array.isArray(options.overwrite)) {
+		// only the given parts are replaced, without asking
+		const parts = options.overwrite;
+		if (styleChanged && parts.includes("components")) {
+			selectedItems = await getExistingComponents(registryUrl, config);
+		}
+		if (parts.includes("utils")) selectedItems.push("utils");
+		overwrite = selectedItems;
+		stylesheet = parts.includes("stylesheet") ? "write" : "keep";
+	} else {
+		overwrite = options.overwrite ?? (options.reinstall || undefined);
+		// if the style has changed then we want to ask the user if they want to reinstall existing components to update their styles
+		// unless of course they user has explicitly disabled it
+		if (styleChanged && options.reinstall !== false && overwrite !== false) {
+			selectedItems = await getExistingComponents(registryUrl, config);
+
+			if (selectedItems.length > 0 && overwrite === undefined) {
+				const style = color.bold(color.yellow(decidedPresets.style));
+				if (!interactive) {
+					throw error(
+						`The registry style has changed to ${style}. Pass ${highlight("--overwrite")} to reinstall your existing components with it, ${highlight("--overwrite <parts...>")} to replace only some parts, or ${highlight("--no-overwrite")} to keep them.`
+					);
+				}
+
+				p.log.warn(`The registry style has changed to ${style}.`);
+
+				const choice = await p.confirm({
+					message: `Would you like to ${color.bold(color.red("overwrite"))} your existing components?`,
+					initialValue: true,
+				});
+				if (p.isCancel(choice)) cancel();
+				overwrite = choice;
+				// keeping the components still asks about the stylesheet, since the new style needs it
+				if (!choice) stylesheet = "ask";
+			}
+		}
+	}
+
+	// these run once nothing is left to ask, so that stopping at a question leaves the project as
+	// it was
+	const setup: p.Task[] = [];
+
+	setup.push({
 		title: "Creating config file",
 		async task() {
 			cliConfig.writeConfig(cwd, config);
@@ -283,7 +418,7 @@ export async function runInit({
 		},
 	});
 
-	tasks.push({
+	setup.push({
 		title: "Validating alias paths",
 		async task() {
 			// Ensure all resolved paths directories exist.
@@ -307,56 +442,24 @@ export async function runInit({
 		},
 	});
 
-	await p.tasks(tasks);
-
-	// we create a registry base item using the encoded preset at the /init endpoint in the docs
-	const registryUrl = registry.getRegistryUrl(config);
-	const encodedPreset = encodePreset(decidedPresets);
-	const presetUrl = new URL(`/init?preset=${encodedPreset}`, registryUrl).toString();
-
-	let selectedItems: string[] = [];
-	let overwrite = options.overwrite || options.reinstall === true;
-	// if the style has changed then we want to ask the user if they want to reinstall existing components to update their styles
-	// unless of course they user has explicitly disabled it
-	if (styleChanged && options.reinstall !== false) {
-		const registryIndex = await registry.getRegistryIndex(registryUrl);
-		const existingComponents = await project.getComponents({
-			registryIndex,
-			config,
-		});
-
-		selectedItems = existingComponents
-			.filter((component) => component.name !== "utils")
-			.map((component) => component.name);
-
-		if (selectedItems.length > 0 && !overwrite) {
-			p.log.warn(
-				`The registry style has changed to ${color.bold(color.yellow(decidedPresets.style))}.`
-			);
-
-			const choice = await p.confirm({
-				message: `Would you like to ${color.bold(color.red("overwrite"))} your existing components?`,
-				initialValue: true,
-			});
-			if (p.isCancel(choice)) cancel();
-			overwrite = choice;
-		}
-	}
-
 	const result = await addRegistryItems({
 		selectedItems: [presetUrl, ...selectedItems],
 		config,
 		deps: options.deps,
 		overwrite,
+		stylesheet,
+		interactive,
+		overwriteArg: "<parts...>",
+		before: setup,
 	});
 
 	if (options.deps) {
 		await installDependencies({
 			cwd,
-			prompt: options.deps,
 			dependencies: Array.from(result.dependencies),
 			devDependencies: Array.from(result.devDependencies),
-			install: options.depsInstall,
+			install,
+			installWith,
 		});
 	} else if (result.skippedDeps.size) {
 		const prettyList = prettifyList([...result.skippedDeps], 7);
@@ -364,4 +467,12 @@ export async function runInit({
 			`shadcn-svelte has been initialized ${color.bold(color.red("without"))} the following ${highlight("dependencies")}:\n${color.gray(prettyList)}`
 		);
 	}
+}
+
+async function getExistingComponents(registryUrl: string, config: cliConfig.ResolvedConfig) {
+	const registryIndex = await registry.getRegistryIndex(registryUrl);
+	const components = await project.getComponents({ registryIndex, config });
+	return components
+		.filter((component) => component.name !== "utils")
+		.map((component) => component.name);
 }

@@ -10,7 +10,7 @@ const NOOP = "/noop.js";
 
 type ResolveImportOpts = {
 	importPath: string;
-	tsconfig: TsConfigResult;
+	tsconfig: TsConfigResult | undefined;
 	cwd: string;
 };
 
@@ -18,14 +18,14 @@ type ResolveImportOpts = {
  * Returns the absolute path for a given `components.json` import alias.
  */
 export function resolveImportAlias(opts: ResolveImportOpts): string | undefined {
-	const matcher = createPathsMatcher(opts.tsconfig);
+	const matcher = opts.tsconfig && createPathsMatcher(opts.tsconfig);
 
 	// resolves the path if it's defined in the tsconfig
 	const resolvedPath = matcher?.(opts.importPath)?.[0];
 	if (resolvedPath) return resolvedPath;
 
 	// resolves the path if it's a wildcard (e.g. `$lib` resolves to `$lib/*`)
-	if (opts.tsconfig.config.compilerOptions?.paths?.[`${opts.importPath}/*`]) {
+	if (opts.tsconfig?.config.compilerOptions?.paths?.[`${opts.importPath}/*`]) {
 		const resolvedPath = matcher?.(`${opts.importPath}${NOOP}`)?.[0];
 		if (resolvedPath) return path.dirname(resolvedPath);
 	}
