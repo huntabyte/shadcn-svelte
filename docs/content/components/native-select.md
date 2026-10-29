@@ -3,7 +3,7 @@ title: Native Select
 description: A styled native HTML select element with consistent design system integration.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/native-select
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/native-select
 ---
 
 <script>
@@ -45,6 +45,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -66,6 +72,34 @@ Copy and paste the following code into your project.
   <NativeSelect.Option value="grapes" disabled>Grapes</NativeSelect.Option>
   <NativeSelect.Option value="pineapple">Pineapple</NativeSelect.Option>
 </NativeSelect.Root>
+```
+
+## Composition
+
+### Simple
+
+Options placed directly under `NativeSelect` (no `NativeSelect.OptGroup`).
+
+```text
+NativeSelect.Root
+├── NativeSelect.Option
+├── NativeSelect.Option
+├── NativeSelect.Option
+└── NativeSelect.Option
+```
+
+### With groups
+
+Use `NativeSelect.OptGroup` to organize options into categories.
+
+```text
+NativeSelect.Root
+├── NativeSelect.OptGroup
+│   ├── NativeSelect.Option
+│   └── NativeSelect.Option
+└── NativeSelect.OptGroup
+    ├── NativeSelect.Option
+    └── NativeSelect.Option
 ```
 
 ## Groups

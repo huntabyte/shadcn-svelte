@@ -3,7 +3,7 @@ title: Radio Group
 description: A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/radio-group
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/radio-group
   doc: https://bits-ui.com/docs/components/radio-group
   api: https://bits-ui.com/docs/components/radio-group#api-reference
 ---
@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -76,6 +82,16 @@ Copy and paste the following code into your project.
     <Label for="option-two">Option Two</Label>
   </div>
 </RadioGroup.Root>
+```
+
+## Composition
+
+Use the following composition to build a `RadioGroup`:
+
+```text
+RadioGroup.Root
+├── RadioGroup.Item
+└── RadioGroup.Item
 ```
 
 ## Description
@@ -127,3 +143,7 @@ Use `aria-invalid` on `RadioGroup.Item` and `data-invalid` on `Field.Field` to s
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+See the [Bits UI](https://bits-ui.com/docs/components/radio-group#api-reference) documentation for more information.

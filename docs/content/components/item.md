@@ -3,7 +3,7 @@ title: Item
 description: A versatile component for displaying content with media, title, description, and actions.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/item
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/item
 ---
 
 <script>
@@ -44,6 +44,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -67,6 +73,22 @@ Copy and paste the following code into your project.
   <Item.Actions />
   <Item.Footer>Item Footer</Item.Footer>
 </Item.Root>
+```
+
+## Composition
+
+Use the following composition to build an `Item`:
+
+```text
+Item.Group
+└── Item.Root
+    ├── Item.Header
+    ├── Item.Media
+    ├── Item.Content
+    │   ├── Item.Title
+    │   └── Item.Description
+    ├── Item.Actions
+    └── Item.Footer
 ```
 
 ## Item vs Field
@@ -180,3 +202,127 @@ Use the `child` snippet to render the item as a link. The hover and focus states
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+### Item.Root
+
+The main component for displaying content with media, title, description, and actions.
+
+| Prop      | Type                                | Default     |
+| --------- | ----------------------------------- | ----------- |
+| `variant` | `"default" \| "outline" \| "muted"` | `"default"` |
+| `size`    | `"default" \| "sm" \| "xs"`         | `"default"` |
+| `child`   | `Snippet<[{ props }]>`              | -           |
+
+To render the item as a different element (e.g. an anchor), use the `child` snippet:
+
+```svelte
+<Item.Root>
+  {#snippet child({ props })}
+    <a href="/link" {...props}>...</a>
+  {/snippet}
+</Item.Root>
+```
+
+### Item.Group
+
+A container that groups related items together with consistent styling.
+
+```svelte
+<Item.Group>
+  <Item.Root />
+  <Item.Root />
+</Item.Group>
+```
+
+### Item.Separator
+
+A separator between items in a group.
+
+```svelte
+<Item.Group>
+  <Item.Root />
+  <Item.Separator />
+  <Item.Root />
+</Item.Group>
+```
+
+### Item.Media
+
+Use `Item.Media` to display media content such as icons, images, or avatars.
+
+| Prop      | Type                             | Default     |
+| --------- | -------------------------------- | ----------- |
+| `variant` | `"default" \| "icon" \| "image"` | `"default"` |
+
+```svelte
+<Item.Media variant="icon">
+  <Icon />
+</Item.Media>
+```
+
+```svelte
+<Item.Media variant="image">
+  <img src="..." alt="..." />
+</Item.Media>
+```
+
+### Item.Content
+
+Wraps the title and description of the item.
+
+```svelte
+<Item.Content>
+  <Item.Title>Title</Item.Title>
+  <Item.Description>Description</Item.Description>
+</Item.Content>
+```
+
+### Item.Title
+
+Displays the title of the item.
+
+```svelte
+<Item.Title>Item Title</Item.Title>
+```
+
+### Item.Description
+
+Displays the description of the item.
+
+```svelte
+<Item.Description>Item description</Item.Description>
+```
+
+### Item.Actions
+
+Container for action buttons or other interactive elements.
+
+```svelte
+<Item.Actions>
+  <Button>Action</Button>
+</Item.Actions>
+```
+
+### Item.Header
+
+Displays a header above the item content.
+
+```svelte
+<Item.Root>
+  <Item.Header>Header</Item.Header>
+  <Item.Content>...</Item.Content>
+</Item.Root>
+```
+
+### Item.Footer
+
+Displays a footer below the item content.
+
+```svelte
+<Item.Root>
+  <Item.Content>...</Item.Content>
+  <Item.Footer>Footer</Item.Footer>
+</Item.Root>
+```

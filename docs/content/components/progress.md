@@ -3,7 +3,7 @@ title: Progress
 description: Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/progress
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/progress
   doc: https://bits-ui.com/docs/components/progress
   api: https://bits-ui.com/docs/components/progress#api-reference
 ---
@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -66,6 +72,42 @@ Copy and paste the following code into your project.
 
 ```svelte showLineNumbers
 <Progress value={33} />
+```
+
+## Composition
+
+### With label and value
+
+Compose `Progress` with `Field.Label` and a text value. Bits UI exposes one progress root; the wrapper renders its indicator internally. It does not export separate label, value, or track components.
+
+Use `aria-labelledby` to connect the progress bar to its label. An HTML label's `for` attribute does not label a progress bar rendered as a `div`.
+
+```svelte showLineNumbers
+<script lang="ts">
+  import * as Field from "$lib/components/ui/field/index.js";
+  import { Progress } from "$lib/components/ui/progress/index.js";
+
+  let value = $state(56);
+</script>
+
+<Field.Field class="w-full max-w-sm">
+  <Field.Label id="upload-progress-label" class="w-full">
+    <span>Upload progress</span>
+    <span class="ml-auto font-normal text-muted-foreground tabular-nums"
+      >{value}%</span
+    >
+  </Field.Label>
+  <Progress {value} aria-labelledby="upload-progress-label" />
+</Field.Field>
+```
+
+```text
+Field.Field
+├── Field.Label
+│   ├── Label text
+│   └── Value text
+└── Progress
+    └── Indicator (rendered internally)
 ```
 
 ## Label
@@ -87,3 +129,7 @@ A progress bar that can be controlled by a slider.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+See the [Bits UI Progress](https://bits-ui.com/docs/components/progress#api-reference) documentation.

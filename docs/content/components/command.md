@@ -3,7 +3,7 @@ title: Command
 description: Command menu for search and quick actions.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/command
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/command
   doc: https://bits-ui.com/docs/components/command
   api: https://bits-ui.com/docs/components/command#api-reference
 ---
@@ -57,6 +57,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -87,6 +93,35 @@ Copy and paste the following code into your project.
     </Command.Group>
   </Command.List>
 </Command.Root>
+```
+
+## Composition
+
+Use the following composition to build a `Command`:
+
+```text
+Command.Root
+├── Command.Input
+└── Command.List
+    ├── Command.Empty
+    ├── Command.Group
+    │   ├── Command.Item
+    │   └── Command.Item
+    ├── Command.Separator
+    └── Command.Group
+        ├── Command.Item
+        └── Command.Item
+```
+
+For a dialog variant, wrap with `Command.Dialog`:
+
+```text
+Command.Dialog
+├── Command.Input
+└── Command.List
+    ├── Command.Empty
+    └── Command.Group
+        └── Command.Item
 ```
 
 ## Basic
@@ -126,3 +161,7 @@ Scrollable command menu with multiple items.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+See the [Bits UI](https://bits-ui.com/docs/components/command#api-reference) documentation for more information.

@@ -3,7 +3,7 @@ title: Attachment
 description: Displays a file or image attachment with media, metadata, upload state, and actions.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/attachment
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/attachment
 ---
 
 <script>
@@ -50,6 +50,12 @@ Copy and paste the following code into your project.
 {#if viewerData}
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
+
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
 
 </Steps>
 {/snippet}

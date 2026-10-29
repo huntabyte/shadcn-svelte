@@ -3,7 +3,7 @@ title: Calendar
 description: A calendar component that allows users to select a date or a range of dates.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/calendar
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/calendar
   doc: https://bits-ui.com/docs/components/calendar
   api: https://bits-ui.com/docs/components/calendar#api-reference
 ---
@@ -51,6 +51,12 @@ Copy and paste the following code into your project.
 {#if viewerData}
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
+
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
 
 </Steps>
 {/snippet}
@@ -162,3 +168,7 @@ Or use fixed values:
   class="rounded-lg border [--cell-size:2.75rem] md:[--cell-size:3rem]"
 />
 ```
+
+## API Reference
+
+See the [Bits UI](https://bits-ui.com/docs/components/calendar#api-reference) documentation for more information.
