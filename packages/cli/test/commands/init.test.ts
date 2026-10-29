@@ -52,6 +52,22 @@ const defaultOptions = {
 	skipPreflight: false,
 } satisfies Partial<InitOptions>;
 
+let isTTY: PropertyDescriptor | undefined;
+
+function setTTY(value: boolean) {
+	Object.defineProperty(process.stdin, "isTTY", { value, configurable: true });
+}
+
+beforeEach(() => {
+	isTTY = Object.getOwnPropertyDescriptor(process.stdin, "isTTY");
+	setTTY(true);
+});
+
+afterEach(() => {
+	if (isTTY) Object.defineProperty(process.stdin, "isTTY", isTTY);
+	else delete (process.stdin as { isTTY?: boolean }).isTTY;
+});
+
 it("init (config-full)", async () => {
 	vi.spyOn(registry, "getRegistryTheme").mockResolvedValue({
 		cssVars: {
@@ -331,9 +347,25 @@ describe("overwriting the existing components", () => {
 		expect(detectPM).toHaveBeenCalledWith(targetDir, true);
 		expect(items.addRegistryItems).not.toHaveBeenCalled();
 	});
+
+	describe("without a terminal", () => {
+		beforeEach(() => setTTY(false));
+
+		it("fails before writing anything when the style changed", async () => {
+			const confirm = vi.spyOn(p, "confirm");
+
+			await expect(run({}, true)).rejects.toThrow(
+				/--overwrite.*--overwrite <parts\.\.\.>.*--no-overwrite/
+			);
+
+			expect(confirm).not.toHaveBeenCalled();
+			expect(items.addRegistryItems).not.toHaveBeenCalled();
+			expect(cliConfig.writeConfig).not.toHaveBeenCalled();
+		});
+	});
 });
 
-describe("the init command", () => {
+describe("the init command without a terminal", () => {
 	const aliases = [
 		["--lib-alias", "$lib"],
 		["--components-alias", "$lib/components"],
@@ -353,6 +385,7 @@ describe("the init command", () => {
 	let cwd: string;
 
 	beforeEach(() => {
+		setTTY(false);
 		cwd = fs.mkdtempSync(path.join(tmpdir(), "shadcn-svelte-init-"));
 		fs.mkdirSync(path.join(cwd, "src"));
 		fs.writeFileSync(path.join(cwd, "src", "app.css"), "");
@@ -381,6 +414,44 @@ describe("the init command", () => {
 		await program.parseAsync(["node", "shadcn-svelte", "init", "-c", cwd, "--no-deps", ...args]);
 	}
 
+	function failure() {
+		expect(process.exit).toHaveBeenCalledWith(1);
+		expect(items.addRegistryItems).not.toHaveBeenCalled();
+		return String(vi.mocked(p.cancel).mock.calls[0]![0]);
+	}
+
+	it("names every flag that answers a prompt", async () => {
+		fs.writeFileSync(path.join(cwd, "tsconfig.json"), tsconfig);
+
+		await runInitCommand();
+
+		const message = failure();
+		for (const flag of [
+			"--preset <preset>",
+			"--css <path>",
+			...aliases.map(([f]) => `${f} <path>`),
+		]) {
+			expect(message).toContain(flag);
+		}
+		expect(message).not.toContain("--tsconfig");
+	});
+
+	it("asks for --tsconfig when there's no tsconfig or jsconfig", async () => {
+		await runInitCommand(...flags);
+
+		const message = failure();
+		expect(message).toContain("--tsconfig <path>");
+		expect(message).not.toContain("--css");
+	});
+
+	it("asks for --preset when the given one isn't valid", async () => {
+		fs.writeFileSync(path.join(cwd, "tsconfig.json"), tsconfig);
+
+		await runInitCommand(...flags, "--preset", "nope");
+
+		expect(failure()).toContain("--preset <preset>");
+	});
+
 	it.each([
 		{ name: "a detected tsconfig", file: "tsconfig.json", args: [], typescript: true },
 		{
@@ -396,8 +467,22 @@ describe("the init command", () => {
 
 		expect(p.cancel).not.toHaveBeenCalled();
 		const [options] = vi.mocked(items.addRegistryItems).mock.calls[0]!;
+		expect(options.interactive).toBe(false);
 		expect(options.config.typescript).toEqual(typescript);
 		expect(options.config.aliases.ui).toBe("$lib/components/ui");
+	});
+
+	it("replaces only the given parts", async () => {
+		fs.writeFileSync(path.join(cwd, "tsconfig.json"), tsconfig);
+
+		await runInitCommand(...flags, "-o", "utils", "stylesheet");
+
+		expect(p.cancel).not.toHaveBeenCalled();
+		const [options] = vi.mocked(items.addRegistryItems).mock.calls[0]!;
+		expect(options.selectedItems).toContain("utils");
+		expect(options.overwrite).toEqual(["utils"]);
+		expect(options.stylesheet).toBe("write");
+		expect(options.overwriteArg).toBe("<parts...>");
 	});
 
 	describe("with package.json subpath imports", () => {
@@ -414,6 +499,16 @@ describe("the init command", () => {
 				JSON.stringify({ imports, devDependencies })
 			);
 		}
+
+		it("doesn't need --tsconfig", async () => {
+			writePackageJson();
+
+			await runInitCommand();
+
+			const message = failure();
+			expect(message).toContain("--lib-alias <path>");
+			expect(message).not.toContain("--tsconfig");
+		});
 
 		it("runs without a tsconfig as a JavaScript project", async () => {
 			writePackageJson();
@@ -449,6 +544,16 @@ describe("the init command", () => {
 
 			expect(p.cancel).not.toHaveBeenCalled();
 			expect(items.addRegistryItems).toHaveBeenCalled();
+		});
+
+		it("asks for --tsconfig when an alias isn't a subpath import", async () => {
+			writePackageJson();
+
+			await runInitCommand(...subpathFlags, "--utils-alias", "$lib/utils");
+
+			const message = failure();
+			expect(message).toContain("--tsconfig <path>");
+			expect(message).not.toContain("--lib-alias");
 		});
 	});
 });

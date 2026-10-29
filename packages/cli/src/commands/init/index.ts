@@ -195,6 +195,24 @@ async function promptForConfig({
 			ALIASES.map((alias) => options[`${alias}Alias`] ?? packageImportAlias)
 		);
 
+	// Without a terminal, prompts would hang or exit without doing anything, so fail and name all
+	// the flags that answer them instead.
+	if (!process.stdin.isTTY) {
+		const missing = [
+			needsTsconfig && options.tsconfig === undefined && "--tsconfig <path>",
+			!presetConfig && "--preset <preset>",
+			options.css === undefined && "--css <path>",
+			...ALIASES.filter((alias) => options[`${alias}Alias`] === undefined).map(
+				(alias) => `--${alias}-alias <path>`
+			),
+		].filter((flag) => flag !== false);
+
+		if (missing.length > 0) {
+			const flags = missing.map((flag) => highlight(flag)).join(", ");
+			throw error(`Pass ${flags} to skip the prompts.`);
+		}
+	}
+
 	let tsconfig;
 	if (options.tsconfig !== undefined) {
 		if (!existsSync(path.resolve(cwd, options.tsconfig))) {
@@ -324,6 +342,10 @@ export async function runInit({
 	options: InitOptions;
 	styleChanged: boolean;
 }) {
+	// Without a terminal, prompts would hang or exit without doing anything, so fail and name the
+	// flag that answers them instead.
+	const interactive = Boolean(process.stdin.isTTY);
+
 	if (options.proxy !== undefined) {
 		process.env.HTTP_PROXY = options.proxy;
 		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);
@@ -363,9 +385,14 @@ export async function runInit({
 			selectedItems = await getExistingComponents(registryUrl, config);
 
 			if (selectedItems.length > 0 && overwrite === undefined) {
-				p.log.warn(
-					`The registry style has changed to ${color.bold(color.yellow(decidedPresets.style))}.`
-				);
+				const style = color.bold(color.yellow(decidedPresets.style));
+				if (!interactive) {
+					throw error(
+						`The registry style has changed to ${style}. Pass ${highlight("--overwrite")} to reinstall your existing components with it, ${highlight("--overwrite <parts...>")} to replace only some parts, or ${highlight("--no-overwrite")} to keep them.`
+					);
+				}
+
+				p.log.warn(`The registry style has changed to ${style}.`);
 
 				const choice = await p.confirm({
 					message: `Would you like to ${color.bold(color.red("overwrite"))} your existing components?`,
@@ -421,6 +448,7 @@ export async function runInit({
 		deps: options.deps,
 		overwrite,
 		stylesheet,
+		interactive,
 		overwriteArg: "<parts...>",
 		before: setup,
 	});
