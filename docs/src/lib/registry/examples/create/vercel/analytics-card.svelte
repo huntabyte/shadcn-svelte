@@ -5,7 +5,7 @@
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const chartData = [
 		{ month: "January", visitors: 186 },

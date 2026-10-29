@@ -7,7 +7,7 @@
 	import MessageGroupChat from "./message-group-chat.svelte";
 	import MessageGroup from "./message-group.svelte";
 	import MessageHeaderFooter from "./message-header-footer.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

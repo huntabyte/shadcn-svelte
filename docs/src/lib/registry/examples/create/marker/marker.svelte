@@ -4,7 +4,7 @@
 	import MarkerDrawer from "./marker-drawer.svelte";
 	import MarkerMarkers from "./marker-markers.svelte";
 	import MarkerSeparator from "./marker-separator.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

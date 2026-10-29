@@ -7,7 +7,7 @@
 	import TraceTask from "./trace-task.svelte";
 	import TraceToolCalls from "./trace-tool-calls.svelte";
 	import TraceTurn from "./trace-turn.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

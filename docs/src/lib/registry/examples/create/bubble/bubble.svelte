@@ -7,7 +7,7 @@
 	import BubbleSizes from "./bubble-sizes.svelte";
 	import BubbleVariants from "./bubble-variants.svelte";
 	import BubbleWithReactions from "./bubble-with-reactions.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

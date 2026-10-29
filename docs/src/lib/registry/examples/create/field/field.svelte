@@ -9,7 +9,7 @@
 	import FieldSliderFields from "./field-slider-fields.svelte";
 	import FieldSwitchFields from "./field-switch-fields.svelte";
 	import FieldTextareaFields from "./field-textarea-fields.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

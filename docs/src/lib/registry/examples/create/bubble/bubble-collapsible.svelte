@@ -3,7 +3,7 @@
 	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const text = `The accessibility review found two focus states that were visually too subtle in dark mode.
 

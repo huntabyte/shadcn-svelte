@@ -29,7 +29,7 @@
 	import CodeBlockTypeset from "./code-block-typeset.svelte";
 	import CodeBlockWrapLineNumbers from "./code-block-wrap-line-numbers.svelte";
 	import CodeBlockWrap from "./code-block-wrap.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper class="md:grid-cols-1">

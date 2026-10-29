@@ -5,7 +5,7 @@
 	import QuestionnaireNavigation from "./questionnaire-navigation.svelte";
 	import QuestionnaireQuestions from "./questionnaire-questions.svelte";
 	import { questionnaireItems, handleSubmit } from "./questionnaire-data.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="Dialog" class="items-center justify-center" containerClass="md:col-span-2">

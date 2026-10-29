@@ -3,7 +3,7 @@
 	import * as Trace from "$lib/registry/ui/trace/index.js";
 	import { createChat } from "$lib/ai-sdk.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 	import type { UIMessage } from "ai";
 
 	const REASONING = `The user wants to know why the checkout deploy is slow, so I should start from the build log instead of guessing.

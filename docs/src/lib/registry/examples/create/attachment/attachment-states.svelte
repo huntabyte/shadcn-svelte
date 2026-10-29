@@ -3,7 +3,7 @@
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { Spinner } from "$lib/registry/ui/spinner/index.js";
 	import AttachmentRemove from "./attachment-remove.svelte";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const states = [
 		{

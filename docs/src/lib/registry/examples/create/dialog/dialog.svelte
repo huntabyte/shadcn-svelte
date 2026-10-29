@@ -4,7 +4,7 @@
 	import DialogScrollableContent from "./dialog-scrollable-content.svelte";
 	import DialogWithForm from "./dialog-with-form.svelte";
 	import DialogWithStickyFooter from "./dialog-with-sticky-footer.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

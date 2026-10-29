@@ -6,7 +6,7 @@
 	import * as Textarea from "$lib/registry/ui/textarea/index.js";
 	import { Slider } from "$lib/registry/ui/slider/index.js";
 	import { Switch } from "$lib/registry/ui/switch/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const basicItems = [
 		{ label: "Select a fruit", value: undefined },

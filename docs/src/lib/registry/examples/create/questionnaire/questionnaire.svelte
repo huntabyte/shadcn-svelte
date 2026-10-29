@@ -4,7 +4,7 @@
 	import QuestionnaireDisabled from "./questionnaire-disabled.svelte";
 	import QuestionnaireNoDescription from "./questionnaire-no-description.svelte";
 	import QuestionnaireStandalone from "./questionnaire-standalone.svelte";
-	import ExampleWrapper from "../../../../../routes/(app)/(layout)/(create)/components/example-wrapper.svelte";
+	import ExampleWrapper from "../../../../../routes/(app)/(layout)/create/components/example-wrapper.svelte";
 </script>
 
 <ExampleWrapper>

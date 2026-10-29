@@ -2,7 +2,7 @@
 	import * as CodeBlock from "$lib/registry/ui/code-block/index.js";
 	import * as Trace from "$lib/registry/ui/trace/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const REASONING = `The user wants to know why the checkout deploy is slow, so I should start from the build log instead of guessing.
 

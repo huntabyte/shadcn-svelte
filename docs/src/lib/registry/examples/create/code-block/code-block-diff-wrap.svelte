@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as CodeBlock from "$lib/registry/ui/code-block/index.js";
 	import { useHighlightedCode } from "$lib/registry/hooks/use-highlighted-code.svelte.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const longDiff = [
 		{ variant: "default", text: "export async function GET(request: Request) {" },

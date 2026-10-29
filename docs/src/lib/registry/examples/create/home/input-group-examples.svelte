@@ -9,7 +9,7 @@
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Label } from "$lib/registry/ui/label/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	let isFavorite = $state(false);
 	let voiceEnabled = $state(false);

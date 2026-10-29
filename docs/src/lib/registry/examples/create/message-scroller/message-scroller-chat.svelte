@@ -9,7 +9,7 @@
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { createChat, getMessageText } from "$lib/ai-sdk.js";
 	import { Spinner } from "$lib/registry/ui/spinner/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 
 	const script = createChat()
 		.user("Hello there!")

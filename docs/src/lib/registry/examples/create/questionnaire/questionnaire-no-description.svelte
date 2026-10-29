@@ -2,7 +2,7 @@
 	import * as Questionnaire from "$lib/registry/ui/questionnaire/index.js";
 	import QuestionnaireNavigation from "./questionnaire-navigation.svelte";
 	import { handleSubmit, taskItems } from "./questionnaire-data.js";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 <Example title="No description" containerClass="md:col-span-2">

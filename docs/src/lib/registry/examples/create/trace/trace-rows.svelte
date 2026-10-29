@@ -4,7 +4,7 @@
 	import * as Sheet from "$lib/registry/ui/sheet/index.js";
 	import * as Trace from "$lib/registry/ui/trace/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
 </script>
 
 {#snippet chevronRightGlyph()}
