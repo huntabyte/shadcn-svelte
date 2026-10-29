@@ -12,5 +12,5 @@
 		"noUncheckedIndexedAccess": true,
 		"types": ["node"]
 	},
-	"include": ["src", "test/**/*.test.ts"]
+	"include": ["src", "test/**/*.test.ts", "tsdown.config.ts"]
 }
