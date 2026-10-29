@@ -86,12 +86,20 @@ function hasSyncedSvelteKit(cwd: string): boolean {
 }
 
 function isUsingSvelteKit3(cwd: string): boolean {
-	const installed = getDependencyPackageInfo(cwd, "@sveltejs/kit")?.pkg.version;
-	// covers the case where dependencies haven't been installed yet
-	const pkg = getPackageInfo(cwd);
-	const version = installed ?? { ...pkg.dependencies, ...pkg.devDependencies }["@sveltejs/kit"];
-	const major = semver.coerce(version)?.major;
+	const major = semver.coerce(getPackageVersion(cwd, "@sveltejs/kit"))?.major;
 	return major !== undefined && major >= 3;
+}
+
+/**
+ * Gets the version of a dependency, preferring the installed version and falling back to the
+ * version (or range) declared in the user's `package.json` for when dependencies haven't been installed yet.
+ */
+export function getPackageVersion(cwd: string, name: string): string | undefined {
+	const installed = getDependencyPackageInfo(cwd, name)?.pkg.version;
+	if (installed) return installed;
+
+	const pkg = getPackageInfo(cwd);
+	return { ...pkg.dependencies, ...pkg.devDependencies }[name];
 }
 
 /**
@@ -105,10 +113,7 @@ export function isUsingSvelteKit(cwd: string): boolean {
 
 /** Whether the project is using Tailwind CSS v3, which is served by the legacy registry. */
 export function isUsingTailwind3(cwd: string): boolean {
-	const installed = getDependencyPackageInfo(cwd, "tailwindcss")?.pkg.version;
-	// covers the case where dependencies haven't been installed yet
-	const pkg = getPackageInfo(cwd);
-	const version = installed ?? { ...pkg.dependencies, ...pkg.devDependencies }["tailwindcss"];
+	const version = getPackageVersion(cwd, "tailwindcss");
 	return semver.satisfies(semver.coerce(version) ?? "", "^3.0.0");
 }
 

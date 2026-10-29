@@ -5,7 +5,6 @@ import * as project from "../../utils/project.js";
 import { TW3_SITE_BASE_URL, SITE_BASE_URL } from "../../constants.js";
 import { highlight } from "../../utils/colors.js";
 import { CLIError, error } from "../../utils/errors.js";
-import { getDependencyPackageInfo } from "../../utils/get-package-info.js";
 
 /**
  * Runs preflight checks for the `init` command.
@@ -18,14 +17,8 @@ import { getDependencyPackageInfo } from "../../utils/get-package-info.js";
  * @param cwd - The current working directory.
  */
 export function preflightInit(cwd: string, options: { skipPreflight: boolean }) {
-	const sveltePkg = getDependencyPackageInfo(cwd, "svelte")?.pkg;
-	const tailwindPkg = getDependencyPackageInfo(cwd, "tailwindcss")?.pkg;
-
-	const pkg = project.getPackageInfo(cwd);
-	const deps = { ...pkg.dependencies, ...pkg.devDependencies };
-
-	const svelte = sveltePkg?.version ?? deps["svelte"];
-	const tailwindcss = tailwindPkg?.version ?? deps["tailwindcss"];
+	const svelte = project.getPackageVersion(cwd, "svelte");
+	const tailwindcss = project.getPackageVersion(cwd, "tailwindcss");
 
 	const result = checkInitDependencies({ svelte, tailwindcss });
 	if (result.ok) return;
