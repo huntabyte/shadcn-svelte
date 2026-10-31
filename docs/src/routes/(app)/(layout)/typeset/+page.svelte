@@ -3,8 +3,9 @@
 	import AlignJustify from "@lucide/svelte/icons/align-justify";
 	import ArrowLeftRight from "@lucide/svelte/icons/arrow-left-right";
 	import CaseUpper from "@lucide/svelte/icons/case-upper";
-	import ExternalLink from "@lucide/svelte/icons/external-link";
 	import MoveVertical from "@lucide/svelte/icons/move-vertical";
+	import { LinkSquare02Icon } from "@hugeicons/core-free-icons";
+	import { HugeiconsIcon } from "@hugeicons/svelte";
 	import { mode, setMode } from "mode-watcher";
 	import { onDestroy, onMount } from "svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
@@ -188,7 +189,7 @@
 							size="sm"
 							class="h-7 cursor-pointer rounded-lg px-2.5 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
 						>
-							<ExternalLink class="size-3.5 md:hidden" />
+							<HugeiconsIcon icon={LinkSquare02Icon} strokeWidth={2} class="size-3.5 md:hidden" />
 							<span class="max-md:sr-only">Open in New Tab</span>
 						</Button>
 					</div>
@@ -287,9 +288,11 @@
 			>
 				<Button
 					variant="outline"
-					class="min-w-0 flex-1 bg-transparent md:flex-none"
-					onclick={() => typeset.shuffle()}>Shuffle</Button
+					class="min-w-0 flex-1 touch-manipulation bg-transparent! px-2! py-0! text-sm! transition-none select-none hover:bg-muted! md:flex-none pointer-coarse:h-10!"
+					onclick={() => typeset.shuffle()}
 				>
+					<span class="w-full truncate text-center font-medium">Shuffle</span>
+				</Button>
 				<GetCodeDrawer
 					{typeset}
 					class="min-w-0 flex-1 touch-manipulation bg-transparent! px-2! py-0! text-sm! transition-none select-none hover:bg-muted! md:flex-none xl:hidden pointer-coarse:h-10!"
