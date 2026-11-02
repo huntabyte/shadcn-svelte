@@ -178,6 +178,6 @@
 	<LockButton
 		locked={typeset.locks.has(param)}
 		onToggle={() => typeset.toggleLock(param)}
-		class="absolute top-1/2 right-8 -translate-y-1/2"
+		class="absolute top-1/2 right-8 -translate-y-1/2 max-md:hidden"
 	/>
 </div>

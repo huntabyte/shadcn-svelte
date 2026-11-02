@@ -9,9 +9,9 @@
 	import { TYPESET_MEASURES, findFont, type TypesetState } from "./typeset.svelte.js";
 
 	const frameworkOptions = [
-		{ value: "sveltekit", label: "SvelteKit" },
-		{ value: "vite", label: "Vite" },
-		{ value: "astro", label: "Astro" },
+		{ value: "sveltekit", label: "SvelteKit", cssFile: "layout.css" },
+		{ value: "vite", label: "Vite", cssFile: "app.css" },
+		{ value: "astro", label: "Astro", cssFile: "global.css" },
 	] as const;
 
 	let { typeset, compact = false }: { typeset: TypesetState; compact?: boolean } = $props();
@@ -53,11 +53,6 @@
   --typeset-leading: ${typeset.params.leading};
   --typeset-flow: ${typeset.params.flow};
 }`);
-	const presetWithImports = $derived(`/* app.css */
-@import "tailwindcss";
-@import "./typeset.css";
-
-${preset}`);
 	const usage = $derived(
 		framework === "astro"
 			? `<div class="typeset ${presetName} max-w-[${measure}]" set:html={content}></div>`
@@ -70,13 +65,24 @@ ${preset}`);
 	);
 	const fontPackages = $derived(picked.map((font) => font?.definition.dependency).join(" "));
 	const install = $derived(`npm install ${fontPackages}`);
-	const fontCss = $derived.by(() => {
-		const imports = picked.map((font) => `@import "${font?.definition.dependency}";`).join("\n");
-		const variables = picked
-			.map((font) => `  --font-${font?.id}: ${font?.definition.family};`)
-			.join("\n");
-		return `/* app.css */\n${imports}\n\n:root {\n${variables}\n}`;
-	});
+	const fontImports = $derived(
+		picked.map((font) => `@import "${font?.definition.dependency}";`).join("\n")
+	);
+	const fontVariables = $derived(`:root {
+${picked.map((font) => `  --font-${font?.id}: ${font?.definition.family};`).join("\n")}
+}`);
+	const fontCss = $derived(`${fontImports}\n\n${fontVariables}`);
+	const cssFile = $derived(frameworkOptions.find((option) => option.value === framework)?.cssFile);
+	const fontsFile = $derived(`/* ${cssFile} */
+@import "tailwindcss";
+@import "./typeset.css";
+${fontImports}
+
+${fontVariables}`);
+	const presetFile = $derived(`/* ${cssFile} */
+/* ... */
+
+${preset}`);
 	const fontStep = $derived(`Install the fonts:
 
 ${install}
@@ -130,7 +136,7 @@ Notes:
 	<div
 		class={compact
 			? "flex min-h-0 flex-1 flex-col"
-			: "isolate flex max-h-[calc(100vh-16rem)] w-full flex-col overflow-hidden rounded-2xl bg-background ring-1 ring-foreground/10"}
+			: "isolate flex max-h-[calc(100vh-12rem)] w-full flex-col overflow-hidden rounded-2xl bg-background ring-1 ring-foreground/10"}
 	>
 		<Tabs.Root bind:value={tab} class="flex min-h-0 flex-1 flex-col gap-0">
 			<div class="flex items-center justify-between gap-2 border-b px-4 py-3">
@@ -176,15 +182,15 @@ Notes:
 						<h3 class="text-sm font-medium">2. Add the fonts</h3>
 						<PMInstall command={fontPackages} />
 						<p class="text-sm leading-relaxed text-muted-foreground">
-							Then import them in your CSS file:
+							Then import them after the typeset import:
 						</p>
 						<pre
-							class="overflow-x-auto rounded-lg bg-muted/60 p-3 font-mono text-sm leading-relaxed">{fontCss}</pre>
+							class="overflow-x-auto rounded-lg bg-muted/60 p-3 font-mono text-sm leading-relaxed">{fontsFile}</pre>
 					</section>
 					<section class="flex flex-col gap-2.5">
 						<h3 class="text-sm font-medium">3. Create your custom typeset</h3>
 						<pre
-							class="overflow-x-auto rounded-lg bg-muted/60 p-3 font-mono text-sm leading-relaxed">{presetWithImports}</pre>
+							class="overflow-x-auto rounded-lg bg-muted/60 p-3 font-mono text-sm leading-relaxed">{presetFile}</pre>
 					</section>
 					<section class="flex flex-col gap-2.5">
 						<h3 class="text-sm font-medium">4. Wrap your content</h3>
