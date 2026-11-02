@@ -10,11 +10,13 @@
 	import { onDestroy, onMount } from "svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import CtaMobile from "$lib/components/cta-mobile.svelte";
+	import Cta from "$lib/components/cta.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
 	import Control from "$lib/features/typeset/control.svelte";
 	import DocsPanel from "$lib/features/typeset/docs-panel.svelte";
 	import GetCodeDrawer from "$lib/features/typeset/get-code-drawer.svelte";
 	import MainMenu from "$lib/features/typeset/main-menu.svelte";
+	import Separator from "$lib/registry/ui/separator/separator.svelte";
 	import {
 		provideTypesetPreviewOverride,
 		TypesetPreviewOverrideState,
@@ -139,7 +141,7 @@
 <Metadata title="Typeset" description="Typography for markdown you don't control." />
 
 <div
-	class="relative z-10 flex min-h-0 flex-1 flex-col overflow-hidden section-soft [--customizer-width:--spacing(48)] [--gap:--spacing(4)] md:[--gap:--spacing(6)] 2xl:[--customizer-width:--spacing(56)]"
+	class="relative z-10 flex min-h-0 flex-1 flex-col overflow-hidden section-soft [--customizer-width:--spacing(56)] [--gap:--spacing(4)] md:[--gap:--spacing(6)]"
 >
 	<div
 		data-slot="designer"
@@ -148,8 +150,8 @@
 		<DocsPanel {typeset} />
 
 		<div class="flex min-h-0 w-full min-w-0 flex-1 flex-col gap-(--gap) self-stretch">
-			<div class="relative z-20 w-full">
-				<CtaMobile showOnDesktop />
+			<div class="relative z-20 w-full xl:hidden">
+				<CtaMobile />
 			</div>
 			<div
 				class="relative isolate flex min-h-0 w-full flex-1 flex-col self-stretch overflow-hidden rounded-2xl bg-background ring-1 ring-foreground/10"
@@ -197,107 +199,123 @@
 			</div>
 		</div>
 
-		<Card.Root
-			bind:ref={customizerAnchor}
-			class="dark isolate z-10 max-h-full min-h-0 w-full self-start rounded-2xl bg-card/90 backdrop-blur-xl md:w-(--customizer-width)"
-			size="sm"
+		<div
+			class="isolate z-10 flex max-h-full min-h-0 w-full flex-col gap-2 self-start md:w-(--customizer-width)"
 		>
-			<Card.Header class="hidden items-center justify-between gap-2 border-b md:flex">
-				<MainMenu {typeset} />
-			</Card.Header>
-			<Card.Content
-				bind:ref={pickerScroll}
-				data-slot="picker-scroll"
-				class="no-scrollbar min-h-0 flex-1 overflow-x-auto overflow-y-hidden max-md:px-0 md:overflow-y-auto"
+			<Card.Root
+				bind:ref={customizerAnchor}
+				class="dark min-h-0 w-full gap-0 rounded-2xl bg-card/90 shadow-xl backdrop-blur-xl"
+				size="sm"
 			>
-				<div class="flex flex-row gap-2.5 py-px max-md:px-3 md:flex-col md:gap-3.25">
-					<Control
-						{typeset}
-						param="measure"
-						label="Measure"
-						options={TYPESET_MEASURES}
-						icon={ArrowLeftRight}
-						anchor={customizerAnchor}
-						scrollContainer={pickerScroll}
-						class="max-[28rem]:hidden"
-					/>
-					<div class="-mx-3 my-1 hidden h-px bg-border md:block"></div>
-					<Control
-						{typeset}
-						param="heading"
-						label="Heading"
-						options={headingOptions}
-						groups={fontGroups}
-						preview={headingFont?.value}
-						anchor={customizerAnchor}
-						scrollContainer={pickerScroll}
-					/>
-					<Control
-						{typeset}
-						param="body"
-						label="Body"
-						options={fontOptions}
-						groups={fontGroups}
-						preview={bodyFont?.value}
-						anchor={customizerAnchor}
-						scrollContainer={pickerScroll}
-					/>
-					<Control
-						{typeset}
-						param="mono"
-						label="Mono"
-						options={fontOptions}
-						groups={fontGroups}
-						preview={monoFont?.value}
-						anchor={customizerAnchor}
-						scrollContainer={pickerScroll}
-					/>
-					<div class="-mx-3 my-1 hidden h-px bg-border md:block"></div>
-					<Control
-						{typeset}
-						param="scale"
-						label="Size"
-						options={TYPESET_SIZES}
-						icon={CaseUpper}
-						anchor={customizerAnchor}
-						scrollContainer={pickerScroll}
-					/>
-					<Control
-						{typeset}
-						param="leading"
-						label="Leading"
-						options={TYPESET_LEADINGS}
-						icon={AlignJustify}
-						anchor={customizerAnchor}
-						scrollContainer={pickerScroll}
-					/>
-					<Control
-						{typeset}
-						param="flow"
-						label="Flow"
-						options={TYPESET_FLOWS}
-						icon={MoveVertical}
-						anchor={customizerAnchor}
-						scrollContainer={pickerScroll}
-					/>
-					<div aria-hidden="true" class="w-0.5 shrink-0 md:hidden"></div>
-				</div>
-			</Card.Content>
-			<Card.Footer
-				class="flex min-w-0 flex-row-reverse gap-2 border-t md:flex-col md:**:[button]:w-full"
-			>
-				<Button
-					variant="outline"
-					class="min-w-0 flex-1 touch-manipulation bg-transparent! px-2! py-0! text-sm! transition-none select-none hover:bg-muted! md:flex-none pointer-coarse:h-10!"
-					onclick={() => typeset.shuffle()}
+				<Card.Header class="hidden items-center justify-between gap-2 border-b px-3! md:flex">
+					<MainMenu {typeset} />
+				</Card.Header>
+				<Card.Content
+					bind:ref={pickerScroll}
+					data-slot="picker-scroll"
+					class="no-scrollbar min-h-0 flex-1 overflow-x-auto overflow-y-hidden p-0 max-md:flex max-md:gap-2.5 max-md:px-3 md:overflow-y-auto"
 				>
-					<span class="w-full truncate text-center font-medium">Shuffle</span>
-				</Button>
-				<GetCodeDrawer
-					{typeset}
-					class="min-w-0 flex-1 touch-manipulation bg-transparent! px-2! py-0! text-sm! transition-none select-none hover:bg-muted! md:flex-none xl:hidden pointer-coarse:h-10!"
-				/>
-			</Card.Footer>
-		</Card.Root>
+					<div
+						class="flex shrink-0 flex-row gap-2.5 p-3 max-md:p-0 max-md:py-px max-[28rem]:hidden md:flex-col md:gap-3.25"
+					>
+						<Control
+							{typeset}
+							param="measure"
+							label="Measure"
+							options={TYPESET_MEASURES}
+							icon={ArrowLeftRight}
+							anchor={customizerAnchor}
+							scrollContainer={pickerScroll}
+						/>
+					</div>
+					<Separator class="hidden md:block" />
+					<div
+						class="flex shrink-0 flex-row gap-2.5 p-3 max-md:p-0 max-md:py-px md:flex-col md:gap-3.25"
+					>
+						<Control
+							{typeset}
+							param="heading"
+							label="Heading"
+							options={headingOptions}
+							groups={fontGroups}
+							preview={headingFont?.value}
+							anchor={customizerAnchor}
+							scrollContainer={pickerScroll}
+						/>
+						<Control
+							{typeset}
+							param="body"
+							label="Body"
+							options={fontOptions}
+							groups={fontGroups}
+							preview={bodyFont?.value}
+							anchor={customizerAnchor}
+							scrollContainer={pickerScroll}
+						/>
+						<Control
+							{typeset}
+							param="mono"
+							label="Mono"
+							options={fontOptions}
+							groups={fontGroups}
+							preview={monoFont?.value}
+							anchor={customizerAnchor}
+							scrollContainer={pickerScroll}
+						/>
+					</div>
+					<Separator class="hidden md:block" />
+					<div
+						class="flex shrink-0 flex-row gap-2.5 p-3 max-md:p-0 max-md:py-px md:flex-col md:gap-3.25"
+					>
+						<Control
+							{typeset}
+							param="scale"
+							label="Size"
+							options={TYPESET_SIZES}
+							icon={CaseUpper}
+							anchor={customizerAnchor}
+							scrollContainer={pickerScroll}
+						/>
+						<Control
+							{typeset}
+							param="leading"
+							label="Leading"
+							options={TYPESET_LEADINGS}
+							icon={AlignJustify}
+							anchor={customizerAnchor}
+							scrollContainer={pickerScroll}
+						/>
+						<Control
+							{typeset}
+							param="flow"
+							label="Flow"
+							options={TYPESET_FLOWS}
+							icon={MoveVertical}
+							anchor={customizerAnchor}
+							scrollContainer={pickerScroll}
+						/>
+					</div>
+					<div aria-hidden="true" class="w-0.5 shrink-0 md:hidden"></div>
+				</Card.Content>
+				<Card.Footer
+					class="flex min-w-0 flex-row-reverse gap-2 border-t px-3! md:flex-col md:**:[button]:w-full"
+				>
+					<Button
+						variant="outline"
+						class="min-w-0 flex-1 touch-manipulation bg-transparent! px-2! py-0! text-sm! transition-none select-none hover:bg-muted! md:flex-none pointer-coarse:h-10!"
+						onclick={() => typeset.shuffle()}
+					>
+						<span class="w-full truncate text-center font-medium">Shuffle</span>
+					</Button>
+					<GetCodeDrawer
+						{typeset}
+						class="min-w-0 flex-1 touch-manipulation bg-transparent! px-2! py-0! text-sm! transition-none select-none hover:bg-muted! md:flex-none xl:hidden pointer-coarse:h-10!"
+					/>
+				</Card.Footer>
+			</Card.Root>
+			<div class="hidden w-full flex-col md:flex">
+				<Cta />
+			</div>
+		</div>
 	</div>
 </div>

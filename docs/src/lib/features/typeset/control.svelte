@@ -1,8 +1,7 @@
 <script lang="ts">
-	import Lock from "@lucide/svelte/icons/lock-keyhole";
-	import Unlock from "@lucide/svelte/icons/lock-keyhole-open";
 	import { tick } from "svelte";
 	import * as Picker from "$lib/components/picker/index.js";
+	import LockButton from "$lib/components/lock-button.svelte";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import { cn } from "$lib/utils.js";
 	import { useTypesetPreviewOverride } from "./preview-override.svelte.js";
@@ -89,7 +88,6 @@
 <div class={cn("group/picker relative", className)}>
 	<Picker.Root submenu={false} bind:open={() => open, setOpen}>
 		<Picker.Trigger
-			class="w-36 md:w-full"
 			onpointerdown={captureMobileScroll}
 			onkeydown={(event) => {
 				if (event.key === "Enter" || event.key === " ") captureMobileScroll();
@@ -177,14 +175,9 @@
 			onclick={() => setOpen(false)}
 		></button>
 	{/if}
-	<button
-		type="button"
-		title={typeset.locks.has(param) ? "Unlock" : "Lock"}
-		aria-label={typeset.locks.has(param) ? "Unlock" : "Lock"}
-		onclick={() => typeset.toggleLock(param)}
-		class="absolute top-1/2 right-8 z-20 hidden size-4 -translate-y-1/2 cursor-pointer items-center justify-center rounded opacity-0 ring-foreground/60 transition-opacity outline-none group-hover/picker:opacity-100 focus:opacity-100 focus-visible:ring-1 data-[locked=true]:opacity-100 md:flex"
-		data-locked={typeset.locks.has(param)}
-	>
-		{#if typeset.locks.has(param)}<Lock class="size-4" />{:else}<Unlock class="size-4" />{/if}
-	</button>
+	<LockButton
+		locked={typeset.locks.has(param)}
+		onToggle={() => typeset.toggleLock(param)}
+		class="absolute top-1/2 right-8 -translate-y-1/2"
+	/>
 </div>

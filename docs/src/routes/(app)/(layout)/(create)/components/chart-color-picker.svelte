@@ -93,5 +93,5 @@
 			</Picker.RadioGroup>
 		</Picker.Content>
 	</Picker.Root>
-	<LockButton prop="chartColor" class="absolute top-1/2 right-10 -translate-y-1/2" />
+	<LockButton prop="chartColor" class="absolute top-1/2 right-8 -translate-y-1/2" />
 </div>

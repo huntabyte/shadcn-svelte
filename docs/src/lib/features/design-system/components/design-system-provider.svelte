@@ -17,9 +17,16 @@
 
 	type Props = {
 		children: Snippet;
+		/**
+		 * Apply the design system (style/base color classes, theme variables, fonts and menu
+		 * color) to the document. Turn this off where the provider only supplies state and the
+		 * surrounding UI must keep the site's default look, like the /create customizer. The
+		 * preview iframe applies the design system itself and syncs through persisted state.
+		 */
+		applyToDocument?: boolean;
 	};
 
-	let { children }: Props = $props();
+	let { children, applyToDocument = true }: Props = $props();
 
 	const designSystem = setupDesignSystem();
 
@@ -58,6 +65,7 @@
 	});
 
 	watch([() => registryTheme, () => browser], ([registryTheme, browser]) => {
+		if (!applyToDocument) return;
 		if (!browser) return;
 		if (!registryTheme) return;
 
@@ -128,7 +136,7 @@
 	// from /create to the docs) restore the document to the default style so the rest of the
 	// site is not left wearing the last preset.
 	onDestroy(() => {
-		if (!browser) return;
+		if (!browser || !applyToDocument) return;
 		removeManagedBodyClasses(document.body);
 		document.body.classList.add(`style-${DEFAULT_CONFIG.style}`);
 		document.getElementById(uid)?.remove();
@@ -142,6 +150,7 @@
 		stopMenuSync?.();
 		stopMenuSync = null;
 
+		if (!applyToDocument) return;
 		if (!browser) return;
 		if (!menuColor) return;
 
@@ -187,7 +196,7 @@
 <div
 	data-slot="design-system-provider"
 	style="display: contents;"
-	class={cn(`style-${designSystem.style} base-color-${designSystem.baseColor}`)}
+	class={cn(applyToDocument && `style-${designSystem.style} base-color-${designSystem.baseColor}`)}
 >
 	{@render children?.()}
 </div>

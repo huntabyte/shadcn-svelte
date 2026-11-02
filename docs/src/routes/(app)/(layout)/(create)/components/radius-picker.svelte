@@ -36,7 +36,7 @@
 				</div>
 			</div>
 			<div
-				class="pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base text-foreground select-none"
+				class="pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base text-foreground select-none md:right-2.5"
 			>
 				<div
 					class="size-4 border-t-2 border-r-2 border-current transition-all"
@@ -85,5 +85,5 @@
 			</Picker.RadioGroup>
 		</Picker.Content>
 	</Picker.Root>
-	<LockButton prop="radius" class="absolute top-1/2 right-10 -translate-y-1/2" />
+	<LockButton prop="radius" class="absolute top-1/2 right-8 -translate-y-1/2" />
 </div>

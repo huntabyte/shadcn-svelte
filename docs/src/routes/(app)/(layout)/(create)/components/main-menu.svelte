@@ -1,9 +1,9 @@
 <svelte:options runes />
 
 <script lang="ts">
+	import MenuIcon from "@lucide/svelte/icons/menu";
 	import { setMode, mode } from "mode-watcher";
 	import * as Picker from "$lib/components/picker/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { useIsMac } from "$lib/hooks/use-is-mac.svelte.js";
 	import { cn } from "$lib/utils.js";
@@ -33,14 +33,7 @@
 		)}
 	>
 		<span class="font-medium">Menu</span>
-		<IconPlaceholder
-			lucide="MenuIcon"
-			hugeicons="Menu09Icon"
-			phosphor="ListIcon"
-			tabler="IconMenu2"
-			remixicon="RiMenuLine"
-			class="size-5"
-		/>
+		<MenuIcon class="size-5" />
 	</Picker.Trigger>
 	<Picker.Content side="right" align="start" alignOffset={-8}>
 		<Picker.Group>
