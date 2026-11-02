@@ -150,3 +150,13 @@ Add the `data-invalid` attribute to the `Field.Field` component and the `aria-in
 <div></div>
 
 </ComponentPreview>
+
+### Constrained Width
+
+By default, the Select dropdown can expand wider than the trigger when options contain long text. To constrain the dropdown to match the trigger width (with content wrapping to multiple lines), add `max-w-min` to `Select.Content`:
+
+<ComponentPreview name="select-constrain-width">
+
+<div></div>
+
+</ComponentPreview>
