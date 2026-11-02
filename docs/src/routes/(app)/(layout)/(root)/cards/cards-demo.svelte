@@ -1,4 +1,5 @@
 <script lang="ts">
+	import MessageScrollerDemo from "$lib/registry/examples/message-scroller-demo.svelte";
 	import AccountAccess from "./account-access.svelte";
 	import AnalyticsCard from "./analytics-card.svelte";
 	import ClaimableBalance from "./claimable-balance.svelte";
@@ -28,7 +29,6 @@
 	import SkeletonSavingsTargets from "./skeleton/savings-targets.svelte";
 	import SkeletonTransferFunds from "./skeleton/transfer-funds.svelte";
 	import SkeletonUIElements from "./skeleton/ui-elements.svelte";
-	import TransferFunds from "./transfer-funds.svelte";
 	import UIElements from "./ui-elements.svelte";
 </script>
 
@@ -104,7 +104,9 @@
 		</div>
 		<div class="hidden flex-col gap-(--gap) md:flex">
 			<QrConnect></QrConnect>
-			<TransferFunds></TransferFunds>
+			<div class="**:[.text-center.text-xs]:hidden">
+				<MessageScrollerDemo />
+			</div>
 			<Payments></Payments>
 		</div>
 		<div class="hidden flex-col gap-(--gap) min-[1900px]:flex">
