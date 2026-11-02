@@ -213,7 +213,7 @@
 				<Card.Content
 					bind:ref={pickerScroll}
 					data-slot="picker-scroll"
-					class="no-scrollbar min-h-0 flex-1 overflow-x-auto overflow-y-hidden p-0 max-md:flex max-md:gap-2.5 max-md:px-3 md:overflow-y-auto"
+					class="no-scrollbar min-h-0 flex-1 overflow-x-auto overflow-y-hidden p-0 max-md:flex max-md:gap-2.5 max-md:px-3 max-md:pb-3 md:overflow-y-auto"
 				>
 					<div
 						class="flex shrink-0 flex-row gap-2.5 p-3 max-md:p-0 max-md:py-px max-[28rem]:hidden md:flex-col md:gap-3.25"
