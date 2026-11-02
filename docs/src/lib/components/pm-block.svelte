@@ -31,7 +31,7 @@
 	const clipboard = new UseClipboard();
 </script>
 
-<figure data-rehype-pretty-code-figure>
+<figure data-rehype-pretty-code-figure data-not-typeset>
 	<div class="overflow-x-auto">
 		<Tabs.Root
 			bind:value={

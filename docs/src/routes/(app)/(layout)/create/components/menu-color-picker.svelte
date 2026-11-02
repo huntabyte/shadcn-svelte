@@ -2,11 +2,12 @@
 	import { browser } from "$app/environment";
 	import MenuIcon from "@lucide/svelte/icons/menu";
 	import { mode } from "mode-watcher";
+	import * as Picker from "$lib/components/picker/index.js";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import type { MenuColorValue } from "$lib/registry/config.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
-	import * as Picker from "./picker/index.js";
 	import LockButton from "./lock-button.svelte";
+	import { CreatePicker } from "./picker-state.svelte.js";
 
 	type ColorChoice = "default" | "inverted";
 	type SurfaceChoice = "solid" | "translucent";
@@ -80,11 +81,19 @@
 		designSystem.menuColor = nextMenuColor;
 		designSystem.menuAccent = isTranslucent ? "subtle" : lastSolidMenuAccent;
 	}
+
+	const picker = new CreatePicker(() => {});
 </script>
 
 <div class="group/picker relative">
-	<Picker.Root {submenu}>
-		<Picker.Trigger {submenu}>
+	<Picker.Root bind:open={picker.open} {submenu}>
+		<Picker.Trigger
+			onpointerdown={picker.capture}
+			onkeydown={(event) => {
+				if (event.key === "Enter" || event.key === " ") picker.capture();
+			}}
+			{submenu}
+		>
 			<div
 				class="flex min-w-0 flex-1 flex-col justify-start overflow-hidden pr-8 text-left md:pr-7"
 			>
@@ -102,6 +111,9 @@
 			</div>
 		</Picker.Trigger>
 		<Picker.Content
+			preventScroll={false}
+			customAnchor={isMobile.current ? picker.layout?.anchor : undefined}
+			class="max-md:w-(--bits-dropdown-menu-anchor-width)"
 			side={isMobile.current ? "top" : submenu ? "left" : "right"}
 			align={isMobile.current ? "center" : "start"}
 			sideOffset={submenu ? 5 : 20}

@@ -13,7 +13,7 @@ import {
 	PRESET_CHART_COLORS,
 } from "shadcn-svelte/preset";
 import { onMount } from "svelte";
-import { SvelteURLSearchParams } from "svelte/reactivity";
+import { SvelteURL, SvelteURLSearchParams } from "svelte/reactivity";
 import { BASE_THEMES, getThemesForBaseColor } from "$lib/registry/config.js";
 import { SHUFFLE_PRESETS } from "../../../../routes/(app)/(layout)/create/lib/shuffle-presets.js";
 
@@ -75,7 +75,8 @@ class DesignSystemState implements IDesignSystemState {
 	#locks: PersistedState<Lockable>;
 	constructor() {
 		const isEmbeddedPreview = browser && window.self !== window.top;
-		const presetFromUrl = this.#getSearchParam("preset");
+		const urlPreset = this.#getSearchParam("preset");
+		const presetFromUrl = urlPreset && isValidPreset(urlPreset) ? urlPreset : null;
 		this.#preset = new PersistedState<string>(
 			isEmbeddedPreview ? "design-system-preview-preset" : "design-system-preset",
 			presetFromUrl ?? encodePreset(DEFAULT_PRESET_CONFIG)
@@ -86,7 +87,7 @@ class DesignSystemState implements IDesignSystemState {
 			this.#preset.current = presetFromUrl;
 		}
 		const initial = decodePreset(this.#preset.current);
-		if (initial) this.#preset.current = encodeNormalized(initial);
+		this.#preset.current = encodeNormalized(initial ?? DEFAULT_PRESET_CONFIG);
 		this.#locks = new PersistedState<Lockable>("locks", {
 			style: false,
 			baseColor: false,
@@ -354,7 +355,11 @@ class DesignSystemState implements IDesignSystemState {
 	}
 
 	get shareUrl() {
-		return `${page.url.origin}/create?preset=${this.#preset.current}`;
+		const url = new SvelteURL("/create", page.url.origin);
+		const item = page.url.searchParams.get("item");
+		if (item) url.searchParams.set("item", item);
+		url.searchParams.set("preset", this.#preset.current);
+		return url.toString();
 	}
 }
 

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { mode } from "mode-watcher";
+	import * as Picker from "$lib/components/picker/index.js";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import {
 		BASE_THEMES,
@@ -8,8 +9,8 @@
 		type Theme,
 	} from "$lib/registry/config.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
-	import * as Picker from "./picker/index.js";
 	import LockButton from "./lock-button.svelte";
+	import { CreatePicker } from "./picker-state.svelte.js";
 	import { usePreviewOverride } from "./preview-override-context.svelte.js";
 
 	type Props = {
@@ -41,11 +42,19 @@
 		}
 		return theme.cssVars[m]["primary"];
 	}
+
+	const picker = new CreatePicker(() => previewOverride.clearOverride());
 </script>
 
 <div class="group/picker relative">
-	<Picker.Root {submenu}>
-		<Picker.Trigger {submenu}>
+	<Picker.Root bind:open={picker.open} {submenu}>
+		<Picker.Trigger
+			onpointerdown={picker.capture}
+			onkeydown={(event) => {
+				if (event.key === "Enter" || event.key === " ") picker.capture();
+			}}
+			{submenu}
+		>
 			<div class="flex flex-col justify-start text-left">
 				<div class="text-xs text-muted-foreground">Chart Color</div>
 				<div class="text-sm font-medium text-foreground">
@@ -60,24 +69,28 @@
 			{/if}
 		</Picker.Trigger>
 		<Picker.Content
+			onmouseleave={() => previewOverride.clearOverride()}
+			preventScroll={false}
+			customAnchor={isMobile.current ? picker.layout?.anchor : undefined}
 			side={isMobile.current ? "top" : submenu ? "left" : "right"}
 			align={isMobile.current ? "center" : "start"}
-			class="max-h-92 overflow-y-auto"
+			class="max-h-92 overflow-y-auto max-md:w-(--bits-dropdown-menu-anchor-width)"
 			sideOffset={submenu ? 5 : 20}
 			{submenu}
 		>
-			<Picker.RadioGroup
-				bind:value={designSystem.chartColor}
-				onItemPreview={isMobile.current
-					? undefined
-					: (value) =>
-							previewOverride.setOverride({
-								chartColor: value as typeof designSystem.chartColor,
-							})}
-			>
+			<Picker.RadioGroup bind:value={designSystem.chartColor}>
 				<Picker.Group>
 					{#each availableChartColors.filter( (theme) => BASE_THEMES.some((baseColor) => baseColor.name === theme.name) ) as theme (theme.name)}
-						<Picker.RadioItem value={theme.name} closeOnSelect={false}>
+						<Picker.RadioItem
+							onItemPreview={isMobile.current
+								? undefined
+								: (value) =>
+										previewOverride.setOverride({
+											chartColor: value as typeof designSystem.chartColor,
+										})}
+							value={theme.name}
+							closeOnSelect={false}
+						>
 							{theme.title}
 						</Picker.RadioItem>
 					{/each}
@@ -85,7 +98,16 @@
 				<Picker.Separator />
 				<Picker.Group>
 					{#each availableChartColors.filter((theme) => !BASE_THEMES.some((baseColor) => baseColor.name === theme.name)) as theme (theme.name)}
-						<Picker.RadioItem value={theme.name} closeOnSelect={false}>
+						<Picker.RadioItem
+							onItemPreview={isMobile.current
+								? undefined
+								: (value) =>
+										previewOverride.setOverride({
+											chartColor: value as typeof designSystem.chartColor,
+										})}
+							value={theme.name}
+							closeOnSelect={false}
+						>
 							{theme.title}
 						</Picker.RadioItem>
 					{/each}

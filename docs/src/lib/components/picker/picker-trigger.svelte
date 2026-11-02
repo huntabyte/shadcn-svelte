@@ -1,22 +1,16 @@
 <script lang="ts">
 	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils.js";
-	import { capturePickerScroll, preservePickerScroll } from "./picker-scroll.js";
 
 	let {
 		ref = $bindable(null),
 		class: className,
 		submenu = false,
 		children,
-		onpointerdown,
-		onclick,
-		onfocus,
 		...restProps
 	}: DropdownMenuPrimitive.TriggerProps & {
 		submenu?: boolean;
 	} = $props();
-
-	let pointerScroll: ReturnType<typeof capturePickerScroll> | undefined;
 </script>
 
 {#if submenu}
@@ -39,25 +33,8 @@
 			"relative w-40 shrink-0 touch-manipulation rounded-xl p-3 ring-1 ring-foreground/10 select-none hover:bg-muted focus-visible:ring-foreground/50 focus-visible:outline-none disabled:opacity-50 data-[state=open]:bg-muted md:w-full md:rounded-lg md:px-2.5 md:py-2",
 			className
 		)}
+		{...restProps}
 		disabled={restProps.disabled}
-		onpointerdowncapture={(event) => {
-			pointerScroll = capturePickerScroll(event.currentTarget);
-		}}
-		onpointerdown={(event) => {
-			onpointerdown?.(event);
-		}}
-		onpointercancel={() => {
-			pointerScroll = undefined;
-		}}
-		onclick={(event) => {
-			preservePickerScroll(event.currentTarget, pointerScroll);
-			pointerScroll = undefined;
-			onclick?.(event);
-		}}
-		onfocus={(event) => {
-			if (!pointerScroll) preservePickerScroll(event.currentTarget);
-			onfocus?.(event);
-		}}
 	>
 		{@render children?.()}
 	</DropdownMenuPrimitive.Trigger>

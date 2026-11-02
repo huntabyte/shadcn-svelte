@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { PickerLayout } from "./picker-state.svelte.js";
+	const pickerLayout = new PickerLayout();
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as FieldGroup from "$lib/registry/ui/field/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
@@ -26,6 +28,7 @@
 	>
 		<Card.Root
 			data-slot="customizer-card"
+			bind:ref={pickerLayout.anchor}
 			class="dark top-24 right-12 isolate z-10 max-h-full min-h-0 w-full self-start rounded-2xl bg-card/90 shadow-xl backdrop-blur-xl md:w-(--customizer-width)"
 			size="sm"
 		>
@@ -36,10 +39,11 @@
 			</Card.Header>
 			<Card.Content
 				data-slot="picker-scroll"
+				bind:ref={pickerLayout.scroller}
 				class="no-scrollbar min-h-0 flex-1 overflow-x-auto overflow-y-hidden md:overflow-y-auto"
 			>
 				<FieldGroup.Group
-					class="flex-row gap-2.5 py-px **:data-[slot=field-separator]:-mx-4 **:data-[slot=field-separator]:w-auto md:flex-col md:gap-3.25"
+					class="flex-row gap-2.5 py-px **:data-[slot=field-separator]:-mx-4 **:data-[slot=field-separator]:w-auto max-md:w-max md:flex-col md:gap-3.25"
 				>
 					<StylePicker />
 					<FieldGroup.Separator class="hidden md:block" />
@@ -62,7 +66,7 @@
 				<OpenPreset class="max-w-20 min-w-0 flex-1 sm:max-w-none md:flex-none" />
 				<RandomButton class="max-w-20 min-w-0 flex-1 sm:max-w-none md:flex-none" />
 			</Card.Footer>
-			<Card.Footer class="-mt-3 hidden min-w-0 gap-2 md:flex md:flex-col md:**:[button,a]:w-full">
+			<Card.Footer class="-mt-3 flex min-w-0 flex-col gap-2 **:[button,a]:w-full">
 				<ProjectForm />
 			</Card.Footer>
 		</Card.Root>

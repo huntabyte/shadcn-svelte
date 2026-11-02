@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
 	decodePreset,
 	DEFAULT_PRESET_CONFIG,
+	DEFAULT_PRESETS,
 	encodePreset,
 	fromBase62,
 	generateRandomPreset,
@@ -215,5 +216,14 @@ describe("generateRandomPreset", () => {
 		expect(decoded).not.toBeNull();
 		const reEncoded = encodePreset(decoded!);
 		expect(reEncoded).toBe(code);
+	});
+});
+
+describe("style defaults", () => {
+	it.each(PRESET_STYLES)("provides a complete, round-trippable %s preset", (style) => {
+		const preset = DEFAULT_PRESETS[style];
+		expect(preset.style).toBe(style);
+		expect(Object.keys(preset).sort()).toEqual(Object.keys(DEFAULT_PRESET_CONFIG).sort());
+		expect(decodePreset(encodePreset(preset))).toEqual(preset);
 	});
 });

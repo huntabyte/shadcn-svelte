@@ -4,6 +4,7 @@
 	import TailwindIndicator from "$lib/components/tailwind-indicator.svelte";
 	import DesignSystemProvider from "$lib/features/design-system/components/design-system-provider.svelte";
 	import Button from "$lib/registry/ui/button/button.svelte";
+	import { itemHref } from "../../(layout)/create/lib/utils.js";
 	import type { Component } from "svelte";
 
 	let { data } = $props();
@@ -37,7 +38,7 @@
 {#if page.url.searchParams.get("fromPreview") === "true"}
 	<Button
 		class="absolute top-2 right-2 isolate z-10"
-		href="/create/{data.example.name}{page.url.search}"
+		href={itemHref(data.example.name)}
 		variant="ghost"
 		size="icon-sm"
 	>

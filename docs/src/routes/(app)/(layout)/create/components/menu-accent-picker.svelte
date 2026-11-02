@@ -1,9 +1,10 @@
 <script lang="ts">
+	import * as Picker from "$lib/components/picker/index.js";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { MENU_ACCENTS, type MenuAccentValue } from "$lib/registry/config.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
-	import * as Picker from "./picker/index.js";
 	import LockButton from "./lock-button.svelte";
+	import { CreatePicker } from "./picker-state.svelte.js";
 	import { usePreviewOverride } from "./preview-override-context.svelte.js";
 
 	type Props = {
@@ -19,11 +20,19 @@
 	const currentAccent = $derived(
 		MENU_ACCENTS.find((accent) => accent.value === designSystem.menuAccent) ?? MENU_ACCENTS[0]
 	);
+
+	const picker = new CreatePicker(() => previewOverride.clearOverride());
 </script>
 
 <div class="group/picker relative">
-	<Picker.Root {submenu}>
-		<Picker.Trigger {submenu}>
+	<Picker.Root bind:open={picker.open} {submenu}>
+		<Picker.Trigger
+			onpointerdown={picker.capture}
+			onkeydown={(event) => {
+				if (event.key === "Enter" || event.key === " ") picker.capture();
+			}}
+			{submenu}
+		>
 			<div class="flex flex-col justify-start text-left">
 				<div class="text-xs text-muted-foreground">Menu Accent</div>
 				<div class="text-sm font-medium text-foreground">
@@ -31,7 +40,7 @@
 				</div>
 			</div>
 			<div
-				class="pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base text-foreground select-none"
+				class="pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base text-foreground select-none md:right-2.5"
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -63,6 +72,10 @@
 			</div>
 		</Picker.Trigger>
 		<Picker.Content
+			onmouseleave={() => previewOverride.clearOverride()}
+			preventScroll={false}
+			customAnchor={isMobile.current ? picker.layout?.anchor : undefined}
+			class="max-md:w-(--bits-dropdown-menu-anchor-width)"
 			side={isMobile.current ? "top" : submenu ? "left" : "right"}
 			align={isMobile.current ? "center" : "start"}
 			sideOffset={submenu ? 5 : 20}
@@ -73,13 +86,16 @@
 				onValueChange={(value) => {
 					designSystem.menuAccent = value as MenuAccentValue;
 				}}
-				onItemPreview={isMobile.current
-					? undefined
-					: (value) => previewOverride.setOverride({ menuAccent: value as MenuAccentValue })}
 			>
 				<Picker.Group>
 					{#each MENU_ACCENTS as accent (accent.value)}
-						<Picker.RadioItem value={accent.value} closeOnSelect={false}>
+						<Picker.RadioItem
+							onItemPreview={isMobile.current
+								? undefined
+								: (value) => previewOverride.setOverride({ menuAccent: value as MenuAccentValue })}
+							value={accent.value}
+							closeOnSelect={false}
+						>
 							{accent.label}
 						</Picker.RadioItem>
 					{/each}
@@ -87,5 +103,5 @@
 			</Picker.RadioGroup>
 		</Picker.Content>
 	</Picker.Root>
-	<LockButton prop="menuAccent" class="absolute top-1/2 right-10 -translate-y-1/2" />
+	<LockButton prop="menuAccent" class="absolute top-1/2 right-8 -translate-y-1/2" />
 </div>

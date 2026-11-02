@@ -19,10 +19,10 @@
 
 	type Props = {
 		children: Snippet;
-		applyThemeToDocument?: boolean;
+		applyToDocument?: boolean;
 	};
 
-	let { children, applyThemeToDocument = true }: Props = $props();
+	let { children, applyToDocument = true }: Props = $props();
 
 	const designSystem = setupDesignSystem();
 	const resetDialogCtx = ResetDialogCtx.set(new ResetDialogContext());
@@ -62,7 +62,7 @@
 	});
 
 	watch([() => registryTheme, () => browser], ([registryTheme, browser]) => {
-		if (!browser || !applyThemeToDocument) return;
+		if (!browser || !applyToDocument) return;
 		if (!registryTheme) return;
 
 		const body = document.body;
@@ -137,7 +137,7 @@
 	// from /create to the docs) restore the document to the default style so the rest of the
 	// site is not left wearing the last preset.
 	onDestroy(() => {
-		if (!browser || !applyThemeToDocument) return;
+		if (!browser || !applyToDocument) return;
 		removeManagedBodyClasses(document.body);
 		document.body.classList.add(`style-${DEFAULT_CONFIG.style}`);
 		document.getElementById(uid)?.remove();
@@ -151,7 +151,7 @@
 		stopMenuSync?.();
 		stopMenuSync = null;
 
-		if (!browser || !applyThemeToDocument) return;
+		if (!browser || !applyToDocument) return;
 		if (!menuColor) return;
 
 		stopMenuSync = syncMenuColor(menuColor);
@@ -218,7 +218,7 @@
 <div
 	data-slot="design-system-provider"
 	style="display: contents;"
-	class={applyThemeToDocument
+	class={applyToDocument
 		? cn(`style-${designSystem.style} base-color-${designSystem.baseColor}`)
 		: undefined}
 >
