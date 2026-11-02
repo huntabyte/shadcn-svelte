@@ -74,7 +74,7 @@
 			customAnchor={isMobile.current ? picker.layout?.anchor : undefined}
 			side={isMobile.current ? "top" : submenu ? "left" : "right"}
 			align={isMobile.current ? "center" : "start"}
-			class="max-h-92 overflow-y-auto max-md:w-(--bits-dropdown-menu-anchor-width)"
+			class="max-h-[min(--spacing(92),var(--bits-dropdown-menu-content-available-height))] overflow-y-auto max-md:w-(--bits-dropdown-menu-anchor-width)"
 			sideOffset={submenu ? 5 : 20}
 			{submenu}
 		>
