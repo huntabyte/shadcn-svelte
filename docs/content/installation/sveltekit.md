@@ -24,9 +24,8 @@ Use the SvelteKit CLI to create a new project with TailwindCSS
 
 SvelteKit 3 projects use the `#lib` [subpath import](https://nodejs.org/api/packages.html#subpath-imports) instead of the `$lib` alias. New projects include the following entries in `package.json` by default:
 
-```json title="package.json" {3-6} showLineNumbers
+```json title="package.json" {3-4} showLineNumbers
 {
-  // ... other options
   "imports": {
     "#lib": "./src/lib/index.js",
     "#lib/*": "./src/lib/*"
@@ -76,7 +75,7 @@ The command above will add the `Button` component to your project. You can then 
 
 ```svelte {2,5} showLineNumbers
 <script lang="ts">
-  import { Button } from "$lib/components/ui/button/index.js";
+  import { Button } from "#lib/components/ui/button/index.js";
 </script>
 
 <Button>Click me</Button>
