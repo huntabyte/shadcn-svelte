@@ -9,6 +9,7 @@
 	import { mode, setMode } from "mode-watcher";
 	import { onDestroy, onMount } from "svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import CtaMobile from "$lib/components/cta-mobile.svelte";
 	import Cta from "$lib/components/cta.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
@@ -170,14 +171,28 @@
 						class="dark flex items-center gap-1 rounded-xl bg-card/90 p-1 shadow-xl backdrop-blur-xl"
 					>
 						{#each CONTENT_OPTIONS as option, index (option.value)}
-							<button
-								type="button"
-								title={option.label}
-								data-active={typeset.params.item === option.value}
-								class="h-7 min-w-7 cursor-pointer rounded-lg px-2 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground data-[active=true]:bg-accent data-[active=true]:text-accent-foreground"
-								onclick={() => typeset.update({ item: option.value })}
-								>{String(index + 1).padStart(2, "0")}</button
-							>
+							<Tooltip.Root>
+								<Tooltip.Trigger>
+									{#snippet child({ props })}
+										<Button
+											{...props}
+											variant="ghost"
+											size="sm"
+											data-active={typeset.params.item === option.value}
+											class="h-7 min-w-7 cursor-pointer rounded-lg px-2 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground data-[active=true]:bg-accent data-[active=true]:text-accent-foreground"
+											onclick={() => typeset.update({ item: option.value })}
+											>{String(index + 1).padStart(2, "0")}</Button
+										>
+									{/snippet}
+								</Tooltip.Trigger>
+								<Tooltip.Content
+									side="top"
+									sideOffset={10}
+									class="data-[state=closed]:animate-none data-[state=instant-open]:animate-in data-[state=instant-open]:fade-in-0 data-[state=instant-open]:zoom-in-95"
+								>
+									{option.label}
+								</Tooltip.Content>
+							</Tooltip.Root>
 						{/each}
 					</div>
 					<div
@@ -295,7 +310,6 @@
 							scrollContainer={pickerScroll}
 						/>
 					</div>
-					<div aria-hidden="true" class="w-0.5 shrink-0 md:hidden"></div>
 				</Card.Content>
 				<Card.Footer
 					class="flex min-w-0 flex-row-reverse gap-2 border-t px-3! md:flex-col md:**:[button]:w-full"

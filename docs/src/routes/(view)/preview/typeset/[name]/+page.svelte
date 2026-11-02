@@ -15,7 +15,6 @@
 		findFont,
 		type TypesetParams,
 	} from "$lib/features/typeset/typeset.svelte.js";
-	import "$lib/styles/typeset.css";
 
 	const name = $derived(
 		CONTENT_OPTIONS.some((option) => option.value === page.params.name)
