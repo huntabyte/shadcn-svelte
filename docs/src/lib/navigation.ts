@@ -55,6 +55,11 @@ function generateSectionsNav(): SidebarNavItem[] {
 			items: [],
 			},*/,
 		{
+			title: "Typeset",
+			href: "/docs/typeset",
+			items: [],
+		},
+		{
 			title: "Skills",
 			href: "/docs/skills",
 			items: [],
@@ -89,6 +94,11 @@ function generateGetStartedNav(): SidebarNavItem[] {
 		{
 			title: "Theming",
 			href: "/docs/theming",
+			items: [],
+		},
+		{
+			title: "Typeset",
+			href: "/docs/typeset",
 			items: [],
 		},
 		{
@@ -394,6 +404,10 @@ export const mainNavItems: NavItem[] = [
 	{
 		title: "Charts",
 		href: "/charts/area",
+	},
+	{
+		title: "Typeset",
+		href: "/typeset",
 	},
 	{
 		title: "Create",

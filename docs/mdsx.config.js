@@ -20,10 +20,7 @@ const jsEngine = createJavaScriptRegexEngine();
 export async function createHighlighter() {
 	if (!globalThis.__shikiHighlighter) {
 		globalThis.__shikiHighlighter = await createHighlighterCore({
-			themes: [
-				import("@shikijs/themes/github-dark"),
-				import("@shikijs/themes/github-light-default"),
-			],
+			themes: [import("@shikijs/themes/vesper"), import("@shikijs/themes/github-light-default")],
 			langs: [
 				import("@shikijs/langs/typescript"),
 				import("@shikijs/langs/svelte"),
@@ -52,7 +49,7 @@ export async function createHighlighter() {
  */
 const prettyCodeOptions = {
 	theme: {
-		dark: "github-dark",
+		dark: "vesper",
 		light: "github-light-default",
 	},
 	keepBackground: false,
