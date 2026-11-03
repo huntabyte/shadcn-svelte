@@ -107,6 +107,15 @@
 		"relativeUrl": "checkbox.json"
 	},
 	{
+		"name": "code-block",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"use-highlighted-code",
+			"button"
+		],
+		"relativeUrl": "code-block.json"
+	},
+	{
 		"name": "collapsible",
 		"type": "registry:ui",
 		"registryDependencies": [],
@@ -238,6 +247,14 @@
 		"relativeUrl": "message.json"
 	},
 	{
+		"name": "message-scroller",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"button"
+		],
+		"relativeUrl": "message-scroller.json"
+	},
+	{
 		"name": "native-select",
 		"type": "registry:ui",
 		"registryDependencies": [],
@@ -268,6 +285,14 @@
 		"type": "registry:ui",
 		"registryDependencies": [],
 		"relativeUrl": "progress.json"
+	},
+	{
+		"name": "questionnaire",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"button"
+		],
+		"relativeUrl": "questionnaire.json"
 	},
 	{
 		"name": "radio-group",
@@ -398,6 +423,14 @@
 		"type": "registry:ui",
 		"registryDependencies": [],
 		"relativeUrl": "tooltip.json"
+	},
+	{
+		"name": "trace",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"collapsible"
+		],
+		"relativeUrl": "trace.json"
 	},
 	{
 		"name": "calendar-01",
@@ -1871,10 +1904,24 @@
 		"relativeUrl": "is-mobile.json"
 	},
 	{
+		"name": "use-highlighted-code",
+		"type": "registry:hook",
+		"registryDependencies": [
+			"highlighter"
+		],
+		"relativeUrl": "use-highlighted-code.json"
+	},
+	{
 		"name": "casing",
 		"type": "registry:lib",
 		"registryDependencies": [],
 		"relativeUrl": "casing.json"
+	},
+	{
+		"name": "highlighter",
+		"type": "registry:lib",
+		"registryDependencies": [],
+		"relativeUrl": "highlighter.json"
 	},
 	{
 		"name": "utils",

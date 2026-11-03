@@ -6,6 +6,9 @@ on:
     paths:
       - docs/**
       - packages/registry/**
+      # the registry pins the published version of the primitives, so a version
+      # bump has to rebuild and redeploy it
+      - packages/primitives/package.json
   workflow_dispatch:
 
 jobs:
