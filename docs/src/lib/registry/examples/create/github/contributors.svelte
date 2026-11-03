@@ -2,7 +2,7 @@
 	import * as Avatar from "$lib/registry/ui/avatar/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { Badge } from "$lib/registry/ui/badge/index.js";
-	import Example from "../../../../../routes/(app)/(layout)/create/components/example.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const usernames = [
 		"shadcn",

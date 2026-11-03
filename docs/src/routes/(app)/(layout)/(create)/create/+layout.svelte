@@ -3,11 +3,11 @@
 	import SiteHeader from "$lib/components/site-header.svelte";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { cn } from "$lib/utils.js";
-	import ActionMenu from "./components/action-menu.svelte";
-	import Customizer from "./components/customizer.svelte";
-	import PreviewOverrideProvider from "./components/preview-override-provider.svelte";
-	import WelcomeDialog from "./components/welcome-dialog.svelte";
-	import { OG_IMAGE_BASE_URL } from "../../../og/og.js";
+	import ActionMenu from "../components/action-menu.svelte";
+	import Customizer from "../components/customizer.svelte";
+	import PreviewOverrideProvider from "../components/preview-override-provider.svelte";
+	import WelcomeDialog from "../components/welcome-dialog.svelte";
+	import { OG_IMAGE_BASE_URL } from "../../../../og/og.js";
 
 	let { children } = $props();
 

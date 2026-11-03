@@ -1,11 +1,10 @@
 <script lang="ts">
 	import { DesignSystemProvider } from "$lib/features/design-system/index.js";
-	import CreateLayout from "./create-layout.svelte";
 	import "../../../../styles-registry.css";
 
 	let { children } = $props();
 </script>
 
 <DesignSystemProvider applyToDocument={false}>
-	<CreateLayout {children} />
+	{@render children()}
 </DesignSystemProvider>

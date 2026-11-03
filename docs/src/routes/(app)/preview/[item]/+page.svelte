@@ -4,7 +4,7 @@
 	import TailwindIndicator from "$lib/components/tailwind-indicator.svelte";
 	import DesignSystemProvider from "$lib/features/design-system/components/design-system-provider.svelte";
 	import Button from "$lib/registry/ui/button/button.svelte";
-	import { itemHref } from "../../(layout)/create/lib/utils.js";
+	import { itemHref } from "../../(layout)/(create)/lib/utils.js";
 	import type { Component } from "svelte";
 
 	let { data } = $props();

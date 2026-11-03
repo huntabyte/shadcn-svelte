@@ -15,7 +15,7 @@ import {
 import { onMount } from "svelte";
 import { SvelteURL, SvelteURLSearchParams } from "svelte/reactivity";
 import { BASE_THEMES, getThemesForBaseColor } from "$lib/registry/config.js";
-import { SHUFFLE_PRESETS } from "../../../../routes/(app)/(layout)/create/lib/shuffle-presets.js";
+import { SHUFFLE_PRESETS } from "../../../../routes/(app)/(layout)/(create)/lib/shuffle-presets.js";
 
 type ChartColorName = (typeof PRESET_CHART_COLORS)[number];
 
