@@ -4,7 +4,7 @@
  */
 {
 	"$schema": "../node_modules/wrangler/config-schema.json",
-	"name": "shadcn-svelte",
+	"name": "another-ui-svelte",
 	"main": ".svelte-kit/cloudflare/_worker.js",
 	"compatibility_date": "2025-05-13",
 	"compatibility_flags": ["nodejs_compat"],

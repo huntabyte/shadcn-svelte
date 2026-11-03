@@ -74,7 +74,7 @@ describe("Registry Utilities", () => {
 		});
 
 		it("should return config registry URL if no env var", () => {
-			expect(getRegistryUrl(mockConfig)).toBe("https://example.com/registry/styles/vega");
+			expect(getRegistryUrl(mockConfig)).toBe("https://example.com/registry/styles/ledger");
 		});
 
 		it("should not append the style to the legacy TW3 registry URL", () => {

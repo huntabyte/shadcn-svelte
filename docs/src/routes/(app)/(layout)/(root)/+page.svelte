@@ -25,7 +25,7 @@
 		<Announcement />
 		<PageHeaderHeading class="max-w-4xl">{title}</PageHeaderHeading>
 		<PageHeaderDescription>{description}</PageHeaderDescription>
-		<PageActions class="style-luma">
+		<PageActions class="style-ledger">
 			<Button href="/docs/installation" class="h-[35px]">Get Started</Button>
 			<Button href="/docs/components" variant="secondary">View Components</Button>
 		</PageActions>
@@ -54,7 +54,7 @@
 			</section>
 			{#if !mobile.current}
 				<section class="hidden md:block">
-					<div class="style-rhea theme-neutral">
+					<div class="style-ledger">
 						<CardsDemo />
 					</div>
 				</section>

@@ -256,7 +256,7 @@ async function customize(existingConfig: cliConfig.RawConfig | undefined): Promi
 async function presets(existingConfig: cliConfig.RawConfig | undefined) {
 	const choice = await p.select({
 		message: "Choose from a list of pre-configured presets",
-		initialValue: existingConfig?.style ?? "vega",
+		initialValue: existingConfig?.style ?? "ledger",
 		options: entries(DEFAULT_PRESETS).map(([key, preset]) => ({
 			label: `${preset.title} - ${preset.description}`,
 			value: key,

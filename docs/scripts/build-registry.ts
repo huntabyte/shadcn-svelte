@@ -4,7 +4,10 @@ import { exec, spawn } from "node:child_process";
 import { promisify } from "node:util";
 import { injectStyleClasses, parseStyleCss } from "@shadcn-svelte/parity/inject-style-classes";
 import { rimraf } from "rimraf";
-import { PRESET_STYLES, type PresetConfig } from "shadcn-svelte/preset";
+import { type PresetConfig } from "shadcn-svelte/preset";
+
+// Another UI Svelte builds one style.
+const PRESET_STYLES = ["ledger"] as const satisfies readonly PresetConfig["style"][];
 import {
 	componentsJsonSchema,
 	registryItemSchema,

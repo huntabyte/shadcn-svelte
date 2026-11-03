@@ -1,0 +1,16 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "font-heading-playfair-display",
+	"type": "registry:font",
+	"files": [],
+	"font": {
+		"family": "'Playfair Display Variable', serif",
+		"provider": "google",
+		"import": "Playfair_Display",
+		"variable": "--font-heading",
+		"subsets": [
+			"latin"
+		],
+		"dependency": "@fontsource-variable/playfair-display"
+	}
+}

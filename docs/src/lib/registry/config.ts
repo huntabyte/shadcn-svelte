@@ -58,7 +58,7 @@ export type RadiusValue = Radius["name"];
 
 export const designSystemConfigSchema = z
 	.object({
-		style: z.enum(STYLES.map((s) => s.name)).default("vega"),
+		style: z.enum(STYLES.map((s) => s.name)).default("ledger"),
 		iconLibrary: z
 			.enum(Object.keys(iconLibraries) as [IconLibraryName, ...IconLibraryName[]])
 			.default("lucide"),
@@ -86,7 +86,7 @@ export const designSystemConfigSchema = z
 export type DesignSystemConfig = z.infer<typeof designSystemConfigSchema>;
 
 export const DEFAULT_CONFIG: DesignSystemConfig = {
-	style: "vega",
+	style: "ledger",
 	baseColor: "neutral",
 	theme: "neutral",
 	chartColor: "neutral",
@@ -105,57 +105,15 @@ export type Preset = {
 
 export const PRESETS: Preset[] = [
 	{
-		name: "vega",
-		title: "Vega",
-		description: "Vega / Lucide / Geist Sans",
-		style: "vega",
+		name: "ledger",
+		title: "Ledger",
+		description: "Ledger / Lucide / Inter",
+		style: "ledger",
 		baseColor: "neutral",
 		theme: "neutral",
 		chartColor: "neutral",
 		iconLibrary: "lucide",
-		font: "geist",
-		menuAccent: "subtle",
-		menuColor: "default",
-		radius: "default",
-	},
-	{
-		name: "nova",
-		title: "Nova",
-		description: "Nova / Hugeicons / Inter",
-		style: "nova",
-		baseColor: "neutral",
-		theme: "neutral",
-		chartColor: "neutral",
-		iconLibrary: "hugeicons",
 		font: "inter",
-		menuAccent: "subtle",
-		menuColor: "default",
-		radius: "default",
-	},
-	{
-		name: "maia",
-		title: "Maia",
-		description: "Maia / Hugeicons / Figtree",
-		style: "maia",
-		baseColor: "neutral",
-		theme: "neutral",
-		chartColor: "neutral",
-		iconLibrary: "hugeicons",
-		font: "figtree",
-		menuAccent: "subtle",
-		menuColor: "default",
-		radius: "default",
-	},
-	{
-		name: "lyra",
-		title: "Lyra",
-		description: "Lyra / Tabler / JetBrains Mono",
-		style: "lyra",
-		baseColor: "neutral",
-		theme: "neutral",
-		chartColor: "neutral",
-		iconLibrary: "hugeicons",
-		font: "jetbrains-mono",
 		menuAccent: "subtle",
 		menuColor: "default",
 		radius: "default",

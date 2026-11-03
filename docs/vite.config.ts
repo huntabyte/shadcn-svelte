@@ -48,7 +48,7 @@ export const ogDirPath = path.join(__dirname, "src/routes/og");
  */
 function flattenedRegistry(): Plugin {
 	// Keep in sync with the style loaded by `app.css` and set on `<body>` in `app.html`.
-	const DEFAULT_STYLE = "nova";
+	const DEFAULT_STYLE = "ledger";
 	const QUERY = "flattened";
 	const rawUiDir = path.join(__dirname, "src/lib/registry/ui");
 	const stylesDir = path.join(__dirname, "src/lib/registry/styles");

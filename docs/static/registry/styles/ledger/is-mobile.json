@@ -1,0 +1,12 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "is-mobile",
+	"type": "registry:hook",
+	"files": [
+		{
+			"content": "import { MediaQuery } from \"svelte/reactivity\";\n\nconst DEFAULT_MOBILE_BREAKPOINT = 768;\n\nexport class IsMobile extends MediaQuery {\n\tconstructor(breakpoint: number = DEFAULT_MOBILE_BREAKPOINT) {\n\t\tsuper(`max-width: ${breakpoint - 1}px`);\n\t}\n}\n",
+			"type": "registry:hook",
+			"target": "is-mobile.svelte.ts"
+		}
+	]
+}

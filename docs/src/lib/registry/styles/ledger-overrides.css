@@ -1,0 +1,842 @@
+/*
+ * Ledger over the Another UI stylesheets. buttons.css and card-surface.css
+ * style controls straight from data-slot and data-variant, outside the
+ * component classes: gradient buttons, 42px fields, a 12px radius. A style
+ * selected with .style-ledger has to win here too, so the dense, flat Ledger
+ * look holds. Everything is scoped to .style-ledger and reads the standard
+ * theme variables plus the --ledger-* tokens; with no .style-ledger nothing
+ * changes.
+ */
+
+.style-ledger {
+  --ui-radius: 6px;
+  --surface-border: var(--border);
+  /* A transparent no-op shadow, not `none`: card-surface.css lists this variable inside `box-shadow: var(--surface-shadow), 0 20px 40px ...` for sheets and drawers, and `none` is invalid in a shadow list. */
+  --surface-shadow: 0 0 #0000;
+  /* The docs app loads Inter as --font-inter (lib/fonts.ts). A CLI project does not define it: the registry installs Inter as 'Inter Variable' under --font-sans, so that name is the fallback and the value stays valid. */
+  --font-sans: var(--font-inter, "Inter Variable", Inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-inter, "Inter Variable", Inter), ui-sans-serif, system-ui, sans-serif;
+  /* Preflight resolves font-family once on <html>; set it here so a wrapper and the server-rendered page get Inter too. */
+  font-family: var(--font-sans);
+}
+/* Selected text: a soft tint of the primary with the normal ink, as Attio draws it. The base theme's ::selection is solid --selection (black in light mode), which hides the words it covers. The tint is a straight sRGB blend over whatever surface the text sits on (checked on each surface in scripts/check-ledger-contrast.ts). */
+.style-ledger ::selection {
+  background: color-mix(in srgb, var(--primary) 28%, transparent);
+  color: var(--foreground);
+}
+/* Solid fills that carry light ink: the filled primary button and badge, and anything painted bg-primary (whole class token, so a tint such as bg-primary/10 is left to the rule above). The selection darkens the fill with 28% black and keeps the ink, so white on the blue gains contrast instead of losing it (checked in scripts/check-ledger-contrast.ts). The surface itself is listed as well as its descendants, since a button's label is usually a text node of the button. */
+.style-ledger :is([data-slot="button"][data-variant="default"], [data-slot="badge"][data-variant="default"], [class~="bg-primary"])::selection,
+.style-ledger :is([data-slot="button"][data-variant="default"], [data-slot="badge"][data-variant="default"], [class~="bg-primary"]) ::selection {
+  background: color-mix(in srgb, #000 28%, transparent);
+  color: inherit;
+}
+/* Inverted neutral surfaces (tooltips, anything painted bg-foreground): the ink tints the fill at 30%, which keeps the ink readable on both the dark light-mode fill and the light dark-mode fill. */
+.style-ledger :is([data-slot="tooltip-content"], [class~="bg-foreground"])::selection,
+.style-ledger :is([data-slot="tooltip-content"], [class~="bg-foreground"]) ::selection {
+  background: color-mix(in srgb, currentColor 30%, transparent);
+  color: inherit;
+}
+/* card-surface.css puts the heavy dark border and shadow back inside a .dark island; keep Ledger flat there too. */
+.style-ledger .dark,
+.dark .style-ledger,
+.style-ledger.dark {
+  --surface-border: var(--border);
+  --surface-shadow: 0 0 #0000;
+}
+
+/* Icons sit bare next to their text: no tile, circle or frame behind them (Jacob, 2 Nov: "Don't put containers around icons"). IconTile and an Item's
+   icon media carry their tile as utilities (bg, border, size, radius), which a component class cannot win against, so this unlayered rule does.
+   The glass tile stays: it frosts a photo, it is not a container around an icon. */
+.style-ledger :is([data-slot="icon-tile"]:not([data-variant="glass"]), [data-slot="item-media"][data-variant="icon"]) {
+  width: auto;
+  height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Surfaces: a hairline border, 8px corners, a soft shadow only when they float. */
+.style-ledger :is(
+    [data-slot="card"],
+    [data-slot="alert"],
+    [data-slot="popover-content"],
+    [data-slot="hover-card-content"],
+    [data-slot="dropdown-menu-content"],
+    [data-slot="dropdown-menu-sub-content"],
+    [data-slot="context-menu-content"],
+    [data-slot="context-menu-sub-content"],
+    [data-slot="menubar-content"],
+    [data-slot="menubar-sub-content"],
+    [data-slot="select-content"],
+    [data-slot="combobox-content"],
+    [data-slot="dialog-content"],
+    [data-slot="alert-dialog-content"],
+    [data-slot="navigation-menu-viewport"]
+  ) {
+  border-radius: 8px;
+  /* card-surface.css sets this on each surface from --ui-radius; 8px outline minus the 1px border. */
+  --surface-radius: 7px;
+}
+.style-ledger :is(
+    [data-slot="popover-content"],
+    [data-slot="hover-card-content"],
+    [data-slot="dropdown-menu-content"],
+    [data-slot="dropdown-menu-sub-content"],
+    [data-slot="context-menu-content"],
+    [data-slot="context-menu-sub-content"],
+    [data-slot="menubar-content"],
+    [data-slot="menubar-sub-content"],
+    [data-slot="select-content"],
+    [data-slot="combobox-content"],
+    [data-slot="dialog-content"],
+    [data-slot="alert-dialog-content"],
+    [data-slot="navigation-menu-viewport"]
+  ) {
+  --surface-shadow: 0 2px 4px rgb(0 0 0 / 0.04), 0 8px 24px -6px rgb(0 0 0 / 0.14);
+}
+/*
+ * This is the one owner of the floating shadow when the Another UI stylesheet is installed: card-surface.css
+ * writes box-shadow unlayered from --surface-shadow, so the shadow-[...] and ring-1 utilities on the same slots
+ * in style-ledger.css only show in a project without the stylesheet. Edit both together. On a dark surface a
+ * black shadow barely shows, so dark gets a stronger drop and a faint light edge.
+ */
+.dark .style-ledger :is(
+    [data-slot="popover-content"],
+    [data-slot="hover-card-content"],
+    [data-slot="dropdown-menu-content"],
+    [data-slot="dropdown-menu-sub-content"],
+    [data-slot="context-menu-content"],
+    [data-slot="context-menu-sub-content"],
+    [data-slot="menubar-content"],
+    [data-slot="menubar-sub-content"],
+    [data-slot="select-content"],
+    [data-slot="combobox-content"],
+    [data-slot="dialog-content"],
+    [data-slot="alert-dialog-content"],
+    [data-slot="navigation-menu-viewport"]
+  ),
+.style-ledger.dark :is(
+    [data-slot="popover-content"],
+    [data-slot="hover-card-content"],
+    [data-slot="dropdown-menu-content"],
+    [data-slot="dropdown-menu-sub-content"],
+    [data-slot="context-menu-content"],
+    [data-slot="context-menu-sub-content"],
+    [data-slot="menubar-content"],
+    [data-slot="menubar-sub-content"],
+    [data-slot="select-content"],
+    [data-slot="combobox-content"],
+    [data-slot="dialog-content"],
+    [data-slot="alert-dialog-content"],
+    [data-slot="navigation-menu-viewport"]
+  ),
+.style-ledger .dark :is(
+    [data-slot="popover-content"],
+    [data-slot="hover-card-content"],
+    [data-slot="dropdown-menu-content"],
+    [data-slot="dropdown-menu-sub-content"],
+    [data-slot="context-menu-content"],
+    [data-slot="context-menu-sub-content"],
+    [data-slot="menubar-content"],
+    [data-slot="menubar-sub-content"],
+    [data-slot="select-content"],
+    [data-slot="combobox-content"],
+    [data-slot="dialog-content"],
+    [data-slot="alert-dialog-content"],
+    [data-slot="navigation-menu-viewport"]
+  ) {
+  --surface-shadow: 0 0 0 1px rgb(255 255 255 / 0.06), 0 8px 24px -6px rgb(0 0 0 / 0.6);
+}
+
+/* Radii that card-surface.css sets unlayered from --ui-radius: chips are 4px, items sit 2px inside a 6px list. */
+.style-ledger :is([data-slot="badge"], [class*="group/badge"]) {
+  border-radius: 4px;
+}
+.style-ledger [data-slot="tabs-trigger"] {
+  border-radius: 4px;
+}
+.style-ledger :is(
+    [data-slot="dropdown-menu-item"],
+    [data-slot="dropdown-menu-checkbox-item"],
+    [data-slot="dropdown-menu-radio-item"],
+    [data-slot="dropdown-menu-sub-trigger"],
+    [data-slot="context-menu-item"],
+    [data-slot="context-menu-checkbox-item"],
+    [data-slot="context-menu-radio-item"],
+    [data-slot="context-menu-sub-trigger"],
+    [data-slot="menubar-item"],
+    [data-slot="menubar-checkbox-item"],
+    [data-slot="menubar-radio-item"],
+    [data-slot="menubar-sub-trigger"],
+    [data-slot="select-item"],
+    [data-slot="combobox-item"],
+    [data-slot="command-item"]
+  ) {
+  border-radius: 4px;
+}
+
+/*
+ * Buttons. The look of every variant (fills, hover, borders, the focus ring) is owned by style-ledger.css and
+ * arrives as utilities in the components; style-button-handoff.css (shared with Candy) hands those properties
+ * back to them from buttons.css. Sizes, padding and radii stay here.
+ */
+.style-ledger :is([data-slot="button"], [class*="group/button"])[data-variant]:not([data-size="xs"], [data-size="icon-xs"], .rounded-full, [data-slot="carousel-previous"], [data-slot="carousel-next"]) {
+  border-radius: 6px;
+}
+.style-ledger :is([data-slot="button"], [class*="group/button"])[data-variant]:is([data-size="xs"], [data-size="icon-xs"]):not(.rounded-full, [data-slot="carousel-previous"], [data-slot="carousel-next"]) {
+  border-radius: 4px;
+}
+/* A button the component rounds on purpose (carousel arrows, pill buttons) stays round: buttons.css would otherwise square it. */
+.style-ledger :is([data-slot="button"], [class*="group/button"])[data-variant]:is(.rounded-full, [data-slot="carousel-previous"], [data-slot="carousel-next"]) {
+  border-radius: 9999px;
+}
+
+/* Sizes: 28px default, 24 sm, 32 lg, 20 xs; icon buttons are squares of the same heights. xs and icon-xs are 20px, below the 24px WCAG 2.5.8 target size, so use them only where 4px of space surrounds them (inside a dense toolbar or table cell). The default switch (24x14px) and the lg switch (28x16px) are below the 24px target too, so pair a switch with a label or give it room, as the /ledger page does. */
+.style-ledger :is([data-slot="button"], [class*="group/button"])[data-variant]:is([data-size="default"], :not([data-size])) {
+  min-height: 1.75rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 13px;
+  line-height: 18px;
+}
+.style-ledger :is([data-slot="button"], [class*="group/button"])[data-variant][data-size="xs"] {
+  min-height: 1.25rem;
+  padding: 0 0.375rem;
+  font-size: 11px;
+  line-height: 16px;
+}
+.style-ledger :is([data-slot="button"], [class*="group/button"])[data-variant][data-size="sm"] {
+  min-height: 1.5rem;
+  padding: 0.125rem 0.5rem;
+  font-size: 13px;
+  line-height: 18px;
+}
+.style-ledger :is([data-slot="button"], [class*="group/button"])[data-variant][data-size="lg"] {
+  min-height: 2rem;
+  padding: 0.375rem 0.625rem;
+  font-size: 13px;
+  line-height: 18px;
+}
+.style-ledger :is([data-slot="button"], [class*="group/button"])[data-variant][data-size="icon"] {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+.style-ledger :is([data-slot="button"], [class*="group/button"])[data-variant][data-size="icon-sm"] {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.style-ledger :is([data-slot="button"], [class*="group/button"])[data-variant][data-size="icon-xs"] {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.style-ledger :is([data-slot="button"], [class*="group/button"])[data-variant][data-size="icon-lg"] {
+  width: 2rem;
+  height: 2rem;
+}
+/*
+ * buttons.css gives a horizontally grouped icon button height: auto and a 42px min-height at (0,4,0) and
+ * (0,5,0). A group made only of icon buttons has nothing to stretch them, so each icon size gets its own
+ * min-height here, lifted above buttons.css with :not(#_). This is a size, not a look.
+ */
+.style-ledger [data-slot="button-group"] > :is([data-slot="button"], [class*="group/button"])[data-variant][data-size="icon-xs"]:not(#_) {
+  min-height: 1.25rem;
+}
+.style-ledger [data-slot="button-group"] > :is([data-slot="button"], [class*="group/button"])[data-variant][data-size="icon-sm"]:not(#_) {
+  min-height: 1.5rem;
+}
+.style-ledger [data-slot="button-group"] > :is([data-slot="button"], [class*="group/button"])[data-variant][data-size="icon"]:not(#_) {
+  min-height: 1.75rem;
+}
+.style-ledger [data-slot="button-group"] > :is([data-slot="button"], [class*="group/button"])[data-variant][data-size="icon-lg"]:not(#_) {
+  min-height: 2rem;
+}
+/* buttons.css draws a 20px icon in an icon-lg button; Ledger's 32px button holds the same 16px icon as the lg text button. */
+.style-ledger :is([data-slot="button"], [class*="group/button"])[data-variant][data-size="icon-lg"] svg:not([class*="size-"]) {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Fields share the button heights. Below md they stay 16px so iOS Safari does not zoom a focused field. */
+.style-ledger :is(
+    [data-slot="input"], [data-slot="sidebar-input"],
+    [data-slot="native-select"],
+    [data-slot="time-field"],
+    [data-slot="number-field"]
+  ),
+.style-ledger [data-slot="input-group"]:not(:has(> textarea, > [data-align="block-start"], > [data-align="block-end"])) {
+  font-size: 16px;
+  @media (min-width: 768px) {
+    font-size: 13px;
+  }
+}
+/* Grid-cell and ghost inputs keep the flush corners card-surface.css gives them. */
+.style-ledger :is([data-slot="input"], [data-slot="sidebar-input"]):not([data-cell], [data-variant="ghost"]),
+.style-ledger :is(
+    [data-slot="select-trigger"],
+    [data-slot="native-select"],
+    [data-slot="time-field"],
+    [data-slot="number-field"]
+  ),
+.style-ledger [data-slot="input-group"]:not(:has(> textarea, > [data-align="block-start"], > [data-align="block-end"])) {
+  border-radius: 6px;
+}
+/* Heights apply to every input, grid-cell and ghost ones included, so none falls back to the 42px of buttons.css. */
+.style-ledger :is(
+    [data-slot="input"], [data-slot="sidebar-input"],
+    [data-slot="select-trigger"],
+    [data-slot="native-select"],
+    [data-slot="time-field"],
+    [data-slot="number-field"]
+  ),
+.style-ledger [data-slot="input-group"]:not(:has(> textarea, > [data-align="block-start"], > [data-align="block-end"])) {
+  &[data-size="xs"] {
+    height: 1.25rem;
+  }
+  &[data-size="sm"] {
+    height: 1.5rem;
+  }
+  &[data-size="default"] {
+    height: 1.75rem;
+  }
+  &[data-size="lg"] {
+    height: 2rem;
+  }
+}
+/*
+ * A 16px field needs room: below md, xs and sm fields grow to the default height, select triggers included so a
+ * filter row of an input and a select stays aligned. Buttons and toggles keep their size, because their text is
+ * not subject to the iOS zoom, so on a phone a row that mixes a small field with a small button should use the
+ * default size for both to line up.
+ */
+@media (max-width: 767.98px) {
+  .style-ledger :is([data-slot="input"], [data-slot="sidebar-input"], [data-slot="select-trigger"], [data-slot="native-select"], [data-slot="time-field"], [data-slot="number-field"])[data-size="xs"],
+  .style-ledger :is([data-slot="input"], [data-slot="sidebar-input"], [data-slot="select-trigger"], [data-slot="native-select"], [data-slot="time-field"], [data-slot="number-field"])[data-size="sm"],
+  .style-ledger [data-slot="input-group"]:not(:has(> textarea, > [data-align="block-start"], > [data-align="block-end"]))[data-size="xs"],
+  .style-ledger [data-slot="input-group"]:not(:has(> textarea, > [data-align="block-start"], > [data-align="block-end"]))[data-size="sm"] {
+    height: 1.75rem;
+  }
+}
+.style-ledger [data-slot="select-trigger"] {
+  font-size: 13px;
+}
+.style-ledger :is([data-slot="input-group-control"], input[data-slot="input-group-control"], textarea[data-slot="textarea"], [data-slot="combobox-chip-input"], [data-slot="command-input"], [data-slot="questionnaire-input"]) {
+  font-size: 16px;
+  @media (min-width: 768px) {
+    font-size: 13px;
+  }
+}
+
+/* Toggles and toggle group items take the same heights, and stay square when icon only. */
+.style-ledger :is([data-slot="toggle"], [data-slot="toggle-group-item"], [class~="group/toggle"]):not([data-slot="segmented-control-item"], [data-slot="stat-tab"]) {
+  &[data-size="xs"] {
+    height: 1.25rem;
+    min-width: 1.25rem;
+  }
+  &[data-size="sm"] {
+    height: 1.5rem;
+    min-width: 1.5rem;
+  }
+  &[data-size="default"] {
+    height: 1.75rem;
+    min-width: 1.75rem;
+  }
+  &[data-size="lg"] {
+    height: 2rem;
+    min-width: 2rem;
+  }
+}
+
+/* Corner radius for single toggles and spaced group items. Joined group items (spacing 0) keep the square inner edges the slot gives them. */
+.style-ledger :is([data-slot="toggle"], [data-slot="toggle-group-item"], [class~="group/toggle"]):not([data-slot="segmented-control-item"], [data-slot="stat-tab"]):not([data-slot="toggle-group"][data-spacing="0"] > *) {
+  border-radius: 6px;
+}
+
+/* Text fields use Attio's light border and 1px shadow (--ledger-field-*); icon-only controls, checkboxes and radios keep the 3:1 --input grey; card-surface.css reads --surface-border for them. */
+.style-ledger :is(
+    [data-slot="input"], [data-slot="sidebar-input"],
+    [data-slot="textarea"],
+    [data-slot="select-trigger"],
+    [data-slot="native-select"],
+    [data-slot="input-group"],
+    [data-slot="composer"],
+    [data-slot="combobox-chips"],
+    [data-slot="time-field"],
+    [data-slot="number-field"]
+  ) {
+  --surface-border: var(--ledger-field-border);
+  --surface-shadow: var(--ledger-field-shadow);
+}
+
+/* Outline toggles are often icon-only, so they keep the 3:1 edge. Intentional exception: a text-labelled toggle next to an outline button keeps the darker edge too, so a toolbar mixing them is not perfectly uniform. */
+.style-ledger :is([data-slot="toggle"][data-variant="outline"], [data-slot="toggle-group-item"][data-variant="outline"]) {
+  --surface-border: var(--input);
+}
+
+/*
+ * Inactive tab labels. The shared tabs component sets text-foreground/60 (about 3.7:1 on white); both it and
+ * the slot's text-muted-foreground land on the element and the base class wins, so Ledger sets the colour here.
+ * Hover and keyboard focus keep the full foreground the component gives them.
+ */
+.style-ledger [data-slot="tabs-trigger"]:not([data-state="active"], [aria-selected="true"], :hover, :focus-visible, :disabled) {
+  color: var(--muted-foreground);
+}
+
+/* motion.css builds the dark tab and segmented pills from --input, which Ledger keeps at 3:1 for edges; as a fill it is too heavy. */
+.dark .style-ledger [data-tabs-pill],
+.style-ledger.dark [data-tabs-pill],
+.style-ledger .dark [data-tabs-pill],
+.dark .style-ledger [data-segmented-pill],
+.style-ledger.dark [data-segmented-pill],
+.style-ledger .dark [data-segmented-pill] {
+  background: var(--muted);
+}
+
+/*
+ * State cues that reach 3:1 (WCAG 1.4.11). A pressed toggle differs from its neighbours
+ * by a #f1f1f1 fill on white, about 1.1:1, so the selected state also draws a 1px --primary edge (5.7:1 on the
+ * page). Outline toggle groups and pill tabs are the exception, see "Quiet controls" below: Attio's grey track with a white picked segment, and a grey tab with an underline. card-surface.css writes box-shadow on toggles from --surface-shadow at (0,6,0), unlayered, so the
+ * pressed rules are lifted with :not(#_). On keyboard focus the focus ring is stacked with the edge, because
+ * an unlayered shadow would otherwise hide the utility ring (WCAG 2.4.7). An invalid pressed toggle keeps the slot's destructive ring instead of the edge. The pressed list covers Radix
+ * (aria-pressed, data-state=on), Base UI (data-pressed) and React Aria (data-rac with data-selected, and aria-checked; its data-pressed is momentary, so data-rac elements are skipped for it).
+ */
+.style-ledger :is([data-slot="toggle"], [data-slot="toggle-group-item"], [class~="group/toggle"]):is([aria-pressed="true"], [data-state="on"], [data-rac][data-selected], [data-pressed]:not([data-rac]), [aria-checked="true"]):not([data-slot="segmented-control-item"], [data-slot="stat-tab"], [aria-invalid="true"]):not(#_) {
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+.style-ledger :is([data-slot="toggle"], [data-slot="toggle-group-item"], [class~="group/toggle"]):is([aria-pressed="true"], [data-state="on"], [data-rac][data-selected], [data-pressed]:not([data-rac]), [aria-checked="true"]):not([data-slot="segmented-control-item"], [data-slot="stat-tab"], [aria-invalid="true"]):focus-visible:not(#_) {
+  box-shadow: inset 0 0 0 1px var(--primary), 0 0 0 2px var(--ring);
+}
+
+/*
+ * Filled primary in dark mode. --primary stays the text, link and edge colour (it needs 4.5:1 on the dark page), but white text on it is only
+ * about 3.3:1, so a surface that paints itself with --primary gets --primary-fill instead (a darker blue, 5.4:1 under white text; checked
+ * in scripts/check-ledger-contrast.ts, rest and hover) and --primary-fill-foreground (white). Re-pointing --primary on the element itself
+ * keeps every bg-primary, color-mix hover and border-primary the slot already uses working.
+ *
+ * --primary-fill and --primary-fill-foreground are theme variables installed next to --primary (not part of the bundled --ledger-* block), so a
+ * project's own theme edits win: a project that sets its own --primary and leaves the fill out, or whose theme vars predate the fill, falls back to
+ * its own --primary and --primary-foreground, captured first (--ledger-primary-own, --ledger-primary-foreground-own; they cannot be read back
+ * through --primary once it is re-pointed). That fallback only helps projects that never installed the fill variable: once --primary-fill is in
+ * a project's theme, a later change to its dark --primary needs --primary-fill changed with it, and a wrapper that sets its own --primary below
+ * .style-ledger needs --primary-fill set there too (the fallback is captured at the scope root). --primary-foreground stays dark ink on --primary,
+ * so a fill this list does not reach (a selection colour, a group- or peer- fill) still passes 4.5:1 instead of showing white on the lighter blue.
+ *
+ * Which elements: the slots that Ledger paints with --primary through the style file (they carry no bg-primary class); a default-variant Button whatever its data-slot (an asChild tooltip or menu trigger replaces data-slot but a Button keeps its group/button class and data-variant; toggles
+ * and stat tabs do not have that class, so they are left out); and elements whose class list has the bg-primary utility as a whole token, bare or
+ * with a state prefix (hover:, aria-selected:, data-[state=checked]: and so on) only while that state is on (hover:bg-primary only on :hover), so a
+ * text-primary or border-primary on the same element keeps the readable colour at rest. That catches the blocks and components that fill with a utility.
+ * A bare bg-primary re-points for the whole subtree, because a custom property inherits; a link inside a filled element is rare. bg-primary/NN tints,
+ * selection:, group-*: and peer-*: forms are not matched, so a link inside a tinted panel keeps the readable link colour. Sidebar fills read
+ * --sidebar-primary, which is the darker blue as a token (it is only ever a fill: no block uses text-sidebar-primary).
+ */
+:is(.dark .style-ledger, .style-ledger.dark, .style-ledger .dark):not(
+    [data-slot="button"]:is([data-variant="default"], :not([data-variant])),
+    [class*="group/button"][data-variant="default"],
+    [data-slot="avatar-badge"],
+    [data-slot="checkbox"],
+    [data-slot="radio-group-item"],
+    [data-slot="progress-indicator"],
+    [data-slot="slider-range"],
+    [data-slot="switch"],
+    [data-slot="bubble"][data-variant="default"] > [data-slot="bubble-content"],
+    [data-slot="questionnaire-choice-indicator"],
+    [data-slot="button"]:is([data-selected-single="true"], [data-range-start="true"], [data-range-end="true"]),
+    [class~="bg-primary"],
+    [class~="bg-primary!"],
+    [class~="!bg-primary"],
+    [class~="hover:bg-primary"]:hover,
+    [class~="focus:bg-primary"]:focus,
+    [class~="active:bg-primary"]:active,
+    [class~="aria-selected:bg-primary"][aria-selected="true"],
+    [class~="aria-checked:bg-primary"][aria-checked="true"],
+    [class~="aria-current:bg-primary"][aria-current]:not([aria-current="false"]),
+    [class~="data-checked:bg-primary"][data-checked],
+    [class~="data-selected:bg-primary"][data-selected],
+    [class~="data-active:bg-primary"][data-active],
+    [class~="data-[state=checked]:bg-primary"][data-state="checked"],
+    [class~="data-[state=on]:bg-primary"][data-state="on"],
+    [class~="data-[state=active]:bg-primary"][data-state="active"],
+    [class~="data-[active=true]:bg-primary"][data-active="true"],
+    [class~="data-[selected=true]:bg-primary"][data-selected="true"],
+    [class~="data-[selected-single=true]:bg-primary"][data-selected-single="true"],
+    [class~="data-[range-start=true]:bg-primary"][data-range-start="true"],
+    [class~="data-[range-end=true]:bg-primary"][data-range-end="true"],
+    [class~="data-[state=completed]:bg-primary"][data-state="completed"],
+    [class~="data-[state=indeterminate]:bg-primary"][data-state="indeterminate"]
+  ) {
+  /* Not on a fill element that is itself a .dark island: it would read --primary through the re-point below and form a cycle. This :not() list is the fill list below, word for word (a test keeps them identical). */
+  --ledger-primary-own: var(--primary);
+  --ledger-primary-foreground-own: var(--primary-foreground);
+}
+/* A fill that a bg-primary utility paints, in the forms the registry and the blocks use. Whole class tokens only (class~=): hover:bg-primary/90 next to a bare
+   bg-primary is caught by the bare token, while selection:bg-primary, group-hover:bg-primary, has-[...]:bg-primary, peer-checked:bg-primary and bg-primary-foreground are not. */
+:is(.dark .style-ledger, .style-ledger.dark, .style-ledger .dark) :is(
+    [data-slot="button"]:is([data-variant="default"], :not([data-variant])),
+    [class*="group/button"][data-variant="default"],
+    [data-slot="avatar-badge"],
+    [data-slot="checkbox"],
+    [data-slot="radio-group-item"],
+    [data-slot="progress-indicator"],
+    [data-slot="slider-range"],
+    [data-slot="switch"],
+    [data-slot="bubble"][data-variant="default"] > [data-slot="bubble-content"],
+    [data-slot="questionnaire-choice-indicator"],
+    [data-slot="button"]:is([data-selected-single="true"], [data-range-start="true"], [data-range-end="true"]),
+    [class~="bg-primary"],
+    [class~="bg-primary!"],
+    [class~="!bg-primary"],
+    [class~="hover:bg-primary"]:hover,
+    [class~="focus:bg-primary"]:focus,
+    [class~="active:bg-primary"]:active,
+    [class~="aria-selected:bg-primary"][aria-selected="true"],
+    [class~="aria-checked:bg-primary"][aria-checked="true"],
+    [class~="aria-current:bg-primary"][aria-current]:not([aria-current="false"]),
+    [class~="data-checked:bg-primary"][data-checked],
+    [class~="data-selected:bg-primary"][data-selected],
+    [class~="data-active:bg-primary"][data-active],
+    [class~="data-[state=checked]:bg-primary"][data-state="checked"],
+    [class~="data-[state=on]:bg-primary"][data-state="on"],
+    [class~="data-[state=active]:bg-primary"][data-state="active"],
+    [class~="data-[active=true]:bg-primary"][data-active="true"],
+    [class~="data-[selected=true]:bg-primary"][data-selected="true"],
+    [class~="data-[selected-single=true]:bg-primary"][data-selected-single="true"],
+    [class~="data-[range-start=true]:bg-primary"][data-range-start="true"],
+    [class~="data-[range-end=true]:bg-primary"][data-range-end="true"],
+    [class~="data-[state=completed]:bg-primary"][data-state="completed"],
+    [class~="data-[state=indeterminate]:bg-primary"][data-state="indeterminate"]
+  ) {
+  --primary: var(--primary-fill, var(--ledger-primary-own));
+  --primary-foreground: var(--primary-fill-foreground, var(--ledger-primary-foreground-own));
+}
+
+/* The filled Button's hover and open states in dark. The slot mixes 10% of --foreground into the fill (on hover and on aria-expanded), which in dark is light grey and lowers
+   the white text to 4.1:1. Pointing --foreground at black on the Button itself makes the same mix darken the fill instead, as light mode does with its near-black
+   --foreground: no background is overridden, so a Button that brings its own bg-* class keeps it, and every state the slot styles that way follows. */
+:is(.dark .style-ledger, .style-ledger.dark, .style-ledger .dark) :is([data-slot="button"], [class*="group/button"])[data-variant="default"] {
+  --foreground: #000;
+}
+
+/*
+ * Command palette, as in Attio's quick actions. The search field loses its border and fill (the row has a hairline under it, drawn by the style), a
+ * leading icon in an item sits in a 22px bordered tile (only in a palette dialog, not in an inline combobox or picker; this is a deliberate exception to
+ * the "no containers around icons" rule at the top of this file, asked for by the Attio parity brief and confirmed by Jacob on 3 Nov 2026, palette dialogs only), and a text-only shortcut (the legacy way to write one; Kbd and KbdGroup are left alone) is a small chip.
+ * :not(#_) lifts these above card-surface.css.
+ */
+.style-ledger [data-slot="command"] [data-slot="input-group"]:not(#_) {
+  --surface-border: transparent;
+  background: transparent;
+  box-shadow: none;
+  border-color: transparent;
+  border-radius: 0;
+}
+/* No ring around the row, but keyboard focus still shows: a 1px --ring line along the bottom of the row (3:1 on every popover surface). */
+.style-ledger [data-slot="command"] [data-slot="input-group"]:has(:focus-visible):not(#_) {
+  box-shadow: inset 0 -1px 0 var(--ring);
+  outline: none;
+}
+.style-ledger [data-slot="dialog-content"] [data-slot="command-item"] > svg:first-child:not(.cn-command-item-indicator):not(#_) {
+  box-sizing: content-box;
+  width: 14px;
+  height: 14px;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--card);
+  color: var(--muted-foreground);
+}
+.style-ledger [data-slot="command-shortcut"]:not(:has([data-slot="kbd"], [data-slot="kbd-group"])):not(#_) {
+  padding: 1px 6px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--card);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+/* An empty state with a 100px picture: Attio's page-level empty state has a 17px, 600-weight title, a muted 13px description and one primary action. */
+.style-ledger [data-slot="empty-header"]:has([data-variant="illustration"]) [data-slot="empty-title"]:not(#_) {
+  font-size: 17px;
+  line-height: 24px;
+  font-weight: 600;
+}
+.style-ledger [data-slot="empty-header"]:has([data-variant="illustration"]):not(#_) {
+  gap: 0.375rem;
+}
+
+/*
+ * Quiet controls (Jacob, 3 Nov 2026: "badges need a cleaner look", "tabs look terrible"). Ledger is a dense, low-contrast app style, so a
+ * count is a soft neutral pill and a picked option is a soft fill, never a saturated block or a ring. All of it is plain CSS on the slots, so
+ * every block that uses Badge, an outline ToggleGroup, Tabs or the sidebar menu gets it. :not(#_) lifts these above the unlayered
+ * card-surface.css and the pressed-state rules earlier in this file.
+ */
+
+/* A default Badge is a nav count or a tally, not an alert: a small muted chip (11px, 4px radius, muted fill and ink), as in Attio's tab and sidebar counts. Coloured variants (destructive, outline, ...) keep their own look. */
+.style-ledger [data-slot="badge"][data-variant="default"]:not(#_) {
+  background: var(--muted);
+  color: var(--muted-foreground);
+  box-shadow: none;
+  border-color: transparent;
+  font-size: 11px;
+  font-weight: 500;
+}
+/* A chip inside a picked tab or a picked, filled row (the Inbox row) would vanish into the same grey, so it takes the border grey. */
+.style-ledger :is([data-slot="tabs-trigger"], [data-slot="sidebar-menu-button"], [data-slot="button"])[data-state="active"] [data-slot="badge"]:is([data-variant="default"], [data-variant="secondary"]):not(#_),
+.style-ledger :is([data-slot="button"], [data-slot="sidebar-menu-button"]):is([data-variant="secondary"], [data-active="true"]) [data-slot="badge"]:is([data-variant="default"], [data-variant="secondary"]):not(#_),
+.style-ledger [data-slot="tabs-trigger"][aria-selected="true"] [data-slot="badge"]:is([data-variant="default"], [data-variant="secondary"]):not(#_),
+.style-ledger [data-slot="command-item"]:is([data-selected="true"], [aria-selected="true"]) [data-slot="badge"]:is([data-variant="default"], [data-variant="secondary"]):not(#_) {
+  background: var(--border);
+}
+
+/*
+ * An outline ToggleGroup (All / Unread, view switches) is a segmented control: one soft track, the picked item raised on it. The pressed edge
+ * drawn in --primary above is replaced by a 1px --border line and a hairline shadow, so nothing looks like a focus ring. The picked item also
+ * turns from muted to full ink and a heavier weight, which is what carries the state for people who cannot see the fill. The keyboard focus
+ * ring stays.
+ */
+.style-ledger [data-slot="toggle-group"][data-variant="outline"]:not(#_) {
+  gap: 2px;
+  padding: 2px;
+  background: var(--muted);
+  border-radius: 8px;
+}
+.style-ledger [data-slot="toggle-group"][data-variant="outline"] > [data-slot="toggle-group-item"]:not(#_) {
+  --surface-border: transparent;
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  color: var(--muted-foreground);
+  border-radius: 6px;
+  font-weight: 500;
+}
+.style-ledger [data-slot="toggle-group"][data-variant="outline"] > [data-slot="toggle-group-item"]:is(:hover):not(#_) {
+  color: var(--foreground);
+}
+.style-ledger [data-slot="toggle-group"][data-variant="outline"] > [data-slot="toggle-group-item"]:is([aria-pressed="true"], [data-state="on"], [data-rac][data-selected], [data-pressed]:not([data-rac]), [aria-checked="true"]):not(#_) {
+  background: var(--card);
+  color: var(--foreground);
+  box-shadow: 0 0 0 1px var(--border), 0 1px 2px rgb(0 0 0 / 0.06);
+}
+.style-ledger [data-slot="toggle-group"][data-variant="outline"] > [data-slot="toggle-group-item"]:focus-visible:not(#_):not(#_) {
+  box-shadow: 0 0 0 1px var(--border), 0 0 0 3px var(--ring);
+}
+
+/*
+ * Stat tabs, as in Attio's stat cards: white card, the big number first then the muted label, the icon top right. The picked card is a soft
+ * primary tint with a 1px primary edge and a primary number (stat-tabs.tsx adds the fill and the edge, since the component fills with important utilities).
+ */
+.style-ledger [data-slot="stat-tab"] {
+  position: relative;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 2px;
+}
+.style-ledger [data-slot="stat-tab"] [data-slot="stat-tab-label"] > svg {
+  position: absolute;
+  top: 0.875rem;
+  right: 1rem;
+  @media (min-width: 640px) {
+    top: 1rem;
+    right: 1.25rem;
+  }
+}
+.style-ledger [data-slot="stat-tab"][data-state="on"] [data-slot="stat-tab-label"] {
+  color: var(--muted-foreground);
+}
+.style-ledger [data-slot="stat-tab"][data-state="on"] [data-slot="stat-tab-value"] {
+  color: var(--primary);
+}
+
+.style-ledger {
+  /* The picked tab: a hairline edge kept inside the box (so a scrolling or clipping tab list does not cut it off) and a 2px underline. */
+  --ledger-tab-picked-shadow: inset 0 0 0 1px var(--border), inset 0 -2px 0 var(--foreground);
+}
+/*
+ * Tabs, as in Attio. Every horizontal tab list loses its track and outline; the picked tab gets a light grey fill, a hairline --border edge and a 2px dark
+ * underline (the sliding pill, a separate element behind the labels, is the fill, so its bottom edge carries the underline; motion.css hides the tab's own
+ * after: underline while the pill is present). A record page's tab bar is opt-in: put `data-bar` (and `w-full`) on the TabsList and it becomes a bar with its own
+ * 1px line under it that the picked tab's underline covers, triggers that reach that line, and sideways scrolling on a phone. A compact switcher (Monthly or
+ * Yearly, a row of tabs beside buttons) stays as it was. Vertical and line lists keep the slot's look.
+ */
+.style-ledger [data-slot="tabs-list"]:not([data-variant="line"], [data-orientation="vertical"], [aria-orientation="vertical"]):not(#_) {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+.style-ledger [data-slot="tabs-list"][data-bar]:not([data-variant="line"], [data-orientation="vertical"], [aria-orientation="vertical"]):not(#_) {
+  border-radius: 0;
+  padding: 0;
+  padding-inline-start: 2px;
+  height: 2rem;
+  justify-content: flex-start;
+  /* Many tabs on a phone scroll sideways inside the bar instead of being cut off; a thin scrollbar stays on devices with a mouse, so the overflow shows. */
+  overflow-x: auto;
+  scrollbar-width: none;
+  /* The bar's own hairline: the picked tab's underline is drawn over it, as on an Attio record page. */
+  box-shadow: inset 0 -1px 0 var(--border);
+}
+@media (pointer: fine) {
+  .style-ledger [data-slot="tabs-list"][data-bar]:not([data-variant="line"], [data-orientation="vertical"], [aria-orientation="vertical"]):not(#_) {
+    scrollbar-width: thin;
+  }
+}
+/* Triggers reach the bar line, so the picked tab's underline sits on it instead of 1px above. */
+.style-ledger [data-slot="tabs-list"][data-bar]:not([data-variant="line"], [data-orientation="vertical"], [aria-orientation="vertical"]) > [data-slot="tabs-trigger"]:not(#_) {
+  flex: none;
+  padding-inline: 0.625rem;
+  height: 100%;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+/* Keyboard focus on a tab in a horizontal list is an outline drawn inside the tab: the picked tab's shadow replaces the slot's ring, and a bar clips what is outside it. */
+.style-ledger [data-slot="tabs-list"]:not([data-variant="line"], [data-orientation="vertical"], [aria-orientation="vertical"]) > [data-slot="tabs-trigger"]:focus-visible:not(#_) {
+  outline: 2px solid var(--ring);
+  outline-offset: -2px;
+}
+/* Icon and count slots, in a horizontal list: an icon before the label is muted (a text-* class on the icon still wins) and takes the foreground colour when the tab is picked; a Badge after it is the count. */
+.style-ledger [data-slot="tabs-list"]:not([data-variant="line"], [data-orientation="vertical"], [aria-orientation="vertical"]) > [data-slot="tabs-trigger"] > svg:first-child:where(:not([class*="text-"])) {
+  color: var(--muted-foreground);
+}
+.style-ledger [data-slot="tabs-list"]:not([data-variant="line"], [data-orientation="vertical"], [aria-orientation="vertical"]) > [data-slot="tabs-trigger"]:is([data-state="active"], [aria-selected="true"]) > svg:first-child:where(:not([class*="text-"])) {
+  color: var(--foreground);
+}
+.style-ledger [data-slot="tabs-trigger"] > [data-slot="badge"] {
+  margin-inline-start: 0.125rem;
+}
+.style-ledger [data-slot="tabs-list"]:not([data-variant="line"], [data-orientation="vertical"], [aria-orientation="vertical"]) > [data-tabs-pill]:not(#_) {
+  background: var(--muted);
+  box-shadow: var(--ledger-tab-picked-shadow);
+}
+/* Without the pill (before the motion binder mounts it, or in a project without it) the picked trigger carries the same fill and underline. */
+.style-ledger [data-slot="tabs-list"]:not([data-variant="line"], [data-orientation="vertical"], [aria-orientation="vertical"], :has(> [data-tabs-pill])) > [data-slot="tabs-trigger"]:is([data-state="active"], [aria-selected="true"]):not(#_) {
+  background: var(--muted);
+  box-shadow: var(--ledger-tab-picked-shadow);
+}
+
+/*
+ * A sidebar button that a block fills with --primary (the "Quick Create" action) is a soft bordered button in Ledger: card fill, ordinary ink,
+ * a hairline edge, a muted fill on hover. The block keeps its markup and its classes.
+ */
+.style-ledger [data-slot="sidebar-menu-button"][class~="bg-primary"]:not(#_) {
+  background: var(--card);
+  color: var(--foreground);
+  font-weight: 500;
+  box-shadow: 0 0 0 1px var(--border), 0 1px 2px rgb(0 0 0 / 0.05);
+}
+.style-ledger [data-slot="sidebar-menu-button"][class~="bg-primary"]:is(:hover, :active, [data-active="true"]):not(#_) {
+  background: var(--muted);
+  color: var(--foreground);
+}
+/* The ⌘K chip, drawn after the label as in Attio's Quick Actions. It is a visual hint only; wire the shortcut in the app. Hidden when the sidebar collapses to icons. */
+.style-ledger [data-slot="sidebar-menu-button"][class~="bg-primary"]::after {
+  content: "\2318K" / "";
+  margin-left: auto;
+  padding: 0 5px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--card);
+  color: var(--muted-foreground);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 18px;
+}
+.style-ledger [data-collapsible="icon"] [data-slot="sidebar-menu-button"][class~="bg-primary"]::after {
+  display: none;
+}
+
+/* A button beside a sidebar menu button (the mail button next to Quick Create) is as tall as the menu button, so the row lines up. */
+.style-ledger [data-slot="sidebar-menu-item"]:has(> [data-slot="sidebar-menu-button"][class~="bg-primary"]) > [data-slot="button"]:is([data-size="icon"], [data-size="default"]):not(#_) {
+  height: 2rem;
+  min-width: 2rem;
+}
+
+/* The link variant: buttons.css adds an underline, a 2px offset and a 70% hover fade. The slot asks for underline on hover only. */
+.style-ledger :is([data-slot="button"], [class*="group/button"])[data-variant="link"],
+.style-ledger :is([data-slot="button"], [class*="group/button"])[data-variant="link"]:is(:hover, :active) {
+  text-decoration: revert-layer;
+  text-underline-offset: revert-layer;
+  opacity: revert-layer;
+}
+
+/*
+ * The airtable blocks (Airtable and Airtable Kanban). The block source carries only the theme defaults, --at-accent: var(--primary)
+ * and --at-accent-fg: var(--primary-foreground), as a Tailwind class on the Card. Under .style-ledger the header, the tab bar and
+ * the toolbar labels (all siblings inside that Card) read the card surface and the foreground instead. This sheet is unlayered, so
+ * it beats that utility class without a Tailwind variant a consumer's build would not have. An `accent` or `accentForeground` prop
+ * is an inline style and still wins. The hairline under the header is scoped the same way, so other styles are untouched.
+ */
+.style-ledger [data-airtable-block] {
+  --at-accent: var(--card);
+  --at-accent-fg: var(--foreground);
+}
+.style-ledger [data-airtable-block] [data-airtable-header] {
+  border-bottom: 1px solid var(--border);
+}
+
+/*
+ * The record table inside the airtable block, brought to Attio's density. Unlayered like the rules above, so it beats the block's own
+ * utility classes without a Tailwind variant a consumer's build would not have, and scoped to .style-ledger so other styles keep
+ * their table. What it sets: the header row on the same white surface as the rows, with small muted 12px labels and a hairline
+ * under it; 13px cells in 32px rows; footer and group rows the same 32px; hairlines both ways and no shadow (the frozen column
+ * keeps a 1px edge instead of a cast shadow); blue only for what is selected (the row tint and the cell outline use --primary).
+ * Pills, avatars and the toolbar are not part of this surface.
+ */
+.style-ledger [data-airtable-block] [data-slot="table"] {
+  font-size: 13px;
+}
+.style-ledger [data-airtable-block] [data-slot="table-head"] {
+  background-color: var(--card);
+  color: var(--muted-foreground);
+  font-size: 12px;
+  font-weight: 500;
+}
+.style-ledger [data-airtable-block] [data-slot="table-footer"] [data-slot="table-cell"],
+.style-ledger [data-airtable-block] [data-airtable-group] > [data-slot="table-cell"] {
+  height: 32px;
+  background-color: var(--card);
+}
+/* The footer's frozen cell has no border of its own; with the cast shadow gone it keeps the same 1px edge the other frozen cells have. */
+.style-ledger [data-airtable-block] [data-slot="table-footer"] [data-frozen] {
+  border-right: 1px solid var(--border);
+}
+.style-ledger [data-airtable-block] [data-airtable-record]:hover > [data-slot="table-cell"],
+.style-ledger [data-airtable-block] [data-airtable-add-row]:hover > [data-slot="table-cell"] {
+  background-color: var(--ledger-surface-hover, var(--muted));
+}
+.style-ledger [data-airtable-block] [data-slot="table-row"][data-state="selected"] > [data-slot="table-cell"] {
+  background-color: color-mix(in oklab, var(--primary) 8%, var(--card));
+}
+/* The frozen column already has a 1px border-r; the cast shadow it gets once scrolled would draw a second edge. */
+.style-ledger [data-airtable-block] [data-frozen] {
+  box-shadow: none;
+}
+.style-ledger [data-airtable-block] [data-airtable-active-cell],
+.style-ledger [data-airtable-block] [data-slot="input"][data-cell] {
+  box-shadow: inset 0 0 0 2px var(--primary);
+}
+/* card-surface.css gives every input a frame and shadow while it is not focus-visible, at (0,5,0) to (0,6,0). A cell editor that loses focus
+   without closing would flip back to that frame, so the twin below repeats the block hook to outrank it (0,7,0). */
+.style-ledger [data-airtable-block][data-airtable-block] [data-slot="input"][data-cell]:not(:focus-visible):not([aria-invalid="true"]) {
+  border: 0;
+  box-shadow: inset 0 0 0 2px var(--primary);
+}
+/* The tab bar mixes the accent with its foreground (a grey slab once both are neutral). Ledger uses the accent itself, which is the card
+   surface by default, so an accent prop still wins and its labels (accentForeground) stay readable. */
+.style-ledger [data-airtable-block] [data-airtable-tabs] {
+  background-color: var(--at-accent);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Data table, grid variant: a 14px checkbox with a 4px corner, and the Ledger hover tint on pinned cells so they match the rest of the row. This file is unlayered and ships with the Another UI stylesheets, so it wins over the checkbox and cell utilities. */
+.style-ledger [data-slot="data-table"][data-variant="grid"] [data-slot="checkbox"] {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+}
+.style-ledger [data-slot="data-table"][data-variant="grid"] [data-slot="checkbox-indicator"] svg {
+  width: 10px;
+  height: 10px;
+}
+.style-ledger [data-slot="data-table"][data-variant="grid"] [data-slot="data-table-row"]:not([data-state="selected"]):hover > td.sticky {
+  background-color: var(--ledger-surface-hover, var(--muted));
+}

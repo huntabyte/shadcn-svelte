@@ -409,10 +409,6 @@ export const mainNavItems: NavItem[] = [
 		title: "Typeset",
 		href: "/typeset",
 	},
-	{
-		title: "Create",
-		href: "/create",
-	},
 ];
 
 export function getFullNavItems(): Array<SidebarNavItem & { index: number }> {

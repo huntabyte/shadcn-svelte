@@ -1,0 +1,16 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "font-heading-figtree",
+	"type": "registry:font",
+	"files": [],
+	"font": {
+		"family": "'Figtree Variable', sans-serif",
+		"provider": "google",
+		"import": "Figtree",
+		"variable": "--font-heading",
+		"subsets": [
+			"latin"
+		],
+		"dependency": "@fontsource-variable/figtree"
+	}
+}

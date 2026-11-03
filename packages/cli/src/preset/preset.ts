@@ -14,7 +14,9 @@ import { keys } from "../utils/utils.js";
 //   4. Stay under 53 bits total (JS safe integer limit).
 
 // Value arrays — order matters for backward compat. Never reorder, only append.
+// Another UI Svelte: ledger is the one style we ship and the default. The upstream names stay so existing preset codes still decode.
 export const PRESET_STYLES = [
+	"ledger",
 	"nova",
 	"vega",
 	"maia",
