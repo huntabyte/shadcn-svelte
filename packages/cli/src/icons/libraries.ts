@@ -29,9 +29,13 @@ export const iconLibraries = {
 		name: "tabler",
 		title: "Tabler",
 		packages: ["@tabler/icons-svelte"],
-		import: (icon) => `import { ${icon.name} } from '@tabler/icons-svelte';`,
+		// Deep imports avoid the package barrel, which re-exports ~6k components and is
+		// extremely slow to load in Vite dev (SSR compiles every re-exported component).
+		import: (icon) =>
+			`import ${icon.name} from '@tabler/icons-svelte/icons/${toTablerKebab(icon.name)}';`,
 		usage: (icon, restProps) => `<${icon.name} ${restProps} />`,
-		export: (icon) => `export { ${icon.name} } from '@tabler/icons-svelte';`,
+		export: (icon) =>
+			`export { default as ${icon.name} } from '@tabler/icons-svelte/icons/${toTablerKebab(icon.name)}';`,
 	},
 	hugeicons: {
 		name: "hugeicons",
@@ -67,6 +71,10 @@ export const iconLibraries = {
 
 function toLucideKebab(name: string): string {
 	return pascalToKebab(name).replace("-icon", "");
+}
+
+function toTablerKebab(name: string): string {
+	return pascalToKebab(name.startsWith("Icon") ? name.slice(4) : name);
 }
 
 function toPhosphorName(name: string): string {

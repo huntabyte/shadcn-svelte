@@ -1,5 +1,5 @@
+import { twMerge } from "cn";
 import postcss, { AtRule, Declaration, Root, Rule } from "postcss";
-import { twMerge } from "tailwind-merge";
 import type { CssSchema } from "../registry/schema.js";
 
 const TAB = "\t";

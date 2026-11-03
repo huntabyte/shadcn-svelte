@@ -25,7 +25,7 @@ test.concurrent.for(testCases)("registry-template $kind.type $variant", async (t
 
 	const utilsPath = path.resolve(cwd, "src/lib/utils.ts");
 	expect(fs.existsSync(utilsPath)).toBe(true);
-	expect(fs.readFileSync(utilsPath, "utf8")).toContain("twMerge");
+	expect(fs.readFileSync(utilsPath, "utf8")).toContain('from "cn"');
 
 	const registryPath = path.resolve(cwd, "registry.json");
 	expect(fs.existsSync(registryPath)).toBe(true);

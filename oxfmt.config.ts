@@ -7,7 +7,7 @@ export default defineConfig({
 	printWidth: 100,
 	sortTailwindcss: {
 		stylesheet: "./docs/src/app.css",
-		functions: ["cn", "clsx", "tv"],
+		functions: ["cn", "tv"],
 	},
 	// Adrian's opinionated import sorting. It's not perfect, but it's a decent starting point.
 	sortImports: {
@@ -105,7 +105,7 @@ export default defineConfig({
 		{
 			files: ["*.yaml", "*.yml"],
 			options: {
-				tabWidth: 4,
+				tabWidth: 2,
 				useTabs: false,
 			},
 		},

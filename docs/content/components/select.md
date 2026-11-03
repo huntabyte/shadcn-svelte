@@ -104,11 +104,48 @@ It reads the label from the matching `Select.Item`, which only exists in the DOM
 
 Without `items` the trigger falls back to the raw value, so you only need it when an item's label differs from its value.
 
-## Examples
+## Groups
 
-### Scrollable
+Use `Select.Group`, `Select.Label`, and `Select.Separator` to organize items.
+
+<ComponentPreview name="select-groups">
+
+<div></div>
+
+</ComponentPreview>
+
+## Scrollable
+
+A select with many items that scrolls.
 
 <ComponentPreview name="select-scrollable">
+
+<div></div>
+
+</ComponentPreview>
+
+## Disabled
+
+<ComponentPreview name="select-disabled">
+
+<div></div>
+
+</ComponentPreview>
+
+## Invalid
+
+Add the `data-invalid` attribute to the `Field.Field` component and the `aria-invalid` attribute to the `Select.Trigger` component to show an error state.
+
+```svelte showLineNumbers /data-invalid/ /aria-invalid/
+<Field.Field data-invalid>
+  <Field.Label>Fruit</Field.Label>
+  <Select.Trigger aria-invalid>
+    <Select.Value />
+  </Select.Trigger>
+</Field.Field>
+```
+
+<ComponentPreview name="select-invalid">
 
 <div></div>
 

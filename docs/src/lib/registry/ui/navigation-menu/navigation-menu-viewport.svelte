@@ -18,7 +18,10 @@
 		bind:ref
 		data-slot="navigation-menu-viewport"
 		class={cn(
-			"cn-navigation-menu-viewport origin-top-center relative mt-1.5 h-[calc(var(--bits-navigation-menu-viewport-height)+1rem)] w-full overflow-hidden md:w-[calc(var(--bits-navigation-menu-viewport-width)+1rem)]",
+			"cn-navigation-menu-viewport origin-top-center relative mt-1.5 w-full overflow-hidden",
+			// parity-ignore-upstream: h-(--radix-navigation-menu-viewport-height) md:w-(--radix-navigation-menu-viewport-width) | Bits viewport is sized 1rem larger than the measured content (kept from the initial port)
+			// parity-ignore: Bits viewport is sized 1rem larger than the measured content (kept from the initial port)
+			"h-[calc(var(--bits-navigation-menu-viewport-height)+1rem)] md:w-[calc(var(--bits-navigation-menu-viewport-width)+1rem)]",
 			className
 		)}
 		{...restProps}

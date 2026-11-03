@@ -80,9 +80,7 @@ Copy and paste the following code into your project.
 </Carousel.Root>
 ```
 
-## Examples
-
-### Sizes
+## Sizes
 
 To set the size of the items, you can use the `basis` utility class on the `<Carousel.Item />`.
 
@@ -114,7 +112,7 @@ To set the size of the items, you can use the `basis` utility class on the `<Car
 </Carousel.Root>
 ```
 
-### Spacing
+## Spacing
 
 To set the spacing between the items, we use a `ps-[VALUE]` utility on the `<Carousel.Item />` and a negative `-ms-[VALUE]` on the `<Carousel.Content />`.
 
@@ -144,7 +142,7 @@ To set the spacing between the items, we use a `ps-[VALUE]` utility on the `<Car
 </Carousel.Root>
 ```
 
-### Orientation
+## Orientation
 
 Use the `orientation` prop to set the orientation of the carousel.
 
@@ -185,7 +183,7 @@ You can pass options to the carousel using the `opts` prop. See the [Embla Carou
 
 ## API
 
-Use reactive state and the `setApi` callback to get an instance of the carousel API.
+Use reactive state and the `setApi` prop to get an instance of the carousel API.
 
 <ComponentPreview name="carousel-api">
 
@@ -223,7 +221,7 @@ Use reactive state and the `setApi` callback to get an instance of the carousel 
 
 ## Events
 
-You can listen to events using the api instance from `bind:api`.
+You can listen to events using the api instance from `setApi`.
 
 ```svelte showLineNumbers {2,5,7-13,16}
 <script lang="ts">
@@ -235,7 +233,7 @@ You can listen to events using the api instance from `bind:api`.
   $effect(() => {
     if (api) {
       api.on("select", () => {
-        // do something
+        // Do something on select.
       });
     }
   });
@@ -249,6 +247,8 @@ You can listen to events using the api instance from `bind:api`.
   </Carousel.Content>
 </Carousel.Root>
 ```
+
+See the [Embla Carousel docs](https://www.embla-carousel.com/docs/v8/api/events) for more information on using events.
 
 ## Plugins
 

@@ -10,7 +10,7 @@
 	<Sidebar.Inset>
 		<header class="sticky top-0 flex h-16 shrink-0 items-center gap-2 border-b bg-background px-4">
 			<Sidebar.Trigger class="-ms-1" />
-			<Separator orientation="vertical" class="me-2 h-4" />
+			<Separator orientation="vertical" class="me-2 data-vertical:h-4 data-vertical:self-auto" />
 			<Breadcrumb.Root>
 				<Breadcrumb.List>
 					<Breadcrumb.Item class="hidden md:block">

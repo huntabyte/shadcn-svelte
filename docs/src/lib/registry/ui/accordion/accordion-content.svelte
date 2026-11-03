@@ -10,6 +10,7 @@
 	}: WithoutChild<AccordionPrimitive.ContentProps> = $props();
 </script>
 
+<!-- parity-ignore-upstream: h-(--radix-accordion-content-height) | Radix leaves the height var unset until measured; Bits initializes it to 0px, so pinning the inner height to it would collapse the content before the first measurement -->
 <AccordionPrimitive.Content
 	bind:ref
 	data-slot="accordion-content"

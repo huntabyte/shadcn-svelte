@@ -5,6 +5,6 @@
 	let { children } = $props();
 </script>
 
-<DesignSystemProvider>
+<DesignSystemProvider applyToDocument={false}>
 	{@render children()}
 </DesignSystemProvider>

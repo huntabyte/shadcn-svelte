@@ -71,3 +71,20 @@ Copy and paste the following code into your project.
   </NavigationMenu.List>
 </NavigationMenu.Root>
 ```
+
+## Link Component
+
+Use the `href` prop on `NavigationMenu.Link` to render a link. You can style it like a trigger with `navigationMenuTriggerStyle()`.
+
+```svelte showLineNumbers
+<script lang="ts">
+  import * as NavigationMenu from "$lib/components/ui/navigation-menu/index.js";
+  import { navigationMenuTriggerStyle } from "$lib/components/ui/navigation-menu/navigation-menu-trigger.svelte";
+</script>
+
+<NavigationMenu.Item>
+  <NavigationMenu.Link href="/docs" class={navigationMenuTriggerStyle()}>
+    Documentation
+  </NavigationMenu.Link>
+</NavigationMenu.Item>
+```

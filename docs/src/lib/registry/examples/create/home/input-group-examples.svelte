@@ -182,7 +182,7 @@
 					</DropdownMenu.Content>
 				</DropdownMenu.Root>
 				<InputGroup.Text class="ml-auto">52% used</InputGroup.Text>
-				<Separator orientation="vertical" class="h-4!" />
+				<Separator orientation="vertical" class="data-vertical:h-4 data-vertical:self-auto" />
 				<InputGroup.Button
 					variant="default"
 					class="rounded-full style-lyra:rounded-none"

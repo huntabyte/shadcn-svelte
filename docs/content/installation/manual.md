@@ -23,7 +23,7 @@ Use the `sv` CLI to add Tailwind CSS to your project.
 
 Add the following dependencies to your project:
 
-<PMInstall command="tailwind-variants clsx tailwind-merge tw-animate-css -D" />
+<PMInstall command="tailwind-variants cn tw-animate-css -D" />
 
 ### Add icon library
 
@@ -153,10 +153,13 @@ Add the following to your global CSS file. You can learn more about using CSS va
 }
 
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -208,12 +211,7 @@ Feel free to add or modify as needed to suit your project.
 You'll want to create a `cn` helper to make it easier to conditionally add and merge Tailwind CSS classes.
 
 ```ts title="src/lib/utils.ts" showLineNumbers
-import { type ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+export { cn } from "cn";
 ```
 
 ### Import styles to your app

@@ -24,18 +24,18 @@
 </script>
 
 <div class="flex w-full max-w-md flex-col gap-6">
-	<div class="flex w-full max-w-md flex-col gap-4">
-		{#each music as song (song)}
-			<Item.Root variant="outline">
+	<Item.Group class="gap-4">
+		{#each music as song (song.title)}
+			<Item.Root variant="outline" role="listitem">
 				{#snippet child({ props })}
-					<a href="#/" {...props}>
+					<a href="##" {...props}>
 						<Item.Media variant="image">
 							<img
 								src={`https://avatar.vercel.sh/${song.title}`}
 								alt={song.title}
-								width="32"
-								height="32"
-								class="size-8 rounded object-cover grayscale"
+								width={32}
+								height={32}
+								class="object-cover grayscale"
 							/>
 						</Item.Media>
 						<Item.Content>
@@ -52,5 +52,5 @@
 				{/snippet}
 			</Item.Root>
 		{/each}
-	</div>
+	</Item.Group>
 </div>

@@ -112,20 +112,20 @@ describe("installDependencies", () => {
 	it("installs with -D when the package already lives in devDependencies", async () => {
 		vi.mocked(project.getPackageInfo).mockReturnValue({
 			dependencies: {},
-			devDependencies: { clsx: "^1.0.0" },
+			devDependencies: { cn: "^1.0.0" },
 		} as ReturnType<typeof project.getPackageInfo>);
 
 		await installDependencies({
 			cwd: "/test",
 			prompt: false,
 			silent: true,
-			dependencies: ["clsx@^2.0.0"],
+			dependencies: ["cn@^2.0.0"],
 			devDependencies: [],
 		});
 
 		expect(exec).toHaveBeenCalledTimes(1);
 		expect(args()[0]).toContain("-D");
-		expect(args()[0]).toContain("clsx@^2.0.0");
+		expect(args()[0]).toContain("cn@^2.0.0");
 	});
 
 	it("writes package.json without running pm add when install is false", async () => {
@@ -139,7 +139,7 @@ describe("installDependencies", () => {
 			prompt: false,
 			silent: true,
 			install: false,
-			dependencies: ["clsx@latest"],
+			dependencies: ["cn@latest"],
 			devDependencies: [],
 		});
 
@@ -148,7 +148,7 @@ describe("installDependencies", () => {
 
 		const written = vi.mocked(fs.writeFileSync).mock.calls[0]![1] as string;
 		const parsed = JSON.parse(written) as { dependencies: Record<string, string> };
-		expect(parsed.dependencies.clsx).toBe("^2.1.1");
+		expect(parsed.dependencies.cn).toBe("^2.1.1");
 		expect(written.endsWith("\n")).toBe(true);
 		expect(written).toContain("\t");
 	});
@@ -164,20 +164,20 @@ describe("installDependencies", () => {
 			prompt: false,
 			silent: true,
 			install: false,
-			dependencies: ["clsx@next"],
+			dependencies: ["cn@next"],
 			devDependencies: [],
 		});
 
 		expect(exec).toHaveBeenCalledWith(
 			"pnpm",
-			["view", "clsx@next", "version"],
+			["view", "cn@next", "version"],
 			expect.objectContaining({ nodeOptions: { cwd: "/test" } })
 		);
 
 		const written = JSON.parse(vi.mocked(fs.writeFileSync).mock.calls[0]![1] as string) as {
 			dependencies: Record<string, string>;
 		};
-		expect(written.dependencies.clsx).toBe("^2.0.0-next.0");
+		expect(written.dependencies.cn).toBe("^2.0.0-next.0");
 	});
 
 	it("falls back to writing the tag as-is when view resolution fails", async () => {
@@ -188,14 +188,14 @@ describe("installDependencies", () => {
 			prompt: false,
 			silent: true,
 			install: false,
-			dependencies: ["clsx@latest"],
+			dependencies: ["cn@latest"],
 			devDependencies: [],
 		});
 
 		const written = JSON.parse(vi.mocked(fs.writeFileSync).mock.calls[0]![1] as string) as {
 			dependencies: Record<string, string>;
 		};
-		expect(written.dependencies.clsx).toBe("latest");
+		expect(written.dependencies.cn).toBe("latest");
 	});
 
 	it("does not rewrite satisfied entries when install is false", async () => {
@@ -243,30 +243,30 @@ describe("installDependencies", () => {
 			prompt: false,
 			silent: true,
 			install: false,
-			dependencies: ["clsx@latest"],
+			dependencies: ["cn@latest"],
 			devDependencies: [],
 		});
 
 		expect(exec).toHaveBeenCalledWith(
 			"npm",
-			["view", "clsx@latest", "version"],
+			["view", "cn@latest", "version"],
 			expect.objectContaining({ nodeOptions: { cwd: "/test" } })
 		);
 
 		const written = JSON.parse(vi.mocked(fs.writeFileSync).mock.calls[0]![1] as string) as {
 			dependencies: Record<string, string>;
 		};
-		expect(written.dependencies.clsx).toBe("^2.1.1");
+		expect(written.dependencies.cn).toBe("^2.1.1");
 	});
 
 	it("leaves a package in dependencies when a satisfied version is targeted as a devDependency", async () => {
 		vi.mocked(project.getPackageInfo).mockReturnValue({
-			dependencies: { clsx: "^2.1.0" },
+			dependencies: { cn: "^2.1.0" },
 			devDependencies: {},
 		} as ReturnType<typeof project.getPackageInfo>);
 		vi.mocked(fs.readFileSync).mockReturnValue(
 			packageJson({
-				dependencies: { clsx: "^2.1.0" },
+				dependencies: { cn: "^2.1.0" },
 				devDependencies: {},
 			})
 		);
@@ -277,7 +277,7 @@ describe("installDependencies", () => {
 			silent: true,
 			install: false,
 			dependencies: [],
-			devDependencies: ["clsx@^2.0.0"],
+			devDependencies: ["cn@^2.0.0"],
 		});
 
 		expect(exec).not.toHaveBeenCalled();

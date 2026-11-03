@@ -14,7 +14,7 @@
 		<Button class="size-8" variant="ghost" size="icon" onclick={sidebar.toggle}>
 			<SidebarIcon />
 		</Button>
-		<Separator orientation="vertical" class="me-2 h-4" />
+		<Separator orientation="vertical" class="me-2 data-vertical:h-4 data-vertical:self-auto" />
 		<Breadcrumb.Root class="hidden sm:block">
 			<Breadcrumb.List>
 				<Breadcrumb.Item>

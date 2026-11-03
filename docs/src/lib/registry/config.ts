@@ -269,8 +269,7 @@ export function buildRegistryBase(config: PresetConfig) {
 	// Dependencies added on init
 	const devDependencies = [
 		"tailwind-variants",
-		"clsx",
-		"tailwind-merge",
+		"cn",
 		"tw-animate-css",
 		"shadcn-svelte@latest",
 		...iconLibraryItem.packages,
