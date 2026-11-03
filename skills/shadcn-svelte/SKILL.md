@@ -187,7 +187,7 @@ Open `https://shadcn-svelte.com/docs/components/<name>.md` for docs and examples
 
 When the user asks for a design system from a `DESIGN.md` (or a brand spec), with or without a preset, follow [design-system.md](./design-system.md) end to end:
 
-1. For a new app, scaffold SvelteKit with `npx sv create <app>` (or Svelte + Vite when requested), then initialize with `npx shadcn-svelte@latest init --preset <code>`. Without a code, choose a style through `init`; React preset codes and scaffolding flags do not apply. In an existing app, preserve local customizations.
+1. For a new app, scaffold SvelteKit with `npx sv create <app>` (or Svelte + Vite when requested), then initialize with `npx shadcn-svelte@latest init --preset <code>`. Without a code, pick a style that fits the DESIGN.md and pass its name, e.g. `init --preset luma`; React preset codes and scaffolding flags do not apply. In an existing app, preserve local customizations.
 2. Install every component with `add --all --yes` in a new app; add only missing components in an existing one.
 3. Read the DESIGN.md frontmatter, Do's and Don'ts, and Known Gaps before editing.
 4. Map its tokens onto the variables in `components.json`'s `tailwind.css`. Pin the radius scale, shadows, fonts and `type-*` utilities.

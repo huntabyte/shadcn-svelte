@@ -20,12 +20,12 @@ Trigger phrases: "build me a design system using <preset>", "apply this DESIGN.m
 
 ## Inputs to Confirm
 
-| Input     | Default                                  | Notes                                                                                                                                                            |
-| --------- | ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Preset    | Optional                                 | An encoded **shadcn-svelte** preset from [the builder](https://shadcn-svelte.com/create). Pass it through unchanged. React preset codes are not interchangeable. |
-| DESIGN.md | Required                                 | A path, URL or pasted content. Keep a copy in the app root as `DESIGN.md`.                                                                                       |
-| App       | Existing project, or a new SvelteKit app | Use Svelte + Vite when requested.                                                                                                                                |
-| App name  | Derived from the brand in DESIGN.md      | Kebab-case.                                                                                                                                                      |
+| Input     | Default                                  | Notes                                                                                                                                                                                           |
+| --------- | ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Preset    | Optional                                 | An encoded **shadcn-svelte** preset from [the builder](https://shadcn-svelte.com/create), or a style name (e.g. `luma`). Pass it through unchanged. React preset codes are not interchangeable. |
+| DESIGN.md | Required                                 | A path, URL or pasted content. Keep a copy in the app root as `DESIGN.md`.                                                                                                                      |
+| App       | Existing project, or a new SvelteKit app | Use Svelte + Vite when requested.                                                                                                                                                               |
+| App name  | Derived from the brand in DESIGN.md      | Kebab-case.                                                                                                                                                                                     |
 
 If the DESIGN.md path cannot be read, ask for an accessible copy. Do not guess its contents.
 
@@ -48,7 +48,7 @@ Then initialize with the user's shadcn-svelte preset:
 npx shadcn-svelte@latest init --preset <code>
 ```
 
-Without a preset, run `npx shadcn-svelte@latest init` and select a style based on the DESIGN.md. Use a builder-generated preset if unattended initialization is required. Do not invent a preset string or pass a bare style name to `--preset`.
+Without a preset code, select a style based on the DESIGN.md (see "Picking a style" below) and pass its name: `npx shadcn-svelte@latest init --preset luma`. Style names are exact and lowercase. Do not invent a preset code; a value that is neither a style name nor a builder code makes `init` fail. `init` still prompts for the global CSS path and import aliases unless `--css` and the `--*-alias` flags are passed.
 
 The shadcn-svelte CLI initializes an existing project; it has no React `--template`, `--name`, `--base`, `--no-monorepo`, or `init -y` flags, and no `info` command. Read `style`, `iconLibrary`, `tailwind.css` and `aliases` from `components.json` instead. Use the project's package runner for every command (see [cli.md](./cli.md)).
 

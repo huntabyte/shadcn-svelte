@@ -84,8 +84,8 @@
 			"expected_output": "A new SvelteKit app initialized with a suitable style, themed from DESIGN.md, and a full design system page.",
 			"files": [],
 			"expectations": [
-				"Picks a style based on geometry and explains the reason, using init prompts or a builder-generated Svelte preset",
-				"Does not invent a preset code or pass bare style names or React preset codes to --preset",
+				"Picks a style based on geometry and explains the reason, and initializes with init --preset <style name> or a builder-generated Svelte preset",
+				"Does not invent a preset code or pass React preset codes to --preset",
 				"Uses components.json for aliases, style, icons and tailwind.css instead of info --json",
 				"Builds foundations, component examples and state matrices, edge cases, do/dont pairs and recipes",
 				"Reports all body-text contrast pairs below 4.5:1, including pairs specified by DESIGN.md",
