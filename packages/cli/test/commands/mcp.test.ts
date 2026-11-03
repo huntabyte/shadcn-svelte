@@ -1,0 +1,359 @@
+import fs from "node:fs";
+import path from "node:path";
+import process from "node:process";
+import { tmpdir } from "node:os";
+import * as p from "@clack/prompts";
+import * as jsonc from "jsonc-parser/lib/esm/main.js";
+import { Command } from "commander";
+import { exec } from "tinyexec";
+import { afterEach, expect, it, vi } from "vitest";
+import { mcp, runMcpInit } from "../../src/commands/mcp/index.js";
+import { detectPM } from "../../src/utils/auto-detect.js";
+import { getDependencyPackageInfo } from "../../src/utils/get-package-info.js";
+
+vi.mock("@clack/prompts", async (importOriginal) => ({
+	...(await importOriginal<typeof import("@clack/prompts")>()),
+	select: vi.fn(async () => "claude"),
+}));
+
+vi.mock("tinyexec", () => ({
+	exec: vi.fn(async () => ({ stdout: "", stderr: "", exitCode: 0 })),
+}));
+
+vi.mock("../../src/utils/auto-detect.js", () => ({
+	detectPM: vi.fn(async () => undefined),
+}));
+
+// pnpm's bin shims set NODE_PATH to this monorepo's store, where Node's lookup would find
+// the workspace's `@shadcn-svelte/mcp` from any directory.
+vi.mock("../../src/utils/get-package-info.js", async (importOriginal) => ({
+	...(await importOriginal<typeof import("../../src/utils/get-package-info.js")>()),
+	getDependencyPackageInfo: vi.fn(() => undefined),
+}));
+
+vi.spyOn(process, "exit").mockImplementation(() => undefined as never);
+const message = vi.spyOn(p.log, "message");
+
+const tempDirs: string[] = [];
+
+function createTempDir(prefix: string) {
+	const dir = fs.mkdtempSync(path.join(tmpdir(), prefix));
+	tempDirs.push(dir);
+	return dir;
+}
+
+afterEach(() => {
+	vi.mocked(exec).mockClear();
+	vi.mocked(detectPM).mockReset();
+	vi.mocked(detectPM).mockResolvedValue(undefined);
+	vi.mocked(getDependencyPackageInfo).mockReset();
+	vi.mocked(getDependencyPackageInfo).mockReturnValue(undefined);
+	vi.mocked(process.exit).mockClear();
+	message.mockClear();
+	for (const dir of tempDirs.splice(0)) {
+		fs.rmSync(dir, { recursive: true, force: true });
+	}
+});
+
+it("runs @shadcn-svelte/mcp through the package manager in the requested directory", async () => {
+	vi.mocked(detectPM).mockResolvedValue("pnpm");
+	const cwd = createTempDir("shadcn-svelte-mcp-");
+	const program = new Command();
+	program.addCommand(mcp);
+
+	await program.parseAsync(["node", "shadcn-svelte", "mcp", "-c", cwd]);
+
+	expect(exec).toHaveBeenCalledWith("pnpm", ["dlx", "@shadcn-svelte/mcp@latest"], {
+		nodeOptions: { cwd: path.resolve(cwd), stdio: "inherit" },
+	});
+	expect(process.exit).toHaveBeenCalledWith(0);
+});
+
+it.each<string | Record<string, string>>([
+	{ "shadcn-sv-mcp": "./dist/index.mjs" },
+	{ renamed: "./dist/index.mjs" },
+	"./dist/index.mjs",
+])("prefers the @shadcn-svelte/mcp installed in the project (bin: %j)", async (bin) => {
+	vi.mocked(detectPM).mockResolvedValue("pnpm");
+	const cwd = createTempDir("shadcn-svelte-mcp-local-");
+	const pkgDir = path.join(cwd, "node_modules", "@shadcn-svelte", "mcp");
+	vi.mocked(getDependencyPackageInfo).mockReturnValue({
+		pkg: { name: "@shadcn-svelte/mcp", bin },
+		path: path.join(pkgDir, "package.json"),
+	});
+	const program = new Command();
+	program.addCommand(mcp);
+
+	await program.parseAsync(["node", "shadcn-svelte", "mcp", "-c", cwd]);
+
+	expect(getDependencyPackageInfo).toHaveBeenCalledWith(path.resolve(cwd), "@shadcn-svelte/mcp");
+	expect(exec).toHaveBeenCalledWith(process.execPath, [path.join(pkgDir, "dist", "index.mjs")], {
+		nodeOptions: { cwd: path.resolve(cwd), stdio: "inherit" },
+	});
+});
+
+it("writes a cursor config that runs through npx when no package manager is detected", async () => {
+	const cwd = createTempDir("shadcn-svelte-mcp-init-");
+	const program = new Command();
+	program.addCommand(mcp);
+
+	await program.parseAsync([
+		"node",
+		"shadcn-svelte",
+		"mcp",
+		"-c",
+		cwd,
+		"init",
+		"--client",
+		"cursor",
+	]);
+
+	const config = JSON.parse(fs.readFileSync(path.join(cwd, ".cursor/mcp.json"), "utf8"));
+	expect(config).toEqual({
+		mcpServers: {
+			"shadcn-svelte": {
+				command: "npx",
+				args: ["@shadcn-svelte/mcp@latest"],
+			},
+		},
+	});
+});
+
+it("uses the detected package manager to run the server", async () => {
+	vi.mocked(detectPM).mockResolvedValue("pnpm");
+	const cwd = createTempDir("shadcn-svelte-mcp-pnpm-");
+	const program = new Command();
+	program.addCommand(mcp);
+
+	await program.parseAsync([
+		"node",
+		"shadcn-svelte",
+		"mcp",
+		"-c",
+		cwd,
+		"init",
+		"--client",
+		"cursor",
+	]);
+
+	const config = JSON.parse(fs.readFileSync(path.join(cwd, ".cursor/mcp.json"), "utf8"));
+	expect(config.mcpServers["shadcn-svelte"]).toEqual({
+		command: "pnpm",
+		args: ["dlx", "@shadcn-svelte/mcp@latest"],
+	});
+});
+
+it("runs the server through npx for Yarn Berry", async () => {
+	vi.mocked(detectPM).mockResolvedValue("yarn@berry");
+	const cwd = createTempDir("shadcn-svelte-mcp-yarn-");
+	const program = new Command();
+	program.addCommand(mcp);
+
+	await program.parseAsync([
+		"node",
+		"shadcn-svelte",
+		"mcp",
+		"-c",
+		cwd,
+		"init",
+		"--client",
+		"cursor",
+	]);
+
+	const config = JSON.parse(fs.readFileSync(path.join(cwd, ".cursor/mcp.json"), "utf8"));
+	expect(config.mcpServers["shadcn-svelte"]).toEqual({
+		command: "npx",
+		args: ["@shadcn-svelte/mcp@latest"],
+	});
+});
+
+// `--client` is only optional with a terminal, which is checked when the command is defined.
+async function importMcpWithTTY(isTTY: boolean) {
+	const original = Object.getOwnPropertyDescriptor(process.stdin, "isTTY");
+	Object.defineProperty(process.stdin, "isTTY", { value: isTTY, configurable: true });
+	vi.resetModules();
+	try {
+		const { mcp } = await import("../../src/commands/mcp/index.js");
+		const program = new Command();
+		program.addCommand(mcp);
+		mcp.commands
+			.find((command) => command.name() === "init")!
+			.exitOverride()
+			.configureOutput({ writeErr: () => {} });
+		return program;
+	} finally {
+		if (original) Object.defineProperty(process.stdin, "isTTY", original);
+		else delete (process.stdin as { isTTY?: boolean }).isTTY;
+	}
+}
+
+it("requires `--client` without a terminal", async () => {
+	const cwd = createTempDir("shadcn-svelte-mcp-no-tty-");
+	const program = await importMcpWithTTY(false);
+
+	await expect(
+		program.parseAsync(["node", "shadcn-svelte", "mcp", "-c", cwd, "init"])
+	).rejects.toMatchObject({ code: "commander.missingMandatoryOptionValue" });
+	expect(fs.readdirSync(cwd)).toEqual([]);
+});
+
+it("asks for the client with a terminal", async () => {
+	const cwd = createTempDir("shadcn-svelte-mcp-tty-");
+	const program = await importMcpWithTTY(true);
+
+	// The mocked prompt answers "claude".
+	await program.parseAsync(["node", "shadcn-svelte", "mcp", "-c", cwd, "init"]);
+
+	expect(fs.existsSync(path.join(cwd, ".mcp.json"))).toBe(true);
+});
+
+it.each([{ args: ["init", "--client", "claude"] }, { args: [] }])(
+	"refuses a directory that doesn't exist (mcp $args)",
+	async ({ args }) => {
+		const cwd = path.join(createTempDir("shadcn-svelte-mcp-missing-"), "missing");
+		const program = new Command();
+		program.addCommand(mcp);
+
+		await program.parseAsync(["node", "shadcn-svelte", "mcp", "-c", cwd, ...args]);
+
+		expect(process.exit).toHaveBeenCalledWith(1);
+		expect(fs.existsSync(cwd)).toBe(false);
+		expect(exec).not.toHaveBeenCalled();
+	}
+);
+
+it("merges into an existing client config and replaces command arrays", async () => {
+	const cwd = createTempDir("shadcn-svelte-mcp-merge-");
+	await runMcpInit({ client: "opencode", cwd });
+
+	const configPath = path.join(cwd, "opencode.json");
+	const existing = JSON.parse(fs.readFileSync(configPath, "utf8"));
+	existing.mcp.other = { type: "local", command: ["stay"] };
+	existing.mcp["shadcn-svelte"].command = ["old"];
+	fs.writeFileSync(configPath, JSON.stringify(existing));
+
+	await runMcpInit({ client: "opencode", cwd });
+
+	const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
+	expect(config.mcp.other).toEqual({ type: "local", command: ["stay"] });
+	expect(config.mcp["shadcn-svelte"].command).toEqual(["npx", "@shadcn-svelte/mcp@latest"]);
+});
+
+it("keeps comments and other servers when updating a JSONC config", async () => {
+	const cwd = createTempDir("shadcn-svelte-mcp-jsonc-");
+	const configPath = path.join(cwd, ".vscode/mcp.json");
+	fs.mkdirSync(path.dirname(configPath));
+	fs.writeFileSync(
+		configPath,
+		`{
+	// my servers
+	"servers": {
+		"github": { "type": "http", "url": "https://api.githubcopilot.com/mcp/" },
+	},
+	"inputs": [],
+}
+`
+	);
+
+	await runMcpInit({ client: "vscode", cwd });
+
+	const content = fs.readFileSync(configPath, "utf8");
+	expect(content).toContain("// my servers");
+	expect(jsonc.parse(content)).toEqual({
+		servers: {
+			github: { type: "http", url: "https://api.githubcopilot.com/mcp/" },
+			"shadcn-svelte": { command: "npx", args: ["@shadcn-svelte/mcp@latest"] },
+		},
+		inputs: [],
+	});
+});
+
+it("refuses to overwrite a config it can't parse", async () => {
+	const cwd = createTempDir("shadcn-svelte-mcp-invalid-");
+	const configPath = path.join(cwd, ".mcp.json");
+	const broken = `{\n\t"mcpServers": {\n`;
+	fs.writeFileSync(configPath, broken);
+
+	await expect(runMcpInit({ client: "claude", cwd })).rejects.toThrow(/Failed to parse/);
+	expect(fs.readFileSync(configPath, "utf8")).toBe(broken);
+});
+
+it("adds the server to Codex with `codex mcp add`", async () => {
+	const cwd = createTempDir("shadcn-svelte-mcp-codex-");
+	const program = new Command();
+	program.addCommand(mcp);
+
+	await program.parseAsync([
+		"node",
+		"shadcn-svelte",
+		"mcp",
+		"-c",
+		cwd,
+		"init",
+		"--client",
+		"codex",
+	]);
+
+	expect(exec).toHaveBeenCalledWith(
+		"codex",
+		["mcp", "add", "shadcn-svelte", "--", "npx", "@shadcn-svelte/mcp@latest"],
+		{ nodeOptions: { cwd: path.resolve(cwd) } }
+	);
+	expect(message).not.toHaveBeenCalledWith(expect.stringContaining("[mcp_servers.shadcn-svelte]"));
+	expect(fs.existsSync(path.join(cwd, ".codex/config.toml"))).toBe(false);
+	expect(process.exit).not.toHaveBeenCalled();
+});
+
+it("prints Codex instructions when Codex isn't installed", async () => {
+	vi.mocked(exec).mockRejectedValueOnce(
+		Object.assign(new Error("spawn codex ENOENT"), { code: "ENOENT" })
+	);
+	const cwd = createTempDir("shadcn-svelte-mcp-codex-manual-");
+	const program = new Command();
+	program.addCommand(mcp);
+
+	await program.parseAsync([
+		"node",
+		"shadcn-svelte",
+		"mcp",
+		"-c",
+		cwd,
+		"init",
+		"--client",
+		"codex",
+	]);
+
+	expect(message).toHaveBeenCalledWith(
+		expect.stringContaining(`args = ["@shadcn-svelte/mcp@latest"]`)
+	);
+	expect(fs.existsSync(path.join(cwd, ".codex/config.toml"))).toBe(false);
+	expect(process.exit).not.toHaveBeenCalled();
+});
+
+it("shows Codex's error and the instructions when `codex mcp add` fails", async () => {
+	vi.mocked(exec).mockResolvedValueOnce({
+		stdout: "",
+		stderr: "Error: failed to load bootstrap configuration\n",
+		exitCode: 1,
+	});
+	const cwd = createTempDir("shadcn-svelte-mcp-codex-error-");
+	const program = new Command();
+	program.addCommand(mcp);
+
+	await program.parseAsync([
+		"node",
+		"shadcn-svelte",
+		"mcp",
+		"-c",
+		cwd,
+		"init",
+		"--client",
+		"codex",
+	]);
+
+	expect(message).toHaveBeenCalledWith("Error: failed to load bootstrap configuration");
+	expect(message).toHaveBeenCalledWith(
+		expect.stringContaining(`args = ["@shadcn-svelte/mcp@latest"]`)
+	);
+	expect(process.exit).not.toHaveBeenCalled();
+});
