@@ -3,7 +3,7 @@ import { fetch } from "node-fetch-native";
 import { createProxy } from "node-fetch-native/proxy";
 import { parse as parseCss } from "postcss";
 import * as schemas from "../../schema/index.js";
-import { OFFICIAL_REGISTRY_URL } from "../../constants.js";
+import { OFFICIAL_REGISTRY_URL, TW3_SITE_BASE_URL } from "../../constants.js";
 import { BASE_COLORS, type ResolvedConfig } from "../config/index.js";
 import { CLIError, error } from "../errors.js";
 import { getEnvProxy } from "../get-env-proxy.js";
@@ -15,6 +15,9 @@ export function getRegistryUrl(config: { registry: string; style?: string }) {
 		return process.env.COMPONENTS_REGISTRY_URL;
 	}
 	const url = process.env.REGISTRY_URL ?? config.registry;
+
+	// the legacy TW3 registry is already scoped to a style: `<TW3_SITE_BASE_URL>/registry/<style>`
+	if (url.startsWith(TW3_SITE_BASE_URL)) return url;
 
 	return new URL(url + `/styles/${config.style ?? "vega"}`).toString();
 }

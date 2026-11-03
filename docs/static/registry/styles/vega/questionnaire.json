@@ -3,7 +3,7 @@
 	"name": "questionnaire",
 	"type": "registry:ui",
 	"devDependencies": [
-		"@shadcn-svelte/primitives@^0.0.0"
+		"@shadcn-svelte/primitives@^0.0.1"
 	],
 	"registryDependencies": [
 		"button"

@@ -1,4 +1,4 @@
-import { components, forms, installation, migration, utils } from "$content/index.js";
+import { aiElements, components, forms, installation, migration, utils } from "$content/index.js";
 import type { Component } from "svelte";
 
 export type NavItem = {
@@ -18,16 +18,7 @@ export type NavItemWithChildren = NavItem & {
 	items: NavItemWithChildren[];
 };
 
-export const PAGES_NEW = [
-	"/docs/utils/scroll-fade",
-	"/docs/utils/shimmer",
-	"/docs/components/message",
-	"/docs/components/bubble",
-	"/docs/components/attachment",
-	"/docs/components/marker",
-	"/docs/components/questionnaire",
-	"/docs/components/message-scroller",
-];
+export const PAGES_NEW = ["/docs/components/trace", "/docs/components/code-block"];
 
 export const PAGES_UPDATED: string[] = [];
 
@@ -41,6 +32,11 @@ function generateSectionsNav(): SidebarNavItem[] {
 		{
 			title: "Components",
 			href: "/docs/components",
+			items: [],
+		},
+		{
+			title: "AI Elements",
+			href: "/docs/ai-elements",
 			items: [],
 		} /*
 		{
@@ -58,6 +54,11 @@ function generateSectionsNav(): SidebarNavItem[] {
 			href: "/docs/forms",
 			items: [],
 			},*/,
+		{
+			title: "Typeset",
+			href: "/docs/typeset",
+			items: [],
+		},
 		{
 			title: "Skills",
 			href: "/docs/skills",
@@ -93,6 +94,11 @@ function generateGetStartedNav(): SidebarNavItem[] {
 		{
 			title: "Theming",
 			href: "/docs/theming",
+			items: [],
+		},
+		{
+			title: "Typeset",
+			href: "/docs/typeset",
 			items: [],
 		},
 		{
@@ -212,6 +218,30 @@ function generateDarkModeNav(): SidebarNavItem[] {
 	return darkModeNavItems;
 }
 
+function generateAiElementsNav(): SidebarNavItem[] {
+	const aiElementsNavItems: SidebarNavItem[] = [
+		{
+			title: "Introduction",
+			href: "/docs/ai-elements",
+			items: [],
+		},
+	];
+
+	const sorted = [...aiElements]
+		.filter((doc) => doc.path !== "ai-elements")
+		.sort((a, b) => a.title.localeCompare(b.title));
+
+	for (const doc of sorted) {
+		aiElementsNavItems.push({
+			title: doc.title,
+			href: `/docs/${doc.path}`,
+			items: [],
+		});
+	}
+
+	return aiElementsNavItems;
+}
+
 function generateUtilsNav(): SidebarNavItem[] {
 	const utilsNavItems: SidebarNavItem[] = [];
 
@@ -311,6 +341,7 @@ const installationNav = generateInstallationNav();
 const darkModeNav = generateDarkModeNav();
 const registryNav = generateRegistryNav();
 const utilsNav = generateUtilsNav();
+const aiElementsNav = generateAiElementsNav();
 const formsNav = generateFormsNav();
 
 export const sidebarNavItems: SidebarNavItem[] = [
@@ -321,6 +352,10 @@ export const sidebarNavItems: SidebarNavItem[] = [
 	{
 		title: "Components",
 		items: componentsNav.filter((item) => item.title !== "Components"),
+	},
+	{
+		title: "AI Elements",
+		items: aiElementsNav,
 	},
 	{
 		title: "Get Started",
@@ -372,6 +407,10 @@ export const mainNavItems: NavItem[] = [
 		href: "/charts/area",
 	},
 	{
+		title: "Typeset",
+		href: "/typeset",
+	},
+	{
 		title: "Create",
 		href: "/create",
 	},
@@ -380,6 +419,7 @@ export const mainNavItems: NavItem[] = [
 export function getFullNavItems(): Array<SidebarNavItem & { index: number }> {
 	return [
 		...componentsNav,
+		...aiElementsNav,
 		...getStartedNav,
 		...utilsNav,
 		...installationNav.filter((item) => item.title !== "Installation"),

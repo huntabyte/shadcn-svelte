@@ -17,7 +17,7 @@ export {
 	Trigger,
 	Viewport,
 	//
-	Root as NavigationMenuRoot,
+	Root as NavigationMenu,
 	Content as NavigationMenuContent,
 	Indicator as NavigationMenuIndicator,
 	Item as NavigationMenuItem,

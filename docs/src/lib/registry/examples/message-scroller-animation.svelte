@@ -2,17 +2,17 @@
 	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
 	import MessageCircleDashedIcon from "@lucide/svelte/icons/message-circle-dashed";
 	import RotateCwIcon from "@lucide/svelte/icons/rotate-cw";
+	import { Chat } from "@ai-sdk/svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Empty from "$lib/registry/ui/empty/index.js";
 	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import MessageAnimated from "$lib/components/message-animated.svelte";
-	import { createChat } from "$lib/ai.js";
-	import { createScriptedChat } from "$lib/ai.svelte.js";
+	import { createChat } from "$lib/ai-sdk.js";
 	import { MESSAGE_ANIMATIONS, type MessageAnimationId } from "$lib/message-animations.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 
-	const chat = createChat()
+	const script = createChat()
 		.user("Can user messages pop in like iMessage without breaking anchoring?")
 		.sleep(1000)
 		.assistant(
@@ -29,11 +29,11 @@
 			"Yes. Keep the conversation in place while you change the preset, then send the next message to compare the new entrance against the same context.\n\nThat makes it easier to judge the difference between a subtle fade, a snappy pop, and a more dramatic 3D tilt without rebuilding the scenario each time."
 		);
 
-	const initialMessages = chat.get(0);
-	const transport = chat.transport({ delayMs: 15 });
-	const demo = createScriptedChat({ chat, transport, initialMessages });
-	const nextMessage = $derived(chat.next(demo.messages));
-	const isBusy = $derived(demo.status === "submitted" || demo.status === "streaming");
+	const initialMessages = script.get(0);
+	const transport = script.transport({ delayMs: 15 });
+	const chat = new Chat({ messages: initialMessages, transport });
+	const nextMessage = $derived(script.next(chat.messages));
+	const isBusy = $derived(chat.status === "submitted" || chat.status === "streaming");
 
 	let presetId = $state<MessageAnimationId>("fade");
 	const preset = $derived(MESSAGE_ANIMATIONS[presetId]);
@@ -52,15 +52,15 @@
 					variant="outline"
 					size="icon"
 					aria-label="Reset animated messages"
-					disabled={demo.messages.length === 0 || isBusy}
-					onclick={() => demo.setMessages(initialMessages)}
+					disabled={chat.messages.length === 0 || isBusy}
+					onclick={() => (chat.messages = initialMessages)}
 				>
 					<RotateCwIcon />
 				</Button>
 			</Card.Action>
 		</Card.Header>
 		<Card.Content class="min-h-0 flex-1 overflow-hidden p-0">
-			{#if demo.messages.length === 0}
+			{#if chat.messages.length === 0}
 				<Empty.Root class="h-full">
 					<Empty.Header>
 						<Empty.Media variant="icon">
@@ -75,7 +75,7 @@
 					<MessageScroller.Root>
 						<MessageScroller.Viewport>
 							<MessageScroller.Content aria-busy={isBusy} class="p-(--card-spacing)">
-								{#each demo.messages as message (message.id)}
+								{#each chat.messages as message (message.id)}
 									<MessageAnimated
 										{message}
 										animationPreset={preset}
@@ -112,7 +112,7 @@
 						return;
 					}
 
-					void demo.sendMessage(nextMessage);
+					void chat.sendMessage(nextMessage);
 				}}
 			>
 				<ArrowUpIcon />
