@@ -8,6 +8,7 @@ allowBuilds:
   esbuild: true
   sharp: true
   workerd: true
+  '@tailwindcss/oxide': true
 
 catalog:
   "@sveltejs/kit": ^2.60.1

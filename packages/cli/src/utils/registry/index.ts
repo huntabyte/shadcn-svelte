@@ -19,7 +19,7 @@ export function getRegistryUrl(config: { registry: string; style?: string }) {
 	// the legacy TW3 registry is already scoped to a style: `<TW3_SITE_BASE_URL>/registry/<style>`
 	if (url.startsWith(TW3_SITE_BASE_URL)) return url;
 
-	return new URL(url + `/styles/${config.style ?? "vega"}`).toString();
+	return new URL(url + `/styles/${config.style ?? "ledger"}`).toString();
 }
 
 export function getSiteUrl(config: { registry: string }) {

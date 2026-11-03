@@ -4,30 +4,25 @@
 	<div class="container-wrapper px-4 xl:px-6">
 		<div class="flex h-(--footer-height) items-center justify-between">
 			<div class="w-full px-1 text-center text-xs leading-loose text-muted-foreground sm:text-sm">
-				Built by
+				
 				<a
-					href="https://x.com/shadcn"
+					href="https://github.com/jvendramin/another-ui-svelte"
 					target="_blank"
 					rel="noreferrer"
 					class="font-medium underline underline-offset-4"
 				>
-					shadcn
-				</a>. Ported to Svelte by
+					Another UI Svelte
+				</a>
+				is a fork of
 				<a
-					href="https://x.com/huntabyte"
-					target="_blank"
-					rel="noreferrer"
-					class="font-medium underline underline-offset-4">Huntabyte</a
-				>
-				&
-				<a
-					href="https://github.com/adriangonz97"
+					href="https://github.com/huntabyte/shadcn-svelte"
 					target="_blank"
 					rel="noreferrer"
 					class="font-medium underline underline-offset-4"
 				>
-					CokaKoala
-				</a>.
+					shadcn-svelte
+				</a>
+				(MIT) by Huntabyte, from shadcn/ui, with the Ledger style from Another UI.
 			</div>
 		</div>
 	</div>

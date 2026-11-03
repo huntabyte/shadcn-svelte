@@ -1,0 +1,16 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "font-noto-serif",
+	"type": "registry:font",
+	"files": [],
+	"font": {
+		"family": "'Noto Serif Variable', serif",
+		"provider": "google",
+		"import": "Noto_Serif",
+		"variable": "--font-serif",
+		"subsets": [
+			"latin"
+		],
+		"dependency": "@fontsource-variable/noto-serif"
+	}
+}

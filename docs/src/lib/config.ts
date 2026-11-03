@@ -1,15 +1,16 @@
 export const siteConfig = {
-	name: "shadcn-svelte",
-	url: "https://shadcn-svelte.com",
+	name: "Another UI Svelte",
+	url: "https://another-ui-svelte.jacob-4fc.workers.dev",
 	ogImage: {
-		url: "https://shadcn-svelte.com/opengraph-image.png",
+		url: "https://another-ui-svelte.jacob-4fc.workers.dev/og?title=Another%20UI%20Svelte",
 		width: "1200",
 		height: "630",
 	},
 	description:
-		"A set of beautifully-designed, accessible components and a code distribution platform. Open Source. Open Code.",
+		"Svelte components in the Ledger style: dense, quiet and flat, with Phosphor icons. Copy the code and make it yours.",
 	keywords: [
-		"shadcn-svelte",
+		"another ui svelte",
+		"ledger style",
 		"svelte components",
 		"svelte ui library",
 		"svelte design system",
@@ -36,7 +37,6 @@ export const siteConfig = {
 		"svelte chart components",
 	],
 	links: {
-		x: "https://x.com/huntabyte",
-		github: "https://github.com/huntabyte/shadcn-svelte",
+		github: "https://github.com/jvendramin/another-ui-svelte",
 	},
 };

@@ -526,7 +526,8 @@
 		"type": "registry:block",
 		"registryDependencies": [
 			"card",
-			"select"
+			"select",
+			"range-calendar"
 		],
 		"relativeUrl": "calendar-12.json"
 	},

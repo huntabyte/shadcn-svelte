@@ -4,6 +4,6 @@
 	import { cn } from "$lib/utils.js";
 </script>
 
-<a href="/docs/changelog" class={cn(badgeVariants({ variant: "secondary", class: "bg-muted" }))}>
-	Trace, Code Block and AI Elements <ArrowRightIcon />
+<a href="/docs/components" class={cn(badgeVariants({ variant: "secondary", class: "bg-muted" }))}>
+	Ledger is the one style, light and dark <ArrowRightIcon />
 </a>

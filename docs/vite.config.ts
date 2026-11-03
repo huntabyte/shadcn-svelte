@@ -46,9 +46,27 @@ export const ogDirPath = path.join(__dirname, "src/routes/og");
  * carries that query onto the UI modules it renders — including local `.svelte` helpers
  * those examples import, so they share one flattened module instance.
  */
+/**
+ * Another UI Svelte draws Phosphor icons. Site code imports lucide icons directly (`@lucide/svelte/icons/<name>`); for every icon that has a wrapper in
+ * src/lib/components/icons/phosphor (see scripts/build-phosphor-wrappers.mjs) that import resolves to the Phosphor wrapper. An icon without one stays lucide.
+ */
+function phosphorForLucide(): Plugin {
+	const dir = path.join(__dirname, "src/lib/components/icons/phosphor");
+	return {
+		name: "another-ui-svelte:phosphor-for-lucide",
+		enforce: "pre",
+		resolveId(source) {
+			const m = /^@lucide\/svelte\/icons\/([a-z0-9-]+)$/.exec(source);
+			if (!m) return null;
+			const file = path.join(dir, `${m[1]}.svelte`);
+			return fs.existsSync(file) ? file : null;
+		},
+	};
+}
+
 function flattenedRegistry(): Plugin {
 	// Keep in sync with the style loaded by `app.css` and set on `<body>` in `app.html`.
-	const DEFAULT_STYLE = "nova";
+	const DEFAULT_STYLE = "ledger";
 	const QUERY = "flattened";
 	const rawUiDir = path.join(__dirname, "src/lib/registry/ui");
 	const stylesDir = path.join(__dirname, "src/lib/registry/styles");
@@ -82,6 +100,8 @@ function flattenedRegistry(): Plugin {
 
 	const styleMaps = new Map<string, Record<string, string>>();
 	const getStyleMap = (style: string) => {
+		// Another UI Svelte has one style. Any other name an upstream example asks for (style-rhea and the like) is Ledger.
+		if (!fs.existsSync(path.join(stylesDir, `style-${style}.css`))) style = DEFAULT_STYLE;
 		let map = styleMaps.get(style);
 		if (!map) {
 			map = parseStyleCss(fs.readFileSync(path.join(stylesDir, `style-${style}.css`), "utf8"));
@@ -164,6 +184,7 @@ export default defineConfig({
 	},
 	plugins: [
 		!process.env.CI && visualizer({ emitFile: true, filename: "stats.html" }),
+		phosphorForLucide(),
 		flattenedRegistry(),
 		tailwindcss(),
 		enhancedImages(),

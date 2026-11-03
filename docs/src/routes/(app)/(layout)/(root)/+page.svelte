@@ -11,9 +11,9 @@
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import CardsDemo from "./cards/cards-demo.svelte";
 
-	const title = "The Foundation for your Design System";
+	const title = "Another UI Svelte";
 	const description =
-		"Composable, accessible components with thoughtful defaults. Build your own component library with code you can customize, extend, and make your own.";
+		"Svelte components in the Ledger style: dense, quiet and flat, with Phosphor icons. Copy the code, make it yours.";
 
 	const mobile = new IsMobile();
 </script>
@@ -25,7 +25,7 @@
 		<Announcement />
 		<PageHeaderHeading class="max-w-4xl">{title}</PageHeaderHeading>
 		<PageHeaderDescription>{description}</PageHeaderDescription>
-		<PageActions class="style-luma">
+		<PageActions class="style-ledger">
 			<Button href="/docs/installation" class="h-[35px]">Get Started</Button>
 			<Button href="/docs/components" variant="secondary">View Components</Button>
 		</PageActions>
@@ -54,7 +54,7 @@
 			</section>
 			{#if !mobile.current}
 				<section class="hidden md:block">
-					<div class="style-rhea theme-neutral">
+					<div class="style-ledger">
 						<CardsDemo />
 					</div>
 				</section>
