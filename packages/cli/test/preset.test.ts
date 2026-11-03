@@ -246,6 +246,33 @@ describe("resolvePreset", () => {
 		}
 	});
 
+	it("should keep every field of a named preset when it is encoded", () => {
+		const fields = [
+			"style",
+			"baseColor",
+			"theme",
+			"chartColor",
+			"iconLibrary",
+			"font",
+			"fontHeading",
+			"menuAccent",
+			"menuColor",
+			"radius",
+		] as const;
+		for (const name of PRESET_NAMES) {
+			const preset = DEFAULT_PRESETS[name];
+			const decoded = decodePreset(encodePreset(preset));
+			for (const field of fields) {
+				expect(decoded?.[field], `${name}.${field}`).toBe(preset[field]);
+			}
+		}
+	});
+
+	it("should use taupe charts for sera", () => {
+		expect(resolvePreset("sera")?.chartColor).toBe("taupe");
+		expect(decodePreset(encodePreset(DEFAULT_PRESETS.sera))?.chartColor).toBe("taupe");
+	});
+
 	it("should return null for unknown names and invalid codes", () => {
 		expect(resolvePreset("")).toBeNull();
 		expect(resolvePreset("not-a-style")).toBeNull();
