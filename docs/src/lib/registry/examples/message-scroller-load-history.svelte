@@ -7,10 +7,10 @@
 	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
 	import * as Message from "$lib/registry/ui/message/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import { createChat, getMessageText } from "$lib/ai.js";
+	import { createChat, getMessageText } from "$lib/ai-sdk.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 
-	const chat = createChat()
+	const script = createChat()
 		.user("Can you summarize the incident channel?")
 		.assistant(
 			"The first alert was a delayed export job. It started backing up around 09:42 UTC and triggered the warning once the retry queue crossed the threshold.\n\nNo customer-facing checkout paths were affected, but exports for larger workspaces were running about 12 minutes behind."
@@ -32,7 +32,7 @@
 			"I will watch the queue and support tags for another 15 minutes. I am tracking export failures, delayed download requests, and any support thread that mentions missing reports.\n\nIf those stay quiet through the next batch window, we can close this as an internal degradation."
 		);
 
-	const history = chat.get();
+	const history = script.get();
 	const INITIAL_VISIBLE_COUNT = 5;
 
 	let demoKey = $state(0);

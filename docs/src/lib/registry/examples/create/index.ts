@@ -101,6 +101,11 @@ export const examples: Example[] = [
 		type: "registry:example",
 	},
 	{
+		title: "Code Block",
+		name: "code-block",
+		type: "registry:example",
+	},
+	{
 		title: "Collapsible",
 		name: "collapsible",
 		type: "registry:example",
@@ -333,6 +338,11 @@ export const examples: Example[] = [
 	{
 		title: "Tooltip",
 		name: "tooltip",
+		type: "registry:example",
+	},
+	{
+		title: "Trace",
+		name: "trace",
 		type: "registry:example",
 	},
 	{

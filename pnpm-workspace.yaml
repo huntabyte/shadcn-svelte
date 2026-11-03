@@ -3,17 +3,18 @@ packages:
   - docs
   - sv-addons/*
 
+allowBuilds:
+  "@hugeicons/svelte": true
+  esbuild: true
+  sharp: true
+  workerd: true
+  '@tailwindcss/oxide': true
+
 catalog:
   "@sveltejs/kit": ^2.60.1
   "@sveltejs/vite-plugin-svelte": ^7.2.0
-  svelte: ^5.54.0
+  svelte: ^5.57.2
   svelte-check: ^4.7.4
   tsdown: ^0.22.14
   typescript: ^6.0.3
   vite: ^8.1.5
-
-onlyBuiltDependencies:
-  - "@tailwindcss/oxide"
-  - esbuild
-  - sharp
-  - workerd
