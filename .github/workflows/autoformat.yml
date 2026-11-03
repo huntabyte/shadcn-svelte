@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: Check trigger and permissions
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         id: check-permission
         with:
           script: |
@@ -54,7 +54,7 @@ jobs:
 
       - name: Get PR details
         if: steps.check-permission.outputs.should-continue == 'true'
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         id: get-pr
         with:
           script: |
@@ -71,7 +71,7 @@ jobs:
 
       - name: React to comment
         if: steps.check-permission.outputs.should-continue == 'true'
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           script: |
             await github.rest.reactions.createForIssueComment({
@@ -83,14 +83,14 @@ jobs:
 
       - name: Checkout PR branch
         if: steps.check-permission.outputs.should-continue == 'true'
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: ${{ steps.get-pr.outputs.head-ref }}
 
-      - uses: pnpm/action-setup@v5
+      - uses: pnpm/action-setup@v6
         if: steps.check-permission.outputs.should-continue == 'true'
 
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         if: steps.check-permission.outputs.should-continue == 'true'
         with:
           node-version: 24
@@ -126,7 +126,7 @@ jobs:
           git push origin HEAD:${{ steps.get-pr.outputs.head-ref }}
 
       - name: Comment on PR with result
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         if: always() && steps.check-permission.outputs.should-continue == 'true'
         with:
           script: |
