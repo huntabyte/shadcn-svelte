@@ -9,7 +9,7 @@
 		<div class="flex flex-col gap-3">
 			<div class="text-sm font-medium">Shortcuts</div>
 			<div class="flex flex-col gap-2">
-				<div class="text-muted-foreground flex items-center justify-between text-sm">
+				<div class="flex items-center justify-between text-sm text-muted-foreground">
 					<span>Search</span>
 					<div class="flex gap-1">
 						<Kbd>⌘</Kbd>
@@ -17,7 +17,7 @@
 					</div>
 				</div>
 				<Separator />
-				<div class="text-muted-foreground flex items-center justify-between text-sm">
+				<div class="flex items-center justify-between text-sm text-muted-foreground">
 					<span>Quick Actions</span>
 					<div class="flex gap-1">
 						<Kbd>⌘</Kbd>
@@ -25,7 +25,7 @@
 					</div>
 				</div>
 				<Separator />
-				<div class="text-muted-foreground flex items-center justify-between text-sm">
+				<div class="flex items-center justify-between text-sm text-muted-foreground">
 					<span>New File</span>
 					<div class="flex gap-1">
 						<Kbd>⌘</Kbd>
@@ -33,7 +33,7 @@
 					</div>
 				</div>
 				<Separator />
-				<div class="text-muted-foreground flex items-center justify-between text-sm">
+				<div class="flex items-center justify-between text-sm text-muted-foreground">
 					<span>Save</span>
 					<div class="flex gap-1">
 						<Kbd>⌘</Kbd>
@@ -41,7 +41,7 @@
 					</div>
 				</div>
 				<Separator />
-				<div class="text-muted-foreground flex items-center justify-between text-sm">
+				<div class="flex items-center justify-between text-sm text-muted-foreground">
 					<span>Toggle Sidebar</span>
 					<div class="flex gap-1">
 						<Kbd>⌘</Kbd>

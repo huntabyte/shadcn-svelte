@@ -32,10 +32,7 @@
 			<Breadcrumb.Item>
 				{#if isDesktop.current}
 					<DropdownMenu.Root bind:open>
-						<DropdownMenu.Trigger
-							class="flex items-center gap-1"
-							aria-label="Toggle menu"
-						>
+						<DropdownMenu.Trigger class="flex items-center gap-1" aria-label="Toggle menu">
 							<Breadcrumb.Ellipsis class="size-4" />
 						</DropdownMenu.Trigger>
 						<DropdownMenu.Content align="start">
@@ -56,9 +53,7 @@
 						<Drawer.Content>
 							<Drawer.Header class="text-start">
 								<Drawer.Title>Navigate to</Drawer.Title>
-								<Drawer.Description>
-									Select a page to navigate to.
-								</Drawer.Description>
+								<Drawer.Description>Select a page to navigate to.</Drawer.Description>
 							</Drawer.Header>
 							<div class="grid gap-1 px-4">
 								{#each items.slice(1, -2) as item, i (i)}
@@ -68,9 +63,7 @@
 								{/each}
 							</div>
 							<Drawer.Footer class="pt-4">
-								<Drawer.Close class={buttonVariants({ variant: "outline" })}>
-									Close
-								</Drawer.Close>
+								<Drawer.Close class={buttonVariants({ variant: "outline" })}>Close</Drawer.Close>
 							</Drawer.Footer>
 						</Drawer.Content>
 					</Drawer.Root>

@@ -1,17 +1,13 @@
 <script lang="ts">
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 </script>
 
 <DropdownMenu.Root>
-	<DropdownMenu.Trigger>
-		{#snippet child({ props })}
-			<Button {...props} variant="outline">Open</Button>
-		{/snippet}
-	</DropdownMenu.Trigger>
-	<DropdownMenu.Content class="w-56" align="start">
-		<DropdownMenu.Label>My Account</DropdownMenu.Label>
+	<DropdownMenu.Trigger class={buttonVariants({ variant: "outline" })}>Open</DropdownMenu.Trigger>
+	<DropdownMenu.Content class="w-40" align="start">
 		<DropdownMenu.Group>
+			<DropdownMenu.Label>My Account</DropdownMenu.Label>
 			<DropdownMenu.Item>
 				Profile
 				<DropdownMenu.Shortcut>⇧⌘P</DropdownMenu.Shortcut>
@@ -23,10 +19,6 @@
 			<DropdownMenu.Item>
 				Settings
 				<DropdownMenu.Shortcut>⌘S</DropdownMenu.Shortcut>
-			</DropdownMenu.Item>
-			<DropdownMenu.Item>
-				Keyboard shortcuts
-				<DropdownMenu.Shortcut>⌘K</DropdownMenu.Shortcut>
 			</DropdownMenu.Item>
 		</DropdownMenu.Group>
 		<DropdownMenu.Separator />
@@ -47,13 +39,17 @@
 			</DropdownMenu.Item>
 		</DropdownMenu.Group>
 		<DropdownMenu.Separator />
-		<DropdownMenu.Item>GitHub</DropdownMenu.Item>
-		<DropdownMenu.Item>Support</DropdownMenu.Item>
-		<DropdownMenu.Item disabled>API</DropdownMenu.Item>
+		<DropdownMenu.Group>
+			<DropdownMenu.Item>GitHub</DropdownMenu.Item>
+			<DropdownMenu.Item>Support</DropdownMenu.Item>
+			<DropdownMenu.Item disabled>API</DropdownMenu.Item>
+		</DropdownMenu.Group>
 		<DropdownMenu.Separator />
-		<DropdownMenu.Item>
-			Log out
-			<DropdownMenu.Shortcut>⇧⌘Q</DropdownMenu.Shortcut>
-		</DropdownMenu.Item>
+		<DropdownMenu.Group>
+			<DropdownMenu.Item>
+				Log out
+				<DropdownMenu.Shortcut>⇧⌘Q</DropdownMenu.Shortcut>
+			</DropdownMenu.Item>
+		</DropdownMenu.Group>
 	</DropdownMenu.Content>
 </DropdownMenu.Root>

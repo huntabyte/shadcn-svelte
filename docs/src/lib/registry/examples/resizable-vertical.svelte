@@ -2,7 +2,7 @@
 	import * as Resizable from "$lib/registry/ui/resizable/index.js";
 </script>
 
-<Resizable.PaneGroup direction="vertical" class="min-h-[200px] max-w-md rounded-lg border">
+<Resizable.PaneGroup direction="vertical" class="min-h-[200px] max-w-sm rounded-lg border">
 	<Resizable.Pane defaultSize={25}>
 		<div class="flex h-full items-center justify-center p-6">
 			<span class="font-semibold">Header</span>

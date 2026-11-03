@@ -2,12 +2,17 @@ import path from "node:path";
 import { vol } from "memfs";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import * as project from "../../src/utils/project.js";
+import { getDependencyPackageInfo } from "../../src/utils/get-package-info.js";
 import type { ResolvedConfig } from "../../src/utils/config/index.js";
 
 vi.mock("node:path");
 vi.mock("node:url");
 vi.mock("node:fs");
 vi.mock("node:fs/promises");
+vi.mock("../../src/utils/get-package-info.js", async (importOriginal) => ({
+	...(await importOriginal<typeof import("../../src/utils/get-package-info.js")>()),
+	getDependencyPackageInfo: vi.fn(),
+}));
 
 beforeEach(() => {
 	vol.reset();
@@ -129,6 +134,44 @@ describe("isUsingSvelteKit", () => {
 	});
 });
 
+describe("getPackageVersion", () => {
+	function writePackageJson(pkg: Record<string, unknown>) {
+		vol.fromJSON({ "./package.json": JSON.stringify(pkg) }, "/tmp");
+		vi.mocked(path.resolve).mockReturnValue("/tmp/package.json");
+	}
+
+	it("prefers the installed version over the one declared in package.json", () => {
+		writePackageJson({ dependencies: { svelte: "^5.0.0" } });
+		vi.mocked(getDependencyPackageInfo).mockReturnValue({
+			pkg: { version: "5.1.2" },
+			path: "/tmp/node_modules/svelte/package.json",
+		});
+
+		expect(project.getPackageVersion("/tmp", "svelte")).toBe("5.1.2");
+	});
+
+	it("falls back to dependencies when the package isn't installed", () => {
+		writePackageJson({ dependencies: { svelte: "^5.0.0" } });
+		vi.mocked(getDependencyPackageInfo).mockReturnValue(undefined);
+
+		expect(project.getPackageVersion("/tmp", "svelte")).toBe("^5.0.0");
+	});
+
+	it("falls back to devDependencies when the package isn't installed", () => {
+		writePackageJson({ dependencies: {}, devDependencies: { "@sveltejs/kit": "^3.0.0" } });
+		vi.mocked(getDependencyPackageInfo).mockReturnValue(undefined);
+
+		expect(project.getPackageVersion("/tmp", "@sveltejs/kit")).toBe("^3.0.0");
+	});
+
+	it("returns undefined when the package isn't installed or declared", () => {
+		writePackageJson({ dependencies: { svelte: "^5.0.0" } });
+		vi.mocked(getDependencyPackageInfo).mockReturnValue(undefined);
+
+		expect(project.getPackageVersion("/tmp", "tailwindcss")).toBeUndefined();
+	});
+});
+
 describe("getComponents", () => {
 	it("returns registry items that exist as directories in ui, components, and hooks paths", async () => {
 		// Create directory structure: /test/ui/button, /test/ui/card, /test/hooks/use-mobile
@@ -177,7 +220,7 @@ describe("getComponents", () => {
 		});
 
 		expect(result).toHaveLength(1);
-		expect(result[0].name).toBe("utils");
+		expect(result[0]?.name).toBe("utils");
 	});
 
 	it("skips directories that do not exist", async () => {
@@ -219,6 +262,6 @@ describe("getComponents", () => {
 		});
 
 		expect(result).toHaveLength(1);
-		expect(result[0].name).toBe("utils");
+		expect(result[0]?.name).toBe("utils");
 	});
 });

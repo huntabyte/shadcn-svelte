@@ -1,5 +1,6 @@
 <script lang="ts">
 	import * as Card from "$lib/registry/ui/card/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import {
 		FieldGroup,
 		Field,
@@ -8,7 +9,6 @@
 		FieldSeparator,
 	} from "$lib/registry/ui/field/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 
@@ -24,9 +24,7 @@
 				<FieldGroup>
 					<div class="flex flex-col items-center gap-2 text-center">
 						<h1 class="text-2xl font-bold">Welcome back</h1>
-						<p class="text-muted-foreground text-balance">
-							Login to your Acme Inc account
-						</p>
+						<p class="text-balance text-muted-foreground">Login to your Acme Inc account</p>
 					</div>
 					<Field>
 						<FieldLabel for="email-{id}">Email</FieldLabel>
@@ -81,7 +79,7 @@
 					</FieldDescription>
 				</FieldGroup>
 			</form>
-			<div class="bg-muted relative hidden md:block">
+			<div class="relative hidden bg-muted md:block">
 				<img
 					src="/placeholder.svg"
 					alt="placeholder"

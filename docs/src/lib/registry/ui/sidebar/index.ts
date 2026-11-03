@@ -1,4 +1,3 @@
-import { useSidebar } from "./context.svelte.js";
 import Content from "./sidebar-content.svelte";
 import Footer from "./sidebar-footer.svelte";
 import GroupAction from "./sidebar-group-action.svelte";
@@ -22,6 +21,7 @@ import Rail from "./sidebar-rail.svelte";
 import Separator from "./sidebar-separator.svelte";
 import Trigger from "./sidebar-trigger.svelte";
 import Root from "./sidebar.svelte";
+import { useSidebar } from "./context.svelte.js";
 
 export {
 	Content,

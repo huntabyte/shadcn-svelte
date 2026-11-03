@@ -1,13 +1,8 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { FieldGroup, Field, FieldLabel, FieldDescription } from "$lib/registry/ui/field/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
-	import {
-		FieldGroup,
-		Field,
-		FieldLabel,
-		FieldDescription,
-	} from "$lib/registry/ui/field/index.js";
 
 	const id = $props.id();
 </script>
@@ -27,9 +22,7 @@
 				<Field>
 					<div class="flex items-center">
 						<FieldLabel for="password-{id}">Password</FieldLabel>
-						<a href="##" class="ms-auto inline-block text-sm underline">
-							Forgot your password?
-						</a>
+						<a href="##" class="ms-auto inline-block text-sm underline"> Forgot your password? </a>
 					</div>
 					<Input id="password-{id}" type="password" required />
 				</Field>

@@ -237,7 +237,7 @@
 	class={cn(
 		"relative flex justify-center gap-1.5",
 		centerAlign ? "items-center" : "items-end",
-		"bg-muted h-32 w-full overflow-hidden rounded-lg p-4",
+		"h-32 w-full overflow-hidden rounded-lg bg-muted p-4",
 		className
 	)}
 	{...restProps}
@@ -254,9 +254,7 @@
 				agentState === "speaking" && "bg-primary",
 				agentState === "thinking" && isHighlighted && "animate-pulse"
 			)}
-			style="height: {heightPct}%; {agentState === 'thinking'
-				? 'animation-duration: 300ms;'
-				: ''}"
+			style="height: {heightPct}%; {agentState === 'thinking' ? 'animation-duration: 300ms;' : ''}"
 		></div>
 	{/each}
 </div>

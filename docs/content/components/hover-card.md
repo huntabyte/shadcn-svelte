@@ -72,3 +72,41 @@ Copy and paste the following code into your project.
   </HoverCard.Content>
 </HoverCard.Root>
 ```
+
+## Trigger Delays
+
+Use `openDelay` and `closeDelay` on `HoverCard.Root` to control when the card opens and closes.
+
+```svelte showLineNumbers
+<HoverCard.Root openDelay={100} closeDelay={200}>
+  <HoverCard.Trigger>Hover</HoverCard.Trigger>
+  <HoverCard.Content>Content</HoverCard.Content>
+</HoverCard.Root>
+```
+
+## Positioning
+
+Use the `side` and `align` props on `HoverCard.Content` to control placement.
+
+```svelte showLineNumbers
+<HoverCard.Root>
+  <HoverCard.Trigger>Hover</HoverCard.Trigger>
+  <HoverCard.Content side="top" align="start">Content</HoverCard.Content>
+</HoverCard.Root>
+```
+
+## Basic
+
+<ComponentPreview name="hover-card-demo">
+
+<div></div>
+
+</ComponentPreview>
+
+## Sides
+
+<ComponentPreview name="hover-card-sides">
+
+<div></div>
+
+</ComponentPreview>

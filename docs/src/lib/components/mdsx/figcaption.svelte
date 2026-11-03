@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { HTMLAttributes } from "svelte/elements";
-	import { getIconForLanguageExtension } from "../icons/icons.js";
 	import { cn } from "$lib/utils.js";
+	import { getIconForLanguageExtension } from "../icons/icons.js";
+	import type { HTMLAttributes } from "svelte/elements";
 
 	let {
 		class: className,
@@ -18,7 +18,7 @@
 <!-- svelte-ignore a11y_figcaption_parent -->
 <figcaption
 	class={cn(
-		"text-code-foreground [&_svg]:text-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70",
+		"flex items-center gap-2 text-code-foreground [&_svg]:size-4 [&_svg]:text-code-foreground [&_svg]:opacity-70",
 		className
 	)}
 	{...restProps}

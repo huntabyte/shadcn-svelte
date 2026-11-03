@@ -1,0 +1,165 @@
+only_configured: true # only apply labels configured below
+
+prompt: >-
+  Classify issues and pull requests using the rules below. Read the conversation
+  chronologically and use later maintainer clarifications to resolve earlier ambiguity.
+  OWNER, MEMBER, and COLLABORATOR comments represent maintainers; CONTRIBUTOR alone
+  does not establish maintainer confirmation. Bot/template text is not a human request
+  or confirmation. Linked work may be related without being a duplicate.
+  A bug-fix PR without a linked issue can need reproduction. Evaluate each label independently;
+  several labels can be correct at once. Use changed-file evidence when available,
+  and do not assume omitted files or patches contain no changes.
+
+labels:
+  bug:
+    apply_when: >-
+      An issue reports incorrect existing behavior confirmed as valid by a maintainer,
+      or a pull request fixes incorrect existing behavior, including broken
+      documentation examples and website UI. A PR describing a defect and its fix
+      does not require a separate maintainer confirmation. It can also be docs or parity.
+      Restoring broken visibility, layout, or homepage rendering is a bug fix even
+      when described as docs work. A reporter's assertion or
+      dependency report alone is not maintainer confirmation.
+    remove_when: The item requests new functionality rather than fixing incorrect existing behavior.
+  docs:
+    apply_when: >-
+      Changes documentation content, examples, or their presentation. Internal build
+      tooling or a search implementation alone is not a documentation-content change.
+      A component implementation alone is not docs merely because its source is
+      stored in the docs workspace; separate changed docs or examples are required.
+      Fixing an actual runnable documentation example counts as docs even when
+      no Markdown file changes. Registry component implementation alone does not.
+  duplicate:
+    apply_when: >-
+      An earlier canonical issue or pull request covers the same problem or proposed
+      change, making this item redundant. Require matching scope, not just a link,
+      shared component name, or upstream cause. A PR fixing an issue, implementing a
+      request, or replacing another PR at a maintainer's request is not a duplicate.
+      A local dependency-upgrade tracker can remain useful even when upstream tracks
+      the defect. Respect explicit maintainer explanations that scopes differ.
+    remove_when: >-
+      The relationship is a fix, requested implementation or replacement, upstream
+      cause, follow-up, or distinct tracking scope rather than a redundant report.
+      A human clarification that this PR adds content not already implemented
+      establishes distinct scope even if an earlier commenter called it redundant.
+    examples:
+      - A second issue reports the same behavior and identifies the first issue as its canonical report.
+      - A second PR proposes the same change as an existing PR without a distinct scope or a requested replacement.
+    context: similar_issues
+  feature:
+    apply_when: >-
+      Adds or requests new end-user functionality, a new component, or a new public
+      component API such as a prop, snippet, or supported mode exposed to consumers
+      of installed registry components. Internal docs helper props are not public
+      component APIs. Reusing an existing
+      primitive to expose a new public API still counts as a feature. A parity port
+      can also be a feature; alignment does not exclude new functionality. A newly
+      exposed public prop, snippet, or mode remains a feature even when the PR is
+      described as a documentation example.
+      Only restoring existing expected behavior is not a feature. A workaround can
+      still qualify if it adds new functionality or a public component API.
+    examples:
+      - Exposing a customizable rendering snippet through public component props.
+      - Adding a newly supported component mode by wrapping an existing primitive.
+    remove_when: The item only fixes existing behavior.
+  chore:
+    apply_when: >-
+      Internal diagnostics, test maintenance, build, release, or deployment changes
+      that do not directly
+      alter end-user functionality or documentation content. Documentation content
+      updates and user-facing UI changes alone are not chores.
+  "contributions welcome":
+    apply_when: >-
+      An issue invites a small, clearly bounded contribution whose solution is
+      unambiguous and useful. Do not apply to pull requests, work already implemented
+      or claimed, or large/uncertain logic changes.
+    remove_when: The item is a pull request or the requested work is already implemented or claimed.
+    examples:
+      - "The docs say `x`, but they should say `y`"
+      - "There is a typo in the docs"
+  dependencies:
+    apply_when: >-
+      A pull request adds, removes, upgrades, or downgrades dependencies in a package
+      manifest or lockfile, including docs and internal build dependencies; or an issue
+      explicitly requests such a dependency change. Registry component references,
+      imports, or generated registry dependency lists alone do not qualify. Use
+      manifest or lockfile evidence when supplied. This is independent of whether
+      the public CLI is affected. Merely listing installed versions is insufficient.
+    examples:
+      - Removing unused build dependencies from the docs package.
+      - Updating a dependency version to obtain an upstream fix.
+  "awaiting submitter":
+    apply_when: >-
+      A human maintainer has made a specific request for information or action from
+      the submitter and it is still outstanding, including an actionable review-thread
+      request or an active CHANGES_REQUESTED review, even when the review body is empty.
+      A changes-requested review remains active until the requesting maintainer
+      approves or explicitly accepts the changes, or the review is dismissed.
+      A later specific human request can establish a new outstanding request.
+      An unresolved thread alone, conditional bot/template notices, drafts, parent-PR
+      dependencies, upstream releases, or a submitter asking for review do not qualify.
+    remove_when: >-
+      There is no outstanding human maintainer request or active human maintainer
+      CHANGES_REQUESTED review. This can follow the requested information or action
+      being supplied, the requesting maintainer approving or accepting the response,
+      or the review being dismissed. A submitter reply or a resolved/outdated thread
+      alone does not clear an active changes-requested review. Remove the label if
+      only bot reviews request changes and there is no outstanding human request.
+  "needs reproduction":
+    apply_when: >-
+      An issue reports a defect requiring reproduction, or a bug-fix pull request
+      has no linked issue establishing the reported defect, and the item lacks an
+      accessible reproduction repository, StackBlitz, or identified
+      official shadcn-svelte demo exhibiting that defect. Steps or screenshots alone
+      are insufficient. An identified demo on shadcn-svelte.com, with or without www
+      or a URL scheme, is acceptable; a generic documentation link alone is insufficient.
+    remove_when: >-
+      The item does not report or fix a defect, the bug-fix PR links an issue
+      establishing the defect, an accessible reproduction or identified official
+      demo exhibiting the defect has been supplied, or a maintainer accepts the reproduction.
+      A PR branch or code diff alone is not a reproduction of the original defect.
+  "has workaround":
+    apply_when: >-
+      An issue describes a concrete workaround for a defect that the reporter or a
+      human maintainer says works, or provides a specific usable patch. Generic tool
+      error advice, especially forcing a potentially broken dependency resolution,
+      is not a demonstrated workaround. Never apply to enhancements.
+  cli:
+    apply_when: >-
+      The issue concerns the public shadcn-svelte CLI used by end users, or a pull
+      request changes that public CLI. An internal documentation/build/parity tool,
+      installation instructions, or a component port alone is insufficient.
+      Changes to the public CLI package, including its exported preset configuration,
+      under packages/cli count even when a PR also changes the website. A docs
+      package manifest or test runner is not the public CLI package. Merely showing CLI commands
+      on a page is insufficient. Other tools named CLI, such as Changesets for releases or Wrangler for
+      deployments, are not the public shadcn-svelte CLI.
+    remove_when: >-
+      The discussion establishes that only components, docs, or internal tooling
+      are affected, including Changesets CLI upgrades and deployment tooling.
+      A complete changed-file list (filesOmitted is false) with no filename under
+      packages/cli/ is sufficient evidence to remove cli from a component-only port.
+      No maintainer comment is required for that file evidence. An omitted file list
+      does not establish absence of CLI changes.
+  triage:
+    remove_when: >-
+      A human OWNER, MEMBER, or COLLABORATOR acknowledges the reported defect as
+      valid, including diagnosing its cause or providing a specific fix. Confirmation
+      can identify an upstream cause. A reporter or bot assertion alone is insufficient.
+    can_apply: false
+  parity:
+    apply_when: >-
+      An issue requests, or a pull request implements, alignment with upstream
+      shadcn/ui functionality, components, documentation, or visual presentation
+      that this repository tracks. An explicit
+      port or explicit alignment of documentation/UI with upstream is sufficient;
+      separate maintainer confirmation
+      is not required. Do not infer a gap merely because different upstream
+      implementations behave differently.
+    remove_when: >-
+      A maintainer explains that the current implementation already has parity
+      with the upstream implementation this repository follows, or that the proposed
+      difference is a separate behavior/design discussion rather than a parity gap.
+  slop:
+    apply_when: The issue/pull request description is clearly generated by AI. Signs can be, usage of em-dashes, overly verbose descriptions that distract from the actual issue/changes, etc.
+    remove_when: The issue/pull request description is no longer clearly generated by AI. Short no excessive use of em-dashes, no overly verbose descriptions that distract from the actual issue/changes.

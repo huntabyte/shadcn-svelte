@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import { AspectRatio } from "$lib/registry/ui/aspect-ratio/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 
 <Example title="1:1" class="items-start">
-	<AspectRatio ratio={1 / 1} class="bg-muted rounded-lg">
+	<AspectRatio ratio={1 / 1} class="rounded-lg bg-muted">
 		<img
 			src="https://avatar.vercel.sh/shadcn1"
 			alt="shadcn1"

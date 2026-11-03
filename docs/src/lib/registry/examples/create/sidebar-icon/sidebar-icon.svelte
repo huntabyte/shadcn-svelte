@@ -151,10 +151,7 @@
 									{...props}
 								>
 									<div class={cn(buttonVariants({ size: "icon-sm" }), "size-8")}>
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											viewBox="0 0 256 256"
-										>
+										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
 											<rect width="256" height="256" fill="none"></rect>
 											<line
 												x1="208"
@@ -220,10 +217,7 @@
 								<Sidebar.MenuItem {...props}>
 									<Collapsible.Trigger>
 										{#snippet child({ props })}
-											<Sidebar.MenuButton
-												tooltipContent={item.title}
-												{...props}
-											>
+											<Sidebar.MenuButton tooltipContent={item.title} {...props}>
 												{@render item.icon?.()}
 												<span>{item.title}</span>
 												<IconPlaceholder
@@ -243,9 +237,7 @@
 												<Sidebar.MenuSubItem>
 													<Sidebar.MenuSubButton>
 														{#snippet child({ props })}
-															<a href={subItem.url} {...props}
-																>{subItem.title}</a
-															>
+															<a href={subItem.url} {...props}>{subItem.title}</a>
 														{/snippet}
 													</Sidebar.MenuSubButton>
 												</Sidebar.MenuSubItem>
@@ -311,10 +303,7 @@
 									<Item.Root size="xs">
 										<Item.Media>
 											<Avatar.Root>
-												<Avatar.Image
-													src={data.user.avatar}
-													alt={data.user.name}
-												/>
+												<Avatar.Image src={data.user.avatar} alt={data.user.name} />
 												<Avatar.Fallback>CN</Avatar.Fallback>
 											</Avatar.Root>
 										</Item.Media>
@@ -352,11 +341,11 @@
 		</header>
 		<div class="flex flex-1 flex-col gap-4 p-4 pt-0">
 			<div class="grid auto-rows-min gap-4 md:grid-cols-3">
-				<div class="bg-muted/50 aspect-video rounded-xl"></div>
-				<div class="bg-muted/50 aspect-video rounded-xl"></div>
-				<div class="bg-muted/50 aspect-video rounded-xl"></div>
+				<div class="aspect-video rounded-xl bg-muted/50"></div>
+				<div class="aspect-video rounded-xl bg-muted/50"></div>
+				<div class="aspect-video rounded-xl bg-muted/50"></div>
 			</div>
-			<div class="bg-muted/50 min-h-screen flex-1 rounded-xl md:min-h-min"></div>
+			<div class="min-h-screen flex-1 rounded-xl bg-muted/50 md:min-h-min"></div>
 		</div>
 	</Sidebar.Inset>
 </Sidebar.Provider>

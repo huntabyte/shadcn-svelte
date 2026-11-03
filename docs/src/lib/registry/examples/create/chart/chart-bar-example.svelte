@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import { scaleBand } from "d3-scale";
 	import { BarChart } from "layerchart";
-	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const barChartData = [
 		{ month: "January", desktop: 186, mobile: 80 },
@@ -84,7 +84,7 @@
 					class="size-4"
 				/>
 			</div>
-			<div class="text-muted-foreground leading-none">
+			<div class="leading-none text-muted-foreground">
 				Showing total visitors for the last 6 months
 			</div>
 		</Card.Footer>

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import * as Alert from "$lib/registry/ui/alert/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 
 <Example title="Basic">
@@ -13,9 +13,7 @@
 			<Alert.Description>This is an alert with title and description.</Alert.Description>
 		</Alert.Root>
 		<Alert.Root>
-			<Alert.Description>
-				This one has a description only. No title. No icon.
-			</Alert.Description>
+			<Alert.Description>This one has a description only. No title. No icon.</Alert.Description>
 		</Alert.Root>
 	</div>
 </Example>

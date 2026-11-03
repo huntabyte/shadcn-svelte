@@ -46,11 +46,7 @@
 		<Button size="sm" variant={active ? "default" : "outline"} onclick={handleToggleActive}>
 			{active ? "Stop" : "Start"} Listening
 		</Button>
-		<Button
-			size="sm"
-			variant={processing ? "default" : "outline"}
-			onclick={handleToggleProcessing}
-		>
+		<Button size="sm" variant={processing ? "default" : "outline"} onclick={handleToggleProcessing}>
 			{processing ? "Stop" : "Start"} Processing
 		</Button>
 		<Button

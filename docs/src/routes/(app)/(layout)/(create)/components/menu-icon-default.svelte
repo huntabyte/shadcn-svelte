@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { SVGAttributes } from "svelte/elements";
 	import { cn } from "$lib/utils.js";
+	import type { SVGAttributes } from "svelte/elements";
 
 	let { class: className, ...restProps }: SVGAttributes<SVGSVGElement> = $props();
 </script>
@@ -13,7 +13,7 @@
 	fill="none"
 	role="img"
 	stroke="currentColor"
-	class={cn("text-foreground size-4", className)}
+	class={cn("size-4 text-foreground", className)}
 	{...restProps}
 >
 	<path

@@ -1,13 +1,13 @@
 <script lang="ts" module>
-	import type { createFileTreeForRegistryItemFiles } from "$lib/registry/registry-utils.js";
 	import { Pane } from "paneforge";
 	import { Context } from "runed";
-	import BlockViewerToolbar from "./block-viewer-toolbar.svelte";
-	import BlockViewerView from "./block-viewer-view.svelte";
+	import type { createFileTreeForRegistryItemFiles } from "$lib/registry/registry-utils.js";
 	import BlockViewerCode from "./block-viewer-code.svelte";
-	import type { Snippet } from "svelte";
+	import BlockViewerToolbar from "./block-viewer-toolbar.svelte";
 	import BlockViewerViewMobile from "./block-viewer-view-mobile.svelte";
+	import BlockViewerView from "./block-viewer-view.svelte";
 	import type { HighlightedBlock } from "../../routes/api/block/[block]/+server.js";
+	import type { Snippet } from "svelte";
 
 	type BlockViewerContextType = {
 		item: HighlightedBlock;
@@ -46,9 +46,7 @@
 		return null;
 	}
 
-	let activeFile = $state<BlockViewerContextType["activeFile"]>(
-		getFirstFileTargetInTree() ?? null
-	);
+	let activeFile = $state<BlockViewerContextType["activeFile"]>(getFirstFileTargetInTree() ?? null);
 	let resizablePaneRef = $state<Pane>(null!);
 	let iframeKey = $state<number>(0);
 	let activeFileCodeToCopy = $state<string>("");

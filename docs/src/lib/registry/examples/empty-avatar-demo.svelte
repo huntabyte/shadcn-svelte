@@ -1,7 +1,7 @@
 <script lang="ts">
+	import * as Avatar from "$lib/registry/ui/avatar/index.js";
 	import * as Empty from "$lib/registry/ui/empty/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import * as Avatar from "$lib/registry/ui/avatar/index.js";
 </script>
 
 <Empty.Root>
@@ -14,8 +14,7 @@
 		</Empty.Media>
 		<Empty.Title>User Offline</Empty.Title>
 		<Empty.Description>
-			This user is currently offline. You can leave a message to notify them or try again
-			later.
+			This user is currently offline. You can leave a message to notify them or try again later.
 		</Empty.Description>
 	</Empty.Header>
 	<Empty.Content>

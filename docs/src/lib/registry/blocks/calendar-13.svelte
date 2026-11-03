@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Calendar from "$lib/registry/ui/calendar/calendar.svelte";
-	import * as Select from "$lib/registry/ui/select/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
 	import { CalendarDate } from "@internationalized/date";
+	import * as Select from "$lib/registry/ui/select/index.js";
+	import Calendar from "$lib/registry/ui/calendar/calendar.svelte";
+	import { Label } from "$lib/registry/ui/label/index.js";
 	import type { ComponentProps } from "svelte";
 
 	let value = $state<CalendarDate>(new CalendarDate(2025, 6, 12));
@@ -31,16 +31,11 @@
 </script>
 
 <div class="flex flex-col gap-4">
-	<Calendar
-		type="single"
-		bind:value
-		class="rounded-lg border shadow-sm"
-		captionLayout={dropdown}
-	/>
+	<Calendar type="single" bind:value class="rounded-lg border shadow-sm" captionLayout={dropdown} />
 	<div class="flex flex-col gap-3">
 		<Label for="{id}-dropdown" class="px-1">Dropdown</Label>
 		<Select.Root type="single" bind:value={dropdown}>
-			<Select.Trigger id="{id}-dropdown" size="sm" class="bg-background w-full">
+			<Select.Trigger id="{id}-dropdown" size="sm" class="w-full bg-background">
 				{selectedDropdown}
 			</Select.Trigger>
 			<Select.Content align="center">

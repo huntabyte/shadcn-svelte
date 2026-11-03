@@ -1,15 +1,13 @@
-import { unified } from "unified";
-import rehypeParse from "rehype-parse";
-import rehypeRemark from "rehype-remark";
-import remarkStringify from "remark-stringify";
-import remarkGfm from "remark-gfm";
+import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import { basename, dirname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
-import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
-import { JSDOM } from "jsdom";
 import consola from "consola";
-import type { Plugin } from "unified";
-import type { Root, Link, Node, Paragraph, Text } from "mdast";
+import rehypeParse from "rehype-parse";
+import rehypeRemark from "rehype-remark";
+import remarkGfm from "remark-gfm";
+import remarkStringify from "remark-stringify";
+import { JSDOM } from "jsdom";
+import { unified } from "unified";
 import {
 	components,
 	installation,
@@ -17,7 +15,11 @@ import {
 	migration,
 	darkMode,
 	registry,
+	utils,
+	aiElements,
 } from "../.velite";
+import type { Root, Link, Node, Paragraph, Text } from "mdast";
+import type { Plugin } from "unified";
 
 consola.wrapConsole();
 
@@ -113,7 +115,9 @@ type VeliteData =
 	| (typeof gettingStarted)[number]
 	| (typeof migration)[number]
 	| (typeof darkMode)[number]
-	| (typeof registry)[number];
+	| (typeof registry)[number]
+	| (typeof utils)[number]
+	| (typeof aiElements)[number];
 
 type CategorizedLinks = {
 	overview: LinkData[];
@@ -129,6 +133,8 @@ type CategorizedLinks = {
 	darkMode: LinkData[];
 	migration: LinkData[];
 	registry: LinkData[];
+	utils: LinkData[];
+	aiElements: LinkData[];
 	other: LinkData[];
 };
 
@@ -227,6 +233,8 @@ async function createLLMsIndex(files: FileMap) {
 		migration,
 		darkMode,
 		registry,
+		utils,
+		aiElements,
 	};
 	const categorizedLinks: CategorizedLinks = {
 		overview: [],
@@ -242,6 +250,8 @@ async function createLLMsIndex(files: FileMap) {
 		darkMode: [],
 		migration: [],
 		registry: [],
+		utils: [],
+		aiElements: [],
 		other: [],
 	};
 
@@ -301,6 +311,10 @@ async function createLLMsIndex(files: FileMap) {
 			"typography",
 			"item",
 			"kbd",
+			"message",
+			"bubble",
+			"attachment",
+			"marker",
 		],
 		misc: ["collapsible", "toggle", "toggle-group", "pagination"],
 	};
@@ -346,6 +360,10 @@ async function createLLMsIndex(files: FileMap) {
 			categorizedLinks.migration.push(linkData);
 		} else if (dirPath.includes("registry")) {
 			categorizedLinks.registry.push(linkData);
+		} else if (dirPath.includes("ai-elements")) {
+			categorizedLinks.aiElements.push(linkData);
+		} else if (dirPath.includes("utils")) {
+			categorizedLinks.utils.push(linkData);
 		} else if (dirPath.includes("components")) {
 			let categorized = false;
 			if (componentCategories.formInput.includes(outputName)) {
@@ -381,6 +399,8 @@ async function createLLMsIndex(files: FileMap) {
 	categorizedLinks.darkMode.sort((a, b) => a.name.localeCompare(b.name));
 	categorizedLinks.migration.sort((a, b) => a.name.localeCompare(b.name));
 	categorizedLinks.registry.sort((a, b) => a.name.localeCompare(b.name));
+	categorizedLinks.utils.sort((a, b) => a.name.localeCompare(b.name));
+	categorizedLinks.aiElements.sort((a, b) => a.name.localeCompare(b.name));
 	categorizedLinks.other.sort((a, b) => a.name.localeCompare(b.name));
 
 	categorizedLinks.components.formInput.sort((a, b) => a.name.localeCompare(b.name));
@@ -459,6 +479,18 @@ ${categorizedLinks.migration
 ## Registry
 
 ${categorizedLinks.registry
+	.map((link) => `- [${link.title || formatName(link.name)}](${link.path}): ${link.description}`)
+	.join("\n")}
+
+## AI Elements
+
+${categorizedLinks.aiElements
+	.map((link) => `- [${link.title || formatName(link.name)}](${link.path}): ${link.description}`)
+	.join("\n")}
+
+## Utilities
+
+${categorizedLinks.utils
 	.map((link) => `- [${link.title || formatName(link.name)}](${link.path}): ${link.description}`)
 	.join("\n")}
 `;

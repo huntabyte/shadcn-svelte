@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import { RangeCalendar } from "$lib/registry/ui/range-calendar/index.js";
-	import type { DateRange } from "bits-ui";
 	import { CalendarDate, getLocalTimeZone } from "@internationalized/date";
+	import * as Card from "$lib/registry/ui/card/index.js";
 	import CalendarDayButton from "$lib/registry/ui/range-calendar/range-calendar-day.svelte";
+	import { RangeCalendar } from "$lib/registry/ui/range-calendar/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import type { DateRange } from "bits-ui";
 
 	const currentDate = new CalendarDate(2022, 1, 20);
 	let date = $state<DateRange | undefined>({

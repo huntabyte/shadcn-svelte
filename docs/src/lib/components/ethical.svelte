@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { beforeNavigate } from "$app/navigation";
 	import { dev, browser } from "$app/environment";
+	import { beforeNavigate } from "$app/navigation";
 
 	beforeNavigate((navigation) => {
 		const isDocIndex = navigation.from?.route.id === "/(app)/(layout)/docs";

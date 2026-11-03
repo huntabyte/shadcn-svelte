@@ -1,7 +1,7 @@
 <script lang="ts">
+	import { onMount } from "svelte";
 	import { cn } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
-	import { onMount } from "svelte";
 
 	interface Props extends HTMLAttributes<HTMLDivElement> {
 		active?: boolean;
@@ -128,8 +128,7 @@
 							const lastDataIndex = Math.min(i, lastActiveData.length - 1);
 							const lastValue = lastActiveData[lastDataIndex] || 0;
 							finalValue =
-								lastValue * (1 - transitionProgress) +
-								processingValue * transitionProgress;
+								lastValue * (1 - transitionProgress) + processingValue * transitionProgress;
 						}
 						processingData.push(Math.max(0.05, Math.min(1, finalValue)));
 					}
@@ -145,13 +144,10 @@
 
 						let finalValue = processingValue;
 						if (lastActiveData.length > 0 && transitionProgress < 1) {
-							const lastDataIndex = Math.floor(
-								(i / barCount) * lastActiveData.length
-							);
+							const lastDataIndex = Math.floor((i / barCount) * lastActiveData.length);
 							const lastValue = lastActiveData[lastDataIndex] || 0;
 							finalValue =
-								lastValue * (1 - transitionProgress) +
-								processingValue * transitionProgress;
+								lastValue * (1 - transitionProgress) + processingValue * transitionProgress;
 						}
 						processingData.push(Math.max(0.05, Math.min(1, finalValue)));
 					}
@@ -243,8 +239,7 @@
 
 				const AudioContextConstructor =
 					window.AudioContext ||
-					(window as unknown as { webkitAudioContext: typeof AudioContext })
-						.webkitAudioContext;
+					(window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
 				audioContext = new AudioContextConstructor();
 				analyser = audioContext.createAnalyser();
 				analyser.fftSize = fftSize;
@@ -310,18 +305,12 @@
 						// Mirror the data for symmetric display
 						for (let i = halfCount - 1; i >= 0; i--) {
 							const dataIndex = Math.floor((i / halfCount) * relevantData.length);
-							const value = Math.min(
-								1,
-								(relevantData[dataIndex] / 255) * sensitivity
-							);
+							const value = Math.min(1, (relevantData[dataIndex] / 255) * sensitivity);
 							newBars.push(Math.max(0.05, value));
 						}
 						for (let i = 0; i < halfCount; i++) {
 							const dataIndex = Math.floor((i / halfCount) * relevantData.length);
-							const value = Math.min(
-								1,
-								(relevantData[dataIndex] / 255) * sensitivity
-							);
+							const value = Math.min(1, (relevantData[dataIndex] / 255) * sensitivity);
 							newBars.push(Math.max(0.05, value));
 						}
 
@@ -471,7 +460,7 @@
 >
 	{#if !active && !processing}
 		<div
-			class="border-muted-foreground/20 absolute top-1/2 right-0 left-0 -translate-y-1/2 border-t-2 border-dotted"
+			class="absolute top-1/2 right-0 left-0 -translate-y-1/2 border-t-2 border-dotted border-muted-foreground/20"
 		></div>
 	{/if}
 	<canvas class="block h-full w-full" bind:this={canvasRef} aria-hidden="true"></canvas>

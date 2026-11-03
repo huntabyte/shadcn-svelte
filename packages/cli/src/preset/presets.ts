@@ -1,3 +1,6 @@
+import * as p from "@clack/prompts";
+import open from "open";
+import color from "picocolors";
 import {
 	decodePreset,
 	isValidPreset,
@@ -8,14 +11,11 @@ import {
 	PRESET_FONTS,
 } from "./preset.js";
 import * as cliConfig from "../utils/config/index.js";
-import * as p from "@clack/prompts";
-import color from "picocolors";
-import { cancel } from "../utils/prompt-helpers.js";
 import * as registry from "../utils/registry/index.js";
-import open from "open";
 import { iconLibraries } from "../icons/libraries.js";
-import { entries, kebabToPascal } from "../utils/utils.js";
 import { hex } from "../utils/colors.js";
+import { cancel } from "../utils/prompt-helpers.js";
+import { entries, kebabToPascal } from "../utils/utils.js";
 
 export const DEFAULT_PRESETS = {
 	nova: {
@@ -152,8 +152,7 @@ export async function promptForPreset(
 	existingConfig: cliConfig.RawConfig | undefined
 ): Promise<PresetConfig> {
 	const continuationChoice = await p.select({
-		message:
-			"You didn't provide a preset for the design system, how would you like to continue?",
+		message: "You didn't provide a preset for the design system, how would you like to continue?",
 		initialValue: existingConfig?.style !== undefined ? "prompt" : "presets",
 		options: Object.entries(CONTINUATION_OPTIONS).map(([key, option]) => ({
 			label: option.label,
@@ -163,9 +162,9 @@ export async function promptForPreset(
 
 	if (p.isCancel(continuationChoice)) cancel();
 
-	return await CONTINUATION_OPTIONS[
-		continuationChoice as keyof typeof CONTINUATION_OPTIONS
-	].select(existingConfig);
+	return await CONTINUATION_OPTIONS[continuationChoice as keyof typeof CONTINUATION_OPTIONS].select(
+		existingConfig
+	);
 }
 
 type ContinuationOption = {
@@ -271,8 +270,7 @@ async function prompt(existingConfig: cliConfig.RawConfig | undefined): Promise<
 				p.select({
 					message: "Choose a base color",
 					initialValue:
-						existingConfig?.tailwind.baseColor ??
-						cliConfig.DEFAULT_CONFIG.tailwind.baseColor,
+						existingConfig?.tailwind.baseColor ?? cliConfig.DEFAULT_CONFIG.tailwind.baseColor,
 					options: entries(PRESET_BASE_COLORS).map(([key, baseColor]) => ({
 						label: `${hex(baseColor.color)("■")} ${baseColor.name}`,
 						value: key,
@@ -290,8 +288,7 @@ async function prompt(existingConfig: cliConfig.RawConfig | undefined): Promise<
 			iconLibrary: () =>
 				p.select({
 					message: "Choose an icon library",
-					initialValue:
-						existingConfig?.iconLibrary ?? cliConfig.DEFAULT_CONFIG.iconLibrary,
+					initialValue: existingConfig?.iconLibrary ?? cliConfig.DEFAULT_CONFIG.iconLibrary,
 					options: entries(iconLibraries).map(([_key, iconLibrary]) => ({
 						label: iconLibrary.title,
 						value: iconLibrary.name,

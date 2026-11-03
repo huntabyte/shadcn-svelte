@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { Component, ComponentProps } from "svelte";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
+	import type { Component, ComponentProps } from "svelte";
 
 	let {
 		items,

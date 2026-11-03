@@ -1,9 +1,9 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import { scaleBand } from "d3-scale";
 	import { BarChart } from "layerchart";
 	import { cubicInOut } from "svelte/easing";
+	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Chart from "$lib/registry/ui/chart/index.js";
 
 	const chartData = [
 		{ date: "2024-07-15", running: 450, swimming: 300 },
@@ -70,15 +70,13 @@
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel>
 						{#snippet formatter({ name, value })}
-							<div
-								class="text-muted-foreground flex min-w-[130px] items-center text-xs"
-							>
+							<div class="flex min-w-[130px] items-center text-xs text-muted-foreground">
 								{chartConfig[name as keyof typeof chartConfig]?.label || name}
 								<div
-									class="text-foreground ms-auto flex items-baseline gap-0.5 font-mono font-medium tabular-nums"
+									class="ms-auto flex items-baseline gap-0.5 font-mono font-medium text-foreground tabular-nums"
 								>
 									{value}
-									<span class="text-muted-foreground font-normal"> kcal </span>
+									<span class="font-normal text-muted-foreground"> kcal </span>
 								</div>
 							</div>
 						{/snippet}

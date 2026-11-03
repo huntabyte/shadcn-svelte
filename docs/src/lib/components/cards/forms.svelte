@@ -1,10 +1,10 @@
 <script lang="ts">
 	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Field from "$lib/registry/ui/field/index.js";
+	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
-	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
 	import { Textarea } from "$lib/registry/ui/textarea/index.js";
 
 	const plans = [
@@ -29,8 +29,7 @@
 	<Card.Header>
 		<Card.Title class="text-lg">Upgrade your subscription</Card.Title>
 		<Card.Description class="text-balance">
-			You are currently on the free plan. Upgrade to the pro plan to get access to all
-			features.
+			You are currently on the free plan. Upgrade to the pro plan to get access to all features.
 		</Card.Description>
 	</Card.Header>
 	<Card.Content>
@@ -66,8 +65,7 @@
 				</Field.Group>
 				<Field.Set>
 					<Field.Legend>Plan</Field.Legend>
-					<Field.Description>Select the plan that best fits your needs.</Field.Description
-					>
+					<Field.Description>Select the plan that best fits your needs.</Field.Description>
 					<RadioGroup.Root value="starter" class="grid grid-cols-2 gap-2">
 						{#each plans as plan (plan.id)}
 							<Field.Label>
