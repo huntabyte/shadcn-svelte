@@ -1,7 +1,7 @@
 <script lang="ts">
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import * as Combobox from "$lib/registry/ui/combobox/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 
 	const timezones = [
 		{

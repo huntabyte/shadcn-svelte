@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import * as Combobox from "$lib/registry/ui/combobox/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"] as const;
 
@@ -10,9 +10,7 @@
 	const filteredFrameworks = $derived(
 		inputValue === ""
 			? frameworks
-			: frameworks.filter((framework) =>
-					framework.toLowerCase().includes(inputValue.toLowerCase())
-				)
+			: frameworks.filter((framework) => framework.toLowerCase().includes(inputValue.toLowerCase()))
 	);
 </script>
 

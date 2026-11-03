@@ -2,8 +2,8 @@
 	import { Combobox as ComboboxPrimitive } from "bits-ui";
 	import { getContext } from "svelte";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
-	import { cn, type WithoutChild } from "$lib/utils.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { cn, type WithoutChild } from "$lib/utils.js";
 	import { COMBOBOX_CONTEXT, type ComboboxContext } from "./context.js";
 
 	let {

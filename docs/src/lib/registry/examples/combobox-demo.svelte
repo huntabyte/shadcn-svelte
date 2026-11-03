@@ -9,9 +9,7 @@
 	const filteredFrameworks = $derived(
 		inputValue === ""
 			? frameworks
-			: frameworks.filter((framework) =>
-					framework.toLowerCase().includes(inputValue.toLowerCase())
-				)
+			: frameworks.filter((framework) => framework.toLowerCase().includes(inputValue.toLowerCase()))
 	);
 </script>
 

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 	import * as Combobox from "$lib/registry/ui/combobox/index.js";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 
 	type Country = {

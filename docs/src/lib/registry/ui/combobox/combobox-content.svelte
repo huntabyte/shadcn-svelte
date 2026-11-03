@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { Combobox as ComboboxPrimitive } from "bits-ui";
 	import { getContext } from "svelte";
-	import ComboboxPortal from "./combobox-portal.svelte";
 	import { cn, type WithoutChild, type WithoutChildrenOrChild } from "$lib/utils.js";
+	import ComboboxPortal from "./combobox-portal.svelte";
 	import { COMBOBOX_CONTEXT, type ComboboxContext } from "./context.js";
 	import type { ComponentProps } from "svelte";
 

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import * as Combobox from "$lib/registry/ui/combobox/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const countries = [
 		{ code: "ar", value: "argentina", label: "Argentina", continent: "South America" },
@@ -25,9 +25,7 @@
 						<Item.Root size="xs" class="p-0">
 							<Item.Content>
 								<Item.Title class="whitespace-nowrap">{country.label}</Item.Title>
-								<Item.Description
-									>{country.continent} ({country.code})</Item.Description
-								>
+								<Item.Description>{country.continent} ({country.code})</Item.Description>
 							</Item.Content>
 						</Item.Root>
 					</Combobox.Item>

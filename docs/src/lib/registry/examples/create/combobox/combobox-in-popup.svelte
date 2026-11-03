@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import * as Combobox from "$lib/registry/ui/combobox/index.js";
 	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	type Country = {
 		code: string;

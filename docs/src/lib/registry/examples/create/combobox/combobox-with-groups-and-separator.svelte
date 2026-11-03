@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import * as Combobox from "$lib/registry/ui/combobox/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const timezones = [
 		{
