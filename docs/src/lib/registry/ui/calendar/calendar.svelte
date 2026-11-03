@@ -33,6 +33,7 @@
 		monthFormat: monthFormatProp,
 		yearFormat = "numeric",
 		day,
+		weekday,
 		disableDaysOutsideMonth = false,
 		...restProps
 	}: WithoutChildrenOrChild<CalendarPrimitive.RootProps> & {
@@ -43,6 +44,7 @@
 		monthFormat?: CalendarPrimitive.MonthSelectProps["monthFormat"];
 		yearFormat?: CalendarPrimitive.YearSelectProps["yearFormat"];
 		day?: Snippet<[{ day: DateValue; outsideMonth: boolean }]>;
+		weekday?: Snippet<[{ weekday: string; index: number }]>;
 	} = $props();
 
 	const monthFormat = $derived.by(() => {
@@ -95,9 +97,13 @@ get along, so we shut typescript up by casting `value` to `never`.
 					<CalendarGrid>
 						<CalendarGridHead>
 							<CalendarGridRow class="select-none">
-								{#each weekdays as weekday, i (i)}
+								{#each weekdays as weekdayLabel, i (i)}
 									<CalendarHeadCell>
-										{weekday.slice(0, 2)}
+										{#if weekday}
+											{@render weekday({ weekday: weekdayLabel, index: i })}
+										{:else}
+											{weekdayLabel.slice(0, 2)}
+										{/if}
 									</CalendarHeadCell>
 								{/each}
 							</CalendarGridRow>
