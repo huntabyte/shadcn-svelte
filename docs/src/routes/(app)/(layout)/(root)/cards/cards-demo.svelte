@@ -1,11 +1,11 @@
 <script lang="ts">
+	import MessageScrollerDemo from "$lib/registry/examples/message-scroller-demo.svelte";
 	import AccountAccess from "./account-access.svelte";
 	import AnalyticsCard from "./analytics-card.svelte";
 	import ClaimableBalance from "./claimable-balance.svelte";
 	import ContributionHistory from "./contribution-history.svelte";
 	import DividendIncome from "./dividend-income.svelte";
 	import EmptyDistributeTrack from "./empty-distribute-track.svelte";
-	import NewChat from "./new-chat.svelte";
 	import NewMilestone from "./new-milestone.svelte";
 	import NotificationSettings from "./notification-settings.svelte";
 	import Payments from "./payments.svelte";
@@ -105,7 +105,7 @@
 		<div class="hidden flex-col gap-(--gap) md:flex">
 			<QrConnect></QrConnect>
 			<div class="**:[.text-center.text-xs]:hidden">
-				<NewChat />
+				<MessageScrollerDemo />
 			</div>
 			<Payments></Payments>
 		</div>

@@ -1,5 +1,13 @@
 <script lang="ts">
 	import * as Bubble from "$lib/registry/ui/bubble/index.js";
+	import Markdown from "$lib/components/markdown/markdown.svelte";
+
+	const ghost = `Ghost bubbles work for assistant text, **markdown**, and other content that should not be framed.
+
+This is perfect for assistant messages that should not have a frame and can take the full width of the container. You can also render \`code\` in it.
+
+Ghost bubbles are full width and can take the full width of the container.
+`;
 </script>
 
 <div class="flex w-full max-w-sm flex-col gap-12 py-12">
@@ -33,15 +41,7 @@
 	</Bubble.Root>
 	<Bubble.Root variant="ghost">
 		<Bubble.Content>
-			<p>
-				Ghost bubbles work for assistant text, <strong>markdown</strong>, and other content that
-				should not be framed.
-			</p>
-			<p class="mt-4">
-				This is perfect for assistant messages that should not have a frame and can take the full
-				width of the container. You can also render <code>code</code> in it.
-			</p>
-			<p class="mt-4">Ghost bubbles are full width and can take the full width of the container.</p>
+			<Markdown content={ghost} />
 		</Bubble.Content>
 	</Bubble.Root>
 </div>
