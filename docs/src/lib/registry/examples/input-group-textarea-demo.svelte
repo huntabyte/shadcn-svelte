@@ -8,6 +8,17 @@
 
 <div class="grid w-full max-w-md gap-4">
 	<InputGroup.Root>
+		<InputGroup.Textarea
+			id="textarea-code-32"
+			placeholder="console.log('Hello, world!');"
+			class="min-h-[200px]"
+		/>
+		<InputGroup.Addon align="block-end" class="border-t">
+			<InputGroup.Text>Line 1, Column 1</InputGroup.Text>
+			<InputGroup.Button size="sm" class="ms-auto" variant="default">
+				Run <IconCornerDownLeft />
+			</InputGroup.Button>
+		</InputGroup.Addon>
 		<InputGroup.Addon align="block-start" class="border-b">
 			<InputGroup.Text class="font-mono font-medium">
 				<IconBrandJavascript />
@@ -18,13 +29,6 @@
 			</InputGroup.Button>
 			<InputGroup.Button variant="ghost" size="icon-xs">
 				<IconCopy />
-			</InputGroup.Button>
-		</InputGroup.Addon>
-		<InputGroup.Textarea placeholder="console.log('Hello, world!');" class="min-h-[200px]" />
-		<InputGroup.Addon align="block-end" class="border-t">
-			<InputGroup.Text>Line 1, Column 1</InputGroup.Text>
-			<InputGroup.Button size="sm" class="ms-auto" variant="default">
-				Run <IconCornerDownLeft />
 			</InputGroup.Button>
 		</InputGroup.Addon>
 	</InputGroup.Root>

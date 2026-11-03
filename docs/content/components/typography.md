@@ -1,6 +1,6 @@
 ---
 title: Typography
-description: Styles for headings, paragraphs, lists...etc
+description: Styles for headings, paragraphs, lists, etc.
 component: true
 ---
 
@@ -10,7 +10,7 @@ component: true
 
 We do not ship any typography styles by default. This page is an example of how you can use utility classes to style your text.
 
-<ComponentPreview name="typography-demo" class="[&_.preview]:!h-auto">
+<ComponentPreview name="typography-demo" class="[&_.preview]:!h-auto" hideCode>
 
 <div></div>
 

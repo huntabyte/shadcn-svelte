@@ -5,7 +5,7 @@
 		{ value: "apple", label: "Apple" },
 		{ value: "banana", label: "Banana" },
 		{ value: "blueberry", label: "Blueberry" },
-		{ value: "grapes", label: "Grapes", disabled: true },
+		{ value: "grapes", label: "Grapes" },
 		{ value: "pineapple", label: "Pineapple" },
 	];
 
@@ -13,14 +13,14 @@
 </script>
 
 <Select.Root type="single" name="favoriteFruit" items={fruits} bind:value>
-	<Select.Trigger class="w-[180px]">
+	<Select.Trigger class="w-full max-w-48">
 		<Select.Value placeholder="Select a fruit" />
 	</Select.Trigger>
 	<Select.Content>
 		<Select.Group>
 			<Select.Label>Fruits</Select.Label>
 			{#each fruits as fruit (fruit.value)}
-				<Select.Item value={fruit.value} label={fruit.label} disabled={fruit.disabled}>
+				<Select.Item value={fruit.value} label={fruit.label}>
 					{fruit.label}
 				</Select.Item>
 			{/each}

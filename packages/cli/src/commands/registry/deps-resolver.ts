@@ -100,7 +100,7 @@ function resolvePeerDeps(
 	const versions: ResolvedDependencies["versions"] = {};
 
 	for (const [name, version] of Object.entries(dependencies ?? {})) {
-		const versioned = version ? `${name}@${version}` : name;
+		const versioned = toVersionedName(name, version, cwd);
 		const peers = (deps[versioned] ??= []);
 
 		versions[name] = versioned;
@@ -116,6 +116,37 @@ function resolvePeerDeps(
 		}
 	}
 	return { deps, versions };
+}
+
+const WORKSPACE_PROTOCOL = "workspace:";
+/** Workspace ranges that stand in for the dependency's current version. */
+const WORKSPACE_RANGE_ALIASES = new Set(["*", "^", "~"]);
+
+/**
+ * Constructs the `pkg-name@version` string.
+ *
+ * Workspace protocol versions (`workspace:*`, `workspace:^`, etc.) only resolve inside a
+ * monorepo, so we'll first try to resolve their versions with the proper version range,
+ * which is derived from the workspace protocol, to then falling back to the
+ * bare package name if it's unresolvable.
+ */
+export function toVersionedName(name: string, version: string | undefined, cwd: string) {
+	if (!version) return name;
+
+	if (version.startsWith(WORKSPACE_PROTOCOL)) {
+		const versionRange = version.slice(WORKSPACE_PROTOCOL.length);
+		// an explicit range (e.g. `workspace:^1.2.0` or `workspace:1`) is already publishable as-is
+		if (!WORKSPACE_RANGE_ALIASES.has(versionRange)) return `${name}@${versionRange}`;
+
+		const pkgVersion = getDependencyPackageInfo(cwd, name)?.pkg.version;
+		if (!pkgVersion) return name;
+
+		// `workspace:*` resolves to a pinned version of the dependency's version
+		const prefix = versionRange === "*" ? "" : versionRange;
+		return `${name}@${prefix}${pkgVersion}`;
+	}
+
+	return `${name}@${version}`;
 }
 
 type GetFileDepOpts = {

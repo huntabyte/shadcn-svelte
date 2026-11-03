@@ -15,6 +15,7 @@ import {
 	darkMode,
 	registry,
 	utils,
+	aiElements,
 } from "../.velite";
 import type { Element, Root as HastRoot, RootContent } from "hast";
 import type { Root, Link, Node, Paragraph, Text } from "mdast";
@@ -115,7 +116,8 @@ type VeliteData =
 	| (typeof migration)[number]
 	| (typeof darkMode)[number]
 	| (typeof registry)[number]
-	| (typeof utils)[number];
+	| (typeof utils)[number]
+	| (typeof aiElements)[number];
 
 type CategorizedLinks = {
 	overview: LinkData[];
@@ -132,6 +134,7 @@ type CategorizedLinks = {
 	migration: LinkData[];
 	registry: LinkData[];
 	utils: LinkData[];
+	aiElements: LinkData[];
 	other: LinkData[];
 };
 
@@ -249,6 +252,7 @@ async function createLLMsIndex(files: FileMap) {
 		darkMode,
 		registry,
 		utils,
+		aiElements,
 	};
 	const categorizedLinks: CategorizedLinks = {
 		overview: [],
@@ -265,6 +269,7 @@ async function createLLMsIndex(files: FileMap) {
 		migration: [],
 		registry: [],
 		utils: [],
+		aiElements: [],
 		other: [],
 	};
 
@@ -373,6 +378,8 @@ async function createLLMsIndex(files: FileMap) {
 			categorizedLinks.migration.push(linkData);
 		} else if (dirPath.includes("registry")) {
 			categorizedLinks.registry.push(linkData);
+		} else if (dirPath.includes("ai-elements")) {
+			categorizedLinks.aiElements.push(linkData);
 		} else if (dirPath.includes("utils")) {
 			categorizedLinks.utils.push(linkData);
 		} else if (dirPath.includes("components")) {
@@ -411,6 +418,7 @@ async function createLLMsIndex(files: FileMap) {
 	categorizedLinks.migration.sort((a, b) => a.name.localeCompare(b.name));
 	categorizedLinks.registry.sort((a, b) => a.name.localeCompare(b.name));
 	categorizedLinks.utils.sort((a, b) => a.name.localeCompare(b.name));
+	categorizedLinks.aiElements.sort((a, b) => a.name.localeCompare(b.name));
 	categorizedLinks.other.sort((a, b) => a.name.localeCompare(b.name));
 
 	categorizedLinks.components.formInput.sort((a, b) => a.name.localeCompare(b.name));
@@ -489,6 +497,12 @@ ${categorizedLinks.migration
 ## Registry
 
 ${categorizedLinks.registry
+	.map((link) => `- [${link.title || formatName(link.name)}](${link.path}): ${link.description}`)
+	.join("\n")}
+
+## AI Elements
+
+${categorizedLinks.aiElements
 	.map((link) => `- [${link.title || formatName(link.name)}](${link.path}): ${link.description}`)
 	.join("\n")}
 

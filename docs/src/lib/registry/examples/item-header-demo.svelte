@@ -34,8 +34,8 @@
 					<img
 						src={model.image}
 						alt={model.name}
-						width="128"
-						height="128"
+						width={128}
+						height={128}
 						class="aspect-square w-full rounded-sm object-cover"
 					/>
 				</Item.Header>

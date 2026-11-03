@@ -69,7 +69,7 @@ Copy and paste the following code into your project.
   <Dialog.Trigger>Open</Dialog.Trigger>
   <Dialog.Content>
     <Dialog.Header>
-      <Dialog.Title>Are you sure absolutely sure?</Dialog.Title>
+      <Dialog.Title>Are you absolutely sure?</Dialog.Title>
       <Dialog.Description>
         This action cannot be undone. This will permanently delete your account
         and remove your data from our servers.
@@ -79,50 +79,42 @@ Copy and paste the following code into your project.
 </Dialog.Root>
 ```
 
-## Examples
+## Custom Close Button
 
-### Custom close button
+Replace the default close control with your own button.
 
-<ComponentPreview name="dialog-close-button" >
+<ComponentPreview name="dialog-close-button">
 
 <div></div>
 
 </ComponentPreview>
 
-<!-- Need to convert to svelte component
-## Notes
+## No Close Button
 
-To use the `Dialog` component from within a `Context Menu` or `Dropdown Menu`, you must encase the `Context Menu` or
-`Dropdown Menu` component in the `Dialog` component.
+Use `showCloseButton={false}` to hide the close button.
 
-```tsx showLineNumbers title="components/example-dialog-context-menu.svelte" {1, 26}
-<Dialog>
-  <ContextMenu>
-    <ContextMenuTrigger>Right click</ContextMenuTrigger>
-    <ContextMenuContent>
-      <ContextMenuItem>Open</ContextMenuItem>
-      <ContextMenuItem>Download</ContextMenuItem>
-      <DialogTrigger>
-        {#snippet child({ props })}
-          <ContextMenuItem {...props}>
-            <span>Delete</span>
-          </ContextMenuItem>
-        {/snippet}
-      </DialogTrigger>
-    </ContextMenuContent>
-  </ContextMenu>
-  <DialogContent>
-    <DialogHeader>
-      <DialogTitle>Are you absolutely sure?</DialogTitle>
-      <DialogDescription>
-        This action cannot be undone. Are you sure you want to permanently
-        delete this file from our servers?
-      </DialogDescription>
-    </DialogHeader>
-    <DialogFooter>
-      <Button type="submit">Confirm</Button>
-    </DialogFooter>
-  </DialogContent>
-</Dialog>
-```
--->
+<ComponentPreview name="dialog-no-close-button">
+
+<div></div>
+
+</ComponentPreview>
+
+## Sticky Footer
+
+Keep actions visible while the content scrolls.
+
+<ComponentPreview name="dialog-sticky-footer">
+
+<div></div>
+
+</ComponentPreview>
+
+## Scrollable Content
+
+Long content can scroll while the header stays in view.
+
+<ComponentPreview name="dialog-scrollable-content">
+
+<div></div>
+
+</ComponentPreview>

@@ -5,17 +5,19 @@
 	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
-<Empty.Root class="h-full bg-gradient-to-b from-muted/50 from-30% to-background">
+<Empty.Root class="h-full bg-muted/30">
 	<Empty.Header>
 		<Empty.Media variant="icon">
 			<BellIcon />
 		</Empty.Media>
 		<Empty.Title>No Notifications</Empty.Title>
-		<Empty.Description>You're all caught up. New notifications will appear here.</Empty.Description>
+		<Empty.Description class="max-w-xs text-pretty">
+			You're all caught up. New notifications will appear here.
+		</Empty.Description>
 	</Empty.Header>
 	<Empty.Content>
-		<Button variant="outline" size="sm">
-			<RefreshCcwIcon />
+		<Button variant="outline">
+			<RefreshCcwIcon data-icon="inline-start" />
 			Refresh
 		</Button>
 	</Empty.Content>

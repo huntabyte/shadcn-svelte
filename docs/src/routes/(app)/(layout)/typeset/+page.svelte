@@ -1,0 +1,335 @@
+<script lang="ts">
+	import "$lib/styles/fonts.css";
+	import AlignJustify from "@lucide/svelte/icons/align-justify";
+	import ArrowLeftRight from "@lucide/svelte/icons/arrow-left-right";
+	import CaseUpper from "@lucide/svelte/icons/case-upper";
+	import MoveVertical from "@lucide/svelte/icons/move-vertical";
+	import { LinkSquare02Icon } from "@hugeicons/core-free-icons";
+	import { HugeiconsIcon } from "@hugeicons/svelte";
+	import { mode, setMode } from "mode-watcher";
+	import { onDestroy, onMount } from "svelte";
+	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
+	import CtaMobile from "$lib/components/cta-mobile.svelte";
+	import Cta from "$lib/components/cta.svelte";
+	import Metadata from "$lib/components/metadata.svelte";
+	import Control from "$lib/features/typeset/control.svelte";
+	import DocsPanel from "$lib/features/typeset/docs-panel.svelte";
+	import GetCodeDrawer from "$lib/features/typeset/get-code-drawer.svelte";
+	import MainMenu from "$lib/features/typeset/main-menu.svelte";
+	import Separator from "$lib/registry/ui/separator/separator.svelte";
+	import {
+		provideTypesetPreviewOverride,
+		TypesetPreviewOverrideState,
+	} from "$lib/features/typeset/preview-override.svelte.js";
+	import {
+		CONTENT_OPTIONS,
+		FONTS,
+		TYPESET_FLOWS,
+		TYPESET_LEADINGS,
+		TYPESET_MEASURES,
+		TYPESET_SIZES,
+		TypesetState,
+		findFont,
+		serializeTypesetParams,
+	} from "$lib/features/typeset/typeset.svelte.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+
+	const typeset = new TypesetState();
+	const previewOverride = new TypesetPreviewOverrideState();
+	provideTypesetPreviewOverride(previewOverride);
+	onDestroy(() => previewOverride.destroy());
+	let iframe: HTMLIFrameElement;
+	let customizerAnchor = $state<HTMLElement | null>(null);
+	let pickerScroll = $state<HTMLElement | null>(null);
+
+	const fontOptions = FONTS.map((font) => ({ value: font.id, label: font.label }));
+	const fontGroups = (["sans", "serif", "mono"] as const).map((type) => ({
+		label: type === "sans" ? "Sans" : type === "serif" ? "Serif" : "Mono",
+		options: FONTS.filter((font) => font.type === type).map((font) => ({
+			value: font.id,
+			label: font.label,
+		})),
+	}));
+	const headingOptions = $derived([
+		{
+			value: "inherit",
+			label: findFont(typeset.params.body)?.label ?? "Body font",
+		},
+		...fontOptions,
+	]);
+	const bodyFont = $derived(findFont(typeset.params.body));
+	const headingFont = $derived(
+		typeset.params.heading === "inherit" ? bodyFont : findFont(typeset.params.heading)
+	);
+	const monoFont = $derived(findFont(typeset.params.mono));
+	let previewSrc = $state(
+		serializeTypesetParams(`/preview/typeset/${typeset.params.item}`, typeset.params)
+	);
+	const openInNewTabHref = $derived(
+		serializeTypesetParams(`/preview/typeset/${typeset.params.item}`, typeset.params)
+	);
+	let previewItem = typeset.params.item;
+	const previewParams = $derived({ ...typeset.params, ...(previewOverride.override ?? {}) });
+
+	function sendPreviewParams() {
+		iframe?.contentWindow?.postMessage(
+			{ type: "typeset-params", data: previewParams },
+			window.location.origin
+		);
+	}
+
+	function toggleTheme() {
+		setMode(mode.current === "dark" ? "light" : "dark");
+	}
+
+	function handleShortcut(event: KeyboardEvent) {
+		if (
+			(event.target instanceof HTMLElement && event.target.isContentEditable) ||
+			event.target instanceof HTMLInputElement ||
+			event.target instanceof HTMLTextAreaElement ||
+			event.target instanceof HTMLSelectElement
+		)
+			return;
+		const key = event.key.toLowerCase();
+		if ((event.metaKey || event.ctrlKey) && key === "z") {
+			event.preventDefault();
+			event.shiftKey ? typeset.redo() : typeset.undo();
+		} else if (event.ctrlKey && key === "y") {
+			event.preventDefault();
+			typeset.redo();
+		} else if (!event.metaKey && !event.ctrlKey && !event.altKey && key === "r") {
+			event.preventDefault();
+			event.shiftKey ? typeset.reset() : typeset.shuffle();
+		} else if (!event.metaKey && !event.ctrlKey && !event.altKey && key === "d") {
+			event.preventDefault();
+			toggleTheme();
+		}
+	}
+
+	onMount(() => {
+		typeset.init();
+		document.addEventListener("keydown", handleShortcut);
+		const onMessage = (event: MessageEvent) => {
+			if (event.origin !== window.location.origin || event.source !== iframe?.contentWindow) return;
+			if (event.data?.type !== "typeset-command") return;
+			const actions: Record<string, () => void> = {
+				shuffle: () => typeset.shuffle(),
+				reset: () => typeset.reset(),
+				undo: () => typeset.undo(),
+				redo: () => typeset.redo(),
+				"toggle-theme": toggleTheme,
+			};
+			actions[event.data.command]?.();
+		};
+		window.addEventListener("message", onMessage);
+		return () => {
+			document.removeEventListener("keydown", handleShortcut);
+			window.removeEventListener("message", onMessage);
+		};
+	});
+
+	$effect(() => {
+		if (previewParams.item !== previewItem) {
+			previewItem = previewParams.item;
+			previewSrc = serializeTypesetParams(`/preview/typeset/${previewItem}`, previewParams);
+			return;
+		}
+		sendPreviewParams();
+	});
+</script>
+
+<Metadata title="Typeset" description="Typography for markdown you don't control." />
+
+<div
+	class="relative z-10 flex min-h-0 flex-1 flex-col overflow-hidden section-soft [--customizer-width:--spacing(56)] [--gap:--spacing(4)] md:[--gap:--spacing(6)]"
+>
+	<div
+		data-slot="designer"
+		class="flex min-h-0 flex-1 flex-col items-start gap-(--gap) p-(--gap) pt-[calc(var(--gap)*0.25)] md:flex-row-reverse"
+	>
+		<DocsPanel {typeset} />
+
+		<div class="flex min-h-0 w-full min-w-0 flex-1 flex-col gap-(--gap) self-stretch">
+			<div class="relative z-20 w-full xl:hidden">
+				<CtaMobile />
+			</div>
+			<div
+				class="relative isolate flex min-h-0 w-full flex-1 flex-col self-stretch overflow-hidden rounded-2xl bg-background ring-1 ring-foreground/10"
+			>
+				<iframe
+					bind:this={iframe}
+					src={previewSrc}
+					title="typeset preview"
+					class="min-h-0 w-full flex-1"
+					onload={sendPreviewParams}
+				></iframe>
+				<div
+					class="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 items-center justify-center gap-1.5"
+				>
+					<div
+						class="dark flex items-center gap-1 rounded-xl bg-card/90 p-1 shadow-xl backdrop-blur-xl"
+					>
+						{#each CONTENT_OPTIONS as option, index (option.value)}
+							<Tooltip.Root>
+								<Tooltip.Trigger>
+									{#snippet child({ props })}
+										<Button
+											{...props}
+											variant="ghost"
+											size="sm"
+											data-active={typeset.params.item === option.value}
+											class="h-7 min-w-7 cursor-pointer rounded-lg px-2 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground data-[active=true]:bg-accent data-[active=true]:text-accent-foreground"
+											onclick={() => typeset.update({ item: option.value })}
+											>{String(index + 1).padStart(2, "0")}</Button
+										>
+									{/snippet}
+								</Tooltip.Trigger>
+								<Tooltip.Content
+									side="top"
+									sideOffset={10}
+									class="data-[state=closed]:animate-none data-[state=instant-open]:animate-in data-[state=instant-open]:fade-in-0 data-[state=instant-open]:zoom-in-95"
+								>
+									{option.label}
+								</Tooltip.Content>
+							</Tooltip.Root>
+						{/each}
+					</div>
+					<div
+						class="dark flex items-center gap-1 rounded-xl bg-card/90 p-1 shadow-xl backdrop-blur-xl"
+					>
+						<Button
+							href={openInNewTabHref}
+							target="_blank"
+							rel="noreferrer"
+							variant="ghost"
+							size="sm"
+							class="h-7 cursor-pointer rounded-lg px-2.5 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
+						>
+							<HugeiconsIcon icon={LinkSquare02Icon} strokeWidth={2} class="size-3.5 md:hidden" />
+							<span class="max-md:sr-only">Open in New Tab</span>
+						</Button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div
+			class="isolate z-10 flex max-h-full min-h-0 w-full flex-col gap-2 self-start md:w-(--customizer-width)"
+		>
+			<Card.Root
+				bind:ref={customizerAnchor}
+				class="dark min-h-0 w-full gap-0 rounded-2xl bg-card/90 shadow-xl backdrop-blur-xl"
+				size="sm"
+			>
+				<Card.Header class="hidden items-center justify-between gap-2 border-b px-3! md:flex">
+					<MainMenu {typeset} />
+				</Card.Header>
+				<Card.Content
+					bind:ref={pickerScroll}
+					data-slot="picker-scroll"
+					class="no-scrollbar min-h-0 flex-1 overflow-x-auto overflow-y-hidden p-0 max-md:flex max-md:gap-2.5 max-md:px-3 max-md:pb-3 md:overflow-y-auto"
+				>
+					<div
+						class="flex shrink-0 flex-row gap-2.5 p-3 max-md:p-0 max-md:py-px max-[28rem]:hidden md:flex-col md:gap-3.25"
+					>
+						<Control
+							{typeset}
+							param="measure"
+							label="Measure"
+							options={TYPESET_MEASURES}
+							icon={ArrowLeftRight}
+							anchor={customizerAnchor}
+							scrollContainer={pickerScroll}
+						/>
+					</div>
+					<Separator class="hidden md:block" />
+					<div
+						class="flex shrink-0 flex-row gap-2.5 p-3 max-md:p-0 max-md:py-px md:flex-col md:gap-3.25"
+					>
+						<Control
+							{typeset}
+							param="heading"
+							label="Heading"
+							options={headingOptions}
+							groups={fontGroups}
+							preview={headingFont?.value}
+							anchor={customizerAnchor}
+							scrollContainer={pickerScroll}
+						/>
+						<Control
+							{typeset}
+							param="body"
+							label="Body"
+							options={fontOptions}
+							groups={fontGroups}
+							preview={bodyFont?.value}
+							anchor={customizerAnchor}
+							scrollContainer={pickerScroll}
+						/>
+						<Control
+							{typeset}
+							param="mono"
+							label="Mono"
+							options={fontOptions}
+							groups={fontGroups}
+							preview={monoFont?.value}
+							anchor={customizerAnchor}
+							scrollContainer={pickerScroll}
+						/>
+					</div>
+					<Separator class="hidden md:block" />
+					<div
+						class="flex shrink-0 flex-row gap-2.5 p-3 max-md:p-0 max-md:py-px md:flex-col md:gap-3.25"
+					>
+						<Control
+							{typeset}
+							param="scale"
+							label="Size"
+							options={TYPESET_SIZES}
+							icon={CaseUpper}
+							anchor={customizerAnchor}
+							scrollContainer={pickerScroll}
+						/>
+						<Control
+							{typeset}
+							param="leading"
+							label="Leading"
+							options={TYPESET_LEADINGS}
+							icon={AlignJustify}
+							anchor={customizerAnchor}
+							scrollContainer={pickerScroll}
+						/>
+						<Control
+							{typeset}
+							param="flow"
+							label="Flow"
+							options={TYPESET_FLOWS}
+							icon={MoveVertical}
+							anchor={customizerAnchor}
+							scrollContainer={pickerScroll}
+						/>
+					</div>
+				</Card.Content>
+				<Card.Footer
+					class="flex min-w-0 flex-row-reverse gap-2 border-t px-3! md:flex-col md:**:[button]:w-full"
+				>
+					<Button
+						variant="outline"
+						class="min-w-0 flex-1 touch-manipulation bg-transparent! px-2! py-0! text-sm! transition-none select-none hover:bg-muted! md:flex-none pointer-coarse:h-10!"
+						onclick={() => typeset.shuffle()}
+					>
+						<span class="w-full truncate text-center font-medium">Shuffle</span>
+					</Button>
+					<GetCodeDrawer
+						{typeset}
+						class="min-w-0 flex-1 touch-manipulation bg-transparent! px-2! py-0! text-sm! transition-none select-none hover:bg-muted! md:flex-none xl:hidden pointer-coarse:h-10!"
+					/>
+				</Card.Footer>
+			</Card.Root>
+			<div class="hidden w-full flex-col md:flex">
+				<Cta />
+			</div>
+		</div>
+	</div>
+</div>

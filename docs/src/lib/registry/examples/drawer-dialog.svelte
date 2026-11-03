@@ -22,12 +22,12 @@
 					Make changes to your profile here. Click save when you're done.
 				</Dialog.Description>
 			</Dialog.Header>
-			<form class="grid items-start gap-4">
-				<div class="grid gap-2">
+			<form class="grid items-start gap-6">
+				<div class="grid gap-3">
 					<Label for="email-{id}">Email</Label>
 					<Input type="email" id="email-{id}" value="shadcn@example.com" />
 				</div>
-				<div class="grid gap-2">
+				<div class="grid gap-3">
 					<Label for="username-{id}">Username</Label>
 					<Input id="username-{id}" value="@shadcn" />
 				</div>
@@ -45,20 +45,17 @@
 					Make changes to your profile here. Click save when you're done.
 				</Drawer.Description>
 			</Drawer.Header>
-			<form class="grid items-start gap-4 px-4">
-				<div class="grid gap-2">
+			<form class="grid items-start gap-6 p-4">
+				<div class="grid gap-3">
 					<Label for="email-{id}">Email</Label>
 					<Input type="email" id="email-{id}" value="shadcn@example.com" />
 				</div>
-				<div class="grid gap-2">
+				<div class="grid gap-3">
 					<Label for="username-{id}">Username</Label>
 					<Input id="username-{id}" value="@shadcn" />
 				</div>
 				<Button type="submit">Save changes</Button>
 			</form>
-			<Drawer.Footer class="pt-2">
-				<Drawer.Close class={buttonVariants({ variant: "outline" })}>Cancel</Drawer.Close>
-			</Drawer.Footer>
 		</Drawer.Content>
 	</Drawer.Root>
 {/if}
