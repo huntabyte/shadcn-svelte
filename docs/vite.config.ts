@@ -82,6 +82,8 @@ function flattenedRegistry(): Plugin {
 
 	const styleMaps = new Map<string, Record<string, string>>();
 	const getStyleMap = (style: string) => {
+		// Another UI Svelte has one style. Any other name an upstream example asks for (style-rhea and the like) is Ledger.
+		if (!fs.existsSync(path.join(stylesDir, `style-${style}.css`))) style = DEFAULT_STYLE;
 		let map = styleMaps.get(style);
 		if (!map) {
 			map = parseStyleCss(fs.readFileSync(path.join(stylesDir, `style-${style}.css`), "utf8"));
