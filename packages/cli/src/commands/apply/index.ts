@@ -7,7 +7,8 @@ import { Command, Option } from "commander";
 import { z } from "zod";
 import * as cliConfig from "../../utils/config/index.js";
 import * as registry from "../../utils/registry/index.js";
-import { type PresetConfig, decodePreset, encodePreset } from "../../preset/index.js";
+import { type PresetConfig, encodePreset } from "../../preset/index.js";
+import { PRESET_NAMES, resolvePreset } from "../../preset/presets.js";
 import { addRegistryItems } from "../../utils/add-registry-items.js";
 import { highlight } from "../../utils/colors.js";
 import { ConfigError, error } from "../../utils/errors.js";
@@ -34,8 +35,8 @@ type InitOptions = z.infer<typeof initOptionsSchema>;
 export const apply = new Command()
 	.command("apply")
 	.description("apply a preset to an existing project")
-	.argument("[preset]", "the preset to apply")
-	.option("--preset <preset>", "the preset to use")
+	.argument("[preset]", "the preset to apply (a preset code or the name of a style)")
+	.option("--preset <preset>", "the preset to use (a preset code or the name of a style)")
 	.addOption(
 		new Option("--only <parts...>", "apply only parts of a preset: theme, font").choices(
 			ONLY_OPTIONS
@@ -64,9 +65,11 @@ export const apply = new Command()
 				throw error(`${color.bold(`--preset`)} is required.`);
 			}
 
-			const presetConfig = decodePreset(providedPreset);
+			const presetConfig = resolvePreset(providedPreset);
 			if (presetConfig === null) {
-				throw error(`${color.bold(`--preset ${providedPreset}`)} is not a valid preset.`);
+				throw error(
+					`${color.bold(`--preset ${providedPreset}`)} is not a valid preset. Use a preset code or one of: ${PRESET_NAMES.join(", ")}.`
+				);
 			}
 
 			preflightInit(cwd, { skipPreflight: options.skipPreflight });

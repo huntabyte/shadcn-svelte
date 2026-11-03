@@ -18,6 +18,7 @@ import {
 	toBase62,
 	type PresetConfig,
 } from "../src/preset/preset.js";
+import { DEFAULT_PRESETS, PRESET_NAMES, resolvePreset } from "../src/preset/presets.js";
 
 describe("base62", () => {
 	it("should round-trip numbers", () => {
@@ -215,5 +216,42 @@ describe("generateRandomPreset", () => {
 		expect(decoded).not.toBeNull();
 		const reEncoded = encodePreset(decoded!);
 		expect(reEncoded).toBe(code);
+	});
+});
+
+describe("resolvePreset", () => {
+	it("should resolve every pre-configured preset by name", () => {
+		expect(PRESET_NAMES.length).toBeGreaterThan(0);
+		for (const name of PRESET_NAMES) {
+			const preset = resolvePreset(name);
+			expect(preset).not.toBeNull();
+			expect(preset!.style).toBe(name);
+		}
+	});
+
+	it("should ignore case and surrounding whitespace in names", () => {
+		expect(resolvePreset("Luma")).toBe(DEFAULT_PRESETS.luma);
+		expect(resolvePreset("  VEGA ")).toBe(DEFAULT_PRESETS.vega);
+	});
+
+	it("should resolve preset codes", () => {
+		const code = encodePreset(DEFAULT_PRESET_CONFIG);
+		expect(resolvePreset(code)).toEqual(decodePreset(code));
+	});
+
+	it("should resolve the code of a named preset to the same style", () => {
+		for (const name of PRESET_NAMES) {
+			const code = encodePreset(DEFAULT_PRESETS[name]);
+			expect(resolvePreset(code)?.style).toBe(name);
+		}
+	});
+
+	it("should return null for unknown names and invalid codes", () => {
+		expect(resolvePreset("")).toBeNull();
+		expect(resolvePreset("not-a-style")).toBeNull();
+		expect(resolvePreset("c123")).toBeNull();
+		// inherited object keys must not be treated as preset names
+		expect(resolvePreset("constructor")).toBeNull();
+		expect(resolvePreset("__proto__")).toBeNull();
 	});
 });

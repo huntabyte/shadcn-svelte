@@ -140,6 +140,22 @@ export const DEFAULT_PRESETS = {
 	},
 } as const;
 
+export const PRESET_NAMES = Object.keys(DEFAULT_PRESETS) as (keyof typeof DEFAULT_PRESETS)[];
+
+/**
+ * Resolves the value passed to `--preset`. It can be either the name of one of the
+ * pre-configured presets (e.g. `luma`) or an encoded preset code from `/create`.
+ *
+ * @returns the preset or `null` when the value is neither
+ */
+export function resolvePreset(value: string): PresetConfig | null {
+	const name = value.trim().toLowerCase();
+	if (Object.hasOwn(DEFAULT_PRESETS, name)) {
+		return DEFAULT_PRESETS[name as keyof typeof DEFAULT_PRESETS];
+	}
+	return decodePreset(value);
+}
+
 /**
  * When the user doesn't provide a preset we want to give them some options for configuring the design system.
  * 1. Go to `/create`, customize, and paste the code back here when they are ready

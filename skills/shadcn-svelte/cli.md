@@ -26,7 +26,7 @@ Installs dependencies, adds the `cn` util, creates `components.json`, and sets u
 
 | Flag                        | Short | Description                                                               | Default   |
 | --------------------------- | ----- | ------------------------------------------------------------------------- | --------- |
-| `--preset <preset>`         | —     | Encoded design-system preset string from the docs site                    | —         |
+| `--preset <preset>`         | —     | Encoded preset string from the docs site, or a style name (`luma`)        | —         |
 | `-c, --cwd <path>`          | `-c`  | Working directory                                                         | current   |
 | `-o, --overwrite`           | —     | Overwrite existing files                                                  | `false`   |
 | `--no-deps`                 | —     | Do not add or install dependencies                                        | —         |
@@ -77,16 +77,16 @@ Use `--only theme` or `--only font` to apply only part of a preset without reins
 
 Get a preset code from the builder at [shadcn-svelte.com/create](https://shadcn-svelte.com/create).
 
-| Flag                | Short | Description                                    | Default   |
-| ------------------- | ----- | ---------------------------------------------- | --------- |
-| `--preset <preset>` | —     | Encoded design-system preset string (required) | —         |
-| `--only [parts]`    | —     | Apply only `theme` or `font` from the preset   | —         |
-| `-c, --cwd <path>`  | `-c`  | Working directory                              | current   |
-| `-y, --yes`         | `-y`  | Overwrite existing files without confirmation  | `false`   |
-| `-s, --silent`      | `-s`  | Mute output                                    | `false`   |
-| `--skip-preflight`  | —     | Ignore preflight checks and continue           | `false`   |
-| `--proxy <proxy>`   | —     | Fetch registry items through this proxy        | env-based |
-| `-h, --help`        | `-h`  | Help                                           | —         |
+| Flag                | Short | Description                                         | Default   |
+| ------------------- | ----- | --------------------------------------------------- | --------- |
+| `--preset <preset>` | —     | Preset string or style name, e.g. `luma` (required) | —         |
+| `--only [parts]`    | —     | Apply only `theme` or `font` from the preset        | —         |
+| `-c, --cwd <path>`  | `-c`  | Working directory                                   | current   |
+| `-y, --yes`         | `-y`  | Overwrite existing files without confirmation       | `false`   |
+| `-s, --silent`      | `-s`  | Mute output                                         | `false`   |
+| `--skip-preflight`  | —     | Ignore preflight checks and continue                | `false`   |
+| `--proxy <proxy>`   | —     | Fetch registry items through this proxy             | env-based |
+| `-h, --help`        | `-h`  | Help                                                | —         |
 
 Requires an existing `components.json`. Run `init` first if the project is not yet configured.
 
@@ -144,7 +144,7 @@ HTTP_PROXY="<proxy-url>" npx shadcn-svelte@latest init
 
 ## Presets
 
-Design-system options (style, theme, icons, fonts, etc.) can be captured as an encoded **preset** string from the builder on [shadcn-svelte.com/create](https://shadcn-svelte.com/create).
+Design-system options (style, theme, icons, fonts, etc.) can be captured as an encoded **preset** string from the builder on [shadcn-svelte.com/create](https://shadcn-svelte.com/create). `--preset` also accepts the name of a style (`nova`, `vega`, `maia`, `lyra`, `mira`, `luma`, `sera`, `rhea`), which uses that style's default preset. This is the way to run `init` without prompts when the user has no preset code, together with `--css` and the `--*-alias` flags.
 
 - **New project:** pass the preset to **`init`** with `--preset <string>`.
 - **Existing project:** use **`apply --preset <string>`** to update configuration, restyle installed components, and install any new dependencies.
