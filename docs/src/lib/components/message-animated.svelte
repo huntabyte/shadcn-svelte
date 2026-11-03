@@ -4,23 +4,21 @@
 	import * as Bubble from "$lib/registry/ui/bubble/index.js";
 	import * as MessageScroller from "$lib/registry/ui/message-scroller/index.js";
 	import * as Message from "$lib/registry/ui/message/index.js";
-	import type { DemoMessage } from "$lib/ai.js";
 	import { MESSAGE_ANIMATIONS, type MessageAnimationPreset } from "$lib/message-animations.js";
 	import type { BubbleVariant } from "$lib/registry/ui/bubble/index.js";
 
-	type AnimatedMessagePart = {
+	type MessageAnimatedPart = {
+		content?: unknown;
 		type: string;
-		text?: string;
+		text?: unknown;
 	};
 
-	type AnimatedMessage =
-		| DemoMessage
-		| {
-				id: string;
-				role: string;
-				text?: string;
-				parts?: AnimatedMessagePart[];
-		  };
+	type MessageAnimatedMessage = {
+		id: string;
+		role: string;
+		text?: string;
+		parts?: ReadonlyArray<MessageAnimatedPart>;
+	};
 
 	let {
 		message,
@@ -31,7 +29,7 @@
 		class: className,
 		...restProps
 	}: {
-		message: AnimatedMessage;
+		message: MessageAnimatedMessage;
 		animationPreset?: MessageAnimationPreset;
 		assistantVariant?: BubbleVariant;
 		scrollAnchor?: boolean;
@@ -47,7 +45,7 @@
 		return preset.transition(node);
 	}
 
-	function getMessageAnimatedContentParts(current: AnimatedMessage) {
+	function getMessageAnimatedContentParts(current: MessageAnimatedMessage) {
 		if (current.parts) {
 			return current.parts.flatMap((part, index) => {
 				const type =
@@ -56,7 +54,12 @@
 						: part.type === "text"
 							? "text"
 							: null;
-				const text = "text" in part && typeof part.text === "string" ? part.text : null;
+				const text =
+					typeof part.text === "string"
+						? part.text
+						: typeof part.content === "string"
+							? part.content
+							: null;
 
 				if (!type || text === null) {
 					return [];

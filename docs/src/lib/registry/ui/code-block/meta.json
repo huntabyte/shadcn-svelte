@@ -1,0 +1,5 @@
+{
+	"name": "code-block",
+	"type": "registry:ui",
+	"registryDependencies": ["use-highlighted-code"]
+}

@@ -106,6 +106,15 @@
 		"relativeUrl": "checkbox.json"
 	},
 	{
+		"name": "code-block",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"use-highlighted-code",
+			"button"
+		],
+		"relativeUrl": "code-block.json"
+	},
+	{
 		"name": "collapsible",
 		"type": "registry:ui",
 		"registryDependencies": [],
@@ -413,6 +422,14 @@
 		"type": "registry:ui",
 		"registryDependencies": [],
 		"relativeUrl": "tooltip.json"
+	},
+	{
+		"name": "trace",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"collapsible"
+		],
+		"relativeUrl": "trace.json"
 	},
 	{
 		"name": "calendar-01",
@@ -1885,10 +1902,24 @@
 		"relativeUrl": "is-mobile.json"
 	},
 	{
+		"name": "use-highlighted-code",
+		"type": "registry:hook",
+		"registryDependencies": [
+			"highlighter"
+		],
+		"relativeUrl": "use-highlighted-code.json"
+	},
+	{
 		"name": "casing",
 		"type": "registry:lib",
 		"registryDependencies": [],
 		"relativeUrl": "casing.json"
+	},
+	{
+		"name": "highlighter",
+		"type": "registry:lib",
+		"registryDependencies": [],
+		"relativeUrl": "highlighter.json"
 	},
 	{
 		"name": "utils",
