@@ -18,12 +18,7 @@ import {
 	toBase62,
 	type PresetConfig,
 } from "../src/preset/preset.js";
-import {
-	DEFAULT_PRESETS,
-	invalidPresetMessage,
-	PRESET_NAMES,
-	resolvePreset,
-} from "../src/preset/presets.js";
+import { DEFAULT_PRESETS, invalidPresetMessage, resolvePreset } from "../src/preset/presets.js";
 
 describe("base62", () => {
 	it("should round-trip numbers", () => {
@@ -223,6 +218,8 @@ describe("generateRandomPreset", () => {
 		expect(reEncoded).toBe(code);
 	});
 });
+
+const PRESET_NAMES = Object.keys(DEFAULT_PRESETS) as (keyof typeof DEFAULT_PRESETS)[];
 
 describe("resolvePreset", () => {
 	it("should resolve every pre-configured preset by name", () => {
