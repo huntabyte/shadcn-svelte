@@ -4,7 +4,6 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as FieldGroup from "$lib/registry/ui/field/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import _Ethical from "$lib/components/ethical.svelte";
 	import { FONT_HEADING_OPTIONS, FONTS } from "$lib/fonts.js";
 	import BaseColorPicker from "./base-color-picker.svelte";
 	import ChartColorPicker from "./chart-color-picker.svelte";

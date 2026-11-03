@@ -29,7 +29,7 @@
 	const nextPreset = $derived.by(() => {
 		const raw = input.trim().replace(/^--preset\b\s+/i, "");
 		if (!raw) return null;
-		return decodePreset(raw);
+		return decodePreset(raw) ? raw : null;
 	});
 	const isInvalid = $derived(input.trim().length > 0 && nextPreset === null);
 
@@ -41,16 +41,7 @@
 	function handleSubmit(e: Event) {
 		e.preventDefault();
 		if (!nextPreset) return;
-		designSystem.style = nextPreset.style;
-		designSystem.baseColor = nextPreset.baseColor;
-		designSystem.theme = nextPreset.theme;
-		if (nextPreset.chartColor) designSystem.chartColor = nextPreset.chartColor;
-		designSystem.font = nextPreset.font;
-		designSystem.fontHeading = nextPreset.fontHeading;
-		designSystem.iconLibrary = nextPreset.iconLibrary;
-		designSystem.radius = nextPreset.radius;
-		designSystem.menuAccent = nextPreset.menuAccent;
-		designSystem.menuColor = nextPreset.menuColor;
+		designSystem.preset = nextPreset;
 		handleOpenChange(false);
 	}
 

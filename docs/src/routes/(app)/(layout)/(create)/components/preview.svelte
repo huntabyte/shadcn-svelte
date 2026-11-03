@@ -51,20 +51,6 @@
 	>
 		<div class="relative z-0 mx-auto flex w-full flex-1 flex-col overflow-hidden">
 			<div class="absolute inset-0 bg-muted dark:bg-muted/30"></div>
-			<!--<Button
-			href="/preview/{item}{new URL(designSystem.shareUrl).search}&fromPreview=true"
-			class="absolute top-2 right-2 isolate z-10"
-			variant="ghost"
-			size="icon-sm"
-		>
-			<IconPlaceholder
-				lucide="MaximizeIcon"
-				tabler="IconBorderCorners"
-				hugeicons="ArrowExpandIcon"
-				phosphor="CornersOutIcon"
-				remixicon="RiExpandDiagonalLine"
-			/>
-		</Button>-->
 			<iframe bind:this={iframe} src={iframeSrc} class="z-10 size-full flex-1" title={item}
 			></iframe>
 		</div>
