@@ -1,6 +1,5 @@
 <script lang="ts">
 	import RssIcon from "@lucide/svelte/icons/rss";
-	import Cta from "$lib/components/cta.svelte";
 	import Ethical from "$lib/components/ethical.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
 	import type { ChangelogPage } from "$lib/docs.js";
@@ -76,7 +75,6 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 			<div class="h-12"></div>
 		</div>
 		<div class="flex flex-1 flex-col gap-12 px-6">
-			<Cta />
 		</div>
 		<div class="flex flex-col gap-12 px-6">
 			<Ethical />

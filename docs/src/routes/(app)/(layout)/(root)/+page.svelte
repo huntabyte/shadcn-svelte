@@ -11,9 +11,9 @@
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import CardsDemo from "./cards/cards-demo.svelte";
 
-	const title = "The Foundation for your Design System";
+	const title = "Another UI Svelte";
 	const description =
-		"Composable, accessible components with thoughtful defaults. Build your own component library with code you can customize, extend, and make your own.";
+		"Svelte components in the Ledger style: dense, quiet and flat, with Phosphor icons. Copy the code, make it yours.";
 
 	const mobile = new IsMobile();
 </script>

@@ -35,9 +35,9 @@
 	}: Props & Omit<SvgProps, "class"> = $props();
 
 	// Outside of the design-system routes (/create, /preview) there is no provider and the
-	// docs always render the default icon library.
+	// docs always render Phosphor, the one icon library of Another UI Svelte.
 	const designSystem = DesignSystemContext.getOr(null);
-	const iconLibrary = $derived(designSystem?.iconLibrary ?? "lucide");
+	const iconLibrary = $derived(designSystem?.iconLibrary ?? "phosphor");
 </script>
 
 {#snippet PlaceholderIcon()}

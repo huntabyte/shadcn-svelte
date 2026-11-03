@@ -4,8 +4,6 @@
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
 	import ArrowUpRight from "@lucide/svelte/icons/arrow-up-right";
 	import ComponentCodeViewer from "$lib/components/component-code-viewer/component-code-viewer.svelte";
-	import CtaMobile from "$lib/components/cta-mobile.svelte";
-	import Cta from "$lib/components/cta.svelte";
 	import DocsCopyPage from "$lib/components/docs-copy-page.svelte";
 	import DocsToc from "$lib/components/docs-toc.svelte";
 	import Ethical from "$lib/components/ethical.svelte";
@@ -55,7 +53,6 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 			</div>
 		{/if}
 		<div class="flex flex-1 flex-col gap-12 px-6">
-			<Cta />
 		</div>
 		<div class="flex flex-col gap-12 px-6">
 			<Ethical />
@@ -131,7 +128,6 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 					</div>
 				{/if}
 			</div>
-			<CtaMobile />
 			<div class="typeset w-full flex-1 pb-16 *:data-[slot=alert]:first:mt-0 sm:pb-0">
 				<Markdown viewerData={data.viewerData} />
 			</div>

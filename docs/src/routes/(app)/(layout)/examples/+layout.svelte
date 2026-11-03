@@ -25,10 +25,10 @@
 
 <PageHeader>
 	<Announcement />
-	<PageHeaderHeading>The Foundation for your Design System</PageHeaderHeading>
+	<PageHeaderHeading>Another UI Svelte</PageHeaderHeading>
 	<PageHeaderDescription>
-		A set of beautifully designed components that you can customize, extend, and build on. Start
-		here then make it your own. Open Source. Open Code.
+		Svelte components in the Ledger style: dense, quiet and flat, with Phosphor icons. Start here, then
+		make it your own.
 	</PageHeaderDescription>
 	<PageActions>
 		<Button href="/docs" size="sm">Get Started</Button>

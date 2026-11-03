@@ -90,7 +90,7 @@ export const DEFAULT_CONFIG: DesignSystemConfig = {
 	baseColor: "neutral",
 	theme: "neutral",
 	chartColor: "neutral",
-	iconLibrary: "lucide",
+	iconLibrary: "phosphor",
 	font: "inter",
 	menuAccent: "subtle",
 	menuColor: "default",

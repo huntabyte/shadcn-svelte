@@ -11,6 +11,10 @@
 
 	let { icon, placeholder, class: className, ...restProps }: Props = $props();
 
+	// Duotone, like Another UI. Arrows, carets, plus, check, X, minus and text-format icons are bold: a duotone fill makes a thin stroke glyph read as a smudge.
+	const BOLD = /^(Arrow(?!Circle|Square)|Caret|Plus(?!Circle|Square)|Check(?!Circle|Square)|X(?!Circle|Square)|Minus(?!Circle|Square)|Text(B|Italic|Underline|Strikethrough|Aa|T|Align|H))/;
+	const weight = $derived(BOLD.test(icon.replace(/Icon$/, "")) ? "bold" : "duotone");
+
 	// Icons that are already loaded render synchronously; otherwise fall back to the async
 	// placeholder. This avoids a double render for every icon after the first load.
 	// svelte-ignore state_referenced_locally
@@ -18,7 +22,7 @@
 	// svelte-ignore state_referenced_locally
 	const IconPromise = CachedIcon === undefined ? phosphorIconLoader(icon) : null;
 
-	const rp = $derived(restProps as Record<string, unknown>);
+	const rp = $derived({ weight, ...restProps } as Record<string, unknown>);
 </script>
 
 {#if CachedIcon}
