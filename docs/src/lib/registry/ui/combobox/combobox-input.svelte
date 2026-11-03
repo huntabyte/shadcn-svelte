@@ -62,6 +62,8 @@
 			{#if showClear && combobox?.hasValue}
 				<InputGroup.Button
 					size="icon-xs"
+					data-slot="combobox-clear"
+					class="cn-combobox-clear"
 					aria-label="Clear selection"
 					disabled={effectiveDisabled}
 					onclick={() => {
@@ -75,6 +77,7 @@
 						hugeicons="Cancel01Icon"
 						phosphor="XIcon"
 						remixicon="RiCloseLine"
+						class="cn-combobox-clear-icon pointer-events-none"
 					/>
 				</InputGroup.Button>
 			{/if}
@@ -85,7 +88,7 @@
 							{...props}
 							size="icon-xs"
 							variant="ghost"
-							class="data-pressed:bg-transparent"
+							class="group-has-data-[slot=combobox-clear]/input-group:hidden data-pressed:bg-transparent"
 							aria-label="Toggle suggestions"
 							disabled={effectiveDisabled}
 						>
@@ -95,7 +98,7 @@
 								hugeicons="UnfoldMoreIcon"
 								phosphor="CaretDownIcon"
 								remixicon="RiArrowDownSLine"
-								class="pointer-events-none"
+								class="cn-combobox-trigger-icon pointer-events-none"
 							/>
 						</InputGroup.Button>
 					{/snippet}

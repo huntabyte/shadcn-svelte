@@ -45,6 +45,7 @@
 	});
 </script>
 
+<!-- parity-ignore-upstream: cn-combobox-chips cn-combobox-chip has-disabled:pointer-events-none has-disabled:cursor-not-allowed has-disabled:opacity-50 cn-combobox-chip-remove cn-combobox-chip-indicator-icon pointer-events-none cn-combobox-chip-input min-w-16 flex-1 outline-none | Chips and their removal/input parts are blocked on huntabyte/bits-ui#2051; the released primitive supports multiple selection without chips -->
 <ComboboxPrimitive.Root
 	bind:value={value as never}
 	bind:open

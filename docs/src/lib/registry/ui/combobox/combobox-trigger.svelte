@@ -15,7 +15,7 @@
 <ComboboxPrimitive.Trigger
 	bind:ref
 	data-slot="combobox-trigger"
-	class={cn("[&_svg:not([class*='size-'])]:size-4", className)}
+	class={cn("cn-combobox-trigger", className)}
 	{child}
 	{...restProps}
 >
@@ -26,6 +26,6 @@
 		hugeicons="UnfoldMoreIcon"
 		phosphor="CaretDownIcon"
 		remixicon="RiArrowDownSLine"
-		class="pointer-events-none size-4 text-muted-foreground"
+		class="cn-combobox-trigger-icon pointer-events-none"
 	/>
 </ComboboxPrimitive.Trigger>

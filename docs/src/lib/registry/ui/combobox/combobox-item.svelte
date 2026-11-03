@@ -25,6 +25,7 @@
 	{...restProps}
 >
 	{#snippet children({ selected, highlighted })}
+		<!-- parity-ignore: Bits item snippets need a flex wrapper for custom content beside the indicator -->
 		<span class="cn-combobox-item-text">
 			{#if childrenProp}
 				{@render childrenProp({ selected, highlighted })}
@@ -33,9 +34,10 @@
 			{/if}
 		</span>
 		{#if selected}
+			<!-- parity-ignore: Keep the indicator at the inline end in RTL as well as LTR -->
 			<span
 				data-slot="combobox-item-indicator"
-				class="pointer-events-none absolute end-2 flex size-4 items-center justify-center"
+				class="cn-combobox-item-indicator rtl:right-auto rtl:left-2"
 			>
 				<IconPlaceholder
 					lucide="CheckIcon"

@@ -13,6 +13,6 @@
 <ComboboxPrimitive.Separator
 	bind:ref
 	data-slot="combobox-separator"
-	class={cn("-mx-1 my-1 h-px bg-border", className)}
+	class={cn("cn-combobox-separator", className)}
 	{...restProps}
 />

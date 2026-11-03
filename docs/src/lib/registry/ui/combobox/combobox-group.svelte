@@ -10,6 +10,11 @@
 	}: WithoutChild<ComboboxPrimitive.GroupProps> = $props();
 </script>
 
-<ComboboxPrimitive.Group bind:ref data-slot="combobox-group" class={cn(className)} {...restProps}>
+<ComboboxPrimitive.Group
+	bind:ref
+	data-slot="combobox-group"
+	class={cn("cn-combobox-group", className)}
+	{...restProps}
+>
 	{@render children?.()}
 </ComboboxPrimitive.Group>

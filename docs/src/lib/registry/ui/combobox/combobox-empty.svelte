@@ -10,10 +10,11 @@
 	}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();
 </script>
 
+<!-- parity-ignore: Bits does not emit Base UI data-empty; callers conditionally render Empty, so force it visible -->
 <div
 	bind:this={ref}
 	data-slot="combobox-empty"
-	class={cn("w-full py-2 text-center text-sm text-muted-foreground", className)}
+	class={cn("cn-combobox-empty block!", className)}
 	{...restProps}
 >
 	{@render children?.()}

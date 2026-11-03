@@ -14,6 +14,7 @@
 	bind:ref
 	data-slot="combobox-list"
 	class={cn(
+		// parity-ignore: Bits exposes available height with a component-prefixed variable, so cap its viewport explicitly
 		"cn-combobox-list max-h-[min(24rem,var(--bits-combobox-content-available-height))] overflow-y-auto overscroll-contain",
 		className
 	)}
