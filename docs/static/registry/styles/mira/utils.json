@@ -3,7 +3,7 @@
 	"name": "utils",
 	"type": "registry:lib",
 	"devDependencies": [
-		"cn@^0.3.0"
+		"cn@^0.5.0"
 	],
 	"files": [
 		{

@@ -41,6 +41,11 @@ export const examples: Example[] = [
 		type: "registry:example",
 	},
 	{
+		title: "Attachment",
+		name: "attachment",
+		type: "registry:example",
+	},
+	{
 		title: "Avatar",
 		name: "avatar",
 		type: "registry:example",
@@ -53,6 +58,11 @@ export const examples: Example[] = [
 	{
 		title: "Breadcrumb",
 		name: "breadcrumb",
+		type: "registry:example",
+	},
+	{
+		title: "Bubble",
+		name: "bubble",
 		type: "registry:example",
 	},
 	{
@@ -88,6 +98,11 @@ export const examples: Example[] = [
 	{
 		title: "Checkbox",
 		name: "checkbox",
+		type: "registry:example",
+	},
+	{
+		title: "Code Block",
+		name: "code-block",
 		type: "registry:example",
 	},
 	{
@@ -171,8 +186,23 @@ export const examples: Example[] = [
 		type: "registry:example",
 	},
 	{
+		title: "Marker",
+		name: "marker",
+		type: "registry:example",
+	},
+	{
 		title: "Menubar",
 		name: "menubar",
+		type: "registry:example",
+	},
+	{
+		title: "Message",
+		name: "message",
+		type: "registry:example",
+	},
+	{
+		title: "Message Scroller",
+		name: "message-scroller",
 		type: "registry:example",
 	},
 	{
@@ -198,6 +228,11 @@ export const examples: Example[] = [
 	{
 		title: "Progress",
 		name: "progress",
+		type: "registry:example",
+	},
+	{
+		title: "Questionnaire",
+		name: "questionnaire",
 		type: "registry:example",
 	},
 	{
@@ -303,6 +338,11 @@ export const examples: Example[] = [
 	{
 		title: "Tooltip",
 		name: "tooltip",
+		type: "registry:example",
+	},
+	{
+		title: "Trace",
+		name: "trace",
 		type: "registry:example",
 	},
 	{

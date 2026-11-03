@@ -18,7 +18,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="marker-demo">
+<ComponentPreview name="marker-demo" previewStyle="rhea" previewClassName="h-auto theme-blue">
 
 <div></div>
 
@@ -93,7 +93,7 @@ Marker.Root
 
 Use `variant` to switch between an inline marker, bordered row, and labeled separator.
 
-<ComponentPreview name="marker-variants">
+<ComponentPreview name="marker-variants" previewStyle="rhea" previewClassName="h-auto theme-blue">
 
 <div></div>
 
@@ -109,7 +109,7 @@ Use `variant` to switch between an inline marker, bordered row, and labeled sepa
 
 Set `role="status"` and include a [`Spinner`](/docs/components/spinner) for streaming or in-progress markers so updates are announced.
 
-<ComponentPreview name="marker-status">
+<ComponentPreview name="marker-status" previewStyle="rhea" previewClassName="h-auto theme-blue">
 
 <div></div>
 
@@ -119,7 +119,7 @@ Set `role="status"` and include a [`Spinner`](/docs/components/spinner) for stre
 
 Add the [`shimmer`](/docs/utils/shimmer) utility class to `Marker.Content` for an animated streaming-text effect. The utility ships with the `shadcn-svelte` package. See the shimmer docs for installation.
 
-<ComponentPreview name="marker-shimmer">
+<ComponentPreview name="marker-shimmer" previewStyle="rhea" previewClassName="h-auto theme-blue">
 
 <div></div>
 
@@ -129,7 +129,7 @@ Add the [`shimmer`](/docs/utils/shimmer) utility class to `Marker.Content` for a
 
 Use the `separator` variant for labeled dividers, such as dates or section breaks, in a conversation.
 
-<ComponentPreview name="marker-separator">
+<ComponentPreview name="marker-separator" previewStyle="rhea" previewClassName="h-auto theme-blue">
 
 <div></div>
 
@@ -139,7 +139,7 @@ Use the `separator` variant for labeled dividers, such as dates or section break
 
 Use the `border` variant for status rows that should keep the default marker alignment while separating the next row.
 
-<ComponentPreview name="marker-border">
+<ComponentPreview name="marker-border" previewStyle="rhea" previewClassName="h-auto theme-blue">
 
 <div></div>
 
@@ -149,7 +149,7 @@ Use the `border` variant for status rows that should keep the default marker ali
 
 Use `Marker.Icon` to render an icon alongside the content. Use `flex-col` to stack the icon above the content.
 
-<ComponentPreview name="marker-icon">
+<ComponentPreview name="marker-icon" previewStyle="rhea" previewClassName="h-auto theme-blue">
 
 <div></div>
 
@@ -159,7 +159,7 @@ Use `Marker.Icon` to render an icon alongside the content. Use `flex-col` to sta
 
 Turn a marker into a link or button with the `child` snippet on `Marker.Root`.
 
-<ComponentPreview name="marker-link-button">
+<ComponentPreview name="marker-link-button" previewStyle="rhea" previewClassName="h-auto theme-blue">
 
 <div></div>
 
