@@ -162,7 +162,7 @@ export function resolvePreset(value: string): PresetConfig | null {
 }
 
 export function invalidPresetMessage(value: string) {
-	return `Invalid preset: ${color.bold(value)}.\nUse one of the available presets: ${[...presetsByName.keys()].join(", ")}\nor build your own at ${color.cyan(`${SITE_BASE_URL}/create`)}`;
+	return `Invalid preset: ${color.bold(value)}.\nUse one of the available presets: ${Object.keys(DEFAULT_PRESETS).join(", ")}\nor build your own at ${color.cyan(`${SITE_BASE_URL}/create`)}`;
 }
 
 /**
