@@ -46,3 +46,46 @@ jobs:
 
       - name: Check generated registry parity
         run: pnpm -F docs parity-check:variants
+
+  docs-ui-changes:
+    name: Detect docs UI parity changes
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.changes.outputs.result }}
+    steps:
+      - name: Check for docs UI parity changes
+        id: changes
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+              per_page: 100,
+            })
+            const prefixes = ["docs/", "packages/parity/"]
+            const inputs = new Set([".github/workflows/parity-check.yml", "package.json", "pnpm-lock.yaml"])
+            return files.some(({ filename }) => inputs.has(filename) || prefixes.some(prefix => filename.startsWith(prefix)))
+
+  docs-ui:
+    # Main still has docs UI differences addressed by #2761. Report them without
+    # blocking independent tooling adoption; --check continues to exit 1 on drift.
+    continue-on-error: true
+    name: Parity Check (docs UI)
+    needs: docs-ui-changes
+    if: needs.docs-ui-changes.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Check docs UI parity
+        run: pnpm -F docs parity-check:docs
