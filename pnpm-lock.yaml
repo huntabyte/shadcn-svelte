@@ -186,6 +186,10 @@ catalogs:
       specifier: ^7.3.1
       version: 7.3.6
 
+patchedDependencies:
+  '@formisch/svelte@1.0.0-rc.0': 460c93d2b3c622ce06f8acfea65b75c264b17c16c33027e4d6542bcc123a6d77
+  '@tanstack/svelte-form@2.0.0-alpha.2': c506b196d1a10a973b5039e80212eaa20a8fd01cd065df1fdae2d98f54ac7ae8
+
 importers:
 
   .:
@@ -343,6 +347,9 @@ importers:
       '@fontsource/instrument-serif':
         specifier: ^5.2.8
         version: 5.2.8
+      '@formisch/svelte':
+        specifier: 1.0.0-rc.0
+        version: 1.0.0-rc.0(patch_hash=460c93d2b3c622ce06f8acfea65b75c264b17c16c33027e4d6542bcc123a6d77)(svelte@5.57.2(@typescript-eslint/types@8.65.0))(typescript@5.9.3)(valibot@1.5.0(typescript@5.9.3))
       '@hugeicons/core-free-icons':
         specifier: ^4.0.0
         version: 4.0.0
@@ -394,6 +401,9 @@ importers:
       '@tailwindcss/vite':
         specifier: ^4.3.3
         version: 4.3.3(vite@8.1.5(@types/node@20.19.0)(esbuild@0.27.3)(jiti@2.7.0)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1))
+      '@tanstack/svelte-form':
+        specifier: 2.0.0-alpha.2
+        version: 2.0.0-alpha.2(patch_hash=c506b196d1a10a973b5039e80212eaa20a8fd01cd065df1fdae2d98f54ac7ae8)(svelte@5.57.2(@typescript-eslint/types@8.65.0))
       '@tanstack/svelte-table':
         specifier: ^9.0.0
         version: 9.0.0(svelte@5.57.2(@typescript-eslint/types@8.65.0))
@@ -601,6 +611,9 @@ importers:
       unist-util-visit:
         specifier: ^5.0.0
         version: 5.0.0
+      valibot:
+        specifier: ^1.4.2
+        version: 1.5.0(typescript@5.9.3)
       vaul-svelte:
         specifier: 1.0.0-next.7
         version: 1.0.0-next.7(svelte@5.57.2(@typescript-eslint/types@8.65.0))
@@ -1586,6 +1599,16 @@ packages:
 
   '@fontsource/instrument-serif@5.2.8':
     resolution: {integrity: sha512-s+bkz+syj2rO00Rmq9g0P+PwuLig33DR1xDR8pTWmovH1pUjwnncrFk++q9mmOex8fUQ7oW80gPpPDaw7V1MMw==}
+
+  '@formisch/svelte@1.0.0-rc.0':
+    resolution: {integrity: sha512-lTH/ayophfj2FtXMLY/GoteXEfqkVefksiIKmjmEEalJEauNdajvi4iTITyEbdnlAJxqfS7pQMel5CXMfPLMZA==}
+    peerDependencies:
+      svelte: ^5.29.0
+      typescript: '>=5'
+      valibot: ^1.4.1
+    peerDependenciesMeta:
+      typescript:
+        optional: true
 
   '@hapi/address@5.1.1':
     resolution: {integrity: sha512-A+po2d/dVoY7cYajycYI43ZbYMXukuopIsqCjh5QzsBCipDtdofHntljDlpccMjIfTy6UOkg+5KPriwYch2bXA==}
@@ -2646,12 +2669,25 @@ packages:
     peerDependencies:
       vite: ^5.2.0 || ^6 || ^7 || ^8
 
+  '@tanstack/form-core@2.0.0-alpha.2':
+    resolution: {integrity: sha512-u/2s1rJ1pSdFgU/oKz2zt/Wdb3XQK9LY1IIL2pLMu0AVYK5f8Ue5UwaCjcUxEAI8g6XJpbmEuy2wLIwHZbZnwA==}
+    engines: {node: '>=18'}
+
   '@tanstack/highlight@1.1.0':
     resolution: {integrity: sha512-mDn/fhny+WgSVHUH0sAcARlSfbXCQJWebu2NRmCOcD+3I4/73m2D9rcMISgIiXJrhl1vyk9hmAJn7sSnWAbfvQ==}
     engines: {node: '>=18'}
 
+  '@tanstack/pacer-lite@0.2.2':
+    resolution: {integrity: sha512-eQ1MyLKCHyXiH7NbdmB80W77OhiMgGBUb+qDx/8WMGbwg5Lf/NlfD0TfNYAqY77i8V3AxoDoYdICrQE5ADw4Yw==}
+    engines: {node: '>=18'}
+
   '@tanstack/store@0.11.1':
     resolution: {integrity: sha512-mzTOBhypOuDJAy/D8n2MfUZ1HFkXnmSETviRyhqEC8LUE7/IZQExOTxMANj3KjTofYTkFNpBY67qaVrT41YccA==}
+
+  '@tanstack/svelte-form@2.0.0-alpha.2':
+    resolution: {integrity: sha512-nk3XziqInrYoYn2K9tYKDjVcEMttNybIgsZWVnqmFz2W8+whWpaKZUVcUHs4xdwLsydDoV7FhCHnGpBMsBhU8A==}
+    peerDependencies:
+      svelte: ^5.0.0
 
   '@tanstack/svelte-store@0.12.1':
     resolution: {integrity: sha512-ZFj8gyIWHZRYLv8RHp5jhnMhvw15g86KinotrUp9RfY7ygjkU3CcaMUytIdMJ4Xzq/9GqVlAphV9gFIGKRXWSw==}
@@ -7061,6 +7097,13 @@ snapshots:
 
   '@fontsource/instrument-serif@5.2.8': {}
 
+  '@formisch/svelte@1.0.0-rc.0(patch_hash=460c93d2b3c622ce06f8acfea65b75c264b17c16c33027e4d6542bcc123a6d77)(svelte@5.57.2(@typescript-eslint/types@8.65.0))(typescript@5.9.3)(valibot@1.5.0(typescript@5.9.3))':
+    dependencies:
+      svelte: 5.57.2(@typescript-eslint/types@8.65.0)
+      valibot: 1.5.0(typescript@5.9.3)
+    optionalDependencies:
+      typescript: 5.9.3
+
   '@hapi/address@5.1.1':
     dependencies:
       '@hapi/hoek': 11.0.7
@@ -7912,9 +7955,22 @@ snapshots:
       tailwindcss: 4.3.3
       vite: 8.1.5(@types/node@20.19.0)(esbuild@0.27.3)(jiti@2.7.0)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.1)
 
+  '@tanstack/form-core@2.0.0-alpha.2':
+    dependencies:
+      '@tanstack/pacer-lite': 0.2.2
+      '@tanstack/store': 0.11.1
+
   '@tanstack/highlight@1.1.0': {}
 
+  '@tanstack/pacer-lite@0.2.2': {}
+
   '@tanstack/store@0.11.1': {}
+
+  '@tanstack/svelte-form@2.0.0-alpha.2(patch_hash=c506b196d1a10a973b5039e80212eaa20a8fd01cd065df1fdae2d98f54ac7ae8)(svelte@5.57.2(@typescript-eslint/types@8.65.0))':
+    dependencies:
+      '@tanstack/form-core': 2.0.0-alpha.2
+      '@tanstack/svelte-store': 0.12.1(svelte@5.57.2(@typescript-eslint/types@8.65.0))
+      svelte: 5.57.2(@typescript-eslint/types@8.65.0)
 
   '@tanstack/svelte-store@0.12.1(svelte@5.57.2(@typescript-eslint/types@8.65.0))':
     dependencies:
@@ -11939,7 +11995,6 @@ snapshots:
   valibot@1.5.0(typescript@5.9.3):
     optionalDependencies:
       typescript: 5.9.3
-    optional: true
 
   validator@13.15.23:
     optional: true
