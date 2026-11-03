@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import * as Combobox from "$lib/registry/ui/combobox/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const timezones = [
 		{
@@ -39,11 +39,30 @@
 			],
 		},
 	] as const;
+
+	let inputValue = $state("");
+	const filteredItems = $derived(
+		timezones
+			.map((group) => ({
+				...group,
+				items: group.items.filter((item) => item.toLowerCase().includes(inputValue.toLowerCase())),
+			}))
+			.filter((group) => group.items.length > 0)
+	);
 </script>
 
 <Example title="Input Group">
-	<Combobox.Root>
-		<Combobox.Input placeholder="Select a timezone" class="w-60">
+	<Combobox.Root
+		onOpenChangeComplete={(open) => {
+			if (!open) inputValue = "";
+		}}
+	>
+		<Combobox.Input
+			oninput={(event) => (inputValue = event.currentTarget.value)}
+			aria-label="Timezone"
+			placeholder="Select a timezone"
+			class="w-60"
+		>
 			<InputGroup.Addon>
 				<IconPlaceholder
 					lucide="GlobeIcon"
@@ -56,9 +75,9 @@
 			</InputGroup.Addon>
 		</Combobox.Input>
 		<Combobox.Content avoidCollisions={false} alignOffset={-28} class="w-60 min-w-60">
-			<Combobox.Empty>No timezones found.</Combobox.Empty>
 			<Combobox.List>
-				{#each timezones as group (group.value)}
+				{#if filteredItems.length === 0}<Combobox.Empty>No items found.</Combobox.Empty>{/if}
+				{#each filteredItems as group (group.value)}
 					<Combobox.Group>
 						<Combobox.Label>{group.value}</Combobox.Label>
 						{#each group.items as item (item)}

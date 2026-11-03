@@ -1,13 +1,13 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import * as Combobox from "$lib/registry/ui/combobox/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"] as const;
 </script>
 
 <Example title="Disabled">
 	<Combobox.Root disabled>
-		<Combobox.Input placeholder="Select a framework" />
+		<Combobox.Input aria-label="Framework" placeholder="Select a framework" />
 		<Combobox.Content>
 			<Combobox.List>
 				{#each frameworks as framework (framework)}

@@ -165,10 +165,7 @@
 									{#if item.items?.length}
 										<Collapsible.Trigger>
 											{#snippet child({ props })}
-												<Sidebar.MenuAction
-													class="data-[state=open]:rotate-90"
-													{...props}
-												>
+												<Sidebar.MenuAction class="data-[state=open]:rotate-90" {...props}>
 													<IconPlaceholder
 														lucide="ChevronRightIcon"
 														tabler="IconChevronRight"
@@ -186,9 +183,7 @@
 													<Sidebar.MenuSubItem>
 														<Sidebar.MenuSubButton>
 															{#snippet child({ props })}
-																<a href={subItem.url} {...props}
-																	>{subItem.title}</a
-																>
+																<a href={subItem.url} {...props}>{subItem.title}</a>
 															{/snippet}
 														</Sidebar.MenuSubButton>
 													</Sidebar.MenuSubItem>
@@ -235,11 +230,11 @@
 		</header>
 		<div class="flex flex-1 flex-col gap-4 p-4">
 			<div class="grid auto-rows-min gap-4 md:grid-cols-3">
-				<div class="bg-muted/50 aspect-video rounded-xl"></div>
-				<div class="bg-muted/50 aspect-video rounded-xl"></div>
-				<div class="bg-muted/50 aspect-video rounded-xl"></div>
+				<div class="aspect-video rounded-xl bg-muted/50"></div>
+				<div class="aspect-video rounded-xl bg-muted/50"></div>
+				<div class="aspect-video rounded-xl bg-muted/50"></div>
 			</div>
-			<div class="bg-muted/50 min-h-screen flex-1 rounded-xl md:min-h-min"></div>
+			<div class="min-h-screen flex-1 rounded-xl bg-muted/50 md:min-h-min"></div>
 		</div>
 	</Sidebar.Inset>
 </Sidebar.Provider>

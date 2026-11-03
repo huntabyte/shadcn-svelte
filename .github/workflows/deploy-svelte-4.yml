@@ -7,7 +7,6 @@ on:
       - sites/docs/**
   workflow_dispatch:
 
-
 jobs:
   deploy-production:
     runs-on: macos-latest

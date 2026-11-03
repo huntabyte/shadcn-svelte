@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { Combobox as ComboboxPrimitive } from "bits-ui";
-	import { cn } from "$lib/utils.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { cn } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),
+		child,
 		class: className,
 		children,
 		...restProps
@@ -15,6 +16,7 @@
 	bind:ref
 	data-slot="combobox-trigger"
 	class={cn("[&_svg:not([class*='size-'])]:size-4", className)}
+	{child}
 	{...restProps}
 >
 	{@render children?.()}
@@ -24,6 +26,6 @@
 		hugeicons="UnfoldMoreIcon"
 		phosphor="CaretDownIcon"
 		remixicon="RiArrowDownSLine"
-		class="text-muted-foreground pointer-events-none size-4"
+		class="pointer-events-none size-4 text-muted-foreground"
 	/>
 </ComboboxPrimitive.Trigger>

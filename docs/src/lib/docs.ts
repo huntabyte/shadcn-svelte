@@ -6,6 +6,8 @@ import {
 	migration,
 	registry,
 	forms,
+	utils,
+	aiElements,
 	changelog,
 } from "$content/index.js";
 import { error } from "@sveltejs/kit";
@@ -19,6 +21,8 @@ const allDocs = [
 	...darkMode,
 	...registry,
 	...forms,
+	...utils,
+	...aiElements,
 	...changelog,
 ];
 

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { BlockViewerContext } from "./block-viewer.svelte";
 	import * as Resizable from "$lib/registry/ui/resizable/index.js";
 	import BlockViewerIframe from "./block-viewer-iframe.svelte";
+	import { BlockViewerContext } from "./block-viewer.svelte";
 
 	const ctx = BlockViewerContext.get();
 
@@ -15,18 +15,18 @@
 		></div>
 		<Resizable.PaneGroup
 			direction="horizontal"
-			class="after:bg-surface/50 relative z-10 after:absolute after:inset-0 after:end-3 after:z-0 after:rounded-xl"
+			class="relative z-10 after:absolute after:inset-0 after:end-3 after:z-0 after:rounded-xl after:bg-surface/50"
 		>
 			<Resizable.Pane
 				bind:this={ctx.resizablePaneRef}
-				class="bg-background relative aspect-[4/2.5] overflow-hidden rounded-lg border md:aspect-auto md:rounded-xl"
+				class="relative aspect-[4/2.5] overflow-hidden rounded-lg border bg-background md:aspect-auto md:rounded-xl"
 				defaultSize={100}
 				minSize={30}
 			>
 				<BlockViewerIframe />
 			</Resizable.Pane>
 			<Resizable.Handle
-				class="after:bg-border relative z-20 hidden w-3 bg-transparent p-0 after:absolute after:end-0 after:top-1/2 after:h-8 after:w-[6px] after:-translate-x-px after:-translate-y-1/2 after:rounded-full after:transition-all after:hover:h-10 md:block"
+				class="relative z-20 hidden w-3 bg-transparent p-0 after:absolute after:end-0 after:top-1/2 after:h-8 after:w-[6px] after:-translate-x-px after:-translate-y-1/2 after:rounded-full after:bg-border after:transition-all after:hover:h-10 md:block"
 			/>
 			<Resizable.Pane defaultSize={0} minSize={0} />
 		</Resizable.PaneGroup>

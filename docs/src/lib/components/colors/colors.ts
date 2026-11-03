@@ -1,7 +1,6 @@
-import { z } from "zod";
-
-import { colorMapping, colors, type BaseColor } from "../../registry/registry-colors.js";
 import lodash from "lodash";
+import { z } from "zod";
+import { colorMapping, colors, type BaseColor } from "../../registry/registry-colors.js";
 import { BASE_STYLES } from "../../registry/templates.js";
 
 const template = lodash.template as unknown as (s: string) => (data: unknown) => string;
@@ -56,10 +55,7 @@ export function getColors() {
 							id: `${name}-${color.scale}`,
 							className: `${name}-${color.scale}`,
 							rgb,
-							hsl: color.hsl.replace(
-								/^hsl\(([\d.]+),([\d.]+%),([\d.]+%)\)$/,
-								"$1 $2 $3"
-							),
+							hsl: color.hsl.replace(/^hsl\(([\d.]+),([\d.]+%),([\d.]+%)\)$/, "$1 $2 $3"),
 							oklch: color.oklch.replace(
 								/^oklch\(([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\)$/,
 								"$1 $2 $3"

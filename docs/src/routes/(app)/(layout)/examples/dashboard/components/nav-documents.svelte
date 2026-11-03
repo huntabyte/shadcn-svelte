@@ -3,10 +3,9 @@
 	import FolderIcon from "@tabler/icons-svelte/icons/folder";
 	import Share3Icon from "@tabler/icons-svelte/icons/share-3";
 	import TrashIcon from "@tabler/icons-svelte/icons/trash";
-	import type { Icon } from "@tabler/icons-svelte";
-
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
+	import type { Icon } from "@tabler/icons-svelte";
 
 	let { items }: { items: { name: string; url: string; icon?: Icon }[] } = $props();
 
@@ -28,10 +27,7 @@
 				</Sidebar.MenuButton>
 				<DropdownMenu.Root>
 					<DropdownMenu.Trigger>
-						<Sidebar.MenuAction
-							showOnHover
-							class="data-[state=open]:bg-accent rounded-sm"
-						>
+						<Sidebar.MenuAction showOnHover class="rounded-sm data-[state=open]:bg-accent">
 							<DotsIcon />
 							<span class="sr-only">More</span>
 						</Sidebar.MenuAction>

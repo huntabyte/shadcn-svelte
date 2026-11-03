@@ -17,13 +17,13 @@
 	<CardContent>
 		<div class="flex flex-col gap-2">
 			{#each rows as row (row)}
-				<div class="bg-muted flex items-center gap-3 rounded-xl p-3">
-					<Skeleton class="bg-muted-foreground/15 size-9 rounded-lg"></Skeleton>
+				<div class="flex items-center gap-3 rounded-xl bg-muted p-3">
+					<Skeleton class="size-9 rounded-lg bg-muted-foreground/15"></Skeleton>
 					<div class="flex flex-1 flex-col gap-2">
-						<Skeleton class="bg-muted-foreground/15 h-4 w-40 rounded-md"></Skeleton>
-						<Skeleton class="bg-muted-foreground/15 h-3 w-56 rounded-md"></Skeleton>
+						<Skeleton class="h-4 w-40 rounded-md bg-muted-foreground/15"></Skeleton>
+						<Skeleton class="h-3 w-56 rounded-md bg-muted-foreground/15"></Skeleton>
 					</div>
-					<Skeleton class="bg-muted-foreground/15 size-4 rounded-md"></Skeleton>
+					<Skeleton class="size-4 rounded-md bg-muted-foreground/15"></Skeleton>
 				</div>
 			{/each}
 		</div>

@@ -1,4 +1,7 @@
 <script lang="ts">
+	import * as Field from "$lib/registry/ui/field/index.js";
+	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
+	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
 	import AppearanceSettings from "./components/appearance-settings.svelte";
 	import ButtonGroupDemo from "./components/button-group-demo.svelte";
 	import ButtonGroupInputGroup from "./components/button-group-input-group.svelte";
@@ -13,15 +16,12 @@
 	import NotionPromptForm from "./components/notion-prompt-form.svelte";
 	import SpinnerBadge from "./components/spinner-badge.svelte";
 	import SpinnerEmpty from "./components/spinner-empty.svelte";
-	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 </script>
 
 <Tooltip.Provider>
 	<div class="flex flex-col justify-center">
 		<div
-			class="theme-container mx-auto grid max-w-[2200px] gap-8 p-6 md:grid-cols-2 md:p-8 lg:grid-cols-3 xl:grid-cols-4"
+			class="mx-auto grid max-w-[2200px] gap-8 p-6 theme-container md:grid-cols-2 md:p-8 lg:grid-cols-3 xl:grid-cols-4"
 		>
 			<div class="flex flex-col gap-6 *:[div]:w-full *:[div]:max-w-full">
 				<FieldDemo />

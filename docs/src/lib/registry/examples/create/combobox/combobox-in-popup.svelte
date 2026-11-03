@@ -1,8 +1,9 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
+	import { tick } from "svelte";
 	import * as Combobox from "$lib/registry/ui/combobox/index.js";
 	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	type Country = {
 		code: string;
@@ -14,7 +15,7 @@
 	const countries: Country[] = [
 		{
 			code: "",
-			value: "select-country",
+			value: "",
 			continent: "",
 			label: "Select country",
 		},
@@ -70,6 +71,7 @@
 	] as const;
 
 	let value = $state(countries[0].value);
+	let inputRef = $state<HTMLInputElement | null>(null);
 	let open = $state(false);
 	let triggerRef = $state<HTMLElement | null>(null);
 	const selectedCountry = $derived(
@@ -79,11 +81,32 @@
 	function handleValueChange(nextValue: string) {
 		value = nextValue;
 		open = false;
+		inputValue = "";
+		void tick().then(() => triggerRef?.focus());
 	}
+
+	let inputValue = $state("");
+	const filteredItems = $derived(
+		countries.filter(
+			(country) =>
+				country.value !== "" && country.label.toLowerCase().includes(inputValue.toLowerCase())
+		)
+	);
 </script>
 
 <Example title="Popup">
-	<Combobox.Root bind:value bind:open onValueChange={handleValueChange}>
+	<Combobox.Root
+		bind:value
+		bind:open
+		onValueChange={handleValueChange}
+		onOpenChange={(nextOpen) => {
+			if (nextOpen) void tick().then(() => inputRef?.focus());
+			else {
+				inputValue = "";
+				triggerRef?.focus();
+			}
+		}}
+	>
 		<Combobox.Trigger
 			bind:ref={triggerRef}
 			class={cn(buttonVariants({ variant: "outline" }), "w-64 justify-between font-normal")}
@@ -91,10 +114,16 @@
 			{selectedCountry.label}
 		</Combobox.Trigger>
 		<Combobox.Content customAnchor={triggerRef}>
-			<Combobox.Input showTrigger={false} placeholder="Search" />
-			<Combobox.Empty>No items found.</Combobox.Empty>
+			<Combobox.Input
+				bind:ref={inputRef}
+				showTrigger={false}
+				oninput={(event) => (inputValue = event.currentTarget.value)}
+				aria-label="Country"
+				placeholder="Search"
+			/>
 			<Combobox.List>
-				{#each countries as country (country.code)}
+				{#if filteredItems.length === 0}<Combobox.Empty>No items found.</Combobox.Empty>{/if}
+				{#each filteredItems as country (country.code)}
 					<Combobox.Item value={country.value} label={country.label}>
 						{country.label}
 					</Combobox.Item>

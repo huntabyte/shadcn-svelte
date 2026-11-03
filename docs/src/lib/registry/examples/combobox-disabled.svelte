@@ -5,7 +5,7 @@
 </script>
 
 <Combobox.Root disabled>
-	<Combobox.Input placeholder="Select a framework" />
+	<Combobox.Input aria-label="Framework" placeholder="Select a framework" />
 	<Combobox.Content>
 		<Combobox.List>
 			{#each frameworks as framework (framework)}

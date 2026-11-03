@@ -1,4 +1,5 @@
 <script lang="ts">
+	import MessageScrollerDemo from "$lib/registry/examples/message-scroller-demo.svelte";
 	import AccountAccess from "./account-access.svelte";
 	import AnalyticsCard from "./analytics-card.svelte";
 	import ClaimableBalance from "./claimable-balance.svelte";
@@ -28,7 +29,6 @@
 	import SkeletonSavingsTargets from "./skeleton/savings-targets.svelte";
 	import SkeletonTransferFunds from "./skeleton/transfer-funds.svelte";
 	import SkeletonUIElements from "./skeleton/ui-elements.svelte";
-	import TransferFunds from "./transfer-funds.svelte";
 	import UIElements from "./ui-elements.svelte";
 </script>
 
@@ -81,7 +81,7 @@
 
 <div
 	data-slot="demo"
-	class="theme-neutral bg-muted 3xl:[--gap:--spacing(8)] dark:bg-background relative flex w-full max-w-none flex-col gap-(--gap) overflow-hidden p-12 pb-0! [--gap:--spacing(8)] min-[1900px]:p-12 min-[1900px]:[--gap:--spacing(10)]! lg:p-6 lg:[--gap:--spacing(6)]"
+	class="theme-neutral relative flex w-full max-w-none flex-col gap-(--gap) overflow-hidden bg-muted p-12 pb-0! [--gap:--spacing(8)] 3xl:[--gap:--spacing(8)] min-[1900px]:p-12 min-[1900px]:[--gap:--spacing(10)]! lg:p-6 lg:[--gap:--spacing(6)] dark:bg-background"
 >
 	{@render CardsSkeletonRails()}
 	<div
@@ -97,17 +97,19 @@
 			<ClaimableBalance></ClaimableBalance>
 			<DividendIncome></DividendIncome>
 		</div>
-		<div class="3xl:flex! hidden flex-col gap-(--gap)">
+		<div class="hidden flex-col gap-(--gap) min-[1400px]:flex">
 			<NewMilestone></NewMilestone>
 			<PayoutThreshold></PayoutThreshold>
 			<AccountAccess></AccountAccess>
 		</div>
 		<div class="hidden flex-col gap-(--gap) md:flex">
 			<QrConnect></QrConnect>
-			<TransferFunds></TransferFunds>
+			<div class="**:[.text-center.text-xs]:hidden">
+				<MessageScrollerDemo />
+			</div>
 			<Payments></Payments>
 		</div>
-		<div class="hidden flex-col gap-(--gap) min-[1400px]:flex">
+		<div class="hidden flex-col gap-(--gap) min-[1900px]:flex">
 			<EmptyDistributeTrack></EmptyDistributeTrack>
 			<AnalyticsCard></AnalyticsCard>
 			<NotificationSettings></NotificationSettings>
@@ -115,9 +117,9 @@
 		</div>
 	</div>
 	<div
-		class="from-background via-muted absolute inset-x-0 top-0 z-[1] h-120 bg-linear-to-b to-transparent dark:hidden"
+		class="absolute inset-x-0 top-0 z-[1] h-120 bg-linear-to-b from-background via-muted to-transparent dark:hidden"
 	></div>
 	<div
-		class="from-background via-muted/80 dark:via-background/80 absolute inset-x-0 bottom-0 z-20 h-48 bg-linear-to-t to-transparent lg:h-80 xl:h-64"
+		class="absolute inset-x-0 bottom-0 z-20 h-48 bg-linear-to-t from-background via-muted/80 to-transparent lg:h-80 xl:h-64 dark:via-background/80"
 	></div>
 </div>

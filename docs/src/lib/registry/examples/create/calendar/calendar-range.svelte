@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
-	import * as Card from "$lib/registry/ui/card/index.js";
 	import { getLocalTimeZone } from "@internationalized/date";
+	import * as Card from "$lib/registry/ui/card/index.js";
 	import { RangeCalendar } from "$lib/registry/ui/range-calendar/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 
 <Example title="Range" containerClass="lg:col-span-full 2xl:col-span-full" class="p-12">

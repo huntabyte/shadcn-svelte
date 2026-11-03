@@ -3,7 +3,7 @@ title: Combobox
 description: Autocomplete input with a list of suggestions.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/combobox
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/combobox
   doc: https://bits-ui.com/docs/components/combobox
   api: https://bits-ui.com/docs/components/combobox#api-reference
 ---
@@ -84,12 +84,12 @@ Copy and paste the following code into your project.
 
 <Combobox.Root
   bind:value
-  {inputValue}
   onOpenChangeComplete={(open) => {
     if (!open) inputValue = "";
   }}
 >
   <Combobox.Input
+    aria-label="Framework"
     placeholder="Select a framework"
     oninput={(event) => (inputValue = event.currentTarget.value)}
   />
@@ -104,6 +104,8 @@ Copy and paste the following code into your project.
   </Combobox.Content>
 </Combobox.Root>
 ```
+
+Filtering is controlled by your application. Update the list from `oninput` and render `Combobox.Empty` when no items match. Provide an accessible name with a label or `aria-label`.
 
 ## Composition
 
@@ -121,45 +123,9 @@ Combobox
         └── ComboboxItem
 ```
 
-### With chips
+### With groups
 
-Multi-select with `multiple`, chips, and a chips input (see [Multiple](#multiple)).
-
-```txt
-Combobox
-├── ComboboxChips
-│   ├── ComboboxValue
-│   │   └── ComboboxChip
-│   └── ComboboxChipsInput
-└── ComboboxContent
-    ├── ComboboxEmpty
-    └── ComboboxList
-        ├── ComboboxItem
-        └── ComboboxItem
-```
-
-### With groups and collection
-
-Nested items per group using `ComboboxCollection` inside each `ComboboxGroup`, with a separator between groups (see [Groups](#groups)).
-
-```txt
-Combobox
-├── ComboboxInput
-└── ComboboxContent
-    ├── ComboboxEmpty
-    └── ComboboxList
-        ├── ComboboxGroup
-        │   ├── ComboboxLabel
-        │   └── ComboboxCollection
-        │       ├── ComboboxItem
-        │       └── ComboboxItem
-        ├── ComboboxSeparator
-        └── ComboboxGroup
-            ├── ComboboxLabel
-            └── ComboboxCollection
-                ├── ComboboxItem
-                └── ComboboxItem
-```
+Use `Combobox.Group` and `Combobox.Label` to label related items, and `Combobox.Separator` between groups. Render filtered items directly inside each group; no collection component is needed.
 
 ## Custom Items
 
@@ -178,7 +144,9 @@ Use custom item content when your items need richer rendering.
 
 ## Multiple Selection
 
-Use `multiple` with chips for multi-select behavior.
+Use `type="multiple"` with a bound `string[]` value. The [Multiple](#multiple) example displays the selected values below the input.
+
+Removable chips and chips input keyboard behavior are waiting on [Bits UI #2051](https://github.com/huntabyte/bits-ui/pull/2051). `Combobox.Chips`, `Combobox.Chip`, and `Combobox.ChipsInput` are not available in this wrapper yet.
 
 ## Examples
 
@@ -194,7 +162,7 @@ A simple combobox with a list of frameworks.
 
 ### Multiple
 
-A combobox with multiple selection using `multiple` and `ComboboxChips`.
+A combobox with multiple selection using `type="multiple"`.
 
 <ComponentPreview name="combobox-multiple">
 
@@ -204,7 +172,7 @@ A combobox with multiple selection using `multiple` and `ComboboxChips`.
 
 ### Clear Button
 
-Use the `showClear` prop to show a clear button.
+Use `showClear` on `Combobox.Input` to clear the selected value.
 
 <ComponentPreview name="combobox-clear">
 
@@ -254,7 +222,7 @@ Use the `disabled` prop to disable the combobox.
 
 ### Auto Highlight
 
-Use the `autoHighlight` prop to automatically highlight the first item on filter.
+Bits UI highlights the first available item after input changes. Filter the rendered items in `oninput`; there is no `autoHighlight` prop.
 
 <ComponentPreview name="combobox-auto-highlight">
 
@@ -264,7 +232,7 @@ Use the `autoHighlight` prop to automatically highlight the first item on filter
 
 ### Popup
 
-You can trigger the combobox from a button or any other component by using the `child` snippet. Move the `ComboboxInput` inside the `ComboboxContent`.
+Use `Combobox.Trigger` with a custom anchor and move `Combobox.Input` into `Combobox.Content`. Focus the input when opening and return focus to the trigger when closing.
 
 <ComponentPreview name="combobox-in-popup">
 

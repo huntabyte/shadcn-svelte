@@ -69,10 +69,10 @@
 </script>
 
 <script lang="ts">
+	import Menu3Icon from "@tabler/icons-svelte/icons/menu-3";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
-	import Menu3Icon from "@tabler/icons-svelte/icons/menu-3";
 
 	let {
 		toc,
@@ -91,12 +91,7 @@
 		<DropdownMenu.Root bind:open>
 			<DropdownMenu.Trigger>
 				{#snippet child({ props })}
-					<Button
-						{...props}
-						variant="outline"
-						size="sm"
-						class={cn("h-8 md:h-7", className)}
-					>
+					<Button {...props} variant="outline" size="sm" class={cn("h-8 md:h-7", className)}>
 						<Menu3Icon /> On This Page
 					</Button>
 				{/snippet}
@@ -117,11 +112,11 @@
 		</DropdownMenu.Root>
 	{:else}
 		<div class={cn("flex flex-col gap-2 p-4 pt-0 text-sm", className)}>
-			<p class="text-muted-foreground bg-background sticky top-0 h-6 text-xs">On This Page</p>
+			<p class="sticky top-0 h-6 bg-background text-xs text-muted-foreground">On This Page</p>
 			{#each flattenedToc as item (item.url)}
 				<a
 					href={item.url}
-					class="text-muted-foreground hover:text-foreground data-[active=true]:text-foreground text-[0.8rem] no-underline transition-colors data-[depth=1]:ps-4 data-[depth=2]:ps-6"
+					class="text-[0.8rem] text-muted-foreground no-underline transition-colors hover:text-foreground data-[active=true]:text-foreground data-[depth=1]:ps-4 data-[depth=2]:ps-6"
 					data-active={item.url === `#${activeHeading.current}`}
 					data-depth={item.depth}
 				>

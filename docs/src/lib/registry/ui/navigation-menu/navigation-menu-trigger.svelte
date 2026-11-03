@@ -1,6 +1,6 @@
 <script lang="ts" module>
-	import { cn } from "$lib/utils.js";
 	import { tv } from "tailwind-variants";
+	import { cn } from "$lib/utils.js";
 
 	export const navigationMenuTriggerStyle = tv({
 		base: "cn-navigation-menu-trigger group/navigation-menu-trigger inline-flex h-9 w-max items-center justify-center outline-none disabled:pointer-events-none",

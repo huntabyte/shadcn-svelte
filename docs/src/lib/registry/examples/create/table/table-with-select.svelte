@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
-	import * as Table from "$lib/registry/ui/table/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
+	import * as Table from "$lib/registry/ui/table/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const people = [
 		{ value: "sarah", label: "Sarah Chen" },
@@ -52,9 +52,7 @@
 							<Select.Content>
 								<Select.Group>
 									{#each people as person (person.value)}
-										<Select.Item value={person.value}
-											>{person.label}</Select.Item
-										>
+										<Select.Item value={person.value}>{person.label}</Select.Item>
 									{/each}
 								</Select.Group>
 							</Select.Content>

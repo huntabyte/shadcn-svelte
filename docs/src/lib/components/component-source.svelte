@@ -1,12 +1,10 @@
 <script lang="ts" module>
-	import { createFileTreeForRegistryItemFiles } from "$lib/registry/registry-utils.js";
-	import type { Pane } from "paneforge";
-	import { ComponentCodeViewerContext } from "$lib/components/component-code-viewer/component-code-viewer.svelte";
-	import ComponentCodeViewerCode from "$lib/components/component-code-viewer/component-code-viewer-code.svelte";
-
 	import { MediaQuery } from "svelte/reactivity";
-
+	import ComponentCodeViewerCode from "$lib/components/component-code-viewer/component-code-viewer-code.svelte";
+	import { ComponentCodeViewerContext } from "$lib/components/component-code-viewer/component-code-viewer.svelte";
+	import { createFileTreeForRegistryItemFiles } from "$lib/registry/registry-utils.js";
 	import type { HighlightedBlock } from "../../routes/api/block/[block]/+server.js";
+	import type { Pane } from "paneforge";
 
 	type ComponentCodeViewerContextType = {
 		item: HighlightedBlock;
@@ -101,7 +99,7 @@
 	const height = $derived(`min(${longestFileHeight}, ${viewportHeight})`);
 </script>
 
-<figure data-rehype-pretty-code-figure data-llm-ignore id={item.name}>
+<figure data-rehype-pretty-code-figure data-not-typeset data-llm-ignore id={item.name}>
 	<div
 		class="group/block-view-wrapper flex w-full min-w-0 flex-col-reverse items-stretch gap-4 overflow-hidden"
 		style="--height: {height};"

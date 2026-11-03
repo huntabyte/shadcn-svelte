@@ -1,6 +1,6 @@
 <script lang="ts">
-	import RangeCalendar from "$lib/registry/ui/range-calendar/range-calendar.svelte";
 	import { CalendarDate } from "@internationalized/date";
+	import RangeCalendar from "$lib/registry/ui/range-calendar/range-calendar.svelte";
 	import type { DateRange } from "bits-ui";
 
 	let value = $state<DateRange>({

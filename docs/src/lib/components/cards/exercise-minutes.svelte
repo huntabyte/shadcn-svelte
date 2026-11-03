@@ -1,8 +1,8 @@
 <script lang="ts">
+	import { curveNatural } from "d3-shape";
 	import { LineChart } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
-	import { curveNatural } from "d3-shape";
 
 	const data = [
 		{
@@ -57,9 +57,7 @@
 <Card.Root>
 	<Card.Header>
 		<Card.Title>Exercise Minutes</Card.Title>
-		<Card.Description>
-			Your exercise minutes are ahead of where you normally are.
-		</Card.Description>
+		<Card.Description>Your exercise minutes are ahead of where you normally are.</Card.Description>
 	</Card.Header>
 	<Card.Content class="pb-4">
 		<Chart.Container

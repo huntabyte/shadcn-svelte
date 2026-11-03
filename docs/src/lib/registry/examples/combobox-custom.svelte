@@ -12,19 +12,32 @@
 		{ code: "mx", value: "mexico", label: "Mexico", continent: "North America" },
 		{ code: "us", value: "united-states", label: "United States", continent: "North America" },
 	] as const;
+
+	let inputValue = $state("");
+	const filteredItems = $derived(
+		countries.filter((country) => country.label.toLowerCase().includes(inputValue.toLowerCase()))
+	);
 </script>
 
-<Combobox.Root>
-	<Combobox.Input placeholder="Search countries..." />
+<Combobox.Root
+	onOpenChangeComplete={(open) => {
+		if (!open) inputValue = "";
+	}}
+>
+	<Combobox.Input
+		oninput={(event) => (inputValue = event.currentTarget.value)}
+		aria-label="Country"
+		placeholder="Search countries..."
+	/>
 	<Combobox.Content>
 		<Combobox.List>
-			{#each countries as country (country.code)}
+			{#if filteredItems.length === 0}<Combobox.Empty>No items found.</Combobox.Empty>{/if}
+			{#each filteredItems as country (country.code)}
 				<Combobox.Item value={country.value} label={country.label}>
 					<Item.Root size="xs" class="p-0">
 						<Item.Content>
 							<Item.Title class="whitespace-nowrap">{country.label}</Item.Title>
-							<Item.Description>{country.continent} ({country.code})</Item.Description
-							>
+							<Item.Description>{country.continent} ({country.code})</Item.Description>
 						</Item.Content>
 					</Item.Root>
 				</Combobox.Item>

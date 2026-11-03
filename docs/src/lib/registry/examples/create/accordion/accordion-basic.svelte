@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import * as Accordion from "$lib/registry/ui/accordion/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const items = [
 		{
@@ -11,8 +11,7 @@
 		{
 			value: "item-2",
 			trigger: "Is it styled?",
-			content:
-				"Yes. It comes with default styles that matches the other components' aesthetic.",
+			content: "Yes. It comes with default styles that matches the other components' aesthetic.",
 		},
 		{
 			value: "item-3",

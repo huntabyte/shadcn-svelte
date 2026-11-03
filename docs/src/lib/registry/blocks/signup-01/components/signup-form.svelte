@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
 	import type { ComponentProps } from "svelte";
 
@@ -24,8 +24,7 @@
 					<Field.Label for="email">Email</Field.Label>
 					<Input id="email" type="email" placeholder="m@example.com" required />
 					<Field.Description>
-						We'll use this to contact you. We will not share your email with anyone
-						else.
+						We'll use this to contact you. We will not share your email with anyone else.
 					</Field.Description>
 				</Field.Field>
 				<Field.Field>

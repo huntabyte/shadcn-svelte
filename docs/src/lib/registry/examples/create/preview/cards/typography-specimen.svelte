@@ -1,13 +1,13 @@
 <script lang="ts">
 	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
+	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
+	import { useDesignSystem } from "$lib/features/design-system/index.js";
+	import { FONTS } from "$lib/fonts.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
 	import { Textarea } from "$lib/registry/ui/textarea/index.js";
-	import { useDesignSystem } from "$lib/features/design-system/index.js";
-	import { FONTS } from "$lib/fonts.js";
 
 	const designSystem = useDesignSystem();
 
@@ -40,15 +40,15 @@
 
 <Card.Root>
 	<Card.Content class="flex flex-col gap-2">
-		<div class="text-muted-foreground text-xs font-medium tracking-wide uppercase">
+		<div class="text-xs font-medium tracking-wide text-muted-foreground uppercase">
 			{headingLabel} - {bodyLabel}
 		</div>
 		<p class="cn-font-heading text-2xl font-medium">Designing with rhythm and hierarchy.</p>
-		<p class="text-muted-foreground text-sm leading-relaxed">
+		<p class="text-sm leading-relaxed text-muted-foreground">
 			A strong body style keeps long-form content readable and balances the visual weight of
 			headings.
 		</p>
-		<p class="text-muted-foreground text-sm leading-relaxed">
+		<p class="text-sm leading-relaxed text-muted-foreground">
 			Thoughtful spacing and cadence help paragraphs scan quickly without feeling dense.
 		</p>
 	</Card.Content>
@@ -62,9 +62,7 @@
 			<Dialog.Content>
 				<Dialog.Header>
 					<Dialog.Title>Share Feedback</Dialog.Title>
-					<Dialog.Description>
-						Let us know how we can improve your experience.
-					</Dialog.Description>
+					<Dialog.Description>Let us know how we can improve your experience.</Dialog.Description>
 				</Dialog.Header>
 				<Field.Group>
 					<div class="grid grid-cols-2 gap-3">
@@ -80,9 +78,7 @@
 					<Field.Field>
 						<Field.Label for="feedback-category">Category</Field.Label>
 						<Select.Root type="single" bind:value={categoryValue}>
-							<Select.Trigger id="feedback-category" class="w-full"
-								>{categoryLabel}</Select.Trigger
-							>
+							<Select.Trigger id="feedback-category" class="w-full">{categoryLabel}</Select.Trigger>
 							<Select.Content>
 								<Select.Group>
 									{#each categoryItems as item (item.value)}

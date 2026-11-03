@@ -1,8 +1,8 @@
-import type { EntryGenerator, PageLoad } from "./$types.js";
-import { registryCategories } from "$lib/registry/registry-categories.js";
-import type { Component } from "svelte";
 import { error } from "@sveltejs/kit";
+import { registryCategories } from "$lib/registry/registry-categories.js";
 import type { HighlightedBlock } from "../../../../api/block/[block]/+server.js";
+import type { EntryGenerator, PageLoad } from "./$types.js";
+import type { Component } from "svelte";
 
 export const prerender = true;
 

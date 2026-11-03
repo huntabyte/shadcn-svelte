@@ -1,9 +1,9 @@
 import process from "node:process";
-import color from "picocolors";
 import * as p from "@clack/prompts";
+import color from "picocolors";
 import { bgHex } from "./colors.js";
-import { getCLIPackageInfo } from "./get-package-info.js";
 import { CLIError, ConfigError } from "./errors.js";
+import { getCLIPackageInfo } from "./get-package-info.js";
 
 export function intro() {
 	const packageInfo = getCLIPackageInfo();

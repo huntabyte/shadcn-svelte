@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Combobox as ComboboxPrimitive } from "bits-ui";
-	import { cn, type WithoutChild } from "$lib/utils.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { cn, type WithoutChild } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),
@@ -35,7 +35,7 @@
 		{#if selected}
 			<span
 				data-slot="combobox-item-indicator"
-				class="pointer-events-none absolute right-2 flex size-4 items-center justify-center"
+				class="pointer-events-none absolute end-2 flex size-4 items-center justify-center"
 			>
 				<IconPlaceholder
 					lucide="CheckIcon"

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Arc, PieChart } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
-	import * as Chart from "$lib/registry/ui/chart/index.js";
+	import { Arc, PieChart } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Chart from "$lib/registry/ui/chart/index.js";
 
 	const desktopData = [
 		{ month: "january", desktop: 186, color: "var(--color-january)" },
@@ -93,11 +93,7 @@
 					<Arc {...props} fill={props.data.color} />
 				{/snippet}
 				{#snippet tooltip()}
-					<Chart.Tooltip
-						nameKey="month"
-						indicator="line"
-						labelFormatter={tooltipLabelFormatter}
-					/>
+					<Chart.Tooltip nameKey="month" indicator="line" labelFormatter={tooltipLabelFormatter} />
 				{/snippet}
 			</PieChart>
 		</Chart.Container>
@@ -106,7 +102,7 @@
 		<div class="flex items-center gap-2 leading-none font-medium">
 			Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
 		</div>
-		<div class="text-muted-foreground leading-none">
+		<div class="leading-none text-muted-foreground">
 			Showing total visitors for the last 6 months
 		</div>
 	</Card.Footer>

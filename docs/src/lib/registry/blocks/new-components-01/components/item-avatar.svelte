@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as Item from "$lib/registry/ui/item/index.js";
-	import * as Avatar from "$lib/registry/ui/avatar/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import Plus from "@lucide/svelte/icons/plus";
+	import * as Avatar from "$lib/registry/ui/avatar/index.js";
+	import * as Item from "$lib/registry/ui/item/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
 <div class="flex w-full max-w-lg flex-col gap-6">
@@ -26,7 +26,7 @@
 	<Item.Root variant="outline">
 		<Item.Media>
 			<div
-				class="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale"
+				class="flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-background *:data-[slot=avatar]:grayscale"
 			>
 				<Avatar.Root class="hidden sm:flex">
 					<Avatar.Image src="https://github.com/shadcn.png" alt="@shadcn" />

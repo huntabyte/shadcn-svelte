@@ -1,8 +1,8 @@
 <script lang="ts">
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
-	import * as Chart from "$lib/registry/ui/chart/index.js";
-	import * as Card from "$lib/registry/ui/card/index.js";
 	import { PieChart, Text } from "layerchart";
+	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Chart from "$lib/registry/ui/chart/index.js";
 
 	const chartData = [{ month: "january", desktop: 1260, mobile: 570 }];
 
@@ -59,7 +59,7 @@
 		<div class="flex items-center gap-2 leading-none font-medium">
 			Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
 		</div>
-		<div class="text-muted-foreground leading-none">
+		<div class="leading-none text-muted-foreground">
 			Showing total visitors for the last 6 months
 		</div>
 	</Card.Footer>

@@ -4,10 +4,10 @@
  * need to build twice or try to manipulate the manifest post build.
  */
 
-import { globby } from "globby";
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { globby } from "globby";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 

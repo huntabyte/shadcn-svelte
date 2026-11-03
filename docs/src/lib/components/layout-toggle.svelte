@@ -1,9 +1,9 @@
 <script lang="ts">
+	import GalleryHorizontalIcon from "@lucide/svelte/icons/gallery-horizontal";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { UserConfigContext } from "$lib/user-config.svelte.js";
-	import type { ComponentProps } from "svelte";
 	import { cn } from "$lib/utils.js";
-	import GalleryHorizontalIcon from "@lucide/svelte/icons/gallery-horizontal";
+	import type { ComponentProps } from "svelte";
 
 	let { class: className, ...restProps }: ComponentProps<typeof Button> = $props();
 	const userConfig = UserConfigContext.get();

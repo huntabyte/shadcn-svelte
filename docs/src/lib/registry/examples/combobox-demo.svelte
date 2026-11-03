@@ -9,20 +9,18 @@
 	const filteredFrameworks = $derived(
 		inputValue === ""
 			? frameworks
-			: frameworks.filter((framework) =>
-					framework.toLowerCase().includes(inputValue.toLowerCase())
-				)
+			: frameworks.filter((framework) => framework.toLowerCase().includes(inputValue.toLowerCase()))
 	);
 </script>
 
 <Combobox.Root
 	bind:value
-	{inputValue}
 	onOpenChangeComplete={(open) => {
 		if (!open) inputValue = "";
 	}}
 >
 	<Combobox.Input
+		aria-label="Framework"
 		placeholder="Select a framework"
 		oninput={(event) => (inputValue = event.currentTarget.value)}
 	/>

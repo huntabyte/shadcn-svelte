@@ -35,9 +35,9 @@
 						height={400}
 					/>
 				</div>
-				<figcaption class="text-muted-foreground pt-2 text-xs">
+				<figcaption class="pt-2 text-xs text-muted-foreground">
 					Photo by
-					<span class="text-foreground font-semibold">
+					<span class="font-semibold text-foreground">
 						{artwork.artist}
 					</span>
 				</figcaption>

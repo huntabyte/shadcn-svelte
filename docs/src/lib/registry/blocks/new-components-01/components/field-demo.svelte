@@ -1,9 +1,9 @@
 <script lang="ts">
+	import * as Field from "$lib/registry/ui/field/index.js";
+	import * as Select from "$lib/registry/ui/select/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
-	import * as Select from "$lib/registry/ui/select/index.js";
 	import { Textarea } from "$lib/registry/ui/textarea/index.js";
 
 	let month = $state<string>();
@@ -23,11 +23,7 @@
 					</Field.Field>
 					<Field.Field>
 						<Field.Label for="checkout-7j9-card-number-uw1">Card Number</Field.Label>
-						<Input
-							id="checkout-7j9-card-number-uw1"
-							placeholder="1234 5678 9012 3456"
-							required
-						/>
+						<Input id="checkout-7j9-card-number-uw1" placeholder="1234 5678 9012 3456" required />
 						<Field.Description>Enter your 16-digit card number</Field.Description>
 					</Field.Field>
 					<div class="grid grid-cols-3 gap-4">

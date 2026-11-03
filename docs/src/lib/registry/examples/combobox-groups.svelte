@@ -36,20 +36,39 @@
 			],
 		},
 	] as const;
+
+	let inputValue = $state("");
+	const filteredItems = $derived(
+		timezones
+			.map((group) => ({
+				...group,
+				items: group.items.filter((item) => item.toLowerCase().includes(inputValue.toLowerCase())),
+			}))
+			.filter((group) => group.items.length > 0)
+	);
 </script>
 
-<Combobox.Root>
-	<Combobox.Input placeholder="Select a timezone" />
+<Combobox.Root
+	onOpenChangeComplete={(open) => {
+		if (!open) inputValue = "";
+	}}
+>
+	<Combobox.Input
+		oninput={(event) => (inputValue = event.currentTarget.value)}
+		aria-label="Timezone"
+		placeholder="Select a timezone"
+	/>
 	<Combobox.Content>
 		<Combobox.List>
-			{#each timezones as group, index (group.value)}
+			{#if filteredItems.length === 0}<Combobox.Empty>No items found.</Combobox.Empty>{/if}
+			{#each filteredItems as group, index (group.value)}
 				<Combobox.Group>
 					<Combobox.Label>{group.value}</Combobox.Label>
 					{#each group.items as item (item)}
 						<Combobox.Item value={item} label={item} />
 					{/each}
 				</Combobox.Group>
-				{#if index < timezones.length - 1}
+				{#if index < filteredItems.length - 1}
 					<Combobox.Separator />
 				{/if}
 			{/each}

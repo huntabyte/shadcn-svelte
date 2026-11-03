@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { onMount } from "svelte";
 	import QRCode from "qrcode";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { onMount } from "svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const connectUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
 
@@ -21,7 +21,7 @@
 			{#if dataUrl}
 				<img src={dataUrl} alt="" width="160" height="160" class="block" />
 			{:else}
-				<div class="bg-muted size-[160px] animate-pulse rounded"></div>
+				<div class="size-[160px] animate-pulse rounded bg-muted"></div>
 			{/if}
 		</div>
 	</Card.Content>

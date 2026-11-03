@@ -1,7 +1,8 @@
 <script lang="ts">
+	import ComponentPreviewTabs from "./component-preview-tabs.svelte";
+	import type { PresetConfig } from "shadcn-svelte/preset";
 	import type { Component } from "svelte";
 	import type { HTMLAttributes } from "svelte/elements";
-	import ComponentPreviewTabs from "./component-preview-tabs.svelte";
 
 	let {
 		name,
@@ -9,12 +10,16 @@
 		class: className,
 		align = "center",
 		hideCode = false,
+		previewClassName,
+		previewStyle,
 		...restProps
 	}: HTMLAttributes<HTMLElement> & {
 		name: string;
 		align?: "center" | "start" | "end";
 		description?: string;
 		hideCode?: boolean;
+		previewClassName?: string;
+		previewStyle?: PresetConfig["style"];
 		type?: "block" | "component" | "example";
 		component?: Component;
 	} = $props();
@@ -22,6 +27,7 @@
 
 {#if type === "block"}
 	<div
+		data-not-typeset
 		class="relative aspect-[4/2.5] w-full overflow-hidden rounded-md border md:-mx-4"
 		data-llm-ignore
 	>
@@ -30,19 +36,27 @@
 			alt={name}
 			width={1440}
 			height={900}
-			class="bg-background absolute start-0 top-0 z-20 w-[970px] max-w-none sm:w-7xl md:hidden dark:hidden md:dark:hidden"
+			class="absolute start-0 top-0 z-20 w-[970px] max-w-none bg-background sm:w-7xl md:hidden dark:hidden md:dark:hidden"
 		/>
 		<img
 			src="/img/registry/{name}-dark.png"
 			alt={name}
 			width={1440}
 			height={900}
-			class="bg-background absolute start-0 top-0 z-20 hidden w-[970px] max-w-none sm:w-7xl md:hidden dark:block md:dark:hidden"
+			class="absolute start-0 top-0 z-20 hidden w-[970px] max-w-none bg-background sm:w-7xl md:hidden dark:block md:dark:hidden"
 		/>
-		<div class="bg-background absolute inset-0 hidden w-[1600px] md:block">
+		<div class="absolute inset-0 hidden w-[1600px] bg-background md:block">
 			<iframe src="/view/{name}" class="size-full" title={name}></iframe>
 		</div>
 	</div>
 {:else if type === "component" || type === "example"}
-	<ComponentPreviewTabs {name} class={className} {align} {hideCode} {...restProps} />
+	<ComponentPreviewTabs
+		{name}
+		class={className}
+		{align}
+		{hideCode}
+		{previewClassName}
+		{previewStyle}
+		{...restProps}
+	/>
 {/if}
