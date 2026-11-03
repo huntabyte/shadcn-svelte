@@ -1,15 +1,15 @@
 <script lang="ts">
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import type { DemoMessage } from "$lib/ai.js";
-	import { getMessageText } from "$lib/ai.js";
+	import { getMessageText } from "$lib/ai-sdk.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { useMessageScroller } from "$lib/registry/ui/message-scroller/index.js";
+	import type { UIMessage } from "ai";
 
-	let { userMessages }: { userMessages: DemoMessage[] } = $props();
+	let { userMessages }: { userMessages: UIMessage[] } = $props();
 
 	const { scrollToMessage } = useMessageScroller();
 
-	function getTrimmedMessageText(message: DemoMessage) {
+	function getTrimmedMessageText(message: UIMessage) {
 		const text = getMessageText(message);
 
 		return text.length > 42 ? `${text.slice(0, 39)}...` : text;
