@@ -149,6 +149,8 @@ export const DEFAULT_PRESETS = {
 	},
 } as const;
 
+const presetsByName = new Map<string, PresetConfig>(Object.entries(DEFAULT_PRESETS));
+
 /**
  * Resolves the value passed to `--preset`. It can be either the name of one of the
  * pre-configured presets (e.g. `luma`) or an encoded preset code from `/create`.
@@ -156,10 +158,7 @@ export const DEFAULT_PRESETS = {
  * @returns the preset or `null` when the value is neither
  */
 export function resolvePreset(value: string): PresetConfig | null {
-	if (Object.hasOwn(DEFAULT_PRESETS, value)) {
-		return DEFAULT_PRESETS[value as keyof typeof DEFAULT_PRESETS];
-	}
-	return decodePreset(value);
+	return presetsByName.get(value) ?? decodePreset(value);
 }
 
 export function invalidPresetMessage(value: string) {
