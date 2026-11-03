@@ -18,7 +18,12 @@ import {
 	toBase62,
 	type PresetConfig,
 } from "../src/preset/preset.js";
-import { DEFAULT_PRESETS, PRESET_NAMES, resolvePreset } from "../src/preset/presets.js";
+import {
+	DEFAULT_PRESETS,
+	invalidPresetMessage,
+	PRESET_NAMES,
+	resolvePreset,
+} from "../src/preset/presets.js";
 
 describe("base62", () => {
 	it("should round-trip numbers", () => {
@@ -229,11 +234,6 @@ describe("resolvePreset", () => {
 		}
 	});
 
-	it("should ignore case and surrounding whitespace in names", () => {
-		expect(resolvePreset("Luma")).toBe(DEFAULT_PRESETS.luma);
-		expect(resolvePreset("  VEGA ")).toBe(DEFAULT_PRESETS.vega);
-	});
-
 	it("should resolve preset codes", () => {
 		const code = encodePreset(DEFAULT_PRESET_CONFIG);
 		expect(resolvePreset(code)).toEqual(decodePreset(code));
@@ -249,9 +249,21 @@ describe("resolvePreset", () => {
 	it("should return null for unknown names and invalid codes", () => {
 		expect(resolvePreset("")).toBeNull();
 		expect(resolvePreset("not-a-style")).toBeNull();
+		// names are matched exactly
+		expect(resolvePreset("Luma")).toBeNull();
 		expect(resolvePreset("c123")).toBeNull();
 		// inherited object keys must not be treated as preset names
 		expect(resolvePreset("constructor")).toBeNull();
 		expect(resolvePreset("__proto__")).toBeNull();
+	});
+});
+
+describe("invalidPresetMessage", () => {
+	it("should list the available presets", () => {
+		const message = invalidPresetMessage("lumaa");
+		expect(message).toContain("lumaa");
+		for (const name of PRESET_NAMES) {
+			expect(message).toContain(name);
+		}
 	});
 });

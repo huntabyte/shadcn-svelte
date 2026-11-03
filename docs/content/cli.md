@@ -27,10 +27,6 @@ Configure the import alias for hooks: › $lib/hooks
 Configure the import alias for ui: › $lib/components/ui
 ```
 
-Pass `--preset` to skip the design system prompt. It takes either a preset code from the [builder](/create) or the name of a style: `nova`, `vega`, `maia`, `lyra`, `mira`, `luma`, `sera` or `rhea`. A style name uses that style's default preset.
-
-<PMExecute command="shadcn-svelte@latest init --preset luma" />
-
 **Options**
 
 ```bash
@@ -39,7 +35,7 @@ Usage: shadcn-svelte init [options]
 initialize your project and install dependencies
 
 Options:
-  --preset <preset>          the preset to use (a preset code or the name of a style)
+  --preset <preset>          the preset to use
   -c, --cwd <path>           the working directory
   --no-deps-install          add dependencies to package.json without running install
   --skip-preflight           ignore preflight checks and continue (default: false)
@@ -93,8 +89,6 @@ Use the `apply` command to apply a preset to an existing project.
 
 <PMExecute command="shadcn-svelte@latest apply a2r6bw" />
 
-Like `init`, `apply` also accepts the name of a style, such as `luma`, in place of a preset code.
-
 You can apply only the theme or fonts from a preset without reinstalling UI components:
 
 <PMExecute command="shadcn-svelte@latest apply a2r6bw --only theme" />
@@ -109,10 +103,10 @@ Usage: shadcn-svelte apply [options]
 apply a preset to an existing project
 
 Arguments:
-  preset             the preset to apply (a preset code or the name of a style)
+  preset             the preset to apply
 
 Options:
-  --preset <preset>  the preset to use (a preset code or the name of a style)
+  --preset <preset>  the preset to apply
   --only [parts]     apply only parts of a preset: theme, font
   -c, --cwd <path>   the working directory (default: the current directory)
   -y, --yes          overwrite existing files without confirmation (default: false)

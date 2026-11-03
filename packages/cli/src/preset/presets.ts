@@ -12,6 +12,7 @@ import {
 } from "./preset.js";
 import * as cliConfig from "../utils/config/index.js";
 import * as registry from "../utils/registry/index.js";
+import { SITE_BASE_URL } from "../constants.js";
 import { iconLibraries } from "../icons/libraries.js";
 import { hex } from "../utils/colors.js";
 import { cancel } from "../utils/prompt-helpers.js";
@@ -149,11 +150,14 @@ export const PRESET_NAMES = Object.keys(DEFAULT_PRESETS) as (keyof typeof DEFAUL
  * @returns the preset or `null` when the value is neither
  */
 export function resolvePreset(value: string): PresetConfig | null {
-	const name = value.trim().toLowerCase();
-	if (Object.hasOwn(DEFAULT_PRESETS, name)) {
-		return DEFAULT_PRESETS[name as keyof typeof DEFAULT_PRESETS];
+	if (Object.hasOwn(DEFAULT_PRESETS, value)) {
+		return DEFAULT_PRESETS[value as keyof typeof DEFAULT_PRESETS];
 	}
 	return decodePreset(value);
+}
+
+export function invalidPresetMessage(value: string) {
+	return `Invalid preset: ${color.bold(value)}.\nUse one of the available presets: ${PRESET_NAMES.join(", ")}\nor build your own at ${color.cyan(`${SITE_BASE_URL}/create`)}`;
 }
 
 /**

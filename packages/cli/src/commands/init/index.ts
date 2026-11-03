@@ -10,7 +10,7 @@ import * as cliConfig from "../../utils/config/index.js";
 import * as project from "../../utils/project.js";
 import * as registry from "../../utils/registry/index.js";
 import { type PresetConfig, encodePreset } from "../../preset/index.js";
-import { PRESET_NAMES, promptForPreset, resolvePreset } from "../../preset/presets.js";
+import { invalidPresetMessage, promptForPreset, resolvePreset } from "../../preset/presets.js";
 import { addRegistryItems } from "../../utils/add-registry-items.js";
 import { detectConfigs } from "../../utils/auto-detect.js";
 import { highlight } from "../../utils/colors.js";
@@ -46,7 +46,7 @@ type InitOptions = z.infer<typeof initOptionsSchema>;
 export const init = new Command()
 	.command("init")
 	.description("initialize your project and install dependencies")
-	.option("--preset <preset>", "the preset to use (a preset code or the name of a style)")
+	.option("--preset <preset>", "the preset to use")
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
 	.addOption(new Option("-o, --overwrite", "deprecated: use --reinstall").default(false).hideHelp())
 	.addOption(new Option("--no-deps", "disable adding & installing dependencies").hideHelp())
@@ -81,9 +81,7 @@ export const init = new Command()
 			if (options.preset !== undefined) {
 				presetConfig = resolvePreset(options.preset);
 				if (presetConfig === null) {
-					p.log.warn(
-						`${color.dim(`--preset ${options.preset}`)} is not a valid preset. Use a preset code or one of: ${PRESET_NAMES.join(", ")}.`
-					);
+					throw error(invalidPresetMessage(options.preset));
 				}
 			}
 
