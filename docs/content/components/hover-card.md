@@ -3,7 +3,7 @@ title: Hover Card
 description: For sighted users to preview content available behind a link.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/link-preview
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/link-preview
   doc: https://bits-ui.com/docs/components/link-preview
   api: https://bits-ui.com/docs/components/link-preview#api-reference
 ---
@@ -51,6 +51,12 @@ Copy and paste the following code into your project.
 {#if viewerData}
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 
 {/snippet}
@@ -71,6 +77,16 @@ Copy and paste the following code into your project.
     SvelteKit - Web development, streamlined
   </HoverCard.Content>
 </HoverCard.Root>
+```
+
+## Composition
+
+Use the following composition to build a `HoverCard`:
+
+```text
+HoverCard.Root
+├── HoverCard.Trigger
+└── HoverCard.Content
 ```
 
 ## Trigger Delays
@@ -110,3 +126,7 @@ Use the `side` and `align` props on `HoverCard.Content` to control placement.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+See the [Bits UI](https://bits-ui.com/docs/components/link-preview#api-reference) documentation for more information.

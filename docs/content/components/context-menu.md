@@ -3,7 +3,7 @@ title: Context Menu
 description: Displays a menu of actions triggered by a right click.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/context-menu
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/context-menu
   doc: https://bits-ui.com/docs/components/context-menu
   api: https://bits-ui.com/docs/components/context-menu#api-reference
 ---
@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -74,6 +80,37 @@ Copy and paste the following code into your project.
     <ContextMenu.Item>Subscription</ContextMenu.Item>
   </ContextMenu.Content>
 </ContextMenu.Root>
+```
+
+## Composition
+
+Use the following composition to build a `ContextMenu`:
+
+```text
+ContextMenu.Root
+├── ContextMenu.Trigger
+└── ContextMenu.Content
+    ├── ContextMenu.Group
+    │   ├── ContextMenu.Label
+    │   ├── ContextMenu.Item
+    │   └── ContextMenu.Item
+    ├── ContextMenu.Separator
+    ├── ContextMenu.Group
+    │   ├── ContextMenu.Label
+    │   ├── ContextMenu.CheckboxItem
+    │   └── ContextMenu.CheckboxItem
+    ├── ContextMenu.Separator
+    ├── ContextMenu.Group
+    │   ├── ContextMenu.Label
+    │   └── ContextMenu.RadioGroup
+    │       ├── ContextMenu.RadioItem
+    │       └── ContextMenu.RadioItem
+    └── ContextMenu.Sub
+        ├── ContextMenu.SubTrigger
+        └── ContextMenu.SubContent
+            └── ContextMenu.Group
+                ├── ContextMenu.Item
+                └── ContextMenu.Item
 ```
 
 ## Basic
@@ -165,3 +202,7 @@ Control submenu placement with `side` and `align` props.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+See the [Bits UI](https://bits-ui.com/docs/components/context-menu#api-reference) documentation for more information.

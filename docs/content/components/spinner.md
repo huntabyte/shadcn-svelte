@@ -3,7 +3,7 @@ title: Spinner
 description: An indicator that can be used to show a loading state.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/spinner
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/spinner
 ---
 
 <script>
@@ -49,6 +49,12 @@ Copy and paste the following code into your project.
 {#if viewerData}
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
+
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
 
 </Steps>
 {/snippet}
@@ -139,3 +145,7 @@ Add a spinner to a badge to indicate a loading state. Place the `<Spinner />` be
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+`Spinner` accepts SVG attributes. Its default `role` is `"status"` and its default `aria-label` is `"Loading"`. Use `class` to set its size and `aria-label` to describe the operation. See the [SVG attribute reference](https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute).

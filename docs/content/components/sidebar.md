@@ -3,7 +3,7 @@ title: Sidebar
 description: A composable, themeable and customizable sidebar component.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/sidebar
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/sidebar
 ---
 
 <script>
@@ -50,6 +50,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -86,6 +92,39 @@ Copy and paste the following code into your project.
   </Sidebar.Content>
   <Sidebar.Footer />
 </Sidebar.Root>
+```
+
+## Composition
+
+Use the following composition to build a `Sidebar` layout:
+
+```text
+Sidebar.Provider
+├── Sidebar.Root
+│   ├── Sidebar.Header
+│   ├── Sidebar.Content
+│   │   ├── Sidebar.Group
+│   │   │   ├── Sidebar.GroupLabel
+│   │   │   ├── Sidebar.GroupAction
+│   │   │   ├── Sidebar.GroupContent
+│   │   │   └── Sidebar.Menu
+│   │   │       ├── Sidebar.MenuItem
+│   │   │       │   ├── Sidebar.MenuButton
+│   │   │       │   ├── Sidebar.MenuAction
+│   │   │       │   └── Sidebar.MenuBadge
+│   │   │       └── Sidebar.MenuItem
+│   │   │           ├── Sidebar.MenuButton
+│   │   │           └── Sidebar.MenuSub
+│   │   │               ├── Sidebar.MenuSubItem
+│   │   │               └── Sidebar.MenuSubItem
+│   │   └── Sidebar.Group
+│   │       └── Sidebar.Menu
+│   │           ├── Sidebar.MenuItem
+│   │           └── Sidebar.MenuItem
+│   ├── Sidebar.Footer
+│   └── Sidebar.Rail
+├── Sidebar.Inset
+└── Sidebar.Trigger
 ```
 
 ## Structure
@@ -501,3 +540,7 @@ Here are some tips for styling the sidebar based on different states.
   />
 </Sidebar.MenuItem>
 ```
+
+## API Reference
+
+The [Sidebar component sections](#sidebarprovider) above document the provider, layout, menu, and state APIs. Components accept the attributes of their underlying HTML elements.

@@ -3,7 +3,7 @@ title: Chart
 description: Beautiful charts. Built using LayerChart. Copy and paste into your apps.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/chart
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/chart
 ---
 
 <script>
@@ -114,6 +114,12 @@ Add the following colors to your CSS file
 <Step>
 
 Copy and paste the following code into your project.
+
+</Step>
+
+<Step>
+
+Update the import paths to match your project setup.
 
 </Step>
 
@@ -528,3 +534,17 @@ To use a custom key for tooltip label and names, use the `labelKey` and `nameKey
 ```
 
 This will use `Total Visitors` for label and `Chrome` and `Safari` for the tooltip names.
+
+## Composition
+
+Use the following composition to build a `Chart`:
+
+```text
+Chart.Container
+└── [LayerChart component (e.g. BarChart, LineChart)]
+    └── Chart.Tooltip (via tooltip snippet)
+```
+
+## API Reference
+
+See the [LayerChart documentation](https://layerchart.com) for chart props and the [Chart configuration](#chart-config) section for the wrapper configuration.
