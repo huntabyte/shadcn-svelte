@@ -309,7 +309,7 @@ describe("transformIcons", () => {
 	import CaretDownIcon from 'phosphor-svelte/lib/CaretDown';
 </script>
 
-<CaretDownIcon class="cn-accordion-trigger-icon size-4" />
+<CaretDownIcon weight="bold" class="cn-accordion-trigger-icon size-4" />
 `.trim()
 		);
 		expect(result.devDependencies).toEqual(["phosphor-svelte"]);
@@ -330,8 +330,8 @@ describe("transformIcons", () => {
 </script>
 
 <div>
-	<CaretDownIcon class="cn-accordion-trigger-icon group-aria-expanded:hidden" />
-	<CaretUpIcon class="cn-accordion-trigger-icon hidden group-aria-expanded:inline" />
+	<CaretDownIcon weight="bold" class="cn-accordion-trigger-icon group-aria-expanded:hidden" />
+	<CaretUpIcon weight="bold" class="cn-accordion-trigger-icon hidden group-aria-expanded:inline" />
 </div>
 `.trim()
 		);
@@ -353,10 +353,31 @@ describe("transformIcons", () => {
 	let { ...restProps } = $props();
 </script>
 
-<CaretDownIcon class="cn-accordion-trigger-icon" data-slot="accordion-trigger-icon" {...restProps} />
+<CaretDownIcon weight="bold" class="cn-accordion-trigger-icon" data-slot="accordion-trigger-icon" {...restProps} />
 `.trim()
 		);
 		expect(result.devDependencies).toEqual(["phosphor-svelte"]);
+	});
+
+	it("phosphor: does not add a weight when the placeholder sets one", async () => {
+		const input = `
+<script lang="ts">
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	let { weight } = $props();
+</script>
+
+<IconPlaceholder lucide="ChevronDownIcon" tabler="IconChevronDown" hugeicons="ArrowDown01Icon" phosphor="CaretDownIcon" remixicon="RiArrowDownSLine" {weight} />
+<IconPlaceholder lucide="ChevronDownIcon" tabler="IconChevronDown" hugeicons="ArrowDown01Icon" phosphor="CaretDownIcon" remixicon="RiArrowDownSLine" weight="fill" />
+`.trim();
+		const result = await transformIcons({
+			content: input,
+			filePath: "x.svelte",
+			config: getConfig("phosphor"),
+		});
+
+		expect(result.content).toContain("<CaretDownIcon {weight} />");
+		expect(result.content).toContain('<CaretDownIcon weight="fill" />');
+		expect(result.content).not.toContain('weight="bold"');
 	});
 
 	it("remixicon: correctly adds 1 icon", async () => {

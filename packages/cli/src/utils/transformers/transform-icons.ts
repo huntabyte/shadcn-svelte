@@ -47,7 +47,10 @@ export const transformIcons: Transformer = async ({ content, filePath, config })
 				.map((attr: any) => src.slice(attr.start, attr.end))
 				.join(" ");
 
-			const iconSrc = iconLibrary.usage({ name: iconName }, restProps);
+			// A weight the placeholder sets itself (weight="fill", weight={w} or the {weight} shorthand) wins, so the
+			// transform never writes the attribute twice.
+			const hasWeight = otherAttributes.some((attr: { name?: string }) => attr.name === "weight");
+			const iconSrc = iconLibrary.usage({ name: iconName }, restProps, { hasWeight });
 
 			// @ts-expect-error wrong
 			src.overwrite(node.start, node.end, iconSrc);

@@ -9,7 +9,7 @@ export type IconLibrary = {
 	title: string;
 	packages: string[];
 	import: (icon: { name: string }) => string;
-	usage: (icon: { name: string }, restProps: string) => string;
+	usage: (icon: { name: string }, restProps: string, options?: { hasWeight?: boolean }) => string;
 	export: (icon: { name: string }) => string;
 	getAdditionalImports?: () => string[];
 };
@@ -53,7 +53,19 @@ export const iconLibraries = {
 		packages: ["phosphor-svelte"],
 		import: (icon) =>
 			`import ${icon.name} from 'phosphor-svelte/lib/${toPhosphorName(icon.name)}';`,
-		usage: (icon, restProps) => `<${icon.name} ${restProps} />`,
+		// Duotone by default, bold for arrows, carets and the other thin glyphs (see phosphorWeight). A weight the
+		// component already sets wins.
+		usage: (icon, restProps, options) =>
+			[
+				`<${icon.name}`,
+				(options?.hasWeight ?? /(^|\s)(weight\s*=|\{weight\})/.test(restProps))
+					? ""
+					: `weight="${phosphorWeight(icon.name)}"`,
+				restProps.trim(),
+				"/>",
+			]
+				.filter(Boolean)
+				.join(" "),
 		export: (icon) =>
 			`export { default as ${icon.name} } from 'phosphor-svelte/lib/${toPhosphorName(icon.name)}';`,
 	},
@@ -75,6 +87,18 @@ function toLucideKebab(name: string): string {
 
 function toTablerKebab(name: string): string {
 	return pascalToKebab(name.startsWith("Icon") ? name.slice(4) : name);
+}
+
+// The Another UI icon rule: Phosphor duotone for form and field icons, bold for the thin glyphs, where a duotone fill
+// reads as a smudge: arrows, carets, dots, text format, and the plain X, Check, Plus and Minus (exact names, so XLogo,
+// Checkerboard and PlusMinus are not caught). A name with Circle or Square anywhere in it (CheckCircle,
+// CaretCircleDown, DotsThreeCircle, ArrowSquareOut) is a filled shape and stays duotone.
+const PHOSPHOR_BOLD =
+	/^(Arrow|Caret|Dots|Text(B|Italic|Underline|Strikethrough|Aa|T|Align|H)|(X|Check|Checks|CheckFat|Plus|Minus)$)/;
+
+export function phosphorWeight(name: string): "bold" | "duotone" {
+	const base = toPhosphorName(name);
+	return PHOSPHOR_BOLD.test(base) && !/Circle|Square/.test(base) ? "bold" : "duotone";
 }
 
 function toPhosphorName(name: string): string {

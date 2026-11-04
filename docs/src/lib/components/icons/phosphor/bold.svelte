@@ -3,7 +3,7 @@
 	import Icon from "phosphor-svelte/lib/TextB";
 	import type { ComponentProps } from "svelte";
 
-	let { weight = "duotone", ...rest }: ComponentProps<typeof Icon> = $props();
+	let { weight = "bold", ...rest }: ComponentProps<typeof Icon> = $props();
 </script>
 
 <Icon {weight} {...rest} />

@@ -27,9 +27,11 @@ Add the following dependencies to your project:
 
 ### Add icon library
 
-Install `@lucide/svelte`:
+Another UI Svelte uses [Phosphor](https://phosphoricons.com). Install `phosphor-svelte`:
 
-<PMInstall command="@lucide/svelte -D" />
+<PMInstall command="phosphor-svelte -D" />
+
+The weight is part of the style: duotone for form and field icons, bold for arrows, carets, plus, check, X, minus, dots and text format. See [Icons](/docs/components-json#iconlibrary).
 
 ### Configure path aliases
 

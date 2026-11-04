@@ -28,6 +28,35 @@ export async function getConfig(cwd: string): Promise<ResolvedConfig | undefined
 	return await resolveConfig(cwd, config);
 }
 
+// The icon library when components.json has no `iconLibrary`. The default is phosphor, but an existing project that
+// already uses @lucide/svelte (and not yet phosphor-svelte) keeps Lucide, so the next `add` does not mix two libraries
+// in silence. Set "iconLibrary" in components.json to choose.
+let warnedLegacyIconLibrary = false;
+export function resolveIconLibrary(
+	cwd: string,
+	config: { iconLibrary?: RawConfig["iconLibrary"] }
+): NonNullable<RawConfig["iconLibrary"]> {
+	if (config.iconLibrary) return config.iconLibrary;
+
+	try {
+		const pkg = project.getPackageInfo(cwd);
+		const deps = { ...pkg.dependencies, ...pkg.devDependencies };
+		if (deps["@lucide/svelte"] && !deps["phosphor-svelte"]) {
+			if (!warnedLegacyIconLibrary) {
+				warnedLegacyIconLibrary = true;
+				p.log.warn(
+					`components.json has no ${highlight("iconLibrary")} and this project uses @lucide/svelte, so Lucide stays. Add "iconLibrary": "phosphor" (the default for new projects) or "lucide" to choose.`
+				);
+			}
+			return "lucide";
+		}
+	} catch {
+		// No readable package.json: use the default.
+	}
+
+	return DEFAULT_CONFIG.iconLibrary;
+}
+
 export async function resolveConfig(cwd: string, config: RawConfig): Promise<ResolvedConfig> {
 	// if it's a SvelteKit project, run sync so that the aliases are always up to date
 	await project.syncSvelteKit(cwd);
@@ -74,7 +103,12 @@ export async function resolveConfig(cwd: string, config: RawConfig): Promise<Res
 		config.style = DEFAULT_PRESET_CONFIG.style;
 	}
 
-	return resolvedConfigSchema.parse({ ...config, sveltekit, resolvedPaths });
+	return resolvedConfigSchema.parse({
+		...config,
+		iconLibrary: resolveIconLibrary(cwd, config),
+		sveltekit,
+		resolvedPaths,
+	});
 }
 
 export function loadConfig(cwd: string): RawConfig | undefined {
