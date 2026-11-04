@@ -6,9 +6,13 @@
 	let {
 		ref = $bindable(null),
 		class: className,
+		required = false,
 		children,
 		...restProps
-	}: ComponentProps<typeof Label> = $props();
+	}: ComponentProps<typeof Label> & {
+		/** Shows a red asterisk after the label. Also set required on the control so screen readers announce it. */
+		required?: boolean;
+	} = $props();
 </script>
 
 <Label
@@ -22,4 +26,7 @@
 	{...restProps}
 >
 	{@render children?.()}
+	{#if required}
+		<span aria-hidden="true" data-slot="field-required" class="-ml-1 text-destructive">*</span>
+	{/if}
 </Label>

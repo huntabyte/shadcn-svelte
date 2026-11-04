@@ -192,6 +192,23 @@ Stack `Field` components with `Field.Group`. Add `Field.Separator` to divide the
 
 </ComponentPreview>
 
+## Required
+
+Pass `required` to `Field.Label` or `Field.Legend` to show a red asterisk after the text. The asterisk is decoration (`aria-hidden`), so also set `required` on the control, which is what a screen reader announces. Do not write the asterisk by hand.
+
+Put `required` on a `Field.Legend` only when every control in the set is required, for example a radio group whose inputs all carry `required`; a fieldset has no native `required`, so the asterisk is the only cue. In the example, only the Name field is required, so only its label has the asterisk. `required` is for text labels. In the choice card pattern, where `Field.Label` wraps a `Field`, put the asterisk in the card's title instead.
+
+<ComponentPreview name="field-required">
+
+<div></div>
+
+</ComponentPreview>
+
+```svelte
+<Field.Label for="name" required>Name</Field.Label>
+<Input id="name" required />
+```
+
 ## Validation and Errors
 
 - Add `data-invalid` to `Field.Field` to switch the entire block into an error state.
