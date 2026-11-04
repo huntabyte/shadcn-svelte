@@ -1329,7 +1329,7 @@
   }
 
   .cn-table-row {
-    @apply hover:bg-[var(--ledger-surface-hover)] data-[state=selected]:bg-muted border-b transition-colors;
+    @apply hover:bg-[var(--ledger-surface-hover)] data-[state=selected]:bg-muted border-border border-b transition-colors;
   }
 
   .cn-table-row-aria {

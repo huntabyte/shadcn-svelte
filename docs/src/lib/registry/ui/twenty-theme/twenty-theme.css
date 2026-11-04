@@ -18,152 +18,179 @@
  */
 
 /* Shared geometry, light and dark. twenty-ui: border-radius sm 4px and md 8px, 4px spacing grid, side panel 500px, table checkbox column 32px, cell padding 8px. Type sizes are twenty-ui rem values at its 13px root. */
-.theme-twenty.style-ledger, .theme-twenty .style-ledger {
-  --radius: 8px;
-  --ui-radius: 4px;
-  --twenty-radius-xs: 2px;
-  --twenty-radius-sm: 4px;
-  --twenty-radius-md: 8px;
-  --twenty-radius-lg: 12px;
-  --twenty-spacing-unit: 4px;
-  --twenty-side-panel-width: 500px;
-  --twenty-table-checkbox-column-width: 32px;
-  --twenty-table-cell-padding-x: 8px;
-  --twenty-table-row-height: 32px;
-  --twenty-font-size-xs: 11px;
-  --twenty-font-size-sm: 12px;
-  --twenty-font-size-md: 13px;
-  --twenty-font-size-lg: 16px;
-  --twenty-font-size-xl: 20px;
-  --twenty-font-weight-regular: 400;
-  --twenty-font-weight-medium: 500;
-  --twenty-font-weight-semibold: 600;
-  --twenty-hover-transition: background 0.1s ease;
-  --twenty-duration-fast: 150ms;
-  --twenty-duration-normal: 300ms;
+.theme-twenty.style-ledger,
+.theme-twenty .style-ledger {
+	--radius: 8px;
+	--ui-radius: 4px;
+	--twenty-radius-xs: 2px;
+	--twenty-radius-sm: 4px;
+	--twenty-radius-md: 8px;
+	--twenty-control-height: 2rem;
+	--twenty-control-height-sm: 1.5rem;
+	--twenty-control-radius: 8px;
+	--twenty-radius-lg: 12px;
+	--twenty-spacing-unit: 4px;
+	--twenty-side-panel-width: 500px;
+	--twenty-table-checkbox-column-width: 32px;
+	--twenty-table-cell-padding-x: 8px;
+	--twenty-table-row-height: 32px;
+	--twenty-font-size-xs: 11px;
+	--twenty-font-size-sm: 12px;
+	--twenty-font-size-md: 13px;
+	--twenty-font-size-lg: 16px;
+	--twenty-font-size-xl: 20px;
+	--twenty-font-weight-regular: 400;
+	--twenty-font-weight-medium: 500;
+	--twenty-font-weight-semibold: 600;
+	--twenty-hover-transition: background 0.1s ease;
+	--twenty-duration-fast: 150ms;
+	--twenty-duration-normal: 300ms;
 }
 
 /* Light, sRGB fallback */
-.theme-twenty.style-ledger, .theme-twenty .style-ledger, .dark .theme-twenty.light.style-ledger, .dark .theme-twenty .light.style-ledger {
-  --background: #ffffff;
-  --foreground: #333333;
-  --card: #ffffff;
-  --card-foreground: #333333;
-  --popover: #ffffff;
-  --popover-foreground: #333333;
-  --primary: #4561d6;
-  --primary-foreground: #ffffff;
-  --secondary: #f1f1f1;
-  --secondary-foreground: #333333;
-  --muted: #f1f1f1;
-  --muted-foreground: #666666;
-  --accent: #f1f1f1;
-  --accent-foreground: #333333;
-  --destructive: #bc3a35;
-  --border: #ebebeb;
-  --input: #d6d6d6;
-  --ring: #4561d6;
-  --sidebar: #fcfcfc;
-  --sidebar-foreground: #333333;
-  --sidebar-primary: #4561d6;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f1f1f1;
-  --sidebar-accent-foreground: #333333;
-  --sidebar-border: #ebebeb;
-  --sidebar-ring: #4561d6;
-  --ledger-surface-hover: #f7f7f7;
-  --primary-fill: #4561d6;
-  --primary-fill-foreground: #ffffff;
-  --ledger-track: #f1f1f1;
-  --ledger-field-border: #ebebeb;
+.theme-twenty.style-ledger,
+.theme-twenty .style-ledger,
+.dark .theme-twenty.light.style-ledger,
+.dark .theme-twenty .light.style-ledger {
+	--background: #ffffff;
+	--foreground: #333333;
+	--card: #ffffff;
+	--card-foreground: #333333;
+	--popover: #ffffff;
+	--popover-foreground: #333333;
+	--primary: #4561d6;
+	--primary-foreground: #ffffff;
+	--secondary: #f1f1f1;
+	--secondary-foreground: #333333;
+	--muted: #f1f1f1;
+	--muted-foreground: #666666;
+	--accent: #f1f1f1;
+	--accent-foreground: #333333;
+	--destructive: #bc3a35;
+	--border: #ebebeb;
+	--input: #d6d6d6;
+	--ring: #4561d6;
+	--sidebar: #fcfcfc;
+	--sidebar-foreground: #333333;
+	--sidebar-primary: #4561d6;
+	--sidebar-primary-foreground: #ffffff;
+	--sidebar-accent: #f1f1f1;
+	--sidebar-accent-foreground: #333333;
+	--sidebar-border: #ebebeb;
+	--sidebar-ring: #4561d6;
+	--ledger-surface-hover: #f7f7f7;
+	--primary-fill: #4561d6;
+	--primary-fill-foreground: #ffffff;
+	--ledger-track: #f1f1f1;
+	--ledger-field-border: #ebebeb;
 }
 
 /* Dark, sRGB fallback. --primary is Ledger's lighter blue (7:1 on the page) for links, focus rings and text on dark surfaces. Filled buttons and badges use --primary-fill (#4561d6) behind white, 5.3:1, as Ledger does; --sidebar-primary matches that fill. */
-:is(.dark .theme-twenty.style-ledger, .dark .theme-twenty .style-ledger, .theme-twenty.dark.style-ledger, .theme-twenty.dark .style-ledger, .theme-twenty .dark.style-ledger) {
-  --background: #171717;
-  --foreground: #ebebeb;
-  --card: #1b1b1b;
-  --card-foreground: #ebebeb;
-  --popover: #1b1b1b;
-  --popover-foreground: #ebebeb;
-  --primary: #6f8bf0;
-  --primary-foreground: #0d1330;
-  --secondary: #1d1d1d;
-  --secondary-foreground: #ebebeb;
-  --muted: #1d1d1d;
-  --muted-foreground: #b3b3b3;
-  --accent: #222222;
-  --accent-foreground: #ebebeb;
-  --destructive: #f28781;
-  --border: #222222;
-  --input: #484848;
-  --ring: #6f8bf0;
-  --sidebar: #1b1b1b;
-  --sidebar-foreground: #ebebeb;
-  --sidebar-primary: #4561d6;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #222222;
-  --sidebar-accent-foreground: #ebebeb;
-  --sidebar-border: #222222;
-  --sidebar-ring: #6f8bf0;
-  --ledger-surface-hover: #1d1d1d;
-  --primary-fill: #4561d6;
-  --primary-fill-foreground: #ffffff;
-  --ledger-track: #1d1d1d;
-  --ledger-field-border: #2c2c2c;
+:is(
+	.dark .theme-twenty.style-ledger,
+	.dark .theme-twenty .style-ledger,
+	.theme-twenty.dark.style-ledger,
+	.theme-twenty.dark .style-ledger,
+	.theme-twenty .dark.style-ledger
+) {
+	--background: #171717;
+	--foreground: #ebebeb;
+	--card: #1b1b1b;
+	--card-foreground: #ebebeb;
+	--popover: #1b1b1b;
+	--popover-foreground: #ebebeb;
+	--primary: #6f8bf0;
+	--primary-foreground: #0d1330;
+	--secondary: #1d1d1d;
+	--secondary-foreground: #ebebeb;
+	--muted: #1d1d1d;
+	--muted-foreground: #b3b3b3;
+	--accent: #222222;
+	--accent-foreground: #ebebeb;
+	--destructive: #f28781;
+	--border: #222222;
+	--input: #484848;
+	--ring: #6f8bf0;
+	--sidebar: #1b1b1b;
+	--sidebar-foreground: #ebebeb;
+	--sidebar-primary: #4561d6;
+	--sidebar-primary-foreground: #ffffff;
+	--sidebar-accent: #222222;
+	--sidebar-accent-foreground: #ebebeb;
+	--sidebar-border: #222222;
+	--sidebar-ring: #6f8bf0;
+	--ledger-surface-hover: #1d1d1d;
+	--primary-fill: #4561d6;
+	--primary-fill-foreground: #ffffff;
+	--ledger-track: #1d1d1d;
+	--ledger-field-border: #2c2c2c;
 }
 
 @supports (color: color(display-p3 1 1 1)) {
-  .theme-twenty.style-ledger, .theme-twenty .style-ledger, .dark .theme-twenty.light.style-ledger, .dark .theme-twenty .light.style-ledger {
-    --background: color(display-p3 1 1 1);
-    --foreground: color(display-p3 0.2 0.2 0.2);
-    --muted-foreground: color(display-p3 0.4 0.4 0.4);
-    --secondary: color(display-p3 0.945 0.945 0.945);
-    --muted: color(display-p3 0.945 0.945 0.945);
-    --accent: color(display-p3 0.945 0.945 0.945);
-    --border: color(display-p3 0.922 0.922 0.922);
-    --input: color(display-p3 0.839 0.839 0.839);
-    --sidebar: color(display-p3 0.988 0.988 0.988);
-    --primary: color(display-p3 0.276 0.384 0.837);
-    --ring: color(display-p3 0.276 0.384 0.837);
-  }
-  :is(.dark .theme-twenty.style-ledger, .dark .theme-twenty .style-ledger, .theme-twenty.dark.style-ledger, .theme-twenty.dark .style-ledger, .theme-twenty .dark.style-ledger) {
-    --background: color(display-p3 0.09 0.09 0.09);
-    --foreground: color(display-p3 0.922 0.922 0.922);
-    --muted-foreground: color(display-p3 0.702 0.702 0.702);
-    --secondary: color(display-p3 0.114 0.114 0.114);
-    --muted: color(display-p3 0.114 0.114 0.114);
-    --accent: color(display-p3 0.133 0.133 0.133);
-    --border: color(display-p3 0.133 0.133 0.133);
-    --input: color(display-p3 0.282 0.282 0.282);
-    --sidebar: color(display-p3 0.106 0.106 0.106);
-  }
+	.theme-twenty.style-ledger,
+	.theme-twenty .style-ledger,
+	.dark .theme-twenty.light.style-ledger,
+	.dark .theme-twenty .light.style-ledger {
+		--background: color(display-p3 1 1 1);
+		--foreground: color(display-p3 0.2 0.2 0.2);
+		--muted-foreground: color(display-p3 0.4 0.4 0.4);
+		--secondary: color(display-p3 0.945 0.945 0.945);
+		--muted: color(display-p3 0.945 0.945 0.945);
+		--accent: color(display-p3 0.945 0.945 0.945);
+		--border: color(display-p3 0.922 0.922 0.922);
+		--input: color(display-p3 0.839 0.839 0.839);
+		--sidebar: color(display-p3 0.988 0.988 0.988);
+		--primary: color(display-p3 0.276 0.384 0.837);
+		--ring: color(display-p3 0.276 0.384 0.837);
+	}
+	:is(
+		.dark .theme-twenty.style-ledger,
+		.dark .theme-twenty .style-ledger,
+		.theme-twenty.dark.style-ledger,
+		.theme-twenty.dark .style-ledger,
+		.theme-twenty .dark.style-ledger
+	) {
+		--background: color(display-p3 0.09 0.09 0.09);
+		--foreground: color(display-p3 0.922 0.922 0.922);
+		--muted-foreground: color(display-p3 0.702 0.702 0.702);
+		--secondary: color(display-p3 0.114 0.114 0.114);
+		--muted: color(display-p3 0.114 0.114 0.114);
+		--accent: color(display-p3 0.133 0.133 0.133);
+		--border: color(display-p3 0.133 0.133 0.133);
+		--input: color(display-p3 0.282 0.282 0.282);
+		--sidebar: color(display-p3 0.106 0.106 0.106);
+	}
 }
 
 /* A .light element inside a dark page also needs the light chip tones, which Ledger redefines under .dark. These values are the light block of ledger-tokens.css; keep them in sync when that block changes. */
-.dark .theme-twenty.light.style-ledger, .dark .theme-twenty .light.style-ledger {
-  --ledger-chip-gray-bg: #f4f4f4;
-  --ledger-chip-gray-ink: #555555;
-  --ledger-chip-blue-bg: #eaeffc;
-  --ledger-chip-blue-ink: #3556b8;
-  --ledger-chip-green-bg: #e6f5ea;
-  --ledger-chip-green-ink: #256b42;
-  --ledger-chip-red-bg: #fbeaea;
-  --ledger-chip-red-ink: #b0332e;
-  --ledger-chip-orange-bg: #fcefd9;
-  --ledger-chip-orange-ink: #9a4300;
-  --ledger-chip-yellow-bg: #fcf5bd;
-  --ledger-chip-yellow-ink: #7a5600;
-  --ledger-chip-purple-bg: #f3ecfb;
-  --ledger-chip-purple-ink: #6a3aa3;
-  --ledger-chip-pink-bg: #fae9f3;
-  --ledger-chip-pink-ink: #a52f78;
-  --ledger-chip-turquoise-bg: #e1f6ee;
-  --ledger-chip-turquoise-ink: #0f6f56;
+.dark .theme-twenty.light.style-ledger,
+.dark .theme-twenty .light.style-ledger {
+	--ledger-chip-gray-bg: #f4f4f4;
+	--ledger-chip-gray-ink: #555555;
+	--ledger-chip-blue-bg: #eaeffc;
+	--ledger-chip-blue-ink: #3556b8;
+	--ledger-chip-green-bg: #e6f5ea;
+	--ledger-chip-green-ink: #256b42;
+	--ledger-chip-red-bg: #fbeaea;
+	--ledger-chip-red-ink: #b0332e;
+	--ledger-chip-orange-bg: #fcefd9;
+	--ledger-chip-orange-ink: #9a4300;
+	--ledger-chip-yellow-bg: #fcf5bd;
+	--ledger-chip-yellow-ink: #7a5600;
+	--ledger-chip-purple-bg: #f3ecfb;
+	--ledger-chip-purple-ink: #6a3aa3;
+	--ledger-chip-pink-bg: #fae9f3;
+	--ledger-chip-pink-ink: #a52f78;
+	--ledger-chip-turquoise-bg: #e1f6ee;
+	--ledger-chip-turquoise-ink: #0f6f56;
 }
 
 /*
- * Button geometry (Twenty): 32px, small 24px, 4px radius. Badges keep the Ledger badge and its tone prop (chip tones), so a tag never
+ * Control geometry (Twenty): every text control is 32px high, small 24px, with an 8px radius: buttons, icon buttons, inputs,
+ * input groups, selects, native selects and textareas. A combobox is a button (role="combobox") plus a popover, so it follows the button. Badges keep their own small radius, and cards and
+ * popovers keep theirs.
+ *
+ * Button geometry (Twenty): 32px, small 24px. Badges keep the Ledger badge and its tone prop (chip tones), so a tag never
  * wears the solid primary fill: use <Badge tone="blue"> for tags and keep the solid default badge for counts.
  *
  * The rules hook on what a Button carries: data-size when a build adds it, the cn-button-size-* classes in the source, and the
@@ -171,27 +198,78 @@
  * :not(#_) lifts the rules above the Ledger rules, which use :not(#_) themselves.
  */
 .theme-twenty :is([data-slot="button"], [class*="group/button"]):not(.rounded-full):not(#_) {
-  border-radius: var(--twenty-radius-sm);
+	border-radius: var(--twenty-control-radius);
 }
-.theme-twenty :is([data-slot="button"], [class*="group/button"]):is([data-size="default"], .cn-button-size-default, .h-7):not(#_) {
-  height: 2rem;
-  min-height: 2rem;
-  padding-inline: 0.75rem;
+.theme-twenty
+	:is([data-slot="button"], [class*="group/button"]):is(
+		[data-size="default"],
+		.cn-button-size-default,
+		.h-7
+	):not(#_) {
+	height: var(--twenty-control-height);
+	min-height: var(--twenty-control-height);
+	padding-inline: 0.75rem;
 }
-.theme-twenty :is([data-slot="button"], [class*="group/button"]):is([data-size="sm"], .cn-button-size-sm, .h-6):not(#_) {
-  height: 1.5rem;
-  min-height: 1.5rem;
-  padding-inline: 0.5rem;
+.theme-twenty
+	:is([data-slot="button"], [class*="group/button"]):is(
+		[data-size="sm"],
+		.cn-button-size-sm,
+		.h-6
+	):not(#_) {
+	height: var(--twenty-control-height-sm);
+	min-height: var(--twenty-control-height-sm);
+	padding-inline: 0.5rem;
 }
-.theme-twenty :is([data-slot="button"], [class*="group/button"]):is([data-size="icon"], .cn-button-size-icon, .size-7):not(#_) {
-  width: 2rem;
-  height: 2rem;
-  min-height: 2rem;
-  padding: 0;
+.theme-twenty
+	:is([data-slot="button"], [class*="group/button"]):is(
+		[data-size="icon"],
+		.cn-button-size-icon,
+		.size-7
+	):not(#_) {
+	width: var(--twenty-control-height);
+	height: var(--twenty-control-height);
+	min-height: var(--twenty-control-height);
+	padding: 0;
 }
-.theme-twenty :is([data-slot="button"], [class*="group/button"]):is([data-size="icon-sm"], .cn-button-size-icon-sm, .size-6):not(#_) {
-  width: 1.5rem;
-  height: 1.5rem;
-  min-height: 1.5rem;
-  padding: 0;
+.theme-twenty
+	:is([data-slot="button"], [class*="group/button"]):is(
+		[data-size="icon-sm"],
+		.cn-button-size-icon-sm,
+		.size-6
+	):not(#_) {
+	width: var(--twenty-control-height-sm);
+	height: var(--twenty-control-height-sm);
+	min-height: var(--twenty-control-height-sm);
+	padding: 0;
+}
+
+/*
+ * The other text controls, so a button next to an input is the same height at each size. min-height as well as height, so an
+ * input group that grows (a textarea inside it) is not clipped. Ledger sizes these at 28px (h-7) and 24px (h-6).
+ */
+.theme-twenty
+	:is([data-slot="input"], [data-slot="native-select"], [data-slot="select-trigger"]):is(
+		.h-7,
+		[data-size="default"]
+	):not(#_) {
+	height: var(--twenty-control-height);
+	min-height: var(--twenty-control-height);
+}
+.theme-twenty
+	:is([data-slot="native-select"], [data-slot="select-trigger"])[data-size="sm"]:not(#_) {
+	height: var(--twenty-control-height-sm);
+	min-height: var(--twenty-control-height-sm);
+}
+.theme-twenty [data-slot="input-group"]:not(#_) {
+	min-height: var(--twenty-control-height);
+}
+.theme-twenty
+	:is(
+		[data-slot="input"],
+		[data-slot="input-group"],
+		[data-slot="native-select"],
+		[data-slot="select-trigger"],
+		[data-slot="textarea"]
+	):not(#_) {
+	border-radius: var(--twenty-control-radius);
 }

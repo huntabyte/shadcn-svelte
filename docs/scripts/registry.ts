@@ -260,8 +260,18 @@ async function assembleLedgerTokens(registryRootPath: string): Promise<RegistryI
 			type: "registry:style",
 			title: "Ledger tokens",
 			description:
-				"The Ledger design tokens (colors, radius, chip tones, field border and shadow) written into :root and .dark. Re-add to update them. Color values come from the twenty-ui theme tokens (github.com/twentyhq/twenty, MIT License, Copyright (c) 2023-present Twenty.com, PBC).",
+				"The Ledger design tokens (colors, radius, chip tones, field border and shadow) written into :root and .dark, plus the base layer that sets the default border and outline color. Re-add to update them. Color values come from the twenty-ui theme tokens (github.com/twentyhq/twenty, MIT License, Copyright (c) 2023-present Twenty.com, PBC).",
 			cssVars: { light, dark },
+			// The base layer every Ledger app needs. Tailwind 4 defaults a bare `border` to currentColor (black lines in a
+			// table row or a divider) and the outline of a focused control to the browser default. shadcn's init adds this;
+			// shipping it here means an app that installs the tokens gets it too.
+			css: {
+				"@layer base": {
+					"*": {
+						"@apply border-border outline-ring/50": {},
+					},
+				},
+			},
 			files: [],
 			registryDependencies: [],
 		},

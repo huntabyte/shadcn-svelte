@@ -43,25 +43,42 @@ Put both classes on `<html>`. Dialog, Popover, Select, Tooltip and Sheet portal 
 
 ```html
 <html lang="en" class="style-ledger theme-twenty">
+  <body>
+    <!-- your app -->
+  </body>
+</html>
 ```
 
 Dark mode works as before. Add `dark` to the same element or an ancestor.
 
 ## Buttons and badges
 
-Buttons are 32 px with a small size of 24 px and a 4 px radius. Tags and status use the Badge `tone` prop (soft tint, readable ink). They never use the solid primary fill, which stays on buttons. The default badge is a soft blue chip and works for counts.
+Tags and status use the Badge `tone` prop (soft tint, readable ink). They never use the solid primary fill, which stays on buttons. The default badge is a soft blue chip and works for counts.
+
+## Controls
+
+Every text control is the same height at each size, so a button next to an input lines up: 32 px by default, 24 px small, with an 8 px radius. That covers buttons and icon buttons, inputs, input groups, selects, native selects and textareas. A combobox is a button plus a popover, so it follows the button. Badges keep their own small radius.
+
+<ComponentPreview name="twenty-theme-controls">
+
+<div></div>
+
+</ComponentPreview>
 
 ## What it sets
 
-| Token | Value |
-| --- | --- |
-| `--radius` | 8px |
-| `--ui-radius` | 4px |
-| `--twenty-side-panel-width` | 500px |
-| `--twenty-table-checkbox-column-width` | 32px |
-| `--twenty-table-cell-padding-x` | 8px |
-| `--twenty-table-row-height` | 32px |
-| `--twenty-font-size-xs` to `-xl` | 11, 12, 13, 16, 20px |
-| `--twenty-duration-fast`, `-normal` | 150ms, 300ms |
+| Token                                  | Value                |
+| -------------------------------------- | -------------------- |
+| `--radius`                             | 8px                  |
+| `--ui-radius`                          | 4px                  |
+| `--twenty-control-height`              | 32px                 |
+| `--twenty-control-height-sm`           | 24px                 |
+| `--twenty-control-radius`              | 8px                  |
+| `--twenty-side-panel-width`            | 500px                |
+| `--twenty-table-checkbox-column-width` | 32px                 |
+| `--twenty-table-cell-padding-x`        | 8px                  |
+| `--twenty-table-row-height`            | 32px                 |
+| `--twenty-font-size-xs` to `-xl`       | 11, 12, 13, 16, 20px |
+| `--twenty-duration-fast`, `-normal`    | 150ms, 300ms         |
 
 It also sets the standard variables (`--background`, `--foreground`, `--border`, `--primary`, `--sidebar` and the rest) from the twenty-ui gray scale and blue accent. The `--twenty-*` variables are plain CSS, so an app can read them for its own layout.

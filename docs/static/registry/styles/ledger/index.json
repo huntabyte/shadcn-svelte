@@ -2262,7 +2262,7 @@
 		"name": "ledger-tokens",
 		"title": "Ledger tokens",
 		"type": "registry:style",
-		"description": "The Ledger design tokens (colors, radius, chip tones, field border and shadow) written into :root and .dark. Re-add to update them. Color values come from the twenty-ui theme tokens (github.com/twentyhq/twenty, MIT License, Copyright (c) 2023-present Twenty.com, PBC).",
+		"description": "The Ledger design tokens (colors, radius, chip tones, field border and shadow) written into :root and .dark, plus the base layer that sets the default border and outline color. Re-add to update them. Color values come from the twenty-ui theme tokens (github.com/twentyhq/twenty, MIT License, Copyright (c) 2023-present Twenty.com, PBC).",
 		"registryDependencies": [],
 		"relativeUrl": "ledger-tokens.json"
 	}
