@@ -334,6 +334,16 @@
 		"relativeUrl": "separator.json"
 	},
 	{
+		"name": "settings",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"sidebar",
+			"item",
+			"field"
+		],
+		"relativeUrl": "settings.json"
+	},
+	{
 		"name": "sheet",
 		"type": "registry:ui",
 		"registryDependencies": [

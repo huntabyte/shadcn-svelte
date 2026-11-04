@@ -14,6 +14,8 @@
 		ref = $bindable(null),
 		open = $bindable(true),
 		onOpenChange = () => {},
+		keyboardShortcut = true,
+		persist = true,
 		class: className,
 		style,
 		children,
@@ -21,6 +23,10 @@
 	}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {
 		open?: boolean;
 		onOpenChange?: (open: boolean) => void;
+		/** Toggle with Cmd/Ctrl+B. Turn off for a nested provider that must not react to the app sidebar's shortcut. */
+		keyboardShortcut?: boolean;
+		/** Save the open state in the sidebar_state cookie. Turn off for a nested provider. */
+		persist?: boolean;
 	} = $props();
 
 	const sidebar = setSidebar({
@@ -30,12 +36,14 @@
 			onOpenChange(value);
 
 			// This sets the cookie to keep the sidebar state.
-			document.cookie = `${SIDEBAR_COOKIE_NAME}=${open}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`;
+			if (persist) {
+				document.cookie = `${SIDEBAR_COOKIE_NAME}=${open}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`;
+			}
 		},
 	});
 </script>
 
-<svelte:window onkeydown={sidebar.handleShortcutKeydown} />
+<svelte:window onkeydown={keyboardShortcut ? sidebar.handleShortcutKeydown : undefined} />
 
 <Tooltip.Provider delayDuration={0}>
 	<div
