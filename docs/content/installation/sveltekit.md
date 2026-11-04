@@ -54,6 +54,14 @@ Configure the import alias for hooks: › $lib/hooks
 Configure the import alias for ui: › $lib/components/ui
 ```
 
+### Stop zoom on input focus (phones)
+
+Ledger fields use 13px text, and iPhone Safari zooms the page when you focus a field under 16px. Add `maximum-scale=1` to the viewport tag in `src/app.html`. On iPhone this only stops the focus zoom; pinch to zoom still works.
+
+```html showLineNumbers
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+```
+
 ### That's it
 
 You can now start adding components to your project.
