@@ -20,7 +20,7 @@
 {#if chart}
 	<div
 		class={cn(
-			"themes-wrapper group relative flex flex-col overflow-hidden rounded-xl border transition-all duration-200 ease-in-out hover:z-30",
+			"themes-wrapper group relative flex flex-col overflow-hidden rounded-xl transition-all duration-200 ease-in-out hover:z-30",
 			className
 		)}
 	>
@@ -30,7 +30,7 @@
 		>
 			{@render children?.()}
 		</ChartToolbar>
-		<div class="relative z-10 [&>div]:rounded-none [&>div]:border-none [&>div]:shadow-none">
+		<div class="relative z-10 overflow-hidden rounded-xl border bg-background">
 			{@render children?.()}
 		</div>
 	</div>

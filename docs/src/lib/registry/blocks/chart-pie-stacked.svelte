@@ -56,8 +56,10 @@
 				c="color"
 				props={{
 					pie: {
+						startAngle: Math.PI / 2,
+						endAngle: (-3 * Math.PI) / 2,
 						sort: sortMonths,
-						motion: "tween",
+						motion: Chart.defaultMotion,
 					},
 					tooltip: {
 						context: {

@@ -30,7 +30,7 @@
 				innerRadius={76}
 				padding={29}
 				range={[-90, 90]}
-				props={{ pie: { sort: null } }}
+				props={{ pie: { sort: null, motion: Chart.defaultMotion } }}
 				cornerRadius={4}
 			>
 				{#snippet aboveMarks()}

@@ -23,7 +23,7 @@
 <Card.Root>
 	<Card.Header class="items-center">
 		<Card.Title>Radar Chart - Grid Custom</Card.Title>
-		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
+		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content class="flex-1">
 		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
@@ -46,7 +46,7 @@
 						fill: "var(--color-desktop)",
 						fillOpacity: 0.6,
 						stroke: "0",
-						motion: "tween",
+						motion: Chart.defaultMotion,
 					},
 					xAxis: {
 						tickLength: 0,

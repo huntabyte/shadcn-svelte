@@ -2,7 +2,7 @@
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { scaleUtc } from "d3-scale";
 	import { curveNatural } from "d3-shape";
-	import { Area, AreaChart, LinearGradient } from "layerchart";
+	import { Area, AreaChart, ChartClipPath, LinearGradient } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 
@@ -24,7 +24,7 @@
 <Card.Root>
 	<Card.Header>
 		<Card.Title>Area Chart - Gradient</Card.Title>
-		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
+		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<Chart.Container config={chartConfig}>
@@ -64,24 +64,25 @@
 					/>
 				{/snippet}
 				{#snippet marks({ context })}
-					{#each context.series.visibleSeries as s (s.key)}
-						<LinearGradient
-							stops={[s.color ?? "", "color-mix(in lch, " + s.color + " 10%, transparent)"]}
-							vertical
-						>
-							{#snippet children({ gradient })}
-								<Area
-									seriesKey={s.key}
-									curve={curveNatural}
-									fillOpacity={0.4}
-									line={{ class: "stroke-1" }}
-									motion="tween"
-									{...s.props}
-									fill={gradient}
-								/>
-							{/snippet}
-						</LinearGradient>
-					{/each}
+					<ChartClipPath initialWidth={0} motion={Chart.defaultClipMotion}>
+						{#each context.series.visibleSeries as s (s.key)}
+							<LinearGradient
+								stops={[s.color ?? "", "color-mix(in lch, " + s.color + " 10%, transparent)"]}
+								vertical
+							>
+								{#snippet children({ gradient })}
+									<Area
+										seriesKey={s.key}
+										curve={curveNatural}
+										fillOpacity={0.4}
+										line={{ class: "stroke-1" }}
+										{...s.props}
+										fill={gradient}
+									/>
+								{/snippet}
+							</LinearGradient>
+						{/each}
+					</ChartClipPath>
 				{/snippet}
 			</AreaChart>
 		</Chart.Container>
