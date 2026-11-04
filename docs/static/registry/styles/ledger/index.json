@@ -308,6 +308,25 @@
 		"relativeUrl": "range-calendar.json"
 	},
 	{
+		"name": "record-fields",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"native-select",
+			"badge",
+			"button",
+			"input",
+			"switch",
+			"textarea"
+		],
+		"relativeUrl": "record-fields.json"
+	},
+	{
+		"name": "record-layout",
+		"type": "registry:ui",
+		"registryDependencies": [],
+		"relativeUrl": "record-layout.json"
+	},
+	{
 		"name": "record-table",
 		"type": "registry:ui",
 		"registryDependencies": [

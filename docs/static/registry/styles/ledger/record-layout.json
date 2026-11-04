@@ -1,0 +1,17 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "record-layout",
+	"type": "registry:ui",
+	"files": [
+		{
+			"content": "import RecordLayout from \"./record-layout.svelte\";\n\nexport { RecordLayout };\n",
+			"type": "registry:file",
+			"target": "record-layout/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { Snippet } from \"svelte\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\t// The record page frame, after Twenty: a header, a fields rail on the left (20rem) and the main area (tabs, timeline,\n\t// related records) beside it. Below the md breakpoint the fields stack above the main area. Pass a height to the\n\t// element (it fills its parent); the rail and the main area scroll on their own.\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\theader,\n\t\tfields,\n\t\tfieldsLabel = \"Fields\",\n\t\tchildren,\n\t\t...restProps\n\t}: Omit<WithElementRef<HTMLAttributes<HTMLDivElement>>, \"children\"> & {\n\t\t/** The title row: an avatar, the name, badges and actions. */\n\t\theader?: Snippet;\n\t\t/** The fields rail, usually a RecordFields. */\n\t\tfields?: Snippet;\n\t\t/** The accessible name of the fields rail. Default \"Fields\". */\n\t\tfieldsLabel?: string;\n\t\t/** The main area. */\n\t\tchildren?: Snippet;\n\t} = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"record-layout\"\n\tclass={cn(\"flex h-full min-h-0 flex-col\", className)}\n\t{...restProps}\n>\n\t{#if header}\n\t\t<header\n\t\t\tdata-slot=\"record-layout-header\"\n\t\t\tclass=\"flex flex-wrap items-center gap-3 border-b px-4 py-3\"\n\t\t>\n\t\t\t{@render header()}\n\t\t</header>\n\t{/if}\n\t<div\n\t\tclass=\"grid min-h-0 flex-1 grid-rows-[auto_minmax(0,1fr)] md:grid-cols-[20rem_minmax(0,1fr)] md:grid-rows-1\"\n\t>\n\t\t{#if fields}\n\t\t\t<aside\n\t\t\t\tdata-slot=\"record-layout-fields\"\n\t\t\t\taria-label={fieldsLabel}\n\t\t\t\tclass=\"max-h-[45svh] min-h-0 overflow-y-auto border-b p-4 md:max-h-none md:border-r md:border-b-0\"\n\t\t\t>\n\t\t\t\t{@render fields()}\n\t\t\t</aside>\n\t\t{/if}\n\t\t<div data-slot=\"record-layout-main\" class=\"min-h-0 min-w-0 overflow-y-auto\">\n\t\t\t{@render children?.()}\n\t\t</div>\n\t</div>\n</div>\n",
+			"type": "registry:file",
+			"target": "record-layout/record-layout.svelte"
+		}
+	]
+}
