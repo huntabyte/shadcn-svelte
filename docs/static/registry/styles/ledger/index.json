@@ -308,6 +308,18 @@
 		"relativeUrl": "range-calendar.json"
 	},
 	{
+		"name": "record-table",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"table",
+			"button",
+			"checkbox",
+			"input",
+			"skeleton"
+		],
+		"relativeUrl": "record-table.json"
+	},
+	{
 		"name": "resizable",
 		"type": "registry:ui",
 		"registryDependencies": [],
