@@ -77,6 +77,9 @@ async function buildUIRegistry(
 
 			files.push({ path: relativePath, type: "registry:file" });
 
+			// Stylesheets (the twenty-theme variant) carry no imports to resolve.
+			if (dirent.name.endsWith(".css")) return;
+
 			const deps = await getFileDependencies(filepath, source);
 			if (!deps) return;
 			deps.registryDependencies.forEach((dep) => registryDependencies.add(dep));

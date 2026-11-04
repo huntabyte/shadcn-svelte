@@ -432,6 +432,14 @@
 		"relativeUrl": "trace.json"
 	},
 	{
+		"name": "twenty-theme",
+		"title": "Twenty theme",
+		"type": "registry:ui",
+		"description": "Theme variant: the Twenty CRM look (twenty-ui tokens) on top of Ledger. Add class theme-twenty next to style-ledger.",
+		"registryDependencies": [],
+		"relativeUrl": "twenty-theme.json"
+	},
+	{
 		"name": "calendar-01",
 		"type": "registry:block",
 		"registryDependencies": [

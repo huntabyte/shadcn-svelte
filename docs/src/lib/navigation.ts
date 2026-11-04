@@ -97,6 +97,11 @@ function generateGetStartedNav(): SidebarNavItem[] {
 			items: [],
 		},
 		{
+			title: "Twenty theme",
+			href: "/docs/twenty-theme",
+			items: [],
+		},
+		{
 			title: "Typeset",
 			href: "/docs/typeset",
 			items: [],

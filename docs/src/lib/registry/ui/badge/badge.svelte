@@ -11,6 +11,21 @@
 				outline: "cn-badge-variant-outline",
 				ghost: "cn-badge-variant-ghost",
 				link: "cn-badge-variant-link",
+				// Picked automatically when a tone is set, so the solid default fill never sits under a tone.
+				tone: "",
+			},
+			// Chip tones: a soft tint with readable ink, the --ledger-chip-<tone>-bg and -ink tokens. Use a tone for tags and
+			// status; keep the solid default badge for counts. Ported from Another UI (React) badge-variants and ledger-tokens.
+			tone: {
+				gray: "bg-[var(--ledger-chip-gray-bg)] text-[var(--ledger-chip-gray-ink)] [a]:hover:opacity-80",
+				blue: "bg-[var(--ledger-chip-blue-bg)] text-[var(--ledger-chip-blue-ink)] [a]:hover:opacity-80",
+				green: "bg-[var(--ledger-chip-green-bg)] text-[var(--ledger-chip-green-ink)] [a]:hover:opacity-80",
+				red: "bg-[var(--ledger-chip-red-bg)] text-[var(--ledger-chip-red-ink)] [a]:hover:opacity-80",
+				orange: "bg-[var(--ledger-chip-orange-bg)] text-[var(--ledger-chip-orange-ink)] [a]:hover:opacity-80",
+				yellow: "bg-[var(--ledger-chip-yellow-bg)] text-[var(--ledger-chip-yellow-ink)] [a]:hover:opacity-80",
+				purple: "bg-[var(--ledger-chip-purple-bg)] text-[var(--ledger-chip-purple-ink)] [a]:hover:opacity-80",
+				pink: "bg-[var(--ledger-chip-pink-bg)] text-[var(--ledger-chip-pink-ink)] [a]:hover:opacity-80",
+				turquoise: "bg-[var(--ledger-chip-turquoise-bg)] text-[var(--ledger-chip-turquoise-ink)] [a]:hover:opacity-80",
 			},
 		},
 		defaultVariants: {
@@ -18,7 +33,8 @@
 		},
 	});
 
-	export type BadgeVariant = VariantProps<typeof badgeVariants>["variant"];
+	export type BadgeVariant = Exclude<VariantProps<typeof badgeVariants>["variant"], "tone">;
+	export type BadgeTone = VariantProps<typeof badgeVariants>["tone"];
 </script>
 
 <script lang="ts">
@@ -30,10 +46,12 @@
 		href,
 		class: className,
 		variant = "default",
+		tone,
 		children,
 		...restProps
 	}: WithElementRef<HTMLAnchorAttributes> & {
 		variant?: BadgeVariant;
+		tone?: BadgeTone;
 	} = $props();
 </script>
 
@@ -42,7 +60,7 @@
 	bind:this={ref}
 	data-slot="badge"
 	{href}
-	class={cn(badgeVariants({ variant }), className)}
+	class={cn(badgeVariants({ variant: tone ? "tone" : variant, tone }), className)}
 	{...restProps}
 >
 	{@render children?.()}

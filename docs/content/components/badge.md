@@ -67,6 +67,21 @@ Use the `variant` prop to change the variant of the badge.
 
 </ComponentPreview>
 
+## Tones
+
+Use `tone` for tags and status: a soft tint with readable ink, from the `--ledger-chip-<tone>-bg` and `-ink` tokens. Every tone has the same height, padding and text size. The default badge is a soft blue chip and works for counts. Ported from the Another UI (React) badge variants and Ledger chip tokens.
+
+<ComponentPreview name="badge-tones">
+
+<div></div>
+
+</ComponentPreview>
+
+```svelte
+<Badge tone="blue">Customer</Badge>
+<Badge tone="gray">Lead</Badge>
+```
+
 ## With Icon
 
 You can render an icon inside the badge. Use `data-icon="inline-start"` to render the icon on the left and `data-icon="inline-end"` to render the icon on the right.

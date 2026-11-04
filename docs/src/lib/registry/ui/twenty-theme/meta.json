@@ -1,0 +1,6 @@
+{
+	"name": "twenty-theme",
+	"type": "registry:ui",
+	"title": "Twenty theme",
+	"description": "Theme variant: the Twenty CRM look (twenty-ui tokens) on top of Ledger. Add class theme-twenty next to style-ledger."
+}
