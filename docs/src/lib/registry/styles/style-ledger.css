@@ -102,7 +102,7 @@
   }
 
   .cn-badge-variant-default {
-    @apply bg-primary text-primary-foreground [a]:hover:bg-primary/90;
+    @apply bg-[var(--ledger-chip-blue-bg)] text-[var(--ledger-chip-blue-ink)] [a]:hover:opacity-80;
   }
 
   .cn-badge-variant-secondary {

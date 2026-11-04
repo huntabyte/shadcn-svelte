@@ -571,10 +571,10 @@
  * card-surface.css and the pressed-state rules earlier in this file.
  */
 
-/* A default Badge is a nav count or a tally, not an alert: a small muted chip (11px, 4px radius, muted fill and ink), as in Attio's tab and sidebar counts. Coloured variants (destructive, outline, ...) keep their own look. */
+/* A default Badge is a soft blue chip (11px, 4px radius, --ledger-chip-blue-bg and -ink), never the solid primary fill, so it cannot read as a button. Matches .cn-badge-variant-default in style-ledger.css. Coloured variants (destructive, outline, ...) keep their own look. */
 .style-ledger [data-slot="badge"][data-variant="default"]:not(#_) {
-  background: var(--muted);
-  color: var(--muted-foreground);
+  background: var(--ledger-chip-blue-bg);
+  color: var(--ledger-chip-blue-ink);
   box-shadow: none;
   border-color: transparent;
   font-size: 11px;
