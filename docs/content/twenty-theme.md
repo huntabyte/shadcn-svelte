@@ -22,6 +22,12 @@ Colors, radii, spacing, type sizes, the side panel width and the table geometry 
 
 ## Installation
 
+The theme sits on the Ledger tokens. Install them first. The CLI writes them into `:root` and `.dark` in your CSS, so they are never copied by hand. Run the same command again to pick up a token fix.
+
+<PMAddComp name="ledger-tokens" />
+
+Then the theme:
+
 <PMAddComp name="twenty-theme" />
 
 The CLI writes the file to `ui/twenty-theme.css` (a single file item has no folder). Import it once, after your Ledger styles:
