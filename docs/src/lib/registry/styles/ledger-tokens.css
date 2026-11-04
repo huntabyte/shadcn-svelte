@@ -43,7 +43,7 @@ SOFTWARE.
   --border: #ebebeb;
   --input: #8f8f8f;
   --ledger-field-border: #efefef;
-  --ledger-field-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.06), 0 0 0 0 transparent;
+  --ledger-field-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.04), 0 0 0 0 transparent;
   --ring: #3c5fd7;
   --sidebar: #fcfcfc;
   --sidebar-foreground: #333333;
@@ -95,7 +95,7 @@ SOFTWARE.
   --border: #2c2c2c;
   --input: #707070;
   --ledger-field-border: #2f2f2f;
-  --ledger-field-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.3), 0 0 0 0 transparent;
+  --ledger-field-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.2), 0 0 0 0 transparent;
   --ring: #6f8bf0;
   --sidebar: #1b1b1b;
   --sidebar-foreground: #ebebeb;

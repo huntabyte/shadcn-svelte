@@ -615,7 +615,7 @@
 .style-ledger [data-slot="toggle-group"][data-variant="outline"] > [data-slot="toggle-group-item"]:is([aria-pressed="true"], [data-state="on"], [data-rac][data-selected], [data-pressed]:not([data-rac]), [aria-checked="true"]):not(#_) {
   background: var(--card);
   color: var(--foreground);
-  box-shadow: 0 0 0 1px var(--border), 0 1px 2px rgb(0 0 0 / 0.06);
+  box-shadow: 0 0 0 1px var(--border), var(--ledger-field-shadow);
 }
 .style-ledger [data-slot="toggle-group"][data-variant="outline"] > [data-slot="toggle-group-item"]:focus-visible:not(#_):not(#_) {
   box-shadow: 0 0 0 1px var(--border), 0 0 0 3px var(--ring);
@@ -721,7 +721,7 @@
   background: var(--card);
   color: var(--foreground);
   font-weight: 500;
-  box-shadow: 0 0 0 1px var(--border), 0 1px 2px rgb(0 0 0 / 0.05);
+  box-shadow: 0 0 0 1px var(--border), var(--ledger-field-shadow);
 }
 .style-ledger [data-slot="sidebar-menu-button"][class~="bg-primary"]:is(:hover, :active, [data-active="true"]):not(#_) {
   background: var(--muted);
