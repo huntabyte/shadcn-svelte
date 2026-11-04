@@ -58,9 +58,9 @@
 			</div>
 			<Textarea aria-label="Note" placeholder="Note" rows={2} />
 			<p class="text-xs text-muted-foreground">Small, 24 px</p>
-			<div class="flex gap-2" data-row="small">
+			<div class="flex flex-wrap items-center gap-2" data-row="small">
 				<Select.Root type="single" items={plans} value="starter">
-					<Select.Trigger aria-label="Plan, small" size="sm" class="w-full">
+					<Select.Trigger aria-label="Plan, small" size="sm" class="min-w-0 flex-1 basis-40">
 						<Select.Value placeholder="Plan" />
 					</Select.Trigger>
 					<Select.Content>
