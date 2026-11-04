@@ -42,6 +42,9 @@ class SidebarState {
 
 	// Event handler to apply to the `<svelte:window>`
 	handleShortcutKeydown = (e: KeyboardEvent) => {
+		// Cmd/Ctrl+B is "bold" inside an editor: leave it to the field.
+		const t = e.target;
+		if (t instanceof HTMLElement && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
 		if (e.key === SIDEBAR_KEYBOARD_SHORTCUT && (e.metaKey || e.ctrlKey)) {
 			e.preventDefault();
 			this.toggle();

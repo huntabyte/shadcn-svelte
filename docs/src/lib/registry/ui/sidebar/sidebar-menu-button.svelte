@@ -26,7 +26,7 @@
 
 <script lang="ts">
 	import { mergeProps } from "bits-ui";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
+	import type * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import { cn, type WithElementRef, type WithoutChildrenOrChild } from "$lib/utils.js";
 	import { useSidebar } from "./context.svelte.js";
 	import type { ComponentProps, Snippet } from "svelte";
@@ -78,23 +78,30 @@
 {#if !tooltipContent}
 	{@render Button({})}
 {:else}
-	<Tooltip.Root>
-		<Tooltip.Trigger>
-			{#snippet child({ props })}
-				{@render Button({ props })}
-			{/snippet}
-		</Tooltip.Trigger>
-		<Tooltip.Content
-			side="right"
-			align="center"
-			hidden={sidebar.state !== "collapsed" || sidebar.isMobile}
-			{...tooltipContentProps}
-		>
-			{#if typeof tooltipContent === "string"}
-				{tooltipContent}
-			{:else if tooltipContent}
-				{@render tooltipContent()}
-			{/if}
-		</Tooltip.Content>
-	</Tooltip.Root>
+	<!-- The tooltip (floating UI) loads only when a button has tooltip content, so a sidebar without them never downloads it. The plain button shows meanwhile. -->
+	{#await import("$lib/registry/ui/tooltip/index.js")}
+		{@render Button({})}
+	{:then Tooltip}
+		<Tooltip.Provider delayDuration={0}>
+		<Tooltip.Root>
+			<Tooltip.Trigger>
+				{#snippet child({ props })}
+					{@render Button({ props })}
+				{/snippet}
+			</Tooltip.Trigger>
+			<Tooltip.Content
+				side="right"
+				align="center"
+				hidden={sidebar.state !== "collapsed" || sidebar.isMobile}
+				{...tooltipContentProps}
+			>
+				{#if typeof tooltipContent === "string"}
+					{tooltipContent}
+				{:else if tooltipContent}
+					{@render tooltipContent()}
+				{/if}
+			</Tooltip.Content>
+		</Tooltip.Root>
+		</Tooltip.Provider>
+	{/await}
 {/if}

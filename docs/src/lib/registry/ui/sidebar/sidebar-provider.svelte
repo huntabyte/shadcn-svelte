@@ -1,5 +1,4 @@
 <script lang="ts">
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import { cn, type WithElementRef } from "$lib/utils.js";
 	import {
 		SIDEBAR_COOKIE_MAX_AGE,
@@ -45,17 +44,15 @@
 
 <svelte:window onkeydown={keyboardShortcut ? sidebar.handleShortcutKeydown : undefined} />
 
-<Tooltip.Provider delayDuration={0}>
-	<div
-		data-slot="sidebar-wrapper"
-		style="--sidebar-width: {SIDEBAR_WIDTH}; --sidebar-width-icon: {SIDEBAR_WIDTH_ICON}; {style}"
-		class={cn(
-			"group/sidebar-wrapper flex min-h-svh w-full has-data-[variant=inset]:bg-sidebar",
-			className
-		)}
-		bind:this={ref}
-		{...restProps}
-	>
-		{@render children?.()}
-	</div>
-</Tooltip.Provider>
+<div
+	data-slot="sidebar-wrapper"
+	style="--sidebar-width: {SIDEBAR_WIDTH}; --sidebar-width-icon: {SIDEBAR_WIDTH_ICON}; {style}"
+	class={cn(
+		"group/sidebar-wrapper flex min-h-svh w-full has-data-[variant=inset]:bg-sidebar",
+		className
+	)}
+	bind:this={ref}
+	{...restProps}
+>
+	{@render children?.()}
+</div>
