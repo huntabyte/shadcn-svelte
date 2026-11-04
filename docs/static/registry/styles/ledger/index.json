@@ -450,6 +450,16 @@
 		"relativeUrl": "twenty-theme.json"
 	},
 	{
+		"name": "workspace-switcher",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"avatar",
+			"dropdown-menu",
+			"sidebar"
+		],
+		"relativeUrl": "workspace-switcher.json"
+	},
+	{
 		"name": "calendar-01",
 		"type": "registry:block",
 		"registryDependencies": [
