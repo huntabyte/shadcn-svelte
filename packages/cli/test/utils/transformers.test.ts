@@ -1034,8 +1034,6 @@ describe("updateCssVars", () => {
 			@theme {
 				--tertiary: new;
 				--unrelated: value;
-				--secondary: var(--secondary);
-				--primary: var(--primary);
 			}"
 		`);
 	});
