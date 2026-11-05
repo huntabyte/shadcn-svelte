@@ -296,8 +296,22 @@ Next, we'll create a `<DataTable />` component to render our table.
 Finally, we'll render our table in our page component.
 
 ```ts showLineNumbers title="routes/payments/+page.server.ts"
+import type { Payment } from "./columns.js";
+
+async function getPayments(): Promise<Payment[]> {
+  // Fetch data from your API here.
+  return [
+    {
+      id: "728ed52f",
+      amount: 100,
+      status: "pending",
+      email: "m@example.com",
+    },
+    // ...
+  ];
+}
+
 export async function load() {
-  // logic to fetch payments data here
   const payments = await getPayments();
   return {
     payments,
