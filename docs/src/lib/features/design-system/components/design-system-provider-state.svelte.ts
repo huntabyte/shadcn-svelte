@@ -116,7 +116,7 @@ class DesignSystemState implements IDesignSystemState {
 			if (to) applyUrlPreset(to.url);
 		});
 		onMount(() => {
-			const handlePopState = () => applyUrlPreset(new URL(window.location.href));
+			const handlePopState = () => applyUrlPreset(new SvelteURL(window.location.href));
 			window.addEventListener("popstate", handlePopState);
 			return () => window.removeEventListener("popstate", handlePopState);
 		});
