@@ -3,6 +3,7 @@ import open from "open";
 import color from "picocolors";
 import {
 	decodePreset,
+	DEFAULT_PRESETS,
 	isValidPreset,
 	PRESET_BASE_COLORS,
 	PRESET_THEMES,
@@ -12,133 +13,27 @@ import {
 } from "./preset.js";
 import * as cliConfig from "../utils/config/index.js";
 import * as registry from "../utils/registry/index.js";
+import { SITE_BASE_URL } from "../constants.js";
 import { iconLibraries } from "../icons/libraries.js";
 import { hex } from "../utils/colors.js";
 import { cancel } from "../utils/prompt-helpers.js";
 import { entries, kebabToPascal } from "../utils/utils.js";
 
-export const DEFAULT_PRESETS = {
-	nova: {
-		title: "Nova",
-		description: "Lucide / Geist",
-		hint: "Reduced spacing for compact layouts.",
-		style: "nova",
-		baseColor: "neutral",
-		theme: "neutral",
-		iconLibrary: "lucide",
-		font: "geist",
-		fontHeading: "inherit",
-		menuAccent: "subtle" as const,
-		menuColor: "default" as const,
+const presetsByName = new Map<string, PresetConfig>(Object.entries(DEFAULT_PRESETS));
 
-		radius: "default",
-	},
-	vega: {
-		title: "Vega",
-		description: "Lucide / Inter",
-		hint: "The classic shadcn/ui look.",
-		style: "vega",
-		baseColor: "neutral",
-		theme: "neutral",
-		iconLibrary: "lucide",
-		font: "inter",
-		fontHeading: "inherit",
-		menuAccent: "subtle" as const,
-		menuColor: "default" as const,
+/**
+ * Resolves the value passed to `--preset`. It can be either the name of one of the
+ * pre-configured presets (e.g. `luma`) or an encoded preset code from `/create`.
+ *
+ * @returns the preset or `null` when the value is neither
+ */
+export function resolvePreset(value: string): PresetConfig | null {
+	return presetsByName.get(value) ?? decodePreset(value);
+}
 
-		radius: "default",
-	},
-	maia: {
-		title: "Maia",
-		description: "Hugeicons / Figtree",
-		hint: "Soft and rounded, with generous spacing.",
-		style: "maia",
-		baseColor: "neutral",
-		theme: "neutral",
-		iconLibrary: "hugeicons",
-		font: "figtree",
-		fontHeading: "inherit",
-		menuAccent: "subtle" as const,
-		menuColor: "default" as const,
-
-		radius: "default",
-	},
-	lyra: {
-		title: "Lyra",
-		description: "Phosphor / JetBrains Mono",
-		hint: "Boxy and sharp. Pairs well with mono fonts.",
-		style: "lyra",
-		baseColor: "neutral",
-		theme: "neutral",
-		iconLibrary: "phosphor",
-		font: "jetbrains-mono",
-		fontHeading: "inherit",
-		menuAccent: "subtle" as const,
-		menuColor: "default" as const,
-
-		radius: "default",
-	},
-	mira: {
-		title: "Mira",
-		description: "Hugeicons / Inter",
-		hint: "Compact. Made for dense interfaces.",
-		style: "mira",
-		baseColor: "neutral",
-		theme: "neutral",
-		iconLibrary: "hugeicons",
-		font: "inter",
-		fontHeading: "inherit",
-		menuAccent: "subtle" as const,
-		menuColor: "default" as const,
-
-		radius: "default",
-	},
-	luma: {
-		title: "Luma",
-		description: "Lucide / Inter",
-		hint: "Rounded geometry. Soft elevation. Breathable layouts.",
-		style: "luma",
-		baseColor: "neutral",
-		theme: "neutral",
-		iconLibrary: "lucide",
-		font: "inter",
-		fontHeading: "inherit",
-		menuAccent: "subtle" as const,
-		menuColor: "default" as const,
-
-		radius: "default",
-	},
-	sera: {
-		title: "Sera",
-		description: "Lucide / Noto Sans + Playfair Display",
-		hint: "Editorial and typographic.",
-		style: "sera",
-		baseColor: "taupe",
-		theme: "taupe",
-		iconLibrary: "lucide",
-		font: "noto-sans",
-		fontHeading: "playfair-display",
-		menuAccent: "subtle" as const,
-		menuColor: "default" as const,
-
-		radius: "default",
-	},
-	rhea: {
-		title: "Rhea",
-		description: "Lucide / Inter",
-		hint: "Like Luma but compact.",
-		style: "rhea",
-		baseColor: "neutral",
-		theme: "neutral",
-		iconLibrary: "lucide",
-		font: "inter",
-		fontHeading: "inherit",
-		menuAccent: "subtle" as const,
-		menuColor: "default" as const,
-
-		radius: "default",
-	},
-} as const;
+export function invalidPresetMessage(value: string) {
+	return `Invalid preset: ${color.bold(value)}.\nUse one of the available presets: ${Object.keys(DEFAULT_PRESETS).join(", ")}\nor build your own at ${color.cyan(`${SITE_BASE_URL}/create`)}`;
+}
 
 /**
  * When the user doesn't provide a preset we want to give them some options for configuring the design system.

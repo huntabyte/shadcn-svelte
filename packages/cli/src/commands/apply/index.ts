@@ -7,7 +7,8 @@ import { Command, Option } from "commander";
 import { z } from "zod";
 import * as cliConfig from "../../utils/config/index.js";
 import * as registry from "../../utils/registry/index.js";
-import { type PresetConfig, decodePreset, encodePreset } from "../../preset/index.js";
+import { type PresetConfig, encodePreset } from "../../preset/index.js";
+import { invalidPresetMessage, resolvePreset } from "../../preset/presets.js";
 import { addRegistryItems } from "../../utils/add-registry-items.js";
 import { highlight } from "../../utils/colors.js";
 import { ConfigError, error } from "../../utils/errors.js";
@@ -64,9 +65,9 @@ export const apply = new Command()
 				throw error(`${color.bold(`--preset`)} is required.`);
 			}
 
-			const presetConfig = decodePreset(providedPreset);
+			const presetConfig = resolvePreset(providedPreset);
 			if (presetConfig === null) {
-				throw error(`${color.bold(`--preset ${providedPreset}`)} is not a valid preset.`);
+				throw error(invalidPresetMessage(providedPreset));
 			}
 
 			preflightInit(cwd, { skipPreflight: options.skipPreflight });

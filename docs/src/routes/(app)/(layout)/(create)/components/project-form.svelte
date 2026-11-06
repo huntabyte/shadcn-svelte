@@ -9,7 +9,7 @@
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
 	import { getCommand, PACKAGE_MANAGERS } from "$lib/package-manager.js";
-	import { buildRegistryTheme, type DesignSystemConfig } from "$lib/registry/config.js";
+	import { buildRegistryTheme, fonts, type DesignSystemConfig } from "$lib/registry/config.js";
 	import { buttonVariants, Button } from "$lib/registry/ui/button/index.js";
 	import { UserConfigContext } from "$lib/user-config.svelte.js";
 	import { cn } from "$lib/utils.js";
@@ -41,7 +41,21 @@
 		menuColor: designSystem.menuColor,
 		radius: designSystem.radius,
 	});
-	const themeCss = $derived(formatThemeCss(buildRegistryTheme(themeConfig).cssVars));
+	const themeCss = $derived.by(() => {
+		const cssVars = buildRegistryTheme(themeConfig).cssVars;
+		const bodyFont = fonts.find((font) => font.name === `font-${designSystem.font}`);
+		const headingFont = fonts.find(
+			(font) => font.name === `font-heading-${designSystem.fontHeading}`
+		);
+		return formatThemeCss({
+			...cssVars,
+			theme: {
+				...cssVars.theme,
+				"font-sans": bodyFont?.font.family ?? "sans-serif",
+				"font-heading": headingFont?.font.family ?? "var(--font-sans)",
+			},
+		});
+	});
 
 	function formatCssVarsRule(selector: string, cssVars?: Record<string, string>) {
 		const declarations = Object.entries(cssVars ?? {})
@@ -53,7 +67,7 @@
 
 	function formatThemeCss(cssVars: ReturnType<typeof buildRegistryTheme>["cssVars"]) {
 		return [
-			formatCssVarsRule(":root", cssVars.light),
+			formatCssVarsRule(":root", { ...cssVars.theme, ...cssVars.light }),
 			formatCssVarsRule(".dark", cssVars.dark),
 		].join("\n\n");
 	}
@@ -71,10 +85,14 @@
 		Get Code
 	</Dialog.Trigger>
 	<Dialog.Content
-		class="dark top-[64px] no-scrollbar flex max-h-[calc(100svh-2rem)] translate-y-0 flex-col rounded-2xl p-0 shadow-xl **:data-[slot=dialog-close]:top-4.5 **:data-[slot=dialog-close]:right-4 **:data-[slot=field-separator]:h-2 sm:max-w-md"
+		class="dark top-[64px] no-scrollbar flex max-h-[calc(100svh-5rem)] translate-y-0 flex-col rounded-2xl p-0 shadow-xl **:data-[slot=dialog-close]:top-4.5 **:data-[slot=dialog-close]:right-4 **:data-[slot=field-separator]:h-2 sm:max-w-md"
 	>
 		<div class="flex min-w-0 flex-1 flex-col gap-0 overflow-hidden rounded-2xl">
 			<Dialog.Header class="border-b px-6 py-5">
+				<Dialog.Title class="sr-only">Get Code</Dialog.Title>
+				<Dialog.Description class="sr-only"
+					>Initialize a project or copy your customized theme tokens.</Dialog.Description
+				>
 				<ToggleGroup.Root
 					bind:value={activeTab}
 					type="single"

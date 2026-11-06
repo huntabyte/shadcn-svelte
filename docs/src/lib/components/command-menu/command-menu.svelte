@@ -4,7 +4,7 @@
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
 	import CornerDownLeftIcon from "@lucide/svelte/icons/corner-down-left";
 	import SquareDashedIcon from "@lucide/svelte/icons/square-dashed";
-	import { encodePreset } from "shadcn-svelte/preset";
+	import { DEFAULT_PRESETS, encodePreset } from "shadcn-svelte/preset";
 	import { onMount } from "svelte";
 	import { SvelteSet } from "svelte/reactivity";
 	import * as Command from "$lib/registry/ui/command/index.js";
@@ -350,7 +350,7 @@
 								keywords={["style", "preset", style.name, style.title]}
 								onSelect={() => {
 									runCommand(() => {
-										goto(`/create?preset=${encodePreset({ style: style.name })}`);
+										goto(`/create?preset=${encodePreset(DEFAULT_PRESETS[style.name])}`);
 									});
 								}}
 							>

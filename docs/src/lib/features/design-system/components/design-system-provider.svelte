@@ -230,7 +230,8 @@
 		<AlertDialog.Header>
 			<AlertDialog.Title>Reset to defaults?</AlertDialog.Title>
 			<AlertDialog.Description>
-				This will reset all customization options to their default values.
+				This will reset all customization options to the current style’s defaults, including locked
+				options.
 			</AlertDialog.Description>
 		</AlertDialog.Header>
 		<AlertDialog.Footer>

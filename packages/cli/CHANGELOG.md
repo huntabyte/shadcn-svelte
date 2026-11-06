@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.8.0
+
+### Minor Changes
+
+- feat(cli): accept the name of a style (e.g. `luma`) for `--preset` in `init` and `apply` ([#2959](https://github.com/huntabyte/shadcn-svelte/pull/2959))
+
 ## 1.7.2
 
 ### Patch Changes

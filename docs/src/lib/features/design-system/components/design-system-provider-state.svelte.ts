@@ -12,7 +12,7 @@ import {
 	type PresetConfig,
 	PRESET_CHART_COLORS,
 } from "shadcn-svelte/preset";
-import { onMount } from "svelte";
+import { onMount, untrack } from "svelte";
 import { SvelteURL, SvelteURLSearchParams } from "svelte/reactivity";
 import { BASE_THEMES, getThemesForBaseColor } from "$lib/registry/config.js";
 import { SHUFFLE_PRESETS } from "../../../../routes/(app)/(layout)/(create)/lib/shuffle-presets.js";
@@ -101,6 +101,18 @@ class DesignSystemState implements IDesignSystemState {
 			menuColor: false,
 			radius: false,
 			template: false,
+		});
+
+		// The provider survives navigation within /create, including browser history
+		// and style links from search. Apply URL presets without tracking local edits.
+		$effect(() => {
+			const code = this.#getSearchParam("preset");
+			untrack(() => {
+				const config = code ? decodePreset(code) : null;
+				if (!config) return;
+				const normalized = encodeNormalized(config);
+				if (normalized !== this.#preset.current) this.#preset.current = normalized;
+			});
 		});
 
 		this.reset = this.reset.bind(this);
