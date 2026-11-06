@@ -27,6 +27,8 @@ links:
 
 ## About
 
+The visual defaults follow the current shadcn/ui drawer. The Svelte implementation still uses Vaul Svelte, so direction and snap-point props use Vaul's API. Background scaling is disabled by default; opt in with `shouldScaleBackground`.
+
 Drawer is built on top of [Vaul Svelte](https://vaul-svelte.com), which is a Svelte port of [Vaul](https://vaul.emilkowal.ski) by [Emil Kowalski](https://twitter.com/emilkowalski_).
 
 ## Installation
@@ -162,26 +164,23 @@ You can combine the `Dialog` and `Drawer` components to create a responsive dial
 
 </ComponentPreview>
 
-## Hide the Handle
+## Swipe Handle
 
-The bottom drawer includes a decorative handle. Hide it by targeting its class on `Drawer.Content`:
+Drawers do not show a handle by default, matching the current shadcn/ui drawer. Use `showSwipeHandle` on `Drawer.Root` or `Drawer.NestedRoot` to show it:
 
 ```svelte
-<Drawer.Root direction="bottom">
-  <Drawer.Trigger>Open</Drawer.Trigger>
-  <Drawer.Content class="[&>.cn-drawer-handle]:hidden!">
-    <Drawer.Header>
-      <Drawer.Title>Move Goal</Drawer.Title>
-      <Drawer.Description>Set your daily activity goal.</Drawer.Description>
-    </Drawer.Header>
-    <Drawer.Footer>
-      <Drawer.Close>Close</Drawer.Close>
-    </Drawer.Footer>
-  </Drawer.Content>
+<Drawer.Root direction="bottom" showSwipeHandle>
+  <!-- Trigger and content -->
 </Drawer.Root>
 ```
 
-The important modifier overrides the direction-specific display rule. This only hides the handle; swipe gestures still work. You can also remove the handle `div` from your local `drawer-content.svelte` component.
+To remove the handle, omit `showSwipeHandle` or set `showSwipeHandle={false}`. Swipe gestures still work.
+
+<ComponentPreview name="drawer-swipe-handle">
+
+<div></div>
+
+</ComponentPreview>
 
 ## API Reference
 

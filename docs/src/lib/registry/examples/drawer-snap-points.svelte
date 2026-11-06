@@ -7,7 +7,7 @@
 	let snapPoint = $state<string | number | null>(SNAP_POINTS[0]);
 </script>
 
-<Drawer.Root snapPoints={SNAP_POINTS} bind:activeSnapPoint={snapPoint}>
+<Drawer.Root showSwipeHandle snapPoints={SNAP_POINTS} bind:activeSnapPoint={snapPoint}>
 	<Drawer.Trigger class={buttonVariants({ variant: "outline" })}>Open Snap Drawer</Drawer.Trigger>
 	<Drawer.Content class="h-full data-[vaul-drawer-direction=bottom]:max-h-[97%]">
 		<Drawer.Header>

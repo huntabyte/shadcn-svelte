@@ -13,7 +13,7 @@
 <div
 	bind:this={ref}
 	data-slot="drawer-footer"
-	class={cn("cn-drawer-footer mt-auto flex flex-col", className)}
+	class={cn("cn-drawer-footer-base shrink-0 mt-auto flex flex-col", className)}
 	{...restProps}
 >
 	{@render children?.()}

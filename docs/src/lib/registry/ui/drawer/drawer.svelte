@@ -1,12 +1,26 @@
 <script lang="ts">
 	import { Drawer as DrawerPrimitive } from "vaul-svelte";
+	import { setDrawerContext } from "./drawer-context.js";
 
 	let {
-		shouldScaleBackground = true,
+		shouldScaleBackground = false,
+		showSwipeHandle = false,
+		direction = "bottom",
 		open = $bindable(false),
 		activeSnapPoint = $bindable(null),
 		...restProps
-	}: DrawerPrimitive.RootProps = $props();
+	}: DrawerPrimitive.RootProps & {
+		showSwipeHandle?: boolean;
+	} = $props();
+
+	setDrawerContext({
+		get showSwipeHandle() {
+			return showSwipeHandle;
+		},
+		get direction() {
+			return direction;
+		},
+	});
 </script>
 
-<DrawerPrimitive.Root {shouldScaleBackground} bind:open bind:activeSnapPoint {...restProps} />
+<DrawerPrimitive.Root {shouldScaleBackground} {direction} bind:open bind:activeSnapPoint {...restProps} />

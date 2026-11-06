@@ -15,7 +15,7 @@
 	</div>
 {/snippet}
 
-<Drawer.Root {direction}>
+<Drawer.Root {direction} showSwipeHandle={isMobile.current}>
 	<Drawer.Trigger class={buttonVariants({ variant: "secondary" })}>Open Drawer</Drawer.Trigger>
 	<Drawer.Content>
 		<Drawer.Header>
@@ -24,7 +24,7 @@
 		</Drawer.Header>
 		{@render placeholder()}
 		<Drawer.Footer>
-			<Drawer.NestedRoot {direction}>
+			<Drawer.NestedRoot {direction} showSwipeHandle={isMobile.current}>
 				<Drawer.Trigger class={buttonVariants({ variant: "outline" })}>
 					Open Nested Drawer
 				</Drawer.Trigger>
@@ -37,7 +37,7 @@
 					</Drawer.Header>
 					{@render placeholder()}
 					<Drawer.Footer>
-						<Drawer.NestedRoot {direction}>
+						<Drawer.NestedRoot {direction} showSwipeHandle={isMobile.current}>
 							<Drawer.Trigger class={buttonVariants({ variant: "outline" })}>
 								Open Third Drawer
 							</Drawer.Trigger>
@@ -48,7 +48,7 @@
 								</Drawer.Header>
 								{@render placeholder()}
 								<Drawer.Footer>
-									<Drawer.NestedRoot {direction}>
+									<Drawer.NestedRoot {direction} showSwipeHandle={isMobile.current}>
 										<Drawer.Trigger class={buttonVariants({ variant: "outline" })}>
 											Open Fourth Drawer
 										</Drawer.Trigger>
