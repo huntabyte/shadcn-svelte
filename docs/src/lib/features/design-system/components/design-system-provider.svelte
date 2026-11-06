@@ -176,6 +176,9 @@
 		};
 
 		window.addEventListener("message", handleMessage);
+		// Preview components are lazy-loaded, so hydration can finish after the
+		// iframe load event. Ask the parent for its latest committed/hover preset.
+		window.parent.postMessage({ type: "design-system-ready" }, window.location.origin);
 		return () => window.removeEventListener("message", handleMessage);
 	});
 

@@ -14,7 +14,7 @@
 	let { item }: Props = $props();
 	const designSystem = useDesignSystem();
 	const previewOverride = usePreviewOverride();
-	let iframe: HTMLIFrameElement;
+	let iframe = $state<HTMLIFrameElement>();
 
 	const iframeSrc = $derived(
 		`/preview/${item}?preset=${encodeURIComponent(untrack(() => designSystem.preset))}`
@@ -27,7 +27,7 @@
 	});
 
 	function syncPreview() {
-		iframe.contentWindow?.postMessage(
+		iframe?.contentWindow?.postMessage(
 			{ type: "design-system-preset", data: previewPreset },
 			window.location.origin
 		);
@@ -36,9 +36,22 @@
 	$effect(() => {
 		if (!browser || !iframe) return;
 
+		const frame = iframe;
 		syncPreview();
-		iframe.addEventListener("load", syncPreview);
-		return () => iframe.removeEventListener("load", syncPreview);
+		const handleReady = (event: MessageEvent) => {
+			if (
+				event.origin === window.location.origin &&
+				event.source === frame.contentWindow &&
+				event.data?.type === "design-system-ready"
+			)
+				syncPreview();
+		};
+		frame.addEventListener("load", syncPreview);
+		window.addEventListener("message", handleReady);
+		return () => {
+			frame.removeEventListener("load", syncPreview);
+			window.removeEventListener("message", handleReady);
+		};
 	});
 </script>
 
@@ -51,8 +64,11 @@
 	>
 		<div class="relative z-0 mx-auto flex w-full flex-1 flex-col overflow-hidden">
 			<div class="absolute inset-0 bg-muted dark:bg-muted/30"></div>
-			<iframe bind:this={iframe} src={iframeSrc} class="z-10 size-full flex-1" title={item}
-			></iframe>
+			{#key item}
+				<!-- A new browsing context avoids adding iframe entries to browser history. -->
+				<iframe bind:this={iframe} src={iframeSrc} class="z-10 size-full flex-1" title={item}
+				></iframe>
+			{/key}
 		</div>
 		<PreviewSwitcher {item} />
 	</div>

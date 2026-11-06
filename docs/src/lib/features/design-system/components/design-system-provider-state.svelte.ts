@@ -1,5 +1,5 @@
 import { browser } from "$app/environment";
-import { replaceState } from "$app/navigation";
+import { afterNavigate, replaceState } from "$app/navigation";
 import { page } from "$app/state";
 import { Context, PersistedState } from "runed";
 import { StateHistory } from "runed";
@@ -12,7 +12,7 @@ import {
 	type PresetConfig,
 	PRESET_CHART_COLORS,
 } from "shadcn-svelte/preset";
-import { onMount, untrack } from "svelte";
+import { onMount } from "svelte";
 import { SvelteURL, SvelteURLSearchParams } from "svelte/reactivity";
 import { BASE_THEMES, getThemesForBaseColor } from "$lib/registry/config.js";
 import { SHUFFLE_PRESETS } from "../../../../routes/(app)/(layout)/(create)/lib/shuffle-presets.js";
@@ -103,16 +103,22 @@ class DesignSystemState implements IDesignSystemState {
 			template: false,
 		});
 
-		// The provider survives navigation within /create, including browser history
-		// and style links from search. Apply URL presets without tracking local edits.
-		$effect(() => {
-			const code = this.#getSearchParam("preset");
-			untrack(() => {
-				const config = code ? decodePreset(code) : null;
-				if (!config) return;
-				const normalized = encodeNormalized(config);
-				if (normalized !== this.#preset.current) this.#preset.current = normalized;
-			});
+		// The provider survives navigation within /create. Shallow history entries
+		// do not invoke afterNavigate, so also read presets on popstate.
+		const applyUrlPreset = (url: URL) => {
+			const code = url.searchParams.get("preset");
+			const config = code ? decodePreset(code) : null;
+			if (!config) return;
+			const normalized = encodeNormalized(config);
+			if (normalized !== this.#preset.current) this.#preset.current = normalized;
+		};
+		afterNavigate(({ to }) => {
+			if (to) applyUrlPreset(to.url);
+		});
+		onMount(() => {
+			const handlePopState = () => applyUrlPreset(new URL(window.location.href));
+			window.addEventListener("popstate", handlePopState);
+			return () => window.removeEventListener("popstate", handlePopState);
 		});
 
 		this.reset = this.reset.bind(this);
