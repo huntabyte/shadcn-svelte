@@ -3,7 +3,7 @@ title: Drawer
 description: A drawer component for Svelte.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/drawer
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/drawer
   doc: https://github.com/huntabyte/vaul-svelte
 ---
 
@@ -64,6 +64,7 @@ Copy and paste the following code into your project.
 ```svelte showLineNumbers
 <script lang="ts">
   import * as Drawer from "$lib/components/ui/drawer/index.js";
+  import { Button } from "$lib/components/ui/button/index.js";
 </script>
 ```
 
@@ -83,7 +84,31 @@ Copy and paste the following code into your project.
 </Drawer.Root>
 ```
 
-## Position
+## Composition
+
+Use the following composition to build a drawer:
+
+```text
+Drawer.Root
+├── Drawer.Trigger
+└── Drawer.Content
+    ├── Drawer.Header
+    │   ├── Drawer.Title
+    │   └── Drawer.Description
+    └── Drawer.Footer
+```
+
+## Scrollable Content
+
+Keep actions visible while the content scrolls.
+
+<ComponentPreview name="drawer-scrollable-content">
+
+<div></div>
+
+</ComponentPreview>
+
+## Sides
 
 Use the `direction` prop to set the side of the drawer.
 
@@ -127,7 +152,7 @@ Track the active snap point with `bind:activeSnapPoint`.
 
 </ComponentPreview>
 
-## Responsive
+## Responsive Dialog
 
 You can combine the `Dialog` and `Drawer` components to create a responsive dialog. This renders a `Dialog` component on desktop and a `Drawer` on mobile.
 
@@ -136,3 +161,28 @@ You can combine the `Dialog` and `Drawer` components to create a responsive dial
 <div></div>
 
 </ComponentPreview>
+
+## Hide the Handle
+
+The bottom drawer includes a decorative handle. Hide it by targeting its class on `Drawer.Content`:
+
+```svelte
+<Drawer.Root direction="bottom">
+  <Drawer.Trigger>Open</Drawer.Trigger>
+  <Drawer.Content class="[&>.cn-drawer-handle]:hidden!">
+    <Drawer.Header>
+      <Drawer.Title>Move Goal</Drawer.Title>
+      <Drawer.Description>Set your daily activity goal.</Drawer.Description>
+    </Drawer.Header>
+    <Drawer.Footer>
+      <Drawer.Close>Close</Drawer.Close>
+    </Drawer.Footer>
+  </Drawer.Content>
+</Drawer.Root>
+```
+
+The important modifier overrides the direction-specific display rule. This only hides the handle; swipe gestures still work. You can also remove the handle `div` from your local `drawer-content.svelte` component.
+
+## API Reference
+
+See the [Vaul Svelte documentation](https://vaul-svelte.com) for the full API reference.
