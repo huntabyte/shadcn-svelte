@@ -37,13 +37,13 @@
 	>
 		{#if drawer?.showSwipeHandle}
 			<!-- parity-ignore: Opt-in direction-aware swipe handle matches the current Base UI drawer instead of the always-visible Vaul bottom handle. -->
-			<!-- parity-ignore: Current Base UI drawer separates the scrolling content from its popup surface and swipe handle. -->
-		<div
+			<div
 				data-slot="drawer-swipe-handle"
 				aria-hidden="true"
 				class="cn-drawer-swipe-handle relative z-10 flex shrink-0 group-data-[swipe-direction=left]/drawer-popup:order-last group-data-[swipe-direction=up]/drawer-popup:order-last"
 			></div>
 		{/if}
+		<!-- parity-ignore: Current Base UI drawer separates the scrolling content from its popup surface and swipe handle. -->
 		<div
 			class="cn-drawer-content-base flex min-h-0 flex-1 flex-col overflow-hidden overscroll-contain rounded-[inherit]"
 		>
