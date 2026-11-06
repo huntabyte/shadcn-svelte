@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { Drawer as DrawerPrimitive } from "vaul-svelte";
 	import { cn } from "$lib/utils.js";
+	import type { WithoutChildrenOrChild } from "$lib/utils.js";
 	import DrawerOverlay from "./drawer-overlay.svelte";
 	import DrawerPortal from "./drawer-portal.svelte";
 	import { getDrawerContext } from "./drawer-context.js";
 	import type { ComponentProps } from "svelte";
-	import type { WithoutChildrenOrChild } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),
@@ -30,7 +30,7 @@
 		data-swipe-axis={direction === "top" || direction === "bottom" ? "y" : "x"}
 		class={cn(
 			// parity-ignore: Use the current Base UI popup surface, viewport inset and sizing with Vaul positioning instead of the legacy Vaul surface.
-			"cn-drawer-popup group/drawer-content group/drawer-popup fixed z-50 m-(--drawer-inset,0px) flex min-h-0 flex-col data-[vaul-drawer-direction=bottom]:inset-x-0 data-[vaul-drawer-direction=bottom]:bottom-0 data-[vaul-drawer-direction=bottom]:mt-24 data-[vaul-drawer-direction=bottom]:max-h-[calc(100dvh-6rem)] data-[vaul-drawer-direction=left]:inset-y-0 data-[vaul-drawer-direction=left]:left-0 data-[vaul-drawer-direction=left]:w-3/4 data-[vaul-drawer-direction=right]:inset-y-0 data-[vaul-drawer-direction=right]:right-0 data-[vaul-drawer-direction=right]:w-3/4 data-[vaul-drawer-direction=top]:inset-x-0 data-[vaul-drawer-direction=top]:top-0 data-[vaul-drawer-direction=top]:mb-24 data-[vaul-drawer-direction=top]:max-h-[calc(100dvh-6rem)] data-[swipe-axis=x]:flex-row data-[vaul-drawer-direction=left]:sm:max-w-96 data-[vaul-drawer-direction=right]:sm:max-w-96",
+			"cn-drawer-popup group/drawer-content group/drawer-popup fixed z-50 m-(--drawer-inset,0px) flex min-h-0 flex-col data-[swipe-axis=x]:flex-row data-[vaul-drawer-direction=bottom]:inset-x-0 data-[vaul-drawer-direction=bottom]:bottom-0 data-[vaul-drawer-direction=bottom]:mt-24 data-[vaul-drawer-direction=bottom]:max-h-[calc(100dvh-6rem)] data-[vaul-drawer-direction=left]:inset-y-0 data-[vaul-drawer-direction=left]:left-0 data-[vaul-drawer-direction=left]:w-3/4 data-[vaul-drawer-direction=right]:inset-y-0 data-[vaul-drawer-direction=right]:right-0 data-[vaul-drawer-direction=right]:w-3/4 data-[vaul-drawer-direction=top]:inset-x-0 data-[vaul-drawer-direction=top]:top-0 data-[vaul-drawer-direction=top]:mb-24 data-[vaul-drawer-direction=top]:max-h-[calc(100dvh-6rem)] data-[vaul-drawer-direction=left]:sm:max-w-96 data-[vaul-drawer-direction=right]:sm:max-w-96",
 			className
 		)}
 		{...restProps}
