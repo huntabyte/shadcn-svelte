@@ -96,7 +96,7 @@
 			side={isMobile.current ? "top" : submenu ? "left" : "right"}
 			align={isMobile.current ? "center" : "start"}
 			class="max-h-[min(--spacing(96),var(--bits-dropdown-menu-content-available-height))] overflow-y-auto max-md:w-(--bits-dropdown-menu-anchor-width) md:w-52"
-			sideOffset={submenu ? 5 : 20}
+			sideOffset={isMobile.current ? 8 : submenu ? 5 : 20}
 			{submenu}
 		>
 			<Picker.RadioGroup bind:value={designSystem[param]}>
