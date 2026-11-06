@@ -10,10 +10,11 @@
 	}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();
 </script>
 
+<!-- parity-ignore: Current Base UI drawer spacing keeps the header and footer outside the scrolling content; the parity baseline still uses Vaul spacing. -->
 <div
 	bind:this={ref}
 	data-slot="drawer-footer"
-	class={cn("cn-drawer-footer-base shrink-0 mt-auto flex flex-col", className)}
+	class={cn("cn-drawer-footer-base mt-auto flex shrink-0 flex-col", className)}
 	{...restProps}
 >
 	{@render children?.()}

@@ -23,4 +23,10 @@
 	});
 </script>
 
-<DrawerPrimitive.NestedRoot {shouldScaleBackground} {direction} bind:open bind:activeSnapPoint {...restProps} />
+<DrawerPrimitive.NestedRoot
+	{shouldScaleBackground}
+	{direction}
+	bind:open
+	bind:activeSnapPoint
+	{...restProps}
+/>

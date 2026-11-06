@@ -23,4 +23,10 @@
 	});
 </script>
 
-<DrawerPrimitive.Root {shouldScaleBackground} {direction} bind:open bind:activeSnapPoint {...restProps} />
+<DrawerPrimitive.Root
+	{shouldScaleBackground}
+	{direction}
+	bind:open
+	bind:activeSnapPoint
+	{...restProps}
+/>
