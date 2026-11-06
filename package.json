@@ -16,7 +16,7 @@
 		"preview": "pnpm -F docs preview",
 		"test": "pnpm --color --reporter append-only -F \"./packages/*\" -F \"./sv-addons/*\" test",
 		"check": "pnpm --parallel check",
-		"lint": "oxfmt --check && eslint . --no-config-lookup --config eslint.config.js",
+		"lint": "oxfmt --check || { oxfmt docs/src/lib/registry/examples/drawer-demo.svelte docs/src/lib/registry/ui/drawer/drawer-content.svelte; git diff -- docs/src/lib/registry/examples/drawer-demo.svelte docs/src/lib/registry/ui/drawer/drawer-content.svelte; exit 1; }; eslint . --no-config-lookup --config eslint.config.js",
 		"format": "oxfmt",
 		"pull:styles": "pnpm -F './docs' pull:styles",
 		"preinstall": "npx only-allow pnpm",
