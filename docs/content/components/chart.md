@@ -534,17 +534,3 @@ To use a custom key for tooltip label and names, use the `labelKey` and `nameKey
 ```
 
 This will use `Total Visitors` for label and `Chrome` and `Safari` for the tooltip names.
-
-## Composition
-
-Use the following composition to build a `Chart`:
-
-```text
-Chart.Container
-└── [LayerChart component (e.g. BarChart, LineChart)]
-    └── Chart.Tooltip (via tooltip snippet)
-```
-
-## API Reference
-
-See the [LayerChart documentation](https://layerchart.com) for chart props and the [Chart configuration](#chart-config) section for the wrapper configuration.

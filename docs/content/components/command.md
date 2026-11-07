@@ -113,7 +113,7 @@ Command.Root
         └── Command.Item
 ```
 
-For a dialog variant, wrap with `Command.Dialog`:
+For a dialog variant, use `Command.Dialog`, which renders `Command.Root` internally:
 
 ```text
 Command.Dialog

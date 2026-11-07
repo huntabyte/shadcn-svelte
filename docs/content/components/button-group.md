@@ -244,10 +244,10 @@ The `ButtonGroup.Separator` component provides visual division between buttons w
 
 The `ButtonGroup.Text` component displays text content within a button group.
 
-| Prop    | Type                   | Default |
-| ------- | ---------------------- | ------- |
-| `class` | `string`               | -       |
-| `child` | `Snippet<[{ props }]>` | -       |
+| Prop    | Type                                            | Default |
+| ------- | ----------------------------------------------- | ------- |
+| `class` | `string`                                        | -       |
+| `child` | `Snippet<[{ props: Record<string, unknown> }]>` | -       |
 
 ```svelte
 <ButtonGroup.Root>

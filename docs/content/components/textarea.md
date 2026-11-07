@@ -103,7 +103,3 @@ Pair with `Button` to create a textarea with a submit button.
 <div></div>
 
 </ComponentPreview>
-
-## API Reference
-
-`Textarea` accepts native textarea attributes and supports `bind:value` and `bind:ref`. See the [HTML textarea reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/textarea).

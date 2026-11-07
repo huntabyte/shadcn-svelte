@@ -23,7 +23,6 @@
 	hugeicons="Loading03Icon"
 	phosphor="SpinnerIcon"
 	remixicon="RiLoaderLine"
-	data-slot="spinner"
 	{role}
 	{...name != null ? { name } : {}}
 	{...color != null ? { color } : {}}

@@ -540,7 +540,3 @@ Here are some tips for styling the sidebar based on different states.
   />
 </Sidebar.MenuItem>
 ```
-
-## API Reference
-
-The [Sidebar component sections](#sidebarprovider) above document the provider, layout, menu, and state APIs. Components accept the attributes of their underlying HTML elements.

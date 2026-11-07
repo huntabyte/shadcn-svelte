@@ -87,7 +87,7 @@ Popover.Root
 └── Popover.Content
 ```
 
-`Popover.Portal` can wrap `Popover.Content` to render it in a different part of the DOM.
+`Popover.Content` renders its portal internally. Use its `portalProps` to configure the portal.
 
 ## Basic
 

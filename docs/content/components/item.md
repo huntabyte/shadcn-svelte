@@ -209,11 +209,11 @@ Use the `child` snippet to render the item as a link. The hover and focus states
 
 The main component for displaying content with media, title, description, and actions.
 
-| Prop      | Type                                | Default     |
-| --------- | ----------------------------------- | ----------- |
-| `variant` | `"default" \| "outline" \| "muted"` | `"default"` |
-| `size`    | `"default" \| "sm" \| "xs"`         | `"default"` |
-| `child`   | `Snippet<[{ props }]>`              | -           |
+| Prop      | Type                                            | Default     |
+| --------- | ----------------------------------------------- | ----------- |
+| `variant` | `"default" \| "outline" \| "muted"`             | `"default"` |
+| `size`    | `"default" \| "sm" \| "xs"`                     | `"default"` |
+| `child`   | `Snippet<[{ props: Record<string, unknown> }]>` | -           |
 
 To render the item as a different element (e.g. an anchor), use the `child` snippet:
 

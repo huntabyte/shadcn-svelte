@@ -130,9 +130,9 @@ Add an image before the card header to create a card with an image.
 
 ## API Reference
 
-### Card
+### Card.Root
 
-The `Card` component is the root container for card content.
+The `Card.Root` component is the root container for card content.
 
 | Prop    | Type                | Default     |
 | ------- | ------------------- | ----------- |

@@ -145,7 +145,3 @@ Add a spinner to a badge to indicate a loading state. Place the `<Spinner />` be
 <div></div>
 
 </ComponentPreview>
-
-## API Reference
-
-`Spinner` accepts SVG attributes. Its default `role` is `"status"` and its default `aria-label` is `"Loading"`. Use `class` to set its size and `aria-label` to describe the operation. See the [SVG attribute reference](https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute).

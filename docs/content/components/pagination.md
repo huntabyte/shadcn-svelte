@@ -134,7 +134,3 @@ Use just the previous and next buttons without page numbers. This is useful for 
 <div></div>
 
 </ComponentPreview>
-
-## API Reference
-
-See the [Bits UI](https://bits-ui.com/docs/components/pagination#api-reference) documentation for more information.

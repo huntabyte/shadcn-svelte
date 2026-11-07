@@ -192,7 +192,3 @@ A full form example with multiple inputs, a select, and a button.
 <div></div>
 
 </ComponentPreview>
-
-## API Reference
-
-`Input` accepts native input attributes and supports `bind:value`, `bind:files` for `type="file"`, and `bind:ref`. See the [HTML input reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input) for native attributes.

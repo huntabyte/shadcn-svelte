@@ -87,10 +87,10 @@ Update the import paths to match your project setup.
 Use the following composition to build a `Resizable` layout:
 
 ```text
-Resizable.PanelGroup
-├── Resizable.Panel
+Resizable.PaneGroup
+├── Resizable.Pane
 ├── Resizable.Handle
-└── Resizable.Panel
+└── Resizable.Pane
 ```
 
 ## Vertical
@@ -117,4 +117,4 @@ Use the `withHandle` prop on `Resizable.Handle` to show a visible handle.
 
 See the [PaneForge PaneGroup](https://paneforge.com/docs/components/pane-group), [Pane](https://paneforge.com/docs/components/pane), and [Handle](https://paneforge.com/docs/components/handle) references.
 
-`Resizable.PanelGroup` and `Resizable.Panel` are aliases for `Resizable.PaneGroup` and `Resizable.Pane`. The group accepts `direction` or `orientation`; when both are set, `orientation` takes precedence.
+Use `direction="horizontal"` or `direction="vertical"` on `Resizable.PaneGroup`. The `withHandle` prop on `Resizable.Handle` adds a visible grip.

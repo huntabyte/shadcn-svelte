@@ -281,7 +281,7 @@ Container that renders a semantic `fieldset` with spacing presets.
 ```svelte
 <Field.Set>
   <Field.Legend>Delivery</Field.Legend>
-  <Field.Group>{/* Fields */}</Field.Group>
+  <Field.Group><!-- Fields --></Field.Group>
 </Field.Set>
 ```
 
@@ -310,8 +310,8 @@ Layout wrapper that stacks `Field.Field` components and enables container querie
 
 ```svelte
 <Field.Group class="@container/field-group flex flex-col gap-6">
-  <Field.Field>{/* ... */}</Field.Field>
-  <Field.Field>{/* ... */}</Field.Field>
+  <Field.Field><!-- ... --></Field.Field>
+  <Field.Field><!-- ... --></Field.Field>
 </Field.Group>
 ```
 
@@ -319,10 +319,11 @@ Layout wrapper that stacks `Field.Field` components and enables container querie
 
 The core wrapper for a single field. Provides orientation control, invalid state styling, and spacing.
 
-| Prop          | Type                                         | Default      |
-| ------------- | -------------------------------------------- | ------------ |
-| `orientation` | `"vertical" \| "horizontal" \| "responsive"` | `"vertical"` |
-| `class`       | `string`                                     |              |
+| Prop           | Type                                         | Default      |
+| -------------- | -------------------------------------------- | ------------ |
+| `orientation`  | `"vertical" \| "horizontal" \| "responsive"` | `"vertical"` |
+| `class`        | `string`                                     |              |
+| `data-invalid` | `boolean`                                    |              |
 
 Use the `data-invalid` attribute to switch the entire block into an error state.
 
@@ -406,10 +407,10 @@ Visual divider to separate sections inside a `Field.Group`. Accepts optional inl
 
 Accessible error container that accepts children or an `errors` array.
 
-| Prop     | Type                                       | Default |
-| -------- | ------------------------------------------ | ------- |
-| `errors` | `Array<{ message?: string } \| undefined>` |         |
-| `class`  | `string`                                   |         |
+| Prop     | Type                          | Default |
+| -------- | ----------------------------- | ------- |
+| `errors` | `Array<{ message?: string }>` |         |
+| `class`  | `string`                      |         |
 
 ```svelte
 <Field.Error errors={errors.username} />

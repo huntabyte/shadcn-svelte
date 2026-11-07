@@ -177,10 +177,10 @@ The `Breadcrumb.Item` component wraps individual breadcrumb items.
 
 The `Breadcrumb.Link` component displays a clickable link in the breadcrumb.
 
-| Prop    | Type                   | Default |
-| ------- | ---------------------- | ------- |
-| `class` | `string`               | -       |
-| `child` | `Snippet<[{ props }]>` | -       |
+| Prop    | Type                                         | Default |
+| ------- | -------------------------------------------- | ------- |
+| `class` | `string`                                     | -       |
+| `child` | `Snippet<[{ props: HTMLAnchorAttributes }]>` | -       |
 
 ### Breadcrumb.Page
 

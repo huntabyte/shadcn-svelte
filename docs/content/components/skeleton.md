@@ -103,7 +103,3 @@ Update the import paths to match your project setup.
 <div></div>
 
 </ComponentPreview>
-
-## API Reference
-
-`Skeleton` accepts HTML `div` attributes and supports `bind:ref`. Use `class` to set its size and shape. See the [HTML div reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/div) for native attributes.

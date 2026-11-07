@@ -299,4 +299,4 @@ See the [Embla Carousel docs](https://www.embla-carousel.com/docs/v8/plugins) fo
 
 ## API Reference
 
-See the [Embla Carousel docs](https://www.embla-carousel.com/api) for more information on props and plugins.
+See the [Embla Carousel docs](https://www.embla-carousel.com/docs/v8/api) for more information on props and plugins.
