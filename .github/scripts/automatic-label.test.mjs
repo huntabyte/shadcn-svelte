@@ -1,0 +1,88 @@
+import assert from "node:assert/strict";
+import test from "node:test";
+import { readFile } from "node:fs/promises";
+import { labelPasses, runAutomaticLabels } from "./automatic-label.mjs";
+const event = (name, type = "Bot", login = "github-actions[bot]", id = 1, event = "labeled") => ({
+  id,
+  event,
+  label: { name },
+  actor: { type, login },
+  created_at: `2026-11-07T00:00:0${id}Z`,
+});
+const policy = {
+  prompt: "Repository rules",
+  labels: {
+    duplicate: { context: "similar_issues", apply_when: "Same redundant scope" },
+    feature: { apply_when: "New functionality" },
+    slop: { threshold: 0.9, apply_when: "Direct description authorship evidence" },
+    "needs reproduction": { apply_when: "Existing runtime defect" },
+  },
+};
+test("every configured label retains automatic application and literal meaning", () => {
+  const passes = labelPasses(policy, { rows: [], omitted: false });
+  assert.equal(passes.length, 4);
+  for (const p of passes) {
+    assert.equal(Object.keys(p.policy.labels).length, 1);
+    assert.notEqual(p.policy.labels[p.name].can_apply, false);
+    assert(p.policy.prompt.includes(JSON.stringify(p.name)));
+  }
+  assert.equal(
+    passes.find((p) => p.name === "duplicate").policy.labels.duplicate.context,
+    "similar_issues"
+  );
+  assert.equal(passes.find((p) => p.name === "slop").policy.labels.slop.threshold, 0.9);
+});
+test("cleanup permits only the three current bot-owned labels", () => {
+  const passes = labelPasses(policy, {
+    rows: [event("duplicate"), event("feature"), event("slop"), event("needs reproduction")],
+    omitted: false,
+  });
+  for (const p of passes) assert.equal(p.policy.labels[p.name].can_remove, p.name !== "feature");
+});
+test("later human application, removal, unknown actor and incomplete history preserve labels", () => {
+  for (const history of [
+    { rows: [event("duplicate"), event("duplicate", "User", "maintainer", 2)], omitted: false },
+    {
+      rows: [event("duplicate"), event("duplicate", "User", "maintainer", 2, "unlabeled")],
+      omitted: false,
+    },
+    { rows: [event("duplicate", "Bot", "another-bot")], omitted: false },
+    { rows: [event("duplicate")], omitted: true },
+  ])
+    assert.equal(
+      labelPasses(policy, history).find((p) => p.name === "duplicate").policy.labels.duplicate
+        .can_remove,
+      false
+    );
+});
+test("orchestrates unmodified CLI arguments without shell evaluation, limits concurrency and cleans temp policies", async () => {
+  let active = 0,
+    max = 0;
+  const paths = [];
+  await runAutomaticLabels({
+    repo: "owner/repo",
+    number: 1,
+    policy,
+    history: { rows: [], omitted: false },
+    prompt: "Untrusted text: $(echo nope)",
+    dryRun: true,
+    run: async (exe, args) => {
+      assert.equal(exe, process.execPath);
+      assert(args.includes("--dry-run"));
+      assert(args.includes("--remove"));
+      assert.equal(args[args.indexOf("--prompt") + 1], "Untrusted text: $(echo nope)");
+      const config = args[args.indexOf("--config") + 1];
+      paths.push(config);
+      const p = JSON.parse(await readFile(config, "utf8"));
+      assert.equal(Object.keys(p.labels).length, 1);
+      active++;
+      max = Math.max(max, active);
+      await new Promise((r) => setTimeout(r, 5));
+      active--;
+      return { stdout: "checked" };
+    },
+  });
+  assert.equal(max, 2);
+  assert.equal(paths.length, 4);
+  for (const p of paths) await assert.rejects(readFile(p));
+});

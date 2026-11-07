@@ -6,9 +6,18 @@ prompt: >-
   OWNER, MEMBER, and COLLABORATOR comments represent maintainers; CONTRIBUTOR alone
   does not establish maintainer confirmation. Bot/template text is not a human request
   or confirmation. Linked work may be related without being a duplicate.
-  A bug-fix PR without a linked issue can need reproduction. Evaluate each label independently;
+  Reproduction is relevant only to an existing runtime defect. A missing linked
+  issue does not turn a feature, docs or skill PR into a bug report. Unlinked bug-fix
+  PRs can qualify when the defect needs demonstration. Evaluate each label independently;
   several labels can be correct at once. Use changed-file evidence when available,
   and do not assume omitted files or patches contain no changes.
+  A new public tool, API/export, prop, snippet, component mode, or CLI flag counts
+  as feature even when another label such as cli or docs also applies. Explicit
+  upstream ports and alignment count as parity independently of feature or docs.
+  For docs, require documentation content, examples, or website presentation;
+  registry component code is not docs merely because its path starts with docs/.
+  A concrete reported working workaround or directly usable patch counts as has
+  workaround even when the issue also requests an improvement.
 
 labels:
   bug:
@@ -22,6 +31,10 @@ labels:
       dependency report alone is not maintainer confirmation.
     remove_when: The item requests new functionality rather than fixing incorrect existing behavior.
   docs:
+    description: >-
+      Changes documentation content, guides, examples, package usage instructions,
+      or the documentation website's presentation. Component implementation alone
+      is not docs, including files stored under docs/src/lib/registry/ui/.
     apply_when: >-
       Changes documentation content, examples, or their presentation. Internal build
       tooling or a search implementation alone is not a documentation-content change.
@@ -30,6 +43,12 @@ labels:
       Fixing an actual runnable documentation example counts as docs even when
       no Markdown file changes. Registry component implementation alone does not.
   duplicate:
+    description: >-
+      A redundant report or competing implementation of the same unresolved work.
+      Never a fix, follow-up, or canonical replacement. Check supplied related-item
+      state and closure comments: an older item closed in favor of this one makes
+      this one the replacement, not the duplicate. Shared topic or files alone do
+      not establish redundant scope. Apply automatically when redundant scope is clear.
     apply_when: >-
       An earlier canonical issue or pull request covers the same problem or proposed
       change, making this item redundant. Require matching scope, not just a link,
@@ -47,6 +66,11 @@ labels:
       - A second PR proposes the same change as an existing PR without a distinct scope or a requested replacement.
     context: similar_issues
   feature:
+    description: >-
+      Requests or implements new end-user functionality, including a new public tool,
+      component API/export, prop, snippet, supported mode or CLI flag. Can coexist
+      with cli, docs and parity. Reusing an existing primitive or root component to
+      expose a new supported API still counts. Only restoring behavior does not.
     apply_when: >-
       Adds or requests new end-user functionality, a new component, or a new public
       component API such as a prop, snippet, or supported mode exposed to consumers
@@ -106,6 +130,11 @@ labels:
       alone does not clear an active changes-requested review. Remove the label if
       only bot reviews request changes and there is no outstanding human request.
   "needs reproduction":
+    description: >-
+      An existing runtime defect still needs a runnable demonstration. New features,
+      component modes, docs/guide/skill ports and static reference corrections do not
+      qualify merely because they lack a reproduction or linked issue. An unlinked
+      bug-fix PR can qualify; a linked issue or supplied demonstration can resolve it.
     apply_when: >-
       An issue reports a defect requiring reproduction, or a bug-fix pull request
       has no linked issue establishing the reported defect, and the item lacks an
@@ -148,6 +177,10 @@ labels:
       can identify an upstream cause. A reporter or bot assertion alone is insufficient.
     can_apply: false
   parity:
+    description: >-
+      Explicitly ports or aligns functionality, components, docs or presentation
+      with upstream shadcn/ui. A port can also be feature or docs. Separate maintainer
+      confirmation is unnecessary when the alignment is explicit.
     apply_when: >-
       An issue requests, or a pull request implements, alignment with upstream
       shadcn/ui functionality, components, documentation, or visual presentation
@@ -161,5 +194,21 @@ labels:
       with the upstream implementation this repository follows, or that the proposed
       difference is a separate behavior/design discussion rather than a parity gap.
   slop:
-    apply_when: The issue/pull request description is clearly generated by AI. Signs can be, usage of em-dashes, overly verbose descriptions that distract from the actual issue/changes, etc.
-    remove_when: The issue/pull request description is no longer clearly generated by AI. Short no excessive use of em-dashes, no overly verbose descriptions that distract from the actual issue/changes.
+    threshold: 0.9
+    description: >-
+      The description itself is demonstrably AI-generated, such as an explicit
+      statement that an AI wrote the description. AI-assisted investigation, code,
+      tests or tooling do not establish authorship of the description. Formatting,
+      em-dashes, length, technical logs and polished prose alone are insufficient.
+      Apply automatically when there is direct evidence about description authorship.
+    apply_when: >-
+      Direct evidence establishes that the description itself was generated by AI.
+      Distinguish description authorship from AI use during coding or investigation.
+      An explicit statement that AI wrote the description qualifies. Merely naming
+      an assistant or agent framework does not. A denial of AI-written prose without
+      contrary direct evidence does not qualify.
+    remove_when: >-
+      There is no direct evidence that AI wrote the description itself, or the
+      statement was corrected to refer only to code, tests or investigation.
+      Short descriptions still qualify when their AI authorship is explicit;
+      length, punctuation and style do not override that evidence.

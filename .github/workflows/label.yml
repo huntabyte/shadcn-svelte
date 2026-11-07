@@ -4,7 +4,7 @@ on:
   issues:
     types: [opened, edited, reopened]
   pull_request_target:
-    types: [opened, edited, reopened, ready_for_review]
+    types: [opened, edited, reopened, ready_for_review, synchronize]
   issue_comment:
     types: [created, edited]
 
@@ -20,9 +20,9 @@ permissions:
 
 jobs:
   label:
-    if: github.event.comment.user.login != 'github-actions[bot]' && (github.event.issue.state || github.event.pull_request.state) == 'open'
+    if: (github.event_name != 'issue_comment' || github.event.comment.user.type != 'Bot') && (github.event.issue.state || github.event.pull_request.state) == 'open'
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - name: Skip issues and PRs older than 1 year
         id: age
@@ -51,12 +51,28 @@ jobs:
           NUMBER: ${{ github.event.issue.number || github.event.pull_request.number }}
         run: gh api "repos/${GITHUB_REPOSITORY}/issues/${NUMBER}/labels" --jq '.[].name' > labels-before.txt
 
+      - name: Install label workflow tools
+        if: steps.age.outputs.skip != 'true'
+        run: npm ci --prefix .github/scripts --ignore-scripts --no-audit --no-fund
+
+      - name: Record labeler version
+        if: steps.age.outputs.skip != 'true'
+        run: node .github/scripts/node_modules/@ieedan/label/dist/bin.mjs --version
+
+      - name: Collect label evidence
+        if: steps.age.outputs.skip != 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NUMBER: ${{ github.event.issue.number || github.event.pull_request.number }}
+        run: node .github/scripts/label-context.mjs
+
       - name: Label
         if: steps.age.outputs.skip != 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
-        run: npx --yes @ieedan/label label -R "$GITHUB_REPOSITORY" --config .github/.label.yml "${{ github.event.issue.number || github.event.pull_request.number }}"
+          NUMBER: ${{ github.event.issue.number || github.event.pull_request.number }}
+        run: node .github/scripts/automatic-label.mjs
 
       # Label events created with GITHUB_TOKEN do not start other workflows.
       - name: Dispatch anti-slop
