@@ -10,7 +10,7 @@
 {#snippet placeholder()}
 	<div class="flex-1 p-4">
 		<div
-			class="bg-muted group-data-[vaul-drawer-direction=bottom]/drawer-content:aspect-video group-data-[vaul-drawer-direction=bottom]/drawer-content:w-full group-data-[vaul-drawer-direction=right]/drawer-content:size-full"
+			class="bg-muted group-data-[swipe-axis=x]/drawer-popup:size-full group-data-[swipe-axis=y]/drawer-popup:aspect-video group-data-[swipe-axis=y]/drawer-popup:w-full"
 		></div>
 	</div>
 {/snippet}

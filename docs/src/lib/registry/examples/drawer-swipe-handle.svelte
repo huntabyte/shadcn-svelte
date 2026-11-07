@@ -4,14 +4,14 @@
 </script>
 
 <Drawer.Root showSwipeHandle>
-	<Drawer.Trigger class={buttonVariants({ variant: "outline" })}>Swipe Handle</Drawer.Trigger>
+	<Drawer.Trigger class={buttonVariants({ variant: "secondary" })}>Open Drawer</Drawer.Trigger>
 	<Drawer.Content>
 		<Drawer.Header>
-			<Drawer.Title>Swipe handle</Drawer.Title>
-			<Drawer.Description>Drag the handle to close the drawer.</Drawer.Description>
+			<Drawer.Title>Drawer</Drawer.Title>
+			<Drawer.Description>Drawer with a swipe handle.</Drawer.Description>
 		</Drawer.Header>
 		<div class="flex-1 p-4">
-			<div class="h-80 w-full rounded-2xl bg-muted"></div>
+			<div class="rounded-2xl bg-muted group-data-[swipe-axis=x]/drawer-popup:size-full group-data-[swipe-axis=y]/drawer-popup:h-80 group-data-[swipe-axis=y]/drawer-popup:w-full"></div>
 		</div>
 		<Drawer.Footer>
 			<Drawer.Close class={buttonVariants()}>Close</Drawer.Close>
