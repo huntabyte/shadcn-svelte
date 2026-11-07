@@ -72,7 +72,9 @@ Update the import paths to match your project setup.
 
 ```svelte showLineNumbers
 <Drawer.Root>
-  <Drawer.Trigger class={buttonVariants({ variant: "outline" })}>Open</Drawer.Trigger>
+  <Drawer.Trigger class={buttonVariants({ variant: "outline" })}
+    >Open</Drawer.Trigger
+  >
   <Drawer.Content>
     <Drawer.Header>
       <Drawer.Title>Are you absolutely sure?</Drawer.Title>
@@ -81,7 +83,9 @@ Update the import paths to match your project setup.
     <div class="p-4"><!-- Content here --></div>
     <Drawer.Footer>
       <Button>Submit</Button>
-      <Drawer.Close class={buttonVariants({ variant: "outline" })}>Cancel</Drawer.Close>
+      <Drawer.Close class={buttonVariants({ variant: "outline" })}
+        >Cancel</Drawer.Close
+      >
     </Drawer.Footer>
   </Drawer.Content>
 </Drawer.Root>
@@ -137,16 +141,16 @@ To make a region of the drawer scrollable, make the scroll container a flex item
 
 The drawer exposes a CSS variable for style-level customization. Set the sizing variable on `Drawer.Content`.
 
-| Variable | Default | Description |
-| --- | --- | --- |
-| `--drawer-inset` | `0px` | Floats the drawer from the viewport edges. |
+| Variable         | Default | Description                                |
+| ---------------- | ------- | ------------------------------------------ |
+| `--drawer-inset` | `0px`   | Floats the drawer from the viewport edges. |
 
 The drawer also sets data attributes you can target with variants such as `data-[swipe-direction=down]:` on `Drawer.Content`, or `group-data-[swipe-axis=y]/drawer-popup:` on its descendants.
 
-| Attribute | Values | Set when |
-| --- | --- | --- |
-| `data-swipe-direction` | `up`, `right`, `down`, `left` | Always. |
-| `data-swipe-axis` | `x`, `y` | Always. |
+| Attribute              | Values                        | Set when |
+| ---------------------- | ----------------------------- | -------- |
+| `data-swipe-direction` | `up`, `right`, `down`, `left` | Always.  |
+| `data-swipe-axis`      | `x`, `y`                      | Always.  |
 
 ## Position
 
