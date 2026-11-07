@@ -11,7 +11,6 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import CtaMobile from "$lib/components/cta-mobile.svelte";
-	import Cta from "$lib/components/cta.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
 	import Control from "$lib/features/typeset/control.svelte";
 	import DocsPanel from "$lib/features/typeset/docs-panel.svelte";
@@ -151,8 +150,8 @@
 		<DocsPanel {typeset} />
 
 		<div class="flex min-h-0 w-full min-w-0 flex-1 flex-col gap-(--gap) self-stretch">
-			<div class="relative z-20 w-full xl:hidden">
-				<CtaMobile />
+			<div class="relative z-20 w-full">
+				<CtaMobile showOnDesktop />
 			</div>
 			<div
 				class="relative isolate flex min-h-0 w-full flex-1 flex-col self-stretch overflow-hidden rounded-2xl bg-background ring-1 ring-foreground/10"
@@ -327,9 +326,6 @@
 					/>
 				</Card.Footer>
 			</Card.Root>
-			<div class="hidden w-full flex-col md:flex">
-				<Cta />
-			</div>
 		</div>
 	</div>
 </div>
