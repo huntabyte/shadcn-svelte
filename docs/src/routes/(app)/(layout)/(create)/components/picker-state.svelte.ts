@@ -6,8 +6,13 @@ export class PickerLayout {
 	anchor = $state<HTMLElement | null>(null);
 	scroller = $state<HTMLElement | null>(null);
 	active = $state<CreatePicker | null>(null);
+	mobile = new IsMobile();
 	constructor() {
 		setContext(key, this);
+		$effect(() => {
+			// Horizontal mobile scroll must not offset the desktop picker anchors.
+			if (!this.mobile.current && this.scroller) this.scroller.scrollLeft = 0;
+		});
 	}
 }
 export class CreatePicker {
@@ -22,7 +27,8 @@ export class CreatePicker {
 	restore = async () => {
 		if (!this.mobile.current || !this.layout?.scroller) return;
 		const restore = () => {
-			if (this.layout?.scroller) this.layout.scroller.scrollLeft = this.scrollLeft;
+			if (this.layout?.scroller)
+				this.layout.scroller.scrollLeft = this.mobile.current ? this.scrollLeft : 0;
 		};
 		await tick();
 		restore();

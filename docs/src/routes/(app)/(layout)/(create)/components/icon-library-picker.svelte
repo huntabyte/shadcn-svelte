@@ -62,10 +62,10 @@
 			onmouseleave={() => previewOverride.clearOverride()}
 			preventScroll={false}
 			customAnchor={isMobile.current ? picker.layout?.anchor : undefined}
-			class="max-md:w-(--bits-dropdown-menu-anchor-width)"
+			class="max-md:w-[calc(var(--bits-dropdown-menu-anchor-width)-2px)]"
 			side={isMobile.current ? "top" : submenu ? "left" : "right"}
 			align={isMobile.current ? "center" : "start"}
-			sideOffset={isMobile.current ? 8 : submenu ? 5 : 20}
+			sideOffset={submenu ? 5 : 20}
 			{submenu}
 		>
 			<Picker.RadioGroup bind:value={designSystem.iconLibrary}>
