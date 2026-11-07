@@ -4,6 +4,8 @@
 	import { FONTS } from "$lib/fonts.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import LockButton from "./lock-button.svelte";
+	import { CreatePicker } from "./picker-state.svelte.js";
+	import { usePreviewOverride } from "./preview-override-context.svelte.js";
 
 	type FontPickerOption = {
 		name: string;
@@ -26,6 +28,7 @@
 	let { submenu = false, fonts, label, param }: Props = $props();
 
 	const designSystem = useDesignSystem();
+	const previewOverride = usePreviewOverride();
 
 	const isMobile = new IsMobile();
 
@@ -60,11 +63,19 @@
 	const previewFontFamily = $derived(
 		currentFont?.font?.style?.fontFamily ?? currentBodyFont?.font?.style?.fontFamily
 	);
+
+	const picker = new CreatePicker(() => previewOverride.clearOverride());
 </script>
 
 <div class="group/picker relative">
-	<Picker.Root {submenu}>
-		<Picker.Trigger {submenu}>
+	<Picker.Root bind:open={picker.open} {submenu}>
+		<Picker.Trigger
+			onpointerdown={picker.capture}
+			onkeydown={(event) => {
+				if (event.key === "Enter" || event.key === " ") picker.capture();
+			}}
+			{submenu}
+		>
 			<div class="flex flex-col justify-start text-left">
 				<div class="text-xs text-muted-foreground">{label}</div>
 				<div class="text-sm font-medium text-foreground">
@@ -79,16 +90,28 @@
 			</div>
 		</Picker.Trigger>
 		<Picker.Content
+			onmouseleave={() => previewOverride.clearOverride()}
+			preventScroll={false}
+			customAnchor={isMobile.current ? picker.layout?.anchor : undefined}
 			side={isMobile.current ? "top" : submenu ? "left" : "right"}
 			align={isMobile.current ? "center" : "start"}
-			class="max-h-96 overflow-y-auto md:w-72"
+			class="max-h-[min(--spacing(96),var(--bits-dropdown-menu-content-available-height))] overflow-y-auto max-md:w-[calc(var(--bits-dropdown-menu-anchor-width)-2px)] md:w-52"
 			sideOffset={submenu ? 5 : 20}
 			{submenu}
 		>
 			<Picker.RadioGroup bind:value={designSystem[param]}>
 				{#if param === "fontHeading"}
 					<Picker.Group>
-						<Picker.RadioItem value="inherit" closeOnSelect={isMobile.current}>
+						<Picker.RadioItem
+							onItemPreview={isMobile.current
+								? undefined
+								: (value) =>
+										previewOverride.setOverride({
+											[param]: value as typeof designSystem.fontHeading,
+										})}
+							value="inherit"
+							closeOnSelect={isMobile.current}
+						>
 							{inheritFontLabel}
 						</Picker.RadioItem>
 					</Picker.Group>
@@ -98,7 +121,16 @@
 					<Picker.Group>
 						<Picker.Label>{group.label}</Picker.Label>
 						{#each group.items as font (font.value)}
-							<Picker.RadioItem value={font.value} closeOnSelect={isMobile.current}>
+							<Picker.RadioItem
+								onItemPreview={isMobile.current
+									? undefined
+									: (value) =>
+											previewOverride.setOverride({
+												[param]: value as typeof designSystem.fontHeading,
+											})}
+								value={font.value}
+								closeOnSelect={isMobile.current}
+							>
 								{font.name}
 							</Picker.RadioItem>
 						{/each}

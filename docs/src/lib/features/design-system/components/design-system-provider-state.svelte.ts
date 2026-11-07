@@ -1,34 +1,25 @@
-import { goto } from "$app/navigation";
+import { browser } from "$app/environment";
+import { afterNavigate, replaceState } from "$app/navigation";
 import { page } from "$app/state";
-import { StateHistory, Context, PersistedState } from "runed";
+import { Context, PersistedState } from "runed";
+import { StateHistory } from "runed";
 import {
 	decodePreset,
 	encodePreset,
 	isValidPreset,
 	DEFAULT_PRESET_CONFIG,
+	DEFAULT_PRESETS,
 	type PresetConfig,
-	PRESET_BASE_COLOR_KEYS,
 	PRESET_CHART_COLORS,
 } from "shadcn-svelte/preset";
-import { SvelteURLSearchParams } from "svelte/reactivity";
-import {
-	BASE_THEMES,
-	getThemesForBaseColor,
-	iconLibraries,
-	MENU_ACCENTS,
-	MENU_COLORS,
-	RADII,
-	STYLES,
-	type FontHeadingValue,
-} from "$lib/registry/config.js";
-import {
-	applyBias,
-	RANDOMIZE_BIASES,
-	type RandomizeContext,
-} from "../../../../routes/(app)/(layout)/(create)/lib/randomize-biases.js";
+import { onMount } from "svelte";
+import { SvelteURL, SvelteURLSearchParams } from "svelte/reactivity";
+import { BASE_THEMES, getThemesForBaseColor } from "$lib/registry/config.js";
+import { SHUFFLE_PRESETS } from "../../../../routes/(app)/(layout)/(create)/lib/shuffle-presets.js";
 
 type ChartColorName = (typeof PRESET_CHART_COLORS)[number];
-import { FONTS } from "$lib/fonts.js";
+
+let hasSyncedPresetToUrl = false;
 
 export interface IDesignSystemState extends PresetConfig {
 	preset: string;
@@ -83,18 +74,20 @@ class DesignSystemState implements IDesignSystemState {
 	#preset: PersistedState<string>;
 	#locks: PersistedState<Lockable>;
 	constructor() {
-		const presetFromUrl = this.#getSearchParam("preset");
+		const isEmbeddedPreview = browser && window.self !== window.top;
+		const urlPreset = this.#getSearchParam("preset");
+		const presetFromUrl = urlPreset && isValidPreset(urlPreset) ? urlPreset : null;
 		this.#preset = new PersistedState<string>(
-			"design-system-preset",
+			isEmbeddedPreview ? "design-system-preview-preset" : "design-system-preset",
 			presetFromUrl ?? encodePreset(DEFAULT_PRESET_CONFIG)
 		);
-		// PersistedState only falls back to the initial value when nothing is stored yet, so a
-		// shared ?preset= link is ignored for anyone who has already used the editor.
+		// PersistedState treats the constructor value as a fallback only, so explicitly
+		// apply valid URL presets over any previously persisted value.
 		if (presetFromUrl && isValidPreset(presetFromUrl)) {
 			this.#preset.current = presetFromUrl;
 		}
 		const initial = decodePreset(this.#preset.current);
-		if (initial) this.#preset.current = encodeNormalized(initial);
+		this.#preset.current = encodeNormalized(initial ?? DEFAULT_PRESET_CONFIG);
 		this.#locks = new PersistedState<Lockable>("locks", {
 			style: false,
 			baseColor: false,
@@ -110,15 +103,45 @@ class DesignSystemState implements IDesignSystemState {
 			template: false,
 		});
 
+		// The provider survives navigation within /create. Shallow history entries
+		// do not invoke afterNavigate, so also read presets on popstate.
+		const applyUrlPreset = (url: URL) => {
+			const code = url.searchParams.get("preset");
+			const config = code ? decodePreset(code) : null;
+			if (!config) return;
+			const normalized = encodeNormalized(config);
+			if (normalized !== this.#preset.current) this.#preset.current = normalized;
+		};
+		afterNavigate(({ to }) => {
+			if (to) applyUrlPreset(to.url);
+		});
+		onMount(() => {
+			const handlePopState = () => applyUrlPreset(new SvelteURL(window.location.href));
+			window.addEventListener("popstate", handlePopState);
+			return () => window.removeEventListener("popstate", handlePopState);
+		});
+
 		this.reset = this.reset.bind(this);
 		this.randomize = this.randomize.bind(this);
 
 		this.#history = new StateHistory(
 			() => this.#preset.current,
 			(value) => {
-				this.#preset.current = value;
+				this.#setPresetCode(value);
 			}
 		);
+
+		if (browser && !isEmbeddedPreview && !hasSyncedPresetToUrl && !presetFromUrl) {
+			onMount(() => {
+				// Let SvelteKit finish hydration and start its router before shallow routing.
+				const timeout = setTimeout(() => {
+					if (hasSyncedPresetToUrl) return;
+					hasSyncedPresetToUrl = true;
+					this.#replacePresetParam(this.#preset.current);
+				});
+				return () => clearTimeout(timeout);
+			});
+		}
 	}
 
 	private get system(): PresetConfig {
@@ -128,28 +151,29 @@ class DesignSystemState implements IDesignSystemState {
 	}
 
 	private set system(value: PresetConfig) {
-		this.#preset.current = encodeNormalized(value);
-		this.#syncUrl();
+		this.#setPresetCode(encodeNormalized(value));
 	}
 
-	#syncUrl() {
+	#setPresetCode(code: string) {
+		this.#preset.current = code;
+		this.#replacePresetParam(code);
+	}
+
+	#replacePresetParam(code: string) {
+		if (!browser || window.self !== window.top) return;
+
 		const searchParams = new SvelteURLSearchParams(page.url.searchParams);
-		searchParams.set("preset", this.#preset.current);
-		goto(`${page.url.pathname}?${searchParams.toString()}${page.url.hash}`, {
-			replaceState: true,
-			noScroll: true,
-			keepFocus: true,
-		});
+		searchParams.set("preset", code);
+		const query = searchParams.toString();
+		replaceState(`${page.url.pathname}${query ? `?${query}` : ""}${page.url.hash}`, page.state);
 	}
 
 	undo() {
 		this.#history.undo();
-		this.#syncUrl();
 	}
 
 	redo() {
 		this.#history.redo();
-		this.#syncUrl();
 	}
 
 	get canUndo() {
@@ -297,86 +321,47 @@ class DesignSystemState implements IDesignSystemState {
 	}
 
 	reset() {
-		this.system = DEFAULT_PRESET_CONFIG;
+		this.system = { ...DEFAULT_PRESETS[this.style] };
 	}
 
 	randomize() {
-		// Use current value if locked, otherwise randomize.
-		const selectedBaseColor = this.locks.baseColor
-			? this.baseColor
-			: randomItem(PRESET_BASE_COLOR_KEYS);
-		const selectedStyle = this.locks.style ? this.style : randomItem(STYLES).name;
+		const currentCode = this.#preset.current;
+		const availableCodes = SHUFFLE_PRESETS.filter((code) => code !== currentCode);
+		const decoded = decodePreset(
+			randomItem(availableCodes.length > 0 ? availableCodes : SHUFFLE_PRESETS)
+		);
 
-		const context: RandomizeContext = {
-			baseColor: selectedBaseColor,
-			style: selectedStyle,
+		if (!decoded) return;
+
+		const current = this.system;
+		const locks = this.#locks.current;
+		const preset = {
+			...DEFAULT_PRESET_CONFIG,
+			...decoded,
 		};
 
-		const availableThemes = getThemesForBaseColor(selectedBaseColor);
-		const availableFonts = applyBias(FONTS, context, RANDOMIZE_BIASES.fonts);
-		const availableRadii = applyBias(RADII, context, RANDOMIZE_BIASES.radius);
-
-		const selectedTheme = this.locks.theme ? this.theme : randomItem(availableThemes).name;
-		context.theme = selectedTheme;
-		const availableChartThemes = applyBias(availableThemes, context, RANDOMIZE_BIASES.chartColors);
-		const selectedChartColor = this.locks.chartColor
-			? this.chartColor
-			: randomItem(availableChartThemes).name;
-		const selectedFont = this.locks.font ? this.font : randomItem(availableFonts).value;
-
-		// Pick heading font: ~70% inherit, ~30% distinct with cross-category contrast.
-		let selectedFontHeading: FontHeadingValue;
-		if (this.locks.fontHeading) {
-			selectedFontHeading = this.fontHeading;
-		} else if (Math.random() < 0.7) {
-			selectedFontHeading = "inherit";
-		} else {
-			const bodyType = availableFonts.find((f) => f.value === selectedFont)?.type;
-			const contrastFonts = availableFonts.filter(
-				(f) => f.type !== bodyType && f.value !== selectedFont
-			);
-			selectedFontHeading = (
-				contrastFonts.length > 0 ? randomItem(contrastFonts) : randomItem(availableFonts)
-			).value;
-		}
-
-		const selectedRadius = this.locks.radius ? this.radius : randomItem(availableRadii).name;
-		const selectedIconLibrary = this.locks.iconLibrary
-			? this.iconLibrary
-			: (
-					randomItem(
-						Object.values(iconLibraries)
-					) as (typeof iconLibraries)[keyof typeof iconLibraries]
-				).name;
-		const selectedMenuAccent = this.locks.menuAccent
-			? this.menuAccent
-			: randomItem(MENU_ACCENTS).value;
-		const selectedMenuColor = this.locks.menuColor ? this.menuColor : randomItem(MENU_COLORS).value;
-
-		// Update context with selected values for potential future biases.
-		context.font = selectedFont;
-		context.chartColor = selectedChartColor;
-		context.radius = selectedRadius;
-		context.iconLibrary = selectedIconLibrary;
-		context.menuAccent = selectedMenuAccent;
-		context.menuColor = selectedMenuColor;
-
 		this.system = {
-			baseColor: selectedBaseColor,
-			style: selectedStyle,
-			theme: selectedTheme,
-			chartColor: selectedChartColor,
-			font: selectedFont,
-			fontHeading: selectedFontHeading,
-			radius: selectedRadius,
-			iconLibrary: selectedIconLibrary,
-			menuAccent: selectedMenuAccent,
-			menuColor: selectedMenuColor,
+			style: locks.style ? current.style : preset.style,
+			baseColor: locks.baseColor ? current.baseColor : preset.baseColor,
+			theme: locks.theme ? current.theme : preset.theme,
+			chartColor: locks.chartColor
+				? current.chartColor
+				: ((preset.chartColor ?? preset.theme) as ChartColorName),
+			iconLibrary: locks.iconLibrary ? current.iconLibrary : preset.iconLibrary,
+			font: locks.font ? current.font : preset.font,
+			fontHeading: locks.fontHeading ? current.fontHeading : preset.fontHeading,
+			menuAccent: locks.menuAccent ? current.menuAccent : preset.menuAccent,
+			menuColor: locks.menuColor ? current.menuColor : preset.menuColor,
+			radius: locks.radius ? current.radius : preset.radius,
 		};
 	}
 
 	get shareUrl() {
-		return `${page.url.origin}/create?preset=${this.#preset.current}`;
+		const url = new SvelteURL("/create", page.url.origin);
+		const item = page.url.searchParams.get("item");
+		if (item) url.searchParams.set("item", item);
+		url.searchParams.set("preset", this.#preset.current);
+		return url.toString();
 	}
 }
 

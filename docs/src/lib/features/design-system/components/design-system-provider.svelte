@@ -2,6 +2,7 @@
 	import { browser } from "$app/environment";
 	import { watch } from "runed";
 	import { onDestroy, type Snippet } from "svelte";
+	import * as AlertDialog from "$lib/registry/ui/alert-dialog/index.js";
 	import {
 		buildRegistryTheme,
 		DEFAULT_CONFIG,
@@ -11,24 +12,20 @@
 	} from "$lib/registry/config.js";
 	import { cn } from "$lib/registry/lib/utils.js";
 	import { setupDesignSystem } from "./design-system-provider-state.svelte.js";
+	import { ResetDialogContext, ResetDialogCtx } from "./reset-dialog-context.svelte.js";
 	import { syncMenuColor } from "../menu-color.js";
 
 	const uid = $props.id();
 
 	type Props = {
 		children: Snippet;
-		/**
-		 * Apply the design system (style/base color classes, theme variables, fonts and menu
-		 * color) to the document. Turn this off where the provider only supplies state and the
-		 * surrounding UI must keep the site's default look, like the /create customizer. The
-		 * preview iframe applies the design system itself and syncs through persisted state.
-		 */
 		applyToDocument?: boolean;
 	};
 
 	let { children, applyToDocument = true }: Props = $props();
 
 	const designSystem = setupDesignSystem();
+	const resetDialogCtx = ResetDialogCtx.set(new ResetDialogContext());
 
 	const MANAGED_BODY_CLASS_PREFIXES = ["style-", "base-color-"] as const;
 
@@ -65,8 +62,7 @@
 	});
 
 	watch([() => registryTheme, () => browser], ([registryTheme, browser]) => {
-		if (!applyToDocument) return;
-		if (!browser) return;
+		if (!browser || !applyToDocument) return;
 		if (!registryTheme) return;
 
 		const body = document.body;
@@ -128,6 +124,11 @@
 		cssText += "}\n";
 
 		styleElement.textContent = cssText;
+
+		if (window.self !== window.top && document.body) {
+			document.documentElement.style.backgroundColor = "var(--background)";
+			document.body.style.backgroundColor = "var(--background)";
+		}
 	});
 
 	let stopMenuSync: (() => void) | null = null;
@@ -150,11 +151,35 @@
 		stopMenuSync?.();
 		stopMenuSync = null;
 
-		if (!applyToDocument) return;
-		if (!browser) return;
+		if (!browser || !applyToDocument) return;
 		if (!menuColor) return;
 
 		stopMenuSync = syncMenuColor(menuColor);
+	});
+
+	$effect(() => {
+		if (!browser || window.self === window.top) return;
+
+		const handleMessage = (event: MessageEvent) => {
+			if (
+				event.origin !== window.location.origin ||
+				event.source !== window.parent ||
+				!event.data ||
+				typeof event.data !== "object" ||
+				event.data.type !== "design-system-preset" ||
+				typeof event.data.data !== "string"
+			) {
+				return;
+			}
+
+			designSystem.preset = event.data.data;
+		};
+
+		window.addEventListener("message", handleMessage);
+		// Preview components are lazy-loaded, so hydration can finish after the
+		// iframe load event. Ask the parent for its latest committed/hover preset.
+		window.parent.postMessage({ type: "design-system-ready" }, window.location.origin);
+		return () => window.removeEventListener("message", handleMessage);
 	});
 
 	function handleKeyDown(e: KeyboardEvent) {
@@ -172,7 +197,7 @@
 			e.preventDefault();
 
 			if (e.shiftKey) {
-				designSystem.reset();
+				resetDialogCtx.open = true;
 				return;
 			}
 
@@ -196,7 +221,30 @@
 <div
 	data-slot="design-system-provider"
 	style="display: contents;"
-	class={cn(applyToDocument && `style-${designSystem.style} base-color-${designSystem.baseColor}`)}
+	class={applyToDocument
+		? cn(`style-${designSystem.style} base-color-${designSystem.baseColor}`)
+		: undefined}
 >
 	{@render children?.()}
 </div>
+
+<AlertDialog.Root bind:open={resetDialogCtx.open}>
+	<AlertDialog.Content size="sm">
+		<AlertDialog.Header>
+			<AlertDialog.Title>Reset to defaults?</AlertDialog.Title>
+			<AlertDialog.Description>
+				This will reset all customization options to the current style’s defaults, including locked
+				options.
+			</AlertDialog.Description>
+		</AlertDialog.Header>
+		<AlertDialog.Footer>
+			<AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
+			<AlertDialog.Action
+				onclick={() => {
+					designSystem.reset();
+					resetDialogCtx.open = false;
+				}}>Reset</AlertDialog.Action
+			>
+		</AlertDialog.Footer>
+	</AlertDialog.Content>
+</AlertDialog.Root>
