@@ -10,7 +10,14 @@
 	UserConfigContext.set(new UserConfig(data.userConfig));
 
 	function handleKeyDown(e: KeyboardEvent) {
-		if ((e.key !== "d" && e.key !== "D") || e.metaKey || e.ctrlKey) return;
+		if (
+			e.defaultPrevented ||
+			(e.key !== "d" && e.key !== "D") ||
+			e.metaKey ||
+			e.ctrlKey ||
+			e.altKey
+		)
+			return;
 		if (
 			(e.target instanceof HTMLElement && e.target.isContentEditable) ||
 			e.target instanceof HTMLInputElement ||

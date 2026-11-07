@@ -1,5 +1,6 @@
 <script lang="ts">
 	import LucideSquareIcon from "@lucide/svelte/icons/square";
+	import * as Picker from "$lib/components/picker/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
 	import HugeiconsIcon from "$lib/components/icon-placeholder/hugeicons-icon.svelte";
 	import LucideIcon from "$lib/components/icon-placeholder/lucide-icon.svelte";
@@ -19,7 +20,6 @@
 	import type { PhosphorIconName } from "$lib/registry/icons/__phosphor__/index.js";
 	import type { RemixIconIconName } from "$lib/registry/icons/__remixicon__/index.js";
 	import type { TablerIconName } from "$lib/registry/icons/__tabler__/index.js";
-	import * as Picker from "./picker/index.js";
 	import LockButton from "./lock-button.svelte";
 
 	type Props = {
@@ -145,7 +145,7 @@
 				</div>
 			</div>
 			<div
-				class="pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base text-foreground select-none *:[svg]:text-foreground!"
+				class="pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base text-foreground select-none md:right-2.5 *:[svg]:text-foreground!"
 			>
 				<CurrentLogo class="size-4" />
 			</div>
@@ -181,7 +181,7 @@
 			</Picker.RadioGroup>
 		</Picker.Content>
 	</Picker.Root>
-	<LockButton prop="iconLibrary" class="absolute top-1/2 right-10 -translate-y-1/2" />
+	<LockButton prop="iconLibrary" class="absolute top-1/2 right-8 -translate-y-1/2" />
 </div>
 
 {#snippet IconLibraryPreview(iconLibrary: IconLibraryName)}
