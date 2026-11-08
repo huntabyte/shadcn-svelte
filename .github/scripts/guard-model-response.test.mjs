@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { validateAnswers } from "./guard-model-response.mjs";
+import { validateAnswers, guardFetch, explicitQuestions } from "./guard-model-response.mjs";
 test("accepts complete probabilities without changing the payload", () => {
   const payload = { answers: { a: { noul: 0 }, b: { noul: 1 } } };
   const before = JSON.stringify(payload);
@@ -95,4 +95,45 @@ test("published CLI cannot turn a missing answer into a removal when guarded", a
   } finally {
     await rm(dir, { recursive: true, force: true });
   }
+});
+
+test("blocks a third inference request before network access, including after failures", async () => {
+  let calls = 0;
+  const fetch = guardFetch(async () => {
+    calls++;
+    return Response.json({}, { status: 503 });
+  });
+  const url = "https://api.typesafe.ai/v1/systemone";
+  const init = { body: JSON.stringify({ questions: {} }) };
+  await fetch(url, init);
+  await fetch(url, init);
+  await assert.rejects(fetch(url, init), /budget exceeded/);
+  assert.equal(calls, 2);
+});
+
+test("embeds each literal policy while preserving IDs, context and probabilities", () => {
+  const request = {
+    state: {
+      items: [{ title: "Example" }],
+      labels: [
+        { name: "feature", apply_when: "New functionality", remove_when: "Only repairs" },
+        { name: "docs", apply_when: "Documentation content" },
+      ],
+    },
+    questions: {
+      item_0_label_0: { type: "noul", instructions: { judge_from: "Read prompt" } },
+      item_0_label_1: { type: "noul", instructions: {} },
+    },
+  };
+  const state = JSON.stringify(request.state);
+  explicitQuestions(request);
+  assert.equal(JSON.stringify(request.state), state);
+  assert(request.questions.item_0_label_0.instructions.question.includes('"feature"'));
+  assert(request.questions.item_0_label_1.instructions.question.includes('"docs"'));
+  assert.equal(
+    JSON.parse(request.questions.item_0_label_0.instructions.label).remove_when,
+    "Only repairs"
+  );
+  assert.equal(request.questions.item_0_label_0.instructions.judge_from, "Read prompt");
+  assert.throws(() => explicitQuestions({ questions: { unknown: {} } }), /Unrecognized/);
 });

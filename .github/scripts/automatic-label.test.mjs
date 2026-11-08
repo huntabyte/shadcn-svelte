@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { readFile } from "node:fs/promises";
-import { labelPasses, runAutomaticLabels } from "./automatic-label.mjs";
+import { automaticPolicy, runAutomaticLabels } from "./automatic-label.mjs";
 const event = (name, type = "Bot", login = "github-actions[bot]", id = 1, event = "labeled") => ({
   id,
   event,
@@ -19,25 +19,31 @@ const policy = {
   },
 };
 test("every configured label retains automatic application and literal meaning", () => {
-  const passes = labelPasses(policy, { rows: [], omitted: false });
-  assert.equal(passes.length, 4);
-  for (const p of passes) {
-    assert.equal(Object.keys(p.policy.labels).length, 1);
-    assert.notEqual(p.policy.labels[p.name].can_apply, false);
-    assert(p.policy.prompt.includes(JSON.stringify(p.name)));
+  const result = automaticPolicy(policy, { rows: [], omitted: false });
+  assert.equal(Object.keys(result.labels).length, 4);
+  for (const name of Object.keys(policy.labels)) {
+    assert.notEqual(result.labels[name].can_apply, false);
+    assert.deepEqual(result.labels[name].apply_when, policy.labels[name].apply_when);
   }
-  assert.equal(
-    passes.find((p) => p.name === "duplicate").policy.labels.duplicate.context,
-    "similar_issues"
-  );
-  assert.equal(passes.find((p) => p.name === "slop").policy.labels.slop.threshold, 0.9);
+  assert.equal(result.labels.duplicate.context, "similar_issues");
+  assert.equal(result.labels.slop.threshold, 0.9);
 });
-test("cleanup permits only the three current bot-owned labels", () => {
-  const passes = labelPasses(policy, {
-    rows: [event("duplicate"), event("feature"), event("slop"), event("needs reproduction")],
+test("cleanup permits all current action-owned label categories", () => {
+  const result = automaticPolicy(policy, {
+    rows: Object.keys(policy.labels).map((name) => event(name)),
     omitted: false,
   });
-  for (const p of passes) assert.equal(p.policy.labels[p.name].can_remove, p.name !== "feature");
+  for (const entry of Object.values(result.labels)) assert.equal(entry.can_remove, true);
+  assert.equal(
+    automaticPolicy(
+      { labels: { feature: { can_remove: false } } },
+      {
+        rows: [event("feature")],
+        omitted: false,
+      }
+    ).labels.feature.can_remove,
+    true
+  );
 });
 test("later human application, removal, unknown actor and incomplete history preserve labels", () => {
   for (const history of [
@@ -49,13 +55,9 @@ test("later human application, removal, unknown actor and incomplete history pre
     { rows: [event("duplicate", "Bot", "another-bot")], omitted: false },
     { rows: [event("duplicate")], omitted: true },
   ])
-    assert.equal(
-      labelPasses(policy, history).find((p) => p.name === "duplicate").policy.labels.duplicate
-        .can_remove,
-      false
-    );
+    assert.equal(automaticPolicy(policy, history).labels.duplicate.can_remove, false);
 });
-test("orchestrates unmodified CLI arguments without shell evaluation, limits concurrency and cleans temp policies", async () => {
+test("orchestrates unmodified CLI arguments without shell evaluation, uses one batched invocation and cleans temp policies", async () => {
   let active = 0,
     max = 0;
   const paths = [];
@@ -74,7 +76,7 @@ test("orchestrates unmodified CLI arguments without shell evaluation, limits con
       const config = args[args.indexOf("--config") + 1];
       paths.push(config);
       const p = JSON.parse(await readFile(config, "utf8"));
-      assert.equal(Object.keys(p.labels).length, 1);
+      assert.equal(Object.keys(p.labels).length, 4);
       active++;
       max = Math.max(max, active);
       await new Promise((r) => setTimeout(r, 5));
@@ -82,7 +84,7 @@ test("orchestrates unmodified CLI arguments without shell evaluation, limits con
       return { stdout: "checked" };
     },
   });
-  assert.equal(max, 2);
-  assert.equal(paths.length, 4);
+  assert.equal(max, 1);
+  assert.equal(paths.length, 1);
   for (const p of paths) await assert.rejects(readFile(p));
 });

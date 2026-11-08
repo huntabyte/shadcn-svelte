@@ -4,11 +4,11 @@ The workflow pins the published `@ieedan/label@0.0.1`; it does not depend on the
 
 `label-context.mjs` collects bounded related-item discussion/state, submitted reviews and changed-file excerpts. It ignores foreign-repository cross references, marks omissions and retries rate limits. Failed collection stops the job before inference or label writes.
 
-`automatic-label.mjs` invokes the unmodified CLI once per configured label, with that label's literal policy in the prompt. This avoids ambiguous array references in the deployed package. Concurrency is two. The tradeoff is **14 inference requests per item instead of two**; filtering bot comments reduces redundant runs, but is not a demonstrated net cost saving.
+`automatic-label.mjs` invokes the published CLI once with all configured labels. The CLI makes one batched inference request and one similar-issues request, matching the deployed two-request count. The fetch adapter in `guard-model-response.mjs` resolves indirect array references into literal label names and policies in each outgoing question. It does not modify the installed package or add inference calls. Additional evidence changes payload size; identical billed cost has not been established.
 
-Automatic cleanup is limited to `duplicate`, `slop` and `needs reproduction` whose latest label event was application by GitHub Actions. All other labels, human-applied labels and labels with incomplete ownership history are preserved. Cleanup uses the published CLI's conservative low-confidence buffer, so some stale labels can remain. History is a snapshot and GitHub writes are not atomic.
+Automatic cleanup is permitted for **every configured category** whose latest label event was application by `github-actions[bot]`. Human-applied labels, labels applied by other automations and incomplete ownership histories are preserved. Removal remains subject to the published CLI's conservative low-confidence buffer, so some stale labels can remain. History is a snapshot and GitHub writes are not atomic.
 
-`guard-model-response.mjs` validates every expected probability before the CLI receives a successful model response, preventing missing answers from becoming implicit negative scores. It never changes probabilities or label meanings.
+The adapter enforces a hard maximum of two inference requests per invocation, including attempted retries, and validates every expected probability before the CLI receives a successful response. Missing answers cannot become implicit negative scores. It preserves returned probabilities and thresholds.
 
 Local checks require no GitHub or TypeSafe credentials:
 

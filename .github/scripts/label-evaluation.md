@@ -1,56 +1,53 @@
 # Automatic labeler evaluation — November 7, 2026
 
-Both sides use the exact npm-published `@ieedan/label@0.0.1`, checksum `357568d4625a7f954eb2179620ee582a718d7f7a`. No unmerged core code is used. Before runs the deployed repository policy/workflow behavior; after adds bounded GitHub context, literal per-label policy prompts, automatic per-label CLI passes and scoped bot-owned cleanup. Every invocation uses `--dry-run`, and a fetch adapter rejects GitHub writes. TypeSafe inference is live; the key is supplied via hidden input and process environment only.
+Both sides execute npm-published `@ieedan/label@0.0.1` (tarball SHA1 `357568d4625a7f954eb2179620ee582a718d7f7a`). After uses a repository-side fetch adapter that expands the published CLI’s indirect label references into literal question policies, checks complete responses and caps inference requests at two. The installed package is unchanged; its outgoing questions are adapted. No unmerged labeler package is required.
 
-Twenty-four public issue/PR snapshots from the retrospective plus eight synthetic automation controls, repeated three times. All fourteen configured labels are scored for eligibility and addition. Primary expectations were frozen before the first inference; their hash remains `316f5fe96d193785e0aac3f5d66a1f5d8f71cfdc38d4bca5b557cb30d66638db`. Cleanup expectations for the newly added removal capability were separately frozen before testing cleanup. No initial expectation was changed to fit outputs. Current snapshots, including closed items, are regression fixtures; this is not an event-time reconstruction, fresh holdout or repository-wide accuracy estimate.
+One CLI invocation per item makes one batched request plus one similar-issues request: **two inference requests before and after**, confirmed for all 96 runs on each side. The earlier fourteen-request implementation was rejected and its scores are superseded. Extra context changes request size; equal request count does not prove equal billed cost. No pricing or dollar-cost estimate was measured.
 
-Earlier development iterations are retained locally. The final collector and policies were compared against the evaluated context and per-pass configs. All 1,344 final-pass provider responses pass the completeness guard without changes, and all 192 CLI result logs match the scored removal behavior.
+All configured categories may be removed when complete timeline history shows the latest application was by `github-actions[bot]`. Human-applied labels, other bots’ labels and unknown ownership are preserved. The published CLI’s low-confidence removal buffer still applies. Duplicate and slop application remain fully automatic.
 
-## Public cases
+The reference was manually established from discussions, reviews and diffs before inference: 24 public snapshots plus eight synthetic controls, repeated three times, all fourteen labels scored. Eligibility/addition reference hash remains `316f5fe96d193785e0aac3f5d66a1f5d8f71cfdc38d4bca5b557cb30d66638db`. Removal expectations were expanded before this run by comparing the unchanged eligibility reference with current action-owned labels. The original baseline outputs are reused unchanged. This is a development regression set, not a fresh holdout or an event-time reconstruction. All runs use `--dry-run`; frozen GitHub GET responses and a fetch adapter reject GitHub writes. Credentials are passed only through hidden input and process environment.
 
-| Metric                            |         Before |           After |
-| --------------------------------- | -------------: | --------------: |
-| Correct eligibility decisions     |        878/999 |         983/999 |
-| Eligibility precision             | 89/116 (76.7%) | 174/181 (96.1%) |
-| Eligibility recall                | 89/183 (48.6%) | 174/183 (95.1%) |
-| Exact fully determined label sets |          10/63 |           47/63 |
-| Correct addition decisions        |        951/999 |         991/999 |
-| Wrong additions                   |              7 |               4 |
-| Missed additions                  |             41 |               4 |
-| Correct stale-label removals      |           0/27 |           21/27 |
-| Wrong removals                    |              0 |               0 |
+| Public-case result            |  Before |   After |
+| ----------------------------- | ------: | ------: |
+| Correct eligibility decisions | 878/999 | 971/999 |
+| Label precision               |   76.7% |   96.4% |
+| Label recall                  |   48.6% |   88.0% |
+| Exact determined label sets   |   10/63 |   38/63 |
+| Wrong / missed additions      |  7 / 41 |  3 / 15 |
+| Correct stale-label removals  |    0/60 |   49/60 |
+| Wrong removals                |       0 |       0 |
 
-There are 1,008 public eligibility decisions per version; nine uncertain eligibility judgments are excluded from the 999 denominator. The same nine potential additions are uncertain. Nine runs containing an uncertain label are excluded from exact-set scoring (72 total public runs, 63 fully determined). Do not interpret the many negative decisions as complete-item accuracy. Precision/recall and exact sets show the remaining gaps.
+The public denominator is 1,008 label decisions minus nine uncertain reference judgments = 999. Exact-set scoring excludes nine runs with uncertainty: 72 − 9 = 63. Negative decisions contribute to overall correctness, so precision, recall, exact sets and wrong removals are reported separately. Cleanup denominators now include all categories and therefore differ from the earlier three-category report.
 
-Both new false duplicate labels (#2930 and #2958) are automatically removed in all repeats; the legacy duplicate on #2917 is removed too. Four stale reproduction labels are removed. The two bot-applied slop labels on #2932 and #2962 remain in all repeats because the conservative removal buffer is stricter at the 0.9 application threshold. They are missed cleanups, not tasks routed to a human. The existing human-applied reproduction label on #2939 is preserved.
+Automation controls: eligibility 315/336 → 333/336; exact label sets 7/24 → 21/24. After has 3 false positives and 0 false negatives.
 
-## Automation controls
+## Every remaining disagreement
 
-Eligibility is 315/336 → 330/336. Every intended positive is recognized after the changes (36/36 positive label decisions). Automatic duplicate controls pass 6/6, explicit AI-description authorship passes 3/3, and the unlinked bug-fix PR needing reproduction passes 3/3. The code-assistance-only negative, empty changes-requested review, and later approval controls also match their target labels in all repeats.
+Counts below are across three repeats against the unchanged reference. Two reference judgments remain debatable: partial upstream MCP alignment can support parity on #2930, and dependency housekeeping in #2941 can be treated as part of its bug fix instead of separate chore scope. They retain their original scoring.
 
-Six false positives remain: the component-only bug-fix control that links an official demo gets docs and parity in all three repeats. This is not a claim that all control labels pass. No review queue, suggestion-only duplicate/slop setting or manual approval gate is introduced.
-
-## Remaining reference disagreements
-
-Against the frozen reference, final public eligibility has seven false positives and nine false negatives. These include parity on #2930, contributions welcome on #2917, an intermittent dependencies label on #2761, and misses for chore on #2941, docs on #2931/#2959, and bug on #2932.
-
-Two original annotations are reasonably debatable after source review: #2930’s partial upstream MCP alignment can support parity, and #2941’s dependency housekeeping can be viewed as part of its bug fix rather than independent chore scope. The table retains the original frozen judgments; these were not relabeled after seeing model outputs. The ledger records reference disagreements rather than claiming infallible ground truth.
-
-## Operational checks and tradeoffs
-
-- Sixteen local tests cover relationship/state context, bounded files/comments/patches, pending reviews, foreign-repository links, rate-limit retry, permission failures, automatic application, bot-only cleanup ownership, shell-safe arguments, bounded concurrency, temp cleanup and complete model responses, including the published CLI’s missing-answer removal regression.
-- Repository lint passes. The workflow installs the exact CLI and YAML parser from an npm lockfile; no unmerged labeler PR is required.
-- There are fourteen model requests per item instead of two. Bot comments are filtered and commit synchronization gets an explicit trigger, but no net cost saving is claimed.
-- Only current GitHub Actions-applied duplicate/slop/reproduction labels can be removed. Other labels, human-applied labels and incomplete ownership histories are preserved. Concurrent label changes are not atomic.
-- The response guard rejects missing/invalid probabilities before the published CLI can turn them into negative defaults. Failed context fetches stop the job before inference.
+| Case           | False eligibility positives | Missed eligible labels | Wrong removals | Missed removals          |
+| -------------- | --------------------------- | ---------------------- | -------------- | ------------------------ |
+| public-2930    | —                           | docs ×3                | —              | —                        |
+| public-2941    | —                           | chore ×3               | —              | —                        |
+| public-2962    | —                           | —                      | —              | slop ×3                  |
+| public-2932    | —                           | bug ×3                 | —              | slop ×3                  |
+| public-2931    | —                           | docs ×3                | —              | —                        |
+| public-2944    | —                           | bug ×3                 | —              | contributions welcome ×2 |
+| public-2926    | —                           | parity ×1              | —              | —                        |
+| public-2949    | —                           | docs ×3                | —              | —                        |
+| public-2959    | —                           | docs ×3                | —              | —                        |
+| public-2917    | contributions welcome ×3    | —                      | —              | contributions welcome ×3 |
+| public-2761    | feature ×3                  | —                      | —              | —                        |
+| control-900106 | docs ×3                     | —                      | —              | —                        |
 
 ## Every configured label
 
-Each cell is `expected; before positive repeats → after positive repeats` (out of three). `1` means eligible, `0` means ineligible, `?` means uncertain. Additions and removals, each repeat’s score and verdict, and all 8,064 before/after label/action checks are retained in the local evaluation artifacts.
+Each cell is `expected; before positive repeats → after positive repeats` out of three. `1` means eligible, `0` ineligible and `?` uncertain. All 8,064 eligibility/addition/removal checks, including scores and individual verdicts, are retained in the local `every-label-decision-batched.csv`.
 
 | Case                                                            | awaiting submitter | bug      | chore    | cli      | contributions welcome | dependencies | docs     | duplicate | feature  | has workaround | needs reproduction | parity   | slop     | triage   |
 | --------------------------------------------------------------- | ------------------ | -------- | -------- | -------- | --------------------- | ------------ | -------- | --------- | -------- | -------------- | ------------------ | -------- | -------- | -------- |
-| [#2930](https://github.com/huntabyte/shadcn-svelte/pull/2930)   | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 1; 3 → 3 | 0; 0 → 0              | 1; 0 → 3     | 1; 0 → 3 | 0; 1 → 0  | 1; 0 → 3 | 0; 0 → 0       | 0; 0 → 0           | 0; 0 → 3 | 0; 0 → 0 | 0; 0 → 0 |
+| [#2930](https://github.com/huntabyte/shadcn-svelte/pull/2930)   | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 1; 3 → 3 | 0; 0 → 0              | 1; 0 → 3     | 1; 0 → 0 | 0; 1 → 0  | 1; 0 → 3 | 0; 0 → 0       | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 |
 | [#2958](https://github.com/huntabyte/shadcn-svelte/pull/2958)   | 0; 0 → 0           | 1; 1 → 3 | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0              | 0; 0 → 0     | 1; 3 → 3 | 0; 0 → 0  | 0; 0 → 0 | 0; 0 → 0       | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 |
 | [#2800](https://github.com/huntabyte/shadcn-svelte/pull/2800)   | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0              | 0; 0 → 0     | 1; 3 → 3 | 0; 0 → 0  | 1; 0 → 3 | 0; 0 → 0       | 0; 3 → 0           | 1; 0 → 3 | 0; 0 → 0 | 0; 0 → 0 |
 | [#2732](https://github.com/huntabyte/shadcn-svelte/pull/2732)   | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0              | 0; 0 → 0     | 1; 3 → 3 | 0; 0 → 0  | 1; 0 → 3 | 0; 0 → 0       | 0; 3 → 0           | 1; 0 → 3 | 0; 0 → 0 | 0; 0 → 0 |
@@ -58,20 +55,20 @@ Each cell is `expected; before positive repeats → after positive repeats` (out
 | [#2941](https://github.com/huntabyte/shadcn-svelte/pull/2941)   | 0; 0 → 0           | 1; 3 → 3 | 1; 3 → 0 | 0; 3 → 0 | 0; 0 → 0              | 1; 3 → 3     | 0; 0 → 0 | 0; 0 → 0  | 0; 0 → 0 | 0; 0 → 0       | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 |
 | [#2962](https://github.com/huntabyte/shadcn-svelte/issues/2962) | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 1; 3 → 3 | 0; 0 → 0              | 0; 0 → 0     | 0; 0 → 0 | 0; 0 → 0  | 0; 0 → 0 | 0; 0 → 0       | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 |
 | [#2953](https://github.com/huntabyte/shadcn-svelte/issues/2953) | 0; 0 → 0           | 1; 3 → 3 | 0; 0 → 0 | 1; 3 → 3 | 0; 0 → 0              | 0; 0 → 0     | 0; 0 → 0 | 0; 0 → 0  | 0; 0 → 0 | 1; 0 → 3       | ?; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 |
-| [#2932](https://github.com/huntabyte/shadcn-svelte/issues/2932) | 0; 0 → 0           | 1; 0 → 2 | 0; 0 → 0 | 1; 3 → 3 | 0; 0 → 0              | 0; 0 → 0     | 0; 0 → 0 | 0; 0 → 0  | 0; 0 → 0 | 0; 0 → 0       | 0; 0 → 0           | 0; 3 → 0 | 0; 2 → 0 | 0; 0 → 0 |
+| [#2932](https://github.com/huntabyte/shadcn-svelte/issues/2932) | 0; 0 → 0           | 1; 0 → 0 | 0; 0 → 0 | 1; 3 → 3 | 0; 0 → 0              | 0; 0 → 0     | 0; 0 → 0 | 0; 0 → 0  | 0; 0 → 0 | 0; 0 → 0       | 0; 0 → 0           | 0; 3 → 0 | 0; 2 → 0 | 0; 0 → 0 |
 | [#2931](https://github.com/huntabyte/shadcn-svelte/pull/2931)   | 0; 0 → 0           | 1; 3 → 3 | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0              | 0; 0 → 0     | 1; 0 → 0 | 0; 0 → 0  | 0; 0 → 0 | 0; 0 → 0       | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 |
 | [#2939](https://github.com/huntabyte/shadcn-svelte/issues/2939) | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0              | 0; 0 → 0     | 0; 0 → 0 | 0; 0 → 0  | 1; 0 → 3 | 1; 3 → 3       | 1; 0 → 3           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 |
-| [#2944](https://github.com/huntabyte/shadcn-svelte/issues/2944) | 0; 0 → 0           | 1; 0 → 3 | 0; 0 → 0 | 0; 0 → 0 | 0; 3 → 0              | 0; 0 → 0     | 0; 0 → 0 | 0; 0 → 0  | 0; 0 → 0 | 1; 1 → 3       | ?; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 |
+| [#2944](https://github.com/huntabyte/shadcn-svelte/issues/2944) | 0; 0 → 0           | 1; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 | 0; 3 → 0              | 0; 0 → 0     | 0; 0 → 0 | 0; 0 → 0  | 0; 0 → 0 | 1; 1 → 3       | ?; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 |
 | [#2928](https://github.com/huntabyte/shadcn-svelte/pull/2928)   | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0              | 0; 0 → 0     | 0; 0 → 0 | 0; 0 → 0  | 1; 0 → 3 | 0; 0 → 0       | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 |
 | [#2929](https://github.com/huntabyte/shadcn-svelte/pull/2929)   | 0; 0 → 0           | 1; 3 → 3 | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0              | 0; 0 → 0     | 0; 0 → 0 | 0; 0 → 0  | 0; 0 → 0 | 0; 0 → 0       | 0; 0 → 0           | 1; 0 → 3 | 0; 0 → 0 | 0; 0 → 0 |
-| [#2926](https://github.com/huntabyte/shadcn-svelte/pull/2926)   | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0              | 1; 0 → 3     | 1; 0 → 3 | 0; 0 → 0  | 1; 0 → 3 | 0; 0 → 0       | 0; 0 → 0           | 1; 0 → 3 | 0; 0 → 0 | 0; 0 → 0 |
+| [#2926](https://github.com/huntabyte/shadcn-svelte/pull/2926)   | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0              | 1; 0 → 3     | 1; 0 → 3 | 0; 0 → 0  | 1; 0 → 3 | 0; 0 → 0       | 0; 0 → 0           | 1; 0 → 2 | 0; 0 → 0 | 0; 0 → 0 |
 | [#2947](https://github.com/huntabyte/shadcn-svelte/pull/2947)   | 0; 0 → 0           | 1; 3 → 3 | 0; 0 → 0 | 1; 3 → 3 | 0; 0 → 0              | 0; 0 → 0     | 0; 0 → 0 | 0; 0 → 0  | 0; 0 → 0 | 0; 0 → 0       | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 |
-| [#2949](https://github.com/huntabyte/shadcn-svelte/pull/2949)   | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 1; 3 → 3 | 0; 0 → 0              | 1; 0 → 3     | 1; 0 → 3 | 0; 0 → 0  | 1; 0 → 3 | 0; 0 → 0       | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 |
-| [#2959](https://github.com/huntabyte/shadcn-svelte/pull/2959)   | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 1; 3 → 3 | 0; 0 → 0              | 0; 0 → 0     | 1; 0 → 1 | 0; 0 → 0  | 1; 0 → 3 | 0; 0 → 0       | 0; 0 → 0           | 1; 0 → 3 | 0; 0 → 0 | 0; 0 → 0 |
+| [#2949](https://github.com/huntabyte/shadcn-svelte/pull/2949)   | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 1; 3 → 3 | 0; 0 → 0              | 1; 0 → 3     | 1; 0 → 0 | 0; 0 → 0  | 1; 0 → 3 | 0; 0 → 0       | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 |
+| [#2959](https://github.com/huntabyte/shadcn-svelte/pull/2959)   | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 1; 3 → 3 | 0; 0 → 0              | 0; 0 → 0     | 1; 0 → 0 | 0; 0 → 0  | 1; 0 → 3 | 0; 0 → 0       | 0; 0 → 0           | 1; 0 → 3 | 0; 0 → 0 | 0; 0 → 0 |
 | [#2771](https://github.com/huntabyte/shadcn-svelte/pull/2771)   | 0; 0 → 0           | 1; 3 → 3 | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0              | 0; 0 → 0     | 1; 3 → 3 | 0; 0 → 0  | 0; 0 → 0 | 0; 0 → 0       | 0; 0 → 0           | 1; 0 → 3 | 0; 0 → 0 | 0; 0 → 0 |
 | [#2914](https://github.com/huntabyte/shadcn-svelte/pull/2914)   | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0              | 0; 0 → 0     | 1; 3 → 3 | 0; 0 → 0  | 0; 0 → 0 | 0; 0 → 0       | 0; 0 → 0           | 1; 0 → 3 | 0; 0 → 0 | 0; 0 → 0 |
 | [#2917](https://github.com/huntabyte/shadcn-svelte/issues/2917) | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 | 0; 3 → 3              | 0; 0 → 0     | 1; 3 → 3 | 0; 0 → 0  | 0; 0 → 0 | 0; 0 → 0       | 0; 0 → 0           | 0; 0 → 0 | 0; 1 → 0 | 0; 0 → 0 |
-| [#2761](https://github.com/huntabyte/shadcn-svelte/pull/2761)   | 0; 0 → 0           | 1; 3 → 3 | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0              | 0; 0 → 1     | 1; 3 → 3 | 0; 0 → 0  | 0; 0 → 0 | 0; 0 → 0       | 0; 3 → 0           | 1; 0 → 3 | 0; 0 → 0 | 0; 0 → 0 |
+| [#2761](https://github.com/huntabyte/shadcn-svelte/pull/2761)   | 0; 0 → 0           | 1; 3 → 3 | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0              | 0; 0 → 0     | 1; 3 → 3 | 0; 0 → 0  | 0; 0 → 3 | 0; 0 → 0       | 0; 3 → 0           | 1; 0 → 3 | 0; 0 → 0 | 0; 0 → 0 |
 | [#2736](https://github.com/huntabyte/shadcn-svelte/pull/2736)   | 0; 0 → 0           | 0; 0 → 0 | 1; 3 → 3 | 0; 0 → 0 | 0; 0 → 0              | 1; 3 → 3     | 0; 0 → 0 | 0; 0 → 0  | 0; 0 → 0 | 0; 0 → 0       | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 |
 | [#2950](https://github.com/huntabyte/shadcn-svelte/pull/2950)   | 0; 0 → 0           | 0; 0 → 0 | ?; 0 → 0 | 0; 0 → 0 | 0; 0 → 0              | 1; 3 → 3     | 1; 3 → 3 | 0; 0 → 0  | 0; 0 → 0 | 0; 0 → 0       | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 |
 | control-900101                                                  | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0              | 0; 0 → 0     | 0; 0 → 0 | 1; 3 → 3  | 0; 0 → 0 | 0; 0 → 0       | 0; 0 → 0           | 0; 0 → 0 | 0; 2 → 0 | 0; 0 → 0 |
@@ -79,6 +76,72 @@ Each cell is `expected; before positive repeats → after positive repeats` (out
 | control-900103                                                  | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0              | 0; 0 → 0     | 0; 0 → 0 | 0; 0 → 0  | 1; 0 → 3 | 0; 0 → 0       | 0; 1 → 0           | 0; 0 → 0 | 1; 0 → 3 | 0; 0 → 0 |
 | control-900104                                                  | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0              | 0; 0 → 0     | 0; 0 → 0 | 0; 0 → 0  | 1; 0 → 3 | 0; 0 → 0       | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 |
 | control-900105                                                  | 0; 0 → 0           | 1; 3 → 3 | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0              | 0; 0 → 0     | 0; 0 → 0 | 0; 0 → 0  | 0; 0 → 0 | 0; 0 → 0       | 1; 0 → 3           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 |
-| control-900106                                                  | 0; 0 → 0           | 1; 3 → 3 | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0              | 0; 0 → 0     | 0; 0 → 3 | 0; 0 → 0  | 0; 0 → 0 | 0; 0 → 0       | 0; 0 → 0           | 0; 0 → 3 | 0; 0 → 0 | 0; 0 → 0 |
+| control-900106                                                  | 0; 0 → 0           | 1; 3 → 3 | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0              | 0; 0 → 0     | 0; 0 → 3 | 0; 0 → 0  | 0; 0 → 0 | 0; 0 → 0       | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 |
 | control-900107                                                  | 1; 0 → 3           | 0; 0 → 0 | 1; 3 → 3 | 0; 0 → 0 | 0; 0 → 0              | 0; 0 → 0     | 0; 0 → 0 | 0; 0 → 0  | 0; 0 → 0 | 0; 0 → 0       | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 |
 | control-900108                                                  | 0; 0 → 0           | 0; 0 → 0 | 1; 3 → 3 | 0; 0 → 0 | 0; 0 → 0              | 0; 0 → 0     | 0; 0 → 0 | 0; 0 → 0  | 0; 0 → 0 | 0; 0 → 0       | 0; 0 → 0           | 0; 0 → 0 | 0; 0 → 0 | 0; 0 → 0 |
+
+## Reference reasoning
+
+**public-2930:** New MCP feature/public CLI, manifests and MCP README; older #2777 explicitly closed in favor of it, so not duplicate. Expected: feature, cli, dependencies, docs.
+
+**public-2958:** Homepage styling regression fix, distinct from earlier card addition, so bug/docs and not duplicate. Expected: bug, docs.
+
+**public-2800:** New upstream Typeset feature and documentation port; later requesting maintainer thanks accepts the review response. No runtime defect needing reproduction. Expected: feature, docs, parity.
+
+**public-2732:** New public Calendar range mode plus docs/examples and explicit upstream parity, linked to feature request #2735. Expected: feature, docs, parity.
+
+**public-2919:** New end-user agent workflow/skill with documentation and explicit upstream port; no runtime defect. Expected: feature, docs, parity.
+
+**public-2941:** Fixes Create undo, updates manifests/lockfile and internal dependency maintenance; no public CLI changes in the diff. Expected: bug, dependencies, chore.
+
+**public-2962:** Public CLI usage report; maintainer explains data-table intentionally is not installable, so no confirmed defect. Reporter explicitly denies AI description authorship. Expected: cli.
+
+**public-2953:** Maintainer confirms CLI failure, supplies/accepts a package-manager workaround, and implements fix. Reproduction acceptance without a hosted project is uncertain. No direct evidence an AI wrote the description. Expected: bug, cli, has workaround. Uncertain: needs reproduction.
+
+**public-2932:** Public CLI defect confirmed through maintainer fix #2947, accessible reproduction project. AI-assisted investigation disclosure does not establish AI description authorship. Expected: bug, cli.
+
+**public-2931:** Fixes documentation website heading-font inheritance with demonstrated preview reproduction; AI investigation disclosure is not description authorship. Expected: bug, docs.
+
+**public-2939:** Unconfirmed defect plus explicit new Combobox request. Reporter says animation patch works. No openable project is supplied; maintainer reapplies needs reproduction. No duplicate relationship. Expected: feature, has workaround, needs reproduction.
+
+**public-2944:** Native select ref type defect confirmed through maintainer fix #2945, specific usable patch. Whether the step-only reproduction has been accepted is uncertain. Expected: bug, has workaround. Uncertain: needs reproduction.
+
+**public-2928:** Adds a public component export, fulfilling #2927, not duplicating it. Implementation alone is not docs. Expected: feature.
+
+**public-2929:** Repairs existing InputOTP state styling and aligns with upstream attribute behavior, fixes #2924. Expected: bug, parity.
+
+**public-2926:** Adds public AI elements primitives, docs/examples, dependency manifests and explicit upstream alignment; fixes #2925, not duplicate. Expected: feature, docs, dependencies, parity.
+
+**public-2947:** Public CLI bug fix, linked #2932. No package dependency or documentation content changes. Expected: bug, cli.
+
+**public-2949:** New public CLI flags/noninteractive behavior, docs updates and actual dependency changes; prerequisite for MCP is not duplicate. Expected: feature, cli, docs, dependencies.
+
+**public-2959:** New public preset support and documentation, explicitly upstream chart/preset parity. Review requests have later concrete resolution replies from the maintainer/author. Expected: feature, cli, docs, parity.
+
+**public-2771:** Adds upstream composition/API docs and corrects invalid examples. Static reference corrections alone do not require reproduction. Expected: bug, docs, parity.
+
+**public-2914:** Adds upstream changelogs/demos; author clarified distinct scope and maintainer accepted. Existing component implementation does not duplicate changelogs. Expected: docs, parity.
+
+**public-2917:** Docs alias correction; already claimed by #2864. A request and its implementation are distinct, not duplicates. No maintainer-confirmed runtime defect. Expected: docs.
+
+**public-2761:** Fixes broken homepage rendering/layout and docs presentation, explicitly aligned upstream. Renaming CLI tab is not public CLI code. Expected: bug, docs, parity.
+
+**public-2736:** Internal deployment/release tooling and actual dependency upgrade; Changesets CLI is not the public shadcn-svelte CLI. Expected: chore, dependencies.
+
+**public-2950:** Documentation and real package dependency migration. Independent internal CI maintenance scope is uncertain; no public CLI package changes. Expected: docs, dependencies. Uncertain: chore.
+
+**control-900101:** Targeted control: Dropdown hover report repeated Expected: duplicate.
+
+**control-900102:** Targeted control: feat: add custom item rendering snippet Expected: feature, duplicate.
+
+**control-900103:** Targeted control: feat: add a timezone mode Expected: feature, slop.
+
+**control-900104:** Targeted control: feat: add timezone rendering prop Expected: feature.
+
+**control-900105:** Targeted control: fix: restore spinner visibility Expected: bug, needs reproduction.
+
+**control-900106:** Targeted control: fix: restore spinner visibility Expected: bug.
+
+**control-900107:** Targeted control: chore: maintain unit tests Expected: chore, awaiting submitter.
+
+**control-900108:** Targeted control: chore: maintain unit tests Expected: chore.
