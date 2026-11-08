@@ -92,7 +92,7 @@ export function createPieAnimation(
 	return angle;
 }
 
-/** Track the line reveal so dots and labels appear after the stroke finishes drawing. */
+/** Shared progress for chart reveals and synchronized mark animations. */
 export function createRevealAnimation() {
 	const progress = new Tween(0, defaultRadarScale);
 	onMount(() => {

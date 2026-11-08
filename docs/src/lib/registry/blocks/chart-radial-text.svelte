@@ -1,6 +1,6 @@
 <script lang="ts">
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
-	import { ArcChart, Text } from "layerchart";
+	import { Arc, ArcChart, Text } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 
@@ -22,9 +22,9 @@
 			<ArcChart
 				label="browser"
 				value="visitors"
-				outerRadius={-20}
-				innerRadius={-12}
-				padding={40}
+				outerRadius={89}
+				innerRadius={81}
+				padding={0}
 				range={[90, -160]}
 				maxValue={chartData[0].visitors}
 				cornerRadius={20}
@@ -40,12 +40,18 @@
 				tooltipContext={false}
 			>
 				{#snippet belowMarks()}
-					<circle cx="0" cy="0" r="60" class="fill-background" />
+					<Arc
+						startAngle={0}
+						endAngle={2 * Math.PI}
+						outerRadius={90}
+						innerRadius={80}
+						fill="var(--muted)"
+					/>
 				{/snippet}
 
 				{#snippet aboveMarks()}
 					<Text
-						value={String(chartData[0].visitors)}
+						value={chartData[0].visitors.toLocaleString()}
 						textAnchor="middle"
 						verticalAnchor="middle"
 						class="fill-foreground text-4xl! font-bold"

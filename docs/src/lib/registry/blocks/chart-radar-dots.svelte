@@ -2,7 +2,7 @@
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { scaleBand } from "d3-scale";
 	import { curveLinearClosed } from "d3-shape";
-	import { LineChart } from "layerchart";
+	import { Circle, LineChart, Points, Spline } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 
@@ -28,6 +28,7 @@
 		const r = (tick / maxValue) * gridRadius;
 		return gridAngles.map((a) => `${r * Math.sin(a)},${-r * Math.cos(a)}`).join(" ");
 	});
+	const radarScale = Chart.createRevealAnimation();
 </script>
 
 <Card.Root>
@@ -49,16 +50,8 @@
 				radial
 				x="month"
 				xScale={scaleBand()}
-				points={{ r: 4, initialCx: 0, initialCy: 0, motion: Chart.defaultMotion }}
 				padding={12}
 				props={{
-					spline: {
-						curve: curveLinearClosed,
-						fill: "var(--color-desktop)",
-						fillOpacity: 0.6,
-						stroke: "0",
-						motion: Chart.defaultMotion,
-					},
 					xAxis: {
 						tickLength: 0,
 					},
@@ -83,6 +76,32 @@
 				{#snippet belowMarks()}
 					{#each gridPolygons as points (points)}
 						<polygon {points} class="fill-none stroke-muted-foreground/20" stroke-width="1" />
+					{/each}
+				{/snippet}
+				{#snippet marks({ context })}
+					{#each context.series.visibleSeries as series (series.key)}
+						<g transform={`scale(${radarScale.current})`}>
+							<Spline
+								seriesKey={series.key}
+								curve={curveLinearClosed}
+								fill={series.color}
+								fillOpacity={0.6}
+								stroke="none"
+							/>
+						</g>
+						<Points seriesKey={series.key}>
+							{#snippet children({ points })}
+								{#each points as point, i (i)}
+									<Circle
+										cx={point.x * radarScale.current}
+										cy={point.y * radarScale.current}
+										r={4}
+										fill={series.color}
+										class="lc-point"
+									/>
+								{/each}
+							{/snippet}
+						</Points>
 					{/each}
 				{/snippet}
 				{#snippet tooltip()}

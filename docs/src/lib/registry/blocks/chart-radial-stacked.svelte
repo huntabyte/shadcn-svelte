@@ -1,6 +1,6 @@
 <script lang="ts">
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
-	import { PieChart, Text } from "layerchart";
+	import { ArcChart, Text } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 
@@ -10,7 +10,8 @@
 		desktop: { label: "Desktop", color: "var(--chart-1)" },
 		mobile: { label: "Mobile", color: "var(--chart-2)" },
 	} satisfies Chart.ChartConfig;
-	const pieAngle = Chart.createPieAnimation(Math.PI / 2, -Math.PI / 2, 0);
+	const totalVisitors = chartData[0].desktop + chartData[0].mobile;
+	const mobileEndAngle = 90 - (chartData[0].mobile / totalVisitors) * 180;
 </script>
 
 <Card.Root class="flex flex-col">
@@ -19,26 +20,48 @@
 		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content class="flex flex-1 items-center pb-0">
-		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px] w-full">
-			<PieChart
-				data={[
-					{ platform: "mobile", visitors: 570, color: chartConfig.mobile.color },
-					{ platform: "desktop", visitors: 1260, color: chartConfig.desktop.color },
-				]}
+		<Chart.Container config={chartConfig} class="mx-auto aspect-square w-full max-w-[250px]">
+			<ArcChart
 				key="platform"
+				label="platform"
 				value="visitors"
-				c="color"
-				innerRadius={76}
-				padding={29}
+				innerRadius={83}
+				outerRadius={107}
+				padding={0}
 				range={[90, -90]}
+				series={[
+					{
+						key: "mobile",
+						color: chartConfig.mobile.color,
+						data: [{ platform: "mobile", visitors: chartData[0].mobile }],
+						props: {
+							domain: [0, chartData[0].mobile],
+							range: [90, mobileEndAngle],
+						},
+					},
+					{
+						key: "desktop",
+						color: chartConfig.desktop.color,
+						data: [{ platform: "desktop", visitors: chartData[0].desktop }],
+						props: {
+							domain: [0, chartData[0].desktop],
+							range: [mobileEndAngle, -90],
+						},
+					},
+				]}
+				cornerRadius={5}
 				props={{
-					pie: { sort: null, startAngle: Math.PI / 2, endAngle: pieAngle.current, motion: "none" },
+					arc: {
+						track: false,
+						stroke: "transparent",
+						strokeWidth: 2,
+						motion: Chart.defaultMotion,
+					},
 				}}
-				cornerRadius={4}
 			>
 				{#snippet aboveMarks()}
 					<Text
-						value={String(chartData[0].desktop + chartData[0].mobile)}
+						value={totalVisitors.toLocaleString()}
 						textAnchor="middle"
 						verticalAnchor="middle"
 						class="fill-foreground text-2xl! font-bold"
@@ -55,7 +78,7 @@
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel />
 				{/snippet}
-			</PieChart>
+			</ArcChart>
 		</Chart.Container>
 	</Card.Content>
 	<Card.Footer class="flex-col gap-2 text-sm">

@@ -65,7 +65,7 @@
 						format: () => "",
 					},
 					yAxis: {
-						format: "metric",
+						format: (value) => (value === 0 ? "" : `${value}`),
 
 						tickLabelProps: {
 							class: "fill-background!",
@@ -89,7 +89,11 @@
 			>
 				{#snippet axis()}
 					<Axis placement="angle" format={() => ""} />
-					<Axis placement="radius" format="metric" tickLabelProps={{ class: "fill-background!" }} />
+					<Axis
+						placement="radius"
+						format={(value) => (value === 0 ? "" : `${value}`)}
+						tickLabelProps={{ class: "fill-background!" }}
+					/>
 				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip />
