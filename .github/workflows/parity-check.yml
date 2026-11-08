@@ -20,7 +20,7 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm ci
 
       - name: Check base class parity
         run: pnpm -F docs parity-check
@@ -42,7 +42,7 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm ci
 
       - name: Check generated registry parity
         run: pnpm -F docs parity-check:variants

@@ -98,7 +98,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.check-permission.outputs.should-continue == 'true'
-        run: pnpm install
+        run: pnpm ci
 
       - name: Run formatter
         if: steps.check-permission.outputs.should-continue == 'true'
