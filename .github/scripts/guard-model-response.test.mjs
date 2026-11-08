@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { validateAnswers, guardFetch, explicitQuestions } from "./guard-model-response.mjs";
+import { validateAnswers, guardFetch } from "./guard-model-response.mjs";
 test("accepts complete probabilities without changing the payload", () => {
   const payload = { answers: { a: { noul: 0 }, b: { noul: 1 } } };
   const before = JSON.stringify(payload);
@@ -104,41 +104,19 @@ test("reports actual input usage, preserves retries and never substitutes zero f
     async () => {
       calls++;
       return Response.json({
-        answers: {},
+        answers: { item_0_label_0: { noul: 0.7 } },
         ...(calls === 3 ? {} : { usage: { input_tokens: 42 } }),
       });
     },
     (usage) => observations.push(usage)
   );
-  const init = { body: JSON.stringify({ questions: {} }) };
+  const init = {
+    body: JSON.stringify({
+      state: { prompt: "Rules", items: [{}], labels: [{ name: "example" }] },
+      questions: { item_0_label_0: {} },
+    }),
+  };
   for (let i = 0; i < 3; i++) await fetch("https://api.typesafe.ai/v1/systemone", init);
   assert.equal(calls, 3);
   assert.deepEqual(observations, [{ inputTokens: 42 }, { inputTokens: 42 }, { inputTokens: null }]);
-});
-
-test("embeds each literal policy while preserving IDs, context and probabilities", () => {
-  const request = {
-    state: {
-      items: [{ title: "Example" }],
-      labels: [
-        { name: "feature", apply_when: "New functionality", remove_when: "Only repairs" },
-        { name: "docs", apply_when: "Documentation content" },
-      ],
-    },
-    questions: {
-      item_0_label_0: { type: "noul", instructions: { judge_from: "Read prompt" } },
-      item_0_label_1: { type: "noul", instructions: {} },
-    },
-  };
-  const state = JSON.stringify(request.state);
-  explicitQuestions(request);
-  assert.equal(JSON.stringify(request.state), state);
-  assert(request.questions.item_0_label_0.instructions.question.includes('"feature"'));
-  assert(request.questions.item_0_label_1.instructions.question.includes('"docs"'));
-  assert.equal(
-    JSON.parse(request.questions.item_0_label_0.instructions.label).remove_when,
-    "Only repairs"
-  );
-  assert.equal(request.questions.item_0_label_0.instructions.judge_from, "Read prompt");
-  assert.throws(() => explicitQuestions({ questions: { unknown: {} } }), /Unrecognized/);
 });

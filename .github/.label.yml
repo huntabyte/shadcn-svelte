@@ -64,7 +64,6 @@ labels:
     examples:
       - A second issue reports the same behavior and identifies the first issue as its canonical report.
       - A second PR proposes the same change as an existing PR without a distinct scope or a requested replacement.
-    context: similar_issues
   feature:
     description: >-
       Requests or implements new end-user functionality, including a new public tool,
@@ -142,6 +141,10 @@ labels:
       official shadcn-svelte demo exhibiting that defect. Steps or screenshots alone
       are insufficient. An identified demo on shadcn-svelte.com, with or without www
       or a URL scheme, is acceptable; a generic documentation link alone is insufficient.
+      Existing runtime behavior includes broken interactive website UI, such as hover
+      states, tooltip placement, animation, layout, or scrolling. A PR repairing these
+      defects can need reproduction, even if it is also docs or parity. A preview of the
+      repaired branch is not a demonstration of the original defect.
     remove_when: >-
       The item does not report or fix a defect, the bug-fix PR links an issue
       establishing the defect, an accessible reproduction or identified official
@@ -163,6 +166,10 @@ labels:
       package manifest or test runner is not the public CLI package. Merely showing CLI commands
       on a page is insufficient. Other tools named CLI, such as Changesets for releases or Wrangler for
       deployments, are not the public shadcn-svelte CLI.
+      For pull requests, CLI tests, fixtures, snapshots, or test tooling alone do not
+      qualify: public CLI implementation or supported behavior must also change. Merely
+      validating registry-template data through existing CLI utilities is not a CLI
+      implementation change.
     remove_when: >-
       The discussion establishes that only components, docs, or internal tooling
       are affected, including Changesets CLI upgrades and deployment tooling.
@@ -170,6 +177,8 @@ labels:
       packages/cli/ is sufficient evidence to remove cli from a component-only port.
       No maintainer comment is required for that file evidence. An omitted file list
       does not establish absence of CLI changes.
+      The complete changed-file list shows only tests, fixtures, snapshots, or test tooling
+      under the CLI package and no public CLI implementation changes.
   triage:
     remove_when: >-
       A human OWNER, MEMBER, or COLLABORATOR acknowledges the reported defect as

@@ -175,3 +175,32 @@ test("bounds patch excerpts and marks missing or truncated patches", async () =>
   assert(ctx.files.every((file) => file.patchOmitted));
   assert.equal(ctx.files.find((file) => file.path === "generated.json").patch, undefined);
 });
+
+test("parallel evidence reads are bounded and preserve deterministic context", async () => {
+  const related = Array.from({ length: 5 }, (_, i) => ({
+    number: i + 2,
+    created_at: "2026-10-01",
+  }));
+  const plain = fixture({ related }),
+    parallel = fixture({ related });
+  let active = 0,
+    maximum = 0;
+  const actual = await buildLabelContext({
+    repo,
+    number: 1,
+    token: "test",
+    fetch: async (...args) => {
+      active++;
+      maximum = Math.max(maximum, active);
+      try {
+        await new Promise((resolve) => setTimeout(resolve, 5));
+        return await parallel.fetch(...args);
+      } finally {
+        active--;
+      }
+    },
+  });
+  assert.equal(actual, await run(plain));
+  assert.equal(maximum, 4);
+  assert.equal(active, 0);
+});

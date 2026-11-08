@@ -13,6 +13,14 @@ const actor = (user, role) => ({
   isBot: user?.type === "Bot" || user?.login?.endsWith("[bot]") === true,
 });
 
+// Drain parallel reads before reporting failure; never leave background work running.
+const together = async (requests) => {
+  const results = await Promise.allSettled(requests);
+  const failures = results.filter((result) => result.status === "rejected");
+  if (failures.length) throw failures[0].reason;
+  return results.map((result) => result.value);
+};
+
 /** Read-only context for the published labeler. No label decisions or writes happen here. */
 export async function buildLabelContext({
   repo,
@@ -54,8 +62,10 @@ export async function buildLabelContext({
     }
     return { rows, omitted: true };
   };
-  const item = await get(`repos/${repo}/issues/${number}`);
-  const timeline = await pages(`repos/${repo}/issues/${number}/timeline`, 3);
+  const [item, timeline] = await together([
+    get(`repos/${repo}/issues/${number}`),
+    pages(`repos/${repo}/issues/${number}/timeline`, 3),
+  ]);
   onHistory(timeline);
   const kind = item.pull_request ? "pull_request" : "issue";
   const words = String(item.title)
@@ -67,11 +77,15 @@ export async function buildLabelContext({
         w.length >= 3 && !["the", "for", "with", "from", "and", "add", "use", "update"].includes(w)
     )
     .slice(0, 3);
-  const search = words.length
-    ? await get(
-        `search/issues?${new URLSearchParams({ q: `repo:${repo} ${kind === "issue" ? "is:issue" : "is:pr"} ${words.join(" ")} in:title`, per_page: "6" })}`
-      )
-    : { items: [] };
+  const [search, fileResult, reviewResult] = await together([
+    words.length
+      ? get(
+          `search/issues?${new URLSearchParams({ q: `repo:${repo} ${kind === "issue" ? "is:issue" : "is:pr"} ${words.join(" ")} in:title`, per_page: "6" })}`
+        )
+      : Promise.resolve({ items: [] }),
+    item.pull_request ? pages(`repos/${repo}/pulls/${number}/files`, 10) : Promise.resolve(),
+    item.pull_request ? pages(`repos/${repo}/pulls/${number}/reviews`, 3) : Promise.resolve(),
+  ]);
   const refs = [...timeline.rows]
     .reverse()
     .filter(
@@ -108,13 +122,15 @@ export async function buildLabelContext({
     reviews: [],
     reviewsOmitted: false,
   };
-  for (const n of allRefs.slice(0, 5)) {
-    const related = await get(`repos/${repo}/issues/${n}`);
-    const comments = await pages(`repos/${repo}/issues/${n}/comments`, 3);
+  const collectRelated = async (n) => {
+    const [related, comments] = await together([
+      get(`repos/${repo}/issues/${n}`),
+      pages(`repos/${repo}/issues/${n}/comments`, 3),
+    ]);
     const human = comments.rows.filter(
       (c) => c.user?.type !== "Bot" && !c.user?.login?.endsWith("[bot]")
     );
-    context.related.push({
+    return {
       number: n,
       ...actor(related.user, related.author_association),
       type: related.pull_request ? "pull_request" : "issue",
@@ -130,13 +146,15 @@ export async function buildLabelContext({
         createdAt: c.created_at,
       })),
       commentsOmitted: comments.omitted || human.length > 3,
-    });
+    };
+  };
+  // Two related items, with two reads each: no more than four active GitHub requests.
+  for (let offset = 0; offset < Math.min(5, allRefs.length); offset += 2) {
+    context.related.push(
+      ...(await together(allRefs.slice(offset, Math.min(offset + 2, 5)).map(collectRelated)))
+    );
   }
   if (item.pull_request) {
-    const [fileResult, reviewResult] = await Promise.all([
-      pages(`repos/${repo}/pulls/${number}/files`, 10),
-      pages(`repos/${repo}/pulls/${number}/reviews`, 3),
-    ]);
     const files = fileResult.rows
       .map((f) => ({ path: f.filename, status: f.status, rawPatch: f.patch }))
       .sort((a, b) => a.path.length - b.path.length || a.path.localeCompare(b.path));
