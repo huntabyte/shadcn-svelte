@@ -120,3 +120,24 @@ test("reports actual input usage, preserves retries and never substitutes zero f
   assert.equal(calls, 3);
   assert.deepEqual(observations, [{ inputTokens: 42 }, { inputTokens: 42 }, { inputTokens: null }]);
 });
+
+test("passes HTTP retry metadata through without fabricating usage", async () => {
+  const original = Response.json(
+      { error: "limited" },
+      { status: 429, headers: { "retry-after": "2" } }
+    ),
+    usage = [];
+  const fetch = guardFetch(
+    async () => original,
+    (value) => usage.push(value)
+  );
+  const response = await fetch("https://api.typesafe.ai/v1/systemone", {
+    body: JSON.stringify({
+      state: { prompt: "Rules", items: [{}], labels: [{ name: "example" }] },
+      questions: { item_0_label_0: {} },
+    }),
+  });
+  assert.equal(response, original);
+  assert.equal(response.headers.get("retry-after"), "2");
+  assert.deepEqual(usage, [{ inputTokens: null }]);
+});

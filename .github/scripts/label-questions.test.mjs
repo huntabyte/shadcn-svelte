@@ -1,128 +1,70 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { planRequests, executePlans } from "./label-questions.mjs";
-const request = {
+import { buildLabelRequest } from "./label-questions.mjs";
+const input = {
   state: {
     prompt:
-      "Use repository rules.\n" +
+      "Repository rules\n" +
       JSON.stringify({
         source: "GitHub API",
         current: { number: 1 },
-        related: [{ number: 2 }],
         files: [{ path: "src/index.ts" }],
+        filesOmitted: true,
         reviews: [
           { isBot: false, state: "CHANGES_REQUESTED" },
           { isBot: true, state: "COMMENTED" },
         ],
-        filesOmitted: true,
       }),
     items: [
       {
         title: "Example",
-        body: "Description",
+        body: "Source evidence",
         comments: [
-          { author: "human", body: "Human evidence" },
+          { author: "human", body: "Human clarification" },
           { author: "automation[bot]", body: "Boilerplate" },
         ],
       },
     ],
     labels: [
-      { name: "content", apply_when: "Changes behavior", remove_when: "No behavior change" },
-      { name: "authorship", apply_when: "Direct evidence" },
-      { name: "status", apply_when: "Outstanding request" },
+      {
+        name: "feature",
+        description: "Public functionality",
+        apply_when: "Adds public behavior",
+        remove_when: "Only repairs existing behavior",
+        examples: ["New supported mode"],
+      },
     ],
   },
-  questions: Object.fromEntries(
-    [0, 1, 2].map((i) => [`item_0_label_${i}`, { type: "noul", instructions: {} }])
-  ),
+  questions: { item_0_label_0: { type: "noul" } },
 };
-test("policies are direct criteria, IDs and source input remain intact", () => {
-  const before = JSON.stringify(request),
-    plans = planRequests(request);
-  assert.equal(plans.length, 1);
-  assert.equal(JSON.stringify(request), before);
-  assert.equal(plans[0].questions.item_0_label_0.criteria.true, "Changes behavior");
-  assert.equal(plans[0].questions.item_0_label_0.criteria.false, "No behavior change");
-  assert(!("labels" in plans[0].state));
-  assert.equal(plans[0].state.current_item.body, "Description");
+test("one batch contains direct rules and stable question IDs without duplicated policies", () => {
+  const before = JSON.stringify(input),
+    request = buildLabelRequest(input);
+  assert.equal(JSON.stringify(input), before);
+  assert.deepEqual(Object.keys(request.questions), ["item_0_label_0"]);
+  assert.equal(request.questions.item_0_label_0.criteria.true, "Adds public behavior");
+  assert.equal(request.questions.item_0_label_0.criteria.false, "Only repairs existing behavior");
+  assert.equal(request.questions.item_0_label_0.instructions.label, "feature");
+  assert(!("labels" in request.state));
 });
-test("declarative scopes retain necessary evidence and omission flags", () => {
-  const plans = planRequests(request, {
-    mode: "scoped",
-    scopes: { authorship: "authorship", status: "review" },
-  });
-  assert.equal(plans.length, 3);
-  assert.equal(plans[0].state.repository_evidence.filesOmitted, true);
-  assert.equal(plans[0].state.current_item.comments.length, 1);
-  assert(!("files" in plans[1].state.repository_evidence));
-  assert(!("reviews" in plans[1].state.repository_evidence));
-  assert(!("related" in plans[1].state.repository_evidence));
-  assert.equal(plans[2].state.repository_evidence.reviews.length, 1);
+test("keeps source evidence and omission flags while filtering known bot boilerplate", () => {
+  const request = buildLabelRequest(input);
+  assert.equal(request.state.current_item.body, "Source evidence");
+  assert.equal(request.state.current_item.comments.length, 1);
+  assert.equal(request.state.current_item.comments[0].author, "human");
+  assert.equal(request.state.repository_evidence.filesOmitted, true);
+  assert.equal(request.state.repository_evidence.reviews.length, 1);
+  assert.equal(request.state.repository_evidence.reviews[0].state, "CHANGES_REQUESTED");
 });
-test("fan-out is concurrent, bounded and merges complete answers with measured usage", async () => {
-  const plans = planRequests(request, { mode: "focused" });
-  let active = 0,
-    max = 0;
-  const response = await executePlans(
-    async (_, init) => {
-      active++;
-      max = Math.max(max, active);
-      const p = JSON.parse(init.body);
-      await new Promise((r) => setTimeout(r, 10));
-      active--;
-      return Response.json({
-        model: "test",
-        usage: { input_tokens: 123, output_tokens: 1 },
-        answers: Object.fromEntries(Object.keys(p.questions).map((id) => [id, { noul: 0.7 }])),
-      });
-    },
-    "https://api.typesafe.ai/v1/systemone",
-    {},
-    plans,
-    2
-  );
-  const body = await response.json();
-  assert.equal(max, 2);
-  assert.equal(Object.keys(body.answers).length, 3);
-  assert.equal(body.usage.input_tokens, 369);
-});
-test("an incomplete parallel result returns no combined decisions and awaits in-flight work", async () => {
-  let complete = false;
-  let n = 0;
-  const plans = planRequests(request, { mode: "focused" });
-  await assert.rejects(
-    executePlans(
-      async () => {
-        const i = n++;
-        if (i === 0) return Response.json({ answers: {} });
-        await new Promise((r) => setTimeout(r, 10));
-        complete = true;
-        return Response.json({ answers: {} });
-      },
-      "https://api.typesafe.ai/v1/systemone",
-      {},
-      plans,
-      2
-    ),
-    /Incomplete inference/
-  );
-  assert.equal(complete, true);
-});
-
-test("rate-limit responses retain retry metadata and stop new parallel work", async () => {
-  const plans = planRequests(request, { mode: "focused" });
-  let calls = 0;
-  const response = await executePlans(
-    async () => {
-      calls++;
-      return Response.json({ error: "limited" }, { status: 429, headers: { "retry-after": "2" } });
-    },
-    "https://api.typesafe.ai/v1/systemone",
-    {},
-    plans,
-    1
-  );
-  assert.equal(response.status, 429);
-  assert.equal(response.headers.get("retry-after"), "2");
-  assert.equal(calls, 1);
+test("malformed targets and unknown label questions fail before inference", () => {
+  for (const change of [
+    (r) => r.state.items.push({}),
+    (r) => (r.questions = { unknown: {} }),
+    (r) => (r.questions = { item_0_label_10: {} }),
+    (r) => (r.questions = { item_1_label_0: {} }),
+  ]) {
+    const request = structuredClone(input);
+    change(request);
+    assert.throws(() => buildLabelRequest(request));
+  }
 });

@@ -51,7 +51,7 @@ export async function runAutomaticLabels({
   try {
     const config = join(dir, "policy.json");
     await writeFile(config, JSON.stringify(automaticPolicy(policy, history)));
-    // One CLI invocation: one batched request and one similar-issues request.
+    // One CLI invocation: one request with all configured label questions.
     const args = [
       "--import",
       fileURLToPath(new URL("./guard-model-response.mjs", import.meta.url)),

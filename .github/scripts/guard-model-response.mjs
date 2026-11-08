@@ -1,4 +1,4 @@
-import { planRequests, executePlans } from "./label-questions.mjs";
+import { buildLabelRequest } from "./label-questions.mjs";
 
 /** Stop the published CLI from interpreting an absent answer as a negative score. */
 export function validateAnswers(questions, payload) {
@@ -26,10 +26,14 @@ export function guardFetch(fetch, onUsage = () => {}) {
     );
     const inference = url.hostname === "api.typesafe.ai" && url.pathname === "/v1/systemone";
     if (!inference) return fetch(input, init);
-    const request = JSON.parse(String(init.body));
-    const plans = planRequests(request, { mode: "unified" });
-    const response = await executePlans(fetch, input, init, plans, 4, onUsage);
-    if (response.ok) validateAnswers(request.questions, await response.clone().json());
+    const request = buildLabelRequest(JSON.parse(String(init.body)));
+    const response = await fetch(input, { ...init, body: JSON.stringify(request) });
+    if (response.ok) {
+      const payload = await response.clone().json();
+      const tokens = payload.usage?.input_tokens;
+      onUsage({ inputTokens: Number.isSafeInteger(tokens) && tokens >= 0 ? tokens : null });
+      validateAnswers(request.questions, payload);
+    } else onUsage({ inputTokens: null });
     return response;
   };
 }

@@ -42,6 +42,9 @@ labels:
       stored in the docs workspace; separate changed docs or examples are required.
       Fixing an actual runnable documentation example counts as docs even when
       no Markdown file changes. Registry component implementation alone does not.
+      The website global theme/design-system renderer is website presentation, not an
+      installed registry component. Changing the rendering or typography of the website and
+      its interactive previews qualifies even when no documentation prose changes.
   duplicate:
     description: >-
       A redundant report or competing implementation of the same unresolved work.
@@ -81,6 +84,8 @@ labels:
       described as a documentation example.
       Only restoring existing expected behavior is not a feature. A workaround can
       still qualify if it adds new functionality or a public component API.
+      A newly supported public named export is an API addition even when it aliases an
+      existing implementation. Private or internal module exports alone do not qualify.
     examples:
       - Exposing a customizable rendering snippet through public component props.
       - Adding a newly supported component mode by wrapping an existing primitive.
