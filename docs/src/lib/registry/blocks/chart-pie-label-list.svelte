@@ -29,15 +29,17 @@
 		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content class="flex-1 pb-0">
-		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
+		<Chart.Container config={chartConfig} class="mx-auto aspect-square w-full max-w-[250px]">
 			<PieChart
+				outerRadius={0.8}
+				padding={5}
 				data={chartData}
 				key="browser"
 				value="visitors"
 				cRange={chartData.map((d) => d.color)}
 				c="color"
 				props={{
-					arc: { stroke: "var(--background)", strokeWidth: 1 },
+					arc: { stroke: "transparent", strokeWidth: 1 },
 					pie: {
 						startAngle: Math.PI / 2,
 						sort: null,
@@ -55,13 +57,13 @@
 						{#snippet children({ centroid })}
 							{#if pieAngle.current === (-3 * Math.PI) / 2}
 								<Text
-									value={browser}
+									value={chartConfig[browser as keyof typeof chartConfig].label}
 									x={centroid[0]}
 									y={centroid[1]}
 									textAnchor="middle"
 									verticalAnchor="middle"
 									font-size="12"
-									class="fill-background capitalize"
+									class="fill-background!"
 								/>
 							{/if}
 						{/snippet}

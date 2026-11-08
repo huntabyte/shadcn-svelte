@@ -1,6 +1,6 @@
 <script lang="ts">
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
-	import { Arc, PieChart, Text } from "layerchart";
+	import { Arc, PieChart } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 
@@ -29,15 +29,17 @@
 		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content class="flex-1 pb-0">
-		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
+		<Chart.Container config={chartConfig} class="mx-auto aspect-square w-full max-w-[250px]">
 			<PieChart
+				outerRadius={0.8}
+				padding={5}
 				data={chartData}
 				key="browser"
 				value="visitors"
 				cRange={chartData.map((d) => d.color)}
 				c="color"
 				props={{
-					arc: { stroke: "var(--background)", strokeWidth: 1 },
+					arc: { stroke: "transparent", strokeWidth: 1 },
 					pie: {
 						startAngle: Math.PI / 2,
 						sort: null,
@@ -51,16 +53,18 @@
 				{/snippet}
 				{#snippet arc({ props, visibleData, index })}
 					<Arc {...props}>
-						{#snippet children({ getArcTextProps })}
+						{#snippet children({ startAngle, endAngle, outerRadius })}
+							{@const angle = (startAngle + endAngle) / 2}
+							{@const labelX = (outerRadius + 20) * Math.sin(angle)}
+							{@const labelY = -(outerRadius + 20) * Math.cos(angle)}
 							{#if pieAngle.current === (-3 * Math.PI) / 2}
-								<Text
-									value={visibleData[index].visitors}
-									{...getArcTextProps("outer", {
-										startOffset: "50%",
-										outerPadding: 10,
-									})}
-									class="fill-foreground"
-								/>
+								<text
+									x={labelX}
+									y={labelY}
+									text-anchor={labelX > 0 ? "start" : "end"}
+									dominant-baseline="middle"
+									class="fill-foreground">{visibleData[index].visitors}</text
+								>
 							{/if}
 						{/snippet}
 					</Arc>

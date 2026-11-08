@@ -55,7 +55,11 @@
 						{#if config}
 							<Select.Item value={month} label={config.label} class="rounded-lg [&_span]:flex">
 								<div class="flex items-center gap-2 text-xs">
-									{config?.label}
+									<span
+										class="size-3 shrink-0 rounded-xs"
+										style:background-color={"color" in config ? config.color : undefined}
+									></span>
+									{config.label}
 								</div>
 							</Select.Item>
 						{/if}
@@ -67,13 +71,14 @@
 	<Card.Content class="flex flex-1 justify-center pb-0">
 		<Chart.Container {id} config={chartConfig} class="mx-auto aspect-square w-full max-w-[300px]">
 			<PieChart
+				outerRadius={0.8}
 				data={desktopData}
 				label="month"
 				key="month"
 				value="desktop"
 				c="color"
 				props={{
-					arc: { stroke: "var(--background)", strokeWidth: 5 },
+					arc: { stroke: "transparent", strokeWidth: 5 },
 					pie: {
 						startAngle: Math.PI / 2,
 						endAngle: pieAngle.current,
@@ -85,38 +90,33 @@
 					},
 				}}
 				innerRadius={60}
-				padding={29}
+				padding={5}
 			>
 				{#snippet aboveMarks()}
 					<Text
 						value={desktopData[activeIndex].desktop.toLocaleString()}
 						textAnchor="middle"
 						verticalAnchor="middle"
-						class="fill-foreground !text-3xl font-bold"
-						dy={3}
+						class="fill-foreground text-3xl! font-bold"
+						dy={0}
 					/>
 					<Text
 						value="Visitors"
 						textAnchor="middle"
 						verticalAnchor="middle"
 						class="!fill-muted-foreground text-muted-foreground"
-						dy={22}
+						dy={24}
 					/>
 				{/snippet}
-				{#snippet arc({ props, index })}
+				{#snippet arc({ props, index, context })}
+					{@const outerRadius = (Math.min(context.width, context.height) / 2) * 0.8}
 					{@const isActive = index === activeIndex}
-					{@const arcProps = isActive
-						? { ...props, outerRadius: (props.outerRadius ?? 0) + 10 }
-						: props}
+					{@const arcProps = isActive ? { ...props, outerRadius: outerRadius + 10 } : props}
 
 					{#if isActive}
 						<g>
 							<Arc {...arcProps} />
-							<Arc
-								{...props}
-								outerRadius={(props.outerRadius ?? 0) + 25}
-								innerRadius={(props.outerRadius ?? 0) + 12}
-							/>
+							<Arc {...props} outerRadius={outerRadius + 25} innerRadius={outerRadius + 12} />
 						</g>
 					{:else}
 						<Arc {...arcProps} />

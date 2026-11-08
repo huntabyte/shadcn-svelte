@@ -46,8 +46,9 @@
 		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content class="flex-1 pb-0">
-		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
+		<Chart.Container config={chartConfig} class="mx-auto aspect-square w-full max-w-[250px]">
 			<PieChart
+				outerRadius={0.8}
 				data={chartData}
 				key="browser"
 				value="visitors"
@@ -61,18 +62,18 @@
 						motion: "none",
 					},
 					arc: {
-						stroke: "var(--background)",
+						stroke: "transparent",
 						strokeWidth: 5,
 					},
 				}}
-				padding={29}
+				padding={5}
 			>
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel />
 				{/snippet}
-				{#snippet arc({ props, index })}
-					{@const arcProps =
-						index === 0 ? { ...props, outerRadius: (props.outerRadius ?? 0) + 10 } : props}
+				{#snippet arc({ props, index, context })}
+					{@const outerRadius = (Math.min(context.width, context.height) / 2) * 0.8}
+					{@const arcProps = index === 0 ? { ...props, outerRadius: outerRadius + 10 } : props}
 					<Arc {...arcProps} />
 				{/snippet}
 			</PieChart>

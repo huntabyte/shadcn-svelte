@@ -20,14 +20,6 @@
 		{ month: "may", mobile: 130, color: "var(--color-may)" },
 	];
 
-	type PieDataItem = { month: string; value: number; color: string };
-
-	const monthOrder = ["january", "february", "march", "april", "may"];
-
-	const sortMonths = (a: PieDataItem, b: PieDataItem) => {
-		return monthOrder.indexOf(a.month) - monthOrder.indexOf(b.month);
-	};
-
 	const chartConfig = {
 		desktop: { label: "Desktop" },
 		mobile: { label: "Mobile" },
@@ -50,17 +42,18 @@
 		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content class="flex-1 pb-0">
-		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
+		<Chart.Container config={chartConfig} class="mx-auto aspect-square w-full max-w-[250px]">
 			<PieChart
+				outerRadius={0.8}
 				key="month"
 				label="month"
 				c="color"
 				props={{
-					arc: { stroke: "var(--background)", strokeWidth: 1 },
+					arc: { stroke: "transparent", strokeWidth: 1 },
 					pie: {
 						startAngle: Math.PI / 2,
 						endAngle: pieAngle.current,
-						sort: sortMonths,
+						sort: null,
 						motion: "none",
 					},
 					tooltip: {
@@ -78,7 +71,7 @@
 							value: d.desktop,
 							color: d.color,
 						})),
-						props: { innerRadius: -20 },
+						props: { innerRadius: 0, outerRadius: 60 },
 					},
 					{
 						key: "mobile",
@@ -88,10 +81,10 @@
 							value: d.mobile,
 							color: d.color,
 						})),
-						props: { outerRadius: -30 },
+						props: { innerRadius: 70, outerRadius: 90 },
 					},
 				]}
-				padding={29}
+				padding={5}
 			>
 				{#snippet arc({ props })}
 					<Arc {...props} fill={props.data.color} />

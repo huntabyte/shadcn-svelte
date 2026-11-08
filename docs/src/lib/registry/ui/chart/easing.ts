@@ -93,7 +93,9 @@ export function createPieAnimation(
 }
 
 /** Shared progress for chart reveals and synchronized mark animations. */
-export function createRevealAnimation() {
+export function createRevealAnimation(ready?: () => boolean) {
+	if (ready) return Tween.of(() => (ready() ? 1 : 0), defaultRadarScale);
+
 	const progress = new Tween(0, defaultRadarScale);
 	onMount(() => {
 		progress.target = 1;

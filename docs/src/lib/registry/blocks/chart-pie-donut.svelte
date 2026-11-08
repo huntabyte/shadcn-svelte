@@ -29,16 +29,17 @@
 		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content class="flex-1 pb-0">
-		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
+		<Chart.Container config={chartConfig} class="mx-auto aspect-square w-full max-w-[250px]">
 			<PieChart
+				outerRadius={0.8}
 				data={chartData}
 				key="browser"
 				value="visitors"
 				c="color"
 				innerRadius={60}
-				padding={29}
+				padding={5}
 				props={{
-					arc: { stroke: "var(--background)", strokeWidth: 1 },
+					arc: { stroke: "transparent", strokeWidth: 1 },
 					pie: {
 						startAngle: Math.PI / 2,
 						endAngle: pieAngle.current,

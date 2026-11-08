@@ -28,19 +28,19 @@
 		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content class="flex-1 pb-0">
-		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
+		<Chart.Container
+			config={chartConfig}
+			class="relative mx-auto aspect-square w-full max-w-[300px]"
+		>
 			<PieChart
+				outerRadius={0.8}
+				padding={{ top: 5, right: 5, bottom: 57, left: 5 }}
 				data={chartData}
 				key="browser"
 				value="visitors"
-				label={(d) =>
-					d.browser
-						.split("")
-						.map((c, i) => (i === 0 ? c.toUpperCase() : c))
-						.join("")}
 				cRange={chartData.map((d) => d.color)}
 				props={{
-					arc: { stroke: "var(--background)", strokeWidth: 1 },
+					arc: { stroke: "transparent", strokeWidth: 1 },
 					pie: {
 						startAngle: Math.PI / 2,
 						sort: null,
@@ -48,12 +48,19 @@
 						motion: "none",
 					},
 				}}
-				legend
 			>
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel />
 				{/snippet}
 			</PieChart>
+			<div class="absolute inset-x-0 bottom-[13px] flex flex-wrap justify-center gap-2 pt-3">
+				{#each chartData as item (item.browser)}
+					<div class="flex basis-1/4 items-center justify-center gap-1.5">
+						<span class="size-2 shrink-0 rounded-[2px]" style:background-color={item.color}></span>
+						{chartConfig[item.browser as keyof typeof chartConfig].label}
+					</div>
+				{/each}
+			</div>
 		</Chart.Container>
 	</Card.Content>
 </Card.Root>

@@ -2,7 +2,7 @@
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { scaleBand } from "d3-scale";
 	import { curveLinearClosed } from "d3-shape";
-	import { Circle, LineChart, Points, Spline } from "layerchart";
+	import { Circle, LineChart, Points, Spline, type ChartProps } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 
@@ -28,7 +28,8 @@
 		const r = (tick / maxValue) * gridRadius;
 		return gridAngles.map((a) => `${r * Math.sin(a)},${-r * Math.cos(a)}`).join(" ");
 	});
-	const radarScale = Chart.createRevealAnimation();
+	let context = $state<ChartProps<(typeof chartData)[number]>["context"]>();
+	const radarScale = Chart.createRevealAnimation(() => context?.isMeasured === true);
 </script>
 
 <Card.Root>
@@ -39,6 +40,7 @@
 	<Card.Content class="pb-0">
 		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
 			<LineChart
+				bind:context
 				data={chartData}
 				series={[
 					{
