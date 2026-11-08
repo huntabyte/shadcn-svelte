@@ -19,7 +19,6 @@
 	const chartConfig = {
 		desktop: { label: "Desktop", color: "var(--chart-1)" },
 	} satisfies Chart.ChartConfig;
-	const reveal = Chart.createRevealAnimation();
 </script>
 
 <Card.Root>
@@ -64,25 +63,23 @@
 					<Chart.Tooltip hideLabel />
 				{/snippet}
 				{#snippet points({ context })}
-					{#if reveal.current === 1}
-						{#each context.series.visibleSeries as s (s.key)}
-							<Points seriesKey={s.key} {...s.props}>
-								{#snippet children({ points })}
-									{#each points as p, i (i)}
-										{@const r = 24}
-										<GitCommitVerticalIcon
-											x={p.x - r / 2}
-											y={p.y - r / 2}
-											width={r}
-											height={r}
-											fill="var(--background)"
-											color="var(--color-desktop)"
-										/>
-									{/each}
-								{/snippet}
-							</Points>
-						{/each}
-					{/if}
+					{#each context.series.visibleSeries as s (s.key)}
+						<Points seriesKey={s.key} {...s.props}>
+							{#snippet children({ points })}
+								{#each points as p, i (i)}
+									{@const r = 24}
+									<GitCommitVerticalIcon
+										x={p.x - r / 2}
+										y={p.y - r / 2}
+										width={r}
+										height={r}
+										fill="var(--background)"
+										color="var(--color-desktop)"
+									/>
+								{/each}
+							{/snippet}
+						</Points>
+					{/each}
 				{/snippet}
 			</LineChart>
 		</Chart.Container>

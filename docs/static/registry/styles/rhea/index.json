@@ -1182,15 +1182,6 @@
 		"relativeUrl": "chart-radar-grid-none.json"
 	},
 	{
-		"name": "chart-radar-icons",
-		"type": "registry:block",
-		"registryDependencies": [
-			"card",
-			"chart"
-		],
-		"relativeUrl": "chart-radar-icons.json"
-	},
-	{
 		"name": "chart-radar-label-custom",
 		"type": "registry:block",
 		"registryDependencies": [
@@ -1225,15 +1216,6 @@
 			"chart"
 		],
 		"relativeUrl": "chart-radar-multiple.json"
-	},
-	{
-		"name": "chart-radar-radius",
-		"type": "registry:block",
-		"registryDependencies": [
-			"card",
-			"chart"
-		],
-		"relativeUrl": "chart-radar-radius.json"
 	},
 	{
 		"name": "chart-radial-grid",

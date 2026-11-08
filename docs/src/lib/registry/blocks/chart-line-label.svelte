@@ -2,7 +2,7 @@
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { scaleUtc } from "d3-scale";
 	import { curveNatural } from "d3-shape";
-	import { LineChart, Spline, ChartClipPath } from "layerchart";
+	import { LineChart, Spline, RectClipPath, type ChartProps, Points } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 
@@ -18,7 +18,8 @@
 	const chartConfig = {
 		desktop: { label: "Desktop", color: "var(--chart-1)" },
 	} satisfies Chart.ChartConfig;
-	const reveal = Chart.createRevealAnimation();
+	let context = $state<ChartProps<(typeof chartData)[number]>["context"]>();
+	const reveal = Chart.createRevealAnimation(() => context?.isMeasured === true);
 </script>
 
 <Card.Root>
@@ -29,7 +30,7 @@
 	<Card.Content>
 		<Chart.Container config={chartConfig}>
 			<LineChart
-				points={reveal.current === 1 ? { r: 4 } : false}
+				bind:context
 				labels={reveal.current === 1 ? { offset: 12 } : false}
 				data={chartData}
 				x="date"
@@ -55,11 +56,16 @@
 				}}
 			>
 				{#snippet marks({ context })}
-					<ChartClipPath initialWidth={0} motion={Chart.defaultClipMotion}>
+					<RectClipPath width={context.width * reveal.current} height={context.height}>
 						{#each context.series.visibleSeries as s (s.key)}
 							<Spline seriesKey={s.key} curve={curveNatural} strokeWidth={2} {...s.props} />
 						{/each}
-					</ChartClipPath>
+					</RectClipPath>
+				{/snippet}
+				{#snippet points({ context })}
+					{#each context.series.visibleSeries as s (s.key)}
+						<Points seriesKey={s.key} r={3} fill={s.color} stroke={s.color} strokeWidth={2} />
+					{/each}
 				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip

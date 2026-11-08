@@ -2,7 +2,7 @@
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { scaleBand } from "d3-scale";
 	import { curveNatural } from "d3-shape";
-	import { LineChart, Spline, ChartClipPath, Points, Labels } from "layerchart";
+	import { LineChart, Spline, RectClipPath, Points, Labels, type ChartProps } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 
@@ -22,7 +22,8 @@
 		edge: { label: "Edge", color: "var(--chart-4)" },
 		other: { label: "Other", color: "var(--chart-5)" },
 	} satisfies Chart.ChartConfig;
-	const reveal = Chart.createRevealAnimation();
+	let context = $state<ChartProps<(typeof chartData)[number]>["context"]>();
+	const reveal = Chart.createRevealAnimation(() => context?.isMeasured === true);
 </script>
 
 <Card.Root>
@@ -33,6 +34,7 @@
 	<Card.Content>
 		<Chart.Container config={chartConfig}>
 			<LineChart
+				bind:context
 				data={chartData}
 				y="visitors"
 				yPadding={[25, 0]}
@@ -49,15 +51,18 @@
 					},
 				}}
 			>
-				{#snippet marks()}
-					<ChartClipPath initialWidth={0} motion={Chart.defaultClipMotion}>
+				{#snippet marks({ context })}
+					<RectClipPath width={context.width * reveal.current} height={context.height}>
 						<Spline curve={curveNatural} strokeWidth={2} stroke="var(--color-visitors)" />
-					</ChartClipPath>
+					</RectClipPath>
 				{/snippet}
 				{#snippet points()}
-					{#if reveal.current === 1}
-						<Points r={5} fill="var(--color-visitors)" />
-					{/if}
+					<Points
+						r={3}
+						fill="var(--color-visitors)"
+						stroke="var(--color-visitors)"
+						strokeWidth={2}
+					/>
 				{/snippet}
 				{#snippet labels()}
 					{#if reveal.current === 1}

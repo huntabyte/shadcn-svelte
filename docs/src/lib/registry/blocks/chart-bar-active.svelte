@@ -65,7 +65,7 @@
 								fillOpacity={0.8}
 								stroke={data.color}
 								strokeWidth={2}
-								stroke-dasharray={4}
+								style="stroke-dasharray: 4"
 								stroke-dashoffset={4}
 							/>
 						{:else}
@@ -82,7 +82,6 @@
 					{/each}
 				{/snippet}
 			</BarChart>
-			<!-- todo -->
 		</Chart.Container>
 	</Card.Content>
 	<Card.Footer class="flex-col items-start gap-2 text-sm">

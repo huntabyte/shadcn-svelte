@@ -47,12 +47,10 @@ import ChartRadarGridCircle from "$lib/registry/blocks/chart-radar-grid-circle.s
 import ChartRadarGridCustom from "$lib/registry/blocks/chart-radar-grid-custom.svelte";
 import ChartRadarGridFill from "$lib/registry/blocks/chart-radar-grid-fill.svelte";
 import ChartRadarGridNone from "$lib/registry/blocks/chart-radar-grid-none.svelte";
-import ChartRadarIcons from "$lib/registry/blocks/chart-radar-icons.svelte";
 import ChartRadarLabelCustom from "$lib/registry/blocks/chart-radar-label-custom.svelte";
 import ChartRadarLegend from "$lib/registry/blocks/chart-radar-legend.svelte";
 import ChartRadarLinesOnly from "$lib/registry/blocks/chart-radar-lines-only.svelte";
 import ChartRadarMultiple from "$lib/registry/blocks/chart-radar-multiple.svelte";
-import ChartRadarRadius from "$lib/registry/blocks/chart-radar-radius.svelte";
 import ChartRadialGrid from "$lib/registry/blocks/chart-radial-grid.svelte";
 import ChartRadialLabel from "$lib/registry/blocks/chart-radial-label.svelte";
 import ChartRadialShape from "$lib/registry/blocks/chart-radial-shape.svelte";
@@ -164,8 +162,6 @@ export const charts: ChartGroups = {
 		{ id: "chart-radar-grid-fill", component: ChartRadarGridFill },
 		{ id: "chart-radar-multiple", component: ChartRadarMultiple },
 		{ id: "chart-radar-legend", component: ChartRadarLegend },
-		{ id: "chart-radar-icons", component: ChartRadarIcons },
-		{ id: "chart-radar-radius", component: ChartRadarRadius },
 	],
 	radial: [
 		{ id: "chart-radial-simple", component: ChartRadialSimple },

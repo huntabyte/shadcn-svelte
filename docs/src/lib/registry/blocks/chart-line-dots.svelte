@@ -2,7 +2,7 @@
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { scaleUtc } from "d3-scale";
 	import { curveNatural } from "d3-shape";
-	import { LineChart, Spline, ChartClipPath } from "layerchart";
+	import { LineChart, Spline, ChartClipPath, Points } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 
@@ -18,7 +18,6 @@
 	const chartConfig = {
 		desktop: { label: "Desktop", color: "var(--chart-1)" },
 	} satisfies Chart.ChartConfig;
-	const reveal = Chart.createRevealAnimation();
 </script>
 
 <Card.Root>
@@ -29,7 +28,6 @@
 	<Card.Content>
 		<Chart.Container config={chartConfig}>
 			<LineChart
-				points={reveal.current === 1 ? { r: 4 } : false}
 				data={chartData}
 				x="date"
 				xScale={scaleUtc()}
@@ -59,6 +57,11 @@
 							<Spline seriesKey={s.key} curve={curveNatural} strokeWidth={2} {...s.props} />
 						{/each}
 					</ChartClipPath>
+				{/snippet}
+				{#snippet points({ context })}
+					{#each context.series.visibleSeries as s (s.key)}
+						<Points seriesKey={s.key} r={3} fill={s.color} stroke={s.color} strokeWidth={2} />
+					{/each}
 				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel />

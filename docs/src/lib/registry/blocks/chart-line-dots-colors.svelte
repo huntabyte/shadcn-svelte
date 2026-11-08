@@ -22,7 +22,6 @@
 		edge: { label: "Edge", color: "var(--chart-4)" },
 		other: { label: "Other", color: "var(--chart-5)" },
 	} satisfies Chart.ChartConfig;
-	const reveal = Chart.createRevealAnimation();
 </script>
 
 <Card.Root>
@@ -55,21 +54,19 @@
 					</ChartClipPath>
 				{/snippet}
 				{#snippet points()}
-					{#if reveal.current === 1}
-						<Points>
-							{#snippet children({ points })}
-								{#each points as point, i (i)}
-									<Circle
-										cx={point.x}
-										cy={point.y}
-										r={5}
-										fill={point.data.color}
-										stroke={point.data.color}
-									/>
-								{/each}
-							{/snippet}
-						</Points>
-					{/if}
+					<Points>
+						{#snippet children({ points })}
+							{#each points as point, i (i)}
+								<Circle
+									cx={point.x}
+									cy={point.y}
+									r={5}
+									fill={point.data.color}
+									stroke={point.data.color}
+								/>
+							{/each}
+						{/snippet}
+					</Points>
 				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel indicator="line" nameKey="visitors" />
