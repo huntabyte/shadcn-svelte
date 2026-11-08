@@ -178,7 +178,7 @@
 											variant="ghost"
 											size="sm"
 											data-active={typeset.params.item === option.value}
-											class="h-7 min-w-7 cursor-pointer gap-1.5 rounded-lg border-0 px-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground data-[active=true]:bg-accent data-[active=true]:text-accent-foreground active:translate-y-0 dark:hover:bg-accent/50"
+											class="h-7 min-w-7 cursor-pointer gap-1.5 rounded-lg border-0 px-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground active:translate-y-0 data-[active=true]:bg-accent data-[active=true]:text-accent-foreground dark:hover:bg-accent/50"
 											onclick={() => typeset.update({ item: option.value })}
 											>{String(index + 1).padStart(2, "0")}</Button
 										>
