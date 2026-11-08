@@ -96,13 +96,11 @@ labels:
     remove_when: The item only fixes existing behavior.
   chore:
     apply_when: >-
-      Internal diagnostics, test maintenance, build, release, or deployment changes
-      that do not directly
-      alter end-user functionality or documentation content. Documentation content
-      updates and user-facing UI changes alone are not chores.
-      Maintenance can coexist with user-facing changes when separate internal build, test
-      or deployment work is present. Tests or CI wiring solely supporting the main feature
-      or fix do not independently qualify.
+      Contains a separate internal diagnostics, build, release, deployment or
+      test-maintenance change, even when other changes affect end users. CI resource
+      configuration and workspace build scripts qualify. Tests or CI wiring solely
+      supporting the main feature or fix do not independently qualify. Only user-facing UI
+      or documentation-content changes do not qualify.
   "contributions welcome":
     apply_when: >-
       An issue invites a small, clearly bounded contribution whose solution is
@@ -146,10 +144,10 @@ labels:
       only bot reviews request changes and there is no outstanding human request.
   "needs reproduction":
     description: >-
-      An existing runtime defect still needs a runnable demonstration. New features,
-      component modes, docs/guide/skill ports and static reference corrections do not
-      qualify merely because they lack a reproduction or linked issue. An unlinked
-      bug-fix PR can qualify; a linked issue or supplied demonstration can resolve it.
+      A request for runnable evidence of an existing runtime defect, not a confirmation
+      that it is a valid bug. Evaluate any reported or fixed defect independently of other
+      feature, docs, parity or duplicate scope. Unconfirmed defect reports can require
+      reproduction.
     apply_when: >-
       An issue reports a defect requiring reproduction, or a bug-fix pull request
       has no linked issue establishing the reported defect, and the item lacks an
@@ -165,12 +163,16 @@ labels:
       defect separately from additional feature requests. Public CLI execution and
       confirmation prompts are runtime behavior.
     remove_when: >-
-      The item does not report or fix a defect, the bug-fix PR links an issue
-      establishing the defect, an accessible reproduction or identified official
-      demo exhibiting the defect has been supplied, or a maintainer accepts the reproduction.
-      A PR branch or code diff alone is not a reproduction of the original defect.
-      An additional feature request does not resolve a defect that still lacks
-      reproduction.
+      No existing runtime defect is reported or fixed anywhere in the item; or the
+      particular defect is established by a linked issue, an accessible runnable
+      reproduction repository/StackBlitz or identified official shadcn-svelte demo, or a
+      maintainer accepts the reproduction. A feature request, documentation change or
+      repaired-branch preview does not demonstrate the original defect. Static reference
+      corrections alone are excluded.
+    examples:
+      - "An unconfirmed issue reports an existing malfunction and also requests a new capability; it supplies only pasted code, without an openable reproduction."
+      - "A mixed-scope PR introduces new functionality and also repairs an existing runtime defect, without a linked defect issue or original-defect demonstration."
+      - "A website fix restores a broken navigation target, scrolling or interactive control without demonstrating the original defect."
   "has workaround":
     apply_when: >-
       An issue describes a concrete workaround for a defect that the reporter or a
@@ -225,6 +227,10 @@ labels:
       A maintainer explains that the current implementation already has parity
       with the upstream implementation this repository follows, or that the proposed
       difference is a separate behavior/design discussion rather than a parity gap.
+      Comparing underlying primitive libraries or removing an implementation workaround
+      alone does not establish alignment with shadcn/ui itself. Require explicit shadcn/ui
+      alignment, including in linked evidence; generic dependency implementation
+      differences are insufficient.
   slop:
     threshold: 0.9
     description: >-

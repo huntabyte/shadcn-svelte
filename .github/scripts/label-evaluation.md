@@ -1,84 +1,63 @@
-# Audited label references and marginal-cost improvement
+# Marginal-cost label accuracy improvement
 
-The answer key needed correction. Re-auditing the 44 existing cases changed seventeen label judgments: **six previously definite answers were wrong, five uncertain judgments were resolved, and six previously definite judgments were made uncertain**. Ten judgments remain uncertain in that set. They are excluded from accuracy, not silently counted as correct. Subjective scope boundaries cannot honestly be certified as 100% accurate; the published reference distinguishes evidence-backed decisions from unresolved policy ambiguity. This is evaluation uncertainty only: production labeling remains fully automatic.
+One batched request still evaluates all fourteen labels through the published, unchanged `@ieedan/label@0.0.1`. This iteration changes only repository policy. The request builder, evidence collector, model probabilities, thresholds, ownership safeguards and workflow are unchanged from `77b4e34`.
 
-## Reference audit
+## Measured frontier
 
-Each case was checked against its frozen body, human discussion/reviews, changed-file evidence, related-item scope and the configured policy. Existing labels and bot comments are not ground truth. A live source check found all 34 real-case bodies unchanged; two titles had changed, so the original titles were retained for the matched replay. The full migration diff was inspected at its immutable commit: all 2,999 non-deleted files in the saved REST response match the audited head, while the REST list had omitted later files.
+Three matched repeats on the same 48 development cases produce **144 item runs and 1,977 definite label decisions per candidate**. These include 38 real snapshots and ten synthetic controls. Thirteen uncertain references are excluded across repeats. The four PRs previously used for confirmation are now development data because this iteration tunes against their errors; they are not presented as an untouched holdout.
 
-| Case                | Reference correction                                                                                                                                                                                 |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| #2930               | parity is positive: explicit upstream MCP alignment.                                                                                                                                                 |
-| #2941               | docs is positive: website design-system presentation and undo state change.                                                                                                                          |
-| #2949               | bug and needs reproduction are positive alongside feature: restores existing CLI confirmation behavior without a linked defect demonstration.                                                        |
-| #2950               | bug, cli and chore are positive. The full diff includes public CLI implementation repairs and separate CI maintenance beyond the 3,000-file REST ceiling. Feature and reproduction remain uncertain. |
-| #2915               | bug, cli and dependencies are positive: maintainer-confirmed dependency failure and explicit local upgrade tracking. Historical human removals affect ownership, not semantic eligibility.           |
-| #2969               | duplicate is positive: its entire patch is identical to the earlier, broader open #2968.                                                                                                             |
-| Synthetic 900106    | docs is uncertain: the fixture does not identify whether the fix changes installed component code or website code.                                                                                   |
-| #2958, #2761, #2771 | reproduction remains uncertain at the static-presentation/reference versus runtime-defect boundary.                                                                                                  |
+| Candidate                                    | Mean input tokens/item, all calls | False positives / misses | Errors | Wrong removals | On measured frontier |
+| -------------------------------------------- | --------------------------------: | -----------------------: | -----: | -------------: | -------------------- |
+| Previous draft (77b4e34)                     |                             6,261 |                   3 / 15 |     18 |              0 | yes                  |
+| Maintenance and parity clarification         |                             6,292 |                   0 / 13 |     13 |              0 | yes                  |
+| Selected: reproduction + scope clarification |                             6,377 |                    0 / 3 |      3 |              0 | yes                  |
 
-The previous report’s 13/1,584 result becomes **21/1,572 when the same archived responses are rescored** against the corrected references. That change is an answer-key correction, not a model improvement. A fresh three-repeat baseline below has twenty errors on the same corrected development decisions, reflecting one differing model judgment. Prior reports and local frozen reference files were preserved.
+![Measured cost and accuracy frontier](label-pareto.png)
 
-The [ground-truth ledger](label-ground-truth.csv) records all 672 label references across 48 cases, their source URLs, rationales and fixture hashes. It includes thirteen uncertain references: ten in the existing 44 cases, three in the four new confirmation cases. References were frozen before candidate inference; they were not revised to fit the outputs.
+The selected point reduces errors **18 → 3** for **1.85% more input tokens** (6,261 → 6,377), within the preselected +5% budget of 6,574 tokens/item. Exact fully determined sets improve **96/111 → 108/111**. Wrong additions fall **3 → 0**, missed additions **12 → 3**. Definite stale-label cleanup stays **63/72**; wrong removals and new false slop additions remain zero. Cleanup misses are reported separately from eligibility.
 
-## Selected change
+Each tested full point trades cost for accuracy; the selected point lies on this empirical frontier. It is not a globally optimal or repository-wide accuracy claim. The reproduction-only one-repeat pilot created a new workaround false positive, while the combined policy did not. Pilots are excluded from the three-repeat frontier.
 
-Keep one model request and the published, unchanged `@ieedan/label@0.0.1`. Follow same-repository references in human comments before incidental cross-references. Give release notes, manifests and source patches priority over generated registry data within the existing 100-file, 4,000-character patch and 24,000-character context limits. Independent reads remain bounded at four.
+## What changed
 
-The policy clarifies mixed-scope defects, website presentation controls, evidence in release notes, maintainer-requested dependency upgrades, claimed work and independent internal maintenance. Duplicate rules, all thresholds and returned model probabilities are unchanged. Every configured bot-owned label can still be removed on later commits; human applications, other bots and incomplete ownership are preserved. No manual application or review gate is added.
+- Reproduction is a request for evidence, independent of whether a defect is maintainer-confirmed or accompanied by feature/docs work. Negative conditions refer to the same defect. Examples distinguish unopenable pasted code, mixed-scope PRs and broken website controls from demonstrations of the original problem.
+- Chore applies to a separate portion of internal maintenance, including CI resource settings and workspace build scripts. It need not describe the entire PR. Tests or CI wiring only supporting a feature/fix still do not independently qualify.
+- Parity requires alignment with tracked shadcn/ui behavior, including linked evidence. A primitive-library implementation comparison or removal of a workaround alone is insufficient.
 
-## Matched cost and accuracy
+No PR IDs, special-case predictions, threshold changes, extra inference requests, review gates or human label application are introduced. All configured kinds of action-owned labels can still be removed automatically on later commits. Human applications, other bots and incomplete ownership histories remain protected; this does not include the unmerged labeler package’s human-removal reapplication veto.
 
-All four final candidates ran on the same 44 audited cases three times: **132 item runs and 1,818 definite label decisions per candidate**. That set includes synthetic controls and reused diagnostic cases and was used for development, so its accuracy is not an estimate for the whole repository.
+## Reserved confirmation
 
-| Strategy                                | Mean input tokens/item, all 44 cases | False positives / misses | Errors | Wrong removals |
-| --------------------------------------- | -----------------------------------: | -----------------------: | -----: | -------------: |
-| Previous draft (07da873)                |                                6,201 |                   3 / 19 |     22 |              0 |
-| Additive rules + prioritized evidence   |                                6,352 |                   3 / 12 |     15 |              0 |
-| Broader duplicate rules, rejected       |                                6,370 |                   3 / 11 |     14 |              0 |
-| Selected: conservative duplicate policy |                                6,386 |                   0 / 12 |     12 |              0 |
+PRs **#2900 and #2906** were manually annotated and frozen before either candidate ran on them, then tested three times without subsequent tuning. Both versions score **75/81** definite judgments. One uncertain chore judgment on #2906 is excluded across three repeats. Both miss reproduction on #2900 and feature on #2906 in all three repeats, with no false additions or wrong removals. Tokens average **9,264 → 9,380** for these larger-context cases.
 
-![Measured frontier on the 44 audited development cases](label-pareto.png)
+This is no gain and no regression on two reserved cases, not evidence that the development improvement generalizes broadly. Both versions select bug/feature on #2900 and bug/docs/parity on #2906, unlike their historical empty-label runs. #2906 also adds public portalProps, which the frozen reference counts as feature; #2900 supplies no runnable demonstration or linked same-repository defect issue.
 
-The selected point reduces errors **22 → 12** for **3.0% more input tokens** (6,201 → 6,386 per item). It lies on the empirical cost/error frontier of the matched full tests. The cheaper points trade accuracy for cost. Broader duplicate rules slightly improved the main cohort but produced three wrong duplicate judgments on #2905; the selected version retains the conservative policy and avoids that regression. There is no claim of a global optimum.
+Across all 50 cases combined, errors are **24 → 9 out of 2,058** definite decisions and input usage **6,381 → 6,497** tokens/item (+1.82%). That combined score mixes development and confirmation and should not replace their separate results.
 
-On the original 38-case budget-calibration composition, cost is **6,219 → 6,398** (+2.9%) and errors **20 → 12 out of 1,572**. The selected strategy remains 30.6% below the original deployed workflow’s 9,214-token mean budget, and also fits its 13,821-token +50% budget. Extra spending did not yield a preferable tested result. The original budget was measured on these 38 cases, not the additional confirmation cases.
+## Remaining errors and cleanup misses
 
-Across the 44 cases, exact fully determined sets improve **91/105 → 96/105**. Wrong additions remain zero, missed additions fall 15 → 9, and definite stale-label cleanup improves **62/72 → 63/72**. There are no wrong removals or new false slop additions. Eligibility and mutation denominators differ because labels can already exist and ownership restricts removal.
+The sole development eligibility error is the missing duplicate label on #2969, repeated three times. Its entire patch repeats the earlier broader #2968, but the bounded production collector does not retrieve that relationship. It remains a known evidence gap rather than a corrected answer in the benchmark. No further changes were made after reserved confirmation.
 
-## Separately frozen confirmation
+| Case          | False positives | Missed eligible labels | Missed stale-label cleanup |
+| ------------- | --------------- | ---------------------- | -------------------------- |
+| public-2932   | —               | —                      | slop ×3                    |
+| public-2917   | —               | —                      | duplicate ×3               |
+| fresh-2969    | —               | duplicate ×3           | —                          |
+| holdout-2905  | —               | —                      | duplicate ×3               |
+| reserved-2900 | —               | needs reproduction ×3  | —                          |
+| reserved-2906 | —               | feature ×3             | —                          |
 
-Four newly scored real PRs (#2973, #2965, #2963, #2940) were manually annotated after selecting the candidate and before either version ran on them. Both versions were tested three times without subsequent tuning: **153/159 definite decisions are correct for each**. Nine uncertain repeated decisions are excluded. Both miss reproduction on #2973 and wrongly judge parity on #2965, three times each. This check shows no new accuracy gain, and no regression; it does not establish broad generalization. Both make three wrong parity additions and no wrong removals on this fresh set.
+## Ground truth and verification
 
-The distinction on #2965 is deliberate: explaining a Bits UI/Radix implementation mismatch does not itself establish the explicit shadcn/ui alignment required by the policy. #2973 repairs an unlinked runtime navigation target but supplies no original-defect demonstration. The unresolved review suggestion on closed #2963 and the internal-automation bug/reproduction boundary on #2940 are excluded. These references remain unchanged after inference.
+The audited answer key from the previous iteration is unchanged for all 48 existing cases. That audit corrected six definite answers, resolved five uncertainties and identified six additional ambiguities. Its former 13/1,584 result becomes 21/1,572 when the same saved outputs are rescored; this was a reference correction, not a model improvement. Existing labels and bot assertions are not treated as truth. Subjective policy boundaries cannot honestly be certified as 100% accurate.
 
-Combined across all 48 cases, both versions score **1,977 definite decisions**; errors are **28 → 18**. This combined number mixes development and confirmation and should not replace their separate results. Mean tokens are **6,076 → 6,261** (+3.0%).
+The [ground-truth ledger](label-ground-truth.csv) contains **700 label references across 50 cases**, their source URLs, rationales and immutable fixture hashes. Fourteen ambiguous references are explicitly excluded. All positive and negative decisions, probabilities and expected/actual additions/removals are retained in the **4,200-row [paired ledger](label-evaluation.csv)**. The first 672 reference rows match the prior published reference exactly. Evaluation uncertainty introduces no production review gate.
 
-## Remaining selected-version errors and cleanup misses
+Usage is actual provider-reported input tokens summed across calls; every evaluation used one request and resolved to `jev-1.14.0`. The published CLI ran in dry-run mode against frozen GitHub responses, with all GitHub writes blocked. The API key remained in hidden input and process memory and was never saved in code or fixtures. All 50 final production requests reproduce the evaluated hashes.
 
-Counts span three repeats. The four development misses are reproduction on #2939 and #2949, chore on #2950, and duplicate on #2969. The current collector does not retrieve the overlapping #2968 for #2969; the audited reference knows the relationship, while the model input lacks it. A broader search supplied that evidence but increased cost and introduced other errors, so it was not shipped.
+The 24 local tests and repository lint pass. Timings include CLI startup and live inference under frozen GitHub inputs, with two case evaluations concurrent; they exclude live collection, installation and Actions queueing. No end-to-end latency improvement is claimed.
 
-| Case         | False positives | Missed eligible labels | Missed stale-label cleanup |
-| ------------ | --------------- | ---------------------- | -------------------------- |
-| public-2932  | —               | —                      | slop ×3                    |
-| public-2939  | —               | needs reproduction ×3  | —                          |
-| public-2949  | —               | needs reproduction ×3  | —                          |
-| public-2917  | —               | —                      | duplicate ×3               |
-| public-2950  | —               | chore ×3               | —                          |
-| fresh-2969   | —               | duplicate ×3           | —                          |
-| holdout-2905 | —               | —                      | duplicate ×3               |
-| new-2973     | —               | needs reproduction ×3  | —                          |
-| new-2965     | parity ×3       | —                      | —                          |
-
-## Reproducibility
-
-The paired [decision ledger](label-evaluation.csv) has all **4,032** rows, including negative decisions, probabilities and expected/actual additions and removals. Usage is actual provider-reported input tokens summed across every call; all calls resolved to `jev-1.14.0`. Every evaluation used the published CLI in dry-run mode with frozen GitHub responses and all GitHub writes blocked. The final production collector and adapter reproduced the evaluated request hashes on all 48 fixtures, with one inference request per fixture. The supplied key was entered through hidden input and was never saved in source or fixtures.
-
-Failed pilots are excluded from the three-repeat frontier. Removing label descriptions saved tokens but worsened accuracy; broad searches and patch comparisons cost more without a preferable result; a shorter reproduction rule wrongly removed a valid label. The production implementation keeps none of that routing, extra inference or patch-comparison logic.
-
-Latency is the CLI wall clock under frozen GitHub inputs, including Node startup and live inference, with two cases evaluated concurrently. It excludes live GitHub reads, installation and Actions queue time. No end-to-end speedup is claimed.
-
-## Frozen case rationale
+## Frozen reference rationale
 
 ### dev
 
@@ -152,3 +131,10 @@ Fixture hash: `37a55cb73b7bf3592edd126c7956f616f27b3b2b1df5884c1b3d6eb07665118f`
 - **new-2965:** The complete one-file installed Tooltip implementation diff repairs arrow positioning. Only a screenshot is supplied, with no linked issue or runnable original-defect demo. Comparing Bits UI and Radix internals does not explicitly establish shadcn/ui parity under the policy; no documentation or public API is added. Expected: bug, needs reproduction.
 - **new-2963:** The data-table documentation calls an undefined getPayments; adding the typed sample implementation fixes the runnable example and explicitly follows shadcn/ui docs. The linked issue comment establishes the reported defect. The closed-PR maintainer suggestion of a blank array is ambiguous as a still-outstanding request; exclude awaiting submitter. Expected: bug, docs, parity. Uncertain: awaiting submitter.
 - **new-2940:** Only internal GitHub workflow dispatch/automation changes. No package manifest/lockfile or public CLI/component/docs changes. Whether enabling bot-triggered reproduction comments is a new internal capability or an existing runtime defect, and whether runtime reproduction policy applies to that automation, is ambiguous; exclude those two labels. Expected: chore. Uncertain: bug, needs reproduction.
+
+### reserved
+
+Fixture hash: `1da924e766be090d98f1933a1d8ff45a8f013839b4ab3212fbdf3f0be56e964f`.
+
+- **reserved-2900:** The complete source diff hides duplicate accessible cell content and exposes a new bindable public inputRef. These independently establish a bug fix and public API feature. No linked same-repository defect issue or runnable original-defect demo is supplied; discussion only cross-references a foreign repository. Installed component implementation and regenerated registry data alone are not docs, CLI, dependencies, chore or explicit shadcn/ui parity. Expected: bug, feature, needs reproduction.
+- **reserved-2906:** Fixes linked radius, block separator and submenu defects. The complete diff adds public portalProps to installed submenu components, updates documentation/skill content and aligns radius templates with upstream as established in linked #2901. Linked issues establish the defects, so reproduction is unnecessary. No public CLI implementation or package dependency changes occur. The independent label-policy edit is internal repository maintenance but falls at the edge of the configured chore category list; exclude that judgment rather than certify it. Expected: bug, feature, docs, parity. Uncertain: chore.
