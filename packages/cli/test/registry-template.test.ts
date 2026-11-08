@@ -9,6 +9,9 @@
 import fs from "node:fs";
 import path from "node:path";
 import { it, expect } from "vitest";
+import { resolveItemFilePath } from "../src/utils/registry/index.js";
+import type { ResolvedConfig } from "../src/utils/config/index.js";
+import type { RegistryItem } from "../src/utils/registry/schema.js";
 
 const registryTemplateStaticRegistryPath = path.join(
 	import.meta.dirname,
@@ -168,7 +171,7 @@ it("should accurately build the registry template", async () => {
 			</div>
 		{/await}
 		",
-		      "target": "src/routes/pokemon/+page.svelte",
+		      "target": "pokemon/+page.svelte",
 		      "type": "registry:page",
 		    },
 		    {
@@ -702,4 +705,14 @@ it("should accurately build the registry template", async () => {
 		  "type": "registry:ui",
 		}
 	`);
+});
+
+it("should install the complex-component page at the pokemon route", () => {
+	const item: RegistryItem = getFile("complex-component");
+	const page = item.files!.find((file) => file.type === "registry:page")!;
+	const cwd = path.resolve("/registry-consumer");
+	const config = { sveltekit: true, resolvedPaths: { cwd } } as ResolvedConfig;
+	expect(resolveItemFilePath(config, item, page)).toBe(
+		path.resolve(cwd, "src/routes/pokemon/+page.svelte")
+	);
 });
