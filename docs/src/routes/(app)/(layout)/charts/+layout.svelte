@@ -29,9 +29,9 @@
 	<Announcement />
 	<PageHeaderHeading>{title}</PageHeaderHeading>
 	<PageHeaderDescription>{description}</PageHeaderDescription>
-	<PageActions>
-		<Button href="#charts" size="sm">Browse Charts</Button>
-		<Button href="/docs/components/chart" variant="ghost" size="sm">Documentation</Button>
+	<PageActions class="style-luma">
+		<Button href="#charts" class="h-[35px]">Browse Charts</Button>
+		<Button href="/docs/components/chart" variant="secondary">Documentation</Button>
 	</PageActions>
 </PageHeader>
 <PageNav id="charts">
