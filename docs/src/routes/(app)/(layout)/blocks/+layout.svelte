@@ -28,12 +28,12 @@
 	<Announcement />
 	<PageHeaderHeading>{title}</PageHeaderHeading>
 	<PageHeaderDescription>{description}</PageHeaderDescription>
-	<PageActions>
-		<Button href="#blocks" size="sm">Browse Blocks</Button>
-		<!-- <Button href="/docs/blocks" variant="ghost" size="sm">Add a block</Button> -->
+	<PageActions class="style-luma">
+		<Button href="#blocks" class="h-[35px]">Browse Blocks</Button>
+		<Button href="/docs/components" variant="secondary">View Components</Button>
 	</PageActions>
 </PageHeader>
-<PageNav>
+<PageNav id="blocks">
 	<BlocksNav />
 	<Button
 		size="sm"
