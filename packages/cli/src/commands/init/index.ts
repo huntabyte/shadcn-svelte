@@ -9,8 +9,8 @@ import { preflightInit } from "./preflight.js";
 import * as cliConfig from "../../utils/config/index.js";
 import * as project from "../../utils/project.js";
 import * as registry from "../../utils/registry/index.js";
-import { type PresetConfig, decodePreset, encodePreset } from "../../preset/index.js";
-import { promptForPreset } from "../../preset/presets.js";
+import { type PresetConfig, encodePreset } from "../../preset/index.js";
+import { invalidPresetMessage, promptForPreset, resolvePreset } from "../../preset/presets.js";
 import { addRegistryItems } from "../../utils/add-registry-items.js";
 import { detectConfigs } from "../../utils/auto-detect.js";
 import { highlight } from "../../utils/colors.js";
@@ -79,9 +79,9 @@ export const init = new Command()
 
 			let presetConfig: PresetConfig | null = null;
 			if (options.preset !== undefined) {
-				presetConfig = decodePreset(options.preset);
+				presetConfig = resolvePreset(options.preset);
 				if (presetConfig === null) {
-					p.log.warn(`${color.dim(`--preset ${options.preset}`)} is not a valid preset.`);
+					throw error(invalidPresetMessage(options.preset));
 				}
 			}
 

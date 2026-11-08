@@ -131,6 +131,8 @@ module.exports = {
 
 ---
 
+When a brand spec defines its own radius scale, pin each step in `@theme inline` (`--radius-sm` … `--radius-4xl`) instead of deriving from `--radius`. See [design-system.md](./design-system.md#radius).
+
 ## Customizing Components
 
 See also: [rules/styling.md](./rules/styling.md) for Incorrect/Correct examples.
