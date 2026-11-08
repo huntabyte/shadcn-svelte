@@ -24,7 +24,7 @@ jobs:
       - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v7
         with:
-          node-version: 24
+          node-version-file: package.json
           cache: pnpm
 
       # npm 12 ships `sigstore` nested under workspaces/libnpmpublish, where
