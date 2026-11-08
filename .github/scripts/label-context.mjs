@@ -77,7 +77,7 @@ export async function buildLabelContext({
         w.length >= 3 && !["the", "for", "with", "from", "and", "add", "use", "update"].includes(w)
     )
     .slice(0, 3);
-  const [search, fileResult, reviewResult] = await together([
+  const [search, fileResult, reviewResult, commentResult] = await together([
     words.length
       ? get(
           `search/issues?${new URLSearchParams({ q: `repo:${repo} ${kind === "issue" ? "is:issue" : "is:pr"} ${words.join(" ")} in:title`, per_page: "6" })}`
@@ -85,22 +85,36 @@ export async function buildLabelContext({
       : Promise.resolve({ items: [] }),
     item.pull_request ? pages(`repos/${repo}/pulls/${number}/files`, 10) : Promise.resolve(),
     item.pull_request ? pages(`repos/${repo}/pulls/${number}/reviews`, 3) : Promise.resolve(),
+    pages(`repos/${repo}/issues/${number}/comments`, 3),
   ]);
-  const refs = [...timeline.rows]
-    .reverse()
-    .filter(
-      (t) =>
-        t.event === "cross-referenced" &&
-        String(t.source?.issue?.repository_url).toLowerCase() ===
-          `https://api.github.com/repos/${repo}`.toLowerCase()
-    )
-    .map((t) => t.source.issue.number);
-  for (const match of String(item.body ?? "").matchAll(/(?:^|[\s(])#(\d+)\b/g))
-    refs.push(Number(match[1]));
-  for (const match of String(item.body ?? "").matchAll(
-    /https:\/\/github\.com\/([^/]+\/[^/]+)\/(?:issues|pull)\/(\d+)/g
-  ))
-    if (match[1].toLowerCase() === repo.toLowerCase()) refs.push(Number(match[2]));
+  const refs = [];
+  const humans = commentResult.rows.filter(
+    (c) => c.user?.type !== "Bot" && !c.user?.login?.endsWith("[bot]")
+  );
+  for (const text of [
+    item.body ?? "",
+    ...humans
+      .slice()
+      .reverse()
+      .map((c) => c.body ?? ""),
+  ]) {
+    for (const match of String(text).matchAll(/(?:^|[\s(])#(\d+)\b/g)) refs.push(Number(match[1]));
+    for (const match of String(text).matchAll(
+      /https:\/\/github\.com\/([^/]+\/[^/]+)\/(?:issues|pull)\/(\d+)/g
+    ))
+      if (match[1].toLowerCase() === repo.toLowerCase()) refs.push(Number(match[2]));
+  }
+  refs.push(
+    ...[...timeline.rows]
+      .reverse()
+      .filter(
+        (t) =>
+          t.event === "cross-referenced" &&
+          String(t.source?.issue?.repository_url).toLowerCase() ===
+            `https://api.github.com/repos/${repo}`.toLowerCase()
+      )
+      .map((t) => t.source.issue.number)
+  );
   refs.push(
     ...(search.items ?? []).filter((x) => x.created_at <= item.created_at).map((x) => x.number)
   );
@@ -155,9 +169,22 @@ export async function buildLabelContext({
     );
   }
   if (item.pull_request) {
+    const priority = (path) =>
+      path.startsWith(".changeset/")
+        ? 0
+        : path.endsWith("package.json")
+          ? 1
+          : path.includes("/static/registry/") || path.endsWith("lock.yaml")
+            ? 3
+            : 2;
     const files = fileResult.rows
       .map((f) => ({ path: f.filename, status: f.status, rawPatch: f.patch }))
-      .sort((a, b) => a.path.length - b.path.length || a.path.localeCompare(b.path));
+      .sort(
+        (a, b) =>
+          priority(a.path) - priority(b.path) ||
+          a.path.length - b.path.length ||
+          a.path.localeCompare(b.path)
+      );
     context.files = [];
     let chars = 0;
     let patchChars = 0;

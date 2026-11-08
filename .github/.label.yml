@@ -29,6 +29,8 @@ labels:
       Restoring broken visibility, layout, or homepage rendering is a bug fix even
       when described as docs work. A reporter's assertion or
       dependency report alone is not maintainer confirmation.
+      A changeset describing repairs to generated code or import paths establishes a fix
+      even if the full patch is omitted.
     remove_when: The item requests new functionality rather than fixing incorrect existing behavior.
   docs:
     description: >-
@@ -45,6 +47,8 @@ labels:
       The website global theme/design-system renderer is website presentation, not an
       installed registry component. Changing the rendering or typography of the website and
       its interactive previews qualifies even when no documentation prose changes.
+      User-facing documentation website controls and their visual state are website
+      presentation, including configuration history and undo.
   duplicate:
     description: >-
       A redundant report or competing implementation of the same unresolved work.
@@ -96,12 +100,18 @@ labels:
       that do not directly
       alter end-user functionality or documentation content. Documentation content
       updates and user-facing UI changes alone are not chores.
+      Maintenance can coexist with user-facing changes when separate internal build, test
+      or deployment work is present. Tests or CI wiring solely supporting the main feature
+      or fix do not independently qualify.
   "contributions welcome":
     apply_when: >-
       An issue invites a small, clearly bounded contribution whose solution is
       unambiguous and useful. Do not apply to pull requests, work already implemented
       or claimed, or large/uncertain logic changes.
-    remove_when: The item is a pull request or the requested work is already implemented or claimed.
+    remove_when: >-
+      The item is a pull request or the requested work is already implemented or claimed.
+      A linked open PR implementing the requested correction means the work is claimed,
+      even if not merged.
     examples:
       - "The docs say `x`, but they should say `y`"
       - "There is a typo in the docs"
@@ -113,6 +123,7 @@ labels:
       imports, or generated registry dependency lists alone do not qualify. Use
       manifest or lockfile evidence when supplied. This is independent of whether
       the public CLI is affected. Merely listing installed versions is insufficient.
+      An explicit human maintainer request to track a dependency upgrade also qualifies.
     examples:
       - Removing unused build dependencies from the docs package.
       - Updating a dependency version to obtain an upstream fix.
@@ -150,11 +161,16 @@ labels:
       states, tooltip placement, animation, layout, or scrolling. A PR repairing these
       defects can need reproduction, even if it is also docs or parity. A preview of the
       repaired branch is not a demonstration of the original defect.
+      Defect reports need not be maintainer-confirmed to require reproduction. Assess any
+      defect separately from additional feature requests. Public CLI execution and
+      confirmation prompts are runtime behavior.
     remove_when: >-
       The item does not report or fix a defect, the bug-fix PR links an issue
       establishing the defect, an accessible reproduction or identified official
       demo exhibiting the defect has been supplied, or a maintainer accepts the reproduction.
       A PR branch or code diff alone is not a reproduction of the original defect.
+      An additional feature request does not resolve a defect that still lacks
+      reproduction.
   "has workaround":
     apply_when: >-
       An issue describes a concrete workaround for a defect that the reporter or a
@@ -175,6 +191,8 @@ labels:
       qualify: public CLI implementation or supported behavior must also change. Merely
       validating registry-template data through existing CLI utilities is not a CLI
       implementation change.
+      An explicit changeset or release note describing public CLI implementation changes
+      is evidence even when the collected file list is truncated.
     remove_when: >-
       The discussion establishes that only components, docs, or internal tooling
       are affected, including Changesets CLI upgrades and deployment tooling.

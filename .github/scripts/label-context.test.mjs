@@ -204,3 +204,55 @@ test("parallel evidence reads are bounded and preserve deterministic context", a
   assert.equal(maximum, 4);
   assert.equal(active, 0);
 });
+
+test("prioritizes human discussion references and ignores bot and foreign links", async () => {
+  const f = fixture({
+    pr: false,
+    comments: [
+      { user: { login: "helper", type: "User" }, body: "The implementation is #7." },
+      { user: { login: "tool[bot]", type: "Bot" }, body: "See #8." },
+      { user: { login: "helper", type: "User" }, body: "https://github.com/other/repo/issues/9" },
+    ],
+    timeline: Array.from({ length: 5 }, (_, i) => ({
+      event: "cross-referenced",
+      source: {
+        issue: { number: i + 2, repository_url: "https://api.github.com/repos/owner/repo" },
+      },
+    })),
+  });
+  const ctx = parse(await run(f));
+  assert.equal(ctx.related[0].number, 7);
+  assert.equal(ctx.relatedOmitted, true);
+  assert.equal(ctx.related.length, 5);
+  assert(!f.calls.some((path) => /issues\/(8|9)(?:\?|\/|$)/.test(path)));
+});
+
+test("preserves release notes and source excerpts within the existing patch budget", async () => {
+  const f = fixture({
+    files: [
+      ...Array.from({ length: 12 }, (_, i) => ({
+        filename: `docs/static/registry/${i}.json`,
+        status: "modified",
+        patch: "generated\n".repeat(90),
+      })),
+      {
+        filename: ".changeset/important-release-note.md",
+        status: "added",
+        patch: "+Fix public generated imports",
+      },
+      { filename: "packages/tool/package.json", status: "modified", patch: "+dependency" },
+      {
+        filename: "packages/tool/src/a-long-implementation-file.ts",
+        status: "modified",
+        patch: "+correct implementation",
+      },
+    ],
+  });
+  const ctx = parse(await run(f));
+  assert.equal(ctx.files[0].path, ".changeset/important-release-note.md");
+  assert.match(ctx.files[0].patch, /generated imports/);
+  assert.equal(ctx.files[1].path, "packages/tool/package.json");
+  assert.match(ctx.files[2].patch, /correct implementation/);
+  assert(ctx.files.reduce((sum, file) => sum + (file.patch?.length ?? 0), 0) <= 4000);
+  assert(ctx.files.some((file) => file.patchOmitted));
+});
