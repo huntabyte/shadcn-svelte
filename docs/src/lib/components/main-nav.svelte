@@ -15,13 +15,16 @@
 	} & HTMLAttributes<HTMLElement> = $props();
 </script>
 
-<nav class={cn("items-center gap-0.5", className)} {...restProps}>
+<nav class={cn("items-center gap-0", className)} {...restProps}>
 	{#each items as item (item.href)}
 		<Button
 			href={item.href}
 			variant="ghost"
 			size="sm"
-			class={cn(page.url.pathname === item.href && "text-primary")}
+			class={cn(
+				"h-8 gap-1.5 rounded-md px-2.5 text-sm font-medium active:translate-y-0",
+				page.url.pathname === item.href && "text-primary"
+			)}
 		>
 			{item.title}
 		</Button>

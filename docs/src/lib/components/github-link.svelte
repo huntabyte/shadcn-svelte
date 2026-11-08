@@ -29,10 +29,10 @@
 	rel="noreferrer"
 	size="sm"
 	variant="ghost"
-	class="h-8 shadow-none"
+	class="h-8 gap-1.5 rounded-md px-3 text-sm font-medium shadow-none active:translate-y-0 has-[>svg]:px-2.5"
 >
-	<GithubIcon />
-	<span class="w-8 text-xs text-muted-foreground tabular-nums">
+	<GithubIcon class="size-4" />
+	<span class="w-fit text-xs text-muted-foreground tabular-nums">
 		{stars >= 1000 ? `${(stars / 1000).toFixed(1)}k` : stars.toLocaleString()}
 	</span>
 </Button>
