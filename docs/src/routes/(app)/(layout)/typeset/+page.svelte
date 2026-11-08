@@ -178,15 +178,16 @@
 											variant="ghost"
 											size="sm"
 											data-active={typeset.params.item === option.value}
-											class="h-7 min-w-7 cursor-pointer rounded-lg px-2 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground data-[active=true]:bg-accent data-[active=true]:text-accent-foreground"
+											class="h-7 min-w-7 cursor-pointer gap-1.5 rounded-lg border-0 px-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground data-[active=true]:bg-accent data-[active=true]:text-accent-foreground active:translate-y-0 dark:hover:bg-accent/50"
 											onclick={() => typeset.update({ item: option.value })}
 											>{String(index + 1).padStart(2, "0")}</Button
 										>
 									{/snippet}
 								</Tooltip.Trigger>
+								<!-- Match Base UI's 10px popup gap; Bits UI adds the 10px arrow height. -->
 								<Tooltip.Content
 									side="top"
-									sideOffset={10}
+									sideOffset={0}
 									class="data-[state=closed]:animate-none data-[state=instant-open]:animate-in data-[state=instant-open]:fade-in-0 data-[state=instant-open]:zoom-in-95"
 								>
 									{option.label}
@@ -203,7 +204,7 @@
 							rel="noreferrer"
 							variant="ghost"
 							size="sm"
-							class="h-7 cursor-pointer rounded-lg px-2.5 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
+							class="h-7 cursor-pointer gap-1.5 rounded-lg border-0 px-2.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground active:translate-y-0 dark:hover:bg-accent/50"
 						>
 							<HugeiconsIcon icon={LinkSquare02Icon} strokeWidth={2} class="size-3.5 md:hidden" />
 							<span class="max-md:sr-only">Open in New Tab</span>
