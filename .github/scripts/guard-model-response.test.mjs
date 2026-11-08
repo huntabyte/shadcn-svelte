@@ -97,18 +97,23 @@ test("published CLI cannot turn a missing answer into a removal when guarded", a
   }
 });
 
-test("blocks a third inference request before network access, including after failures", async () => {
+test("reports actual input usage, preserves retries and never substitutes zero for missing usage", async () => {
   let calls = 0;
-  const fetch = guardFetch(async () => {
-    calls++;
-    return Response.json({}, { status: 503 });
-  });
-  const url = "https://api.typesafe.ai/v1/systemone";
+  const observations = [];
+  const fetch = guardFetch(
+    async () => {
+      calls++;
+      return Response.json({
+        answers: {},
+        ...(calls === 3 ? {} : { usage: { input_tokens: 42 } }),
+      });
+    },
+    (usage) => observations.push(usage)
+  );
   const init = { body: JSON.stringify({ questions: {} }) };
-  await fetch(url, init);
-  await fetch(url, init);
-  await assert.rejects(fetch(url, init), /budget exceeded/);
-  assert.equal(calls, 2);
+  for (let i = 0; i < 3; i++) await fetch("https://api.typesafe.ai/v1/systemone", init);
+  assert.equal(calls, 3);
+  assert.deepEqual(observations, [{ inputTokens: 42 }, { inputTokens: 42 }, { inputTokens: null }]);
 });
 
 test("embeds each literal policy while preserving IDs, context and probabilities", () => {

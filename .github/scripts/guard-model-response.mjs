@@ -39,24 +39,33 @@ export function explicitQuestions(request) {
   return request;
 }
 
-/** Each CLI process gets at most the deployed two inference requests, including retries. */
-export function guardFetch(fetch) {
-  let requests = 0;
+/** Validate decisions and report actual provider usage without changing SDK retry behavior. */
+export function guardFetch(fetch, onUsage = () => {}) {
   return async (input, init) => {
     const url = new URL(
       typeof input === "string" || input instanceof URL ? String(input) : input.url
     );
     const inference = url.hostname === "api.typesafe.ai" && url.pathname === "/v1/systemone";
-    if (inference && ++requests > 2) throw Error("Inference request budget exceeded");
     if (inference)
       init = { ...init, body: JSON.stringify(explicitQuestions(JSON.parse(String(init.body)))) };
     const response = await fetch(input, init);
     if (inference && response.ok) {
       const request = JSON.parse(String(init.body));
-      validateAnswers(request.questions, await response.clone().json());
+      const payload = await response.clone().json();
+      validateAnswers(request.questions, payload);
+      const tokens = payload.usage?.input_tokens;
+      onUsage({ inputTokens: Number.isSafeInteger(tokens) && tokens >= 0 ? tokens : null });
     }
     return response;
   };
 }
 
-globalThis.fetch = guardFetch(globalThis.fetch);
+let totalInputTokens = 0;
+let usageComplete = true;
+globalThis.fetch = guardFetch(globalThis.fetch, ({ inputTokens }) => {
+  if (inputTokens === null) usageComplete = false;
+  else totalInputTokens += inputTokens;
+  console.log(
+    `TypeSafe reported input tokens: ${inputTokens ?? "unavailable"}; cumulative: ${usageComplete ? totalInputTokens : "incomplete"}`
+  );
+});
