@@ -120,9 +120,9 @@
 	]);
 </script>
 
-<Card.Root class="pt-0">
-	<Card.Header class="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
-		<div class="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
+<Card.Root class="py-0">
+	<Card.Header class="flex flex-col items-stretch border-b p-0! sm:flex-row">
+		<div class="flex flex-1 flex-col justify-center gap-1 px-6 pt-4 pb-3 sm:py-0!">
 			<Card.Title>Bar Chart - Interactive</Card.Title>
 			<Card.Description>Showing total visitors for the last 3 months</Card.Description>
 		</div>

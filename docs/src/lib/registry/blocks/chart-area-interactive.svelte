@@ -138,14 +138,14 @@
 </script>
 
 <Card.Root class="pt-0">
-	<Card.Header class="flex gap-2 space-y-0 border-b py-5 sm:flex-row">
-		<div class="grid flex-1 gap-1 sm:text-start">
+	<Card.Header class="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
+		<div class="grid flex-1 gap-1">
 			<Card.Title>Area Chart - Interactive</Card.Title>
 			<Card.Description>Showing total visitors for the last 3 months</Card.Description>
 		</div>
 		<Select.Root type="single" bind:value={timeRange}>
 			<Select.Trigger
-				class="hidden w-40 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate md:flex"
+				class="hidden w-[160px] rounded-lg sm:ms-auto sm:flex"
 				aria-label="Select a value"
 			>
 				{selectedLabel}
@@ -159,8 +159,8 @@
 			</Select.Content>
 		</Select.Root>
 	</Card.Header>
-	<Card.Content>
-		<Chart.Container config={chartConfig} class="-ml-3 aspect-auto h-[250px] w-full">
+	<Card.Content class="px-2 pt-4 sm:px-6 sm:pt-6">
+		<Chart.Container config={chartConfig} class="aspect-auto h-[250px] w-full">
 			<AreaChart
 				legend
 				data={filteredData}

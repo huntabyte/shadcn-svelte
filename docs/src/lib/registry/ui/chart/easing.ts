@@ -1,3 +1,6 @@
+import { onMount } from "svelte";
+import { Tween, prefersReducedMotion } from "svelte/motion";
+
 /**
  * Creates a cubic-bezier easing function matching the CSS cubic-bezier() specification.
  * Uses Newton-Raphson iteration to solve for the parametric t value.
@@ -44,20 +47,56 @@ function createCubicBezier(x1: number, y1: number, x2: number, y2: number): (t: 
 export const ease = createCubicBezier(0.25, 0.1, 0.25, 1.0);
 
 /** Default motion config for splines, pies, arcs (1500ms) */
-export const defaultMotion = { type: "tween", duration: 1500, easing: ease } as const;
+export const defaultMotion = {
+	type: "tween",
+	duration: () => (prefersReducedMotion.current ? 0 : 1500),
+	easing: ease,
+} as const;
 
-/** Default motion config for bar charts (500ms per property) */
+/** Default motion config for bar charts (400ms per property) */
 export const defaultBarMotion = {
-	x: { type: "tween", duration: 500, easing: ease },
-	width: { type: "tween", duration: 500, easing: ease },
-	y: { type: "tween", duration: 500, easing: ease },
-	height: { type: "tween", duration: 500, easing: ease },
+	x: { type: "tween", duration: () => (prefersReducedMotion.current ? 0 : 400), easing: ease },
+	width: { type: "tween", duration: () => (prefersReducedMotion.current ? 0 : 400), easing: ease },
+	y: { type: "tween", duration: () => (prefersReducedMotion.current ? 0 : 400), easing: ease },
+	height: { type: "tween", duration: () => (prefersReducedMotion.current ? 0 : 400), easing: ease },
 } as const;
 
 /** Default motion config for ChartClipPath width animation */
 export const defaultClipMotion = {
-	width: { type: "tween", duration: 1500, easing: ease },
+	width: { type: "tween", duration: () => (prefersReducedMotion.current ? 0 : 1500), easing: ease },
 } as const;
 
 /** Default tweened options for radar chart scale animation */
-export const defaultRadarScale = { duration: 1500, easing: ease } as const;
+export const defaultRadarScale = {
+	duration: () => (prefersReducedMotion.current ? 0 : 1500),
+	easing: ease,
+} as const;
+
+/**
+ * Recharts waits 400ms, then sweeps each pie from its configured start angle.
+ * Drive `endAngle` explicitly: LayerChart's built-in pie motion always starts at zero.
+ */
+export function createPieAnimation(
+	startAngle = Math.PI / 2,
+	endAngle = (-3 * Math.PI) / 2,
+	delay = 400
+) {
+	const angle = new Tween(startAngle, {
+		duration: () => (prefersReducedMotion.current ? 0 : 1500),
+		delay: prefersReducedMotion.current ? 0 : delay,
+		easing: ease,
+	});
+	onMount(() => {
+		angle.target = endAngle;
+	});
+	return angle;
+}
+
+/** Track the line reveal so dots and labels appear after the stroke finishes drawing. */
+export function createRevealAnimation() {
+	const progress = new Tween(0, defaultRadarScale);
+	onMount(() => {
+		progress.target = 1;
+	});
+	return progress;
+}

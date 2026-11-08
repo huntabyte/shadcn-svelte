@@ -20,14 +20,15 @@
 		edge: { label: "Edge", color: "var(--chart-4)" },
 		other: { label: "Other", color: "var(--chart-5)" },
 	} satisfies Chart.ChartConfig;
+	const pieAngle = Chart.createPieAnimation();
 </script>
 
 <Card.Root class="flex flex-col">
-	<Card.Header class="items-center">
+	<Card.Header class="items-center pb-0">
 		<Card.Title>Pie Chart - Donut</Card.Title>
 		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
-	<Card.Content class="flex-1">
+	<Card.Content class="flex-1 pb-0">
 		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
 			<PieChart
 				data={chartData}
@@ -37,11 +38,12 @@
 				innerRadius={60}
 				padding={29}
 				props={{
+					arc: { stroke: "var(--background)", strokeWidth: 1 },
 					pie: {
 						startAngle: Math.PI / 2,
-						endAngle: (-3 * Math.PI) / 2,
+						endAngle: pieAngle.current,
 						sort: null,
-						motion: Chart.defaultMotion,
+						motion: "none",
 					},
 				}}
 			>
@@ -53,7 +55,7 @@
 	</Card.Content>
 	<Card.Footer class="flex-col gap-2 text-sm">
 		<div class="flex items-center gap-2 leading-none font-medium">
-			Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
+			Trending up by 5.2% this month <TrendingUpIcon class="h-4 w-4" />
 		</div>
 		<div class="leading-none text-muted-foreground">
 			Showing total visitors for the last 6 months

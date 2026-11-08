@@ -47,7 +47,7 @@
 				]}
 				props={{
 					xAxis: {
-						format: (v: Date) => v.toLocaleDateString("en-US", { month: "short" }),
+						format: (v: Date) => v.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" }),
 					},
 					highlight: { points: { r: 4 } },
 				}}
@@ -69,10 +69,10 @@
 		<div class="flex w-full items-start gap-2 text-sm">
 			<div class="grid gap-2">
 				<div class="flex items-center gap-2 leading-none font-medium">
-					Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
+					Trending up by 5.2% this month <TrendingUpIcon class="h-4 w-4" />
 				</div>
 				<div class="flex items-center gap-2 leading-none text-muted-foreground">
-					January - June 2024
+					Showing total visitors for the last 6 months
 				</div>
 			</div>
 		</div>

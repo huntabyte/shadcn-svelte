@@ -1,0 +1,29 @@
+/* The gallery ports shadcn's new-york-v4 cards. Registry previews flatten the
+   selected style into utilities, so use stable slots to restore these defaults.
+   Variant spacing (pb-0, pb-4, py-0, etc.) stays on the examples themselves. */
+.chart-preview {
+	[data-slot="card"] {
+		--card-spacing: --spacing(6);
+		@apply overflow-visible border text-base shadow-sm ring-0;
+	}
+
+	[data-slot="card"]:has(> [data-slot="card-footer"]) {
+		padding-bottom: --spacing(6);
+	}
+
+	[data-slot="card-header"] {
+		@apply gap-2;
+	}
+
+	[data-slot="card-title"] {
+		@apply leading-none font-semibold;
+	}
+
+	[data-slot="card-footer"] {
+		@apply border-0 bg-transparent pb-0;
+	}
+
+	[data-slot="card-footer"]:not(.pt-4) {
+		@apply pt-0;
+	}
+}

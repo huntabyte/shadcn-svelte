@@ -2,7 +2,7 @@
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { scaleBand } from "d3-scale";
 	import { curveNatural } from "d3-shape";
-	import { LineChart } from "layerchart";
+	import { LineChart, Spline, ChartClipPath, Points, Circle } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 
@@ -22,6 +22,7 @@
 		edge: { label: "Edge", color: "var(--chart-4)" },
 		other: { label: "Other", color: "var(--chart-5)" },
 	} satisfies Chart.ChartConfig;
+	const reveal = Chart.createRevealAnimation();
 </script>
 
 <Card.Root>
@@ -34,36 +35,54 @@
 			<LineChart
 				data={chartData}
 				y="visitors"
-				c={(v) => v.color}
-				yPadding={[0, 25]}
+				yPadding={[25, 0]}
+				padding={{ left: 24, right: 24 }}
+				highlight={{ points: { r: 6 } }}
 				x="browser"
 				axis={false}
 				xScale={scaleBand()}
 				props={{
 					spline: {
 						curve: curveNatural,
-						motion: Chart.defaultMotion,
 						strokeWidth: 2,
 						stroke: "var(--color-visitors)",
 					},
 				}}
 			>
+				{#snippet marks()}
+					<ChartClipPath initialWidth={0} motion={Chart.defaultClipMotion}>
+						<Spline curve={curveNatural} strokeWidth={2} stroke="var(--color-visitors)" />
+					</ChartClipPath>
+				{/snippet}
+				{#snippet points()}
+					{#if reveal.current === 1}
+						<Points>
+							{#snippet children({ points })}
+								{#each points as point, i (i)}
+									<Circle
+										cx={point.x}
+										cy={point.y}
+										r={5}
+										fill={point.data.color}
+										stroke={point.data.color}
+									/>
+								{/each}
+							{/snippet}
+						</Points>
+					{/if}
+				{/snippet}
 				{#snippet tooltip()}
-					<Chart.Tooltip hideLabel />
+					<Chart.Tooltip hideLabel indicator="line" nameKey="visitors" />
 				{/snippet}
 			</LineChart>
 		</Chart.Container>
 	</Card.Content>
-	<Card.Footer>
-		<div class="flex w-full items-start gap-2 text-sm">
-			<div class="grid gap-2">
-				<div class="flex items-center gap-2 leading-none font-medium">
-					Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
-				</div>
-				<div class="flex items-center gap-2 leading-none text-muted-foreground">
-					January - June 2024
-				</div>
-			</div>
+	<Card.Footer class="flex-col items-start gap-2 text-sm">
+		<div class="flex gap-2 leading-none font-medium">
+			Trending up by 5.2% this month <TrendingUpIcon class="h-4 w-4" />
+		</div>
+		<div class="leading-none text-muted-foreground">
+			Showing total visitors for the last 6 months
 		</div>
 	</Card.Footer>
 </Card.Root>

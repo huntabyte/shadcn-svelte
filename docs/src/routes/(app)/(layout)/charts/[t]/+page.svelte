@@ -15,19 +15,14 @@
 	<div
 		class="grid flex-1 scroll-mt-20 items-stretch gap-10 md:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:gap-10"
 	>
-		{#each { length: 12 } as _, index (index)}
-			{@const chart = chartList[index]}
-			{#if chart}
-				<ChartDisplay
-					name={chart.id}
-					class={cn(chart.fullWidth && "md:col-span-2 lg:col-span-3")}
-					chartData={data.charts}
-				>
-					<chart.component />
-				</ChartDisplay>
-			{:else}
-				<div class="hidden aspect-square w-full rounded-lg border border-dashed xl:block"></div>
-			{/if}
+		{#each chartList as chart (chart.id)}
+			<ChartDisplay
+				name={chart.id}
+				class={cn(chart.fullWidth && "md:col-span-2 lg:col-span-3")}
+				chartData={data.charts}
+			>
+				<chart.component />
+			</ChartDisplay>
 		{/each}
 	</div>
 </div>

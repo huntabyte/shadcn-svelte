@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { scaleBand } from "d3-scale";
-	import { BarChart } from "layerchart";
+	import { BarChart, dataCoords } from "layerchart";
+	import { untrack } from "svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import type { ChartState } from "layerchart";
@@ -22,45 +23,27 @@
 	let context = $state<ChartState>();
 
 	$effect(() => {
-		const t = setTimeout(() => {
-			if (!context) return;
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			const xs = context.xScale as any;
-			context.tooltip.x =
-				xs(chartData[1].date) + (xs.bandwidth?.() ?? 0) / 2 + context.padding.left;
-			context.tooltip.y = context.containerHeight / 3;
-			context.tooltip.data = chartData[1];
-			context.tooltip.series = [
-				{
-					key: "swimming",
-					label: "Swimming",
-					value: chartData[1].swimming,
-					color: chartConfig.swimming.color,
-					visible: true,
-					config: {
-						key: "swimming",
-						label: "Swimming",
-						color: chartConfig.swimming.color,
-					},
+		const chart = context;
+		if (!chart || chart.width <= 0 || chart.height <= 0) return;
+
+		// Match shadcn's defaultIndex={1} once the chart has measured its container.
+		// Resolve the payload through LayerChart and anchor halfway down the chart, as Recharts does.
+		untrack(() =>
+			chart.tooltip.show({
+				data: chartData[1],
+				point: {
+					...dataCoords(chart, chartData[1]),
+					y: (chart.padding.top + chart.containerHeight) / 2,
 				},
-				{
-					key: "running",
-					label: "Running",
-					value: chartData[1].running,
-					color: chartConfig.running.color,
-					visible: true,
-					config: { key: "running", label: "Running", color: chartConfig.running.color },
-				},
-			];
-		}, 650);
-		return () => clearTimeout(t);
+			})
+		);
 	});
 </script>
 
 <Card.Root>
 	<Card.Header>
 		<Card.Title>Tooltip - Formatter</Card.Title>
-		<Card.Description>Tooltip with custom formatter.</Card.Description>
+		<Card.Description>Tooltip with custom formatter .</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<Chart.Container config={chartConfig}>

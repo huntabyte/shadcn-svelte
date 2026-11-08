@@ -29,22 +29,18 @@
 	const activeIndex = $derived(desktopData.findIndex((item) => item.month === activeMonth));
 
 	const months = $derived(desktopData.map((item) => item.month));
+	const pieAngle = Chart.createPieAnimation();
 </script>
 
 <Card.Root data-chart={id} class="flex flex-col">
 	<ChartStyle {id} config={chartConfig} />
-	<Card.Header class="flex flex-row items-start space-y-0 pb-0">
+	<Card.Header class="flex-row items-start space-y-0 pb-0">
 		<div class="grid gap-1">
 			<Card.Title>Pie Chart - Interactive</Card.Title>
 			<Card.Description>January - June 2024</Card.Description>
 		</div>
-	</Card.Header>
-	<Card.Content class="flex-1">
 		<Select.Root type="single" bind:value={activeMonth}>
-			<Select.Trigger
-				class="ms-auto mb-14 h-7 w-[130px] rounded-lg ps-2.5 text-sm"
-				aria-label="Select a value"
-			>
+			<Select.Trigger class="ms-auto h-7 w-[130px] rounded-lg ps-2.5" aria-label="Select a value">
 				<span
 					class="flex h-3 w-3 shrink-0 rounded-xs"
 					style:background-color={`var(--color-${activeMonth})`}
@@ -67,8 +63,9 @@
 				>
 			</Select.Content>
 		</Select.Root>
-
-		<Chart.Container {id} config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
+	</Card.Header>
+	<Card.Content class="flex flex-1 justify-center pb-0">
+		<Chart.Container {id} config={chartConfig} class="mx-auto aspect-square w-full max-w-[300px]">
 			<PieChart
 				data={desktopData}
 				label="month"
@@ -76,14 +73,15 @@
 				value="desktop"
 				c="color"
 				props={{
+					arc: { stroke: "var(--background)", strokeWidth: 5 },
 					pie: {
 						startAngle: Math.PI / 2,
-						endAngle: (-3 * Math.PI) / 2,
+						endAngle: pieAngle.current,
 						sort: (a, b) => {
 							const monthOrder = ["january", "february", "march", "april", "may"];
 							return monthOrder.indexOf(a.month) - monthOrder.indexOf(b.month);
 						},
-						motion: Chart.defaultMotion,
+						motion: "none",
 					},
 				}}
 				innerRadius={60}
@@ -107,26 +105,25 @@
 				{/snippet}
 				{#snippet arc({ props, index })}
 					{@const isActive = index === activeIndex}
-					{@const arcProps = isActive ? { ...props, outerRadius: 60, innerRadius: 105 } : props}
+					{@const arcProps = isActive
+						? { ...props, outerRadius: (props.outerRadius ?? 0) + 10 }
+						: props}
 
 					{#if isActive}
 						<g>
 							<Arc {...arcProps} />
-							<Arc {...arcProps} outerRadius={107} innerRadius={119} />
+							<Arc
+								{...props}
+								outerRadius={(props.outerRadius ?? 0) + 25}
+								innerRadius={(props.outerRadius ?? 0) + 12}
+							/>
 						</g>
 					{:else}
 						<Arc {...arcProps} />
 					{/if}
 				{/snippet}
 				{#snippet tooltip()}
-					<Chart.Tooltip
-						labelKey="visitors"
-						nameKey="month"
-						indicator="line"
-						labelFormatter={(_, payload) => {
-							return chartConfig[payload?.[0].key as keyof typeof chartConfig].label;
-						}}
-					/>
+					<Chart.Tooltip hideLabel />
 				{/snippet}
 			</PieChart>
 		</Chart.Container>

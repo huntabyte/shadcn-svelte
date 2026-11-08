@@ -23,7 +23,7 @@
 <Card.Root>
 	<Card.Header>
 		<Card.Title>Area Chart</Card.Title>
-		<Card.Description>January - June 2024</Card.Description>
+		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<Chart.Container config={chartConfig}>
@@ -46,7 +46,7 @@
 						line: { class: "stroke-1" },
 					},
 					xAxis: {
-						format: (v: Date) => v.toLocaleDateString("en-US", { month: "short" }),
+						format: (v: Date) => v.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" }),
 					},
 				}}
 			>
@@ -65,7 +65,8 @@
 				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip
-						labelFormatter={(v: Date) => v.toLocaleDateString("en-US", { month: "long" })}
+						labelFormatter={(v: Date) =>
+							v.toLocaleDateString("en-US", { month: "long", timeZone: "UTC" })}
 						indicator="line"
 					/>
 				{/snippet}
@@ -76,7 +77,7 @@
 		<div class="flex w-full items-start gap-2 text-sm">
 			<div class="grid gap-2">
 				<div class="flex items-center gap-2 leading-none font-medium">
-					Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
+					Trending up by 5.2% this month <TrendingUpIcon class="h-4 w-4" />
 				</div>
 				<div class="flex items-center gap-2 leading-none text-muted-foreground">
 					January - June 2024

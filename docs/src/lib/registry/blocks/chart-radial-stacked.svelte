@@ -10,15 +10,16 @@
 		desktop: { label: "Desktop", color: "var(--chart-1)" },
 		mobile: { label: "Mobile", color: "var(--chart-2)" },
 	} satisfies Chart.ChartConfig;
+	const pieAngle = Chart.createPieAnimation(Math.PI / 2, -Math.PI / 2, 0);
 </script>
 
 <Card.Root class="flex flex-col">
-	<Card.Header class="items-center">
+	<Card.Header class="items-center pb-0">
 		<Card.Title>Radial Chart - Stacked</Card.Title>
 		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
-	<Card.Content class="flex-1">
-		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
+	<Card.Content class="flex flex-1 items-center pb-0">
+		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px] w-full">
 			<PieChart
 				data={[
 					{ platform: "mobile", visitors: 570, color: chartConfig.mobile.color },
@@ -29,8 +30,10 @@
 				c="color"
 				innerRadius={76}
 				padding={29}
-				range={[-90, 90]}
-				props={{ pie: { sort: null, motion: Chart.defaultMotion } }}
+				range={[90, -90]}
+				props={{
+					pie: { sort: null, startAngle: Math.PI / 2, endAngle: pieAngle.current, motion: "none" },
+				}}
 				cornerRadius={4}
 			>
 				{#snippet aboveMarks()}
@@ -57,7 +60,7 @@
 	</Card.Content>
 	<Card.Footer class="flex-col gap-2 text-sm">
 		<div class="flex items-center gap-2 leading-none font-medium">
-			Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
+			Trending up by 5.2% this month <TrendingUpIcon class="h-4 w-4" />
 		</div>
 		<div class="leading-none text-muted-foreground">
 			Showing total visitors for the last 6 months

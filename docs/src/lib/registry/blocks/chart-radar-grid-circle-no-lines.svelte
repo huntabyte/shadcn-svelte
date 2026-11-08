@@ -3,7 +3,6 @@
 	import { scaleBand } from "d3-scale";
 	import { curveLinearClosed } from "d3-shape";
 	import { LineChart } from "layerchart";
-	import { onMount } from "svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 
@@ -19,26 +18,14 @@
 	const chartConfig = {
 		desktop: { label: "Desktop", color: "var(--chart-1)" },
 	} satisfies Chart.ChartConfig;
-
-	const maxValue = Math.max(...chartData.map((d) => d.desktop));
-	let yEnd = $state(maxValue * 100);
-
-	// Static circular grid — drawn in belowMarks so they don't react to yDomain changes.
-	// Effective radius: 250px container / 2 - 12px padding = 113px
-	const gridRadius = 113;
-	const gridTicks = [65, 130, 195, 260];
-
-	onMount(() => {
-		yEnd = maxValue;
-	});
 </script>
 
 <Card.Root>
-	<Card.Header class="items-center">
+	<Card.Header class="items-center pb-4">
 		<Card.Title>Radar Chart - Grid Circle - No Lines</Card.Title>
-		<Card.Description>January - June 2024</Card.Description>
+		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
 	</Card.Header>
-	<Card.Content class="flex-1">
+	<Card.Content class="pb-0">
 		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
 			<LineChart
 				data={chartData}
@@ -52,13 +39,12 @@
 				radial
 				x="month"
 				xScale={scaleBand()}
-				yDomain={[0, yEnd]}
-				points={{ r: 4 }}
+				points={{ r: 4, initialCx: 0, initialCy: 0, motion: Chart.defaultMotion }}
 				padding={12}
-				motion={Chart.defaultMotion}
 				props={{
 					spline: {
 						curve: curveLinearClosed,
+						motion: Chart.defaultMotion,
 						fill: "var(--color-desktop)",
 						fillOpacity: 0.6,
 						stroke: "0",
@@ -70,12 +56,13 @@
 						format: () => "",
 					},
 					grid: {
-						y: false,
+						radialY: "circle",
 						x: false,
 					},
 					tooltip: {
 						context: {
 							mode: "voronoi",
+							radius: 250,
 						},
 					},
 					highlight: {
@@ -84,18 +71,6 @@
 					},
 				}}
 			>
-				{#snippet belowMarks()}
-					{#each gridTicks as tick (tick)}
-						{@const r = (tick / maxValue) * gridRadius}
-						<circle
-							cx="0"
-							cy="0"
-							{r}
-							class="fill-none stroke-muted-foreground/20"
-							stroke-width="1"
-						/>
-					{/each}
-				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip />
 				{/snippet}
@@ -104,7 +79,7 @@
 	</Card.Content>
 	<Card.Footer class="flex-col gap-2 text-sm">
 		<div class="flex items-center gap-2 leading-none font-medium">
-			Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
+			Trending up by 5.2% this month <TrendingUpIcon class="h-4 w-4" />
 		</div>
 		<div class="flex items-center gap-2 leading-none text-muted-foreground">
 			January - June 2024

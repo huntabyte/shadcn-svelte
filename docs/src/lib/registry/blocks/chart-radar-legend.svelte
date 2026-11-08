@@ -24,9 +24,9 @@
 <Card.Root>
 	<Card.Header class="items-center">
 		<Card.Title>Radar Chart - Legend</Card.Title>
-		<Card.Description>January - June 2024</Card.Description>
+		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
 	</Card.Header>
-	<Card.Content class="flex-1">
+	<Card.Content>
 		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
 			<LineChart
 				data={chartData}
@@ -72,6 +72,7 @@
 					tooltip: {
 						context: {
 							mode: "voronoi",
+							radius: 250,
 						},
 					},
 					highlight: {
@@ -88,7 +89,7 @@
 	</Card.Content>
 	<Card.Footer class="flex-col gap-2 pt-4 text-sm">
 		<div class="flex items-center gap-2 leading-none font-medium">
-			Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
+			Trending up by 5.2% this month <TrendingUpIcon class="h-4 w-4" />
 		</div>
 		<div class="flex items-center gap-2 leading-none text-muted-foreground">
 			January - June 2024

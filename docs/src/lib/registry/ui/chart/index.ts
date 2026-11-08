@@ -4,6 +4,8 @@ import ChartTooltip from "./chart-tooltip.svelte";
 export { getPayloadConfigFromPayload, type ChartConfig } from "./chart-utils.js";
 export {
 	ease,
+	createPieAnimation,
+	createRevealAnimation,
 	defaultMotion,
 	defaultBarMotion,
 	defaultClipMotion,

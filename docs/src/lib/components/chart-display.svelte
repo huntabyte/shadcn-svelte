@@ -20,17 +20,14 @@
 {#if chart}
 	<div
 		class={cn(
-			"themes-wrapper group relative flex flex-col overflow-hidden rounded-xl transition-all duration-200 ease-in-out hover:z-30",
+			"chart-preview themes-wrapper group relative flex flex-col overflow-hidden rounded-xl transition-all duration-200 ease-in-out hover:z-30",
 			className
 		)}
 	>
-		<ChartToolbar
-			{chart}
-			class="relative z-20 flex justify-end border-b bg-card px-3 py-2.5 text-card-foreground"
-		>
+		<ChartToolbar {chart} class="relative z-20 flex justify-end px-3 py-2.5">
 			{@render children?.()}
 		</ChartToolbar>
-		<div class="relative z-10 overflow-hidden rounded-xl border bg-background">
+		<div class="relative z-10 overflow-hidden rounded-xl bg-background">
 			{@render children?.()}
 		</div>
 	</div>

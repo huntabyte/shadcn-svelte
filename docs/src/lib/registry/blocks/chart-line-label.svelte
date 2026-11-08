@@ -18,6 +18,7 @@
 	const chartConfig = {
 		desktop: { label: "Desktop", color: "var(--chart-1)" },
 	} satisfies Chart.ChartConfig;
+	const reveal = Chart.createRevealAnimation();
 </script>
 
 <Card.Root>
@@ -28,8 +29,8 @@
 	<Card.Content>
 		<Chart.Container config={chartConfig}>
 			<LineChart
-				points={{ r: 4 }}
-				labels={{ offset: 12 }}
+				points={reveal.current === 1 ? { r: 4 } : false}
+				labels={reveal.current === 1 ? { offset: 12 } : false}
 				data={chartData}
 				x="date"
 				axis="x"
@@ -49,7 +50,7 @@
 						},
 					},
 					xAxis: {
-						format: (v: Date) => v.toLocaleDateString("en-US", { month: "short" }),
+						format: (v: Date) => v.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" }),
 					},
 				}}
 			>
@@ -73,16 +74,12 @@
 			</LineChart>
 		</Chart.Container>
 	</Card.Content>
-	<Card.Footer>
-		<div class="flex w-full items-start gap-2 text-sm">
-			<div class="grid gap-2">
-				<div class="flex items-center gap-2 leading-none font-medium">
-					Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
-				</div>
-				<div class="flex items-center gap-2 leading-none text-muted-foreground">
-					January - June 2024
-				</div>
-			</div>
+	<Card.Footer class="flex-col items-start gap-2 text-sm">
+		<div class="flex gap-2 leading-none font-medium">
+			Trending up by 5.2% this month <TrendingUpIcon class="h-4 w-4" />
+		</div>
+		<div class="leading-none text-muted-foreground">
+			Showing total visitors for the last 6 months
 		</div>
 	</Card.Footer>
 </Card.Root>
