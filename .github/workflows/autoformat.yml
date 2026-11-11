@@ -83,22 +83,22 @@ jobs:
 
       - name: Checkout PR branch
         if: steps.check-permission.outputs.should-continue == 'true'
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: ${{ steps.get-pr.outputs.head-ref }}
 
-      - uses: pnpm/action-setup@v5
+      - uses: pnpm/action-setup@v6
         if: steps.check-permission.outputs.should-continue == 'true'
 
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         if: steps.check-permission.outputs.should-continue == 'true'
         with:
-          node-version: 24
+          node-version-file: package.json
           cache: pnpm
 
       - name: Install dependencies
         if: steps.check-permission.outputs.should-continue == 'true'
-        run: pnpm install
+        run: pnpm ci
 
       - name: Run formatter
         if: steps.check-permission.outputs.should-continue == 'true'
