@@ -76,6 +76,7 @@
 						labelFormatter={(v: Date) => {
 							return v.toLocaleDateString("en-US", {
 								month: "long",
+								timeZone: "UTC",
 							});
 						}}
 						indicator="dot"
