@@ -38,7 +38,10 @@
 				<!-- Like Radix: the wrapper takes the popper transforms, only the inner square rotates. -->
 				<div {...props}>
 					<div
-						class={cn("cn-tooltip-arrow z-50 bg-foreground fill-foreground", arrowClasses)}
+						class={cn(
+							"cn-tooltip-arrow z-50 translate-y-[calc(-50%_-_2px)] bg-foreground fill-foreground",
+							arrowClasses
+						)}
 						data-side={props["data-side"]}
 					></div>
 				</div>
