@@ -35,14 +35,16 @@
 		{@render children?.()}
 		<TooltipPrimitive.Arrow>
 			{#snippet child({ props })}
-				<div
-					class={cn(
-						// parity-ignore: Bits Arrow + child snippet needs per-side transforms; Radix uses a single translate-y
-						"cn-tooltip-arrow z-50 bg-foreground fill-foreground data-[side=bottom]:-translate-x-1/2 data-[side=bottom]:-translate-y-[calc(-50%+1px)] data-[side=left]:-translate-y-[calc(50%-3px)] data-[side=right]:translate-x-[calc(50%+2px)] data-[side=right]:translate-y-1/2 data-[side=top]:translate-x-1/2 data-[side=top]:translate-y-[calc(-50%+2px)]",
-						arrowClasses
-					)}
-					{...props}
-				></div>
+				<!-- Like Radix: the wrapper takes the popper transforms, only the inner square rotates. -->
+				<div {...props}>
+					<div
+						class={cn(
+							"cn-tooltip-arrow z-50 translate-y-[calc(-50%_-_2px)] bg-foreground fill-foreground",
+							arrowClasses
+						)}
+						data-side={props["data-side"]}
+					></div>
+				</div>
 			{/snippet}
 		</TooltipPrimitive.Arrow>
 	</TooltipPrimitive.Content>
