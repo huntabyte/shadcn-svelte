@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.8.1
+
+### Patch Changes
+
+- fix(cli): apply shimmer reduced motion to variants ([#2976](https://github.com/huntabyte/shadcn-svelte/pull/2976))
+
 ## 1.8.0
 
 ### Minor Changes
