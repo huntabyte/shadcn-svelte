@@ -70,7 +70,7 @@
 				<ProjectForm />
 			</Card.Footer>
 		</Card.Root>
-		<div class="mt-auto hidden w-full shrink-0 md:block">
+		<div class="hidden w-full shrink-0 md:block">
 			<Cta />
 		</div>
 	</div>
