@@ -31,7 +31,10 @@ labels:
       dependency report alone is not maintainer confirmation.
       A changeset describing repairs to generated code or import paths establishes a fix
       even if the full patch is omitted.
-    remove_when: The item requests new functionality rather than fixing incorrect existing behavior.
+    remove_when: >-
+      The item requests new functionality rather than fixing incorrect existing behavior.
+      Release-only changes that publish or summarize fixes already implemented elsewhere do not
+      fix a defect themselves.
   docs:
     description: >-
       Changes documentation content, guides, examples, package usage instructions,
@@ -179,6 +182,8 @@ labels:
       human maintainer says works, or provides a specific usable patch. Generic tool
       error advice, especially forcing a potentially broken dependency resolution,
       is not a demonstrated workaround. Never apply to enhancements.
+      A documentation-only example of an existing supported option is not a workaround unless it
+      addresses a demonstrated defect in the software itself.
   cli:
     apply_when: >-
       The issue concerns the public shadcn-svelte CLI used by end users, or a pull
