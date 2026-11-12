@@ -3,7 +3,7 @@ title: Select
 description: Displays a list of options for the user to pick from—triggered by a button.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/select
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/select
   doc: https://bits-ui.com/docs/components/select
   api: https://bits-ui.com/docs/components/select#api-reference
 ---
@@ -51,6 +51,12 @@ Copy and paste the following code into your project.
 {#if viewerData}
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
+
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
 
 </Steps>
 {/snippet}
@@ -104,6 +110,23 @@ It reads the label from the matching `Select.Item`, which only exists in the DOM
 
 Without `items` the trigger falls back to the raw value, so you only need it when an item's label differs from its value.
 
+## Composition
+
+Use the following composition to build a `Select`:
+
+```text
+Select.Root
+├── Select.Trigger
+│   └── Select.Value
+└── Select.Content
+    ├── Select.Group
+    │   ├── Select.Label
+    │   └── Select.Item
+    └── Select.Separator
+```
+
+Pass `items` to `Select.Root` when item labels differ from their values, as shown in Usage. This keeps `Select.Value` displaying the label after the menu closes.
+
 ## Groups
 
 Use `Select.Group`, `Select.Label`, and `Select.Separator` to organize items.
@@ -150,3 +173,7 @@ Add the `data-invalid` attribute to the `Field.Field` component and the `aria-in
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+See the [Bits UI](https://bits-ui.com/docs/components/select#api-reference) documentation for more information.

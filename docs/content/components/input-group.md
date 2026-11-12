@@ -3,7 +3,7 @@ title: Input Group
 description: Add addons, buttons, and helper content to inputs.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/input-group
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/input-group
 ---
 
 <script>
@@ -51,6 +51,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -74,6 +80,18 @@ Copy and paste the following code into your project.
     <InputGroup.Button>Search</InputGroup.Button>
   </InputGroup.Addon>
 </InputGroup.Root>
+```
+
+## Composition
+
+Use the following composition to build an `InputGroup`:
+
+```text
+InputGroup.Root
+├── InputGroup.Input or InputGroup.Textarea
+├── InputGroup.Addon
+├── InputGroup.Button
+└── InputGroup.Text
 ```
 
 ## Align
@@ -193,3 +211,107 @@ Here's an example of a custom auto-resizing textarea.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+### InputGroup.Root
+
+The main component that wraps inputs and addons.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` |         |
+
+```svelte
+<InputGroup.Root>
+  <InputGroup.Input />
+  <InputGroup.Addon />
+</InputGroup.Root>
+```
+
+### InputGroup.Addon
+
+Displays icons, text, buttons, or other content alongside inputs.
+
+<Callout>
+
+For proper focus navigation, the `InputGroup.Addon` component should be placed after the input. Set the `align` prop to position the addon.
+
+</Callout>
+
+| Prop    | Type                                                             | Default          |
+| ------- | ---------------------------------------------------------------- | ---------------- |
+| `align` | `"inline-start" \| "inline-end" \| "block-start" \| "block-end"` | `"inline-start"` |
+| `class` | `string`                                                         |                  |
+
+```svelte
+<InputGroup.Addon align="inline-end">
+  <SearchIcon />
+</InputGroup.Addon>
+```
+
+**For `<InputGroup.Input />`, use the `inline-start` or `inline-end` alignment. For `<InputGroup.Textarea />`, use the `block-start` or `block-end` alignment.**
+
+The `InputGroup.Addon` component can have multiple `InputGroup.Button` components and icons.
+
+```svelte
+<InputGroup.Addon>
+  <InputGroup.Button>Button</InputGroup.Button>
+  <InputGroup.Button>Button</InputGroup.Button>
+</InputGroup.Addon>
+```
+
+### InputGroup.Button
+
+Displays buttons within input groups.
+
+| Prop      | Type                                                                          | Default   |
+| --------- | ----------------------------------------------------------------------------- | --------- |
+| `size`    | `"xs" \| "icon-xs" \| "sm" \| "icon-sm"`                                      | `"xs"`    |
+| `variant` | `"default" \| "destructive" \| "outline" \| "secondary" \| "ghost" \| "link"` | `"ghost"` |
+| `class`   | `string`                                                                      |           |
+
+```svelte
+<InputGroup.Button>Button</InputGroup.Button>
+<InputGroup.Button size="icon-xs" aria-label="Copy">
+  <CopyIcon />
+</InputGroup.Button>
+```
+
+### InputGroup.Input
+
+Replacement for `<Input />` when building input groups. This component has the input group styles pre-applied and uses the unified `data-slot="input-group-control"` for focus state handling.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` |         |
+
+All other props are passed through to the underlying `<Input />` component.
+
+```svelte
+<InputGroup.Root>
+  <InputGroup.Input placeholder="Enter text..." />
+  <InputGroup.Addon>
+    <SearchIcon />
+  </InputGroup.Addon>
+</InputGroup.Root>
+```
+
+### InputGroup.Textarea
+
+Replacement for `<Textarea />` when building input groups. This component has the textarea group styles pre-applied and uses the unified `data-slot="input-group-control"` for focus state handling.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` |         |
+
+All other props are passed through to the underlying `<Textarea />` component.
+
+```svelte
+<InputGroup.Root>
+  <InputGroup.Textarea placeholder="Enter message..." />
+  <InputGroup.Addon align="block-end">
+    <InputGroup.Button>Send</InputGroup.Button>
+  </InputGroup.Addon>
+</InputGroup.Root>
+```

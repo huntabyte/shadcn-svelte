@@ -3,7 +3,7 @@ title: Empty
 description: Use the Empty component to display an empty state.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/empty
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/empty
 ---
 
 <script>
@@ -42,6 +42,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -68,6 +74,19 @@ Copy and paste the following code into your project.
     <Button>Add data</Button>
   </Empty.Content>
 </Empty.Root>
+```
+
+## Composition
+
+Use the following composition to build an `Empty` state:
+
+```text
+Empty.Root
+├── Empty.Header
+│   ├── Empty.Media
+│   ├── Empty.Title
+│   └── Empty.Description
+└── Empty.Content
 ```
 
 ## Outline
@@ -119,3 +138,98 @@ You can add an `InputGroup` component to the `Empty.Content` component.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+### Empty.Root
+
+The main component of the empty state. Wraps the `Empty.Header` and `Empty.Content` components.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` |         |
+
+```svelte
+<Empty.Root>
+  <Empty.Header />
+  <Empty.Content />
+</Empty.Root>
+```
+
+### Empty.Header
+
+The `Empty.Header` component wraps the empty media, title, and description.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` |         |
+
+```svelte
+<Empty.Header>
+  <Empty.Media />
+  <Empty.Title />
+  <Empty.Description />
+</Empty.Header>
+```
+
+### Empty.Media
+
+Use the `Empty.Media` component to display the media of the empty state such as an icon or an image. You can also use it to display other components such as an avatar.
+
+| Prop      | Type                  | Default     |
+| --------- | --------------------- | ----------- |
+| `variant` | `"default" \| "icon"` | `"default"` |
+| `class`   | `string`              |             |
+
+```svelte
+<Empty.Media variant="icon">
+  <Icon />
+</Empty.Media>
+```
+
+```svelte
+<Empty.Media>
+  <Avatar.Root>
+    <Avatar.Image src="..." />
+    <Avatar.Fallback>CN</Avatar.Fallback>
+  </Avatar.Root>
+</Empty.Media>
+```
+
+### Empty.Title
+
+Use the `Empty.Title` component to display the title of the empty state.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` |         |
+
+```svelte
+<Empty.Title>No data</Empty.Title>
+```
+
+### Empty.Description
+
+Use the `Empty.Description` component to display the description of the empty state.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` |         |
+
+```svelte
+<Empty.Description>You do not have any notifications.</Empty.Description>
+```
+
+### Empty.Content
+
+Use the `Empty.Content` component to display the content of the empty state such as a button, input or a link.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `class` | `string` |         |
+
+```svelte
+<Empty.Content>
+  <Button>Add Project</Button>
+</Empty.Content>
+```

@@ -3,7 +3,7 @@ title: Tabs
 description: A set of layered sections of content—known as tab panels—that are displayed one at a time.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/tabs
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/tabs
   doc: https://bits-ui.com/docs/components/tabs
   api: https://bits-ui.com/docs/components/tabs#api-reference
 ---
@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -75,6 +81,19 @@ Copy and paste the following code into your project.
   </Tabs.Content>
   <Tabs.Content value="password">Change your password here.</Tabs.Content>
 </Tabs.Root>
+```
+
+## Composition
+
+Use the following composition to build `Tabs`:
+
+```text
+Tabs.Root
+├── Tabs.List
+│   ├── Tabs.Trigger
+│   └── Tabs.Trigger
+├── Tabs.Content
+└── Tabs.Content
 ```
 
 ## Line
@@ -112,3 +131,7 @@ Use `orientation="vertical"` for vertical tabs.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+See the [Bits UI Tabs](https://bits-ui.com/docs/components/tabs#api-reference) documentation.

@@ -3,7 +3,6 @@
 	import ArrowLeftIcon from "@lucide/svelte/icons/arrow-left";
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
 	import ArrowUpRight from "@lucide/svelte/icons/arrow-up-right";
-	import ComponentCodeViewer from "$lib/components/component-code-viewer/component-code-viewer.svelte";
 	import CtaMobile from "$lib/components/cta-mobile.svelte";
 	import Cta from "$lib/components/cta.svelte";
 	import DocsCopyPage from "$lib/components/docs-copy-page.svelte";
@@ -21,8 +20,8 @@
 	const apiLink = $derived(doc.links?.api);
 	const docLink = $derived(doc.links?.doc);
 	const neighbors = $derived(findNeighbors(page.url.pathname));
-	const source = $derived(data.viewerData);
 	const isChangelog = $derived(page.url.pathname.startsWith("/docs/changelog"));
+	const isComponentDoc = $derived(page.url.pathname.startsWith("/docs/components/"));
 </script>
 
 <Metadata
@@ -110,7 +109,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 						</p>
 					{/if}
 				</div>
-				{#if apiLink || docLink || source}
+				{#if !isComponentDoc && (apiLink || docLink)}
 					<div class="flex items-center space-x-2 pt-4">
 						{#if docLink}
 							<Badge href={docLink} variant="secondary" target="_blank" rel="noreferrer">
@@ -122,11 +121,6 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 							<Badge href={apiLink} variant="secondary" target="_blank" rel="noreferrer">
 								API Reference <ArrowUpRight aria-hidden="true" />
 							</Badge>
-						{/if}
-						{#if source}
-							{#key page.url.pathname}
-								<ComponentCodeViewer item={source} allowSidebar={true} />
-							{/key}
 						{/if}
 					</div>
 				{/if}

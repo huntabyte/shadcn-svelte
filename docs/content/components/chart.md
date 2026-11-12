@@ -3,7 +3,7 @@ title: Chart
 description: Beautiful charts. Built using LayerChart. Copy and paste into your apps.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/chart
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/chart
 ---
 
 <script>
@@ -114,6 +114,12 @@ Add the following colors to your CSS file
 <Step>
 
 Copy and paste the following code into your project.
+
+</Step>
+
+<Step>
+
+Update the import paths to match your project setup.
 
 </Step>
 

@@ -3,7 +3,7 @@ title: Table
 description: A responsive table component.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/table
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/table
 ---
 
 <script>
@@ -42,6 +42,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -74,6 +80,33 @@ Copy and paste the following code into your project.
     </Table.Row>
   </Table.Body>
 </Table.Root>
+```
+
+## Composition
+
+Use the following composition to build a `Table`:
+
+```text
+Table.Root
+├── Table.Caption
+├── Table.Header
+│   └── Table.Row
+│       ├── Table.Head
+│       ├── Table.Head
+│       ├── Table.Head
+│       └── Table.Head
+├── Table.Body
+│   ├── Table.Row
+│   │   ├── Table.Cell
+│   │   ├── Table.Cell
+│   │   ├── Table.Cell
+│   │   └── Table.Cell
+│   └── Table.Row
+│       ├── Table.Cell
+│       ├── Table.Cell
+│       ├── Table.Cell
+│       └── Table.Cell
+└── Table.Footer
 ```
 
 ## Footer

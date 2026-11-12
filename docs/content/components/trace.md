@@ -419,7 +419,7 @@ Secondary text after the title, such as a count or a duration. It does not trunc
 
 ### Trace.Collapsible
 
-A row that expands. It accepts the props of [`Collapsible`](/docs/components/collapsible).
+A row that expands. It accepts the props of [`Collapsible`](/docs/components/collapsible). Use `bind:open` to control it, or set `open={true}` for an initially open row.
 
 | Prop           | Type                      | Default | Description                             |
 | -------------- | ------------------------- | ------- | --------------------------------------- |
@@ -437,7 +437,7 @@ The button that opens and closes the row. Put a `Trace.Line` inside it. It adds 
 
 ### Trace.CollapsibleContent
 
-The detail of a row that expands.
+The detail of a row that expands. It accepts [Bits UI Collapsible.Content props](https://bits-ui.com/docs/components/collapsible#content), including `forceMount` to keep it mounted while closed.
 
 | Prop    | Type     | Default | Description                                 |
 | ------- | -------- | ------- | ------------------------------------------- |
