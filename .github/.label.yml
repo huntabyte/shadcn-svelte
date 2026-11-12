@@ -6,9 +6,18 @@ prompt: >-
   OWNER, MEMBER, and COLLABORATOR comments represent maintainers; CONTRIBUTOR alone
   does not establish maintainer confirmation. Bot/template text is not a human request
   or confirmation. Linked work may be related without being a duplicate.
-  A bug-fix PR without a linked issue can need reproduction. Evaluate each label independently;
+  Reproduction is relevant only to an existing runtime defect. A missing linked
+  issue does not turn a feature, docs or skill PR into a bug report. Unlinked bug-fix
+  PRs can qualify when the defect needs demonstration. Evaluate each label independently;
   several labels can be correct at once. Use changed-file evidence when available,
   and do not assume omitted files or patches contain no changes.
+  A new public tool, API/export, prop, snippet, component mode, or CLI flag counts
+  as feature even when another label such as cli or docs also applies. Explicit
+  upstream ports and alignment count as parity independently of feature or docs.
+  For docs, require documentation content, examples, or website presentation;
+  registry component code is not docs merely because its path starts with docs/.
+  A concrete reported working workaround or directly usable patch counts as has
+  workaround even when the issue also requests an improvement.
 
 labels:
   bug:
@@ -20,8 +29,17 @@ labels:
       Restoring broken visibility, layout, or homepage rendering is a bug fix even
       when described as docs work. A reporter's assertion or
       dependency report alone is not maintainer confirmation.
-    remove_when: The item requests new functionality rather than fixing incorrect existing behavior.
+      A changeset describing repairs to generated code or import paths establishes a fix
+      even if the full patch is omitted.
+    remove_when: >-
+      The item requests new functionality rather than fixing incorrect existing behavior.
+      Release-only changes that publish or summarize fixes already implemented elsewhere do not
+      fix a defect themselves.
   docs:
+    description: >-
+      Changes documentation content, guides, examples, package usage instructions,
+      or the documentation website's presentation. Component implementation alone
+      is not docs, including files stored under docs/src/lib/registry/ui/.
     apply_when: >-
       Changes documentation content, examples, or their presentation. Internal build
       tooling or a search implementation alone is not a documentation-content change.
@@ -29,7 +47,18 @@ labels:
       stored in the docs workspace; separate changed docs or examples are required.
       Fixing an actual runnable documentation example counts as docs even when
       no Markdown file changes. Registry component implementation alone does not.
+      The website global theme/design-system renderer is website presentation, not an
+      installed registry component. Changing the rendering or typography of the website and
+      its interactive previews qualifies even when no documentation prose changes.
+      User-facing documentation website controls and their visual state are website
+      presentation, including configuration history and undo.
   duplicate:
+    description: >-
+      A redundant report or competing implementation of the same unresolved work.
+      Never a fix, follow-up, or canonical replacement. Check supplied related-item
+      state and closure comments: an older item closed in favor of this one makes
+      this one the replacement, not the duplicate. Shared topic or files alone do
+      not establish redundant scope. Apply automatically when redundant scope is clear.
     apply_when: >-
       An earlier canonical issue or pull request covers the same problem or proposed
       change, making this item redundant. Require matching scope, not just a link,
@@ -45,8 +74,12 @@ labels:
     examples:
       - A second issue reports the same behavior and identifies the first issue as its canonical report.
       - A second PR proposes the same change as an existing PR without a distinct scope or a requested replacement.
-    context: similar_issues
   feature:
+    description: >-
+      Requests or implements new end-user functionality, including a new public tool,
+      component API/export, prop, snippet, supported mode or CLI flag. Can coexist
+      with cli, docs and parity. Reusing an existing primitive or root component to
+      expose a new supported API still counts. Only restoring behavior does not.
     apply_when: >-
       Adds or requests new end-user functionality, a new component, or a new public
       component API such as a prop, snippet, or supported mode exposed to consumers
@@ -58,22 +91,28 @@ labels:
       described as a documentation example.
       Only restoring existing expected behavior is not a feature. A workaround can
       still qualify if it adds new functionality or a public component API.
+      A newly supported public named export is an API addition even when it aliases an
+      existing implementation. Private or internal module exports alone do not qualify.
     examples:
       - Exposing a customizable rendering snippet through public component props.
       - Adding a newly supported component mode by wrapping an existing primitive.
     remove_when: The item only fixes existing behavior.
   chore:
     apply_when: >-
-      Internal diagnostics, test maintenance, build, release, or deployment changes
-      that do not directly
-      alter end-user functionality or documentation content. Documentation content
-      updates and user-facing UI changes alone are not chores.
+      Contains a separate internal diagnostics, build, release, deployment or
+      test-maintenance change, even when other changes affect end users. CI resource
+      configuration and workspace build scripts qualify. Tests or CI wiring solely
+      supporting the main feature or fix do not independently qualify. Only user-facing UI
+      or documentation-content changes do not qualify.
   "contributions welcome":
     apply_when: >-
       An issue invites a small, clearly bounded contribution whose solution is
       unambiguous and useful. Do not apply to pull requests, work already implemented
       or claimed, or large/uncertain logic changes.
-    remove_when: The item is a pull request or the requested work is already implemented or claimed.
+    remove_when: >-
+      The item is a pull request or the requested work is already implemented or claimed.
+      A linked open PR implementing the requested correction means the work is claimed,
+      even if not merged.
     examples:
       - "The docs say `x`, but they should say `y`"
       - "There is a typo in the docs"
@@ -85,6 +124,7 @@ labels:
       imports, or generated registry dependency lists alone do not qualify. Use
       manifest or lockfile evidence when supplied. This is independent of whether
       the public CLI is affected. Merely listing installed versions is insufficient.
+      An explicit human maintainer request to track a dependency upgrade also qualifies.
     examples:
       - Removing unused build dependencies from the docs package.
       - Updating a dependency version to obtain an upstream fix.
@@ -106,6 +146,11 @@ labels:
       alone does not clear an active changes-requested review. Remove the label if
       only bot reviews request changes and there is no outstanding human request.
   "needs reproduction":
+    description: >-
+      A request for runnable evidence of an existing runtime defect, not a confirmation
+      that it is a valid bug. Evaluate any reported or fixed defect independently of other
+      feature, docs, parity or duplicate scope. Unconfirmed defect reports can require
+      reproduction.
     apply_when: >-
       An issue reports a defect requiring reproduction, or a bug-fix pull request
       has no linked issue establishing the reported defect, and the item lacks an
@@ -113,17 +158,32 @@ labels:
       official shadcn-svelte demo exhibiting that defect. Steps or screenshots alone
       are insufficient. An identified demo on shadcn-svelte.com, with or without www
       or a URL scheme, is acceptable; a generic documentation link alone is insufficient.
+      Existing runtime behavior includes broken interactive website UI, such as hover
+      states, tooltip placement, animation, layout, or scrolling. A PR repairing these
+      defects can need reproduction, even if it is also docs or parity. A preview of the
+      repaired branch is not a demonstration of the original defect.
+      Defect reports need not be maintainer-confirmed to require reproduction. Assess any
+      defect separately from additional feature requests. Public CLI execution and
+      confirmation prompts are runtime behavior.
     remove_when: >-
-      The item does not report or fix a defect, the bug-fix PR links an issue
-      establishing the defect, an accessible reproduction or identified official
-      demo exhibiting the defect has been supplied, or a maintainer accepts the reproduction.
-      A PR branch or code diff alone is not a reproduction of the original defect.
+      No existing runtime defect is reported or fixed anywhere in the item; or the
+      particular defect is established by a linked issue, an accessible runnable
+      reproduction repository/StackBlitz or identified official shadcn-svelte demo, or a
+      maintainer accepts the reproduction. A feature request, documentation change or
+      repaired-branch preview does not demonstrate the original defect. Static reference
+      corrections alone are excluded.
+    examples:
+      - "An unconfirmed issue reports an existing malfunction and also requests a new capability; it supplies only pasted code, without an openable reproduction."
+      - "A mixed-scope PR introduces new functionality and also repairs an existing runtime defect, without a linked defect issue or original-defect demonstration."
+      - "A website fix restores a broken navigation target, scrolling or interactive control without demonstrating the original defect."
   "has workaround":
     apply_when: >-
       An issue describes a concrete workaround for a defect that the reporter or a
       human maintainer says works, or provides a specific usable patch. Generic tool
       error advice, especially forcing a potentially broken dependency resolution,
       is not a demonstrated workaround. Never apply to enhancements.
+      A documentation-only example of an existing supported option is not a workaround unless it
+      addresses a demonstrated defect in the software itself.
   cli:
     apply_when: >-
       The issue concerns the public shadcn-svelte CLI used by end users, or a pull
@@ -134,6 +194,12 @@ labels:
       package manifest or test runner is not the public CLI package. Merely showing CLI commands
       on a page is insufficient. Other tools named CLI, such as Changesets for releases or Wrangler for
       deployments, are not the public shadcn-svelte CLI.
+      For pull requests, CLI tests, fixtures, snapshots, or test tooling alone do not
+      qualify: public CLI implementation or supported behavior must also change. Merely
+      validating registry-template data through existing CLI utilities is not a CLI
+      implementation change.
+      An explicit changeset or release note describing public CLI implementation changes
+      is evidence even when the collected file list is truncated.
     remove_when: >-
       The discussion establishes that only components, docs, or internal tooling
       are affected, including Changesets CLI upgrades and deployment tooling.
@@ -141,6 +207,8 @@ labels:
       packages/cli/ is sufficient evidence to remove cli from a component-only port.
       No maintainer comment is required for that file evidence. An omitted file list
       does not establish absence of CLI changes.
+      The complete changed-file list shows only tests, fixtures, snapshots, or test tooling
+      under the CLI package and no public CLI implementation changes.
   triage:
     remove_when: >-
       A human OWNER, MEMBER, or COLLABORATOR acknowledges the reported defect as
@@ -148,6 +216,10 @@ labels:
       can identify an upstream cause. A reporter or bot assertion alone is insufficient.
     can_apply: false
   parity:
+    description: >-
+      Explicitly ports or aligns functionality, components, docs or presentation
+      with upstream shadcn/ui. A port can also be feature or docs. Separate maintainer
+      confirmation is unnecessary when the alignment is explicit.
     apply_when: >-
       An issue requests, or a pull request implements, alignment with upstream
       shadcn/ui functionality, components, documentation, or visual presentation
@@ -160,6 +232,26 @@ labels:
       A maintainer explains that the current implementation already has parity
       with the upstream implementation this repository follows, or that the proposed
       difference is a separate behavior/design discussion rather than a parity gap.
+      Comparing underlying primitive libraries or removing an implementation workaround
+      alone does not establish alignment with shadcn/ui itself. Require explicit shadcn/ui
+      alignment, including in linked evidence; generic dependency implementation
+      differences are insufficient.
   slop:
-    apply_when: The issue/pull request description is clearly generated by AI. Signs can be, usage of em-dashes, overly verbose descriptions that distract from the actual issue/changes, etc.
-    remove_when: The issue/pull request description is no longer clearly generated by AI. Short no excessive use of em-dashes, no overly verbose descriptions that distract from the actual issue/changes.
+    threshold: 0.9
+    description: >-
+      The description itself is demonstrably AI-generated, such as an explicit
+      statement that an AI wrote the description. AI-assisted investigation, code,
+      tests or tooling do not establish authorship of the description. Formatting,
+      em-dashes, length, technical logs and polished prose alone are insufficient.
+      Apply automatically when there is direct evidence about description authorship.
+    apply_when: >-
+      Direct evidence establishes that the description itself was generated by AI.
+      Distinguish description authorship from AI use during coding or investigation.
+      An explicit statement that AI wrote the description qualifies. Merely naming
+      an assistant or agent framework does not. A denial of AI-written prose without
+      contrary direct evidence does not qualify.
+    remove_when: >-
+      There is no direct evidence that AI wrote the description itself, or the
+      statement was corrected to refer only to code, tests or investigation.
+      Short descriptions still qualify when their AI authorship is explicit;
+      length, punctuation and style do not override that evidence.

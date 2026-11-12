@@ -1,0 +1,26 @@
+name: Label tools CI
+
+on:
+  pull_request:
+    paths:
+      - ".github/.label.yml"
+      - ".github/scripts/**"
+      - ".github/workflows/label.yml"
+      - ".github/workflows/label-review.yml"
+      - ".github/workflows/label-tools-ci.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: .github/scripts/package-lock.json
+      - run: npm ci --prefix .github/scripts --ignore-scripts --no-audit --no-fund
+      - run: node --test .github/scripts/*.test.mjs
