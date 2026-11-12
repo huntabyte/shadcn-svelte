@@ -8,7 +8,6 @@
 	import PageHeaderHeading from "$lib/components/page-header/page-header-heading.svelte";
 	import PageHeader from "$lib/components/page-header/page-header.svelte";
 	import PageNav from "$lib/components/page-nav.svelte";
-	import ThemeSelector from "$lib/components/theme-selector.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
 
 	let { children } = $props();
@@ -30,14 +29,13 @@
 	<Announcement />
 	<PageHeaderHeading>{title}</PageHeaderHeading>
 	<PageHeaderDescription>{description}</PageHeaderDescription>
-	<PageActions>
-		<Button href="#charts" size="sm">Browse Charts</Button>
-		<Button href="/docs/components/chart" variant="ghost" size="sm">Documentation</Button>
+	<PageActions class="style-luma">
+		<Button href="#charts" class="h-[35px]">Browse Charts</Button>
+		<Button href="/docs/components/chart" variant="secondary">Documentation</Button>
 	</PageActions>
 </PageHeader>
 <PageNav id="charts">
 	<ChartsNav />
-	<ThemeSelector class="me-4 hidden md:flex" />
 </PageNav>
 <div class="container-wrapper flex-1 section-soft">
 	<div class="container pb-6">

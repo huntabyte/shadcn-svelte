@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { scaleBand } from "d3-scale";
-	import { BarChart } from "layerchart";
-	import { cubicInOut } from "svelte/easing";
+	import { BarChart, dataCoords } from "layerchart";
+	import { untrack } from "svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
+	import type { ChartState } from "layerchart";
 
 	const chartData = [
 		{ date: "2024-07-15", running: 450, swimming: 300 },
@@ -18,16 +19,36 @@
 		running: { label: "Running", color: "var(--chart-1)" },
 		swimming: { label: "Swimming", color: "var(--chart-2)" },
 	} satisfies Chart.ChartConfig;
+
+	let context = $state<ChartState>();
+
+	$effect(() => {
+		const chart = context;
+		if (!chart || chart.width <= 0 || chart.height <= 0) return;
+
+		// Match shadcn's defaultIndex={1} once the chart has measured its container.
+		// Resolve the payload through LayerChart and anchor halfway down the chart, as Recharts does.
+		untrack(() =>
+			chart.tooltip.show({
+				data: chartData[1],
+				point: {
+					...dataCoords(chart, chartData[1]),
+					y: (chart.padding.top + chart.containerHeight) / 2,
+				},
+			})
+		);
+	});
 </script>
 
 <Card.Root>
 	<Card.Header>
 		<Card.Title>Tooltip - Formatter</Card.Title>
-		<Card.Description>Tooltip with custom formatter.</Card.Description>
+		<Card.Description>Tooltip with custom formatter .</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<Chart.Container config={chartConfig}>
 			<BarChart
+				bind:context
 				data={chartData}
 				xScale={scaleBand().padding(0.25)}
 				x="date"
@@ -52,7 +73,7 @@
 				props={{
 					bars: {
 						stroke: "none",
-						motion: { type: "tween", duration: 500, easing: cubicInOut },
+						motion: Chart.defaultBarMotion,
 					},
 					xAxis: {
 						format: (d) =>

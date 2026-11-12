@@ -1,5 +1,4 @@
 <script lang="ts">
-	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { PieChart } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
@@ -20,44 +19,48 @@
 		edge: { label: "Edge", color: "var(--chart-4)" },
 		other: { label: "Other", color: "var(--chart-5)" },
 	} satisfies Chart.ChartConfig;
+	const pieAngle = Chart.createPieAnimation();
 </script>
 
 <Card.Root class="flex flex-col">
-	<Card.Header class="items-center">
+	<Card.Header class="items-center pb-0">
 		<Card.Title>Pie Chart - Legend</Card.Title>
 		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
-	<Card.Content class="flex-1">
-		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
+	<Card.Content class="flex-1 pb-0">
+		<Chart.Container
+			config={chartConfig}
+			class="relative mx-auto aspect-square w-full max-w-[300px]"
+		>
 			<PieChart
+				outerRadius={0.8}
+				padding={{ top: 5, right: 5, bottom: 57, left: 5 }}
 				data={chartData}
 				key="browser"
 				value="visitors"
-				label={(d) =>
-					d.browser
-						.split("")
-						.map((c, i) => (i === 0 ? c.toUpperCase() : c))
-						.join("")}
 				cRange={chartData.map((d) => d.color)}
 				props={{
+					arc: { stroke: "transparent", strokeWidth: 1 },
 					pie: {
-						motion: "tween",
+						startAngle: Math.PI / 2,
+						sort: null,
+						endAngle: pieAngle.current,
+						motion: "none",
 					},
 				}}
-				legend
 			>
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel />
 				{/snippet}
 			</PieChart>
+			<div class="absolute inset-x-0 bottom-[13px] flex flex-wrap justify-center gap-2 pt-3">
+				{#each chartData as item (item.browser)}
+					<div class="flex basis-1/4 items-center justify-center gap-1.5">
+						<span class="size-2 shrink-0 rounded-[2px]" style:background-color={item.color}></span>
+						{chartConfig[item.browser as keyof typeof chartConfig].label}
+					</div>
+				{/each}
+			</div>
 		</Chart.Container>
 	</Card.Content>
-	<Card.Footer class="flex-col gap-2 text-sm">
-		<div class="flex items-center gap-2 leading-none font-medium">
-			Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
-		</div>
-		<div class="leading-none text-muted-foreground">
-			Showing total visitors for the last 6 months
-		</div>
-	</Card.Footer>
 </Card.Root>

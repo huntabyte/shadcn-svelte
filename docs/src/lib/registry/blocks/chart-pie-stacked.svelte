@@ -20,14 +20,6 @@
 		{ month: "may", mobile: 130, color: "var(--color-may)" },
 	];
 
-	type PieDataItem = { month: string; value: number; color: string };
-
-	const monthOrder = ["january", "february", "march", "april", "may"];
-
-	const sortMonths = (a: PieDataItem, b: PieDataItem) => {
-		return monthOrder.indexOf(a.month) - monthOrder.indexOf(b.month);
-	};
-
 	const chartConfig = {
 		desktop: { label: "Desktop" },
 		mobile: { label: "Mobile" },
@@ -41,23 +33,28 @@
 	const tooltipLabelFormatter = (_: unknown, payload: Array<{ key: string }>) => {
 		return chartConfig[payload?.[0].key as keyof typeof chartConfig].label;
 	};
+	const pieAngle = Chart.createPieAnimation();
 </script>
 
 <Card.Root class="flex flex-col">
-	<Card.Header class="items-center">
+	<Card.Header class="items-center pb-0">
 		<Card.Title>Pie Chart - Stacked</Card.Title>
 		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
-	<Card.Content class="flex-1">
-		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
+	<Card.Content class="flex-1 pb-0">
+		<Chart.Container config={chartConfig} class="mx-auto aspect-square w-full max-w-[250px]">
 			<PieChart
+				outerRadius={0.8}
 				key="month"
 				label="month"
 				c="color"
 				props={{
+					arc: { stroke: "transparent", strokeWidth: 1 },
 					pie: {
-						sort: sortMonths,
-						motion: "tween",
+						startAngle: Math.PI / 2,
+						endAngle: pieAngle.current,
+						sort: null,
+						motion: "none",
 					},
 					tooltip: {
 						context: {
@@ -74,7 +71,7 @@
 							value: d.desktop,
 							color: d.color,
 						})),
-						props: { innerRadius: -20 },
+						props: { innerRadius: 0, outerRadius: 60 },
 					},
 					{
 						key: "mobile",
@@ -84,10 +81,10 @@
 							value: d.mobile,
 							color: d.color,
 						})),
-						props: { outerRadius: -30 },
+						props: { innerRadius: 70, outerRadius: 90 },
 					},
 				]}
-				padding={29}
+				padding={5}
 			>
 				{#snippet arc({ props })}
 					<Arc {...props} fill={props.data.color} />
@@ -100,7 +97,7 @@
 	</Card.Content>
 	<Card.Footer class="flex-col gap-2 text-sm">
 		<div class="flex items-center gap-2 leading-none font-medium">
-			Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
+			Trending up by 5.2% this month <TrendingUpIcon class="h-4 w-4" />
 		</div>
 		<div class="leading-none text-muted-foreground">
 			Showing total visitors for the last 6 months

@@ -35,7 +35,7 @@ Charts are designed to look great out of the box. They work well with the other 
 
 ## Component
 
-We use [LayerChart](https://next.layerchart.com) under the hood.
+We use [LayerChart](https://layerchart.com) under the hood.
 
 We designed the `Chart` component with composition in mind. **You build your charts using LayerChart components and only bring in custom components, such as `ChartTooltip`, when and where you need it**
 

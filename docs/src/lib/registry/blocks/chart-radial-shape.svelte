@@ -1,6 +1,6 @@
 <script lang="ts">
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
-	import { ArcChart, Text } from "layerchart";
+	import { Arc, ArcChart, Text } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 
@@ -12,40 +12,44 @@
 	} satisfies Chart.ChartConfig;
 </script>
 
-<Card.Root>
-	<Card.Header class="items-center">
+<Card.Root class="flex flex-col">
+	<Card.Header class="items-center pb-0">
 		<Card.Title>Radial Chart - Shape</Card.Title>
-		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
+		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
-	<Card.Content class="flex-1">
+	<Card.Content class="flex-1 pb-0">
 		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
 			<ArcChart
 				label="browser"
 				value="visitors"
-				outerRadius={88}
-				innerRadius={66}
-				trackOuterRadius={83}
-				trackInnerRadius={72}
-				padding={40}
-				range={[90, -270]}
-				maxValue={chartData[0].visitors * 4}
+				outerRadius={92}
+				innerRadius={68}
+				padding={0}
+				range={[90, -10]}
+				maxValue={chartData[0].visitors}
 				series={chartData.map((d) => ({
 					key: d.browser,
 					color: d.color,
 					data: [d],
 				}))}
 				props={{
-					arc: { track: { fill: "var(--muted)" }, motion: "tween" },
+					arc: { track: { fill: "var(--muted)" }, motion: Chart.defaultMotion },
 					tooltip: { context: { hideDelay: 350 } },
 				}}
 				tooltipContext={false}
 			>
 				{#snippet belowMarks()}
-					<circle cx="0" cy="0" r="80" class="fill-background" />
+					<Arc
+						startAngle={0}
+						endAngle={2 * Math.PI}
+						outerRadius={86}
+						innerRadius={74}
+						fill="var(--muted)"
+					/>
 				{/snippet}
 				{#snippet aboveMarks()}
 					<Text
-						value={String(chartData[0].visitors)}
+						value={chartData[0].visitors.toLocaleString()}
 						textAnchor="middle"
 						verticalAnchor="middle"
 						class="fill-foreground text-4xl! font-bold"
@@ -64,10 +68,10 @@
 	</Card.Content>
 	<Card.Footer class="flex-col gap-2 text-sm">
 		<div class="flex items-center gap-2 leading-none font-medium">
-			Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
+			Trending up by 5.2% this month <TrendingUpIcon class="h-4 w-4" />
 		</div>
-		<div class="flex items-center gap-2 leading-none text-muted-foreground">
-			January - June 2024
+		<div class="leading-none text-muted-foreground">
+			Showing total visitors for the last 6 months
 		</div>
 	</Card.Footer>
 </Card.Root>

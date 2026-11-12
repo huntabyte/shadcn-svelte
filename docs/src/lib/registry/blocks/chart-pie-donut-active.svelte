@@ -37,34 +37,43 @@
 			color: "var(--chart-5)",
 		},
 	} satisfies Chart.ChartConfig;
+	const pieAngle = Chart.createPieAnimation();
 </script>
 
 <Card.Root class="flex flex-col">
-	<Card.Header class="items-center">
+	<Card.Header class="items-center pb-0">
 		<Card.Title>Pie Chart - Donut Active</Card.Title>
 		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
-	<Card.Content class="flex-1">
-		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
+	<Card.Content class="flex-1 pb-0">
+		<Chart.Container config={chartConfig} class="mx-auto aspect-square w-full max-w-[250px]">
 			<PieChart
+				outerRadius={0.8}
 				data={chartData}
 				key="browser"
 				value="visitors"
 				c="color"
 				innerRadius={60}
 				props={{
-					pie: { motion: "tween" },
+					pie: {
+						startAngle: Math.PI / 2,
+						endAngle: pieAngle.current,
+						sort: null,
+						motion: "none",
+					},
 					arc: {
+						stroke: "transparent",
 						strokeWidth: 5,
 					},
 				}}
-				padding={29}
+				padding={5}
 			>
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel />
 				{/snippet}
-				{#snippet arc({ props, index })}
-					{@const arcProps = index === 0 ? { ...props, outerRadius: 60, innerRadius: 105 } : props}
+				{#snippet arc({ props, index, context })}
+					{@const outerRadius = (Math.min(context.width, context.height) / 2) * 0.8}
+					{@const arcProps = index === 0 ? { ...props, outerRadius: outerRadius + 10 } : props}
 					<Arc {...arcProps} />
 				{/snippet}
 			</PieChart>
@@ -72,7 +81,7 @@
 	</Card.Content>
 	<Card.Footer class="flex-col gap-2 text-sm">
 		<div class="flex items-center gap-2 leading-none font-medium">
-			Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
+			Trending up by 5.2% this month <TrendingUpIcon class="h-4 w-4" />
 		</div>
 		<div class="leading-none text-muted-foreground">
 			Showing total visitors for the last 6 months

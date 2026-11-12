@@ -3,7 +3,7 @@
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { scaleUtc } from "d3-scale";
 	import { curveStep } from "d3-shape";
-	import { AreaChart } from "layerchart";
+	import { AreaChart, Area, ChartClipPath } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 
@@ -45,14 +45,26 @@
 						curve: curveStep,
 						fillOpacity: 0.4,
 						line: { class: "stroke-1" },
-						motion: "tween",
 					},
 					xAxis: {
-						format: (v: Date) => v.toLocaleDateString("en-US", { month: "short" }),
+						format: (v: Date) => v.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" }),
 					},
 					yAxis: { format: () => "" },
 				}}
 			>
+				{#snippet marks({ context })}
+					<ChartClipPath initialWidth={0} motion={Chart.defaultClipMotion}>
+						{#each context.series.visibleSeries as s (s.key)}
+							<Area
+								seriesKey={s.key}
+								curve={curveStep}
+								fillOpacity={0.4}
+								line={{ class: "stroke-1" }}
+								{...s.props}
+							/>
+						{/each}
+					</ChartClipPath>
+				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel />
 				{/snippet}
@@ -63,7 +75,7 @@
 		<div class="flex w-full items-start gap-2 text-sm">
 			<div class="grid gap-2">
 				<div class="flex items-center gap-2 leading-none font-medium">
-					Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
+					Trending up by 5.2% this month <TrendingUpIcon class="h-4 w-4" />
 				</div>
 				<div class="flex items-center gap-2 leading-none text-muted-foreground">
 					January - June 2024
