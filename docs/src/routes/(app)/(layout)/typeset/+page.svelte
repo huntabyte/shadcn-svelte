@@ -10,6 +10,7 @@
 	import { onDestroy, onMount } from "svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
+	import Cta from "$lib/components/cta.svelte";
 	import CtaMobile from "$lib/components/cta-mobile.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
 	import Control from "$lib/features/typeset/control.svelte";
@@ -150,8 +151,8 @@
 		<DocsPanel {typeset} />
 
 		<div class="flex min-h-0 w-full min-w-0 flex-1 flex-col gap-(--gap) self-stretch">
-			<div class="relative z-20 w-full">
-				<CtaMobile showOnDesktop />
+			<div class="relative z-20 w-full md:hidden">
+				<CtaMobile />
 			</div>
 			<div
 				class="relative isolate flex min-h-0 w-full flex-1 flex-col self-stretch overflow-hidden rounded-2xl bg-background ring-1 ring-foreground/10"
@@ -215,7 +216,7 @@
 		</div>
 
 		<div
-			class="isolate z-10 flex max-h-full min-h-0 w-full flex-col gap-2 self-start md:w-(--customizer-width)"
+			class="isolate z-10 flex max-h-full min-h-0 w-full flex-col gap-2 self-start md:w-(--customizer-width) md:self-stretch"
 		>
 			<Card.Root
 				bind:ref={customizerAnchor}
@@ -327,6 +328,9 @@
 					/>
 				</Card.Footer>
 			</Card.Root>
+			<div class="mt-auto hidden w-full shrink-0 md:block">
+				<Cta />
+			</div>
 		</div>
 	</div>
 </div>
