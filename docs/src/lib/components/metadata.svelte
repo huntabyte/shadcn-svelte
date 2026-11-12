@@ -33,7 +33,11 @@
 	});
 
 	const trueTitle = $derived(
-		title === siteConfig.name ? siteConfig.name : `${title} - ${siteConfig.name}`
+		title === siteConfig.name
+			? siteConfig.name
+			: page.url.pathname === "/"
+				? `${siteConfig.name} - ${title}`
+				: `${title} - ${siteConfig.name}`
 	);
 </script>
 
