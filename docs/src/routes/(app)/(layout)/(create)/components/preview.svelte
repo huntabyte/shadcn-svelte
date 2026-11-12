@@ -56,8 +56,8 @@
 </script>
 
 <div data-slot="preview" class="flex min-h-0 flex-1 flex-col gap-(--gap)">
-	<div>
-		<CtaMobile class="xl:flex" />
+	<div class="md:hidden">
+		<CtaMobile />
 	</div>
 	<div
 		class="relative flex min-h-0 flex-1 flex-col justify-center overflow-hidden rounded-2xl ring ring-foreground/10 md:ring-muted dark:ring-foreground/10"
