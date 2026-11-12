@@ -1,5 +1,13 @@
 # shadcn-svelte@registry
 
+## 0.1.2
+
+### Patch Changes
+
+- Use a routes-relative target for the complex example page so it installs at `/pokemon`. ([#2972](https://github.com/huntabyte/shadcn-svelte/pull/2972))
+
+- Fix imports in the complex registry example after installation. ([#2971](https://github.com/huntabyte/shadcn-svelte/pull/2971))
+
 ## 0.1.1
 
 ### Patch Changes
