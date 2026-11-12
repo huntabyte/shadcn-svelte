@@ -29,7 +29,7 @@
 	rel="noreferrer"
 	size="sm"
 	variant="ghost"
-	class="h-8 gap-1.5 rounded-md px-3 text-sm font-medium shadow-none active:translate-y-0 has-[>svg]:px-2.5"
+	class="h-8 gap-1.5 rounded-md border-0 px-3 text-sm font-medium text-black shadow-none hover:bg-accent hover:text-accent-foreground active:translate-y-0 has-[>svg]:px-2.5 dark:text-white dark:hover:bg-accent/50 dark:hover:text-accent-foreground"
 >
 	<GithubIcon class="size-4" />
 	<span class="w-fit text-xs text-muted-foreground tabular-nums">

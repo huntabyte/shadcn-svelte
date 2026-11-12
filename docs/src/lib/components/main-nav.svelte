@@ -21,10 +21,8 @@
 			href={item.href}
 			variant="ghost"
 			size="sm"
-			class={cn(
-				"h-8 gap-1.5 rounded-md px-2.5 text-sm font-medium active:translate-y-0",
-				page.url.pathname === item.href && "text-primary"
-			)}
+			aria-current={page.url.pathname === item.href ? "page" : undefined}
+			class="h-8 gap-1.5 rounded-md border-0 px-2.5 text-sm font-medium text-black hover:bg-accent hover:text-accent-foreground active:translate-y-0 dark:text-white dark:hover:bg-accent/50 dark:hover:text-accent-foreground"
 		>
 			{item.title}
 		</Button>
