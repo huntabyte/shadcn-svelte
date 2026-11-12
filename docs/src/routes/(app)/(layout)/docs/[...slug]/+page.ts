@@ -1,3 +1,4 @@
+import { redirect } from "@sveltejs/kit";
 import { getDoc } from "$lib/docs.js";
 import type { HighlightedBlock } from "../../../../api/block/[block]/+server.js";
 import type { EntryGenerator, PageLoad } from "./$types.js";
@@ -23,6 +24,12 @@ export const entries: EntryGenerator = () => {
 const ITEMS_TO_IGNORE = ["combobox", "data-table", "date-picker", "typography"];
 
 export const load: PageLoad = async ({ params, fetch }) => {
+	if (
+		params.slug === "components/base/typography" ||
+		params.slug === "components/radix/typography"
+	) {
+		redirect(308, "/docs/typeset");
+	}
 	const doc = await getDoc(params.slug);
 	const name = doc.metadata.slug;
 	if (params.slug.includes("components/") && !ITEMS_TO_IGNORE.includes(name)) {
