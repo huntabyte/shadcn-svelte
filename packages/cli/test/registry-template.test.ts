@@ -9,6 +9,10 @@
 import fs from "node:fs";
 import path from "node:path";
 import { it, expect } from "vitest";
+import { resolveItemFilePath } from "../src/utils/registry/index.js";
+import { transformImports } from "../src/utils/transformers/transform-imports.js";
+import type { ResolvedConfig } from "../src/utils/config/index.js";
+import type { RegistryItem } from "../src/utils/registry/schema.js";
 
 const registryTemplateStaticRegistryPath = path.join(
 	import.meta.dirname,
@@ -146,8 +150,8 @@ it("should accurately build the registry template", async () => {
 		  "files": [
 		    {
 		      "content": "<script lang="ts">
-			import PokemonCard from "./components/pokemon-card.svelte";
-			import { getPokemonList } from "./lib/pokemon.js";
+			import PokemonCard from "$COMPONENTS$/pokemon-card.svelte";
+			import { getPokemonList } from "$LIB$/pokemon.js";
 		</script>
 
 		{#await getPokemonList({ limit: 12 })}
@@ -173,9 +177,9 @@ it("should accurately build the registry template", async () => {
 		    },
 		    {
 		      "content": "<script lang="ts">
-			import { getPokemon } from "$lib/registry/blocks/complex-component/lib/pokemon.js";
+			import { getPokemon } from "$LIB$/pokemon.js";
 			import * as Card from "$UI$/card/index.js";
-			import PokemonImage from "$lib/registry/blocks/complex-component/components/pokemon-image.svelte";
+			import PokemonImage from "$COMPONENTS$/pokemon-image.svelte";
 
 			let { name }: { name: string } = $props();
 		</script>
@@ -202,7 +206,7 @@ it("should accurately build the registry template", async () => {
 		    },
 		    {
 		      "content": "<script lang="ts">
-			import { usePokemonImage } from "$lib/registry/blocks/complex-component/hooks/use-pokemon.svelte";
+			import { usePokemonImage } from "$HOOKS$/use-pokemon.svelte";
 
 			let { number, name }: { number: number; name: string } = $props();
 
@@ -702,4 +706,48 @@ it("should accurately build the registry template", async () => {
 		  "type": "registry:ui",
 		}
 	`);
+});
+
+it.each([
+	{ components: "$lib/components", lib: "$lib", hooks: "$lib/hooks", ui: "$lib/components/ui" },
+	{ components: "$lib/widgets", lib: "$lib/helpers", hooks: "$lib/composables", ui: "$lib/ui" },
+])("should resolve complex-component imports after installation with %j", async (aliases) => {
+	const cwd = path.resolve("/registry-consumer");
+	const config = {
+		sveltekit: true,
+		aliases,
+		resolvedPaths: {
+			cwd,
+			...Object.fromEntries(
+				Object.entries(aliases).map(([key, alias]) => [
+					key,
+					path.resolve(cwd, alias.replace("$lib", "src/lib")),
+				])
+			),
+		},
+	} as ResolvedConfig;
+	const item: RegistryItem = getFile("complex-component");
+	const installedPaths = new Set(
+		item.files!.map((file) => resolveItemFilePath(config, item, file))
+	);
+	let checkedImports = 0;
+	for (const file of item.files!) {
+		const filePath = resolveItemFilePath(config, item, file);
+		const { content } = await transformImports({ config, filePath, content: file.content });
+		for (const match of content!.matchAll(/from ["']([^"']+)["']/g)) {
+			const specifier = match[1]!;
+			// UI components are supplied by the item's registry dependencies.
+			if (specifier.startsWith(`${aliases.ui}/`) || !/^(\.|\$lib\/)/.test(specifier)) continue;
+			const resolved = specifier.startsWith("$lib/")
+				? path.resolve(cwd, specifier.replace("$lib/", "src/lib/"))
+				: path.resolve(path.dirname(filePath), specifier);
+			const tsPath = resolved.replace(/\.js$/, ".ts");
+			expect(
+				installedPaths.has(tsPath) || installedPaths.has(`${tsPath}.ts`),
+				`${file.target}: ${specifier} should resolve to an installed file`
+			).toBe(true);
+			checkedImports++;
+		}
+	}
+	expect(checkedImports).toBe(5);
 });
