@@ -26,7 +26,7 @@ Installs dependencies, adds the `cn` util, creates `components.json`, and sets u
 
 | Flag                        | Short | Description                                                               | Default   |
 | --------------------------- | ----- | ------------------------------------------------------------------------- | --------- |
-| `--preset <preset>`         | —     | Encoded design-system preset string from the docs site                    | —         |
+| `--preset <preset>`         | —     | Preset configuration (named or code)                                      | —         |
 | `-c, --cwd <path>`          | `-c`  | Working directory                                                         | current   |
 | `-o, --overwrite`           | —     | Overwrite existing files                                                  | `false`   |
 | `--no-deps`                 | —     | Do not add or install dependencies                                        | —         |
@@ -77,16 +77,16 @@ Use `--only theme` or `--only font` to apply only part of a preset without reins
 
 Get a preset code from the builder at [shadcn-svelte.com/create](https://shadcn-svelte.com/create).
 
-| Flag                | Short | Description                                    | Default   |
-| ------------------- | ----- | ---------------------------------------------- | --------- |
-| `--preset <preset>` | —     | Encoded design-system preset string (required) | —         |
-| `--only [parts]`    | —     | Apply only `theme` or `font` from the preset   | —         |
-| `-c, --cwd <path>`  | `-c`  | Working directory                              | current   |
-| `-y, --yes`         | `-y`  | Overwrite existing files without confirmation  | `false`   |
-| `-s, --silent`      | `-s`  | Mute output                                    | `false`   |
-| `--skip-preflight`  | —     | Ignore preflight checks and continue           | `false`   |
-| `--proxy <proxy>`   | —     | Fetch registry items through this proxy        | env-based |
-| `-h, --help`        | `-h`  | Help                                           | —         |
+| Flag                | Short | Description                                     | Default   |
+| ------------------- | ----- | ----------------------------------------------- | --------- |
+| `--preset <preset>` | —     | Preset configuration (named or code) (required) | —         |
+| `--only [parts]`    | —     | Apply only `theme` or `font` from the preset    | —         |
+| `-c, --cwd <path>`  | `-c`  | Working directory                               | current   |
+| `-y, --yes`         | `-y`  | Overwrite existing files without confirmation   | `false`   |
+| `-s, --silent`      | `-s`  | Mute output                                     | `false`   |
+| `--skip-preflight`  | —     | Ignore preflight checks and continue            | `false`   |
+| `--proxy <proxy>`   | —     | Fetch registry items through this proxy         | env-based |
+| `-h, --help`        | `-h`  | Help                                            | —         |
 
 Requires an existing `components.json`. Run `init` first if the project is not yet configured.
 
@@ -145,6 +145,11 @@ HTTP_PROXY="<proxy-url>" npx shadcn-svelte@latest init
 ## Presets
 
 Design-system options (style, theme, icons, fonts, etc.) can be captured as an encoded **preset** string from the builder on [shadcn-svelte.com/create](https://shadcn-svelte.com/create).
+
+Two ways to specify a preset via `--preset`:
+
+1. **Named:** `--preset nova` or `--preset lyra`
+2. **Code:** `--preset a2r6bw` (version-prefixed base62 string, e.g. `a2r6bw` or `b0`)
 
 - **New project:** pass the preset to **`init`** with `--preset <string>`.
 - **Existing project:** use **`apply --preset <string>`** to update configuration, restyle installed components, and install any new dependencies.

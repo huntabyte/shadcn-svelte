@@ -28,7 +28,7 @@
 	},
 	"engines": {
 		"pnpm": ">=9",
-		"node": "^22.12.0 || ^24.0.0 || >=26.0.0"
+		"node": "^24.0.0 || >=26.0.0"
 	},
 	"packageManager": "pnpm@12.14.0",
 	"repository": {

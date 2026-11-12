@@ -8,7 +8,7 @@ allowBuilds:
   esbuild: true
   sharp: true
   workerd: true
-  '@tailwindcss/oxide': true
+  "@tailwindcss/oxide": true
 
 catalog:
   "@sveltejs/kit": ^2.60.1
@@ -18,3 +18,5 @@ catalog:
   tsdown: ^0.22.14
   typescript: ^6.0.3
   vite: ^8.1.5
+
+minimumReleaseAge: 2880
