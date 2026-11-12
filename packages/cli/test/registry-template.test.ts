@@ -172,7 +172,7 @@ it("should accurately build the registry template", async () => {
 			</div>
 		{/await}
 		",
-		      "target": "src/routes/pokemon/+page.svelte",
+		      "target": "pokemon/+page.svelte",
 		      "type": "registry:page",
 		    },
 		    {
