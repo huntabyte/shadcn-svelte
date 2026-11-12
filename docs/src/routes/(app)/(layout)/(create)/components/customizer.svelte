@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { PickerLayout } from "./picker-state.svelte.js";
 	const pickerLayout = new PickerLayout();
-	import Cta from "$lib/components/cta.svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as FieldGroup from "$lib/registry/ui/field/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
+	import Cta from "$lib/components/cta.svelte";
 	import { FONT_HEADING_OPTIONS, FONTS } from "$lib/fonts.js";
 	import BaseColorPicker from "./base-color-picker.svelte";
 	import ChartColorPicker from "./chart-color-picker.svelte";
