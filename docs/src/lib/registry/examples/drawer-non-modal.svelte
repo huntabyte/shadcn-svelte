@@ -10,7 +10,9 @@
 			<Drawer.Title>Non Modal Drawer</Drawer.Title>
 		</Drawer.Header>
 		<div class="flex-1 p-4">
-			<div class="size-full rounded-2xl bg-muted"></div>
+			<div
+				class="rounded-2xl bg-muted group-data-[swipe-axis=x]/drawer-popup:size-full group-data-[swipe-axis=y]/drawer-popup:h-80 group-data-[swipe-axis=y]/drawer-popup:w-full"
+			></div>
 		</div>
 		<Drawer.Footer>
 			<Drawer.Close class={buttonVariants()}>Close</Drawer.Close>
