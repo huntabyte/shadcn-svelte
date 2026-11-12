@@ -17,23 +17,26 @@ To opt-out of TypeScript, you can use the `typescript` flag in your `components.
   },
   "typescript": false,
   "aliases": {
-    "utils": "$lib/utils",
-    "components": "$lib/components",
-    "hooks": "$lib/hooks",
-    "ui": "$lib/components/ui"
+    "utils": "#lib/utils",
+    "components": "#lib/components",
+    "hooks": "#lib/hooks",
+    "ui": "#lib/components/ui",
+    "lib": "#lib"
   },
   "registry": "https://shadcn-svelte.com/registry"
 }
 ```
 
-To configure import aliases, create a `jsconfig.json` file:
+To configure import aliases, add these entries to your `package.json`:
 
-```json {4} title="jsconfig.json" showLineNumbers
+```json {3-6} title="package.json" showLineNumbers
 {
-  "compilerOptions": {
-    "paths": {
-      "$lib/*": ["./src/lib/*"]
-    }
+  // ... other options
+  "imports": {
+    "#lib": "./src/lib/index.js",
+    "#lib/*": "./src/lib/*"
   }
 }
 ```
+
+Projects created after SvelteKit 3 should have these subpath imports already. If you're in a previous version, consider switching to them.
