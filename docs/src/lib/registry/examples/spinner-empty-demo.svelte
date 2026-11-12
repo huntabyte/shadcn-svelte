@@ -4,7 +4,7 @@
 	import { Spinner } from "$lib/registry/ui/spinner/index.js";
 </script>
 
-<Empty.Root class="w-full border md:p-6">
+<Empty.Root class="w-full">
 	<Empty.Header>
 		<Empty.Media variant="icon">
 			<Spinner />

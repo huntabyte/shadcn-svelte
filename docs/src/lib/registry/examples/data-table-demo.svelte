@@ -33,7 +33,7 @@
 	type Payment = {
 		id: string;
 		amount: number;
-		status: "Pending" | "Processing" | "Success" | "Failed";
+		status: "pending" | "processing" | "success" | "failed";
 		email: string;
 	};
 
@@ -58,32 +58,32 @@
 		{
 			id: "m5gr84i9",
 			amount: 316,
-			status: "Success",
-			email: "ken99@yahoo.com",
+			status: "success",
+			email: "ken99@example.com",
 		},
 		{
 			id: "3u1reuv4",
 			amount: 242,
-			status: "Success",
-			email: "Abe45@gmail.com",
+			status: "success",
+			email: "Abe45@example.com",
 		},
 		{
 			id: "derv1ws0",
 			amount: 837,
-			status: "Processing",
-			email: "Monserrat44@gmail.com",
+			status: "processing",
+			email: "Monserrat44@example.com",
 		},
 		{
 			id: "5kma53ae",
 			amount: 874,
-			status: "Success",
-			email: "Silas22@gmail.com",
+			status: "success",
+			email: "Silas22@example.com",
 		},
 		{
 			id: "bhqecj4p",
 			amount: 721,
-			status: "Failed",
-			email: "carmella@hotmail.com",
+			status: "failed",
+			email: "carmella@example.com",
 		},
 	];
 
@@ -192,7 +192,7 @@
 	});
 </script>
 
-<div class="-mb-8 w-full">
+<div class="w-full">
 	<div class="flex items-center py-4">
 		<Input
 			placeholder="Filter emails..."
@@ -207,29 +207,31 @@
 			<DropdownMenu.Trigger>
 				{#snippet child({ props })}
 					<Button {...props} variant="outline" class="ms-auto">
-						Columns <ChevronDownIcon class="ms-2 size-4" />
+						Columns <ChevronDownIcon />
 					</Button>
 				{/snippet}
 			</DropdownMenu.Trigger>
-			<DropdownMenu.Content align="end">
-				{#each table.getAllColumns().filter((col) => col.getCanHide()) as column (column.id)}
-					<DropdownMenu.CheckboxItem
-						class="capitalize"
-						bind:checked={() => column.getIsVisible(), (v) => column.toggleVisibility(!!v)}
-					>
-						{column.id}
-					</DropdownMenu.CheckboxItem>
-				{/each}
+			<DropdownMenu.Content align="end" class="w-44">
+				<DropdownMenu.Group>
+					{#each table.getAllColumns().filter((col) => col.getCanHide()) as column (column.id)}
+						<DropdownMenu.CheckboxItem
+							class="capitalize"
+							bind:checked={() => column.getIsVisible(), (v) => column.toggleVisibility(!!v)}
+						>
+							{column.id}
+						</DropdownMenu.CheckboxItem>
+					{/each}
+				</DropdownMenu.Group>
 			</DropdownMenu.Content>
 		</DropdownMenu.Root>
 	</div>
-	<div class="rounded-md border">
+	<div class="overflow-hidden rounded-md border">
 		<Table.Root>
 			<Table.Header>
 				{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
 					<Table.Row>
 						{#each headerGroup.headers as header (header.id)}
-							<Table.Head class="[&:has([role=checkbox])]:ps-3">
+							<Table.Head>
 								{#if !header.isPlaceholder}
 									<FlexRender {header} />
 								{/if}
@@ -242,7 +244,7 @@
 				{#each table.getRowModel().rows as row (row.id)}
 					<Table.Row data-state={row.getIsSelected() && "selected"}>
 						{#each row.getVisibleCells() as cell (cell.id)}
-							<Table.Cell class="[&:has([role=checkbox])]:ps-3">
+							<Table.Cell>
 								<FlexRender {cell} />
 							</Table.Cell>
 						{/each}
@@ -255,7 +257,7 @@
 			</Table.Body>
 		</Table.Root>
 	</div>
-	<div class="flex items-center justify-end space-x-2 pt-4">
+	<div class="flex items-center justify-end space-x-2 py-4">
 		<div class="flex-1 text-sm text-muted-foreground">
 			{table.getFilteredSelectedRowModel().rows.length} of
 			{table.getFilteredRowModel().rows.length} row(s) selected.

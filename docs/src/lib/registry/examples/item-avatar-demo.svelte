@@ -18,7 +18,7 @@
 			<Item.Description>Last seen 5 months ago</Item.Description>
 		</Item.Content>
 		<Item.Actions>
-			<Button size="icon" variant="outline" class="rounded-full" aria-label="Invite">
+			<Button size="icon-sm" variant="outline" class="rounded-full" aria-label="Invite">
 				<Plus />
 			</Button>
 		</Item.Actions>

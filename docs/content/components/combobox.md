@@ -1,6 +1,6 @@
 ---
 title: Combobox
-description: Autocomplete input and command palette with a list of suggestions.
+description: Autocomplete input with a list of suggestions.
 component: true
 ---
 
@@ -27,44 +27,17 @@ See installation instructions for the [Popover](/docs/components/popover#install
 
 ```svelte title="lib/components/example-combobox.svelte"
 <script lang="ts">
-  import CheckIcon from "@lucide/svelte/icons/check";
-  import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
+  import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
   import { tick } from "svelte";
   import * as Command from "$lib/components/ui/command/index.js";
   import * as Popover from "$lib/components/ui/popover/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
-  import { cn } from "$lib/utils.js";
 
-  const frameworks = [
-    {
-      value: "sveltekit",
-      label: "SvelteKit",
-    },
-    {
-      value: "next.js",
-      label: "Next.js",
-    },
-    {
-      value: "nuxt.js",
-      label: "Nuxt.js",
-    },
-    {
-      value: "remix",
-      label: "Remix",
-    },
-    {
-      value: "astro",
-      label: "Astro",
-    },
-  ];
+  const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"];
 
   let open = $state(false);
   let value = $state("");
   let triggerRef = $state<HTMLButtonElement>(null!);
-
-  const selectedValue = $derived(
-    frameworks.find((f) => f.value === value)?.label
-  );
 
   // We want to refocus the trigger button when the user selects
   // an item from the list so users can continue navigating the
@@ -81,14 +54,14 @@ See installation instructions for the [Popover](/docs/components/popover#install
   <Popover.Trigger bind:ref={triggerRef}>
     {#snippet child({ props })}
       <Button
-        variant="outline"
-        class="w-[200px] justify-between"
         {...props}
+        variant="outline"
+        class="w-[200px] justify-between font-normal"
         role="combobox"
         aria-expanded={open}
       >
-        {selectedValue || "Select a framework..."}
-        <ChevronsUpDownIcon class="ms-2 size-4 shrink-0 opacity-50" />
+        {value || "Select a framework"}
+        <ChevronDownIcon class="text-muted-foreground" />
       </Button>
     {/snippet}
   </Popover.Trigger>
@@ -96,23 +69,18 @@ See installation instructions for the [Popover](/docs/components/popover#install
     <Command.Root>
       <Command.Input placeholder="Search framework..." />
       <Command.List>
-        <Command.Empty>No framework found.</Command.Empty>
+        <Command.Empty>No items found.</Command.Empty>
         <Command.Group>
-          {#each frameworks as framework}
+          {#each frameworks as framework (framework)}
             <Command.Item
-              value={framework.value}
+              value={framework}
+              data-checked={value === framework}
               onSelect={() => {
-                value = framework.value;
+                value = framework;
                 closeAndFocusTrigger();
               }}
             >
-              <CheckIcon
-                class={cn(
-                  "me-2 size-4",
-                  value !== framework.value && "text-transparent"
-                )}
-              />
-              {framework.label}
+              {framework}
             </Command.Item>
           {/each}
         </Command.Group>
@@ -124,37 +92,61 @@ See installation instructions for the [Popover](/docs/components/popover#install
 
 </CodeCollapsibleWrapper>
 
-## Examples
+## Basic
 
-### Combobox
+A simple combobox with a list of frameworks.
 
-<ComponentPreview name="combobox-demo">
-
-<div></div>
-
-</ComponentPreview>
-
-### Popover
-
-<ComponentPreview name="combobox-popover">
+<ComponentPreview name="combobox-basic">
 
 <div></div>
 
 </ComponentPreview>
 
-### Dropdown menu
+## Groups
 
-<ComponentPreview name="combobox-dropdown-menu">
+Use `<Command.Group />` and `<Command.Separator />` to group items.
+
+<ComponentPreview name="combobox-groups">
 
 <div></div>
 
 </ComponentPreview>
 
-### Responsive
+## Custom Items
 
-You can create a responsive combobox by using the `<Popover />` on desktop and the `<Drawer />` components on mobile.
+You can render a custom component inside `<Command.Item />`.
 
-<ComponentPreview name="combobox-responsive" >
+<ComponentPreview name="combobox-custom">
+
+<div></div>
+
+</ComponentPreview>
+
+## Invalid
+
+Use the `aria-invalid` prop to make the combobox invalid.
+
+<ComponentPreview name="combobox-invalid">
+
+<div></div>
+
+</ComponentPreview>
+
+## Disabled
+
+Use the `disabled` prop to disable the combobox.
+
+<ComponentPreview name="combobox-disabled">
+
+<div></div>
+
+</ComponentPreview>
+
+## Popup
+
+You can trigger the combobox from a button or any other component by using the `child` snippet on `<Popover.Trigger />`. Place the `<Command.Input />` inside the `<Popover.Content />`.
+
+<ComponentPreview name="combobox-popup">
 
 <div></div>
 

@@ -17,7 +17,7 @@
 	</Item.Root>
 	<Item.Root variant="outline" size="sm">
 		{#snippet child({ props })}
-			<a href="#/" {...props}>
+			<a href="##" {...props}>
 				<Item.Media>
 					<BadgeCheckIcon class="size-5" />
 				</Item.Media>

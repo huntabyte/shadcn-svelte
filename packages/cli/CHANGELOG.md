@@ -1,5 +1,29 @@
 # shadcn-svelte
 
+## 1.8.1
+
+### Patch Changes
+
+- fix(cli): apply shimmer reduced motion to variants ([#2976](https://github.com/huntabyte/shadcn-svelte/pull/2976))
+
+## 1.8.0
+
+### Minor Changes
+
+- feat(cli): accept the name of a style (e.g. `luma`) for `--preset` in `init` and `apply` ([#2959](https://github.com/huntabyte/shadcn-svelte/pull/2959))
+
+## 1.7.2
+
+### Patch Changes
+
+- fix(cli): run `svelte-kit sync` when `node_modules/$app` is missing in SvelteKit v3 projects ([#2954](https://github.com/huntabyte/shadcn-svelte/pull/2954))
+
+## 1.7.1
+
+### Patch Changes
+
+- fix(cli): keep the legacy style for Tailwind v3 projects and stop appending `/styles/<style>` to the TW3 registry URL ([#2947](https://github.com/huntabyte/shadcn-svelte/pull/2947))
+
 ## 1.7.0
 
 ### Minor Changes

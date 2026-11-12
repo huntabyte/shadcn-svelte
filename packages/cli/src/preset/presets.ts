@@ -12,6 +12,7 @@ import {
 } from "./preset.js";
 import * as cliConfig from "../utils/config/index.js";
 import * as registry from "../utils/registry/index.js";
+import { SITE_BASE_URL } from "../constants.js";
 import { iconLibraries } from "../icons/libraries.js";
 import { hex } from "../utils/colors.js";
 import { cancel } from "../utils/prompt-helpers.js";
@@ -25,6 +26,7 @@ export const DEFAULT_PRESETS = {
 		style: "nova",
 		baseColor: "neutral",
 		theme: "neutral",
+		chartColor: "neutral",
 		iconLibrary: "lucide",
 		font: "geist",
 		fontHeading: "inherit",
@@ -40,6 +42,7 @@ export const DEFAULT_PRESETS = {
 		style: "vega",
 		baseColor: "neutral",
 		theme: "neutral",
+		chartColor: "neutral",
 		iconLibrary: "lucide",
 		font: "inter",
 		fontHeading: "inherit",
@@ -55,6 +58,7 @@ export const DEFAULT_PRESETS = {
 		style: "maia",
 		baseColor: "neutral",
 		theme: "neutral",
+		chartColor: "neutral",
 		iconLibrary: "hugeicons",
 		font: "figtree",
 		fontHeading: "inherit",
@@ -70,6 +74,7 @@ export const DEFAULT_PRESETS = {
 		style: "lyra",
 		baseColor: "neutral",
 		theme: "neutral",
+		chartColor: "neutral",
 		iconLibrary: "phosphor",
 		font: "jetbrains-mono",
 		fontHeading: "inherit",
@@ -85,6 +90,7 @@ export const DEFAULT_PRESETS = {
 		style: "mira",
 		baseColor: "neutral",
 		theme: "neutral",
+		chartColor: "neutral",
 		iconLibrary: "hugeicons",
 		font: "inter",
 		fontHeading: "inherit",
@@ -100,6 +106,7 @@ export const DEFAULT_PRESETS = {
 		style: "luma",
 		baseColor: "neutral",
 		theme: "neutral",
+		chartColor: "neutral",
 		iconLibrary: "lucide",
 		font: "inter",
 		fontHeading: "inherit",
@@ -115,6 +122,7 @@ export const DEFAULT_PRESETS = {
 		style: "sera",
 		baseColor: "taupe",
 		theme: "taupe",
+		chartColor: "taupe",
 		iconLibrary: "lucide",
 		font: "noto-sans",
 		fontHeading: "playfair-display",
@@ -130,6 +138,7 @@ export const DEFAULT_PRESETS = {
 		style: "rhea",
 		baseColor: "neutral",
 		theme: "neutral",
+		chartColor: "neutral",
 		iconLibrary: "lucide",
 		font: "inter",
 		fontHeading: "inherit",
@@ -139,6 +148,22 @@ export const DEFAULT_PRESETS = {
 		radius: "default",
 	},
 } as const;
+
+const presetsByName = new Map<string, PresetConfig>(Object.entries(DEFAULT_PRESETS));
+
+/**
+ * Resolves the value passed to `--preset`. It can be either the name of one of the
+ * pre-configured presets (e.g. `luma`) or an encoded preset code from `/create`.
+ *
+ * @returns the preset or `null` when the value is neither
+ */
+export function resolvePreset(value: string): PresetConfig | null {
+	return presetsByName.get(value) ?? decodePreset(value);
+}
+
+export function invalidPresetMessage(value: string) {
+	return `Invalid preset: ${color.bold(value)}.\nUse one of the available presets: ${Object.keys(DEFAULT_PRESETS).join(", ")}\nor build your own at ${color.cyan(`${SITE_BASE_URL}/create`)}`;
+}
 
 /**
  * When the user doesn't provide a preset we want to give them some options for configuring the design system.

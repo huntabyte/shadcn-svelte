@@ -8,6 +8,7 @@
 		class: className,
 		inset,
 		children: childrenProp,
+		closeOnSelect = false,
 		...restProps
 	}: WithoutChild<MenubarPrimitive.RadioItemProps> & {
 		inset?: boolean;
@@ -16,6 +17,7 @@
 
 <MenubarPrimitive.RadioItem
 	bind:ref
+	{closeOnSelect}
 	data-slot="menubar-radio-item"
 	data-inset={inset}
 	class={cn(

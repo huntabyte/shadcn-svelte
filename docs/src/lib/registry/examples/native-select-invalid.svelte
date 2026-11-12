@@ -3,9 +3,8 @@
 </script>
 
 <NativeSelect.Root aria-invalid="true">
-	<NativeSelect.Option value="">Select role</NativeSelect.Option>
-	<NativeSelect.Option value="admin">Admin</NativeSelect.Option>
-	<NativeSelect.Option value="editor">Editor</NativeSelect.Option>
-	<NativeSelect.Option value="viewer">Viewer</NativeSelect.Option>
-	<NativeSelect.Option value="guest">Guest</NativeSelect.Option>
+	<NativeSelect.Option value="">Error state</NativeSelect.Option>
+	<NativeSelect.Option value="apple">Apple</NativeSelect.Option>
+	<NativeSelect.Option value="banana">Banana</NativeSelect.Option>
+	<NativeSelect.Option value="blueberry">Blueberry</NativeSelect.Option>
 </NativeSelect.Root>

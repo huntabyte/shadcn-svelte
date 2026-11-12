@@ -1,5 +1,5 @@
 <script lang="ts">
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import MaximizeIcon from "@lucide/svelte/icons/maximize";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
@@ -27,13 +27,7 @@
 			variant="ghost"
 			size="icon-sm"
 		>
-			<IconPlaceholder
-				lucide="MaximizeIcon"
-				tabler="IconBorderCorners"
-				hugeicons="ArrowExpandIcon"
-				phosphor="CornersOutIcon"
-				remixicon="RiExpandDiagonalLine"
-			/>
+			<MaximizeIcon />
 		</Button>
 		<iframe src="/preview/{item}" class="h-(--preview-height)" title={item}></iframe>
 		<PreviewSwitcher {item} />

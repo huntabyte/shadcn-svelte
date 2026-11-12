@@ -1,6 +1,6 @@
 ---
 title: Command
-description: Fast, composable, unstyled command menu for Svelte.
+description: Command menu for search and quick actions.
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/command
@@ -21,11 +21,15 @@ links:
 	let { viewerData } = $props();
 </script>
 
-<ComponentPreview name="command-demo" align="start" class="[&_.preview>div]:max-w-[450px]">
+<ComponentPreview name="command-demo" align="start" previewClassName="min-h-0 h-[24.5rem]">
 
 <div></div>
 
 </ComponentPreview>
+
+## About
+
+The `<Command />` component uses the [`Command`](https://bits-ui.com/docs/components/command) component from [Bits UI](https://bits-ui.com), which is inspired by [`cmdk`](https://github.com/dip/cmdk).
 
 ## Installation
 
@@ -85,54 +89,40 @@ Copy and paste the following code into your project.
 </Command.Root>
 ```
 
-## Examples
+## Basic
 
-### Dialog
+A simple command menu in a dialog.
 
-<ComponentPreview name="command-dialog">
+<ComponentPreview name="command-basic">
 
 <div></div>
 
 </ComponentPreview>
 
-To show the command menu in a dialog, use the `<Command.Dialog />` component instead of `<Command.Root />`. It accepts props for both the `<Dialog.Root />` and `<Command.Root />` components.
+## Shortcuts
 
-```svelte title="lib/components/example-command-menu.svelte" showLineNumbers
-<script lang="ts">
-  import * as Command from "$lib/components/ui/command/index.js";
-  import { onMount } from "svelte";
+<ComponentPreview name="command-shortcuts">
 
-  let open = $state(false);
+<div></div>
 
-  function handleKeydown(e: KeyboardEvent) {
-    if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-      e.preventDefault();
-      open = !open;
-    }
-  }
-</script>
+</ComponentPreview>
 
-<svelte:document onkeydown={handleKeydown} />
+## Groups
 
-<Command.Dialog bind:open>
-  <Command.Input placeholder="Type a command or search..." />
-  <Command.List>
-    <Command.Empty>No results found.</Command.Empty>
-    <Command.Group heading="Suggestions">
-      <Command.Item>Calendar</Command.Item>
-      <Command.Item>Search Emoji</Command.Item>
-      <Command.Item>Calculator</Command.Item>
-    </Command.Group>
-  </Command.List>
-</Command.Dialog>
-```
+A command menu with groups, icons and separators.
 
-### Combobox
+<ComponentPreview name="command-groups">
 
-You can use the `<Command />` component as a combobox. See the [Combobox](/docs/components/combobox) page for more information.
+<div></div>
 
-## Changelog
+</ComponentPreview>
 
-### 2024-10-30 Classes for icons
+## Scrollable
 
-- Added `gap-2 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0` to the `<Command.Item>` component to automatically style the icons inside.
+Scrollable command menu with multiple items.
+
+<ComponentPreview name="command-scrollable">
+
+<div></div>
+
+</ComponentPreview>

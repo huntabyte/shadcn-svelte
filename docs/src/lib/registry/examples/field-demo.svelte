@@ -6,8 +6,32 @@
 	import { Input } from "$lib/registry/ui/input/index.js";
 	import { Textarea } from "$lib/registry/ui/textarea/index.js";
 
-	let month = $state<string>();
-	let year = $state<string>();
+	const months = [
+		{ label: "01", value: "01" },
+		{ label: "02", value: "02" },
+		{ label: "03", value: "03" },
+		{ label: "04", value: "04" },
+		{ label: "05", value: "05" },
+		{ label: "06", value: "06" },
+		{ label: "07", value: "07" },
+		{ label: "08", value: "08" },
+		{ label: "09", value: "09" },
+		{ label: "10", value: "10" },
+		{ label: "11", value: "11" },
+		{ label: "12", value: "12" },
+	];
+
+	const years = [
+		{ label: "2024", value: "2024" },
+		{ label: "2025", value: "2025" },
+		{ label: "2026", value: "2026" },
+		{ label: "2027", value: "2027" },
+		{ label: "2028", value: "2028" },
+		{ label: "2029", value: "2029" },
+	];
+
+	let month = $state("");
+	let year = $state("");
 </script>
 
 <div class="w-full max-w-md">
@@ -19,61 +43,51 @@
 				<Field.Group>
 					<Field.Field>
 						<Field.Label for="checkout-7j9-card-name-43j">Name on Card</Field.Label>
-						<Input id="checkout-7j9-card-name-43j" placeholder="John Doe" required />
+						<Input id="checkout-7j9-card-name-43j" placeholder="Evil Rabbit" required />
+					</Field.Field>
+					<Field.Field>
+						<Field.Label for="checkout-7j9-card-number-uw1">Card Number</Field.Label>
+						<Input id="checkout-7j9-card-number-uw1" placeholder="1234 5678 9012 3456" required />
+						<Field.Description>Enter your 16-digit card number</Field.Description>
 					</Field.Field>
 					<div class="grid grid-cols-3 gap-4">
-						<Field.Field class="col-span-2">
-							<Field.Label for="checkout-7j9-card-number-uw1">Card Number</Field.Label>
-							<Input id="checkout-7j9-card-number-uw1" placeholder="1234 5678 9012 3456" required />
-							<Field.Description>Enter your 16-digit number.</Field.Description>
-						</Field.Field>
-						<Field.Field class="col-span-1">
-							<Field.Label for="checkout-7j9-cvv">CVV</Field.Label>
-							<Input id="checkout-7j9-cvv" placeholder="123" required />
-						</Field.Field>
-					</div>
-					<div class="grid grid-cols-2 gap-4">
 						<Field.Field>
-							<Field.Label for="checkout-7j9-exp-month-ts6">Month</Field.Label>
-							<Select.Root type="single" bind:value={month}>
-								<Select.Trigger id="checkout-7j9-exp-month-ts6">
-									<span>
-										{month || "MM"}
-									</span>
+							<Field.Label for="checkout-exp-month-ts6">Month</Field.Label>
+							<Select.Root type="single" items={months} bind:value={month}>
+								<Select.Trigger id="checkout-exp-month-ts6">
+									<Select.Value placeholder="MM" />
 								</Select.Trigger>
 								<Select.Content>
-									<Select.Item value="01">01</Select.Item>
-									<Select.Item value="02">02</Select.Item>
-									<Select.Item value="03">03</Select.Item>
-									<Select.Item value="04">04</Select.Item>
-									<Select.Item value="05">05</Select.Item>
-									<Select.Item value="06">06</Select.Item>
-									<Select.Item value="07">07</Select.Item>
-									<Select.Item value="08">08</Select.Item>
-									<Select.Item value="09">09</Select.Item>
-									<Select.Item value="10">10</Select.Item>
-									<Select.Item value="11">11</Select.Item>
-									<Select.Item value="12">12</Select.Item>
+									<Select.Group>
+										{#each months as item (item.value)}
+											<Select.Item value={item.value} label={item.label}>
+												{item.label}
+											</Select.Item>
+										{/each}
+									</Select.Group>
 								</Select.Content>
 							</Select.Root>
 						</Field.Field>
 						<Field.Field>
 							<Field.Label for="checkout-7j9-exp-year-f59">Year</Field.Label>
-							<Select.Root type="single" bind:value={year}>
+							<Select.Root type="single" items={years} bind:value={year}>
 								<Select.Trigger id="checkout-7j9-exp-year-f59">
-									<span>
-										{year || "YYYY"}
-									</span>
+									<Select.Value placeholder="YYYY" />
 								</Select.Trigger>
 								<Select.Content>
-									<Select.Item value="2024">2024</Select.Item>
-									<Select.Item value="2025">2025</Select.Item>
-									<Select.Item value="2026">2026</Select.Item>
-									<Select.Item value="2027">2027</Select.Item>
-									<Select.Item value="2028">2028</Select.Item>
-									<Select.Item value="2029">2029</Select.Item>
+									<Select.Group>
+										{#each years as item (item.value)}
+											<Select.Item value={item.value} label={item.label}>
+												{item.label}
+											</Select.Item>
+										{/each}
+									</Select.Group>
 								</Select.Content>
 							</Select.Root>
+						</Field.Field>
+						<Field.Field>
+							<Field.Label for="checkout-7j9-cvv">CVV</Field.Label>
+							<Input id="checkout-7j9-cvv" placeholder="123" required />
 						</Field.Field>
 					</div>
 				</Field.Group>
@@ -93,7 +107,6 @@
 					</Field.Field>
 				</Field.Group>
 			</Field.Set>
-			<Field.Separator />
 			<Field.Set>
 				<Field.Group>
 					<Field.Field>
