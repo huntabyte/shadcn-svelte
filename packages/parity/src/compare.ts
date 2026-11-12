@@ -4,6 +4,7 @@ import path from "node:path";
 import { styleText } from "node:util";
 import { twMerge } from "cn";
 import { PRESET_STYLES } from "shadcn-svelte/preset";
+import { parseStyleCss } from "./inject-style-classes.ts";
 import {
 	findCommentRanges,
 	parseParityIgnore,
@@ -1243,6 +1244,30 @@ function upstreamIgnoreFor(tokens: string[]): { reason: string; comment: string 
 	};
 }
 
+/**
+ * A generated style can inline an ignored upstream hook into ordinary utilities.
+ * Match the full expansion on unmatched strings so those utilities are never
+ * treated as individually ignored tokens.
+ */
+function expandedUpstreamIgnoreFor(
+	tokens: string[],
+	rules: UpstreamIgnoreRule[],
+	styleMap: Record<string, string>
+): UpstreamIgnoreRule | undefined {
+	const actual = new Set(tokens.map(canonicalizeRuntimeToken));
+	for (const rule of rules) {
+		const declared = new Set(rule.tokens.map(canonicalizeRuntimeToken));
+		for (const hook of rule.tokens) {
+			if (!Object.hasOwn(styleMap, hook)) continue;
+			const expansion = normalizeClassString(toTailwindArbitraryCalc(styleMap[hook]!));
+			const expected = new Set(expansion.tokens.map(canonicalizeRuntimeToken));
+			if (expected.size === 0) continue;
+			if (![...expected].every((token) => actual.has(token))) continue;
+			if ([...actual].every((token) => expected.has(token) || declared.has(token))) return rule;
+		}
+	}
+}
+
 function isAllowlistToken(token: string): boolean {
 	return ALLOWLIST_CN.has(token) || /^cn-.+-logical$/.test(token);
 }
@@ -1388,7 +1413,8 @@ function toPair(ours: ClassString, upstream: ClassString): Pair {
 export function pairClassStrings(
 	ours: ClassString[],
 	upstream: ClassString[],
-	upstreamIgnores: UpstreamIgnoreRule[] = []
+	upstreamIgnores: UpstreamIgnoreRule[] = [],
+	styleMap: Record<string, string> = {}
 ): Pair[] {
 	upstreamIgnoreRules = upstreamIgnores;
 	const pairs: Pair[] = [];
@@ -1457,7 +1483,9 @@ export function pairClassStrings(
 
 	for (const [ui, up] of upstream.entries()) {
 		if (usedUpstream.has(ui)) continue;
-		const ignore = upstreamIgnoreFor(up.tokens);
+		const ignore =
+			upstreamIgnoreFor(up.tokens) ??
+			expandedUpstreamIgnoreFor(up.tokens, upstreamIgnores, styleMap);
 		pairs.push({
 			kind: ignore ? "ignored" : classifyDiff([], up.tokens),
 			upstream: ignore
@@ -1818,6 +1846,10 @@ async function runVariants() {
 	for (const style of styles) {
 		const { names, skipped } = filterUiNames(loadUiNames(style));
 		if (itemFilter && names.length === 0) continue;
+		const stylePath = path.join(ROOT, "src/lib/registry/styles", `style-${style}.css`);
+		const styleMap = fs.existsSync(stylePath)
+			? parseStyleCss(fs.readFileSync(stylePath, "utf8"))
+			: {};
 		const rows: Record<string, string>[] = [];
 		const diffDetails: { name: string; counts: KindCounts; pairs: Pair[] }[] = [];
 
@@ -1834,7 +1866,7 @@ async function runVariants() {
 				.join("\n");
 			const ours = extractItemContent(loadOurs(style, name), name, upstreamContent);
 			const upstream = extractClassStrings(upstreamContent);
-			const pairs = pairClassStrings(ours.entries, upstream, ours.upstreamIgnores);
+			const pairs = pairClassStrings(ours.entries, upstream, ours.upstreamIgnores, styleMap);
 			const counts = countsFromPairs(pairs);
 			addCounts(summary, counts);
 			rows.push(rowFromCounts(name, counts));
