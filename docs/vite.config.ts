@@ -128,6 +128,9 @@ function flattenedRegistry(): Plugin {
 				path.extname(file) === ".svelte" &&
 				file.startsWith(docsRoot + path.sep) &&
 				!file.includes(`${path.sep}node_modules${path.sep}`);
+			// Shared TypeScript state must keep one module identity across raw and styled views.
+			// Stylesheet imports must also retain Vite's normal CSS processing.
+			if (path.extname(file) !== ".svelte") return resolved;
 			if (!isUi && !requested && !isLocalHelper) return resolved;
 			return { ...resolved, id: withQuery(resolved.id, style) };
 		},
