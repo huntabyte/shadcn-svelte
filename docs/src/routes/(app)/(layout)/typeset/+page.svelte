@@ -10,8 +10,8 @@
 	import { onDestroy, onMount } from "svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import Cta from "$lib/components/cta.svelte";
 	import CtaMobile from "$lib/components/cta-mobile.svelte";
+	import Cta from "$lib/components/cta.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
 	import Control from "$lib/features/typeset/control.svelte";
 	import DocsPanel from "$lib/features/typeset/docs-panel.svelte";
