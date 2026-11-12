@@ -51,8 +51,12 @@ export async function runAutomaticLabels({
   try {
     const config = join(dir, "policy.json");
     await writeFile(config, JSON.stringify(automaticPolicy(policy, history)));
+    const removalContext = join(dir, "removal-context.json");
+    await writeFile(removalContext, JSON.stringify({ repo, number, history }));
     // One CLI invocation: one request with all configured label questions.
     const args = [
+      "--import",
+      fileURLToPath(new URL("./guard-label-removal.mjs", import.meta.url)),
       "--import",
       fileURLToPath(new URL("./guard-model-response.mjs", import.meta.url)),
       fileURLToPath(new URL("./node_modules/@ieedan/label/dist/bin.mjs", import.meta.url)),
@@ -68,7 +72,7 @@ export async function runAutomaticLabels({
       ...(dryRun ? ["--dry-run"] : []),
     ];
     const result = await run(process.execPath, args, {
-      env: process.env,
+      env: { ...process.env, LABEL_REMOVAL_CONTEXT: removalContext },
       maxBuffer: 2 * 1024 * 1024,
       timeout: 90000,
     });

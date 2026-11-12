@@ -12,6 +12,10 @@ function fixture({
   timeline = [],
   fail,
   limited = false,
+  body = "Related work",
+  title = "fix: example",
+  searchTotal = related.length,
+  searchIncomplete = false,
 } = {}) {
   const calls = [];
   let limitedOnce = false;
@@ -35,16 +39,21 @@ function fixture({
         return Response.json(timeline.slice((page - 1) * 100, page * 100));
       if (u.pathname.endsWith("/comments"))
         return Response.json(comments.slice((page - 1) * 100, page * 100));
-      if (u.pathname === "/search/issues") return Response.json({ items: related });
+      if (u.pathname === "/search/issues")
+        return Response.json({
+          items: related,
+          total_count: searchTotal,
+          incomplete_results: searchIncomplete,
+        });
       const number = Number(u.pathname.split("/").at(-1));
       return Response.json({
         number,
-        title: "fix: example",
+        title,
         state: number === 1 ? "open" : "closed",
         state_reason: number === 1 ? null : "completed",
         created_at: number === 1 ? "2026-11-07" : "2026-10-01",
         closed_at: number === 1 ? null : "2026-11-01",
-        body: "Related work",
+        body,
         user: { login: "author", type: "User" },
         author_association: "COLLABORATOR",
         ...(pr ? { pull_request: {} } : {}),
@@ -255,4 +264,97 @@ test("preserves release notes and source excerpts within the existing patch budg
   assert.match(ctx.files[2].patch, /correct implementation/);
   assert(ctx.files.reduce((sum, file) => sum + (file.patch?.length ?? 0), 0) <= 4000);
   assert(ctx.files.some((file) => file.patchOmitted));
+});
+
+test("marks clipped bodies and titles within their character budgets", async () => {
+  const ctx = parse(
+    await run(
+      fixture({
+        title: "example ".repeat(100),
+        body: "b".repeat(800),
+        related: [{ number: 2, created_at: "2026-10-01" }],
+        comments: [{ user: { type: "User" }, body: "c".repeat(800) }],
+        reviews: [{ user: { type: "User" }, state: "APPROVED", body: "r".repeat(250) }],
+      })
+    )
+  );
+  for (const [text, limit] of [
+    [ctx.related[0].title, 200],
+    [ctx.related[0].body, 700],
+    [ctx.related[0].comments[0].body, 600],
+    [ctx.reviews[0].body, 200],
+  ]) {
+    assert.match(text, /\[truncated\]$/);
+    assert(text.length <= limit);
+  }
+});
+
+test("ignores fenced, inline and indented code and CSS color references", async () => {
+  const f = fixture({
+    pr: false,
+    body: [
+      "```css",
+      "color: #333333;",
+      "See #444444",
+      "```",
+      "~~~~",
+      "#555555",
+      "~~~~",
+      "Use `#666666` or ``literal `#777777` example``.",
+      "    #888888",
+      "background-color: #999999; border: 1px solid #123456;",
+      "The color #222222 is too dark.",
+      "> ```css",
+      "> color: #101010;",
+      "> #121212",
+      "> ```",
+      "--primary: #131313;",
+      "See #333 and https://github.com/owner/repo/issues/42.",
+    ].join("\n"),
+  });
+  const ctx = parse(await run(f));
+  assert.deepEqual(
+    ctx.related.map((r) => r.number),
+    [333, 42]
+  );
+  assert(
+    !f.calls.some((path) =>
+      /issues\/(333333|444444|555555|666666|777777|888888|999999|123456|222222)(?:\?|\/|$)/.test(
+        path
+      )
+    )
+  );
+});
+
+test("marks search result limits and incomplete search responses", async () => {
+  const related = Array.from({ length: 6 }, (_, i) => ({
+    number: i + 1,
+    created_at: "2026-10-01",
+  }));
+  const ctx = parse(await run(fixture({ related, searchTotal: 9 })));
+  assert.equal(ctx.related.length, 5);
+  assert.equal(ctx.relatedOmitted, true);
+  const incomplete = parse(await run(fixture({ searchIncomplete: true })));
+  assert.equal(incomplete.relatedOmitted, true);
+  const complete = parse(await run(fixture({ related, searchTotal: 6 })));
+  assert.equal(complete.relatedOmitted, false);
+});
+
+test("preserves full-budget untruncated text and ambiguous prose issue references", async () => {
+  const ctx = parse(
+    await run(
+      fixture({
+        pr: false,
+        body: "See #333333, then (#123).",
+        title: "t".repeat(200),
+        comments: [{ user: { type: "User" }, body: "c".repeat(600) }],
+      })
+    )
+  );
+  assert.deepEqual(
+    ctx.related.map((r) => r.number),
+    [333333, 123]
+  );
+  assert.equal(ctx.related[0].title, "t".repeat(200));
+  assert.equal(ctx.related[0].comments[0].body, "c".repeat(600));
 });

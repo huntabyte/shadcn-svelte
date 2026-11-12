@@ -68,7 +68,14 @@ test("orchestrates unmodified CLI arguments without shell evaluation, uses one b
     history: { rows: [], omitted: false },
     prompt: "Untrusted text: $(echo nope)",
     dryRun: true,
-    run: async (exe, args) => {
+    run: async (exe, args, options) => {
+      const baseline = JSON.parse(await readFile(options.env.LABEL_REMOVAL_CONTEXT, "utf8"));
+      assert.deepEqual(baseline, {
+        repo: "owner/repo",
+        number: 1,
+        history: { rows: [], omitted: false },
+      });
+      assert(args.some((arg) => arg.endsWith("/guard-label-removal.mjs")));
       assert.equal(exe, process.execPath);
       assert(args.includes("--dry-run"));
       assert(args.includes("--remove"));

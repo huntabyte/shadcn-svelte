@@ -2,11 +2,50 @@ import { writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 
 const LIMIT = 24000;
-const clip = (value, limit) =>
-  String(value ?? "")
+const clip = (value, limit) => {
+  const text = String(value ?? "")
     .replace(/\s+/g, " ")
-    .trim()
-    .slice(0, limit);
+    .trim();
+  const marker = " [truncated]";
+  return text.length > limit ? text.slice(0, limit - marker.length) + marker : text;
+};
+
+// Reference-looking literals are not issue links. Leave ambiguous prose numbers intact.
+const referenceText = (value) => {
+  let fence;
+  const prose = String(value)
+    .split("\n")
+    .map((rawLine) => {
+      const line = rawLine.replace(/^(?: {0,3}> ?)+/, "");
+      const boundary = line.match(/^ {0,3}(`{3,}|~{3,})(.*)$/);
+      if (fence) {
+        if (
+          boundary &&
+          boundary[1][0] === fence[0] &&
+          boundary[1].length >= fence.length &&
+          !boundary[2].trim()
+        )
+          fence = undefined;
+        return "";
+      }
+      if (boundary) {
+        fence = boundary[1];
+        return "";
+      }
+      return /^(?: {4}|\t)/.test(line) ? "" : line;
+    })
+    .join("\n");
+  return prose
+    .replace(/(`+)[\s\S]*?\1(?!`)/g, " ")
+    .replace(
+      /(?<![\w-])(?:color|background(?:-color)?|border(?:-[\w-]+)?|fill|stroke|box-shadow|text-shadow|outline(?:-color)?|--[\w-]+)\s*:[^;\n}]*#[\da-f]{3,8}\b[^;\n}]*/gi,
+      " "
+    )
+    .replace(
+      /\b(?:color|colour|hex)(?:\s+(?:value|code))?\s+#(?:[\da-f]{8}|[\da-f]{6}|[\da-f]{4}|[\da-f]{3})\b/gi,
+      " "
+    );
+};
 const actor = (user, role) => ({
   login: user?.login ?? null,
   role: role ?? null,
@@ -98,8 +137,9 @@ export async function buildLabelContext({
       .reverse()
       .map((c) => c.body ?? ""),
   ]) {
-    for (const match of String(text).matchAll(/(?:^|[\s(])#(\d+)\b/g)) refs.push(Number(match[1]));
-    for (const match of String(text).matchAll(
+    const prose = referenceText(text);
+    for (const match of prose.matchAll(/(?:^|[\s(])#(\d+)\b/g)) refs.push(Number(match[1]));
+    for (const match of prose.matchAll(
       /https:\/\/github\.com\/([^/]+\/[^/]+)\/(?:issues|pull)\/(\d+)/g
     ))
       if (match[1].toLowerCase() === repo.toLowerCase()) refs.push(Number(match[2]));
@@ -131,7 +171,10 @@ export async function buildLabelContext({
       createdAt: item.created_at,
     },
     timelineOmitted: timeline.omitted,
-    relatedOmitted: allRefs.length > 5,
+    relatedOmitted:
+      allRefs.length > 5 ||
+      search.incomplete_results === true ||
+      search.total_count > (search.items ?? []).length,
     related: [],
     reviews: [],
     reviewsOmitted: false,

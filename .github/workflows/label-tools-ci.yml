@@ -6,6 +6,7 @@ on:
       - ".github/.label.yml"
       - ".github/scripts/**"
       - ".github/workflows/label.yml"
+      - ".github/workflows/label-review.yml"
       - ".github/workflows/label-tools-ci.yml"
 
 permissions:

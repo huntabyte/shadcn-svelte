@@ -12,3 +12,7 @@ Run the local checks without GitHub or TypeSafe credentials:
 npm ci --prefix .github/scripts --ignore-scripts --no-audit --no-fund
 node --test .github/scripts/*.test.mjs
 ```
+
+Each removal re-reads the bounded timeline immediately before DELETE and requires the same bot-owned label event as the original snapshot. Changed, failed, or incomplete history skips that removal and logs the skip. This narrows the race during inference; GitHub does not provide an atomic ownership-conditional label DELETE, so a human change between the final read and DELETE remains possible.
+
+Review submissions, edits, and dismissals use an unprivileged wake-up workflow. The privileged follow-up validates authoritative run and current PR metadata, loads executable scripts only from the base repository's default branch, and never consumes PR code or signal artifacts. These workflows must be merged before review wake-ups are active; fork workflow approval may delay the signal. Stale review-run SHAs are skipped (the synchronize event covers new commits).
