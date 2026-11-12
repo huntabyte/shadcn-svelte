@@ -4,6 +4,7 @@
 
 	let {
 		ref = $bindable(null),
+		inputRef = $bindable(null),
 		class: className,
 		value = $bindable(""),
 		...restProps
@@ -12,6 +13,7 @@
 
 <InputOTPPrimitive.Root
 	bind:ref
+	bind:inputRef
 	bind:value
 	data-slot="input-otp"
 	spellcheck={false}
