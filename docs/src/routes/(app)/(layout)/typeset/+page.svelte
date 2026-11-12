@@ -216,7 +216,7 @@
 		</div>
 
 		<div
-			class="isolate z-10 flex max-h-full min-h-0 w-full flex-col gap-2 self-start md:w-(--customizer-width) md:self-stretch"
+			class="isolate z-10 flex max-h-full min-h-0 w-full flex-col gap-2 self-start md:w-(--customizer-width)"
 		>
 			<Card.Root
 				bind:ref={customizerAnchor}
@@ -328,7 +328,7 @@
 					/>
 				</Card.Footer>
 			</Card.Root>
-			<div class="mt-auto hidden w-full shrink-0 md:block">
+			<div class="hidden w-full shrink-0 md:block">
 				<Cta />
 			</div>
 		</div>
