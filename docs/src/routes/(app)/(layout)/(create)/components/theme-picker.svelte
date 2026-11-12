@@ -5,6 +5,8 @@
 	import { BASE_THEMES, THEMES, type BaseTheme, type Theme } from "$lib/registry/config.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import LockButton from "./lock-button.svelte";
+	import { CreatePicker } from "./picker-state.svelte.js";
+	import { usePreviewOverride } from "./preview-override-context.svelte.js";
 
 	type Props = {
 		submenu?: boolean;
@@ -13,6 +15,7 @@
 	let { submenu = false }: Props = $props();
 
 	const designSystem = useDesignSystem();
+	const previewOverride = usePreviewOverride();
 
 	const isMobile = new IsMobile();
 
@@ -30,11 +33,19 @@
 		}
 		return theme.cssVars[mode.current ?? "light"]["primary"];
 	}
+
+	const picker = new CreatePicker(() => previewOverride.clearOverride());
 </script>
 
 <div class="group/picker relative">
-	<Picker.Root {submenu}>
-		<Picker.Trigger {submenu}>
+	<Picker.Root bind:open={picker.open} {submenu}>
+		<Picker.Trigger
+			onpointerdown={picker.capture}
+			onkeydown={(event) => {
+				if (event.key === "Enter" || event.key === " ") picker.capture();
+			}}
+			{submenu}
+		>
 			<div class="flex flex-col justify-start text-left">
 				<div class="text-xs text-muted-foreground">Theme</div>
 				<div class="text-sm font-medium text-foreground">
@@ -47,9 +58,12 @@
 			></div>
 		</Picker.Trigger>
 		<Picker.Content
+			onmouseleave={() => previewOverride.clearOverride()}
+			preventScroll={false}
+			customAnchor={isMobile.current ? picker.layout?.anchor : undefined}
 			side={isMobile.current ? "top" : submenu ? "left" : "right"}
 			align={isMobile.current ? "center" : "start"}
-			class="max-h-96 overflow-y-auto"
+			class="max-h-[min(--spacing(92),var(--bits-dropdown-menu-content-available-height))] overflow-y-auto max-md:w-[calc(var(--bits-dropdown-menu-anchor-width)-2px)]"
 			sideOffset={submenu ? 5 : 20}
 			{submenu}
 		>
@@ -57,21 +71,17 @@
 				<Picker.Group>
 					{#each THEMES.filter( (theme) => BASE_THEMES.find((baseColor) => baseColor.name === theme.name) ) as theme (theme.name)}
 						{#if theme.name === designSystem.baseColor}
-							<Picker.RadioItem value={theme.name} closeOnSelect={false}>
-								<div class="flex items-start gap-2">
-									{#if mode.current}
-										<div
-											style="--color: {getColorForTheme(theme)};"
-											class="size-4 translate-y-1 rounded-full bg-(--color)"
-										></div>
-									{/if}
-									<div class="flex flex-col justify-start pointer-coarse:gap-1">
-										<div>{theme.title}</div>
-										<div class="text-xs text-muted-foreground pointer-coarse:text-sm">
-											Match base color
-										</div>
-									</div>
-								</div>
+							<Picker.RadioItem
+								onItemPreview={isMobile.current
+									? undefined
+									: (value) =>
+											previewOverride.setOverride({
+												theme: value as typeof designSystem.theme,
+											})}
+								value={theme.name}
+								closeOnSelect={false}
+							>
+								{theme.title}
 							</Picker.RadioItem>
 						{/if}
 					{/each}
@@ -79,14 +89,17 @@
 				<Picker.Separator />
 				<Picker.Group>
 					{#each THEMES.filter((theme) => !BASE_THEMES.find((baseColor) => baseColor.name === theme.name)) as theme (theme.name)}
-						<Picker.RadioItem value={theme.name} closeOnSelect={false}>
+						<Picker.RadioItem
+							onItemPreview={isMobile.current
+								? undefined
+								: (value) =>
+										previewOverride.setOverride({
+											theme: value as typeof designSystem.theme,
+										})}
+							value={theme.name}
+							closeOnSelect={false}
+						>
 							<div class="flex items-center gap-2">
-								{#if mode.current}
-									<div
-										style="--color: {theme.cssVars[mode.current]['primary']};"
-										class="size-4 rounded-full bg-(--color)"
-									></div>
-								{/if}
 								{theme.title}
 							</div>
 						</Picker.RadioItem>

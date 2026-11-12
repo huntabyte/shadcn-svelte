@@ -1,9 +1,10 @@
 <svelte:options runes />
 
 <script lang="ts">
-	import MenuIcon from "@lucide/svelte/icons/menu";
 	import { setMode, mode } from "mode-watcher";
 	import * as Picker from "$lib/components/picker/index.js";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { ResetDialogCtx } from "$lib/features/design-system/components/reset-dialog-context.svelte.js";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { useIsMac } from "$lib/hooks/use-is-mac.svelte.js";
 	import { cn } from "$lib/utils.js";
@@ -18,6 +19,7 @@
 	const isMac = useIsMac();
 	const designSystem = useDesignSystem();
 	const actionMenuCtx = ActionMenuCtx.get();
+	const resetDialogCtx = ResetDialogCtx.get();
 
 	function toggleTheme() {
 		setMode(mode.current === "dark" ? "light" : "dark");
@@ -33,7 +35,14 @@
 		)}
 	>
 		<span class="font-medium">Menu</span>
-		<MenuIcon class="size-5" />
+		<IconPlaceholder
+			lucide="MenuIcon"
+			hugeicons="Menu09Icon"
+			phosphor="ListIcon"
+			tabler="IconMenu"
+			remixicon="RiMenuLine"
+			class="size-5"
+		/>
 	</Picker.Trigger>
 	<Picker.Content side="right" align="start" alignOffset={-8}>
 		<Picker.Group>
@@ -61,7 +70,7 @@
 				<Picker.Shortcut>{isMac.current ? "⇧⌘Z" : "Ctrl+Shift+Z"}</Picker.Shortcut>
 			</Picker.Item>
 			<Picker.Separator />
-			<Picker.Item onSelect={() => designSystem.reset()}>
+			<Picker.Item onSelect={() => (resetDialogCtx.open = true)}>
 				Reset
 				<Picker.Shortcut>{isMac.current ? "⇧R" : "Shift+R"}</Picker.Shortcut>
 			</Picker.Item>

@@ -5,7 +5,7 @@
 	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import { cn } from "$lib/utils.js";
-	import { groupItemsByType } from "../lib/utils.js";
+	import { groupItemsByType, itemHref, DEFAULT_ITEM } from "../lib/utils.js";
 	import type { RegistryItem } from "shadcn-svelte/schema";
 
 	type Props = {
@@ -45,10 +45,11 @@
 											<div class="absolute top-1/2 -bottom-1 -left-2.5 w-1 bg-sidebar"></div>
 										{/if}
 										<Sidebar.MenuButton
-											onclick={() => goto(`/create/${item.name}${page.url.search}`)}
+											onclick={() => goto(itemHref(item.name))}
 											class="relative h-[26px] w-fit cursor-pointer overflow-visible border border-transparent text-[0.8rem] font-normal after:absolute after:inset-x-0 after:-inset-y-1 after:z-0 after:rounded-md data-[active=true]:border-accent data-[active=true]:bg-accent 3xl:fixed:w-full 3xl:fixed:max-w-48"
-											data-active={item.name === page.params.item}
-											isActive={item.name === page.params.item}
+											data-active={item.name ===
+												(page.url.searchParams.get("item") ?? DEFAULT_ITEM)}
+											isActive={item.name === (page.url.searchParams.get("item") ?? DEFAULT_ITEM)}
 										>
 											{item.title}
 											<span class="absolute inset-0 flex w-(--sidebar-width) bg-transparent"></span>

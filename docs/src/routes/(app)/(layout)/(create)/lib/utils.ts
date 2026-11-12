@@ -1,4 +1,18 @@
+import { page } from "$app/state";
 import { type RegistryItem } from "shadcn-svelte/schema";
+
+export const DEFAULT_ITEM = "preview-02";
+
+export function itemHref(itemName: string) {
+	const params = new URLSearchParams(page.url.search);
+	if (itemName === DEFAULT_ITEM) {
+		params.delete("item");
+	} else {
+		params.set("item", itemName);
+	}
+	const qs = params.toString();
+	return qs ? `/create?${qs}` : "/create";
+}
 
 const mapping = {
 	"registry:block": "Blocks",

@@ -2,17 +2,17 @@
 	import { cn } from "$lib/utils.js";
 
 	type Props = {
-		showOnDesktop?: boolean;
+		class?: string;
 	};
 
-	let { showOnDesktop = false }: Props = $props();
+	let { class: className }: Props = $props();
 </script>
 
 <a
 	href="https://github.com/EpicenterHQ/epicenter"
 	class={cn(
-		"group relative flex w-full items-center gap-3 overflow-hidden rounded-xl border border-foreground/5 bg-muted/60 px-4 py-3 transition-all select-none hover:border-foreground/10 dark:bg-background",
-		!showOnDesktop && "xl:hidden"
+		"group relative flex w-full items-center gap-3 overflow-hidden rounded-xl border border-foreground/5 bg-muted/60 px-4 py-3 transition-all select-none hover:border-foreground/10 xl:hidden dark:bg-background",
+		className
 	)}
 >
 	<div
