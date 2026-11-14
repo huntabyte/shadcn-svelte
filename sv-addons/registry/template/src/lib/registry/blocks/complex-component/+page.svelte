@@ -1,6 +1,6 @@
 <script lang="ts">
-	import PokemonCard from "./components/pokemon-card.svelte";
-	import { getPokemonList } from "./lib/pokemon.js";
+	import PokemonCard from "$lib/registry/components/pokemon-card.svelte";
+	import { getPokemonList } from "$lib/registry/lib/pokemon.js";
 </script>
 
 {#await getPokemonList({ limit: 12 })}

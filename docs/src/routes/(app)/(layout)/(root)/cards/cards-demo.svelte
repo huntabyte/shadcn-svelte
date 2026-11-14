@@ -1,5 +1,5 @@
 <script lang="ts">
-	import MessageScrollerDemo from "$lib/registry/examples/message-scroller-demo.svelte";
+	import MessageScrollerDemo from "$lib/registry/examples/message-scroller-demo.svelte?flattened=rhea";
 	import AccountAccess from "./account-access.svelte";
 	import AnalyticsCard from "./analytics-card.svelte";
 	import ClaimableBalance from "./claimable-balance.svelte";
