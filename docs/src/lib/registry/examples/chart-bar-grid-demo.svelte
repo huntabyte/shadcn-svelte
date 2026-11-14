@@ -24,20 +24,23 @@
 	} satisfies Chart.ChartConfig;
 </script>
 
-<Chart.Container config={chartConfig} class="aspect-auto h-[200px] w-full">
+<Chart.Container config={chartConfig} class="min-h-[200px] w-full">
 	<BarChart
 		data={chartData}
 		x="month"
-		xScale={scaleBand()}
-		bandPadding={0.2}
-		groupPadding={0.08}
+		xScale={scaleBand().paddingInner(0.2).paddingOuter(0.1)}
+		x1Scale={scaleBand().paddingInner(0.12)}
+		x1Range={({ xScale }) => [0, xScale.bandwidth?.() ?? 0]}
 		seriesLayout="group"
 		series={[
 			{ key: "desktop", label: chartConfig.desktop.label, color: "var(--color-desktop)" },
 			{ key: "mobile", label: chartConfig.mobile.label, color: "var(--color-mobile)" },
 		]}
 		rule={false}
-		grid={{ x: false, y: true }}
+		padding={{ top: 5, right: 5, bottom: 5, left: 5 }}
+		yDomain={[0, 320]}
+		yNice={false}
+		grid={{ x: false, y: true, yTicks: [0, 80, 160, 240, 320] }}
 		axis={false}
 		tooltipContext={false}
 		props={{

@@ -24,25 +24,35 @@
 	} satisfies Chart.ChartConfig;
 </script>
 
-<Chart.Container config={chartConfig} class="aspect-auto h-[200px] w-full">
+<Chart.Container
+	config={chartConfig}
+	class="min-h-[200px] w-full [&_.lc-legend-swatch]:size-2 [&_.lc-legend-swatch-group]:-translate-y-[5px]"
+>
 	<BarChart
 		data={chartData}
 		x="month"
-		xScale={scaleBand()}
-		bandPadding={0.2}
-		groupPadding={0.08}
+		xScale={scaleBand().paddingInner(0.2).paddingOuter(0.1)}
+		x1Scale={scaleBand().paddingInner(0.12)}
+		x1Range={({ xScale }) => [0, xScale.bandwidth?.() ?? 0]}
 		seriesLayout="group"
 		series={[
 			{ key: "desktop", label: chartConfig.desktop.label, color: "var(--color-desktop)" },
 			{ key: "mobile", label: chartConfig.mobile.label, color: "var(--color-mobile)" },
 		]}
 		rule={false}
-		grid={{ x: false, y: true }}
+		padding={{ top: 5, right: 5, bottom: 63, left: 5 }}
+		yDomain={[0, 320]}
+		yNice={false}
+		grid={{ x: false, y: true, yTicks: [0, 80, 160, 240, 320] }}
 		axis="x"
 		legend
 		props={{
 			bars: { rounded: "all", radius: 4, stroke: "none", motion: Chart.defaultBarMotion },
-			xAxis: { format: (month) => month.slice(0, 3), tickLength: 10, tickMarks: false },
+			xAxis: {
+				format: (month) => month.slice(0, 3),
+				tickMarks: false,
+				tickLabelProps: { dy: 17.5, style: "fill: #666" },
+			},
 			highlight: { area: { class: "fill-muted" } },
 		}}
 	>

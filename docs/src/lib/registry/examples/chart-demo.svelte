@@ -37,6 +37,10 @@
 		{ date: "2024-04-30", desktop: 454, mobile: 380 },
 	];
 
+	const dateLabels = new Map(
+		chartData.slice(1).map(({ date }, index) => [date, chartData[index]!.date])
+	);
+
 	const chartConfig = {
 		views: { label: "Page Views" },
 		desktop: { label: "Desktop", color: "var(--chart-2)" },
@@ -63,10 +67,11 @@
 	});
 </script>
 
-<Card.Root class="py-0 pb-4">
+<Card.Root class="gap-6 py-0 pb-4 ring-0">
 	<Card.Header class="flex flex-col items-stretch border-b p-0! sm:flex-row">
 		<div class="flex flex-1 flex-col justify-center gap-1 px-6 pt-4 pb-3 sm:py-0!">
-			<Card.Title>Bar Chart - Interactive</Card.Title>
+			<Card.Title class="text-[15px] leading-none font-semibold">Bar Chart - Interactive</Card.Title
+			>
 			<Card.Description>Showing total visitors for the last 3 months</Card.Description>
 		</div>
 		<div class="flex">
@@ -91,12 +96,13 @@
 			<BarChart
 				data={chartData}
 				x="date"
-				xScale={scaleBand<string>()}
-				grid={{ x: false, y: true }}
+				xScale={scaleBand<string>().paddingInner(0.2).paddingOuter(0.1)}
+				yDomain={[0, 600]}
+				grid={{ x: false, y: true, yTicks: [0, 150, 300, 450, 600] }}
 				rule={false}
 				axis="x"
 				series={activeSeries}
-				padding={{ left: 12, right: 12 }}
+				padding={{ left: 12, right: 12, bottom: 30 }}
 				props={{
 					bars: {
 						stroke: "none",
@@ -106,14 +112,22 @@
 					highlight: { area: { fill: "none" } },
 					xAxis: {
 						format: (d: string) => {
-							return new Date(d).toLocaleDateString("en-US", {
+							return new Date(dateLabels.get(d) ?? d).toLocaleDateString("en-US", {
 								timeZone: "UTC",
 								month: "short",
 								day: "numeric",
 							});
 						},
-						tickLength: 8,
-						tickOcclusion: { padding: 32, priority: "start-end" },
+						tickMarks: false,
+						tickLabelProps: { dy: 15.5, textAnchor: "middle", style: "fill: #666" },
+						// Keep the first label one band inside the plot, as in the reference.
+						ticks: (scale) => {
+							const bandWidth = scale.bandwidth?.() ?? 0;
+							const step = Math.max(1, Math.ceil(60 / (bandWidth / 0.8)));
+							return chartData
+								.filter((_, index) => index > 0 && (index - 1) % step === 0)
+								.map(({ date }) => date);
+						},
 					},
 				}}
 			>

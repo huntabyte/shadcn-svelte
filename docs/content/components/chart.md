@@ -181,7 +181,7 @@ The example groups two bars per month. Set `props.bars.motion` to `Chart.default
 <ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
-<ComponentPreview name="chart-bar-demo" class="[&_.preview]:p-4">
+<ComponentPreview name="chart-bar-demo" previewClassName="h-80">
 
 <div></div>
 
@@ -193,41 +193,57 @@ The example groups two bars per month. Set `props.bars.motion` to `Chart.default
 
 Enable horizontal grid lines with `grid={{ x: false, y: true }}`.
 
-<ComponentPreview name="chart-bar-grid-demo" class="[&_.preview]:p-4">
+<Steps>
+
+<ComponentPreview name="chart-bar-grid-demo" previewClassName="h-80">
 
 <div></div>
 
 </ComponentPreview>
+
+</Steps>
 
 ### Add an Axis
 
 Set `axis="x"` to show month labels. Use `props.xAxis.format` to shorten each label to three letters.
 
-<ComponentPreview name="chart-bar-axis-tick-demo" class="[&_.preview]:p-4">
+<Steps>
+
+<ComponentPreview name="chart-bar-axis-tick-demo" previewClassName="h-80">
 
 <div></div>
 
 </ComponentPreview>
+
+</Steps>
 
 ### Add Tooltip
 
 Enable the tooltip context by removing `tooltipContext={false}`. Render `Chart.Tooltip` in the `tooltip` snippet.
 
-<ComponentPreview name="chart-bar-tooltip-demo" class="[&_.preview]:p-4">
+<Steps>
+
+<ComponentPreview name="chart-bar-tooltip-demo" previewClassName="h-80">
 
 <div></div>
 
 </ComponentPreview>
+
+</Steps>
 
 ### Add Legend
 
 Set the `legend` prop to show the series labels and colors.
 
-<ComponentPreview name="chart-bar-legend-demo" class="[&_.preview]:p-4">
+<Steps>
+
+<ComponentPreview name="chart-bar-legend-demo" previewClassName="h-80">
 
 <div></div>
 
 </ComponentPreview>
+
+</Steps>
 
 Done. You've built your first chart! What's next?
 
@@ -420,7 +436,7 @@ This will use `Total Visitors` for label and `Chrome` and `Safari` for the toolt
 
 Set `dir="rtl"` on the container and enable `xReverse` on the chart to show categories from right to left.
 
-<ComponentPreview name="chart-rtl-demo" class="[&_.preview]:p-4">
+<ComponentPreview name="chart-rtl-demo" previewClassName="min-h-92">
 
 <div></div>
 
