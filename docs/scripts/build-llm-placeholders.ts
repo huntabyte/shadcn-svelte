@@ -13,7 +13,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 async function main() {
 	try {
-		const files = (await globby(["content/**/*.md"])).map((filePath) => {
+		const contentPaths = await globby(["content/**/*.md", "!content/components/typography.md"]);
+		const files = contentPaths.map((filePath) => {
 			const newPath = filePath.replace("content/", "docs/");
 			if (newPath.endsWith("/index.md")) return newPath.replace("/index.md", ".md");
 			return newPath;
