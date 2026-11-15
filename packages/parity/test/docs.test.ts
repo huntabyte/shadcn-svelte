@@ -169,3 +169,31 @@ it("pins remote URLs and isolates caches by upstream commit", async () => {
 it("rejects mutable upstream refs", async () => {
 	await expect(runDocsParity({ upstreamRef: "main" })).rejects.toThrow("commit SHA");
 });
+
+it("reports file failures and only fails the process in check mode", async () => {
+	const root = fs.mkdtempSync(path.join(os.tmpdir(), "parity-docs-missing-"));
+	const previousExitCode = process.exitCode;
+	const log = vi.spyOn(console, "log").mockImplementation(() => {});
+	try {
+		process.exitCode = 0;
+		const options = { surface: "component-preview", root, upstream: root };
+		await expect(runDocsParity(options)).resolves.toEqual({ total: 3, diffs: 3 });
+		expect(process.exitCode).toBe(0);
+		await expect(runDocsParity({ ...options, check: true })).resolves.toEqual({
+			total: 3,
+			diffs: 3,
+		});
+		expect(process.exitCode).toBe(1);
+		expect(log.mock.calls.flat().join("\n")).toContain("ENOENT");
+	} finally {
+		process.exitCode = previousExitCode;
+		log.mockRestore();
+		fs.rmSync(root, { recursive: true, force: true });
+	}
+});
+
+it("rejects unknown surfaces rather than reporting an empty success", async () => {
+	await expect(runDocsParity({ surface: "not-a-docs-surface" })).rejects.toThrow(
+		"Unknown docs surface"
+	);
+});
