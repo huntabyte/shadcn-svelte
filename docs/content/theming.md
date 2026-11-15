@@ -126,7 +126,7 @@ To add a new token, define it under `:root` and `.dark`, then expose it to Tailw
 }
 ```
 
-You can now use the `warning` utility class in your components.
+You can now use `bg-warning` and `text-warning-foreground` in your components.
 
 ```svelte /bg-warning/ /text-warning-foreground/
 <div class="bg-warning text-warning-foreground"></div>
@@ -134,7 +134,7 @@ You can now use the `warning` utility class in your components.
 
 ## Base Colors
 
-The available base colors are: **Neutral**, **Stone**, **Zinc**, **Gray**, and **Slate**.
+The available base colors are: **Neutral**, **Stone**, **Zinc**, **Mauve**, **Olive**, **Mist**, and **Taupe**.
 
 ## Default Theme CSS
 
