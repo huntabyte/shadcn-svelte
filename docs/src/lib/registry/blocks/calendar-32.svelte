@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { getLocalTimeZone, type DateValue } from "@internationalized/date";
 	import CalendarPlusIcon from "@lucide/svelte/icons/calendar-plus";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import Calendar from "$lib/registry/ui/calendar/calendar.svelte";
+	import { getLocalTimeZone, type DateValue } from "@internationalized/date";
 	import * as Drawer from "$lib/registry/ui/drawer/index.js";
+	import Calendar from "$lib/registry/ui/calendar/calendar.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Label } from "$lib/registry/ui/label/index.js";
 
 	let open = $state(false);
@@ -45,5 +45,5 @@
 			/>
 		</Drawer.Content>
 	</Drawer.Root>
-	<div class="text-muted-foreground px-1 text-sm">This example works best on mobile.</div>
+	<div class="px-1 text-sm text-muted-foreground">This example works best on mobile.</div>
 </div>

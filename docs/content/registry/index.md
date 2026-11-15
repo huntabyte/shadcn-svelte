@@ -24,8 +24,8 @@ Registry items are automatically compatible with the `shadcn-svelte` CLI.
 
 You are free to design and host your custom registry as you see fit. The only requirement is that your registry items must be valid JSON files that conform to the [registry-item schema specification](/docs/registry/registry-item-json).
 
-If you'd like to see an example of a registry, we have a [template project](https://github.com/huntabyte/shadcn-svelte/tree/main/registry-template) for you to use as a starting point.
+If you'd like to see an example of a registry, use the [`@shadcn-svelte/registry`](https://github.com/huntabyte/shadcn-svelte/tree/main/sv-addons/registry) community add-on for `sv`:
 
-You can clone it using `degit`
+<PMExecute command="sv add @shadcn-svelte/registry" />
 
-<PMExecute command="degit huntabyte/shadcn-svelte/registry-template#next-tailwind-4" />
+It scaffolds a SvelteKit-ready registry authoring setup (example components, `registry.json`, a CSS theme, and a `build:registry` script) into your project.

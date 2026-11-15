@@ -20,7 +20,7 @@
 		hugeicons="ArrowRightIcon"
 		phosphor="CaretRightIcon"
 		remixicon="RiArrowRightSLine"
-		class={cn("size-4", className)}
+		class={cn("cn-rtl-flip size-4", className)}
 	/>
 {/snippet}
 

@@ -10,13 +10,12 @@
 	import Settings2Icon from "@lucide/svelte/icons/settings-2";
 	import SparklesIcon from "@lucide/svelte/icons/sparkles";
 	import Trash2Icon from "@lucide/svelte/icons/trash-2";
-
+	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import NavFavorites from "./nav-favorites.svelte";
 	import NavMain from "./nav-main.svelte";
 	import NavSecondary from "./nav-secondary.svelte";
 	import NavWorkspaces from "./nav-workspaces.svelte";
 	import TeamSwitcher from "./team-switcher.svelte";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import type { ComponentProps } from "svelte";
 
 	// This is sample data.

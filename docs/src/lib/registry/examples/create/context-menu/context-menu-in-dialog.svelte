@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 	import * as ContextMenu from "$lib/registry/ui/context-menu/index.js";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	let open = $state(false);
 </script>

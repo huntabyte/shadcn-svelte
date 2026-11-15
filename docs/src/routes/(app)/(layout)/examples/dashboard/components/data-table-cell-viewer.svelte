@@ -1,16 +1,15 @@
 <script lang="ts">
 	import TrendingUpIcon from "@tabler/icons-svelte/icons/trending-up";
-	import { AreaChart } from "layerchart";
 	import { scaleUtc } from "d3-scale";
 	import { curveNatural } from "d3-shape";
-
-	import * as Drawer from "$lib/registry/ui/drawer/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { AreaChart } from "layerchart";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
-	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
+	import * as Drawer from "$lib/registry/ui/drawer/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
+	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Input } from "$lib/registry/ui/input/index.js";
+	import { Label } from "$lib/registry/ui/label/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
 	import type { Schema } from "./schemas.js";
 
@@ -46,7 +45,7 @@
 <Drawer.Root direction={isMobile.current ? "bottom" : "right"}>
 	<Drawer.Trigger>
 		{#snippet child({ props })}
-			<Button variant="link" class="text-foreground w-fit px-0 text-start" {...props}>
+			<Button variant="link" class="w-fit px-0 text-start text-foreground" {...props}>
 				{item.header}
 			</Button>
 		{/snippet}
@@ -109,8 +108,8 @@
 						<TrendingUpIcon class="size-4" />
 					</div>
 					<div class="text-muted-foreground">
-						Showing total visitors for the last 6 months. This is just some random text
-						to test the layout. It spans multiple lines and should wrap around.
+						Showing total visitors for the last 6 months. This is just some random text to test the
+						layout. It spans multiple lines and should wrap around.
 					</div>
 				</div>
 				<Separator />
@@ -128,15 +127,9 @@
 								{type ?? "Select a type"}
 							</Select.Trigger>
 							<Select.Content>
-								<Select.Item value="Table of Contents"
-									>Table of Contents</Select.Item
-								>
-								<Select.Item value="Executive Summary"
-									>Executive Summary</Select.Item
-								>
-								<Select.Item value="Technical Approach">
-									Technical Approach
-								</Select.Item>
+								<Select.Item value="Table of Contents">Table of Contents</Select.Item>
+								<Select.Item value="Executive Summary">Executive Summary</Select.Item>
+								<Select.Item value="Technical Approach">Technical Approach</Select.Item>
 								<Select.Item value="Design">Design</Select.Item>
 								<Select.Item value="Capabilities">Capabilities</Select.Item>
 								<Select.Item value="Focus Documents">Focus Documents</Select.Item>

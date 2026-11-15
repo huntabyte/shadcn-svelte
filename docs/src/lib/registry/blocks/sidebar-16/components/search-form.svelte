@@ -1,9 +1,9 @@
 <script lang="ts">
 	import SearchIcon from "@lucide/svelte/icons/search";
-	import { Label } from "$lib/registry/ui/label/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import type { HTMLFormAttributes } from "svelte/elements";
+	import { Label } from "$lib/registry/ui/label/index.js";
 	import type { WithElementRef } from "$lib/utils.js";
+	import type { HTMLFormAttributes } from "svelte/elements";
 
 	let { ref = $bindable(null), ...restProps }: WithElementRef<HTMLFormAttributes> = $props();
 </script>

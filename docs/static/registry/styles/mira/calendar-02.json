@@ -10,7 +10,7 @@
 	],
 	"files": [
 		{
-			"content": "<script lang=\"ts\">\n\timport Calendar from \"$UI$/calendar/calendar.svelte\";\n\timport { CalendarDate } from \"@internationalized/date\";\n\n\tlet value = $state<CalendarDate | undefined>(new CalendarDate(2025, 6, 12));\n</script>\n\n<Calendar type=\"single\" bind:value class=\"rounded-lg border shadow-sm\" numberOfMonths={2} />\n",
+			"content": "<script lang=\"ts\">\n\timport { CalendarDate } from \"@internationalized/date\";\n\timport Calendar from \"$UI$/calendar/calendar.svelte\";\n\n\tlet value = $state<CalendarDate | undefined>(new CalendarDate(2025, 6, 12));\n</script>\n\n<Calendar type=\"single\" bind:value class=\"rounded-lg border shadow-sm\" numberOfMonths={2} />\n",
 			"type": "registry:component",
 			"target": "calendar-02.svelte"
 		}

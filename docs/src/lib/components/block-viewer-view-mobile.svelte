@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { Snippet } from "svelte";
 	import { BlockViewerContext } from "./block-viewer.svelte";
+	import type { Snippet } from "svelte";
 
 	const ctx = BlockViewerContext.get();
 	let { children }: { children?: Snippet } = $props();
@@ -11,7 +11,7 @@
 		<div class="line-clamp-1 text-sm font-medium">
 			{ctx.item.description}
 		</div>
-		<div class="text-muted-foreground ms-auto shrink-0 font-mono text-xs">
+		<div class="ms-auto shrink-0 font-mono text-xs text-muted-foreground">
 			{ctx.item.name}
 		</div>
 	</div>

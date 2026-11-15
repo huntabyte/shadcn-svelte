@@ -1,9 +1,9 @@
 <script lang="ts">
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
+	import * as NativeSelect from "$lib/registry/ui/native-select/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
-	import * as NativeSelect from "$lib/registry/ui/native-select/index.js";
 	import { Textarea } from "$lib/registry/ui/textarea/index.js";
 </script>
 
@@ -19,8 +19,8 @@
 					<Field.Label for="name">Name</Field.Label>
 					<Input id="name" placeholder="shadcn" />
 					<Field.Description>
-						Your name may appear around GitHub where you contribute or are mentioned.
-						You can remove it at any time.
+						Your name may appear around GitHub where you contribute or are mentioned. You can remove
+						it at any time.
 					</Field.Description>
 				</Field.Field>
 				<Field.Field>
@@ -31,9 +31,7 @@
 					</NativeSelect.Root>
 					<Field.Description>
 						You can manage verified email addresses in your
-						<a href="https://github.com/settings/emails" class="underline"
-							>email settings</a
-						>.
+						<a href="https://github.com/settings/emails" class="underline">email settings</a>.
 					</Field.Description>
 				</Field.Field>
 				<Field.Field>

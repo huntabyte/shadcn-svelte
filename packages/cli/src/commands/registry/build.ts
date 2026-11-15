@@ -1,17 +1,17 @@
 import path from "node:path";
 import process from "node:process";
 import { existsSync, promises as fs } from "node:fs";
-import color from "picocolors";
-import { z } from "zod";
-import { Command } from "commander";
-import * as schema from "../../utils/registry/schema.js";
 import * as p from "@clack/prompts";
-import { intro, handleError } from "../../utils/prompt-helpers.js";
-import { error } from "../../utils/errors.js";
-import { toArray } from "../../utils/utils.js";
-import { ALIAS_DEFAULTS, ALIASES, SITE_BASE_URL } from "../../constants.js";
+import color from "picocolors";
+import { Command } from "commander";
+import { z } from "zod";
 import { getFileDependencies, resolveProjectDeps } from "./deps-resolver.js";
+import * as schema from "../../utils/registry/schema.js";
+import { ALIAS_DEFAULTS, ALIASES, SITE_BASE_URL } from "../../constants.js";
+import { error } from "../../utils/errors.js";
 import { parseDependency } from "../../utils/install-deps.js";
+import { intro, handleError } from "../../utils/prompt-helpers.js";
+import { toArray } from "../../utils/utils.js";
 
 // TODO: perhaps a `--mini` flag to remove spacing?
 const SPACER = "\t";

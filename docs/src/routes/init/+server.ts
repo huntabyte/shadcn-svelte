@@ -1,6 +1,6 @@
-import { buildRegistryBase } from "$lib/registry/config.js";
 import { error, json } from "@sveltejs/kit";
 import { decodePreset } from "shadcn-svelte/preset";
+import { buildRegistryBase } from "$lib/registry/config.js";
 
 export async function GET({ request }) {
 	const url = new URL(request.url);

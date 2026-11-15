@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
 	import { Label } from "$lib/registry/ui/label/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
 </script>
 
 <Popover.Root>
@@ -11,7 +11,7 @@
 		<div class="grid gap-4">
 			<div class="space-y-2">
 				<h4 class="leading-none font-medium">Dimensions</h4>
-				<p class="text-muted-foreground text-sm">Set the dimensions for the layer.</p>
+				<p class="text-sm text-muted-foreground">Set the dimensions for the layer.</p>
 			</div>
 			<div class="grid gap-2">
 				<div class="grid grid-cols-3 items-center gap-4">

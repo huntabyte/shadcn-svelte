@@ -18,12 +18,12 @@
 	});
 </script>
 
-<div>
+<div class="mx-auto max-w-[10rem] sm:max-w-xs">
 	<Carousel.Root setApi={(emblaApi) => (api = emblaApi)} class="w-full max-w-xs">
 		<Carousel.Content>
 			{#each Array(5) as _, i (i)}
 				<Carousel.Item>
-					<Card.Root>
+					<Card.Root class="m-px">
 						<Card.Content class="flex aspect-square items-center justify-center p-6">
 							<span class="text-4xl font-semibold">{i + 1}</span>
 						</Card.Content>
@@ -34,7 +34,7 @@
 		<Carousel.Previous />
 		<Carousel.Next />
 	</Carousel.Root>
-	<div class="text-muted-foreground py-2 text-center text-sm">
+	<div class="py-2 text-center text-sm text-muted-foreground">
 		Slide {current} of {count}
 	</div>
 </div>

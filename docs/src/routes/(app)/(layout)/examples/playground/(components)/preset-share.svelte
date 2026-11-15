@@ -1,9 +1,9 @@
 <script lang="ts">
 	import CopyIcon from "@lucide/svelte/icons/copy";
+	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
 	import { Label } from "$lib/registry/ui/label/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
 </script>
 
 <Popover.Root>
@@ -11,7 +11,7 @@
 	<Popover.Content class="w-[520px]" align="end">
 		<div class="flex flex-col space-y-2 text-center sm:text-start">
 			<h3 class="text-lg font-semibold">Share preset</h3>
-			<p class="text-muted-foreground text-sm">
+			<p class="text-sm text-muted-foreground">
 				Anyone who has this link and an OpenAI account will be able to view this.
 			</p>
 		</div>

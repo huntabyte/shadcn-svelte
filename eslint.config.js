@@ -1,11 +1,10 @@
-import prettier from "eslint-config-prettier";
 import path from "node:path";
-import { includeIgnoreFile } from "@eslint/compat";
 import js from "@eslint/js";
 import svelte from "eslint-plugin-svelte";
-import { defineConfig } from "eslint/config";
 import globals from "globals";
 import ts from "typescript-eslint";
+import { includeIgnoreFile } from "@eslint/compat";
+import { defineConfig } from "eslint/config";
 
 const gitignorePath = path.resolve(import.meta.dirname, ".gitignore");
 
@@ -14,8 +13,6 @@ export default defineConfig(
 	js.configs.recommended,
 	...ts.configs.recommended,
 	...svelte.configs["flat/recommended"],
-	prettier,
-	...svelte.configs["flat/prettier"],
 	{
 		languageOptions: {
 			globals: {
@@ -35,6 +32,33 @@ export default defineConfig(
 				},
 			],
 			"@typescript-eslint/no-unused-expressions": "off",
+			// Icon packages must be imported per-icon. Their root barrels re-export
+			// thousands of components, which makes Vite dev (SSR) take tens of seconds.
+			"@typescript-eslint/no-restricted-imports": [
+				"error",
+				{
+					paths: [
+						{
+							name: "@lucide/svelte",
+							message: "Import icons individually, e.g. `@lucide/svelte/icons/<icon-name>`.",
+						},
+						{
+							name: "@tabler/icons-svelte",
+							message: "Import icons individually, e.g. `@tabler/icons-svelte/icons/<icon-name>`.",
+						},
+						{
+							name: "phosphor-svelte",
+							message: "Import icons individually, e.g. `phosphor-svelte/lib/<IconName>`.",
+						},
+						{
+							name: "remixicon-svelte",
+							message: "Import icons individually, e.g. `remixicon-svelte/icons/<icon-name>`.",
+						},
+						// `@hugeicons/core-free-icons` is intentionally left out of this check as they
+						// do not provide proper types for their deep imports.
+					].map((entry) => ({ ...entry, allowTypeImports: true })),
+				},
+			],
 		},
 	},
 	{
@@ -55,14 +79,13 @@ export default defineConfig(
 	{
 		ignores: [
 			"build/",
-			".svelte-kit/",
 			"dist/",
-			".svelte-kit/**/*",
-			"docs/.svelte-kit/**/*",
-			".svelte-kit",
+			"**/.svelte-kit/**/*",
 			"playgrounds/**/*",
 			"packages/cli/dist/**/*",
-			"registry-template/**/*",
+			"**/.test-output/**/*",
+			"**/demo/**/*",
+			"sv-addons/registry/template",
 		],
 	}
 );

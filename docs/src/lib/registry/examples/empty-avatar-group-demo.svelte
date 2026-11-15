@@ -1,14 +1,16 @@
 <script lang="ts">
+	import PlusIcon from "@lucide/svelte/icons/plus";
+	import * as Avatar from "$lib/registry/ui/avatar/index.js";
 	import * as Empty from "$lib/registry/ui/empty/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import * as Avatar from "$lib/registry/ui/avatar/index.js";
-	import PlusIcon from "@lucide/svelte/icons/plus";
 </script>
 
-<Empty.Root class="flex-none border">
+<Empty.Root>
 	<Empty.Header>
 		<Empty.Media>
-			<Avatar.Group class="grayscale">
+			<div
+				class="flex -space-x-2 *:data-[slot=avatar]:size-12 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-background *:data-[slot=avatar]:grayscale"
+			>
 				<Avatar.Root>
 					<Avatar.Image src="https://github.com/shadcn.png" alt="@shadcn" />
 					<Avatar.Fallback>CN</Avatar.Fallback>
@@ -21,7 +23,7 @@
 					<Avatar.Image src="https://github.com/evilrabbit.png" alt="@evilrabbit" />
 					<Avatar.Fallback>ER</Avatar.Fallback>
 				</Avatar.Root>
-			</Avatar.Group>
+			</div>
 		</Empty.Media>
 		<Empty.Title>No Team Members</Empty.Title>
 		<Empty.Description>Invite your team to collaborate on this project.</Empty.Description>

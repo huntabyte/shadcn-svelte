@@ -1,8 +1,8 @@
 <script lang="ts">
 	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Table from "$lib/registry/ui/table/index.js";
 	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import * as Table from "$lib/registry/ui/table/index.js";
 
 	const INVOICE_ITEMS = [
 		{ item: "Design System License", qty: 1, unitPrice: 499 },

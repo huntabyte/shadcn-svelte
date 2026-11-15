@@ -1,5 +1,16 @@
 import { goto } from "$app/navigation";
 import { page } from "$app/state";
+import { StateHistory, Context, PersistedState } from "runed";
+import {
+	decodePreset,
+	encodePreset,
+	isValidPreset,
+	DEFAULT_PRESET_CONFIG,
+	type PresetConfig,
+	PRESET_BASE_COLOR_KEYS,
+	PRESET_CHART_COLORS,
+} from "shadcn-svelte/preset";
+import { SvelteURLSearchParams } from "svelte/reactivity";
 import {
 	BASE_THEMES,
 	getThemesForBaseColor,
@@ -10,22 +21,11 @@ import {
 	STYLES,
 	type FontHeadingValue,
 } from "$lib/registry/config.js";
-import { Context, PersistedState } from "runed";
-import { SvelteURLSearchParams } from "svelte/reactivity";
 import {
 	applyBias,
 	RANDOMIZE_BIASES,
 	type RandomizeContext,
 } from "../../../../routes/(app)/(layout)/(create)/lib/randomize-biases.js";
-import { StateHistory } from "runed";
-import {
-	decodePreset,
-	encodePreset,
-	DEFAULT_PRESET_CONFIG,
-	type PresetConfig,
-	PRESET_BASE_COLOR_KEYS,
-	PRESET_CHART_COLORS,
-} from "shadcn-svelte/preset";
 
 type ChartColorName = (typeof PRESET_CHART_COLORS)[number];
 import { FONTS } from "$lib/fonts.js";
@@ -60,15 +60,41 @@ export type Lockable = {
 	template: boolean;
 };
 
+// Some styles only support a subset of radii. Enforce that when state is written (rather than
+// reacting to it afterwards) so a style change is a single history entry that undo can restore.
+function normalizeConfig(config: PresetConfig): PresetConfig {
+	if ((config.style === "lyra" || config.style === "sera") && config.radius !== "none") {
+		return { ...config, radius: "none" };
+	}
+
+	if (config.style === "rhea" && config.radius === "large") {
+		return { ...config, radius: "default" };
+	}
+
+	return config;
+}
+
+function encodeNormalized(config: PresetConfig): string {
+	return encodePreset(normalizeConfig(config));
+}
+
 class DesignSystemState implements IDesignSystemState {
 	#history: StateHistory<string>;
 	#preset: PersistedState<string>;
 	#locks: PersistedState<Lockable>;
 	constructor() {
+		const presetFromUrl = this.#getSearchParam("preset");
 		this.#preset = new PersistedState<string>(
 			"design-system-preset",
-			this.#getSearchParam("preset") ?? encodePreset(DEFAULT_PRESET_CONFIG)
+			presetFromUrl ?? encodePreset(DEFAULT_PRESET_CONFIG)
 		);
+		// PersistedState only falls back to the initial value when nothing is stored yet, so a
+		// shared ?preset= link is ignored for anyone who has already used the editor.
+		if (presetFromUrl && isValidPreset(presetFromUrl)) {
+			this.#preset.current = presetFromUrl;
+		}
+		const initial = decodePreset(this.#preset.current);
+		if (initial) this.#preset.current = encodeNormalized(initial);
 		this.#locks = new PersistedState<Lockable>("locks", {
 			style: false,
 			baseColor: false,
@@ -102,7 +128,11 @@ class DesignSystemState implements IDesignSystemState {
 	}
 
 	private set system(value: PresetConfig) {
-		this.#preset.current = encodePreset(value);
+		this.#preset.current = encodeNormalized(value);
+		this.#syncUrl();
+	}
+
+	#syncUrl() {
 		const searchParams = new SvelteURLSearchParams(page.url.searchParams);
 		searchParams.set("preset", this.#preset.current);
 		goto(`${page.url.pathname}?${searchParams.toString()}${page.url.hash}`, {
@@ -114,10 +144,12 @@ class DesignSystemState implements IDesignSystemState {
 
 	undo() {
 		this.#history.undo();
+		this.#syncUrl();
 	}
 
 	redo() {
 		this.#history.redo();
+		this.#syncUrl();
 	}
 
 	get canUndo() {
@@ -180,8 +212,7 @@ class DesignSystemState implements IDesignSystemState {
 		const shouldUpdateTheme = BASE_THEMES.some((base) => base.name === this.theme);
 		const nextTheme = shouldUpdateTheme ? value : this.system.theme;
 		const availableChart = getThemesForBaseColor(value);
-		const currentChart =
-			this.system.chartColor ?? DEFAULT_PRESET_CONFIG.chartColor ?? "neutral";
+		const currentChart = this.system.chartColor ?? DEFAULT_PRESET_CONFIG.chartColor ?? "neutral";
 		const nextChartColor = availableChart.some((t) => t.name === currentChart)
 			? currentChart
 			: availableChart[0]!.name;
@@ -287,11 +318,7 @@ class DesignSystemState implements IDesignSystemState {
 
 		const selectedTheme = this.locks.theme ? this.theme : randomItem(availableThemes).name;
 		context.theme = selectedTheme;
-		const availableChartThemes = applyBias(
-			availableThemes,
-			context,
-			RANDOMIZE_BIASES.chartColors
-		);
+		const availableChartThemes = applyBias(availableThemes, context, RANDOMIZE_BIASES.chartColors);
 		const selectedChartColor = this.locks.chartColor
 			? this.chartColor
 			: randomItem(availableChartThemes).name;
@@ -324,9 +351,7 @@ class DesignSystemState implements IDesignSystemState {
 		const selectedMenuAccent = this.locks.menuAccent
 			? this.menuAccent
 			: randomItem(MENU_ACCENTS).value;
-		const selectedMenuColor = this.locks.menuColor
-			? this.menuColor
-			: randomItem(MENU_COLORS).value;
+		const selectedMenuColor = this.locks.menuColor ? this.menuColor : randomItem(MENU_COLORS).value;
 
 		// Update context with selected values for potential future biases.
 		context.font = selectedFont;

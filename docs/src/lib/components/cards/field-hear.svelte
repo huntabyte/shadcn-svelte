@@ -1,7 +1,7 @@
 <script lang="ts">
+	import * as Field from "$lib/registry/ui/field/index.js";
 	import { Card, CardContent } from "$lib/registry/ui/card/index.js";
 	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
 
 	const options = [
 		{

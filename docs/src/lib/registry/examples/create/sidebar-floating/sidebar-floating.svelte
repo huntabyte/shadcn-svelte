@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const data = {
 		navMain: [
@@ -188,9 +188,7 @@
 											{#each item.items as subItem (subItem.title)}
 												<DropdownMenu.Item>
 													{#snippet child({ props })}
-														<a href={subItem.url} {...props}
-															>{subItem.title}</a
-														>
+														<a href={subItem.url} {...props}>{subItem.title}</a>
 													{/snippet}
 												</DropdownMenu.Item>
 											{/each}
@@ -216,10 +214,7 @@
 						<form>
 							<Field.Field>
 								<Sidebar.Input type="email" placeholder="Email" />
-								<Button
-									class="bg-sidebar-primary text-sidebar-primary-foreground w-full"
-									size="sm"
-								>
+								<Button class="w-full bg-sidebar-primary text-sidebar-primary-foreground" size="sm">
 									Subscribe
 								</Button>
 							</Field.Field>
@@ -236,11 +231,11 @@
 		</header>
 		<div class="flex flex-1 flex-col gap-4 p-4 pt-0">
 			<div class="grid auto-rows-min gap-4 md:grid-cols-3">
-				<div class="bg-muted/50 aspect-video rounded-xl"></div>
-				<div class="bg-muted/50 aspect-video rounded-xl"></div>
-				<div class="bg-muted/50 aspect-video rounded-xl"></div>
+				<div class="aspect-video rounded-xl bg-muted/50"></div>
+				<div class="aspect-video rounded-xl bg-muted/50"></div>
+				<div class="aspect-video rounded-xl bg-muted/50"></div>
 			</div>
-			<div class="bg-muted/50 min-h-screen flex-1 rounded-xl md:min-h-min"></div>
+			<div class="min-h-screen flex-1 rounded-xl bg-muted/50 md:min-h-min"></div>
 		</div>
 	</Sidebar.Inset>
 </Sidebar.Provider>

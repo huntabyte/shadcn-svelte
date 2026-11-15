@@ -18,19 +18,21 @@ jobs:
     if: github.repository == 'huntabyte/shadcn-svelte'
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
-      - uses: pnpm/action-setup@v5
-      - uses: actions/setup-node@v6
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
         with:
-          node-version: 24
+          node-version-file: package.json
           cache: pnpm
 
-      - run: npm install -g npm@latest
+      # npm 12 ships `sigstore` nested under workspaces/libnpmpublish, where
+      # provenance.js can't resolve it. https://github.com/npm/cli/issues/9722
+      - run: npm install -g npm@11
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm ci
 
       - name: Create Release Pull Request or Publish
         id: changesets

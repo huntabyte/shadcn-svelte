@@ -1,12 +1,12 @@
 <script lang="ts">
 	import MinusIcon from "@lucide/svelte/icons/minus";
 	import PlusIcon from "@lucide/svelte/icons/plus";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Chart from "$lib/registry/ui/chart/index.js";
+	import { scaleBand } from "d3-scale";
 	import { BarChart } from "layerchart";
 	import { cubicInOut } from "svelte/easing";
-	import { scaleBand } from "d3-scale";
+	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Chart from "$lib/registry/ui/chart/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const data = [
 		{
@@ -85,7 +85,7 @@
 				<div class="text-4xl font-bold tracking-tighter tabular-nums">
 					{goal}
 				</div>
-				<div class="text-muted-foreground text-xs uppercase">Calories/day</div>
+				<div class="text-xs text-muted-foreground uppercase">Calories/day</div>
 			</div>
 			<Button
 				variant="outline"

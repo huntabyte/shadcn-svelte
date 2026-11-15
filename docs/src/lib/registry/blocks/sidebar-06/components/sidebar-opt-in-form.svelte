@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
 <Card.Root class="gap-2 py-4 shadow-none">
@@ -14,7 +14,7 @@
 			<div class="grid gap-2.5">
 				<Sidebar.Input type="email" placeholder="Email" />
 				<Button
-					class="bg-sidebar-primary text-sidebar-primary-foreground w-full shadow-none"
+					class="w-full bg-sidebar-primary text-sidebar-primary-foreground shadow-none"
 					size="sm"
 				>
 					Subscribe

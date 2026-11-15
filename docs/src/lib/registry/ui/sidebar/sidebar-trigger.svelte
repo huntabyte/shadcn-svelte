@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
-	import type { ComponentProps } from "svelte";
 	import { useSidebar } from "./context.svelte.js";
+	import type { ComponentProps } from "svelte";
 
 	let {
 		ref = $bindable(null),
@@ -37,6 +37,7 @@
 		hugeicons="SidebarLeftIcon"
 		phosphor="SidebarIcon"
 		remixicon="RiSideBarLine"
+		class="cn-rtl-flip"
 	/>
 	<span class="sr-only">Toggle Sidebar</span>
 </Button>

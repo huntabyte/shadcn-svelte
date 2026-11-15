@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { ScrollArea } from "$lib/registry/ui/scroll-area/index.js";
 	import { page } from "$app/state";
 	import { registryCategories } from "$lib/registry/registry-categories.js";
+	import { ScrollArea } from "$lib/registry/ui/scroll-area/index.js";
 </script>
 
 {#snippet BlocksNavLink({
@@ -14,7 +14,7 @@
 	{#if !category.hidden}
 		<a
 			href="/blocks/{category.slug}"
-			class="text-muted-foreground hover:text-primary data-[active=true]:text-primary flex h-7 items-center justify-center px-4 text-center text-base font-medium transition-colors"
+			class="flex h-7 items-center justify-center px-4 text-center text-base font-medium text-muted-foreground transition-colors hover:text-primary data-[active=true]:text-primary"
 			data-active={isActive}
 		>
 			{category.name}

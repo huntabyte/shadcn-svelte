@@ -2,7 +2,6 @@
 	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
 	import PlusIcon from "@lucide/svelte/icons/plus";
-
 	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 
@@ -31,7 +30,7 @@
 							{#snippet child({ props })}
 								<Sidebar.MenuAction
 									{...props}
-									class="bg-sidebar-accent text-sidebar-accent-foreground start-2 data-[state=open]:rotate-90"
+									class="start-2 bg-sidebar-accent text-sidebar-accent-foreground data-[state=open]:rotate-90"
 									showOnHover
 								>
 									<ChevronRightIcon />

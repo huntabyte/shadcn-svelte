@@ -17,6 +17,7 @@ export const blockNames = [
 	"sidebar-15",
 	"login-01",
 	"demo-sidebar",
+	"demo-sidebar-icon",
 	"demo-sidebar-header",
 	"demo-sidebar-footer",
 	"demo-sidebar-group",

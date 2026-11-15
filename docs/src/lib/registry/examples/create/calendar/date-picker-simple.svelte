@@ -1,11 +1,11 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
-	import { Calendar } from "$lib/registry/ui/calendar/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import * as Field from "$lib/registry/ui/field/index.js";
-	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
 	import { DateFormatter, type DateValue, getLocalTimeZone } from "@internationalized/date";
+	import * as Field from "$lib/registry/ui/field/index.js";
+	import * as Popover from "$lib/registry/ui/popover/index.js";
+	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Calendar } from "$lib/registry/ui/calendar/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 
 	const df = new DateFormatter("en-US", {
 		dateStyle: "long",

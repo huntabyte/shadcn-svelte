@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import * as AlertDialog from "$lib/registry/ui/alert-dialog/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 
 <Example title="Group Chat Dialog" class="items-center justify-center">
@@ -19,7 +19,7 @@
 			<AlertDialog.Footer class="flex-row items-center justify-between sm:justify-between">
 				<a
 					href="#/"
-					class="text-muted-foreground hover:text-foreground text-sm underline underline-offset-4"
+					class="text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground"
 				>
 					Learn more
 				</a>

@@ -67,3 +67,37 @@ Copy and paste the following code into your project.
 ```svelte showLineNumbers
 <Separator />
 ```
+
+## Vertical
+
+Use `orientation="vertical"` for a vertical separator.
+
+<ComponentPreview name="separator-vertical">
+
+<div></div>
+
+</ComponentPreview>
+
+## Menu
+
+Vertical separators between menu items with descriptions.
+
+<ComponentPreview name="separator-menu">
+
+<div></div>
+
+</ComponentPreview>
+
+## List
+
+Horizontal separators between list items.
+
+<ComponentPreview name="separator-list">
+
+<div></div>
+
+</ComponentPreview>
+
+## API Reference
+
+See the [Bits UI Separator](https://bits-ui.com/docs/components/separator#api-reference) documentation.

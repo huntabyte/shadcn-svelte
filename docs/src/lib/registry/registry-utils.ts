@@ -1,8 +1,9 @@
-import type { RegistryItemFile } from "shadcn-svelte/schema";
-import { transformMenu } from "shadcn-svelte/transformers/menu";
+import { injectStyleClasses, parseStyleCss } from "@shadcn-svelte/parity/inject-style-classes";
 import { transformIcons } from "shadcn-svelte/transformers/icons";
+import { transformMenu } from "shadcn-svelte/transformers/menu";
 import { type IconLibraryName } from "./config.js";
 import type { MenuColorValue, StyleName } from "./config.js";
+import type { RegistryItemFile } from "shadcn-svelte/schema";
 
 export type FileTree = {
 	name: string;
@@ -54,9 +55,7 @@ export function createFileTreeForRegistryItemFiles(
 					currentLevel = existingNode.children!;
 				}
 			} else {
-				const newNode: FileTree = isFile
-					? { name: part, path }
-					: { name: part, children: [] };
+				const newNode: FileTree = isFile ? { name: part, path } : { name: part, children: [] };
 
 				currentLevel.push(newNode);
 
@@ -165,46 +164,5 @@ async function transform(
 }
 
 function createTransformInjectStyles(styles: Record<string, string>): Transformer {
-	return async ({ content }) => {
-		for (const [className, classes] of Object.entries(styles)) {
-			content = content.replace(className, classes);
-		}
-		return { content };
-	};
-}
-
-/**
- * Duplicate of the parseStyleCss function from the CLI. Albeit a bit more brittle but since this is just for highlighting and not for the actual transformation I think it will work just fine.
- *
- * @param css
- * @returns
- */
-function parseStyleCss(css: string): Record<string, string> {
-	const styles: Record<string, string> = {};
-
-	// Match .cn-* class rules and extract their @apply values
-	// This regex finds: .cn-class-name { ... @apply classes; ... }
-	const ruleRegex = /\.(cn-[\w-]+)\s*\{([^}]*)\}/g;
-	const applyRegex = /@apply\s+([^;]+);/g;
-
-	let ruleMatch;
-	while ((ruleMatch = ruleRegex.exec(css)) !== null) {
-		const className = ruleMatch[1];
-		const ruleContent = ruleMatch[2];
-
-		// Find all @apply directives within this rule
-		let applyMatch;
-		const applyValues: string[] = [];
-		while ((applyMatch = applyRegex.exec(ruleContent)) !== null) {
-			applyValues.push(applyMatch[1].trim());
-		}
-		// Reset the regex lastIndex for the next rule
-		applyRegex.lastIndex = 0;
-
-		if (applyValues.length > 0) {
-			styles[className] = applyValues.join(" ");
-		}
-	}
-
-	return styles;
+	return async ({ content }) => ({ content: injectStyleClasses(content, styles) });
 }

@@ -1,11 +1,19 @@
 #!/usr/bin/env tsx
-import * as fs from "fs/promises";
-import { watch } from "fs";
-import * as path from "path";
+import * as fs from "node:fs/promises";
+import * as path from "node:path";
+import { watch } from "node:fs";
 import { iconLibraries, type IconLibraryName } from "shadcn-svelte/icons";
 
 const SEARCH_BASE = "src/";
 const REGISTRY_BASE = "src/lib/registry";
+
+/** Writes `content` to `filePath` only if it differs from what is on disk. */
+async function writeFileIfChanged(filePath: string, content: string) {
+	const existing = await fs.readFile(filePath, "utf-8").catch(() => null);
+	if (existing === content) return false;
+	await fs.writeFile(filePath, content);
+	return true;
+}
 
 type IconUsage = Record<IconLibraryName, Set<string>>;
 
@@ -51,7 +59,7 @@ async function scanIconUsage() {
 async function generateIconFiles(iconUsage: IconUsage) {
 	const outputDir = path.join(process.cwd(), REGISTRY_BASE, "icons");
 
-	const completedLibraries: { name: IconLibraryName; icons: string[] }[] = [];
+	const completedLibraries: { name: IconLibraryName; icons: string[]; written: number }[] = [];
 
 	for (const [lib, config] of Object.entries(iconLibraries)) {
 		const libraryName = lib as IconLibraryName;
@@ -86,29 +94,33 @@ export type ${typeName} = ${typeUnion};
 
 		await fs.mkdir(iconDir, { recursive: true });
 		await fs.mkdir(outputDir, { recursive: true });
-		await fs.writeFile(path.join(iconOutputDir, "index.ts"), indexFileContent);
+		// Only touch files whose content changed. Rewriting all ~800 wrappers on every run
+		// makes Vite invalidate every one of them and triggers a storm of page reloads.
+		let written = 0;
+		if (await writeFileIfChanged(path.join(iconOutputDir, "index.ts"), indexFileContent)) {
+			written++;
+		}
 		for (const iconFile of iconFiles) {
-			await fs.writeFile(iconFile.path, iconFile.content);
+			if (await writeFileIfChanged(iconFile.path, iconFile.content)) written++;
 		}
 
 		// clean unused icon files
-		const iconFileSet = new Set([
-			"index.ts",
-			...iconFiles.map((iconFile) => iconFile.fileName),
-		]);
+		const iconFileSet = new Set(["index.ts", ...iconFiles.map((iconFile) => iconFile.fileName)]);
 		for (const existingIconFile of await fs.readdir(iconOutputDir)) {
 			if (!iconFileSet.has(existingIconFile)) {
 				await fs.rm(path.join(iconOutputDir, existingIconFile));
 			}
 		}
 
-		completedLibraries.push({ name: libraryName, icons });
+		completedLibraries.push({ name: libraryName, icons, written });
 	}
 
 	console.log("✓ Generated icon files:");
 
 	for (const library of completedLibraries) {
-		console.log(`  - ${library.name}: ${library.icons.length} icons`);
+		console.log(
+			`  - ${library.name}: ${library.icons.length} icons (${library.written} file${library.written === 1 ? "" : "s"} written)`
+		);
 	}
 }
 

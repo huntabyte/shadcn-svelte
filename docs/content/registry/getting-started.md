@@ -16,7 +16,11 @@ This guide will walk you through the process of setting up your own component re
 
 It assumes you already have a project with components and would like to turn it into a registry.
 
-If you're starting a new registry project, you can use the [registry template](https://github.com/huntabyte/shadcn-svelte/tree/main/registry-template) as a starting point. It's already configured for you.
+If you're starting a new registry project, use the [`@shadcn-svelte/registry`](https://github.com/huntabyte/shadcn-svelte/tree/main/sv-addons/registry) community add-on for `sv`:
+
+<PMExecute command="sv add @shadcn-svelte/registry" />
+
+It scaffolds example registry items, `registry.json`, a CSS theme, and a `build:registry` script into your SvelteKit project.
 
 ## registry.json
 

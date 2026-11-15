@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { isPresetCode } from "shadcn-svelte/preset";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Input } from "$lib/registry/ui/input/index.js";
 	import { cn } from "$lib/utils.js";
-	import { isPresetCode } from "shadcn-svelte/preset";
 
 	type Props = {
 		class?: string;
@@ -45,21 +45,22 @@
 <Dialog.Root bind:open>
 	<Dialog.Trigger
 		class={cn(
-			"hover:bg-muted! touch-manipulation bg-transparent! px-2! py-0! text-sm! transition-none select-none pointer-coarse:h-10!",
+			"touch-manipulation bg-transparent! px-2! py-0! text-sm! transition-none select-none hover:bg-muted! pointer-coarse:h-10!",
 			className
 		)}
 	>
 		{#snippet child({ props })}
-			<Button {...props} variant="outline">{label}</Button>
+			<Button {...props} variant="outline">
+				<span class="md:hidden">Open</span>
+				<span class="max-md:hidden">{label}</span>
+			</Button>
 		{/snippet}
 	</Dialog.Trigger>
 	<Dialog.Content class="dark">
 		<form onsubmit={handleSubmit}>
 			<Dialog.Header>
 				<Dialog.Title>Open Preset</Dialog.Title>
-				<Dialog.Description>
-					Paste a preset code to load a saved configuration.
-				</Dialog.Description>
+				<Dialog.Description>Paste a preset code to load a saved configuration.</Dialog.Description>
 			</Dialog.Header>
 			<div class="py-4">
 				<Field.Field data-invalid={isInvalid || undefined}>

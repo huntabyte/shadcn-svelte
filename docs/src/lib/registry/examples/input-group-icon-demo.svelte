@@ -1,11 +1,11 @@
 <script lang="ts">
-	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import CreditCardIcon from "@lucide/svelte/icons/credit-card";
 	import InfoIcon from "@lucide/svelte/icons/info";
 	import MailIcon from "@lucide/svelte/icons/mail";
 	import SearchIcon from "@lucide/svelte/icons/search";
 	import StarIcon from "@lucide/svelte/icons/star";
+	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
 </script>
 
 <div class="grid w-full max-w-sm gap-6">

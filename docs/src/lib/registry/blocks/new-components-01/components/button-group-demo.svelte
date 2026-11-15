@@ -8,9 +8,9 @@
 	import MoreHorizontalIcon from "@lucide/svelte/icons/more-horizontal";
 	import TagIcon from "@lucide/svelte/icons/tag";
 	import Trash2Icon from "@lucide/svelte/icons/trash-2";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as ButtonGroup from "$lib/registry/ui/button-group/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	let label = $state("personal");
 </script>
@@ -66,9 +66,7 @@
 						</DropdownMenu.SubTrigger>
 						<DropdownMenu.SubContent>
 							<DropdownMenu.RadioGroup bind:value={label}>
-								<DropdownMenu.RadioItem value="personal">
-									Personal
-								</DropdownMenu.RadioItem>
+								<DropdownMenu.RadioItem value="personal">Personal</DropdownMenu.RadioItem>
 								<DropdownMenu.RadioItem value="work">Work</DropdownMenu.RadioItem>
 								<DropdownMenu.RadioItem value="other">Other</DropdownMenu.RadioItem>
 							</DropdownMenu.RadioGroup>

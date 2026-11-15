@@ -1,14 +1,15 @@
 import fs from "node:fs";
 import path from "node:path";
 import * as acorn from "acorn";
+import * as svelte from "svelte/compiler";
 import { tsPlugin } from "@sveltejs/acorn-typescript";
 import { walk, type Node } from "estree-walker";
-import * as svelte from "svelte/compiler";
 import { registryItemSchema, type Registry } from "shadcn-svelte/schema";
 import { fonts } from "../src/lib/registry/fonts.js";
 
 const REGISTRY_DEPENDENCY = "$lib/";
 const UTILS_PATH = "$lib/utils.js";
+const REGISTRY_LIB_PATH = "$lib/registry/lib/";
 
 const tsParser = acorn.Parser.extend(tsPlugin());
 
@@ -58,7 +59,7 @@ async function buildUIRegistry(
 	const fileEntries = dir.filter((d) => d.isFile());
 	const registryDependencies = new Set<string>();
 
-	let meta = {};
+	let meta: Partial<RegistryItems[number]> = {};
 	const files: RegistryItemFiles = [];
 
 	await Promise.all(
@@ -69,6 +70,8 @@ async function buildUIRegistry(
 
 			if (dirent.name === "meta.json") {
 				meta = registryItemSchema.parse(JSON.parse(source));
+				// dependencies that can't be inferred from imports (e.g. a hook used alongside the component)
+				meta.registryDependencies?.forEach((dep) => registryDependencies.add(dep));
 				return;
 			}
 
@@ -128,9 +131,7 @@ async function buildBlockRegistry(
 
 			// TODO: fix
 			const compPath =
-				isPage || isFile
-					? dirent.name
-					: path.join(path.basename(dirent.parentPath), dirent.name);
+				isPage || isFile ? dirent.name : path.join(path.basename(dirent.parentPath), dirent.name);
 			const filepath = path.join(blockPath, compPath);
 			const relativePath = path.relative(process.cwd(), filepath);
 			const source = fs.readFileSync(filepath, { encoding: "utf8" });
@@ -255,7 +256,10 @@ async function getFileDependencies(
 			const source = node.source.value as string;
 
 			if (source.startsWith(REGISTRY_DEPENDENCY) && source !== UTILS_PATH) {
-				if (source.includes("ui")) {
+				if (source.startsWith(REGISTRY_LIB_PATH)) {
+					const lib = source.split("/").at(-1)!.split(".")[0];
+					registryDependencies.add(lib);
+				} else if (source.includes("ui")) {
 					const component = source.split("/").at(-2)!;
 					registryDependencies.add(component);
 				} else if (source.includes("hook")) {

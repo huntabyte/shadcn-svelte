@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { PersistedState } from "runed";
+	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import Logo from "$lib/components/logo.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 
 	const dismissed = new PersistedState("shadcn-create-welcome-dialog", false);
 </script>
@@ -21,11 +21,11 @@
 		</div>
 		<Dialog.Header class="gap-1 p-4">
 			<Dialog.Title class="text-left text-base">Build your own shadcn-svelte</Dialog.Title>
-			<Dialog.Description class="text-foreground text-left leading-relaxed">
-				Customize everything from the ground up. Pick your component library, font, color
-				scheme, and more.
+			<Dialog.Description class="text-left leading-relaxed text-foreground">
+				Customize everything from the ground up. Pick your component library, font, color scheme,
+				and more.
 			</Dialog.Description>
-			<Dialog.Description class="text-foreground mt-2 text-left leading-relaxed font-medium">
+			<Dialog.Description class="mt-2 text-left leading-relaxed font-medium text-foreground">
 				Available for SvelteKit, Vite, and Astro.
 			</Dialog.Description>
 		</Dialog.Header>

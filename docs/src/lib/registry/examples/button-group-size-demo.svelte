@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Plus from "@lucide/svelte/icons/plus";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as ButtonGroup from "$lib/registry/ui/button-group/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
 <div class="flex flex-col items-start gap-8">

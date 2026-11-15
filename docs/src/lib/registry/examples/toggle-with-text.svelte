@@ -4,6 +4,6 @@
 </script>
 
 <Toggle aria-label="Toggle italic">
-	<ItalicIcon class="me-2 size-4" />
+	<ItalicIcon />
 	Italic
 </Toggle>

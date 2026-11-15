@@ -79,27 +79,22 @@ Copy and paste the following code into your project.
 </Sheet.Root>
 ```
 
-## Examples
+## Side
 
-### Side
+Use the `side` prop on `Sheet.Content` to set the edge of the screen where the sheet appears. Values are `top`, `right`, `bottom`, or `left`.
 
-Pass the `side` property to `<Sheet.Content />` to indicate the edge of the screen where the component will appear. The values can be `top`, `right`, `bottom` or `left`.
+<ComponentPreview name="sheet-side">
 
-### Size
+<div></div>
 
-You can adjust the size of the sheet using CSS classes:
+</ComponentPreview>
 
-```svelte showLineNumbers {3}
-<Sheet.Root>
-  <Sheet.Trigger>Open</Sheet.Trigger>
-  <Sheet.Content class="w-[400px] sm:w-[540px]">
-    <Sheet.Header>
-      <Sheet.Title>Are you absolutely sure?</Sheet.Title>
-      <Sheet.Description>
-        This action cannot be undone. This will permanently delete your account
-        and remove your data from our servers.
-      </Sheet.Description>
-    </Sheet.Header>
-  </Sheet.Content>
-</Sheet.Root>
-```
+## No Close Button
+
+Use `showCloseButton={false}` on `Sheet.Content` to hide the close button.
+
+<ComponentPreview name="sheet-no-close-button">
+
+<div></div>
+
+</ComponentPreview>

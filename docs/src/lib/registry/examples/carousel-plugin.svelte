@@ -8,7 +8,7 @@
 
 <Carousel.Root
 	plugins={[plugin]}
-	class="w-full max-w-xs"
+	class="w-full max-w-[10rem] sm:max-w-xs"
 	onmouseenter={plugin.stop}
 	onmouseleave={plugin.reset}
 >

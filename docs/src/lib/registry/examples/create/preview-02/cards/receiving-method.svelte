@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
 	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Input } from "$lib/registry/ui/input/index.js";
 </script>
 
 <Card.Root>
@@ -31,15 +31,12 @@
 			</Field.Field>
 			<Field.Set>
 				<Field.Legend variant="label">Receiving Method</Field.Legend>
-				<RadioGroup.Root
-					value="bank"
-					class="grid grid-cols-1 items-start gap-3 md:grid-cols-2"
-				>
+				<RadioGroup.Root value="bank" class="grid grid-cols-1 items-start gap-3 md:grid-cols-2">
 					<Field.Label for="method-bank">
 						<Field.Field orientation="horizontal" class="pb-2.5">
 							<RadioGroup.Item value="bank" id="method-bank" />
 							<Field.Content>
-								<Field.Description class="text-foreground font-medium"
+								<Field.Description class="font-medium text-foreground"
 									>Bank Transfer</Field.Description
 								>
 								<Field.Description>SWIFT / IBAN</Field.Description>
@@ -50,12 +47,8 @@
 						<Field.Field orientation="horizontal" class="pb-2.5">
 							<RadioGroup.Item value="paypal" id="method-paypal" />
 							<Field.Content>
-								<Field.Description class="text-foreground font-medium"
-									>PayPal</Field.Description
-								>
-								<Field.Description class="line-clamp-1"
-									>Instant Payout</Field.Description
-								>
+								<Field.Description class="font-medium text-foreground">PayPal</Field.Description>
+								<Field.Description class="line-clamp-1">Instant Payout</Field.Description>
 							</Field.Content>
 						</Field.Field>
 					</Field.Label>

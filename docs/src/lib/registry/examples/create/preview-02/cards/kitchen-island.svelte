@@ -1,10 +1,10 @@
 <script lang="ts">
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Item from "$lib/registry/ui/item/index.js";
-	import { Slider } from "$lib/registry/ui/slider/index.js";
-	import { Switch } from "$lib/registry/ui/switch/index.js";
 	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
+	import { Slider } from "$lib/registry/ui/slider/index.js";
+	import { Switch } from "$lib/registry/ui/switch/index.js";
 
 	type ScenePreset = {
 		brightness: number[];
@@ -57,9 +57,7 @@
 			>
 				<ToggleGroup.Item value="cooking" disabled={!enabled}>Cooking</ToggleGroup.Item>
 				<ToggleGroup.Item value="dining" disabled={!enabled}>Dining</ToggleGroup.Item>
-				<ToggleGroup.Item value="nightlight" disabled={!enabled}
-					>Nightlight</ToggleGroup.Item
-				>
+				<ToggleGroup.Item value="nightlight" disabled={!enabled}>Nightlight</ToggleGroup.Item>
 				<ToggleGroup.Item value="focus" disabled={!enabled}>Focus</ToggleGroup.Item>
 			</ToggleGroup.Root>
 		</div>

@@ -1,6 +1,6 @@
 ---
 title: Item
-description: A versatile component that you can use to display any content.
+description: A versatile component for displaying content with media, title, description, and actions.
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/item
@@ -18,15 +18,13 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-The `Item` component is a straightforward flex container that can house nearly any type of content. Use it to display a title, description, and actions. Group it with the `ItemGroup` component to create a list of items.
-
-You can pretty much achieve the same result with the `div` element and some classes, but **I've built this so many times** that I decided to create a component for it. Now I use it all the time.
-
 <ComponentPreview name="item-demo">
 
 <div></div>
 
 </ComponentPreview>
+
+The `Item` component is a straightforward flex container that can house nearly any type of content. Use it to display a title, description, and actions. Group it with the `Item.Group` component to create a list of items.
 
 ## Installation
 
@@ -77,9 +75,9 @@ Use Field if you need to display a form input such as a checkbox, input, radio, 
 
 If you only need to display content such as a title, description, and actions, use `Item`.
 
-## Examples
+## Variant
 
-### Variants
+Use the `variant` prop to change the visual style of the item.
 
 <ComponentPreview name="item-variants-demo">
 
@@ -87,9 +85,9 @@ If you only need to display content such as a title, description, and actions, u
 
 </ComponentPreview>
 
-### Size
+## Size
 
-The `Item` component has different sizes for different use cases. For example, you can use the `sm` size for a compact item or the default size for a standard item.
+Use the `size` prop to change the size of the item. Available sizes are `default`, `sm`, and `xs`.
 
 <ComponentPreview name="item-size-demo">
 
@@ -97,7 +95,9 @@ The `Item` component has different sizes for different use cases. For example, y
 
 </ComponentPreview>
 
-### Icon
+## Icon
+
+Use `Item.Media` with `variant="icon"` to display an icon.
 
 <ComponentPreview name="item-icon-demo">
 
@@ -105,7 +105,9 @@ The `Item` component has different sizes for different use cases. For example, y
 
 </ComponentPreview>
 
-### Avatar
+## Avatar
+
+You can use `Item.Media` with `variant="avatar"` to display an avatar.
 
 <ComponentPreview name="item-avatar-demo">
 
@@ -113,7 +115,9 @@ The `Item` component has different sizes for different use cases. For example, y
 
 </ComponentPreview>
 
-### Image
+## Image
+
+Use `Item.Media` with `variant="image"` to display an image.
 
 <ComponentPreview name="item-image-demo">
 
@@ -121,7 +125,9 @@ The `Item` component has different sizes for different use cases. For example, y
 
 </ComponentPreview>
 
-### Group
+## Group
+
+Use `Item.Group` to group related items together.
 
 <ComponentPreview name="item-group-demo">
 
@@ -129,7 +135,9 @@ The `Item` component has different sizes for different use cases. For example, y
 
 </ComponentPreview>
 
-### Header
+## Header
+
+Use `Item.Header` to add a header above the item content.
 
 <ComponentPreview name="item-header-demo">
 
@@ -137,9 +145,9 @@ The `Item` component has different sizes for different use cases. For example, y
 
 </ComponentPreview>
 
-### Link
+## Link
 
-To render an item as a link, use the the `child` snippet. The hover and focus states will be applied to the anchor element.
+Use the `child` snippet to render the item as a link. The hover and focus states will be applied to the anchor element.
 
 <ComponentPreview name="item-link-demo">
 
@@ -147,7 +155,25 @@ To render an item as a link, use the the `child` snippet. The hover and focus st
 
 </ComponentPreview>
 
-### Dropdown
+```svelte showLineNumbers
+<Item.Root>
+  {#snippet child({ props })}
+    <a href="/dashboard" {...props}>
+      <Item.Media variant="icon">
+        <HomeIcon />
+      </Item.Media>
+      <Item.Content>
+        <Item.Title>Dashboard</Item.Title>
+        <Item.Description
+          >Overview of your account and activity.</Item.Description
+        >
+      </Item.Content>
+    </a>
+  {/snippet}
+</Item.Root>
+```
+
+## Dropdown
 
 <ComponentPreview name="item-dropdown-demo">
 

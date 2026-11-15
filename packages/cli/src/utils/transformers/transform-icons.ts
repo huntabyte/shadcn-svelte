@@ -1,12 +1,12 @@
 // !! BROWSER SAFE !!
 
-import type { Transformer, TransformerResult } from "./index.js";
-import { parse as parseSvelte } from "svelte/compiler";
-import { walk, type Node } from "estree-walker";
 import MagicString from "magic-string";
+import { walk, type Node } from "estree-walker";
+import { parse as parseSvelte } from "svelte/compiler";
 import { iconLibraries, type IconLibrary } from "../../icons/libraries.js";
-import type { ImportDeclaration } from "acorn";
 import { error } from "../errors.js";
+import type { Transformer, TransformerResult } from "./index.js";
+import type { ImportDeclaration } from "acorn";
 
 export const transformIcons: Transformer = async ({ content, filePath, config }) => {
 	if (!filePath.endsWith(".svelte")) return {};

@@ -1,11 +1,10 @@
+import * as p from "@clack/prompts";
 import * as semver from "semver";
 import color from "picocolors";
-import * as p from "@clack/prompts";
-import { getDependencyPackageInfo } from "./get-package-info.js";
-import * as project from "./project.js";
 import * as cliConfig from "./config/index.js";
-import { CLIError, error } from "./errors.js";
+import * as project from "./project.js";
 import { highlight } from "./colors.js";
+import { CLIError, error } from "./errors.js";
 import { SITE_BASE_URL, TW3_SITE_BASE_URL } from "../constants.js";
 
 // accepts either a `RawConfig` or `ResolvedConfig`
@@ -21,24 +20,15 @@ export function checkPreconditions<Config extends cliConfig.RawConfig>({
 	config,
 	skipPreflight,
 }: PreconditionOptions<Config>): Config {
-	const sveltePkg = getDependencyPackageInfo(cwd, "svelte")?.pkg;
-	const tailwindPkg = getDependencyPackageInfo(cwd, "tailwindcss")?.pkg;
-
-	// covers the case where `npm install` hasn't been executed yet
-	const pkg = project.getPackageInfo(cwd);
-	const fallback = { ...pkg.dependencies, ...pkg.devDependencies };
-
-	const svelte = sveltePkg?.version ?? fallback["svelte"];
-	const tailwindcss = tailwindPkg?.version ?? fallback["tailwindcss"];
+	const svelte = project.getPackageVersion(cwd, "svelte");
+	const tailwindcss = project.getPackageVersion(cwd, "tailwindcss");
 
 	const result = checkDependencies({ svelte, tailwindcss }, cwd, config);
 	if (result.ok) return result.config;
 
 	if (!skipPreflight) throw result.error;
 
-	p.note(
-		`${color.red(result.error.message)}\nContinuing with ${color.bold("--skip-preflight")}.`
-	);
+	p.note(`${color.red(result.error.message)}\nContinuing with ${color.bold("--skip-preflight")}.`);
 
 	return result.config;
 }

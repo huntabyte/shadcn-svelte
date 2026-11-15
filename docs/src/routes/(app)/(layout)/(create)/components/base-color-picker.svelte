@@ -1,10 +1,10 @@
 <script lang="ts">
-	import * as Picker from "./picker/index.js";
+	import { mode, setMode } from "mode-watcher";
+	import * as Picker from "$lib/components/picker/index.js";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
+	import { BASE_THEMES, type BaseColorName } from "$lib/registry/config.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import LockButton from "./lock-button.svelte";
-	import { BASE_THEMES, type BaseColorName } from "$lib/registry/config.js";
-	import { mode, setMode } from "mode-watcher";
 
 	type Props = {
 		submenu?: boolean;
@@ -25,15 +25,15 @@
 	<Picker.Root {submenu}>
 		<Picker.Trigger {submenu}>
 			<div class="flex flex-col justify-start text-left">
-				<div class="text-muted-foreground text-xs">Base Color</div>
-				<div class="text-foreground text-sm font-medium">
+				<div class="text-xs text-muted-foreground">Base Color</div>
+				<div class="text-sm font-medium text-foreground">
 					{currentBaseColor?.title}
 				</div>
 			</div>
 			<div
 				style="--color: 
 						{currentBaseColor?.cssVars?.[mode.current as 'light' | 'dark']?.['muted-foreground']}"
-				class="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 rounded-full bg-(--color) select-none"
+				class="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 rounded-full bg-(--color) select-none md:right-2.5"
 			></div>
 		</Picker.Trigger>
 		<Picker.Content
@@ -58,9 +58,9 @@
 							<div class="flex items-center gap-2">
 								{#if mode.current}
 									<div
-										style="--color: {baseColor.cssVars?.[
-											mode.current as 'light' | 'dark'
-										]?.['muted-foreground']};"
+										style="--color: {baseColor.cssVars?.[mode.current as 'light' | 'dark']?.[
+											'muted-foreground'
+										]};"
 										class="size-4 rounded-full bg-(--color)"
 									></div>
 								{/if}
@@ -81,7 +81,7 @@
 							<div>
 								Switch to {mode.current === "dark" ? "Light" : "Dark"} Mode
 							</div>
-							<div class="text-muted-foreground text-xs pointer-coarse:text-sm">
+							<div class="text-xs text-muted-foreground pointer-coarse:text-sm">
 								Base colors are easier to see in dark mode.
 							</div>
 						</div>
@@ -90,5 +90,5 @@
 			</Picker.RadioGroup>
 		</Picker.Content>
 	</Picker.Root>
-	<LockButton prop="baseColor" class="absolute top-1/2 right-10 -translate-y-1/2" />
+	<LockButton prop="baseColor" class="absolute top-1/2 right-8 -translate-y-1/2" />
 </div>

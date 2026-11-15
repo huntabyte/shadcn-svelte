@@ -63,15 +63,15 @@ Copy and paste the following code into your project.
 
 ## Accessibility
 
-- The `ButtonGroup` component has the `role` attribute set to `group`.
-- Use `tabindex` to navigate between the buttons in the group.
+- The `ButtonGroup.Root` component has the `role` attribute set to `group`.
+- Use `Tab` to navigate between the buttons in the group.
 - Use `aria-label` or `aria-labelledby` to label the button group.
 
 ```svelte showLineNumbers
-<ButtonGroup aria-label="Button group">
+<ButtonGroup.Root aria-label="Button group">
   <Button>Button 1</Button>
   <Button>Button 2</Button>
-</ButtonGroup>
+</ButtonGroup.Root>
 ```
 
 ## ButtonGroup vs ToggleGroup
@@ -79,9 +79,7 @@ Copy and paste the following code into your project.
 - Use the `ButtonGroup` component when you want to group buttons that perform an action.
 - Use the `ToggleGroup` component when you want to group buttons that toggle a state.
 
-## Examples
-
-### Orientation
+## Orientation
 
 Set the `orientation` prop to change the button group layout.
 
@@ -91,7 +89,7 @@ Set the `orientation` prop to change the button group layout.
 
 </ComponentPreview>
 
-### Size
+## Size
 
 Control the size of buttons using the `size` prop on individual buttons.
 
@@ -101,9 +99,9 @@ Control the size of buttons using the `size` prop on individual buttons.
 
 </ComponentPreview>
 
-### Nested
+## Nested
 
-Nest `ButtonGroup` components to create button groups with spacing.
+Nest `<ButtonGroup.Root>` components to create button groups with spacing.
 
 <ComponentPreview name="button-group-nested-demo">
 
@@ -111,9 +109,9 @@ Nest `ButtonGroup` components to create button groups with spacing.
 
 </ComponentPreview>
 
-### Separator
+## Separator
 
-The `ButtonGroupSeparator` component visually divides buttons within a group.
+The `ButtonGroup.Separator` component visually divides buttons within a group.
 
 Buttons with variant `outline` do not need a separator since they have a border. For other variants, a separator is recommended to improve the visual hierarchy.
 
@@ -123,9 +121,9 @@ Buttons with variant `outline` do not need a separator since they have a border.
 
 </ComponentPreview>
 
-### Split
+## Split
 
-Create a split button group by adding two buttons separated by a `ButtonGroupSeparator`.
+Create a split button group by adding two buttons separated by a `ButtonGroup.Separator`.
 
 <ComponentPreview name="button-group-split-demo">
 
@@ -133,7 +131,7 @@ Create a split button group by adding two buttons separated by a `ButtonGroupSep
 
 </ComponentPreview>
 
-### Input
+## Input
 
 Wrap an `Input` component with buttons.
 
@@ -143,7 +141,7 @@ Wrap an `Input` component with buttons.
 
 </ComponentPreview>
 
-### Input Group
+## Input Group
 
 Wrap an `InputGroup` component to create complex input layouts.
 
@@ -153,7 +151,7 @@ Wrap an `InputGroup` component to create complex input layouts.
 
 </ComponentPreview>
 
-### Dropdown Menu
+## Dropdown Menu
 
 Create a split button group with a `DropdownMenu` component.
 
@@ -163,7 +161,7 @@ Create a split button group with a `DropdownMenu` component.
 
 </ComponentPreview>
 
-### Select
+## Select
 
 Pair with a `Select` component.
 
@@ -173,7 +171,7 @@ Pair with a `Select` component.
 
 </ComponentPreview>
 
-### Popover
+## Popover
 
 Use with a `Popover` component.
 

@@ -1,13 +1,13 @@
 import { describe, it, expect } from "vitest";
+import { transformCss } from "../../src/utils/transform-css.js";
 import {
 	transform,
 	transformIcons,
 	transformImports,
 	transformMenu,
 	transformStripTypes,
-} from "../../src/utils/transformers";
-import { transformCss } from "../../src/utils/transform-css";
-import type { ResolvedConfig } from "../../src/utils/config/index";
+} from "../../src/utils/transformers/index.js";
+import type { ResolvedConfig } from "../../src/utils/config/index.js";
 
 const mockConfig: ResolvedConfig = {
 	tailwind: {
@@ -177,7 +177,7 @@ describe("transformIcons", () => {
 		expect(result.content).toBe(
 			`
 <script lang="ts">
-	import { IconChevronDown } from '@tabler/icons-svelte';
+	import IconChevronDown from '@tabler/icons-svelte/icons/chevron-down';
 </script>
 
 <IconChevronDown class="cn-accordion-trigger-icon size-4" />
@@ -196,8 +196,8 @@ describe("transformIcons", () => {
 		expect(result.content).toBe(
 			`
 <script lang="ts">
-	import { IconChevronDown } from '@tabler/icons-svelte';
-	import { IconChevronUp } from '@tabler/icons-svelte';
+	import IconChevronDown from '@tabler/icons-svelte/icons/chevron-down';
+	import IconChevronUp from '@tabler/icons-svelte/icons/chevron-up';
 </script>
 
 <div>
@@ -219,7 +219,7 @@ describe("transformIcons", () => {
 		expect(result.content).toBe(
 			`
 <script lang="ts">
-	import { IconChevronDown } from '@tabler/icons-svelte';
+	import IconChevronDown from '@tabler/icons-svelte/icons/chevron-down';
 
 	let { ...restProps } = $props();
 </script>

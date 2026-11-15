@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import { scaleBand } from "d3-scale";
 	import { BarChart } from "layerchart";
+	import * as Chart from "$lib/registry/ui/chart/index.js";
 
 	const chartData = [
 		{ month: "January", desktop: 186, mobile: 80 },

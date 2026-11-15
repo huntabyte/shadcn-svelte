@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Calendar from "$lib/registry/ui/calendar/calendar.svelte";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import { CalendarDate, getLocalTimeZone, today } from "@internationalized/date";
+	import * as Card from "$lib/registry/ui/card/index.js";
+	import Calendar from "$lib/registry/ui/calendar/calendar.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	let value = $state<CalendarDate | undefined>(new CalendarDate(2025, 6, 12));
 </script>

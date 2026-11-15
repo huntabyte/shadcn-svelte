@@ -1,7 +1,7 @@
 import path from "node:path";
 import { vol } from "memfs";
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { getCLIPackageInfo } from "../../src/utils/get-package-info";
+import { getCLIPackageInfo } from "../../src/utils/get-package-info.js";
 
 vi.mock("node:path");
 vi.mock("node:url");

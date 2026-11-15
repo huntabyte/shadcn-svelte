@@ -36,7 +36,7 @@
 	<div class="hidden">
 		<div class="container-wrapper">
 			<div class="container flex items-center justify-between gap-8 py-4">
-				<ColorsNav class="[&>a:first-child]:text-primary flex-1 overflow-hidden" />
+				<ColorsNav class="flex-1 overflow-hidden [&>a:first-child]:text-primary" />
 			</div>
 		</div>
 	</div>

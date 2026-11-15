@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 
 <Example title="On Link">
@@ -9,7 +9,7 @@
 			{#snippet child({ props })}
 				<a
 					href="/"
-					class="text-primary w-fit text-sm underline-offset-4 hover:underline"
+					class="w-fit text-sm text-primary underline-offset-4 hover:underline"
 					onclick={(e) => e.preventDefault()}
 					{...props}
 				>

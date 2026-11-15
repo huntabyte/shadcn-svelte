@@ -75,11 +75,9 @@ Copy and paste the following code into your project.
 </ScrollArea>
 ```
 
-## Examples
+## Horizontal
 
-### Horizontal Scrolling
-
-Set the `orientation` prop to `"horizontal"` to enable horizontal scrolling.
+Use `orientation="horizontal"` for horizontal scrolling.
 
 <ComponentPreview name="scroll-area-horizontal">
 

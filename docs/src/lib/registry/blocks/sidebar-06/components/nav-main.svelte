@@ -1,8 +1,8 @@
 <script lang="ts">
+	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import { useSidebar } from "$lib/registry/ui/sidebar/index.js";
-	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
 
 	let {
 		items,

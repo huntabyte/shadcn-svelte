@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
-	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 
 <Example title="Contributions Activity" class="justify-center">
@@ -25,9 +25,9 @@
 										Make profile private and hide activity
 									</Field.Label>
 									<Field.Description>
-										Enabling this will hide your contributions and activity from
-										your GitHub profile and from social features like followers,
-										stars, feeds, leaderboards and releases.
+										Enabling this will hide your contributions and activity from your GitHub profile
+										and from social features like followers, stars, feeds, leaderboards and
+										releases.
 									</Field.Description>
 								</Field.Content>
 							</Field.Field>
@@ -38,9 +38,9 @@
 										Include private contributions on my profile
 									</Field.Label>
 									<Field.Description>
-										Your contribution graph, achievements, and activity overview
-										will show your private contributions without revealing any
-										repository or organization information.
+										Your contribution graph, achievements, and activity overview will show your
+										private contributions without revealing any repository or organization
+										information.
 										<a href="#read-more">Read more</a>.
 									</Field.Description>
 								</Field.Content>

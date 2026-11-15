@@ -26,18 +26,14 @@
 		<CardDescription>Whole Home</CardDescription>
 	</CardHeader>
 	<CardContent class="flex flex-col gap-4">
-		<div
-			class="flex h-[140px] w-full items-end gap-2"
-			role="img"
-			aria-label="Power usage by hour"
-		>
+		<div class="flex h-[140px] w-full items-end gap-2" role="img" aria-label="Power usage by hour">
 			{#each chartData as item (item.hour)}
 				<div class="flex h-full flex-1 flex-col justify-end gap-1.5">
 					<div
-						class="bg-chart-2 min-h-2 rounded-t"
+						class="min-h-2 rounded-t bg-chart-2"
 						style={`height: ${(item.usage / maxUsage) * 100}%`}
 					></div>
-					<span class="text-muted-foreground text-center text-xs">
+					<span class="text-center text-xs text-muted-foreground">
 						{item.hour}
 					</span>
 				</div>
@@ -46,11 +42,11 @@
 		<Separator></Separator>
 		<div class="grid grid-cols-2 gap-4">
 			<div class="flex flex-col gap-0.5">
-				<span class="text-muted-foreground text-sm"> Currently Using </span>
+				<span class="text-sm text-muted-foreground"> Currently Using </span>
 				<span class="text-lg font-semibold tabular-nums">3.4 kW</span>
 			</div>
 			<div class="flex flex-col gap-0.5">
-				<span class="text-muted-foreground text-sm">Solar Gen</span>
+				<span class="text-sm text-muted-foreground">Solar Gen</span>
 				<span class="text-lg font-semibold tabular-nums">+1.2 kW</span>
 			</div>
 		</div>

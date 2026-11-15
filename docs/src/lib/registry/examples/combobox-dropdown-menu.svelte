@@ -5,8 +5,8 @@
 	import TrashIcon from "@lucide/svelte/icons/trash";
 	import UserIcon from "@lucide/svelte/icons/user";
 	import { tick } from "svelte";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Command from "$lib/registry/ui/command/index.js";
+	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 
 	const labels = [
@@ -38,7 +38,7 @@
 	class="flex w-full flex-col items-start justify-between rounded-md border px-4 py-3 sm:flex-row sm:items-center"
 >
 	<p class="text-sm leading-none font-medium">
-		<span class="bg-primary text-primary-foreground me-2 rounded-lg px-2 py-1 text-xs">
+		<span class="me-2 rounded-lg bg-primary px-2 py-1 text-xs text-primary-foreground">
 			{selectedLabel}
 		</span>
 		<span class="text-muted-foreground">Create a new project</span>

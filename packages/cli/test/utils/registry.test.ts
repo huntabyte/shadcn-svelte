@@ -1,6 +1,7 @@
 import path from "node:path";
-import { describe, it, expect, vi, beforeEach } from "vitest";
 import { fetch } from "node-fetch-native";
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import { toPosixPath } from "./test-helpers.js";
 import {
 	getRegistryUrl,
 	getRegistryIndex,
@@ -10,7 +11,6 @@ import {
 	getItemAliasDir,
 	resolveItemFilePath,
 } from "../../src/utils/registry/index.js";
-import { toPosixPath } from "./test-helpers.js";
 import type { ResolvedConfig } from "../../src/utils/config/index.js";
 import type { RegistryItem, RegistryIndex } from "../../src/utils/registry/schema.js";
 
@@ -67,9 +67,9 @@ describe("Registry Utilities", () => {
 
 		it("should return environment variable with style if set", () => {
 			process.env.REGISTRY_URL = "https://custom.registry.com";
-			expect(
-				getRegistryUrl({ registry: "https://example.com/registry", style: "vega" })
-			).toBe("https://custom.registry.com/styles/vega");
+			expect(getRegistryUrl({ registry: "https://example.com/registry", style: "vega" })).toBe(
+				"https://custom.registry.com/styles/vega"
+			);
 			delete process.env.REGISTRY_URL;
 		});
 
@@ -77,10 +77,19 @@ describe("Registry Utilities", () => {
 			expect(getRegistryUrl(mockConfig)).toBe("https://example.com/registry/styles/vega");
 		});
 
-		it("should return config registry URL with style if no env var", () => {
+		it("should not append the style to the legacy TW3 registry URL", () => {
 			expect(
-				getRegistryUrl({ registry: "https://example.com/registry", style: "nova" })
-			).toBe("https://example.com/registry/styles/nova");
+				getRegistryUrl({
+					registry: "https://tw3.shadcn-svelte.com/registry/new-york",
+					style: "new-york",
+				})
+			).toBe("https://tw3.shadcn-svelte.com/registry/new-york");
+		});
+
+		it("should return config registry URL with style if no env var", () => {
+			expect(getRegistryUrl({ registry: "https://example.com/registry", style: "nova" })).toBe(
+				"https://example.com/registry/styles/nova"
+			);
 		});
 	});
 
@@ -225,9 +234,7 @@ describe("Registry Utilities", () => {
 	describe("getItemAliasDir", () => {
 		it("should return correct directory for each type", () => {
 			expect(toPosixPath(getItemAliasDir(mockConfig, "registry:ui"))).toBe("/path/to/cwd/ui");
-			expect(toPosixPath(getItemAliasDir(mockConfig, "registry:hook"))).toBe(
-				"/path/to/cwd/hooks"
-			);
+			expect(toPosixPath(getItemAliasDir(mockConfig, "registry:hook"))).toBe("/path/to/cwd/hooks");
 			expect(toPosixPath(getItemAliasDir(mockConfig, "registry:component"))).toBe(
 				"/path/to/cwd/components"
 			);
@@ -248,7 +255,7 @@ describe("Registry Utilities", () => {
 					},
 				],
 			};
-			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![0]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![0]!))).toBe(
 				"/path/to/cwd/src/components/button.svelte"
 			);
 		});
@@ -265,7 +272,7 @@ describe("Registry Utilities", () => {
 					},
 				],
 			};
-			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![0]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![0]!))).toBe(
 				"/path/to/cwd/ui/button/button.svelte"
 			);
 		});
@@ -276,7 +283,7 @@ describe("Registry Utilities", () => {
 				type: "registry:component",
 				files: [{ type: "registry:component", content: "", target: "button.svelte" }],
 			};
-			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![0]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![0]!))).toBe(
 				"/path/to/cwd/components/button.svelte"
 			);
 		});
@@ -291,13 +298,13 @@ describe("Registry Utilities", () => {
 					{ type: "registry:page", content: "", target: "login/+page.svelte" },
 				],
 			};
-			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![0]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![0]!))).toBe(
 				"/path/to/cwd/components/complex-button.svelte"
 			);
-			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![1]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![1]!))).toBe(
 				"/path/to/cwd/ui/button/button.svelte"
 			);
-			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![2]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![2]!))).toBe(
 				"/path/to/cwd/src/routes/login/+page.svelte"
 			);
 		});
@@ -315,7 +322,7 @@ describe("Registry Utilities", () => {
 					},
 				],
 			};
-			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![0]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files![0]!))).toBe(
 				"/path/to/cwd/hooks/use-hook.svelte.ts"
 			);
 		});
@@ -333,7 +340,7 @@ describe("Registry Utilities", () => {
 					},
 				],
 			};
-			expect(toPosixPath(resolveItemFilePath(config, item, item.files![0]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(config, item, item.files![0]!))).toBe(
 				"/path/to/cwd/utils.ts"
 			);
 
@@ -343,13 +350,13 @@ describe("Registry Utilities", () => {
 				utils: `${cwd}/some-other-path/shadcn-utils`,
 			};
 
-			expect(toPosixPath(resolveItemFilePath(config, item, item.files![0]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(config, item, item.files![0]!))).toBe(
 				"/path/to/cwd/some-other-path/shadcn-utils.ts"
 			);
 
 			// includes a file extension
 			config.resolvedPaths.utils += ".ts";
-			expect(toPosixPath(resolveItemFilePath(config, item, item.files![0]))).toBe(
+			expect(toPosixPath(resolveItemFilePath(config, item, item.files![0]!))).toBe(
 				"/path/to/cwd/some-other-path/shadcn-utils.ts"
 			);
 		});

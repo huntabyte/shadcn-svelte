@@ -30,9 +30,7 @@
 								<Item.Title class="inline">{item.name}</Item.Title>
 							</Item.Content>
 							<Item.Actions>
-								<span
-									class="text-muted-foreground font-mono text-xs font-medium tabular-nums"
-								>
+								<span class="font-mono text-xs font-medium text-muted-foreground tabular-nums">
 									{item.value}
 								</span>
 							</Item.Actions>

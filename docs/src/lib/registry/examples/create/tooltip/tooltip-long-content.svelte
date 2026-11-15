@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
-	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import Example from "../../../../../routes/(app)/(layout)/(create)/components/example.svelte";
 </script>
 
 <Example title="Long Content">
@@ -12,8 +12,8 @@
 			{/snippet}
 		</Tooltip.Trigger>
 		<Tooltip.Content>
-			To learn more about how this works, check out the docs. If you have any questions,
-			please reach out to us.
+			To learn more about how this works, check out the docs. If you have any questions, please
+			reach out to us.
 		</Tooltip.Content>
 	</Tooltip.Root>
 </Example>
