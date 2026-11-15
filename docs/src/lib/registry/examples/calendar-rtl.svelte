@@ -27,6 +27,7 @@
 	bind:value={date}
 	class="rounded-lg border [--cell-size:--spacing(9)]"
 	captionLayout="dropdown"
+	weekdayFormat={t.dir === "rtl" ? "narrow" : "short"}
 	dir={t.dir}
 	locale={t.language === "ar" ? "ar-SA" : t.language === "he" ? "he-IL" : "en-US"}
 />

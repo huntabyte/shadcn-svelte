@@ -242,7 +242,13 @@ When using RTL, pass both the `locale` and `dir` props to the Calendar component
   let date = $state();
 </script>
 
-<Calendar type="single" bind:value={date} locale="ar-SA" dir="rtl" />
+<Calendar
+  type="single"
+  bind:value={date}
+  locale="ar-SA"
+  dir="rtl"
+  weekdayFormat="narrow"
+/>
 ```
 
 ## Changelog
@@ -256,7 +262,13 @@ If you're upgrading from a previous version of the `Calendar` component, review 
 <Step>Set the calendar locale and direction.</Step>
 
 ```svelte
-<Calendar type="single" bind:value={date} locale="ar-SA" dir="rtl" />
+<Calendar
+  type="single"
+  bind:value={date}
+  locale="ar-SA"
+  dir="rtl"
+  weekdayFormat="narrow"
+/>
 ```
 
 <Step>Update RTL-aware CSS classes.</Step>

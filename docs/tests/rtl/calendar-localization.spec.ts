@@ -25,3 +25,15 @@ test("Persian calendar localizes Jalali dates and records the current Bits horiz
 	await calendar.locator("[data-calendar-prev-button]").click();
 	await expect(preview).toContainText("خرداد");
 });
+
+test("calendar RTL example keeps distinct localized weekday labels", async ({ page }) => {
+	await page.goto("/?example=calendar");
+	const headings = page.getByTestId("rtl-example").locator("th");
+	await expect(headings).toHaveText(["ح", "ن", "ث", "ر", "خ", "ج", "س"]);
+	await page.getByRole("combobox", { name: "Language", exact: true }).click();
+	await page.getByRole("option", { name: "Hebrew (עברית)", exact: true }).click();
+	await expect(headings).toHaveText(["א׳", "ב׳", "ג׳", "ד׳", "ה׳", "ו׳", "ש׳"]);
+	await page.getByRole("combobox", { name: "Language", exact: true }).click();
+	await page.getByRole("option", { name: "English", exact: true }).click();
+	await expect(headings).toHaveText(["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]);
+});
