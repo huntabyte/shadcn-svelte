@@ -68,6 +68,33 @@ describe("Svelte RTL transform", () => {
 			source.replace('class: "ml-2"', 'class: "ms-2"')
 		);
 	});
+	it("preserves predicates, function arguments, lookup and variant keys inside class expressions", () => {
+		const source = `<script lang="ts">
+const v = tv({ base: "ml-2", variants: { align: { "text-left": "text-left" } }, defaultVariants: { align: "text-left" }, compoundVariants: [{ align: "text-left", class: "pr-2" }] });
+</script><p class={[selected === "text-left" ? "pl-2" : "pr-2", lookup["ml-2"], custom("mr-2"), { "ml-2": kind === "text-right" }, active && "text-right"]}></p>`;
+		const result = transformDirection(source, "custom.svelte");
+		expect(result).toContain('selected === "text-left" ? "ps-2" : "pe-2"');
+		expect(result).toContain('lookup["ml-2"]');
+		expect(result).toContain('custom("mr-2")');
+		expect(result).toContain('{ "ms-2": kind === "text-right" }');
+		expect(result).toContain('active && "text-end"');
+		expect(result).toContain('"text-left": "text-start"');
+		expect(result).toContain('defaultVariants: { align: "text-left" }');
+		expect(result).toContain('align: "text-left", class: "pe-2"');
+		expect(transformDirection(result, "custom.svelte")).toBe(result);
+	});
+	it("keeps empty class chunks idempotent and transforms tv slot values without renaming slots", () => {
+		const empty = '<div class="   "></div><div class={`  ${active && "ml-2"}  `}></div>';
+		const once = transformDirection(empty, "empty.svelte");
+		expect(once).toContain('class="   "');
+		expect(transformDirection(once, "empty.svelte")).toBe(once);
+		const slots =
+			'const v = tv({ slots: { "ml-2": "ml-2" }, variants: { size: { sm: { "ml-2": "pr-2" } } }, compoundVariants: [{ size: "text-left", class: { "ml-2": "text-right" } }] });';
+		const result = transformDirection(slots, "slots.ts");
+		expect(result).toContain('slots: { "ml-2": "ms-2" }');
+		expect(result).toContain('sm: { "ml-2": "pe-2" }');
+		expect(result).toContain('size: "text-left", class: { "ml-2": "text-end" }');
+	});
 	it("requires the rtl configuration flag and ignores non-source files", async () => {
 		const content = '<p class="ml-2"></p>';
 		const opts = { content, filePath: "test.svelte", config: {} as ResolvedConfig };
