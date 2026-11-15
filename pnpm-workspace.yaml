@@ -8,6 +8,7 @@ allowBuilds:
   esbuild: true
   sharp: true
   workerd: true
+  "@tailwindcss/oxide": true
 
 catalog:
   "@sveltejs/kit": ^2.60.1
@@ -19,3 +20,8 @@ catalog:
   vite: ^7.3.1
 
 minimumReleaseAge: 2880
+
+# Draft-only built snapshot of the merged BitsConfig direction API (#2288).
+# Remove after the first release containing it; see vendor/README.md.
+overrides:
+  bits-ui: file:vendor/bits-ui-8aff5151.tgz

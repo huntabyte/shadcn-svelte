@@ -103,3 +103,20 @@ jobs:
 
       - name: Run browser tests
         run: pnpm -F @shadcn-svelte/primitives test:browser
+
+  rtl-test:
+    name: RTL Browser Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: package.json
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm ci
+      - name: Install Chromium
+        run: pnpm -F docs exec playwright install chromium --with-deps
+      - name: Run RTL regression tests
+        run: pnpm -F docs test:rtl

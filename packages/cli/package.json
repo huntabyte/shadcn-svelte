@@ -57,6 +57,10 @@
 		},
 		"./tailwind.css": {
 			"style": "./dist/tailwind.css"
+		},
+		"./transformers/rtl": {
+			"types": "./dist/utils/transformers/transform-rtl.d.mts",
+			"default": "./dist/utils/transformers/transform-rtl.mjs"
 		}
 	},
 	"files": [

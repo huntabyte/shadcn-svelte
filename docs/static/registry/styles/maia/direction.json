@@ -1,0 +1,26 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "direction",
+	"type": "registry:ui",
+	"devDependencies": [
+		"bits-ui@^2.20.0",
+		"@internationalized/date@^3.12.0"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport { BitsConfig } from \"bits-ui\";\n\timport type { ComponentProps } from \"svelte\";\n\n\tlet {\n\t\tdir,\n\t\tdirection,\n\t\tchildren,\n\t}: Pick<ComponentProps<typeof BitsConfig>, \"dir\" | \"children\"> & {\n\t\tdirection?: ComponentProps<typeof BitsConfig>[\"dir\"];\n\t} = $props();\n</script>\n\n<BitsConfig dir={direction ?? dir}>\n\t{@render children?.()}\n</BitsConfig>\n",
+			"type": "registry:file",
+			"target": "direction/direction-provider.svelte"
+		},
+		{
+			"content": "import { getBitsConfig } from \"bits-ui\";\n\n/** Call during component initialization. Read `current` reactively to track changes. */\nexport function useDirection() {\n\tconst config = getBitsConfig();\n\treturn {\n\t\tget current(): \"ltr\" | \"rtl\" {\n\t\t\treturn config.dir.current ?? \"ltr\";\n\t\t},\n\t};\n}\n",
+			"type": "registry:file",
+			"target": "direction/direction.svelte.ts"
+		},
+		{
+			"content": "export { default as DirectionProvider } from \"./direction-provider.svelte\";\nexport { useDirection } from \"./direction.svelte.js\";\n",
+			"type": "registry:file",
+			"target": "direction/index.ts"
+		}
+	]
+}
