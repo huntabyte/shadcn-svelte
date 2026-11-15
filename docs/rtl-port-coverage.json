@@ -775,11 +775,7 @@
 		"direction": {
 			"source": "apps/v4/content/docs/components/radix/direction.mdx",
 			"destination": "docs/content/components/direction.md",
-			"sections": [
-				"Installation",
-				"Usage",
-				"useDirection"
-			],
+			"sections": ["Installation", "Usage", "useDirection"],
 			"preview": "card-rtl"
 		},
 		"rtl": {
@@ -805,6 +801,7 @@
 		"Paneforge v1 reads document.dir for resize direction; local preview direction alone cannot guarantee inverted resize deltas.",
 		"Svelte initialization uses rtl in components.json rather than create --rtl. The migrate rtl command uses the Svelte AST, previews with --dry-run, and preserves custom implementations while warning about manual behavior review.",
 		"Bits UI floating sides remain physical. ContextMenu.Content, ContextMenu.SubContent and DropdownMenu.SubContent adapt inline-start/inline-end reactively and preserve explicit physical sides; primitive submenu defaults (#2306) are separate. Menubar uses an explicit direction-aware physical side in its RTL example; native primitive submenu defaults remain separate.",
-		"Shimmer retains upstream static bilingual LTR/RTL comparison; it has no translation dictionary or language selector upstream."
+		"Shimmer retains upstream static bilingual LTR/RTL comparison; it has no translation dictionary or language selector upstream.",
+		"Bits Calendar and RangeCalendar currently keep chronological horizontal arrow keys (Left = previous day) even in RTL. Locale/numerals, visual order and navigation buttons work; this native keyboard gap is recorded by the Persian calendar browser check."
 	]
 }
