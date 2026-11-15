@@ -18,6 +18,7 @@ import {
 	toBase62,
 	type PresetConfig,
 } from "../src/preset/preset.js";
+import { DEFAULT_PRESETS, invalidPresetMessage, resolvePreset } from "../src/preset/presets.js";
 
 describe("base62", () => {
 	it("should round-trip numbers", () => {
@@ -215,5 +216,78 @@ describe("generateRandomPreset", () => {
 		expect(decoded).not.toBeNull();
 		const reEncoded = encodePreset(decoded!);
 		expect(reEncoded).toBe(code);
+	});
+});
+
+const PRESET_NAMES = Object.keys(DEFAULT_PRESETS) as (keyof typeof DEFAULT_PRESETS)[];
+
+describe("resolvePreset", () => {
+	it("should resolve every pre-configured preset by name", () => {
+		expect(PRESET_NAMES.length).toBeGreaterThan(0);
+		for (const name of PRESET_NAMES) {
+			const preset = resolvePreset(name);
+			expect(preset).not.toBeNull();
+			expect(preset!.style).toBe(name);
+		}
+	});
+
+	it("should resolve preset codes", () => {
+		const code = encodePreset(DEFAULT_PRESET_CONFIG);
+		expect(resolvePreset(code)).toEqual(decodePreset(code));
+	});
+
+	it("should resolve the code of a named preset to the same style", () => {
+		for (const name of PRESET_NAMES) {
+			const code = encodePreset(DEFAULT_PRESETS[name]);
+			expect(resolvePreset(code)?.style).toBe(name);
+		}
+	});
+
+	it("should keep every field of a named preset when it is encoded", () => {
+		const fields = [
+			"style",
+			"baseColor",
+			"theme",
+			"chartColor",
+			"iconLibrary",
+			"font",
+			"fontHeading",
+			"menuAccent",
+			"menuColor",
+			"radius",
+		] as const;
+		for (const name of PRESET_NAMES) {
+			const preset = DEFAULT_PRESETS[name];
+			const decoded = decodePreset(encodePreset(preset));
+			for (const field of fields) {
+				expect(decoded?.[field], `${name}.${field}`).toBe(preset[field]);
+			}
+		}
+	});
+
+	it("should use taupe charts for sera", () => {
+		expect(resolvePreset("sera")?.chartColor).toBe("taupe");
+		expect(decodePreset(encodePreset(DEFAULT_PRESETS.sera))?.chartColor).toBe("taupe");
+	});
+
+	it("should return null for unknown names and invalid codes", () => {
+		expect(resolvePreset("")).toBeNull();
+		expect(resolvePreset("not-a-style")).toBeNull();
+		// names are matched exactly
+		expect(resolvePreset("Luma")).toBeNull();
+		expect(resolvePreset("c123")).toBeNull();
+		// inherited object keys must not be treated as preset names
+		expect(resolvePreset("constructor")).toBeNull();
+		expect(resolvePreset("__proto__")).toBeNull();
+	});
+});
+
+describe("invalidPresetMessage", () => {
+	it("should list the available presets", () => {
+		const message = invalidPresetMessage("lumaa");
+		expect(message).toContain("lumaa");
+		for (const name of PRESET_NAMES) {
+			expect(message).toContain(name);
+		}
 	});
 });
