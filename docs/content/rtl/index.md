@@ -62,7 +62,7 @@ See your framework's RTL guide under [Get Started](#get-started) for details on 
 
 ## Animations
 
-Use logical directional animation utilities where the animation should follow the text direction. For example, use `slide-in-from-end` instead of `slide-in-from-right`. The shadcn-svelte CLI preserves physical animation classes and physical `side` values; it does not rewrite these automatically.
+Use logical directional animation utilities where the animation should follow the text direction. For example, use `slide-in-from-end` instead of `slide-in-from-right`. The shadcn-svelte CLI preserves physical animation classes and explicit physical `side` values. `ContextMenu.Content`, `ContextMenu.SubContent`, and `DropdownMenu.SubContent` accept `inline-start` and `inline-end`, resolving them reactively to the physical sides Bits UI supports. They default to `inline-end`; explicit `left`, `right`, `top`, and `bottom` stay physical.
 
 Logical animations follow the document's text direction. Animations tied to physical placement, such as `data-[side=right]:slide-in-from-left`, should continue to follow the actual side of dropdowns, popovers, and tooltips.
 

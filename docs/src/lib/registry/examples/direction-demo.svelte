@@ -60,7 +60,7 @@
 							<DropdownMenu.SubTrigger
 								>{direction === "rtl" ? "المزيد" : "More"}</DropdownMenu.SubTrigger
 							>
-							<DropdownMenu.SubContent side={direction === "rtl" ? "left" : "right"}
+							<DropdownMenu.SubContent
 								><DropdownMenu.Group
 									><DropdownMenu.Item
 										>{direction === "rtl" ? "الإعدادات" : "Settings"}</DropdownMenu.Item

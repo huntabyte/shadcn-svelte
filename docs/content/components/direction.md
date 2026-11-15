@@ -97,3 +97,9 @@ The `useDirection` function is used to get the current direction of the applicat
 
 <div>Current direction: {direction.current}</div>
 ```
+
+## Logical floating sides
+
+`ContextMenu.Content`, `ContextMenu.SubContent`, and `DropdownMenu.SubContent` default to `side="inline-end"`. They also accept `inline-start`, resolving the logical side reactively from the provider or an explicit `dir`. Physical `left`, `right`, `top`, and `bottom` values keep their usual meaning.
+
+Bits UI itself still takes physical sides. These wrappers adapt shadcn/ui's logical intent without passing unsupported values to Bits UI. [Bits UI #2306](https://github.com/huntabyte/bits-ui/pull/2306) addresses primitive submenu defaults separately; this adapter does not depend on it.

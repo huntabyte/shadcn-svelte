@@ -133,7 +133,9 @@
 	{
 		"name": "context-menu",
 		"type": "registry:ui",
-		"registryDependencies": [],
+		"registryDependencies": [
+			"direction"
+		],
 		"relativeUrl": "context-menu.json"
 	},
 	{
@@ -159,7 +161,9 @@
 	{
 		"name": "dropdown-menu",
 		"type": "registry:ui",
-		"registryDependencies": [],
+		"registryDependencies": [
+			"direction"
+		],
 		"relativeUrl": "dropdown-menu.json"
 	},
 	{

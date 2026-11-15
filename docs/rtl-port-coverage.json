@@ -800,7 +800,7 @@
 		"Combobox chips use Bits Combobox plus Badge/removal buttons because Bits has no chips primitives; chip arrow navigation is not added.",
 		"Paneforge v1 reads document.dir for resize direction; local preview direction alone cannot guarantee inverted resize deltas.",
 		"No Svelte create --rtl or migrate rtl command exists; framework and migration instructions describe supported initialization/manual changes.",
-		"Bits UI floating sides remain physical, and default submenus still require an explicit RTL side override.",
+		"Bits UI floating sides remain physical. ContextMenu.Content, ContextMenu.SubContent and DropdownMenu.SubContent adapt inline-start/inline-end reactively and preserve explicit physical sides; primitive submenu defaults (#2306) are separate. Menubar submenus still need a direction-aware physical side.",
 		"Shimmer retains upstream static bilingual LTR/RTL comparison; it has no translation dictionary or language selector upstream."
 	]
 }
