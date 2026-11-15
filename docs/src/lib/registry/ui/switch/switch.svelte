@@ -26,10 +26,6 @@
 >
 	<SwitchPrimitive.Thumb
 		data-slot="switch-thumb"
-		class={cn(
-			"cn-switch-thumb pointer-events-none block ring-0 transition-transform",
-			// parity-ignore: keep rtl utilities until the CLI rewrites them
-			"rtl:data-[state=checked]:translate-x-[calc(-100%)]"
-		)}
+		class={cn("cn-switch-thumb pointer-events-none block ring-0 transition-transform")}
 	/>
 </SwitchPrimitive.Root>

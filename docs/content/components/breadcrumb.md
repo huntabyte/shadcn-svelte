@@ -121,3 +121,13 @@ To use a link just add the `href` prop to `<Breadcrumb.Link />`.
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="breadcrumb-rtl" direction="rtl" previewClassName="p-2">
+
+<div></div>
+
+</ComponentPreview>

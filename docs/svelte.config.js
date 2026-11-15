@@ -61,7 +61,7 @@ function componentPreviews() {
 				// `component=`, which the old `name=`-first regex missed; skip those tags.
 				if (/\bcomponent=/.test(attrs)) continue;
 				const name = attrs.match(/\bname=["']([^"'\s]+)["']/)?.[1];
-				if (!name || name.includes("sidebar")) continue;
+				if (!name || (name.includes("sidebar") && !name.endsWith("-rtl"))) continue;
 				const insertIndex = exec.index + TARGET.length;
 				const identifier = camelize(name);
 				ms.appendRight(insertIndex, ` component={${identifier}}`);
@@ -71,11 +71,18 @@ function componentPreviews() {
 			const importIndex = content.search("import ComponentPreview");
 			for (const [name, style] of components) {
 				const identifier = camelize(name);
-				const query = style ? `?flattened=${style}` : "";
+				const query = name.endsWith("-rtl")
+					? `?flattened=${style ?? "nova"}&rtl=true`
+					: style
+						? `?flattened=${style}`
+						: "";
 				let importStatement;
-				if (name.startsWith("chart") && !name.includes("demo")) {
+				if (name.startsWith("chart") && !name.includes("demo") && !name.endsWith("-rtl")) {
 					importStatement = `import ${identifier} from "$lib/registry/blocks/${name}.svelte${query}";`;
-				} else if (name.includes("sidebar") || name.includes("Sidebar")) {
+				} else if (
+					(name.includes("sidebar") || name.includes("Sidebar")) &&
+					!name.endsWith("-rtl")
+				) {
 					continue;
 				} else if (/^calendar-\d+$/.test(name)) {
 					importStatement = `import ${identifier} from "$lib/registry/blocks/${name}.svelte${query}";`;

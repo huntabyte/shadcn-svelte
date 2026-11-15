@@ -91,3 +91,13 @@ For form fields, use the [Field](/docs/components/field) component which include
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="label-rtl" direction="rtl">
+
+<div></div>
+
+</ComponentPreview>

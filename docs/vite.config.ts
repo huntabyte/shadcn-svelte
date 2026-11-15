@@ -2,10 +2,15 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import tailwindcss from "@tailwindcss/vite";
-import { injectStyleClasses, parseStyleCss } from "@shadcn-svelte/parity/inject-style-classes";
+import {
+	injectStyleClasses,
+	parseStyleCss,
+	toTailwindArbitraryCalc,
+} from "@shadcn-svelte/parity/inject-style-classes";
 import { enhancedImages } from "@sveltejs/enhanced-img";
 import { sveltekit } from "@sveltejs/kit/vite";
 import { visualizer } from "rollup-plugin-visualizer";
+import { applyRtlMapping, transformDirection } from "shadcn-svelte/transformers/rtl";
 import { defineConfig, type Plugin } from "vite";
 import packageJson from "./package.json" with { type: "json" };
 
@@ -67,9 +72,10 @@ function flattenedRegistry(): Plugin {
 		return { file: path.normalize(file!), params: new URLSearchParams(query ?? "") };
 	};
 	const isFlattened = (id: string) => splitId(id).params.has(QUERY);
-	const withQuery = (id: string, style: string) => {
+	const withQuery = (id: string, style: string, rtl: boolean) => {
 		const { file, params } = splitId(id);
 		params.set(QUERY, style);
+		if (rtl) params.set("rtl", "true");
 		return `${file}?${params}`;
 	};
 	const styleOf = (importer: string) => {
@@ -81,6 +87,15 @@ function flattenedRegistry(): Plugin {
 	};
 
 	const styleMaps = new Map<string, Record<string, string>>();
+	const rtlCandidatesDir = path.join(__dirname, ".generated/rtl");
+	fs.mkdirSync(rtlCandidatesDir, { recursive: true });
+	for (const filename of fs.readdirSync(stylesDir).filter((name) => /^style-.*\.css$/.test(name))) {
+		const map = parseStyleCss(fs.readFileSync(path.join(stylesDir, filename), "utf8"));
+		fs.writeFileSync(
+			path.join(rtlCandidatesDir, `${filename}.txt`),
+			applyRtlMapping(toTailwindArbitraryCalc(Object.values(map).join(" ") + " cn-rtl-flip"))
+		);
+	}
 	const getStyleMap = (style: string) => {
 		let map = styleMaps.get(style);
 		if (!map) {
@@ -129,7 +144,11 @@ function flattenedRegistry(): Plugin {
 				file.startsWith(docsRoot + path.sep) &&
 				!file.includes(`${path.sep}node_modules${path.sep}`);
 			if (!isUi && !requested && !isLocalHelper) return resolved;
-			return { ...resolved, id: withQuery(resolved.id, style) };
+			const rtl =
+				splitId(importer).params.get("rtl") === "true" ||
+				path.basename(importerFile).startsWith("direction-") ||
+				path.basename(importerFile).endsWith("-rtl.svelte");
+			return { ...resolved, id: withQuery(resolved.id, style, rtl) };
 		},
 		load(id) {
 			if (!isFlattened(id)) return null;
@@ -138,7 +157,11 @@ function flattenedRegistry(): Plugin {
 			// The query also marks example and helper modules so their UI imports share
 			// one style. Only registry UI source has `cn-*` tokens to inline.
 			if (!within(file, [rawUiDir]) || !TEXT_EXTENSIONS.has(path.extname(file))) return content;
-			return injectStyleClasses(content, getStyleMap(params.get(QUERY) ?? DEFAULT_STYLE));
+			const flattened = injectStyleClasses(
+				content,
+				getStyleMap(params.get(QUERY) ?? DEFAULT_STYLE)
+			);
+			return params.get("rtl") === "true" ? transformDirection(flattened, file) : flattened;
 		},
 		hotUpdate({ file }) {
 			const normalized = path.normalize(file);
@@ -154,6 +177,7 @@ function flattenedRegistry(): Plugin {
 }
 
 export default defineConfig({
+	optimizeDeps: { exclude: ["@tanstack/svelte-table"] },
 	resolve: {
 		// Use the browser implementation everywhere so SSR/Workers bundles avoid the Node
 		// `canvas` server build (main → lib/server) and so `qrcode` can be inlined into

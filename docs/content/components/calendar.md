@@ -220,3 +220,73 @@ Or use fixed values:
   class="rounded-lg border [--cell-size:2.75rem] md:[--cell-size:3rem]"
 />
 ```
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+See also the [Bits UI Calendar documentation](https://bits-ui.com/docs/components/calendar) for localization and calendar-system support, including Persian / Hijri / Jalali calendars.
+
+<ComponentPreview name="calendar-rtl" direction="rtl" previewClassName="h-96">
+
+<div></div>
+
+</ComponentPreview>
+
+When using RTL, pass both the `locale` and `dir` props to the Calendar component. Bits UI accepts a locale string, so no locale import is needed:
+
+```svelte showLineNumbers
+<script lang="ts">
+  import { Calendar } from "$lib/components/ui/calendar/index.js";
+
+  let date = $state();
+</script>
+
+<Calendar type="single" bind:value={date} locale="ar-SA" dir="rtl" />
+```
+
+## Changelog
+
+### RTL Support
+
+If you're upgrading from a previous version of the `Calendar` component, review the following updates for RTL support. The Svelte component already forwards the `locale` string to its calendar and month/year controls; keep that existing behavior.
+
+<Steps>
+
+<Step>Set the calendar locale and direction.</Step>
+
+```svelte
+<Calendar type="single" bind:value={date} locale="ar-SA" dir="rtl" />
+```
+
+<Step>Update RTL-aware CSS classes.</Step>
+
+Replace directional classes with logical properties in your copied calendar and range-calendar components:
+
+```diff
+- [&:last-child[data-selected=true]_button]:rounded-r-(--cell-radius)
++ [&:last-child[data-selected=true]_button]:rounded-e-(--cell-radius)
+- [&:nth-child(2)[data-selected=true]_button]:rounded-l-(--cell-radius)
++ [&:nth-child(2)[data-selected=true]_button]:rounded-s-(--cell-radius)
+- [&:first-child[data-selected=true]_button]:rounded-l-(--cell-radius)
++ [&:first-child[data-selected=true]_button]:rounded-s-(--cell-radius)
+
+- data-[range-start]:rounded-l-(--cell-radius)
++ data-[range-start]:rounded-s-(--cell-radius)
+- data-[range-end]:rounded-r-(--cell-radius)
++ data-[range-end]:rounded-e-(--cell-radius)
+```
+
+Use `after:end-0` for range-start decorations and `after:start-0` for range-end decorations. The `migrate rtl` command updates these classes.
+
+<Step>Flip navigation icons once.</Step>
+
+In `calendar-prev-button.svelte` and `calendar-next-button.svelte`, remove `rtl:rotate-180` from the button wrapper if it is present. Apply it to the fallback icon instead. When installing with `rtl: true`, the CLI converts the icon's `cn-rtl-flip` marker for you. Keeping a flip on both the wrapper and icon would cancel out the direction change.
+
+</Steps>
+
+After applying these changes, you can use the `locale` prop to provide locale-specific formatting:
+
+```svelte
+<Calendar type="single" bind:value={date} locale="en-US" />
+```

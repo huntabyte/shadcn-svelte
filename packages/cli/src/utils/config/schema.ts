@@ -91,6 +91,7 @@ export const newConfigSchema = baseConfigSchema.extend({
 		lib: aliasSchema("lib").default(DEFAULT_CONFIG.aliases.lib),
 	}),
 	registry: z.string().default(DEFAULT_CONFIG.registry),
+	rtl: z.boolean().optional(),
 	// design system
 	style: z.string().optional(),
 	iconLibrary: z.enum(ICON_LIBRARIES).optional(),

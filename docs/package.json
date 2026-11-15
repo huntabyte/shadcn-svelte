@@ -29,7 +29,8 @@
 		"parity-check": "parity --check",
 		"parity:fix": "parity fix",
 		"parity:variants": "parity variants",
-		"parity-check:variants": "parity variants --check"
+		"parity-check:variants": "parity variants --check",
+		"test:rtl": "playwright test"
 	},
 	"devDependencies": {
 		"@ai-sdk/svelte": "^5.0.141",
@@ -69,6 +70,7 @@
 		"@hugeicons/svelte": "^1.1.2",
 		"@internationalized/date": "^3.12.0",
 		"@lucide/svelte": "^1.27.0",
+		"@playwright/test": "^1.61.0",
 		"@prettier/sync": "0.6.1",
 		"@shadcn-svelte/parity": "workspace:^",
 		"@shadcn-svelte/primitives": "workspace:^",

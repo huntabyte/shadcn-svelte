@@ -565,7 +565,18 @@ export const columns = columnHelper.columns([
 ]);
 ```
 
-This will automatically sort the table (asc and desc) when the user toggles on the header cell. The table owns the sorting state — no wiring required.
+This will automatically sort the table when the user toggles on the header cell. By default each click cycles through the two sort directions and then back to the unsorted state.
+
+If you would rather keep a column sorted once the user has sorted it, so that it only switches between ascending and descending, set `enableSortingRemoval` to `false` in `createTable`:
+
+```ts showLineNumbers {5} title="routes/payments/data-table.svelte"
+const table = createTable({
+  features,
+  columns,
+  // ...
+  enableSortingRemoval: false,
+});
+```
 
 </Steps>
 
@@ -778,3 +789,13 @@ You can show the number of selected rows using the `table.getFilteredSelectedRow
 ## Reusable Components
 
 Check out the [Tasks](/examples/tasks) example to learn about creating reusable components for your data tables.
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="data-table-rtl" direction="rtl" previewClassName="items-start h-auto px-4 md:px-8" hideCode>
+
+<div></div>
+
+</ComponentPreview>

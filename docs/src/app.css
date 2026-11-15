@@ -11,6 +11,8 @@
 @import "@fontsource-variable/geist/index.css";
 @import "@fontsource-variable/geist-mono/index.css";
 
+@source "../.generated/rtl";
+
 @source "../node_modules/svelte-streamdown/dist";
 
 @custom-variant style-vega (&:where(.style-vega *));

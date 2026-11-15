@@ -17,6 +17,7 @@ import {
 	transformImports,
 	transformIcons,
 	transformMenu,
+	transformRtl,
 	transformStripTypes,
 } from "./transformers/index.js";
 import type { ResolvedConfig } from "./config/index.js";
@@ -185,7 +186,9 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 							transformImports,
 							transformIcons,
 							transformMenu,
+							transformRtl,
 							transformFont,
+							transformRtl,
 							!opts.config.typescript && transformStripTypes,
 						]
 					);

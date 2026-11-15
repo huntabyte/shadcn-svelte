@@ -21,11 +21,12 @@ export type CarouselPlugins = EmblaCarouselConfig["plugins"];
 ////
 
 export type CarouselProps = {
+	dir?: "ltr" | "rtl";
 	opts?: CarouselOptions;
 	plugins?: CarouselPlugins;
 	setApi?: (api: CarouselAPI | undefined) => void;
 	orientation?: "horizontal" | "vertical";
-} & WithElementRef<HTMLAttributes<HTMLDivElement>>;
+} & WithElementRef<Omit<HTMLAttributes<HTMLDivElement>, "dir">>;
 
 const EMBLA_CAROUSEL_CONTEXT = Symbol("EMBLA_CAROUSEL_CONTEXT");
 

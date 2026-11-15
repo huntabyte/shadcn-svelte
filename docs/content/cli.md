@@ -145,6 +145,18 @@ Options:
 
 ---
 
+## migrate rtl
+
+Use `migrate rtl` to update class expressions in existing copied components and enable `rtl` in `components.json`.
+
+<PMExecute command="shadcn-svelte@latest migrate rtl [path]" />
+
+`[path]` accepts a file, directory, or quoted glob within the project. By default, the command uses the configured `ui` directory. Use `--dry-run` to preview changes and `--yes` to skip the confirmation prompt.
+
+See the [RTL migration guide](/docs/rtl#migrating-existing-components) for the manual review steps.
+
+---
+
 ## Outgoing Requests
 
 ### Proxy

@@ -180,3 +180,13 @@ Use the `child` snippet to render the item as a link. The hover and focus states
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="item-rtl" direction="rtl">
+
+<div></div>
+
+</ComponentPreview>

@@ -98,3 +98,13 @@ Use `showCloseButton={false}` on `Sheet.Content` to hide the close button.
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="sheet-rtl" direction="rtl">
+
+<div></div>
+
+</ComponentPreview>
