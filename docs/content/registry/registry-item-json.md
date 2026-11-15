@@ -205,7 +205,7 @@ The `files` property is used to specify the files of your registry item. Each fi
     {
       "path": "registry/hello-world/page.svelte",
       "type": "registry:page",
-      "target": "src/routes/hello/+page.svelte"
+      "target": "hello/+page.svelte"
     },
     {
       "path": "registry/hello-world/hello-world.svelte",
@@ -237,6 +237,8 @@ The `type` property is used to specify the type of the file. See the [type](#typ
 The `target` property is used to indicate where the file should be placed in a project. This is optional and only required for `registry:page` and `registry:file` types.
 
 By default, the `shadcn-svelte` cli will read a project's `components.json` file to determine the target path. For some files, such as routes or config you can specify the target path manually.
+
+For `registry:page` files in SvelteKit projects, targets are relative to `src/routes`. For example, `hello/+page.svelte` is installed at `src/routes/hello/+page.svelte`.
 
 Use `~` to refer to the root of the project e.g `~/foo.config.js`.
 

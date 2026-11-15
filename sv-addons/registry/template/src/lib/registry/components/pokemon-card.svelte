@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { getPokemon } from "$lib/registry/blocks/complex-component/lib/pokemon.js";
+	import { getPokemon } from "$lib/registry/lib/pokemon.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
-	import PokemonImage from "$lib/registry/blocks/complex-component/components/pokemon-image.svelte";
+	import PokemonImage from "$lib/registry/components/pokemon-image.svelte";
 
 	let { name }: { name: string } = $props();
 </script>
