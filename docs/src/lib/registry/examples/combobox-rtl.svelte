@@ -2,6 +2,7 @@
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import XIcon from "@lucide/svelte/icons/x";
 	import { Combobox } from "bits-ui";
+	import { tick } from "svelte";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import { useTranslation } from "$lib/components/language-selector/index.js";
 	import { Badge } from "$lib/registry/ui/badge/index.js";
@@ -62,6 +63,7 @@
 	type Category = (typeof categories)[number];
 	let values = $state<string[]>([categories[0]]);
 	let search = $state("");
+	let inputRef = $state<HTMLInputElement | null>(null);
 	let anchor = $state<HTMLDivElement | null>(null);
 	let open = $state(false);
 	const filtered = $derived(
@@ -71,6 +73,51 @@
 				.includes(search.toLocaleLowerCase(t.language))
 		)
 	);
+	function chipButtons() {
+		return [...(anchor?.querySelectorAll<HTMLButtonElement>("[data-category-chip]") ?? [])];
+	}
+	function focusChip(index: number) {
+		const buttons = chipButtons();
+		if (index >= buttons.length || index < 0) inputRef?.focus();
+		else buttons[index]?.focus();
+	}
+	async function removeChip(index: number) {
+		values = values.filter((_, i) => i !== index);
+		await tick();
+		focusChip(Math.min(index, values.length - 1));
+	}
+	function onChipKeydown(event: KeyboardEvent, index: number) {
+		if (event.isComposing || event.shiftKey || event.altKey || event.ctrlKey || event.metaKey)
+			return;
+		const previousKey = t.dir === "rtl" ? "ArrowRight" : "ArrowLeft";
+		const nextKey = t.dir === "rtl" ? "ArrowLeft" : "ArrowRight";
+		if (event.key === previousKey || event.key === nextKey) {
+			event.preventDefault();
+			event.stopPropagation();
+			// The first chip is the inline-start boundary; the input follows the last chip.
+			focusChip(event.key === previousKey ? Math.max(0, index - 1) : index + 1);
+		} else if (event.key === "Backspace" || event.key === "Delete") {
+			event.preventDefault();
+			event.stopPropagation();
+			void removeChip(index);
+		}
+	}
+	function onInputKeydown(event: KeyboardEvent) {
+		if (event.isComposing || event.shiftKey || event.altKey || event.ctrlKey || event.metaKey)
+			return;
+		const previousKey = t.dir === "rtl" ? "ArrowRight" : "ArrowLeft";
+		if (
+			event.key === previousKey &&
+			inputRef?.selectionStart === 0 &&
+			inputRef.selectionEnd === 0 &&
+			values.length
+		) {
+			event.preventDefault();
+			event.stopPropagation();
+			open = false;
+			focusChip(values.length - 1);
+		}
+	}
 </script>
 
 <Field.Field class="mx-auto w-full max-w-xs">
@@ -91,22 +138,24 @@
 			bind:this={anchor}
 			class="flex min-h-9 flex-wrap items-center gap-1.5 rounded-md border border-input bg-background px-2.5 py-1.5 text-sm shadow-xs focus-within:ring-2 focus-within:ring-ring"
 		>
-			{#each values as value (value)}
+			{#each values as value, index (value)}
 				<Badge variant="secondary" class="gap-1 pe-0.5">
 					{t.values[value as Category]}
 					<button
 						type="button"
 						class="rounded-sm p-0.5 hover:bg-muted"
 						aria-label={t.values[value as Category]}
-						onclick={() => {
-							values = values.filter((item) => item !== value);
-						}}
+						data-category-chip={value}
+						onkeydown={(event) => onChipKeydown(event, index)}
+						onclick={() => removeChip(index)}
 					>
 						<XIcon class="size-3" />
 					</button>
 				</Badge>
 			{/each}
 			<Combobox.Input
+				bind:ref={inputRef}
+				onkeydown={onInputKeydown}
 				id="rtl-categories"
 				placeholder={t.values.placeholder}
 				class="min-w-16 flex-1 bg-transparent py-1 outline-none placeholder:text-muted-foreground"

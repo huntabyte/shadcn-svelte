@@ -70,7 +70,8 @@
 				<div class="grid gap-2">
 					<div class="flex items-center">
 						<Label for="password-rtl">{t.values.password}</Label>
-						<a href="##" class="ms-auto inline-block text-sm underline-offset-4 hover:underline">
+						<!-- svelte-ignore a11y_invalid_attribute -->
+						<a href="#" class="ms-auto inline-block text-sm underline-offset-4 hover:underline">
 							{t.values.forgotPassword}
 						</a>
 					</div>

@@ -142,7 +142,10 @@
 			<Menubar.Group>
 				<Menubar.Sub>
 					<Menubar.SubTrigger>{t.values.share}</Menubar.SubTrigger>
-					<Menubar.SubContent data-lang={t.dir === "rtl" ? t.language : undefined}>
+					<Menubar.SubContent
+						side={t.dir === "rtl" ? "left" : "right"}
+						data-lang={t.dir === "rtl" ? t.language : undefined}
+					>
 						<Menubar.Group>
 							<Menubar.Item>{t.values.emailLink}</Menubar.Item>
 							<Menubar.Item>{t.values.messages}</Menubar.Item>
@@ -177,7 +180,10 @@
 			<Menubar.Group>
 				<Menubar.Sub>
 					<Menubar.SubTrigger>{t.values.find}</Menubar.SubTrigger>
-					<Menubar.SubContent data-lang={t.dir === "rtl" ? t.language : undefined}>
+					<Menubar.SubContent
+						side={t.dir === "rtl" ? "left" : "right"}
+						data-lang={t.dir === "rtl" ? t.language : undefined}
+					>
 						<Menubar.Group>
 							<Menubar.Item>{t.values.searchTheWeb}</Menubar.Item>
 						</Menubar.Group>
@@ -209,10 +215,12 @@
 			<Menubar.Separator />
 			<Menubar.Group>
 				<Menubar.Item inset>
-					Reload <Menubar.Shortcut>⌘R</Menubar.Shortcut>
+					{t.values.reload}
+					<Menubar.Shortcut>⌘R</Menubar.Shortcut>
 				</Menubar.Item>
 				<Menubar.Item disabled inset>
-					Force Reload <Menubar.Shortcut>⇧⌘R</Menubar.Shortcut>
+					{t.values.forceReload}
+					<Menubar.Shortcut>⇧⌘R</Menubar.Shortcut>
 				</Menubar.Item>
 			</Menubar.Group>
 			<Menubar.Separator />

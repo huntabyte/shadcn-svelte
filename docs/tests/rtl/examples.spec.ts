@@ -10,7 +10,10 @@ for (const example of coverage.examples) {
 		if (example.translationMode === "static bilingual comparison") {
 			await expect(preview.locator('[dir="ltr"]')).toBeVisible();
 			await expect(preview.locator('[dir="rtl"]')).toBeVisible();
-			await preview.screenshot({ path: `test-results/rtl-screenshots/${example.name}.png` });
+			await preview.screenshot({
+				animations: "disabled",
+				path: `test-results/rtl-screenshots/${example.name}.png`,
+			});
 			expect(errors).toEqual([]);
 			return;
 		}
@@ -36,10 +39,15 @@ for (const example of coverage.examples) {
 		}
 		if (example.name === "sidebar")
 			await page.screenshot({
+				animations: "disabled",
 				path: `test-results/rtl-screenshots/${example.name}.png`,
 				fullPage: true,
 			});
-		else await preview.screenshot({ path: `test-results/rtl-screenshots/${example.name}.png` });
+		else
+			await preview.screenshot({
+				animations: "disabled",
+				path: `test-results/rtl-screenshots/${example.name}.png`,
+			});
 		expect(errors).toEqual([]);
 	});
 }

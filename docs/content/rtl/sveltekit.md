@@ -15,7 +15,7 @@ description: Create a new SvelteKit project with RTL support.
 
 Create and initialize a project using the [SvelteKit installation guide](/docs/installation/sveltekit). You can skip this step if you have already created a project.
 
-The shadcn-svelte CLI does not have a `create --rtl` flag. Instead, add `"rtl": true` to your existing `components.json` file:
+Add `"rtl": true` to your `components.json` file:
 
 ```json title="components.json" showLineNumbers {4}
 {

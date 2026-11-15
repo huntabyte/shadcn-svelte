@@ -1,6 +1,6 @@
 {
 	"upstreamCommit": "e62c9435fff729a175f38983dee73b2cb4f6a069",
-	"componentExamples": 57,
+	"componentExamples": 56,
 	"utilityExamples": 2,
 	"examples": [
 		{
@@ -119,19 +119,6 @@
 			"translationMode": "en/ar/he",
 			"previewMode": "embedded",
 			"sourceDoc": "apps/v4/content/docs/components/radix/button.mdx"
-		},
-		{
-			"name": "calendar",
-			"source": "apps/v4/examples/radix/calendar-rtl.tsx",
-			"destination": "docs/src/lib/registry/examples/calendar-rtl.svelte",
-			"componentDoc": "docs/content/components/calendar.md",
-			"exists": true,
-			"translationsMatch": true,
-			"translationDifferences": [],
-			"linked": true,
-			"translationMode": "en/ar/he",
-			"previewMode": "embedded",
-			"sourceDoc": "apps/v4/content/docs/components/radix/calendar.mdx"
 		},
 		{
 			"name": "card",
@@ -797,10 +784,17 @@
 		"Svelte snippets and reactive state replace React JSX/hooks; useDirection returns a reactive current getter.",
 		"LayerChart replaces Recharts with the same chart data, labels, grouped series and RTL ordering.",
 		"Bits Calendar and Intl replace DayPicker/date-fns, preserving locale and date-selection behavior.",
-		"Combobox chips use Bits Combobox plus Badge/removal buttons because Bits has no chips primitives; chip arrow navigation is not added.",
+		"Combobox chips use Bits Combobox plus Badge/removal buttons because Bits has no chips primitives. The example composes RTL-aware chip arrows, focus restoration and Backspace/Delete removal.",
 		"Paneforge v1 reads document.dir for resize direction; local preview direction alone cannot guarantee inverted resize deltas.",
-		"No Svelte create --rtl or migrate rtl command exists; framework and migration instructions describe supported initialization/manual changes.",
-		"Bits UI floating sides remain physical. ContextMenu.Content, ContextMenu.SubContent and DropdownMenu.SubContent adapt inline-start/inline-end reactively and preserve explicit physical sides; primitive submenu defaults (#2306) are separate. Menubar submenus still need a direction-aware physical side.",
+		"Svelte initialization uses rtl in components.json rather than create --rtl. The migrate rtl command uses the Svelte AST, previews with --dry-run, and preserves custom implementations while warning about manual behavior review.",
+		"Bits UI floating sides remain physical. ContextMenu.Content, ContextMenu.SubContent and DropdownMenu.SubContent adapt inline-start/inline-end reactively and preserve explicit physical sides; primitive submenu defaults (#2306) are separate. Menubar uses an explicit direction-aware physical side in its RTL example; native primitive submenu defaults remain separate.",
 		"Shimmer retains upstream static bilingual LTR/RTL comparison; it has no translation dictionary or language selector upstream."
+	],
+	"deferredExamples": [
+		{
+			"name": "calendar",
+			"pullRequest": "https://github.com/huntabyte/shadcn-svelte/pull/2742",
+			"reason": "Calendar localization example and RTL changelog are maintained in the stacked calendar PR."
+		}
 	]
 }

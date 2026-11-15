@@ -677,6 +677,9 @@ importers:
       memfs:
         specifier: ^4.17.2
         version: 4.17.2
+      minimatch:
+        specifier: ^10.2.4
+        version: 10.2.4
       open:
         specifier: ^11.0.0
         version: 11.0.0

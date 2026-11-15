@@ -7,6 +7,8 @@ description: Right-to-left support for shadcn-svelte components.
   import ComponentPreview from "$lib/components/component-preview.svelte";
   import LinkedCard from "$lib/components/linked-card.svelte";
   import Steps from "$lib/components/steps.svelte";
+  import Step from "$lib/components/step.svelte";
+  import PMExecute from "$lib/components/pm-execute.svelte";
   import PMAddComp from "$lib/components/pm-add-comp.svelte";
   import SvelteWhite from "$lib/components/svelte-white.svelte";
 </script>
@@ -37,10 +39,10 @@ Select your framework to get started with RTL support.
 
 ## How it works
 
-When you add components with `rtl: true` set in your `components.json`, the shadcn-svelte CLI automatically transforms classes and props to be RTL compatible:
+When you add components with `rtl: true` set in your `components.json`, the shadcn-svelte CLI automatically transforms classes to be RTL compatible:
 
 - Physical positioning classes like `left-*` and `right-*` are converted to logical equivalents like `start-*` and `end-*`.
-- Direction-aware components use `DirectionProvider` for keyboard navigation and alignment. Physical `side="left"` and `side="right"` props remain physical.
+- Direction-aware components follow the configured reading direction.
 - Text alignment and spacing classes are adjusted accordingly.
 - Supported icons are automatically flipped using `rtl:rotate-180`.
 
@@ -50,9 +52,9 @@ Use the language selector in the preview above to try Arabic, Hebrew, and Englis
 
 ## Supported Styles
 
-Automatic RTL transformation via the CLI is available when `rtl: true` is set in `components.json`, including projects using the new styles (`nova`, `vega`, etc.).
+Automatic RTL transformation via the CLI is available for the current styles (`nova`, `vega`, etc.) with `rtl: true` in `components.json`.
 
-For components already installed in your project, see the [Migration Guide](#migrating-existing-components).
+For other styles, see the [Migration Guide](#migrating-existing-components).
 
 ## Font Recommendations
 
@@ -62,9 +64,9 @@ See your framework's RTL guide under [Get Started](#get-started) for details on 
 
 ## Animations
 
-Use logical directional animation utilities where the animation should follow the text direction. For example, use `slide-in-from-end` instead of `slide-in-from-right`. The shadcn-svelte CLI preserves physical animation classes and explicit physical `side` values. `ContextMenu.Content`, `ContextMenu.SubContent`, and `DropdownMenu.SubContent` accept `inline-start` and `inline-end`, resolving them reactively to the physical sides Bits UI supports. They default to `inline-end`; explicit `left`, `right`, `top`, and `bottom` stay physical.
+Use logical directional animation classes to follow the document's text direction. For example, use `slide-in-from-end` instead of `slide-in-from-right`.
 
-Logical animations follow the document's text direction. Animations tied to physical placement, such as `data-[side=right]:slide-in-from-left`, should continue to follow the actual side of dropdowns, popovers, and tooltips.
+This ensures animations like dropdowns, popovers, and tooltips animate in the correct direction based on the document's text direction.
 
 **A note on tw-animate-css:**
 
@@ -90,17 +92,21 @@ There is a [known issue](https://github.com/Wombosvideo/tw-animate-css/issues/67
 
 ## Migrating existing components
 
-If you have existing components installed before enabling RTL, migrate them as follows. The shadcn-svelte CLI does not currently provide shadcn/ui's `migrate rtl` command, so existing local components need to be updated manually.
+If you have existing components installed before enabling RTL, you can migrate them using the CLI as follows:
 
 <Steps>
 
-### Update positioning and spacing
+<Step>Run the migrate command</Step>
 
-Set `"rtl": true` in your `components.json` for components you add in the future. For existing components, replace physical classes with logical equivalents: `left-*` with `start-*`, `right-*` with `end-*`, `ml-*` with `ms-*`, `mr-*` with `me-*`, `pl-*` with `ps-*`, `pr-*` with `pe-*`, and `text-left` / `text-right` with `text-start` / `text-end`. Update directional animations in the same way.
+<PMExecute command="shadcn-svelte@latest migrate rtl [path]" />
+
+`[path]` accepts a file, directory, or quoted glob pattern within your project. If you don't provide a path, the CLI migrates the configured `ui` directory. It sets `rtl: true` in `components.json` and updates class expressions in your existing Svelte, JavaScript, and TypeScript files.
+
+Use `--dry-run` to preview the files that would change. The CLI asks for confirmation before writing; use `--yes` for non-interactive runs. Review the diff before committing.
 
 ### Manual Migration (Optional)
 
-The following components need additional RTL configuration. Follow the RTL section for each component to manually migrate them.
+The following components may need manual adjustments beyond class migration. Follow the RTL support section for each component to review them. Custom direction logic, dynamically constructed class names, unmarked directional icons, and physical animation classes also need manual review; the CLI does not replace your component implementations.
 
 - [Calendar](/docs/components/calendar#rtl)
 - [Pagination](/docs/components/pagination#rtl)

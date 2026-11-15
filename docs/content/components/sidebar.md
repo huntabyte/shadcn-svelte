@@ -546,12 +546,14 @@ Then pass it to `Sheet.Content` in the mobile view and to the desktop sidebar co
     data-mobile="true"
 ```
 
-<Step>Add `data-side` attribute to the sidebar container.</Step>
+<Step>Forward `dir` to the sidebar container.</Step>
+
+The container already has `data-side={side}`. Keep it and forward `dir`:
 
 ```diff
   <div
     data-slot="sidebar-container"
-+   data-side={side}
+    data-side={side}
 +   {dir}
 ```
 
@@ -572,12 +574,14 @@ Use physical positioning for the `side="left"` and `side="right"` API. Replace J
 
 <Step>Update `Sidebar.Rail` positioning classes.</Step>
 
-Use physical positioning for the rail in `sidebar-rail.svelte`:
+The current `Sidebar.Rail` already uses physical positioning for the `side` prop. If your copied version uses logical positions, update them in `sidebar-rail.svelte`:
 
 ```diff
-- -translate-x-1/2 group-data-[side=left]:-end-4 group-data-[side=right]:start-0
-+ ltr:-translate-x-1/2 rtl:-translate-x-1/2 group-data-[side=left]:-right-4 group-data-[side=right]:left-0
+- group-data-[side=left]:-end-4 group-data-[side=right]:start-0
++ group-data-[side=left]:-right-4 group-data-[side=right]:left-0
 ```
+
+Keep `ltr:-translate-x-1/2 rtl:-translate-x-1/2` so the rail remains on the same physical edge in both directions.
 
 <Step>Add RTL flip to the `Sidebar.Trigger` icon.</Step>
 

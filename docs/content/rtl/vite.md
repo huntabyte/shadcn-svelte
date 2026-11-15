@@ -15,7 +15,7 @@ description: Create a new Vite project with RTL support.
 
 Create and initialize a Svelte project using the [Vite installation guide](/docs/installation/vite). You can skip this step if you have already created a project.
 
-The shadcn-svelte CLI does not have a `create --rtl` flag. Instead, add `"rtl": true` to your existing `components.json` file:
+Add `"rtl": true` to your `components.json` file:
 
 ```json title="components.json" showLineNumbers {4}
 {
