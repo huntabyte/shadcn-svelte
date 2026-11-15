@@ -53,26 +53,26 @@ The `background` color of the following component will be `var(--primary)` and t
 
 These tokens live in your CSS file under `:root` and `.dark`.
 
-| Token                                            | What it controls                                       | Used by                                                                      |
-| ------------------------------------------------ | ------------------------------------------------------ | ---------------------------------------------------------------------------- |
-| `background` / `foreground`                      | The default app background and text color.             | The page shell, page sections, and default text.                             |
-| `card` / `card-foreground`                       | Elevated surfaces and the content inside them.         | `Card`, dashboard panels, settings panels.                                   |
-| `popover` / `popover-foreground`                 | Floating surfaces and the content inside them.         | `Popover`, `DropdownMenu`, `ContextMenu`, and other overlays.                |
-| `primary` / `primary-foreground`                 | High-emphasis actions and brand surfaces.              | Default `Button`, selected states, badges, and active accents.               |
-| `secondary` / `secondary-foreground`             | Lower-emphasis filled actions and supporting surfaces. | Secondary buttons, secondary badges, and supporting UI.                      |
-| `muted` / `muted-foreground`                     | Subtle surfaces and lower-emphasis content.            | Descriptions, placeholders, empty states, helper text, and subdued surfaces. |
-| `accent` / `accent-foreground`                   | Interactive hover, focus, and active surfaces.         | Ghost buttons, menu highlight states, hovered rows, and selected items.      |
-| `destructive`                                    | Destructive actions and error emphasis.                | Destructive buttons, invalid states, and destructive menu items.             |
-| `border`                                         | Default borders and separators.                        | Cards, menus, tables, separators, and layout dividers.                       |
-| `input`                                          | Form control borders and input surface treatment.      | `Input`, `Textarea`, `Select`, and outline-style controls.                   |
-| `ring`                                           | Focus rings and outlines.                              | Buttons, inputs, checkboxes, menus, and other focusable controls.            |
-| `chart-1` ... `chart-5`                          | The default chart palette.                             | Charts and chart-driven dashboard blocks.                                    |
-| `sidebar` / `sidebar-foreground`                 | The base sidebar surface and default sidebar text.     | The `Sidebar` container and its default content.                             |
-| `sidebar-primary` / `sidebar-primary-foreground` | High-emphasis actions inside the sidebar.              | Active items, icon tiles, badges, and sidebar CTAs.                          |
-| `sidebar-accent` / `sidebar-accent-foreground`   | Hover and selected states inside the sidebar.          | Sidebar menu hover states, open items, and interactive rows.                 |
-| `sidebar-border`                                 | Sidebar-specific borders and separators.               | Sidebar headers, groups, and internal dividers.                              |
-| `sidebar-ring`                                   | Sidebar-specific focus rings.                          | Focused controls inside the sidebar.                                         |
-| `radius`                                         | The base corner radius scale.                          | Cards, inputs, buttons, popovers, and the derived `radius-*` tokens.         |
+| Token                                            | What it controls                                       |
+| ------------------------------------------------ | ------------------------------------------------------ |
+| `background` / `foreground`                      | The default app background and text color.             |
+| `card` / `card-foreground`                       | Elevated surfaces and the content inside them.         |
+| `popover` / `popover-foreground`                 | Floating surfaces and the content inside them.         |
+| `primary` / `primary-foreground`                 | High-emphasis actions and brand surfaces.              |
+| `secondary` / `secondary-foreground`             | Lower-emphasis filled actions and supporting surfaces. |
+| `muted` / `muted-foreground`                     | Subtle surfaces and lower-emphasis content.            |
+| `accent` / `accent-foreground`                   | Interactive hover, focus, and active surfaces.         |
+| `destructive`                                    | Destructive actions and error emphasis.                |
+| `border`                                         | Default borders and separators.                        |
+| `input`                                          | Form control borders and input surface treatment.      |
+| `ring`                                           | Focus rings and outlines.                              |
+| `chart-1` ... `chart-5`                          | The default chart palette.                             |
+| `sidebar` / `sidebar-foreground`                 | The base sidebar surface and default sidebar text.     |
+| `sidebar-primary` / `sidebar-primary-foreground` | High-emphasis actions inside the sidebar.              |
+| `sidebar-accent` / `sidebar-accent-foreground`   | Hover and selected states inside the sidebar.          |
+| `sidebar-border`                                 | Sidebar-specific borders and separators.               |
+| `sidebar-ring`                                   | Sidebar-specific focus rings.                          |
+| `radius`                                         | The base corner radius scale.                          |
 
 <Callout class="mt-4">
 
@@ -208,11 +208,11 @@ The following is the full default `neutral` theme scaffold. Copy it into your gl
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -242,11 +242,11 @@ The following is the full default `neutral` theme scaffold. Copy it into your gl
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
