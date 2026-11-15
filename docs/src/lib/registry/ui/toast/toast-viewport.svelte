@@ -63,9 +63,10 @@
 		if (!ref?.contains(event.relatedTarget as Node)) store.setFocused(false);
 	}
 	function keydown(event: KeyboardEvent) {
-		if (event.key === "Tab" && event.shiftKey && event.target === ref) {
-			event.preventDefault();
-			store.restoreFocus();
+		if (event.defaultPrevented) return;
+		if (event.key === "F6") event.stopPropagation();
+		if (event.key === "F6" || (event.key === "Tab" && event.shiftKey && event.target === ref)) {
+			if (store.restoreFocus()) event.preventDefault();
 		}
 	}
 	onMount(() => {
@@ -73,7 +74,13 @@
 		const win = ref!.ownerDocument.defaultView!;
 		const doc = ref!.ownerDocument;
 		const globalKey = (event: KeyboardEvent) => {
-			if (event.key !== "F6" || !store.toasts.length || event.target === ref) return;
+			if (
+				event.defaultPrevented ||
+				event.key !== "F6" ||
+				!store.toasts.length ||
+				(event.target instanceof Node && ref?.contains(event.target))
+			)
+				return;
 			event.preventDefault();
 			store.saveFocus();
 			ref?.focus({ preventScroll: true });
@@ -94,6 +101,15 @@
 			}
 		};
 		const visibility = () => store.setWindowFocused(!doc.hidden);
+		// Removing a hovered toast need not emit mouseleave. Recover when the
+		// pointer next enters another element so remaining timers can resume.
+		const mouseover = (event: MouseEvent) => {
+			if (store.hovering && !touching && !ref?.contains(event.target as Node)) {
+				leaving = true;
+				flushLeave();
+			}
+		};
+		doc.addEventListener("mouseover", mouseover);
 		win.addEventListener("keydown", globalKey);
 		win.addEventListener("blur", windowBlur, true);
 		win.addEventListener("focus", windowFocus, true);
@@ -106,6 +122,7 @@
 			win.removeEventListener("focus", windowFocus, true);
 			doc.removeEventListener("pointerdown", pointer, true);
 			doc.removeEventListener("visibilitychange", visibility);
+			doc.removeEventListener("mouseover", mouseover);
 		};
 	});
 	const attachmentKey = createAttachmentKey();

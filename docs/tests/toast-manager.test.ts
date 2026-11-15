@@ -207,4 +207,16 @@ describe("Base UI toast lifecycle", () => {
 		vi.advanceTimersByTime(10000);
 		expect(onClose).not.toHaveBeenCalled();
 	});
+	it("keeps a replacement added by onRemove using the same ID", () => {
+		const { manager, store } = setup();
+		const id = manager.add({
+			id: "reused",
+			title: "Original",
+			onRemove: () => manager.add({ id: "reused", title: "Replacement" }),
+		});
+		manager.close(id);
+		store.remove(id);
+		expect(store.toasts).toHaveLength(1);
+		expect(store.toasts[0].title).toBe("Replacement");
+	});
 });

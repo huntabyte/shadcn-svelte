@@ -294,4 +294,56 @@ describe("toast primitives DOM", () => {
 		expect(onRemove).toHaveBeenCalledOnce();
 		expect(document.querySelector("[data-slot=toast]")).toBeNull();
 	});
+	it("returns from a toast with F6 without replacing the external focus target", async () => {
+		const manager = setup(true);
+		await flush();
+		const trigger = document.getElementById("trigger")!;
+		trigger.focus();
+		manager.add({ title: "Event", timeout: 0 });
+		await flush();
+		trigger.dispatchEvent(
+			new KeyboardEvent("keydown", { key: "F6", bubbles: true, cancelable: true })
+		);
+		await flush();
+		const root = document.querySelector<HTMLElement>("[data-slot=toast]")!;
+		root.focus();
+		root.dispatchEvent(
+			new KeyboardEvent("keydown", { key: "F6", bubbles: true, cancelable: true })
+		);
+		await flush();
+		expect(document.activeElement).toBe(trigger);
+	});
+	it("resumes after a hovered toast disappears without a viewport mouseleave", async () => {
+		const manager = setup();
+		await flush();
+		manager.add({ title: "Behind", timeout: 0 });
+		manager.add({ title: "Front", timeout: 0 });
+		await flush();
+		const viewport = document.querySelector<HTMLElement>("[data-slot=toast-viewport]")!;
+		viewport.dispatchEvent(new MouseEvent("mouseenter"));
+		await flush();
+		expect(viewport.hasAttribute("data-expanded")).toBe(true);
+		document.body.dispatchEvent(new MouseEvent("mouseover", { bubbles: true }));
+		await flush();
+		expect(viewport.hasAttribute("data-expanded")).toBe(false);
+	});
+	it("honors canceled F6 and leaves native F6 available without a return target", async () => {
+		const manager = setup(true);
+		await flush();
+		manager.add({ title: "Event", timeout: 0 });
+		await flush();
+		const trigger = document.getElementById("trigger")!;
+		trigger.focus();
+		const canceled = new KeyboardEvent("keydown", { key: "F6", bubbles: true, cancelable: true });
+		canceled.preventDefault();
+		trigger.dispatchEvent(canceled);
+		await flush();
+		expect(document.activeElement).toBe(trigger);
+		const root = document.querySelector<HTMLElement>("[data-slot=toast]")!;
+		root.focus();
+		const native = new KeyboardEvent("keydown", { key: "F6", bubbles: true, cancelable: true });
+		root.dispatchEvent(native);
+		await flush();
+		expect(native.defaultPrevented).toBe(false);
+	});
 });

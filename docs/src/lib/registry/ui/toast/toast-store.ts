@@ -23,6 +23,7 @@
  * SOFTWARE.
  *
  */
+import { tick } from "svelte";
 import {
 	createToastManager,
 	type ToastItem,
@@ -236,21 +237,28 @@ export function createToastStore() {
 								.slice(0, currentIndex)
 								.reverse()
 								.find((item) => item.transitionStatus !== "ending"));
-				if (next) next.ref?.focus({ preventScroll: true });
-				else store.restoreFocus();
+				if (next) {
+					// The next toast may still be inert until Svelte applies its new limit.
+					void tick().then(() => {
+						const current = toasts.find((item) => item.id === next.id);
+						if (current && !current.limited && current.transitionStatus !== "ending")
+							current.ref?.focus({ preventScroll: true });
+					});
+				} else store.restoreFocus();
 			}
 		},
 		remove(id: string, expected?: ToastItem) {
 			const item = toasts.find((item) => item.id === id);
 			if (!item || (expected && item !== expected)) return;
-			item.onRemove?.();
-			toasts = toasts.filter((item) => item.id !== id);
+			toasts = toasts.filter((toast) => toast !== item);
 			applyLimit();
 			if (!toasts.length) {
 				hovering = false;
 				focused = false;
 			}
 			publish();
+			// Call after removal: callbacks may synchronously reuse this ID.
+			item.onRemove?.();
 		},
 		promise<T>(task: Promise<T>, options: ToastPromiseOptions<T>): Promise<T> {
 			const resolve = <V>(
@@ -297,6 +305,7 @@ export function createToastStore() {
 		},
 		restoreFocus() {
 			previousFocus?.focus({ preventScroll: true });
+			return previousFocus !== null && viewport?.ownerDocument.activeElement === previousFocus;
 		},
 		dispose() {
 			for (const id of timers.keys()) clearTimer(id);
