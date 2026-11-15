@@ -96,6 +96,16 @@ type AstNode = {
 	expression?: AstNode;
 	callee?: AstNode;
 	arguments?: AstNode[];
+	properties?: AstNode[];
+	elements?: (AstNode | null)[];
+	quasis?: AstNode[];
+	expressions?: AstNode[];
+	consequent?: AstNode;
+	alternate?: AstNode;
+	left?: AstNode;
+	right?: AstNode;
+	operator?: string;
+	computed?: boolean;
 };
 
 /** Rewrites class values, cn/tv/cva calls and class properties, never prose or imports. */
@@ -105,34 +115,100 @@ export function transformDirection(content: string, filePath: string): string {
 		: Parser.extend(tsPlugin()).parse(content, { ecmaVersion: "latest", sourceType: "module" });
 	const src = new MagicString(content);
 	const edited = new Set<number>();
-	function rewrite(root: object) {
-		walk(root as Node, {
-			enter(node) {
-				const n = node as AstNode;
-				if (edited.has(n.start) || n.start === n.end) return;
-				if (n.type === "Text" && typeof (n as unknown as { data: string }).data === "string") {
-					const text = (n as unknown as { data: string }).data;
-					src.overwrite(
-						n.start,
-						n.end,
-						(text.match(/^\s*/)?.[0] ?? "") +
-							applyRtlMapping(text) +
-							(text.match(/\s*$/)?.[0] ?? "")
-					);
-					edited.add(n.start);
-				} else if (n.type === "Literal" && typeof n.value === "string") {
-					src.overwrite(n.start, n.end, JSON.stringify(applyRtlMapping(n.value)));
-					edited.add(n.start);
-				} else if (n.type === "TemplateElement") {
-					// Only static class text; leave embedded expressions intact.
-					const text = content.slice(n.start, n.end);
-					const leading = text.match(/^\s*/)?.[0] ?? "";
-					const trailing = text.match(/\s*$/)?.[0] ?? "";
-					src.overwrite(n.start, n.end, leading + applyRtlMapping(text) + trailing);
-					edited.add(n.start);
+	function propertyName(node: AstNode) {
+		return node.key?.name ?? node.key?.value;
+	}
+	function variantConfig(node: AstNode, inheritedSlots = false) {
+		if (node.type !== "ObjectExpression") return;
+		const hasSlots =
+			inheritedSlots || node.properties?.some((property) => propertyName(property) === "slots");
+		function classValue(value: AstNode) {
+			if (hasSlots && value.type === "ObjectExpression") {
+				for (const slot of value.properties ?? []) {
+					if (slot.type === "Property" && !slot.computed) rewrite(slot.value as AstNode);
 				}
-			},
-		});
+			} else rewrite(value);
+		}
+		for (const property of node.properties ?? []) {
+			if (property.type !== "Property" || property.computed) continue;
+			const value = property.value as AstNode;
+			const name = propertyName(property);
+			if (["base", "class", "className"].includes(String(name))) classValue(value);
+			else if (name === "slots" && value.type === "ObjectExpression") {
+				for (const slot of value.properties ?? []) {
+					if (slot.type === "Property") rewrite(slot.value as AstNode);
+				}
+			} else if (name === "variants" && value.type === "ObjectExpression") {
+				for (const variant of value.properties ?? []) {
+					const choices = variant.value as AstNode | undefined;
+					if (variant.type !== "Property" || choices?.type !== "ObjectExpression") continue;
+					for (const choice of choices.properties ?? []) {
+						if (choice.type === "Property" && !choice.computed) classValue(choice.value as AstNode);
+					}
+				}
+			} else if (name === "compoundVariants" || name === "compoundSlots") {
+				for (const entry of value.elements ?? []) if (entry) variantConfig(entry, hasSlots);
+			}
+		}
+	}
+	// Follow only expressions whose values are classes. Tests, lookup keys and arbitrary
+	// function arguments are user logic, even when nested inside a class attribute.
+	function rewrite(n: AstNode) {
+		if (edited.has(n.start) || n.start === n.end) return;
+		let before: string | undefined;
+		let after: string | undefined;
+		if (n.type === "Text" || n.type === "TemplateElement") {
+			before = content.slice(n.start, n.end);
+			if (!before.trim()) return;
+			after =
+				(before.match(/^\s*/)?.[0] ?? "") +
+				applyRtlMapping(before) +
+				(before.match(/\s*$/)?.[0] ?? "");
+		} else if (n.type === "Literal" && typeof n.value === "string") {
+			const mapped = applyRtlMapping(n.value);
+			if (mapped !== n.value) {
+				before = content.slice(n.start, n.end);
+				after = JSON.stringify(mapped);
+			}
+		} else if (n.type === "TemplateLiteral") {
+			n.quasis?.forEach(rewrite);
+			n.expressions?.forEach(rewrite);
+		} else if (n.type === "ConditionalExpression") {
+			if (n.consequent) rewrite(n.consequent);
+			if (n.alternate) rewrite(n.alternate);
+		} else if (n.type === "LogicalExpression") {
+			if (n.operator !== "&&" && n.left) rewrite(n.left);
+			if (n.right) rewrite(n.right);
+		} else if (n.type === "ArrayExpression") {
+			for (const element of n.elements ?? []) if (element) rewrite(element);
+		} else if (n.type === "ObjectExpression") {
+			for (const property of n.properties ?? []) {
+				if (property.type === "Property" && !property.computed && property.key)
+					rewrite(property.key);
+			}
+		} else if (n.type === "CallExpression") {
+			if (n.callee?.name === "cn") n.arguments?.forEach(rewrite);
+			else if (n.callee?.name === "tv" || n.callee?.name === "cva") {
+				for (const argument of n.arguments ?? []) {
+					if (argument.type === "ObjectExpression") variantConfig(argument);
+					else rewrite(argument);
+				}
+			}
+		} else if (
+			n.expression &&
+			[
+				"ExpressionTag",
+				"TSAsExpression",
+				"TSSatisfiesExpression",
+				"TSNonNullExpression",
+				"ParenthesizedExpression",
+			].includes(n.type)
+		)
+			rewrite(n.expression);
+		if (before !== undefined && after !== undefined && before !== after) {
+			src.overwrite(n.start, n.end, after);
+			edited.add(n.start);
+		}
 	}
 	walk(ast as unknown as Node, {
 		enter(node) {
@@ -140,20 +216,23 @@ export function transformDirection(content: string, filePath: string): string {
 			if (n.type === "Attribute" && n.name === "class") {
 				// Svelte class arrays, cn calls, ternaries, and static chunks.
 				const values = n.value;
-				if (Array.isArray(values)) values.forEach(rewrite);
-				else if (values && typeof values === "object") rewrite(values as Node);
+				if (Array.isArray(values)) values.forEach((value) => rewrite(value as AstNode));
+				else if (values && typeof values === "object") rewrite(values as AstNode);
+				this.skip();
 			} else if (
 				n.type === "Property" &&
 				(n.key?.name === "class" || n.key?.value === "class") &&
 				n.value &&
 				typeof n.value === "object"
 			) {
-				rewrite(n.value);
+				rewrite(n.value as AstNode);
+				this.skip();
 			} else if (
 				n.type === "CallExpression" &&
 				["cn", "tv", "cva"].includes(n.callee?.name ?? "")
 			) {
-				n.arguments?.forEach(rewrite);
+				rewrite(n);
+				this.skip();
 			}
 		},
 	});
