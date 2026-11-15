@@ -43,22 +43,22 @@
 				{
 					"path": "src/lib/registry/blocks/complex-component/+page.svelte",
 					"type": "registry:page",
-					"target": "src/routes/pokemon/+page.svelte"
+					"target": "pokemon/+page.svelte"
 				},
 				{
-					"path": "src/lib/registry/blocks/complex-component/components/pokemon-card.svelte",
+					"path": "src/lib/registry/components/pokemon-card.svelte",
 					"type": "registry:component"
 				},
 				{
-					"path": "src/lib/registry/blocks/complex-component/components/pokemon-image.svelte",
+					"path": "src/lib/registry/components/pokemon-image.svelte",
 					"type": "registry:component"
 				},
 				{
-					"path": "src/lib/registry/blocks/complex-component/lib/pokemon.ts",
+					"path": "src/lib/registry/lib/pokemon.ts",
 					"type": "registry:lib"
 				},
 				{
-					"path": "src/lib/registry/blocks/complex-component/hooks/use-pokemon.svelte.ts",
+					"path": "src/lib/registry/hooks/use-pokemon.svelte.ts",
 					"type": "registry:hook"
 				}
 			]

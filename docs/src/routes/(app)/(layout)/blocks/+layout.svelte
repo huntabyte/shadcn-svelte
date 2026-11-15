@@ -13,7 +13,7 @@
 
 	const title = "Building Blocks for the Web";
 	const description =
-		"Clean, modern building blocks. Works with all Svelte projects. Copy and paste into your apps. Open Source. Free forever.";
+		"Clean, modern building blocks. Copy and paste into your apps. Works with all Svelte frameworks. Open Source. Free forever.";
 </script>
 
 <Metadata
@@ -28,12 +28,12 @@
 	<Announcement />
 	<PageHeaderHeading>{title}</PageHeaderHeading>
 	<PageHeaderDescription>{description}</PageHeaderDescription>
-	<PageActions>
-		<Button href="#blocks" size="sm">Browse Blocks</Button>
-		<!-- <Button href="/docs/blocks" variant="ghost" size="sm">Add a block</Button> -->
+	<PageActions class="style-luma">
+		<Button href="#blocks" class="h-[35px]">Browse Blocks</Button>
+		<Button href="/docs/components" variant="secondary">View Components</Button>
 	</PageActions>
 </PageHeader>
-<PageNav>
+<PageNav id="blocks">
 	<BlocksNav />
 	<Button
 		size="sm"
