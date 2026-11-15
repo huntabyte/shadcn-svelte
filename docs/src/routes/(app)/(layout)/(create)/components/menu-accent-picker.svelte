@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as Picker from "$lib/components/picker/index.js";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { MENU_ACCENTS, type MenuAccentValue } from "$lib/registry/config.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
-	import * as Picker from "./picker/index.js";
 	import LockButton from "./lock-button.svelte";
 
 	type Props = {
@@ -29,7 +29,7 @@
 				</div>
 			</div>
 			<div
-				class="pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base text-foreground select-none"
+				class="pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base text-foreground select-none md:right-2.5"
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -82,5 +82,5 @@
 			</Picker.RadioGroup>
 		</Picker.Content>
 	</Picker.Root>
-	<LockButton prop="menuAccent" class="absolute top-1/2 right-10 -translate-y-1/2" />
+	<LockButton prop="menuAccent" class="absolute top-1/2 right-8 -translate-y-1/2" />
 </div>

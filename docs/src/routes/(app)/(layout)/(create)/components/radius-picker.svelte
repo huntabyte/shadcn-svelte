@@ -1,8 +1,8 @@
 <script lang="ts">
+	import * as Picker from "$lib/components/picker/index.js";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { RADII, type RadiusValue } from "$lib/registry/config.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
-	import * as Picker from "./picker/index.js";
 	import LockButton from "./lock-button.svelte";
 
 	type Props = {
@@ -36,7 +36,7 @@
 				</div>
 			</div>
 			<div
-				class="pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base text-foreground select-none"
+				class="pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base text-foreground select-none md:right-2.5"
 			>
 				<div
 					class="size-4 border-t-2 border-r-2 border-current transition-all"
@@ -85,5 +85,5 @@
 			</Picker.RadioGroup>
 		</Picker.Content>
 	</Picker.Root>
-	<LockButton prop="radius" class="absolute top-1/2 right-10 -translate-y-1/2" />
+	<LockButton prop="radius" class="absolute top-1/2 right-8 -translate-y-1/2" />
 </div>

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { mode, setMode } from "mode-watcher";
+	import * as Picker from "$lib/components/picker/index.js";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { BASE_THEMES, type BaseColorName } from "$lib/registry/config.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
-	import * as Picker from "./picker/index.js";
 	import LockButton from "./lock-button.svelte";
 
 	type Props = {
@@ -33,7 +33,7 @@
 			<div
 				style="--color: 
 						{currentBaseColor?.cssVars?.[mode.current as 'light' | 'dark']?.['muted-foreground']}"
-				class="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 rounded-full bg-(--color) select-none"
+				class="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 rounded-full bg-(--color) select-none md:right-2.5"
 			></div>
 		</Picker.Trigger>
 		<Picker.Content
@@ -90,5 +90,5 @@
 			</Picker.RadioGroup>
 		</Picker.Content>
 	</Picker.Root>
-	<LockButton prop="baseColor" class="absolute top-1/2 right-10 -translate-y-1/2" />
+	<LockButton prop="baseColor" class="absolute top-1/2 right-8 -translate-y-1/2" />
 </div>

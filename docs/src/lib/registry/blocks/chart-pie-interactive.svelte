@@ -4,7 +4,7 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
-	import ChartStyle from "../ui/chart/chart-style.svelte";
+	import ChartStyle from "$lib/registry/ui/chart/chart-style.svelte";
 
 	const desktopData = [
 		{ month: "january", desktop: 186, color: "var(--color-january)" },

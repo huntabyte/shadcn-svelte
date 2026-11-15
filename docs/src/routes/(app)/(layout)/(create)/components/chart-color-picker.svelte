@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { mode } from "mode-watcher";
 	import { PRESET_CHART_COLORS } from "shadcn-svelte/preset";
+	import * as Picker from "$lib/components/picker/index.js";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import {
 		BASE_THEMES,
@@ -9,7 +10,6 @@
 		type Theme,
 	} from "$lib/registry/config.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
-	import * as Picker from "./picker/index.js";
 	import LockButton from "./lock-button.svelte";
 
 	type ChartColorName = (typeof PRESET_CHART_COLORS)[number];
@@ -93,5 +93,5 @@
 			</Picker.RadioGroup>
 		</Picker.Content>
 	</Picker.Root>
-	<LockButton prop="chartColor" class="absolute top-1/2 right-10 -translate-y-1/2" />
+	<LockButton prop="chartColor" class="absolute top-1/2 right-8 -translate-y-1/2" />
 </div>

@@ -4,26 +4,23 @@ import * as project from "../../src/utils/project.js";
 import { preflightInit } from "../../src/commands/init/preflight.js";
 import { SITE_BASE_URL, TW3_SITE_BASE_URL } from "../../src/constants.js";
 import { highlight } from "../../src/utils/colors.js";
-import { getDependencyPackageInfo } from "../../src/utils/get-package-info.js";
 
 vi.mock("../../src/utils/project.js");
-vi.mock("../../src/utils/get-package-info.js");
 vi.mock("../../src/utils/colors");
+
+function mockVersions(versions: Record<string, string>) {
+	vi.mocked(project.getPackageVersion).mockImplementation((_cwd, name) => versions[name]);
+}
 
 describe("preflightInit", () => {
 	beforeEach(() => {
 		vi.clearAllMocks();
-
-		vi.mocked(getDependencyPackageInfo).mockReturnValue(undefined);
 	});
 
 	it("should throw error for Tailwind v3 + Svelte v5", () => {
-		vi.mocked(project.getPackageInfo).mockReturnValue({
-			dependencies: {
-				tailwindcss: "3.0.0",
-				svelte: "5.0.0",
-			},
-			devDependencies: {},
+		mockVersions({
+			tailwindcss: "3.0.0",
+			svelte: "5.0.0",
 		});
 
 		expect(() => preflightInit("/test", { skipPreflight: false })).toThrow(
@@ -40,12 +37,9 @@ describe("preflightInit", () => {
 	});
 
 	it("should throw error for Tailwind v3 + Svelte v4", () => {
-		vi.mocked(project.getPackageInfo).mockReturnValue({
-			dependencies: {
-				tailwindcss: "3.0.0",
-				svelte: "4.0.0",
-			},
-			devDependencies: {},
+		mockVersions({
+			tailwindcss: "3.0.0",
+			svelte: "4.0.0",
 		});
 
 		expect(() => preflightInit("/test", { skipPreflight: false })).toThrow(
@@ -57,12 +51,9 @@ describe("preflightInit", () => {
 	});
 
 	it("should throw error for Tailwind v4 + Svelte v4", () => {
-		vi.mocked(project.getPackageInfo).mockReturnValue({
-			dependencies: {
-				tailwindcss: "4.0.0",
-				svelte: "4.0.0",
-			},
-			devDependencies: {},
+		mockVersions({
+			tailwindcss: "4.0.0",
+			svelte: "4.0.0",
 		});
 
 		expect(() => preflightInit("/test", { skipPreflight: false })).toThrow(
@@ -71,35 +62,16 @@ describe("preflightInit", () => {
 	});
 
 	it("should pass for Tailwind v4 + Svelte v5", () => {
-		vi.mocked(project.getPackageInfo).mockReturnValue({
-			dependencies: {
-				tailwindcss: "4.0.0",
-				svelte: "5.0.0",
-			},
-			devDependencies: {},
-		});
-
-		expect(() => preflightInit("/test", { skipPreflight: false })).not.toThrow();
-	});
-
-	it("should check both dependencies and devDependencies", () => {
-		vi.mocked(project.getPackageInfo).mockReturnValue({
-			dependencies: {
-				tailwindcss: "4.0.0",
-			},
-			devDependencies: {
-				svelte: "5.0.0",
-			},
+		mockVersions({
+			tailwindcss: "4.0.0",
+			svelte: "5.0.0",
 		});
 
 		expect(() => preflightInit("/test", { skipPreflight: false })).not.toThrow();
 	});
 
 	it("should handle missing dependencies", () => {
-		vi.mocked(project.getPackageInfo).mockReturnValue({
-			dependencies: {},
-			devDependencies: {},
-		});
+		mockVersions({});
 
 		expect(() => preflightInit("/test", { skipPreflight: false })).toThrow(
 			`This CLI version requires Tailwind CSS v4 and Svelte v5 to initialize a project.\n`
@@ -107,10 +79,7 @@ describe("preflightInit", () => {
 	});
 
 	it("should continue with skip-preflight flag", () => {
-		vi.mocked(project.getPackageInfo).mockReturnValue({
-			dependencies: {},
-			devDependencies: {},
-		});
+		mockVersions({});
 
 		expect(() => preflightInit("/test", { skipPreflight: true })).not.toThrow();
 	});

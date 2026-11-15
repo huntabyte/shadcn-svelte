@@ -105,7 +105,7 @@ export default defineConfig({
 		{
 			files: ["*.yaml", "*.yml"],
 			options: {
-				tabWidth: 4,
+				tabWidth: 2,
 				useTabs: false,
 			},
 		},
