@@ -1,7 +1,15 @@
 <script lang="ts">
-	let { class: className }: { class?: string } = $props();
+	import SquareIcon from "@lucide/svelte/icons/square";
+	import LucideIcon from "$lib/components/icon-placeholder/lucide-icon.svelte";
+	import type { LucideIconName } from "$lib/registry/icons/__lucide__/index.js";
+	import type { SVGAttributes } from "svelte/elements";
+	let {
+		lucide,
+		class: className,
+		...restProps
+	}: SVGAttributes<SVGSVGElement> & { lucide: LucideIconName } = $props();
 </script>
 
-<svg class={className} width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"
-	><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" /></svg
->
+<LucideIcon icon={lucide} class={className} {...restProps}>
+	{#snippet placeholder()}<SquareIcon class={className} />{/snippet}
+</LucideIcon>

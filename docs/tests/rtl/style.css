@@ -1,23 +1,7 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn-svelte/tailwind.css";
+@import "../../src/app.css";
 @source "../../src/lib/registry/ui";
-@theme inline {
-	--color-background: white;
-	--color-foreground: black;
-	--color-muted: #eee;
-	--color-muted-foreground: #666;
-	--color-primary: #111;
-	--color-primary-foreground: white;
-	--color-border: #ccc;
-	--color-input: #ccc;
-	--color-popover: white;
-	--color-popover-foreground: black;
-	--color-accent: #eee;
-	--color-accent-foreground: black;
-	--radius-lg: 0.5rem;
-}
+@source "../../src/lib/registry/examples";
 body {
 	padding: 48px;
-	font-family: sans-serif;
+	font-family: var(--font-sans);
 }

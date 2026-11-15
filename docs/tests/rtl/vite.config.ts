@@ -18,6 +18,8 @@ const styles = parseStyleCss(
 );
 export default defineConfig({
 	root,
+	build: { outDir: path.resolve(root, "../../.generated/rtl-test-build"), emptyOutDir: true },
+	optimizeDeps: { exclude: ["@tanstack/svelte-table"] },
 	resolve: { alias: { $lib: lib }, dedupe: ["svelte"] },
 	plugins: [
 		{

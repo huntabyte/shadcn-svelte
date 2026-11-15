@@ -135,3 +135,13 @@ Use the `AlertDialog.Action` component to add a destructive action button to the
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="alert-dialog-rtl" direction="rtl" previewClassName="h-56">
+
+<div></div>
+
+</ComponentPreview>

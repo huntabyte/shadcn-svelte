@@ -7,6 +7,8 @@ links:
 ---
 
 <script>
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import ExternalLinkIcon from "@lucide/svelte/icons/external-link";
 	import ComponentPreview from '$lib/components/component-preview.svelte';
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
 	import Steps from "$lib/components/steps.svelte";
@@ -501,3 +503,99 @@ Here are some tips for styling the sidebar based on different states.
   />
 </Sidebar.MenuItem>
 ```
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<Button href="/view/sidebar-rtl" target="_blank" size="sm" class="mt-6">
+  View RTL Sidebar <ExternalLinkIcon />
+</Button>
+
+## Changelog
+
+### RTL Support
+
+If you're upgrading from a previous version of the `Sidebar` component, you'll need to apply the following updates to add RTL support:
+
+<Steps>
+
+<Step>Add `dir` prop to the Sidebar component.</Step>
+
+Add `dir` to the destructured props in `sidebar.svelte`:
+
+```diff
+  let {
+    side = "left",
+    variant = "sidebar",
+    collapsible = "offcanvas",
+    class: className,
+    children,
++   dir,
+    ...restProps
+  } = $props();
+```
+
+Then pass it to `Sheet.Content` in the mobile view and to the desktop sidebar container:
+
+```diff
+  <Sheet.Content
++   {dir}
+    data-sidebar="sidebar"
+    data-slot="sidebar"
+    data-mobile="true"
+```
+
+<Step>Add `data-side` attribute to the sidebar container.</Step>
+
+```diff
+  <div
+    data-slot="sidebar-container"
++   data-side={side}
++   {dir}
+```
+
+<Step>Update sidebar container positioning classes.</Step>
+
+Use physical positioning for the `side="left"` and `side="right"` API. Replace JavaScript ternaries or logical positioning with CSS data attribute selectors:
+
+```diff
+- data-[side=left]:start-0
+- data-[side=right]:end-0
+- data-[side=left]:group-data-[collapsible=offcanvas]:start-[calc(var(--sidebar-width)*-1)]
+- data-[side=right]:group-data-[collapsible=offcanvas]:end-[calc(var(--sidebar-width)*-1)]
++ data-[side=left]:left-0
++ data-[side=right]:right-0
++ data-[side=left]:group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]
++ data-[side=right]:group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]
+```
+
+<Step>Update `Sidebar.Rail` positioning classes.</Step>
+
+Use physical positioning for the rail in `sidebar-rail.svelte`:
+
+```diff
+- -translate-x-1/2 group-data-[side=left]:-end-4 group-data-[side=right]:start-0
++ ltr:-translate-x-1/2 rtl:-translate-x-1/2 group-data-[side=left]:-right-4 group-data-[side=right]:left-0
+```
+
+<Step>Add RTL flip to the `Sidebar.Trigger` icon.</Step>
+
+Add `class="rtl:rotate-180"` to the icon in `sidebar-trigger.svelte` to flip it in RTL mode:
+
+```diff
+- <PanelLeftIcon />
++ <PanelLeftIcon class="rtl:rotate-180" />
+```
+
+</Steps>
+
+After applying these changes, you can use the `dir` prop to set the direction:
+
+```svelte
+<Sidebar.Root dir="rtl" side="right">
+  <!-- ... -->
+</Sidebar.Root>
+```
+
+The sidebar will correctly position itself and handle interactions in both LTR and RTL layouts.

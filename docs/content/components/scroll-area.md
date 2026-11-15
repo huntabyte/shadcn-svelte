@@ -84,3 +84,13 @@ Use `orientation="horizontal"` for horizontal scrolling.
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="scroll-area-rtl" direction="rtl" previewClassName="h-auto">
+
+<div></div>
+
+</ComponentPreview>

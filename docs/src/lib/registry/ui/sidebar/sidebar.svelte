@@ -12,6 +12,7 @@
 		collapsible = "offcanvas",
 		class: className,
 		children,
+		dir,
 		...restProps
 	}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {
 		side?: "left" | "right";
@@ -24,6 +25,7 @@
 
 {#if collapsible === "none"}
 	<div
+		{dir}
 		class={cn(
 			"flex h-full w-(--sidebar-width) flex-col bg-sidebar text-sidebar-foreground",
 			className
@@ -36,6 +38,7 @@
 {:else if sidebar.isMobile}
 	<Sheet.Root bind:open={() => sidebar.openMobile, (v) => sidebar.setOpenMobile(v)} {...restProps}>
 		<Sheet.Content
+			{dir}
 			bind:ref
 			data-sidebar="sidebar"
 			data-slot="sidebar"
@@ -60,6 +63,7 @@
 	<div
 		bind:this={ref}
 		class="group peer hidden text-sidebar-foreground md:block"
+		{dir}
 		data-state={sidebar.state}
 		data-collapsible={sidebar.state === "collapsed" ? collapsible : ""}
 		data-variant={variant}
@@ -78,15 +82,17 @@
 					: "group-data-[collapsible=icon]:w-(--sidebar-width-icon)"
 			)}
 		></div>
+		<!-- The side prop names physical edges in both directions, matching the mobile sheet. -->
 		<div
 			data-slot="sidebar-container"
+			{dir}
 			data-side={side}
 			class={cn(
-				"fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear data-[side=left]:start-0 data-[side=left]:group-data-[collapsible=offcanvas]:start-[calc(var(--sidebar-width)*-1)] data-[side=right]:end-0 data-[side=right]:group-data-[collapsible=offcanvas]:end-[calc(var(--sidebar-width)*-1)] md:flex",
+				"fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear data-[side=left]:left-0 data-[side=left]:group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)] data-[side=right]:right-0 data-[side=right]:group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)] md:flex",
 				// Adjust the padding for floating and inset variants.
 				variant === "floating" || variant === "inset"
 					? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
-					: "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-e group-data-[side=right]:border-s",
+					: "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r group-data-[side=right]:border-l",
 				className
 			)}
 			{...restProps}

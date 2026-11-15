@@ -146,7 +146,8 @@ function flattenedRegistry(): Plugin {
 			if (!isUi && !requested && !isLocalHelper) return resolved;
 			const rtl =
 				splitId(importer).params.get("rtl") === "true" ||
-				path.basename(importerFile).startsWith("direction-");
+				path.basename(importerFile).startsWith("direction-") ||
+				path.basename(importerFile).endsWith("-rtl.svelte");
 			return { ...resolved, id: withQuery(resolved.id, style, rtl) };
 		},
 		load(id) {
@@ -176,6 +177,7 @@ function flattenedRegistry(): Plugin {
 }
 
 export default defineConfig({
+	optimizeDeps: { exclude: ["@tanstack/svelte-table"] },
 	resolve: {
 		// Use the browser implementation everywhere so SSR/Workers bundles avoid the Node
 		// `canvas` server build (main → lib/server) and so `qrcode` can be inlined into

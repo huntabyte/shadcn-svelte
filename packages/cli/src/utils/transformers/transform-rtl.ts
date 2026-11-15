@@ -71,7 +71,10 @@ export function applyRtlMapping(input: string): string {
 			if (value === "cursor-e-resize") return [token, rtl("cursor-w-resize")];
 			for (const [physical, logical] of mappings) {
 				// Physical sheet/floating sides and their animations remain physical.
-				if (/data-\[side=(left|right)\]/.test(variant) && /^-?(left|right)-$/.test(physical))
+				if (
+					/data-\[side=(left|right)\]/.test(variant) &&
+					/^(?:-?(?:left|right)-|border-[lr]-?)$/.test(physical)
+				)
 					continue;
 				if (physical.endsWith("-") ? value.startsWith(physical) : value === physical) {
 					return [`${variant}${logical}${value.slice(physical.length)}${important}`];

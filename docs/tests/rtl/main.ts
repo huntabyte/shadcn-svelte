@@ -1,4 +1,7 @@
 import { mount } from "svelte";
 import App from "./fixtures/app.svelte";
+import Gallery from "./fixtures/gallery.svelte";
 import "./style.css";
-mount(App, { target: document.getElementById("app")! });
+mount(new URLSearchParams(window.location.search).has("example") ? Gallery : App, {
+	target: document.getElementById("app")!,
+});

@@ -95,3 +95,13 @@ Use the `withHandle` prop on `Resizable.Handle` to show a visible handle.
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="resizable-rtl" direction="rtl">
+
+<div></div>
+
+</ComponentPreview>

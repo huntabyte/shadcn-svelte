@@ -8,6 +8,13 @@ import {
 import type { ResolvedConfig } from "../../src/utils/config/index.js";
 
 describe("RTL classes", () => {
+	it("keeps physical sidebar positions and borders under explicit side variants", () => {
+		expect(
+			applyRtlMapping(
+				"data-[side=left]:left-0 group-data-[side=right]:border-l data-[side=left]:border-r-2"
+			)
+		).toBe("data-[side=left]:left-0 group-data-[side=right]:border-l data-[side=left]:border-r-2");
+	});
 	it("maps spacing, corners, alignment and variants without changing physical sides", () => {
 		expect(
 			applyRtlMapping(

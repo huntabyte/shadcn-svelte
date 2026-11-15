@@ -98,6 +98,16 @@ Horizontal separators between list items.
 
 </ComponentPreview>
 
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="separator-rtl" direction="rtl">
+
+<div></div>
+
+</ComponentPreview>
+
 ## API Reference
 
 See the [Bits UI Separator](https://bits-ui.com/docs/components/separator#api-reference) documentation.
