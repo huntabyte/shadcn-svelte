@@ -11,6 +11,7 @@ export const entries: EntryGenerator = () => {
 
 	for (const path of Object.keys(modules)) {
 		const slug = path.replace("/content/", "").replace(".md", "").replace("/index", "");
+		if (slug === "components/typography") continue;
 		entries.push({ slug });
 	}
 
