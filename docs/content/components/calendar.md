@@ -103,7 +103,9 @@ Calendar selections can stay as `CalendarDate` values. When you need a JavaScrip
 
   let value = $state<CalendarDate>();
   let timeZone = $state<string>();
-  const selectedDate = $derived(value && timeZone ? value.toDate(timeZone) : undefined);
+  const selectedDate = $derived(
+    value && timeZone ? value.toDate(timeZone) : undefined
+  );
 
   onMount(() => {
     timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
