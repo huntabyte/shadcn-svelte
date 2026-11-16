@@ -3,7 +3,7 @@ title: Scroll Area
 description: Augments native scroll functionality for custom, cross-browser styling.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/scroll-area
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/scroll-area
   doc: https://bits-ui.com/docs/components/scroll-area
   api: https://bits-ui.com/docs/components/scroll-area#api-reference
 ---
@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -75,6 +81,20 @@ Copy and paste the following code into your project.
 </ScrollArea>
 ```
 
+## Composition
+
+`ScrollArea` renders the viewport, scrollbars, and corner internally. Pass your content as children and use `orientation="horizontal"` or `orientation="both"` to choose the scrollbars. You do not need to add a separate scrollbar as a child.
+
+```text
+ScrollArea
+├── Viewport (rendered internally)
+│   └── Your content
+├── Scrollbar (rendered internally for each enabled axis)
+└── Corner (rendered internally)
+```
+
+Use `scrollbarXClasses` and `scrollbarYClasses` to style the generated scrollbars. `bind:viewportRef` gives access to the scrolling element.
+
 ## Horizontal
 
 Use `orientation="horizontal"` for horizontal scrolling.
@@ -84,3 +104,7 @@ Use `orientation="horizontal"` for horizontal scrolling.
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+See the [Bits UI Scroll Area](https://bits-ui.com/docs/components/scroll-area#api-reference) documentation for more information.

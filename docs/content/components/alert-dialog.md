@@ -3,7 +3,7 @@ title: Alert Dialog
 description: A modal dialog that interrupts the user with important content and expects a response.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/alert-dialog
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/alert-dialog
   doc: https://bits-ui.com/docs/components/alert-dialog
   api: https://bits-ui.com/docs/components/alert-dialog#api-reference
 ---
@@ -52,6 +52,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -84,6 +90,23 @@ Copy and paste the following code into your project.
     </AlertDialog.Footer>
   </AlertDialog.Content>
 </AlertDialog.Root>
+```
+
+## Composition
+
+Use the following composition to build an `AlertDialog`:
+
+```text
+AlertDialog.Root
+├── AlertDialog.Trigger
+└── AlertDialog.Content
+    ├── AlertDialog.Header
+    │   ├── AlertDialog.Media
+    │   ├── AlertDialog.Title
+    │   └── AlertDialog.Description
+    └── AlertDialog.Footer
+        ├── AlertDialog.Cancel
+        └── AlertDialog.Action
 ```
 
 ## Basic
@@ -135,3 +158,15 @@ Use the `AlertDialog.Action` component to add a destructive action button to the
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+### size
+
+Use the `size` prop on the `AlertDialog.Content` component to control the size of the alert dialog. It accepts the following values:
+
+| Prop   | Type                | Default     |
+| ------ | ------------------- | ----------- |
+| `size` | `"default" \| "sm"` | `"default"` |
+
+For more information about the other components and their props, see the [Bits UI documentation](https://bits-ui.com/docs/components/alert-dialog#api-reference).
