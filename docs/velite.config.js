@@ -99,6 +99,12 @@ const utils = defineCollection({
 	schema: docSchema,
 });
 
+const aiElements = defineCollection({
+	name: "aiElements",
+	pattern: "./ai-elements/**/*.md",
+	schema: docSchema,
+});
+
 const changelog = defineCollection({
 	name: "changelog",
 	pattern: "./changelog/**/*.md",
@@ -116,6 +122,7 @@ export default defineConfig({
 		registry,
 		forms,
 		utils,
+		aiElements,
 		changelog,
 	},
 	output: { assets: "static" },

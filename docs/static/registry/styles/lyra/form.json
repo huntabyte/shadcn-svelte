@@ -3,8 +3,8 @@
 	"name": "form",
 	"type": "registry:ui",
 	"devDependencies": [
-		"formsnap@^2.0.1",
-		"sveltekit-superforms@^2.30.0"
+		"formsnap@^2.1.0",
+		"sveltekit-superforms@^3.0.0"
 	],
 	"registryDependencies": [
 		"button",

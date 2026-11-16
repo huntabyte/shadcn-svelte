@@ -50,7 +50,10 @@
 		)}
 	>
 		{#snippet child({ props })}
-			<Button {...props} variant="outline">{label}</Button>
+			<Button {...props} variant="outline">
+				<span class="md:hidden">Open</span>
+				<span class="max-md:hidden">{label}</span>
+			</Button>
 		{/snippet}
 	</Dialog.Trigger>
 	<Dialog.Content class="dark">

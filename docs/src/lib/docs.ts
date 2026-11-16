@@ -7,6 +7,7 @@ import {
 	registry,
 	forms,
 	utils,
+	aiElements,
 	changelog,
 } from "$content/index.js";
 import { error } from "@sveltejs/kit";
@@ -21,6 +22,7 @@ const allDocs = [
 	...registry,
 	...forms,
 	...utils,
+	...aiElements,
 	...changelog,
 ];
 

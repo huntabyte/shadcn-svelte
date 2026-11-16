@@ -41,7 +41,7 @@
 					const date = new Date(v);
 					inputValue = v;
 					if (isValidDate(date)) {
-						value = new CalendarDate(date.getFullYear(), date.getMonth(), date.getDate());
+						value = new CalendarDate(date.getFullYear(), date.getMonth() + 1, date.getDate());
 					}
 				}
 			}

@@ -2,6 +2,13 @@ name: Reproduire
 on:
   issues:
     types: [labeled]
+  # Label applies needs reproduction with GITHUB_TOKEN, which does not emit a labeled event.
+  workflow_dispatch:
+    inputs:
+      number:
+        description: Issue number
+        required: true
+        type: string
 
 permissions:
   issues: write
@@ -12,5 +19,20 @@ jobs:
     steps:
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
       - uses: Hebilicious/reproduire@4b686ae9cbb72dad60f001d278b6e3b2ce40a9ac # v0.0.9-mp
+        if: github.event_name != 'workflow_dispatch'
         with:
           label: needs reproduction
+      # The action reads the label from the event payload, so it cannot run when dispatched.
+      - uses: actions/github-script@v8
+        if: github.event_name == 'workflow_dispatch'
+        with:
+          script: |
+            const fs = require('node:fs');
+            const body = fs.readFileSync('.github/reproduire/needs-reproduction.md', 'utf8');
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: Number(context.payload.inputs.number),
+              body,
+            });

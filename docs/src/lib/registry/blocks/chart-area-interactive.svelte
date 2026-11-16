@@ -6,7 +6,6 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
-	import ChartContainer from "../ui/chart/chart-container.svelte";
 
 	const chartData = [
 		{ date: new Date("2024-04-01"), desktop: 222, mobile: 150 },
@@ -157,7 +156,7 @@
 		</Select.Root>
 	</Card.Header>
 	<Card.Content>
-		<ChartContainer config={chartConfig} class="-ml-3 aspect-auto h-[250px] w-full">
+		<Chart.Container config={chartConfig} class="-ml-3 aspect-auto h-[250px] w-full">
 			<AreaChart
 				legend
 				data={filteredData}
@@ -230,6 +229,6 @@
 					/>
 				{/snippet}
 			</AreaChart>
-		</ChartContainer>
+		</Chart.Container>
 	</Card.Content>
 </Card.Root>

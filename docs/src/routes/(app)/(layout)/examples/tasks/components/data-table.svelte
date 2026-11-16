@@ -139,7 +139,7 @@
 </script>
 
 {#snippet Pagination({ table }: { table: SvelteTable<TasksTableFeatures, Task> })}
-	<div class="flex items-center justify-between px-2">
+	<div class="relative flex items-center justify-between px-2">
 		<div class="flex-1 text-sm text-muted-foreground">
 			{table.getFilteredSelectedRowModel().rows.length} of
 			{table.getFilteredRowModel().rows.length} row(s) selected.

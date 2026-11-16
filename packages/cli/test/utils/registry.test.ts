@@ -77,6 +77,15 @@ describe("Registry Utilities", () => {
 			expect(getRegistryUrl(mockConfig)).toBe("https://example.com/registry/styles/vega");
 		});
 
+		it("should not append the style to the legacy TW3 registry URL", () => {
+			expect(
+				getRegistryUrl({
+					registry: "https://tw3.shadcn-svelte.com/registry/new-york",
+					style: "new-york",
+				})
+			).toBe("https://tw3.shadcn-svelte.com/registry/new-york");
+		});
+
 		it("should return config registry URL with style if no env var", () => {
 			expect(getRegistryUrl({ registry: "https://example.com/registry", style: "nova" })).toBe(
 				"https://example.com/registry/styles/nova"
