@@ -796,7 +796,7 @@
 	"adaptations": [
 		"Svelte snippets and reactive state replace React JSX/hooks; useDirection returns a reactive current getter.",
 		"LayerChart replaces Recharts with the same chart data, labels, grouped series and RTL ordering.",
-		"Bits Calendar and Intl replace DayPicker/date-fns; the RTL example uses localized narrow weekday labels to avoid truncating Arabic prefixes.",
+		"Bits Calendar and Intl replace DayPicker/date-fns. Persian and Islamic Hijri examples use locale-generated weekday labels and the Calendar numerals option; no hardcoded glyph arrays or custom day formatter is required. The timezone example detects the client zone in onMount and converts date-only CalendarDate values with toDate(timeZone).",
 		"Combobox chips use Bits Combobox plus Badge/removal buttons because Bits has no chips primitives. The example composes RTL-aware chip arrows, focus restoration and Backspace/Delete removal.",
 		"Paneforge v1 reads document.dir for resize direction. The public Resizable RTL section explains that nested RTL previews in LTR documents have incorrect deltas; tests separately cover that limitation and supported matching-document behavior.",
 		"Svelte initialization uses rtl in components.json rather than create --rtl. The migrate rtl command uses the Svelte AST, previews with --dry-run, and preserves custom implementations while warning about manual behavior review.",
