@@ -1,9 +1,5 @@
 <script lang="ts">
-	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
-	import { tick } from "svelte";
-	import * as Command from "$lib/registry/ui/command/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as Combobox from "$lib/registry/ui/combobox/index.js";
 
 	const timezones = [
 		{
@@ -14,7 +10,7 @@
 				"(GMT-6) Chicago",
 				"(GMT-5) Toronto",
 				"(GMT-8) Vancouver",
-				"(GMT-3) São Paulo",
+				"(GMT-3) Sao Paulo",
 			],
 		},
 		{
@@ -39,63 +35,43 @@
 				"(GMT+9) Seoul",
 			],
 		},
-	];
+	] as const;
 
-	let open = $state(false);
-	let value = $state("");
-	let triggerRef = $state<HTMLButtonElement>(null!);
-
-	// We want to refocus the trigger button when the user selects
-	// an item from the list so users can continue navigating the
-	// rest of the form with the keyboard.
-	function closeAndFocusTrigger() {
-		open = false;
-		tick().then(() => {
-			triggerRef.focus();
-		});
-	}
+	let inputValue = $state("");
+	const filteredItems = $derived(
+		timezones
+			.map((group) => ({
+				...group,
+				items: group.items.filter((item) => item.toLowerCase().includes(inputValue.toLowerCase())),
+			}))
+			.filter((group) => group.items.length > 0)
+	);
 </script>
 
-<Popover.Root bind:open>
-	<Popover.Trigger bind:ref={triggerRef}>
-		{#snippet child({ props })}
-			<Button
-				{...props}
-				variant="outline"
-				class="w-60 justify-between font-normal"
-				role="combobox"
-				aria-expanded={open}
-			>
-				{value || "Select a timezone"}
-				<ChevronDownIcon class="text-muted-foreground" />
-			</Button>
-		{/snippet}
-	</Popover.Trigger>
-	<Popover.Content class="w-60 p-0">
-		<Command.Root>
-			<Command.Input placeholder="Search timezone..." />
-			<Command.List>
-				<Command.Empty>No timezones found.</Command.Empty>
-				{#each timezones as group, index (group.value)}
-					<Command.Group heading={group.value}>
-						{#each group.items as item (item)}
-							<Command.Item
-								value={item}
-								data-checked={value === item}
-								onSelect={() => {
-									value = item;
-									closeAndFocusTrigger();
-								}}
-							>
-								{item}
-							</Command.Item>
-						{/each}
-					</Command.Group>
-					{#if index < timezones.length - 1}
-						<Command.Separator />
-					{/if}
-				{/each}
-			</Command.List>
-		</Command.Root>
-	</Popover.Content>
-</Popover.Root>
+<Combobox.Root
+	onOpenChangeComplete={(open) => {
+		if (!open) inputValue = "";
+	}}
+>
+	<Combobox.Input
+		oninput={(event) => (inputValue = event.currentTarget.value)}
+		aria-label="Timezone"
+		placeholder="Select a timezone"
+	/>
+	<Combobox.Content>
+		<Combobox.List>
+			{#if filteredItems.length === 0}<Combobox.Empty>No items found.</Combobox.Empty>{/if}
+			{#each filteredItems as group, index (group.value)}
+				<Combobox.Group>
+					<Combobox.Label>{group.value}</Combobox.Label>
+					{#each group.items as item (item)}
+						<Combobox.Item value={item} label={item} />
+					{/each}
+				</Combobox.Group>
+				{#if index < filteredItems.length - 1}
+					<Combobox.Separator />
+				{/if}
+			{/each}
+		</Combobox.List>
+	</Combobox.Content>
+</Combobox.Root>

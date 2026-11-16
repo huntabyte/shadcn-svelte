@@ -261,6 +261,44 @@ describe("parity-ignore comments", () => {
 		expect(unpaired?.upstream?.ignoredReason).toBe("Bits takes the gap as the sideOffset prop");
 	});
 
+	it("ignores a complete inlined upstream hook with declared extra utilities", () => {
+		const ignores = collectUpstreamIgnores(
+			"<!-- parity-ignore-upstream: cn-combobox-chip has-disabled:opacity-50 | Chips require a primitive -->"
+		);
+		const upstream = extractClassStrings(
+			'className="rounded-md flex gap-1 has-disabled:opacity-50"'
+		);
+		const [pair] = pairClassStrings([], upstream, ignores, {
+			"cn-combobox-chip": "flex gap-1 rounded-md",
+		});
+
+		expect(pair?.kind).toBe("ignored");
+		expect(pair?.upstream?.ignoredReason).toBe("Chips require a primitive");
+	});
+
+	it("reports partial, changed, and paired inlined upstream hooks as diffs", () => {
+		const ignores = collectUpstreamIgnores(
+			"<!-- parity-ignore-upstream: cn-combobox-chip | Chips require a primitive -->"
+		);
+		const styleMap = { "cn-combobox-chip": "flex gap-1 rounded-md" };
+		const upstream = extractClassStrings(`
+			className="flex gap-1"
+			className="flex gap-1 rounded-md p-2"
+		`);
+		const unpaired = pairClassStrings([], upstream, ignores, styleMap);
+		expect(unpaired.map((pair) => pair.kind)).toEqual(["diff", "diff"]);
+
+		const ours = extractClassStrings('class="flex gap-1"');
+		const [pair] = pairClassStrings(
+			ours,
+			extractClassStrings('className="flex gap-1 rounded-md"'),
+			ignores,
+			styleMap
+		);
+		expect(pair?.kind).toBe("diff");
+		expect(pair?.removed).toEqual(["rounded-md"]);
+	});
+
 	it("ignores a declared upstream token inside an otherwise matching pair", () => {
 		const source = `
 			<!-- parity-ignore-upstream: data-[align-trigger=true]:animate-none | Bits has no item-aligned mode -->
