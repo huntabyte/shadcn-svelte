@@ -18,6 +18,8 @@ const mappings = [
 	["-right-", "-end-"],
 	["left-", "start-"],
 	["right-", "end-"],
+	["inset-l-", "inset-inline-start-"],
+	["inset-r-", "inset-inline-end-"],
 	["rounded-tl-", "rounded-ss-"],
 	["rounded-tr-", "rounded-se-"],
 	["rounded-bl-", "rounded-es-"],
@@ -38,6 +40,12 @@ const mappings = [
 	["float-right", "float-end"],
 	["clear-left", "clear-start"],
 	["clear-right", "clear-end"],
+	["origin-top-left", "origin-top-start"],
+	["origin-top-right", "origin-top-end"],
+	["origin-bottom-left", "origin-bottom-start"],
+	["origin-bottom-right", "origin-bottom-end"],
+	["origin-left", "origin-start"],
+	["origin-right", "origin-end"],
 ] as const;
 
 // Colons inside arbitrary variants/values are not variant separators.
@@ -69,6 +77,14 @@ export function applyRtlMapping(input: string): string {
 			}
 			if (value === "cursor-w-resize") return [token, rtl("cursor-e-resize")];
 			if (value === "cursor-e-resize") return [token, rtl("cursor-w-resize")];
+			// Floating UI's physical-side animations must follow actual placement.
+			if (!/data-\[side=(left|right)\]/.test(variant)) {
+				const slide = value.match(/^(slide-(?:in-from|out-to)-)(left|right)(?=$|-)/);
+				if (slide) {
+					const logical = slide[2] === "left" ? "start" : "end";
+					return [`${variant}${slide[1]}${logical}${value.slice(slide[0].length)}${important}`];
+				}
+			}
 			for (const [physical, logical] of mappings) {
 				// Physical sheet/floating sides and their animations remain physical.
 				if (

@@ -82,9 +82,7 @@ test("menubar submenus follow direction and reload items use upstream translatio
 	await expect(page.getByRole("menuitem", { name: "רענן בכוח ⇧⌘R", exact: true })).toBeVisible();
 });
 
-test("resizable dragging follows the document direction required by Paneforge", async ({
-	page,
-}) => {
+test("resizable dragging works when document and group directions match", async ({ page }) => {
 	for (const direction of ["rtl", "ltr"] as const) {
 		await page.goto("/?example=resizable");
 		if (direction === "ltr") {
@@ -113,4 +111,23 @@ test("resizable dragging follows the document direction required by Paneforge", 
 			path: `test-results/completion-resizable-${direction}.png`,
 		});
 	}
+});
+
+test("nested RTL resizing records Paneforge's document-direction limitation", async ({ page }) => {
+	await page.goto("/?example=resizable");
+	await expect(page.locator("html")).not.toHaveAttribute("dir", "rtl");
+	const group = page.locator('[data-pane-group][data-direction="horizontal"]');
+	await expect(group).toHaveCSS("direction", "rtl");
+	const first = group.locator(":scope > [data-pane]").first();
+	const handle = group.locator(":scope > [data-pane-resizer]");
+	await handle.hover();
+	const box = (await handle.boundingBox())!;
+	const width = (await first.boundingBox())!.width;
+	await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+	await page.mouse.down();
+	await expect(handle).toHaveAttribute("data-active", "pointer");
+	await page.mouse.move(box.x - 40, box.y + box.height / 2, { steps: 8 });
+	await page.mouse.up();
+	// This should expand in RTL. Paneforge currently shrinks because document.dir is LTR.
+	await expect.poll(async () => (await first.boundingBox())!.width).toBeLessThan(width - 20);
 });

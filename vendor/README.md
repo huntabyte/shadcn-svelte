@@ -21,5 +21,5 @@ until the compatible release is available.
 
 Before marking the PR ready, bump the docs/registry Bits UI dependency to the first
 release containing #2288, remove the workspace override, this directory and the
-snapshot build script, regenerate the lockfile/registry, remove the draft notice
-from the Direction docs, and rerun checks and browser tests.
+snapshot build script, regenerate the lockfile/registry, verify a clean consumer install with public dependencies, and rerun checks and
+browser tests.
