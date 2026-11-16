@@ -31,6 +31,22 @@ describe("RTL classes", () => {
 			"data-[state=checked]:translate-x-[calc(100%-2px)]! rtl:data-[state=checked]:-translate-x-[calc(100%-2px)]! [&:nth-child(2)]:ms-2 rtl:rotate-180"
 		);
 	});
+	it("converts directional animations while preserving physical floating-side guards", () => {
+		const physical = "data-[side=right]:slide-in-from-left-2 data-[side=left]:slide-out-to-right-4";
+		const input = `slide-in-from-right data-[state=open]:slide-out-to-left-2! slide-in-from-left-[12px] ${physical} rtl:slide-in-from-right`;
+		const result = applyRtlMapping(input);
+		expect(result).toBe(
+			`slide-in-from-end data-[state=open]:slide-out-to-start-2! slide-in-from-start-[12px] ${physical} rtl:slide-in-from-right`
+		);
+		expect(applyRtlMapping(result)).toBe(result);
+	});
+	it("matches upstream logical inset and transform-origin mappings", () => {
+		expect(
+			applyRtlMapping("inset-l-2 inset-r-4 origin-top-left origin-bottom-right origin-left")
+		).toBe(
+			"inset-inline-start-2 inset-inline-end-4 origin-top-start origin-bottom-end origin-start"
+		);
+	});
 	it("keeps explicit direction overrides and deduplicates existing RTL fixes", () => {
 		expect(applyRtlMapping("rtl:ml-2 ltr:mr-2 cn-rtl-flip rtl:rotate-180")).toBe(
 			"rtl:ml-2 ltr:mr-2 rtl:rotate-180"

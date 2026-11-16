@@ -24,6 +24,7 @@
 	<TooltipPrimitive.Content
 		bind:ref
 		data-slot="tooltip-content"
+		role="tooltip"
 		{sideOffset}
 		{side}
 		class={cn(

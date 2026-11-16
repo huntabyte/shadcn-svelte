@@ -798,10 +798,11 @@
 		"LayerChart replaces Recharts with the same chart data, labels, grouped series and RTL ordering.",
 		"Bits Calendar and Intl replace DayPicker/date-fns; the RTL example uses localized narrow weekday labels to avoid truncating Arabic prefixes.",
 		"Combobox chips use Bits Combobox plus Badge/removal buttons because Bits has no chips primitives. The example composes RTL-aware chip arrows, focus restoration and Backspace/Delete removal.",
-		"Paneforge v1 reads document.dir for resize direction; local preview direction alone cannot guarantee inverted resize deltas.",
+		"Paneforge v1 reads document.dir for resize direction. The public Resizable RTL section explains that nested RTL previews in LTR documents have incorrect deltas; tests separately cover that limitation and supported matching-document behavior.",
 		"Svelte initialization uses rtl in components.json rather than create --rtl. The migrate rtl command uses the Svelte AST, previews with --dry-run, and preserves custom implementations while warning about manual behavior review.",
 		"Bits UI floating sides remain physical. ContextMenu.Content, ContextMenu.SubContent and DropdownMenu.SubContent adapt inline-start/inline-end reactively and preserve explicit physical sides; primitive submenu defaults (#2306) are separate. Menubar uses an explicit direction-aware physical side in its RTL example; native primitive submenu defaults remain separate.",
 		"Shimmer retains upstream static bilingual LTR/RTL comparison; it has no translation dictionary or language selector upstream.",
+		"Unguarded reading-direction slide animations are converted to logical start/end. Physical data-side Floating UI animation classes retain their actual placement semantics.",
 		"Bits Calendar and RangeCalendar currently keep chronological horizontal arrow keys (Left = previous day) even in RTL. Locale/numerals, visual order and navigation buttons work; this native keyboard gap is recorded by the Persian calendar browser check."
 	]
 }

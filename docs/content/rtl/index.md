@@ -64,7 +64,7 @@ See your framework's RTL guide under [Get Started](#get-started) for details on 
 
 ## Animations
 
-Use logical directional animation classes to follow the document's text direction. For example, use `slide-in-from-end` instead of `slide-in-from-right`.
+The CLI also handles animation classes, automatically transforming physical directional animations to their logical equivalents. For example, `slide-in-from-right` becomes `slide-in-from-end`.
 
 This ensures animations like dropdowns, popovers, and tooltips animate in the correct direction based on the document's text direction.
 
@@ -106,7 +106,7 @@ Use `--dry-run` to preview the files that would change. The CLI asks for confirm
 
 ### Manual Migration (Optional)
 
-The following components may need manual adjustments beyond class migration. Follow the RTL support section for each component to review them. Custom direction logic, dynamically constructed class names, unmarked directional icons, and physical animation classes also need manual review; the CLI does not replace your component implementations.
+The following components may need manual adjustments beyond class migration. Follow the RTL support section for each component to review them. Custom direction logic, dynamically constructed class names, unmarked directional icons, and custom animation behavior also need manual review; the CLI does not replace your component implementations.
 
 - [Calendar](/docs/components/calendar#rtl)
 - [Pagination](/docs/components/pagination#rtl)

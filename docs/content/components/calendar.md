@@ -225,6 +225,8 @@ Or use fixed values:
 
 To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
 
+Calendar and RangeCalendar currently use chronological horizontal arrow keys even in RTL: Left moves to the previous day and Right moves to the next. Locale labels, visual layout, and navigation buttons follow the configured locale and direction.
+
 See also the [Bits UI Calendar documentation](https://bits-ui.com/docs/components/calendar) for localization and calendar-system support, including Persian / Hijri / Jalali calendars.
 
 <ComponentPreview name="calendar-rtl" direction="rtl" previewClassName="h-96">
