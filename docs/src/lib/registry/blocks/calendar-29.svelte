@@ -70,7 +70,7 @@
 					type="single"
 					bind:value
 					captionLayout="dropdown"
-					onValueChange={(v) => {
+					onValueChange={(v: DateValue | undefined) => {
 						inputValue = formatDate(v);
 						open = false;
 					}}
