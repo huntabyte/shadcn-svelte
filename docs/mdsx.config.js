@@ -17,23 +17,29 @@ import { Index } from "./src/__registry__/index.js";
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const jsEngine = createJavaScriptRegexEngine();
 
+/** @type {WeakSet<import("hast").Element>} */
+const previewCodeBlocks = new WeakSet();
+
 export async function createHighlighter() {
-	if (!globalThis.__shikiHighlighter) {
-		globalThis.__shikiHighlighter = await createHighlighterCore({
-			themes: [import("@shikijs/themes/vesper"), import("@shikijs/themes/github-light-default")],
-			langs: [
-				import("@shikijs/langs/typescript"),
-				import("@shikijs/langs/svelte"),
-				import("@shikijs/langs/css"),
-				import("@shikijs/langs/json"),
-				import("@shikijs/langs/bash"),
-				import("@shikijs/langs/astro"),
-				import("@shikijs/langs/diff"),
-				import("@shikijs/langs/toml"),
-			],
-			engine: jsEngine,
-		});
-	}
+	globalThis.__shikiHighlighter ??= createHighlighterCore({
+		themes: [
+			import("@shikijs/themes/vesper"),
+			import("@shikijs/themes/github-light-default"),
+			import("@shikijs/themes/github-dark"),
+			import("@shikijs/themes/github-light"),
+		],
+		langs: [
+			import("@shikijs/langs/typescript"),
+			import("@shikijs/langs/svelte"),
+			import("@shikijs/langs/css"),
+			import("@shikijs/langs/json"),
+			import("@shikijs/langs/bash"),
+			import("@shikijs/langs/astro"),
+			import("@shikijs/langs/diff"),
+			import("@shikijs/langs/toml"),
+		],
+		engine: jsEngine,
+	});
 	return globalThis.__shikiHighlighter;
 }
 
@@ -70,6 +76,30 @@ const prettyCodeOptions = {
 	},
 };
 
+/** @returns {HastTransformer} */
+function rehypeHighlightCode() {
+	const highlightMarkdown = rehypePrettyCode(prettyCodeOptions);
+	const highlightPreviews = rehypePrettyCode({
+		...prettyCodeOptions,
+		theme: { dark: "github-dark", light: "github-light" },
+	});
+
+	return async (tree, file) => {
+		/** @type {import("hast").Element[]} */
+		const previews = [];
+		visit(tree, "element", (node) => {
+			if (previewCodeBlocks.has(node)) previews.push(node);
+		});
+
+		// The plugin mutates each preview pre into a figure in place. Its generated
+		// code node has no language class, so the Markdown pass skips it.
+		if (previews.length > 0) {
+			await highlightPreviews?.({ type: "root", children: previews }, file);
+		}
+		await highlightMarkdown?.(tree, file);
+	};
+}
+
 export const mdsxConfig = defineConfig({
 	extensions: [".md"],
 	remarkPlugins: [remarkGfm, codeImport, remarkRemovePrettierIgnore],
@@ -77,7 +107,7 @@ export const mdsxConfig = defineConfig({
 		rehypeSlug,
 		rehypeComponentExample,
 		rehypePreData,
-		[rehypePrettyCode, prettyCodeOptions],
+		rehypeHighlightCode,
 
 		rehypeHandleMetadata,
 	],
@@ -219,6 +249,9 @@ export function rehypeComponentExample() {
 						],
 					});
 					if (!index) return;
+					if (node.value.startsWith("<ComponentPreview")) {
+						previewCodeBlocks.add(sourceCodeNode);
+					}
 					// @ts-expect-error - this is fine
 					parent?.children.splice(index + 1, 0, sourceCodeNode);
 				} catch (e) {
