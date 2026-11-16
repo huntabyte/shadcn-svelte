@@ -119,6 +119,14 @@ Options:
 
 ---
 
+## registry add
+
+Register a namespace by providing its URL template. The command updates `components.json` if it exists, or `package.json` otherwise. Use `--force` to replace an existing mapping.
+
+```bash
+pnpm dlx shadcn-svelte@latest registry add '@acme=https://acme.example/r/{name}.json'
+```
+
 ## registry build
 
 Use the `registry build` command to generate the registry JSON files.
@@ -144,6 +152,24 @@ Options:
 ```
 
 ---
+
+## search
+
+Search configured registries or pass an explicit namespace, GitHub repository, or URL to a registry catalog. The CLI returns JSON with results, pagination, and any per-registry errors.
+
+```bash
+pnpm dlx shadcn-svelte@latest search @acme owner/repo#v1 --query dashboard --type ui,block
+```
+
+Omit the registry arguments to search all registries configured in the project. Use `--limit` and `--offset` to page through the results. `list` is an alias for `search`.
+
+## view
+
+Print item JSON without installing files or resolving dependencies. Pass a component name, a namespaced item, a GitHub item address, a URL, or a local JSON file.
+
+```bash
+pnpm dlx shadcn-svelte@latest view @acme/dashboard owner/repo/button#v1 ./item.json
+```
 
 ## Outgoing Requests
 

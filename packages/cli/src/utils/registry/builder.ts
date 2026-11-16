@@ -18,7 +18,7 @@ export function buildRegistryRequest(
 	const entry = config.registries?.[namespace];
 	if (!entry) {
 		throw error(
-			`Registry '${namespace}' is not configured. Add it to 'registries' in components.json.`
+			`Registry '${namespace}' is not configured. Add it to 'registries' in components.json or package.json.`
 		);
 	}
 

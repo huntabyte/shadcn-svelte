@@ -191,3 +191,5 @@ Here are some guidelines to follow when building components for a registry.
 To install a registry item using the `shadcn-svelte` CLI, use the `add` command followed by the URL of the registry item.
 
 <PMExecute command="shadcn-svelte@latest add http://localhost:5173/r/hello-world.json" />
+
+The build also writes a flattened `registry.json` catalog so users can search the registry. To split a source registry across files, set `include` to an array of relative paths to other `registry.json` files. Item file paths are relative to the file that declares them. Item names such as `forms/login` build to `forms/login.json`.

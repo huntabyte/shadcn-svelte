@@ -1,9 +1,12 @@
 import path from "node:path";
+import { readFile } from "node:fs/promises";
+import { pathToFileURL } from "node:url";
 import { parse as parseCss } from "postcss";
-import { resolveGitHubItemAddress } from "./address.js";
-import { fetchGitHubRegistryCatalog, fetchGitHubRegistryItem } from "./github.js";
+import { resolveGitHubItemAddress, resolveGitHubRegistrySource } from "./address.js";
 import { buildRegistryRequest } from "./builder.js";
+import { getRegistryConfig } from "./config.js";
 import { fetchRegistry, type RegistryRequest } from "./fetcher.js";
+import { fetchGitHubRegistryCatalog, fetchGitHubRegistryItem } from "./github.js";
 import * as schemas from "../../schema/index.js";
 import { OFFICIAL_REGISTRY_URL, TW3_SITE_BASE_URL } from "../../constants.js";
 import { BASE_COLORS, type ResolvedConfig } from "../config/index.js";
@@ -91,6 +94,8 @@ export function parseStyleCss(css: string): Record<string, string> {
 }
 
 type ResolveRegistryItemsProps = {
+	cwd?: string;
+	includeDependencies?: boolean;
 	sourceCache?: Map<string, Promise<string>>;
 	registryUrl: string;
 	registryIndex?: schemas.RegistryIndex;
@@ -106,13 +111,19 @@ export async function resolveRegistryItems({
 	items,
 	parentUrl,
 	config,
+	cwd = config?.resolvedPaths.cwd,
+	includeDependencies = true,
 	sourceCache = new Map(),
 }: ResolveRegistryItemsProps): Promise<ResolvedRegistryItem[]> {
 	const resolvedItems: ResolvedRegistryItem[] = [];
 	const visited = new Set<string>();
-	const env = config?.registries ? loadEnvFiles(config.resolvedPaths.cwd) : process.env;
+	const registryConfig = cwd ? getRegistryConfig(cwd, config) : undefined;
+	const env =
+		cwd && registryConfig && Object.keys(registryConfig.registries).length
+			? loadEnvFiles(cwd)
+			: process.env;
 
-	async function resolveItems(items: string[], parent?: URL | RegistryRequest) {
+	async function resolveItems(items: string[], parent?: URL | RegistryRequest, isRoot = false) {
 		for (const item of items) {
 			const githubAddress = resolveGitHubItemAddress(item);
 			if (githubAddress) {
@@ -121,14 +132,21 @@ export async function resolveRegistryItems({
 				visited.add(key);
 				const entry = await fetchGitHubRegistryItem(githubAddress, { sourceCache });
 				resolvedItems.push(entry);
-				await resolveItems(entry.registryDependencies ?? []);
+				if (includeDependencies) await resolveItems(entry.registryDependencies ?? []);
 				continue;
 			}
-			let request: URL | RegistryRequest | undefined = buildRegistryRequest(item, config, env);
+			let request: URL | RegistryRequest | undefined = buildRegistryRequest(
+				item,
+				registryConfig,
+				env
+			);
 			let resolvedItem: ResolvedRegistryItem | undefined;
 			const parentUrl = parent instanceof URL ? parent : parent?.url;
 			const isRelative = item.startsWith("./") || item.startsWith("../");
 
+			if (!request && isRoot && !parentUrl && cwd && !isUrl(item) && item.endsWith(".json")) {
+				request = pathToFileURL(path.resolve(cwd, item));
+			}
 			if (!request && (isUrl(item) || (parentUrl && isRelative))) {
 				const url = new URL(item, parentUrl);
 				// Only relative dependencies inherit the credentials of their parent registry.
@@ -172,7 +190,12 @@ export async function resolveRegistryItems({
 			visited.add(key);
 
 			if (request) {
-				const [result] = await fetchRegistry([request]);
+				const result =
+					request instanceof URL &&
+					request.protocol === "file:" &&
+					(isRoot || (isRelative && parentUrl?.protocol === "file:"))
+						? JSON.parse(await readFile(request, "utf8"))
+						: (await fetchRegistry([request]))[0];
 				try {
 					resolvedItem = schemas.registryItemSchema.parse(result);
 				} catch (e) {
@@ -183,13 +206,13 @@ export async function resolveRegistryItems({
 			}
 
 			resolvedItems.push(resolvedItem!);
-			if (resolvedItem!.registryDependencies?.length) {
+			if (includeDependencies && resolvedItem!.registryDependencies?.length) {
 				await resolveItems(resolvedItem!.registryDependencies, request);
 			}
 		}
 	}
 
-	await resolveItems(items, parentUrl);
+	await resolveItems(items, parentUrl, true);
 	return resolvedItems;
 }
 
@@ -213,7 +236,6 @@ export async function fetchRegistryItems({
 }
 
 export async function getGitHubRegistryIndex(source: string) {
-	const { resolveGitHubRegistrySource } = await import("./address.js");
 	const githubSource = resolveGitHubRegistrySource(source);
 	if (!githubSource) {
 		throw error(

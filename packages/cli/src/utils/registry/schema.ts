@@ -225,6 +225,11 @@ export const registrySchema = z.object({
 		})
 		.optional()
 		.describe("Defines which internal import paths should be transformed during registry `build`."),
+	include: z
+		.string()
+		.array()
+		.optional()
+		.describe("Paths to additional registry.json files, relative to this file."),
 	items: baseIndexItemSchema
 		.extend({
 			files: registryItemFileSchema
@@ -243,6 +248,7 @@ export const registrySchema = z.object({
 			font: z.optional(registryItemFontSchema),
 		})
 		.array()
+		.default([])
 		.describe("Defines a custom component registry."),
 });
 

@@ -38,7 +38,7 @@ export function resolveGitHubRegistrySource(source: string): GitHubRegistrySourc
 }
 
 export function resolveGitHubItemAddress(address: string): GitHubItemAddress | null {
-	if (isUrl(address)) return null;
+	if (isUrl(address) || address.endsWith(".json")) return null;
 
 	const hashIndex = address.indexOf("#");
 	const source = hashIndex === -1 ? address : address.slice(0, hashIndex);

@@ -112,6 +112,21 @@ export async function loadRegistryCatalogFromSource(reader: RegistrySourceReader
 	};
 }
 
+export async function loadRegistryForBuild(registryFile: string, reader: RegistrySourceReader) {
+	const result = await readSourceRegistryWithIncludes(registryFile, reader);
+	return {
+		...result.rootRegistry,
+		items: result.items.map((item) => ({
+			...item,
+			files: (item.files ?? []).map((file) => ({
+				...file,
+				path: getRegistryItemFileSourceForItem(item, file.path, result.itemSourcesByItem),
+			})),
+			registryDependencies: item.registryDependencies ?? [],
+		})),
+	};
+}
+
 async function readSourceRegistryWithIncludes(registryFile: string, reader: RegistrySourceReader) {
 	const rootRegistry = await readRegistry(registryFile, reader);
 
@@ -135,6 +150,7 @@ async function readSourceRegistryWithIncludes(registryFile: string, reader: Regi
 	validateDuplicateItems(items);
 
 	return {
+		rootRegistry,
 		name: rootRegistry.name,
 		homepage: rootRegistry.homepage,
 		items,

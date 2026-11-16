@@ -31,7 +31,7 @@ async function main() {
 		program.addCommand(cmd);
 	}
 
-	program.parse();
+	await program.parseAsync();
 }
 
 main();

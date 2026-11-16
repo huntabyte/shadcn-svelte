@@ -42,7 +42,16 @@
 			},
 			"additionalProperties": false
 		},
+		"include": {
+			"description": "Paths to additional registry.json files, relative to this file.",
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
+		},
 		"items": {
+			"default": [],
+			"description": "Defines a custom component registry.",
 			"type": "array",
 			"items": {
 				"type": "object",
@@ -248,8 +257,7 @@
 					"files"
 				],
 				"additionalProperties": false
-			},
-			"description": "Defines a custom component registry."
+			}
 		}
 	},
 	"required": [
