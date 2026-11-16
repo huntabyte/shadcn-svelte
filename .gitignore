@@ -116,3 +116,8 @@ repro/src/lib/components/ui
 
 .claude
 __screenshots__/
+# Browser QA artifacts
+/docs/test-results/
+/docs/playwright-report/
+/output/playwright/
+/.playwright-cli/

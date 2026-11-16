@@ -97,3 +97,13 @@ You can use the `Kbd.Root` component inside a `InputGroup.Addon` component to di
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="kbd-rtl" direction="rtl">
+
+<div></div>
+
+</ComponentPreview>

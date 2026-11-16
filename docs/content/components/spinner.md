@@ -139,3 +139,13 @@ Add a spinner to a badge to indicate a loading state. Place the `<Spinner />` be
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="spinner-rtl" direction="rtl">
+
+<div></div>
+
+</ComponentPreview>

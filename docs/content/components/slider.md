@@ -116,3 +116,13 @@ Use the `disabled` prop to disable the slider.
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="slider-rtl" direction="rtl">
+
+<div></div>
+
+</ComponentPreview>

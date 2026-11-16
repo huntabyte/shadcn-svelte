@@ -504,6 +504,16 @@ The `code` component gets `incomplete`, which is `true` until the closing fence 
 - Give a wrap toggle `aria-pressed` so its state is announced.
 - Give a Show More button `aria-expanded` and point `aria-controls` at the `id` of `CodeBlock.Content`.
 
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl). Code always reads left to right. The header follows the page direction.
+
+<ComponentPreview name="code-block-rtl" direction="rtl">
+
+<div></div>
+
+</ComponentPreview>
+
 ## API Reference
 
 ### CodeBlock.Root

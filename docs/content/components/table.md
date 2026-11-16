@@ -103,3 +103,13 @@ You can use the `<Table />` component to build more complex data tables. Combine
 See the [Data Table](/docs/components/data-table) documentation for more information.
 
 You can also see an example of a data table in the [Tasks](/examples/tasks) demo.
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="table-rtl" direction="rtl" previewClassName="h-auto">
+
+<div></div>
+
+</ComponentPreview>

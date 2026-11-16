@@ -127,3 +127,13 @@ Use `aria-invalid` on `RadioGroup.Item` and `data-invalid` on `Field.Field` to s
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="radio-group-rtl" direction="rtl">
+
+<div></div>
+
+</ComponentPreview>

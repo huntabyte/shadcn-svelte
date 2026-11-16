@@ -118,3 +118,13 @@ Use `Menubar.Sub`, `Menubar.SubTrigger`, and `Menubar.SubContent` for nested men
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="menubar-rtl" direction="rtl">
+
+<div></div>
+
+</ComponentPreview>

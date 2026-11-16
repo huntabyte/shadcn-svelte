@@ -7,8 +7,9 @@
 	let {
 		ref = $bindable(null),
 		class: className,
+		text = "Previous",
 		...restProps
-	}: PaginationPrimitive.PrevButtonProps = $props();
+	}: PaginationPrimitive.PrevButtonProps & { text?: string } = $props();
 </script>
 
 <PaginationPrimitive.PrevButton
@@ -30,5 +31,5 @@
 		data-icon="inline-start"
 		class="cn-rtl-flip"
 	/>
-	<span class="cn-pagination-previous-text hidden sm:block">Previous</span>
+	<span class="cn-pagination-previous-text hidden sm:block">{text}</span>
 </PaginationPrimitive.PrevButton>

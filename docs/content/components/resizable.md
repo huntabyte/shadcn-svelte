@@ -95,3 +95,15 @@ Use the `withHandle` prop on `Resizable.Handle` to show a visible handle.
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+Paneforge v1 reads the document direction for horizontal resizing. Set `dir="rtl"` on `<html>` as shown in the RTL guide. A nested RTL group inside an LTR document does not reverse resize movement correctly; the language selector below changes only the preview's local direction.
+
+<ComponentPreview name="resizable-rtl" direction="rtl">
+
+<div></div>
+
+</ComponentPreview>

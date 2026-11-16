@@ -7,8 +7,9 @@
 	let {
 		ref = $bindable(null),
 		class: className,
+		text = "Next",
 		...restProps
-	}: PaginationPrimitive.NextButtonProps = $props();
+	}: PaginationPrimitive.NextButtonProps & { text?: string } = $props();
 </script>
 
 <PaginationPrimitive.NextButton
@@ -17,7 +18,7 @@
 	class={cn(buttonVariants({ variant: "ghost", size: "default" }), "cn-pagination-next", className)}
 	{...restProps}
 >
-	<span class="cn-pagination-next-text hidden sm:block">Next</span>
+	<span class="cn-pagination-next-text hidden sm:block">{text}</span>
 	<IconPlaceholder
 		lucide="ChevronRightIcon"
 		tabler="IconChevronRight"

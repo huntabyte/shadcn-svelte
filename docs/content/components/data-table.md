@@ -789,3 +789,13 @@ You can show the number of selected rows using the `table.getFilteredSelectedRow
 ## Reusable Components
 
 Check out the [Tasks](/examples/tasks) example to learn about creating reusable components for your data tables.
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="data-table-rtl" direction="rtl" previewClassName="items-start h-auto px-4 md:px-8" hideCode>
+
+<div></div>
+
+</ComponentPreview>

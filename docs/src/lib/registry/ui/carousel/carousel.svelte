@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { useDirection } from "$lib/registry/ui/direction/index.js";
 	import { cn, type WithElementRef } from "$lib/utils.js";
 	import {
 		type CarouselAPI,
@@ -10,6 +11,7 @@
 	let {
 		ref = $bindable(null),
 		opts = {},
+		dir,
 		plugins = [],
 		setApi = () => {},
 		orientation = "horizontal",
@@ -17,6 +19,9 @@
 		children,
 		...restProps
 	}: WithElementRef<CarouselProps> = $props();
+
+	const direction = useDirection();
+	const resolvedDirection = $derived(opts.direction ?? dir ?? direction.current);
 
 	// svelte-ignore state_referenced_locally
 	let carouselState = $state<EmblaContext>({
@@ -27,7 +32,9 @@
 		canScrollNext: false,
 		canScrollPrev: false,
 		handleKeyDown,
-		options: opts,
+		get options() {
+			return { ...opts, direction: resolvedDirection };
+		},
 		plugins,
 		onInit,
 		scrollSnaps: [],
@@ -59,10 +66,12 @@
 	function handleKeyDown(e: KeyboardEvent) {
 		if (e.key === "ArrowLeft") {
 			e.preventDefault();
-			scrollPrev();
+			if (resolvedDirection === "rtl") scrollNext();
+			else scrollPrev();
 		} else if (e.key === "ArrowRight") {
 			e.preventDefault();
-			scrollNext();
+			if (resolvedDirection === "rtl") scrollPrev();
+			else scrollNext();
 		}
 	}
 
@@ -84,6 +93,7 @@
 
 <div
 	bind:this={ref}
+	dir={resolvedDirection}
 	data-slot="carousel"
 	class={cn("relative", className)}
 	role="region"

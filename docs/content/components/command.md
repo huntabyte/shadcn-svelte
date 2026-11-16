@@ -126,3 +126,13 @@ Scrollable command menu with multiple items.
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="command-rtl" direction="rtl" align="start" previewClassName="h-[24.5rem]">
+
+<div></div>
+
+</ComponentPreview>

@@ -174,3 +174,13 @@ Use `REGEXP_ONLY_DIGITS_AND_CHARS` to accept both letters and numbers.
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="input-otp-rtl" direction="rtl">
+
+<div></div>
+
+</ComponentPreview>
