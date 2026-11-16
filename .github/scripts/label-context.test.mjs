@@ -1,0 +1,360 @@
+import assert from "node:assert/strict";
+import test from "node:test";
+import { buildLabelContext } from "./label-context.mjs";
+const repo = "owner/repo";
+const parse = (prompt) => JSON.parse(prompt.slice(prompt.indexOf("\n") + 1));
+function fixture({
+  pr = true,
+  files = [],
+  reviews = [],
+  related = [],
+  comments = [],
+  timeline = [],
+  fail,
+  limited = false,
+  body = "Related work",
+  title = "fix: example",
+  searchTotal = related.length,
+  searchIncomplete = false,
+} = {}) {
+  const calls = [];
+  let limitedOnce = false;
+  return {
+    calls,
+    fetch: async (url, init) => {
+      const u = new URL(url);
+      calls.push(u.pathname + u.search);
+      assert(!init.method || init.method === "GET");
+      if (fail) return new Response("", { status: 403 });
+      if (limited && !limitedOnce) {
+        limitedOnce = true;
+        return new Response("", { status: 429 });
+      }
+      const page = +(u.searchParams.get("page") ?? 1);
+      if (u.pathname.endsWith("/files"))
+        return Response.json(files.slice((page - 1) * 100, page * 100));
+      if (u.pathname.endsWith("/reviews"))
+        return Response.json(reviews.slice((page - 1) * 100, page * 100));
+      if (u.pathname.endsWith("/timeline"))
+        return Response.json(timeline.slice((page - 1) * 100, page * 100));
+      if (u.pathname.endsWith("/comments"))
+        return Response.json(comments.slice((page - 1) * 100, page * 100));
+      if (u.pathname === "/search/issues")
+        return Response.json({
+          items: related,
+          total_count: searchTotal,
+          incomplete_results: searchIncomplete,
+        });
+      const number = Number(u.pathname.split("/").at(-1));
+      return Response.json({
+        number,
+        title,
+        state: number === 1 ? "open" : "closed",
+        state_reason: number === 1 ? null : "completed",
+        created_at: number === 1 ? "2026-11-07" : "2026-10-01",
+        closed_at: number === 1 ? null : "2026-11-01",
+        body,
+        user: { login: "author", type: "User" },
+        author_association: "COLLABORATOR",
+        ...(pr ? { pull_request: {} } : {}),
+      });
+    },
+  };
+}
+const run = (f, extra = {}) =>
+  buildLabelContext({ repo, number: 1, token: "test", fetch: f.fetch, ...extra });
+test("includes replacement discussion, review state and paths without label verdicts", async () => {
+  const f = fixture({
+    related: [{ number: 2, created_at: "2026-10-01" }],
+    comments: [
+      {
+        user: { login: "author", type: "User" },
+        author_association: "CONTRIBUTOR",
+        body: "Closing in favor of #1",
+        created_at: "2026-11-01",
+      },
+    ],
+    reviews: [
+      {
+        user: { login: "maintainer", type: "User" },
+        author_association: "COLLABORATOR",
+        state: "CHANGES_REQUESTED",
+        body: "",
+        submitted_at: "2026-11-01",
+      },
+    ],
+    files: [{ filename: "packages/cli/index.ts", status: "modified" }],
+  });
+  const ctx = parse(await run(f));
+  assert.equal(ctx.related[0].state, "closed");
+  assert.match(ctx.related[0].comments[0].body, /in favor/);
+  assert.equal(ctx.reviews[0].state, "CHANGES_REQUESTED");
+  assert.equal(ctx.reviews[0].body, "");
+  assert.equal(ctx.files[0].path, "packages/cli/index.ts");
+  assert.equal(ctx.filesOmitted, false);
+  assert(!("labels" in ctx));
+});
+test("omits pending reviews and preserves bot identity", async () => {
+  const f = fixture({
+    reviews: [
+      { user: { login: "reviewer", type: "Bot" }, state: "APPROVED", submitted_at: "2026-11-01" },
+      { user: { login: "m" }, state: "PENDING" },
+    ],
+  });
+  const ctx = parse(await run(f));
+  assert.equal(ctx.reviews.length, 1);
+  assert.equal(ctx.reviews[0].isBot, true);
+});
+test("does not fetch PR APIs for issues", async () => {
+  const f = fixture({ pr: false });
+  const ctx = parse(await run(f));
+  assert(!("files" in ctx));
+  assert(!f.calls.some((x) => x.includes("/pulls/")));
+});
+test("ignores foreign-repository cross references", async () => {
+  const f = fixture({
+    timeline: [
+      {
+        event: "cross-referenced",
+        source: {
+          issue: { number: 999, repository_url: "https://api.github.com/repos/other/repo" },
+        },
+      },
+    ],
+  });
+  await run(f);
+  assert(!f.calls.some((x) => x.includes("/999")));
+});
+test("bounds context and marks omissions, including paginated files", async () => {
+  const f = fixture({
+    files: Array.from({ length: 130 }, (_, n) => ({ filename: `src/${n}.ts`, status: "modified" })),
+    related: Array.from({ length: 6 }, (_, n) => ({ number: n + 2, created_at: "2026-10-01" })),
+    comments: Array.from({ length: 10 }, () => ({
+      user: { login: "m", type: "User" },
+      body: "x".repeat(9000),
+    })),
+    reviews: Array.from({ length: 25 }, () => ({
+      user: { login: "m" },
+      state: "APPROVED",
+      submitted_at: "2026-11-01",
+      body: "x".repeat(9000),
+    })),
+  });
+  const prompt = await run(f),
+    ctx = parse(prompt);
+  assert(prompt.length < 24500);
+  assert.equal(ctx.files.length, 100);
+  assert.equal(ctx.filesOmitted, true);
+  assert.equal(ctx.relatedOmitted, true);
+  assert(ctx.related.every((r) => r.commentsOmitted));
+  assert.equal(ctx.reviewsOmitted, true);
+  assert(f.calls.some((x) => x.includes("files?per_page=100&page=2")));
+});
+test("permission errors stop collection instead of returning empty evidence", async () => {
+  await assert.rejects(run(fixture({ fail: true })), /unavailable/);
+});
+test("rate limits retry automatically with bounded waits", async () => {
+  const waits = [];
+  const ctx = parse(await run(fixture({ limited: true }), { sleep: async (ms) => waits.push(ms) }));
+  assert.equal(ctx.current.number, 1);
+  assert.equal(waits.length, 1);
+  assert(waits[0] <= 60000);
+});
+test("rejects invalid inputs before network access", async () => {
+  const f = fixture();
+  await assert.rejects(
+    buildLabelContext({ repo: "owner/repo?bad", number: 1, token: "test", fetch: f.fetch })
+  );
+  assert.equal(f.calls.length, 0);
+});
+
+test("bounds patch excerpts and marks missing or truncated patches", async () => {
+  const f = fixture({
+    files: [
+      ...Array.from({ length: 12 }, (_, n) => ({
+        filename: `src/${n}.ts`,
+        status: "modified",
+        patch: "line\n".repeat(180),
+      })),
+      { filename: "generated.json", status: "modified", patch: "x".repeat(2000) },
+    ],
+  });
+  const ctx = parse(await run(f));
+  assert(ctx.files.reduce((total, file) => total + (file.patch?.length ?? 0), 0) <= 4000);
+  assert(ctx.files.every((file) => file.patchOmitted));
+  assert.equal(ctx.files.find((file) => file.path === "generated.json").patch, undefined);
+});
+
+test("parallel evidence reads are bounded and preserve deterministic context", async () => {
+  const related = Array.from({ length: 5 }, (_, i) => ({
+    number: i + 2,
+    created_at: "2026-10-01",
+  }));
+  const plain = fixture({ related }),
+    parallel = fixture({ related });
+  let active = 0,
+    maximum = 0;
+  const actual = await buildLabelContext({
+    repo,
+    number: 1,
+    token: "test",
+    fetch: async (...args) => {
+      active++;
+      maximum = Math.max(maximum, active);
+      try {
+        await new Promise((resolve) => setTimeout(resolve, 5));
+        return await parallel.fetch(...args);
+      } finally {
+        active--;
+      }
+    },
+  });
+  assert.equal(actual, await run(plain));
+  assert.equal(maximum, 4);
+  assert.equal(active, 0);
+});
+
+test("prioritizes human discussion references and ignores bot and foreign links", async () => {
+  const f = fixture({
+    pr: false,
+    comments: [
+      { user: { login: "helper", type: "User" }, body: "The implementation is #7." },
+      { user: { login: "tool[bot]", type: "Bot" }, body: "See #8." },
+      { user: { login: "helper", type: "User" }, body: "https://github.com/other/repo/issues/9" },
+    ],
+    timeline: Array.from({ length: 5 }, (_, i) => ({
+      event: "cross-referenced",
+      source: {
+        issue: { number: i + 2, repository_url: "https://api.github.com/repos/owner/repo" },
+      },
+    })),
+  });
+  const ctx = parse(await run(f));
+  assert.equal(ctx.related[0].number, 7);
+  assert.equal(ctx.relatedOmitted, true);
+  assert.equal(ctx.related.length, 5);
+  assert(!f.calls.some((path) => /issues\/(8|9)(?:\?|\/|$)/.test(path)));
+});
+
+test("preserves release notes and source excerpts within the existing patch budget", async () => {
+  const f = fixture({
+    files: [
+      ...Array.from({ length: 12 }, (_, i) => ({
+        filename: `docs/static/registry/${i}.json`,
+        status: "modified",
+        patch: "generated\n".repeat(90),
+      })),
+      {
+        filename: ".changeset/important-release-note.md",
+        status: "added",
+        patch: "+Fix public generated imports",
+      },
+      { filename: "packages/tool/package.json", status: "modified", patch: "+dependency" },
+      {
+        filename: "packages/tool/src/a-long-implementation-file.ts",
+        status: "modified",
+        patch: "+correct implementation",
+      },
+    ],
+  });
+  const ctx = parse(await run(f));
+  assert.equal(ctx.files[0].path, ".changeset/important-release-note.md");
+  assert.match(ctx.files[0].patch, /generated imports/);
+  assert.equal(ctx.files[1].path, "packages/tool/package.json");
+  assert.match(ctx.files[2].patch, /correct implementation/);
+  assert(ctx.files.reduce((sum, file) => sum + (file.patch?.length ?? 0), 0) <= 4000);
+  assert(ctx.files.some((file) => file.patchOmitted));
+});
+
+test("marks clipped bodies and titles within their character budgets", async () => {
+  const ctx = parse(
+    await run(
+      fixture({
+        title: "example ".repeat(100),
+        body: "b".repeat(800),
+        related: [{ number: 2, created_at: "2026-10-01" }],
+        comments: [{ user: { type: "User" }, body: "c".repeat(800) }],
+        reviews: [{ user: { type: "User" }, state: "APPROVED", body: "r".repeat(250) }],
+      })
+    )
+  );
+  for (const [text, limit] of [
+    [ctx.related[0].title, 200],
+    [ctx.related[0].body, 700],
+    [ctx.related[0].comments[0].body, 600],
+    [ctx.reviews[0].body, 200],
+  ]) {
+    assert.match(text, /\[truncated\]$/);
+    assert(text.length <= limit);
+  }
+});
+
+test("ignores fenced, inline and indented code and CSS color references", async () => {
+  const f = fixture({
+    pr: false,
+    body: [
+      "```css",
+      "color: #333333;",
+      "See #444444",
+      "```",
+      "~~~~",
+      "#555555",
+      "~~~~",
+      "Use `#666666` or ``literal `#777777` example``.",
+      "    #888888",
+      "background-color: #999999; border: 1px solid #123456;",
+      "The color #222222 is too dark.",
+      "> ```css",
+      "> color: #101010;",
+      "> #121212",
+      "> ```",
+      "--primary: #131313;",
+      "See #333 and https://github.com/owner/repo/issues/42.",
+    ].join("\n"),
+  });
+  const ctx = parse(await run(f));
+  assert.deepEqual(
+    ctx.related.map((r) => r.number),
+    [333, 42]
+  );
+  assert(
+    !f.calls.some((path) =>
+      /issues\/(333333|444444|555555|666666|777777|888888|999999|123456|222222)(?:\?|\/|$)/.test(
+        path
+      )
+    )
+  );
+});
+
+test("marks search result limits and incomplete search responses", async () => {
+  const related = Array.from({ length: 6 }, (_, i) => ({
+    number: i + 1,
+    created_at: "2026-10-01",
+  }));
+  const ctx = parse(await run(fixture({ related, searchTotal: 9 })));
+  assert.equal(ctx.related.length, 5);
+  assert.equal(ctx.relatedOmitted, true);
+  const incomplete = parse(await run(fixture({ searchIncomplete: true })));
+  assert.equal(incomplete.relatedOmitted, true);
+  const complete = parse(await run(fixture({ related, searchTotal: 6 })));
+  assert.equal(complete.relatedOmitted, false);
+});
+
+test("preserves full-budget untruncated text and ambiguous prose issue references", async () => {
+  const ctx = parse(
+    await run(
+      fixture({
+        pr: false,
+        body: "See #333333, then (#123).",
+        title: "t".repeat(200),
+        comments: [{ user: { type: "User" }, body: "c".repeat(600) }],
+      })
+    )
+  );
+  assert.deepEqual(
+    ctx.related.map((r) => r.number),
+    [333333, 123]
+  );
+  assert.equal(ctx.related[0].title, "t".repeat(200));
+  assert.equal(ctx.related[0].comments[0].body, "c".repeat(600));
+});

@@ -4,13 +4,12 @@ on:
   issues:
     types: [opened, edited, reopened]
   pull_request_target:
-    types: [opened, edited, reopened, ready_for_review]
+    types: [opened, edited, reopened, ready_for_review, synchronize]
   issue_comment:
     types: [created, edited]
-
-concurrency:
-  group: label-${{ github.repository }}-${{ github.event.issue.number || github.event.pull_request.number }}
-  cancel-in-progress: true
+  workflow_run:
+    workflows: [Label review signal]
+    types: [completed]
 
 permissions:
   actions: write
@@ -19,15 +18,42 @@ permissions:
   pull-requests: write
 
 jobs:
-  label:
-    if: github.event.comment.user.login != 'github-actions[bot]' && (github.event.issue.state || github.event.pull_request.state) == 'open'
+  target:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    permissions:
+      contents: read
+      actions: read
+      pull-requests: read
+    outputs:
+      number: ${{ steps.target.outputs.number }}
+      created_at: ${{ steps.target.outputs.created_at }}
+      kind: ${{ steps.target.outputs.kind }}
+    steps:
+      # Always load executable code from the base repository's default branch.
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - id: target
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node .github/scripts/label-target.mjs
+  label:
+    needs: target
+    if: needs.target.outputs.number != ''
+    concurrency:
+      group: label-${{ github.repository }}-${{ needs.target.outputs.number }}
+      cancel-in-progress: true
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Skip issues and PRs older than 1 year
         id: age
         env:
-          CREATED_AT: ${{ github.event.issue.created_at || github.event.pull_request.created_at }}
+          CREATED_AT: ${{ needs.target.outputs.created_at }}
         run: |
           cutoff=$(date -u -d '1 year ago' +%s)
           created=$(date -u -d "$CREATED_AT" +%s)
@@ -38,6 +64,9 @@ jobs:
 
       - uses: actions/checkout@v7
         if: steps.age.outputs.skip != 'true'
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
 
       - uses: actions/setup-node@v7
         if: steps.age.outputs.skip != 'true'
@@ -48,23 +77,39 @@ jobs:
         if: steps.age.outputs.skip != 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NUMBER: ${{ github.event.issue.number || github.event.pull_request.number }}
+          NUMBER: ${{ needs.target.outputs.number }}
         run: gh api "repos/${GITHUB_REPOSITORY}/issues/${NUMBER}/labels" --jq '.[].name' > labels-before.txt
+
+      - name: Install label workflow tools
+        if: steps.age.outputs.skip != 'true'
+        run: npm ci --prefix .github/scripts --ignore-scripts --no-audit --no-fund
+
+      - name: Record labeler version
+        if: steps.age.outputs.skip != 'true'
+        run: node .github/scripts/node_modules/@ieedan/label/dist/bin.mjs --version
+
+      - name: Collect label evidence
+        if: steps.age.outputs.skip != 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NUMBER: ${{ needs.target.outputs.number }}
+        run: node .github/scripts/label-context.mjs
 
       - name: Label
         if: steps.age.outputs.skip != 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
-        run: npx --yes @ieedan/label label -R "$GITHUB_REPOSITORY" --config .github/.label.yml "${{ github.event.issue.number || github.event.pull_request.number }}"
+          NUMBER: ${{ needs.target.outputs.number }}
+        run: node .github/scripts/automatic-label.mjs
 
       # Label events created with GITHUB_TOKEN do not start other workflows.
       - name: Dispatch anti-slop
         if: steps.age.outputs.skip != 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NUMBER: ${{ github.event.issue.number || github.event.pull_request.number }}
-          KIND: ${{ (github.event_name == 'pull_request_target' || github.event.issue.pull_request) && 'PR' || 'issue' }}
+          NUMBER: ${{ needs.target.outputs.number }}
+          KIND: ${{ needs.target.outputs.kind }}
         run: |
           gh api "repos/${GITHUB_REPOSITORY}/issues/${NUMBER}/labels" --jq '.[].name' > labels-after.txt
           if grep -qx 'slop' labels-after.txt && ! grep -qx 'slop' labels-before.txt; then
@@ -72,10 +117,10 @@ jobs:
           fi
 
       - name: Dispatch reproduire
-        if: steps.age.outputs.skip != 'true' && !github.event.pull_request && !github.event.issue.pull_request
+        if: steps.age.outputs.skip != 'true' && needs.target.outputs.kind == 'issue'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NUMBER: ${{ github.event.issue.number }}
+          NUMBER: ${{ needs.target.outputs.number }}
         run: |
           if grep -qx 'needs reproduction' labels-after.txt && ! grep -qx 'needs reproduction' labels-before.txt; then
             gh workflow run reproduire.yml -f number="$NUMBER"
