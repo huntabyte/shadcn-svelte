@@ -83,7 +83,7 @@ You can use the `<Calendar />` component to build a date picker. See the [Date P
 
 ## Persian / Hijri / Jalali Calendar
 
-Shadcn's Persian example uses the Persian calendar, also called the Solar Hijri or Jalali calendar. In Svelte, pass a `PersianCalendar` date value instead of replacing a DayPicker import.
+To use the Persian calendar, create a `CalendarDate` with `PersianCalendar` from `@internationalized/date`. Set `locale="fa-IR"` for Persian labels and `numerals="arabext"` for Persian digits.
 
 <ComponentPreview name="persian-calendar-demo" previewClassName="h-[400px]">
 
@@ -91,117 +91,31 @@ Shadcn's Persian example uses the Persian calendar, also called the Solar Hijri 
 
 </ComponentPreview>
 
-```svelte showLineNumbers
-<script lang="ts">
-  import "@fontsource-variable/vazirmatn/index.css";
-  import { CalendarDate, PersianCalendar } from "@internationalized/date";
-  import { Calendar } from "$lib/components/ui/calendar/index.js";
-
-  let value = $state(new CalendarDate(new PersianCalendar(), 1404, 3, 22));
-</script>
-
-<div lang="fa" style="font-family: 'Vazirmatn Variable', sans-serif;">
-  <Calendar
-    type="single"
-    bind:value
-    locale="fa-IR"
-    numerals="arabext"
-    dir="rtl"
-    weekdayFormat="narrow"
-    class="rounded-lg border"
-  />
-</div>
-```
-
-`locale` supplies localized weekday and month names. `numerals` selects the numbering system using `Intl.NumberFormat`, including day cells and the month/year controls. No handwritten weekday labels, digit tables, or custom day snippet is needed. Use `arabext` for Persian digits, `arab` for Arabic digits, or `latn` for Latin digits.
-
-The Islamic Hijri calendar is a different calendar system. For example, use `IslamicUmalquraCalendar` with an Islamic locale:
-
-<ComponentPreview name="hijri-calendar-demo" previewClassName="h-[400px]">
-
-<div></div>
-
-</ComponentPreview>
-
-```svelte showLineNumbers
-<script lang="ts">
-  import {
-    CalendarDate,
-    IslamicUmalquraCalendar,
-    toCalendar,
-  } from "@internationalized/date";
-  import { Calendar } from "$lib/components/ui/calendar/index.js";
-
-  let value = $state(
-    toCalendar(new CalendarDate(2025, 6, 12), new IslamicUmalquraCalendar())
-  );
-</script>
-
-<Calendar
-  type="single"
-  bind:value
-  locale="ar-SA-u-ca-islamic-umalqura"
-  numerals="arab"
-  dir="rtl"
-  weekdayFormat="narrow"
-  class="rounded-lg border"
-/>
-```
-
-Other calendar systems can be selected with the same [@internationalized/date calendar API](https://react-spectrum.adobe.com/internationalized/date/Calendar.html).
-
 ## Selected Date (With TimeZone)
 
-The Svelte Calendar uses `CalendarDate` values, which represent a calendar date without a time zone. Keep the selected value as a `CalendarDate`; when you need a JavaScript `Date`, convert it with `value.toDate(timeZone)` to get midnight in that time zone.
-
-<ComponentPreview name="calendar-with-timezone" previewClassName="h-[440px]">
-
-<div></div>
-
-</ComponentPreview>
+Calendar selections can stay as `CalendarDate` values. When you need a JavaScript `Date`, call `value.toDate(timeZone)` to convert the selected day to midnight in the user's time zone.
 
 ```svelte showLineNumbers
 <script lang="ts">
+  import type { CalendarDate } from "@internationalized/date";
   import { onMount } from "svelte";
-  import {
-    CalendarDate,
-    getLocalTimeZone,
-    today,
-  } from "@internationalized/date";
   import { Calendar } from "$lib/components/ui/calendar/index.js";
 
   let value = $state<CalendarDate>();
-  let placeholder = $state<CalendarDate>();
   let timeZone = $state<string>();
-  const selectedDate = $derived(
-    value && timeZone ? value.toDate(timeZone) : undefined
-  );
+  const selectedDate = $derived(value && timeZone ? value.toDate(timeZone) : undefined);
 
   onMount(() => {
-    timeZone = getLocalTimeZone();
-    placeholder = today(timeZone);
+    timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   });
 </script>
 
-{#if timeZone}
-  <Calendar
-    type="single"
-    bind:value
-    bind:placeholder
-    class="rounded-lg border"
-  />
-{/if}
-
-{#if selectedDate && timeZone}
-  <time datetime={selectedDate.toISOString()}>
-    {selectedDate.toLocaleDateString(undefined, { timeZone })}
-  </time>
-{/if}
+<Calendar type="single" bind:value />
 ```
 
-**Note:** Avoid converting the selected date with `new Date(value.toString())`: a date-only ISO string is interpreted as UTC and may appear on the previous day in another time zone. Use `value.toDate(timeZone)` instead. The time zone is applied during conversion; Bits UI does not expose React DayPicker's `timeZone` prop.
+**Note:** Parsing `value.toString()` with `new Date()` treats the date as UTC midnight, which can display as the previous day in the user's time zone.
 
-**Why client-side?** Detect the user's time zone in `onMount`, then initialize the visible month with `today(timeZone)`. This avoids using the server's time zone during server-side rendering and keeps the initial calendar month correct for the user.
+**Why client-side?** The server may use a different time zone. Detect the user's zone in `onMount` before converting the selection.
 
 ## Basic
 

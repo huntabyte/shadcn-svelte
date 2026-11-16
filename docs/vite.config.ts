@@ -147,9 +147,7 @@ function flattenedRegistry(): Plugin {
 			const rtl =
 				splitId(importer).params.get("rtl") === "true" ||
 				path.basename(importerFile).startsWith("direction-") ||
-				["persian-calendar-demo.svelte", "hijri-calendar-demo.svelte"].includes(
-					path.basename(importerFile)
-				) ||
+				path.basename(importerFile) === "persian-calendar-demo.svelte" ||
 				path.basename(importerFile).endsWith("-rtl.svelte");
 			return { ...resolved, id: withQuery(resolved.id, style, rtl) };
 		},

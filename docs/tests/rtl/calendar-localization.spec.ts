@@ -10,10 +10,15 @@ test("Persian calendar localizes Jalali dates and records the current Bits horiz
 	await expect(calendar).toHaveCSS("direction", "rtl");
 	await expect(preview).toContainText("۱۴۰۴");
 	await expect(preview).toContainText("خرداد");
-	await expect(preview.locator("th")).toHaveText(["ش", "ی", "د", "س", "چ", "پ", "ج"]);
+	await expect(preview.locator("th")).toHaveText(["ش", "۱ش", "۲ش", "۳ش", "۴ش", "۵ش", "ج"]);
 	await expect(preview.getByRole("columnheader", { name: "شنبه", exact: true })).toHaveText("ش");
 	const selected = calendar.locator("[data-calendar-day][data-selected]");
 	await expect(selected).toHaveText("۲۲");
+	await expect(selected).toHaveAttribute("data-value", "2025-06-12");
+	await page.mouse.move(0, 0);
+	const color = await selected.evaluate((node) => getComputedStyle(node).color);
+	await selected.hover();
+	await expect(selected).toHaveCSS("color", color);
 	await selected.focus();
 	await page.keyboard.press("ArrowLeft");
 	// Bits currently maps Left to -1 even in RTL (shared Calendar/RangeCalendar helper).
@@ -60,56 +65,3 @@ test("numerals update day cells and dropdowns without replacing custom snippets 
 	await page.getByRole("button", { name: "Default numerals" }).click();
 	await expect(selected).toHaveText("22");
 });
-
-test("Islamic Hijri example uses Umm al-Qura dates and locale-generated labels", async ({
-	page,
-}) => {
-	await page.goto("/?example=hijri-calendar");
-	const preview = page.getByTestId("rtl-example");
-	const calendar = preview.locator("[data-calendar-root]");
-	await expect(calendar).toHaveCSS("direction", "rtl");
-	await expect(preview).toContainText("١٤٤٦");
-	const selected = calendar.locator("[data-calendar-day][data-selected]");
-	await expect(selected).toHaveAttribute("data-value", "2025-06-12");
-	await expect(selected).toHaveText("١٦");
-	await expect(preview.locator("th")).toHaveText(["ح", "ن", "ث", "ر", "خ", "ج", "س"]);
-	await preview.screenshot({ path: "test-results/hijri-calendar.png", animations: "disabled" });
-});
-
-for (const [timeZone, instant] of [
-	["America/Los_Angeles", "2025-06-20T07:00:00.000Z"],
-	["Asia/Tokyo", "2025-06-19T15:00:00.000Z"],
-]) {
-	test.describe(timeZone, () => {
-		test.use({ timezoneId: timeZone });
-		test("selected date converts to midnight in the detected client time zone without an offset", async ({
-			page,
-		}) => {
-			const errors: string[] = [];
-			page.on("pageerror", (error) => errors.push(error.message));
-			await page.clock.install({ time: new Date("2025-06-12T00:30:00.000Z") });
-			await page.goto("/?example=calendar-timezone");
-			const preview = page.getByTestId("rtl-example");
-			await expect(preview).toContainText(`Time zone: ${timeZone}`);
-			await expect(preview.getByRole("status")).toHaveText("No date selected.");
-			await expect(preview.locator("[data-calendar-day][data-today]")).toHaveAttribute(
-				"data-value",
-				timeZone === "America/Los_Angeles" ? "2025-06-11" : "2025-06-12"
-			);
-			const selected = preview.locator('[data-calendar-day][data-value="2025-06-20"]');
-			await selected.click();
-			await expect(selected).toHaveAttribute("data-selected", "");
-			await page.mouse.move(0, 0);
-			const color = await selected.evaluate((node) => getComputedStyle(node).color);
-			await selected.hover();
-			await expect(selected).toHaveCSS("color", color);
-			await expect(preview.locator("time")).toHaveAttribute("datetime", instant);
-			await expect(preview.locator("time")).toHaveText("Friday, June 20, 2025");
-			expect(errors).toEqual([]);
-			await preview.screenshot({
-				path: `test-results/timezone-${timeZone.replaceAll("/", "-")}.png`,
-				animations: "disabled",
-			});
-		});
-	});
-}

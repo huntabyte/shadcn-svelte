@@ -3,7 +3,9 @@
 	import { CalendarDate, PersianCalendar } from "@internationalized/date";
 	import { Calendar } from "$lib/registry/ui/calendar/index.js";
 
-	let value = $state(new CalendarDate(new PersianCalendar(), 1404, 3, 22));
+	const initialDate = new CalendarDate(new PersianCalendar(), 1404, 3, 22);
+	const weekdayLabels = ["ش", "۱ش", "۲ش", "۳ش", "۴ش", "۵ش", "ج"];
+	let value = $state<CalendarDate | undefined>(initialDate);
 </script>
 
 <div lang="fa" style="font-family: 'Vazirmatn Variable', sans-serif;">
@@ -13,7 +15,11 @@
 		locale="fa-IR"
 		numerals="arabext"
 		dir="rtl"
-		weekdayFormat="narrow"
+		weekStartsOn={6}
 		class="rounded-lg border"
-	/>
+	>
+		{#snippet weekday({ index })}
+			{weekdayLabels[index]}
+		{/snippet}
+	</Calendar>
 </div>
