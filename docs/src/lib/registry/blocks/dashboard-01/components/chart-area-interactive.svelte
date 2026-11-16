@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { scaleUtc } from "d3-scale";
 	import { curveNatural } from "d3-shape";
-	import { Area, AreaChart } from "layerchart";
+	import { Area, AreaChart, ChartClipPath } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
@@ -167,9 +167,11 @@
 					</span>
 				</Select.Trigger>
 				<Select.Content class="rounded-xl">
-					<Select.Item value="90d" class="rounded-lg">Last 3 months</Select.Item>
-					<Select.Item value="30d" class="rounded-lg">Last 30 days</Select.Item>
-					<Select.Item value="7d" class="rounded-lg">Last 7 days</Select.Item>
+					<Select.Group>
+						<Select.Item value="90d" class="rounded-lg">Last 3 months</Select.Item>
+						<Select.Item value="30d" class="rounded-lg">Last 30 days</Select.Item>
+						<Select.Item value="7d" class="rounded-lg">Last 7 days</Select.Item>
+					</Select.Group>
 				</Select.Content>
 			</Select.Root>
 		</Card.Action>
@@ -218,17 +220,18 @@
 							<stop offset="95%" stop-color="var(--color-mobile)" stop-opacity={0.1} />
 						</linearGradient>
 					</defs>
-					{#each context.series.visibleSeries as s (s.key)}
-						<Area
-							seriesKey={s.key}
-							curve={curveNatural}
-							fillOpacity={0.4}
-							line={{ class: "stroke-1" }}
-							motion="tween"
-							{...s.props}
-							fill={s.key === "desktop" ? "url(#fillDesktop)" : "url(#fillMobile)"}
-						/>
-					{/each}
+					<ChartClipPath initialWidth={0} motion={Chart.defaultClipMotion}>
+						{#each context.series.visibleSeries as s (s.key)}
+							<Area
+								seriesKey={s.key}
+								curve={curveNatural}
+								fillOpacity={0.4}
+								line={{ class: "stroke-1" }}
+								{...s.props}
+								fill={s.key === "desktop" ? "url(#fillDesktop)" : "url(#fillMobile)"}
+							/>
+						{/each}
+					</ChartClipPath>
 				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip

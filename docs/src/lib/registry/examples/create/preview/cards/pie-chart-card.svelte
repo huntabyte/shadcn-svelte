@@ -28,6 +28,8 @@
 	const topBrowserLabel = $derived(
 		pieChartConfig[topBrowser.browser as keyof typeof pieChartConfig]?.label ?? "Top"
 	);
+
+	const pieAngle = Chart.createPieAnimation();
 </script>
 
 <Card.Root>
@@ -47,7 +49,13 @@
 				c="color"
 				innerRadius={0.8}
 				padding={28}
-				props={{ pie: { motion: "tween" } }}
+				props={{
+					pie: {
+						startAngle: Math.PI / 2,
+						endAngle: pieAngle.current,
+						motion: "none",
+					},
+				}}
 			>
 				{#snippet aboveMarks()}
 					<Text

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { Arc, PieChart, Text } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
@@ -30,109 +29,103 @@
 	const activeIndex = $derived(desktopData.findIndex((item) => item.month === activeMonth));
 
 	const months = $derived(desktopData.map((item) => item.month));
+	const pieAngle = Chart.createPieAnimation();
 </script>
 
 <Card.Root data-chart={id} class="flex flex-col">
 	<ChartStyle {id} config={chartConfig} />
-	<Card.Header class="flex flex-row items-start space-y-0 pb-0">
+	<Card.Header class="flex-row items-start space-y-0 pb-0">
 		<div class="grid gap-1">
 			<Card.Title>Pie Chart - Interactive</Card.Title>
 			<Card.Description>January - June 2024</Card.Description>
 		</div>
 		<Select.Root type="single" bind:value={activeMonth}>
-			<Select.Trigger
-				class="ms-auto h-7 w-[130px] rounded-lg ps-2.5 text-sm"
-				aria-label="Select a value"
-			>
+			<Select.Trigger class="ms-auto h-7 w-[130px] rounded-lg ps-2.5" aria-label="Select a value">
 				<span
-					class="flex h-3 w-3 shrink-0 rounded-sm"
+					class="flex h-3 w-3 shrink-0 rounded-xs"
 					style:background-color={`var(--color-${activeMonth})`}
 				></span>
 				{activeMonth ? chartConfig[activeMonth as keyof typeof chartConfig].label : "Select month"}
 			</Select.Trigger>
 			<Select.Content align="end" class="rounded-xl">
-				{#each months as month (month)}
-					{@const config = chartConfig[month as keyof typeof chartConfig]}
+				<Select.Group>
+					{#each months as month (month)}
+						{@const config = chartConfig[month as keyof typeof chartConfig]}
 
-					{#if config}
-						<Select.Item value={month} label={config.label} class="rounded-lg [&_span]:flex">
-							<div class="flex items-center gap-2 text-xs">
-								{config?.label}
-							</div>
-						</Select.Item>
-					{/if}
-				{/each}
+						{#if config}
+							<Select.Item value={month} label={config.label} class="rounded-lg [&_span]:flex">
+								<div class="flex items-center gap-2 text-xs">
+									<span
+										class="size-3 shrink-0 rounded-xs"
+										style:background-color={"color" in config ? config.color : undefined}
+									></span>
+									{config.label}
+								</div>
+							</Select.Item>
+						{/if}
+					{/each}</Select.Group
+				>
 			</Select.Content>
 		</Select.Root>
 	</Card.Header>
-	<Card.Content class="flex-1">
-		<Chart.Container {id} config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
+	<Card.Content class="flex flex-1 justify-center pb-0">
+		<Chart.Container {id} config={chartConfig} class="mx-auto aspect-square w-full max-w-[300px]">
 			<PieChart
+				outerRadius={0.8}
 				data={desktopData}
 				label="month"
 				key="month"
 				value="desktop"
 				c="color"
 				props={{
+					arc: { stroke: "transparent", strokeWidth: 5 },
 					pie: {
+						startAngle: Math.PI / 2,
+						endAngle: pieAngle.current,
 						sort: (a, b) => {
 							const monthOrder = ["january", "february", "march", "april", "may"];
 							return monthOrder.indexOf(a.month) - monthOrder.indexOf(b.month);
 						},
-						motion: "tween",
+						motion: "none",
 					},
 				}}
 				innerRadius={60}
-				padding={29}
+				padding={5}
 			>
 				{#snippet aboveMarks()}
 					<Text
 						value={desktopData[activeIndex].desktop.toLocaleString()}
 						textAnchor="middle"
 						verticalAnchor="middle"
-						class="fill-foreground !text-3xl font-bold"
-						dy={3}
+						class="fill-foreground text-3xl! font-bold"
+						dy={0}
 					/>
 					<Text
 						value="Visitors"
 						textAnchor="middle"
 						verticalAnchor="middle"
 						class="!fill-muted-foreground text-muted-foreground"
-						dy={22}
+						dy={24}
 					/>
 				{/snippet}
-				{#snippet arc({ props, index })}
+				{#snippet arc({ props, index, context })}
+					{@const outerRadius = (Math.min(context.width, context.height) / 2) * 0.8}
 					{@const isActive = index === activeIndex}
-					{@const arcProps = isActive ? { ...props, outerRadius: 60, innerRadius: 105 } : props}
+					{@const arcProps = isActive ? { ...props, outerRadius: outerRadius + 10 } : props}
 
 					{#if isActive}
 						<g>
 							<Arc {...arcProps} />
-							<Arc {...arcProps} outerRadius={107} innerRadius={119} />
+							<Arc {...props} outerRadius={outerRadius + 25} innerRadius={outerRadius + 12} />
 						</g>
 					{:else}
 						<Arc {...arcProps} />
 					{/if}
 				{/snippet}
 				{#snippet tooltip()}
-					<Chart.Tooltip
-						labelKey="visitors"
-						nameKey="month"
-						indicator="line"
-						labelFormatter={(_, payload) => {
-							return chartConfig[payload?.[0].key as keyof typeof chartConfig].label;
-						}}
-					/>
+					<Chart.Tooltip hideLabel />
 				{/snippet}
 			</PieChart>
 		</Chart.Container>
 	</Card.Content>
-	<Card.Footer class="flex-col gap-2 text-sm">
-		<div class="flex items-center gap-2 leading-none font-medium">
-			Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
-		</div>
-		<div class="leading-none text-muted-foreground">
-			Showing total visitors for the last 6 months
-		</div>
-	</Card.Footer>
 </Card.Root>

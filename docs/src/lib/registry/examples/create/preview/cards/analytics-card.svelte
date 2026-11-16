@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { curveLinear } from "d3-shape";
-	import { AreaChart } from "layerchart";
+	import { Area, AreaChart, ChartClipPath } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import { Badge } from "$lib/registry/ui/badge/index.js";
@@ -45,15 +45,23 @@
 				},
 			]}
 			props={{
-				area: {
-					curve: curveLinear,
-					fillOpacity: 0.4,
-					line: { class: "stroke-1" },
-				},
 				xAxis: { format: () => "" },
 				yAxis: { format: () => "" },
 			}}
 		>
+			{#snippet marks({ context })}
+				<ChartClipPath initialWidth={0} motion={Chart.defaultClipMotion}>
+					{#each context.series.visibleSeries as s (s.key)}
+						<Area
+							seriesKey={s.key}
+							curve={curveLinear}
+							fillOpacity={0.4}
+							line={{ class: "stroke-1" }}
+							{...s.props}
+						/>
+					{/each}
+				</ChartClipPath>
+			{/snippet}
 			{#snippet tooltip()}
 				<Chart.Tooltip indicator="line" hideLabel />
 			{/snippet}

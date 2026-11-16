@@ -57,7 +57,7 @@
 						spline: {
 							curve: curveMonotoneX,
 							strokeWidth: 2,
-							motion: "tween",
+							draw: Chart.lineDraw(),
 						},
 						xAxis: {
 							format: (d) => d.slice(0, 3),

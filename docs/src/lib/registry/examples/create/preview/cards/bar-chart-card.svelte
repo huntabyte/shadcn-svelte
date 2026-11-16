@@ -60,6 +60,7 @@
 				rule={false}
 				props={{
 					bars: {
+						motion: Chart.defaultBarMotion,
 						stroke: "none",
 						rounded: "all",
 					},

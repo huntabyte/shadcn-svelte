@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { scaleBand } from "d3-scale";
 	import { curveNatural } from "d3-shape";
-	import { AreaChart } from "layerchart";
+	import { Area, AreaChart, ChartClipPath } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import IconPlaceholder from "$lib/components/icon-placeholder/icon-placeholder.svelte";
@@ -45,17 +45,19 @@
 						},
 					]}
 					props={{
-						area: {
-							curve: curveNatural,
-							fillOpacity: 0.4,
-							motion: "tween",
-						},
 						xAxis: {
 							format: (d) => d.slice(0, 3),
 							tickLength: 0,
 						},
 					}}
 				>
+					{#snippet marks({ context })}
+						<ChartClipPath initialWidth={0} motion={Chart.defaultClipMotion}>
+							{#each context.series.visibleSeries as s (s.key)}
+								<Area seriesKey={s.key} curve={curveNatural} fillOpacity={0.4} {...s.props} />
+							{/each}
+						</ChartClipPath>
+					{/snippet}
 					{#snippet tooltip()}
 						<Chart.Tooltip indicator="line" />
 					{/snippet}

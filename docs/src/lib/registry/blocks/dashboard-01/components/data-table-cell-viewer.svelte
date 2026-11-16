@@ -2,7 +2,7 @@
 	import TrendingUpIcon from "@tabler/icons-svelte/icons/trending-up";
 	import { scaleUtc } from "d3-scale";
 	import { curveNatural } from "d3-shape";
-	import { AreaChart } from "layerchart";
+	import { Area, AreaChart, ChartClipPath } from "layerchart";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Drawer from "$lib/registry/ui/drawer/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
@@ -77,18 +77,25 @@
 						]}
 						seriesLayout="stack"
 						props={{
-							area: {
-								curve: curveNatural,
-								fillOpacity: 0.4,
-								line: { class: "stroke-1" },
-								motion: "tween",
-							},
 							xAxis: {
 								format: (v) => v.toLocaleDateString("en-US", { month: "short" }),
 							},
 							yAxis: { ticks: [0, 300, 600] },
 						}}
 					>
+						{#snippet marks({ context })}
+							<ChartClipPath initialWidth={0} motion={Chart.defaultClipMotion}>
+								{#each context.series.visibleSeries as s (s.key)}
+									<Area
+										seriesKey={s.key}
+										curve={curveNatural}
+										fillOpacity={0.4}
+										line={{ class: "stroke-1" }}
+										{...s.props}
+									/>
+								{/each}
+							</ChartClipPath>
+						{/snippet}
 						{#snippet tooltip()}
 							<Chart.Tooltip
 								labelFormatter={(v: Date) => {
@@ -145,9 +152,11 @@
 								{status ?? "Select a status"}
 							</Select.Trigger>
 							<Select.Content>
-								<Select.Item value="Done">Done</Select.Item>
-								<Select.Item value="In Progress">In Progress</Select.Item>
-								<Select.Item value="Not Started">Not Started</Select.Item>
+								<Select.Group>
+									<Select.Item value="Done">Done</Select.Item>
+									<Select.Item value="In Progress">In Progress</Select.Item>
+									<Select.Item value="Not Started">Not Started</Select.Item>
+								</Select.Group>
 							</Select.Content>
 						</Select.Root>
 					</div>
@@ -169,9 +178,11 @@
 							{reviewer ?? "Select a reviewer"}
 						</Select.Trigger>
 						<Select.Content>
-							<Select.Item value="Eddie Lake">Eddie Lake</Select.Item>
-							<Select.Item value="Jamik Tashpulatov">Jamik Tashpulatov</Select.Item>
-							<Select.Item value="Emily Whalen">Emily Whalen</Select.Item>
+							<Select.Group>
+								<Select.Item value="Eddie Lake">Eddie Lake</Select.Item>
+								<Select.Item value="Jamik Tashpulatov">Jamik Tashpulatov</Select.Item>
+								<Select.Item value="Emily Whalen">Emily Whalen</Select.Item>
+							</Select.Group>
 						</Select.Content>
 					</Select.Root>
 				</div>

@@ -20,14 +20,25 @@
 		edge: { label: "Edge", color: "var(--chart-4)" },
 		other: { label: "Other", color: "var(--chart-5)" },
 	} satisfies Chart.ChartConfig;
+
+	// With outerRadius={-17}, innerRadius={-12.5}, padding={20}, and a 250px container:
+	// usable radius ≈ (250/2) - 20 = 105
+	// outermost arc outer edge ≈ 105 - 17 = 88
+	// each band is 12.5 wide, so 5 bands span radii from ~26 to ~88
+	// grid circles at each band's outer edge (skip center hole at ~26)
+	const gridRadii = [31, 48, 65, 82, 99];
+	// 12 evenly spaced spokes (every 30°) from center to outer radius
+	const spokeAngles = Array.from({ length: 14 }, (_, i) => (i * 24.5 * Math.PI) / 180);
+	const innerR = 23;
+	const outerR = 108;
 </script>
 
-<Card.Root>
-	<Card.Header class="items-center">
+<Card.Root class="flex flex-col">
+	<Card.Header class="items-center pb-0">
 		<Card.Title>Radial Chart - Grid</Card.Title>
-		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
+		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
-	<Card.Content class="flex-1">
+	<Card.Content class="flex-1 pb-0">
 		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
 			<ArcChart
 				label="browser"
@@ -36,17 +47,38 @@
 				innerRadius={-12.5}
 				padding={20}
 				range={[90, -270]}
-				maxValue={Math.max(...chartData.map((d) => d.visitors))}
+				maxValue={300}
 				series={chartData.map((d) => ({
 					key: d.browser,
 					color: d.color,
 					data: [d],
 				}))}
 				props={{
-					arc: { track: { fill: "var(--muted)" }, motion: "tween" },
+					arc: { track: { fill: "transparent" }, motion: Chart.defaultMotion },
 					tooltip: { context: { hideDelay: 350 } },
 				}}
 			>
+				{#snippet belowMarks()}
+					{#each gridRadii as r (r)}
+						<circle
+							cx="0"
+							cy="0"
+							{r}
+							class="fill-none stroke-muted-foreground/20"
+							stroke-width="1"
+						/>
+					{/each}
+					{#each spokeAngles as angle (angle)}
+						<line
+							x1={innerR * Math.cos(angle)}
+							y1={innerR * Math.sin(angle)}
+							x2={outerR * Math.cos(angle)}
+							y2={outerR * Math.sin(angle)}
+							class="stroke-muted-foreground/20"
+							stroke-width="1"
+						/>
+					{/each}
+				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel nameKey="browser" />
 				{/snippet}
@@ -55,10 +87,10 @@
 	</Card.Content>
 	<Card.Footer class="flex-col gap-2 text-sm">
 		<div class="flex items-center gap-2 leading-none font-medium">
-			Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
+			Trending up by 5.2% this month <TrendingUpIcon class="h-4 w-4" />
 		</div>
-		<div class="flex items-center gap-2 leading-none text-muted-foreground">
-			January - June 2024
+		<div class="leading-none text-muted-foreground">
+			Showing total visitors for the last 6 months
 		</div>
 	</Card.Footer>
 </Card.Root>

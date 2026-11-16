@@ -1,6 +1,6 @@
 <script lang="ts">
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
-	import { Arc, PieChart, Text } from "layerchart";
+	import { Arc, PieChart } from "layerchart";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 
@@ -20,24 +20,31 @@
 		edge: { label: "Edge", color: "var(--chart-4)" },
 		other: { label: "Other", color: "var(--chart-5)" },
 	} satisfies Chart.ChartConfig;
+	const pieAngle = Chart.createPieAnimation();
 </script>
 
 <Card.Root class="flex flex-col">
-	<Card.Header class="items-center">
+	<Card.Header class="items-center pb-0">
 		<Card.Title>Pie Chart - Label</Card.Title>
 		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
-	<Card.Content class="flex-1">
-		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
+	<Card.Content class="flex-1 pb-0">
+		<Chart.Container config={chartConfig} class="mx-auto aspect-square w-full max-w-[250px]">
 			<PieChart
+				outerRadius={0.8}
+				padding={5}
 				data={chartData}
 				key="browser"
 				value="visitors"
 				cRange={chartData.map((d) => d.color)}
 				c="color"
 				props={{
+					arc: { stroke: "transparent", strokeWidth: 1 },
 					pie: {
-						motion: "tween",
+						startAngle: Math.PI / 2,
+						sort: null,
+						endAngle: pieAngle.current,
+						motion: "none",
 					},
 				}}
 			>
@@ -45,15 +52,25 @@
 					<Chart.Tooltip hideLabel />
 				{/snippet}
 				{#snippet arc({ props, visibleData, index })}
-					{@const browser = visibleData[index].browser}
 					<Arc {...props}>
-						{#snippet children({ getArcTextProps })}
-							<Text
-								value={browser}
-								{...getArcTextProps("centroid")}
-								font-size="12"
-								class="fill-background capitalize"
-							/>
+						{#snippet children({ startAngle, endAngle, outerRadius })}
+							{@const angle = (startAngle + endAngle) / 2}
+							{@const labelX = (outerRadius + 20) * Math.sin(angle)}
+							{@const labelY = -(outerRadius + 20) * Math.cos(angle)}
+							{#if pieAngle.current === (-3 * Math.PI) / 2}
+								<polyline
+									points={`${outerRadius * Math.sin(angle)},${-outerRadius * Math.cos(angle)} ${labelX},${labelY}`}
+									fill="none"
+									stroke={props.fill}
+								/>
+								<text
+									x={labelX}
+									y={labelY}
+									text-anchor={labelX > 0 ? "start" : "end"}
+									dominant-baseline="middle"
+									class="fill-foreground">{visibleData[index].visitors}</text
+								>
+							{/if}
 						{/snippet}
 					</Arc>
 				{/snippet}
@@ -62,7 +79,7 @@
 	</Card.Content>
 	<Card.Footer class="flex-col gap-2 text-sm">
 		<div class="flex items-center gap-2 leading-none font-medium">
-			Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
+			Trending up by 5.2% this month <TrendingUpIcon class="h-4 w-4" />
 		</div>
 		<div class="leading-none text-muted-foreground">
 			Showing total visitors for the last 6 months
