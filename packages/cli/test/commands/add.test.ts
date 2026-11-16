@@ -153,10 +153,10 @@ describe("add from a private namespaced registry", () => {
 		writeFileSync(path.join(cwd, ".env.local"), "SHADCN_TEST_TOKEN=test-token\n");
 	}
 
-	function runAdd() {
+	function runAdd(item = "@private/card") {
 		return exec(
 			process.execPath,
-			[cli, "add", "@private/card", "--cwd", cwd, "--yes", "--overwrite", "--no-deps-install"],
+			[cli, "add", item, "--cwd", cwd, "--yes", "--overwrite", "--no-deps-install"],
 			{
 				throwOnError: false,
 				nodeOptions: {
@@ -218,6 +218,37 @@ describe("add from a private namespaced registry", () => {
 		const update = await runAdd();
 		expect(update.exitCode, update.stdout + update.stderr).toBe(0);
 		expect(readFileSync(path.join(cwd, "src/widgets/private-card.svelte"), "utf8")).toBe(installed);
+	});
+
+	it("installs a local item with a dependency configured only in package.json", async () => {
+		setupProject();
+		const configPath = path.join(cwd, "components.json");
+		const config = JSON.parse(readFileSync(configPath, "utf8"));
+		const { "@other": other, ...registries } = config.registries;
+		const originalConfig = JSON.stringify({ ...config, registries });
+		writeFileSync(configPath, originalConfig);
+		const packagePath = path.join(cwd, "package.json");
+		const manifest = JSON.parse(readFileSync(packagePath, "utf8"));
+		writeFileSync(packagePath, JSON.stringify({ ...manifest, registries: { "@other": other } }));
+		writeFileSync(
+			path.join(cwd, "item.json"),
+			JSON.stringify({
+				name: "local-item",
+				type: "registry:lib",
+				registryDependencies: ["@other/label"],
+				files: [
+					{ type: "registry:lib", target: "local.ts", content: "export const local = true;\n" },
+				],
+			})
+		);
+		const result = await runAdd("./item.json");
+		expect(result.exitCode, result.stdout + result.stderr).toBe(0);
+		expect(readFileSync(path.join(cwd, "src/shared/local.ts"), "utf8")).toContain("local = true");
+		expect(readFileSync(path.join(cwd, "src/shared/label.ts"), "utf8")).toContain("Private card");
+		expect(readFileSync(configPath, "utf8")).toBe(originalConfig);
+		expect(requests).toEqual([
+			{ path: "/other/label.json", authorization: undefined, apiKey: "other-token" },
+		]);
 	});
 
 	it("fails before requesting a registry when a credential is missing", async () => {

@@ -1,5 +1,6 @@
 import { fetch } from "node-fetch-native";
 import { describe, expect, it, vi } from "vitest";
+import { DEFAULT_CONFIG } from "../../src/utils/config/schema.js";
 import {
 	resolveGitHubItemAddress,
 	resolveGitHubRegistrySource,
@@ -195,6 +196,60 @@ describe("GitHub registry source loading", () => {
 			items: [`acme/app/page#${sha}`],
 		});
 		expect(items.map((item) => item.name)).toEqual(["page", "button", "input"]);
+	});
+
+	it("resolves GitHub and HTTP namespaces in both directions without refetching a cycle", async () => {
+		const sha = "0123456789abcdef0123456789abcdef01234567";
+		const github = `acme/ui/card#${sha}`;
+		const sourceUrl = `https://raw.githubusercontent.com/acme/ui/${sha}/registry.json`;
+		const namespaceUrl = "https://registry.example/r/label.json";
+		vi.mocked(fetch).mockClear();
+		vi.mocked(fetch).mockImplementation(async (url, options) => {
+			if (String(url) === namespaceUrl) {
+				expect(options?.headers).toEqual({ Authorization: "Bearer registry-test-token" });
+				return Response.json({
+					name: "label",
+					type: "registry:lib",
+					registryDependencies: [github],
+				});
+			}
+			expect(String(url)).toBe(sourceUrl);
+			expect(new Headers(options?.headers).has("Authorization")).toBe(false);
+			return Response.json({
+				name: "ui",
+				homepage: "https://github.com/acme/ui",
+				items: [{ name: "card", type: "registry:ui", registryDependencies: ["@acme/label"] }],
+			});
+		});
+
+		const items = await resolveRegistryItems({
+			registryUrl: "https://shadcn-svelte.com/registry",
+			items: [github, "@acme/label"],
+			config: {
+				...DEFAULT_CONFIG,
+				sveltekit: false,
+				resolvedPaths: {
+					cwd: "/nonexistent-project",
+					lib: "",
+					components: "",
+					ui: "",
+					utils: "",
+					hooks: "",
+					tailwindCss: "",
+				},
+				registries: {
+					"@acme": {
+						url: "https://registry.example/r/{name}.json",
+						headers: { Authorization: "Bearer registry-test-token" },
+					},
+				},
+			},
+		});
+		expect(items.map((item) => item.name)).toEqual(["card", "label"]);
+		expect(vi.mocked(fetch).mock.calls.map(([url]) => String(url))).toEqual([
+			sourceUrl,
+			namespaceUrl,
+		]);
 	});
 
 	it("keeps same-name GitHub dependencies from different repositories distinct", async () => {

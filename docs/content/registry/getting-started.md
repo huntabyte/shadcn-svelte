@@ -168,6 +168,14 @@ You can serve your registry by running the dev server.
 
 Your files will now be served at `http://localhost:5173/r/[NAME].json` eg. `http://localhost:5173/r/hello-world.json`.
 
+### Search your registry
+
+The build writes `static/r/registry.json` alongside the item payloads. Pass its URL to [search](/docs/cli#search), or configure a namespace for the registry and search by namespace.
+
+<PMExecute command="shadcn-svelte@latest search http://localhost:5173/r/registry.json" />
+
+For larger registries, [split the source manifest with include](/docs/registry/registry-json#include). The catalog remains a single file.
+
 ## Publish your registry
 
 To make your registry available to other developers, you can publish it by deploying your project to a public URL.
@@ -192,4 +200,6 @@ To install a registry item using the `shadcn-svelte` CLI, use the `add` command 
 
 <PMExecute command="shadcn-svelte@latest add http://localhost:5173/r/hello-world.json" />
 
-The build also writes a flattened `registry.json` catalog so users can search the registry. To split a source registry across files, set `include` to an array of relative paths to other `registry.json` files. Item file paths are relative to the file that declares them. Item names such as `forms/login` build to `forms/login.json`.
+You can also install a built item from a local file before deploying it.
+
+<PMExecute command="shadcn-svelte@latest add ./static/r/hello-world.json" />

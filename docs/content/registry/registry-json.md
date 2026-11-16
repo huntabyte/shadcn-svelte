@@ -65,9 +65,26 @@ The homepage of your registry. This is used for data attributes and other metada
 }
 ```
 
+### include
+
+Use `include` to split a registry across multiple manifests. Both [registry build](/docs/cli#registry-build) and [GitHub source registries](/docs/registry/github) understand it.
+
+```json title="registry.json"
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry.json",
+  "name": "acme",
+  "homepage": "https://acme.example",
+  "include": ["forms/registry.json"]
+}
+```
+
+Included manifests can omit `name` and `homepage` and can include other manifests. Paths in `include` must be relative to the manifest that declares them and end in `registry.json`. URLs, absolute paths, and parent traversal are unsupported. Item file paths are relative to the manifest that defines the item. Item names must be unique across the whole registry.
+
+When publishing over HTTP, serve the flattened `registry.json` produced by `registry build` as the search catalog.
+
 ### items
 
-The `items` in your registry. Each item must implement the [registry-item schema specification](/schema/registry-item.json).
+The items declared in this manifest. A root manifest can use `include` without listing its own items. Names such as `forms/login` generate `forms/login.json` in the build output. Each item must implement the [registry-item schema specification](/schema/registry-item.json).
 
 ```json title="registry.json" showLineNumbers
 {

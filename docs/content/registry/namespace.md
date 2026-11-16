@@ -46,7 +46,11 @@ To update an installed namespaced item, run `add` again with `--overwrite`:
 
 <PMExecute command="shadcn-svelte@latest add @acme/button --overwrite" />
 
-You can also define `registries` as a top-level field in `package.json`. The CLI merges the two maps, with `components.json` taking precedence for each namespace. Use [search](/docs/cli#search) to browse a configured registry and [view](/docs/cli#view) to inspect an item before installing it.
+You can also define `registries` as a top-level field in `package.json`. The CLI merges the two maps, with `components.json` taking precedence for each namespace. Use [registry add](/docs/cli#registry-add) to save an explicit namespace mapping. Use [search](/docs/cli#search) to browse the registry's published catalog and [view](/docs/cli#view) to inspect an item before installing it.
+
+<PMExecute command="shadcn-svelte@latest search @acme" />
+
+<PMExecute command="shadcn-svelte@latest view @acme/button" />
 
 ## Style-specific URLs
 

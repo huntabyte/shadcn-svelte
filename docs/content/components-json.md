@@ -187,5 +187,7 @@ as well as the URL, can reference environment variables with `${VARIABLE_NAME}`.
 
 <PMExecute command="shadcn-svelte@latest add @acme/button" />
 
+You can also define a top-level `registries` map in `package.json`. Entries from `components.json` take precedence for matching namespaces. Use [registry add](/docs/cli#registry-add) to save an explicit URL template from the CLI.
+
 See [Namespaced Registries](/docs/registry/namespace) and
 [Authentication](/docs/registry/authentication) for setup and examples.

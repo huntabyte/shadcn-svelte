@@ -318,6 +318,12 @@ Validate a GitHub registry.
 
 <PMExecute command="shadcn-svelte@latest registry validate acme/toolkit" />
 
+Search a GitHub catalog or view a single item before installing.
+
+<PMExecute command="shadcn-svelte@latest search acme/toolkit#v1.0.0" />
+
+<PMExecute command="shadcn-svelte@latest view acme/toolkit/project-conventions#v1.0.0" />
+
 Install an item from a GitHub registry.
 
 <PMExecute command="shadcn-svelte@latest add acme/toolkit/project-conventions" />

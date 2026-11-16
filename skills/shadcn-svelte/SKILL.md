@@ -181,7 +181,7 @@ Open `https://shadcn-svelte.com/docs/components/<name>.md` for docs and examples
 4. **Install or update** — `npx shadcn-svelte@latest add <name>` or a registry **URL**. To refresh existing files from the registry, use `npx shadcn-svelte@latest update` (see [cli.md](./cli.md)).
 5. **Fix imports in third-party / URL-added items** — After adding from a custom registry URL, check for hardcoded paths that don't match the project's `aliases`. Rewrite imports to use the project's `ui` / `lib` aliases from `components.json`.
 6. **Review added components** — After adding, **read the added files** and verify composition (groups, titles, validation attrs). Align icon imports with `iconLibrary`.
-7. **Remote registry items** — Adding by URL is explicit; if the user wants a component from an unknown source, confirm the registry URL or item before running `add`.
+7. **Remote registry items** — Use `search` to find items in a configured namespace or GitHub registry and `view` to inspect the payload before running `add`. See [CLI reference](./cli.md) for item address formats.
 
 ## Design Systems from DESIGN.md
 
