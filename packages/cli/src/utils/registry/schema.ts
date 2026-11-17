@@ -239,6 +239,10 @@ export const registrySchema = z.object({
 
 /** Schema for a project's `components.json` config file. */
 export const componentsJsonSchema = z.object({
+	rtl: z
+		.boolean()
+		.optional()
+		.describe("Transform component classes to support both LTR and RTL layouts."),
 	$schema: z.string().optional(),
 	style: z
 		.string()

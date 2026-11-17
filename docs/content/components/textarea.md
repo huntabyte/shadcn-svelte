@@ -97,3 +97,13 @@ Pair with `Button` to create a textarea with a submit button.
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="textarea-rtl" direction="rtl">
+
+<div></div>
+
+</ComponentPreview>

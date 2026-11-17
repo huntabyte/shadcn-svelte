@@ -528,3 +528,13 @@ To use a custom key for tooltip label and names, use the `labelKey` and `nameKey
 ```
 
 This will use `Total Visitors` for label and `Chrome` and `Safari` for the tooltip names.
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="chart-rtl" direction="rtl" previewClassName="h-92">
+
+<div></div>
+
+</ComponentPreview>

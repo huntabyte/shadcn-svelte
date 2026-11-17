@@ -106,3 +106,13 @@ You can customize the alert colors by adding custom classes such as `bg-amber-50
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="alert-rtl" direction="rtl" previewClassName="h-auto sm:h-72 p-6">
+
+<div></div>
+
+</ComponentPreview>

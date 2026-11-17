@@ -187,3 +187,13 @@ Pass an `href` prop to `<Button />` to render it as an `<a>` element that looks 
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="button-rtl" direction="rtl">
+
+<div></div>
+
+</ComponentPreview>

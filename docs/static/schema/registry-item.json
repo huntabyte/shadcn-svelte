@@ -218,6 +218,9 @@
 							"default": "https://shadcn-svelte.com/registry",
 							"type": "string"
 						},
+						"rtl": {
+							"type": "boolean"
+						},
 						"iconLibrary": {
 							"type": "string",
 							"enum": [

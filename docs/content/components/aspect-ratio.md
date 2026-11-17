@@ -89,3 +89,13 @@ A portrait aspect ratio component using the `ratio={9 / 16}` prop. This is usefu
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="aspect-ratio-rtl" direction="rtl" previewClassName="h-96">
+
+<div></div>
+
+</ComponentPreview>

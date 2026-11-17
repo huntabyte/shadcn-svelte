@@ -63,3 +63,9 @@ Copy and paste the following code into your project.
 </Steps>
 {/snippet}
 </InstallTabs>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+Bits UI keeps horizontal arrow keys chronological in RTL: `ArrowLeft` moves to the previous date and `ArrowRight` moves to the next date. Keyboard movement does not mirror the visual layout.

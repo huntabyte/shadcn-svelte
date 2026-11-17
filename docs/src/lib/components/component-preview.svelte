@@ -10,6 +10,8 @@
 		class: className,
 		align = "center",
 		hideCode = false,
+		direction = "ltr",
+		caption,
 		previewClassName,
 		previewStyle,
 		...restProps
@@ -18,6 +20,8 @@
 		align?: "center" | "start" | "end";
 		description?: string;
 		hideCode?: boolean;
+		direction?: "ltr" | "rtl";
+		caption?: string;
 		previewClassName?: string;
 		previewStyle?: PresetConfig["style"];
 		type?: "block" | "component" | "example";
@@ -25,38 +29,47 @@
 	} = $props();
 </script>
 
-{#if type === "block"}
-	<div
-		data-not-typeset
-		class="relative mt-6 aspect-[4/2.5] w-full overflow-hidden rounded-2xl border md:-mx-1"
-		data-llm-ignore
-	>
-		<img
-			src="/img/registry/{name}-light.png"
-			alt={name}
-			width={1440}
-			height={900}
-			class="absolute top-0 left-0 z-20 h-full w-[1600px] max-w-none bg-background object-cover object-left-top md:hidden dark:hidden md:dark:hidden"
-		/>
-		<img
-			src="/img/registry/{name}-dark.png"
-			alt={name}
-			width={1440}
-			height={900}
-			class="absolute top-0 left-0 z-20 hidden h-full w-[1600px] max-w-none bg-background object-cover object-left-top md:hidden dark:block md:dark:hidden"
-		/>
-		<div class="absolute inset-0 hidden w-[1600px] bg-background md:block">
-			<iframe src="/view/{name}" class="size-full" title={name}></iframe>
+{#snippet Preview()}
+	{#if type === "block"}
+		<div
+			data-not-typeset
+			class="relative mt-6 aspect-[4/2.5] w-full overflow-hidden rounded-2xl border md:-mx-1"
+			data-llm-ignore
+		>
+			<img
+				src="/img/registry/{name}-light.png"
+				alt={name}
+				width={1440}
+				height={900}
+				class="absolute top-0 left-0 z-20 h-full w-[1600px] max-w-none bg-background object-cover object-left-top md:hidden dark:hidden md:dark:hidden"
+			/>
+			<img
+				src="/img/registry/{name}-dark.png"
+				alt={name}
+				width={1440}
+				height={900}
+				class="absolute top-0 left-0 z-20 hidden h-full w-[1600px] max-w-none bg-background object-cover object-left-top md:hidden dark:block md:dark:hidden"
+			/>
+			<div class="absolute inset-0 hidden w-[1600px] bg-background md:block">
+				<iframe src="/view/{name}" class="size-full" title={name}></iframe>
+			</div>
 		</div>
-	</div>
-{:else if type === "component" || type === "example"}
-	<ComponentPreviewTabs
-		{name}
-		class={className}
-		{align}
-		{hideCode}
-		{previewClassName}
-		{previewStyle}
-		{...restProps}
-	/>
-{/if}
+	{:else if type === "component" || type === "example"}
+		<ComponentPreviewTabs
+			{name}
+			class={className}
+			{align}
+			{hideCode}
+			{direction}
+			{previewClassName}
+			{previewStyle}
+			{...restProps}
+		/>
+	{/if}
+{/snippet}
+{#if caption}<figure data-hide-code={hideCode} class="flex flex-col data-[hide-code=true]:gap-4">
+		{@render Preview()}
+		<figcaption class="-mt-8 text-center text-sm text-muted-foreground data-[hide-code=true]:mt-0">
+			{caption}
+		</figcaption>
+	</figure>{:else}{@render Preview()}{/if}

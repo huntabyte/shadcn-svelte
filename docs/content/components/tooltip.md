@@ -127,6 +127,16 @@ Show a tooltip on a disabled button by wrapping it with a span.
 
 </ComponentPreview>
 
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="tooltip-rtl" direction="rtl">
+
+<div></div>
+
+</ComponentPreview>
+
 ## Changelog
 
 ### 2025-12 Update tooltip colors

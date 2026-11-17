@@ -87,3 +87,13 @@ A progress bar that can be controlled by a slider.
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="progress-rtl" direction="rtl">
+
+<div></div>
+
+</ComponentPreview>
