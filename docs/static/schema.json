@@ -66,6 +66,53 @@
 			"description": "The registry URL tells the CLI where to fetch the shadcn-svelte components/registry from. You can pin this to a specific preview release or your own fork of the registry.",
 			"type": "string"
 		},
+		"registries": {
+			"description": "Named registries for installing items with @namespace/name. Supports URLs, headers, and query parameters with environment variables.",
+			"type": "object",
+			"propertyNames": {
+				"type": "string",
+				"pattern": "^@.*"
+			},
+			"additionalProperties": {
+				"anyOf": [
+					{
+						"type": "string",
+						"pattern": "\\{name\\}"
+					},
+					{
+						"type": "object",
+						"properties": {
+							"url": {
+								"type": "string",
+								"pattern": "\\{name\\}"
+							},
+							"params": {
+								"type": "object",
+								"propertyNames": {
+									"type": "string"
+								},
+								"additionalProperties": {
+									"type": "string"
+								}
+							},
+							"headers": {
+								"type": "object",
+								"propertyNames": {
+									"type": "string"
+								},
+								"additionalProperties": {
+									"type": "string"
+								}
+							}
+						},
+						"required": [
+							"url"
+						],
+						"additionalProperties": false
+					}
+				]
+			}
+		},
 		"typescript": {
 			"description": "Used to determine if Typescript is used for this project. When set to `false`, `.js` files will be installed instead. Defaults to `true`.",
 			"anyOf": [

@@ -11,6 +11,7 @@ import { ALIAS_DEFAULTS, ALIASES, SITE_BASE_URL } from "../../constants.js";
 import { error } from "../../utils/errors.js";
 import { parseDependency } from "../../utils/install-deps.js";
 import { intro, handleError } from "../../utils/prompt-helpers.js";
+import { loadRegistryForBuild } from "../../utils/registry/source.js";
 import { toArray } from "../../utils/utils.js";
 
 // TODO: perhaps a `--mini` flag to remove spacing?
@@ -60,10 +61,34 @@ async function runBuild(options: BuildOptions) {
 
 	spinner.start(`Parsing registry schema`);
 	const registryJson = await fs.readFile(options.registry, "utf8");
-	const registry = schema.registrySchema.parse(JSON.parse(registryJson));
+	const input = JSON.parse(registryJson);
+	const hasIncludes = input && typeof input === "object" && "include" in input;
+	const sourceRoot = hasIncludes ? path.dirname(options.registry) : options.cwd;
+	const registry = schema.registrySchema.parse(
+		hasIncludes
+			? await loadRegistryForBuild(path.basename(options.registry), {
+					readText: (file) =>
+						file === path.basename(options.registry)
+							? Promise.resolve(registryJson)
+							: fs.readFile(path.resolve(sourceRoot, file), "utf8"),
+				})
+			: input
+	);
 	spinner.stop(
 		`Parsed registry schema at ${color.dim(path.relative(options.cwd, options.registry))}`
 	);
+
+	for (const { name } of registry.items) {
+		if (
+			/[\\:]/.test(name) ||
+			name.split("/").some((segment) => !segment || segment === "." || segment === "..") ||
+			name === "index" ||
+			name === "registry" ||
+			/^(?:index|registry)\.json\//i.test(name)
+		) {
+			throw error(`Invalid registry item name '${name}'.`);
+		}
+	}
 
 	const registryIndex: schema.RegistryIndex = registry.items.map((item) => {
 		return { ...item, relativeUrl: `${item.name}.json` };
@@ -84,6 +109,16 @@ async function runBuild(options: BuildOptions) {
 			const parsedIndex = schema.registryIndexSchema.parse(registryIndex);
 
 			await fs.writeFile(indexPath, JSON.stringify(parsedIndex, null, SPACER), "utf8");
+			const catalog = {
+				name: registry.name,
+				homepage: registry.homepage,
+				items: parsedIndex.map(({ relativeUrl: _, ...item }) => item),
+			};
+			await fs.writeFile(
+				path.join(options.output, "registry.json"),
+				JSON.stringify(catalog, null, SPACER),
+				"utf8"
+			);
 
 			const relative = path.relative(options.cwd, indexPath);
 			return `Registry index written to ${color.dim(relative)}`;
@@ -125,7 +160,7 @@ async function runBuild(options: BuildOptions) {
 					"registry:file",
 				];
 				const toResolve = item.files.map(async (file) => {
-					let content = await fs.readFile(file.path, "utf8");
+					let content = await fs.readFile(path.resolve(sourceRoot, file.path), "utf8");
 					content = transformAliases((registry.aliases ??= {}), content);
 
 					const name = path.basename(file.path);
@@ -142,7 +177,14 @@ async function runBuild(options: BuildOptions) {
 				const dependencies = new Set(item.dependencies);
 				const devDependencies = new Set(item.devDependencies);
 
-				const registryDependencies = new Set(item.registryDependencies.map(transformLocal));
+				const registryDependencies = new Set(
+					item.registryDependencies.map((dependency) => {
+						const transformed = transformLocal(dependency);
+						if (transformed === dependency || !item.name.includes("/")) return transformed;
+						const relative = path.posix.relative(path.posix.dirname(item.name), transformed);
+						return relative.startsWith("../") ? relative : `./${relative}`;
+					})
+				);
 
 				const predefinedDeps = dependencies.size > 0 && devDependencies.size > 0;
 				if (!predefinedDeps) {
@@ -183,6 +225,7 @@ async function runBuild(options: BuildOptions) {
 
 				const outputPath = path.resolve(options.output, `${item.name}.json`);
 
+				await fs.mkdir(path.dirname(outputPath), { recursive: true });
 				await fs.writeFile(outputPath, JSON.stringify(parsedItem, null, SPACER), "utf8");
 			}
 

@@ -185,7 +185,7 @@ export const Index = {`;
 	const SCHEMA_DIR = path.resolve("static", "schema");
 	writeFileWithDirs(
 		path.resolve(SCHEMA_DIR, "registry.json"),
-		JSON.stringify(toJSONSchema(registrySchema), null, "\t")
+		JSON.stringify(toJSONSchema(registrySchema, { io: "input" }), null, "\t")
 	);
 
 	writeFileWithDirs(

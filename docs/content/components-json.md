@@ -160,3 +160,34 @@ The registry URL tells the CLI where to fetch the shadcn-svelte components/regis
   "registry": "https://shadcn-svelte.com/registry"
 }
 ```
+
+## registries
+
+Use `registries` to install components from multiple registries with
+`@namespace/name`. This is separate from `registry`, which controls where bare
+names such as `button` are resolved.
+
+```json title="components.json"
+{
+  "registries": {
+    "@acme": "https://acme.com/r/{name}.json",
+    "@private": {
+      "url": "https://private.example.com/r/{name}.json",
+      "headers": {
+        "Authorization": "Bearer ${REGISTRY_TOKEN}"
+      }
+    }
+  }
+}
+```
+
+Each URL must include `{name}`. You can also use `{style}` to select the project's
+configured style. Object entries support `headers` and `params`; their values,
+as well as the URL, can reference environment variables with `${VARIABLE_NAME}`.
+
+<PMExecute command="shadcn-svelte@latest add @acme/button" />
+
+You can also define a top-level `registries` map in `package.json`. Entries from `components.json` take precedence for matching namespaces. Use [registry add](/docs/cli#registry-add) to save an explicit URL template from the CLI.
+
+See [Namespaced Registries](/docs/registry/namespace) and
+[Authentication](/docs/registry/authentication) for setup and examples.

@@ -4,6 +4,7 @@ import color from "picocolors";
 import { bgHex } from "./colors.js";
 import { CLIError, ConfigError } from "./errors.js";
 import { getCLIPackageInfo } from "./get-package-info.js";
+import { RegistryError } from "./registry/errors.js";
 
 export function intro() {
 	const packageInfo = getCLIPackageInfo();
@@ -46,6 +47,11 @@ export function handleError(error: unknown) {
 
 	if (typeof error === "string") {
 		p.cancel(error);
+		process.exit(1);
+	}
+
+	if (error instanceof RegistryError) {
+		p.cancel(`${error.message}${error.suggestion ? `\n\nSuggestion:\n${error.suggestion}` : ""}`);
 		process.exit(1);
 	}
 

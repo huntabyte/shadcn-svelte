@@ -56,7 +56,11 @@ Options:
 
 ## add
 
-Use the `add` command to add components and dependencies to your project.
+Use `add` to install components and their dependencies. Pass bare component names, configured namespaced addresses, GitHub item addresses, URLs, or paths to local item JSON files. You can mix sources in one command.
+
+<PMExecute command="shadcn-svelte@latest add button @acme/card acme/toolkit/login#v1 ./item.json" />
+
+Local paths are relative to the working directory (or `--cwd`). See [Namespaced Registries](/docs/registry/namespace) and [GitHub Registries](/docs/registry/github) for setup and authentication.
 
 <PMExecute command="shadcn-svelte@latest add [component]" />
 
@@ -68,7 +72,7 @@ Usage: shadcn-svelte add [options] [components...]
 add components to your project
 
 Arguments:
-  components         the components to add or a url to the component
+  components         component names, @namespace/item, GitHub item addresses, URLs, or local JSON files
 
 Options:
   -c, --cwd <path>   the working directory (default: the current directory)
@@ -119,13 +123,21 @@ Options:
 
 ---
 
+## registry add
+
+Register a namespace by providing its URL template. The command updates `components.json` if it exists, or `package.json` otherwise. Use `--cwd` to target another project and `--force` to replace an existing mapping.
+
+```bash
+pnpm dlx shadcn-svelte@latest registry add '@acme=https://acme.example/r/{name}.json'
+```
+
 ## registry build
 
 Use the `registry build` command to generate the registry JSON files.
 
 <PMExecute command="shadcn-svelte@latest registry build [registry.json]" />
 
-This command reads the `registry.json` file and generates the registry JSON files into the `static/r` directory.
+This command reads the source `registry.json` and writes item JSON files, the legacy `index.json`, and a flattened `registry.json` catalog to `static/r`. See [include](/docs/registry/registry-json#include) for splitting the source registry across files.
 
 **Options**
 
@@ -144,6 +156,37 @@ Options:
 ```
 
 ---
+
+## registry validate
+
+Check a GitHub source registry at `owner/repo` or `owner/repo#ref`. The CLI checks the source manifest, included manifests, and declared files. It prints diagnostics and exits with status 1 if validation fails. Private repositories use the same [GitHub credentials](/docs/registry/github#private-repositories) as installation.
+
+<PMExecute command="shadcn-svelte@latest registry validate acme/toolkit#v1" />
+
+## search
+
+Search configured registries or pass an explicit namespace, GitHub repository, or URL to a registry catalog. The CLI returns JSON with results, pagination, and any per-registry errors.
+
+```bash
+pnpm dlx shadcn-svelte@latest search @acme owner/repo#v1 --query dashboard --type ui,block
+```
+
+Omit the registry arguments to search every namespace configured in `components.json` or `package.json`. The command can also take multiple explicit catalogs. A namespace resolves the catalog by setting `{name}` to `registry` in its URL template; pass the complete catalog URL when supplying a URL directly.
+
+- `-q, --query <query>` matches names, titles, and descriptions without regard to case.
+- `-t, --type <types>` accepts comma-separated values such as `ui,block` or `registry:ui,registry:block`.
+- `-l, --limit <number>` (default 100) and `-o, --offset <number>` (default 0) paginate the combined, filtered results.
+- `-c, --cwd <path>` selects the project configuration.
+
+`list` is an alias for `search`. A failed source is reported under `errors`; the command exits with status 1 if every source fails.
+
+## view
+
+Print a JSON array of items without installing files or resolving dependencies. Use `--cwd` to select the project config and the base directory for local paths. Pass a component name, a namespaced item, a GitHub item address, a URL, or a local JSON file.
+
+```bash
+pnpm dlx shadcn-svelte@latest view @acme/dashboard owner/repo/button#v1 ./item.json
+```
 
 ## Outgoing Requests
 

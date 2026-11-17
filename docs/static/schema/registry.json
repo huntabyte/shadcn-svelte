@@ -39,10 +39,18 @@
 				"hooks": {
 					"type": "string"
 				}
-			},
-			"additionalProperties": false
+			}
+		},
+		"include": {
+			"description": "Paths to additional registry.json files, relative to this file.",
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
 		},
 		"items": {
+			"default": [],
+			"description": "Defines a custom component registry.",
 			"type": "array",
 			"items": {
 				"type": "object",
@@ -152,8 +160,7 @@
 							"required": [
 								"type",
 								"path"
-							],
-							"additionalProperties": false
+							]
 						},
 						"description": "An array of files that instructs the `build` command on how to locate and parse the registry files."
 					},
@@ -191,7 +198,6 @@
 								}
 							}
 						},
-						"additionalProperties": false,
 						"description": "The css variables for the registry item. This will be merged with the project's css variables."
 					},
 					"css": {
@@ -237,8 +243,7 @@
 							"provider",
 							"import",
 							"variable"
-						],
-						"additionalProperties": false
+						]
 					}
 				},
 				"required": [
@@ -246,18 +251,14 @@
 					"type",
 					"registryDependencies",
 					"files"
-				],
-				"additionalProperties": false
-			},
-			"description": "Defines a custom component registry."
+				]
+			}
 		}
 	},
 	"required": [
 		"name",
-		"homepage",
-		"items"
+		"homepage"
 	],
-	"additionalProperties": false,
 	"$defs": {
 		"__schema0": {
 			"type": "object",
