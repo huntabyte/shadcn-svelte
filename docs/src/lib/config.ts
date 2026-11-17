@@ -4,7 +4,7 @@ export const siteConfig = {
 	ogImage: {
 		url: "https://shadcn-svelte.com/opengraph-image.png",
 		width: "1200",
-		height: "630",
+		height: "628",
 	},
 	description:
 		"A set of beautifully-designed, accessible components and a code distribution platform. Open Source. Open Code.",
