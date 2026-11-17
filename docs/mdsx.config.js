@@ -10,6 +10,7 @@ import { defineConfig } from "mdsx";
 import { codeImport } from "remark-code-import";
 import { createHighlighterCore } from "shiki/core";
 import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
+import { unified } from "unified";
 import { u } from "unist-builder";
 import { visit } from "unist-util-visit";
 import { Index } from "./src/__registry__/index.js";
@@ -78,8 +79,8 @@ const prettyCodeOptions = {
 
 /** @returns {HastTransformer} */
 function rehypeHighlightCode() {
-	const highlightMarkdown = rehypePrettyCode(prettyCodeOptions);
-	const highlightPreviews = rehypePrettyCode({
+	const highlightMarkdown = unified().use(rehypePrettyCode, prettyCodeOptions);
+	const highlightPreviews = unified().use(rehypePrettyCode, {
 		...prettyCodeOptions,
 		theme: { dark: "github-dark", light: "github-light" },
 	});
@@ -94,9 +95,9 @@ function rehypeHighlightCode() {
 		// The plugin mutates each preview pre into a figure in place. Its generated
 		// code node has no language class, so the Markdown pass skips it.
 		if (previews.length > 0) {
-			await highlightPreviews?.({ type: "root", children: previews }, file);
+			await highlightPreviews.run({ type: "root", children: previews }, file);
 		}
-		await highlightMarkdown?.(tree, file);
+		await highlightMarkdown.run(tree, file);
 	};
 }
 
@@ -239,12 +240,7 @@ export function rehypeComponentExample() {
 								},
 								attributes: {},
 								data: meta,
-								children: [
-									{
-										type: "text",
-										value: sourceCode.replace(/^\n+/, ""),
-									},
-								],
+								children: [u("text", sourceCode.replace(/^\n+/, ""))],
 							}),
 						],
 					});
@@ -252,7 +248,6 @@ export function rehypeComponentExample() {
 					if (node.value.startsWith("<ComponentPreview")) {
 						previewCodeBlocks.add(sourceCodeNode);
 					}
-					// @ts-expect-error - this is fine
 					parent?.children.splice(index + 1, 0, sourceCodeNode);
 				} catch (e) {
 					console.error(e);
