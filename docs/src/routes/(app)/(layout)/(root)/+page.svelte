@@ -18,7 +18,15 @@
 	const mobile = new IsMobile();
 </script>
 
-<Metadata {title} {description} />
+<Metadata
+	{title}
+	{description}
+	ogImage={{
+		url: `/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`,
+		width: "1200",
+		height: "628",
+	}}
+/>
 
 <div class="flex flex-1 flex-col">
 	<PageHeader class="md:**:[.container]:pb-8 lg:**:[.container]:pb-12">
