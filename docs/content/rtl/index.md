@@ -17,7 +17,7 @@ shadcn-svelte components have first-class support for right-to-left (RTL) layout
 
 <ComponentPreview name="card-rtl" direction="rtl" previewClassName="h-auto" hideCode caption="A card component in RTL mode." class="mb-8" />
 
-When you install components, the CLI automatically transforms physical positioning classes to logical equivalents, so your components work seamlessly in both LTR and RTL contexts.
+With `rtl: true` in `components.json`, the CLI transforms physical positioning classes to logical equivalents when you install components, so they adapt to both LTR and RTL layouts.
 
 ## Get Started
 
@@ -49,6 +49,11 @@ When you add components with `rtl: true` set in your `components.json`, the shad
 ## Try it out
 
 Use the language selector in the preview above to try Arabic, Hebrew, and English. See the RTL examples on each component's documentation page for more examples.
+
+## Primitive limitations
+
+- Bits UI Calendar and RangeCalendar keep horizontal arrow keys chronological in RTL: `ArrowLeft` moves to the previous date and `ArrowRight` moves to the next date. Their keyboard movement does not mirror the visual layout.
+- Paneforge v1 uses the document direction for horizontal resizing. Set `dir="rtl"` on `<html>` for an RTL application. A nested RTL [Resizable](/docs/components/resizable#rtl) group inside an LTR document does not reverse resize movement correctly.
 
 ## Supported Styles
 
