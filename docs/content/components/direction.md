@@ -39,7 +39,7 @@ Here's a preview of the component in RTL mode. Use the language selector to swit
 
 <Step>Install the following dependencies:</Step>
 
-<PMInstall command="bits-ui -D" />
+<PMInstall command="bits-ui@^2.22.0 -D" />
 
 <Step>Copy and paste the following code into your project.</Step>
 

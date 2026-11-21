@@ -94,7 +94,7 @@
 		"@types/qrcode": "^1.5.6",
 		"acorn": "^8.16.0",
 		"ai": "^7.0.141",
-		"bits-ui": "^2.20.0",
+		"bits-ui": "^2.22.0",
 		"chrono-node": "^2.9.0",
 		"cn": "^0.5.0",
 		"concurrently": "^9.2.1",

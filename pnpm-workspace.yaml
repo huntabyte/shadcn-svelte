@@ -21,7 +21,6 @@ catalog:
 
 minimumReleaseAge: 2880
 
-# Draft-only built snapshot of the merged BitsConfig direction API (#2288).
-# Remove after the first release containing it; see vendor/README.md.
-overrides:
-  bits-ui: file:vendor/bits-ui-8aff5151.tgz
+# BitsConfig direction support first shipped in this release.
+minimumReleaseAgeExclude:
+  - bits-ui@2.22.0
