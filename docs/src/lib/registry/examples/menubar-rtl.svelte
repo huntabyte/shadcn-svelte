@@ -142,10 +142,7 @@
 			<Menubar.Group>
 				<Menubar.Sub>
 					<Menubar.SubTrigger>{t.values.share}</Menubar.SubTrigger>
-					<Menubar.SubContent
-						side={t.dir === "rtl" ? "left" : "right"}
-						data-lang={t.dir === "rtl" ? t.language : undefined}
-					>
+					<Menubar.SubContent data-lang={t.dir === "rtl" ? t.language : undefined}>
 						<Menubar.Group>
 							<Menubar.Item>{t.values.emailLink}</Menubar.Item>
 							<Menubar.Item>{t.values.messages}</Menubar.Item>
@@ -180,10 +177,7 @@
 			<Menubar.Group>
 				<Menubar.Sub>
 					<Menubar.SubTrigger>{t.values.find}</Menubar.SubTrigger>
-					<Menubar.SubContent
-						side={t.dir === "rtl" ? "left" : "right"}
-						data-lang={t.dir === "rtl" ? t.language : undefined}
-					>
+					<Menubar.SubContent data-lang={t.dir === "rtl" ? t.language : undefined}>
 						<Menubar.Group>
 							<Menubar.Item>{t.values.searchTheWeb}</Menubar.Item>
 						</Menubar.Group>
