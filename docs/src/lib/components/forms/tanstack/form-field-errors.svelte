@@ -1,0 +1,16 @@
+<script lang="ts">
+	import { FieldError } from "$lib/registry/ui/field/index.js";
+	import { FormFieldState } from "./context.svelte.js";
+	import type { ComponentProps } from "svelte";
+
+	let {
+		ref = $bindable(null),
+		...restProps
+	}: Omit<ComponentProps<typeof FieldError>, "errors"> = $props();
+
+	const fieldState = FormFieldState.get();
+</script>
+
+{#if fieldState.isInvalid}
+	<FieldError bind:ref id={fieldState.errorId} errors={fieldState.errors} {...restProps} />
+{/if}
