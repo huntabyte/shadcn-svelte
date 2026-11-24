@@ -35,51 +35,32 @@ This form leverages Superforms for form state and validation, and Formsnap for w
 - `Field` components render the markup and styling.
 - Schema validation using Zod or any other validation library supported by [Superforms](https://superforms.rocks/concepts/validation-libraries).
 
-Each Formsnap component takes a `child` snippet which hands you the props it would have applied to its own element. You spread those props onto the matching `Field` component, so Formsnap handles the accessibility wiring and `Field` handles the rendering.
+Formsnap's components hand you the props they would have applied to their own element through a `child` snippet, which you spread onto the matching `Field` component. Writing that out for every label, description, and error gets repetitive, so we'll wrap each pair in a small reusable `Form.*` component that you create once and use in every form.
 
 ## Anatomy
 
-Here's a basic example of a form field using Formsnap's components with the `Field` components.
+Here's a basic example of a form field using the `Form` components.
 
 ```svelte showLineNumbers
 <form method="POST" use:enhance>
-  <Formsnap.Field {form} name="title">
-    {#snippet children({ errors })}
-      <Field.Field data-invalid={errors.length > 0}>
-        <Formsnap.Control>
-          {#snippet children({ props })}
-            <Formsnap.Label>
-              {#snippet child({ props })}
-                <Field.Label {...props}>Bug Title</Field.Label>
-              {/snippet}
-            </Formsnap.Label>
-            <Input {...props} bind:value={$formData.title} />
-          {/snippet}
-        </Formsnap.Control>
-        <Formsnap.Description>
-          {#snippet child({ props })}
-            <Field.Description {...props}>
-              Provide a concise title for your bug report.
-            </Field.Description>
-          {/snippet}
-        </Formsnap.Description>
-        <Formsnap.FieldErrors>
-          {#snippet child({ props, errors })}
-            <Field.Error
-              {...props}
-              errors={errors.map((message) => ({ message }))}
-            />
-          {/snippet}
-        </Formsnap.FieldErrors>
-      </Field.Field>
-    {/snippet}
-  </Formsnap.Field>
+  <Form.Field {form} name="title">
+    <Form.Control>
+      {#snippet children({ props })}
+        <Form.Label>Bug Title</Form.Label>
+        <Input {...props} bind:value={$formData.title} />
+      {/snippet}
+    </Form.Control>
+    <Form.Description
+      >Provide a concise title for your bug report.</Form.Description
+    >
+    <Form.FieldErrors />
+  </Form.Field>
 </form>
 ```
 
-- `Formsnap.Field` scopes the form state for `title` to everything inside of it, and exposes the field's `errors`.
-- `Formsnap.Control` provides the `props` that must be spread onto the form control.
-- `Formsnap.Label`, `Formsnap.Description`, and `Formsnap.FieldErrors` use the `child` snippet to render `Field.Label`, `Field.Description`, and `Field.Error`.
+- `Form.Field` wraps `Formsnap.Field` and `Field.Field`. It scopes the form state for `title` to everything inside of it and sets `data-invalid` when the field has errors.
+- `Form.Control` is `Formsnap.Control`. It provides the `props` that must be spread onto the form control.
+- `Form.Label`, `Form.Description`, and `Form.FieldErrors` wrap the matching Formsnap component and render `Field.Label`, `Field.Description`, and `Field.Error`.
 
 ## Installation
 
@@ -91,7 +72,255 @@ Here's a basic example of a form field using Formsnap's components with the `Fie
 
 ### Install the dependencies
 
-<PMInstall command="formsnap sveltekit-superforms zod" />
+<PMInstall command="formsnap sveltekit-superforms zod -D" />
+
+### Create the form components
+
+Create a `form` directory in `src/lib/components/ui` and add the files below. Each one wraps a Formsnap component together with its `Field` counterpart. You only need to create the ones you use.
+
+#### Field
+
+`Form.Field` wraps `Formsnap.Field` and `Field.Field`. It exposes the same snippet props as `Formsnap.Field` and accepts any `Field.Field` prop, such as `orientation`.
+
+```svelte title="src/lib/components/ui/form/form-field.svelte" showLineNumbers
+<script
+  lang="ts"
+  generics="T extends Record<string, unknown>, U extends FormPath<T>"
+>
+  import { Field as FormsnapField, type FieldProps } from "formsnap";
+  import { Field } from "$lib/components/ui/field/index.js";
+  import type { WithoutChildren } from "$lib/utils.js";
+  import type { ComponentProps } from "svelte";
+  import type { FormPath } from "sveltekit-superforms";
+
+  let {
+    ref = $bindable(null),
+    form,
+    name,
+    children: childrenProp,
+    ...restProps
+  }: FieldProps<T, U> &
+    WithoutChildren<ComponentProps<typeof Field>> = $props();
+</script>
+
+<FormsnapField {form} {name}>
+  {#snippet children({ constraints, errors, tainted, value })}
+    <Field bind:ref data-invalid={errors.length > 0} {...restProps}>
+      {@render childrenProp?.({
+        constraints,
+        errors,
+        tainted,
+        value: value as T[U],
+      })}
+    </Field>
+  {/snippet}
+</FormsnapField>
+```
+
+#### Label
+
+```svelte title="src/lib/components/ui/form/form-label.svelte" showLineNumbers
+<script lang="ts">
+  import { Label as FormsnapLabel, type LabelProps } from "formsnap";
+  import { FieldLabel } from "$lib/components/ui/field/index.js";
+  import type { WithoutChild } from "$lib/utils.js";
+
+  let {
+    ref = $bindable(null),
+    children,
+    ...restProps
+  }: WithoutChild<LabelProps> = $props();
+</script>
+
+<FormsnapLabel bind:ref {...restProps}>
+  {#snippet child({ props })}
+    <FieldLabel {...props}>
+      {@render children?.()}
+    </FieldLabel>
+  {/snippet}
+</FormsnapLabel>
+```
+
+#### Description
+
+```svelte title="src/lib/components/ui/form/form-description.svelte" showLineNumbers
+<script lang="ts">
+  import {
+    Description as FormsnapDescription,
+    type DescriptionProps,
+  } from "formsnap";
+  import { FieldDescription } from "$lib/components/ui/field/index.js";
+  import type { WithoutChild } from "$lib/utils.js";
+
+  let {
+    ref = $bindable(null),
+    children,
+    ...restProps
+  }: WithoutChild<DescriptionProps> = $props();
+</script>
+
+<FormsnapDescription bind:ref {...restProps}>
+  {#snippet child({ props })}
+    <FieldDescription {...props}>
+      {@render children?.()}
+    </FieldDescription>
+  {/snippet}
+</FormsnapDescription>
+```
+
+#### Field Errors
+
+`Field.Error` expects an array of objects with a `message`, while Formsnap provides an array of strings, so this component maps the errors for you.
+
+```svelte title="src/lib/components/ui/form/form-field-errors.svelte" showLineNumbers
+<script lang="ts">
+  import {
+    FieldErrors as FormsnapFieldErrors,
+    type FieldErrorsProps,
+  } from "formsnap";
+  import { FieldError } from "$lib/components/ui/field/index.js";
+  import type { WithoutChildrenOrChild } from "$lib/utils.js";
+
+  let {
+    ref = $bindable(null),
+    ...restProps
+  }: WithoutChildrenOrChild<FieldErrorsProps> = $props();
+</script>
+
+<FormsnapFieldErrors bind:ref {...restProps}>
+  {#snippet child({ props, errors })}
+    <FieldError {...props} errors={errors.map((message) => ({ message }))} />
+  {/snippet}
+</FormsnapFieldErrors>
+```
+
+#### Fieldset
+
+`Form.Fieldset` wraps `Formsnap.Fieldset` and `Field.Set`. Use it for fields that group multiple controls, such as radio groups and checkbox groups.
+
+```svelte title="src/lib/components/ui/form/form-fieldset.svelte" showLineNumbers
+<script
+  lang="ts"
+  generics="T extends Record<string, unknown>, U extends FormPath<T>"
+>
+  import { Fieldset as FormsnapFieldset, type FieldsetProps } from "formsnap";
+  import { FieldSet } from "$lib/components/ui/field/index.js";
+  import type { WithoutChild } from "$lib/utils.js";
+  import type { FormPath } from "sveltekit-superforms";
+
+  let {
+    ref = $bindable(null),
+    form,
+    name,
+    children: childrenProp,
+    ...restProps
+  }: WithoutChild<FieldsetProps<T, U>> = $props();
+</script>
+
+<FormsnapFieldset bind:ref {form} {name} {...restProps}>
+  {#snippet child({ props, constraints, errors, tainted, value })}
+    <FieldSet {...props}>
+      {@render childrenProp?.({ constraints, errors, tainted, value })}
+    </FieldSet>
+  {/snippet}
+</FormsnapFieldset>
+```
+
+#### Legend
+
+```svelte title="src/lib/components/ui/form/form-legend.svelte" showLineNumbers
+<script lang="ts">
+  import { Legend as FormsnapLegend, type LegendProps } from "formsnap";
+  import { FieldLegend } from "$lib/components/ui/field/index.js";
+  import type { WithoutChild } from "$lib/utils.js";
+  import type { ComponentProps } from "svelte";
+
+  let {
+    ref = $bindable(null),
+    variant,
+    children,
+    ...restProps
+  }: WithoutChild<LegendProps> & {
+    variant?: ComponentProps<typeof FieldLegend>["variant"];
+  } = $props();
+</script>
+
+<FormsnapLegend bind:ref {...restProps}>
+  {#snippet child({ props })}
+    <FieldLegend {variant} {...props}>
+      {@render children?.()}
+    </FieldLegend>
+  {/snippet}
+</FormsnapLegend>
+```
+
+#### Element Field
+
+`Form.ElementField` wraps `Formsnap.ElementField` and `Field.Field`. Use it for each item of an array field, such as a checkbox group.
+
+```svelte title="src/lib/components/ui/form/form-element-field.svelte" showLineNumbers
+<script
+  lang="ts"
+  generics="T extends Record<string, unknown>, U extends FormPathLeaves<T>"
+>
+  import {
+    ElementField as FormsnapElementField,
+    type ElementFieldProps,
+  } from "formsnap";
+  import { Field } from "$lib/components/ui/field/index.js";
+  import type { WithoutChildren } from "$lib/utils.js";
+  import type { ComponentProps } from "svelte";
+  import type { FormPathLeaves } from "sveltekit-superforms";
+
+  let {
+    ref = $bindable(null),
+    form,
+    name,
+    children: childrenProp,
+    ...restProps
+  }: ElementFieldProps<T, U> &
+    WithoutChildren<ComponentProps<typeof Field>> = $props();
+</script>
+
+<FormsnapElementField {form} {name}>
+  {#snippet children({ constraints, errors, tainted, value })}
+    <Field bind:ref data-invalid={errors.length > 0} {...restProps}>
+      {@render childrenProp?.({
+        constraints,
+        errors,
+        tainted,
+        value: value as T[U],
+      })}
+    </Field>
+  {/snippet}
+</FormsnapElementField>
+```
+
+#### Index
+
+`Form.Control` doesn't need a wrapper since it doesn't render any markup, so we re-export Formsnap's `Control` as is.
+
+```ts title="src/lib/components/ui/form/index.ts" showLineNumbers
+import { Control } from "formsnap";
+import Description from "./form-description.svelte";
+import ElementField from "./form-element-field.svelte";
+import FieldErrors from "./form-field-errors.svelte";
+import Field from "./form-field.svelte";
+import Fieldset from "./form-fieldset.svelte";
+import Label from "./form-label.svelte";
+import Legend from "./form-legend.svelte";
+
+export {
+  Field,
+  ElementField,
+  Control,
+  Label,
+  Description,
+  FieldErrors,
+  Fieldset,
+  Legend,
+};
+```
 
 </Steps>
 
@@ -143,7 +372,6 @@ We'll pass the `form` returned from the load function as a prop to this componen
 
 ```svelte title="src/routes/bug-report/bug-report-form.svelte" showLineNumbers
 <script lang="ts">
-  import * as Formsnap from "formsnap";
   import {
     type SuperValidated,
     type Infer,
@@ -169,11 +397,11 @@ We'll pass the `form` returned from the load function as a prop to this componen
 
 ### Build the form
 
-We can now build the form using Formsnap's components and the `Field` components.
+We can now build the form using the `Form` components.
 
 ```svelte title="src/routes/bug-report/bug-report-form.svelte" showLineNumbers
 <script lang="ts">
-  import * as Formsnap from "formsnap";
+  import * as Form from "$lib/components/ui/form/index.js";
   import * as Field from "$lib/components/ui/field/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
@@ -198,79 +426,41 @@ We can now build the form using Formsnap's components and the `Field` components
 
 <form method="POST" use:enhance>
   <Field.Group>
-    <Formsnap.Field {form} name="title">
-      {#snippet children({ errors })}
-        <Field.Field data-invalid={errors.length > 0}>
-          <Formsnap.Control>
-            {#snippet children({ props })}
-              <Formsnap.Label>
-                {#snippet child({ props })}
-                  <Field.Label {...props}>Bug Title</Field.Label>
-                {/snippet}
-              </Formsnap.Label>
-              <Input
-                {...props}
-                bind:value={$formData.title}
-                placeholder="Login button not working on mobile"
-                autocomplete="off"
-              />
-            {/snippet}
-          </Formsnap.Control>
-          <Formsnap.Description>
-            {#snippet child({ props })}
-              <Field.Description {...props}>
-                Provide a concise title for your bug report.
-              </Field.Description>
-            {/snippet}
-          </Formsnap.Description>
-          <Formsnap.FieldErrors>
-            {#snippet child({ props, errors })}
-              <Field.Error
-                {...props}
-                errors={errors.map((message) => ({ message }))}
-              />
-            {/snippet}
-          </Formsnap.FieldErrors>
-        </Field.Field>
-      {/snippet}
-    </Formsnap.Field>
-    <Formsnap.Field {form} name="description">
-      {#snippet children({ errors })}
-        <Field.Field data-invalid={errors.length > 0}>
-          <Formsnap.Control>
-            {#snippet children({ props })}
-              <Formsnap.Label>
-                {#snippet child({ props })}
-                  <Field.Label {...props}>Description</Field.Label>
-                {/snippet}
-              </Formsnap.Label>
-              <Textarea
-                {...props}
-                bind:value={$formData.description}
-                placeholder="I'm having an issue with the login button on mobile."
-                class="min-h-24 resize-none"
-              />
-            {/snippet}
-          </Formsnap.Control>
-          <Formsnap.Description>
-            {#snippet child({ props })}
-              <Field.Description {...props}>
-                Include steps to reproduce, expected behavior, and what
-                actually happened.
-              </Field.Description>
-            {/snippet}
-          </Formsnap.Description>
-          <Formsnap.FieldErrors>
-            {#snippet child({ props, errors })}
-              <Field.Error
-                {...props}
-                errors={errors.map((message) => ({ message }))}
-              />
-            {/snippet}
-          </Formsnap.FieldErrors>
-        </Field.Field>
-      {/snippet}
-    </Formsnap.Field>
+    <Form.Field {form} name="title">
+      <Form.Control>
+        {#snippet children({ props })}
+          <Form.Label>Bug Title</Form.Label>
+          <Input
+            {...props}
+            bind:value={$formData.title}
+            placeholder="Login button not working on mobile"
+            autocomplete="off"
+          />
+        {/snippet}
+      </Form.Control>
+      <Form.Description>
+        Provide a concise title for your bug report.
+      </Form.Description>
+      <Form.FieldErrors />
+    </Form.Field>
+    <Form.Field {form} name="description">
+      <Form.Control>
+        {#snippet children({ props })}
+          <Form.Label>Description</Form.Label>
+          <Textarea
+            {...props}
+            bind:value={$formData.description}
+            placeholder="I'm having an issue with the login button on mobile."
+            class="min-h-24 resize-none"
+          />
+        {/snippet}
+      </Form.Control>
+      <Form.Description>
+        Include steps to reproduce, expected behavior, and what actually
+        happened.
+      </Form.Description>
+      <Form.FieldErrors />
+    </Form.Field>
     <Field.Field orientation="horizontal">
       <Button type="submit">Submit</Button>
     </Field.Field>
@@ -278,7 +468,7 @@ We can now build the form using Formsnap's components and the `Field` components
 </form>
 ```
 
-The `name`, `id`, and all accessibility attributes are applied to the input by spreading the `props` object from the `Formsnap.Control` component. The label is automatically associated with the input using the `for` attribute, and the description and errors are associated using `aria-describedby`.
+The `name`, `id`, and all accessibility attributes are applied to the input by spreading the `props` object from the `Form.Control` component. The label is automatically associated with the input using the `for` attribute, and the description and errors are associated using `aria-describedby`.
 
 ### Use the component
 
@@ -387,43 +577,26 @@ Use the `validationMethod` option to change when client-side validation runs. Th
 
 ## Displaying Errors
 
-Display errors next to the field using `Field.Error` inside of a `Formsnap.FieldErrors` component. For styling and accessibility:
+Display errors next to the field using `Form.FieldErrors`. For styling and accessibility:
 
-- Add the `data-invalid` attribute to the `Field.Field` component using the `errors` from `Formsnap.Field`.
-- Spread the `props` from `Formsnap.Control` onto the form control such as `Input`, `Select.Trigger`, `Checkbox`, etc. This applies the `aria-invalid` attribute for you.
+- `Form.Field` adds the `data-invalid` attribute to the underlying `Field.Field` whenever the field has errors.
+- Spread the `props` from `Form.Control` onto the form control such as `Input`, `Select.Trigger`, `Checkbox`, etc. This applies the `aria-invalid` attribute for you.
 
 ```svelte showLineNumbers title="form.svelte"
-<Formsnap.Field {form} name="email">
-  {#snippet children({ errors })}
-    <Field.Field data-invalid={errors.length > 0}>
-      <Formsnap.Control>
-        {#snippet children({ props })}
-          <Formsnap.Label>
-            {#snippet child({ props })}
-              <Field.Label {...props}>Email</Field.Label>
-            {/snippet}
-          </Formsnap.Label>
-          <Input {...props} type="email" bind:value={$formData.email} />
-        {/snippet}
-      </Formsnap.Control>
-      <Formsnap.FieldErrors>
-        {#snippet child({ props, errors })}
-          <Field.Error
-            {...props}
-            errors={errors.map((message) => ({ message }))}
-          />
-        {/snippet}
-      </Formsnap.FieldErrors>
-    </Field.Field>
-  {/snippet}
-</Formsnap.Field>
+<Form.Field {form} name="email">
+  <Form.Control>
+    {#snippet children({ props })}
+      <Form.Label>Email</Form.Label>
+      <Input {...props} type="email" bind:value={$formData.email} />
+    {/snippet}
+  </Form.Control>
+  <Form.FieldErrors />
+</Form.Field>
 ```
-
-`Field.Error` expects an array of objects with a `message`, while Formsnap provides an array of strings, so we map the errors before passing them in.
 
 ## Working with Different Field Types
 
-The following examples are all part of the same form. Each one spreads the `props` from `Formsnap.Control` onto the form control and uses the `child` snippets to render `Field` components.
+The following examples are all part of the same form. Each one spreads the `props` from `Form.Control` onto the form control.
 
 <ComponentPreview name="form-formsnap-field-types">
 
@@ -434,33 +607,18 @@ The following examples are all part of the same form. Each one spreads the `prop
 ### Input
 
 - For input fields, spread `props` onto the `Input` component and bind to `$formData`.
-- To show errors, add the `data-invalid` attribute to the `Field.Field` component.
+- To show errors, add a `Form.FieldErrors`.
 
 ```svelte showLineNumbers title="form.svelte"
-<Formsnap.Field {form} name="name">
-  {#snippet children({ errors })}
-    <Field.Field data-invalid={errors.length > 0}>
-      <Formsnap.Control>
-        {#snippet children({ props })}
-          <Formsnap.Label>
-            {#snippet child({ props })}
-              <Field.Label {...props}>Name</Field.Label>
-            {/snippet}
-          </Formsnap.Label>
-          <Input {...props} bind:value={$formData.name} />
-        {/snippet}
-      </Formsnap.Control>
-      <Formsnap.FieldErrors>
-        {#snippet child({ props, errors })}
-          <Field.Error
-            {...props}
-            errors={errors.map((message) => ({ message }))}
-          />
-        {/snippet}
-      </Formsnap.FieldErrors>
-    </Field.Field>
-  {/snippet}
-</Formsnap.Field>
+<Form.Field {form} name="name">
+  <Form.Control>
+    {#snippet children({ props })}
+      <Form.Label>Name</Form.Label>
+      <Input {...props} bind:value={$formData.name} />
+    {/snippet}
+  </Form.Control>
+  <Form.FieldErrors />
+</Form.Field>
 ```
 
 ### Textarea
@@ -468,11 +626,11 @@ The following examples are all part of the same form. Each one spreads the `prop
 The `Textarea` works the same as the `Input`. Spread `props` onto it and bind to `$formData`.
 
 ```svelte showLineNumbers title="form.svelte"
-<Formsnap.Control>
+<Form.Control>
   {#snippet children({ props })}
     <Textarea {...props} bind:value={$formData.about} />
   {/snippet}
-</Formsnap.Control>
+</Form.Control>
 ```
 
 ### Select
@@ -481,8 +639,9 @@ The `Textarea` works the same as the `Input`. Spread `props` onto it and bind to
 - Spread the rest of `props` onto the `Select.Trigger` so the label and `aria` attributes are applied to the trigger.
 
 ```svelte showLineNumbers title="form.svelte"
-<Formsnap.Control>
+<Form.Control>
   {#snippet children({ props })}
+    <Form.Label>Language</Form.Label>
     <Select.Root
       type="single"
       bind:value={$formData.language}
@@ -496,100 +655,63 @@ The `Textarea` works the same as the `Input`. Spread `props` onto it and bind to
       </Select.Content>
     </Select.Root>
   {/snippet}
-</Formsnap.Control>
+</Form.Control>
 ```
 
 ### Checkbox
 
 - For a single checkbox, bind `$formData` to `checked` on the `Checkbox` component.
-- Use `orientation="horizontal"` on `Field.Field` to place the label next to the checkbox, and `Field.Content` to group the label and error.
+- Use `orientation="horizontal"` on `Form.Field` to place the label next to the checkbox, and `Field.Content` to group the label and error.
 
 ```svelte showLineNumbers title="form.svelte"
-<Formsnap.Field {form} name="terms">
-  {#snippet children({ errors })}
-    <Field.Field orientation="horizontal" data-invalid={errors.length > 0}>
-      <Formsnap.Control>
-        {#snippet children({ props })}
-          <Checkbox {...props} bind:checked={$formData.terms} />
-          <Field.Content>
-            <Formsnap.Label>
-              {#snippet child({ props })}
-                <Field.Label {...props} class="font-normal">
-                  I accept the terms and conditions
-                </Field.Label>
-              {/snippet}
-            </Formsnap.Label>
-            <Formsnap.FieldErrors>
-              {#snippet child({ props, errors })}
-                <Field.Error
-                  {...props}
-                  errors={errors.map((message) => ({ message }))}
-                />
-              {/snippet}
-            </Formsnap.FieldErrors>
-          </Field.Content>
-        {/snippet}
-      </Formsnap.Control>
-    </Field.Field>
-  {/snippet}
-</Formsnap.Field>
+<Form.Field {form} name="terms" orientation="horizontal">
+  <Form.Control>
+    {#snippet children({ props })}
+      <Checkbox {...props} bind:checked={$formData.terms} />
+      <Field.Content>
+        <Form.Label class="font-normal">
+          I accept the terms and conditions
+        </Form.Label>
+        <Form.FieldErrors />
+      </Field.Content>
+    {/snippet}
+  </Form.Control>
+</Form.Field>
 ```
 
 ### Checkbox Group
 
-For an array of values, use `Formsnap.Fieldset` with `Formsnap.Legend` to group the checkboxes, and a `Formsnap.ElementField` for each checkbox. Render `Field.Set` and `Field.Legend` using the `child` snippets.
+For an array of values, use `Form.Fieldset` with `Form.Legend` to group the checkboxes, and a `Form.ElementField` for each checkbox.
 
 ```svelte showLineNumbers title="form.svelte"
-<Formsnap.Fieldset {form} name="notifications">
-  {#snippet child({ props, errors })}
-    <Field.Set {...props}>
-      <Formsnap.Legend>
-        {#snippet child({ props })}
-          <Field.Legend variant="label" {...props}>Notifications</Field.Legend>
-        {/snippet}
-      </Formsnap.Legend>
-      <Field.Group class="gap-3">
-        {#each notifications as notification, i (notification.value)}
-          <Formsnap.ElementField {form} name="notifications[{i}]">
-            <Field.Field
-              orientation="horizontal"
-              data-invalid={errors.length > 0}
-            >
-              <Formsnap.Control>
-                {#snippet children({ props })}
-                  <Checkbox
-                    {...props}
-                    value={notification.value}
-                    checked={$formData.notifications.includes(
-                      notification.value
-                    )}
-                    onCheckedChange={(checked) =>
-                      toggleNotification(notification.value, checked)}
-                  />
-                  <Formsnap.Label>
-                    {#snippet child({ props })}
-                      <Field.Label {...props} class="font-normal">
-                        {notification.label}
-                      </Field.Label>
-                    {/snippet}
-                  </Formsnap.Label>
-                {/snippet}
-              </Formsnap.Control>
-            </Field.Field>
-          </Formsnap.ElementField>
-        {/each}
-      </Field.Group>
-      <Formsnap.FieldErrors>
-        {#snippet child({ props, errors })}
-          <Field.Error
-            {...props}
-            errors={errors.map((message) => ({ message }))}
-          />
-        {/snippet}
-      </Formsnap.FieldErrors>
-    </Field.Set>
+<Form.Fieldset {form} name="notifications">
+  {#snippet children({ errors })}
+    <Form.Legend variant="label">Notifications</Form.Legend>
+    <Field.Group class="gap-3">
+      {#each notifications as notification, i (notification.value)}
+        <Form.ElementField
+          {form}
+          name="notifications[{i}]"
+          orientation="horizontal"
+        >
+          <Form.Control>
+            {#snippet children({ props })}
+              <Checkbox
+                {...props}
+                value={notification.value}
+                checked={$formData.notifications.includes(notification.value)}
+                onCheckedChange={(checked) =>
+                  toggleNotification(notification.value, checked)}
+              />
+              <Form.Label class="font-normal">{notification.label}</Form.Label>
+            {/snippet}
+          </Form.Control>
+        </Form.ElementField>
+      {/each}
+    </Field.Group>
+    <Form.FieldErrors />
   {/snippet}
-</Formsnap.Fieldset>
+</Form.Fieldset>
 ```
 
 Add or remove the value from the array in the `onCheckedChange` handler:
@@ -608,84 +730,50 @@ function toggleNotification(value: string, checked: boolean) {
 
 ### Radio Group
 
-- Use `Formsnap.Fieldset` and `Formsnap.Legend` to group the radio items.
+- Use `Form.Fieldset` and `Form.Legend` to group the radio items.
 - Bind `$formData` to `value` on `RadioGroup.Root` and give it the `name` of the field.
-- Use a `Formsnap.Control` for each `RadioGroup.Item` and spread `props` onto it.
+- Use a `Form.Control` for each `RadioGroup.Item` and spread `props` onto it. The `errors` from `Form.Fieldset` can be used to set `data-invalid` on each `Field.Field`.
 
 ```svelte showLineNumbers title="form.svelte"
-<Formsnap.Fieldset {form} name="plan">
-  {#snippet child({ props, errors })}
-    <Field.Set {...props}>
-      <Formsnap.Legend>
-        {#snippet child({ props })}
-          <Field.Legend variant="label" {...props}>Plan</Field.Legend>
-        {/snippet}
-      </Formsnap.Legend>
-      <RadioGroup.Root bind:value={$formData.plan} name="plan">
-        {#each plans as plan (plan.value)}
-          <Field.Field
-            orientation="horizontal"
-            data-invalid={errors.length > 0}
-          >
-            <Formsnap.Control>
-              {#snippet children({ props })}
-                <RadioGroup.Item {...props} value={plan.value} />
-                <Formsnap.Label>
-                  {#snippet child({ props })}
-                    <Field.Label {...props} class="font-normal">
-                      {plan.label}
-                    </Field.Label>
-                  {/snippet}
-                </Formsnap.Label>
-              {/snippet}
-            </Formsnap.Control>
-          </Field.Field>
-        {/each}
-      </RadioGroup.Root>
-      <Formsnap.FieldErrors>
-        {#snippet child({ props, errors })}
-          <Field.Error
-            {...props}
-            errors={errors.map((message) => ({ message }))}
-          />
-        {/snippet}
-      </Formsnap.FieldErrors>
-    </Field.Set>
+<Form.Fieldset {form} name="plan">
+  {#snippet children({ errors })}
+    <Form.Legend variant="label">Plan</Form.Legend>
+    <RadioGroup.Root bind:value={$formData.plan} name="plan">
+      {#each plans as plan (plan.value)}
+        <Field.Field orientation="horizontal" data-invalid={errors.length > 0}>
+          <Form.Control>
+            {#snippet children({ props })}
+              <RadioGroup.Item {...props} value={plan.value} />
+              <Form.Label class="font-normal">{plan.label}</Form.Label>
+            {/snippet}
+          </Form.Control>
+        </Field.Field>
+      {/each}
+    </RadioGroup.Root>
+    <Form.FieldErrors />
   {/snippet}
-</Formsnap.Fieldset>
+</Form.Fieldset>
 ```
 
 ### Switch
 
 - Bind `$formData` to `checked` on the `Switch` component.
-- Use `orientation="horizontal"` on `Field.Field` and put the label and description in a `Field.Content`.
+- Use `orientation="horizontal"` on `Form.Field` and put the label and description in a `Field.Content`.
 
 ```svelte showLineNumbers title="form.svelte"
-<Formsnap.Field {form} name="marketing">
-  {#snippet children({ errors })}
-    <Field.Field orientation="horizontal" data-invalid={errors.length > 0}>
-      <Formsnap.Control>
-        {#snippet children({ props })}
-          <Field.Content>
-            <Formsnap.Label>
-              {#snippet child({ props })}
-                <Field.Label {...props}>Marketing emails</Field.Label>
-              {/snippet}
-            </Formsnap.Label>
-            <Formsnap.Description>
-              {#snippet child({ props })}
-                <Field.Description {...props}>
-                  Receive news, updates, and special offers.
-                </Field.Description>
-              {/snippet}
-            </Formsnap.Description>
-          </Field.Content>
-          <Switch {...props} bind:checked={$formData.marketing} />
-        {/snippet}
-      </Formsnap.Control>
-    </Field.Field>
-  {/snippet}
-</Formsnap.Field>
+<Form.Field {form} name="marketing" orientation="horizontal">
+  <Form.Control>
+    {#snippet children({ props })}
+      <Field.Content>
+        <Form.Label>Marketing emails</Form.Label>
+        <Form.Description>
+          Receive news, updates, and special offers.
+        </Form.Description>
+      </Field.Content>
+      <Switch {...props} bind:checked={$formData.marketing} />
+    {/snippet}
+  </Form.Control>
+</Form.Field>
 ```
 
 ## Resetting the Form
