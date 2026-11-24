@@ -58,6 +58,7 @@ Copy and paste the following code into your project.
 
 ```svelte showLineNumbers title="src/routes/+layout.svelte"
 <script lang="ts">
+  import '../app.css';
   import * as Sidebar from "$lib/components/ui/sidebar/index.js";
   import AppSidebar from "$lib/components/app-sidebar.svelte";
 
