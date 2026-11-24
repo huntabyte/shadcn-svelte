@@ -170,7 +170,7 @@ Create a `form` directory in `src/lib/components/ui` and add the files below. Ea
 
 #### Field Errors
 
-`Field.Error` expects an array of objects with a `message`, while Formsnap provides an array of strings, so this component maps the errors for you.
+`Field.Error` expects an array of objects with a `message`, while Formsnap provides an array of strings, so this component maps the errors for you. It also keeps a container in the DOM when there are no errors. Formsnap needs it to link the errors to the form control with `aria-describedby`, and `Field.Error` alone doesn't render until there is an error.
 
 ```svelte title="src/lib/components/ui/form/form-field-errors.svelte" showLineNumbers
 <script lang="ts">
@@ -189,7 +189,12 @@ Create a `form` directory in `src/lib/components/ui` and add the files below. Ea
 
 <FormsnapFieldErrors bind:ref {...restProps}>
   {#snippet child({ props, errors })}
-    <FieldError {...props} errors={errors.map((message) => ({ message }))} />
+    <div {...props} class="contents">
+      <FieldError
+        role={undefined}
+        errors={errors.map((message) => ({ message }))}
+      />
+    </div>
   {/snippet}
 </FormsnapFieldErrors>
 ```
@@ -685,32 +690,30 @@ For an array of values, use `Form.Fieldset` with `Form.Legend` to group the chec
 
 ```svelte showLineNumbers title="form.svelte"
 <Form.Fieldset {form} name="notifications">
-  {#snippet children({ errors })}
-    <Form.Legend variant="label">Notifications</Form.Legend>
-    <Field.Group class="gap-3">
-      {#each notifications as notification, i (notification.value)}
-        <Form.ElementField
-          {form}
-          name="notifications[{i}]"
-          orientation="horizontal"
-        >
-          <Form.Control>
-            {#snippet children({ props })}
-              <Checkbox
-                {...props}
-                value={notification.value}
-                checked={$formData.notifications.includes(notification.value)}
-                onCheckedChange={(checked) =>
-                  toggleNotification(notification.value, checked)}
-              />
-              <Form.Label class="font-normal">{notification.label}</Form.Label>
-            {/snippet}
-          </Form.Control>
-        </Form.ElementField>
-      {/each}
-    </Field.Group>
-    <Form.FieldErrors />
-  {/snippet}
+  <Form.Legend variant="label">Notifications</Form.Legend>
+  <Field.Group class="gap-3">
+    {#each notifications as notification, i (notification.value)}
+      <Form.ElementField
+        {form}
+        name="notifications[{i}]"
+        orientation="horizontal"
+      >
+        <Form.Control>
+          {#snippet children({ props })}
+            <Checkbox
+              {...props}
+              value={notification.value}
+              checked={$formData.notifications.includes(notification.value)}
+              onCheckedChange={(checked) =>
+                toggleNotification(notification.value, checked)}
+            />
+            <Form.Label class="font-normal">{notification.label}</Form.Label>
+          {/snippet}
+        </Form.Control>
+      </Form.ElementField>
+    {/each}
+  </Field.Group>
+  <Form.FieldErrors />
 </Form.Fieldset>
 ```
 

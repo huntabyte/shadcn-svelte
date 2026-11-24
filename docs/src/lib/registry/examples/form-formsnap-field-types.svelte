@@ -120,27 +120,25 @@
 
 		<!-- Checkbox group -->
 		<Form.Fieldset {form} name="notifications">
-			{#snippet children({ errors })}
-				<Form.Legend variant="label">Notifications</Form.Legend>
-				<Field.Group class="gap-3">
-					{#each notifications as notification, i (notification.value)}
-						<Form.ElementField {form} name="notifications[{i}]" orientation="horizontal">
-							<Form.Control>
-								{#snippet children({ props })}
-									<Checkbox
-										{...props}
-										value={notification.value}
-										checked={$formData.notifications.includes(notification.value)}
-										onCheckedChange={(checked) => toggleNotification(notification.value, checked)}
-									/>
-									<Form.Label class="font-normal">{notification.label}</Form.Label>
-								{/snippet}
-							</Form.Control>
-						</Form.ElementField>
-					{/each}
-				</Field.Group>
-				<Form.FieldErrors />
-			{/snippet}
+			<Form.Legend variant="label">Notifications</Form.Legend>
+			<Field.Group class="gap-3">
+				{#each notifications as notification, i (notification.value)}
+					<Form.ElementField {form} name="notifications[{i}]" orientation="horizontal">
+						<Form.Control>
+							{#snippet children({ props })}
+								<Checkbox
+									{...props}
+									value={notification.value}
+									checked={$formData.notifications.includes(notification.value)}
+									onCheckedChange={(checked) => toggleNotification(notification.value, checked)}
+								/>
+								<Form.Label class="font-normal">{notification.label}</Form.Label>
+							{/snippet}
+						</Form.Control>
+					</Form.ElementField>
+				{/each}
+			</Field.Group>
+			<Form.FieldErrors />
 		</Form.Fieldset>
 
 		<!-- Switch -->

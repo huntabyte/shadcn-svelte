@@ -8,6 +8,8 @@
 
 <FormsnapFieldErrors bind:ref {...restProps}>
 	{#snippet child({ props, errors })}
-		<FieldError {...props} errors={errors.map((message) => ({ message }))} />
+		<div {...props} class="contents">
+			<FieldError role={undefined} errors={errors.map((message) => ({ message }))} />
+		</div>
 	{/snippet}
 </FormsnapFieldErrors>
