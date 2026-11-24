@@ -55,6 +55,7 @@ function flattenedRegistry(): Plugin {
 	const flattenedImporters = [
 		path.join(__dirname, "src/lib/registry/examples"),
 		path.join(__dirname, "src/lib/registry/blocks"),
+		path.join(__dirname, "src/lib/components/forms"),
 		path.join(__dirname, "content"),
 	];
 	const rawImporters = [path.join(__dirname, "src/lib/registry/examples/create")];
