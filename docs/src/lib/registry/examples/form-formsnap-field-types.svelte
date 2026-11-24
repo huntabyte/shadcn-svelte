@@ -104,7 +104,10 @@
 				<Form.Legend variant="label">Plan</Form.Legend>
 				<RadioGroup.Root bind:value={$formData.plan} name="plan">
 					{#each plans as plan (plan.value)}
-						<Field.Field orientation="horizontal" data-invalid={errors.length > 0}>
+						<Field.Field
+							orientation="horizontal"
+							data-invalid={errors.length > 0 ? true : undefined}
+						>
 							<Form.Control>
 								{#snippet children({ props })}
 									<RadioGroup.Item {...props} value={plan.value} />

@@ -16,7 +16,7 @@
 
 <FormsnapElementField {form} {name}>
 	{#snippet children({ constraints, errors, tainted, value })}
-		<Field bind:ref data-invalid={errors.length > 0} {...restProps}>
+		<Field bind:ref data-invalid={errors.length > 0 ? true : undefined} {...restProps}>
 			{@render childrenProp?.({ constraints, errors, tainted, value: value as T[U] })}
 		</Field>
 	{/snippet}
