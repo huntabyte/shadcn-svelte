@@ -6,6 +6,7 @@ links:
 ---
 
 <script>
+	import Callout from "$lib/components/callout.svelte";
 	import ComponentPreview from "$lib/components/component-preview.svelte";
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
 	import PMInstall from "$lib/components/pm-install.svelte";
@@ -19,6 +20,12 @@ If you aren't familiar with Superforms and Formsnap, you should check out their 
 ## Demo
 
 We are going to build the following form. It has a simple text input and a textarea. On submit, we'll validate the form data and display any errors.
+
+<Callout>
+
+**Note:** The browser runs its own validation before your form is submitted. Inputs with native constraints, such as `type="email"`, show the browser's tooltip instead of your schema errors, and Superforms never sees the submission. Add `novalidate` to the `<form>` when you want your schema to handle all validation, as the array example below does. It's still worth keeping basic browser validation in production code.
+
+</Callout>
 
 <ComponentPreview name="form-formsnap-demo">
 
@@ -908,7 +915,7 @@ Superforms supports arrays of objects, and each item can be its own field using 
 
 </ComponentPreview>
 
-This example demonstrates managing multiple email addresses with array fields. Users can add up to 5 email addresses, remove individual addresses, and each address is validated independently.
+This example demonstrates managing multiple email addresses with array fields. Users can add up to 5 email addresses, remove individual addresses, and each address is validated independently. The form has `novalidate` set so the schema, not the browser, reports invalid email addresses.
 
 ### Array Field Structure
 

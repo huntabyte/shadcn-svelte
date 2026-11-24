@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { FieldDescription } from "$lib/registry/ui/field/index.js";
-	import { getFormFieldState } from "./context.svelte.js";
+	import { FormDescriptionState } from "./context.svelte.js";
 	import type { ComponentProps } from "svelte";
 
 	let {
@@ -9,17 +9,9 @@
 		...restProps
 	}: ComponentProps<typeof FieldDescription> = $props();
 
-	const fieldState = getFormFieldState();
+	const description = FormDescriptionState.create();
 </script>
 
-<FieldDescription
-	bind:ref
-	id="{fieldState.id}-description"
-	{@attach () => {
-		fieldState.hasDescription = true;
-		return () => (fieldState.hasDescription = false);
-	}}
-	{...restProps}
->
+<FieldDescription bind:ref id={description.id} {...restProps}>
 	{@render children?.()}
 </FieldDescription>

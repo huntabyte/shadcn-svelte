@@ -9,7 +9,7 @@
 	} from "@formisch/svelte";
 	import { Field } from "$lib/registry/ui/field/index.js";
 	import type { WithoutChildren } from "$lib/utils.js";
-	import { FormFieldState, setFormFieldState } from "./context.svelte.js";
+	import { FormFieldState } from "./context.svelte.js";
 	import type { ComponentProps, Snippet } from "svelte";
 	import type * as v from "valibot";
 
@@ -32,7 +32,7 @@
 		() => ({ path })
 	);
 
-	setFormFieldState(new FormFieldState(id, field as unknown as FieldStore));
+	FormFieldState.create(id, field);
 </script>
 
 <Field bind:ref data-invalid={field.errors ? true : undefined} {...restProps}>

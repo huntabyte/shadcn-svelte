@@ -12,8 +12,10 @@
 		{ label: "Yearly", value: "yearly" },
 	];
 
+	const PlanSchema = v.picklist(["basic", "pro"], "Please select a subscription plan");
+
 	const FormSchema = v.object({
-		plan: v.picklist(["basic", "pro"], "Please select a subscription plan"),
+		plan: PlanSchema,
 		billingPeriod: v.pipe(v.string(), v.nonEmpty("Please select a billing period")),
 		addons: v.pipe(
 			v.array(v.string()),
@@ -65,7 +67,9 @@
 						<Field.Description>Choose your subscription plan.</Field.Description>
 						<RadioGroup.Root
 							value={field.input ?? ""}
-							onValueChange={(value) => field.onInput(value as typeof field.input)}
+							onValueChange={(value) => {
+								if (v.is(PlanSchema, value)) field.onInput(value);
+							}}
 						>
 							<Form.Control custom>
 								{#snippet children({ props })}
@@ -119,11 +123,13 @@
 										<Select.Value placeholder="Select" />
 									</Select.Trigger>
 									<Select.Content>
-										{#each billingPeriods as period (period.value)}
-											<Select.Item value={period.value} label={period.label}>
-												{period.label}
-											</Select.Item>
-										{/each}
+										<Select.Group>
+											{#each billingPeriods as period (period.value)}
+												<Select.Item value={period.value} label={period.label}>
+													{period.label}
+												</Select.Item>
+											{/each}
+										</Select.Group>
 									</Select.Content>
 								</Select.Root>
 							{/snippet}

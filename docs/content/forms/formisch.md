@@ -87,11 +87,16 @@ Create a `form` directory in `src/lib/components/ui` and add the files below. Yo
 
 #### Context
 
-The components share the state of the current field through context. This requires Svelte 5.40 or newer.
+The components share the state of the current field and its control through context. This requires Svelte 5.40 or newer.
 
 ```ts title="src/lib/components/ui/form/context.svelte.ts" showLineNumbers
-import { createContext } from "svelte";
-import type { FieldStore } from "@formisch/svelte";
+import { createContext, onDestroy } from "svelte";
+import type { FieldElementProps, FieldStore } from "@formisch/svelte";
+
+const [getFormFieldState, setFormFieldState] = createContext<FormFieldState>();
+
+const [getFormControlState, setFormControlState] =
+  createContext<FormControlState>();
 
 export class FormFieldState {
   /** Set by `Form.Description` so the control only references it when it exists. */
@@ -99,14 +104,102 @@ export class FormFieldState {
 
   constructor(
     readonly id: string,
-    readonly field: FieldStore
+    /** Only the parts of the field store that don't depend on the schema or path. */
+    readonly field: Pick<FieldStore, "errors" | "props">
   ) {}
+
+  /** Creates the state for a field and shares it with the components inside it. */
+  static create(id: string, field: FormFieldState["field"]) {
+    return setFormFieldState(new FormFieldState(id, field));
+  }
+
+  static get() {
+    return getFormFieldState();
+  }
+
+  get descriptionId() {
+    return `${this.id}-description`;
+  }
+
+  get errorId() {
+    return `${this.id}-error`;
+  }
 }
 
-export const [getFormFieldState, setFormFieldState] =
-  createContext<FormFieldState>();
+export class FormDescriptionState {
+  constructor(readonly fieldState: FormFieldState) {
+    // Register while the component initializes so the control can reference the description.
+    fieldState.hasDescription = true;
+    onDestroy(() => (fieldState.hasDescription = false));
+  }
 
-export const [getFormControlId, setFormControlId] = createContext<string>();
+  /** Creates the state for a description and registers it with the current field. */
+  static create() {
+    return new FormDescriptionState(FormFieldState.get());
+  }
+
+  get id() {
+    return this.fieldState.descriptionId;
+  }
+}
+
+type ControlAttributes = {
+  id: string;
+  "aria-invalid": boolean;
+  "aria-describedby": string | undefined;
+};
+
+type NativeControlProps = FieldElementProps & ControlAttributes;
+type CustomControlProps = Omit<FieldElementProps, "oninput" | "onchange"> &
+  ControlAttributes;
+
+export type FormControlProps<TCustom extends boolean = false> =
+  TCustom extends true ? CustomControlProps : NativeControlProps;
+
+export class FormControlState {
+  constructor(
+    readonly id: string,
+    readonly fieldState: FormFieldState
+  ) {}
+
+  /** Creates the state for a control and shares it with the components inside the field. */
+  static create(id: string) {
+    return setFormControlState(new FormControlState(id, FormFieldState.get()));
+  }
+
+  static get() {
+    return getFormControlState();
+  }
+
+  get #attributes(): ControlAttributes {
+    const { fieldState } = this;
+    return {
+      id: this.id,
+      "aria-invalid": !!fieldState.field.errors,
+      "aria-describedby":
+        [
+          fieldState.hasDescription ? fieldState.descriptionId : undefined,
+          fieldState.field.errors ? fieldState.errorId : undefined,
+        ]
+          .filter(Boolean)
+          .join(" ") || undefined,
+    };
+  }
+
+  /**
+   * The props to spread onto the form control. When `custom` is set the `oninput` and `onchange`
+   * handlers are left out, since components like `Select` never fire those events.
+   */
+  props<TCustom extends boolean = false>(
+    custom?: TCustom
+  ): FormControlProps<TCustom>;
+  props(custom?: boolean): NativeControlProps | CustomControlProps {
+    const { oninput, onchange, ...rest } = this.fieldState.field.props;
+    return custom
+      ? { ...rest, ...this.#attributes }
+      : { ...rest, oninput, onchange, ...this.#attributes };
+  }
+}
 ```
 
 #### Field
@@ -126,11 +219,11 @@ export const [getFormControlId, setFormControlId] = createContext<string>();
     type RequiredPath,
     type ValidPath,
   } from "@formisch/svelte";
-  import { Field } from "$lib/components/ui/ui/field/index.js";
+  import { Field } from "$lib/components/ui/field/index.js";
   import type { WithoutChildren } from "$lib/utils.js";
+  import { FormFieldState } from "./context.svelte.js";
   import type { ComponentProps, Snippet } from "svelte";
   import type * as v from "valibot";
-  import { FormFieldState, setFormFieldState } from "./context.svelte.js";
 
   let {
     ref = $bindable(null),
@@ -151,7 +244,7 @@ export const [getFormControlId, setFormControlId] = createContext<string>();
     () => ({ path })
   );
 
-  setFormFieldState(new FormFieldState(id, field as unknown as FieldStore));
+  FormFieldState.create(id, field);
 </script>
 
 <Field bind:ref data-invalid={field.errors ? true : undefined} {...restProps}>
@@ -167,23 +260,17 @@ Set `custom` when the control isn't a native `input`, `textarea`, or `select`, s
 
 ```svelte title="src/lib/components/ui/form/form-control.svelte" showLineNumbers
 <script lang="ts" generics="TCustom extends boolean = false">
-  import type { FieldElementProps } from "@formisch/svelte";
+  import {
+    FormControlState,
+    type FormControlProps,
+  } from "./context.svelte.js";
   import type { Snippet } from "svelte";
-  import { getFormFieldState, setFormControlId } from "./context.svelte.js";
-
-  type ControlProps = (TCustom extends true
-    ? Omit<FieldElementProps, "oninput" | "onchange">
-    : FieldElementProps) & {
-    id: string;
-    "aria-invalid": boolean;
-    "aria-describedby": string | undefined;
-  };
 
   let {
     children,
     custom,
   }: {
-    children?: Snippet<[{ props: ControlProps }]>;
+    children?: Snippet<[{ props: FormControlProps<TCustom> }]>;
     /**
      * Set this when the control isn't a native `input`, `textarea` or `select`,
      * such as `Select`, `Checkbox`, `RadioGroup` or `Switch`. It removes the
@@ -193,40 +280,20 @@ Set `custom` when the control isn't a native `input`, `textarea`, or `select`, s
     custom?: TCustom;
   } = $props();
 
-  const fieldState = getFormFieldState();
   const id = $props.id();
-  setFormControlId(id);
-
-  const controlProps = $derived.by(() => {
-    const { oninput, onchange, ...rest } = fieldState.field.props;
-    return {
-      ...rest,
-      ...(custom ? {} : { oninput, onchange }),
-      id,
-      "aria-invalid": !!fieldState.field.errors,
-      "aria-describedby":
-        [
-          fieldState.hasDescription
-            ? `${fieldState.id}-description`
-            : undefined,
-          fieldState.field.errors ? `${fieldState.id}-error` : undefined,
-        ]
-          .filter(Boolean)
-          .join(" ") || undefined,
-    } as unknown as ControlProps;
-  });
+  const control = FormControlState.create(id);
 </script>
 
-{@render children?.({ props: controlProps })}
+{@render children?.({ props: control.props(custom) })}
 ```
 
 #### Label
 
 ```svelte title="src/lib/components/ui/form/form-label.svelte" showLineNumbers
 <script lang="ts">
-  import { FieldLabel } from "$lib/components/ui/ui/field/index.js";
+  import { FieldLabel } from "$lib/components/ui/field/index.js";
+  import { FormControlState } from "./context.svelte.js";
   import type { ComponentProps } from "svelte";
-  import { getFormControlId } from "./context.svelte.js";
 
   let {
     ref = $bindable(null),
@@ -234,10 +301,10 @@ Set `custom` when the control isn't a native `input`, `textarea`, or `select`, s
     ...restProps
   }: ComponentProps<typeof FieldLabel> = $props();
 
-  const controlId = getFormControlId();
+  const control = FormControlState.get();
 </script>
 
-<FieldLabel bind:ref for={controlId} {...restProps}>
+<FieldLabel bind:ref for={control.id} {...restProps}>
   {@render children?.()}
 </FieldLabel>
 ```
@@ -246,9 +313,9 @@ Set `custom` when the control isn't a native `input`, `textarea`, or `select`, s
 
 ```svelte title="src/lib/components/ui/form/form-description.svelte" showLineNumbers
 <script lang="ts">
-  import { FieldDescription } from "$lib/components/ui/ui/field/index.js";
+  import { FieldDescription } from "$lib/components/ui/field/index.js";
+  import { FormDescriptionState } from "./context.svelte.js";
   import type { ComponentProps } from "svelte";
-  import { getFormFieldState } from "./context.svelte.js";
 
   let {
     ref = $bindable(null),
@@ -256,18 +323,10 @@ Set `custom` when the control isn't a native `input`, `textarea`, or `select`, s
     ...restProps
   }: ComponentProps<typeof FieldDescription> = $props();
 
-  const fieldState = getFormFieldState();
+  const description = FormDescriptionState.create();
 </script>
 
-<FieldDescription
-  bind:ref
-  id="{fieldState.id}-description"
-  {@attach () => {
-    fieldState.hasDescription = true;
-    return () => (fieldState.hasDescription = false);
-  }}
-  {...restProps}
->
+<FieldDescription bind:ref id={description.id} {...restProps}>
   {@render children?.()}
 </FieldDescription>
 ```
@@ -278,21 +337,21 @@ Set `custom` when the control isn't a native `input`, `textarea`, or `select`, s
 
 ```svelte title="src/lib/components/ui/form/form-field-errors.svelte" showLineNumbers
 <script lang="ts">
-  import { FieldError } from "$lib/components/ui/ui/field/index.js";
+  import { FieldError } from "$lib/components/ui/field/index.js";
+  import { FormFieldState } from "./context.svelte.js";
   import type { ComponentProps } from "svelte";
-  import { getFormFieldState } from "./context.svelte.js";
 
   let {
     ref = $bindable(null),
     ...restProps
   }: Omit<ComponentProps<typeof FieldError>, "errors"> = $props();
 
-  const fieldState = getFormFieldState();
+  const fieldState = FormFieldState.get();
 </script>
 
 <FieldError
   bind:ref
-  id="{fieldState.id}-error"
+  id={fieldState.errorId}
   errors={fieldState.field.errors?.map((message) => ({ message }))}
   {...restProps}
 />
@@ -315,11 +374,11 @@ Set `custom` when the control isn't a native `input`, `textarea`, or `select`, s
     type RequiredPath,
     type ValidPath,
   } from "@formisch/svelte";
-  import { FieldSet } from "$lib/components/ui/ui/field/index.js";
+  import { FieldSet } from "$lib/components/ui/field/index.js";
   import type { WithoutChildren } from "$lib/utils.js";
+  import { FormFieldState } from "./context.svelte.js";
   import type { ComponentProps, Snippet } from "svelte";
   import type * as v from "valibot";
-  import { FormFieldState, setFormFieldState } from "./context.svelte.js";
 
   let {
     ref = $bindable(null),
@@ -340,7 +399,7 @@ Set `custom` when the control isn't a native `input`, `textarea`, or `select`, s
     () => ({ path })
   );
 
-  setFormFieldState(new FormFieldState(id, field as unknown as FieldStore));
+  FormFieldState.create(id, field);
 </script>
 
 <FieldSet
@@ -556,14 +615,33 @@ Formisch validates your form data against the Valibot schema you give to `create
 
 ### Server-side Validation
 
-Formisch validates on the client. Always validate again on the server before you trust the data, for example in a SvelteKit [form action](https://svelte.dev/docs/kit/form-actions) or endpoint. You can reuse the same schema with Valibot's `safeParse`.
+Formisch validates on the client. Always validate again on the server before you trust the data, for example in a SvelteKit [form action](https://svelte.dev/docs/kit/form-actions) or endpoint. To reuse the same schema on both sides, move it out of the form component into a module that the form and the server can both import.
+
+```ts showLineNumbers title="src/lib/schemas/bug-report.ts"
+import * as v from "valibot";
+
+export const FormSchema = v.object({
+  title: v.pipe(
+    v.string(),
+    v.minLength(5, "Bug title must be at least 5 characters."),
+    v.maxLength(32, "Bug title must be at most 32 characters.")
+  ),
+  description: v.pipe(
+    v.string(),
+    v.minLength(20, "Description must be at least 20 characters."),
+    v.maxLength(100, "Description must be at most 100 characters.")
+  ),
+});
+```
+
+Then validate the request body with Valibot's `safeParse`.
 
 ```ts showLineNumbers title="src/routes/api/bug-report/+server.ts"
-import { json } from "@sveltejs/kit";
+import { json, type RequestHandler } from "@sveltejs/kit";
 import * as v from "valibot";
-import { FormSchema } from "./schema";
+import { FormSchema } from "$lib/schemas/bug-report.js";
 
-export const POST = async ({ request }) => {
+export const POST: RequestHandler = async ({ request }) => {
   const result = v.safeParse(FormSchema, await request.json());
 
   if (!result.success) {
@@ -742,7 +820,33 @@ The `Textarea` works the same as the `Input`. Spread `props` onto it and pass `f
 </Form.Field>
 ```
 
-Use `v.number()` in your schema for this field. For dates, use `event.currentTarget.valueAsDate` with `v.date()`.
+Use `v.number()` in your schema for this field.
+
+Dates need a conversion in both directions. `valueAsDate` is `null` when the input is empty, so fall back to `undefined`, and the input expects a `YYYY-MM-DD` string, so format the `Date` that Formisch stores before passing it to `value`. Use `v.date()` in your schema for this field.
+
+```svelte showLineNumbers title="form.svelte"
+<Form.Field of={form} path={["birthday"]}>
+  {#snippet children(field)}
+    <Form.Control>
+      {#snippet children({ props })}
+        <Form.Label>Birthday</Form.Label>
+        <Input
+          {...props}
+          type="date"
+          value={field.input instanceof Date
+            ? field.input.toISOString().slice(0, 10)
+            : ""}
+          oninput={(event) =>
+            field.onInput(event.currentTarget.valueAsDate ?? undefined)}
+        />
+      {/snippet}
+    </Form.Control>
+    <Form.FieldErrors />
+  {/snippet}
+</Form.Field>
+```
+
+`valueAsDate` returns midnight UTC, which is why the value is formatted with `toISOString`.
 
 ### Select
 
@@ -936,7 +1040,9 @@ Use the `reset` method to reset the form to its initial state. Pass `initialInpu
 
 ```svelte showLineNumbers title="form.svelte"
 <script lang="ts">
-  import { reset } from "@formisch/svelte";
+  import { createForm, reset } from "@formisch/svelte";
+
+  const form = createForm({ schema: FormSchema });
 </script>
 
 <Button type="button" variant="outline" onclick={() => reset(form)}>

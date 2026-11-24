@@ -43,6 +43,7 @@
 	<Card.Content>
 		<form
 			id="form-tanstack-array"
+			novalidate
 			onsubmit={(e) => {
 				e.preventDefault();
 				form.handleSubmit();

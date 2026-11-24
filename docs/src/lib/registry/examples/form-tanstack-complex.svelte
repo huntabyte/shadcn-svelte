@@ -134,11 +134,13 @@
 									<Select.Value placeholder="Select" />
 								</Select.Trigger>
 								<Select.Content>
-									{#each billingPeriods as period (period.value)}
-										<Select.Item value={period.value} label={period.label}>
-											{period.label}
-										</Select.Item>
-									{/each}
+									<Select.Group>
+										{#each billingPeriods as period (period.value)}
+											<Select.Item value={period.value} label={period.label}>
+												{period.label}
+											</Select.Item>
+										{/each}
+									</Select.Group>
 								</Select.Content>
 							</Select.Root>
 							<Field.Description>Choose how often you want to be billed.</Field.Description>

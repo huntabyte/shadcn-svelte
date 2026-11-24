@@ -70,13 +70,17 @@
 									<Select.Value placeholder="Select" />
 								</Select.Trigger>
 								<Select.Content>
-									<Select.Item value="auto" label="Auto">Auto</Select.Item>
+									<Select.Group>
+										<Select.Item value="auto" label="Auto">Auto</Select.Item>
+									</Select.Group>
 									<Select.Separator />
-									{#each spokenLanguages as language (language.value)}
-										<Select.Item value={language.value} label={language.label}>
-											{language.label}
-										</Select.Item>
-									{/each}
+									<Select.Group>
+										{#each spokenLanguages as language (language.value)}
+											<Select.Item value={language.value} label={language.label}>
+												{language.label}
+											</Select.Item>
+										{/each}
+									</Select.Group>
 								</Select.Content>
 							</Select.Root>
 						{/snippet}

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { FieldError } from "$lib/registry/ui/field/index.js";
-	import { getFormFieldState } from "./context.svelte.js";
+	import { FormFieldState } from "./context.svelte.js";
 	import type { ComponentProps } from "svelte";
 
 	let {
@@ -8,12 +8,12 @@
 		...restProps
 	}: Omit<ComponentProps<typeof FieldError>, "errors"> = $props();
 
-	const fieldState = getFormFieldState();
+	const fieldState = FormFieldState.get();
 </script>
 
 <FieldError
 	bind:ref
-	id="{fieldState.id}-error"
+	id={fieldState.errorId}
 	errors={fieldState.field.errors?.map((message) => ({ message }))}
 	{...restProps}
 />

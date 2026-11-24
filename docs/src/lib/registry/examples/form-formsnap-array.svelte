@@ -54,7 +54,7 @@
 		<Card.Description>Manage your contact email addresses.</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<form id="form-formsnap-array" method="POST" use:enhance>
+		<form id="form-formsnap-array" method="POST" novalidate use:enhance>
 			<Field.Group>
 				<Form.Fieldset {form} name="emails" class="gap-4">
 					<Form.Legend variant="label">Email Addresses</Form.Legend>

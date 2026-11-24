@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { FieldLabel } from "$lib/registry/ui/field/index.js";
-	import { getFormControlId } from "./context.svelte.js";
+	import { FormControlState } from "./context.svelte.js";
 	import type { ComponentProps } from "svelte";
 
 	let {
@@ -9,9 +9,9 @@
 		...restProps
 	}: ComponentProps<typeof FieldLabel> = $props();
 
-	const controlId = getFormControlId();
+	const control = FormControlState.get();
 </script>
 
-<FieldLabel bind:ref for={controlId} {...restProps}>
+<FieldLabel bind:ref for={control.id} {...restProps}>
 	{@render children?.()}
 </FieldLabel>
