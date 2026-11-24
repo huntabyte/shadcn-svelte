@@ -17,11 +17,11 @@
 	import { toast } from "svelte-sonner";
 	import { defaults, superForm } from "sveltekit-superforms";
 	import { zod4 } from "sveltekit-superforms/adapters";
+	import * as Form from "$lib/components/forms/formsnap/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
 	import { Textarea } from "$lib/registry/ui/textarea/index.js";
-	import * as Form from "$lib/components/forms/formsnap/index.js";
 
 	const form = superForm(defaults(zod4(formSchema)), {
 		validators: zod4(formSchema),

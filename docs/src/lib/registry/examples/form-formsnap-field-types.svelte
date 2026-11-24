@@ -33,13 +33,13 @@
 	import { toast } from "svelte-sonner";
 	import { defaults, superForm } from "sveltekit-superforms";
 	import { zod4 } from "sveltekit-superforms/adapters";
+	import * as Form from "$lib/components/forms/formsnap/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
 	import { Switch } from "$lib/registry/ui/switch/index.js";
-	import * as Form from "$lib/components/forms/formsnap/index.js";
 
 	const form = superForm(
 		defaults({ language: "", notifications: [], marketing: false, terms: false }, zod4(formSchema)),
