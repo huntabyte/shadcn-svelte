@@ -26,6 +26,7 @@
 <script lang="ts">
 	import { createForm } from "@tanstack/svelte-form";
 	import { toast } from "svelte-sonner";
+	import * as Form from "$lib/components/forms/tanstack/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
@@ -58,51 +59,43 @@
 			}}
 		>
 			<Field.Group>
-				<form.Field name="language">
+				<Form.Field of={form} name="language" orientation="responsive">
 					{#snippet children(field)}
-						{@const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid}
-						<Field.Field orientation="responsive" data-invalid={isInvalid ? true : undefined}>
-							<Field.Content>
-								<Field.Label for="form-tanstack-select-language">Spoken Language</Field.Label>
-								<Field.Description
-									>For best results, select the language you speak.</Field.Description
+						<Form.Control>
+							{#snippet children({ props })}
+								<Field.Content>
+									<Form.Label>Spoken Language</Form.Label>
+									<Form.Description
+										>For best results, select the language you speak.</Form.Description
+									>
+									<Form.FieldErrors />
+								</Field.Content>
+								<Select.Root
+									type="single"
+									{items}
+									bind:value={() => field.state.value, field.handleChange}
 								>
-								{#if isInvalid}
-									<Field.Error errors={field.state.meta.errors} />
-								{/if}
-							</Field.Content>
-							<Select.Root
-								type="single"
-								{items}
-								name={field.name}
-								value={field.state.value}
-								onValueChange={field.handleChange}
-							>
-								<Select.Trigger
-									id="form-tanstack-select-language"
-									aria-invalid={isInvalid}
-									onblur={field.handleBlur}
-									class="min-w-[120px]"
-								>
-									<Select.Value placeholder="Select" />
-								</Select.Trigger>
-								<Select.Content>
-									<Select.Group>
-										<Select.Item value="auto" label="Auto">Auto</Select.Item>
-									</Select.Group>
-									<Select.Separator />
-									<Select.Group>
-										{#each spokenLanguages as language (language.value)}
-											<Select.Item value={language.value} label={language.label}>
-												{language.label}
-											</Select.Item>
-										{/each}
-									</Select.Group>
-								</Select.Content>
-							</Select.Root>
-						</Field.Field>
+									<Select.Trigger {...props} class="min-w-[120px]">
+										<Select.Value placeholder="Select" />
+									</Select.Trigger>
+									<Select.Content>
+										<Select.Group>
+											<Select.Item value="auto" label="Auto">Auto</Select.Item>
+										</Select.Group>
+										<Select.Separator />
+										<Select.Group>
+											{#each spokenLanguages as language (language.value)}
+												<Select.Item value={language.value} label={language.label}>
+													{language.label}
+												</Select.Item>
+											{/each}
+										</Select.Group>
+									</Select.Content>
+								</Select.Root>
+							{/snippet}
+						</Form.Control>
 					{/snippet}
-				</form.Field>
+				</Form.Field>
 			</Field.Group>
 		</form>
 	</Card.Content>

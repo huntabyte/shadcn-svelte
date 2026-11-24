@@ -52,7 +52,7 @@
 				<FieldArray of={form} path={["emails"]}>
 					{#snippet children(fieldArray)}
 						<Field.Set class="gap-4">
-							<Field.Legend variant="label">Email Addresses</Field.Legend>
+							<Form.Legend variant="label">Email Addresses</Form.Legend>
 							<Field.Description
 								>Add up to 5 email addresses where we can contact you.</Field.Description
 							>

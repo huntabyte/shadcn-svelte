@@ -35,19 +35,19 @@ We'll start by building the following form. It has a simple text input and a tex
 
 ## Approach
 
-This form leverages TanStack Form for powerful, headless form handling. We'll build our form using the [Field](/docs/components/field) component, which gives you **complete flexibility over the markup and styling**.
+This form leverages TanStack Form for form state and validation, and a small set of `Form.*` components for wiring that state up to your markup. We'll build our form using the [Field](/docs/components/field) component, which gives you **complete flexibility over the markup and styling**.
 
-- Uses TanStack Form's `createForm` function for form state management.
-- `form.Field` component with the `children` snippet for controlled inputs.
-- `Field` components for building accessible forms.
-- Client-side validation using Zod or any other [Standard Schema](https://standardschema.dev) compatible library, such as Valibot or ArkType.
-- Real-time validation feedback.
+- Uses TanStack Form's `createForm` function for form state management and client side validation.
+- `Form.Field` scopes the field state to each field. `Form.Control`, `Form.Label`, `Form.Description`, and `Form.FieldErrors` apply the correct `id` and `aria` attributes.
+- `Field` components render the markup and styling.
+- Schema validation using Zod or any other [Standard Schema](https://standardschema.dev) compatible library, such as Valibot or ArkType.
+- TanStack Form is fully typed. Field names and values are inferred from your default values.
 
-TanStack Form doesn't render any markup for you, so there are no wrapper components to create. You wire the field state to your inputs yourself.
+TanStack Form's `form.Field` is headless. It hands you a `field` with its `state` and `handleChange`, and leaves the `id`, `aria` attributes, and error display to you. Wiring those up to a label, a description, and an error for every field gets repetitive, so we'll build a few small reusable `Form.*` components that you create once and use in every form.
 
 ## Anatomy
 
-Here's a basic example of a form using TanStack Form with the `Field` component.
+Here's a basic example of a form field using the `Form` components.
 
 ```svelte showLineNumbers
 <form
@@ -57,41 +57,33 @@ Here's a basic example of a form using TanStack Form with the `Field` component.
   }}
 >
   <Field.Group>
-    <form.Field name="title">
+    <Form.Field of={form} name="title">
       {#snippet children(field)}
-        {@const isInvalid =
-          field.state.meta.isTouched && !field.state.meta.isValid}
-        <Field.Field data-invalid={isInvalid ? true : undefined}>
-          <Field.Label for={field.name}>Bug Title</Field.Label>
-          <Input
-            id={field.name}
-            name={field.name}
-            value={field.state.value}
-            onblur={field.handleBlur}
-            oninput={(e) => field.handleChange(e.currentTarget.value)}
-            aria-invalid={isInvalid}
-            placeholder="Login button not working on mobile"
-            autocomplete="off"
-          />
-          <Field.Description>
-            Provide a concise title for your bug report.
-          </Field.Description>
-          {#if isInvalid}
-            <Field.Error errors={field.state.meta.errors} />
-          {/if}
-        </Field.Field>
+        <Form.Control>
+          {#snippet children({ props })}
+            <Form.Label>Bug Title</Form.Label>
+            <Input
+              {...props}
+              bind:value={() => field.state.value, field.handleChange}
+            />
+          {/snippet}
+        </Form.Control>
+        <Form.Description>
+          Provide a concise title for your bug report.
+        </Form.Description>
+        <Form.FieldErrors />
       {/snippet}
-    </form.Field>
+    </Form.Field>
   </Field.Group>
   <Button type="submit">Submit</Button>
 </form>
 ```
 
-- `form.Field` scopes the state for `title` and passes it to the `children` snippet as `field`.
-- `Field.Field` sets `data-invalid` when the field has errors, which styles the label and description.
-- `field.name` or an explicit `id` is used for the `id` of the control and the label's `for` attribute so the label is associated with the input.
-- `aria-invalid` is set on the form control so assistive technology announces the invalid state.
-- `Field.Error` renders the field's errors.
+- `Form.Field` wraps `Field.Field` and scopes the field state for `title` to everything inside of it. It sets `data-invalid` when the field has errors and passes the typed `field`, with its `state`, `handleChange`, and `handleBlur`, to its children. The `name` is checked against your default values.
+- `Form.Control` provides the `props` that must be spread onto the form control: the `id`, `name`, `onblur`, `aria-invalid`, and `aria-describedby`.
+- `Form.Label`, `Form.Description`, and `Form.FieldErrors` render `Field.Label`, `Field.Description`, and `Field.Error` and link them to the form control. `Form.FieldErrors` only renders once the field is invalid.
+- `Form.Legend` is `Field.Legend`, used to label a `Form.Fieldset`.
+- The control's value is bound to the field with a [function binding](https://svelte.dev/docs/svelte/bind#Function-bindings). Controls that can't be bound, such as a checkbox array, use `field.state.value` and `field.handleChange` directly.
 
 ## Installation
 
@@ -104,6 +96,426 @@ Here's a basic example of a form using TanStack Form with the `Field` component.
 ### Install the dependencies
 
 <PMInstall command="@tanstack/svelte-form zod -D" />
+
+### Create the form components
+
+Create a `form` directory in `src/lib/components/ui` and add the files below. You only need to create the ones you use.
+
+#### Context
+
+The components share the state of the current field and its control through context. This requires Svelte 5.40 or newer.
+
+```ts showLineNumbers title="src/lib/components/ui/form/context.svelte.ts"
+import { createContext, onDestroy } from "svelte";
+import type {
+  AnyFieldApi,
+  DeepKeys,
+  DeepValue,
+  FieldApi,
+  FieldApiOptions,
+  FormApi,
+} from "@tanstack/svelte-form";
+
+// TanStack Form's types take a long list of validator generics that we don't care about here.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Any = any;
+
+/** The form instance returned by `createForm`. */
+export type FormOf<TFormData> = FormApi<
+  TFormData,
+  Any,
+  Any,
+  Any,
+  Any,
+  Any,
+  Any,
+  Any,
+  Any,
+  Any,
+  Any,
+  Any
+>;
+
+/** The field passed to the children of `Form.Field` and `Form.Fieldset`. */
+export type FormFieldApi<
+  TFormData,
+  TName extends DeepKeys<TFormData>,
+> = FieldApi<
+  TFormData,
+  TName,
+  DeepValue<TFormData, TName>,
+  Any,
+  Any,
+  Any,
+  Any,
+  Any,
+  Any,
+  Any,
+  Any,
+  Any,
+  Any,
+  Any,
+  Any,
+  Any,
+  Any,
+  Any,
+  Any,
+  Any,
+  Any,
+  Any,
+  Any
+>;
+
+/** Field level options that `Form.Field` and `Form.Fieldset` pass on to TanStack Form. */
+export type FormFieldOptions<
+  TFormData,
+  TName extends DeepKeys<TFormData>,
+> = Pick<
+  FieldApiOptions<
+    TFormData,
+    TName,
+    DeepValue<TFormData, TName>,
+    Any,
+    Any,
+    Any,
+    Any,
+    Any,
+    Any,
+    Any,
+    Any,
+    Any,
+    Any,
+    Any,
+    Any,
+    Any,
+    Any,
+    Any,
+    Any,
+    Any,
+    Any,
+    Any,
+    Any
+  >,
+  "validators"
+>;
+
+const [getFormFieldState, setFormFieldState] = createContext<FormFieldState>();
+
+const [getFormControlState, setFormControlState] =
+  createContext<FormControlState>();
+
+export class FormFieldState {
+  /** Set by `Form.Description` so the control only references it when it exists. */
+  hasDescription = $state(false);
+
+  constructor(
+    readonly id: string,
+    readonly field: AnyFieldApi
+  ) {}
+
+  /** Creates the state for a field and shares it with the components inside it. */
+  static create(id: string, field: AnyFieldApi) {
+    return setFormFieldState(new FormFieldState(id, field));
+  }
+
+  static get() {
+    return getFormFieldState();
+  }
+
+  /** Errors are only shown once the field has been touched. */
+  get isInvalid() {
+    const { meta } = this.field.state;
+    return meta.isTouched && !meta.isValid;
+  }
+
+  /** Validators return either issue objects with a `message` or plain strings. */
+  get errors() {
+    return this.field.state.meta.errors.map((error: unknown) =>
+      typeof error === "string"
+        ? { message: error }
+        : (error as { message?: string } | undefined)
+    );
+  }
+
+  get descriptionId() {
+    return `${this.id}-description`;
+  }
+
+  get errorId() {
+    return `${this.id}-error`;
+  }
+}
+
+export class FormDescriptionState {
+  constructor(readonly fieldState: FormFieldState) {
+    // Register while the component initializes so the control can reference the description.
+    fieldState.hasDescription = true;
+    onDestroy(() => (fieldState.hasDescription = false));
+  }
+
+  /** Creates the state for a description and registers it with the current field. */
+  static create() {
+    return new FormDescriptionState(FormFieldState.get());
+  }
+
+  get id() {
+    return this.fieldState.descriptionId;
+  }
+}
+
+export type FormControlProps = {
+  id: string;
+  name: string;
+  onblur: () => void;
+  "aria-invalid": boolean;
+  "aria-describedby": string | undefined;
+};
+
+export class FormControlState {
+  constructor(
+    readonly id: string,
+    readonly fieldState: FormFieldState
+  ) {}
+
+  /** Creates the state for a control and shares it with the components inside the field. */
+  static create(id: string) {
+    return setFormControlState(new FormControlState(id, FormFieldState.get()));
+  }
+
+  static get() {
+    return getFormControlState();
+  }
+
+  /** The props to spread onto the form control. */
+  get props(): FormControlProps {
+    const { fieldState } = this;
+    return {
+      id: this.id,
+      name: fieldState.field.name,
+      onblur: fieldState.field.handleBlur,
+      "aria-invalid": fieldState.isInvalid,
+      "aria-describedby":
+        [
+          fieldState.hasDescription ? fieldState.descriptionId : undefined,
+          fieldState.isInvalid ? fieldState.errorId : undefined,
+        ]
+          .filter(Boolean)
+          .join(" ") || undefined,
+    };
+  }
+}
+```
+
+#### Field
+
+`Form.Field` wraps TanStack Form's `createField` and `Field.Field`. It accepts any `Field.Field` prop, such as `orientation`, along with the `validators` option, and passes the field to its children.
+
+```svelte showLineNumbers title="src/lib/components/ui/form/form-field.svelte"
+<script lang="ts" generics="TFormData, TName extends DeepKeys<TFormData>">
+  import { createField, type DeepKeys } from "@tanstack/svelte-form";
+  import { Field } from "$lib/components/ui/field/index.js";
+  import type { WithoutChildren } from "$lib/utils.js";
+  import {
+    FormFieldState,
+    type FormFieldApi,
+    type FormFieldOptions,
+    type FormOf,
+  } from "./context.svelte.js";
+  import type { ComponentProps, Snippet } from "svelte";
+
+  let {
+    ref = $bindable(null),
+    of,
+    name,
+    mode,
+    validators,
+    children,
+    ...restProps
+  }: WithoutChildren<ComponentProps<typeof Field>> & {
+    of: FormOf<TFormData>;
+    name: TName;
+    mode?: "value" | "array";
+    validators?: FormFieldOptions<TFormData, TName>["validators"];
+    children?: Snippet<[FormFieldApi<TFormData, TName>]>;
+  } = $props();
+
+  const id = $props.id();
+
+  const field = createField(() => ({ form: of, name, mode, validators }));
+
+  const fieldState = FormFieldState.create(id, field);
+</script>
+
+<Field
+  bind:ref
+  data-invalid={fieldState.isInvalid ? true : undefined}
+  {...restProps}
+>
+  {@render children?.(field)}
+</Field>
+```
+
+#### Control
+
+`Form.Control` provides the props that must be spread onto the form control: the `id`, `name`, `onblur`, `aria-invalid`, and `aria-describedby` attributes. It generates its own `id`, so a fieldset can have a control for each of its items.
+
+```svelte showLineNumbers title="src/lib/components/ui/form/form-control.svelte"
+<script lang="ts">
+  import {
+    FormControlState,
+    type FormControlProps,
+  } from "./context.svelte.js";
+  import type { Snippet } from "svelte";
+
+  let {
+    children,
+  }: {
+    children?: Snippet<[{ props: FormControlProps }]>;
+  } = $props();
+
+  const id = $props.id();
+  const control = FormControlState.create(id);
+</script>
+
+{@render children?.({ props: control.props })}
+```
+
+#### Label
+
+```svelte showLineNumbers title="src/lib/components/ui/form/form-label.svelte"
+<script lang="ts">
+  import { FieldLabel } from "$lib/components/ui/field/index.js";
+  import { FormControlState } from "./context.svelte.js";
+  import type { ComponentProps } from "svelte";
+
+  let {
+    ref = $bindable(null),
+    children,
+    ...restProps
+  }: ComponentProps<typeof FieldLabel> = $props();
+
+  const control = FormControlState.get();
+</script>
+
+<FieldLabel bind:ref for={control.id} {...restProps}>
+  {@render children?.()}
+</FieldLabel>
+```
+
+#### Description
+
+```svelte showLineNumbers title="src/lib/components/ui/form/form-description.svelte"
+<script lang="ts">
+  import { FieldDescription } from "$lib/components/ui/field/index.js";
+  import { FormDescriptionState } from "./context.svelte.js";
+  import type { ComponentProps } from "svelte";
+
+  let {
+    ref = $bindable(null),
+    children,
+    ...restProps
+  }: ComponentProps<typeof FieldDescription> = $props();
+
+  const description = FormDescriptionState.create();
+</script>
+
+<FieldDescription bind:ref id={description.id} {...restProps}>
+  {@render children?.()}
+</FieldDescription>
+```
+
+#### Field Errors
+
+`Field.Error` expects an array of objects with a `message`. Standard Schema validators return those, while a validator function can return a plain string, so this component maps the errors for you. It only renders once the field has been touched and is invalid.
+
+```svelte showLineNumbers title="src/lib/components/ui/form/form-field-errors.svelte"
+<script lang="ts">
+  import { FieldError } from "$lib/components/ui/field/index.js";
+  import { FormFieldState } from "./context.svelte.js";
+  import type { ComponentProps } from "svelte";
+
+  let {
+    ref = $bindable(null),
+    ...restProps
+  }: Omit<ComponentProps<typeof FieldError>, "errors"> = $props();
+
+  const fieldState = FormFieldState.get();
+</script>
+
+{#if fieldState.isInvalid}
+  <FieldError
+    bind:ref
+    id={fieldState.errorId}
+    errors={fieldState.errors}
+    {...restProps}
+  />
+{/if}
+```
+
+#### Fieldset
+
+`Form.Fieldset` wraps `createField` and `Field.Set`. Use it for fields that group multiple controls, such as radio groups and checkbox groups, and for array fields.
+
+```svelte showLineNumbers title="src/lib/components/ui/form/form-fieldset.svelte"
+<script lang="ts" generics="TFormData, TName extends DeepKeys<TFormData>">
+  import { createField, type DeepKeys } from "@tanstack/svelte-form";
+  import { FieldSet } from "$lib/components/ui/field/index.js";
+  import type { WithoutChildren } from "$lib/utils.js";
+  import {
+    FormFieldState,
+    type FormFieldApi,
+    type FormFieldOptions,
+    type FormOf,
+  } from "./context.svelte.js";
+  import type { ComponentProps, Snippet } from "svelte";
+
+  let {
+    ref = $bindable(null),
+    of,
+    name,
+    mode,
+    validators,
+    children,
+    ...restProps
+  }: WithoutChildren<ComponentProps<typeof FieldSet>> & {
+    of: FormOf<TFormData>;
+    name: TName;
+    mode?: "value" | "array";
+    validators?: FormFieldOptions<TFormData, TName>["validators"];
+    children?: Snippet<[FormFieldApi<TFormData, TName>]>;
+  } = $props();
+
+  const id = $props.id();
+
+  const field = createField(() => ({ form: of, name, mode, validators }));
+
+  const fieldState = FormFieldState.create(id, field);
+</script>
+
+<FieldSet
+  bind:ref
+  data-invalid={fieldState.isInvalid ? true : undefined}
+  {...restProps}
+>
+  {@render children?.(field)}
+</FieldSet>
+```
+
+#### Index
+
+`Form.Legend` is `Field.Legend` re-exported, so the legend of a `Form.Fieldset` is available under the same name as in the other form guides.
+
+```ts showLineNumbers title="src/lib/components/ui/form/index.ts"
+import { FieldLegend as Legend } from "$lib/components/ui/field/index.js";
+import Control from "./form-control.svelte";
+import Description from "./form-description.svelte";
+import FieldErrors from "./form-field-errors.svelte";
+import Field from "./form-field.svelte";
+import Fieldset from "./form-fieldset.svelte";
+import Label from "./form-label.svelte";
+
+export { Field, Fieldset, Control, Label, Legend, Description, FieldErrors };
+```
 
 </Steps>
 
@@ -130,7 +542,7 @@ export const formSchema = z.object({
 });
 ```
 
-### Set up the form
+### Create the form
 
 Use `createForm` to create the form instance. Pass in the default values, the schema as a validator, and an `onSubmit` handler. TanStack Form supports any [Standard Schema](https://standardschema.dev) library, so the Zod schema can be passed directly to `validators`.
 
@@ -170,12 +582,13 @@ We are using `onSubmit` to validate the form data here. TanStack Form supports o
 
 ### Build the form
 
-We can now build the form using the `form.Field` component from TanStack Form and the `Field` components.
+We can now build the form using the `Form` components and the `Field` components.
 
-```svelte title="src/routes/bug-report/+page.svelte" showLineNumbers
+```svelte showLineNumbers title="src/routes/bug-report/+page.svelte"
 <script lang="ts">
   import { createForm } from "@tanstack/svelte-form";
   import { toast } from "svelte-sonner";
+  import * as Form from "$lib/components/ui/form/index.js";
   import * as Card from "$lib/components/ui/card/index.js";
   import * as Field from "$lib/components/ui/field/index.js";
   import * as InputGroup from "$lib/components/ui/input-group/index.js";
@@ -213,62 +626,50 @@ We can now build the form using the `form.Field` component from TanStack Form an
       }}
     >
       <Field.Group>
-        <form.Field name="title">
+        <Form.Field of={form} name="title">
           {#snippet children(field)}
-            {@const isInvalid =
-              field.state.meta.isTouched && !field.state.meta.isValid}
-            <Field.Field data-invalid={isInvalid ? true : undefined}>
-              <Field.Label for={field.name}>Bug Title</Field.Label>
-              <Input
-                id={field.name}
-                name={field.name}
-                value={field.state.value}
-                onblur={field.handleBlur}
-                oninput={(e) => field.handleChange(e.currentTarget.value)}
-                aria-invalid={isInvalid}
-                placeholder="Login button not working on mobile"
-                autocomplete="off"
-              />
-              {#if isInvalid}
-                <Field.Error errors={field.state.meta.errors} />
-              {/if}
-            </Field.Field>
-          {/snippet}
-        </form.Field>
-        <form.Field name="description">
-          {#snippet children(field)}
-            {@const isInvalid =
-              field.state.meta.isTouched && !field.state.meta.isValid}
-            <Field.Field data-invalid={isInvalid ? true : undefined}>
-              <Field.Label for={field.name}>Description</Field.Label>
-              <InputGroup.Root>
-                <InputGroup.Textarea
-                  id={field.name}
-                  name={field.name}
-                  value={field.state.value}
-                  onblur={field.handleBlur}
-                  oninput={(e) => field.handleChange(e.currentTarget.value)}
-                  placeholder="I'm having an issue with the login button on mobile."
-                  rows={6}
-                  class="min-h-24 resize-none"
-                  aria-invalid={isInvalid}
+            <Form.Control>
+              {#snippet children({ props })}
+                <Form.Label>Bug Title</Form.Label>
+                <Input
+                  {...props}
+                  bind:value={() => field.state.value, field.handleChange}
+                  placeholder="Login button not working on mobile"
+                  autocomplete="off"
                 />
-                <InputGroup.Addon align="block-end">
-                  <InputGroup.Text class="tabular-nums">
-                    {field.state.value.length}/100 characters
-                  </InputGroup.Text>
-                </InputGroup.Addon>
-              </InputGroup.Root>
-              <Field.Description>
-                Include steps to reproduce, expected behavior, and what
-                actually happened.
-              </Field.Description>
-              {#if isInvalid}
-                <Field.Error errors={field.state.meta.errors} />
-              {/if}
-            </Field.Field>
+              {/snippet}
+            </Form.Control>
+            <Form.FieldErrors />
           {/snippet}
-        </form.Field>
+        </Form.Field>
+        <Form.Field of={form} name="description">
+          {#snippet children(field)}
+            <Form.Control>
+              {#snippet children({ props })}
+                <Form.Label>Description</Form.Label>
+                <InputGroup.Root>
+                  <InputGroup.Textarea
+                    {...props}
+                    bind:value={() => field.state.value, field.handleChange}
+                    placeholder="I'm having an issue with the login button on mobile."
+                    rows={6}
+                    class="min-h-24 resize-none"
+                  />
+                  <InputGroup.Addon align="block-end">
+                    <InputGroup.Text class="tabular-nums">
+                      {field.state.value.length}/100 characters
+                    </InputGroup.Text>
+                  </InputGroup.Addon>
+                </InputGroup.Root>
+              {/snippet}
+            </Form.Control>
+            <Form.Description>
+              Include steps to reproduce, expected behavior, and what actually
+              happened.
+            </Form.Description>
+            <Form.FieldErrors />
+          {/snippet}
+        </Form.Field>
       </Field.Group>
     </form>
   </Card.Content>
@@ -347,10 +748,11 @@ Each mode also has an async variant, such as `onChangeAsync`, for validators tha
 
 ### Field-level Validation
 
-Validators can also be set on a single field with the `validators` prop of `form.Field`. Field-level validators accept a function or a Standard Schema.
+Validators can also be set on a single field with the `validators` prop of `Form.Field` or `Form.Fieldset`. Field-level validators accept a function or a Standard Schema.
 
 ```svelte showLineNumbers title="form.svelte"
-<form.Field
+<Form.Field
+  of={form}
   name="title"
   validators={{
     onChange: z.string().min(5, "Bug title must be at least 5 characters."),
@@ -359,7 +761,7 @@ Validators can also be set on a single field with the `validators` prop of `form
   {#snippet children(field)}
     <!-- ... -->
   {/snippet}
-</form.Field>
+</Form.Field>
 ```
 
 ### Server-side Validation
@@ -382,45 +784,38 @@ export const POST: RequestHandler = async ({ request }) => {
 
 ## Displaying Errors
 
-Display errors next to the field using `Field.Error`. For styling and accessibility:
+Display errors next to the field using `Form.FieldErrors`. The `Form` components take care of the styling and accessibility for you:
 
-- Add the `data-invalid` attribute to `Field.Field` whenever the field has errors.
-- Add the `aria-invalid` attribute to the form control such as `Input`, `Select.Trigger`, `Checkbox`, etc.
-- Only show errors once the field has been touched. `field.state.meta.isTouched` becomes `true` when the user changes or blurs the field, or when the form is submitted.
+- `Form.Field` adds the `data-invalid` attribute to `Field.Field`.
+- The `props` from `Form.Control` include `aria-invalid` and an `aria-describedby` that points at the description and the error. Spread them onto the form control such as `Input`, `Select.Trigger`, `Checkbox`, etc.
+- Errors are only shown once the field has been touched. `field.state.meta.isTouched` becomes `true` when the user changes or blurs the field, or when the form is submitted.
 
 ```svelte showLineNumbers title="form.svelte"
-<form.Field name="email">
+<Form.Field of={form} name="email">
   {#snippet children(field)}
-    {@const isInvalid =
-      field.state.meta.isTouched && !field.state.meta.isValid}
-    <Field.Field data-invalid={isInvalid ? true : undefined}>
-      <Field.Label for={field.name}>Email</Field.Label>
-      <Input
-        id={field.name}
-        name={field.name}
-        type="email"
-        value={field.state.value}
-        onblur={field.handleBlur}
-        oninput={(e) => field.handleChange(e.currentTarget.value)}
-        aria-invalid={isInvalid}
-      />
-      {#if isInvalid}
-        <Field.Error errors={field.state.meta.errors} />
-      {/if}
-    </Field.Field>
+    <Form.Control>
+      {#snippet children({ props })}
+        <Form.Label>Email</Form.Label>
+        <Input
+          {...props}
+          type="email"
+          bind:value={() => field.state.value, field.handleChange}
+        />
+      {/snippet}
+    </Form.Control>
+    <Form.FieldErrors />
   {/snippet}
-</form.Field>
+</Form.Field>
 ```
 
-`field.state.meta.errors` contains the issues returned by your validators. `Field.Error` reads the `message` from each one, so you can pass them in as is.
+`Form.FieldErrors` reads the issues from your validators, so you can pass a Standard Schema or a validator function that returns a string.
 
 ## Working with Different Field Types
 
 ### Input
 
-- For input fields, set `value` from `field.state.value` and call `field.handleChange` in `oninput`.
-- Call `field.handleBlur` in `onblur` so the field is marked as touched.
-- To show errors, add the `aria-invalid` attribute to the `Input` component and the `data-invalid` attribute to the `Field.Field` component.
+- For input fields, spread `props` onto the `Input` and bind its `value` to the field with `bind:value={() => field.state.value, field.handleChange}`.
+- The `props` include the `aria-invalid` attribute and the `onblur` handler, so the error styling and touched state are handled for you.
 
 <ComponentPreview name="form-tanstack-input">
 
@@ -429,38 +824,31 @@ Display errors next to the field using `Field.Error`. For styling and accessibil
 </ComponentPreview>
 
 ```svelte showLineNumbers title="form.svelte"
-<form.Field name="username">
+<Form.Field of={form} name="username">
   {#snippet children(field)}
-    {@const isInvalid =
-      field.state.meta.isTouched && !field.state.meta.isValid}
-    <Field.Field data-invalid={isInvalid ? true : undefined}>
-      <Field.Label for="form-tanstack-input-username">Username</Field.Label>
-      <Input
-        id="form-tanstack-input-username"
-        name={field.name}
-        value={field.state.value}
-        onblur={field.handleBlur}
-        oninput={(e) => field.handleChange(e.currentTarget.value)}
-        aria-invalid={isInvalid}
-        placeholder="shadcn"
-        autocomplete="username"
-      />
-      <Field.Description>
-        This is your public display name. Must be between 3 and 10 characters.
-        Must only contain letters, numbers, and underscores.
-      </Field.Description>
-      {#if isInvalid}
-        <Field.Error errors={field.state.meta.errors} />
-      {/if}
-    </Field.Field>
+    <Form.Control>
+      {#snippet children({ props })}
+        <Form.Label>Username</Form.Label>
+        <Input
+          {...props}
+          bind:value={() => field.state.value, field.handleChange}
+          placeholder="shadcn"
+          autocomplete="username"
+        />
+      {/snippet}
+    </Form.Control>
+    <Form.Description>
+      This is your public display name. Must be between 3 and 10 characters.
+      Must only contain letters, numbers, and underscores.
+    </Form.Description>
+    <Form.FieldErrors />
   {/snippet}
-</form.Field>
+</Form.Field>
 ```
 
 ### Textarea
 
-- For textarea fields, set `value` from `field.state.value` and call `field.handleChange` in `oninput` on the `Textarea` component.
-- To show errors, add the `aria-invalid` attribute to the `Textarea` component and the `data-invalid` attribute to the `Field.Field` component.
+- For textarea fields, spread `props` onto the `Textarea` and bind its `value` the same way as an input.
 
 <ComponentPreview name="form-tanstack-textarea">
 
@@ -469,40 +857,33 @@ Display errors next to the field using `Field.Error`. For styling and accessibil
 </ComponentPreview>
 
 ```svelte showLineNumbers title="form.svelte"
-<form.Field name="about">
+<Form.Field of={form} name="about">
   {#snippet children(field)}
-    {@const isInvalid =
-      field.state.meta.isTouched && !field.state.meta.isValid}
-    <Field.Field data-invalid={isInvalid ? true : undefined}>
-      <Field.Label for="form-tanstack-textarea-about"
-        >More about you</Field.Label
-      >
-      <Textarea
-        id="form-tanstack-textarea-about"
-        name={field.name}
-        value={field.state.value}
-        onblur={field.handleBlur}
-        oninput={(e) => field.handleChange(e.currentTarget.value)}
-        aria-invalid={isInvalid}
-        placeholder="I'm a software engineer..."
-        class="min-h-[120px]"
-      />
-      <Field.Description>
-        Tell us more about yourself. This will be used to help us personalize
-        your experience.
-      </Field.Description>
-      {#if isInvalid}
-        <Field.Error errors={field.state.meta.errors} />
-      {/if}
-    </Field.Field>
+    <Form.Control>
+      {#snippet children({ props })}
+        <Form.Label>More about you</Form.Label>
+        <Textarea
+          {...props}
+          bind:value={() => field.state.value, field.handleChange}
+          placeholder="I'm a software engineer..."
+          class="min-h-[120px]"
+        />
+      {/snippet}
+    </Form.Control>
+    <Form.Description>
+      Tell us more about yourself. This will be used to help us personalize
+      your experience.
+    </Form.Description>
+    <Form.FieldErrors />
   {/snippet}
-</form.Field>
+</Form.Field>
 ```
 
 ### Select
 
-- For select components, set `value` on `Select.Root` from `field.state.value` and call `field.handleChange` in `onValueChange`. Pass `field.name` as the `name`.
-- To show errors, add the `aria-invalid` attribute to the `Select.Trigger` component and the `data-invalid` attribute to the `Field.Field` component.
+- For select components, bind the `value` on `Select.Root` to the field and spread `props` onto `Select.Trigger`.
+- Pass `items` to `Select.Root` so the trigger can show the label of the selected item, including when the field has a default value.
+- Use `orientation="responsive"` on `Form.Field` to lay the label and select out side by side.
 
 <ComponentPreview name="form-tanstack-select">
 
@@ -511,53 +892,49 @@ Display errors next to the field using `Field.Error`. For styling and accessibil
 </ComponentPreview>
 
 ```svelte showLineNumbers title="form.svelte"
-<form.Field name="language">
+<Form.Field of={form} name="language" orientation="responsive">
   {#snippet children(field)}
-    {@const isInvalid =
-      field.state.meta.isTouched && !field.state.meta.isValid}
-    <Field.Field
-      orientation="responsive"
-      data-invalid={isInvalid ? true : undefined}
-    >
-      <Field.Content>
-        <Field.Label for="form-tanstack-select-language">
-          Spoken Language
-        </Field.Label>
-        <Field.Description>
-          For best results, select the language you speak.
-        </Field.Description>
-        {#if isInvalid}
-          <Field.Error errors={field.state.meta.errors} />
-        {/if}
-      </Field.Content>
-      <Select.Root
-        type="single"
-        name={field.name}
-        value={field.state.value}
-        onValueChange={field.handleChange}
-      >
-        <Select.Trigger
-          id="form-tanstack-select-language"
-          aria-invalid={isInvalid}
-          onblur={field.handleBlur}
-          class="min-w-[120px]"
+    <Form.Control>
+      {#snippet children({ props })}
+        <Field.Content>
+          <Form.Label>Spoken Language</Form.Label>
+          <Form.Description
+            >For best results, select the language you speak.</Form.Description
+          >
+          <Form.FieldErrors />
+        </Field.Content>
+        <Select.Root
+          type="single"
+          {items}
+          bind:value={() => field.state.value, field.handleChange}
         >
-          <Select.Value placeholder="Select" />
-        </Select.Trigger>
-        <Select.Content>
-          <!-- Select.Item components -->
-        </Select.Content>
-      </Select.Root>
-    </Field.Field>
+          <Select.Trigger {...props} class="min-w-[120px]">
+            <Select.Value placeholder="Select" />
+          </Select.Trigger>
+          <Select.Content>
+            <Select.Group>
+              <Select.Item value="auto" label="Auto">Auto</Select.Item>
+            </Select.Group>
+            <Select.Separator />
+            <Select.Group>
+              {#each spokenLanguages as language (language.value)}
+                <Select.Item value={language.value} label={language.label}>
+                  {language.label}
+                </Select.Item>
+              {/each}
+            </Select.Group>
+          </Select.Content>
+        </Select.Root>
+      {/snippet}
+    </Form.Control>
   {/snippet}
-</form.Field>
+</Form.Field>
 ```
 
 ### Checkbox
 
-- For a single checkbox, set `checked` from `field.state.value` and call `field.handleChange` in `onCheckedChange`.
-- To show errors, add the `aria-invalid` attribute to the `Checkbox` component and the `data-invalid` attribute to the `Field.Field` component.
-- For checkbox arrays, use `mode="array"` on the `form.Field` component and TanStack Form's array helpers.
+- For a single checkbox, bind `checked` to the field with `bind:checked={() => field.state.value, field.handleChange}`.
+- For an array of values, use `Form.Fieldset` with `mode="array"` and `Form.Legend` to group the checkboxes, and a `Form.Control` for each checkbox. Use the array helpers `field.pushValue` and `field.removeValue` in the `onCheckedChange` handler of each `Checkbox`.
 - Remember to add `data-slot="checkbox-group"` to the `Field.Group` component for proper styling and spacing.
 
 <ComponentPreview name="form-tanstack-checkbox">
@@ -567,59 +944,52 @@ Display errors next to the field using `Field.Error`. For styling and accessibil
 </ComponentPreview>
 
 ```svelte showLineNumbers title="form.svelte"
-<form.Field name="tasks" mode="array">
+<Form.Fieldset of={form} name="tasks" mode="array">
   {#snippet children(field)}
-    {@const isInvalid =
-      field.state.meta.isTouched && !field.state.meta.isValid}
-    <Field.Set data-invalid={isInvalid ? true : undefined}>
-      <Field.Legend variant="label">Tasks</Field.Legend>
-      <Field.Description>
-        Get notified when tasks you've created have updates.
-      </Field.Description>
-      <Field.Group data-slot="checkbox-group">
-        {#each tasks as task (task.id)}
-          <Field.Field
-            orientation="horizontal"
-            data-invalid={isInvalid ? true : undefined}
-          >
-            <Checkbox
-              id="form-tanstack-checkbox-{task.id}"
-              name={field.name}
-              aria-invalid={isInvalid}
-              checked={field.state.value.includes(task.id)}
-              onCheckedChange={(checked) => {
-                if (checked) {
-                  field.pushValue(task.id);
-                } else {
-                  const index = field.state.value.indexOf(task.id);
-                  if (index > -1) {
-                    field.removeValue(index);
-                  }
-                }
-              }}
-            />
-            <Field.Label
-              for="form-tanstack-checkbox-{task.id}"
-              class="font-normal"
+    <Form.Legend variant="label">Tasks</Form.Legend>
+    <Form.Description
+      >Get notified when tasks you've created have updates.</Form.Description
+    >
+    <Field.Group data-slot="checkbox-group">
+      {#each tasks as task (task.id)}
+        <Form.Control>
+          {#snippet children({ props })}
+            <Field.Field
+              orientation="horizontal"
+              data-invalid={props["aria-invalid"] ? true : undefined}
             >
-              {task.label}
-            </Field.Label>
-          </Field.Field>
-        {/each}
-      </Field.Group>
-      {#if isInvalid}
-        <Field.Error errors={field.state.meta.errors} />
-      {/if}
-    </Field.Set>
+              <Checkbox
+                {...props}
+                value={task.id}
+                checked={field.state.value.includes(task.id)}
+                onCheckedChange={(checked) => {
+                  if (checked) {
+                    field.pushValue(task.id);
+                  } else {
+                    const index = field.state.value.indexOf(task.id);
+                    if (index > -1) {
+                      field.removeValue(index);
+                    }
+                  }
+                }}
+              />
+              <Form.Label class="font-normal">{task.label}</Form.Label>
+            </Field.Field>
+          {/snippet}
+        </Form.Control>
+      {/each}
+    </Field.Group>
+    <Form.FieldErrors />
   {/snippet}
-</form.Field>
+</Form.Fieldset>
 ```
 
 ### Radio Group
 
-- For radio groups, set `value` on `RadioGroup.Root` from `field.state.value` and call `field.handleChange` in `onValueChange`.
-- To show errors, add the `aria-invalid` attribute to the `RadioGroup.Item` component and the `data-invalid` attribute to the `Field.Field` component.
-- Give each `RadioGroup.Item` an `id` and match it with the `for` of its `Field.Label`. Wrapping the `Field.Field` in the label makes the whole card clickable.
+- Use `Form.Fieldset` and `Form.Legend` to group the radio items.
+- Bind the `value` on `RadioGroup.Root` to the field.
+- Use a `Form.Control` for each `RadioGroup.Item` and spread `props` onto it. The `aria-invalid` in `props` can be used to set `data-invalid` on each `Field.Field`.
+- Wrapping the `Field.Field` in a `Form.Label` makes the whole card clickable.
 
 <ComponentPreview name="form-tanstack-radiogroup">
 
@@ -628,51 +998,40 @@ Display errors next to the field using `Field.Error`. For styling and accessibil
 </ComponentPreview>
 
 ```svelte showLineNumbers title="form.svelte"
-<form.Field name="plan">
+<Form.Fieldset of={form} name="plan">
   {#snippet children(field)}
-    {@const isInvalid =
-      field.state.meta.isTouched && !field.state.meta.isValid}
-    <Field.Set>
-      <Field.Legend>Plan</Field.Legend>
-      <Field.Description>
-        You can upgrade or downgrade your plan at any time.
-      </Field.Description>
-      <RadioGroup.Root
-        name={field.name}
-        value={field.state.value}
-        onValueChange={field.handleChange}
-      >
-        {#each plans as plan (plan.id)}
-          <Field.Label for="form-tanstack-radiogroup-{plan.id}">
-            <Field.Field
-              orientation="horizontal"
-              data-invalid={isInvalid ? true : undefined}
-            >
-              <Field.Content>
-                <Field.Title>{plan.title}</Field.Title>
-                <Field.Description>{plan.description}</Field.Description>
-              </Field.Content>
-              <RadioGroup.Item
-                value={plan.id}
-                id="form-tanstack-radiogroup-{plan.id}"
-                aria-invalid={isInvalid}
-              />
-            </Field.Field>
-          </Field.Label>
-        {/each}
-      </RadioGroup.Root>
-      {#if isInvalid}
-        <Field.Error errors={field.state.meta.errors} />
-      {/if}
-    </Field.Set>
+    <Form.Legend>Plan</Form.Legend>
+    <Form.Description
+      >You can upgrade or downgrade your plan at any time.</Form.Description
+    >
+    <RadioGroup.Root bind:value={() => field.state.value, field.handleChange}>
+      {#each plans as plan (plan.id)}
+        <Form.Control>
+          {#snippet children({ props })}
+            <Form.Label>
+              <Field.Field
+                orientation="horizontal"
+                data-invalid={props["aria-invalid"] ? true : undefined}
+              >
+                <Field.Content>
+                  <Field.Title>{plan.title}</Field.Title>
+                  <Field.Description>{plan.description}</Field.Description>
+                </Field.Content>
+                <RadioGroup.Item {...props} value={plan.id} />
+              </Field.Field>
+            </Form.Label>
+          {/snippet}
+        </Form.Control>
+      {/each}
+    </RadioGroup.Root>
+    <Form.FieldErrors />
   {/snippet}
-</form.Field>
+</Form.Fieldset>
 ```
 
 ### Switch
 
-- For switches, set `checked` from `field.state.value` and call `field.handleChange` in `onCheckedChange`.
-- To show errors, add the `aria-invalid` attribute to the `Switch` component and the `data-invalid` attribute to the `Field.Field` component.
+- For switches, bind `checked` to the field the same way as a single checkbox and spread `props` onto the `Switch`.
 
 <ComponentPreview name="form-tanstack-switch">
 
@@ -681,35 +1040,25 @@ Display errors next to the field using `Field.Error`. For styling and accessibil
 </ComponentPreview>
 
 ```svelte showLineNumbers title="form.svelte"
-<form.Field name="twoFactor">
+<Form.Field of={form} name="twoFactor" orientation="horizontal">
   {#snippet children(field)}
-    {@const isInvalid =
-      field.state.meta.isTouched && !field.state.meta.isValid}
-    <Field.Field
-      orientation="horizontal"
-      data-invalid={isInvalid ? true : undefined}
-    >
-      <Field.Content>
-        <Field.Label for="form-tanstack-switch-twoFactor">
-          Multi-factor authentication
-        </Field.Label>
-        <Field.Description>
-          Enable multi-factor authentication to secure your account.
-        </Field.Description>
-        {#if isInvalid}
-          <Field.Error errors={field.state.meta.errors} />
-        {/if}
-      </Field.Content>
-      <Switch
-        id="form-tanstack-switch-twoFactor"
-        name={field.name}
-        checked={field.state.value}
-        onCheckedChange={field.handleChange}
-        aria-invalid={isInvalid}
-      />
-    </Field.Field>
+    <Form.Control>
+      {#snippet children({ props })}
+        <Field.Content>
+          <Form.Label>Multi-factor authentication</Form.Label>
+          <Form.Description>
+            Enable multi-factor authentication to secure your account.
+          </Form.Description>
+          <Form.FieldErrors />
+        </Field.Content>
+        <Switch
+          {...props}
+          bind:checked={() => field.state.value, field.handleChange}
+        />
+      {/snippet}
+    </Form.Control>
   {/snippet}
-</form.Field>
+</Form.Field>
 ```
 
 ### Complex Forms
@@ -760,77 +1109,72 @@ This example demonstrates managing multiple email addresses with array fields. U
 
 ### Array Field Structure
 
-Use `mode="array"` on the parent field to enable array field management.
+Use a `Form.Fieldset` with `mode="array"` for the array itself. Its `Form.FieldErrors` displays errors for the whole array, such as the minimum and maximum length. The `field` it passes to its children has the array helpers, such as `pushValue` and `removeValue`.
 
 ```svelte showLineNumbers title="form.svelte"
-<form.Field name="emails" mode="array">
+<Form.Fieldset of={form} name="emails" mode="array">
   {#snippet children(field)}
-    <Field.Set>
-      <Field.Legend variant="label">Email Addresses</Field.Legend>
-      <Field.Description>
-        Add up to 5 email addresses where we can contact you.
-      </Field.Description>
-      <Field.Group>
-        {#each field.state.value as _, index (index)}
-          <!-- Nested field for each array item -->
-        {/each}
-      </Field.Group>
-    </Field.Set>
+    <Form.Legend variant="label">Email Addresses</Form.Legend>
+    <Form.Description>
+      Add up to 5 email addresses where we can contact you.
+    </Form.Description>
+    <Field.Group>
+      {#each field.state.value as _, index (index)}
+        <!-- Nested field for each array item -->
+      {/each}
+    </Field.Group>
+    <Form.FieldErrors />
   {/snippet}
-</form.Field>
+</Form.Fieldset>
 ```
 
 ### Nested Fields
 
-Access individual array items using bracket notation: `fieldName[index].propertyName`. This example uses `InputGroup` to display the remove button inline with the input.
+Access individual array items using bracket notation: `fieldName[index].propertyName`. The `name` is type checked, so a path that doesn't exist in your default values is an error. This example uses `InputGroup` to display the remove button inline with the input.
 
 ```svelte showLineNumbers title="form.svelte"
-<form.Field name={`emails[${index}].address`}>
+<Form.Field
+  of={form}
+  name={`emails[${index}].address`}
+  orientation="horizontal"
+>
   {#snippet children(subField)}
-    {@const isSubFieldInvalid =
-      subField.state.meta.isTouched && !subField.state.meta.isValid}
-    <Field.Field
-      orientation="horizontal"
-      data-invalid={isSubFieldInvalid ? true : undefined}
-    >
-      <Field.Content>
-        <InputGroup.Root>
-          <InputGroup.Input
-            id="form-tanstack-array-email-{index}"
-            name={subField.name}
-            value={subField.state.value}
-            onblur={subField.handleBlur}
-            oninput={(e) => subField.handleChange(e.currentTarget.value)}
-            aria-invalid={isSubFieldInvalid}
-            placeholder="name@example.com"
-            type="email"
-          />
-          {#if field.state.value.length > 1}
-            <InputGroup.Addon align="inline-end">
-              <InputGroup.Button
-                type="button"
-                variant="ghost"
-                size="icon-xs"
-                onclick={() => field.removeValue(index)}
-                aria-label="Remove email {index + 1}"
-              >
-                <XIcon />
-              </InputGroup.Button>
-            </InputGroup.Addon>
-          {/if}
-        </InputGroup.Root>
-        {#if isSubFieldInvalid}
-          <Field.Error errors={subField.state.meta.errors} />
-        {/if}
-      </Field.Content>
-    </Field.Field>
+    <Form.Control>
+      {#snippet children({ props })}
+        <Field.Content>
+          <InputGroup.Root>
+            <InputGroup.Input
+              {...props}
+              bind:value={() => subField.state.value, subField.handleChange}
+              aria-label="Email {index + 1}"
+              placeholder="name@example.com"
+              type="email"
+            />
+            {#if field.state.value.length > 1}
+              <InputGroup.Addon align="inline-end">
+                <InputGroup.Button
+                  type="button"
+                  variant="ghost"
+                  size="icon-xs"
+                  onclick={() => field.removeValue(index)}
+                  aria-label="Remove email {index + 1}"
+                >
+                  <XIcon />
+                </InputGroup.Button>
+              </InputGroup.Addon>
+            {/if}
+          </InputGroup.Root>
+          <Form.FieldErrors />
+        </Field.Content>
+      {/snippet}
+    </Form.Control>
   {/snippet}
-</form.Field>
+</Form.Field>
 ```
 
 ### Adding Items
 
-Use `field.pushValue(item)` to add items to an array field. You can disable the button when the array reaches its maximum length.
+Use `field.pushValue(item)` on the field from `Form.Fieldset` to add items to an array field, so place the button inside the fieldset. You can disable the button when the array reaches its maximum length.
 
 ```svelte showLineNumbers title="form.svelte"
 <Button

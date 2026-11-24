@@ -12,6 +12,7 @@
 <script lang="ts">
 	import { createForm } from "@tanstack/svelte-form";
 	import { toast } from "svelte-sonner";
+	import * as Form from "$lib/components/forms/tanstack/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
@@ -45,31 +46,25 @@
 			}}
 		>
 			<Field.Group>
-				<form.Field name="about">
+				<Form.Field of={form} name="about">
 					{#snippet children(field)}
-						{@const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid}
-						<Field.Field data-invalid={isInvalid ? true : undefined}>
-							<Field.Label for="form-tanstack-textarea-about">More about you</Field.Label>
-							<Textarea
-								id="form-tanstack-textarea-about"
-								name={field.name}
-								value={field.state.value}
-								onblur={field.handleBlur}
-								oninput={(e) => field.handleChange(e.currentTarget.value)}
-								aria-invalid={isInvalid}
-								placeholder="I'm a software engineer..."
-								class="min-h-[120px]"
-							/>
-							<Field.Description>
-								Tell us more about yourself. This will be used to help us personalize your
-								experience.
-							</Field.Description>
-							{#if isInvalid}
-								<Field.Error errors={field.state.meta.errors} />
-							{/if}
-						</Field.Field>
+						<Form.Control>
+							{#snippet children({ props })}
+								<Form.Label>More about you</Form.Label>
+								<Textarea
+									{...props}
+									bind:value={() => field.state.value, field.handleChange}
+									placeholder="I'm a software engineer..."
+									class="min-h-[120px]"
+								/>
+							{/snippet}
+						</Form.Control>
+						<Form.Description>
+							Tell us more about yourself. This will be used to help us personalize your experience.
+						</Form.Description>
+						<Form.FieldErrors />
 					{/snippet}
-				</form.Field>
+				</Form.Field>
 			</Field.Group>
 		</form>
 	</Card.Content>

@@ -49,7 +49,7 @@
 				<Form.Field of={form} path={["responses"]}>
 					{#snippet children(field)}
 						<Field.Set>
-							<Field.Legend variant="label">Responses</Field.Legend>
+							<Form.Legend variant="label">Responses</Form.Legend>
 							<Field.Description>
 								Get notified for requests that take time, like research or image generation.
 							</Field.Description>
@@ -74,7 +74,7 @@
 				<Field.Separator />
 				<Form.Fieldset of={form} path={["tasks"]}>
 					{#snippet children(field)}
-						<Field.Legend variant="label">Tasks</Field.Legend>
+						<Form.Legend variant="label">Tasks</Form.Legend>
 						<Field.Description
 							>Get notified when tasks you've created have updates.</Field.Description
 						>

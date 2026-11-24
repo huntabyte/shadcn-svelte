@@ -11,6 +11,7 @@
 <script lang="ts">
 	import { createForm } from "@tanstack/svelte-form";
 	import { toast } from "svelte-sonner";
+	import * as Form from "$lib/components/forms/tanstack/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
@@ -43,31 +44,22 @@
 			}}
 		>
 			<Field.Group>
-				<form.Field name="twoFactor">
+				<Form.Field of={form} name="twoFactor" orientation="horizontal">
 					{#snippet children(field)}
-						{@const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid}
-						<Field.Field orientation="horizontal" data-invalid={isInvalid ? true : undefined}>
-							<Field.Content>
-								<Field.Label for="form-tanstack-switch-twoFactor">
-									Multi-factor authentication
-								</Field.Label>
-								<Field.Description>
-									Enable multi-factor authentication to secure your account.
-								</Field.Description>
-								{#if isInvalid}
-									<Field.Error errors={field.state.meta.errors} />
-								{/if}
-							</Field.Content>
-							<Switch
-								id="form-tanstack-switch-twoFactor"
-								name={field.name}
-								checked={field.state.value}
-								onCheckedChange={field.handleChange}
-								aria-invalid={isInvalid}
-							/>
-						</Field.Field>
+						<Form.Control>
+							{#snippet children({ props })}
+								<Field.Content>
+									<Form.Label>Multi-factor authentication</Form.Label>
+									<Form.Description>
+										Enable multi-factor authentication to secure your account.
+									</Form.Description>
+									<Form.FieldErrors />
+								</Field.Content>
+								<Switch {...props} bind:checked={() => field.state.value, field.handleChange} />
+							{/snippet}
+						</Form.Control>
 					{/snippet}
-				</form.Field>
+				</Form.Field>
 			</Field.Group>
 		</form>
 	</Card.Content>

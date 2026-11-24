@@ -17,6 +17,7 @@
 	import XIcon from "@lucide/svelte/icons/x";
 	import { createForm } from "@tanstack/svelte-form";
 	import { toast } from "svelte-sonner";
+	import * as Form from "$lib/components/forms/tanstack/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
@@ -49,58 +50,49 @@
 				form.handleSubmit();
 			}}
 		>
-			<form.Field name="emails" mode="array">
-				{#snippet children(field)}
-					{@const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid}
-					<Field.Set class="gap-4">
-						<Field.Legend variant="label">Email Addresses</Field.Legend>
-						<Field.Description>
-							Add up to 5 email addresses where we can contact you.
-						</Field.Description>
+			<Field.Group>
+				<Form.Fieldset of={form} name="emails" mode="array" class="gap-4">
+					{#snippet children(field)}
+						<Form.Legend variant="label">Email Addresses</Form.Legend>
+						<Form.Description
+							>Add up to 5 email addresses where we can contact you.</Form.Description
+						>
 						<Field.Group class="gap-4">
 							{#each field.state.value as _, index (index)}
-								<form.Field name={`emails[${index}].address`}>
+								<Form.Field of={form} name={`emails[${index}].address`} orientation="horizontal">
 									{#snippet children(subField)}
-										{@const isSubFieldInvalid =
-											subField.state.meta.isTouched && !subField.state.meta.isValid}
-										<Field.Field
-											orientation="horizontal"
-											data-invalid={isSubFieldInvalid ? true : undefined}
-										>
-											<Field.Content>
-												<InputGroup.Root>
-													<InputGroup.Input
-														id="form-tanstack-array-email-{index}"
-														name={subField.name}
-														value={subField.state.value}
-														onblur={subField.handleBlur}
-														oninput={(e) => subField.handleChange(e.currentTarget.value)}
-														aria-invalid={isSubFieldInvalid}
-														placeholder="name@example.com"
-														type="email"
-														autocomplete="email"
-													/>
-													{#if field.state.value.length > 1}
-														<InputGroup.Addon align="inline-end">
-															<InputGroup.Button
-																type="button"
-																variant="ghost"
-																size="icon-xs"
-																onclick={() => field.removeValue(index)}
-																aria-label="Remove email {index + 1}"
-															>
-																<XIcon />
-															</InputGroup.Button>
-														</InputGroup.Addon>
-													{/if}
-												</InputGroup.Root>
-												{#if isSubFieldInvalid}
-													<Field.Error errors={subField.state.meta.errors} />
-												{/if}
-											</Field.Content>
-										</Field.Field>
+										<Form.Control>
+											{#snippet children({ props })}
+												<Field.Content>
+													<InputGroup.Root>
+														<InputGroup.Input
+															{...props}
+															bind:value={() => subField.state.value, subField.handleChange}
+															aria-label="Email {index + 1}"
+															placeholder="name@example.com"
+															type="email"
+															autocomplete="email"
+														/>
+														{#if field.state.value.length > 1}
+															<InputGroup.Addon align="inline-end">
+																<InputGroup.Button
+																	type="button"
+																	variant="ghost"
+																	size="icon-xs"
+																	onclick={() => field.removeValue(index)}
+																	aria-label="Remove email {index + 1}"
+																>
+																	<XIcon />
+																</InputGroup.Button>
+															</InputGroup.Addon>
+														{/if}
+													</InputGroup.Root>
+													<Form.FieldErrors />
+												</Field.Content>
+											{/snippet}
+										</Form.Control>
 									{/snippet}
-								</form.Field>
+								</Form.Field>
 							{/each}
 							<Button
 								type="button"
@@ -112,12 +104,10 @@
 								Add Email Address
 							</Button>
 						</Field.Group>
-						{#if isInvalid}
-							<Field.Error errors={field.state.meta.errors} />
-						{/if}
-					</Field.Set>
-				{/snippet}
-			</form.Field>
+						<Form.FieldErrors />
+					{/snippet}
+				</Form.Fieldset>
+			</Field.Group>
 		</form>
 	</Card.Content>
 	<Card.Footer class="border-t">

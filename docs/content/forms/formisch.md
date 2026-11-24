@@ -67,7 +67,7 @@ Here's a basic example of a form field using the `Form` components.
 - `Form.Root` is Formisch's `Form`. It renders a native `form`, validates the input against your schema, and calls `onsubmit` with the typed output.
 - `Form.Field` wraps `Field.Field` and scopes the form state for `title` to everything inside of it. It sets `data-invalid` when the field has errors and passes the typed `field` store, with its `input`, `errors`, and `onInput`, to its children.
 - `Form.Control` provides the `props` that must be spread onto the form control.
-- `Form.Label`, `Form.Description`, and `Form.FieldErrors` render `Field.Label`, `Field.Description`, and `Field.Error` and link them to the form control.
+- `Form.Label`, `Form.Description`, and `Form.FieldErrors` render `Field.Label`, `Field.Description`, and `Field.Error` and link them to the form control. `Form.Legend` is `Field.Legend`, used to label a `Form.Fieldset`.
 
 ## Installation
 
@@ -413,10 +413,11 @@ Set `custom` when the control isn't a native `input`, `textarea`, or `select`, s
 
 #### Index
 
-`Form.Root` doesn't need a wrapper since it doesn't render any extra markup, so we re-export Formisch's `Form` as is.
+`Form.Root` doesn't need a wrapper since it doesn't render any extra markup, so we re-export Formisch's `Form` as is. `Form.Legend` is `Field.Legend` re-exported so the legend of a `Form.Fieldset` is available under the same name as in the other form guides.
 
 ```ts title="src/lib/components/ui/form/index.ts" showLineNumbers
 import { Form as Root } from "@formisch/svelte";
+import { FieldLegend as Legend } from "$lib/components/ui/field/index.js";
 import Control from "./form-control.svelte";
 import Description from "./form-description.svelte";
 import FieldErrors from "./form-field-errors.svelte";
@@ -424,7 +425,16 @@ import Field from "./form-field.svelte";
 import Fieldset from "./form-fieldset.svelte";
 import Label from "./form-label.svelte";
 
-export { Root, Field, Fieldset, Control, Label, Description, FieldErrors };
+export {
+  Root,
+  Field,
+  Fieldset,
+  Control,
+  Label,
+  Legend,
+  Description,
+  FieldErrors,
+};
 ```
 
 </Steps>
@@ -894,7 +904,7 @@ Dates need a conversion in both directions. `valueAsDate` is `null` when the inp
 ### Checkbox
 
 - For a single checkbox, pass `field.input` to `checked` on the `Checkbox` component and call `field.onInput` from `onCheckedChange`.
-- For an array of values, use `Form.Fieldset` with `Field.Legend` to group the checkboxes, and a `Form.Control` for each checkbox. Add or remove the value from the array in the `onCheckedChange` handler of each `Checkbox`.
+- For an array of values, use `Form.Fieldset` with `Form.Legend` to group the checkboxes, and a `Form.Control` for each checkbox. Add or remove the value from the array in the `onCheckedChange` handler of each `Checkbox`.
 - Remember to add `data-slot="checkbox-group"` to the `Field.Group` component for proper styling and spacing.
 
 <ComponentPreview name="form-formisch-checkbox">
@@ -906,7 +916,7 @@ Dates need a conversion in both directions. `valueAsDate` is `null` when the inp
 ```svelte showLineNumbers title="form.svelte"
 <Form.Fieldset of={form} path={["tasks"]}>
   {#snippet children(field)}
-    <Field.Legend variant="label">Tasks</Field.Legend>
+    <Form.Legend variant="label">Tasks</Form.Legend>
     <Field.Description>
       Get notified when tasks you've created have updates.
     </Field.Description>
@@ -944,7 +954,7 @@ Dates need a conversion in both directions. `valueAsDate` is `null` when the inp
 
 ### Radio Group
 
-- Use `Form.Fieldset` and `Field.Legend` to group the radio items.
+- Use `Form.Fieldset` and `Form.Legend` to group the radio items.
 - Pass `field.input` to `value` on `RadioGroup.Root` and call `field.onInput` from `onValueChange`.
 - Use a `Form.Control` for each `RadioGroup.Item` and spread `props` onto it. The `field` from `Form.Fieldset` can be used to set `data-invalid` on each `Field.Field`.
 - Wrapping the `Field.Field` in `Form.Label` makes the whole card clickable.
@@ -958,7 +968,7 @@ Dates need a conversion in both directions. `valueAsDate` is `null` when the inp
 ```svelte showLineNumbers title="form.svelte"
 <Form.Fieldset of={form} path={["plan"]}>
   {#snippet children(field)}
-    <Field.Legend>Plan</Field.Legend>
+    <Form.Legend>Plan</Form.Legend>
     <Field.Description>
       You can upgrade or downgrade your plan at any time.
     </Field.Description>
@@ -1070,7 +1080,7 @@ Use `FieldArray` for the list itself. It passes a `fieldArray` store to its chil
 <FieldArray of={form} path={["emails"]}>
   {#snippet children(fieldArray)}
     <Field.Set>
-      <Field.Legend variant="label">Email Addresses</Field.Legend>
+      <Form.Legend variant="label">Email Addresses</Form.Legend>
       <Field.Description>
         Add up to 5 email addresses where we can contact you.
       </Field.Description>

@@ -53,7 +53,7 @@
 			<Field.Group>
 				<Form.Fieldset of={form} path={["plan"]}>
 					{#snippet children(field)}
-						<Field.Legend>Plan</Field.Legend>
+						<Form.Legend>Plan</Form.Legend>
 						<Field.Description
 							>You can upgrade or downgrade your plan at any time.</Field.Description
 						>

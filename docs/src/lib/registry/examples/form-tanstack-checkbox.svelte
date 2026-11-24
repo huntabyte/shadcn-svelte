@@ -20,6 +20,7 @@
 <script lang="ts">
 	import { createForm } from "@tanstack/svelte-form";
 	import { toast } from "svelte-sonner";
+	import * as Form from "$lib/components/forms/tanstack/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
@@ -53,56 +54,49 @@
 			}}
 		>
 			<Field.Group>
-				<form.Field name="responses">
+				<Form.Fieldset of={form} name="responses">
 					{#snippet children(field)}
-						{@const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid}
-						<div>
-							<Field.Set>
-								<Field.Legend variant="label">Responses</Field.Legend>
-								<Field.Description>
-									Get notified for requests that take time, like research or image generation.
-								</Field.Description>
-								<Field.Group data-slot="checkbox-group">
-									<Field.Field orientation="horizontal" data-invalid={isInvalid ? true : undefined}>
+						<Form.Legend variant="label">Responses</Form.Legend>
+						<Form.Description>
+							Get notified for requests that take time, like research or image generation.
+						</Form.Description>
+						<Field.Group data-slot="checkbox-group">
+							<Form.Control>
+								{#snippet children({ props })}
+									<Field.Field
+										orientation="horizontal"
+										data-invalid={props["aria-invalid"] ? true : undefined}
+									>
 										<Checkbox
-											id="form-tanstack-checkbox-responses"
-											name={field.name}
-											checked={field.state.value}
-											onCheckedChange={field.handleChange}
+											{...props}
+											bind:checked={() => field.state.value, field.handleChange}
 											disabled
 										/>
-										<Field.Label for="form-tanstack-checkbox-responses" class="font-normal">
-											Push notifications
-										</Field.Label>
+										<Form.Label class="font-normal">Push notifications</Form.Label>
 									</Field.Field>
-								</Field.Group>
-							</Field.Set>
-							{#if isInvalid}
-								<Field.Error errors={field.state.meta.errors} />
-							{/if}
-						</div>
+								{/snippet}
+							</Form.Control>
+						</Field.Group>
+						<Form.FieldErrors />
 					{/snippet}
-				</form.Field>
+				</Form.Fieldset>
 				<Field.Separator />
-				<form.Field name="tasks" mode="array">
+				<Form.Fieldset of={form} name="tasks" mode="array">
 					{#snippet children(field)}
-						{@const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid}
-						<Field.Group>
-							<Field.Set data-invalid={isInvalid ? true : undefined}>
-								<Field.Legend variant="label">Tasks</Field.Legend>
-								<Field.Description>
-									Get notified when tasks you've created have updates.
-								</Field.Description>
-								<Field.Group data-slot="checkbox-group">
-									{#each tasks as task (task.id)}
+						<Form.Legend variant="label">Tasks</Form.Legend>
+						<Form.Description>Get notified when tasks you've created have updates.</Form.Description
+						>
+						<Field.Group data-slot="checkbox-group">
+							{#each tasks as task (task.id)}
+								<Form.Control>
+									{#snippet children({ props })}
 										<Field.Field
 											orientation="horizontal"
-											data-invalid={isInvalid ? true : undefined}
+											data-invalid={props["aria-invalid"] ? true : undefined}
 										>
 											<Checkbox
-												id="form-tanstack-checkbox-{task.id}"
-												name={field.name}
-												aria-invalid={isInvalid}
+												{...props}
+												value={task.id}
 												checked={field.state.value.includes(task.id)}
 												onCheckedChange={(checked) => {
 													if (checked) {
@@ -115,19 +109,15 @@
 													}
 												}}
 											/>
-											<Field.Label for="form-tanstack-checkbox-{task.id}" class="font-normal">
-												{task.label}
-											</Field.Label>
+											<Form.Label class="font-normal">{task.label}</Form.Label>
 										</Field.Field>
-									{/each}
-								</Field.Group>
-							</Field.Set>
-							{#if isInvalid}
-								<Field.Error errors={field.state.meta.errors} />
-							{/if}
+									{/snippet}
+								</Form.Control>
+							{/each}
 						</Field.Group>
+						<Form.FieldErrors />
 					{/snippet}
-				</form.Field>
+				</Form.Fieldset>
 			</Field.Group>
 		</form>
 	</Card.Content>

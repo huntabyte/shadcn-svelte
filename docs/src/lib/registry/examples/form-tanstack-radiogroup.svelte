@@ -27,6 +27,7 @@
 <script lang="ts">
 	import { createForm } from "@tanstack/svelte-form";
 	import { toast } from "svelte-sonner";
+	import * as Form from "$lib/components/forms/tanstack/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
@@ -59,44 +60,33 @@
 			}}
 		>
 			<Field.Group>
-				<form.Field name="plan">
+				<Form.Fieldset of={form} name="plan">
 					{#snippet children(field)}
-						{@const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid}
-						<Field.Set>
-							<Field.Legend>Plan</Field.Legend>
-							<Field.Description
-								>You can upgrade or downgrade your plan at any time.</Field.Description
-							>
-							<RadioGroup.Root
-								name={field.name}
-								value={field.state.value}
-								onValueChange={field.handleChange}
-							>
-								{#each plans as plan (plan.id)}
-									<Field.Label for="form-tanstack-radiogroup-{plan.id}">
-										<Field.Field
-											orientation="horizontal"
-											data-invalid={isInvalid ? true : undefined}
-										>
-											<Field.Content>
-												<Field.Title>{plan.title}</Field.Title>
-												<Field.Description>{plan.description}</Field.Description>
-											</Field.Content>
-											<RadioGroup.Item
-												value={plan.id}
-												id="form-tanstack-radiogroup-{plan.id}"
-												aria-invalid={isInvalid}
-											/>
-										</Field.Field>
-									</Field.Label>
-								{/each}
-							</RadioGroup.Root>
-							{#if isInvalid}
-								<Field.Error errors={field.state.meta.errors} />
-							{/if}
-						</Field.Set>
+						<Form.Legend>Plan</Form.Legend>
+						<Form.Description>You can upgrade or downgrade your plan at any time.</Form.Description>
+						<RadioGroup.Root bind:value={() => field.state.value, field.handleChange}>
+							{#each plans as plan (plan.id)}
+								<Form.Control>
+									{#snippet children({ props })}
+										<Form.Label>
+											<Field.Field
+												orientation="horizontal"
+												data-invalid={props["aria-invalid"] ? true : undefined}
+											>
+												<Field.Content>
+													<Field.Title>{plan.title}</Field.Title>
+													<Field.Description>{plan.description}</Field.Description>
+												</Field.Content>
+												<RadioGroup.Item {...props} value={plan.id} />
+											</Field.Field>
+										</Form.Label>
+									{/snippet}
+								</Form.Control>
+							{/each}
+						</RadioGroup.Root>
+						<Form.FieldErrors />
 					{/snippet}
-				</form.Field>
+				</Form.Fieldset>
 			</Field.Group>
 		</form>
 	</Card.Content>

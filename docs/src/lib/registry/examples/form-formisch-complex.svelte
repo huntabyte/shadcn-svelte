@@ -63,7 +63,7 @@
 			<Field.Group>
 				<Form.Fieldset of={form} path={["plan"]}>
 					{#snippet children(field)}
-						<Field.Legend>Subscription Plan</Field.Legend>
+						<Form.Legend>Subscription Plan</Form.Legend>
 						<Field.Description>Choose your subscription plan.</Field.Description>
 						<RadioGroup.Root
 							value={field.input ?? ""}
@@ -141,7 +141,7 @@
 				<Field.Separator />
 				<Form.Fieldset of={form} path={["addons"]}>
 					{#snippet children(field)}
-						<Field.Legend>Add-ons</Field.Legend>
+						<Form.Legend>Add-ons</Form.Legend>
 						<Field.Description>Select additional features you'd like to include.</Field.Description>
 						<Field.Group data-slot="checkbox-group">
 							{#each addons as addon (addon.id)}

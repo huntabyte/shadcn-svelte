@@ -16,6 +16,7 @@
 <script lang="ts">
 	import { createForm } from "@tanstack/svelte-form";
 	import { toast } from "svelte-sonner";
+	import * as Form from "$lib/components/forms/tanstack/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import * as InputGroup from "$lib/registry/ui/input-group/index.js";
@@ -50,59 +51,49 @@
 			}}
 		>
 			<Field.Group>
-				<form.Field name="title">
+				<Form.Field of={form} name="title">
 					{#snippet children(field)}
-						{@const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid}
-						<Field.Field data-invalid={isInvalid ? true : undefined}>
-							<Field.Label for="form-tanstack-demo-title">Bug Title</Field.Label>
-							<Input
-								id="form-tanstack-demo-title"
-								name={field.name}
-								value={field.state.value}
-								onblur={field.handleBlur}
-								oninput={(e) => field.handleChange(e.currentTarget.value)}
-								aria-invalid={isInvalid}
-								placeholder="Login button not working on mobile"
-								autocomplete="off"
-							/>
-							{#if isInvalid}
-								<Field.Error errors={field.state.meta.errors} />
-							{/if}
-						</Field.Field>
-					{/snippet}
-				</form.Field>
-				<form.Field name="description">
-					{#snippet children(field)}
-						{@const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid}
-						<Field.Field data-invalid={isInvalid ? true : undefined}>
-							<Field.Label for="form-tanstack-demo-description">Description</Field.Label>
-							<InputGroup.Root>
-								<InputGroup.Textarea
-									id="form-tanstack-demo-description"
-									name={field.name}
-									value={field.state.value}
-									onblur={field.handleBlur}
-									oninput={(e) => field.handleChange(e.currentTarget.value)}
-									placeholder="I'm having an issue with the login button on mobile."
-									rows={6}
-									class="min-h-24 resize-none"
-									aria-invalid={isInvalid}
+						<Form.Control>
+							{#snippet children({ props })}
+								<Form.Label>Bug Title</Form.Label>
+								<Input
+									{...props}
+									bind:value={() => field.state.value, field.handleChange}
+									placeholder="Login button not working on mobile"
+									autocomplete="off"
 								/>
-								<InputGroup.Addon align="block-end">
-									<InputGroup.Text class="tabular-nums">
-										{field.state.value.length}/100 characters
-									</InputGroup.Text>
-								</InputGroup.Addon>
-							</InputGroup.Root>
-							<Field.Description>
-								Include steps to reproduce, expected behavior, and what actually happened.
-							</Field.Description>
-							{#if isInvalid}
-								<Field.Error errors={field.state.meta.errors} />
-							{/if}
-						</Field.Field>
+							{/snippet}
+						</Form.Control>
+						<Form.FieldErrors />
 					{/snippet}
-				</form.Field>
+				</Form.Field>
+				<Form.Field of={form} name="description">
+					{#snippet children(field)}
+						<Form.Control>
+							{#snippet children({ props })}
+								<Form.Label>Description</Form.Label>
+								<InputGroup.Root>
+									<InputGroup.Textarea
+										{...props}
+										bind:value={() => field.state.value, field.handleChange}
+										placeholder="I'm having an issue with the login button on mobile."
+										rows={6}
+										class="min-h-24 resize-none"
+									/>
+									<InputGroup.Addon align="block-end">
+										<InputGroup.Text class="tabular-nums">
+											{field.state.value.length}/100 characters
+										</InputGroup.Text>
+									</InputGroup.Addon>
+								</InputGroup.Root>
+							{/snippet}
+						</Form.Control>
+						<Form.Description>
+							Include steps to reproduce, expected behavior, and what actually happened.
+						</Form.Description>
+						<Form.FieldErrors />
+					{/snippet}
+				</Form.Field>
 			</Field.Group>
 		</form>
 	</Card.Content>

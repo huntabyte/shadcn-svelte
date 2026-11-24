@@ -13,6 +13,7 @@
 <script lang="ts">
 	import { createForm } from "@tanstack/svelte-form";
 	import { toast } from "svelte-sonner";
+	import * as Form from "$lib/components/forms/tanstack/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
@@ -45,31 +46,26 @@
 			}}
 		>
 			<Field.Group>
-				<form.Field name="username">
+				<Form.Field of={form} name="username">
 					{#snippet children(field)}
-						{@const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid}
-						<Field.Field data-invalid={isInvalid ? true : undefined}>
-							<Field.Label for="form-tanstack-input-username">Username</Field.Label>
-							<Input
-								id="form-tanstack-input-username"
-								name={field.name}
-								value={field.state.value}
-								onblur={field.handleBlur}
-								oninput={(e) => field.handleChange(e.currentTarget.value)}
-								aria-invalid={isInvalid}
-								placeholder="shadcn"
-								autocomplete="username"
-							/>
-							<Field.Description>
-								This is your public display name. Must be between 3 and 10 characters. Must only
-								contain letters, numbers, and underscores.
-							</Field.Description>
-							{#if isInvalid}
-								<Field.Error errors={field.state.meta.errors} />
-							{/if}
-						</Field.Field>
+						<Form.Control>
+							{#snippet children({ props })}
+								<Form.Label>Username</Form.Label>
+								<Input
+									{...props}
+									bind:value={() => field.state.value, field.handleChange}
+									placeholder="shadcn"
+									autocomplete="username"
+								/>
+							{/snippet}
+						</Form.Control>
+						<Form.Description>
+							This is your public display name. Must be between 3 and 10 characters. Must only
+							contain letters, numbers, and underscores.
+						</Form.Description>
+						<Form.FieldErrors />
 					{/snippet}
-				</form.Field>
+				</Form.Field>
 			</Field.Group>
 		</form>
 	</Card.Content>
