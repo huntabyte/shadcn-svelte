@@ -185,9 +185,9 @@ export function rehypeComponentExample() {
 					if (!sourceCode || sourceCode === null) return;
 
 					sourceCode = sourceCode.replaceAll("$lib/registry/", "$lib/components/");
-					// The formsnap form components are docs-only (not in the registry). Show the path users will create them at.
+					// The formsnap and formisch form components are docs-only (not in the registry). Show the path users will create them at.
 					sourceCode = sourceCode.replaceAll(
-						"$lib/components/forms/formsnap/",
+						/\$lib\/components\/forms\/(formsnap|formisch)\//g,
 						"$lib/components/ui/form/"
 					);
 

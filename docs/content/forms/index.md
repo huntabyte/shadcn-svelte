@@ -43,18 +43,21 @@ Here's a basic example of a form field using the `Form` components.
 
 ```svelte showLineNumbers
 <form method="POST" use:enhance>
-  <Form.Field {form} name="title">
-    <Form.Control>
-      {#snippet children({ props })}
-        <Form.Label>Bug Title</Form.Label>
-        <Input {...props} bind:value={$formData.title} />
-      {/snippet}
-    </Form.Control>
-    <Form.Description
-      >Provide a concise title for your bug report.</Form.Description
-    >
-    <Form.FieldErrors />
-  </Form.Field>
+  <Field.Group>
+    <Form.Field {form} name="title">
+      <Form.Control>
+        {#snippet children({ props })}
+          <Form.Label>Bug Title</Form.Label>
+          <Input {...props} bind:value={$formData.title} />
+        {/snippet}
+      </Form.Control>
+      <Form.Description>
+        Provide a concise title for your bug report.
+      </Form.Description>
+      <Form.FieldErrors />
+    </Form.Field>
+  </Field.Group>
+  <Button type="submit">Submit</Button>
 </form>
 ```
 
@@ -68,7 +71,7 @@ Here's a basic example of a form field using the `Form` components.
 
 ### Install the components
 
-<PMAddComp name="field input textarea button" />
+<PMAddComp name="field input textarea input-group button card" />
 
 ### Install the dependencies
 
@@ -414,11 +417,12 @@ We can now build the form using the `Form` components.
 
 ```svelte title="src/routes/bug-report/bug-report-form.svelte" showLineNumbers
 <script lang="ts">
+  import * as Card from "$lib/components/ui/card/index.js";
   import * as Form from "$lib/components/ui/form/index.js";
   import * as Field from "$lib/components/ui/field/index.js";
+  import * as InputGroup from "$lib/components/ui/input-group/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
-  import { Textarea } from "$lib/components/ui/textarea/index.js";
   import {
     type SuperValidated,
     type Infer,
@@ -434,52 +438,74 @@ We can now build the form using the `Form` components.
     validators: zod4Client(formSchema),
   });
 
-  const { form: formData, enhance } = form;
+  const { form: formData, enhance, reset } = form;
 </script>
 
-<form method="POST" use:enhance>
-  <Field.Group>
-    <Form.Field {form} name="title">
-      <Form.Control>
-        {#snippet children({ props })}
-          <Form.Label>Bug Title</Form.Label>
-          <Input
-            {...props}
-            bind:value={$formData.title}
-            placeholder="Login button not working on mobile"
-            autocomplete="off"
-          />
-        {/snippet}
-      </Form.Control>
-      <Form.Description>
-        Provide a concise title for your bug report.
-      </Form.Description>
-      <Form.FieldErrors />
-    </Form.Field>
-    <Form.Field {form} name="description">
-      <Form.Control>
-        {#snippet children({ props })}
-          <Form.Label>Description</Form.Label>
-          <Textarea
-            {...props}
-            bind:value={$formData.description}
-            placeholder="I'm having an issue with the login button on mobile."
-            class="min-h-24 resize-none"
-          />
-        {/snippet}
-      </Form.Control>
-      <Form.Description>
-        Include steps to reproduce, expected behavior, and what actually
-        happened.
-      </Form.Description>
-      <Form.FieldErrors />
-    </Form.Field>
+<Card.Root class="w-full sm:max-w-md">
+  <Card.Header>
+    <Card.Title>Bug Report</Card.Title>
+    <Card.Description>
+      Help us improve by reporting bugs you encounter.
+    </Card.Description>
+  </Card.Header>
+  <Card.Content>
+    <form id="bug-report-form" method="POST" use:enhance>
+      <Field.Group>
+        <Form.Field {form} name="title">
+          <Form.Control>
+            {#snippet children({ props })}
+              <Form.Label>Bug Title</Form.Label>
+              <Input
+                {...props}
+                bind:value={$formData.title}
+                placeholder="Login button not working on mobile"
+                autocomplete="off"
+              />
+            {/snippet}
+          </Form.Control>
+          <Form.FieldErrors />
+        </Form.Field>
+        <Form.Field {form} name="description">
+          <Form.Control>
+            {#snippet children({ props })}
+              <Form.Label>Description</Form.Label>
+              <InputGroup.Root>
+                <InputGroup.Textarea
+                  {...props}
+                  bind:value={$formData.description}
+                  placeholder="I'm having an issue with the login button on mobile."
+                  rows={6}
+                  class="min-h-24 resize-none"
+                />
+                <InputGroup.Addon align="block-end">
+                  <InputGroup.Text class="tabular-nums">
+                    {$formData.description.length}/100 characters
+                  </InputGroup.Text>
+                </InputGroup.Addon>
+              </InputGroup.Root>
+            {/snippet}
+          </Form.Control>
+          <Form.Description>
+            Include steps to reproduce, expected behavior, and what actually
+            happened.
+          </Form.Description>
+          <Form.FieldErrors />
+        </Form.Field>
+      </Field.Group>
+    </form>
+  </Card.Content>
+  <Card.Footer>
     <Field.Field orientation="horizontal">
-      <Button type="submit">Submit</Button>
+      <Button type="button" variant="outline" onclick={() => reset()}>
+        Reset
+      </Button>
+      <Button type="submit" form="bug-report-form">Submit</Button>
     </Field.Field>
-  </Field.Group>
-</form>
+  </Card.Footer>
+</Card.Root>
 ```
+
+The submit button lives outside the `<form>` in the card footer, so it uses the `form` attribute to point at the form by its `id`.
 
 The `name`, `id`, and all accessibility attributes are applied to the input by spreading the `props` object from the `Form.Control` component. The label is automatically associated with the input using the `for` attribute, and the description and errors are associated using `aria-describedby`.
 
@@ -609,132 +635,166 @@ Display errors next to the field using `Form.FieldErrors`. For styling and acces
 
 ## Working with Different Field Types
 
-The following examples are all part of the same form. Each one spreads the `props` from `Form.Control` onto the form control.
-
-<ComponentPreview name="form-formsnap-field-types">
-
-<div></div>
-
-</ComponentPreview>
-
 ### Input
 
 - For input fields, spread `props` onto the `Input` component and bind to `$formData`.
 - To show errors, add a `Form.FieldErrors`.
 
+<ComponentPreview name="form-formsnap-input">
+
+<div></div>
+
+</ComponentPreview>
+
 ```svelte showLineNumbers title="form.svelte"
-<Form.Field {form} name="name">
+<Form.Field {form} name="username">
   <Form.Control>
     {#snippet children({ props })}
-      <Form.Label>Name</Form.Label>
-      <Input {...props} bind:value={$formData.name} />
+      <Form.Label>Username</Form.Label>
+      <Input
+        {...props}
+        bind:value={$formData.username}
+        placeholder="shadcn"
+        autocomplete="username"
+      />
     {/snippet}
   </Form.Control>
+  <Form.Description>
+    This is your public display name. Must be between 3 and 10 characters. Must
+    only contain letters, numbers, and underscores.
+  </Form.Description>
   <Form.FieldErrors />
 </Form.Field>
 ```
 
 ### Textarea
 
-The `Textarea` works the same as the `Input`. Spread `props` onto it and bind to `$formData`.
+- For textarea fields, spread `props` onto the `Textarea` component and bind to `$formData`.
+- To show errors, add a `Form.FieldErrors`.
+
+<ComponentPreview name="form-formsnap-textarea">
+
+<div></div>
+
+</ComponentPreview>
 
 ```svelte showLineNumbers title="form.svelte"
-<Form.Control>
-  {#snippet children({ props })}
-    <Textarea {...props} bind:value={$formData.about} />
-  {/snippet}
-</Form.Control>
+<Form.Field {form} name="about">
+  <Form.Control>
+    {#snippet children({ props })}
+      <Form.Label>More about you</Form.Label>
+      <Textarea
+        {...props}
+        bind:value={$formData.about}
+        placeholder="I'm a software engineer..."
+        class="min-h-[120px]"
+      />
+    {/snippet}
+  </Form.Control>
+  <Form.Description>
+    Tell us more about yourself. This will be used to help us personalize your
+    experience.
+  </Form.Description>
+  <Form.FieldErrors />
+</Form.Field>
 ```
 
 ### Select
 
 - Bind `$formData` to `value` on `Select.Root`, and pass `props.name` as the `name`.
 - Spread the rest of `props` onto the `Select.Trigger` so the label and `aria` attributes are applied to the trigger.
+- Use `orientation="responsive"` on `Form.Field` and `Field.Content` to place the label and description beside the select on larger screens.
+
+<ComponentPreview name="form-formsnap-select">
+
+<div></div>
+
+</ComponentPreview>
 
 ```svelte showLineNumbers title="form.svelte"
-<Form.Control>
-  {#snippet children({ props })}
-    <Form.Label>Language</Form.Label>
-    <Select.Root
-      type="single"
-      bind:value={$formData.language}
-      name={props.name}
-    >
-      <Select.Trigger {...props}>
-        <Select.Value placeholder="Select a language" />
-      </Select.Trigger>
-      <Select.Content>
-        <!-- Select.Item components -->
-      </Select.Content>
-    </Select.Root>
-  {/snippet}
-</Form.Control>
-```
-
-### Checkbox
-
-- For a single checkbox, bind `$formData` to `checked` on the `Checkbox` component.
-- Use `orientation="horizontal"` on `Form.Field` to place the label next to the checkbox, and `Field.Content` to group the label and error.
-
-```svelte showLineNumbers title="form.svelte"
-<Form.Field {form} name="terms" orientation="horizontal">
+<Form.Field {form} name="language" orientation="responsive">
   <Form.Control>
     {#snippet children({ props })}
-      <Checkbox {...props} bind:checked={$formData.terms} />
       <Field.Content>
-        <Form.Label class="font-normal">
-          I accept the terms and conditions
-        </Form.Label>
+        <Form.Label>Spoken Language</Form.Label>
+        <Form.Description>
+          For best results, select the language you speak.
+        </Form.Description>
         <Form.FieldErrors />
       </Field.Content>
+      <Select.Root
+        type="single"
+        bind:value={$formData.language}
+        name={props.name}
+      >
+        <Select.Trigger {...props} class="min-w-[120px]">
+          <Select.Value placeholder="Select" />
+        </Select.Trigger>
+        <Select.Content>
+          <!-- Select.Item components -->
+        </Select.Content>
+      </Select.Root>
     {/snippet}
   </Form.Control>
 </Form.Field>
 ```
 
-### Checkbox Group
+### Checkbox
 
-For an array of values, use `Form.Fieldset` with `Form.Legend` to group the checkboxes, and a `Form.ElementField` for each checkbox.
+- For a single checkbox, bind `$formData` to `checked` on the `Checkbox` component.
+- For an array of values, use `Form.Fieldset` with `Form.Legend` to group the checkboxes, and a `Form.ElementField` for each checkbox.
+- The `errors` from `Form.Fieldset` can be used to set `aria-invalid` on each `Checkbox` and `data-invalid` on each `Form.ElementField`.
+- Remember to add `data-slot="checkbox-group"` to the `Field.Group` component for proper styling and spacing.
+
+<ComponentPreview name="form-formsnap-checkbox">
+
+<div></div>
+
+</ComponentPreview>
 
 ```svelte showLineNumbers title="form.svelte"
-<Form.Fieldset {form} name="notifications">
-  <Form.Legend variant="label">Notifications</Form.Legend>
-  <Field.Group class="gap-3">
-    {#each notifications as notification, i (notification.value)}
-      <Form.ElementField
-        {form}
-        name="notifications[{i}]"
-        orientation="horizontal"
-      >
-        <Form.Control>
-          {#snippet children({ props })}
-            <Checkbox
-              {...props}
-              value={notification.value}
-              checked={$formData.notifications.includes(notification.value)}
-              onCheckedChange={(checked) =>
-                toggleNotification(notification.value, checked)}
-            />
-            <Form.Label class="font-normal">{notification.label}</Form.Label>
-          {/snippet}
-        </Form.Control>
-      </Form.ElementField>
-    {/each}
-  </Field.Group>
-  <Form.FieldErrors />
+<Form.Fieldset {form} name="tasks">
+  {#snippet children({ errors })}
+    <Form.Legend variant="label">Tasks</Form.Legend>
+    <Form.Description>
+      Get notified when tasks you've created have updates.
+    </Form.Description>
+    <Field.Group data-slot="checkbox-group">
+      {#each tasks as task, i (task.id)}
+        <Form.ElementField
+          {form}
+          name="tasks[{i}]"
+          orientation="horizontal"
+          data-invalid={errors.length > 0 ? true : undefined}
+        >
+          <Form.Control>
+            {#snippet children({ props })}
+              <Checkbox
+                {...props}
+                aria-invalid={errors.length > 0}
+                value={task.id}
+                checked={$formData.tasks.includes(task.id)}
+                onCheckedChange={(checked) => toggleTask(task.id, checked)}
+              />
+              <Form.Label class="font-normal">{task.label}</Form.Label>
+            {/snippet}
+          </Form.Control>
+        </Form.ElementField>
+      {/each}
+    </Field.Group>
+    <Form.FieldErrors />
+  {/snippet}
 </Form.Fieldset>
 ```
 
 Add or remove the value from the array in the `onCheckedChange` handler:
 
 ```ts showLineNumbers title="form.svelte"
-function toggleNotification(value: string, checked: boolean) {
+function toggleTask(id: string, checked: boolean) {
   if (checked) {
-    $formData.notifications = [...$formData.notifications, value];
+    $formData.tasks = [...$formData.tasks, id];
   } else {
-    $formData.notifications = $formData.notifications.filter(
-      (item) => item !== value
-    );
+    $formData.tasks = $formData.tasks.filter((task) => task !== id);
   }
 }
 ```
@@ -744,24 +804,39 @@ function toggleNotification(value: string, checked: boolean) {
 - Use `Form.Fieldset` and `Form.Legend` to group the radio items.
 - Bind `$formData` to `value` on `RadioGroup.Root` and give it the `name` of the field.
 - Use a `Form.Control` for each `RadioGroup.Item` and spread `props` onto it. The `errors` from `Form.Fieldset` can be used to set `data-invalid` on each `Field.Field`.
+- Wrapping the `Field.Field` in `Form.Label` makes the whole card clickable.
+
+<ComponentPreview name="form-formsnap-radiogroup">
+
+<div></div>
+
+</ComponentPreview>
 
 ```svelte showLineNumbers title="form.svelte"
 <Form.Fieldset {form} name="plan">
   {#snippet children({ errors })}
-    <Form.Legend variant="label">Plan</Form.Legend>
+    <Form.Legend>Plan</Form.Legend>
+    <Form.Description>
+      You can upgrade or downgrade your plan at any time.
+    </Form.Description>
     <RadioGroup.Root bind:value={$formData.plan} name="plan">
-      {#each plans as plan (plan.value)}
-        <Field.Field
-          orientation="horizontal"
-          data-invalid={errors.length > 0 ? true : undefined}
-        >
-          <Form.Control>
-            {#snippet children({ props })}
-              <RadioGroup.Item {...props} value={plan.value} />
-              <Form.Label class="font-normal">{plan.label}</Form.Label>
-            {/snippet}
-          </Form.Control>
-        </Field.Field>
+      {#each plans as plan (plan.id)}
+        <Form.Control>
+          {#snippet children({ props })}
+            <Form.Label>
+              <Field.Field
+                orientation="horizontal"
+                data-invalid={errors.length > 0 ? true : undefined}
+              >
+                <Field.Content>
+                  <Field.Title>{plan.title}</Field.Title>
+                  <Field.Description>{plan.description}</Field.Description>
+                </Field.Content>
+                <RadioGroup.Item {...props} value={plan.id} />
+              </Field.Field>
+            </Form.Label>
+          {/snippet}
+        </Form.Control>
       {/each}
     </RadioGroup.Root>
     <Form.FieldErrors />
@@ -774,21 +849,38 @@ function toggleNotification(value: string, checked: boolean) {
 - Bind `$formData` to `checked` on the `Switch` component.
 - Use `orientation="horizontal"` on `Form.Field` and put the label and description in a `Field.Content`.
 
+<ComponentPreview name="form-formsnap-switch">
+
+<div></div>
+
+</ComponentPreview>
+
 ```svelte showLineNumbers title="form.svelte"
-<Form.Field {form} name="marketing" orientation="horizontal">
+<Form.Field {form} name="twoFactor" orientation="horizontal">
   <Form.Control>
     {#snippet children({ props })}
       <Field.Content>
-        <Form.Label>Marketing emails</Form.Label>
+        <Form.Label>Multi-factor authentication</Form.Label>
         <Form.Description>
-          Receive news, updates, and special offers.
+          Enable multi-factor authentication to secure your account.
         </Form.Description>
+        <Form.FieldErrors />
       </Field.Content>
-      <Switch {...props} bind:checked={$formData.marketing} />
+      <Switch {...props} bind:checked={$formData.twoFactor} />
     {/snippet}
   </Form.Control>
 </Form.Field>
 ```
+
+### Complex Forms
+
+Here is an example of a more complex form with multiple fields and validation.
+
+<ComponentPreview name="form-formsnap-complex">
+
+<div></div>
+
+</ComponentPreview>
 
 ## Resetting the Form
 
@@ -804,6 +896,126 @@ Use the `reset` function returned from `superForm` to reset the form to its init
 </script>
 
 <Button type="button" variant="outline" onclick={() => reset()}>Reset</Button>
+```
+
+## Array Fields
+
+Superforms supports arrays of objects, and each item can be its own field using bracket notation. Since the items are objects, set `dataType: "json"` in the `superForm` options so the data is sent as JSON.
+
+<ComponentPreview name="form-formsnap-array">
+
+<div></div>
+
+</ComponentPreview>
+
+This example demonstrates managing multiple email addresses with array fields. Users can add up to 5 email addresses, remove individual addresses, and each address is validated independently.
+
+### Array Field Structure
+
+Use a `Form.Fieldset` for the array itself. Its `Form.FieldErrors` displays errors for the whole array, such as the minimum and maximum length.
+
+```svelte showLineNumbers title="form.svelte"
+<Form.Fieldset {form} name="emails">
+  <Form.Legend variant="label">Email Addresses</Form.Legend>
+  <Form.Description>
+    Add up to 5 email addresses where we can contact you.
+  </Form.Description>
+  <Field.Group>
+    {#each $formData.emails as _, i (i)}
+      <!-- Nested field for each array item -->
+    {/each}
+  </Field.Group>
+  <Form.FieldErrors />
+</Form.Fieldset>
+```
+
+### Nested Fields
+
+Access individual array items using bracket notation: `fieldName[index].propertyName`. This example uses `InputGroup` to display the remove button inline with the input.
+
+```svelte showLineNumbers title="form.svelte"
+<Form.Field {form} name="emails[{i}].address" orientation="horizontal">
+  <Form.Control>
+    {#snippet children({ props })}
+      <Field.Content>
+        <InputGroup.Root>
+          <InputGroup.Input
+            {...props}
+            bind:value={$formData.emails[i].address}
+            aria-label="Email {i + 1}"
+            placeholder="name@example.com"
+            type="email"
+          />
+          {#if $formData.emails.length > 1}
+            <InputGroup.Addon align="inline-end">
+              <InputGroup.Button
+                type="button"
+                variant="ghost"
+                size="icon-xs"
+                onclick={() => removeEmail(i)}
+                aria-label="Remove email {i + 1}"
+              >
+                <XIcon />
+              </InputGroup.Button>
+            </InputGroup.Addon>
+          {/if}
+        </InputGroup.Root>
+        <Form.FieldErrors />
+      </Field.Content>
+    {/snippet}
+  </Form.Control>
+</Form.Field>
+```
+
+### Adding Items
+
+Add an item by assigning a new array to `$formData`. You can disable the button when the array reaches its maximum length.
+
+```svelte showLineNumbers title="form.svelte"
+<script lang="ts">
+  function addEmail() {
+    $formData.emails = [...$formData.emails, { address: "" }];
+  }
+</script>
+
+<Button
+  type="button"
+  variant="outline"
+  size="sm"
+  onclick={addEmail}
+  disabled={$formData.emails.length >= 5}
+>
+  Add Email Address
+</Button>
+```
+
+### Removing Items
+
+Remove an item by filtering it out of the array. You can conditionally show the remove button only when there's more than one item.
+
+```svelte showLineNumbers title="form.svelte"
+<script lang="ts">
+  function removeEmail(index: number) {
+    $formData.emails = $formData.emails.filter((_, i) => i !== index);
+  }
+</script>
+```
+
+### Array Validation
+
+Validate array fields using Zod's array methods.
+
+```ts showLineNumbers title="schema.ts"
+export const formSchema = z.object({
+  emails: z
+    .array(
+      z.object({
+        address: z.email("Enter a valid email address."),
+      })
+    )
+    .min(1, "Add at least one email address.")
+    .max(5, "You can add up to 5 email addresses."),
+});
 ```
 
 ## Next Steps
