@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.8.2
+
+### Patch Changes
+
+- fix(cli): report and resolve the configured utils path when installing utils ([#2992](https://github.com/huntabyte/shadcn-svelte/pull/2992))
+
 ## 1.8.1
 
 ### Patch Changes
