@@ -3,6 +3,7 @@
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import { PRESETS, STYLES } from "$lib/registry/config.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
+	import { CreatePicker } from "./picker-state.svelte.js";
 
 	type Props = {
 		submenu?: boolean;
@@ -46,10 +47,18 @@
 	}
 
 	const isMobile = new IsMobile();
+
+	const picker = new CreatePicker(() => {});
 </script>
 
-<Picker.Root {submenu}>
-	<Picker.Trigger {submenu}>
+<Picker.Root bind:open={picker.open} {submenu}>
+	<Picker.Trigger
+		onpointerdown={picker.capture}
+		onkeydown={(event) => {
+			if (event.key === "Enter" || event.key === " ") picker.capture();
+		}}
+		{submenu}
+	>
 		<div class="flex flex-col justify-start text-left">
 			<div class="text-xs text-muted-foreground">Preset</div>
 			<div class="line-clamp-1 text-sm font-medium text-foreground">
@@ -58,9 +67,11 @@
 		</div>
 	</Picker.Trigger>
 	<Picker.Content
+		preventScroll={false}
+		customAnchor={isMobile.current ? picker.layout?.anchor : undefined}
 		side={isMobile.current ? "top" : submenu ? "left" : "right"}
 		align={isMobile.current ? "center" : "start"}
-		class="md:w-72"
+		class="max-md:w-[calc(var(--bits-dropdown-menu-anchor-width)-2px)] md:w-72"
 		sideOffset={submenu ? 5 : 20}
 		{submenu}
 	>

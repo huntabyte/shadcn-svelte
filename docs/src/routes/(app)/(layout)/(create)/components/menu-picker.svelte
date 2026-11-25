@@ -1,12 +1,15 @@
 <script lang="ts">
 	import { browser } from "$app/environment";
-	import MenuIcon from "@lucide/svelte/icons/menu";
+	import { Menu02Icon } from "@hugeicons/core-free-icons";
+	import { HugeiconsIcon } from "@hugeicons/svelte";
 	import { mode } from "mode-watcher";
 	import * as Picker from "$lib/components/picker/index.js";
 	import { useDesignSystem } from "$lib/features/design-system/index.js";
 	import type { MenuColorValue } from "$lib/registry/config.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import LockButton from "./lock-button.svelte";
+	import { CreatePicker } from "./picker-state.svelte.js";
+	import { usePreviewOverride } from "./preview-override-context.svelte.js";
 
 	type ColorChoice = "default" | "inverted";
 	type SurfaceChoice = "solid" | "translucent";
@@ -18,6 +21,7 @@
 	let { submenu = false }: Props = $props();
 
 	const designSystem = useDesignSystem();
+	const previewOverride = usePreviewOverride();
 	const isMobile = new IsMobile();
 
 	const MENU_OPTIONS: { value: MenuColorValue; label: string }[] = [
@@ -80,11 +84,35 @@
 		designSystem.menuColor = nextMenuColor;
 		designSystem.menuAccent = isTranslucent ? "subtle" : lastSolidMenuAccent;
 	}
+
+	function previewColor(color: ColorChoice) {
+		const nextMenuColor = getMenuColorValue(color, surfaceChoice === "translucent");
+		previewOverride.setOverride({
+			menuColor: nextMenuColor,
+			...(isTranslucentMenuColor(nextMenuColor) ? { menuAccent: "subtle" } : {}),
+		});
+	}
+
+	function previewSurface(choice: SurfaceChoice) {
+		const isTranslucent = choice === "translucent";
+		previewOverride.setOverride({
+			menuColor: getMenuColorValue(colorChoice, isTranslucent),
+			menuAccent: isTranslucent ? "subtle" : lastSolidMenuAccent,
+		});
+	}
+
+	const picker = new CreatePicker(() => previewOverride.clearOverride());
 </script>
 
 <div class="group/picker relative">
-	<Picker.Root {submenu}>
-		<Picker.Trigger {submenu}>
+	<Picker.Root bind:open={picker.open} {submenu}>
+		<Picker.Trigger
+			onpointerdown={picker.capture}
+			onkeydown={(event) => {
+				if (event.key === "Enter" || event.key === " ") picker.capture();
+			}}
+			{submenu}
+		>
 			<div
 				class="flex min-w-0 flex-1 flex-col justify-start overflow-hidden pr-8 text-left md:pr-7"
 			>
@@ -98,10 +126,14 @@
 			<div
 				class="pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base text-foreground select-none md:right-2.5"
 			>
-				<MenuIcon class="size-4" strokeWidth={2} />
+				<HugeiconsIcon icon={Menu02Icon} strokeWidth={2} class="size-4" />
 			</div>
 		</Picker.Trigger>
 		<Picker.Content
+			onmouseleave={() => previewOverride.clearOverride()}
+			preventScroll={false}
+			customAnchor={isMobile.current ? picker.layout?.anchor : undefined}
+			class="max-md:w-[calc(var(--bits-dropdown-menu-anchor-width)-2px)]"
 			side={isMobile.current ? "top" : submenu ? "left" : "right"}
 			align={isMobile.current ? "center" : "start"}
 			sideOffset={submenu ? 5 : 20}
@@ -113,10 +145,23 @@
 					value={colorChoice}
 					onValueChange={(value) => setColor(value as ColorChoice)}
 				>
-					<Picker.RadioItem value="default" closeOnSelect={isMobile.current}>
+					<Picker.RadioItem
+						onItemPreview={isMobile.current
+							? undefined
+							: (value) => previewColor(value as ColorChoice)}
+						value="default"
+						closeOnSelect={isMobile.current}
+					>
 						Default
 					</Picker.RadioItem>
-					<Picker.RadioItem value="inverted" closeOnSelect={isMobile.current} disabled={isDark}>
+					<Picker.RadioItem
+						onItemPreview={isMobile.current
+							? undefined
+							: (value) => previewColor(value as ColorChoice)}
+						value="inverted"
+						closeOnSelect={isMobile.current}
+						disabled={isDark}
+					>
 						Inverted
 					</Picker.RadioItem>
 				</Picker.RadioGroup>
@@ -128,8 +173,20 @@
 					value={surfaceChoice}
 					onValueChange={(value) => setSurface(value as SurfaceChoice)}
 				>
-					<Picker.RadioItem value="solid" closeOnSelect={isMobile.current}>Solid</Picker.RadioItem>
-					<Picker.RadioItem value="translucent" closeOnSelect={isMobile.current}>
+					<Picker.RadioItem
+						onItemPreview={isMobile.current
+							? undefined
+							: (value) => previewSurface(value as SurfaceChoice)}
+						value="solid"
+						closeOnSelect={isMobile.current}>Solid</Picker.RadioItem
+					>
+					<Picker.RadioItem
+						onItemPreview={isMobile.current
+							? undefined
+							: (value) => previewSurface(value as SurfaceChoice)}
+						value="translucent"
+						closeOnSelect={isMobile.current}
+					>
 						Translucent
 					</Picker.RadioItem>
 				</Picker.RadioGroup>

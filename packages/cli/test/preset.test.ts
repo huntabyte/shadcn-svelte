@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
 	decodePreset,
 	DEFAULT_PRESET_CONFIG,
+	DEFAULT_PRESETS,
 	encodePreset,
 	fromBase62,
 	generateRandomPreset,
@@ -18,7 +19,7 @@ import {
 	toBase62,
 	type PresetConfig,
 } from "../src/preset/preset.js";
-import { DEFAULT_PRESETS, invalidPresetMessage, resolvePreset } from "../src/preset/presets.js";
+import { invalidPresetMessage, resolvePreset } from "../src/preset/presets.js";
 
 describe("base62", () => {
 	it("should round-trip numbers", () => {
@@ -216,6 +217,16 @@ describe("generateRandomPreset", () => {
 		expect(decoded).not.toBeNull();
 		const reEncoded = encodePreset(decoded!);
 		expect(reEncoded).toBe(code);
+	});
+});
+
+describe("style defaults", () => {
+	it.each(PRESET_STYLES)("provides a complete, round-trippable %s preset", (style) => {
+		const { title, description, hint, ...preset } = DEFAULT_PRESETS[style];
+		expect(title && description && hint).toBeTruthy();
+		expect(preset.style).toBe(style);
+		expect(Object.keys(preset).sort()).toEqual(Object.keys(DEFAULT_PRESET_CONFIG).sort());
+		expect(decodePreset(encodePreset(preset))).toEqual(preset);
 	});
 });
 

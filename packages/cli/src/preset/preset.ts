@@ -167,6 +167,140 @@ export const DEFAULT_PRESET_CONFIG: PresetConfig = Object.fromEntries(
 	PRESET_FIELDS_V2.map((f) => [f.key, f.values[0]])
 ) as PresetConfig;
 
+export const DEFAULT_PRESETS = {
+	nova: {
+		title: "Nova",
+		description: "Lucide / Geist",
+		hint: "Reduced spacing for compact layouts.",
+		style: "nova",
+		baseColor: "neutral",
+		theme: "neutral",
+		chartColor: "neutral",
+		iconLibrary: "lucide",
+		font: "geist",
+		fontHeading: "inherit",
+		menuAccent: "subtle" as const,
+		menuColor: "default" as const,
+
+		radius: "default",
+	},
+	vega: {
+		title: "Vega",
+		description: "Lucide / Inter",
+		hint: "The classic shadcn/ui look.",
+		style: "vega",
+		baseColor: "neutral",
+		theme: "neutral",
+		chartColor: "neutral",
+		iconLibrary: "lucide",
+		font: "inter",
+		fontHeading: "inherit",
+		menuAccent: "subtle" as const,
+		menuColor: "default" as const,
+
+		radius: "default",
+	},
+	maia: {
+		title: "Maia",
+		description: "Hugeicons / Figtree",
+		hint: "Soft and rounded, with generous spacing.",
+		style: "maia",
+		baseColor: "neutral",
+		theme: "neutral",
+		chartColor: "neutral",
+		iconLibrary: "hugeicons",
+		font: "figtree",
+		fontHeading: "inherit",
+		menuAccent: "subtle" as const,
+		menuColor: "default" as const,
+
+		radius: "default",
+	},
+	lyra: {
+		title: "Lyra",
+		description: "Phosphor / JetBrains Mono",
+		hint: "Boxy and sharp. Pairs well with mono fonts.",
+		style: "lyra",
+		baseColor: "neutral",
+		theme: "neutral",
+		chartColor: "neutral",
+		iconLibrary: "phosphor",
+		font: "jetbrains-mono",
+		fontHeading: "inherit",
+		menuAccent: "subtle" as const,
+		menuColor: "default" as const,
+
+		radius: "default",
+	},
+	mira: {
+		title: "Mira",
+		description: "Hugeicons / Inter",
+		hint: "Compact. Made for dense interfaces.",
+		style: "mira",
+		baseColor: "neutral",
+		theme: "neutral",
+		chartColor: "neutral",
+		iconLibrary: "hugeicons",
+		font: "inter",
+		fontHeading: "inherit",
+		menuAccent: "subtle" as const,
+		menuColor: "default" as const,
+
+		radius: "default",
+	},
+	luma: {
+		title: "Luma",
+		description: "Lucide / Inter",
+		hint: "Rounded geometry. Soft elevation. Breathable layouts.",
+		style: "luma",
+		baseColor: "neutral",
+		theme: "neutral",
+		chartColor: "neutral",
+		iconLibrary: "lucide",
+		font: "inter",
+		fontHeading: "inherit",
+		menuAccent: "subtle" as const,
+		menuColor: "default" as const,
+
+		radius: "default",
+	},
+	sera: {
+		title: "Sera",
+		description: "Lucide / Noto Sans + Playfair Display",
+		hint: "Editorial and typographic.",
+		style: "sera",
+		baseColor: "taupe",
+		theme: "taupe",
+		chartColor: "taupe",
+		iconLibrary: "lucide",
+		font: "noto-sans",
+		fontHeading: "playfair-display",
+		menuAccent: "subtle" as const,
+		menuColor: "default" as const,
+
+		radius: "default",
+	},
+	rhea: {
+		title: "Rhea",
+		description: "Lucide / Inter",
+		hint: "Like Luma but compact.",
+		style: "rhea",
+		baseColor: "neutral",
+		theme: "neutral",
+		chartColor: "neutral",
+		iconLibrary: "lucide",
+		font: "inter",
+		fontHeading: "inherit",
+		menuAccent: "subtle" as const,
+		menuColor: "default" as const,
+
+		radius: "default",
+	},
+} as const satisfies Record<
+	PresetConfig["style"],
+	PresetConfig & { title: string; description: string; hint: string }
+>;
+
 // Base62 alphabet.
 const BASE62 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 

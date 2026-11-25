@@ -5,6 +5,8 @@
 	import { BASE_THEMES, type BaseColorName } from "$lib/registry/config.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import LockButton from "./lock-button.svelte";
+	import { CreatePicker } from "./picker-state.svelte.js";
+	import { usePreviewOverride } from "./preview-override-context.svelte.js";
 
 	type Props = {
 		submenu?: boolean;
@@ -13,17 +15,26 @@
 	let { submenu = false }: Props = $props();
 
 	const designSystem = useDesignSystem();
+	const previewOverride = usePreviewOverride();
 
 	const isMobile = new IsMobile();
 
 	const currentBaseColor = $derived(
 		BASE_THEMES.find((base) => base.name === designSystem.baseColor) ?? BASE_THEMES[0]
 	);
+
+	const picker = new CreatePicker(() => previewOverride.clearOverride());
 </script>
 
 <div class="group/picker relative">
-	<Picker.Root {submenu}>
-		<Picker.Trigger {submenu}>
+	<Picker.Root bind:open={picker.open} {submenu}>
+		<Picker.Trigger
+			onpointerdown={picker.capture}
+			onkeydown={(event) => {
+				if (event.key === "Enter" || event.key === " ") picker.capture();
+			}}
+			{submenu}
+		>
 			<div class="flex flex-col justify-start text-left">
 				<div class="text-xs text-muted-foreground">Base Color</div>
 				<div class="text-sm font-medium text-foreground">
@@ -31,12 +42,16 @@
 				</div>
 			</div>
 			<div
-				style="--color: 
+				style="--color:
 						{currentBaseColor?.cssVars?.[mode.current as 'light' | 'dark']?.['muted-foreground']}"
 				class="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 rounded-full bg-(--color) select-none md:right-2.5"
 			></div>
 		</Picker.Trigger>
 		<Picker.Content
+			onmouseleave={() => previewOverride.clearOverride()}
+			preventScroll={false}
+			customAnchor={isMobile.current ? picker.layout?.anchor : undefined}
+			class="max-md:w-[calc(var(--bits-dropdown-menu-anchor-width)-2px)]"
 			side={isMobile.current ? "top" : submenu ? "left" : "right"}
 			align={isMobile.current ? "center" : "start"}
 			sideOffset={submenu ? 5 : 20}
@@ -54,22 +69,18 @@
 			>
 				<Picker.Group>
 					{#each BASE_THEMES as baseColor (baseColor.name)}
-						<Picker.RadioItem value={baseColor.name} closeOnSelect={false}>
-							<div class="flex items-center gap-2">
-								{#if mode.current}
-									<div
-										style="--color: {baseColor.cssVars?.[mode.current as 'light' | 'dark']?.[
-											'muted-foreground'
-										]};"
-										class="size-4 rounded-full bg-(--color)"
-									></div>
-								{/if}
-								{baseColor.title}
-							</div>
+						<Picker.RadioItem
+							onItemPreview={isMobile.current
+								? undefined
+								: (value) => previewOverride.setOverride({ baseColor: value as BaseColorName })}
+							value={baseColor.name}
+							closeOnSelect={false}
+						>
+							{baseColor.title}
 						</Picker.RadioItem>
 					{/each}
 				</Picker.Group>
-				<Picker.Separator />
+				<!--<Picker.Separator />
 				<Picker.Group>
 					<Picker.Item
 						closeOnSelect={false}
@@ -81,12 +92,12 @@
 							<div>
 								Switch to {mode.current === "dark" ? "Light" : "Dark"} Mode
 							</div>
-							<div class="text-xs text-muted-foreground pointer-coarse:text-sm">
+							<div class="text-muted-foreground text-xs pointer-coarse:text-sm">
 								Base colors are easier to see in dark mode.
 							</div>
 						</div>
 					</Picker.Item>
-				</Picker.Group>
+					</Picker.Group>-->
 			</Picker.RadioGroup>
 		</Picker.Content>
 	</Picker.Root>

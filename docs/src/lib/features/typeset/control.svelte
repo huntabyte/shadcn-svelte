@@ -117,7 +117,7 @@
 			side={isMobile.current ? "top" : "right"}
 			align={isMobile.current ? "center" : "start"}
 			customAnchor={isMobile.current ? anchor : undefined}
-			class="cn-menu-translucent max-h-96 max-md:w-(--bits-dropdown-menu-anchor-width)"
+			class="cn-menu-translucent max-h-[min(--spacing(96),var(--bits-dropdown-menu-content-available-height))] max-md:w-(--bits-dropdown-menu-anchor-width)"
 			onmouseleave={() => previewOverride?.clear()}
 		>
 			<Picker.RadioGroup {value} onValueChange={updateValue}>
