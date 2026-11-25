@@ -2,11 +2,22 @@
 title: Combobox
 description: Autocomplete input with a list of suggestions.
 component: true
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/combobox
+  doc: https://bits-ui.com/docs/components/combobox
+  api: https://bits-ui.com/docs/components/combobox#api-reference
 ---
 
 <script>
 	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import CodeCollapsibleWrapper from "$lib/components/code-collapsible-wrapper.svelte";
+	import ComponentSource from "$lib/components/component-source.svelte";
+	import InstallTabs from "$lib/components/install-tabs.svelte";
+	import PMAddComp from "$lib/components/pm-add-comp.svelte";
+	import PMInstall from "$lib/components/pm-install.svelte";
+	import Step from "$lib/components/step.svelte";
+	import Steps from "$lib/components/steps.svelte";
+
+	let { viewerData } = $props();
 </script>
 
 <ComponentPreview name="combobox-demo">
@@ -17,82 +28,129 @@ component: true
 
 ## Installation
 
-The Combobox is built using a composition of the `<Popover />` and the `<Command />` components.
+<InstallTabs>
+{#snippet cli()}
+<PMAddComp name="combobox" />
+{/snippet}
+{#snippet manual()}
+<Steps>
 
-See installation instructions for the [Popover](/docs/components/popover#installation) and the [Command](/docs/components/command#installation) components.
+<Step>
+
+Install `bits-ui`:
+
+</Step>
+
+<PMInstall command="bits-ui -D" />
+
+<Step>
+
+Copy and paste the following code into your project.
+
+</Step>
+{#if viewerData}
+	<ComponentSource item={viewerData} data-llm-ignore/>
+{/if}
+
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 
-<CodeCollapsibleWrapper >
-
-```svelte title="lib/components/example-combobox.svelte"
+```svelte
 <script lang="ts">
-  import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
-  import { tick } from "svelte";
-  import * as Command from "$lib/components/ui/command/index.js";
-  import * as Popover from "$lib/components/ui/popover/index.js";
-  import { Button } from "$lib/components/ui/button/index.js";
+  import * as Combobox from "$lib/components/ui/combobox/index.js";
 
-  const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"];
+  const frameworks = [
+    "Next.js",
+    "SvelteKit",
+    "Nuxt.js",
+    "Remix",
+    "Astro",
+  ] as const;
 
-  let open = $state(false);
   let value = $state("");
-  let triggerRef = $state<HTMLButtonElement>(null!);
+  let inputValue = $state("");
 
-  // We want to refocus the trigger button when the user selects
-  // an item from the list so users can continue navigating the
-  // rest of the form with the keyboard.
-  function closeAndFocusTrigger() {
-    open = false;
-    tick().then(() => {
-      triggerRef.focus();
-    });
-  }
+  const filteredFrameworks = $derived(
+    inputValue === ""
+      ? frameworks
+      : frameworks.filter((framework) =>
+          framework.toLowerCase().includes(inputValue.toLowerCase())
+        )
+  );
 </script>
 
-<Popover.Root bind:open>
-  <Popover.Trigger bind:ref={triggerRef}>
-    {#snippet child({ props })}
-      <Button
-        {...props}
-        variant="outline"
-        class="w-[200px] justify-between font-normal"
-        role="combobox"
-        aria-expanded={open}
-      >
-        {value || "Select a framework"}
-        <ChevronDownIcon class="text-muted-foreground" />
-      </Button>
-    {/snippet}
-  </Popover.Trigger>
-  <Popover.Content class="w-[200px] p-0">
-    <Command.Root>
-      <Command.Input placeholder="Search framework..." />
-      <Command.List>
-        <Command.Empty>No items found.</Command.Empty>
-        <Command.Group>
-          {#each frameworks as framework (framework)}
-            <Command.Item
-              value={framework}
-              data-checked={value === framework}
-              onSelect={() => {
-                value = framework;
-                closeAndFocusTrigger();
-              }}
-            >
-              {framework}
-            </Command.Item>
-          {/each}
-        </Command.Group>
-      </Command.List>
-    </Command.Root>
-  </Popover.Content>
-</Popover.Root>
+<Combobox.Root
+  bind:value
+  onOpenChangeComplete={(open) => {
+    if (!open) inputValue = "";
+  }}
+>
+  <Combobox.Input
+    aria-label="Framework"
+    placeholder="Select a framework"
+    oninput={(event) => (inputValue = event.currentTarget.value)}
+  />
+  <Combobox.Content>
+    <Combobox.List>
+      {#each filteredFrameworks as framework (framework)}
+        <Combobox.Item value={framework} label={framework} />
+      {:else}
+        <Combobox.Empty>No items found.</Combobox.Empty>
+      {/each}
+    </Combobox.List>
+  </Combobox.Content>
+</Combobox.Root>
 ```
 
-</CodeCollapsibleWrapper>
+Filtering is controlled by your application. Update the list from `oninput` and render `Combobox.Empty` when no items match. Provide an accessible name with a label or `aria-label`.
 
-## Basic
+## Composition
+
+### Simple
+
+A single-line input and a flat list (see [Basic](#basic)).
+
+```txt
+Combobox
+├── ComboboxInput
+└── ComboboxContent
+    ├── ComboboxEmpty
+    └── ComboboxList
+        ├── ComboboxItem
+        └── ComboboxItem
+```
+
+### With groups
+
+Use `Combobox.Group` and `Combobox.Label` to label related items, and `Combobox.Separator` between groups. Render filtered items directly inside each group; no collection component is needed.
+
+## Custom Items
+
+Use custom item content when your items need richer rendering.
+
+```svelte
+<Combobox.Item value={country.value} label={country.label}>
+  <Item.Root size="xs" class="p-0">
+    <Item.Content>
+      <Item.Title>{country.label}</Item.Title>
+      <Item.Description>{country.continent}</Item.Description>
+    </Item.Content>
+  </Item.Root>
+</Combobox.Item>
+```
+
+## Multiple Selection
+
+Use `type="multiple"` with a bound `string[]` value. The [Multiple](#multiple) example displays the selected values below the input.
+
+Removable chips and chips input keyboard behavior are waiting on [Bits UI #2051](https://github.com/huntabyte/bits-ui/pull/2051). `Combobox.Chips`, `Combobox.Chip`, and `Combobox.ChipsInput` are not available in this wrapper yet.
+
+## Examples
+
+### Basic
 
 A simple combobox with a list of frameworks.
 
@@ -102,9 +160,29 @@ A simple combobox with a list of frameworks.
 
 </ComponentPreview>
 
-## Groups
+### Multiple
 
-Use `<Command.Group />` and `<Command.Separator />` to group items.
+A combobox with multiple selection using `type="multiple"`.
+
+<ComponentPreview name="combobox-multiple">
+
+<div></div>
+
+</ComponentPreview>
+
+### Clear Button
+
+Use `showClear` on `Combobox.Input` to clear the selected value.
+
+<ComponentPreview name="combobox-clear">
+
+<div></div>
+
+</ComponentPreview>
+
+### Groups
+
+Use `ComboboxGroup` and `ComboboxSeparator` to group items.
 
 <ComponentPreview name="combobox-groups">
 
@@ -112,9 +190,9 @@ Use `<Command.Group />` and `<Command.Separator />` to group items.
 
 </ComponentPreview>
 
-## Custom Items
+### Custom Items
 
-You can render a custom component inside `<Command.Item />`.
+You can render a custom component inside `ComboboxItem`.
 
 <ComponentPreview name="combobox-custom">
 
@@ -122,7 +200,7 @@ You can render a custom component inside `<Command.Item />`.
 
 </ComponentPreview>
 
-## Invalid
+### Invalid
 
 Use the `aria-invalid` prop to make the combobox invalid.
 
@@ -132,7 +210,7 @@ Use the `aria-invalid` prop to make the combobox invalid.
 
 </ComponentPreview>
 
-## Disabled
+### Disabled
 
 Use the `disabled` prop to disable the combobox.
 
@@ -142,12 +220,36 @@ Use the `disabled` prop to disable the combobox.
 
 </ComponentPreview>
 
-## Popup
+### Auto Highlight
 
-You can trigger the combobox from a button or any other component by using the `child` snippet on `<Popover.Trigger />`. Place the `<Command.Input />` inside the `<Popover.Content />`.
+Bits UI highlights the first available item after input changes. Filter the rendered items in `oninput`; there is no `autoHighlight` prop.
 
-<ComponentPreview name="combobox-popup">
+<ComponentPreview name="combobox-auto-highlight">
 
 <div></div>
 
 </ComponentPreview>
+
+### Popup
+
+Use `Combobox.Trigger` with a custom anchor and move `Combobox.Input` into `Combobox.Content`. Focus the input when opening and return focus to the trigger when closing.
+
+<ComponentPreview name="combobox-in-popup">
+
+<div></div>
+
+</ComponentPreview>
+
+### Input Group
+
+You can add an addon to the combobox by using the `InputGroupAddon` component inside the `ComboboxInput`.
+
+<ComponentPreview name="combobox-input-group">
+
+<div></div>
+
+</ComponentPreview>
+
+## API Reference
+
+See the [Bits UI Combobox API reference](https://bits-ui.com/docs/components/combobox#api-reference) for more information.
