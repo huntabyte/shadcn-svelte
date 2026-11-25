@@ -1,0 +1,12 @@
+# Unprivileged wake-up only. Never check out PR code or pass artifacts to Label.
+name: Label review signal
+run-name: "Label review #${{ github.event.pull_request.number }}"
+on:
+  pull_request_review:
+    types: [submitted, edited, dismissed]
+permissions: {}
+jobs:
+  signal:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'Review changed; trusted Label workflow will fetch fresh evidence.'

@@ -1,0 +1,9 @@
+{
+  "name": "shadcn-svelte-label-workflow",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "yaml": "2.9.1",
+    "@ieedan/label": "0.0.1"
+  }
+}
