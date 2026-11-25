@@ -75,7 +75,9 @@ See the [Bits UI Calendar](https://bits-ui.com/docs/components/calendar) documen
 
 ## About
 
-The `<Calendar />` component is built on top of the [Bits UI Calendar](https://bits-ui.com/docs/components/calendar) component, which uses the [@internationalized/date](https://react-spectrum.adobe.com/internationalized/date/index.html) package to handle dates.
+The `<Calendar />` component is built on top of the [Bits UI Calendar](https://www.bits-ui.com/docs/components/calendar) and [Bits UI Range Calendar](https://www.bits-ui.com/docs/components/range-calendar) components, which use the [@internationalized/date](https://react-spectrum.adobe.com/internationalized/date/index.html) package to handle dates.
+
+Use `mode="range"` when you need a date range. The standalone [Range Calendar](/docs/components/range-calendar) component is still available for existing projects.
 
 ## Date Picker
 
@@ -93,7 +95,7 @@ A basic calendar component. We used `class="rounded-lg border"` to style the cal
 
 ## Range Calendar
 
-Use the [`RangeCalendar`](/docs/components/range-calendar) component to enable range selection.
+Use `mode="range"` on `Calendar` to enable range selection. The standalone [`RangeCalendar`](/docs/components/range-calendar) remains available for existing projects.
 
 <ComponentPreview name="calendar-range">
 
