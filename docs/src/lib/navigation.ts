@@ -266,8 +266,23 @@ function generateRegistryNav(): SidebarNavItem[] {
 			items: [],
 		},
 		{
+			title: "GitHub Registries",
+			href: "/docs/registry/github",
+			items: [],
+		},
+		{
 			title: "FAQ",
 			href: "/docs/registry/faq",
+			items: [],
+		},
+		{
+			title: "Namespaced Registries",
+			href: "/docs/registry/namespace",
+			items: [],
+		},
+		{
+			title: "Authentication",
+			href: "/docs/registry/authentication",
 			items: [],
 		},
 		{

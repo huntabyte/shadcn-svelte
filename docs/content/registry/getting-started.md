@@ -168,23 +168,23 @@ You can serve your registry by running the dev server.
 
 Your files will now be served at `http://localhost:5173/r/[NAME].json` eg. `http://localhost:5173/r/hello-world.json`.
 
+### Search your registry
+
+The build writes `static/r/registry.json` alongside the item payloads. Pass its URL to [search](/docs/cli#search), or configure a namespace for the registry and search by namespace.
+
+<PMExecute command="shadcn-svelte@latest search http://localhost:5173/r/registry.json" />
+
+For larger registries, [split the source manifest with include](/docs/registry/registry-json#include). The catalog remains a single file.
+
 ## Publish your registry
 
 To make your registry available to other developers, you can publish it by deploying your project to a public URL.
 
 ## Adding Auth
 
-The `shadcn-svelte` CLI does not offer a built-in way to add auth to your registry. We recommend handling authorization on your registry server.
+Configure a [namespaced registry](/docs/registry/namespace) with headers or query parameters in `components.json`. Credentials can reference environment variables, so tokens do not need to be stored in the configuration.
 
-A common simple approach is to use a `token` query parameter to authenticate requests to your registry. e.g. `http://localhost:5173/r/hello-world.json?token=[SECURE_TOKEN_HERE]`.
-
-Use the secure token to authenticate requests and return a 401 Unauthorized response if the token is invalid. The `shadcn-svelte` CLI will handle the 401 response and display a message to the user.
-
-<Callout class="mt-6">
-
-**Note:** Make sure to encrypt and expire tokens.
-
-</Callout>
+See [Authentication](/docs/registry/authentication) for bearer tokens, environment files, and dependency authentication.
 
 ## Guidelines
 
@@ -199,3 +199,7 @@ Here are some guidelines to follow when building components for a registry.
 To install a registry item using the `shadcn-svelte` CLI, use the `add` command followed by the URL of the registry item.
 
 <PMExecute command="shadcn-svelte@latest add http://localhost:5173/r/hello-world.json" />
+
+You can also install a built item from a local file before deploying it.
+
+<PMExecute command="shadcn-svelte@latest add ./static/r/hello-world.json" />

@@ -1,6 +1,6 @@
 # shadcn-svelte CLI Reference
 
-Configuration is read from `components.json`. See [components.json](https://shadcn-svelte.com/docs/components-json) on the docs site for the full schema.
+Configuration is read from `components.json`. Named registries can also be declared in `package.json`; `components.json` wins per namespace. See [components.json](https://shadcn-svelte.com/docs/components-json) on the docs site for the full schema.
 
 > **IMPORTANT:** Always run commands using the project's package runner: `npx shadcn-svelte@latest`, `pnpm dlx shadcn-svelte@latest`, or `bunx --bun shadcn-svelte@latest`. Check `packageManager` from the project (or lockfile) to choose the right one. Examples below use `npx shadcn-svelte@latest` but substitute the correct runner for the project.
 
@@ -8,7 +8,7 @@ Configuration is read from `components.json`. See [components.json](https://shad
 
 ## Contents
 
-- Commands: `init`, `add`, `apply`, `update`, `registry build`
+- Commands: `init`, `add`, `apply`, `update`, `search` / `list`, `view`, `registry add`, `registry build`, `registry validate`
 - Proxy / outgoing requests
 - Presets (via `init` and `apply`)
 
@@ -50,7 +50,7 @@ Installs dependencies, adds the `cn` util, creates `components.json`, and sets u
 npx shadcn-svelte@latest add [options] [components...]
 ```
 
-Adds components from the configured registry. Arguments are component names from the registry index, or a **URL** to a registry JSON item. With **no** component names, the CLI prompts you to pick components interactively.
+Adds components from the configured registry. Arguments can be bare component names, `@namespace/item` entries, `owner/repo/item#ref` GitHub items, HTTPS URLs, or local item JSON files. Use `view` to inspect external item payloads before installing. With **no** component names, the CLI prompts you to pick components interactively.
 
 | Flag               | Short | Description                                     | Default   |
 | ------------------ | ----- | ----------------------------------------------- | --------- |
@@ -114,13 +114,45 @@ Commit your work before updating; overwrites are destructive.
 
 ---
 
+### `search` / `list` — Browse registry catalogs
+
+```bash
+npx shadcn-svelte@latest search @acme acme/toolkit#v1 --query login --type ui,block
+```
+
+Pass a namespace, GitHub source, or full catalog URL. Without arguments, the command searches all configured namespaces. Use `--cwd <path>`, `--query <query>`, `--type <types>`, `--limit <number>`, and `--offset <number>`. The JSON response contains items, pagination, and per-source errors.
+
+### `view` — Inspect items
+
+```bash
+npx shadcn-svelte@latest view @acme/button acme/toolkit/login#v1 ./item.json
+```
+
+Prints item JSON without installing or resolving dependencies. Accepts `--cwd <path>`.
+
+### `registry add` — Configure an explicit namespace
+
+```bash
+npx shadcn-svelte@latest registry add '@acme=https://acme.example/r/{name}.json'
+```
+
+Writes to `components.json` or falls back to `package.json`. Accepts `--cwd <path>` and `--force` to replace an existing mapping.
+
+### `registry validate` — Check a GitHub source registry
+
+```bash
+npx shadcn-svelte@latest registry validate acme/toolkit#v1
+```
+
+Checks the source manifest, includes, and declared files. Use `gh auth login`, `GH_TOKEN`, or `GITHUB_TOKEN` for private repositories.
+
 ### `registry build` — Build a custom registry
 
 ```bash
 npx shadcn-svelte@latest registry build [options] [registry]
 ```
 
-Reads a `registry.json` and writes registry JSON files for distribution. Default input: `./registry.json`, default output: `./static/r`.
+Reads a source `registry.json`, follows `include`, and writes item JSON files, the legacy index, and a flattened search catalog. Nested item names retain their subpaths. Default input: `./registry.json`, default output: `./static/r`.
 
 | Flag                  | Short | Description                     | Default      |
 | --------------------- | ----- | ------------------------------- | ------------ |
