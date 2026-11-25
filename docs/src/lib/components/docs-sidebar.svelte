@@ -25,7 +25,6 @@
 		{ title: "Typeset", href: "/docs/typeset", items: [] },
 		{ title: "Skills", href: "/docs/skills", items: [] },
 		{ title: "Registry", href: "/docs/registry", items: [] },
-		{ title: "Forms", href: "/docs/forms", items: [] },
 		{ title: "Changelog", href: "/docs/changelog", items: [] },
 	] satisfies SidebarNavItem[];
 
@@ -34,7 +33,6 @@
 		"Installation",
 		"Dark Mode",
 		"Changelog",
-		"Forms",
 		"Migration",
 	]);
 	const EXCLUDED_PAGES = new Set(["/docs", "/docs/changelog"]);

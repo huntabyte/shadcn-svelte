@@ -73,11 +73,6 @@ function generateSectionsNav(): SidebarNavItem[] {
 			items: [],
 		},
 		{
-			title: "Forms",
-			href: "/docs/forms",
-			items: [],
-		},
-		{
 			title: "Changelog",
 			href: "/docs/changelog",
 			items: [],
@@ -382,6 +377,10 @@ export const sidebarNavItems: SidebarNavItem[] = [
 		items: getStartedNav,
 	},
 	{
+		title: "Forms",
+		items: formsNav,
+	},
+	{
 		title: "Utilities",
 		items: utilsNav,
 	},
@@ -401,10 +400,6 @@ export const sidebarNavItems: SidebarNavItem[] = [
 	{
 		title: "Registry",
 		items: registryNav,
-	},
-	{
-		title: "Forms",
-		items: formsNav,
 	},
 	{
 		title: "Migration",
