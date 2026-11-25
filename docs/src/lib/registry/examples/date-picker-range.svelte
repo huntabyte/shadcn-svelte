@@ -17,11 +17,16 @@
 		start: new CalendarDate(year, 1, 20),
 		end: new CalendarDate(year, 1, 20).add({ days: 20 }),
 	});
+
+	function handleOpenChange(open: boolean) {
+		// a range is only valid with both dates, so discard a half-picked range on close
+		if (!open && value && (!value.start || !value.end)) value = undefined;
+	}
 </script>
 
 <Field.Field class="mx-auto w-60">
 	<Field.Label for="date-picker-range">Date Picker Range</Field.Label>
-	<Popover.Root>
+	<Popover.Root onOpenChange={handleOpenChange}>
 		<Popover.Trigger id="date-picker-range">
 			{#snippet child({ props })}
 				<Button {...props} variant="outline" class="justify-start px-2.5 font-normal">
