@@ -15,6 +15,13 @@ describe("RTL classes", () => {
 			)
 		).toBe("data-[side=left]:left-0 group-data-[side=right]:border-l data-[side=left]:border-r-2");
 	});
+	it("keeps both collapsed sidebar rail offsets physical in arbitrary variants", () => {
+		const offsets =
+			"[[data-side=left][data-collapsible=offcanvas]_&]:-right-2 [[data-side=right][data-collapsible=offcanvas]_&]:-left-2";
+		expect(applyRtlMapping(`${offsets} [&[data-state=open]]:left-0`)).toBe(
+			`${offsets} [&[data-state=open]]:start-0`
+		);
+	});
 	it("maps spacing, corners, alignment and variants without changing physical sides", () => {
 		expect(
 			applyRtlMapping(
@@ -55,6 +62,25 @@ describe("RTL classes", () => {
 });
 
 describe("Svelte RTL transform", () => {
+	it("leaves interpolated class tokens intact and transforms their static neighbors", () => {
+		const source = [
+			'<div class={`ml-2 translate-x-${offset} text-left ${active ? "pl-2" : "pr-2"}`} />',
+			'<div class="ml-2 translate-x-{offset} {prefix}pl-2 text-right" />',
+			'<div class={`${active ? "pl-2" : "pr-2"}${suffix} mr-2`} />',
+			"<div class={`text-left-${variant}-ml-2`} />",
+		].join("\n");
+		const result = transformDirection(source, "fixture.svelte");
+		expect(result).toBe(
+			[
+				'<div class={`ms-2 translate-x-${offset} text-start ${active ? "ps-2" : "pe-2"}`} />',
+				'<div class="ms-2 translate-x-{offset} {prefix}pl-2 text-end" />',
+				'<div class={`${active ? "pl-2" : "pr-2"}${suffix} me-2`} />',
+				"<div class={`text-left-${variant}-ml-2`} />",
+			].join("\n")
+		);
+		expect(transformDirection(result, "fixture.svelte")).toBe(result);
+	});
+
 	it("handles nested branches, snippets, arrays, class objects, templates and tv modules", () => {
 		const source =
 			'<script lang="ts">const label = "text-left"; const x = tv({ base: "ml-2", variants: { size: { sm: "pr-1" } } }); let active = true;</script>\n{#snippet item()}<div class={["text-left", { "mr-2": active }]}></div>{/snippet}\n{#if active}{#each [1] as n}<p class={`ml-2 ${active ? "pr-4" : "pl-4"}`}>{label}</p>{/each}{:else}<p class="text-right"></p>{/if}';

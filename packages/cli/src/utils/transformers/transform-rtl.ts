@@ -65,6 +65,7 @@ export function applyRtlMapping(input: string): string {
 	const result = new Set(
 		tokens.flatMap((token) => {
 			const [variant, utility] = splitVariant(token);
+			const physicalSide = /(?:data-\[side=|\[data-side=)(?:left|right)\]/.test(variant);
 			if (/(?:^|:)(?:rtl|ltr):/.test(variant)) return [token];
 			if (utility === "cn-rtl-flip") return [`${variant}rtl:rotate-180`];
 			const important = utility.endsWith("!") ? "!" : "";
@@ -78,7 +79,7 @@ export function applyRtlMapping(input: string): string {
 			if (value === "cursor-w-resize") return [token, rtl("cursor-e-resize")];
 			if (value === "cursor-e-resize") return [token, rtl("cursor-w-resize")];
 			// Floating UI's physical-side animations must follow actual placement.
-			if (!/data-\[side=(left|right)\]/.test(variant)) {
+			if (!physicalSide) {
 				const slide = value.match(/^(slide-(?:in-from|out-to)-)(left|right)(?=$|-)/);
 				if (slide) {
 					const logical = slide[2] === "left" ? "start" : "end";
@@ -87,11 +88,7 @@ export function applyRtlMapping(input: string): string {
 			}
 			for (const [physical, logical] of mappings) {
 				// Physical sheet/floating sides and their animations remain physical.
-				if (
-					/data-\[side=(left|right)\]/.test(variant) &&
-					/^(?:-?(?:left|right)-|border-[lr]-?)$/.test(physical)
-				)
-					continue;
+				if (physicalSide && /^(?:-?(?:left|right)-|border-[lr]-?)$/.test(physical)) continue;
 				if (physical.endsWith("-") ? value.startsWith(physical) : value === physical) {
 					return [`${variant}${logical}${value.slice(physical.length)}${important}`];
 				}
@@ -167,28 +164,56 @@ export function transformDirection(content: string, filePath: string): string {
 			}
 		}
 	}
+	function rewriteText(node: AstNode, joinedStart = false, joinedEnd = false) {
+		const before = content.slice(node.start, node.end);
+		const start = joinedStart ? (before.match(/^\S*/)?.[0].length ?? 0) : 0;
+		const end = before.length - (joinedEnd ? (before.match(/\S*$/)?.[0].length ?? 0) : 0);
+		if (start >= end || edited.has(node.start)) return;
+		const classes = before.slice(start, end);
+		const mapped = classes.replace(/\S+(?:\s+\S+)*/g, applyRtlMapping);
+		if (classes === mapped) return;
+		src.overwrite(node.start + start, node.start + end, mapped);
+		edited.add(node.start);
+	}
+
+	function isText(node: AstNode) {
+		return node.type === "Text" || node.type === "TemplateElement";
+	}
+
+	function rewriteChunks(chunks: AstNode[]) {
+		const nonempty = chunks.filter((chunk) => chunk.start < chunk.end);
+		for (const [index, chunk] of nonempty.entries()) {
+			const previous = nonempty[index - 1];
+			const next = nonempty[index + 1];
+			if (isText(chunk)) {
+				rewriteText(chunk, previous !== undefined, next !== undefined);
+			} else if (
+				(!previous || (isText(previous) && /\s/.test(content[previous.end - 1] ?? ""))) &&
+				(!next || (isText(next) && /\s/.test(content[next.start] ?? "")))
+			) {
+				// The interpolation itself can only supply complete classes at these boundaries.
+				rewrite(chunk);
+			}
+		}
+	}
+
 	// Follow only expressions whose values are classes. Tests, lookup keys and arbitrary
 	// function arguments are user logic, even when nested inside a class attribute.
 	function rewrite(n: AstNode) {
 		if (edited.has(n.start) || n.start === n.end) return;
 		let before: string | undefined;
 		let after: string | undefined;
-		if (n.type === "Text" || n.type === "TemplateElement") {
-			before = content.slice(n.start, n.end);
-			if (!before.trim()) return;
-			after =
-				(before.match(/^\s*/)?.[0] ?? "") +
-				applyRtlMapping(before) +
-				(before.match(/\s*$/)?.[0] ?? "");
-		} else if (n.type === "Literal" && typeof n.value === "string") {
+		if (n.type === "Literal" && typeof n.value === "string") {
 			const mapped = applyRtlMapping(n.value);
 			if (mapped !== n.value) {
 				before = content.slice(n.start, n.end);
 				after = JSON.stringify(mapped);
 			}
 		} else if (n.type === "TemplateLiteral") {
-			n.quasis?.forEach(rewrite);
-			n.expressions?.forEach(rewrite);
+			const expressions = n.expressions ?? [];
+			rewriteChunks(
+				n.quasis?.flatMap((quasi, index) => [quasi, ...expressions.slice(index, index + 1)]) ?? []
+			);
 		} else if (n.type === "ConditionalExpression") {
 			if (n.consequent) rewrite(n.consequent);
 			if (n.alternate) rewrite(n.alternate);
@@ -232,7 +257,7 @@ export function transformDirection(content: string, filePath: string): string {
 			if (n.type === "Attribute" && n.name === "class") {
 				// Svelte class arrays, cn calls, ternaries, and static chunks.
 				const values = n.value;
-				if (Array.isArray(values)) values.forEach((value) => rewrite(value as AstNode));
+				if (Array.isArray(values)) rewriteChunks(values as AstNode[]);
 				else if (values && typeof values === "object") rewrite(values as AstNode);
 				this.skip();
 			} else if (

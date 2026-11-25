@@ -11,15 +11,7 @@ import { setupFonts, type Font } from "./fonts.js";
 import { silentOutput } from "./node-utils.js";
 import { cancel, prettifyList } from "./prompt-helpers.js";
 import { transformCss } from "./transform-css.js";
-import {
-	transform,
-	transformFont,
-	transformImports,
-	transformIcons,
-	transformMenu,
-	transformRtl,
-	transformStripTypes,
-} from "./transformers/index.js";
+import { transform } from "./transformers/index.js";
 import type { ResolvedConfig } from "./config/index.js";
 
 const STYLE_TYPES = ["registry:style", "registry:theme"];
@@ -175,23 +167,12 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 						dependencies: transformDependencies,
 						devDependencies: transformDevDependencies,
 						filePath: transformFilePath,
-					} = await transform(
-						{
-							content: file.content,
-							filePath: filePath,
-							config: opts.config,
-							supportedFontMarkers: registryFontMarkers,
-						},
-						[
-							transformImports,
-							transformIcons,
-							transformMenu,
-							transformRtl,
-							transformFont,
-							transformRtl,
-							!opts.config.typescript && transformStripTypes,
-						]
-					);
+					} = await transform({
+						content: file.content,
+						filePath,
+						config: opts.config,
+						supportedFontMarkers: registryFontMarkers,
+					});
 
 					transformDependencies?.forEach((dep) => dependencies.add(dep));
 					transformDevDependencies?.forEach((dep) => devDependencies.add(dep));
