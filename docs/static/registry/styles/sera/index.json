@@ -395,6 +395,14 @@
 		"relativeUrl": "textarea.json"
 	},
 	{
+		"name": "toast",
+		"type": "registry:ui",
+		"registryDependencies": [
+			"button"
+		],
+		"relativeUrl": "toast.json"
+	},
+	{
 		"name": "toggle",
 		"type": "registry:ui",
 		"registryDependencies": [],

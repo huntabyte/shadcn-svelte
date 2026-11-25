@@ -1,0 +1,71 @@
+.base-toast {
+	--gap: 0.75rem;
+	--height: var(--toast-frontmost-height, var(--toast-height));
+	--offset-y: calc(
+		var(--toast-offset-y) * -1 + var(--toast-index) * var(--gap) * -1 +
+			var(--toast-swipe-movement-y)
+	);
+	--peek: 0.75rem;
+	--scale: max(0, calc(1 - var(--toast-index) * 0.1));
+	--shrink: calc(1 - var(--scale));
+	z-index: calc(1000 - var(--toast-index));
+	height: var(--height);
+	transform: translateX(var(--toast-swipe-movement-x))
+		translateY(
+			calc(
+				var(--toast-swipe-movement-y) - var(--toast-index) * var(--peek) - var(--shrink) *
+					var(--height)
+			)
+		)
+		scale(var(--scale));
+	transition:
+		transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+		opacity 500ms,
+		height 150ms;
+}
+.base-toast::after {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	height: calc(var(--gap) + 1px);
+	width: 100%;
+	content: "";
+}
+.base-toast[data-expanded] {
+	height: var(--toast-height);
+	transform: translateX(var(--toast-swipe-movement-x)) translateY(var(--offset-y));
+}
+.base-toast[data-limited] {
+	opacity: 0;
+}
+.base-toast[data-starting-style],
+.base-toast[data-ending-style]:not([data-limited]):not([data-swipe-direction]) {
+	transform: translateY(150%);
+}
+.base-toast[data-ending-style][data-swipe-direction="down"] {
+	transform: translateY(calc(var(--toast-swipe-movement-y) + 150%));
+}
+.base-toast[data-ending-style][data-swipe-direction="up"] {
+	transform: translateY(calc(var(--toast-swipe-movement-y) - 150%));
+}
+.base-toast[data-ending-style][data-swipe-direction="left"] {
+	transform: translateX(calc(var(--toast-swipe-movement-x) - 150%)) translateY(var(--offset-y));
+}
+.base-toast[data-ending-style][data-swipe-direction="right"] {
+	transform: translateX(calc(var(--toast-swipe-movement-x) + 150%)) translateY(var(--offset-y));
+}
+.base-toast-content {
+	transition: opacity 250ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.base-toast-content[data-behind] {
+	opacity: 0;
+}
+.base-toast-content[data-expanded] {
+	opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+	.base-toast,
+	.base-toast-content {
+		transition: none;
+	}
+}
