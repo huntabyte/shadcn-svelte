@@ -3,7 +3,7 @@ title: Menubar
 description: A visually persistent menu common in desktop applications that provides quick access to a consistent set of commands.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/menubar
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/docs/src/lib/registry/ui/menubar
   doc: https://bits-ui.com/docs/components/menubar
   api: https://bits-ui.com/docs/components/menubar#api-reference
 ---
@@ -50,6 +50,12 @@ Copy and paste the following code into your project.
 	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
+<Step>
+
+Update the import paths to match your project setup.
+
+</Step>
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -79,6 +85,46 @@ Copy and paste the following code into your project.
     </Menubar.Content>
   </Menubar.Menu>
 </Menubar.Root>
+```
+
+## Composition
+
+Use the following composition to build a `Menubar`:
+
+```text
+Menubar.Root
+├── Menubar.Menu
+│   ├── Menubar.Trigger
+│   └── Menubar.Content
+│       ├── Menubar.Group
+│       │   ├── Menubar.Label
+│       │   ├── Menubar.Item
+│       │   └── Menubar.Item
+│       ├── Menubar.Separator
+│       ├── Menubar.Group
+│       │   ├── Menubar.Label
+│       │   ├── Menubar.CheckboxItem
+│       │   └── Menubar.CheckboxItem
+│       ├── Menubar.Separator
+│       ├── Menubar.Group
+│       │   ├── Menubar.Label
+│       │   └── Menubar.RadioGroup
+│       │       ├── Menubar.RadioItem
+│       │       └── Menubar.RadioItem
+│       └── Menubar.Sub
+│           ├── Menubar.SubTrigger
+│           └── Menubar.SubContent
+│               └── Menubar.Group
+│                   ├── Menubar.Label
+│                   ├── Menubar.Item
+│                   └── Menubar.Item
+└── Menubar.Menu
+    ├── Menubar.Trigger
+    └── Menubar.Content
+        └── Menubar.Group
+            ├── Menubar.Label
+            ├── Menubar.Item
+            └── Menubar.Item
 ```
 
 ## Checkbox
@@ -118,3 +164,7 @@ Use `Menubar.Sub`, `Menubar.SubTrigger`, and `Menubar.SubContent` for nested men
 <div></div>
 
 </ComponentPreview>
+
+## API Reference
+
+See the [Bits UI](https://bits-ui.com/docs/components/menubar#api-reference) documentation for more information.
