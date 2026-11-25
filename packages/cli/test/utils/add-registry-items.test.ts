@@ -417,7 +417,8 @@ describe("addRegistryItems", () => {
 			vi.mocked(p.tasks).mockImplementation(async (tasks) => {
 				for (const task of tasks) {
 					const message = await task.task(() => {});
-					if (typeof message === "string") messages.push(message);
+					// paths are printed with the platform separator, normalize so this also passes on windows
+					if (typeof message === "string") messages.push(message.replaceAll("\\", "/"));
 				}
 				return undefined;
 			});
