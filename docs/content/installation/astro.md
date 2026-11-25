@@ -42,7 +42,7 @@ Install Svelte using the Astro CLI:
 
 <PMExecute command="astro add svelte" />
 
-<Callout className="mt-4">
+<Callout class="mt-4">
 
 Answer `Yes` to all the question prompted by the CLI when installing Svelte.
 
@@ -54,9 +54,35 @@ Add Tailwind CSS using the Astro CLI:
 
 <PMExecute command="astro add tailwind" />
 
-<Callout className="mt-4">
+<Callout class="mt-4">
 
 Answer `Yes` to all the question prompted by the CLI when installing TailwindCSS.
+
+</Callout>
+
+### Troubleshoot Svelte library imports
+
+The Svelte integration normally handles Svelte library dependencies automatically. If your Astro build reports `ERR_UNKNOWN_FILE_EXTENSION` for a `.svelte` file from a dependency, add that package to `vite.resolve.noExternal` in your `astro.config.mjs`. For example:
+
+```js title="astro.config.mjs" {9-11} showLineNumbers
+import { defineConfig } from "astro/config";
+import svelte from "@astrojs/svelte";
+import tailwindcss from "@tailwindcss/vite";
+
+export default defineConfig({
+  integrations: [svelte()],
+  vite: {
+    plugins: [tailwindcss()],
+    resolve: {
+      noExternal: ["@lucide/svelte", "bits-ui", "runed", "svelte-toolbelt"],
+    },
+  },
+});
+```
+
+<Callout class="mt-4">
+
+Keep your existing integrations and Vite plugins. Add only the dependencies named in the error; the list above covers common shadcn-svelte dependencies. Astro 6 and later use Vite environments for rendering, so use `vite.resolve.noExternal` for this workaround.
 
 </Callout>
 
@@ -88,7 +114,7 @@ Add the following code to the `tsconfig.json` file to resolve paths:
 }
 ```
 
-<Callout className="mt-4">
+<Callout class="mt-4">
 
 If needed, adapt the path aliases to your specific needs ([learn more about it](https://docs.astro.build/en/guides/aliases/)).
 
@@ -137,7 +163,7 @@ import { Button } from "$lib/components/ui/button/index.js";
 </html>
 ```
 
-<Callout className="mt-4">
+<Callout class="mt-4">
 
 Remember to use the `client` directives inside `.astro` files when dealing with interactive components ([learn more about it](https://docs.astro.build/en/reference/directives-reference/#client-directives)).
 
