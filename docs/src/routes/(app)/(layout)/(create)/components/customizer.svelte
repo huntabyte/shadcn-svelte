@@ -27,10 +27,10 @@
 
 <Tooltip.Provider>
 	<div
-		class="top-24 right-12 isolate z-10 flex min-h-0 w-full flex-col gap-2 self-start md:w-(--customizer-width)"
+		class="isolate z-10 flex max-h-full min-h-0 w-full flex-col gap-2 self-start md:w-(--customizer-width)"
 	>
 		<Card.Root
-			class="dark max-h-(--preview-height) min-h-0 w-full gap-0 rounded-2xl bg-card/90 shadow-xl backdrop-blur-xl"
+			class="dark min-h-0 w-full flex-1 gap-0 rounded-2xl bg-card/90 shadow-xl backdrop-blur-xl"
 			size="sm"
 		>
 			<Card.Header
@@ -90,7 +90,7 @@
 				</Button>
 			</Card.Footer>
 		</Card.Root>
-		<div class="hidden w-full flex-1 flex-col gap-12 md:flex">
+		<div class="hidden w-full shrink-0 md:block">
 			<Cta />
 		</div>
 		<div class="hidden flex-col gap-12 md:flex">
