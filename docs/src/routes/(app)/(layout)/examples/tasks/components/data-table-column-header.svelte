@@ -1,4 +1,4 @@
-<script lang="ts" generics="TData extends RowData, TValue">
+<script lang="ts">
 	import ArrowDownIcon from "@lucide/svelte/icons/arrow-down";
 	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
 	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
@@ -6,8 +6,9 @@
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
+	import type { Task } from "../data/schemas.js";
 	import type { TasksTableFeatures } from "./data-table-features.js";
-	import type { Column, RowData } from "@tanstack/svelte-table";
+	import type { Column } from "@tanstack/svelte-table";
 	import type { HTMLAttributes } from "svelte/elements";
 
 	let {
@@ -16,7 +17,7 @@
 		class: className,
 		...restProps
 	}: {
-		column: Column<TasksTableFeatures, TData, TValue>;
+		column: Column<TasksTableFeatures, Task, string>;
 		title: string;
 	} & HTMLAttributes<HTMLDivElement> = $props();
 </script>
