@@ -23,6 +23,8 @@ jobs:
         run: pnpm ci
 
       - name: Run svelte-check
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
         run: pnpm check
 
   lint:
