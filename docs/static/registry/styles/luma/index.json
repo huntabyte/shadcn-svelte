@@ -171,15 +171,6 @@
 		"relativeUrl": "field.json"
 	},
 	{
-		"name": "form",
-		"type": "registry:ui",
-		"registryDependencies": [
-			"button",
-			"label"
-		],
-		"relativeUrl": "form.json"
-	},
-	{
 		"name": "hover-card",
 		"type": "registry:ui",
 		"registryDependencies": [],
@@ -526,7 +517,8 @@
 		"type": "registry:block",
 		"registryDependencies": [
 			"card",
-			"select"
+			"select",
+			"range-calendar"
 		],
 		"relativeUrl": "calendar-12.json"
 	},

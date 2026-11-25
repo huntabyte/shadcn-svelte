@@ -24,12 +24,12 @@
 
 <Tooltip.Provider>
 	<div
-		class="top-24 right-12 isolate z-10 flex min-h-0 w-full flex-col gap-2 md:w-(--customizer-width)"
+		class="isolate z-10 flex max-h-full min-h-0 w-full flex-col gap-2 self-start md:w-(--customizer-width)"
 	>
 		<Card.Root
 			data-slot="customizer-card"
 			bind:ref={pickerLayout.anchor}
-			class="dark top-24 right-12 isolate z-10 max-h-full min-h-0 w-full self-start rounded-2xl bg-card/90 shadow-xl backdrop-blur-xl md:w-(--customizer-width)"
+			class="dark min-h-0 w-full flex-1 gap-0 rounded-2xl bg-card/90 shadow-xl backdrop-blur-xl"
 			size="sm"
 		>
 			<Card.Header

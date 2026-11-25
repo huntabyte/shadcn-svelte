@@ -11,7 +11,7 @@
 		...restProps
 	}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {
 		children?: Snippet;
-		errors?: { message?: string }[];
+		errors?: Array<{ message?: string } | undefined>;
 	} = $props();
 
 	const hasContent = $derived.by(() => {
