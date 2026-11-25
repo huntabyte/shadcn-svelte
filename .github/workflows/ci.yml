@@ -25,6 +25,9 @@ jobs:
       - name: Run svelte-check
         run: pnpm check
 
+      - name: Test documentation highlighting
+        run: pnpm -F docs test:highlighting
+
   lint:
     name: Lint
     runs-on: macos-latest

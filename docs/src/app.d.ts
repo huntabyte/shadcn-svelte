@@ -11,7 +11,7 @@ declare global {
 		// interface Platform {}
 	}
 
-	var __shikiHighlighter: Awaited<ReturnType<typeof createHighlighterCore>> | undefined;
+	var __shikiHighlighter: ReturnType<typeof createHighlighterCore> | undefined;
 }
 
 export {};

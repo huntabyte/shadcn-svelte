@@ -24,6 +24,7 @@
 		"sync": "pnpm build:registry && pnpm build:content && svelte-kit sync",
 		"preview": "vite preview",
 		"check": "pnpm build:search-data && svelte-check --fail-on-warnings --tsconfig ./tsconfig.json",
+		"test:highlighting": "node --import tsx --test scripts/highlight-code.test.ts",
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
 		"parity": "parity",
 		"parity-check": "parity --check",
