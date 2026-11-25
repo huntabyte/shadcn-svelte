@@ -59,14 +59,18 @@
 	}
 </script>
 
-<Drawer.Root bind:open direction={isMobile.current ? "bottom" : "right"}>
+<Drawer.Root
+	bind:open
+	showSwipeHandle={isMobile.current}
+	direction={isMobile.current ? "bottom" : "right"}
+>
 	<Drawer.Trigger class={buttonVariants({ variant: "secondary" })}>Open Drawer</Drawer.Trigger>
 	<Drawer.Content>
 		<Drawer.Header>
 			<Drawer.Title>Pick a delivery time</Drawer.Title>
 			<Drawer.Description>We&apos;ll prepare your order as soon as possible.</Drawer.Description>
 		</Drawer.Header>
-		<div class="flex-1 overflow-y-auto p-4">
+		<div class="flex-1 scroll-fade overflow-y-auto p-4">
 			<RadioGroup.Root bind:value={deliveryTime} class="gap-2">
 				{#each deliveryTimes as time (time.value)}
 					<Field.Label for={time.id}>
