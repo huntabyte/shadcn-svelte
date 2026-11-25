@@ -21,11 +21,11 @@
 </script>
 
 <Card.Root>
-	<Card.Header class="items-center">
+	<Card.Header class="items-center pb-4">
 		<Card.Title>Radar Chart - Grid Circle Filled</Card.Title>
 		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
 	</Card.Header>
-	<Card.Content class="flex-1">
+	<Card.Content class="pb-0">
 		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
 			<LineChart
 				data={chartData}
@@ -47,7 +47,7 @@
 						fill: "var(--color-desktop)",
 						fillOpacity: 0.5,
 						stroke: "0",
-						motion: "tween",
+						motion: Chart.defaultMotion,
 					},
 					xAxis: {
 						tickLength: 0,
@@ -65,6 +65,7 @@
 					tooltip: {
 						context: {
 							mode: "voronoi",
+							radius: 250,
 						},
 					},
 					highlight: {
@@ -80,7 +81,7 @@
 	</Card.Content>
 	<Card.Footer class="flex-col gap-2 text-sm">
 		<div class="flex items-center gap-2 leading-none font-medium">
-			Trending up by 5.2% this month <TrendingUpIcon class="size-4" />
+			Trending up by 5.2% this month <TrendingUpIcon class="h-4 w-4" />
 		</div>
 		<div class="flex items-center gap-2 leading-none text-muted-foreground">
 			January - June 2024

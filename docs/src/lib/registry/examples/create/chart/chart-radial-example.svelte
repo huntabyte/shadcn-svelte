@@ -42,7 +42,7 @@
 						data: [d],
 					}))}
 					props={{
-						arc: { track: { fill: "var(--muted)" }, motion: "tween" },
+						arc: { track: { fill: "var(--muted)" }, motion: Chart.defaultMotion },
 						tooltip: { context: { hideDelay: 350 } },
 					}}
 					tooltipContext={false}

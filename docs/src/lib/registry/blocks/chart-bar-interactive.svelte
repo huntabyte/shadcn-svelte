@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { scaleUtc } from "d3-scale";
 	import { BarChart, Highlight } from "layerchart";
-	import { cubicInOut } from "svelte/easing";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 
@@ -121,9 +120,9 @@
 	]);
 </script>
 
-<Card.Root>
-	<Card.Header class="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
-		<div class="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
+<Card.Root class="py-0">
+	<Card.Header class="flex flex-col items-stretch border-b p-0! sm:flex-row">
+		<div class="flex flex-1 flex-col justify-center gap-1 px-6 pt-4 pb-3 sm:py-0!">
 			<Card.Title>Bar Chart - Interactive</Card.Title>
 			<Card.Description>Showing total visitors for the last 3 months</Card.Description>
 		</div>
@@ -152,18 +151,19 @@
 				x="date"
 				axis="x"
 				series={activeSeries}
+				padding={{ left: 8, right: 8 }}
 				props={{
 					bars: {
 						stroke: "none",
 						rounded: "none",
-						motion: { type: "tween", duration: 500, easing: cubicInOut },
+						motion: Chart.defaultBarMotion,
 					},
 					highlight: { area: { fill: "none" } },
 					xAxis: {
 						format: (d: Date) => {
 							return d.toLocaleDateString("en-US", {
 								month: "short",
-								day: "2-digit",
+								day: "numeric",
 							});
 						},
 						ticks: (scale) => scaleUtc(scale.domain(), scale.range()).ticks(),

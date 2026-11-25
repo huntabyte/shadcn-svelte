@@ -27,22 +27,30 @@
 <Chart.Container config={chartConfig} class="min-h-[200px] w-full">
 	<BarChart
 		data={chartData}
-		xScale={scaleBand().padding(0.25)}
 		x="month"
-		axis="x"
+		xScale={scaleBand().paddingInner(0.2).paddingOuter(0.1)}
+		x1Scale={scaleBand().paddingInner(0.12)}
+		x1Range={({ xScale }) => [0, xScale.bandwidth?.() ?? 0]}
 		seriesLayout="group"
 		series={[
-			{
-				key: "desktop",
-				label: chartConfig.desktop.label,
-				color: chartConfig.desktop.color,
-			},
-			{
-				key: "mobile",
-				label: chartConfig.mobile.label,
-				color: chartConfig.mobile.color,
-			},
+			{ key: "desktop", label: chartConfig.desktop.label, color: "var(--color-desktop)" },
+			{ key: "mobile", label: chartConfig.mobile.label, color: "var(--color-mobile)" },
 		]}
+		rule={false}
+		padding={{ top: 5, right: 5, bottom: 35, left: 5 }}
+		yDomain={[0, 320]}
+		yNice={false}
+		grid={{ x: false, y: true, yTicks: [0, 80, 160, 240, 320] }}
+		axis="x"
+		props={{
+			bars: { rounded: "all", radius: 4, stroke: "none", motion: Chart.defaultBarMotion },
+			xAxis: {
+				format: (month) => month.slice(0, 3),
+				tickMarks: false,
+				tickLabelProps: { dy: 17.5, style: "fill: #666" },
+			},
+			highlight: { area: { class: "fill-muted" } },
+		}}
 	>
 		{#snippet tooltip()}
 			<Chart.Tooltip />

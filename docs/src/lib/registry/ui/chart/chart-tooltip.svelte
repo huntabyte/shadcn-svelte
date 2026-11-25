@@ -53,7 +53,13 @@
 	// Filter to series with defined values (important for item-based charts like Pie/Arc
 	// where only the hovered item has a value)
 	const visibleSeries = $derived(
-		chartCtx.tooltip.series.filter((s: TooltipPayload) => s.value !== undefined)
+		chartCtx.tooltip.series
+			.filter((s: TooltipPayload) => s.value !== undefined)
+			// LayerChart reverses stacked payloads; shadcn keeps the declared series order.
+			.sort((a, b) => {
+				const series = chartCtx.series.visibleSeries;
+				return series.findIndex((s) => s.key === a.key) - series.findIndex((s) => s.key === b.key);
+			})
 	);
 
 	const formattedLabel = $derived.by(() => {
@@ -102,7 +108,15 @@
 	{/if}
 {/snippet}
 
-<TooltipPrimitive.Root variant="none">
+<TooltipPrimitive.Root
+	variant="none"
+	portal={false}
+	anchor="bottom-left"
+	motion="none"
+	props={{
+		root: { class: "transition-[top,left] duration-400 ease-[ease] motion-reduce:transition-none" },
+	}}
+>
 	<div
 		bind:this={ref}
 		class={cn(
