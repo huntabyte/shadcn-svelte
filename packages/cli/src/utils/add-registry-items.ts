@@ -19,9 +19,30 @@ import {
 	transformMenu,
 	transformStripTypes,
 } from "./transformers/index.js";
+import type { RegistryItem } from "../schema/index.js";
 import type { ResolvedConfig } from "./config/index.js";
 
 const STYLE_TYPES = ["registry:style", "registry:theme"];
+
+/**
+ * Where an item ends up on disk, relative to the project root.
+ *
+ * Most items are installed in the directory of their alias, but `utils` is a single file that
+ * lives wherever the `utils` alias points, which can be anywhere.
+ */
+function getItemInstallPath(config: ResolvedConfig, item: RegistryItem) {
+	const cwd = config.resolvedPaths.cwd;
+
+	const utilsFile = item.name === "utils" ? item.files?.[0] : undefined;
+	if (utilsFile) {
+		const filePath = registry.resolveItemFilePath(config, item, utilsFile);
+		// the file is written as `.js` when typescript is disabled
+		return path.relative(cwd, config.typescript ? filePath : filePath.replace(/\.ts$/, ".js"));
+	}
+
+	const aliasDir = registry.getItemAliasDir(config, item.type);
+	return path.relative(cwd, path.resolve(aliasDir, item.name));
+}
 
 export type ApplyOnly = "theme" | "font";
 
@@ -129,7 +150,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 				await fs.mkdir(aliasDir, { recursive: true });
 			}
 
-			const itemPath = path.relative(cwd, path.resolve(aliasDir, item.name));
+			const itemPath = getItemInstallPath(opts.config, item);
 
 			if (!opts.overwrite && existingItems.includes(item.name)) {
 				if (selectedItems.has(item.name)) {
@@ -215,8 +236,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 						const itemPath = path.relative(cwd, opts.config.resolvedPaths.tailwindCss);
 						return `${highlight(item.name)} installed at ${color.gray(itemPath)}`;
 					}
-					const aliasDir = registry.getItemAliasDir(opts.config, item.type);
-					const itemPath = path.relative(cwd, path.resolve(aliasDir, item.name));
+					const itemPath = getItemInstallPath(opts.config, item);
 					return `${highlight(item.name)} installed at ${color.gray(itemPath)}`;
 				}
 			},

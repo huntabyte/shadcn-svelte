@@ -395,4 +395,79 @@ describe("addRegistryItems", () => {
 			expect(p.confirm).toHaveBeenCalledTimes(1);
 		});
 	});
+
+	describe("installed path message", () => {
+		const utilsItem = {
+			name: "utils",
+			type: "registry:lib",
+			files: [{ target: "utils.ts", type: "registry:lib", content: "" }],
+			registryDependencies: [],
+		} satisfies ResolvedRegistryItem;
+
+		const buttonItem = {
+			name: "button",
+			type: "registry:ui",
+			files: [{ target: "button.svelte", type: "registry:ui", content: "" }],
+			registryDependencies: [],
+		} satisfies ResolvedRegistryItem;
+
+		// runs the queued tasks and collects the message each one returns
+		async function addAndCollectMessages(config: ResolvedConfig) {
+			const messages: string[] = [];
+			vi.mocked(p.tasks).mockImplementation(async (tasks) => {
+				for (const task of tasks) {
+					const message = await task.task(() => {});
+					if (typeof message === "string") messages.push(message);
+				}
+				return undefined;
+			});
+
+			await addRegistryItems({
+				selectedItems: ["utils", "button"],
+				config,
+				overwrite: true,
+				deps: true,
+			});
+
+			return messages;
+		}
+
+		beforeEach(() => {
+			vi.mocked(existsSync).mockReturnValue(false);
+			vi.mocked(registry.resolveRegistryItems).mockResolvedValue([utilsItem, buttonItem]);
+			vi.mocked(registry.fetchRegistryItems).mockResolvedValue([utilsItem, buttonItem]);
+			vi.mocked(registry.getItemAliasDir).mockImplementation((config, type) =>
+				type === "registry:lib" ? config.resolvedPaths.lib : config.resolvedPaths.ui
+			);
+			// `utils` is a single file at wherever the `utils` alias points, everything else is
+			// placed under its alias directory
+			vi.mocked(registry.resolveItemFilePath).mockImplementation((config, item, file) =>
+				item.name === "utils"
+					? `${config.resolvedPaths.utils}.ts`
+					: `${config.resolvedPaths.ui}/${file.target}`
+			);
+		});
+
+		it("reports the configured utils path instead of the lib alias", async () => {
+			const messages = await addAndCollectMessages({
+				...mockConfig,
+				resolvedPaths: { ...mockConfig.resolvedPaths, utils: "/test/src/helpers/cn" },
+			});
+
+			expect(messages.find((m) => m.includes("utils"))).toContain("src/helpers/cn.ts");
+			expect(messages.find((m) => m.includes("utils"))).not.toContain("lib/utils");
+			// other items are still reported under their alias directory
+			expect(messages.find((m) => m.includes("button"))).toContain("ui/button");
+		});
+
+		it("reports a .js utils file when typescript is disabled", async () => {
+			const messages = await addAndCollectMessages({
+				...mockConfig,
+				typescript: false,
+				resolvedPaths: { ...mockConfig.resolvedPaths, utils: "/test/src/helpers/cn" },
+			});
+
+			expect(messages.find((m) => m.includes("utils"))).toContain("src/helpers/cn.js");
+		});
+	});
 });
