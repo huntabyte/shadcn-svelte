@@ -27,11 +27,11 @@ export const registryCategories = [
 	{
 		name: "OTP",
 		slug: "otp",
-		hidden: false,
+		hidden: true,
 	},
 	{
 		name: "Calendar",
 		slug: "calendar",
-		hidden: false,
+		hidden: true,
 	},
 ];

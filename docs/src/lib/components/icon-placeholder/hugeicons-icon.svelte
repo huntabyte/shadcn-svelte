@@ -12,6 +12,10 @@
 
 	let { icon, placeholder, className, ...restProps }: Props = $props();
 
+	// The loader is typed as returning a `Component`, but for hugeicons it resolves the icon data
+	// that `HugeiconsIcon` expects.
+	const asIconData = (value: unknown) => value as ComponentProps<typeof HugeiconsIcon>["icon"];
+
 	// Icons that are already loaded render synchronously; otherwise fall back to the async
 	// placeholder. This avoids a double render for every icon after the first load.
 	// svelte-ignore state_referenced_locally
@@ -22,7 +26,7 @@
 
 {#if CachedIcon}
 	<HugeiconsIcon
-		icon={CachedIcon}
+		icon={asIconData(CachedIcon)}
 		strokeWidth={2}
 		data-slot="hugeicons-icon"
 		{className}
@@ -34,7 +38,7 @@
 	{:then Icon}
 		{#if Icon !== null}
 			<HugeiconsIcon
-				icon={Icon}
+				icon={asIconData(Icon)}
 				strokeWidth={2}
 				data-slot="hugeicons-icon"
 				{className}

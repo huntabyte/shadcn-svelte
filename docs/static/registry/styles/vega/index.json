@@ -172,15 +172,6 @@
 		"relativeUrl": "field.json"
 	},
 	{
-		"name": "form",
-		"type": "registry:ui",
-		"registryDependencies": [
-			"button",
-			"label"
-		],
-		"relativeUrl": "form.json"
-	},
-	{
 		"name": "hover-card",
 		"type": "registry:ui",
 		"registryDependencies": [],
