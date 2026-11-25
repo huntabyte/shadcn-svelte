@@ -20,7 +20,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="range-calendar-demo">
+<ComponentPreview name="range-calendar-demo" previewClassName="h-96">
 
 <div></div>
 

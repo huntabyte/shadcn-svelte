@@ -85,7 +85,7 @@ You can use the `<Calendar />` component to build a date picker. See the [Date P
 
 A basic calendar component. We used `class="rounded-lg border"` to style the calendar.
 
-<ComponentPreview name="calendar-basic">
+<ComponentPreview name="calendar-basic" previewClassName="h-96">
 
 <div></div>
 
@@ -95,7 +95,7 @@ A basic calendar component. We used `class="rounded-lg border"` to style the cal
 
 Use the [`RangeCalendar`](/docs/components/range-calendar) component to enable range selection.
 
-<ComponentPreview name="calendar-range">
+<ComponentPreview name="calendar-range" previewClassName="min-h-[36rem] md:min-h-96">
 
 <div></div>
 
@@ -105,7 +105,7 @@ Use the [`RangeCalendar`](/docs/components/range-calendar) component to enable r
 
 Use `captionLayout="dropdown"` to show month and year dropdowns.
 
-<ComponentPreview name="calendar-caption">
+<ComponentPreview name="calendar-caption" previewClassName="h-96">
 
 <div></div>
 
@@ -113,7 +113,7 @@ Use `captionLayout="dropdown"` to show month and year dropdowns.
 
 ## Presets
 
-<ComponentPreview name="calendar-presets">
+<ComponentPreview name="calendar-presets" previewClassName="h-[650px]">
 
 <div></div>
 
@@ -121,7 +121,7 @@ Use `captionLayout="dropdown"` to show month and year dropdowns.
 
 ## Date and Time Picker
 
-<ComponentPreview name="calendar-time">
+<ComponentPreview name="calendar-time" previewClassName="h-[600px]">
 
 <div></div>
 
