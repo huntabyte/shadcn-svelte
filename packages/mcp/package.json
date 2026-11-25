@@ -1,0 +1,56 @@
+{
+	"name": "@shadcn-svelte/mcp",
+	"version": "0.0.0",
+	"description": "MCP server for shadcn-svelte.",
+	"license": "MIT",
+	"author": {
+		"name": "huntabyte & CokaKoala",
+		"url": "https://twitter.com/huntabyte"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/huntabyte/shadcn-svelte.git",
+		"directory": "packages/mcp"
+	},
+	"homepage": "https://shadcn-svelte.com",
+	"bugs": {
+		"url": "https://github.com/huntabyte/shadcn-svelte/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"type": "module",
+	"bin": {
+		"shadcn-sv-mcp": "./dist/index.mjs"
+	},
+	"exports": {
+		"./package.json": "./package.json"
+	},
+	"files": [
+		"dist"
+	],
+	"keywords": [
+		"mcp",
+		"shadcn",
+		"svelte",
+		"shadcn-svelte"
+	],
+	"engines": {
+		"node": ">=20"
+	},
+	"scripts": {
+		"dev": "tsdown --watch",
+		"build": "tsdown --minify",
+		"check": "tsc --noEmit",
+		"test": "vitest run"
+	},
+	"devDependencies": {
+		"@modelcontextprotocol/client": "^2.3.1",
+		"@modelcontextprotocol/server": "^2.3.1",
+		"package-manager-detector": "^1.9.0",
+		"tsdown": "catalog:",
+		"typescript": "catalog:",
+		"vitest": "^4.1.10",
+		"zod": "^4.4.3"
+	}
+}
