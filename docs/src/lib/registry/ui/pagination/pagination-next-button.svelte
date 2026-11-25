@@ -8,12 +8,13 @@
 		ref = $bindable(null),
 		class: className,
 		children,
+		text = "Next",
 		...restProps
-	}: PaginationPrimitive.NextButtonProps = $props();
+	}: PaginationPrimitive.NextButtonProps & { text?: string } = $props();
 </script>
 
 {#snippet Fallback()}
-	<span>Next</span>
+	<span>{text}</span>
 	<IconPlaceholder
 		lucide="ChevronRightIcon"
 		tabler="IconChevronRight"

@@ -118,3 +118,13 @@ Use nested collapsibles to build a file tree.
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="collapsible-rtl" direction="rtl" align="start">
+
+<div></div>
+
+</ComponentPreview>

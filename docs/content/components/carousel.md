@@ -278,3 +278,34 @@ You can use the `plugins` prop to add plugins to the carousel.
 </ComponentPreview>
 
 See the [Embla Carousel docs](https://www.embla-carousel.com/docs/v8/plugins) for more information on using plugins.
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="carousel-rtl" direction="rtl" previewClassName="h-80 sm:h-[32rem]">
+
+<div></div>
+
+</ComponentPreview>
+
+When localizing the carousel for RTL languages, you need to set the `direction` option in the `opts` prop to match the text direction. This ensures the carousel scrolls in the correct direction.
+
+```svelte showLineNumbers {2-5}
+<Carousel.Root
+  {dir}
+  opts={{
+    direction: dir,
+  }}
+>
+  <Carousel.Content>
+    <Carousel.Item>...</Carousel.Item>
+    <Carousel.Item>...</Carousel.Item>
+    <Carousel.Item>...</Carousel.Item>
+  </Carousel.Content>
+  <Carousel.Previous class="rtl:rotate-180" />
+  <Carousel.Next class="rtl:rotate-180" />
+</Carousel.Root>
+```
+
+The `direction` option accepts `"ltr"` or `"rtl"` and should match the `dir` prop value. You may also want to rotate the navigation buttons using the `rtl:rotate-180` class to ensure they point in the correct direction.

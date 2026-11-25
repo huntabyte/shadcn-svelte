@@ -8,8 +8,9 @@
 		ref = $bindable(null),
 		class: className,
 		children,
+		text = "Previous",
 		...restProps
-	}: PaginationPrimitive.PrevButtonProps = $props();
+	}: PaginationPrimitive.PrevButtonProps & { text?: string } = $props();
 </script>
 
 {#snippet Fallback()}
@@ -21,7 +22,7 @@
 		remixicon="RiArrowLeftSLine"
 		class={cn("cn-rtl-flip size-4", className)}
 	/>
-	<span>Previous</span>
+	<span>{text}</span>
 {/snippet}
 
 <PaginationPrimitive.PrevButton

@@ -136,3 +136,13 @@ This component uses the `chrono-node` library to parse natural language dates.
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="date-picker-rtl" direction="rtl">
+
+<div></div>
+
+</ComponentPreview>

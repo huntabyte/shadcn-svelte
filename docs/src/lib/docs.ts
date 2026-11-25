@@ -1,5 +1,6 @@
 import {
 	components,
+	rtl,
 	darkMode,
 	gettingStarted,
 	installation,
@@ -15,6 +16,7 @@ import type { Component } from "svelte";
 
 const allDocs = [
 	...gettingStarted,
+	...rtl,
 	...migration,
 	...components,
 	...installation,

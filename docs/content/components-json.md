@@ -160,3 +160,15 @@ The registry URL tells the CLI where to fetch the shadcn-svelte components/regis
   "registry": "https://shadcn-svelte.com/registry"
 }
 ```
+
+## rtl
+
+Set `rtl` to `true` to transform installed component classes for both left-to-right and right-to-left layouts. Physical spacing and alignment become logical utilities, directional icons flip in RTL, and horizontal translations get RTL overrides. The default is disabled.
+
+```json title="components.json"
+{
+  "rtl": true
+}
+```
+
+Also configure the [Direction provider](/docs/components/direction) and your document's HTML `dir` attribute.

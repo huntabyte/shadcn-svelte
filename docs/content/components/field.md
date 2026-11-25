@@ -211,3 +211,13 @@ Stack `Field` components with `Field.Group`. Add `Field.Separator` to divide the
 - `Field.Set` and `Field.Legend` keep related controls grouped for keyboard and assistive tech users.
 - `Field` outputs `role="group"` so nested controls inherit labeling from `Field.Label` and `Field.Legend` when combined.
 - Apply `Field.Separator` sparingly to ensure screen readers encounter clear section boundaries.
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="field-rtl" direction="rtl" previewClassName="h-auto p-6">
+
+<div></div>
+
+</ComponentPreview>

@@ -171,7 +171,7 @@ Since the mask is applied to the scroll container itself, a visible scrollbar fa
 
 `scroll-fade-x` follows the reading direction. At rest, the start edge is crisp and the end edge fades. In RTL layouts that means a crisp right edge and a fade on the left, mirrored from LTR.
 
-<ComponentPreview name="scroll-fade-rtl">
+<ComponentPreview name="scroll-fade-rtl" direction="rtl">
 
 <div></div>
 

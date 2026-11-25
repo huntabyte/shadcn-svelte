@@ -119,3 +119,13 @@ You can add an `InputGroup` component to the `Empty.Content` component.
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="empty-rtl" direction="rtl">
+
+<div></div>
+
+</ComponentPreview>

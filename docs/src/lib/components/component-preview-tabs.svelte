@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
+	import LanguagePreview from "./language-selector/language-preview.svelte";
 	import type { PresetConfig } from "shadcn-svelte/preset";
 	import type { Component, Snippet } from "svelte";
 	import type { HTMLAttributes } from "svelte/elements";
@@ -14,6 +15,7 @@
 		children,
 		name,
 		hideCode = false,
+		direction = "ltr",
 		chromeLessOnMobile = false,
 		previewStyle,
 		...restProps
@@ -21,6 +23,7 @@
 		previewClassName?: string;
 		align?: "center" | "start" | "end";
 		hideCode?: boolean;
+		direction?: "ltr" | "rtl";
 		chromeLessOnMobile?: boolean;
 		previewStyle?: PresetConfig["style"];
 		example?: Snippet;
@@ -46,6 +49,24 @@
 	{/if}
 {/snippet}
 
+{#snippet PreviewContent()}
+	<div
+		data-align={align}
+		data-chromeless={chromeLessOnMobile}
+		class={cn(
+			"preview relative flex min-h-72 w-full justify-center p-10 data-[align=center]:items-center data-[align=end]:items-start data-[align=start]:items-start data-[chromeless=true]:h-auto data-[chromeless=true]:p-0 sm:data-[align=end]:items-end",
+			previewStyle && `style-${previewStyle}`,
+			previewClassName
+		)}
+	>
+		{#if example}
+			{@render example()}
+		{:else}
+			{@render ExampleFallback()}
+		{/if}
+	</div>
+{/snippet}
+
 <div
 	data-not-typeset
 	data-slot="component-preview"
@@ -56,21 +77,11 @@
 	{...restProps}
 >
 	<div data-slot="preview" data-llm-ignore>
-		<div
-			data-align={align}
-			data-chromeless={chromeLessOnMobile}
-			class={cn(
-				"preview relative flex min-h-72 w-full justify-center p-10 data-[align=center]:items-center data-[align=end]:items-start data-[align=start]:items-start data-[chromeless=true]:h-auto data-[chromeless=true]:p-0 sm:data-[align=end]:items-end",
-				previewStyle && `style-${previewStyle}`,
-				previewClassName
-			)}
-		>
-			{#if example}
-				{@render example()}
-			{:else}
-				{@render ExampleFallback()}
-			{/if}
-		</div>
+		{#if direction === "rtl"}
+			<LanguagePreview>{@render PreviewContent()}</LanguagePreview>
+		{:else}
+			{@render PreviewContent()}
+		{/if}
 	</div>
 	{#if !hideCode}
 		<div
@@ -78,6 +89,15 @@
 			data-code-visible={codeVisible}
 			class="relative overflow-hidden **:data-rehype-pretty-code-figure:m-0! **:data-rehype-pretty-code-figure:rounded-t-none **:data-rehype-pretty-code-figure:border-t data-[code-visible=false]:**:data-rehype-pretty-code-figure:max-h-28 data-[code-visible=false]:**:data-rehype-pretty-code-figure:overflow-hidden **:data-[slot=copy-button]:right-4 **:data-[slot=copy-button]:hidden data-[code-visible=true]:**:data-[slot=copy-button]:flex data-[code-visible=true]:[&_pre]:max-h-72"
 		>
+			{#if direction === "rtl" && codeVisible}
+				<div class="border-t bg-code p-6 font-mono text-sm text-muted-foreground">
+					You will notice this example uses dir and data-lang attributes. This is because this site
+					is not RTL by default. In your application, you won't need these. See the <a
+						href="/docs/rtl"
+						class="underline underline-offset-4">RTL guide</a
+					> for more information.
+				</div>
+			{/if}
 			{@render children?.()}
 			{#if !codeVisible}
 				<div class="absolute inset-0 flex items-center justify-center pb-4">

@@ -150,3 +150,13 @@ Add the `data-invalid` attribute to the `Field.Field` component and the `aria-in
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="select-rtl" direction="rtl">
+
+<div></div>
+
+</ComponentPreview>
