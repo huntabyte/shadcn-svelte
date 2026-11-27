@@ -111,3 +111,57 @@ Use just the previous and next buttons without page numbers. This is useful for 
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="pagination-rtl" direction="rtl">
+
+<div></div>
+
+</ComponentPreview>
+
+## Changelog
+
+### RTL Support
+
+If you're upgrading from a previous version of the `Pagination` component, you'll need to apply the following updates to add the `text` prop:
+
+<Steps>
+
+<Step>Update `Pagination.Previous`.</Step>
+
+In `pagination-previous.svelte`, add the `text` prop and use it for the label:
+
+```diff
+  let {
+    ref = $bindable(null),
+    class: className,
++   text = "Previous",
+    ...restProps
+- }: PaginationPrimitive.PrevButtonProps = $props();
++ }: PaginationPrimitive.PrevButtonProps & { text?: string } = $props();
+
+- <span class="cn-pagination-previous-text hidden sm:block">Previous</span>
++ <span class="cn-pagination-previous-text hidden sm:block">{text}</span>
+```
+
+<Step>Update `Pagination.Next`.</Step>
+
+In `pagination-next.svelte`, add the `text` prop and use it for the label:
+
+```diff
+  let {
+    ref = $bindable(null),
+    class: className,
++   text = "Next",
+    ...restProps
+- }: PaginationPrimitive.NextButtonProps = $props();
++ }: PaginationPrimitive.NextButtonProps & { text?: string } = $props();
+
+- <span class="cn-pagination-next-text hidden sm:block">Next</span>
++ <span class="cn-pagination-next-text hidden sm:block">{text}</span>
+```
+
+</Steps>

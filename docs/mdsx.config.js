@@ -24,6 +24,7 @@ export async function createHighlighter() {
 			langs: [
 				import("@shikijs/langs/typescript"),
 				import("@shikijs/langs/svelte"),
+				import("@shikijs/langs/html"),
 				import("@shikijs/langs/css"),
 				import("@shikijs/langs/json"),
 				import("@shikijs/langs/bash"),

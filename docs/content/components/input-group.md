@@ -193,3 +193,13 @@ Here's an example of a custom auto-resizing textarea.
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="input-group-rtl" direction="rtl" previewClassName="h-[30rem]">
+
+<div></div>
+
+</ComponentPreview>

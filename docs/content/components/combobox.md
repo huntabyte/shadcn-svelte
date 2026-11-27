@@ -151,3 +151,13 @@ You can trigger the combobox from a button or any other component by using the `
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="combobox-rtl" direction="rtl" align="start">
+
+<div></div>
+
+</ComponentPreview>

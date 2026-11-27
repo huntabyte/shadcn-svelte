@@ -19,14 +19,7 @@ import { installDependencies } from "../../utils/install-deps.js";
 import { checkPreconditions } from "../../utils/preconditions.js";
 import { cancel, intro, prettifyList, handleError } from "../../utils/prompt-helpers.js";
 import { transformCss } from "../../utils/transform-css.js";
-import {
-	transform,
-	transformFont,
-	transformImports,
-	transformIcons,
-	transformMenu,
-	transformStripTypes,
-} from "../../utils/transformers/index.js";
+import { transform } from "../../utils/transformers/index.js";
 
 const updateOptionsSchema = z.object({
 	all: z.boolean(),
@@ -198,21 +191,12 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 						dependencies: transformDependencies,
 						devDependencies: transformDevDependencies,
 						filePath: transformFilePath,
-					} = await transform(
-						{
-							content: file.content,
-							filePath,
-							config,
-							supportedFontMarkers: registryFontMarkers,
-						},
-						[
-							transformImports,
-							transformIcons,
-							transformMenu,
-							transformFont,
-							!config.typescript && transformStripTypes,
-						]
-					);
+					} = await transform({
+						content: file.content,
+						filePath,
+						config,
+						supportedFontMarkers: registryFontMarkers,
+					});
 
 					transformDependencies?.forEach((dep) => dependencies.add(dep));
 					transformDevDependencies?.forEach((dep) => devDependencies.add(dep));

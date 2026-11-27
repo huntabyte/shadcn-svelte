@@ -88,3 +88,13 @@ Use the `href` prop on `NavigationMenu.Link` to render a link. You can style it 
   </NavigationMenu.Link>
 </NavigationMenu.Item>
 ```
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="navigation-menu-rtl" direction="rtl" previewClassName="h-96" class="overflow-visible">
+
+<div></div>
+
+</ComponentPreview>

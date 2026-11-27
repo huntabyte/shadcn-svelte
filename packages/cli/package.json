@@ -57,6 +57,10 @@
 		},
 		"./tailwind.css": {
 			"style": "./dist/tailwind.css"
+		},
+		"./transformers/rtl": {
+			"types": "./dist/utils/transformers/transform-rtl.d.mts",
+			"default": "./dist/utils/transformers/transform-rtl.mjs"
 		}
 	},
 	"files": [
@@ -105,6 +109,7 @@
 		"ignore": "^7.0.4",
 		"magic-string": "^0.30.21",
 		"memfs": "^4.17.2",
+		"minimatch": "^10.2.4",
 		"open": "^11.0.0",
 		"package-manager-detector": "^1.2.0",
 		"picocolors": "^1.1.1",

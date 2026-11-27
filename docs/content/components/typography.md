@@ -119,3 +119,13 @@ We do not ship any typography styles by default. This page is an example of how 
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="typography-rtl" direction="rtl" class="[&_.preview]:h-auto!">
+
+<div></div>
+
+</ComponentPreview>

@@ -100,3 +100,13 @@ A popover with form fields inside.
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="popover-rtl" direction="rtl">
+
+<div></div>
+
+</ComponentPreview>

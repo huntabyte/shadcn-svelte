@@ -103,6 +103,16 @@ Use `aria-invalid` to show validation errors and the `data-invalid` attribute to
 - Use `NativeSelect` for native browser behavior, better performance, or mobile-optimized dropdowns.
 - Use `Select` for custom styling, animations, or complex interactions.
 
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="native-select-rtl" direction="rtl">
+
+<div></div>
+
+</ComponentPreview>
+
 ## API Reference
 
 ### NativeSelect.Root

@@ -180,3 +180,13 @@ Use with a `Popover` component.
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="button-group-rtl" direction="rtl">
+
+<div></div>
+
+</ComponentPreview>

@@ -136,3 +136,13 @@ You can combine the `Dialog` and `Drawer` components to create a responsive dial
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="drawer-rtl" direction="rtl">
+
+<div></div>
+
+</ComponentPreview>

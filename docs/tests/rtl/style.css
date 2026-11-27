@@ -1,0 +1,7 @@
+@import "../../src/app.css";
+@source "../../src/lib/registry/ui";
+@source "../../src/lib/registry/examples";
+body {
+	padding: 48px;
+	font-family: var(--font-sans);
+}

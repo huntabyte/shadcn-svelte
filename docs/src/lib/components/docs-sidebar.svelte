@@ -20,6 +20,7 @@
 		{ title: "Components", href: "/docs/components", items: [] },
 		{ title: "Installation", href: "/docs/installation", items: [] },
 		{ title: "Theming", href: "/docs/theming", items: [] },
+		{ title: "RTL", href: "/docs/rtl", items: [] },
 		{ title: "CLI", href: "/docs/cli", items: [] },
 		{ title: "Typeset", href: "/docs/typeset", items: [] },
 		{ title: "Skills", href: "/docs/skills", items: [] },

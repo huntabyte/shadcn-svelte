@@ -107,3 +107,13 @@ Add an image before the card header to create a card with an image.
 <div></div>
 
 </ComponentPreview>
+
+## RTL
+
+To enable RTL support in shadcn-svelte, see the [RTL configuration guide](/docs/rtl).
+
+<ComponentPreview name="card-rtl" direction="rtl" previewClassName="h-[30rem]">
+
+<div></div>
+
+</ComponentPreview>

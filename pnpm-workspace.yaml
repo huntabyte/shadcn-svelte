@@ -8,6 +8,7 @@ allowBuilds:
   esbuild: true
   sharp: true
   workerd: true
+  "@tailwindcss/oxide": true
 
 catalog:
   "@sveltejs/kit": ^2.60.1
@@ -19,3 +20,7 @@ catalog:
   vite: ^7.3.1
 
 minimumReleaseAge: 2880
+
+# BitsConfig direction support first shipped in this release.
+minimumReleaseAgeExclude:
+  - bits-ui@2.22.0

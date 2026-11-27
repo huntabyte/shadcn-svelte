@@ -1,3 +1,9 @@
+import { transformFont } from "./transform-font.js";
+import { transformIcons } from "./transform-icons.js";
+import { transformImports } from "./transform-imports.js";
+import { transformMenu } from "./transform-menu.js";
+import { transformRtl } from "./transform-rtl.js";
+import { transformStripTypes } from "./transform-strip-types.js";
 import type { ResolvedConfig } from "../config/index.js";
 
 export type TransformOptions = {
@@ -18,7 +24,14 @@ export type Transformer = (opts: TransformOptions) => Promise<Partial<Transforme
 
 export async function transform(
 	opts: TransformOptions,
-	transformers: (Transformer | false | undefined)[]
+	transformers: (Transformer | false | undefined)[] = [
+		transformImports,
+		transformIcons,
+		transformMenu,
+		transformFont,
+		transformRtl,
+		!opts.config.typescript && transformStripTypes,
+	]
 ): Promise<TransformerResult> {
 	const result = {
 		content: opts.content,
@@ -51,5 +64,6 @@ export async function transform(
 export { transformStripTypes } from "./transform-strip-types.js";
 export { transformIcons } from "./transform-icons.js";
 export { transformImports } from "./transform-imports.js";
+export { transformRtl, applyRtlMapping } from "./transform-rtl.js";
 export { transformMenu } from "./transform-menu.js";
 export { transformFont, rewriteFontMarkers } from "./transform-font.js";
